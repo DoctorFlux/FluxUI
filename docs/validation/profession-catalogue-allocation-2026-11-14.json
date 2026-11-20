@@ -1,0 +1,2523 @@
+{
+  "status": "APPLIED and current whole integration verified",
+  "application": {
+    "appliedUtc": "2026-11-14T16:35:44.977957+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\checkpoint-20261114T163210Z",
+    "runtime": {
+      "path": "Inventory/Professions.lua",
+      "before": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+      "after": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6"
+    },
+    "newTest": {
+      "path": "tests/profession_catalogue_allocation.lua",
+      "sha256": "e34a52c2bb69f63600de4463d7898ca770593615f6f7c14db9f039ac2c1d2d15"
+    },
+    "scope": "Only private temporary catalogue metadata storage; no API/query/cache/cadence/UI/setting change.",
+    "proof": {
+      "seal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\comparison-final.json",
+      "sealSHA256": "b9b83a3f9156902b331867cfdb276dcaa84a4aab7c1f803079b6c5bb7b60f045",
+      "peer": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\catalogue-peer.json"
+    },
+    "nativeAfterApplied": "Not loaded or measured by this action; do not reload an active user queue without request."
+  },
+  "comparisonBeforeApplication": {
+    "sealedUtc": "2026-11-14T16:34:05.542341+00:00",
+    "status": "EXTERNAL ONLY; ready for root review/checkpoint/apply decision; no installed changes",
+    "sourceIdentity": {
+      "baseline": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad"
+      },
+      "candidate": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6"
+      }
+    },
+    "changedScope": "Only BuildCachedRecipeCatalogue private seen metadata storage; two parallel arrays are lazy for empty input. No query/native/API/cadence/cache changes.",
+    "actualSourceFixture": "Whole Inventory/Professions.lua via existing character_recipe_cache fixture; five client families x two providers, independent expected winners/reference/order rules; native APIs supplied by existing mock fixture.",
+    "workPairs": [
+      {
+        "pair": 1,
+        "order": "before-after",
+        "before": {
+          "checks": 3041,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 7,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 20,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 121,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 500,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 2000,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            }
+          ]
+        },
+        "after": {
+          "checks": 3051,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 7,
+              "parallelArrays": 2
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 20,
+              "parallelArrays": 2
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 121,
+              "parallelArrays": 2
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 500,
+              "parallelArrays": 2
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 2000,
+              "parallelArrays": 2
+            }
+          ]
+        }
+      },
+      {
+        "pair": 2,
+        "order": "after-before",
+        "before": {
+          "checks": 3041,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 7,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 20,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 121,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 500,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 2000,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            }
+          ]
+        },
+        "after": {
+          "checks": 3051,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 7,
+              "parallelArrays": 2
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 20,
+              "parallelArrays": 2
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 121,
+              "parallelArrays": 2
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 500,
+              "parallelArrays": 2
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 2000,
+              "parallelArrays": 2
+            }
+          ]
+        }
+      },
+      {
+        "pair": 3,
+        "order": "before-after",
+        "before": {
+          "checks": 3041,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 7,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 20,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 121,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 500,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 2000,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            }
+          ]
+        },
+        "after": {
+          "checks": 3051,
+          "scenarios": 145,
+          "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2",
+          "actualPrivateWork": [
+            {
+              "size": 0,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 0,
+              "parallelArrays": 0
+            },
+            {
+              "size": 7,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 7,
+              "parallelArrays": 2
+            },
+            {
+              "size": 20,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 20,
+              "parallelArrays": 2
+            },
+            {
+              "size": 121,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 121,
+              "parallelArrays": 2
+            },
+            {
+              "size": 500,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 500,
+              "parallelArrays": 2
+            },
+            {
+              "size": 2000,
+              "seenRecordTables": 0,
+              "seenNumericIndices": 2000,
+              "parallelArrays": 2
+            }
+          ]
+        }
+      }
+    ],
+    "traceByteLength": 780,
+    "trace": "equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|equal-key|pair:1|data:unlearnedRecipeIDs|pair:1|data:recipes|data:recipes|row:recipeID|row:legacy|row:legacy|row:craftingData|craft:version|craft:complete|row:outputItemID|row:quantityMin|row:reagents|row:reagents|row:skillLineID|row:skillLineID|data:source|row:learned|pair:1|pair:1|late-key:1|late-key:2|pair:1|pair:1|reentry-key:1|nested-enter|nested-exit|pair:1|pair:1|raw-key-error|pair:1|late-public:unlearnedRecipeIDs|pair:1|late-public:recipes|late-public:recipes|late-public:source|pair:1|pair:1|convert:number:141|convert:string:a|pair:1|pair:1|convert:number:142|convert:string:a",
+    "benchmarkPairs": [
+      {
+        "pair": 1,
+        "order": "AB",
+        "before": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.022,
+            "perCallUs": 0.916667,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.071,
+            "perCallUs": 11.833333,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.074,
+            "perCallUs": 12.333333,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.1,
+            "perCallUs": 33.333333,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.097,
+            "perCallUs": 32.333333,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.114,
+            "perCallUs": 190.0,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.116,
+            "perCallUs": 193.333333,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.122,
+            "perCallUs": 813.333333,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.118,
+            "perCallUs": 786.666667,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.132,
+            "perCallUs": 3300.0,
+            "allocated10KiB": 3896.275391
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.131,
+            "perCallUs": 3275.0,
+            "allocated10KiB": 3896.275391
+          }
+        ],
+        "after": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.07,
+            "perCallUs": 11.666667,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.07,
+            "perCallUs": 11.666667,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.092,
+            "perCallUs": 30.666667,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.093,
+            "perCallUs": 31.0,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.111,
+            "perCallUs": 185.0,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.114,
+            "perCallUs": 190.0,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.107,
+            "perCallUs": 713.333333,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.112,
+            "perCallUs": 746.666667,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.125,
+            "perCallUs": 3125.0,
+            "allocated10KiB": 1568.619141
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.123,
+            "perCallUs": 3075.0,
+            "allocated10KiB": 1568.619141
+          }
+        ]
+      },
+      {
+        "pair": 2,
+        "order": "BA",
+        "before": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.023,
+            "perCallUs": 0.958333,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.022,
+            "perCallUs": 0.916667,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.077,
+            "perCallUs": 12.833333,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.073,
+            "perCallUs": 12.166667,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.099,
+            "perCallUs": 33.0,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.102,
+            "perCallUs": 34.0,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.113,
+            "perCallUs": 188.333333,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.115,
+            "perCallUs": 191.666667,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.12,
+            "perCallUs": 800.0,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.12,
+            "perCallUs": 800.0,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.134,
+            "perCallUs": 3350.0,
+            "allocated10KiB": 3896.275391
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.134,
+            "perCallUs": 3350.0,
+            "allocated10KiB": 3896.275391
+          }
+        ],
+        "after": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.022,
+            "perCallUs": 0.916667,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.072,
+            "perCallUs": 12.0,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.073,
+            "perCallUs": 12.166667,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.092,
+            "perCallUs": 30.666667,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.09,
+            "perCallUs": 30.0,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.109,
+            "perCallUs": 181.666667,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.116,
+            "perCallUs": 193.333333,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.119,
+            "perCallUs": 793.333333,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.114,
+            "perCallUs": 760.0,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.137,
+            "perCallUs": 3425.0,
+            "allocated10KiB": 1568.619141
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.124,
+            "perCallUs": 3100.0,
+            "allocated10KiB": 1568.619141
+          }
+        ]
+      },
+      {
+        "pair": 3,
+        "order": "AB",
+        "before": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.075,
+            "perCallUs": 12.5,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.074,
+            "perCallUs": 12.333333,
+            "allocated10KiB": 16.680664
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.098,
+            "perCallUs": 32.666667,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.106,
+            "perCallUs": 35.333333,
+            "allocated10KiB": 46.123047
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.114,
+            "perCallUs": 190.0,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.112,
+            "perCallUs": 186.666667,
+            "allocated10KiB": 239.604492
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.124,
+            "perCallUs": 826.666667,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.125,
+            "perCallUs": 833.333333,
+            "allocated10KiB": 975.472656
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.134,
+            "perCallUs": 3350.0,
+            "allocated10KiB": 3896.275391
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.138,
+            "perCallUs": 3450.0,
+            "allocated10KiB": 3896.275391
+          }
+        ],
+        "after": [
+          {
+            "size": 0,
+            "trial": 1,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 0,
+            "trial": 2,
+            "calls": 24000,
+            "seconds": 0.021,
+            "perCallUs": 0.875,
+            "allocated10KiB": 2.734375
+          },
+          {
+            "size": 7,
+            "trial": 1,
+            "calls": 6000,
+            "seconds": 0.069,
+            "perCallUs": 11.5,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 7,
+            "trial": 2,
+            "calls": 6000,
+            "seconds": 0.071,
+            "perCallUs": 11.833333,
+            "allocated10KiB": 9.883789
+          },
+          {
+            "size": 20,
+            "trial": 1,
+            "calls": 3000,
+            "seconds": 0.092,
+            "perCallUs": 30.666667,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 20,
+            "trial": 2,
+            "calls": 3000,
+            "seconds": 0.091,
+            "perCallUs": 30.333333,
+            "allocated10KiB": 27.529297
+          },
+          {
+            "size": 121,
+            "trial": 1,
+            "calls": 600,
+            "seconds": 0.103,
+            "perCallUs": 171.666667,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 121,
+            "trial": 2,
+            "calls": 600,
+            "seconds": 0.107,
+            "perCallUs": 178.333333,
+            "allocated10KiB": 101.088867
+          },
+          {
+            "size": 500,
+            "trial": 1,
+            "calls": 150,
+            "seconds": 0.109,
+            "perCallUs": 726.666667,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 500,
+            "trial": 2,
+            "calls": 150,
+            "seconds": 0.108,
+            "perCallUs": 720.0,
+            "allocated10KiB": 394.378906
+          },
+          {
+            "size": 2000,
+            "trial": 1,
+            "calls": 40,
+            "seconds": 0.121,
+            "perCallUs": 3025.0,
+            "allocated10KiB": 1568.619141
+          },
+          {
+            "size": 2000,
+            "trial": 2,
+            "calls": 40,
+            "seconds": 0.122,
+            "perCallUs": 3050.0,
+            "allocated10KiB": 1568.619141
+          }
+        ]
+      }
+    ],
+    "benchmarkSummary": [
+      {
+        "size": 0,
+        "before": {
+          "medianUs": 0.8958335,
+          "rangeUs": [
+            0.875,
+            0.958333
+          ],
+          "allUs": [
+            0.916667,
+            0.875,
+            0.958333,
+            0.916667,
+            0.875,
+            0.875
+          ],
+          "allocatedKiBPerQuery": 0.2734375,
+          "allAllocatedKiBPerQuery": [
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375
+          ]
+        },
+        "after": {
+          "medianUs": 0.875,
+          "rangeUs": [
+            0.875,
+            0.916667
+          ],
+          "allUs": [
+            0.875,
+            0.875,
+            0.916667,
+            0.875,
+            0.875,
+            0.875
+          ],
+          "allocatedKiBPerQuery": 0.2734375,
+          "allAllocatedKiBPerQuery": [
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375,
+            0.2734375
+          ]
+        },
+        "medianDeltaUs": -0.02083349999999995,
+        "allocatedDeltaKiB": 0.0
+      },
+      {
+        "size": 7,
+        "before": {
+          "medianUs": 12.333333,
+          "rangeUs": [
+            11.833333,
+            12.833333
+          ],
+          "allUs": [
+            11.833333,
+            12.333333,
+            12.833333,
+            12.166667,
+            12.5,
+            12.333333
+          ],
+          "allocatedKiBPerQuery": 1.6680664,
+          "allAllocatedKiBPerQuery": [
+            1.6680664,
+            1.6680664,
+            1.6680664,
+            1.6680664,
+            1.6680664,
+            1.6680664
+          ]
+        },
+        "after": {
+          "medianUs": 11.75,
+          "rangeUs": [
+            11.5,
+            12.166667
+          ],
+          "allUs": [
+            11.666667,
+            11.666667,
+            12.0,
+            12.166667,
+            11.5,
+            11.833333
+          ],
+          "allocatedKiBPerQuery": 0.9883789000000001,
+          "allAllocatedKiBPerQuery": [
+            0.9883789000000001,
+            0.9883789000000001,
+            0.9883789000000001,
+            0.9883789000000001,
+            0.9883789000000001,
+            0.9883789000000001
+          ]
+        },
+        "medianDeltaUs": -0.5833329999999997,
+        "allocatedDeltaKiB": -0.6796875
+      },
+      {
+        "size": 20,
+        "before": {
+          "medianUs": 33.166666500000005,
+          "rangeUs": [
+            32.333333,
+            35.333333
+          ],
+          "allUs": [
+            33.333333,
+            32.333333,
+            33.0,
+            34.0,
+            32.666667,
+            35.333333
+          ],
+          "allocatedKiBPerQuery": 4.6123047,
+          "allAllocatedKiBPerQuery": [
+            4.6123047,
+            4.6123047,
+            4.6123047,
+            4.6123047,
+            4.6123047,
+            4.6123047
+          ]
+        },
+        "after": {
+          "medianUs": 30.666667,
+          "rangeUs": [
+            30.0,
+            31.0
+          ],
+          "allUs": [
+            30.666667,
+            31.0,
+            30.666667,
+            30.0,
+            30.666667,
+            30.333333
+          ],
+          "allocatedKiBPerQuery": 2.7529297,
+          "allAllocatedKiBPerQuery": [
+            2.7529297,
+            2.7529297,
+            2.7529297,
+            2.7529297,
+            2.7529297,
+            2.7529297
+          ]
+        },
+        "medianDeltaUs": -2.499999500000005,
+        "allocatedDeltaKiB": -1.859375
+      },
+      {
+        "size": 121,
+        "before": {
+          "medianUs": 190.0,
+          "rangeUs": [
+            186.666667,
+            193.333333
+          ],
+          "allUs": [
+            190.0,
+            193.333333,
+            188.333333,
+            191.666667,
+            190.0,
+            186.666667
+          ],
+          "allocatedKiBPerQuery": 23.9604492,
+          "allAllocatedKiBPerQuery": [
+            23.9604492,
+            23.9604492,
+            23.9604492,
+            23.9604492,
+            23.9604492,
+            23.9604492
+          ]
+        },
+        "after": {
+          "medianUs": 183.33333349999998,
+          "rangeUs": [
+            171.666667,
+            193.333333
+          ],
+          "allUs": [
+            185.0,
+            190.0,
+            181.666667,
+            193.333333,
+            171.666667,
+            178.333333
+          ],
+          "allocatedKiBPerQuery": 10.1088867,
+          "allAllocatedKiBPerQuery": [
+            10.1088867,
+            10.1088867,
+            10.1088867,
+            10.1088867,
+            10.1088867,
+            10.1088867
+          ]
+        },
+        "medianDeltaUs": -6.666666500000019,
+        "allocatedDeltaKiB": -13.8515625
+      },
+      {
+        "size": 500,
+        "before": {
+          "medianUs": 806.6666665,
+          "rangeUs": [
+            786.666667,
+            833.333333
+          ],
+          "allUs": [
+            813.333333,
+            786.666667,
+            800.0,
+            800.0,
+            826.666667,
+            833.333333
+          ],
+          "allocatedKiBPerQuery": 97.5472656,
+          "allAllocatedKiBPerQuery": [
+            97.5472656,
+            97.5472656,
+            97.5472656,
+            97.5472656,
+            97.5472656,
+            97.5472656
+          ]
+        },
+        "after": {
+          "medianUs": 736.666667,
+          "rangeUs": [
+            713.333333,
+            793.333333
+          ],
+          "allUs": [
+            713.333333,
+            746.666667,
+            793.333333,
+            760.0,
+            726.666667,
+            720.0
+          ],
+          "allocatedKiBPerQuery": 39.437890599999996,
+          "allAllocatedKiBPerQuery": [
+            39.437890599999996,
+            39.437890599999996,
+            39.437890599999996,
+            39.437890599999996,
+            39.437890599999996,
+            39.437890599999996
+          ]
+        },
+        "medianDeltaUs": -69.99999950000006,
+        "allocatedDeltaKiB": -58.10937500000001
+      },
+      {
+        "size": 2000,
+        "before": {
+          "medianUs": 3350.0,
+          "rangeUs": [
+            3275.0,
+            3450.0
+          ],
+          "allUs": [
+            3300.0,
+            3275.0,
+            3350.0,
+            3350.0,
+            3350.0,
+            3450.0
+          ],
+          "allocatedKiBPerQuery": 389.62753910000004,
+          "allAllocatedKiBPerQuery": [
+            389.62753910000004,
+            389.62753910000004,
+            389.62753910000004,
+            389.62753910000004,
+            389.62753910000004,
+            389.62753910000004
+          ]
+        },
+        "after": {
+          "medianUs": 3087.5,
+          "rangeUs": [
+            3025.0,
+            3425.0
+          ],
+          "allUs": [
+            3125.0,
+            3075.0,
+            3425.0,
+            3100.0,
+            3025.0,
+            3050.0
+          ],
+          "allocatedKiBPerQuery": 156.86191409999998,
+          "allAllocatedKiBPerQuery": [
+            156.86191409999998,
+            156.86191409999998,
+            156.86191409999998,
+            156.86191409999998,
+            156.86191409999998,
+            156.86191409999998
+          ]
+        },
+        "medianDeltaUs": -262.5,
+        "allocatedDeltaKiB": -232.76562500000006
+      }
+    ],
+    "allSlowerMatchedTrials": [
+      {
+        "pair": 2,
+        "size": 121,
+        "trial": 2,
+        "beforeUs": 191.666667,
+        "afterUs": 193.333333,
+        "deltaUs": 1.6666660000000206
+      },
+      {
+        "pair": 2,
+        "size": 2000,
+        "trial": 1,
+        "beforeUs": 3350.0,
+        "afterUs": 3425.0,
+        "deltaUs": 75.0
+      }
+    ],
+    "controls": [
+      {
+        "name": "no_replacement",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\no_replacement\\Inventory\\Professions.lua",
+        "sha256": "035dd7b63224ad48e3ecfab81064cb790354a8d2e41dccbd71f7cf2e0b6d7df2",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: complete beats every lower bit: exact reference/order 1",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: complete beats every lower bit: exact reference/order 1"
+      },
+      {
+        "name": "last_equal_key_wins",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\last_equal_key_wins\\Inventory\\Professions.lua",
+        "sha256": "e373157e4f053eb230ed3ba51659ec1639a1427547a6c9077a3a462451fdbdf5",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: equal string keys keep first: exact reference/order 1",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: equal string keys keep first: exact reference/order 1"
+      },
+      {
+        "name": "ignore_revocation",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\ignore_revocation\\Inventory\\Professions.lua",
+        "sha256": "c209a3dabcf2aded1997ac8db8d1b1f4dc7e5e5a69637ea5d4a83ee4a9bed655",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: global true revocation/raw-ID type/legacy exemption: exact reference/order 1",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: global true revocation/raw-ID type/legacy exemption: exact reference/order 1"
+      },
+      {
+        "name": "revoke_legacy",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\revoke_legacy\\Inventory\\Professions.lua",
+        "sha256": "631b51b8ea2d6bd67143ed76f042e0687f71294b927a2418cd4aa54a215e8a98",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: global true revocation/raw-ID type/legacy exemption: count",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: global true revocation/raw-ID type/legacy exemption: count"
+      },
+      {
+        "name": "append_replacement",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\append_replacement\\Inventory\\Professions.lua",
+        "sha256": "88af58be370ae2161a0243a79630bd195b7c516b649e4ceab3623f5bce370a2e",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: complete beats every lower bit: count",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: complete beats every lower bit: count"
+      },
+      {
+        "name": "extra_key_conversion",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\extra_key_conversion\\Inventory\\Professions.lua",
+        "sha256": "8ff5d64e7c1a938171e823a060ee9c47753f4536664809b9e06293068c52bf59",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: exact key tostring evaluation count",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: exact key tostring evaluation count"
+      },
+      {
+        "name": "clone_result",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\clone_result\\Inventory\\Professions.lua",
+        "sha256": "8f15a2ca85139c80ae4189b20f476d2c6ac2bd83b8354cc92fc2ebf168caa6a6",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: equal string keys keep first: exact reference/order 1",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: equal string keys keep first: exact reference/order 1"
+      },
+      {
+        "name": "stale_winner_key",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\stale_winner_key\\Inventory\\Professions.lua",
+        "sha256": "07baa7894f4d849ad0b37648875142281fd0efd3ac897c798ec2d2ef46bc427d",
+        "rejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...160712Z/commerce/catalogue-allocation/catalogue_work.lua:4: updated winning key governs a later equal-rank alias: exact reference/order 1",
+        "compiled": true,
+        "rejected": true,
+        "durableRejected": true,
+        "durableRejection": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...cation/durable/tests/profession_catalogue_allocation.lua:55: updated winning key governs a later equal-rank alias: exact reference/order 1"
+      }
+    ],
+    "existingFocusedChecks": [
+      {
+        "script": "tests/profession_catalogue_work.lua",
+        "baseline": "Profession catalogue work: 637 checks; 10 client/provider models PASS; native crafting/FPS NOT RUN",
+        "candidate": "Profession catalogue work: 637 checks; 10 client/provider models PASS; native crafting/FPS NOT RUN"
+      },
+      {
+        "script": "tests/character_recipe_cache.lua",
+        "baseline": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN",
+        "candidate": "Character recipe persistence/vendor crafting: 848 checks PASS; 20 profiles; native persistence/buying NOT RUN"
+      },
+      {
+        "script": "tests/profession_recipe_knowledge.lua",
+        "baseline": "Profession recipe knowledge: 524 checks PASS; 20 profiles; native persistence/profession ownership NOT RUN",
+        "candidate": "Profession recipe knowledge: 524 checks PASS; 20 profiles; native persistence/profession ownership NOT RUN"
+      }
+    ],
+    "baselineFailsOptimizedBudget": true,
+    "candidateMeetsOptimizedBudget": true,
+    "limits": [
+      "Desktop Lua5.4.6 os.clock has millisecond increments on this host; per-call values divide batch totals, not single-call timer precision.",
+      "Native actual current-source catalogue121 costs0.9034\u20131.0842ms/110672allocatedBytes, but this fixture only measures before/after allocation shape and desktop CPU. Do not project its bytes/ratio onto native or claim native after/FPS.",
+      "Raw timing ranges overlap and all slower matched trials are retained. Pair2 size121 trial2 +1.666666us and size2000 trial1 +75us are noisy regressions, not hidden.",
+      "No user/client/pixel/taint/transaction behavior acceptance inferred from fixtures. Existing production callback order, tostring traces and returned references are directly asserted.",
+      "Quiet benchmark window excluded root tests/queries, but user's active desktop/WoW load is uncontrolled. Peer review and any later installed/native acceptance remain root-owned."
+    ],
+    "noNativeInput": true,
+    "noRuntimeEdits": true,
+    "allChildProcessesCompleted": true,
+    "testFiles": {
+      "catalogue_bench.lua": "a17466d4dde2a770d72d573b0eac279b0f6438e3073b3eb0ee8d74b15d041391",
+      "catalogue_work.lua": "f2575bd095fee3210c01f539ae55626809055200c3d2fb7470e6733593061daf",
+      "catalogue_work.v1.lua": "e10c99f6aedbf8653ee910f4e05fedfc361163d793e27d1e768e354f274f4a07",
+      "compile_controls.lua": "2a9b29b0ba8ef2cebea4d4fbfb22c6531bf5325987643aaaed1b563bfee21b54",
+      "fixture.lua": "cc574915ed79798ccde4b22a25b5890141afbdc09cf277ade978dec5d164ec36",
+      "run_focus.lua": "d736c7c3b1b4d3397067cf1a54ec98aee6b268087d3e2777654b2cef17cfab39"
+    },
+    "provenanceNote": "Raw per-run sourceSHA256 is the live preservation guard. resultProvenance explicitly labels it runtimeOwnerSHA256 and resolves the commanded tested owner separately. Earlier raw records are immutable.",
+    "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+    "testedBaselineSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+    "testedCandidateSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+    "resultProvenance": [
+      {
+        "result": "after-bench-1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-bench-2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-bench-3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-work-1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-work-final1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-work-final2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "after-work-final3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-bench-1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-bench-2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-bench-3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-work-1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-work-final1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-work-final2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "before-work-final3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-append_replacement.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\append_replacement\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "88af58be370ae2161a0243a79630bd195b7c516b649e4ceab3623f5bce370a2e",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-clone_result.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\clone_result\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "8f15a2ca85139c80ae4189b20f476d2c6ac2bd83b8354cc92fc2ebf168caa6a6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-extra_key_conversion.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\extra_key_conversion\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "8ff5d64e7c1a938171e823a060ee9c47753f4536664809b9e06293068c52bf59",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-ignore_revocation.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\ignore_revocation\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "c209a3dabcf2aded1997ac8db8d1b1f4dc7e5e5a69637ea5d4a83ee4a9bed655",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-last_equal_key_wins.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\last_equal_key_wins\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e373157e4f053eb230ed3ba51659ec1639a1427547a6c9077a3a462451fdbdf5",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-no_replacement.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\no_replacement\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "035dd7b63224ad48e3ecfab81064cb790354a8d2e41dccbd71f7cf2e0b6d7df2",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-revoke_legacy.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\revoke_legacy\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "631b51b8ea2d6bd67143ed76f042e0687f71294b927a2418cd4aa54a215e8a98",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "control-stale_winner_key.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\stale_winner_key\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "07baa7894f4d849ad0b37648875142281fd0efd3ac897c798ec2d2ef46bc427d",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-after-pair1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-after-pair2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-after-pair3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-after.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-baseline-budget-reject.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-before-pair1.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-before-pair2.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-before-pair3.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-before.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-append_replacement.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\append_replacement\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "88af58be370ae2161a0243a79630bd195b7c516b649e4ceab3623f5bce370a2e",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-clone_result.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\clone_result\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "8f15a2ca85139c80ae4189b20f476d2c6ac2bd83b8354cc92fc2ebf168caa6a6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-extra_key_conversion.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\extra_key_conversion\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "8ff5d64e7c1a938171e823a060ee9c47753f4536664809b9e06293068c52bf59",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-ignore_revocation.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\ignore_revocation\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "c209a3dabcf2aded1997ac8db8d1b1f4dc7e5e5a69637ea5d4a83ee4a9bed655",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-last_equal_key_wins.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\last_equal_key_wins\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e373157e4f053eb230ed3ba51659ec1639a1427547a6c9077a3a462451fdbdf5",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-no_replacement.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\no_replacement\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "035dd7b63224ad48e3ecfab81064cb790354a8d2e41dccbd71f7cf2e0b6d7df2",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-revoke_legacy.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\revoke_legacy\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "631b51b8ea2d6bd67143ed76f042e0687f71294b927a2418cd4aa54a215e8a98",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "durable-control-stale_winner_key.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\controls\\stale_winner_key\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "07baa7894f4d849ad0b37648875142281fd0efd3ac897c798ec2d2ef46bc427d",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-baseline-character_recipe_cache.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-baseline-profession_catalogue_work.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-baseline-profession_recipe_knowledge.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\baseline\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-candidate-character_recipe_cache.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-candidate-profession_catalogue_work.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      },
+      {
+        "result": "focus-candidate-profession_recipe_knowledge.json",
+        "rawSourceSHA256Means": "preserved live/runtime owner, not tested owner",
+        "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+        "testedOwnerPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\candidate\\Inventory\\Professions.lua",
+        "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+        "proof": "Owner argument retained in child.command; baseline/candidate source copied and pinned before tests, independently rechecked unchanged at final seal. Raw records intentionally retained."
+      }
+    ],
+    "durableRegression": {
+      "proposedRepositoryPath": "tests/profession_catalogue_allocation.lua",
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\durable\\tests\\profession_catalogue_allocation.lua",
+      "sha256": "e34a52c2bb69f63600de4463d7898ca770593615f6f7c14db9f039ac2c1d2d15",
+      "externalFixtureDependency": false,
+      "existingRepositoryFixture": "tests/character_recipe_cache.lua",
+      "pairs": [
+        {
+          "pair": 1,
+          "order": "AB",
+          "before": {
+            "checks": 3041,
+            "scenarios": 145,
+            "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          },
+          "after": {
+            "checks": 3063,
+            "scenarios": 145,
+            "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          }
+        },
+        {
+          "pair": 2,
+          "order": "BA",
+          "before": {
+            "checks": 3041,
+            "scenarios": 145,
+            "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          },
+          "after": {
+            "checks": 3063,
+            "scenarios": 145,
+            "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          }
+        },
+        {
+          "pair": 3,
+          "order": "AB",
+          "before": {
+            "checks": 3041,
+            "scenarios": 145,
+            "testedOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          },
+          "after": {
+            "checks": 3063,
+            "scenarios": 145,
+            "testedOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+            "runtimeOwnerSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+            "traceSHA256": "ba7ac11fc5f3d01bd24d765e882b447369face30464598acf3d111d40f06aeb2"
+          }
+        }
+      ],
+      "baselineFailsStrictAllocationBudget": true
+    },
+    "requirements": [
+      {
+        "requirement": "Only private temporary catalogue metadata storage changed",
+        "status": "PASS",
+        "evidence": "source-identities.json"
+      },
+      {
+        "requirement": "Independent rank bits, aliases, lexical/equal-key ties, revocation, legacy/raw/nil identities and exact reference/order assertions",
+        "status": "PASS",
+        "evidence": "durable/tests/profession_catalogue_allocation.lua"
+      },
+      {
+        "requirement": "Public late overrides, mutable DB replacement, raw tostring error, nested reentry and metatable read order identical",
+        "status": "PASS",
+        "evidence": "durable-before/after-pair1..3.json TRACE"
+      },
+      {
+        "requirement": "Actual production private seen-map allocation observed at0/7/20/121/500/2000",
+        "status": "PASS",
+        "evidence": "durable-before/after-pair1..3.json WORK"
+      },
+      {
+        "requirement": "Three alternating before/after CPU+allocation pairs with all raw ranges/negative samples retained",
+        "status": "PASS",
+        "evidence": "before/after-bench-1..3.json"
+      },
+      {
+        "requirement": "No aggregate median CPU or allocation regression across requested sizes; empty allocation unchanged",
+        "status": "PASS",
+        "evidence": "benchmarkSummary; allSlowerMatchedTrials"
+      },
+      {
+        "requirement": "Eight compiled harmful controls rejected by independent semantic regressions and durable test",
+        "status": "PASS",
+        "evidence": "compiled-controls.json;durable-control-*.json"
+      },
+      {
+        "requirement": "Original baseline fails strict optimized private-allocation budget",
+        "status": "PASS",
+        "evidence": "durable-baseline-budget-reject.json"
+      },
+      {
+        "requirement": "Three existing profession/persistence/knowledge scripts PASS against both tested owners",
+        "status": "PASS",
+        "evidence": "focus-baseline/candidate-*.json"
+      },
+      {
+        "requirement": "Stock-runner-ready durable regression uses only current repository fixture; no external helper dependency",
+        "status": "PASS",
+        "evidence": "durable/tests/profession_catalogue_allocation.lua"
+      },
+      {
+        "requirement": "Tested owner hash distinguished from unchanged live preservation hash",
+        "status": "PASS",
+        "evidence": "resultProvenance"
+      },
+      {
+        "requirement": "Root CANCEL checked before every child and polled100ms, timeout5seconds, all children complete",
+        "status": "PASS",
+        "evidence": "run_one.py;active-test.json"
+      },
+      {
+        "requirement": "No runtime Lua/test changes, native input, preferences, cache or cadence change applied",
+        "status": "PASS",
+        "evidence": "runtimeOwnerSHA256; sourceIdentity"
+      }
+    ],
+    "recommendation": "The allocation-only candidate passes scoped desktop acceptance with consistent allocation reduction and no median CPU regression at requested sizes. Raw timing overlap/noisy slower trials preclude a strong CPU/FPS claim. Root must independently review, verify dated checkpoint/settings, decide exact apply, run integration and perform any native acceptance."
+  },
+  "staticPeer": {
+    "reviewedUtc": "2026-11-14T16:31:45.561341+00:00",
+    "verdict": "PASS static semantics/exact-slice review; producer command paths, current owner identities and three exact public traces verified. Evidence hash label needs clarification before final seal.",
+    "baselineSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+    "candidateSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+    "runtimeOwnerStillBaseline": true,
+    "changeScope": "Only BuildCachedRecipeCatalogue private tracking changed; complete candidate reconstructs byte-for-byte from baseline plus that slice. Public ListAllCachedRecipes, rank helper, callers, native queries, cadence, caches and data shapes outside ephemeral bookkeeping are unchanged.",
+    "reasoning": [
+      "Each seen identity stores a positive dense output index. This preserves original record truthiness, first-encounter output slot and exact recipe reference on both insertion and replacement.",
+      "Lazy ranks/keys arrays are allocated only upon first insertion. Metadata values, including first-key tostring, are evaluated before seen publishes the new index, preserving reentry/error order.",
+      "Rank/lexical tie comparisons retain short-circuiting and original tostring calls. Replacement updates out before the final key conversion, as before.",
+      "True-only global revocations, raw numeric/string ID distinction, legacy exemption and legacy identity rules are byte-identical.",
+      "Each invocation owns its maps/arrays; nested queries do not share them. Public late overrides, late DB mutation and raw callback errors retain the same boundaries.",
+      "No Lua5.2+ feature, native API, timer/event/poll, option/binding, saved root/schema, new cache or delay was added."
+    ],
+    "checkedTests": {
+      "scriptSHA256": "f2575bd095fee3210c01f539ae55626809055200c3d2fb7470e6733593061daf",
+      "fixtureSHA256": "cc574915ed79798ccde4b22a25b5890141afbdc09cf277ade978dec5d164ec36",
+      "producerPairs": [
+        {
+          "pair": 1,
+          "traceSHA256": "95293a0542bf14b3fdb27fa26062577f0a786a6ea9c74d34f7a7bec44adc0ee5",
+          "beforeSummary": "CATALOGUE_CHECKS 3041 SCENARIOS 145 PASS",
+          "afterSummary": "CATALOGUE_CHECKS 3051 SCENARIOS 145 PASS",
+          "commandedBaselineCurrentSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "commandedCandidateCurrentSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "beforeArtifactSHA256": "7f025f68afc185a574641da54c46661f1988c90cf379c2752df085082103858c",
+          "afterArtifactSHA256": "5051aaf912961b292461271b8093f72619753255fdcd90c5bc6c5cad440bcadd"
+        },
+        {
+          "pair": 2,
+          "traceSHA256": "95293a0542bf14b3fdb27fa26062577f0a786a6ea9c74d34f7a7bec44adc0ee5",
+          "beforeSummary": "CATALOGUE_CHECKS 3041 SCENARIOS 145 PASS",
+          "afterSummary": "CATALOGUE_CHECKS 3051 SCENARIOS 145 PASS",
+          "commandedBaselineCurrentSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "commandedCandidateCurrentSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "beforeArtifactSHA256": "34f9e9bd3581c4f47736077e1d59a734e62bcdf707212625f0527e5dd1d54bf3",
+          "afterArtifactSHA256": "2cca3dfb60257dff1774df79c2cef224644d669712450131274ebc53539f92e2"
+        },
+        {
+          "pair": 3,
+          "traceSHA256": "95293a0542bf14b3fdb27fa26062577f0a786a6ea9c74d34f7a7bec44adc0ee5",
+          "beforeSummary": "CATALOGUE_CHECKS 3041 SCENARIOS 145 PASS",
+          "afterSummary": "CATALOGUE_CHECKS 3051 SCENARIOS 145 PASS",
+          "commandedBaselineCurrentSHA256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "commandedCandidateCurrentSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "beforeArtifactSHA256": "c7c6ad19adfce33fb0ace9774bc6e6e0c4290c1a08fab1640599058c101046c5",
+          "afterArtifactSHA256": "cfe79bb0c460b93c05f3dd02eebeea737de4f71b5caf5cc0cc8b5d7a71de8f4e"
+        }
+      ],
+      "independentExecutionByReviewer": false,
+      "scope": "Static review of actual-module fixture, independent rank/reference expectations and producer outputs only. No reviewer Lua child, benchmark or native workload."
+    },
+    "evidenceLabelFinding": {
+      "field": "sourceSHA256 in both before/after work artifact JSON",
+      "actualMeaning": "Records unchanged live runtime owner e253aec1, not the candidate file used by after child.command[2].",
+      "proof": "Every before/after child command selects the expected baseline/candidate path; their current hashes match immutable source-identities and candidate work output uses seen indices/arrays.",
+      "requiredClarification": "Final owner seal must distinguish runtimeOwnerSHA256 preservation from testedOwnerSHA256. Parent/owner notified; do not claim this field alone establishes tested candidate identity."
+    },
+    "limitations": [
+      "Native candidate allocation/CPU/FPS, secure VM/pixels/controller and other-client operation remain untested.",
+      "Producer final control/benchmark seal remains required; raw overlapping CPU ranges and noisy regressions must stay disclosed.",
+      "No dedicated CPU/allocation series for1-6 rows reviewed; functional rank/alias scenarios include small catalogues."
+    ],
+    "actions": {
+      "repositoryWrites": false,
+      "candidateWrites": false,
+      "nativeInput": false,
+      "testsOrBenchmarksRun": false,
+      "activeChildren": false
+    },
+    "inputs": {
+      "sourceIdentitiesSHA256": "6782e2f74b01295b24b6457faad952f79658b4fb578f5578a1a19e277604caa5",
+      "controlsManifestSHA256": "0fe4b0ea1d66bfbff308f81677b73d0355b0e33f8a8584363e06e0bda603b052"
+    }
+  },
+  "nativeBaseline": "See lag-hotspots-native-resume-2026-11-14.json; catalogue121rows0.90-1.08ms/110672bytes measured before application. No native after/new-source FPS claim.",
+  "quickPause": {
+    "cancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\CANCEL",
+    "validationCancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-job\\CANCEL",
+    "ownedChildState": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-job\\state.json",
+    "temporaryNativeProbes": "None installed; no native cleanup required."
+  },
+  "currentIntegration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 384,
+    "scriptsFail": 0,
+    "syntaxFiles": 1072,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "sourceGuard": {
+    "capturedUtc": "2026-11-14T16:41:51.921134+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\checkpoint-20261114T163210Z",
+    "changedRuntime": [
+      "Inventory/Professions.lua"
+    ],
+    "newTests": [
+      "tests/profession_catalogue_allocation.lua"
+    ],
+    "runtimeSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+    "newTestSHA256": "e34a52c2bb69f63600de4463d7898ca770593615f6f7c14db9f039ac2c1d2d15",
+    "otherCheckpointLuaUnchanged": 1071,
+    "preserved": {
+      "assetsXMLTOC": {
+        "files": 257,
+        "allSHA256Match": true
+      },
+      "optionsBindings": {
+        "files": 85,
+        "allSHA256Match": true
+      },
+      "defaultsSettings": {
+        "files": 7,
+        "allSHA256Match": true
+      },
+      "licenses": {
+        "files": 5,
+        "allSHA256Match": true
+      }
+    },
+    "externalSyndicator": {
+      "files": 41,
+      "allHashesMatch": true,
+      "readOnly": true
+    },
+    "owners": [
+      "Core/ButtonFX/Cast.lua",
+      "ExtraButtonSystem/Engine/Button.lua",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+      "Inventory/Builtin/Bank.lua",
+      "Inventory/Craft.lua",
+      "Inventory/Init.lua",
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/FluxRestock_Inv.lua",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua",
+      "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
+      "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
+      "Inventory/Syndicator/Adapter.lua",
+      "Mail/CategoryAttach.lua",
+      "UnitFrames/FluxCastBar.lua"
+    ],
+    "ownedCopies": 90,
+    "installedCopies": {
+      "retail": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "forever": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "classic": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "era": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "anniversary": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      }
+    },
+    "copyDifferences": [],
+    "allOwnedCopiesMatch": true,
+    "integration": {
+      "exit": 0,
+      "sourceStableThroughout": true,
+      "scriptsPass": 384,
+      "scriptsFail": 0,
+      "syntaxFiles": 1072,
+      "syntaxFailures": 0,
+      "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+      "cancellable": true
+    },
+    "allNormalizedLuaStillMatchFull": true,
+    "scope": "Read-only disk source identities; no loaded-bytecode/FPS/pixels/taint/controller claim."
+  },
+  "nativeAfterCandidate": "Not performed; client not reloaded by this pass. Native prior-owner costs and empty controls are separate evidence; no native FPS gain or matched old/new native comparison claimed.",
+  "documentation": {
+    "result": "PASS: 1105 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17422 local links. Source inventory/evidence current. No files written.",
+    "state": {
+      "status": "complete",
+      "parentPid": 31972,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T16:44:52.105346+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T16:45:16.851952+00:00"
+    },
+    "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\docs-validate.txt",
+    "sha256": "69e0457cfcadb8ebedbda87ff9692a27788017183df5644cdca4130f5a940fc0"
+  },
+  "artifacts": {
+    "integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-full.json",
+      "sha256": "114fc57d1e4d617ccd4beb8552006c5da953e78f6ce006ae7b6c43e5b87fa5ef"
+    },
+    "integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-stability.json",
+      "sha256": "4f51679aedd3b524a58f5c76789f137b8f53a54ac3b8219d987ee2c84d25ba0b"
+    },
+    "source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\source-guard.json",
+      "sha256": "ee5d22e77d203eb20fbc35659d6f8d2f3c3ebb1f48194f2ed2839a5f1f083773"
+    },
+    "native-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native-results.json",
+      "sha256": "41259e0dabb385542818393acb410a70707d955dc46283f575dfe51076593c26"
+    },
+    "catalogue-applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\catalogue-applied.json",
+      "sha256": "8f04e161ffbdbdcfae7dd9c89a3ee6383bb427f190f022263bde0d7e246fa78f"
+    },
+    "catalogue-peer.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\catalogue-peer.json",
+      "sha256": "a19d41b25627924bf4035da07df9c6c810aa915e8bca6240080f4ca7fca63028"
+    },
+    "commerce/catalogue-allocation/comparison-final.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\commerce\\catalogue-allocation\\comparison-final.json",
+      "sha256": "b9b83a3f9156902b331867cfdb276dcaa84a4aab7c1f803079b6c5bb7b60f045"
+    },
+    "providers/fallback-handoff.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\providers\\fallback-handoff.json",
+      "sha256": "afc73049b0cd49b98f5f790cfb8bd69ab01e1f3a6c61cfece3ceb4eed6b6885d"
+    },
+    "providers/watch-plan/verdict.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\providers\\watch-plan\\verdict.json",
+      "sha256": "0539c6b082b55cd0ef241529276aba910cdc7f2e84ba8ec4b093c3064b85ce5f"
+    },
+    "final-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\final-verification.json",
+      "sha256": "1e98dc0b730a7ca9a691fdd96aca14643226f1bb4a53a80ac468dd0dc96d8739"
+    }
+  },
+  "finalVerification": {
+    "sealedUtc": "2026-11-14T16:46:38.834878+00:00",
+    "documentation": {
+      "result": "PASS: 1105 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17422 local links. Source inventory/evidence current. No files written.",
+      "state": {
+        "status": "complete",
+        "parentPid": 31972,
+        "command": [
+          "C:\\Program Files\\Python310\\python.exe",
+          "docs/tools/validate_docs.py"
+        ],
+        "startedUtc": "2026-11-14T16:44:52.105346+00:00",
+        "childPid": null,
+        "exit": 0,
+        "finishedUtc": "2026-11-14T16:45:16.851952+00:00"
+      },
+      "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\docs-validate.txt",
+      "sha256": "69e0457cfcadb8ebedbda87ff9692a27788017183df5644cdca4130f5a940fc0"
+    },
+    "source": {
+      "allNormalizedLuaStillMatchIntegration": true,
+      "scriptsPass": 384,
+      "syntaxFiles": 1072,
+      "runtimeSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6"
+    },
+    "native": {
+      "commandsSent": 28,
+      "profilingCommands": 27,
+      "optionalSourceMetadataQueries": 1,
+      "batchWindowStates": {
+        "foregroundBatches": 7,
+        "backgroundBatches": 5
+      },
+      "helperActivation": false,
+      "sourceMetadata": {
+        "result": false,
+        "getTime": 91388.541,
+        "meaning": "Optional debug.getinfo is unavailable/false; no loaded-bytecode identity or after-change performance certified."
+      },
+      "currentTemporaryGlobalsFramesHooksWatchers": false,
+      "profilingPreferenceChanges": false,
+      "itemMailCraftQueueActions": false,
+      "reloadThisPass": false
+    },
+    "goalStatus": "active; original broad scope remains incomplete",
+    "quickPause": {
+      "rootCancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\CANCEL",
+      "jobCancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-job\\CANCEL",
+      "ownedChildren": "All source-suite/checkpoint/docs/focused jobs complete; no active native watcher or cleanup required."
+    },
+    "remaining": [
+      "Native matched/new-source performance after a verified reload and before/after context",
+      "Slow natural tick callback attribution; current watcher misses raw bag/native timer owners and saved-root lifecycle remains unproved",
+      "Bank cache readiness/provenance/provider-off restore; stale mail producer races and populated/cold-mail timing before exceptional-delay decision",
+      "Other-client native/input/controller/secureVM/taint/pixel acceptance"
+    ]
+  }
+}

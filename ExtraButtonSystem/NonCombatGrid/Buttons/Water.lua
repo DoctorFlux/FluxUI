@@ -173,7 +173,6 @@ function Module.Create(grid)
     local bindEvents = CreateFrame("Frame")
     bindEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
     bindEvents:RegisterEvent("UPDATE_BINDINGS")
-    bindEvents:RegisterEvent("GROUP_ROSTER_UPDATE")
     -- Shared by the frame events and the Core SpellBook bus.
     local function OnBindEvent()
         if _G.FluxDefaultSettings and _G.FluxDefaultSettings.ShouldSuppressBindingRefresh

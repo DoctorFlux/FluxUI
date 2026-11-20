@@ -441,7 +441,7 @@ local function DefId(def)
 	if not def then
 		return nil
 	end
-	return tonumber(def.spellID) or tonumber(def.item) or tonumber(def.spell) or def.item or def.spell
+	return def._fluxProfessionAssignment or tonumber(def.spellID) or tonumber(def.item) or tonumber(def.spell) or def.item or def.spell
 end
 
 local function EnsureStar(kid)

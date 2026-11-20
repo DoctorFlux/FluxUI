@@ -1,0 +1,366 @@
+{
+  "changeId": "ROSTER-DISCOVERY-REFRESH-R116-20261119",
+  "capturedAtUTC": "2026-11-19T15:17:18.812790+00:00",
+  "sources": {
+    "NamePlates/Core.lua": {
+      "beforeRaw": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+      "afterRaw": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae"
+    },
+    "NamePlates/ComboPoints.lua": {
+      "beforeRaw": "e0ab99bf4b0d8f165f436d373baec5251474303a521ce31af12bcd35c01a3a76",
+      "afterRaw": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6"
+    },
+    "Binding/Input/FluxMouseoverKeybind.lua": {
+      "beforeRaw": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a",
+      "afterRaw": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431"
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "b63a82cb8b775d3159abfbc1cc61653bda4e8182ec08024b774d1d053db3c42f",
+      "afterRaw": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39"
+    },
+    "NamePlates/_tmp_combosmoke.lua": {
+      "beforeRaw": "df92a2454a9e25220fdc64ea8ccd041a04fe8648ca11024192d385b1548faf33",
+      "afterRaw": "34b2be7732c5c21f7674392564c59e41264760d6fba8c45d2c63d770e61a00f8"
+    },
+    "tests/roster_native_hover_cleanup.lua": {
+      "beforeRaw": "a31b1647526937682a66ea01ab3b59006832f7a8ed2098e95ca09b59e1589a25",
+      "afterRaw": "7fb8b4c66731c991ea43c55413a0089875df48f211df7c74d3eda2ef415fe1da"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\source.zip",
+    "sourceZipSHA256": "4ae9528451d234dc6c68aff28b4f4ff16eaf37ab3e724bc214a07f9f156f966b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenarios": {
+    "combo": "Forty nameplates and twenty group notifications coalesced into one refresh. Check no target, an active target, and an off-screen target in each client family with the overlay.",
+    "hover": "Twenty repeated discoveries with 96 already registered Flux raid buttons, a newly eligible Flux button, a temporarily forbidden one, and native party, raid and miscellaneous buttons."
+  },
+  "work": {
+    "comboBefore": {
+      "era": {
+        "plates": 40,
+        "noTargetReads": 41,
+        "visibleTargetReads": 2,
+        "missingTargetReads": 41
+      },
+      "anniversary": {
+        "plates": 40,
+        "noTargetReads": 41,
+        "visibleTargetReads": 2,
+        "missingTargetReads": 41
+      },
+      "forever": {
+        "plates": 40,
+        "noTargetReads": 41,
+        "visibleTargetReads": 2,
+        "missingTargetReads": 41
+      }
+    },
+    "comboAfter": {
+      "era": {
+        "plates": 40,
+        "noTargetReads": 1,
+        "visibleTargetReads": 1,
+        "missingTargetReads": 1
+      },
+      "anniversary": {
+        "plates": 40,
+        "noTargetReads": 1,
+        "visibleTargetReads": 1,
+        "missingTargetReads": 1
+      },
+      "forever": {
+        "plates": 40,
+        "noTargetReads": 1,
+        "visibleTargetReads": 1,
+        "missingTargetReads": 1
+      }
+    },
+    "hover": {
+      "scans": 20,
+      "optionReadsBefore": 2200,
+      "optionReadsAfter": 20,
+      "nameReadsBefore": 2260,
+      "nameReadsAfter": 1961,
+      "forbiddenReadsBefore": 1960,
+      "forbiddenReadsAfter": 21
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\combos-before.txt": "07ce841d24692ed4f11a39e4d9b34e47d6b9686dcc5fda6d9005cbf45fdcb44b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\combos-after.txt": "29691c018f9dceece91b7b1a5742836a921bb391df5ed6f2611038267a41b168",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\hover-pair.txt": "8f0ba6777250f729e352710ec510cee2475d0752c0e7afe388aad63f93557e8e"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6 and seven alternating exact-source pairs. Each combo trial flushes 300 coalesced events with 40 active plates. Each hover trial runs 800 settled discoveries.",
+    "results": {
+      "era": {
+        "iterations": 300,
+        "samples": [
+          [
+            26.0,
+            16.0
+          ],
+          [
+            25.0,
+            16.0
+          ],
+          [
+            27.0,
+            17.0
+          ],
+          [
+            27.0,
+            16.0
+          ],
+          [
+            26.0,
+            16.0
+          ],
+          [
+            28.0,
+            16.0
+          ],
+          [
+            23.0,
+            18.0
+          ]
+        ],
+        "medians": [
+          26.0,
+          16.0
+        ]
+      },
+      "anniversary": {
+        "iterations": 300,
+        "samples": [
+          [
+            25.0,
+            15.0
+          ],
+          [
+            25.0,
+            16.0
+          ],
+          [
+            25.0,
+            16.0
+          ],
+          [
+            26.0,
+            17.0
+          ],
+          [
+            26.0,
+            16.0
+          ],
+          [
+            27.0,
+            16.0
+          ],
+          [
+            26.0,
+            15.0
+          ]
+        ],
+        "medians": [
+          26.0,
+          16.0
+        ]
+      },
+      "forever": {
+        "iterations": 300,
+        "samples": [
+          [
+            20.0,
+            18.0
+          ],
+          [
+            20.0,
+            18.0
+          ],
+          [
+            20.0,
+            17.0
+          ],
+          [
+            20.0,
+            18.0
+          ],
+          [
+            20.0,
+            18.0
+          ],
+          [
+            21.0,
+            18.0
+          ],
+          [
+            21.0,
+            18.0
+          ]
+        ],
+        "medians": [
+          20.0,
+          18.0
+        ]
+      },
+      "hover": {
+        "iterations": 800,
+        "samples": [
+          [
+            68.0,
+            48.0
+          ],
+          [
+            70.0,
+            48.0
+          ],
+          [
+            71.0,
+            49.0
+          ],
+          [
+            71.0,
+            50.0
+          ],
+          [
+            71.0,
+            49.0
+          ],
+          [
+            73.0,
+            51.0
+          ],
+          [
+            72.0,
+            51.0
+          ]
+        ],
+        "medians": [
+          71.0,
+          49.0
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\compare.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\matched.txt",
+    "rawSHA256": "6dd0981fe2e52ee3aed15f7be74ac06e1d6cccf057dd65eea431a2412c78ad6b"
+  },
+  "preservation": [
+    "same combo point displays, target placement, hidden states, unit refresh and restricted numeric displays",
+    "a failed module-wide refresh still runs the regular per-unit recovery",
+    "same native and Flux frame admission and recovery, Clicked ownership and combat lockdown guard",
+    "other nameplate modules keep whole and unit refresh callbacks",
+    "native or Flux group-frame ownership remains live and existing current frame lookups continue"
+  ],
+  "verification": {
+    "focusedPassed": 71,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-discovery-refresh-before-20261119-160948\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "NamePlates/Core.lua": {
+        "sha256": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+        "matches": true
+      },
+      "NamePlates/ComboPoints.lua": {
+        "sha256": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+        "matches": true
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "sha256": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+        "matches": true
+      }
+    },
+    "forever": {
+      "NamePlates/Core.lua": {
+        "sha256": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+        "matches": true
+      },
+      "NamePlates/ComboPoints.lua": {
+        "sha256": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+        "matches": true
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "sha256": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+        "matches": true
+      }
+    },
+    "classic": {
+      "NamePlates/Core.lua": {
+        "sha256": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+        "matches": true
+      },
+      "NamePlates/ComboPoints.lua": {
+        "sha256": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+        "matches": true
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "sha256": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "NamePlates/Core.lua": {
+        "sha256": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+        "matches": true
+      },
+      "NamePlates/ComboPoints.lua": {
+        "sha256": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+        "matches": true
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "sha256": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "NamePlates/Core.lua": {
+        "sha256": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+        "matches": true
+      },
+      "NamePlates/ComboPoints.lua": {
+        "sha256": "3e9fc0846b321884303d750716f2d761630c0638a388d68dccaaf4c635e3b4b6",
+        "matches": true
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "sha256": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual join and leave latency, held-action crossings, nameplate/raid hover behavior, and combat taint. No game input or profiling changes."
+}

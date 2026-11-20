@@ -233,6 +233,7 @@ Other\FluxPerfCapture.lua
 Other\FluxInputDebug.lua
 Other\FluxEquipSlotFlyout.lua
 FluxBorder.lua
+Core\BorderJunctions.lua
 BlizzardSettings\Write.lua
 BlizzardSettings\Nameplates.lua
 BlizzardSettings\Raid.lua
@@ -419,6 +420,7 @@ Battlezonemap\FluxThreat.lua
 Battlezonemap\FluxBlizzardMeter.lua
 Battlezonemap\FluxBattlefieldMap.lua
 Battlezonemap\FluxBattlefieldMapProviders.lua
+Battlezonemap\FluxBattlefieldWorldMap.lua
 Battlezonemap\FluxBattlefieldMapWorldFeatures.lua
 Battlezonemap\FluxBattlefieldMapPinRouter.lua
 Battlezonemap\FluxBattlefieldMapPinTooltips.lua

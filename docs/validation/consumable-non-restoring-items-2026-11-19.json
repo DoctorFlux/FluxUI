@@ -1,0 +1,1356 @@
+{
+  "changeId": "LHO-CONSUMABLE-NON-RESTORING-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "provider": "syndicator",
+  "addons": [
+    "_FluxUI",
+    "BugTabs",
+    "Baganator",
+    "Syndicator"
+  ],
+  "checkpoint": {
+    "settings": 21,
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "dir": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/pending-nonrestore-20261119T102600Z",
+    "baseline": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece"
+  },
+  "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "sources": {
+    "_retail_": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "normalizedSha256": "b08b1230d03c9f88476816cbc0363fa9d261ddc6a67339f5b7c78b61646b4581"
+    },
+    "_forever_": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "normalizedSha256": "b08b1230d03c9f88476816cbc0363fa9d261ddc6a67339f5b7c78b61646b4581"
+    },
+    "_classic_": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "normalizedSha256": "b08b1230d03c9f88476816cbc0363fa9d261ddc6a67339f5b7c78b61646b4581"
+    },
+    "_classic_era_": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "normalizedSha256": "b08b1230d03c9f88476816cbc0363fa9d261ddc6a67339f5b7c78b61646b4581"
+    },
+    "_anniversary_": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "normalizedSha256": "b08b1230d03c9f88476816cbc0363fa9d261ddc6a67339f5b7c78b61646b4581"
+    },
+    "base": {
+      "sha256": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-nonrestore-20261119T102600Z\\FluxConsumableClassify.before.lua"
+    },
+    "candidate": {
+      "sha256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-nonrestore-20261119T102600Z\\FluxConsumableClassify.candidate.lua"
+    },
+    "workerSha256": "80a36ef351733656923fc443eb41600485df0493034a8d29a4d7880378a96ffd",
+    "syntaxRuns": 12
+  },
+  "r291": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag291-consumable-pending-read-real-request-origin-20261119",
+      "controllerSHA": "a8cb927d6b1e2d6f395fc381c389987a166ffde9cc358c293134096d789a8fe0",
+      "packetSHA": "c9208a538055707a434ea70a0e86f2106485d181f60e2061e593499e0418b1da",
+      "packets": 12,
+      "luaSHA": "28474f8e4b7f1ff2ef83ee76a378bca9ea0a4dc1eecc16a3a718cb85c5dd48fb"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag291-consumable-actual-request-origin.png",
+      "sha256": "2f3ab46ee58ca1282e161b1ecbcfced331707a68041342e98c6becdf5f3588b9"
+    },
+    "windowSeconds": 6,
+    "classifyPendingReadCalls": 15,
+    "inclusiveMs": 36.094,
+    "samePublishedRuntime": 15,
+    "bagGenerationUnchanged": true,
+    "originalTooltipGetterPreserved": true,
+    "temporaryWrappersRestored": true,
+    "directRequestSamples": {
+      "scheduledClassifyPending": 15,
+      "healthstoneGetBest": 17,
+      "healthstoneGetLadder": 17,
+      "consumableBindGetBest": 15
+    },
+    "alsoObserved": "ManaGem stack visible, count cropped"
+  },
+  "r292": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag292-stable-consumable-pending-bag-items-20261119",
+      "controllerSHA": "f7ea88b5ba6de01990f4df28f1988e5b6a4cc9e077d32fe9768f1fca8814c8ec",
+      "packetSHA": "e444c771c103829f5d0413dd143a81392edc5d0d729dea8d8c79a8bccd87d79d",
+      "packets": 7,
+      "luaSHA": "e18c894bb7e9da4b00f5dabe29430fba1179dc809eeab024846e2039d72af2d5"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag292_a-submitted.png",
+      "sha256": "707ccf15799b36e1584e0f84aa0ccef5521bdde385dfe261e52568cbbcefdb16"
+    },
+    "carriedPendingIds": [
+      2633,
+      7516
+    ],
+    "queue": 3,
+    "metadataLoadsPending": 0
+  },
+  "r293": {
+    "status": "Source-only lease ended before input; R294 replaced the proposed check",
+    "inputSent": false
+  },
+  "r294": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag294-pending-item-readonly-20261119",
+      "controllerSHA": "f6a56b20dcac5729fbdf9880c85164eeffeb059ca1fcdaf3197bc7b33222ed42",
+      "packetSHA": "41daf48d75efc6657578edbe9c8413349932858653bc66533d85a6de00613eeb",
+      "packets": 5,
+      "luaSHA": "ce2f71002b06efc3e2a6e3202e3bfd3ab6fe05e3d65e1a4ffdce140d7e70e585"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag294_a-submitted.png",
+      "sha256": "417e899ead78427bba1567710643d421e0562841ed57e095506ae0d25552c30b"
+    },
+    "effectById": {
+      "2633": {
+        "spell": 3592,
+        "effect": "Cure Ailments",
+        "metadataLoaded": true
+      },
+      "7516": {
+        "spell": null,
+        "effect": "Read-only tooltip",
+        "metadataLoaded": true
+      }
+    },
+    "questApiResult": "Unavailable in this Forever probe"
+  },
+  "r295": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag295-pending-all-owned-20261119",
+      "controllerSHA": "29b38bbffdcaaad6f23f585c2474e7aa6ca54efeb7d926cafdcf5aee4c789e58",
+      "packetSHA": "9ec7a9f17f61bce396c5593b9e00d1d34c7c493ba02d7799e9d1293da9ceb742",
+      "packets": 6,
+      "luaSHA": "0814c551ac94d1bc8798a42d1b5f001fd042b05f6df5dd15c611c37ac5d8d94f"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag295_a-submitted.png",
+      "sha256": "791012c581354b531db4d863f3241c9c13264f3af655b6a37a1ff9f36aef9f87"
+    },
+    "carriedPendingIds": [
+      2633,
+      7516
+    ],
+    "cachedBankPendingIds": [
+      3703
+    ],
+    "queue": 3,
+    "metadataLoadsPending": 0,
+    "allThreeLoaded": true
+  },
+  "r296": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag296-pending-bank-item-effect-20261119",
+      "controllerSHA": "c0cbd5d7f20e98af09b3e8167d4b99d182611fc65b5d3a7a406a2a847deac7e7",
+      "packetSHA": "515fdd2d61c20352cf8a8ae363f8f401117c4b725533612b80cb32448d0c8885",
+      "packets": 4,
+      "luaSHA": "120737ad5f3f4722bcb942e518b72c0a6625cddcdce611dc68e9575d2c60bb4f"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag296_a-submitted.png",
+      "sha256": "50b3750404a74bd3731a3e193e372710dfd1ed31e9c3337222fdf7e02a9e72db"
+    },
+    "id": 3703,
+    "spell": 11008,
+    "effect": "Standard Alcohol",
+    "metadataLoaded": true
+  },
+  "r297": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag297-pending-known-guard-verification-20261119",
+      "controllerSHA": "4132fd6785f8c690b6526c272d73997e4b06f17fe87856a106a22bb517852a6c",
+      "packetSHA": "fb64ed7a9d0f441613e069054106ad21bf8ef57d1abf06021d69708cc92c6749",
+      "packets": 11,
+      "luaSHA": "90238e099aa8a947e8c8f65143c1c6098cad4d909d34fb72418705c3feaad414"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag297_a-submitted.png",
+      "sha256": "e424f5b2aabea5ca2afc3f623556b52b531c60d7a1c8a8621e134338d8cf4197"
+    },
+    "exactWorkerPrefixMatchesCandidate": true,
+    "guardMatched": [
+      2633,
+      3703,
+      7516
+    ],
+    "allThreeParseZeroHealthMana": true,
+    "allThreeParseFoodWater": false,
+    "originalIsPendingAtRead": {
+      "2633": false,
+      "3703": true,
+      "7516": false
+    },
+    "originalQueue": 3,
+    "control": {
+      "id": 4599,
+      "guardMatched": false,
+      "effectiveHealth": 1338,
+      "foodWater": true
+    },
+    "bagGenerationUnchanged": true,
+    "scope": "Isolated worker against real tooltips and native item-spell metadata. The loaded classifier and live queue still use baseline. No frame-time gain measured."
+  },
+  "jump": {
+    "workerPid": 10224,
+    "intervalSeconds": 180,
+    "latestBackgroundAttempt": "Windows refused foreground activation; no Space pair injected",
+    "pcIdleGateSeconds": 15,
+    "queuesDuringChatOrCrafting": true
+  },
+  "reloadSent": false,
+  "pending": [
+    "Load the exact candidate in a suitable client reload and repeat the passive queue timing.",
+    "Check both grids and Restock output, ordinary late-tooltip recovery, and remaining native client/provider combinations."
+  ],
+  "installedFollowUp": {
+    "classifierLoadedBehavior": {
+      "ids": [
+        2633,
+        3703,
+        7516
+      ],
+      "liveIsRejected": [
+        true,
+        true,
+        true
+      ],
+      "candidateDiskSHA256": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f"
+    },
+    "r319": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag319-consumable-after-reload-native-queue-timing-20261119",
+        "controllerSHA": "210c08f7385155d3b66d9fbd036f1f0f5293cc48ad85eb0792a7af3c091458f9",
+        "packetSHA": "7291f6cdd71b69d8d22a64a117f91e76b4af54fe15ca26a4d91709b06911f060",
+        "packets": 8,
+        "luaSHA": "dc5a2e69d1aa3f3f497f50774e5fad781d6a3e845103a53108a570678fc34157"
+      },
+      "capture": {
+        "time": 1795089964.2001297,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag319-native-passive-queue-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "9ac8827caff6a733074aac883193c4b2a31d6bd8206afc996d48830a5c7aeca4"
+      },
+      "elapsedSeconds": 6.01,
+      "pendingQueueStart": 1,
+      "pendingQueueEnd": 1,
+      "scheduledCalls": 0,
+      "bagGenerationStable": true,
+      "wrapperRestored": true,
+      "bugTabsCurrentSessionErrors": 0,
+      "transport": "All eight submissions queued. Foreground identification changed after input during the host's result capture; it released its lease. A separate read-only screenshot verified the complete native result and closed chat.",
+      "scope": "R319 captured scheduled classifyPending only. It is not the earlier read-driven timing comparison."
+    },
+    "r320": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag320-consumable-all-native-queue-reasons-20261119",
+        "controllerSHA": "0ecfaff5b0df6ad4c4ffd796af9cceb7df0c9203fc854eac765e64df67df6e80",
+        "packetSHA": "8d1d8da076f1f4ee2cfccbcfd88c0174b7c2399304aacb620a624897e8a23adf",
+        "packets": 10,
+        "luaSHA": "ab0be129be396ee971b6669b21872038bb7cf834c00849889293b4cd52a3e940"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag320_a-submitted.png",
+        "pngSha": "4c678d83e638d34a3c6bc6bdff61ee35d59939c88801178a2acc0d88ee170ff7",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag320_a-submitted-capture.json",
+        "metaSha": "b54fa000cb4cc67ccb55384f348bdf1f2df39d58943555ce9df83ca56bbac518",
+        "started": 1795090028.674634,
+        "time": 1795090030.5364347,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 54641921,
+          "idle": 18.485,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "capture": {
+        "time": 1795090050.527988,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag320-native-all-queue-timing-result.png",
+        "foregroundBefore": 3541714,
+        "foregroundAfter": 3541714,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "c594386a573934bede0fbcf67589987998dce0fafc433e47c22f1bf673d37638"
+      },
+      "leaseReleased": true,
+      "elapsedSeconds": 6.01,
+      "pendingQueueStart": 1,
+      "pendingQueueEnd": 1,
+      "totalRecomputes": 15,
+      "byReason": {
+        "classifyPendingRead": {
+          "calls": 15,
+          "ms": 28.944
+        },
+        "classifyPending": {
+          "calls": 0,
+          "ms": 0
+        },
+        "classifyPendingOnly": {
+          "calls": 0,
+          "ms": 0
+        }
+      },
+      "bagGenerationStable": true,
+      "wrapperRestored": true,
+      "pendingNativeLoads": 0,
+      "bugTabsCurrentSessionErrors": 0,
+      "scope": "Watch actual loaded addon with panels closed. Baseline R291 sampled open Tailoring and Restock. The lower inclusive sample is directional; panel and inventory state differ. The passive read cadence remains 15 in roughly six seconds. No frame-time comparison."
+    },
+    "r321": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag321-consumable-after-native-pending-item-20261119",
+        "controllerSHA": "b1242dfe57a42ce760805c6107fecb52fac3e618bd4c74d57e49d96bab9e8d75",
+        "packetSHA": "2329b8d3ae6b2dc2dee4bd12dc3dcf37adb2d77d16201a28473ae74e5a703479",
+        "packets": 7,
+        "luaSHA": "e00b196fb24916db5b54a303084511abaea3b0a065b115c48e879553b5d9b668"
+      },
+      "action": "Prepared read-only identity for the remaining pending item. Exact WoW process and window were live but later confirmed not drawable; the guard stopped before input."
+    },
+    "r323": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag323-consumable-native-pending-identification-20261119",
+        "controllerSHA": "e75f2101933e6ac9408ab87145a193caef020e66991df01f30dc496b4953b9b8",
+        "packetSHA": "54df5927f4038c97b1f4bbebee8c30cfc0ab0858d142e8de98124edbed1001a1",
+        "packets": 7,
+        "luaSHA": "8e704905335eccba7c5135f7670a1a780ad001218d0d7855fce776b3a3abc08e"
+      },
+      "sourceCapture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag323_a-source.png",
+        "pngSha": "f8aa867736eb899674b3cd499aedabba35e8b2fa183fc83f1e354125f8757cc3",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag323_a-source-capture.json",
+        "metaSha": "0ac325c3e312a5eabf28e9de5e150ed57575aae35b4187913fc4ee2bdb7be287",
+        "started": 1795090460.5937612,
+        "time": 1795090462.5748827,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 55092093,
+          "idle": 0.235,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "submitted": false,
+      "why": "FluxUI Settings and the Baganator search field were visible during source verification. The command lease was released untouched.",
+      "historicalLead": {
+        "itemID": 5634,
+        "name": "Free Action Potion",
+        "priorNativeReason": "A prior read observed a loaded tooltip describing stun and movement immunity. It also showed this item in the older pending queue.",
+        "reference": "docs/validation/passive-tooltip-attribution-2026-11-18.json",
+        "scope": "The lone current pending ID and its live item spell are not established."
+      }
+    }
+  },
+  "freeActionPotionFollowUp": {
+    "path": "Inventory/FluxConsumableClassify.lua",
+    "sources": {
+      "before": "55c89e2d6feb77b99031dd9ce24cb2de0765833b74e0c7e2fdcb7938829b9f3f",
+      "interim": "309fe98e333337fb52cad4baa1b54dbae3467e78314343fc97d46b9b751d6ceb",
+      "after": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+      "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\free-action-potion-20261119T122200Z\\FluxConsumableClassify.final.lua"
+    },
+    "history": {
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "datedDirectory": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/free-action-potion-20261119T122200Z",
+      "settingsPresenceCount": 21,
+      "verified": true,
+      "settingsContentsCopied": false
+    },
+    "before": {
+      "historicalNative": "docs/validation/passive-tooltip-attribution-2026-11-18.json",
+      "tooltipCapture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-tooltip97clean_a-submitted.png",
+      "tooltipCaptureSha256": "f77f057ea072d4fc46616e9fb20b6d0c76766263dd8ac24e94b3286dfeb77cca",
+      "queueSamples": "R320: 15 read requests / 28.944 ms / 6.01 sec, one pending item"
+    },
+    "r324": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag324-consumable-live-pending-identity-followup-20261119",
+        "controllerSHA": "571d47f2c054eb57c5ccabaf6578596d77d29c8e74a72b60c26629f1de97dd3b",
+        "packetSHA": "1e673b9f81b2a994c4f83fe691f38a97c3d2cbd2fd0561967a98418748f13b8b",
+        "packets": 7,
+        "luaSHA": "8e704905335eccba7c5135f7670a1a780ad001218d0d7855fce776b3a3abc08e"
+      },
+      "submitted": false,
+      "reason": "Settings and search were open. Input lease released untouched."
+    },
+    "r325": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag325-consumable-free-action-candidate-native-20261119",
+        "controllerSHA": "3294b140c0876b5c2bbc00edecd4a93b65c47f9425bc29c7da67d5d90acc2cc9",
+        "packetSHA": "7b2deabdaa2757371594c9164d34c49e6bfaf13e89db1659849e917c970db527",
+        "packets": 13,
+        "luaSHA": "7b0bc5ec75ec7ab8787b8577b0b8f97f3fbdf6907406c5a4e0441adb0cc23a52"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag325_a-submitted.png",
+        "pngSha": "c643655ca32f9ea59630b2397e81aa901305be82cd7eb74fee22a347730523ba",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag325_a-submitted-capture.json",
+        "metaSha": "1cc2cd30ebb156d83c6045ff4f38cacf445d27c241c632328c56cd3ce53eedbc",
+        "started": 1795090989.6034863,
+        "time": 1795090991.5928028,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 55617781,
+          "idle": 3.547,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "leaseReleased": true,
+      "classifyQueue": 1,
+      "pendingNativeLoads": 0,
+      "bagGenerationStable": true,
+      "zeroCurrentSessionErrors": true,
+      "item": {
+        "itemID": 5634,
+        "itemSpell": 6615,
+        "loaded": true,
+        "pending": true,
+        "initialTooltipGuardMatched": true,
+        "effectiveH": 0,
+        "effectiveM": 0,
+        "foodOrWater": false
+      },
+      "control": {
+        "itemID": 4599,
+        "itemSpell": 1129,
+        "loaded": true,
+        "pending": false,
+        "initialTooltipGuardMatched": false,
+        "effectiveH": 1338,
+        "effectiveM": 0,
+        "foodOrWater": true
+      },
+      "scope": "Exact initial guard verified against the real tooltip. The final guard uses the live item spell from the same sample. The installed candidate still needs timing after reload."
+    },
+    "finalChange": "Add the verified 5634 to 6615 mapping to the existing non-restorative spell table. Positive classification and loaded/parsed gates precede the check. Missing API, effect mismatch and ordinary partial candidates retain retry behavior.",
+    "parity": {
+      "fiveMatchingCopies": true,
+      "installedCompilerChecks": 10,
+      "lua": [
+        "5.1.5",
+        "5.4.6"
+      ]
+    },
+    "nativeReload": {
+      "sent": false,
+      "prepared": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag326-consumable-final-classifier-idle-reload-20261119",
+        "controllerSHA": "9f62074ec5a0e7f71b6cbb60310f0a86b4118efe732707dfd30703d16b8437a5",
+        "packetSHA": "ef2d2170e2f9589b9e9796a961c4037cdec668682dc590447b037c42cc06dc05",
+        "packets": 7,
+        "luaSHA": "24b8fc73be8c09bc9fece20c3024e41ae522e419b72b91dac63acc1e03a33dbb"
+      },
+      "why": "Recent physical input did not meet the idle reload guard."
+    },
+    "jump": {
+      "oldWorker": 40400,
+      "oldCuePixels": {
+        "clientSize": [
+          1890,
+          993
+        ],
+        "colors": [
+          6575391,
+          6575391,
+          6575391,
+          6575391
+        ],
+        "dpi": "PMv2",
+        "identity": {
+          "created": 134395136956432080,
+          "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+          "hwnd": 3541714,
+          "pid": 9012
+        },
+        "inputSent": false,
+        "nonce": "j19nbfa8",
+        "pixelReads": 4,
+        "printWindowFlag": 2,
+        "requestId": "45b46aa049dd4342adaaca0c0d7efe3b",
+        "roi": null,
+        "sampleCenters": [
+          [
+            11,
+            982
+          ],
+          [
+            17,
+            982
+          ],
+          [
+            24,
+            982
+          ],
+          [
+            30,
+            982
+          ]
+        ],
+        "status": "PASS",
+        "colorsRGB": [
+          [
+            31,
+            85,
+            100
+          ],
+          [
+            31,
+            85,
+            100
+          ],
+          [
+            31,
+            85,
+            100
+          ],
+          [
+            31,
+            85,
+            100
+          ]
+        ]
+      },
+      "stopped": true,
+      "oldWorkerPairs": 0,
+      "newSupervisor": 31520,
+      "newCueResult": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump50_live327_a-submitted.png",
+        "pngSha": "f8b95bbc3b05bd5f0d8dfefeba41faaeb41c063598821dcc644336ff917fb9fc",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump50_live327_a-submitted-capture.json",
+        "metaSha": "402651c5ed27b0d22c387e71d82c37987b7e09d787d8040a3f0c97f5173fbd97",
+        "started": 1795091338.53116,
+        "time": 1795091340.514128,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 55970250,
+          "idle": 0.015,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "package": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r50-20261119",
+        "pins": {
+          "calibration-proposal.json": "33e404885942cf2cb6d7675bfa6134a1cc72fa1818326f6c47db56f1adb5eaa5",
+          "cue_capture.py": "41a956fe9d5a2954303dce6679f390b070d4cf6819cb40e59bc8649db33fbb6f",
+          "native_bank_transport_r4.py": "0a29f56cdde887d3aa4f1ef0c53ca7fa255db69f0136f0e4add33a2fe95557d1",
+          "packets.json": "2c96dac152e9bbeb467c163e4c1bf0a169b2184594a9b1bb718b14489a18cb83",
+          "installer\\bootstrap.py": "dd79638a34440a7b10fc0983cab5b60cb09b340ab39d6e759cd0540830911f60",
+          "jump_core.py": "f129ad32e9023202afc998b0c9f58699d66fba97122905b49d66df19e82d29bd",
+          "keepalive.py": "4f2a1f47d01da01f3d205388089baf93ce0da3f8559e778038d5f958ce6c72e5",
+          "calibrate.py": "4e74b4b328417ce45987cef38c56042ce60d17f269eefc875e0610ac5d98579c",
+          "supervisor.py": "822a418a15fae00243dd30bd49f79ee5ba072842807dd9e2441f6e2486f1c80a"
+        },
+        "packets": 25,
+        "holdSha": "c1a9f5caab62aa2b7ca2a82a32ccd39b4edf2e3a19a0a99b13b071d0ce782f3a"
+      },
+      "intervalSeconds": 180
+    }
+  },
+  "matchedLoadedAcceptance": {
+    "r328": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag328-consumable-passive-and-grids-live-20261119",
+        "controllerSHA": "d419aa2bad0cdcf02c0984e8dfa5a3c56f90a7285dcdb1a66aae81bbd4539bbb",
+        "packetSHA": "6e9e8ad3437e06b476eb0d00b01887671325a34475efa53eabe1315776e0ca04",
+        "packets": 14,
+        "luaSHA": "bafb83213e36c17791f85a4a009f8f2971968d90e0db987ae44fe97b7129aa64"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag328_a-submitted.png",
+        "pngSha": "a828ab6130519fd257d0001adf393fa8b630b0049ee734d273c694f5cd0e91e8",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag328_a-submitted-capture.json",
+        "metaSha": "e7ac4371eb4ec2eba9e6bd62038fda7b67829921d2bcdf108615d1b0a2f7910c",
+        "started": 1795091746.6765234,
+        "time": 1795091748.5311196,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 56359109,
+          "idle": 19.297,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795091770.4638782,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag328-passive-grid-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "99e4037cd8dcb285b2de39022dded871655b79eeca4224b535930658b228b2ac"
+      },
+      "seconds": 6,
+      "queue": [
+        1,
+        1
+      ],
+      "rejected": [
+        false,
+        false
+      ],
+      "recomputeCalls": 15,
+      "readRetryCalls": 15,
+      "readRetryMs": 28.314
+    },
+    "r326": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag326-consumable-final-classifier-idle-reload-20261119",
+        "controllerSHA": "9f62074ec5a0e7f71b6cbb60310f0a86b4118efe732707dfd30703d16b8437a5",
+        "packetSHA": "ef2d2170e2f9589b9e9796a961c4037cdec668682dc590447b037c42cc06dc05",
+        "packets": 7,
+        "luaSHA": "24b8fc73be8c09bc9fece20c3024e41ae522e419b72b91dac63acc1e03a33dbb"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag326_a-submitted.png",
+        "pngSha": "a416886cafb6b32923b2fb48fa623724b8c2cd3e34bcee3cbd616b31c468179b",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag326_a-submitted-capture.json",
+        "metaSha": "092ba77aec036faab8b10c8434dbb9b37bd6a5c113c45049a95dae60a9666bcf",
+        "started": 1795091934.1809552,
+        "time": 1795091936.0001879,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 56460359,
+          "idle": 105.547,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "outcome": "Client blocked the diagnostic timer's direct ReloadUI call and BugTabs displayed ForceTaint_Strong. The client stayed in the existing session. No production error is attributed to the classifier."
+    },
+    "r329": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag329-plain-slash-reload-consumable-20261119",
+        "controllerSHA": "791f002da202782acce06fcdb41a5482e0c91e28b88caef309ef0e1f8ef0efbd",
+        "packetSHA": "7b18401bcc8cb04ee4cfbeb3c3c7d21bdbeffcfd38bb1a3066a09d8c24727f63",
+        "packets": 1
+      },
+      "source": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag329_a-source.png",
+        "pngSha": "fa5a03c4495d06335fa4473e28ce4438c28b9dd42c5eeb78cc355ba57b2efcbd",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag329_a-source-capture.json",
+        "metaSha": "a6ad5251b5a08d63ef643f647936b7021a2615eb619718bb4a6e92efc0a329b8",
+        "started": 1795092040.5601494,
+        "time": 1795092042.3701043,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 56460359,
+          "idle": 211.922,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag329_a-submitted.png",
+        "pngSha": "080fe3d724a492237bcbff171f2787f0aa21731b471589fc0446b6301b67ef52",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag329_a-submitted-capture.json",
+        "metaSha": "59382bfab2c2e8dd4c79ab1ee80cf660aeaf302ecb5a32881bb9e85a6093fb31",
+        "started": 1795092062.2041843,
+        "time": 1795092064.0169349,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 56460359,
+          "idle": 233.578,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "postcheck": {
+        "time": 1795092110.3899636,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag329-reload-postcheck.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "48265482bce71d3090bc0ac7ad090adbb8b3aedf1a77d8185e4fb5173e6247ce"
+      },
+      "scope": "Single normal /reload with guarded idle background input. Follow-up snapshot showed fresh addon startup in the same WoW process. The initially open backpack was restored by R330."
+    },
+    "r331": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag331-consumable-post-reload-passive-and-grids-20261119",
+        "controllerSHA": "f8bf77939c751a0ddf52df2049e618123e11b56ec43b9e12949877b161fed7b2",
+        "packetSHA": "8b17993244223abff8ddc854fbb2721ac6f2d329b2d18c75f7ffd791e24788b5",
+        "packets": 14,
+        "luaSHA": "b3c6c73c5cccf4d9b81820f2e44469596eefe44b72e9220624ddf5e687c6f3c4"
+      },
+      "submitted": false,
+      "reason": "Foreground mode changed before command admission. Source-only lease released."
+    },
+    "r332": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag332-consumable-loaded-passive-and-grids-matched-20261119",
+        "controllerSHA": "c49d72966bfa19f64537ec9f7421896dcd5e18ab9ce3f05c4371693b2f457c6d",
+        "packetSHA": "c6e6fefdd7a80984677e5c702f04cddab3f34460bc40afd320e33870e03359a1",
+        "packets": 14,
+        "luaSHA": "a0fa461d984d43c772470225a95aec29b5573674164e0d29bb375758e6e98af6"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag332_a-submitted.png",
+        "pngSha": "ca0fc532881be543e1a3f036f5c0a76a82c50736928c93dcd69aaabc94750eb1",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag332_a-submitted-capture.json",
+        "metaSha": "09577e3455c734d8014dcf8e4f060f6bd6481d8912214c86bbf22c000ec1b8df",
+        "started": 1795092505.7735298,
+        "time": 1795092507.5561478,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 57137250,
+          "idle": 0.25,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795092534.2074485,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag332-passive-queue-grid-match-result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "e79d41ff0fc4722d74828f8581fdcdac4272453d3bd2814d43a4b9e814d8c6b3"
+      },
+      "seconds": 6.01,
+      "queue": [
+        0,
+        0
+      ],
+      "rejected": [
+        true,
+        true
+      ],
+      "recomputeCalls": 0,
+      "readRetryCalls": 0,
+      "readRetryMs": 0
+    },
+    "match": {
+      "backpackVisibleBoth": true,
+      "stableBagGenerationWithinEach": true,
+      "originalRecomputeRestoredBoth": true,
+      "bugTabsErrorDeltaEach": 0,
+      "sampleColumns": [
+        "selectedItemID",
+        "inventoryCount",
+        "gridButtonItemID"
+      ],
+      "matchedRows": {
+        "bandage": [
+          8544,
+          20,
+          8544
+        ],
+        "food": [
+          4599,
+          18,
+          4599
+        ],
+        "healPotion": [
+          3928,
+          5,
+          3928
+        ],
+        "manaPotion": [
+          6149,
+          5,
+          6149
+        ],
+        "water": [
+          3772,
+          17,
+          3772
+        ]
+      },
+      "scope": "One passive measurement before and one after reload in the live four-addon Forever profile. No gameplay actions or inventory changes were induced. Tracked scan calls and selection/count equivalence only. No whole-frame FPS, click, transaction, or other-client timing claim."
+    },
+    "jump": {
+      "version": "R51",
+      "previousWorkerPid": 11640,
+      "previousWorkerStopped": true,
+      "supervisorPid": 23764,
+      "intervalSeconds": 180,
+      "newCue": "All 25 cue commands queued. The installer lost foreground identification during its receipt capture and released its input lease. The independent screenshot verified new J83INIT true and J83CUE. The same reviewed idle-calibrating supervisor started from that independent evidence.",
+      "receipt": {
+        "time": 1795092681.959303,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump51-after-transport-foreground-guard.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      "receiptHashes": [
+        "a13dc7a8e009969599647e92e47c06eb0902c24e56db27f2933667ad441bf570",
+        "bcc0e769c5f964fa7f9a72ba8e9f9a3620947e38a40cd921ad5d2db34b57df13",
+        "754377e546acfe1970f851e28ff02929104c31b180fb49ae35a17f560ecc9f63"
+      ],
+      "firstJumpObserved": false
+    }
+  },
+  "utilityConsumableRetry": {
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "syndicator",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator 862",
+      "Syndicator"
+    ],
+    "scriptProfile": 0,
+    "id": "LHO-UTILITY-CONSUMABLE-RETRY-20261119",
+    "items": [
+      {
+        "itemID": 5997,
+        "spellID": 673,
+        "name": "Elixir of Minor Defense",
+        "effect": "armor"
+      },
+      {
+        "itemID": 6051,
+        "spellID": 7245,
+        "name": "Holy Protection Potion",
+        "effect": "absorption"
+      },
+      {
+        "itemID": 6372,
+        "spellID": 7840,
+        "name": "Swim Speed Potion",
+        "effect": "swim speed"
+      },
+      {
+        "itemID": 247755,
+        "spellID": 1245249,
+        "name": "Elixir of Minor Force",
+        "effect": "physical damage"
+      }
+    ],
+    "diagnosis": {
+      "r503": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag503-closed-bag-classification-read-demand-20261119",
+          "controllerSHA": "b052e85067028b638cb2f4b6e8181033a4e47c79d9a8b2abf989235811b0bc33",
+          "packetSHA": "69d6f27ac5adca185fe966e53dcd31cc5a4f0c045a5217250e3dc45567f6b621",
+          "packets": 14,
+          "luaSHA": "2af791dc5c6926ec2f7008c2bcb8e27dd5049f81a16cc1c78c46e52fb302a1c7"
+        },
+        "result": {
+          "time": 1795127378.4124358,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume503_passive_scan_result.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "23b73b3efa2ee5faa04c36e08acb370d6bc1e9ff5b15703172796633f13e4d4a"
+        },
+        "seconds": 6.03,
+        "scans": 15,
+        "totalMs": 35.445,
+        "maxMs": 2.697,
+        "notes": "Scan timing passed. The pending ID read assumed an array."
+      },
+      "r504": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag504-closed-bag-pending-item-ids-20261119",
+          "controllerSHA": "33d141595f36c7a752f18f38830e19d08cdc5baf7b0bd1ecd01ab8ace6efe2af",
+          "packetSHA": "bbb75c262b4c3a53103293ee4e6b20852b94c6a300258251b5fa6e9c9ab074db",
+          "packets": 14,
+          "luaSHA": "80b07778b6e1fdf5677cb3c87179a2c7fe583cc6d23474668d471d66f0f3bc9b"
+        },
+        "result": {
+          "time": 1795127496.7386632,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume504_pending_result.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "0d7f8992c39486de6e4fbb498e106d21cd72e8958e2db17944b4b14418ac94f1"
+        },
+        "seconds": 6.05,
+        "scans": 15,
+        "totalMs": 35.22,
+        "maxMs": 2.605,
+        "queue": [
+          4,
+          4
+        ],
+        "loadQueue": [
+          0,
+          0
+        ],
+        "notes": "Corrected item ID map traversal. No pending cache markers remained after a full pass."
+      },
+      "r505": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag505-consumable-budget-causal-check-20261119",
+          "controllerSHA": "aff85b5ff4c8639a944a5fb67a25fca946c1c9a4fec0c002997eb27fd2e1c5eb",
+          "packetSHA": "8f5106c1453556e1aee8d78db15287660e8d6e27b29e43e2d4a63b4f43cbabef",
+          "packets": 12,
+          "luaSHA": "8c5fb77484b0adce552ea58c00d13355a9d582291c8efd8911418b7f95c7b75e"
+        },
+        "result": {
+          "time": 1795127599.9402308,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume505_budget_result.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "c99ee1fdbe3731bb816ba5c031c1b0d156ca14c21c38ff73669d9a6e7cedb8d7"
+        },
+        "idsSeenInPendingLoop": [
+          6051,
+          6372,
+          247755,
+          5997
+        ],
+        "sourcePaths": [
+          647,
+          449,
+          489,
+          268
+        ],
+        "notes": "The displayed top calls reached ConsiderItem and QueuePending for each ID. A narrower print filter missed the function-origin line in debugstack. Queue length remained four. Not timing evidence."
+      },
+      "r506": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag506-exact-consumable-items-20261119",
+          "controllerSHA": "df51cfac662eb81517b295215928f0c1c7451a2a199c499f32aad1853d3f7c55",
+          "packetSHA": "6465b15bb06d48b0928dd40c649abb59394fa9ee30062e7d112be23b05216c4e",
+          "packets": 6,
+          "luaSHA": "dd7f01db48ac8f3c9c1b7b54d6e248bb55f306079a9119cfa18d5d9a973c36ab"
+        },
+        "submission": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag506_a-submitted.png",
+          "pngSha": "5766ee0ec8ac098db33e7544de8c4a7e82269c058f242590aae6341c473def71",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag506_a-submitted-capture.json",
+          "metaSha": "debf1993f88ed117ec99612c16a11dc552121b1ce022928cdbce9fe11fab5347",
+          "started": 1795127668.4715643,
+          "time": 1795127670.334858,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 9012,
+              "hwnd": 3541714,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134395136956432080
+            },
+            "fg": 196750,
+            "last": 92183140,
+            "idle": 117.063,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "loadedAndParsed": true,
+        "allHealthAndManaRestoreZero": true,
+        "allFoodOrDrinkFalse": true
+      }
+    },
+    "change": {
+      "path": "Inventory/FluxConsumableClassify.lua",
+      "baseline": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+      "candidate": "fd2e0ca86bf165aea1c94dea031e5fb41b9ab561bee0009ded68b3cf2fbc34a1",
+      "checkpoint": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\history.bundle",
+        "historySha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+        "copies": [
+          {
+            "client": "_retail_",
+            "source": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+            "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\_retail_.before.lua",
+            "sha256": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+            "settingsAvailable": 2
+          },
+          {
+            "client": "_forever_",
+            "source": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+            "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\_forever_.before.lua",
+            "sha256": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+            "settingsAvailable": 3
+          },
+          {
+            "client": "_classic_",
+            "source": "F:\\World of Warcraft\\_classic_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+            "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\_classic_.before.lua",
+            "sha256": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+            "settingsAvailable": 2
+          },
+          {
+            "client": "_classic_era_",
+            "source": "F:\\World of Warcraft\\_classic_era_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+            "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\_classic_era_.before.lua",
+            "sha256": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+            "settingsAvailable": 4
+          },
+          {
+            "client": "_anniversary_",
+            "source": "F:\\World of Warcraft\\_anniversary_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+            "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\nonrestoring-effects-20261119T223550Z\\_anniversary_.before.lua",
+            "sha256": "408b578769d82d0a93e245dcf02fbf4470e0c356fd61d7b363fab17b0532527f",
+            "settingsAvailable": 10
+          }
+        ],
+        "settingsContentsCopied": false
+      },
+      "edit": "Four entries in the existing item and spell map. Positive parsing still runs first. Unknown or incomplete items retain their retry path.",
+      "verification": "Five installed paths matched the edited source SHA. A separate copy command aborted before copying because the target paths already had the exact candidate. Lua 5.4 syntax passed at all five paths. Existing regression checks passed: 39 built-in pending-read, 39 Syndicator pending-read and 510 potion-restore assertions over 50 profiles."
+    },
+    "reload": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag507-reload-consumable-effects-20261119",
+        "controllerSHA": "250c1b60ecf5bc87ad2bdc738d357ed76ffcc95b96b0afe7a19e8bba59cb437c",
+        "packetSHA": "d26e579c10d52ec6198da061fed89f121b53c8c186bae476d1da9a50136f30f6",
+        "packets": 1
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag507_a-submitted.png",
+        "pngSha": "588619733c94fa6addda86aa9ab58ae427747665167b854ed73ae209b6335d31",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag507_a-submitted-capture.json",
+        "metaSha": "a64f425dc751737a7338a8c32bc525f682872ff4626ad641f65fc058a67db0e8",
+        "started": 1795128055.4620044,
+        "time": 1795128057.2180672,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 92674953,
+          "idle": 12.234,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "startup": {
+        "time": 1795128107.1065,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume507_world_after_reload.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "6bcf61b50dfbe476d9961ae92c3a60f75bd63d54d49083a003aa25bcaffa3ed0"
+      }
+    },
+    "pair": {
+      "scope": "Only the six-second idle scan work for the measured loaded Forever profile. The backpack and commerce panels were closed. Both samples restored the observer and kept a stable bag generation with zero new Lua errors.",
+      "before": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag508-passive-classifier-and-grid-parity-20261119",
+          "controllerSHA": "536391dc145e1836bb164915e106d8fc60ec01d2a57228bb3a808f4a602cb9ff",
+          "packetSHA": "02345d8965e576ecbc0ff35afe6432c01c2bee876b2d198d15b66115bebfcb29",
+          "packets": 13,
+          "luaSHA": "eaa244759cc901a48408f6eea1c71c83ce19bb5ba6b396c12bf028819a4f1951"
+        },
+        "submission": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag508_a-submitted.png",
+          "pngSha": "81db3a440996636c860bec2df947763c8922d7353bdc6d16812146a747dd3cb8",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag508_a-submitted-capture.json",
+          "metaSha": "56888b44fef5729b3bdc5f583cdffebca3a2e2057b6a396a6ef10c08767989ec",
+          "started": 1795128001.8639982,
+          "time": 1795128003.6973035,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 9012,
+              "hwnd": 3541714,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134395136956432080
+            },
+            "fg": 196750,
+            "last": 92487734,
+            "idle": 145.859,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "result": {
+          "time": 1795128018.963502,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume508_grid_before.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "15da62fe6c510883e818af615b282843f29b7ef944777b0b144d6580d3bda8c2"
+        },
+        "seconds": 6,
+        "passiveScans": 15,
+        "ms": 35.275,
+        "queue": [
+          4,
+          4
+        ],
+        "settled": [
+          "0000",
+          "0000"
+        ]
+      },
+      "after": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag509-passive-classifier-and-grid-parity-20261119",
+          "controllerSHA": "14a30615d84d4a76977e25511b3a95e1538b86f5f5d40b3154f662072aa0a65d",
+          "packetSHA": "09428c5df82af4174153746a1a0143ac68b3d8fd78879edca72b70e809c29b6d",
+          "packets": 13,
+          "luaSHA": "072d2c54fe970b8b45598646a780133a56d99dabeb5d9881f115634288343e62"
+        },
+        "submission": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag509_a-submitted.png",
+          "pngSha": "3f467363e08e88bff268dc01aa842fc81f63efcf5f553eb4cf00a611a2974826",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag509_a-submitted-capture.json",
+          "metaSha": "f066d6a35c17be0ca2cfc663915cc3faffd126c2936aa49624c59ca4d955d00a",
+          "started": 1795128144.0200274,
+          "time": 1795128145.9678926,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 9012,
+              "hwnd": 3541714,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134395136956432080
+            },
+            "fg": 196750,
+            "last": 92674953,
+            "idle": 100.797,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "result": {
+          "time": 1795128162.216143,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume509_grid_after.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "73b36b04f29c49a4f572813e46713e83fc9c07671f19572d3a6e064b723af33e"
+        },
+        "seconds": 6,
+        "passiveScans": 0,
+        "ms": 0,
+        "queue": [
+          0,
+          0
+        ],
+        "settled": [
+          "1111",
+          "1111"
+        ]
+      },
+      "matchingIDsCountsAndButtonIDs": [
+        [
+          "bandage",
+          8544,
+          20,
+          8544
+        ],
+        [
+          "food",
+          1487,
+          42,
+          1487
+        ],
+        [
+          "healPotion",
+          3928,
+          5,
+          3928
+        ],
+        [
+          "manaPotion",
+          6149,
+          5,
+          6149
+        ],
+        [
+          "water",
+          3772,
+          17,
+          3772
+        ]
+      ]
+    },
+    "jump": {
+      "reconnectHost": 28844,
+      "newCue": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump71_a-submitted.png",
+        "pngSha": "acecddbf3c1699c393f3189d0e054135f137edbc693535b7eae2b35e6b497d69",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump71_a-submitted-capture.json",
+        "metaSha": "d6834b48a76e4d4cd931fa5d053591fa121eb1abd2bf4138e3351c2f78760a6b",
+        "started": 1795128223.0525525,
+        "time": 1795128224.9777243,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 92851218,
+          "idle": 3.563,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "postReloadSupervisor": 21424,
+      "postReloadHost": {
+        "pid": 33116,
+        "status": "running",
+        "pairs": 1,
+        "movementAcknowledged": false
+      }
+    },
+    "nativeOtherClientChecksPending": true,
+    "overallFPSClaim": false
+  }
+}

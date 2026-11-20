@@ -8,6 +8,7 @@ local issuing, hooksInstalled, listening = false, false, false
 local nativeBooks, lastNative, queryGeneration = {}, nil, 0
 local potionScans = {}
 local rejectedQuotes = {}
+local skipTransientPaint = {}
 A.state, A.status = "idle", "intro"
 A.debugBuild = "AH-restock-explicit-start-20261114-r27"
 
@@ -88,7 +89,7 @@ local function CancelQuote()
     end
 end
 
-function A.Invalidate(reason)
+function A.Invalidate(reason, paintMode)
     if A.transaction then
         -- A submitted purchase must retain its reservation until its outcome is known.
         Paint()
@@ -110,7 +111,69 @@ function A.Invalidate(reason)
     A.search, A.offer = nil, nil
     A.state, A.status = "idle", reason or "changed"
     if reason ~= "searching" and A.FlushAuctionatorPrices then A.FlushAuctionatorPrices() end
-    Paint()
+    if paintMode ~= skipTransientPaint then Paint() end
+end
+
+local invalidate = A.Invalidate
+local function InvalidateForSearch()
+    -- Both search starters paint their complete state before sending a query.
+    if A.Invalidate == invalidate and A.UpdateUI == ns.AuctionRestockUpdateUI
+        and not A.transaction and not A.ownsQuote then
+        invalidate("searching", skipTransientPaint)
+    else
+        A.Invalidate("searching")
+    end
+end
+
+local getRows, hasCraftPlans = A.GetRows, A.HasCraftPlans
+local auctionSettings = A.Settings
+local flushPrices, cancelCraftPricing, cancelPotionDiscovery = A.FlushAuctionatorPrices, A.CancelCraftPricing, A.CancelPotionDiscovery
+local vendor = _G.FluxVendorAuto
+local getTargetItems = vendor and vendor.GetRestockTargetItems
+
+local function StartupInventory()
+    local inv = Flux.Inventory
+    if not inv or not inv.GetSnapshotGeneration or not inv.GetBagGeneration or not inv.IsBankOpen
+        or not inv.IsMailboxOpen or not inv.IsMerchantOpen or not inv.IsBagStorm
+        or inv.IsBankOpen() or inv.IsMailboxOpen() or inv.IsMerchantOpen() or inv.IsBagStorm() then return end
+    return inv
+end
+
+local function StartupOwnersMatch()
+    return A.Invalidate == invalidate and A.GetRows == getRows and A.HasCraftPlans == hasCraftPlans
+        and A.Settings == auctionSettings
+        and A.FlushAuctionatorPrices == flushPrices and not _G.Auctionator
+        and A.CancelCraftPricing == cancelCraftPricing and A.CancelPotionDiscovery == cancelPotionDiscovery
+        and A.UpdateUI and A.UpdateUI == ns.AuctionRestockUpdateUI
+        and A.ApplyPotionReplacements and A.ApplyPotionReplacements == ns.AuctionRestockApplyPotionReplacements
+        and vendor and _G.FluxVendorAuto == vendor and vendor.GetRestockTargetItems == getTargetItems
+end
+
+local function CaptureStartup()
+    if not StartupOwnersMatch() or A.queue or A.intent or A.search or A.offer or A.ownsQuote or A.transaction
+        or not hasCraftPlans or hasCraftPlans() or not A.Followup or not A.Followup.HasWork
+        or A.Followup.HasWork() then return end
+    local inv = StartupInventory()
+    if inv then
+        return { inventory = inv, bags = inv.GetBagGeneration(), bank = inv.GetSnapshotGeneration("bank"),
+            warband = inv.GetSnapshotGeneration("warband"), mail = inv.GetSnapshotGeneration("mail"), at = time(), serial = serial }
+    end
+end
+
+local function ReuseStartupRows(startup)
+    if not startup or not startup.rows or A.rows ~= startup.rows or A.vendorScanRows ~= startup.vendorRows
+        or serial ~= startup.serial + 1 or time() ~= startup.at or not StartupOwnersMatch() then return end
+    local inv = StartupInventory()
+    if inv ~= startup.inventory or inv.GetBagGeneration() ~= startup.bags or inv.GetSnapshotGeneration("bank") ~= startup.bank
+        or inv.GetSnapshotGeneration("warband") ~= startup.warband or inv.GetSnapshotGeneration("mail") ~= startup.mail
+        or not A.Followup or not A.Followup.HasWork or A.Followup.HasWork() then return end
+    for _, row in ipairs(startup.rows) do
+        if row.need == nil or row.isCharge then return end
+    end
+    for _, row in ipairs(startup.vendorRows or {}) do
+        if row.need == nil or row.isCharge then return end
+    end
+    return startup.rows
 end
 
 local function ForeignCall(purchase)
@@ -468,7 +531,7 @@ SendSearch = function()
 end
 
 local function BeginSearch(row, probe)
-    A.Invalidate("searching")
+    InvalidateForSearch()
     A.selectedID, A.state = row.itemID, "searching"
     local name = FluxItemClass and FluxItemClass.GetName and FluxItemClass.GetName(row.itemID)
     if A.legacy and not name then A.Invalidate("loading"); return end
@@ -505,7 +568,7 @@ local function ReadyFromBook(row, book, offer)
     return A.state == "ready"
 end
 function A.BeginPotionBrowse(done, terms, termKinds)
-    A.Invalidate("searching")
+    InvalidateForSearch()
     A.search = { potionBrowse = true, catalog = {}, page = 0, deadline = Now() + 15, done = done, terms = terms, termKinds = termKinds, termIndex = 1 }
     A.state, A.status = "searching", "potionScan"
     Paint(); SendSearch()
@@ -513,7 +576,7 @@ end
 
 -- Planning issues information queries only. A completed probe can supply ready
 -- legacy indices only while its exact query/page/identity remains current.
-function A.PrepareNext(resume)
+local function PrepareNext(resume, startup)
     if resume then A.restockRequested = true; A.yielded = nil; rejectedQuotes = {} end
     if not A.restockRequested then return end
     if not A.active or not A.houseOpen or A.transaction or A.foreign or A.yielded then return end
@@ -523,10 +586,20 @@ function A.PrepareNext(resume)
         (StaticPopup_Visible("BUYOUT_AUCTION") or StaticPopup_Visible("BID_AUCTION"))) then A.Invalidate("otherSearch"); return end
     if InCombatLockdown() then A.Invalidate("combat"); return end
     if not A.IsReliable() then A.Invalidate("loading"); return end
-    A.Invalidate("changed")
+    if startup and startup.paintAfterPlanning and not A.ownsQuote and StartupOwnersMatch() then
+        -- OnShow paints the finished state in this call. Keep the paints that
+        -- publish a search, a result or an error while planning.
+        invalidate("changed", skipTransientPaint)
+    else
+        A.Invalidate("changed")
+    end
+    -- The caller just built these rows. Consume them only for this initial
+    -- planning step. Every later response builds against current inventory.
+    local firstRows = ReuseStartupRows(startup)
     local job = { planned = {}, attempted = {}, discovered = {}, hidden = {} }
     A.queue = job
     if A.GetVendorCraftTargets and A.HasCraftPlans() then
+        firstRows = nil
         local bases = {}
         for _, row in ipairs(A.GetRows(true)) do
             if not row.isCraftMaterial or (row.baseTarget or 0) > 0 then
@@ -546,7 +619,8 @@ function A.PrepareNext(resume)
     end
     Advance = function()
         if not Alive() then return end
-        local rows = A.GetRows(true)
+        local rows = firstRows or A.GetRows(true)
+        firstRows = nil
         if job.focusKind and not A.FindRow(job.focus) then
             for _, row in ipairs(rows) do
                 if A.PotionKind and A.PotionKind(row) == job.focusKind then job.focus = row.itemID; break end
@@ -561,7 +635,9 @@ function A.PrepareNext(resume)
         for _, row in ipairs(rows) do if not preferred[row.itemID] then ordered[#ordered + 1] = row end end
         rows = ordered
         for _, row in ipairs(rows) do
-            local need = A.Need(row)
+            -- GetRows(true) just calculated final needs, including materials.
+            -- Reuse that synchronous refresh; submission revalidates live stock.
+            local need = row.need
             if need and need > 0 and not A.IsCraftOutput(row.itemID) and not job.attempted[row.itemID] then
                 local rejected = rejectedQuotes[row.itemID]
                 if rejected and Now() - rejected.at < 30 and need == rejected.quantity then
@@ -659,6 +735,11 @@ function A.PrepareNext(resume)
     end
     Advance()
 end
+
+function A.PrepareNext(resume)
+    return PrepareNext(resume)
+end
+local prepareNext = A.PrepareNext
 
 function A.ScanQueue(resume, scanAll)
     if resume then A.restockRequested = true end
@@ -763,6 +844,7 @@ function A.ScanQueue(resume, scanAll)
     end
     NextVendor()
 end
+local scanQueue = A.ScanQueue
 
 local function EndTransaction(status, release)
     local t = A.transaction
@@ -897,7 +979,8 @@ local function RefreshInventory()
     -- owned search or replacing the player's pending upgrade choices.
     if not A.transaction and A.state == "ready" and A.offer then
         local row = A.FindRow(A.offer.itemID)
-        local need = row and A.Need(row)
+        -- The rebuild above already reconciled this row's stock and receipts.
+        local need = row and row.need
         if not row or A.IsVendorItem(row.itemID) or (need and need <= 0) then A.Invalidate("changed") end
     end
     -- A user-started operation may have paused for its initial stock snapshot.
@@ -939,7 +1022,7 @@ local function Listen(enabled)
     elseif not enabled and inv and inv.Unregister then inv.Unregister("AuctionRestock.Incoming") end
 end
 
-function A.ShowSession()
+local function ShowSession(paintAfterPlanning)
     A.active, A.yielded = true, nil
     A.restockRequested = true
     potionScans = {}
@@ -949,9 +1032,30 @@ function A.ShowSession()
     if owner and owner:IsShown() then A.houseOpen = true end
     if A.houseOpen then InstallHooks() end
     Listen(true)
-    A.GetRows(true)
+    local startup = A.ScanQueue == scanQueue and A.PrepareNext == prepareNext and CaptureStartup()
+    local rows = A.GetRows(true)
     A.editorID = A.FindRow(A.editorID) and A.editorID or (A.rows[1] and A.rows[1].itemID)
-    A.ScanQueue()
+    if startup and A.ScanQueue == scanQueue and A.PrepareNext == prepareNext then
+        startup.rows, startup.vendorRows = rows, A.vendorScanRows
+        startup.paintAfterPlanning = paintAfterPlanning
+        PrepareNext(nil, startup)
+    else
+        A.ScanQueue()
+    end
+end
+
+function A.ShowSession()
+    ShowSession()
+end
+local showSession = A.ShowSession
+
+function ns.AuctionRestockOnShow()
+    if A.ShowSession == showSession then
+        ShowSession(true)
+    else
+        A.ShowSession()
+    end
+    A.UpdateUI()
 end
 
 function A.HideSession()
@@ -967,8 +1071,21 @@ function A.SettingsChanged()
     if A.Followup then A.Followup.Refresh() end
     if not A.active then return end
     if A.applyingAuctionTier then A.GetRows(true); Paint(); return end
-    A.GetRows(true)
+    local startup = A.ScanQueue == scanQueue and A.PrepareNext == prepareNext and CaptureStartup()
+    if startup then
+        local settings = auctionSettings()
+        local saved = settings.vendorCraftPlans
+        if next(settings.pending) or (saved ~= nil and (type(saved) ~= "table" or next(saved))) then startup = nil end
+    end
+    local rows = A.GetRows(true)
+    if startup then startup.rows, startup.vendorRows = rows, A.vendorScanRows end
     A.Invalidate("changed")
+    if startup and serial == startup.serial + 1 and A.ScanQueue == scanQueue and A.PrepareNext == prepareNext then
+        -- Keep the settings repaint. The planner checks the inventory again
+        -- after its own invalidation and uses fresh rows if anything changed.
+        startup.serial = serial
+        return PrepareNext(nil, startup)
+    end
     A.ScanQueue()
 end
 

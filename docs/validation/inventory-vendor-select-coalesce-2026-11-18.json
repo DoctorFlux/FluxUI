@@ -1,0 +1,105 @@
+{
+  "utc": "2026-11-18T13:02:44.124752+00:00",
+  "branch": "main",
+  "before": {
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12"
+  },
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "historyVerified": true,
+  "settingsStatRows": 12,
+  "syntaxBefore": [
+    {
+      "compiler": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lua51-20261115/lua-5.1.5/src/luac51.exe",
+      "exit": 0
+    },
+    {
+      "compiler": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/luac.exe",
+      "exit": 0
+    }
+  ],
+  "callGraphBefore": {
+    "library": "Libs\\SecureTabs-2.0\\SecureTabs-2.0.lua",
+    "sha256": "fdd306aa1f994faef1e29514362619fff075c58e43832cabdbe315ea387405b6",
+    "order": "SecureTabs.Update invokes selected tab.OnSelect then frame:SetShown(selected). Restock OnSelect and OnShow both call OnTabSelected, each queuing After0 RefreshSelectedPanel.",
+    "callSites": 2,
+    "definitionSites": 1,
+    "panelSource": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12"
+  },
+  "nativeBasis": "Current24 actual9row count updater2.313ms and empty shown panel0.1148ms historical scoped observations. Duplicate queue call graph verified; native before event-count capture unavailable; no native gain claimed.",
+  "currentDirectSourceSetBefore": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "status": "APPLIED_RELOADED; native provider/count smoke PASS; vendor UI/performance acceptance OPEN",
+  "id": "LHO-VENDOR-SELECT-COALESCE-20261118",
+  "utcUpdated": "2026-11-18T13:03:48.642821+00:00",
+  "after": {
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205"
+  },
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "syntaxAfter": [
+    {
+      "compiler": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lua51-20261115/lua-5.1.5/src/luac51.exe",
+      "exit": 0
+    },
+    {
+      "compiler": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/luac.exe",
+      "exit": 0
+    }
+  ],
+  "onlyQueuedSelectionGuardChanged": true,
+  "retailForeverDiskPairsMatched": 24,
+  "nativeStatus": "ADOPTED via ownC1 and restoration reloads;3provider live count smokes pass;actual vendor-tab lifecycle/performance still pending",
+  "noNewSimulation": true,
+  "preserved": "Both OnTabSelected call sites still execute synchronous invalidation/settings/scroll;earliest After0 callback;hidden guard;callback flag resets before QueryItems for reentrancy;metadata retry0.2s and bag burst0.2/0.35s unchanged;all row/count/query/render bodies identical.",
+  "userAway": "User says no questions while away long; continue autonomous within existing permissions;no purchases/selling/deletion;queue jumps around scripts/casts/crafting.",
+  "nativeFollowup": "docs/validation/inventory-native-count-combos-current-2026-11-18.json"
+}

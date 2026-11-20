@@ -1,0 +1,3014 @@
+{
+  "changeId": "STRIP-POSE-TOPOLOGY-R87-20261119",
+  "borderVersion": "strip-pose-topology-r87",
+  "capturedAtUTC": "2026-11-19T09:09:38.750128+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reuse the expanded and collapsed border layouts on repeated action-strip cursor crossings, including moved side panels.",
+  "changes": [
+    "The normal action-strip layout commit identifies genuine expand and collapse transitions after dependent panels settle.",
+    "Retain the exact selected topology and clipped plan for two observed strip layouts, within geometry budgets.",
+    "Check neighboring geometry, source identities, live material/UV, masks and raised levels before reuse.",
+    "Read current paint into the existing native sinks. Unrelated regions retain their renderer cells."
+  ],
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "3c843e612936c5b5062bdd19dd559b1252d57ad74f50f52aed6117487efd763f",
+      "afterRaw": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+      "afterRaw": "d7b086c07f2b1c5388e1544b98ff4087b0ed428408d3a1a388004015fdaa4619"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": null,
+      "afterRaw": "20969389e5b3b95e24a8aa6a6ceecc23a805b874bfc610d2f92839f948d96b13"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "61d3de5f17d885d1c5e1aac110287097483edec20b36fec4d70842d46a247d86",
+      "afterRaw": "0f4fd51169473f8514920db42712273df8a4c2de021a61578a5065496205ebf4"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-pose-topology-r87-before-20261119T085823Z\\source.zip",
+    "archiveSHA256": "66b390997e7eec127534c629400eb212e1aecc43aaef8ca1c6194f3a1e98275d",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "workReplays": {
+    "stripAndSyntheticDock": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "polygons": 224.0,
+          "planes": 297.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 224.0,
+          "planes": 297.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "polygons": 224.0,
+          "planes": 297.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "polygons": 224.0,
+          "planes": 297.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 5.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "polygons": 216.0,
+          "planes": 240.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 216.0,
+          "planes": 240.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "polygons": 216.0,
+          "planes": 240.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "polygons": 216.0,
+          "planes": 240.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 6.0000000000002
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        },
+        "after": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        },
+        "after": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 143.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 165.0,
+          "planes": 253.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 25.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 27.0
+        },
+        "after": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 24.0
+        },
+        "after": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 24.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 154.0,
+          "planes": 135.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 193.0,
+          "planes": 232.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      }
+    ],
+    "stripWidthWithTargetHidden": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "polygons": 224.0,
+          "planes": 215.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 0.0,
+          "ms": 26.0
+        },
+        "after": {
+          "polygons": 224.0,
+          "planes": 215.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "polygons": 224.0,
+          "planes": 215.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "polygons": 224.0,
+          "planes": 215.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 432.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "polygons": 205.0,
+          "planes": 209.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "polygons": 304.0,
+          "planes": 245.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 0.0,
+          "ms": 40.0
+        },
+        "after": {
+          "polygons": 304.0,
+          "planes": 245.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 0.0,
+          "ms": 25.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "polygons": 304.0,
+          "planes": 245.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 1.0,
+          "ms": 6.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "polygons": 304.0,
+          "planes": 245.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 31.0,
+          "triangles": 545.0,
+          "planHit": 1.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "polygons": 280.0,
+          "planes": 233.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      }
+    ],
+    "focusedControls": [
+      "Strip drag hover edges: 31 checks; enter/leave while holding the same action. Native timing and seams pending.",
+      "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4",
+      "STRIP_POSE style=2 solve=6/2 plan=6/2 preparedHits=4",
+      "Strip pose replay: warm cache, active tint, changed materials, neighbor geometry and lockdown pass."
+    ]
+  },
+  "wholeModelElapsed": {
+    "warmSummaryMs": {
+      "strip": {
+        "1": {
+          "before": {
+            "median": 16.0,
+            "range": [
+              12.0,
+              43.0
+            ]
+          },
+          "after": {
+            "median": 7.0,
+            "range": [
+              5.0,
+              12.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 18.5,
+            "range": [
+              13.0,
+              41.0
+            ]
+          },
+          "after": {
+            "median": 7.0,
+            "range": [
+              6.0,
+              13.0
+            ]
+          }
+        }
+      },
+      "dock": {
+        "1": {
+          "before": {
+            "median": 10.0,
+            "range": [
+              7.0,
+              23.0
+            ]
+          },
+          "after": {
+            "median": 10.0,
+            "range": [
+              8.0,
+              25.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 19.0,
+            "range": [
+              14.0,
+              33.0
+            ]
+          },
+          "after": {
+            "median": 19.0,
+            "range": [
+              13.0,
+              35.0
+            ]
+          }
+        }
+      }
+    },
+    "rows": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 11.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 5.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 27.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 5.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 5.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 5.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 9.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 9.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 43.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 10.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 7.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 10.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 21,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "planHit": 1.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 22,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 10.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 13.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 41.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 22.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 6.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 26.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 38.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 21,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 0.0,
+          "ms": 16.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 22,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "planHit": 1.0,
+          "ms": 7.0000000000001
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 38.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.0000000000003
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 7.0000000000001
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 10.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.0000000000003
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 25.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 9.9999999999998
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 8.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 21,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 12.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "planHit": 0.0,
+          "ms": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 22,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "planHit": 0.0,
+          "ms": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 28.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 34.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 17.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 21.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 25.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 33.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 13.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 22.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 22.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 14.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 33.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.999999999999
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 21.000000000001
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 20.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 15.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 24.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 15.000000000001
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 21.000000000001
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 34.999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 21,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 18.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "planHit": 0.0,
+          "ms": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 22,
+        "before": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        },
+        "after": {
+          "polygons": 0.0,
+          "planes": 0.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "planHit": 0.0,
+          "ms": 23.0
+        }
+      }
+    ],
+    "scope": "20 warm paired crossings per style, desktop Lua with modeled widgets. Synthetic dock is a non-strip control. No native FPS or GPU claims."
+  },
+  "verification": {
+    "focused": 196,
+    "syntax": 1231,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-pose-topology-r87-before-20261119T085823Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-pose-topology-r87-before-20261119T085823Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-pose-topology-r87-before-20261119T085823Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending for party/raid latency, held-action strip seams, and in-game taint. No gameplay or profiler changes."
+}

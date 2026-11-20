@@ -97,6 +97,7 @@ local function InitializePetFrame()
                 local level = UF.GetFramePublicLevel(ns.PlayerFrame)
                 if level ~= nil then UF.SetFramePublicLevel(frame, level + 30) end
             end
+            if UF.FitPortraitOverlay then UF.FitPortraitOverlay(frame, ns.PlayerFrame, "Left") end
             return true
         end
         return false

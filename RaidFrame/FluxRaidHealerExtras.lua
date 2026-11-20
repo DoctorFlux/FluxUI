@@ -10,7 +10,7 @@ local Flux = ns.Flux
 local frames = setmetatable({}, { __mode = "k" })
 local pets, target = {}, nil
 local candidates, pendingLayout, events = nil, false, nil
-local rosterUpdateQueued = false
+local preparedLayout, pendingDriverRetry
 local classBuffIDs, classBuffNames
 local max, min, floor = math.max, math.min, math.floor
 
@@ -230,9 +230,15 @@ local function DriverAPI()
     return restricted
 end
 
-local function DisableCell(cell)
-    local restricted = cell._fluxExtraDriverOwner or DriverAPI()
-    if cell._fluxExtraDriver and restricted then restricted.UnregisterPagingDriver(cell, "raidextra") end
+local function DisableCell(cell, keepDisabled)
+    if keepDisabled and not cell._fluxExtraDriver then
+        local shown, unit = cell:IsShown(), cell:GetAttribute("unit")
+        if not Secret(shown) and shown == false and not Secret(unit) and unit == nil then return end
+    end
+    if cell._fluxExtraDriver then
+        local restricted = cell._fluxExtraDriverOwner or DriverAPI()
+        if restricted then restricted.UnregisterPagingDriver(cell, "raidextra") end
+    end
     cell._fluxExtraDriver = nil
     cell._fluxExtraDriverOwner = nil
     cell:Hide()
@@ -241,30 +247,30 @@ local function DisableCell(cell)
     E.Clear(cell)
 end
 
-local function ConfigureCell(cell, unit, condition, pet, column, row, offsetY, restricted)
+local function ConfigureCell(cell, unit, condition, pet, column, row, offsetY, layout)
     cell._fluxExtraPet = pet and true or false
     cell._fluxRaidMini = pet and true or false
-    local width = FluxRaidVisuals.FRAME_WIDTH
-    local height = pet and max(12, floor(FluxRaidVisuals.FRAME_HEIGHT/2+0.5)) or FluxRaidVisuals.FRAME_HEIGHT
+    local width = layout.width
+    local height = pet and max(12, floor(layout.height/2+0.5)) or layout.height
     cell:SetSize(width, height)
     cell:ClearAllPoints()
-    cell:SetPoint("TOPLEFT", State.containerFrame, "TOPRIGHT", 8+column*width, -offsetY-row*max(1,height-4))
-    if FluxRaidVisuals.ApplyCellChrome then FluxRaidVisuals.ApplyCellChrome(cell, { height=height, showPower=not pet and DB().displayPowerBar~=false }) end
+    cell:SetPoint("TOPLEFT", layout.dock, "TOPRIGHT", 8+column*width, -offsetY-row*max(1,height-4))
+    if layout.chrome then layout.chrome(cell, { height=height, showPower=not pet and layout.power }) end
     cell:SetAttribute("unit", unit)
     if FluxRaid_BindUnit then FluxRaid_BindUnit(cell, unit) end
-    if not restricted.SetPagingSnippet(cell, "_onstate-raidextra", [[ if newstate == "show" then self:Show() else self:Hide() end ]])
-        or not restricted.RegisterPagingDriver(cell, "raidextra", condition) then
+    if not layout.snippet(cell, "_onstate-raidextra", [[ if newstate == "show" then self:Show() else self:Hide() end ]])
+        or not layout.register(cell, "raidextra", condition) then
         DisableCell(cell)
-        E.extraStatus = "Secure visibility driver unavailable"
-        return
+        return false
     end
     cell._fluxExtraDriver = true
-    cell._fluxExtraDriverOwner = restricted
+    cell._fluxExtraDriverOwner = layout.driver
+    return true
 end
 
-local function NewCell(name, pet)
+local function NewCell(name, pet, dock)
     local template = pet and "FluxRaidPetUnitTemplate,SecureHandlerStateTemplate" or "FluxRaidUnitTemplate,SecureHandlerStateTemplate"
-    local cell = CreateFrame("Button", name, State.containerFrame, template)
+    local cell = CreateFrame("Button", name, dock, template)
     cell._fluxHealerExtra = true
     return cell
 end
@@ -274,7 +280,7 @@ local function SyncEvents()
     events:UnregisterAllEvents()
     local db = DB()
     if not pendingLayout and (not Enabled() or (db.showClassBuffs==false and db.showMissingClassBuffs~=true and not db.showPets and not db.showFriendlyTarget)) then return end
-    for _, event in ipairs({ "PLAYER_REGEN_ENABLED", "PLAYER_ENTERING_WORLD", "GROUP_ROSTER_UPDATE" }) do
+    for _, event in ipairs({ "PLAYER_REGEN_ENABLED", "PLAYER_ENTERING_WORLD" }) do
         pcall(events.RegisterEvent, events, event)
     end
     if db.showClassBuffs~=false or db.showMissingClassBuffs==true then
@@ -289,46 +295,111 @@ local function SyncEvents()
     end
 end
 
-function E.RefreshLayout()
+local function ApplyExtraLayout(retry)
     if Combat() then pendingLayout = true; SyncEvents(); return end
-    pendingLayout = false
+    pendingLayout, pendingDriverRetry = false, false
     local db = DB()
-    local wantPets, wantTarget = Enabled() and db.showPets==true, Enabled() and db.showFriendlyTarget==true
+    local enabled = Enabled()
+    local wantPets, wantTarget = enabled and db.showPets==true, enabled and db.showFriendlyTarget==true
     local restricted = (wantPets or wantTarget) and DriverAPI() or nil
-    if (wantPets or wantTarget) and not restricted then E.extraStatus = "Secure visibility driver unavailable"
-    else E.extraStatus = nil end
-    if State.containerFrame and restricted then
+    local layout = {
+        dock = State.containerFrame or false, driver = restricted or false,
+        register = restricted and restricted.RegisterPagingDriver or false,
+        snippet = restricted and restricted.SetPagingSnippet or false,
+        unregister = restricted and restricted.UnregisterPagingDriver or false,
+        width = FluxRaidVisuals.FRAME_WIDTH, height = FluxRaidVisuals.FRAME_HEIGHT,
+        chrome = FluxRaidVisuals.ApplyCellChrome or false,
+        enabled = not not enabled, pets = not not wantPets, target = not not wantTarget,
+        power = db.displayPowerBar ~= false, classBuffs = db.showClassBuffs ~= false,
+        missingBuffs = db.showMissingClassBuffs == true,
+    }
+    -- Roster retries keep successfully prepared cells when their actual setup
+    -- inputs still match. A new provider, dock or configuration takes the full path.
+    local onlyFailed = retry and preparedLayout ~= nil
+    if onlyFailed then
+        for key, value in pairs(layout) do
+            if preparedLayout[key] ~= value then onlyFailed = false; break end
+        end
+    end
+    if not onlyFailed then preparedLayout = nil end
+    local failed = (wantPets or wantTarget) and not restricted
+    if layout.dock and restricted then
         if wantTarget then
-            target = target or NewCell("FluxRaidFriendlyTarget")
-            ConfigureCell(target, "target", "[group,@target,help,exists] show; hide", false, 0, 0, 0, restricted)
-        elseif target then DisableCell(target) end
-        local offsetY = wantTarget and (FluxRaidVisuals.FRAME_HEIGHT+8) or 0
+            target = target or NewCell("FluxRaidFriendlyTarget", false, layout.dock)
+            if not onlyFailed or not target._fluxExtraDriver or target._fluxExtraDriverOwner ~= restricted then
+                if not ConfigureCell(target, "target", "[group,@target,help,exists] show; hide", false, 0, 0, 0, layout) then
+                    failed = true
+                end
+            end
+        elseif target then DisableCell(target, onlyFailed) end
+        local offsetY = wantTarget and (layout.height+8) or 0
         if wantPets then
             -- Preallocate both modes OOC; secure conditions handle summoning,
             -- dismissing and party/raid transitions without Lua layout writes.
             for i=1,45 do
-                pets[i] = pets[i] or NewCell("FluxRaidPet"..i, true)
-                local raid = i<=40
-                local index = raid and i or i-40
-                local unit = raid and ("raidpet"..i) or (index==1 and "pet" or "partypet"..(index-1))
-                local mode = raid and "raid" or "party"
-                ConfigureCell(pets[i], unit, FluxRaidSecure.GetCompanionVisibilityCondition(mode, unit), true,
-                    floor((index-1)/5), (index-1)%5, offsetY, restricted)
+                pets[i] = pets[i] or NewCell("FluxRaidPet"..i, true, layout.dock)
+                local cell = pets[i]
+                if not onlyFailed or not cell._fluxExtraDriver or cell._fluxExtraDriverOwner ~= restricted then
+                    local raid = i<=40
+                    local index = raid and i or i-40
+                    local unit = raid and ("raidpet"..i) or (index==1 and "pet" or "partypet"..(index-1))
+                    local mode = raid and "raid" or "party"
+                    if not ConfigureCell(cell, unit, FluxRaidSecure.GetCompanionVisibilityCondition(mode, unit), true,
+                        floor((index-1)/5), (index-1)%5, offsetY, layout) then failed = true end
+                end
             end
-        else for _, pet in ipairs(pets) do DisableCell(pet) end end
+        else
+            for _, pet in ipairs(pets) do DisableCell(pet, onlyFailed) end
+        end
     else
-        for _, pet in ipairs(pets) do DisableCell(pet) end
-        if target then DisableCell(target) end
+        for _, pet in ipairs(pets) do DisableCell(pet, onlyFailed) end
+        if target then DisableCell(target, onlyFailed) end
     end
-    SyncEvents()
-    UpdateAll()
+    if not onlyFailed then
+        SyncEvents()
+        UpdateAll()
+        preparedLayout = layout
+    end
+    E.extraStatus = failed and "Secure visibility driver unavailable" or nil
+    return onlyFailed
 end
 
-local function PaintExtraUnits()
+function E.RefreshLayout()
+    ApplyExtraLayout(false)
+end
+
+local function PaintExtraUnits(paint)
+    paint = paint or FluxRaid_PaintUnit
+    if not paint then return end
     for _, pet in ipairs(pets) do
-        if pet._fluxExtraDriver and pet:IsShown() and FluxRaid_PaintUnit then FluxRaid_PaintUnit(pet) end
+        if pet._fluxExtraDriver and pet:IsShown() then paint(pet) end
     end
-    if target and target._fluxExtraDriver and target:IsShown() and FluxRaid_PaintUnit then FluxRaid_PaintUnit(target) end
+    if target and target._fluxExtraDriver and target:IsShown() then
+        paint(target)
+        return target
+    end
+end
+
+function E.RefreshRoster()
+    if pendingLayout then
+        if not Combat() then E.RefreshLayout() end
+        return
+    end
+    if E.extraStatus then
+        if Combat() then pendingDriverRetry = true; return end
+        if not ApplyExtraLayout(true) then return end
+    end
+    local db = DB()
+    local paintedTarget
+    if db.showPets or db.showFriendlyTarget then paintedTarget = PaintExtraUnits(ns.FluxRaidQueueRosterPaint) end
+    if db.showMissingClassBuffs ~= true then return end
+
+    -- The raid layout owner calls after it queues the reconciled children.
+    -- Full/aura paint can satisfy the buff request using that same batch.
+    local refresh = ns.FluxRaidQueueMissingBuffRefresh or E.Update
+    for frame in pairs(frames) do
+        if frame ~= paintedTarget then refresh(frame) end
+    end
 end
 
 function E.OnEvent(event, unit)
@@ -341,19 +412,10 @@ function E.OnEvent(event, unit)
         E.InvalidateClassBuffFilter()
     end
     if event == "UNIT_FACTION" and unit ~= "target" then return end
-    if event == "GROUP_ROSTER_UPDATE" then
-        -- Both party and raid pet slots were prepared by RefreshLayout. Keep
-        -- their native visibility drivers instead of rebinding all 45 slots.
-        if rosterUpdateQueued then return end
-        rosterUpdateQueued = true
-        local function refresh()
-            rosterUpdateQueued = false
-            if pendingLayout or E.extraStatus then E.RefreshLayout()
-            else UpdateAll(); PaintExtraUnits() end
-        end
-        if C_Timer and C_Timer.After then C_Timer.After(0, refresh) else refresh() end
-    elseif event == "PLAYER_REGEN_ENABLED" then
-        if pendingLayout then E.RefreshLayout() else UpdateAll(); PaintExtraUnits() end
+    if event == "PLAYER_REGEN_ENABLED" then
+        if pendingLayout then E.RefreshLayout()
+        elseif pendingDriverRetry then E.RefreshRoster()
+        else UpdateAll(); PaintExtraUnits() end
     elseif event == "PLAYER_ENTERING_WORLD" then
         E.RefreshLayout()
     elseif event == "UNIT_PET" or event == "PLAYER_TARGET_CHANGED" or event == "UNIT_FACTION" then

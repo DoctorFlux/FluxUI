@@ -1,0 +1,69 @@
+{
+  "changeId": "STRIP-FLYOUT-ARROW-R150-20261119",
+  "capturedAtUTC": "2026-11-19T22:42:33.225945+00:00",
+  "sources": {
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": {
+      "beforeRaw": "1a2a5e2624aed31dba590e486fe1d6a46bb105f0c3567dd202a497ccf8e7ccf9",
+      "afterRaw": "37b6f9ac906b23a4e72b28e50d594ce8c95123f66bbd3d76b9c1c0947f7791bd",
+      "afterNormalized": "37b6f9ac906b23a4e72b28e50d594ce8c95123f66bbd3d76b9c1c0947f7791bd"
+    },
+    "tests/minimap_flyout_visibility.lua": {
+      "beforeRaw": "5c4b8481c9245116fed45821cae44979123d1f509c48d9b2220bca23b1bf3cdb",
+      "afterRaw": "7c894770ea0e8fed464ac73a3d98a46ecc14816bf31f0ee99059a1e07d179dde",
+      "afterNormalized": "7c894770ea0e8fed464ac73a3d98a46ecc14816bf31f0ee99059a1e07d179dde"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-exact-routing-before-20261119-233446\\source.zip",
+    "sourceZipSHA256": "d252b2b04fdf2d11f4a7048c6c2fa83f67508740df133d297018719eb2567bea",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Twelve modeled native host anchor moves with one visible flyout arrow; replay the production RefreshAll and anchor path with exact archived and current Lua.",
+    "samples": [
+      {
+        "clientModel": "retail",
+        "before": 36,
+        "after": 0
+      },
+      {
+        "clientModel": "forever",
+        "before": 36,
+        "after": 0
+      },
+      {
+        "clientModel": "classic",
+        "before": 36,
+        "after": 0
+      }
+    ],
+    "metric": "SetSize, ClearAllPoints and SetPoint calls on the arrow",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-exact-routing-before-20261119-233446\\arrow-matched.txt": "0946a16551ed107b3a5ba8a061b03d0117dc6a0bab2bc8f5084363d3041857fc"
+    },
+    "limits": "Reads, layer setters, popup updates and native time are outside this metric."
+  },
+  "preservation": [
+    "Real squeeze, side, anchor owner and point changes settle during the same pass.",
+    "Unreadable, missing or drifted current widget geometry takes the original protected repair.",
+    "The lockdown gate, secure openers, popup visibility and native click routes retain their existing behavior. The shared border renderer matches the previous source byte for byte."
+  ],
+  "verification": {
+    "focusedPassed": 104,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-exact-routing-before-20261119-233446\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-exact-routing-before-20261119-233446\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings, drops, party and raid membership latency, native pixels and taint."
+}

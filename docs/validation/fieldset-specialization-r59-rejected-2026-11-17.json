@@ -1,0 +1,2480 @@
+{
+  "changeId": "FIELDSET-SPECIALIZATION-R59-REJECTED-20261117",
+  "recordedAtUTC": "2026-11-17T03:17:40.001171+00:00",
+  "goalStatus": "ACTIVE",
+  "status": "UNAPPLIED / REJECTED BY ROOT FOR FITNESS. Installed R58 exact540 and accepted512/1202source gate remain current.",
+  "installedSource": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+    "rawSHA256": "23a864e2af6a77e375e1dd9528438ea3feb6e0d946fcf97a7265c2a67e9f43b7",
+    "lfSHA256": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "bytes": 198615
+  },
+  "durableTest": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_solver_allocation_work.lua",
+    "rawSHA256": "022c1b9726d5273839dc0d95c33c6b5e00f1c52b277a30adbd3ff672ddf7051e",
+    "lfSHA256": "022c1b9726d5273839dc0d95c33c6b5e00f1c52b277a30adbd3ff672ddf7051e",
+    "bytes": 28721
+  },
+  "legacySolveSupport": {
+    "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\support\\border_solver_legacy_r57.txt",
+    "rawSHA256": "cfba47c5bc60f4a3c2094bb3a41db9397a842f65c3f5d5074239ec8f567c5b20",
+    "lfSHA256": "cfba47c5bc60f4a3c2094bb3a41db9397a842f65c3f5d5074239ec8f567c5b20",
+    "bytes": 18252
+  },
+  "candidates": {
+    "tupleOnly": "e37d4194f60afcfa8f7f5278d5419ae8e3fa19fffe461fbfe61c34121c5afd30",
+    "measuredCombined": "34ce5e1cd337ef627ccb5b49454053f656f71b8d2785a8d44c1486daed67134a",
+    "rejectedVersion": "mesh-detail-field-tuples-r59",
+    "scope": "140cells measured combined34ce against540. Tuple-onlye37 also remains rejected/unapplied, not separately selected or retimed after this gate."
+  },
+  "rootVerdict": {
+    "reason": "Below declared5%median CPU reject threshold but insufficient fitness: changed-layout Lua5.1 all3pairs slower/median+0.3363%; Lua5.4median+0.6112%; no consistent improvement in the target changing-layout scenario; Lua5.4strip pair2+9.7345%CPU/+11.1692%wall; extra startup heap/code complexity.",
+    "thresholdPassNotFitnessAcceptance": true,
+    "noVariantRetestAfterCostWithoutNewAttribution": "Both measured combined and tuple-only proposal remain rejected. No new variant/retest without new native attribution. No installed source was changed."
+  },
+  "measurement": {
+    "cells": 140,
+    "normalGCCPUCells": 84,
+    "stoppedGCAllocationCells": 56,
+    "elapsedSeconds": 1163.2339999999967,
+    "all70ShapesChecksumsClockContractsPass": true,
+    "sourcePinsStable": true,
+    "meter": "Own-child GetProcessTimes User+Kernel after source/setup/warmup/fullGC at held READY/GO to DONE/ACK pipes;100ns units/effective historical15.625ms granularity. Pipe wakes/output included. os.clock is separate Lua clock, not CPU.",
+    "scope": "Complete modeled reflow (source/geometry/solve/plan/commit/field/native-model repair); not native FPS/latency/taint. Six watch-OFF cases0clocks; seventhON candidate+1clock/new numeric child per build. FreshCache uses pooled objects+cleared field caches; reuse still full force-reflow with mesh reuse.",
+    "processPreferences": "No priority/affinity/power/profiler/game preferences changed.",
+    "cpu": [
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_freshCache",
+        "iterations": 150,
+        "cpuBaselineMedianMS": 13734.375,
+        "cpuCombinedMedianMS": 13796.875,
+        "pairedCPUDeltaMedianPercent": -0.6749156355455588,
+        "pairedCPUDeltaMedianMS": -93.75,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 14068.742699979339,
+        "wallCombinedMedianMS": 14009.643300028984,
+        "pairedWallDeltaMedianPercent": -1.3178912067264403,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 4.4296875,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13671.875,
+            "cpuCombinedMS": 14078.125,
+            "cpuDeltaMS": 406.25,
+            "cpuDeltaPercent": 2.9714285714285804,
+            "wallBaselineMS": 13997.150799958035,
+            "wallCombinedMS": 14410.433200013358,
+            "wallDeltaMS": 413.2824000553228,
+            "wallDeltaPercent": 2.9526180432132065,
+            "startupCPUBaselineMS": 484.375,
+            "startupCPUCombinedMS": 484.375,
+            "startupHeapBaselineKB": 12891.616210938,
+            "startupHeapCombinedKB": 12896.045898438
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 13890.625,
+            "cpuCombinedMS": 13796.875,
+            "cpuDeltaMS": -93.75,
+            "cpuDeltaPercent": -0.6749156355455588,
+            "wallBaselineMS": 14196.74089999171,
+            "wallCombinedMS": 14009.643300028984,
+            "wallDeltaMS": -187.09759996272624,
+            "wallDeltaPercent": -1.3178912067264403,
+            "startupCPUBaselineMS": 484.375,
+            "startupCPUCombinedMS": 468.75,
+            "startupHeapBaselineKB": 12891.616210938,
+            "startupHeapCombinedKB": 12896.045898438
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13734.375,
+            "cpuCombinedMS": 13546.875,
+            "cpuDeltaMS": -187.5,
+            "cpuDeltaPercent": -1.3651877133105783,
+            "wallBaselineMS": 14068.742699979339,
+            "wallCombinedMS": 13784.26769998623,
+            "wallDeltaMS": -284.4749999931082,
+            "wallDeltaPercent": -2.0220357004149814,
+            "startupCPUBaselineMS": 484.375,
+            "startupCPUCombinedMS": 531.25,
+            "startupHeapBaselineKB": 12891.616210938,
+            "startupHeapCombinedKB": 12896.045898438
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_pooledRedraw",
+        "iterations": 200,
+        "cpuBaselineMedianMS": 15953.125,
+        "cpuCombinedMedianMS": 16078.125,
+        "pairedCPUDeltaMedianPercent": 0.7835455435847294,
+        "pairedCPUDeltaMedianMS": 125.0,
+        "cpuRegressionPairs": 2,
+        "wallBaselineMedianMS": 16280.569800001103,
+        "wallCombinedMedianMS": 16407.123200013302,
+        "pairedWallDeltaMedianPercent": 0.5211708175835827,
+        "startupCPUDeltaMedianMS": -15.625,
+        "startupLiveHeapDeltaMedianKB": 4.4296875,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 15953.125,
+            "cpuCombinedMS": 15171.875,
+            "cpuDeltaMS": -781.25,
+            "cpuDeltaPercent": -4.897159647404504,
+            "wallBaselineMS": 16280.569800001103,
+            "wallCombinedMS": 15478.813700028695,
+            "wallDeltaMS": -801.7560999724083,
+            "wallDeltaPercent": -4.924619407192699,
+            "startupCPUBaselineMS": 484.375,
+            "startupCPUCombinedMS": 437.5,
+            "startupHeapBaselineKB": 12891.618164062,
+            "startupHeapCombinedKB": 12896.047851562
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 15953.125,
+            "cpuCombinedMS": 16078.125,
+            "cpuDeltaMS": 125.0,
+            "cpuDeltaPercent": 0.7835455435847294,
+            "wallBaselineMS": 16322.057400015183,
+            "wallCombinedMS": 16407.123200013302,
+            "wallDeltaMS": 85.06579999811947,
+            "wallDeltaPercent": 0.5211708175835827,
+            "startupCPUBaselineMS": 453.125,
+            "startupCPUCombinedMS": 437.5,
+            "startupHeapBaselineKB": 12891.618164062,
+            "startupHeapCombinedKB": 12896.047851562
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 15796.875,
+            "cpuCombinedMS": 16453.125,
+            "cpuDeltaMS": 656.25,
+            "cpuDeltaPercent": 4.154302670623156,
+            "wallBaselineMS": 16249.874700035434,
+            "wallCombinedMS": 16975.693099957425,
+            "wallDeltaMS": 725.8183999219909,
+            "wallDeltaPercent": 4.4666092097338295,
+            "startupCPUBaselineMS": 468.75,
+            "startupCPUCombinedMS": 484.375,
+            "startupHeapBaselineKB": 12891.618164062,
+            "startupHeapCombinedKB": 12896.047851562
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_reuse",
+        "iterations": 1000,
+        "cpuBaselineMedianMS": 23562.5,
+        "cpuCombinedMedianMS": 22718.75,
+        "pairedCPUDeltaMedianPercent": -3.5809018567639295,
+        "pairedCPUDeltaMedianMS": -843.75,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 24034.70359998755,
+        "wallCombinedMedianMS": 23343.68299995549,
+        "pairedWallDeltaMedianPercent": -2.875095160451324,
+        "startupCPUDeltaMedianMS": -15.625,
+        "startupLiveHeapDeltaMedianKB": 4.4296875,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 23562.5,
+            "cpuCombinedMS": 22718.75,
+            "cpuDeltaMS": -843.75,
+            "cpuDeltaPercent": -3.5809018567639295,
+            "wallBaselineMS": 24034.70359998755,
+            "wallCombinedMS": 23343.68299995549,
+            "wallDeltaMS": -691.0206000320613,
+            "wallDeltaPercent": -2.875095160451324,
+            "startupCPUBaselineMS": 218.75,
+            "startupCPUCombinedMS": 187.5,
+            "startupHeapBaselineKB": 13392.23828125,
+            "startupHeapCombinedKB": 13396.66796875
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 23671.875,
+            "cpuCombinedMS": 22343.75,
+            "cpuDeltaMS": -1328.125,
+            "cpuDeltaPercent": -5.610561056105611,
+            "wallBaselineMS": 24103.843200020492,
+            "wallCombinedMS": 22813.234200002626,
+            "wallDeltaMS": -1290.6090000178665,
+            "wallDeltaPercent": -5.354370211040738,
+            "startupCPUBaselineMS": 218.75,
+            "startupCPUCombinedMS": 203.125,
+            "startupHeapBaselineKB": 13392.23828125,
+            "startupHeapCombinedKB": 13396.66796875
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 22468.75,
+            "cpuCombinedMS": 22875.0,
+            "cpuDeltaMS": 406.25,
+            "cpuDeltaPercent": 1.8080667593880495,
+            "wallBaselineMS": 23028.7268999964,
+            "wallCombinedMS": 23518.27040000353,
+            "wallDeltaMS": 489.5435000071302,
+            "wallDeltaPercent": 2.125794891454502,
+            "startupCPUBaselineMS": 203.125,
+            "startupCPUCombinedMS": 218.75,
+            "startupHeapBaselineKB": 13392.23828125,
+            "startupHeapCombinedKB": 13396.66796875
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed",
+        "iterations": 600,
+        "cpuBaselineMedianMS": 13937.5,
+        "cpuCombinedMedianMS": 13984.375,
+        "pairedCPUDeltaMedianPercent": 0.33632286995515237,
+        "pairedCPUDeltaMedianMS": 46.875,
+        "cpuRegressionPairs": 3,
+        "wallBaselineMedianMS": 14185.725699993782,
+        "wallCombinedMedianMS": 14276.927699975204,
+        "pairedWallDeltaMedianPercent": 0.696116919548162,
+        "startupCPUDeltaMedianMS": -31.25,
+        "startupLiveHeapDeltaMedianKB": 4.4296875,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13937.5,
+            "cpuCombinedMS": 13984.375,
+            "cpuDeltaMS": 46.875,
+            "cpuDeltaPercent": 0.33632286995515237,
+            "wallBaselineMS": 14185.725699993782,
+            "wallCombinedMS": 14276.927699975204,
+            "wallDeltaMS": 91.20199998142198,
+            "wallDeltaPercent": 0.6429138833655923,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 203.125,
+            "startupHeapBaselineKB": 13383.747070312,
+            "startupHeapCombinedKB": 13388.176757812
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 14062.5,
+            "cpuCombinedMS": 14390.625,
+            "cpuDeltaMS": 328.125,
+            "cpuDeltaPercent": 2.333333333333343,
+            "wallBaselineMS": 14362.130300025456,
+            "wallCombinedMS": 14675.7501999964,
+            "wallDeltaMS": 313.61989997094497,
+            "wallDeltaPercent": 2.1836586454753837,
+            "startupCPUBaselineMS": 218.75,
+            "startupCPUCombinedMS": 187.5,
+            "startupHeapBaselineKB": 13383.747070312,
+            "startupHeapCombinedKB": 13388.176757812
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13703.125,
+            "cpuCombinedMS": 13718.75,
+            "cpuDeltaMS": 15.625,
+            "cpuDeltaPercent": 0.11402508551880963,
+            "wallBaselineMS": 13893.413199984934,
+            "wallCombinedMS": 13990.127599972766,
+            "wallDeltaMS": 96.71439998783171,
+            "wallDeltaPercent": 0.696116919548162,
+            "startupCPUBaselineMS": 250.0,
+            "startupCPUCombinedMS": 203.125,
+            "startupHeapBaselineKB": 13383.747070312,
+            "startupHeapCombinedKB": 13388.176757812
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "stripEnvelope_style1_changed",
+        "iterations": 1000,
+        "cpuBaselineMedianMS": 8562.5,
+        "cpuCombinedMedianMS": 8515.625,
+        "pairedCPUDeltaMedianPercent": -0.5474452554744547,
+        "pairedCPUDeltaMedianMS": -46.875,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 8766.595799999777,
+        "wallCombinedMedianMS": 8722.325499984436,
+        "pairedWallDeltaMedianPercent": -0.23169586153776178,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 4.435546875,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 8562.5,
+            "cpuCombinedMS": 8515.625,
+            "cpuDeltaMS": -46.875,
+            "cpuDeltaPercent": -0.5474452554744547,
+            "wallBaselineMS": 8766.595799999777,
+            "wallCombinedMS": 8800.046499993186,
+            "wallDeltaMS": 33.450699993409216,
+            "wallDeltaPercent": 0.38157000455536494,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 62.5,
+            "startupHeapBaselineKB": 2219.333984375,
+            "startupHeapCombinedKB": 2223.76953125
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 8500.0,
+            "cpuCombinedMS": 8578.125,
+            "cpuDeltaMS": 78.125,
+            "cpuDeltaPercent": 0.9191176470588314,
+            "wallBaselineMS": 8742.581699974835,
+            "wallCombinedMS": 8722.325499984436,
+            "wallDeltaMS": -20.256199990399182,
+            "wallDeltaPercent": -0.23169586153776178,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 62.5,
+            "startupHeapBaselineKB": 2219.333984375,
+            "startupHeapCombinedKB": 2223.76953125
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 8843.75,
+            "cpuCombinedMS": 8421.875,
+            "cpuDeltaMS": -421.875,
+            "cpuDeltaPercent": -4.770318021201414,
+            "wallBaselineMS": 8980.615300009958,
+            "wallCombinedMS": 8585.012700001244,
+            "wallDeltaMS": -395.60260000871494,
+            "wallDeltaPercent": -4.405072334055737,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 78.125,
+            "startupHeapBaselineKB": 2219.333984375,
+            "startupHeapCombinedKB": 2223.76953125
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "mixedRanks_style2_changed",
+        "iterations": 800,
+        "cpuBaselineMedianMS": 4421.875,
+        "cpuCombinedMedianMS": 4187.5,
+        "pairedCPUDeltaMedianPercent": -4.779411764705888,
+        "pairedCPUDeltaMedianMS": -203.125,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 4542.818500020076,
+        "wallCombinedMedianMS": 4253.7532999995165,
+        "pairedWallDeltaMedianPercent": -6.124810051759022,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 4.434570311999778,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 4250.0,
+            "cpuCombinedMS": 4046.875,
+            "cpuDeltaMS": -203.125,
+            "cpuDeltaPercent": -4.779411764705888,
+            "wallBaselineMS": 4345.826199976727,
+            "wallCombinedMS": 4079.6526000485756,
+            "wallDeltaMS": -266.1735999281518,
+            "wallDeltaPercent": -6.124810051759022,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 62.5,
+            "startupHeapBaselineKB": 2906.444335938,
+            "startupHeapCombinedKB": 2910.883789062
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 4515.625,
+            "cpuCombinedMS": 4609.375,
+            "cpuDeltaMS": 93.75,
+            "cpuDeltaPercent": 2.076124567474058,
+            "wallBaselineMS": 4597.945099987555,
+            "wallCombinedMS": 4646.011299977545,
+            "wallDeltaMS": 48.0661999899894,
+            "wallDeltaPercent": 1.045384382473813,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 62.5,
+            "startupHeapBaselineKB": 2906.4453125,
+            "startupHeapCombinedKB": 2910.879882812
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 4421.875,
+            "cpuCombinedMS": 4187.5,
+            "cpuDeltaMS": -234.375,
+            "cpuDeltaPercent": -5.300353356890463,
+            "wallBaselineMS": 4542.818500020076,
+            "wallCombinedMS": 4253.7532999995165,
+            "wallDeltaMS": -289.06520002055913,
+            "wallDeltaPercent": -6.363124567254486,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 78.125,
+            "startupHeapBaselineKB": 2906.444335938,
+            "startupHeapCombinedKB": 2910.87890625
+          }
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed-watch",
+        "iterations": 600,
+        "cpuBaselineMedianMS": 15531.25,
+        "cpuCombinedMedianMS": 14828.125,
+        "pairedCPUDeltaMedianPercent": -4.325955734406439,
+        "pairedCPUDeltaMedianMS": -671.875,
+        "cpuRegressionPairs": 0,
+        "wallBaselineMedianMS": 15903.903900005389,
+        "wallCombinedMedianMS": 15081.030000001192,
+        "pairedWallDeltaMedianPercent": -5.174037174633062,
+        "startupCPUDeltaMedianMS": 15.625,
+        "startupLiveHeapDeltaMedianKB": 4.7109375,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 15578.125,
+            "cpuCombinedMS": 14828.125,
+            "cpuDeltaMS": -750.0,
+            "cpuDeltaPercent": -4.81444332998997,
+            "wallBaselineMS": 16207.989699963946,
+            "wallCombinedMS": 15138.950799999293,
+            "wallDeltaMS": -1069.038899964653,
+            "wallDeltaPercent": -6.595752587176373,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 203.125,
+            "startupHeapBaselineKB": 13389.768554688,
+            "startupHeapCombinedKB": 13394.479492188
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 15250.0,
+            "cpuCombinedMS": 14734.375,
+            "cpuDeltaMS": -515.625,
+            "cpuDeltaPercent": -3.381147540983609,
+            "wallBaselineMS": 15462.286899972241,
+            "wallCombinedMS": 15018.048600002658,
+            "wallDeltaMS": -444.23829996958375,
+            "wallDeltaPercent": -2.8730439607247305,
+            "startupCPUBaselineMS": 203.125,
+            "startupCPUCombinedMS": 218.75,
+            "startupHeapBaselineKB": 13389.768554688,
+            "startupHeapCombinedKB": 13394.479492188
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 15531.25,
+            "cpuCombinedMS": 14859.375,
+            "cpuDeltaMS": -671.875,
+            "cpuDeltaPercent": -4.325955734406439,
+            "wallBaselineMS": 15903.903900005389,
+            "wallCombinedMS": 15081.030000001192,
+            "wallDeltaMS": -822.8739000041969,
+            "wallDeltaPercent": -5.174037174633062,
+            "startupCPUBaselineMS": 250.0,
+            "startupCPUCombinedMS": 203.125,
+            "startupHeapBaselineKB": 13389.768554688,
+            "startupHeapCombinedKB": 13394.479492188
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_freshCache",
+        "iterations": 150,
+        "cpuBaselineMedianMS": 13500.0,
+        "cpuCombinedMedianMS": 13625.0,
+        "pairedCPUDeltaMedianPercent": 1.869158878504673,
+        "pairedCPUDeltaMedianMS": 250.0,
+        "cpuRegressionPairs": 2,
+        "wallBaselineMedianMS": 13763.921000005212,
+        "wallCombinedMedianMS": 13820.042700041085,
+        "pairedWallDeltaMedianPercent": 0.8545749540619818,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 5.235351561999778,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13671.875,
+            "cpuCombinedMS": 13125.0,
+            "cpuDeltaMS": -546.875,
+            "cpuDeltaPercent": -4.0000000000000036,
+            "wallBaselineMS": 14050.594499974977,
+            "wallCombinedMS": 13303.629499976523,
+            "wallDeltaMS": -746.964999998454,
+            "wallDeltaPercent": -5.316251920869142,
+            "startupCPUBaselineMS": 468.75,
+            "startupCPUCombinedMS": 453.125,
+            "startupHeapBaselineKB": 10563.05078125,
+            "startupHeapCombinedKB": 10568.286132812
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 13500.0,
+            "cpuCombinedMS": 13812.5,
+            "cpuDeltaMS": 312.5,
+            "cpuDeltaPercent": 2.314814814814814,
+            "wallBaselineMS": 13763.921000005212,
+            "wallCombinedMS": 14134.35649999883,
+            "wallDeltaMS": 370.4354999936186,
+            "wallDeltaPercent": 2.691351541421061,
+            "startupCPUBaselineMS": 468.75,
+            "startupCPUCombinedMS": 468.75,
+            "startupHeapBaselineKB": 10563.11328125,
+            "startupHeapCombinedKB": 10568.348632812
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13375.0,
+            "cpuCombinedMS": 13625.0,
+            "cpuDeltaMS": 250.0,
+            "cpuDeltaPercent": 1.869158878504673,
+            "wallBaselineMS": 13702.940799994394,
+            "wallCombinedMS": 13820.042700041085,
+            "wallDeltaMS": 117.1019000466913,
+            "wallDeltaPercent": 0.8545749540619818,
+            "startupCPUBaselineMS": 453.125,
+            "startupCPUCombinedMS": 468.75,
+            "startupHeapBaselineKB": 10563.05078125,
+            "startupHeapCombinedKB": 10568.223632812
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_pooledRedraw",
+        "iterations": 200,
+        "cpuBaselineMedianMS": 15453.125,
+        "cpuCombinedMedianMS": 14828.125,
+        "pairedCPUDeltaMedianPercent": -3.3604887983706755,
+        "pairedCPUDeltaMedianMS": -515.625,
+        "cpuRegressionPairs": 0,
+        "wallBaselineMedianMS": 15891.368500015233,
+        "wallCombinedMedianMS": 15122.885299962945,
+        "pairedWallDeltaMedianPercent": -3.12222964911566,
+        "startupCPUDeltaMedianMS": -62.5,
+        "startupLiveHeapDeltaMedianKB": 5.047851563000222,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 16031.25,
+            "cpuCombinedMS": 14468.75,
+            "cpuDeltaMS": -1562.5,
+            "cpuDeltaPercent": -9.746588693957115,
+            "wallBaselineMS": 16260.078899969812,
+            "wallCombinedMS": 14831.605699961074,
+            "wallDeltaMS": -1428.4732000087388,
+            "wallDeltaPercent": -8.785155402975263,
+            "startupCPUBaselineMS": 453.125,
+            "startupCPUCombinedMS": 390.625,
+            "startupHeapBaselineKB": 10563.052734375,
+            "startupHeapCombinedKB": 10568.163085938
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 15453.125,
+            "cpuCombinedMS": 15171.875,
+            "cpuDeltaMS": -281.25,
+            "cpuDeltaPercent": -1.8200202224469164,
+            "wallBaselineMS": 15891.368500015233,
+            "wallCombinedMS": 15480.268800049089,
+            "wallDeltaMS": -411.0996999661438,
+            "wallDeltaPercent": -2.586937053065941,
+            "startupCPUBaselineMS": 421.875,
+            "startupCPUCombinedMS": 453.125,
+            "startupHeapBaselineKB": 10563.240234375,
+            "startupHeapCombinedKB": 10568.225585938
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 15343.75,
+            "cpuCombinedMS": 14828.125,
+            "cpuDeltaMS": -515.625,
+            "cpuDeltaPercent": -3.3604887983706755,
+            "wallBaselineMS": 15610.273899976164,
+            "wallCombinedMS": 15122.885299962945,
+            "wallDeltaMS": -487.3886000132188,
+            "wallDeltaPercent": -3.12222964911566,
+            "startupCPUBaselineMS": 437.5,
+            "startupCPUCombinedMS": 375.0,
+            "startupHeapBaselineKB": 10563.115234375,
+            "startupHeapCombinedKB": 10568.163085938
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_reuse",
+        "iterations": 1000,
+        "cpuBaselineMedianMS": 20250.0,
+        "cpuCombinedMedianMS": 19875.0,
+        "pairedCPUDeltaMedianPercent": -4.144687264506408,
+        "pairedCPUDeltaMedianMS": -859.375,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 20696.334100037348,
+        "wallCombinedMedianMS": 20387.73899996886,
+        "pairedWallDeltaMedianPercent": -3.2527113005595965,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 5.047851561999778,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 20734.375,
+            "cpuCombinedMS": 19875.0,
+            "cpuDeltaMS": -859.375,
+            "cpuDeltaPercent": -4.144687264506408,
+            "wallBaselineMS": 21073.188999958802,
+            "wallCombinedMS": 20387.73899996886,
+            "wallDeltaMS": -685.4499999899417,
+            "wallDeltaPercent": -3.2527113005595965,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10867.109375,
+            "startupHeapCombinedKB": 10872.282226562
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 19921.875,
+            "cpuCombinedMS": 20437.5,
+            "cpuDeltaMS": 515.625,
+            "cpuDeltaPercent": 2.5882352941176467,
+            "wallBaselineMS": 20359.074599982705,
+            "wallCombinedMS": 21007.151299971156,
+            "wallDeltaMS": 648.0766999884509,
+            "wallDeltaPercent": 3.1832326012941836,
+            "startupCPUBaselineMS": 171.875,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10867.171875,
+            "startupHeapCombinedKB": 10872.219726562
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 20250.0,
+            "cpuCombinedMS": 19343.75,
+            "cpuDeltaMS": -906.25,
+            "cpuDeltaPercent": -4.475308641975307,
+            "wallBaselineMS": 20696.334100037348,
+            "wallCombinedMS": 19814.68589999713,
+            "wallDeltaMS": -881.6482000402175,
+            "wallDeltaPercent": -4.259924466713294,
+            "startupCPUBaselineMS": 156.25,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10867.296875,
+            "startupHeapCombinedKB": 10872.219726562
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed",
+        "iterations": 600,
+        "cpuBaselineMedianMS": 12781.25,
+        "cpuCombinedMedianMS": 12859.375,
+        "pairedCPUDeltaMedianPercent": 0.6112469437652868,
+        "pairedCPUDeltaMedianMS": 78.125,
+        "cpuRegressionPairs": 2,
+        "wallBaselineMedianMS": 13019.53940000385,
+        "wallCombinedMedianMS": 13092.902300006244,
+        "pairedWallDeltaMedianPercent": 0.3092352098673645,
+        "startupCPUDeltaMedianMS": -15.625,
+        "startupLiveHeapDeltaMedianKB": 5.172851563000222,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 12906.25,
+            "cpuCombinedMS": 12890.625,
+            "cpuDeltaMS": -15.625,
+            "cpuDeltaPercent": -0.1210653753026647,
+            "wallBaselineMS": 13275.490499974694,
+            "wallCombinedMS": 13092.902300006244,
+            "wallDeltaMS": -182.58819996844977,
+            "wallDeltaPercent": -1.3753781825899258,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10862.102539062,
+            "startupHeapCombinedKB": 10867.212890625
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 12781.25,
+            "cpuCombinedMS": 12859.375,
+            "cpuDeltaMS": 78.125,
+            "cpuDeltaPercent": 0.6112469437652868,
+            "wallBaselineMS": 13019.53940000385,
+            "wallCombinedMS": 13059.800399991218,
+            "wallDeltaMS": 40.26099998736754,
+            "wallDeltaPercent": 0.3092352098673645,
+            "startupCPUBaselineMS": 203.125,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10862.102539062,
+            "startupHeapCombinedKB": 10867.275390625
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 12703.125,
+            "cpuCombinedMS": 12843.75,
+            "cpuDeltaMS": 140.625,
+            "cpuDeltaPercent": 1.1070110701107083,
+            "wallBaselineMS": 12970.685000007506,
+            "wallCombinedMS": 13129.913899989333,
+            "wallDeltaMS": 159.22889998182654,
+            "wallDeltaPercent": 1.2276059435699427,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10862.102539062,
+            "startupHeapCombinedKB": 10867.275390625
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "stripEnvelope_style1_changed",
+        "iterations": 1000,
+        "cpuBaselineMedianMS": 7671.875,
+        "cpuCombinedMedianMS": 7750.0,
+        "pairedCPUDeltaMedianPercent": 1.195219123505975,
+        "pairedCPUDeltaMedianMS": 93.75,
+        "cpuRegressionPairs": 2,
+        "wallBaselineMedianMS": 7799.812600016594,
+        "wallCombinedMedianMS": 7955.475399969146,
+        "pairedWallDeltaMedianPercent": 0.3429569654938902,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 5.110351561999778,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 7843.75,
+            "cpuCombinedMS": 7937.5,
+            "cpuDeltaMS": 93.75,
+            "cpuDeltaPercent": 1.195219123505975,
+            "wallBaselineMS": 8072.703800047748,
+            "wallCombinedMS": 8100.389700033702,
+            "wallDeltaMS": 27.685899985954165,
+            "wallDeltaPercent": 0.3429569654938902,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 78.125,
+            "startupHeapBaselineKB": 2111.41796875,
+            "startupHeapCombinedKB": 2116.528320312
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 7062.5,
+            "cpuCombinedMS": 7750.0,
+            "cpuDeltaMS": 687.5,
+            "cpuDeltaPercent": 9.734513274336276,
+            "wallBaselineMS": 7156.188699998893,
+            "wallCombinedMS": 7955.475399969146,
+            "wallDeltaMS": 799.2866999702528,
+            "wallDeltaPercent": 11.16916746438472,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 46.875,
+            "startupHeapBaselineKB": 2111.41796875,
+            "startupHeapCombinedKB": 2116.528320312
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 7671.875,
+            "cpuCombinedMS": 7593.75,
+            "cpuDeltaMS": -78.125,
+            "cpuDeltaPercent": -1.0183299389002087,
+            "wallBaselineMS": 7799.812600016594,
+            "wallCombinedMS": 7813.636600039899,
+            "wallDeltaMS": 13.824000023305416,
+            "wallDeltaPercent": 0.17723502771433974,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 62.5,
+            "startupHeapBaselineKB": 2109.98046875,
+            "startupHeapCombinedKB": 2115.809570312
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "mixedRanks_style2_changed",
+        "iterations": 800,
+        "cpuBaselineMedianMS": 3531.25,
+        "cpuCombinedMedianMS": 3500.0,
+        "pairedCPUDeltaMedianPercent": -0.8849557522123908,
+        "pairedCPUDeltaMedianMS": -31.25,
+        "cpuRegressionPairs": 1,
+        "wallBaselineMedianMS": 3595.095399999991,
+        "wallCombinedMedianMS": 3526.1344999889843,
+        "pairedWallDeltaMedianPercent": -2.075839210722019,
+        "startupCPUDeltaMedianMS": 0.0,
+        "startupLiveHeapDeltaMedianKB": 5.109375,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 3734.375,
+            "cpuCombinedMS": 3484.375,
+            "cpuDeltaMS": -250.0,
+            "cpuDeltaPercent": -6.694560669456062,
+            "wallBaselineMS": 3755.954400054179,
+            "wallCombinedMS": 3526.1344999889843,
+            "wallDeltaMS": -229.81990006519482,
+            "wallDeltaPercent": -6.118814969156173,
+            "startupCPUBaselineMS": 46.875,
+            "startupCPUCombinedMS": 46.875,
+            "startupHeapBaselineKB": 2661.749023438,
+            "startupHeapCombinedKB": 2666.860351562
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 3531.25,
+            "cpuCombinedMS": 3500.0,
+            "cpuDeltaMS": -31.25,
+            "cpuDeltaPercent": -0.8849557522123908,
+            "wallBaselineMS": 3595.095399999991,
+            "wallCombinedMS": 3520.4670000239275,
+            "wallDeltaMS": -74.62839997606352,
+            "wallDeltaPercent": -2.075839210722019,
+            "startupCPUBaselineMS": 62.5,
+            "startupCPUCombinedMS": 46.875,
+            "startupHeapBaselineKB": 2661.751953125,
+            "startupHeapCombinedKB": 2666.860351562
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 3453.125,
+            "cpuCombinedMS": 3671.875,
+            "cpuDeltaMS": 218.75,
+            "cpuDeltaPercent": 6.334841628959276,
+            "wallBaselineMS": 3491.426600026898,
+            "wallCombinedMS": 3673.6605999758467,
+            "wallDeltaMS": 182.23399994894862,
+            "wallDeltaPercent": 5.219471030768474,
+            "startupCPUBaselineMS": 46.875,
+            "startupCPUCombinedMS": 46.875,
+            "startupHeapBaselineKB": 2661.747070312,
+            "startupHeapCombinedKB": 2666.856445312
+          }
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed-watch",
+        "iterations": 600,
+        "cpuBaselineMedianMS": 13156.25,
+        "cpuCombinedMedianMS": 12500.0,
+        "pairedCPUDeltaMedianPercent": -5.700712589073631,
+        "pairedCPUDeltaMedianMS": -750.0,
+        "cpuRegressionPairs": 0,
+        "wallBaselineMedianMS": 13458.894999988843,
+        "wallCombinedMedianMS": 12803.298900020309,
+        "pairedWallDeltaMedianPercent": -4.8710990015828015,
+        "startupCPUDeltaMedianMS": -15.625,
+        "startupLiveHeapDeltaMedianKB": 5.375976561999778,
+        "overDeclared5PercentThreshold": false,
+        "withinOneAccountingQuantum": false,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 12828.125,
+            "cpuCombinedMS": 12781.25,
+            "cpuDeltaMS": -46.875,
+            "cpuDeltaPercent": -0.3654080389768555,
+            "wallBaselineMS": 13072.717500035651,
+            "wallCombinedMS": 13065.069800009951,
+            "wallDeltaMS": -7.647700025700033,
+            "wallDeltaPercent": -0.05850122612746089,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 187.5,
+            "startupHeapBaselineKB": 10866.077148438,
+            "startupHeapCombinedKB": 10871.203125
+          },
+          {
+            "pair": 2,
+            "order": [
+              "combined",
+              "baseline"
+            ],
+            "cpuBaselineMS": 13515.625,
+            "cpuCombinedMS": 12500.0,
+            "cpuDeltaMS": -1015.625,
+            "cpuDeltaPercent": -7.514450867052025,
+            "wallBaselineMS": 13723.686899989843,
+            "wallCombinedMS": 12722.887200012337,
+            "wallDeltaMS": -1000.799699977506,
+            "wallDeltaPercent": -7.292498781637513,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10865.889648438,
+            "startupHeapCombinedKB": 10871.265625
+          },
+          {
+            "pair": 3,
+            "order": [
+              "baseline",
+              "combined"
+            ],
+            "cpuBaselineMS": 13156.25,
+            "cpuCombinedMS": 12406.25,
+            "cpuDeltaMS": -750.0,
+            "cpuDeltaPercent": -5.700712589073631,
+            "wallBaselineMS": 13458.894999988843,
+            "wallCombinedMS": 12803.298900020309,
+            "wallDeltaMS": -655.596099968534,
+            "wallDeltaPercent": -4.8710990015828015,
+            "startupCPUBaselineMS": 187.5,
+            "startupCPUCombinedMS": 171.875,
+            "startupHeapBaselineKB": 10865.952148438,
+            "startupHeapCombinedKB": 10871.390625
+          }
+        ]
+      }
+    ],
+    "all19CPUOrWallRegressionPairs": [
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_freshCache",
+        "pair": 1,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 13671.875,
+        "cpuCombinedMS": 14078.125,
+        "cpuDeltaMS": 406.25,
+        "cpuDeltaPercent": 2.9714285714285804,
+        "wallBaselineMS": 13997.150799958035,
+        "wallCombinedMS": 14410.433200013358,
+        "wallDeltaMS": 413.2824000553228,
+        "wallDeltaPercent": 2.9526180432132065,
+        "cpuBaselineTicks": [
+          4843750,
+          141562500
+        ],
+        "cpuCombinedTicks": [
+          4843750,
+          145625000
+        ],
+        "startupCPUBaselineMS": 484.375,
+        "startupCPUCombinedMS": 484.375,
+        "startupHeapBaselineKB": 12891.616210938,
+        "startupHeapCombinedKB": 12896.045898438
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_pooledRedraw",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 15953.125,
+        "cpuCombinedMS": 16078.125,
+        "cpuDeltaMS": 125.0,
+        "cpuDeltaPercent": 0.7835455435847294,
+        "wallBaselineMS": 16322.057400015183,
+        "wallCombinedMS": 16407.123200013302,
+        "wallDeltaMS": 85.06579999811947,
+        "wallDeltaPercent": 0.5211708175835827,
+        "cpuBaselineTicks": [
+          4531250,
+          164062500
+        ],
+        "cpuCombinedTicks": [
+          4375000,
+          165156250
+        ],
+        "startupCPUBaselineMS": 453.125,
+        "startupCPUCombinedMS": 437.5,
+        "startupHeapBaselineKB": 12891.618164062,
+        "startupHeapCombinedKB": 12896.047851562
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_pooledRedraw",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 15796.875,
+        "cpuCombinedMS": 16453.125,
+        "cpuDeltaMS": 656.25,
+        "cpuDeltaPercent": 4.154302670623156,
+        "wallBaselineMS": 16249.874700035434,
+        "wallCombinedMS": 16975.693099957425,
+        "wallDeltaMS": 725.8183999219909,
+        "wallDeltaPercent": 4.4666092097338295,
+        "cpuBaselineTicks": [
+          4687500,
+          162656250
+        ],
+        "cpuCombinedTicks": [
+          4843750,
+          169375000
+        ],
+        "startupCPUBaselineMS": 468.75,
+        "startupCPUCombinedMS": 484.375,
+        "startupHeapBaselineKB": 12891.618164062,
+        "startupHeapCombinedKB": 12896.047851562
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_reuse",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 22468.75,
+        "cpuCombinedMS": 22875.0,
+        "cpuDeltaMS": 406.25,
+        "cpuDeltaPercent": 1.8080667593880495,
+        "wallBaselineMS": 23028.7268999964,
+        "wallCombinedMS": 23518.27040000353,
+        "wallDeltaMS": 489.5435000071302,
+        "wallDeltaPercent": 2.125794891454502,
+        "cpuBaselineTicks": [
+          2031250,
+          226718750
+        ],
+        "cpuCombinedTicks": [
+          2187500,
+          230937500
+        ],
+        "startupCPUBaselineMS": 203.125,
+        "startupCPUCombinedMS": 218.75,
+        "startupHeapBaselineKB": 13392.23828125,
+        "startupHeapCombinedKB": 13396.66796875
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed",
+        "pair": 1,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 13937.5,
+        "cpuCombinedMS": 13984.375,
+        "cpuDeltaMS": 46.875,
+        "cpuDeltaPercent": 0.33632286995515237,
+        "wallBaselineMS": 14185.725699993782,
+        "wallCombinedMS": 14276.927699975204,
+        "wallDeltaMS": 91.20199998142198,
+        "wallDeltaPercent": 0.6429138833655923,
+        "cpuBaselineTicks": [
+          1875000,
+          141250000
+        ],
+        "cpuCombinedTicks": [
+          2031250,
+          141875000
+        ],
+        "startupCPUBaselineMS": 187.5,
+        "startupCPUCombinedMS": 203.125,
+        "startupHeapBaselineKB": 13383.747070312,
+        "startupHeapCombinedKB": 13388.176757812
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 14062.5,
+        "cpuCombinedMS": 14390.625,
+        "cpuDeltaMS": 328.125,
+        "cpuDeltaPercent": 2.333333333333343,
+        "wallBaselineMS": 14362.130300025456,
+        "wallCombinedMS": 14675.7501999964,
+        "wallDeltaMS": 313.61989997094497,
+        "wallDeltaPercent": 2.1836586454753837,
+        "cpuBaselineTicks": [
+          2187500,
+          142812500
+        ],
+        "cpuCombinedTicks": [
+          1875000,
+          145781250
+        ],
+        "startupCPUBaselineMS": 218.75,
+        "startupCPUCombinedMS": 187.5,
+        "startupHeapBaselineKB": 13383.747070312,
+        "startupHeapCombinedKB": 13388.176757812
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 13703.125,
+        "cpuCombinedMS": 13718.75,
+        "cpuDeltaMS": 15.625,
+        "cpuDeltaPercent": 0.11402508551880963,
+        "wallBaselineMS": 13893.413199984934,
+        "wallCombinedMS": 13990.127599972766,
+        "wallDeltaMS": 96.71439998783171,
+        "wallDeltaPercent": 0.696116919548162,
+        "cpuBaselineTicks": [
+          2500000,
+          139531250
+        ],
+        "cpuCombinedTicks": [
+          2031250,
+          139218750
+        ],
+        "startupCPUBaselineMS": 250.0,
+        "startupCPUCombinedMS": 203.125,
+        "startupHeapBaselineKB": 13383.747070312,
+        "startupHeapCombinedKB": 13388.176757812
+      },
+      {
+        "vm": "51",
+        "scenario": "stripEnvelope_style1_changed",
+        "pair": 1,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 8562.5,
+        "cpuCombinedMS": 8515.625,
+        "cpuDeltaMS": -46.875,
+        "cpuDeltaPercent": -0.5474452554744547,
+        "wallBaselineMS": 8766.595799999777,
+        "wallCombinedMS": 8800.046499993186,
+        "wallDeltaMS": 33.450699993409216,
+        "wallDeltaPercent": 0.38157000455536494,
+        "cpuBaselineTicks": [
+          625000,
+          86250000
+        ],
+        "cpuCombinedTicks": [
+          625000,
+          85781250
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 62.5,
+        "startupHeapBaselineKB": 2219.333984375,
+        "startupHeapCombinedKB": 2223.76953125
+      },
+      {
+        "vm": "51",
+        "scenario": "stripEnvelope_style1_changed",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 8500.0,
+        "cpuCombinedMS": 8578.125,
+        "cpuDeltaMS": 78.125,
+        "cpuDeltaPercent": 0.9191176470588314,
+        "wallBaselineMS": 8742.581699974835,
+        "wallCombinedMS": 8722.325499984436,
+        "wallDeltaMS": -20.256199990399182,
+        "wallDeltaPercent": -0.23169586153776178,
+        "cpuBaselineTicks": [
+          625000,
+          85625000
+        ],
+        "cpuCombinedTicks": [
+          625000,
+          86406250
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 62.5,
+        "startupHeapBaselineKB": 2219.333984375,
+        "startupHeapCombinedKB": 2223.76953125
+      },
+      {
+        "vm": "51",
+        "scenario": "mixedRanks_style2_changed",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 4515.625,
+        "cpuCombinedMS": 4609.375,
+        "cpuDeltaMS": 93.75,
+        "cpuDeltaPercent": 2.076124567474058,
+        "wallBaselineMS": 4597.945099987555,
+        "wallCombinedMS": 4646.011299977545,
+        "wallDeltaMS": 48.0661999899894,
+        "wallDeltaPercent": 1.045384382473813,
+        "cpuBaselineTicks": [
+          625000,
+          45781250
+        ],
+        "cpuCombinedTicks": [
+          625000,
+          46718750
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 62.5,
+        "startupHeapBaselineKB": 2906.4453125,
+        "startupHeapCombinedKB": 2910.879882812
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_freshCache",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 13500.0,
+        "cpuCombinedMS": 13812.5,
+        "cpuDeltaMS": 312.5,
+        "cpuDeltaPercent": 2.314814814814814,
+        "wallBaselineMS": 13763.921000005212,
+        "wallCombinedMS": 14134.35649999883,
+        "wallDeltaMS": 370.4354999936186,
+        "wallDeltaPercent": 2.691351541421061,
+        "cpuBaselineTicks": [
+          4687500,
+          139687500
+        ],
+        "cpuCombinedTicks": [
+          4687500,
+          142812500
+        ],
+        "startupCPUBaselineMS": 468.75,
+        "startupCPUCombinedMS": 468.75,
+        "startupHeapBaselineKB": 10563.11328125,
+        "startupHeapCombinedKB": 10568.348632812
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_freshCache",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 13375.0,
+        "cpuCombinedMS": 13625.0,
+        "cpuDeltaMS": 250.0,
+        "cpuDeltaPercent": 1.869158878504673,
+        "wallBaselineMS": 13702.940799994394,
+        "wallCombinedMS": 13820.042700041085,
+        "wallDeltaMS": 117.1019000466913,
+        "wallDeltaPercent": 0.8545749540619818,
+        "cpuBaselineTicks": [
+          4531250,
+          138281250
+        ],
+        "cpuCombinedTicks": [
+          4687500,
+          140937500
+        ],
+        "startupCPUBaselineMS": 453.125,
+        "startupCPUCombinedMS": 468.75,
+        "startupHeapBaselineKB": 10563.05078125,
+        "startupHeapCombinedKB": 10568.223632812
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_reuse",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 19921.875,
+        "cpuCombinedMS": 20437.5,
+        "cpuDeltaMS": 515.625,
+        "cpuDeltaPercent": 2.5882352941176467,
+        "wallBaselineMS": 20359.074599982705,
+        "wallCombinedMS": 21007.151299971156,
+        "wallDeltaMS": 648.0766999884509,
+        "wallDeltaPercent": 3.1832326012941836,
+        "cpuBaselineTicks": [
+          1718750,
+          200937500
+        ],
+        "cpuCombinedTicks": [
+          1718750,
+          206093750
+        ],
+        "startupCPUBaselineMS": 171.875,
+        "startupCPUCombinedMS": 171.875,
+        "startupHeapBaselineKB": 10867.171875,
+        "startupHeapCombinedKB": 10872.219726562
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 12781.25,
+        "cpuCombinedMS": 12859.375,
+        "cpuDeltaMS": 78.125,
+        "cpuDeltaPercent": 0.6112469437652868,
+        "wallBaselineMS": 13019.53940000385,
+        "wallCombinedMS": 13059.800399991218,
+        "wallDeltaMS": 40.26099998736754,
+        "wallDeltaPercent": 0.3092352098673645,
+        "cpuBaselineTicks": [
+          2031250,
+          129843750
+        ],
+        "cpuCombinedTicks": [
+          1718750,
+          130312500
+        ],
+        "startupCPUBaselineMS": 203.125,
+        "startupCPUCombinedMS": 171.875,
+        "startupHeapBaselineKB": 10862.102539062,
+        "startupHeapCombinedKB": 10867.275390625
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 12703.125,
+        "cpuCombinedMS": 12843.75,
+        "cpuDeltaMS": 140.625,
+        "cpuDeltaPercent": 1.1070110701107083,
+        "wallBaselineMS": 12970.685000007506,
+        "wallCombinedMS": 13129.913899989333,
+        "wallDeltaMS": 159.22889998182654,
+        "wallDeltaPercent": 1.2276059435699427,
+        "cpuBaselineTicks": [
+          1875000,
+          128906250
+        ],
+        "cpuCombinedTicks": [
+          1718750,
+          130156250
+        ],
+        "startupCPUBaselineMS": 187.5,
+        "startupCPUCombinedMS": 171.875,
+        "startupHeapBaselineKB": 10862.102539062,
+        "startupHeapCombinedKB": 10867.275390625
+      },
+      {
+        "vm": "54",
+        "scenario": "stripEnvelope_style1_changed",
+        "pair": 1,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 7843.75,
+        "cpuCombinedMS": 7937.5,
+        "cpuDeltaMS": 93.75,
+        "cpuDeltaPercent": 1.195219123505975,
+        "wallBaselineMS": 8072.703800047748,
+        "wallCombinedMS": 8100.389700033702,
+        "wallDeltaMS": 27.685899985954165,
+        "wallDeltaPercent": 0.3429569654938902,
+        "cpuBaselineTicks": [
+          625000,
+          79062500
+        ],
+        "cpuCombinedTicks": [
+          781250,
+          80156250
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 78.125,
+        "startupHeapBaselineKB": 2111.41796875,
+        "startupHeapCombinedKB": 2116.528320312
+      },
+      {
+        "vm": "54",
+        "scenario": "stripEnvelope_style1_changed",
+        "pair": 2,
+        "order": [
+          "combined",
+          "baseline"
+        ],
+        "cpuBaselineMS": 7062.5,
+        "cpuCombinedMS": 7750.0,
+        "cpuDeltaMS": 687.5,
+        "cpuDeltaPercent": 9.734513274336276,
+        "wallBaselineMS": 7156.188699998893,
+        "wallCombinedMS": 7955.475399969146,
+        "wallDeltaMS": 799.2866999702528,
+        "wallDeltaPercent": 11.16916746438472,
+        "cpuBaselineTicks": [
+          625000,
+          71250000
+        ],
+        "cpuCombinedTicks": [
+          468750,
+          77968750
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 46.875,
+        "startupHeapBaselineKB": 2111.41796875,
+        "startupHeapCombinedKB": 2116.528320312
+      },
+      {
+        "vm": "54",
+        "scenario": "stripEnvelope_style1_changed",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 7671.875,
+        "cpuCombinedMS": 7593.75,
+        "cpuDeltaMS": -78.125,
+        "cpuDeltaPercent": -1.0183299389002087,
+        "wallBaselineMS": 7799.812600016594,
+        "wallCombinedMS": 7813.636600039899,
+        "wallDeltaMS": 13.824000023305416,
+        "wallDeltaPercent": 0.17723502771433974,
+        "cpuBaselineTicks": [
+          625000,
+          77343750
+        ],
+        "cpuCombinedTicks": [
+          625000,
+          76562500
+        ],
+        "startupCPUBaselineMS": 62.5,
+        "startupCPUCombinedMS": 62.5,
+        "startupHeapBaselineKB": 2109.98046875,
+        "startupHeapCombinedKB": 2115.809570312
+      },
+      {
+        "vm": "54",
+        "scenario": "mixedRanks_style2_changed",
+        "pair": 3,
+        "order": [
+          "baseline",
+          "combined"
+        ],
+        "cpuBaselineMS": 3453.125,
+        "cpuCombinedMS": 3671.875,
+        "cpuDeltaMS": 218.75,
+        "cpuDeltaPercent": 6.334841628959276,
+        "wallBaselineMS": 3491.426600026898,
+        "wallCombinedMS": 3673.6605999758467,
+        "wallDeltaMS": 182.23399994894862,
+        "wallDeltaPercent": 5.219471030768474,
+        "cpuBaselineTicks": [
+          468750,
+          35000000
+        ],
+        "cpuCombinedTicks": [
+          468750,
+          37187500
+        ],
+        "startupCPUBaselineMS": 46.875,
+        "startupCPUCombinedMS": 46.875,
+        "startupHeapBaselineKB": 2661.747070312,
+        "startupHeapCombinedKB": 2666.856445312
+      }
+    ],
+    "declaredMedian5PercentBreaches": [],
+    "noRerunsOrExtraCells": true,
+    "allocation": [
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_freshCache",
+        "baseline": {
+          "count10Bytes": 151877508.0,
+          "count20Bytes": 303687072.99999946,
+          "slopeBytesPerCall": 15180956.499999946,
+          "intervalInterceptBytes": 67943.00000053644,
+          "startupLiveHeapKB": [
+            12891.615234375,
+            12891.615234375
+          ],
+          "startupCpuMS": [
+            453.125,
+            484.375
+          ]
+        },
+        "combined": {
+          "count10Bytes": 151877560.9999995,
+          "count20Bytes": 303687187.00000054,
+          "slopeBytesPerCall": 15180962.600000104,
+          "intervalInterceptBytes": 67934.99999845028,
+          "startupLiveHeapKB": [
+            12896.044921875,
+            12896.044921875
+          ],
+          "startupCpuMS": [
+            453.125,
+            453.125
+          ]
+        },
+        "deltaSlopeBytesPerCall": 6.100000157952309,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.4296875,
+          4.4296875
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_pooledRedraw",
+        "baseline": {
+          "count10Bytes": 107531335.0000005,
+          "count20Bytes": 214993350.0,
+          "slopeBytesPerCall": 10746201.49999995,
+          "intervalInterceptBytes": 69320.00000101328,
+          "startupLiveHeapKB": [
+            12891.6171875,
+            12891.6171875
+          ],
+          "startupCpuMS": [
+            437.5,
+            453.125
+          ]
+        },
+        "combined": {
+          "count10Bytes": 107531410.0,
+          "count20Bytes": 214993514.0,
+          "slopeBytesPerCall": 10746210.4,
+          "intervalInterceptBytes": 69306.0,
+          "startupLiveHeapKB": [
+            12896.046875,
+            12896.046875
+          ],
+          "startupCpuMS": [
+            468.75,
+            406.25
+          ]
+        },
+        "deltaSlopeBytesPerCall": 8.900000050663948,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.4296875,
+          4.4296875
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style1_reuse",
+        "baseline": {
+          "count10Bytes": 34063311.000000514,
+          "count20Bytes": 68067792.0,
+          "slopeBytesPerCall": 3400448.0999999484,
+          "intervalInterceptBytes": 58830.00000102818,
+          "startupLiveHeapKB": [
+            13392.236328125,
+            13392.236328125
+          ],
+          "startupCpuMS": [
+            187.5,
+            187.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 34063410.0,
+          "count20Bytes": 68067991.0000005,
+          "slopeBytesPerCall": 3400458.100000051,
+          "intervalInterceptBytes": 58828.99999949336,
+          "startupLiveHeapKB": [
+            13396.666015625,
+            13396.666015625
+          ],
+          "startupCpuMS": [
+            187.5,
+            171.875
+          ]
+        },
+        "deltaSlopeBytesPerCall": 10.000000102445483,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.4296875,
+          4.4296875
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed",
+        "baseline": {
+          "count10Bytes": 35586419.000000514,
+          "count20Bytes": 71098831.0000005,
+          "slopeBytesPerCall": 3551241.1999999993,
+          "intervalInterceptBytes": 74007.00000052154,
+          "startupLiveHeapKB": [
+            13383.74609375,
+            13383.74609375
+          ],
+          "startupCpuMS": [
+            187.5,
+            218.75
+          ]
+        },
+        "combined": {
+          "count10Bytes": 35583792.999999486,
+          "count20Bytes": 71101626.0,
+          "slopeBytesPerCall": 3551783.3000000515,
+          "intervalInterceptBytes": 65959.99999897182,
+          "startupLiveHeapKB": [
+            13388.17578125,
+            13388.17578125
+          ],
+          "startupCpuMS": [
+            187.5,
+            203.125
+          ]
+        },
+        "deltaSlopeBytesPerCall": 542.1000000522472,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.4296875,
+          4.4296875
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "stripEnvelope_style1_changed",
+        "baseline": {
+          "count10Bytes": 13205522.0,
+          "count20Bytes": 26375299.00000051,
+          "slopeBytesPerCall": 1316977.700000051,
+          "intervalInterceptBytes": 35744.999999489635,
+          "startupLiveHeapKB": [
+            2219.33203125,
+            2219.33203125
+          ],
+          "startupCpuMS": [
+            62.5,
+            62.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 13205596.0,
+          "count20Bytes": 26375452.99999949,
+          "slopeBytesPerCall": 1316985.699999949,
+          "intervalInterceptBytes": 35739.000000510365,
+          "startupLiveHeapKB": [
+            2223.767578125,
+            2223.767578125
+          ],
+          "startupCpuMS": [
+            62.5,
+            62.5
+          ]
+        },
+        "deltaSlopeBytesPerCall": 7.999999898020178,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.435546875,
+          4.435546875
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "mixedRanks_style2_changed",
+        "baseline": {
+          "count10Bytes": 8075948.999999488,
+          "count20Bytes": 16126107.000000512,
+          "slopeBytesPerCall": 805015.8000001025,
+          "intervalInterceptBytes": 25790.999998463318,
+          "startupLiveHeapKB": [
+            2906.446289062,
+            2906.443359375
+          ],
+          "startupCpuMS": [
+            62.5,
+            62.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 8076031.000000512,
+          "count20Bytes": 16126300.999999488,
+          "slopeBytesPerCall": 805026.9999998976,
+          "intervalInterceptBytes": 25761.000001536682,
+          "startupLiveHeapKB": [
+            2910.881835938,
+            2910.881835938
+          ],
+          "startupCpuMS": [
+            62.5,
+            62.5
+          ]
+        },
+        "deltaSlopeBytesPerCall": 11.199999795062467,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.435546876000444,
+          4.438476563000222
+        ]
+      },
+      {
+        "vm": "51",
+        "scenario": "validated56_style2_changed-watch",
+        "baseline": {
+          "count10Bytes": 35614146.0,
+          "count20Bytes": 71159700.0,
+          "slopeBytesPerCall": 3554555.4,
+          "intervalInterceptBytes": 68592.0,
+          "startupLiveHeapKB": [
+            13389.767578125,
+            13389.767578125
+          ],
+          "startupCpuMS": [
+            218.75,
+            187.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 35615672.0,
+          "count20Bytes": 71162727.0000005,
+          "slopeBytesPerCall": 3554705.5000000508,
+          "intervalInterceptBytes": 68616.99999949336,
+          "startupLiveHeapKB": [
+            13394.478515625,
+            13394.478515625
+          ],
+          "startupCpuMS": [
+            187.5,
+            203.125
+          ]
+        },
+        "deltaSlopeBytesPerCall": 150.1000000508502,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.7109375,
+          4.7109375
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_freshCache",
+        "baseline": {
+          "count10Bytes": 127692067.0000005,
+          "count20Bytes": 255338216.9999995,
+          "slopeBytesPerCall": 12764614.9999999,
+          "intervalInterceptBytes": 45917.00000151992,
+          "startupLiveHeapKB": [
+            10563.112304688,
+            10563.049804688
+          ],
+          "startupCpuMS": [
+            437.5,
+            437.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 127691667.0000005,
+          "count20Bytes": 255338856.9999995,
+          "slopeBytesPerCall": 12764718.9999999,
+          "intervalInterceptBytes": 44477.00000151992,
+          "startupLiveHeapKB": [
+            10568.34765625,
+            10568.22265625
+          ],
+          "startupCpuMS": [
+            437.5,
+            437.5
+          ]
+        },
+        "deltaSlopeBytesPerCall": 104.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          5.235351561999778,
+          5.172851561999778
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_pooledRedraw",
+        "baseline": {
+          "count10Bytes": 90979607.0000005,
+          "count20Bytes": 181913996.9999995,
+          "slopeBytesPerCall": 9093438.9999999,
+          "intervalInterceptBytes": 45217.00000151992,
+          "startupLiveHeapKB": [
+            10563.114257812,
+            10563.051757812
+          ],
+          "startupCpuMS": [
+            406.25,
+            375.0
+          ]
+        },
+        "combined": {
+          "count10Bytes": 90979447.0000005,
+          "count20Bytes": 181913196.9999995,
+          "slopeBytesPerCall": 9093374.9999999,
+          "intervalInterceptBytes": 45697.00000151992,
+          "startupLiveHeapKB": [
+            10568.224609375,
+            10568.224609375
+          ],
+          "startupCpuMS": [
+            390.625,
+            375.0
+          ]
+        },
+        "deltaSlopeBytesPerCall": -64.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          5.110351563000222,
+          5.172851563000222
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style1_reuse",
+        "baseline": {
+          "count10Bytes": 26282400.99999949,
+          "count20Bytes": 52529031.000000514,
+          "slopeBytesPerCall": 2624663.0000001024,
+          "intervalInterceptBytes": 35770.99999846518,
+          "startupLiveHeapKB": [
+            10867.169921875,
+            10867.107421875
+          ],
+          "startupCpuMS": [
+            171.875,
+            156.25
+          ]
+        },
+        "combined": {
+          "count10Bytes": 26282720.99999949,
+          "count20Bytes": 52527751.000000514,
+          "slopeBytesPerCall": 2624503.0000001024,
+          "intervalInterceptBytes": 37690.99999846518,
+          "startupLiveHeapKB": [
+            10872.405273438,
+            10872.405273438
+          ],
+          "startupCpuMS": [
+            171.875,
+            171.875
+          ]
+        },
+        "deltaSlopeBytesPerCall": -160.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          5.235351563000222,
+          5.297851563000222
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed",
+        "baseline": {
+          "count10Bytes": 27617602.0,
+          "count20Bytes": 55198492.0,
+          "slopeBytesPerCall": 2758089.0,
+          "intervalInterceptBytes": 36712.0,
+          "startupLiveHeapKB": [
+            10862.2890625,
+            10862.1015625
+          ],
+          "startupCpuMS": [
+            171.875,
+            171.875
+          ]
+        },
+        "combined": {
+          "count10Bytes": 27617922.0,
+          "count20Bytes": 55199612.0,
+          "slopeBytesPerCall": 2758169.0,
+          "intervalInterceptBytes": 36232.0,
+          "startupLiveHeapKB": [
+            10867.274414062,
+            10867.274414062
+          ],
+          "startupCpuMS": [
+            171.875,
+            171.875
+          ]
+        },
+        "deltaSlopeBytesPerCall": 80.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          4.985351561999778,
+          5.172851561999778
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "stripEnvelope_style1_changed",
+        "baseline": {
+          "count10Bytes": 10864674.0,
+          "count20Bytes": 21068791.00000051,
+          "slopeBytesPerCall": 1020411.7000000511,
+          "intervalInterceptBytes": 660556.9999994896,
+          "startupLiveHeapKB": [
+            2109.978515625,
+            2108.541015625
+          ],
+          "startupCpuMS": [
+            62.5,
+            62.5
+          ]
+        },
+        "combined": {
+          "count10Bytes": 11271794.0,
+          "count20Bytes": 21068951.00000051,
+          "slopeBytesPerCall": 979715.7000000511,
+          "intervalInterceptBytes": 1474636.9999994896,
+          "startupLiveHeapKB": [
+            2116.526367188,
+            2113.651367188
+          ],
+          "startupCpuMS": [
+            46.875,
+            46.875
+          ]
+        },
+        "deltaSlopeBytesPerCall": -40696.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          6.547851563000222,
+          5.110351563000222
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "mixedRanks_style2_changed",
+        "baseline": {
+          "count10Bytes": 6474507.000000512,
+          "count20Bytes": 12936535.000000512,
+          "slopeBytesPerCall": 646202.8,
+          "intervalInterceptBytes": 12479.000000512227,
+          "startupLiveHeapKB": [
+            2661.748046875,
+            2661.75
+          ],
+          "startupCpuMS": [
+            62.5,
+            46.875
+          ]
+        },
+        "combined": {
+          "count10Bytes": 6474587.000000512,
+          "count20Bytes": 12936695.000000512,
+          "slopeBytesPerCall": 646210.8,
+          "intervalInterceptBytes": 12479.000000512227,
+          "startupLiveHeapKB": [
+            2666.858398438,
+            2666.860351562
+          ],
+          "startupCpuMS": [
+            46.875,
+            62.5
+          ]
+        },
+        "deltaSlopeBytesPerCall": 8.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          5.110351563000222,
+          5.110351561999778
+        ]
+      },
+      {
+        "vm": "54",
+        "scenario": "validated56_style2_changed-watch",
+        "baseline": {
+          "count10Bytes": 27636508.0,
+          "count20Bytes": 55237238.0,
+          "slopeBytesPerCall": 2760073.0,
+          "intervalInterceptBytes": 35778.0,
+          "startupLiveHeapKB": [
+            10866.076171875,
+            10865.888671875
+          ],
+          "startupCpuMS": [
+            156.25,
+            203.125
+          ]
+        },
+        "combined": {
+          "count10Bytes": 27638348.0,
+          "count20Bytes": 55238998.0,
+          "slopeBytesPerCall": 2760065.0,
+          "intervalInterceptBytes": 37698.0,
+          "startupLiveHeapKB": [
+            10871.264648438,
+            10871.264648438
+          ],
+          "startupCpuMS": [
+            171.875,
+            171.875
+          ]
+        },
+        "deltaSlopeBytesPerCall": -8.0,
+        "pairedStartupLiveHeapDeltaKB": [
+          5.188476563000222,
+          5.375976563000222
+        ]
+      }
+    ],
+    "allocationVerdict": "NO allocation gain established. Whole-renderer stopped-GC slopes mostly flat/noisy; large54strip slope difference must not be attributed to removed select calls. Never describe this as an allocation improvement.",
+    "startupRisk": "About+4.43KiB51 (watch+4.71); about+5.1to5.3KiB54 with strip10call+6.55KiB outlier. StartupCPU/live heap/intercepts/rawticks retained.",
+    "largestRetainedLoss": "Lua54strip pair2+9.7345%CPU/+11.1692%wall;54mixed pair3+6.3348%CPU/+5.2195%wall and51pooled pair3+4.1543%CPU/+4.4666%wall also retained."
+  },
+  "semanticScope": {
+    "standardSelectContract": "Stock select is assumed. Numeric select calls are intentionally removed; foreign wrappers and callbacks replacing global select during comparison have observable baseline calls/results and are outside equivalence. No guard/framework introduced.",
+    "coldQualification": "Whole renderer freshCache removes every model widget FieldSet cache before ReleaseAll+actual reflow; it is not fresh addon startup. Focused cases also create brand new modeled fields with absent cache for counts0/1/2/3/4/5/6/7/8/9/12.",
+    "reuseQualification": "Invalidate(true) forces complete read/solve/plan/commit:78total ops include56meshReuse operations/1232fields;5320Prepare model GETS,0Draw model GETS. Not addon startup or an idle no-op.",
+    "functionalCoverage": "Every mismatch position for counts0/1/2/3/4/5/6/7/8/9/12; specialized inner/trailing/all nils; exact counts; missing/false/string n and #old; metadata/index/equality errors and opaque identity; cache/setter replacement; lazy later-slot mutation/error; equality and setter nested reentry; point clear success/error/nested call; throwing setter replacing cache; successful cache replacement; captured path/UV order; multiple setter returns discarded.",
+    "passedSemanticsDoesNotAuthorizeFitness": true,
+    "initialFailuresRetained": [
+      {
+        "paths": [
+          "whole-combined-initial-51.log",
+          "whole-combined-initial-54.log",
+          "dual-combined-initial-invalid.lua"
+        ],
+        "cause": "Test-only dual baseline insertion reused the pre-version byte offset after longer version stamp shifted FieldSet. Runtime combined candidate did not change. Recompute FieldSet offset on stamped source; fixed whole-combined passes both VMs."
+      }
+    ]
+  },
+  "histogram": {
+    "status": "Baseline-only counter opportunity, NOT benefit/timing",
+    "sourceLF": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "checksPerVM": 768,
+    "statesOrPairsPerVM": 18,
+    "FieldSetCallsPerVM": 38430,
+    "numericSelectOpportunities": {
+      "51": 134734,
+      "54": 135366
+    },
+    "producerScope": "Existing validated56 fallback-plan factory plus existing stripEnvelope/mixedRanks producers;2styles x3states x2VM,18same-object original/counter pairs perVM. One native read/reentry hook in each mixedRanks changed state.",
+    "coldScope": "Inherited driver cold is full mesh redraw after ReleaseAll on already initialized pooled widgets; not fresh cache/addon startup. Reuse and changed preserve their existing producer cadence.",
+    "counterContract": "Record existing select(#) count; observe existing eligibility/hit/miss branches. Numeric select result is forwarded unchanged without inspecting values; no cached slot or extra native getter reads. Exact original FieldSet closure and counter closure share Core state, switched only in offline fixture. Snapshot restores existing buckets in place.",
+    "nativeScope": "Desktop model only; does not infer actual8742call native argument distribution, FPS, taint, secret-VM or CPU gain. No timings collected.",
+    "reportFailureRetained": "Initial report-initial.py wrongly required independent VMs to have identical cache hit distributions. That assertion failed; report now retains observed per-VM differences. No functional rerun/source change followed."
+  },
+  "separateOptionalMetrics": {
+    "status": "PREEXISTING independent observability proposal PASS but UNAPPLIED; not picked as a performance fallback from rejected timing",
+    "sourceLF": "4ec7b4eabd8d67eee897337218713fb86491cb69bb494cebc82135aeb340907d",
+    "mainProof": {
+      "scenariosPerVM": 46,
+      "checksPerVM": 442,
+      "VMs": [
+        "Lua5.1",
+        "Lua5.4"
+      ],
+      "clockType": "controlled fake uptime1e8; no CPU timing"
+    },
+    "negativeControls": {
+      "51": {
+        "off_clock": "off disabled/unavailable watch adds no clocks",
+        "aggregate_start": "healthy unchanged legacy cost values/scope",
+        "coordinate_cap": "healthy nested phase row",
+        "invalidate_mid": "mid-error legacy mesh remains end-start",
+        "flat_doublecount": "healthy unchanged legacy cost values/scope",
+        "unordered_mid": "mid-before-start only invalid nested detail omitted",
+        "opaque_clock": "secret-clock ordering rejected during actual full consumer warmup"
+      },
+      "54": {
+        "off_clock": "off disabled/unavailable watch adds no clocks",
+        "aggregate_start": "healthy unchanged legacy cost values/scope",
+        "coordinate_cap": "healthy nested phase row",
+        "invalidate_mid": "mid-error legacy mesh remains end-start",
+        "flat_doublecount": "healthy unchanged legacy cost values/scope",
+        "unordered_mid": "mid-before-start only invalid nested detail omitted",
+        "opaque_clock": "secret-clock ordering rejected during actual full consumer warmup"
+      }
+    },
+    "actualFixtureRuns": 8,
+    "fixtureOutputsExact": true,
+    "compiler": {
+      "prototypesPerVM": 181,
+      "maxUpvalues51": 55,
+      "maxUpvalues54": 56,
+      "limit": 60
+    },
+    "ownership": "Existing EndCost-owned cost table attachment; child contains2numbers only, no report/native references; no Other edits",
+    "qualification": "Same-object reference omits only midpoint through appended test seam. Entire original body projection exact; independent actual baseline/candidate legacy fixtures also pass. Modeling does not certify native FPS/taint/latency.",
+    "benchmark": false,
+    "CPUclaim": "NONE; rejected combined cost supplies no standalone4ec7CPU benefit",
+    "failuresRetained": [
+      "proof-first-54.log",
+      "proof-first-51.log",
+      "proof-second-51.log",
+      "proof-third-51.log",
+      "FAIL-51-1-off.txt"
+    ],
+    "laterObservabilityAdmission": {
+      "evidence": "docs/validation/watch-mesh-phases-r60-2026-11-17.json",
+      "newAppliedSourceLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "scope": "Old4ec7 UNAPPLIED statement remains historical at R59 rejection; standalone restamped1108 subsequently applied as R60, no CPU gain/fallback claim."
+    }
+  },
+  "combatWatchCounters": {
+    "status": "SOURCE-DESIGN ONLY, UNIMPLEMENTED",
+    "acceptance": "No transition counters or fresh native transition coverage claimed; zero retained combat gaps still does not prove zero transitions."
+  },
+  "nativeAdoptionPending": {
+    "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+    "basis": "Root-confirmed existing artifact/coordination scope only; no native action by documentation agent",
+    "userReadyAnswered": true,
+    "mainBackgroundStatedByUser": true,
+    "actualWindowUnsafeForBackgroundAdmission": true,
+    "preflightEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+      "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+      "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+      "bytes": 1489
+    },
+    "preflightRecordedUTC": "2026-11-17T03:39:11.715646+00:00",
+    "attempts": [
+      "cf60-mainreload-a1",
+      "cf60-mainreload-a2"
+    ],
+    "status": "Both terminal background timeout;0input/no journal/lease/command",
+    "inputSent": false,
+    "journalsCreated": 0,
+    "leasesCreated": 0,
+    "commandsSent": 0,
+    "pendingHandoffQuestion": "Root asked whether user is on same PC or another device; answer pending. Do not conflate this with already answered Ready.",
+    "retryPolicy": "No further native retry until user handoff; background constraint is not native permission revocation. Root only, main client only, Bank entirely excluded.",
+    "sourceBeforeEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+      "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+      "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+      "bytes": 1287
+    },
+    "repoGameFilePairsMatching": 5,
+    "manualSync": false,
+    "diskEqualityDoesNotProveLoadedAdoption": true,
+    "readonlyObservation": {
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+        "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+        "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+        "bytes": 1021
+      },
+      "scope": "Root passive PrintWindow checked main loaded city/UI, chat closed/no edit/modal/cast shown. No input/focus/Bank. Private image stays outside Git. This observation is independent of unsafe actual foreground admission.",
+      "loadedVersionStillUnknown": true
+    },
+    "nativeR60Acceptance": "Reload/peek/current loaded version/hash and combat/group/FPS acceptance PENDING; zero successful command inferred from preparation/Ready/source equality.",
+    "historicalCF57": "Three main commands/0Bank belong only to the completed R57 CITY watch protocol audit; no CF58watch or new watch."
+  },
+  "historicalNative": "CF57R57CITY124ms and its three main commands/0Bank remain separate historical observations; no R58/combat/group/FPS/A-B acceptance.",
+  "acceptedR58Unchanged": {
+    "evidence": "docs/validation/solver-allocation-r58-2026-11-17.json",
+    "sourceLF": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "fullLua54": {
+      "pass": 512,
+      "fail": 0,
+      "syntax": 1202,
+      "scope": "Existing accepted full source snapshot unchanged; no new test run in this curation."
+    }
+  },
+  "reports": {
+    "rootRejection": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\REJECTED.json",
+      "rawSHA256": "d8190f1b2ad799e01297dd44878d71c86b16586bd07e85b26477ac9598786c2c",
+      "lfSHA256": "242a21791ba77d4b4f8b77f35fc589a23044cdbb34b9a943c50c03773e6eaf31",
+      "bytes": 1893
+    },
+    "costReview": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\COST_REVIEW.md",
+      "rawSHA256": "5a9878404fdd69f13b54cfdcc558818db825d790e145dee8aef1dc7ff0c1c71b",
+      "lfSHA256": "f2e0ccebf751a9e7025ee98e48bce3a6499d6e608911eaf238da228f84badf51",
+      "bytes": 7650
+    },
+    "costSummary": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\cost-summary.json",
+      "rawSHA256": "78f6ae72b0d5f9351fadbe518e0f039c6c3b812bf49f623f2bc9cbda23673a75",
+      "lfSHA256": "64690ea091528328e7f9c5a6266f9e7d518ad66bc5dd3d46b46227788ddb40e4",
+      "bytes": 78746
+    },
+    "costRaw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\cost-raw.jsonl",
+      "rawSHA256": "f86d37d1e4cdc070b260a62f1313cad7290af1c05b82b33860c74aac27a511ce",
+      "lfSHA256": "47c48aa125fd998ca8c832b69fccbd1268c4c14c1d75b83f4532c27c968805f0",
+      "bytes": 160662
+    },
+    "costResults": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\cost-results.json",
+      "rawSHA256": "3079bbf0d9ca2ac216f3b6f4c2e6d90fdb448d846aefdb207a072e1782a6d20a",
+      "lfSHA256": "8f3c25b8c0ff1a69230589d547a46307a326adf4ee9981d9d8072d70196b802f",
+      "bytes": 207328
+    },
+    "costProtocol": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\cost-protocol.json",
+      "rawSHA256": "73ab5f254585d63d282fb274a39f819427b2d9aaeabb91d044847deae08590d0",
+      "lfSHA256": "a14484ca1fd1a5b321ad737b55b81c718e9cd4d7f7f584142decf8daa6f76b10",
+      "bytes": 4940
+    },
+    "sourcePins": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\final-pins.json",
+      "rawSHA256": "2a5762517e2cf30a1590050498432bb9279b8eba4bae3d343a7dcd7c2cae27c0",
+      "lfSHA256": "7b98f395fdf8361c77f418fae99c5e0b3d1b889f4bc35c61c8f0727f5c2ec5ef",
+      "bytes": 11641
+    },
+    "functional": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-specialization-20261117\\report.json",
+      "rawSHA256": "13d5d97f32415f14df389e33b11723c26be48ce513ff1a5a1be55901ad29ea50",
+      "lfSHA256": "31cf243ea91ce4e476585feb407fae72154e47623204f45e5b6f62b1713acd71",
+      "bytes": 9086
+    },
+    "histogram": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\fieldset-baseline-histogram-20261117\\summary.json",
+      "rawSHA256": "af0afa6f4ed12a96e72d9257f3bc7e73db116bdb9b3078d14d05a1bad4faa519",
+      "lfSHA256": "41bc0d421702f55eb99a91ece45c712b3216a71b59d334e213fe4c7d166d08d8",
+      "bytes": 287200
+    },
+    "metrics": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r59\\report.json",
+      "rawSHA256": "67b5c139978d51d803a4319ac5b4b8c514bfed9b095c15ad1fd98595fb54c82d",
+      "lfSHA256": "df8afa7b94feb7524da5713cf22b0c62df3010b0998beff7828b86fa61cb7905",
+      "bytes": 2911
+    }
+  },
+  "noNewWork": "No runtime/repo test/cost/native changes or new benchmark. Only curated rejection/continuity/ledger documentation and docs generation/checks. No raw private settings or huge logs copied.",
+  "observabilityR60Followup": {
+    "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+    "evidence": "docs/validation/watch-mesh-phases-r60-2026-11-17.json",
+    "sourceLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "scope": "Applied standalone optional observability only. Preserve this earlier source/performance/rejection/native record as historical; not a tuple performance fallback.",
+    "currentNativeCoordination": {
+      "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+      "basis": "Root-confirmed existing artifact/coordination scope only; no native action by documentation agent",
+      "userReadyAnswered": true,
+      "mainBackgroundStatedByUser": true,
+      "actualWindowUnsafeForBackgroundAdmission": true,
+      "preflightEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+        "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+        "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+        "bytes": 1489
+      },
+      "preflightRecordedUTC": "2026-11-17T03:39:11.715646+00:00",
+      "attempts": [
+        "cf60-mainreload-a1",
+        "cf60-mainreload-a2"
+      ],
+      "status": "Both terminal background timeout;0input/no journal/lease/command",
+      "inputSent": false,
+      "journalsCreated": 0,
+      "leasesCreated": 0,
+      "commandsSent": 0,
+      "pendingHandoffQuestion": "Root asked whether user is on same PC or another device; answer pending. Do not conflate this with already answered Ready.",
+      "retryPolicy": "No further native retry until user handoff; background constraint is not native permission revocation. Root only, main client only, Bank entirely excluded.",
+      "sourceBeforeEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+        "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+        "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+        "bytes": 1287
+      },
+      "repoGameFilePairsMatching": 5,
+      "manualSync": false,
+      "diskEqualityDoesNotProveLoadedAdoption": true,
+      "readonlyObservation": {
+        "evidence": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+          "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+          "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+          "bytes": 1021
+        },
+        "scope": "Root passive PrintWindow checked main loaded city/UI, chat closed/no edit/modal/cast shown. No input/focus/Bank. Private image stays outside Git. This observation is independent of unsafe actual foreground admission.",
+        "loadedVersionStillUnknown": true
+      },
+      "nativeR60Acceptance": "Reload/peek/current loaded version/hash and combat/group/FPS acceptance PENDING; zero successful command inferred from preparation/Ready/source equality.",
+      "historicalCF57": "Three main commands/0Bank belong only to the completed R57 CITY watch protocol audit; no CF58watch or new watch."
+    }
+  },
+  "nativeCoordinationHistory": [
+    {
+      "recordedAtUTC": "2026-11-17T03:17:40.001171+00:00",
+      "basis": "Latest Root coordination only; no client/process/window/input/settings operation by documentation agent",
+      "status": "R58native loaded version/exacthash unproved; all cf59-mainreload-a1/a2/a3 BG preflights timed out",
+      "attempts": [
+        "cf59-mainreload-a1",
+        "cf59-mainreload-a2",
+        "cf59-mainreload-a3"
+      ],
+      "inputSent": false,
+      "leasesCreated": 0,
+      "journalsCreated": 0,
+      "commandsSent": 0,
+      "lastA3": "Verified same main birth/path and visible foreground idle108.9held[]; background admission timed out",
+      "ReadyCoordination": "Asynchronous Ready question remains unanswered; no new question/input by this agent",
+      "permission": "Main-only native permission remains; BGconstraint is not permission revocation. Root waits for background coordination before further native actions.",
+      "allMainCommandsAsOfCF57": 3,
+      "BankCommands": 0,
+      "Bank": "ENTIRELY EXCLUDED",
+      "noCF58Watch": true,
+      "sourceBefore": "Existing source-before.json records five repo/game modules matching; on-disk equality does not prove loaded adoption."
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "changeId": "BORDER-POSE-SAMPLES-R125-20261119",
+  "capturedAtUTC": "2026-11-19T17:22:18.281025+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+      "afterRaw": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9"
+    },
+    "tests/border_source_phase.lua": {
+      "beforeRaw": "540b81f9581cd8e00004dc5620bb7ba68fd2baf92394e7838e78cfddda4d4880",
+      "afterRaw": "a51dadf072a23c03dc76b2107db111bad3e016959ff8cafa26bc2381f0cce7d4"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\source.zip",
+    "sourceZipSHA256": "6c79f5b470ceddb54e227fda9a5a5a839d67358ccdf0d05e754b79a50d5724c4",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual regional renderer and mock native widgets for both held-action layouts, unit roots, combat grid, Info, Trinket Menu and other side-panel borders. Five alternating exact-source pairs with eight warm cursor crossings. Each step restores a previously compiled layout and compares final material and geometry. No action is dropped.",
+    "nativeUVReadsPerStyle": [
+      516,
+      516
+    ],
+    "preparedUVArraysReusedPerStyle": [
+      0,
+      516
+    ],
+    "heapGrowthKiBWithCollectionPaused": {
+      "1": {
+        "medians": [
+          4630.791,
+          4449.224
+        ],
+        "samples": [
+          [
+            4630.791,
+            4449.224
+          ],
+          [
+            4630.88,
+            4449.375
+          ],
+          [
+            4630.63,
+            4449.125
+          ],
+          [
+            4631.13,
+            4449.625
+          ],
+          [
+            4630.63,
+            4449.125
+          ]
+        ]
+      },
+      "2": {
+        "medians": [
+          4787.104,
+          4611.267
+        ],
+        "samples": [
+          [
+            4787.104,
+            4611.267
+          ],
+          [
+            4787.255,
+            4611.418
+          ],
+          [
+            4787.005,
+            4611.168
+          ],
+          [
+            4787.505,
+            4611.668
+          ],
+          [
+            4787.005,
+            4611.168
+          ]
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\compare.lua": "57f115e7d376662a524813cfaf231b07e53dc8b97178f3a826a54fa69aebc6f6",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\matched.txt": "ec1493a652f97dc862b66502a71fce72716d7deee8d3d35a44139178ebc7608c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\uv-loop-before-specialization.txt": "78cb9e363dcbe3049495abfc30ab6e3ad814b5b8b5f898ad05412e75a58bc33b"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6, seven alternating pairs of 24 complete warm reflows. Comparison uses exact sources and modeled native widgets. Native client timing remains pending.",
+    "results": {
+      "1": {
+        "medians": [
+          219.0,
+          219.0
+        ],
+        "samples": [
+          [
+            219.0,
+            217.0
+          ],
+          [
+            234.0,
+            225.0
+          ],
+          [
+            242.0,
+            207.0
+          ],
+          [
+            216.0,
+            219.0
+          ],
+          [
+            219.0,
+            212.0
+          ],
+          [
+            210.0,
+            219.0
+          ],
+          [
+            209.0,
+            231.0
+          ]
+        ]
+      },
+      "2": {
+        "medians": [
+          230.0,
+          224.0
+        ],
+        "samples": [
+          [
+            233.0,
+            262.0
+          ],
+          [
+            217.0,
+            217.0
+          ],
+          [
+            228.0,
+            226.0
+          ],
+          [
+            228.0,
+            224.0
+          ],
+          [
+            240.0,
+            229.0
+          ],
+          [
+            235.0,
+            203.0
+          ],
+          [
+            230.0,
+            214.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "Prepared layouts keep exact native handle, mask count and public UV validation.",
+    "A private value, changed coordinate, changed handle or changed geometric support declines prepared draw reuse.",
+    "Author paint is read separately and stays current. UV data shared with the compiled layout stays immutable.",
+    "Canonical styles use registered asset identities for gutter and support selection. Custom artwork goes through path-prefix and file-extension checks.",
+    "Cold planning uses fresh material. Active compiled layouts and opaque native alpha keep their existing contracts."
+  ],
+  "verification": {
+    "focusedPassed": 92,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-samples-before-20261119-181422\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

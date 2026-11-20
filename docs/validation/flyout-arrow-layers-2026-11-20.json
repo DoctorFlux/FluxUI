@@ -1,0 +1,130 @@
+{
+  "changeId": "FLYOUT-ARROW-LAYERS-R172-20261120",
+  "capturedAtUTC": "2026-11-20T02:46:28.692278+00:00",
+  "sources": {
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": {
+      "beforeRaw": "37b6f9ac906b23a4e72b28e50d594ce8c95123f66bbd3d76b9c1c0947f7791bd",
+      "afterRaw": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "afterNormalized": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1"
+    },
+    "tests/minimap_flyout_visibility.lua": {
+      "beforeRaw": "7c894770ea0e8fed464ac73a3d98a46ecc14816bf31f0ee99059a1e07d179dde",
+      "afterRaw": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "afterNormalized": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544"
+    },
+    "tests/minimap_side_border.lua": {
+      "beforeRaw": "b559bd83f465e3e8a94cdb572d3d34071f781386415674adbfa02776d4451244",
+      "afterRaw": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "afterNormalized": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-arrow-layers-before-20261120T034248602\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual Arrow.RefreshAll update Lua with modeled widgets on settled strip moves. Prior exact Arrow.lua and current Arrow.lua run the same event and repair checks.",
+    "order": [
+      "before",
+      "after"
+    ],
+    "writesPerArrowPer12Moves": [
+      48,
+      0
+    ],
+    "matchedOutput": [
+      [
+        "STRIP_ARROW_GEOMETRY|retail|0|0",
+        "STRIP_ARROW_LAYERS|retail|48|0",
+        "STRIP_ARROW_GEOMETRY|forever|0|0",
+        "STRIP_ARROW_LAYERS|forever|48|0",
+        "STRIP_ARROW_GEOMETRY|classic|0|0",
+        "STRIP_ARROW_LAYERS|classic|48|0",
+        "PASS minimap flyout visibility: 504 checks; 4 client models; 9 harmful controls"
+      ],
+      [
+        "STRIP_ARROW_GEOMETRY|retail|0|0",
+        "STRIP_ARROW_LAYERS|retail|48|0",
+        "STRIP_ARROW_GEOMETRY|forever|0|0",
+        "STRIP_ARROW_LAYERS|forever|48|0",
+        "STRIP_ARROW_GEOMETRY|classic|0|0",
+        "STRIP_ARROW_LAYERS|classic|48|0",
+        "PASS minimap flyout visibility: 504 checks; 4 client models; 9 harmful controls"
+      ],
+      [
+        "STRIP_ARROW_GEOMETRY|retail|0|0",
+        "STRIP_ARROW_LAYERS|retail|48|0",
+        "STRIP_ARROW_GEOMETRY|forever|0|0",
+        "STRIP_ARROW_LAYERS|forever|48|0",
+        "STRIP_ARROW_GEOMETRY|classic|0|0",
+        "STRIP_ARROW_LAYERS|classic|48|0",
+        "PASS minimap flyout visibility: 504 checks; 4 client models; 9 harmful controls"
+      ]
+    ],
+    "clock": {
+      "scope": "Seven alternating-order Lua os.clock pairs, 1200 refreshes of 24 arrows with visibility-parent and shared-border hosts.",
+      "milliseconds": [
+        [
+          38.0,
+          45.0
+        ],
+        [
+          38.0,
+          43.0
+        ],
+        [
+          39.0,
+          43.0
+        ],
+        [
+          39.0,
+          46.0
+        ],
+        [
+          40.0,
+          45.0
+        ],
+        [
+          37.0,
+          44.0
+        ],
+        [
+          38.0,
+          44.0
+        ]
+      ],
+      "medians": [
+        38.0,
+        44.0
+      ],
+      "scriptSHA256": "51a4720bf611b839c83f38b17be31193806bd5bc4abfe4bfd1ad87913c20b796",
+      "writesPerTrial": [
+        115200,
+        0
+      ],
+      "scopeLimit": "Models do not include native widget mutation or anchor propagation cost."
+    }
+  },
+  "parity": "Arrow parent, frame strata, level, scale, size and native relative anchor match. Real owner, layer or visibility changes still repair the geometry. Private or unreadable answers trigger native repair and lockdown suppresses protected writes.",
+  "verification": {
+    "focusedPassed": 32,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-arrow-layers-before-20261120T034248602\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-arrow-layers-before-20261120T034248602\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flyout-arrow-layers-before-20261120T034248602\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Core/ButtonFX/Cast.lua",
+      "tests/cast_equality_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Native held-action crossing timing, arrow and border pixels, and combat taint remain pending."
+}

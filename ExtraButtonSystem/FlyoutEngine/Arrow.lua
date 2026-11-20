@@ -29,7 +29,14 @@ local function SqueezeX()
 	return 1
 end
 
-function Arrow.ConfigureLayer(arrowFrame, anchorWidget)
+local function LayerMatches(arrow, parent, strata, level)
+	local actualParent, actualStrata, actualLevel = arrow:GetParent(), arrow:GetFrameStrata(), arrow:GetFrameLevel()
+	if issecretvalue and (issecretvalue(actualParent) or issecretvalue(actualStrata) or issecretvalue(actualLevel)
+		or issecretvalue(parent) or issecretvalue(strata) or issecretvalue(level)) then return false end
+	return rawequal(actualParent, parent) and actualStrata == strata and actualLevel == level
+end
+
+function Arrow.ConfigureLayer(arrowFrame, anchorWidget, reuseLayout)
 	if not arrowFrame or not anchorWidget then
 		return
 	end
@@ -42,25 +49,37 @@ function Arrow.ConfigureLayer(arrowFrame, anchorWidget)
 	local borderArt = ub and ub.FluxBorderFrame
 	local rec = Flyout.HostOf(anchorWidget)
 	local visibilityParent = rec and rec.opts and rec.opts.visibilityParent
+	local parent, strata, level = UIParent, ARROW_STRATA, ARROW_FRAME_LEVEL
 	if visibilityParent then
-		arrowFrame:SetParent(visibilityParent)
-		arrowFrame:SetFrameStrata((anchorWidget.GetFrameStrata and anchorWidget:GetFrameStrata()) or ARROW_STRATA)
-		arrowFrame:SetFrameLevel(math.min((anchorWidget:GetFrameLevel() or 1) + 6, 65535))
+		parent = visibilityParent
+		strata = (anchorWidget.GetFrameStrata and anchorWidget:GetFrameStrata()) or ARROW_STRATA
+		level = math.min((anchorWidget:GetFrameLevel() or 1) + 6, 65535)
 	elseif ub and ub.IsShown and ub:IsShown() and borderArt then
-		arrowFrame:SetParent(ub)
-		arrowFrame:SetFrameStrata((ub.GetFrameStrata and ub:GetFrameStrata()) or ARROW_STRATA)
+		parent = ub
+		strata = (ub.GetFrameStrata and ub:GetFrameStrata()) or ARROW_STRATA
 		local bLevel = (borderArt.GetFrameLevel and borderArt:GetFrameLevel()) or 0
-		arrowFrame:SetFrameLevel(math.min(bLevel + ARROW_ABOVE_BORDER_ART, 65535))
-	else
-		arrowFrame:SetParent(UIParent)
-		arrowFrame:SetFrameStrata(ARROW_STRATA)
-		arrowFrame:SetFrameLevel(ARROW_FRAME_LEVEL)
+		level = math.min(bLevel + ARROW_ABOVE_BORDER_ART, 65535)
+	end
+
+	-- Relative anchors follow the strip as it moves. Keep a settled layer
+	-- during that refresh, but repair missing or changed native values.
+	local ok, matches
+	if reuseLayout then ok, matches = pcall(LayerMatches, arrowFrame, parent, strata, level) end
+	if not (ok and matches) then
+		arrowFrame:SetParent(parent)
+		arrowFrame:SetFrameStrata(strata)
+		arrowFrame:SetFrameLevel(level)
 	end
 	local scaleParent = visibilityParent or UIParent
 	if arrowFrame.SetScale and anchorWidget.GetEffectiveScale and scaleParent.GetEffectiveScale then
 		local us = scaleParent:GetEffectiveScale() or 1
 		if us > 0 then
-			arrowFrame:SetScale((anchorWidget:GetEffectiveScale() or us) / us)
+			local scale = (anchorWidget:GetEffectiveScale() or us) / us
+			if reuseLayout and arrowFrame.GetScale then
+				local read, current = pcall(arrowFrame.GetScale, arrowFrame)
+				if read and not (issecretvalue and (issecretvalue(current) or issecretvalue(scale))) and current == scale then return end
+			end
+			arrowFrame:SetScale(scale)
 		end
 	end
 end
@@ -79,7 +98,26 @@ function Arrow.Rotation(direction, isOpen)
 	return isOpen and 180 or 0
 end
 
-function Arrow.Anchor(arrow, widget, direction)
+local function ArrowSizeMatches(arrow, width)
+	local w, h = arrow:GetSize()
+	if issecretvalue and (issecretvalue(w) or issecretvalue(h)) then return false end
+	return w == width and h == ARROW_SIZE_H
+end
+
+local function ArrowPointMatches(arrow, point, relative, x, y)
+	local count = arrow:GetNumPoints()
+	if (issecretvalue and issecretvalue(count)) or count ~= 1 then return false end
+	local p, frame, rp, ox, oy = arrow:GetPoint(1)
+	if issecretvalue and (issecretvalue(p) or issecretvalue(frame) or issecretvalue(rp)
+		or issecretvalue(ox) or issecretvalue(oy)) then return false end
+	return p == point and rawequal(frame, relative) and rp == point and ox == x and oy == y
+end
+
+local function SetArrowPoint(arrow, point, relative, x, y)
+	arrow:SetPoint(point, relative, point, x, y)
+end
+
+function Arrow.Anchor(arrow, widget, direction, reuseLayout)
 	if not arrow or not widget then
 		return
 	end
@@ -90,21 +128,23 @@ function Arrow.Anchor(arrow, widget, direction)
 	direction = Flyout.DirOk(direction)
 	local xF = SqueezeX()
 	local aw = math.max(10, ARROW_SIZE_W * xF)
-	arrow:SetSize(aw, ARROW_SIZE_H)
-	arrow:ClearAllPoints()
+	local sizeOK, sameSize
+	if reuseLayout and arrow.GetSize then sizeOK, sameSize = pcall(ArrowSizeMatches, arrow, aw) end
+	if not (sizeOK and sameSize) then arrow:SetSize(aw, ARROW_SIZE_H) end
 	local rec = Flyout.HostOf(widget)
 	local relative = (rec and rec.opts and rec.opts.anchorFrame) or widget
-	local ok = pcall(function()
-		if direction == "LEFT" then
-			arrow:SetPoint("LEFT", relative, "LEFT", -ARROW_OFFSET, 0)
-		elseif direction == "RIGHT" then
-			arrow:SetPoint("RIGHT", relative, "RIGHT", ARROW_OFFSET, 0)
-		elseif direction == "DOWN" then
-			arrow:SetPoint("BOTTOM", relative, "BOTTOM", 0, -ARROW_OFFSET)
-		else
-			arrow:SetPoint("TOP", relative, "TOP", 0, ARROW_OFFSET)
-		end
-	end)
+	local point, x, y = "TOP", 0, ARROW_OFFSET
+	if direction == "LEFT" then point, x, y = "LEFT", -ARROW_OFFSET, 0
+	elseif direction == "RIGHT" then point, x, y = "RIGHT", ARROW_OFFSET, 0
+	elseif direction == "DOWN" then point, y = "BOTTOM", -ARROW_OFFSET end
+	-- The native point already follows a moved button or slot. Rebind it
+	-- only when the live anchor changed or could not be read on this client.
+	if reuseLayout and arrow.GetNumPoints and arrow.GetPoint then
+		local ok, matches = pcall(ArrowPointMatches, arrow, point, relative, x, y)
+		if ok and matches then return end
+	end
+	arrow:ClearAllPoints()
+	local ok = pcall(SetArrowPoint, arrow, point, relative, x, y)
 	if not ok then
 		arrow:Hide()
 	end
@@ -205,15 +245,15 @@ function Arrow.Ensure(widget, opts)
 	return arrow
 end
 
-function Arrow.Update(widget, direction, isOpen)
+function Arrow.Update(widget, direction, isOpen, reuseLayout)
 	local rec = Flyout.HostOf(widget)
 	local arrow = rec and rec.arrow or (widget and widget.FluxFlyoutArrow)
 	if not arrow then
 		return
 	end
 	direction = Flyout.DirOk(direction or (rec and rec.opts and rec.opts.direction) or "UP")
-	Arrow.ConfigureLayer(arrow, widget)
-	Arrow.Anchor(arrow, widget, direction)
+	Arrow.ConfigureLayer(arrow, widget, reuseLayout)
+	Arrow.Anchor(arrow, widget, direction, reuseLayout)
 	if SetClampedTextureRotation and arrow.texture then
 		SetClampedTextureRotation(arrow.texture, Arrow.Rotation(direction, isOpen))
 	end
@@ -265,7 +305,7 @@ end
 function Arrow.RefreshAll()
 	for widget, rec in pairs(Flyout.attached) do
 		if widget and rec and rec.arrow and rec.arrow:IsShown() then
-			Arrow.Update(widget, rec.opts and rec.opts.direction, Flyout.IsOpen(widget))
+			Arrow.Update(widget, rec.opts and rec.opts.direction, Flyout.IsOpen(widget), true)
 		end
 	end
 end

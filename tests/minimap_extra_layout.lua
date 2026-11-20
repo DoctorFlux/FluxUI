@@ -267,7 +267,8 @@ t.api:SetSetting("sideEnabled", true)
 check(#t:visible() == 8, "optional side strip shares existing widgets")
 check(t.creates == 60 and t.widgets[1].Widget == identities[1], "embed-to-side does not duplicate set")
 local before = physical(t.widgets[1].Widget)
-near(before.width, 44*.85, "new default uses old85percent standard button size")
+near(physical(t.widgets[1].SlotFrame).width, 44*.85, "default side cell keeps its established85percent footprint")
+near(before.width, 44*.85, "side artwork fills its zero-gap cell")
 local sideWidth = t.api:GetSideWidth()
 check(sideWidth >= 44*.85 and sideWidth <= 60, "one-column reserve has only button plus padding")
 local offset = t.api:GetTrackerOffset()
@@ -300,7 +301,7 @@ end
 check(wrapped, "two-column below-map layout wraps once first column fills")
 local twoWidth = t.api:GetSideWidth()
 t.api:SetSetting("count", 40)
-check(t.api:GetSideWidth() <= 88 + .001, "automatic dense columns fit two standard columns of width")
+check(t.api:GetSideWidth() <= 1920 + .001, "automatic dense columns remain on-screen after reaching the half-native density floor")
 check(physical(t.widgets[1].Widget).width < 44, "automatic dense layout shrinks standard buttons")
 t.api:SetSetting("sideStart", "top")
 check(t.api:GetMinimapOffset() < 0, "screen-top side mode reserves minimap space to its left")
@@ -324,8 +325,8 @@ for _, scale in ipairs({.75, 1.25}) do
     local windowTop = physical(scaled.window).top
     within(scaled:visible(), screen.right-scaled.api:GetSideWidth()*scale, windowTop, screen.right, minimap.bottom,
         "side scale conversion " .. scale)
-    near(physical(scaled.widgets[1].Widget).top, minimap.bottom,
-        "below-map start follows actual scaled minimap bottom")
+    near(physical(scaled.widgets[1].SlotFrame).top, minimap.bottom,
+        "below-map cell starts at actual scaled minimap bottom")
     scaled:embed(220)
     local host, embeddedMap = physical(scaled.window), physical(scaled.env.Minimap)
     within(scaled:visible(), host.left, host.bottom, embeddedMap.left, host.top,
@@ -353,7 +354,7 @@ for _, mode in ipairs({"embedded", "below", "top"}) do
     local previousSize = math.huge
     for count = 1, 120 do
         auto.api:SetSetting("count", count)
-        local first = physical(auto.widgets[1].Widget)
+        local first = physical(mode == "embedded" and auto.widgets[1].Widget or auto.widgets[1].SlotFrame)
         local unit = auto.env.UIParent:GetEffectiveScale()
         local width, height, maximum, boundaryLeft, boundaryRight, boundaryBottom, boundaryTop
         if mode == "embedded" then
@@ -376,10 +377,14 @@ for _, mode in ipairs({"embedded", "below", "top"}) do
             if count*first.width >= height-.001 then
                 local rows = math.floor(height/first.width+.5)
                 near(rows*first.width,height,"completed side columns exactly fill available height")
-                if rows>1 then
+                local columns=math.floor(physical(auto.env.FluxMinimapButtonsContainer).width/first.width+.5)
+                if columns>2 then
+                    check(count>2*math.floor(height/(maximum/2)+.00001),
+                        "additional columns wait until two half-native columns cannot hold the list")
+                elseif rows>1 then
                     local larger=height/(rows-1)
-                    check(larger>maximum+.001 or math.floor((width+.00001)/larger)*(rows-1)<count,
-                        "no larger full-height square grid fits all buttons")
+                    check(larger>maximum+.001 or 2*(rows-1)<count,
+                        "two-column priority uses the largest full-height squares within its column budget")
                 end
                 near(physical(auto.env.FluxMinimapButtonsContainer).bottom,boundaryBottom,"completed grid touches Flux Window")
             end
@@ -447,7 +452,7 @@ for _, count in ipairs({8, 120}) do
             near(current.top, top, "scaled grid has no minimap/start margin")
             within(scaled:visible(), screen.right-scaled.api:GetSideWidth(), window.top, screen.right, top,
                 "scaled automatic grid stays above window and inside its reservation")
-            check(current.width <= 88*percentage*.85/100+.001, "scaled grid has no container padding")
+            check(current.left >= screen.left-.001, "scaled density-floor grid stays inside the screen without extra container padding")
             if count*physical(scaled.widgets[1].Widget).width >= top-window.top-.001 then
                 near(current.bottom,window.top,"completed scaled columns touch Flux Window")
             end

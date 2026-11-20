@@ -1,0 +1,194 @@
+{
+  "changeID": "LHO-PENDING-READ-RUNTIME-20261117",
+  "recordedUTC": "2026-11-17T07:27:29.876129+00:00",
+  "status": "APPLIED_DIRECT_RUNTIME_FUNCTIONAL_CHECKS_PASS_NATIVE_ADOPTION_PENDING",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": true,
+  "runtimeAppliedByThisDocumentation": false,
+  "sourceIdentity": {
+    "Core/API/Item.lua": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666",
+    "Inventory/FluxConsumableBest/Scan.lua": "9ac3e06c7beba074e4bfa6a26a2b284051b2203a5a43c6cfaa2c3bc18ee349c7",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0ea671b72ca4b570054e702c69bb25add6d17cab53819d756f1d7f10197178b4",
+    "Inventory/FluxConsumableClassify.lua": "ed64be6906af9ffe91363bde303d588dfccd06390300eb94b1104af7a6c92bd1",
+    "Inventory/FluxItemClass.lua": "6e1ed98327313f13e25e60d6048b5317ee4b4d262c0ca62aa96cca1da3a7a640"
+  },
+  "changes": [
+    "Fresh Best getter demand can select classifyPendingRead; normal self-followups remain classifyPending at the existing delay and retry cap.",
+    "A completed pending walk is reused only behind owner identities, stable bag/source/generation, classification invalidation revision, pools, counts/eligibility and published-table contents; resolution or mismatch falls through full work.",
+    "Classifier revision is compared before the scan own invalidation/reset; public InvalidateCache and ForceReject advance it.",
+    "Generation/listeners, pending metadata polling, real inventory refreshes and fallback routes remain; no query-result cache is introduced.",
+    "ItemClass uses a module-private protected tooltip worker; protected lookups/order, outside SetOwner/ClearLines and line cap40 remain.",
+    "Earlier Item870e adoption and its original precision-INCONCLUSIVE cost result remain historical unchanged."
+  ],
+  "finalInstalled": {
+    "report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\final-existing-regressions\\report.json",
+      "sha256": "fd9a83c8329c3bedf4a055455c7579f0fc104c2a63ac5e055a7fc4e684fffe61"
+    },
+    "jobs": 28,
+    "functionalJobs": 20,
+    "compileJobs": 8,
+    "assertionsFromRehashedLogs": 22400,
+    "pinsAtRun": 21,
+    "drift": [],
+    "allChildrenReaped": true,
+    "logsRehashed": 56,
+    "runtimes": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "durablePendingTestAtRun": {
+      "path": "tests/consumable_pending_read.lua",
+      "sha256": "e06de04592958d75da85ddf65a2567e35695f8a692beaa8dedb11a3f36e1734d",
+      "checksPerVM": 37
+    }
+  },
+  "focusedCoverage": [
+    "pending full unique walks stop on eligible polls",
+    "late metadata promotes without bag event",
+    "known positive and pending candidate changes",
+    "third metadata invalidation before reuse",
+    "real bag depletion/refill/all removal",
+    "postload IsReady and Score method fallback",
+    "registered listener in-place published-state mutation",
+    "one past getter does not perpetuate read publications"
+  ],
+  "itemClassChecks": {
+    "checksPerVM": 29,
+    "compileJobs": 2,
+    "report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-itemclass-tooltip-worker-20261117T071333Z\\report.json",
+      "sha256": "3350148dbf63d87fa5e1e8c28829940328c0f88c60fb941d78039628e0d441e8"
+    },
+    "supportedProtectedCall": "Native/conforming vararg-forwarding pcall; arbitrary replacement observing callback identity or argument shape is not certified."
+  },
+  "prototypeCapacity": {
+    "files": 5,
+    "prototypes": 174,
+    "maximumUpvalues54": 32,
+    "failures": 0,
+    "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+    "evidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\final-upvalues-54.json",
+      "sha256": "07760338d6147d69b0e2b86af3f8d4e51d973f2f7f023e418b78bba87936f406"
+    }
+  },
+  "supplementalSyndicatorProducerCoverage": {
+    "status": "PASS",
+    "coverage": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\coverage.json",
+      "sha256": "93265ff1a50534a89cb29a70c7935c0ee9e99992e8be14d69b7ab474270f8ccd"
+    },
+    "report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\report.json",
+      "sha256": "343fa590f78ea92402d0ad1edd7a4672dcdc99580f6d39cc0dfc3715a88c9d5b"
+    },
+    "currentDurableTest": {
+      "path": "tests/consumable_pending_read.lua",
+      "sha256": "e839d2983cb72c291204879aacff7be957d06aaf2aedd399931da0ec64a4534a"
+    },
+    "providerModes": [
+      "builtin",
+      "syndicator"
+    ],
+    "runtimes": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "jobs": 4,
+    "checksEach": 39,
+    "checksTotal": 156,
+    "all37PinsCurrent": true,
+    "allChildrenReaped": true,
+    "logsRehashed": [
+      {
+        "stdout": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\51-builtin.stdout",
+        "stdoutSHA256": "be449b0bbc95c3cea4e7b3c037a3b16499f3d71f0f1185d870bea31e67a1677c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "stdout": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\51-syndicator.stdout",
+        "stdoutSHA256": "c613c8128c3d8f3a0817920f669ce9699fea38da407b2e7714230da9d2f5af55",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "stdout": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\54-builtin.stdout",
+        "stdoutSHA256": "be449b0bbc95c3cea4e7b3c037a3b16499f3d71f0f1185d870bea31e67a1677c",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "stdout": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\54-syndicator.stdout",
+        "stdoutSHA256": "c613c8128c3d8f3a0817920f669ce9699fea38da407b2e7714230da9d2f5af55",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "firstAttemptPreserved": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-20261117T072221Z\\report.json",
+      "sha256": "ad256bd9c3b88284984cba0161c1a5123f583554f9b5dd597e935a21aacd09ff",
+      "sourceSHA256": "c686cfd0f90a58447224806bbfd4d117fbc36a4033464cd8fd69ce842a79c8fa",
+      "outcome": "Lua51 provider fixture-prefix loader failed before business code; test-local portable environment load adapter fixed, product owners/assertions unchanged."
+    },
+    "relationshipToFinal28": "Separate supplemental coverage; final28/e06 test/37checks perVM and fd9 receipt remain unchanged."
+  },
+  "native": {
+    "loadedSourceAdoption": "PENDING",
+    "performanceAcceptance": "PENDING",
+    "diskOnly": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\five-owner-disk-match.json",
+      "sha256": "d5a663ec20b38d8e63073ab28eb187d362d5fb75a879ea8ceed5538ae47c7ad4"
+    },
+    "diskScope": "Root read-only Retail/Forever five-owner equality; no Root manual sync, no loaded-code or five-client proof.",
+    "minimizedPreflight": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\native-preflight-minimized\\receipt.json",
+      "sha256": "86bbece912c465fd9e625e886cf189dcf71fe0b89d06bec1592567167c630a50"
+    },
+    "minimizedOutcome": "Dated Root preflight refused before journal/input because minimized/not drawable; zero query/input/reload.",
+    "keepalive": "Root dated report C3864 remains guarded/deferred; this record performs no liveness/client/process/window inspection.",
+    "newCaptureOrInput": false
+  },
+  "limits": [
+    "No measured CPU/FPS, native taint or pixel acceptance for this new runtime batch.",
+    "P87 older native getter counts and baseline retry counterexamples are evidence of the lead, not a matched performance result for these bytes.",
+    "Broader cast/craft/bag, vendor/AH, bank/mail and client/provider acceptance remains pending; guild-bank/void remain excluded.",
+    "User requested direct runtime changes; unused offline proposal preparation is not acceptance.",
+    "No settings, provider, control-file, native or source publication writes by this documentation update."
+  ],
+  "evidence": {
+    "finalInstalled": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\final-existing-regressions\\report.json",
+      "sha256": "fd9a83c8329c3bedf4a055455c7579f0fc104c2a63ac5e055a7fc4e684fffe61"
+    },
+    "sourceCheckpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\checkpoint.json",
+      "sha256": "69f229406f4cac107fee589ab395ef7a1a2342a472b60c2e52fd8bcf144ccbff"
+    },
+    "itemClass": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-itemclass-tooltip-worker-20261117T071333Z\\report.json",
+      "sha256": "3350148dbf63d87fa5e1e8c28829940328c0f88c60fb941d78039628e0d441e8"
+    },
+    "focusedPending": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-final-20261117T070936Z\\analysis.json",
+      "sha256": "47a568ad42753322298165a2bc7d24e8d1283090d7492ede97eecce6b72bf9c2"
+    },
+    "fiveOwnerDisk": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\five-owner-disk-match.json",
+      "sha256": "d5a663ec20b38d8e63073ab28eb187d362d5fb75a879ea8ceed5538ae47c7ad4"
+    },
+    "upvalues54": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-read-retry-20261117\\final-upvalues-54.json",
+      "sha256": "07760338d6147d69b0e2b86af3f8d4e51d973f2f7f023e418b78bba87936f406"
+    },
+    "zeroInputNative": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\native-preflight-minimized\\receipt.json",
+      "sha256": "86bbece912c465fd9e625e886cf189dcf71fe0b89d06bec1592567167c630a50"
+    },
+    "olderNativeReasons": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-native-reason-evidence-20261117\\evidence.json",
+      "sha256": "c9105a038372378572a60fa0639c4bd6b64c2a1149140e4ee23fdb3d8764d8b9"
+    },
+    "supplementalProviderCoverage": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\consumable-pending-read-providers-fixed-20261117T072450Z\\coverage.json",
+      "sha256": "93265ff1a50534a89cb29a70c7935c0ee9e99992e8be14d69b7ab474270f8ccd"
+    }
+  }
+}

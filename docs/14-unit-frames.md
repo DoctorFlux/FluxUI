@@ -1,5 +1,111 @@
 # Individual unit frames
 
+<!-- COMBAT-CALLBACK-WORK-20261116 -->
+16 November (`COMBAT-CALLBACK-WORK-20261116`): two additional offline fixes are applied.
+Portrait camera/SetUnit/clear/geometry protected callbacks reuse private bodies
+while all current lookups, native calls, errors, recovery and finite timers stay.
+Range discovery reuses two helpers with current globals/pools and fresh250ms
+ticker callbacks. Portrait114scenarios/105609checks perVM/7controls;range175checks
+perVM/5controls/85matching stage traces. Portrait durable gate105623checks perVM
+includes all seven controls; the external105609check gate is retained separately.
+Independent source review passed.
+
+Declared cost gates passed; all raw samples and small regressions remain.
+Portrait48cells:51empty CPU median+3.398% (onepair+9.338%);54 has slower individual
+2D/3D/max pairs. Startup retained increases are recorded separately from GC slope.
+Range96cells retains54native+1.512%/hidden+0.694%;active fallback transient work
+decreases. These standalone results do not establish native speedup.
+
+The external R55 timer-ownership prototype passes328checks perVM/80exact parity
+records/6controls perVM. Apply/rebase guards caught two newer shadow-Core edits;
+the timer change remains UNAPPLIED and the newer renderer work is preserved.
+Duplicate party/pet recovery passes stay. Combined gate: 500standalone PASS/0FAIL;1190syntax/0failures.
+ Source stability and remaining failures are in the evidence; no native acceptance. Game tests/inspection remain HELD until explicit user release;
+goal ACTIVE, no owned native action live or queued. [Sources, checkpoints,
+requirements CW01–04, regressions and pending checks](validation/combat-callback-work-2026-11-16.json).
+<!-- /COMBAT-CALLBACK-WORK-20261116 -->
+
+
+<!-- COMBAT-FANOUT-20261116 -->
+16 November `COMBAT-FANOUT-20261116`: full combat refreshes/recovery retained with fresh-native icon/trinket geometry guards and protected callback-body reuse. 496 offline scripts PASS/1 new shadow assertion FAIL; 1187 syntax PASS; composed current-source observations; owned runtime stable. Native tests/inspection HELD until explicit user release. [Exact work, native getter tax, CPU regressions/rejected prototypes and scope](validation/combat-fanout-2026-11-16.json).
+<!-- /COMBAT-FANOUT-20261116 -->
+
+
+16 November `COMBAT-TRANSITIONS-20261116`: R51 `prepared-guards-r51` reuses only
+successful public aura-group layout arguments on the actual owned engine/group/
+setter. Recreation, absence, failure and private recovery invalidate descriptors.
+Full aura refreshes and fresh native group/member/frame queries and size calls
+retain their cadence. Two-unit/four-panel work proof removes60 unchanged native
+layout dirty marks while retaining40 full refreshes and480 member size calls;
+1702 checks and14 focused scripts PASS. Player icon geometry and optional HoT
+learning remain audit findings, with no speculative cache applied. Combined R51
+aggregate474 PASS/0FAIL and1165 syntax PASS follows one extractor correction/four
+bounded replays, with eight owned runtime files stable; not one globally frozen
+sweep. Global690 files/24916 prototypes max57/0fail;31944 border guard checks PASS.
+Native R51 combat/dispel rendering, latency and taint checks remain pending.
+[Requirements and evidence](COMBAT_TRANSITION_PERFORMANCE.md).
+
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS;
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Quiet native R50 now measured218.36ms versus R49's207.94ms; hitch/CB36 OPEN.
+Lazy lookup for queried buckets>4 preserves
+R49 small/flat path, exact numeric/current-paint/token/budget guards and fresh
+native coordinates. Combat/dispel preparation and accepted aura/portrait fits stay.
+Mixed common CPU/stress-only results do not establish native gain. Further native
+captures require all owned CPU/docs jobs finished.
+[Border requirements and acceptance](CONNECTED_BORDERS.md).
+
+15 November rollback: independent border rendering and shared piece registrations
+are restored to the pre-connection checkpoint. Connected topology hooks, masks
+and overlay-role edits are removed; prior status/HP/resource/class/aura geometry
+and tint/input ownership remain. [Exact restore and native limits](04-visual-system.md).
+
+
+
+14 November `BLIZZARD-TOOLTIP-20261114`: unit/raid/pet tooltips now share
+Blizzard's existing GameTooltip; no separate FluxUnitTooltip is created. Exact
+HUD anchor remains BOTTOMLEFT to FluxWindowFrame TOPLEFT at (0,30); pet happiness
+keeps its adjacent anchor. Flux bookkeeping stays in UF, native scripts/health
+mixins remain untouched, and native owner callbacks retain update cadence.
+Hide/clear/owner handoff retire old callbacks and pet icons; stale leaves cannot
+hide newer item/world/unit tips. Six runtime owners and two existing tests changed.
+
+725 focused checks across all five client models and pinned Blizzard update
+replays PASS; five compiled harmful controls rejected. Final combined desktop
+index: 385 scripts / 1073 syntax PASS. Initial two stale-fixture failures were
+corrected and replayed; complete final Lua manifest verified. Fresh external
+2816-file source/history checkpoint and 130 settings metadata entries verified.
+All other Lua/XML/TOC and settings preserved. Native visual/taint/combat/controller
+acceptance remains NOT RUN. Reload out of combat and test rapid unit/pet/raid to
+item/world hovers. No client input/reload/profiling/publication or manual sync.
+The unrelated profiling goal remains paused.
+[Requirements, exact source pins and acceptance](validation/blizzard-tooltip-2026-11-14.json).
+
+14 November `GROUP-GHOST-HOVER-20261114`: absent party-slot decorations now
+initialize from effective visibility. This fixes the screenshot's detached
+UIParent separator anchored to party4, created under a hidden dock. Atlas and
+separator OnShow follow the same ownership; separator input is explicitly off.
+Secure hover casting checks current visible/existing unit and clears/rearms on
+combat unit reassignment. Full 381 scripts/1,069 syntax PASS; native retest pending.
+[Scope and evidence](validation/group-ghost-hover-2026-11-14.json).
+
+14 November `PLAYER-GHOST-SECURE-FOLLOWUP-20261114`: prior player-frame candidate
+failed the user's reloaded hovercast retest. Native suppression now also removes
+its actual Flux secure casting registration and active overrides, with native
+selection restoration. Root/aura/vehicle/independent-control ownership remains.
+Literal deletion from WoW's frame inventory is unsupported by the addon API;
+the object remains inspectable. Native candidate retest remains pending.
+[Failure and supported scope](validation/player-ghost-secure-followup-2026-11-14.json).
+
+14 November `PLAYER-GHOST-HOVER-20261114` final validation: 380 scripts / 1,068 syntax PASS after retaining newer unrelated inventory work. Player-frame source identities remain the tested candidate; native acceptance remains pending.
+
+14 November `PLAYER-GHOST-HOVER-20261114`: the replaced Blizzard player root
+now has an empty hit rectangle; the binding scan excludes suppressed native
+roots/subtrees. Restore preserves each client's original rectangle/input policy.
+Native aura/vehicle handlers and independent controls remain. Full 379-script /
+1,067-syntax desktop run PASS; native hover/combat/taint/controller retest pending.
+[Contracts and native steps](49-native-mouse-suppression.md#playerframe-ghost-hover-follow-up--14-november-2026).
+
 14 November casting/inventory lag: Cast progress/start/stop helpers reduce allocation without slowing text/geometry, native reads, fading or interruption. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
 
 13 November class-icon secret-string follow-up: both visual and partition icon
@@ -1045,3 +1151,32 @@ the exact tooltip names, client build and target for follow-up. Native rendering
 controller/tooltips, taint and CPU/FPS remain pending. No game input, settings or
 profiler writes, client synchronization or publication was performed.
 [Exact sources, recovery and regression evidence](validation/unit-debuff-overlap-2026-11-13.json).
+
+<!-- BORDER-EVENT-REFLOW-R54-20261116 -->
+Current border runtime is `event-reflow-r54`: public direct-opacity reuse, bounded
+commit-phase observer-pair reuse, fresh matching outer-shell guards, and
+roster-only prepared focus-layout reuse. All required paints and notifications
+remain. 129 current focused scripts pass; no native latency/FPS/taint acceptance
+is inferred. Genuine layout changes still require fresh global discovery/solve.
+[Sources, getter tax and native checks](validation/border-event-reflow-2026-11-16.json).
+<!-- /BORDER-EVENT-REFLOW-R54-20261116 -->
+
+<!-- INDIVIDUAL-ROSTER-BATCH-20261119 -->
+Individual roster chrome coalesces duplicate roster updates and role or loot updates already covered by a pending roster refresh. Standalone role and loot paint remains immediate. A raid rejoin into the same subgroup restores the label. Rank, roles and threat use the current state at the batched refresh.
+[Individual unit roster evidence](validation/individual-roster-batch-2026-11-19.json).
+<!-- /INDIVIDUAL-ROSTER-BATCH-20261119 -->
+
+<!-- FINAL-STRIP-UNIT-ANCHORS-R90-20261119 -->
+When the action strip expands or collapses under a held action, the player and target anchors follow the completed HUD envelope. Cast, threat, icons, and the target-of-target anchor retain their existing placement within the target layout until a placement change or explicit refresh.
+[Strip unit anchoring evidence](validation/final-strip-unit-anchors-2026-11-19.json).
+<!-- /FINAL-STRIP-UNIT-ANCHORS-R90-20261119 -->
+
+<!-- PARTY-TARGET-TRAIL-20261120 -->
+Party-target roster refreshes keep the existing damage trail when the same readable unit and health sample remain current. Sixty modeled roster batches that change one of four targets reduce trail resets from 240 to 60 and hide calls from 1,440 to 360. With all four targets unchanged those counts fall to zero. Main health and color paint remain current. Replacements use their existing fresh identity read after reset, including one extra GUID read when the replacement has the same health. Desktop elapsed gains are small and vary by scenario.
+[Matched validation](validation/party-target-trail-2026-11-20.json).
+<!-- /PARTY-TARGET-TRAIL-20261120 -->
+
+<!-- PARTY-STATUS-OWNER-20261120 -->
+The normal party roster paint keeps its portrait indicator anchors through the shared update. Sixty paired roster batches reduce role position writes from 290 to 23 and level position writes from 360 to zero. Final visibility, positions and level label paint match. The master-loot check uses only the assigned party slot. Sixty party name fits with a public host width and a single level label remove 120 unused outer-width reads and 120 level text measurements. Apply this layout ownership in a party paint that finishes with Party.UpdateIndicators. The shared refresh still updates live role visibility and level art. Standalone frames and missing owners keep the shared placement. Invalid or unreadable party name widths retain the shared text budget. Multiple NPC label variants still run the existing measured fit.
+[Matched validation](validation/party-status-owner-2026-11-20.json).
+<!-- /PARTY-STATUS-OWNER-20261120 -->

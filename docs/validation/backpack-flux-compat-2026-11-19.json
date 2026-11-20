@@ -1,0 +1,135 @@
+{
+  "changeId": "LHO-BACKPACK-FLUX-COMPAT-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "pid": 9012,
+  "hwnd": 3541714,
+  "configuration": {
+    "Syndicator": true,
+    "Baganator": true,
+    "ghost": true,
+    "scriptProfile": "0"
+  },
+  "change": "No runtime Lua edits for this capture.",
+  "program": {
+    "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag199-flux-bag-show-20261119",
+    "controllerSHA": "13d63791cd1bf4f50d53ccae72dac9a079266b29e1e446e8afcf4d39782aaf2d",
+    "packetSHA": "dd8ae39e8c70ecbb92cd3d5fcf8aa3a3d119a10d0e2c2697461cc14aa0fceaa1",
+    "packets": 26,
+    "luaSHA": "d3dfdb9f03403679ec75079cc5d4e957ae6a1f07be62af0f7276257f8ad94823"
+  },
+  "earlyCapture": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag199_a-submitted.png",
+    "sha": "b54e0cc9e89e80c6652d339b8bbc4c59f1f8d9e6dca476a5ab7e3b338d573b23"
+  },
+  "result": {
+    "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag199-matrix-result.png",
+    "sha": "daae160396accd01cbac1a56770b356fc55540cea8dec38f3b4f3556f0dff6c8"
+  },
+  "resultAttestation": "Separate read-only screenshot confirmed completion and closed state. Transport released its lock; early screenshot preceded the final report.",
+  "callbackSources": {
+    "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua": "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5",
+    "BaganatorCompat/FluxBaganator_Protection.lua": "dc98d6ee1648d974bacd06e9b4e84d2a0afc15f6310b7c5aa7b7089a59efcf37",
+    "BaganatorCompat/FluxBaganator_ItemViews.lua": "0bf0e29bbb867207a5cf3d4569b81f8932271bfecd2cd366af239e8a7c6360b6",
+    "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua": "6c4ff734d7e075cd1c57fa1b2a8daf51d11d900be90e9662baa89722e75abbaa",
+    "Inventory/Restock/Junk/FluxJunk.lua": "f810822c0d57605f7239bc2bd9ba30c6c74116325709753a71a2145f3fed12d5"
+  },
+  "firstOpenMs": 150.2099,
+  "warmOpenMs": 5.7674,
+  "closeMs": [
+    1.3692,
+    0.9704
+  ],
+  "frameGapMs": [
+    14,
+    161,
+    16,
+    15,
+    17
+  ],
+  "firstOpenObservers": {
+    "Display": {
+      "calls": 1,
+      "elapsedMs": 123.88,
+      "outsideExplicitNestedMs": 123.21
+    },
+    "FluxJunk": {
+      "calls": 102,
+      "elapsedMs": 3.79
+    },
+    "FluxView": {
+      "calls": 1,
+      "elapsedMs": 0.03
+    }
+  },
+  "opens": 2,
+  "closes": 2,
+  "restorationFailures": 0,
+  "temporarilyWrappedMethodsAcrossBothOpens": 16,
+  "returnedToClosedState": true,
+  "bagGenerationStable": true,
+  "errors": 0,
+  "limitations": [
+    "One first-open and warm pair with both addons loaded after reload.",
+    "Observers were installed only during the synchronous open calls. Deferred callbacks and remaining descendant costs require separate work.",
+    "The initial result image caught category labels and counts before item icons were visible. It does not by itself establish an icon regression."
+  ],
+  "r204": {
+    "client": "Forever 1.60.1/70959/16001",
+    "reload": 201,
+    "itemMetadataSha": "85c16cb1888511d4b6af8cd68f8ad1f2bb0ab6b62e0b070e95da39f1d04a5f10",
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag204-delayed-cold-open-20261119",
+      "controllerSHA": "e6ae37b2486c5b04b751e9348c80b536c719086757ea5a422be2487331c109da",
+      "packetSHA": "c94c4cf7033fdb9aab40421a2420af939fded05279a170814552addf7c2a7caf",
+      "packets": 26,
+      "luaSHA": "d01e7d4231c798ac83e4ef34a4be80c3715e66a500fb303406315e7c06b71512"
+    },
+    "submitted": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag204_a-submitted.png",
+      "sha": "8ccb8042f55feaf39d3a35453aac14abe582ad769c8ed23c1f75d20798f8acc0",
+      "completedUnix": 1795062945.470927
+    },
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag204-matrix-result.png",
+      "sha": "d201c3739e457a0ce7759f4d4f701eae95f9d41f9ecc7aaf72cffd9e544e8a20"
+    },
+    "initialDelaySeconds": 10,
+    "firstOpenMs": 151.6672,
+    "warmOpenMs": 5.1357,
+    "closeMs": [
+      1.0926,
+      0.9287
+    ],
+    "peakFrameMs": [
+      17,
+      169,
+      14,
+      13,
+      14
+    ],
+    "firstOpenObservers": {
+      "display": {
+        "calls": 1,
+        "ms": 123.42,
+        "outsideExplicitNestedMs": 122.77
+      },
+      "fluxJunk": {
+        "calls": 102,
+        "ms": 5.28
+      },
+      "fluxView": {
+        "calls": 1,
+        "ms": 0.03
+      }
+    },
+    "opens": 2,
+    "closes": 2,
+    "restorationFailures": 0,
+    "bagGenerationStable": true,
+    "closedStateRestored": true,
+    "sessionErrors": 1,
+    "newErrors": 0,
+    "existingError": "R202 temporary diagnostic nil Bags field, confirmed in R203",
+    "takeaway": "The first-open hitch reproduces when both the submit and result captures are outside the timed opens. This separates the hitch from overlapping our screenshot capture. Item widget attribution remains incomplete."
+  }
+}

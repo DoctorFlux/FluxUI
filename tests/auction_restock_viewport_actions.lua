@@ -9,6 +9,9 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
     for _, provider in ipairs({ false, true }) do
         profiles = profiles + 1
         local A, s, e = fixture(client == "Era" or client == "Anniversary", false, provider)
+        A.SetMaxPrice(100, 123)
+        A.SetMaxPrice(101, 0, false)
+        A.SetMaxPrice(179, 0, true)
         s.entries = {}
         for id = 100, 179 do
             s.entries[#s.entries + 1] = { itemID = id, name = "Item" .. id, target = 10, bankCount = id % 11 == 0 and 7 or 0 }
@@ -24,7 +27,11 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         A.ResolveUpgrade = function(proposal, action) resolutions[#resolutions + 1] = { proposal, action } end
         local tooltip = e.GameTooltip
         tooltip.SetOwner = function(self, owner) self.owner = owner end
-        tooltip.SetItemByID = function(self, id) self.itemID = id; self.itemReads = (self.itemReads or 0) + 1 end
+        tooltip.SetItemByID = function(self, id)
+            self.itemID, self.lines = id, {}
+            self.itemReads = (self.itemReads or 0) + 1
+        end
+        tooltip.AddLine = function(self, line) self.lines[#self.lines + 1] = line end
         tooltip.Show = function(self) self.visible = true end
         tooltip.Hide = function(self) self.visible = false end
         s.emit("AUCTION_HOUSE_SHOW"); A.Toggle(); s.drain()
@@ -61,8 +68,16 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         f.owner:SetSize(800, 600); f:Fire("OnSizeChanged")
         f.scroll:SetVerticalScroll(0)
         local first, last = find(f, 100), find(f, 179)
-        first:Fire("OnEnter")
+        local zeroCap = find(f, 101)
+        zeroCap:Fire("OnEnter", true)
+        check(tooltip.lines[1]:find("0c", 1, true), "explicit zero cap remains a numeric cap")
+        zeroCap:Fire("OnLeave")
+        first:Fire("OnEnter", true)
         check(tooltip.owner == first and tooltip.itemID == 100 and tooltip.visible, "ordinary native hover retains current item help")
+        check(tooltip.lines[1]:find("123c", 1, true), "mouse-motion hover uses the configured copper cap")
+        first:Fire("OnLeave")
+        first:Fire("OnEnter", false)
+        check(tooltip.lines[1]:find("123c", 1, true), "hover caused by a frame appearing uses the same cap")
         local hoverReads = tooltip.itemReads
         for _ = 1, 3 do A.UpdateUI(); A.GetRows(true); A.UpdateUI() end
         check(tooltip.itemReads == hoverReads, "same-owner passive snapshots retain original tooltip query cadence")
@@ -76,8 +91,9 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
             check(not first.editBox:IsShown(), "a changed quantity owner retires a held action")
             retiredLeave(first)
             check(tooltip.visible and f.hoveredCell == first, "retired leave cannot clear a refreshed hover owner")
-            last:Fire("OnEnter"); retiredEnter(first)
+            last:Fire("OnEnter", true); retiredEnter(first, true)
             check(tooltip.owner == last and tooltip.itemID == 179, "retired enter cannot replace another current tooltip")
+            check(tooltip.lines[1]:find("No limit", 1, true), "an infinite cap retains its unlimited label")
             first:Fire("OnLeave")
             check(tooltip.owner == last and tooltip.visible, "another row's leave cannot hide the current tooltip")
         end

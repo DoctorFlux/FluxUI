@@ -572,6 +572,8 @@ local function HookFluxBarButtonKeybindPressFX(col)
     if not btn or type(btn.HookScript) ~= "function" then return end
     _barButtonPushHooked[name] = true
     btn:HookScript("PreClick", function(_self, button, down)
+        local bars = ns.Flux and ns.Flux.Bars
+        if bars and bars.TraceKeyClick then bars.TraceKeyClick(col, _self, button, down) end
         if button ~= "KeyBind" and button ~= "Keybind" then return end
         if down == false then return end
         local bindKey
@@ -611,6 +613,8 @@ function PushPress.HookKeyer(keyer, column)
     end
     keyer._fluxPushHooked = true
     keyer:HookScript("PreClick", function(_self, _button, down)
+        local bars = ns.Flux and ns.Flux.Bars
+        if bars and bars.TraceKeyClick then bars.TraceKeyClick(column, _self, _button, down) end
         if down == false then
             return
         end

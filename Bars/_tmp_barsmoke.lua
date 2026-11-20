@@ -88,10 +88,10 @@ has(clicks, '"KeyBind"', "KeyBind override click")
 has(clicks, "FluxSlotClick_", "keys stay on the host; overlay clickbutton is the hidden SAB")
 has(clicks, "UsesWrap", "ReassertEmpower pressAndHold is wrap-gated")
 has(clicks, "FluxActionStripKey", "Forever keys click a hidden down-only proxy")
--- useparent-<name> recurses with the same modifier prefix and button suffix, so
--- the host's shift-action* / shift-type* twins resolve through the proxy.
-has(clicks, "useparent-action", "Forever keyer inherits the host action")
-has(clicks, "useparent-typerelease", "Forever keyer inherits the host typerelease")
+-- Keyboard dispatch can consume modifiers; the secure main publishes its
+-- current program instead of inheriting the host's nomod wildcard selection.
+has(clicks, "State.SyncMainKeyer", "Forever keyer receives the current main program")
+has(clicks, 'header:SetFrameRef("keyer-"', "secure main header owns its keyboard proxy")
 has(clicks, 'prefix .. "IsEmpowerSpell*"', "ReassertEmpower gates each click set")
 has(clicks, '{ "", "shift-", "ctrl-" }', "ReassertEmpower covers nomod as well as the modifiers")
 has(clicks, '"AnyDown"', "Forever keyer registers key-down")
@@ -538,7 +538,7 @@ if paint:find("pcall(cd.SetCooldown, cd, start, duration)", 1, true) then
 	failures[#failures + 1] = "Paint must not SetCooldown secret start/duration"
 end
 do
-	local i = paint:find("function Paint.Flush(", 1, true)
+	local i = paint:find("local function FlushSlotPassBody(", 1, true) or paint:find("function Paint.Flush(", 1, true)
 	local j = i and paint:find("\nfunction Paint.", i + 10, true)
 	local body = (i and j and paint:sub(i, j - 1)) or (i and paint:sub(i)) or ""
 	has(body, "hasDirty", "Flush tracks bars.dirty")
@@ -688,10 +688,9 @@ do
 	if not body:find("if InLockdown() then", 1, true) then
 		failures[#failures + 1] = "ApplySlotsInsecure must not SetAttribute a protected frame in combat"
 	end
-	has(body, 'StampSwapClick(widget, ""', "insecure path stamps the nomod set")
-	has(body, 'StampSwapClick(widget, "shift-"', "insecure path stamps the shift set")
-	has(body, 'StampSwapClick(widget, "ctrl-"', "insecure path stamps the ctrl set")
-	has(body, "StampLiveClick(widget, live)", "Forever keypress stamps type1 and macrotext1")
+	has(body, 'ipairs(CLICK_PREFIXES)', "insecure path stamps every canonical modifier mask")
+	has(body, 'StampSwapClick(widget, prefix, slot, nativeOnly)', "fallback stamps the selected slot and native control policy")
+	has(body, "StampLiveClick(widget, live, nativeOnly)", "Forever fallback synchronizes the live display selectors")
 end
 do
 	local i = state:find("function State.OnModFallback", 1, true)
@@ -807,7 +806,7 @@ do
 	-- a fight entered before the first stamp left hasSec 0 and SHIFT never
 	-- left the main row. HasAction is in the restricted env; sec/tert do not
 	-- depend on the page, so the probe is cached off the modifier edge.
-	has(body, "if not liveSec and HasAction then", "CHILDUPDATE probes live minirow occupancy once")
+	has(body, "if hover or (not liveSec and HasAction) then", "CHILDUPDATE refreshes live minirow occupancy on hover or cache miss")
 	has(body, 'self:SetAttribute("flux-live-sec", liveSec)', "the occupancy probe is cached")
 	has(body, "if liveSec == 1 then hasSec = 1 end", "live occupancy only promotes the flag upward")
 end
@@ -832,12 +831,14 @@ has(state, "function State.GetClassStances", "stance tokens for Binding forms")
 has(state, "PACK_MINI", "SHIFT/CTRL minis keep live bonus/override page")
 has(state, 'Drive(headers.sec, "native", native)', "SHIFT mini follows form/bonus page")
 has(state, 'Drive(headers.tert, "native", native)', "CTRL mini follows form/bonus page")
-if state:find("Resting mini row: form/bonus native flips must not ChildUpdate", 1, true)
-	or state:find("if swap == 0 then", 1, true)
-then
-	-- ok: PACK_MINI skips resting ChildUpdate
-else
-	failures[#failures + 1] = "PACK_MINI must skip ChildUpdate while minis are at rest"
+do
+	local a = state:find("local PACK_MINI =", 1, true)
+	local b = a and state:find("local FORCE_RESET =", a, true)
+	local body = a and b and state:sub(a, b - 1) or ""
+	has(body, 'control:ChildUpdate("state", packed)', "mini inverse click sets follow ordinary page changes")
+	if body:find("if swap == 0 then", 1, true) then
+		failures[#failures + 1] = "resting mini headers must not skip inverse page updates"
+	end
 end
 behavior("bars_contract_regression", "pressAndHold", "State preserves native mouse-up and Forever key-down input")
 if state:find("action-%s*..%s*state", 1, false) and state:find("BakeMain", 1, true) then
@@ -1503,7 +1504,7 @@ do
 	if body:find("AllowUnit(u, macroUnit)", 1, true) then
 		failures[#failures + 1] = "leftover hub mouseover must not ride a non-mouseover macroUnit"
 	end
-	has(body, "widget and MouseoverCastOn()", "plain spells/items range mouseover when the toggle is on")
+	has(body, "MC.RangeUnit(widget, actionType, actionId)", "plain actions range the eligible cast target")
 end
 do
 	-- A no-range answer is unit-dependent (a harmful spell reports nil on a
@@ -1542,7 +1543,7 @@ end
 
 -- The strip probe must follow the overlay face and its @unit.
 do
-	local i = paint:find("local function RangeUnit", 1, true)
+	local i = paint:find("local function CastRangeContext", 1, true)
 	local j = i and paint:find("\nfunction Paint.UpdateChecked", i, true)
 	local body = (i and paint:sub(i, j or #paint)) or ""
 	has(body, "RangeUnit(host)", "strip range resolves a unit")
@@ -1563,7 +1564,7 @@ has(programFace, 'Bars.RequestPaint("bars.count")', "hover overlay count follows
 
 do
 	local ebsPaint = read("../ExtraButtonSystem/Engine/Paint.lua")
-	has(ebsPaint, "R.ResolveUnit(widget, macroUnit)", "Extra buttons share the unit rule")
+	has(ebsPaint, "R.ResolveUnit(widget, macroUnit, shownKind, shownId)", "Extra buttons share the cast unit rule")
 	has(ebsPaint, "if not IsMacroLike(btn) or btn._fluxUtilityGetEntry then widget = btn.Widget end", "macro range keeps explicit unit; native utility retains its widget")
 	has(ebsPaint, "R.CheckSpell(ident, unit)", "Extra buttons share the range memo")
 	local ebsWatch = read("../ExtraButtonSystem/Engine/Watch.lua")
@@ -2634,7 +2635,9 @@ has(restockMatch, "if stacks == 0 then", "GetBagOwnedTier live-walks only when u
 has(restockMatch, "P.tierRefCache", "effective/inferior tiers are cached per bag generation")
 do
 	local i = ufShared:find("function UF.UpdateBorderColors", 1, true)
-	local body = i and ufShared:sub(i, i + 1200) or ""
+	local j = i and ufShared:find("\n-- Unit name on outer border:", i, true)
+	local body = (i and j and ufShared:sub(i, j - 1)) or ""
+	has(body, "function UF.UpdateBorderColors", "unit border color routine boundary exists")
 	if body:find("RAID_CLASS_COLORS[class]", 1, true) then
 		failures[#failures + 1] = "UpdateBorderColors must not index RAID_CLASS_COLORS with raw UnitClass"
 	end
@@ -2865,7 +2868,7 @@ else
 	if park:find(":Hide()", 1, true) then
 		failures[#failures + 1] = "ParkMini must stay shown"
 	end
-	if not park:find(":Show()", 1, true) then
+	if not (park:find(":Show()", 1, true) or park:find("ApplyFaceShown(widget, true,", 1, true)) then
 		failures[#failures + 1] = "ParkMini must Show off-screen"
 	end
 end
@@ -2980,17 +2983,7 @@ do
 	behavior("bars_refresh_regression", "formSettleLanes", "form settle re-paints requested count/cooldown/equipped lanes")
 end
 has(watchSrc, "UPDATE_MOUSEOVER_UNIT", "strip [@mouseover] flips without Extra window macros")
-do
-	local i = watchSrc:find('Ev.Register("GROUP_ROSTER_UPDATE"', 1, true)
-	local body = i and watchSrc:sub(i, i + 160) or ""
-	has(body, 'RequestCond("combat")', "roster flips [group]/[raid], not a [harm] parse")
-	if body:find('RequestCond("target")', 1, true) then
-		failures[#failures + 1] = "GROUP_ROSTER_UPDATE must not Request target"
-	end
-	if body:find('RequestCond("all")', 1, true) then
-		failures[#failures + 1] = "GROUP_ROSTER_UPDATE must not Request all"
-	end
-end
+behavior("bars_refresh_regression", "rosterMacroBatch", "one roster batch retains the current group branch and action slot")
 behavior("bars_refresh_regression", "sharedExtraRefresh", "Watch shares one Extra-face refresh")
 do
 	local i = watchSrc:find('Ev.Register("UPDATE_MOUSEOVER_UNIT"', 1, true)
@@ -3156,7 +3149,7 @@ do
 	local j = initSrc:find("function Bars.Start", 1, true)
 	local body = (i and j and initSrc:sub(i, j - 1)) or ""
 	has(body, "if structural and Bars.Blizzard", "stock-frame sweep is off the page path")
-	has(body, "if fullPaint and Bars.Paint", "a page layout does not full-paint 57 hosts")
+	has(body, "if (fullPaint or dragPaint and moved) and Bars.Paint", "a page layout does not full-paint 57 hosts")
 end
 
 has(layout, "stampedP", "promotion flags stamp only the columns that changed")
@@ -3171,10 +3164,10 @@ do
 	has(body, "ApplySlotsInsecure", "ApplyMappings restamps even when ForceApply is a no-op")
 end
 do
-	local i = layout:find("function Layout.Apply()", 1, true)
+	local i = layout:find("function Layout.Apply(", 1, true)
 	local j = layout:find("function Layout.Request", 1, true)
 	local body = (i and j and layout:sub(i, j - 1)) or ""
-	has(body, "if not moved then", "pet restack and stance rebuild need the strip to have moved")
+	has(body, "if not moved and not stripChanged then", "dependent layout needs a changed pack or repaired strip")
 end
 
 local secretsSrc = readCore("API/Secrets.lua")
@@ -5341,7 +5334,10 @@ do
 	local i = ebsPaint:find("function Paint.FlushCounts", 1, true)
 	local j = ebsPaint:find("function FluxButton:UpdateEmptyBackground", i or 1, true)
 	local body = (i and j and ebsPaint:sub(i, j - 1)) or ""
-	has(body, 'btn.ActionType == "spell"', "bag pulse refreshes spell reagent counts")
+	if not body:find('btn.ActionType == "spell"', 1, true) then
+		has(body, 'local actionType = btn.ActionType', "bag pulse samples the shown action type")
+		has(body, 'local spellFace = actionType == "spell"', "bag pulse refreshes spell reagent counts")
+	end
 	has(body, "not spellFace", "spell reagents ignore changedItemIDs")
 end
 has(ebsPaint, "_fluxGlowSpell", "EBS keep-live glow spell")
@@ -5509,11 +5505,7 @@ has(ebsWatch, "Flux.Bars.ProgramFace", "Extra cond events share the strip hub")
 has(ebsWatch, "RequestTarget", "Extra tab-target [harm] shares the reaction skip")
 has(ebsWatch, "ContextOwnsDisplay", "Extra hops defer to Context when subscribed")
 has(ebsWatch, "local function RequestCond", "Extra cond events coalesce through ProgramFace")
-do
-	local i = ebsWatch:find('Ev.Register("GROUP_ROSTER_UPDATE"', 1, true)
-	local body = i and ebsWatch:sub(i, i + 160) or ""
-	has(body, 'RequestCond("combat")', "Extra roster flips [group], not a full parse")
-end
+behavior("bars_refresh_regression", "rosterMacroBatch", "Extra roster paint shares its indexed batch with the action strip")
 do
 	local i = ebsWatch:find("local function OnPlayerUnit", 1, true)
 	local j = i and ebsWatch:find('Ev.Register("UNIT_SPELLCAST_CHANNEL_START"', i, true)
@@ -5868,10 +5860,11 @@ has(stanceLayout, "matchPetTotalH", "detached stance height matches pet bar")
 has(stanceForms, "AttachReorderControls", "stance left-drag reorder")
 has(stanceForms, "G.NotifySAO", "stance extras register with SAO")
 do
-	local i = stanceLayout:find("function Stance.Anchor", 1, true)
-	local j = i and stanceLayout:find("\nfunction Stance.", i + 10, true)
+	local i = stanceLayout:find("local function AnchorPoint", 1, true)
+	local j = i and stanceLayout:find("\nlocal function HideWidget", i + 10, true)
 	local body = (i and j and stanceLayout:sub(i, j - 1)) or (i and stanceLayout:sub(i)) or ""
-	has(body, 'SetPoint("TOPRIGHT", wf, "TOPLEFT"', "stance detached TOPRIGHT to Flux Window")
+	has(body, 'return "TOPRIGHT", wf, "TOPLEFT"', "stance detached TOPRIGHT to Flux Window")
+	has(body, "SetSinglePoint(frame, AnchorPoint())", "stance applies selected anchor")
 	has(body, "STANCE_WINDOW_GAP_Y", "stance detached uses window Y gap")
 	if body:find("FluxActionStrip", 1, true) then
 		failures[#failures + 1] = "stance detached must not pin to FluxActionStrip"
@@ -6010,7 +6003,7 @@ has(stanceLayout, "_fluxStanceButtonSize = size", "stance layout stamps live but
 behavior("bars_contract_regression", "stanceGeometry", "stance widgets preserve native dimensions and per-axis squeeze")
 has(stanceLayout, "size / native", "stance visual size is widget SetScale")
 has(stanceLayout, "EnsureSlot", "stance packs a visual SlotFrame like Extra Buttons")
-has(stanceLayout, 'SetPoint("CENTER", slot, "CENTER"', "stance widget is centered in the SlotFrame")
+has(stanceLayout, 'SetSinglePoint(btn.Widget, "CENTER", slot, "CENTER"', "stance widget is centered in the SlotFrame")
 behavior("bars_contract_regression", "stanceGeometry", "stance SlotFrame uses configured size and squeeze")
 if stanceLayout:find("ov.SyncSize", 1, true) then
 	failures[#failures + 1] = "stance must not Overlay.SyncSize"
@@ -8206,8 +8199,8 @@ print("  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO cap
 print("  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face")
 print("  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity")
 print("  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail")
-print("  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown")
-print("         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover")
+print("  range: one Flux.Range ticker for strip+Extra+badges; macros range the cast")
+print("         spell against its own @unit; frame-shared memo; bounded mouseover bursts")
 print("  mouseover cast: click-time unit only (no static unit=mouseover); factory tails")
 print("         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover")
 print("  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override")

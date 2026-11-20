@@ -6,6 +6,21 @@ local Inv, Events = Flux.Inventory, Flux.Events
 local F = {}
 A.Followup = F
 local N = A.Number
+
+-- Share the defining carried-count query; replacements keep fresh options.
+local carriedRestockRecord = rawget(ns, "RestockCarriedLiveQuery")
+local carriedRestockFlux = rawget(ns, "Flux")
+local carriedRestockGetter, carriedRestockQuery
+if type(carriedRestockRecord) == "table" and type(carriedRestockFlux) == "table"
+    and rawequal(rawget(carriedRestockRecord, "namespace"), ns)
+    and rawequal(rawget(carriedRestockRecord, "flux"), carriedRestockFlux) then
+    local getter = rawget(carriedRestockRecord, "getter")
+    local query = rawget(carriedRestockRecord, "query")
+    if type(getter) == "function" and type(query) == "function" then
+        carriedRestockGetter, carriedRestockQuery = getter, query
+    end
+end
+
 local listening, refreshing, dispatching, current
 local currentJob, countMemo
 local mailOpen, merchantOpen = false, false
@@ -23,9 +38,17 @@ local function Count(id, charges)
     if not ri or not ri.IsReliable or not ri.IsReliable() or (Inv.IsBagStorm and Inv.IsBagStorm()) then return end
     local memo = countMemo and countMemo[charges == true and 2 or 1]
     if memo and memo[id] ~= nil then return memo[id] end
-    local value = ri.GetLiveCount and N(ri.GetLiveCount(id, {
-        bags = true, bank = false, warband = false, equipped = false, charges = charges == true,
-    }))
+    local value = ri.GetLiveCount
+    if value then
+        local getLiveCount = ri.GetLiveCount
+        if carriedRestockQuery and getLiveCount == carriedRestockGetter then
+            value = N(carriedRestockQuery(id, charges == true))
+        else
+            value = N(getLiveCount(id, {
+                bags = true, bank = false, warband = false, equipped = false, charges = charges == true,
+            }))
+        end
+    end
     if memo then memo[id] = value end
     return value
 end
@@ -565,26 +588,32 @@ function F.Refresh()
     if InCombatLockdown() then if F.Paint then F.Paint(nil) end; return end
     refreshing = true
     local job = Job()
-    countMemo = { {}, {} }
+    -- Only Build consumes these per-refresh counts. An idle job query has
+    -- no counts to memoize, including the bank button's read path.
+    countMemo = job and { {}, {} } or nil
     current = job and Build(job) or nil
-    countMemo, currentJob = nil, Job()
-    if not Job() then automaticAttempt, requestedStage = nil, nil end
+    countMemo, currentJob = nil, job and Job()
+    if not currentJob then automaticAttempt, requestedStage = nil, nil end
     if automaticAttempt and current and current.kind ~= "waiting" and current.kind ~= automaticAttempt.kind then automaticAttempt = nil end
     if requestedStage and (not current or requestedStage ~= current.kind) then requestedStage = nil end
     if current then
         current.contextOpen = F.IsContextOpen(current.kind)
         current.canAct = F.CanAct(current)
     end
-    if not job then bankTargets = {} end
-    local goals = {}
-    for _, entry in ipairs(bankTargets) do goals[entry.itemID] = entry.target end
-    if not SameMap(goals, publishedBankGoals) then
-        publishedBankGoals = goals
-        local bank = _G.FluxBankRestock
-        if bank and bank.InvalidateCanRunCache then bank.InvalidateCanRunCache() end
-        if bank and bank.RunFastButtonRefresh then bank.RunFastButtonRefresh() end
+    if not job and next(bankTargets) then bankTargets = {} end
+    local hadBankGoals = next(publishedBankGoals) ~= nil
+    if hadBankGoals or next(bankTargets) then
+        local goals = {}
+        for _, entry in ipairs(bankTargets) do goals[entry.itemID] = entry.target end
+        if not SameMap(goals, publishedBankGoals) then
+            publishedBankGoals = goals
+            local bank = _G.FluxBankRestock
+            if bank and bank.InvalidateCanRunCache then bank.InvalidateCanRunCache() end
+            if bank and bank.RunFastButtonRefresh then bank.RunFastButtonRefresh() end
+        end
     end
-    Listen(Job() ~= nil)
+    -- An idle pass with no published goals has run no job-changing callbacks.
+    Listen((job ~= nil or hadBankGoals) and Job() ~= nil)
     refreshing = nil
     if F.Paint then F.Paint(current) end
     local state = current

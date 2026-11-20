@@ -1,5 +1,5 @@
 -- FluxUnitFrames_PetAuraTooltip.lua
--- Embed pet buff/debuff icons + cooldown countdown inside the Flux unit tooltip
+-- Embed pet buff/debuff icons + cooldown countdown inside Blizzard's GameTooltip
 -- shown on pet-frame mouseover. Icons are non-mouse so they cannot dismiss the tip.
 local addonName, ns = ...
 
@@ -18,7 +18,7 @@ local ROW_GAP = 2
 local PAD = 4
 local LINE_PX = 12 -- approximate tooltip line height for spacer reserve
 
-local unitTooltip -- The Flux-owned unit tooltip; never the world-cursor tooltip.
+local unitTooltip -- Blizzard's shared tooltip; Flux ownership is kept in UF.
 local host -- child of unitTooltip
 local buffButtons = {}
 local debuffButtons = {}
@@ -222,16 +222,7 @@ local function EnsureHost()
         debuffButtons[i] = CreateAuraIcon(host, i, "Debuff")
     end
 
-    if not unitTooltip._fluxPetAuraHideHooked then
-        unitTooltip._fluxPetAuraHideHooked = true
-        unitTooltip:HookScript("OnHide", function()
-            -- Ignore hide during SetUnit/rebuild; only clear when tip is truly dismissed.
-            if unitTooltip._fluxUnitTipRebuilding then return end
-            if shown then
-                UF.HidePetAuraTooltip()
-            end
-        end)
-    end
+    -- The shared UF lifecycle clears these children on hide, clear or SetOwner.
 
     pendingCreate = false
     return host
@@ -561,7 +552,7 @@ function UF.ShowPetAuraTooltip()
     if not ShouldShow() then return end
     if not UnitExists("pet") then return end
     unitTooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(false)
-    if not unitTooltip or unitTooltip:IsForbidden() then return end
+    if not unitTooltip or unitTooltip:IsForbidden() or not UF.IsUnitTooltipOwner() then return end
     if not unitTooltip:IsShown() then return end
 
     shown = true
@@ -580,13 +571,13 @@ function UF.ShowPetAuraTooltip()
     local blockH = AuraBlockHeight(#buffs, #debuffs)
 
     -- SetUnit already ran; append spacers into this tip then paint icons inside it.
-    unitTooltip._fluxUnitTipRebuilding = true
+    UF.UnitTooltipState.rebuilding = true
     ReserveTooltipSpace(unitTooltip, blockH)
     unitTooltip:Show()
     if ns.ApplyHUDTooltipPosition then
         ns.ApplyHUDTooltipPosition(unitTooltip)
     end
-    unitTooltip._fluxUnitTipRebuilding = nil
+    UF.UnitTooltipState.rebuilding = nil
 
     PaintIntoTooltip()
 end
@@ -658,12 +649,11 @@ function UF.ShowUnitTooltip(anchorFrame, unit, fromUpdate)
     end
 end
 
-function UF.HideUnitTooltip(owner)
-    local tooltip = UF.GetUnitTooltip and UF.GetUnitTooltip(false)
-    if owner and tooltip and tooltip._fluxUnitTipOwner ~= owner then return end
+function UF.HideUnitTooltip(owner, fade)
+    if not UF.IsUnitTooltipOwner(owner) then return end
     UF.HidePetAuraTooltip()
     if _origHide then
-        _origHide(owner)
+        _origHide(owner, fade)
     end
 end
 

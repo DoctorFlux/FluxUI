@@ -2,6 +2,13 @@
 
 Change: `TRADESKILL-CAST-THEMES-20261110`, 10 November 2026.
 
+16 November follow-up: successful unit-frame crafts now release their active
+profession animation/flare and show the common plain green completion fill.
+Active crafting and the shared/native-nameplate Finish owner are preserved.
+This supersedes unit-frame hold/fade artwork retention below; see
+[the current completion contract](CAST_COMPLETION.md).
+
+
 Tradeskill casts previously bypassed the spell-school renderer and retained the
 ordinary fill. They now use the animated artwork from Blizzard's profession
 level bar when the installed client supplies it. This intentionally changes

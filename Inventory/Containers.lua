@@ -747,27 +747,37 @@ end
 --- Diff one bag's old and new slot records into `touched`, and add new minus
 --- old count per item ID into `delta`.
 function C.DiffSlots(oldSlots, newSlots, touched, delta)
-	if type(oldSlots) == "table" then
+	oldSlots = type(oldSlots) == "table" and oldSlots or nil
+	newSlots = type(newSlots) == "table" and newSlots or nil
+	local reuseOldTouches = oldSlots and newSlots
+		and getmetatable(oldSlots) == nil and getmetatable(newSlots) == nil
+	if oldSlots then
 		for slot, rec in pairs(oldSlots) do
 			local id = rec.itemID
-			local new = type(newSlots) == "table" and newSlots[slot]
+			local new = newSlots and newSlots[slot]
 			if not new or not SameRecord(rec, new) then
 				touched[id] = true
 			end
 			delta[id] = (delta[id] or 0) - (rec.count or 1)
 		end
 	end
-	if type(newSlots) == "table" then
+	if newSlots then
 		for slot, rec in pairs(newSlots) do
 			local id = rec.itemID
-			local old = type(oldSlots) == "table" and oldSlots[slot]
-			if not old or not SameRecord(rec, old) then
+			local old = oldSlots and oldSlots[slot]
+			-- For snapshot maps the old pass already marked any same-ID
+			-- count or link edit. Only a new slot or identity needs a mark.
+			if not old or (reuseOldTouches and old.itemID ~= id)
+				or (not reuseOldTouches and not SameRecord(rec, old)) then
 				touched[id] = true
 			end
 			delta[id] = (delta[id] or 0) + (rec.count or 1)
 		end
 	end
 end
+
+-- The private namespace vouches for this exact owner and read-only helper.
+ns.InventorySlotDiff = { owner = C, diff = C.DiffSlots }
 
 function C.ChangedFromDelta(delta)
 	local changed = {}

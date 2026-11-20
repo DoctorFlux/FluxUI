@@ -1,0 +1,950 @@
+{
+  "changeId": "COMBAT-CALLBACK-WORK-20261116",
+  "recordedAtUTC": "2026-11-17T01:48:56.414118+00:00",
+  "goalStatus": "ACTIVE",
+  "status": "R58three private allocations elided after accepted fixed140cell gate; fresh fullLua54 512/1202PASS. Retained empty51regression/native limits explicit.",
+  "nativeRestriction": "Explicit user release; current guarded native diagnostic admission restricted to Mario main client and Root only. Bank entirely excluded.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-offline-before-20261116T203110Z",
+  "checkpointSourceFiles": 3022,
+  "historyVerified": true,
+  "settingsEvidence": "Eight previously verified historical metadata entries retained; no current settings/private-data reads or copies under the user hold.",
+  "requirements": [
+    {
+      "id": "CW01",
+      "requirement": "Remove portrait protected-callback allocation while retaining every current lookup, native call, camera order, error boundary and timer.",
+      "state": "APPLIED. Private scoped callback bodies preserve protected lookups, native calls, camera order, returns/errors and timers; full modeled producer proof, seven controls and declared cost gate pass."
+    },
+    {
+      "id": "CW02",
+      "requirement": "Reduce party/raid range-discovery allocation without skipping native queries, updates, errors, ticker starts/stops or recovery.",
+      "state": "APPLIED/INTEGRATED.175checks perVM,85matching full-method stage traces across five client models;five compiled harmful controls;8affected regressions;declared cost gate pass."
+    },
+    {
+      "id": "CW03",
+      "requirement": "Prevent superseded border refresh wakes from multiplying after explicit layout commits while preserving useful locked/readiness/error/reentry recovery.",
+      "state": "STAGED ONLY. R55 external prototype passes328checks perVM,80exact parity records and6controls perVM. Current Core changed to shadow-support-r56 during rebase, then changed again before staging; guards stopped without writing. No current-Core timer fix/acceptance claimed."
+    },
+    {
+      "id": "CW04",
+      "requirement": "Keep all native tests and inspection suspended until explicit user release.",
+      "state": "ENFORCED; offline source and standalone proof only."
+    }
+  ],
+  "range": {
+    "file": "RaidFrame/FluxRaidUnit.lua",
+    "beforeNormalizedSHA256": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f",
+    "afterNormalizedSHA256": "6d208e523d1e28d1d63276d3f7bcea94d583ab4af0f24d9979772a08049b2124",
+    "change": "Hoist the two private discovery helper bodies; all values remain per-call arguments/current global lookups. Fresh ticker callback identity and original 250ms interval retained.",
+    "functional": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\raid-range-owner-r1\\functional-proof.json",
+    "functionalScope": "Actual full Compat/Unit methods across five client models;110checks perVM/85matching traces;five harmful controls rejected.",
+    "cost": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\raid-range-owner-r1\\cost-final.json",
+    "costProtocol": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\raid-range-owner-r1\\cost-protocol.json",
+    "costScope": "96freshprocess cost cells, three alternating pairs/VM/scenario; other owned executable jobs paused; setup/warmup/fullGC outside CPU span; separate stoppedGC allocation and startup/live/retained heap. Not whole roster/native performance.",
+    "limitations": "Lua54 native-supported median+1.512% and hidden+0.694% retained; activefallback CPU medians -46.209%51/-36.391%54. Active allocation664.0625to0KiB/5000calls. Some active cells below approximate0.3s target but above200clockticks; no post-result retiming. All raw samples retained.",
+    "integration": "Durable175checks perVM includingfivecompiled controls;85positive full-method stage traces;8affected scripts pass. Existing discovery fixture only updates helper-prefix extraction and same control rename targets.",
+    "integrationReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\raid-range-owner-r1\\durable-integration-final.json",
+    "finalIdentities": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\raid-range-owner-r1\\durable-final-stage.json"
+  },
+  "unsafeSimplificationsRejected": [
+    "Do not drop immediate Party.StyleText solely because the normal owned outer path also calls it: overrides, early exits and error recovery remain.",
+    "Do not drop the second pet outer pass: partition early returns and foreign frame methods retain distinct recovery semantics."
+  ],
+  "globalAcceptance": "ACTIVE/OPEN. Source/model R58gate accepted; native loaded source/combat/group/FPS/latency/taint/pixels unproved. R57CITY sample is historical, not A/B gain. Bank entirely excluded.",
+  "publication": "Main only; no commit, push, branch, reset or manual install sync.",
+  "identities": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "before": {
+        "raw": "593135aac06983c4a5349b33decdce2b40c23dee6be9fe483024ff20f0b9dc72",
+        "normalized": "94dd868dc7363a75a3afce937266d336f3f808e0cf127f8c163e3e54a690c95f"
+      },
+      "after": {
+        "raw": "10b30ee4ebdbcfe9bdde702951e5e3eed9672d0912b7545ffce55ea23b60f7ee",
+        "normalized": "12790f7c47ecf45b4cd4c4ef404fe7705eef4d6f140f43f8740e34dc3b79715d"
+      }
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "before": {
+        "raw": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f",
+        "normalized": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f"
+      },
+      "after": {
+        "raw": "6d208e523d1e28d1d63276d3f7bcea94d583ab4af0f24d9979772a08049b2124",
+        "normalized": "6d208e523d1e28d1d63276d3f7bcea94d583ab4af0f24d9979772a08049b2124"
+      }
+    },
+    "tests/raid_range_helper_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "a0dafc257e7fdd2c596aef23e1eae599d524c72db47dd21fae9676d81339bbc6",
+        "normalized": "a0dafc257e7fdd2c596aef23e1eae599d524c72db47dd21fae9676d81339bbc6"
+      }
+    },
+    "tests/raid_range_discovery_work.lua": {
+      "before": {
+        "raw": "c6894c36451f0c9b8c9fc107b03b236a63f7fadd0b20c25ffd7bb4e400a890cc",
+        "normalized": "c6894c36451f0c9b8c9fc107b03b236a63f7fadd0b20c25ffd7bb4e400a890cc"
+      },
+      "after": {
+        "raw": "8daf94ee7c0702843bcf4c44949299a0f64521e98553af4e38906f398ca3a223",
+        "normalized": "8daf94ee7c0702843bcf4c44949299a0f64521e98553af4e38906f398ca3a223"
+      }
+    },
+    "tests/unit_portrait_callback_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "a0f7a64f165a87da01c068aa815cac536c3d21fb670e8713995cbc018d9eed1c",
+        "normalized": "a0f7a64f165a87da01c068aa815cac536c3d21fb670e8713995cbc018d9eed1c"
+      }
+    },
+    "tests/idle_units.lua": {
+      "before": {
+        "raw": "79124792b87ecf05206ddff1e9daea2ea7ce88172367ef51f85f3756ebeaf863",
+        "normalized": "79124792b87ecf05206ddff1e9daea2ea7ce88172367ef51f85f3756ebeaf863"
+      },
+      "after": {
+        "raw": "144ca3f06451a770c0ccb24a7180989a388b026da5591b02f82f77c30a1fda49",
+        "normalized": "144ca3f06451a770c0ccb24a7180989a388b026da5591b02f82f77c30a1fda49"
+      }
+    },
+    "tests/idle_unit_geometry.lua": {
+      "before": {
+        "raw": "867f4caa440ee23cc298f31a4c698953439c7a701c23741bf90493775c9b4ff4",
+        "normalized": "867f4caa440ee23cc298f31a4c698953439c7a701c23741bf90493775c9b4ff4"
+      },
+      "after": {
+        "raw": "f2f98a8f87985cdc7921a54e9bc432bff9ea1d2b83e6aa4c1a6a30203f2fd33d",
+        "normalized": "f2f98a8f87985cdc7921a54e9bc432bff9ea1d2b83e6aa4c1a6a30203f2fd33d"
+      }
+    },
+    "tests/party_native_contracts.lua": {
+      "before": {
+        "raw": "a94e4316b2302d3e8eb10cf99094ce2836f6d954b777ce91bc59162d1420608c",
+        "normalized": "a94e4316b2302d3e8eb10cf99094ce2836f6d954b777ce91bc59162d1420608c"
+      },
+      "after": {
+        "raw": "d61c2d6f8c9a71d12a249061f4a303fde519617a307a3f55cfd33553be1ab45f",
+        "normalized": "d61c2d6f8c9a71d12a249061f4a303fde519617a307a3f55cfd33553be1ab45f"
+      }
+    },
+    "tests/support/unit_portrait_callback_model.txt": {
+      "before": null,
+      "after": {
+        "raw": "490594cfc2fa3cbe8de5da905a24ade7041914ec14f144de98e3b6da99082b31",
+        "normalized": "490594cfc2fa3cbe8de5da905a24ade7041914ec14f144de98e3b6da99082b31"
+      }
+    },
+    "tests/support/unit_portrait_callback_before.txt": {
+      "before": null,
+      "after": {
+        "raw": "ba2939fc3ba4b7c24cc400a536027969b9695511050c904df0f657df5a5714b7",
+        "normalized": "ba2939fc3ba4b7c24cc400a536027969b9695511050c904df0f657df5a5714b7"
+      }
+    },
+    "Core/BorderJunctions.lua": {
+      "beforeR57": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-shadow-wake-current-20261116T213130Z\\baseline-Core.lua",
+        "rawSha256": "825e54726aff61994047a6b5caec6ba730de1e23325e9a7e9439102082bc0df2",
+        "normalizedSha256": "7a13ae78f4fe5fb766db09aa562d6d10d79150847abbff7031881ec7b66e529d",
+        "bytes": 196776
+      },
+      "appliedAndTestedR57": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+        "rawSha256": "12d62d26e5f2467e1acae4827b0e36290d466ec709c898a5b206af7aa6fff8b7",
+        "normalizedSha256": "b8e0fac331afa27d5e5f8f8dad6ae46f35e1e1cf67df01f68a31a0d437060bc3",
+        "bytes": 197482,
+        "crlf": 3763
+      },
+      "laterUnrelatedHeadObservation": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+        "rawSHA256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "normalizedSHA256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+        "bytes": 198450
+      },
+      "qualification": "Preserved newer edits; R57 later-head scoped replay pending; same diagnostic version is not an exact source/native identity."
+    },
+    "tests/border_wake_ownership.lua": {
+      "before": null,
+      "after": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_wake_ownership.lua",
+        "rawSHA256": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+        "normalizedSHA256": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+        "bytes": 16863
+      }
+    }
+  },
+  "followupCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-offline-before-20261116T205226Z",
+  "followupCheckpointFiles": 3024,
+  "portrait": {
+    "file": "UnitFrames/FluxUnitFrames_Shared.lua",
+    "beforeNormalizedSHA256": "94dd868dc7363a75a3afce937266d336f3f808e0cf127f8c163e3e54a690c95f",
+    "afterNormalizedSHA256": "12790f7c47ecf45b4cd4c4ef404fe7705eef4d6f140f43f8740e34dc3b79715d",
+    "change": "Four private protected callback bodies receive per-call arguments; current method/self.Portrait reads remain inside original pcall boundaries. All refresh/recovery/finite timers retained; balanced do scopes avoid top-level local limit.",
+    "functional": "114scenarios/105623 durable checks perVM, including seven compiled harmful controls;external pre-integration gate105609checks perVM. Actual camera/CreatePortrait/UpdatePortrait/SyncGeometry/fullPartition/Pet producer traces and current swaps/errors/fallbacks covered.",
+    "callbackIdentityWork": "20repeated fullcalls129to13 distinct protected callbacks, identical full trace; not a native CPU or retained-memory result.",
+    "existingFixtures": "Five fixtures pass baseline/candidate on bothVMs;three extractor-only adapters retain assertions/controls.",
+    "independentReview": "group_audit read-only source review found no material regression.",
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\portrait-callbacks\\report.json",
+    "installedFocusedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\portrait-callbacks\\installed-focused.json",
+    "costSummary": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\portrait-callbacks\\cost-summary.json",
+    "rawCost": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\portrait-callbacks\\cost-raw.json",
+    "protocol": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\portrait-callbacks\\cost-gate.json",
+    "measurementScope": "48freshprocess cells;three alternating pairs/case/VM. Compile/load/fixture/50warmups/fullGC excluded from CPU. Separate stoppedGC1000/5000call windows fit two-point allocation slope;timer resolution measured. Same queued finite timers remain pending during steady-body loop;timers independently functionally checked. Not whole-workflow/native timing.",
+    "limitations": "51empty median CPU+3.398%,including one+9.338%pair;54 2D/3D/max each has one slower pair. Startup postwarm retained delta+345B51/+393B54 singlefixture,+1398/+1947B maxmodel;not helper-only/native/entire-process heap proof.3D slopes51 943.448to0.036B/fullcall,54 920to0;residuals/intercepts retained.",
+    "cpuMetrics": "Ratio of raw CPU medians and median paired percent changes are different estimands;both raw samples and summaries retained. No blanket speedup claim."
+  },
+  "borderWake": {
+    "installed": true,
+    "version": "shadow-wake-owner-r57",
+    "evidence": "docs/validation/border-wake-owner-r57-2026-11-17.json",
+    "testedCoreNormalizedSHA256": "b8e0fac331afa27d5e5f8f8dad6ae46f35e1e1cf67df01f68a31a0d437060bc3",
+    "currentCoreNormalizedSHA256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+    "sameVersionDoesNotProveExactHeadOrNativeAdoption": true,
+    "strictFunctional": {
+      "candidateChecksPerVM": 328,
+      "baselineReproductionChecksPerVM": 334,
+      "scenariosPerVM": 40,
+      "VMs": [
+        "Lua5.1",
+        "Lua5.4"
+      ],
+      "strictBaselineCandidateComparisons": 80,
+      "installedExternalComparisons": 80,
+      "negativeControlsPerVM": 6,
+      "meshFormat": "17significantdigits, exact double round-trip",
+      "modeledErrorMessages": "exact string equality",
+      "getterComparison": "complete fixture getter invocation sequence; scalar/native-object map order canonicalized only in model",
+      "compilerMaxUpvalues": {
+        "Lua51Runtime": 54,
+        "Lua54Runtime": 55
+      },
+      "installedIntegrationJobs": 32,
+      "stableIntegrationDependencies": 14,
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-shadow-wake-current-20261116T213130Z\\installed-integration-20261116T214619Z\\report.json"
+    },
+    "modeledWork": {
+      "commitAndNewBurst": {
+        "FlushEntries": [
+          7,
+          5
+        ],
+        "AfterArms": [
+          3,
+          2
+        ],
+        "actualBuildsReadsSolves": [
+          3,
+          3
+        ],
+        "getterCallsEach": 729,
+        "renderedFieldsEach": 18,
+        "consumptionTimesUnchanged": [
+          0.02,
+          0.07
+        ]
+      },
+      "lockedStale": {
+        "FlushEntries": [
+          8,
+          5
+        ],
+        "structuralRequests": [
+          4,
+          3
+        ]
+      },
+      "limits": "Counts describe deterministic standalone models. No R57 CPU/allocation benchmark, native latency/FPS gain, native pixels/taint acceptance or loaded adoption claim."
+    },
+    "nativeAttemptSnapshot": {
+      "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+      "basis": "Root-confirmed command/visual/persistence metadata and existing extracted report; no native action by documentation agent",
+      "permission": "Root-only Mario main client; Bank entirely excluded",
+      "completedCF57": "mainowned-a3 expired and retained; old spikeWatch restored",
+      "currentFutureWatch": {
+        "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+        "state": "No second watch active as last Root confirmation; CF58 controller prepared only",
+        "id": "cf58-mainowned-a1",
+        "requestedFutureSeconds": 600,
+        "controllerCharacters": 246,
+        "controllerSHA256": "dd54399f0ae15f172966396c9f952ef9789107ba2013b7a009e1fa4486c7f07b",
+        "backgroundPreflight": "Timed out at foregroundmainidle5.9held[]",
+        "inputSent": false,
+        "commandSubmitted": false,
+        "journalCreated": false,
+        "leaseCreated": false,
+        "watchArmed": false,
+        "nextAdmission": "Pending a fresh Root-confirmed background opportunity; never infer armed state from preparation"
+      },
+      "currentWatchArmed": false,
+      "nativePerformanceTest": "One CITY/UI finite watch completed; no combat/group/FPS acceptance or A/B gain",
+      "nativeVersionEvidence": "r57 family only; exact loaded hash unproved"
+    },
+    "limits": "Original full502/1192gate remains b8e snapshot only. Later2444 scoped10 effective PASS preserves initial4fixture failures and external correction. Native r57family CITY/UI cost is not exacthash/combat/group/FPS/A-B acceptance.",
+    "nativeStateHistory": [
+      {
+        "recordedAtUTC": "2026-11-16T23:36:05.056274+00:00",
+        "basis": "Latest Root coordination instruction only; no native journal/client read by documentation agent",
+        "permission": "Mario main-client guarded diagnostics only; Root sole native owner; Bank entirely excluded",
+        "watchArmed": false,
+        "nativePerformanceTest": "NOT RUN",
+        "current": {
+          "id": "mainowned-a1",
+          "state": "Background preflight timed out at foregroundmainheld[2]; source/controller prepared, not submitted",
+          "inputSent": false,
+          "commandSubmitted": false,
+          "journalCreated": false,
+          "leaseCreated": false,
+          "commandCharacters": 227,
+          "controllerSHA256": "921a548d5956e57623055d166d4bf85f3af00b1359daae68da4fe9af87d365e0",
+          "ttlSeconds": 180,
+          "controllerPreservesPreviousRoot": "SV.CF57",
+          "preservedFiles": [
+            ".CF57hold",
+            ".CF57prev"
+          ],
+          "preservedFilesState": "Untouched, per Root",
+          "userCoordination": "Asynchronous Ready response pending, per Root"
+        },
+        "previous": {
+          "ids": [
+            "cf57-mainarm-a1",
+            "mainarm-a2",
+            "mainarm-a3"
+          ],
+          "successfulCommands": 0,
+          "a1": "Source expired without success/input acknowledgment",
+          "a2": "Physical-input guard stopped admission",
+          "a3": "No successful command established",
+          "leases": "All previous leases released or expired, per Root"
+        },
+        "refreshBeforeFutureNativeAdmission": "Root must freshly attest current client/world/foreground/input/ownership; preparation/version/permission is not submission, adoption or performance evidence."
+      }
+    ],
+    "nativeObservation": {
+      "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-cf57-capture-20261116\\report-0.json",
+        "rawSHA256": "28a6ccbefc65780322a7f173723b2ac8ce8addac203bdffe7f09af6f83c40968",
+        "normalizedSHA256": "054b222ee513ba2078bf6cd8787035fc0063bcb82b9ed48ca913011b37c179ef",
+        "bytes": 32475
+      },
+      "sourceMetadataReport": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-cf57-capture-20261116\\sources.json",
+        "rawSHA256": "14c6168d4338a01b5e17a1e912875f3bf53576ca2133378cb1efb5dda2e752b8",
+        "normalizedSHA256": "b560870895e6f31ec0ec89daceab3a05647d1024fbd2261b10dc7a3e9db1e52a",
+        "bytes": 808
+      },
+      "mode": "Finite native spike watch; CITY crafting/travel/UI activity; single observational sample, no A/B control",
+      "arm": {
+        "id": "mainowned-a3",
+        "epoch": 1794872215,
+        "secondsRequested": 180,
+        "visualWatchingLineNewAndAttested": true,
+        "evidenceBasis": "Root visual attestation; not a client inspection by documentation agent"
+      },
+      "status": "expired",
+      "seconds": 180.00900000002,
+      "retainedGaps": 36,
+      "slowCallbacks": 4,
+      "observedCallbacks": 11631,
+      "errorsBefore": 0,
+      "errorsAfter": 0,
+      "scriptProfile": "0",
+      "SetCVarCalls": 0,
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "clientVersion": "1.60.1",
+      "clientBuild": "70938",
+      "capturedAtLiteral": "2026-11-17 00:36:54",
+      "capturedAtTimezone": "Not encoded in report; do not infer timezone from this literal",
+      "gapThresholdMs": 50,
+      "peakFrameGapMs": 1134.000062942505,
+      "largestObservedCallbackMs": 124.0928999781609,
+      "borderPeak": {
+        "total": 124.0745000243187,
+        "kind": "build",
+        "borderVersion": "shadow-wake-owner-r57",
+        "phases": {
+          "align": 0.2133000493049622,
+          "commit": 49.54460000991821,
+          "geometry": 14.63299995660782,
+          "plan": 39.59570002555847,
+          "preflight": 0.1227999925613403,
+          "solve": 19.96509999036789
+        },
+        "commitPhases": {
+          "fallbacks": 8.602800011634827,
+          "fragments": 7.594500005245209,
+          "mesh": 31.07049995660782,
+          "retire": 0.7297000288963318
+        },
+        "planPhases": {
+          "branches": 8.398800015449524,
+          "cuts": 6.803400039672852,
+          "fallbackCells": 1.803699970245361,
+          "fallbackMesh": 20.13920003175736,
+          "owners": 2.287699997425079,
+          "rest": 0.1609999537467957
+        },
+        "operations": 188,
+        "fragments": 284,
+        "triangles": 3346,
+        "sourceReads": 291,
+        "sourceHits": 346,
+        "baseHits": 73,
+        "baseMisses": 2,
+        "fallbackHits": 2021,
+        "fallbackMisses": 21,
+        "fallbackPlanHits": 59,
+        "fallbackPlanMisses": 16,
+        "fallbackProbes": 1230
+      },
+      "borderLast": {
+        "total": 0.04440003633499146,
+        "kind": "unchanged",
+        "borderVersion": "shadow-wake-owner-r57",
+        "phases": {
+          "preflight": 0.04440003633499146
+        }
+      },
+      "retainedCombatGaps": 0,
+      "combatGapBasis": "Root retained-gap classification; no transition counters in the report",
+      "transitionCountersAvailable": false,
+      "zeroCombatGapsDoesNotProveZeroTransitions": true,
+      "preservation": {
+        "oldReportRestored": true,
+        "newReportRetained": true,
+        "backupStillPresent": true,
+        "CF57prevPresent": false,
+        "CF57prevUntouched": true,
+        "oldSpikeWatchDeepEqualsCF57holdOld": true,
+        "ownCF57resultDeepEqualsCF57holdNew": true,
+        "deepCompareBasis": "Root-owned extraction and deep comparisons; no private table copied here"
+      },
+      "retentionAndPersistence": {
+        "retainCommand": "main-retain-a1",
+        "visualNewCF57savedAttested": true,
+        "retainedLocation": ".CF57result",
+        "previousReportRestored": true,
+        "flushCommand": "mainflush-a1",
+        "sentOnlyIfNoCombatCastingOrChannel": true,
+        "visualNewLoadingAttested": true,
+        "transportJournalCommandAcknowledged": false,
+        "transportAckReason": "Post-action PNG showed Loading rather than NEW CF57 text",
+        "freshDiskReloadSaveProven": true,
+        "persistenceBasis": "Root fresh capture*.json modification-time metadata plus matching retained CF57result; separate from transport acknowledgment"
+      },
+      "sourceAdoption": "Observed borderVersion shadow-wake-owner-r57 family only; no exact loaded-hash adoption proof",
+      "nativeAcceptance": "No combat/group transition coverage, FPS, native pixel/taint acceptance or A/B improvement established",
+      "BankCommands": 0,
+      "allNativeCommandsMainClientOnly": true,
+      "preferences": "scriptProfile0; no SetCVar; maxFPS120/maxFPSBk30 preserved, per report and Root"
+    },
+    "laterHeadFocusedValidation": {
+      "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+      "status": "PASS effective five scripts on both Lua5.1/Lua5.4; two current Core compiler checks PASS",
+      "Core": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+        "rawSHA256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "normalizedSHA256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+        "bytes": 198450
+      },
+      "initial": {
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\r57-later-head-focused-20261116\\report.json",
+          "rawSHA256": "9b859502fd1b7ea5d00934ae04d0071ae5346c1eebcac708c31c87a945d102aa",
+          "normalizedSHA256": "75746d8a65f9352e3b96afa93ee3cb7595bebef5955e95b2e00b04cfe9d4f8ee",
+          "bytes": 521991
+        },
+        "pass": 6,
+        "fail": 4,
+        "failureScope": "Four Lua5.1 fixture load signature failures before production execution; original outputs retained, not relabeled",
+        "sourcePins": 1200,
+        "hashes": "Raw and LF identities before/after; all1200Lua stable",
+        "changed": []
+      },
+      "corrected": {
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\r57-later-head-focused-20261116\\compatible-report.json",
+          "rawSHA256": "9845044901e0eb707d5985dd2c4832b1ec99832792a4ddcff224aa243377711a",
+          "normalizedSHA256": "e1d66f6acde7794a82192a826c85ee09dee3c2b9b32ea657ded57a00dffde77f",
+          "bytes": 11044
+        },
+        "scope": "External Lua5.1 loader wrapper only; no installed runtime/test source change",
+        "wrapperSHA256": "254439d7f8ee979539821764418f251ba584cfe213025cefee1e1d160f3422e5",
+        "correctedTestsPassed": 4,
+        "compilerChecksPassed": 2,
+        "stableRawPins": {
+          "Lua": 8,
+          "TGA": 33
+        },
+        "changed": []
+      },
+      "effectiveTestRuns": 10,
+      "checksPerVM": {
+        "border_wake_ownership": 328,
+        "border_combat_transitions": 20,
+        "border_observer_refresh": 63,
+        "border_shadow_material": 111147,
+        "border_junction_shadows": 486467
+      },
+      "shadowScenesPerVM": 56,
+      "shadowFootprintSamplesPerVM": 240576,
+      "limits": "Scoped current2444 proof only; not a new full502/1192gate or native rendering/performance acceptance"
+    }
+  },
+  "validation": {
+    "pass": 502,
+    "fail": 0,
+    "syntaxFiles": 1192,
+    "syntaxFailures": 0,
+    "failures": [],
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-wake-full.json",
+    "stability": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-wake-full-stability.json",
+    "changedDuringRun": [],
+    "supportArtChangesDuringRun": [],
+    "stableLuaPins": 1192,
+    "stableSupportArtPins": 38,
+    "testedCoreNormalizedSHA256": "b8e0fac331afa27d5e5f8f8dad6ae46f35e1e1cf67df01f68a31a0d437060bc3",
+    "testNormalizedSHA256": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+    "snapshotScope": "Exact b8e full-gate source pins only;1192Lua+38support/art stable during that historical gate. Later current2444 head is not covered by these counts.",
+    "laterHeadFocusedReplay": {
+      "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+      "status": "PASS effective five scripts on both Lua5.1/Lua5.4; two current Core compiler checks PASS",
+      "Core": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+        "rawSHA256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "normalizedSHA256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+        "bytes": 198450
+      },
+      "initial": {
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\r57-later-head-focused-20261116\\report.json",
+          "rawSHA256": "9b859502fd1b7ea5d00934ae04d0071ae5346c1eebcac708c31c87a945d102aa",
+          "normalizedSHA256": "75746d8a65f9352e3b96afa93ee3cb7595bebef5955e95b2e00b04cfe9d4f8ee",
+          "bytes": 521991
+        },
+        "pass": 6,
+        "fail": 4,
+        "failureScope": "Four Lua5.1 fixture load signature failures before production execution; original outputs retained, not relabeled",
+        "sourcePins": 1200,
+        "hashes": "Raw and LF identities before/after; all1200Lua stable",
+        "changed": []
+      },
+      "corrected": {
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\r57-later-head-focused-20261116\\compatible-report.json",
+          "rawSHA256": "9845044901e0eb707d5985dd2c4832b1ec99832792a4ddcff224aa243377711a",
+          "normalizedSHA256": "e1d66f6acde7794a82192a826c85ee09dee3c2b9b32ea657ded57a00dffde77f",
+          "bytes": 11044
+        },
+        "scope": "External Lua5.1 loader wrapper only; no installed runtime/test source change",
+        "wrapperSHA256": "254439d7f8ee979539821764418f251ba584cfe213025cefee1e1d160f3422e5",
+        "correctedTestsPassed": 4,
+        "compilerChecksPassed": 2,
+        "stableRawPins": {
+          "Lua": 8,
+          "TGA": 33
+        },
+        "changed": []
+      },
+      "effectiveTestRuns": 10,
+      "checksPerVM": {
+        "border_wake_ownership": 328,
+        "border_combat_transitions": 20,
+        "border_observer_refresh": 63,
+        "border_shadow_material": 111147,
+        "border_junction_shadows": 486467
+      },
+      "shadowScenesPerVM": 56,
+      "shadowFootprintSamplesPerVM": 240576,
+      "limits": "Scoped current2444 proof only; not a new full502/1192gate or native rendering/performance acceptance"
+    },
+    "r57InstalledIntegrationReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-shadow-wake-current-20261116T213130Z\\installed-integration-20261116T214619Z\\report.json",
+    "r57Evidence": "docs/validation/border-wake-owner-r57-2026-11-17.json",
+    "documentationBuild": "NOT RUN in this documentation update; Root will regenerate after capture."
+  },
+  "finalPostcheck": {
+    "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+    "scope": "Curated documentation update from Root-owned source/native artifacts; no new source/compiler/test/native operation by documentation agent",
+    "currentCore": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+      "rawSHA256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+      "normalizedSHA256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+      "bytes": 198450
+    },
+    "currentTest": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_wake_ownership.lua",
+      "rawSHA256": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+      "normalizedSHA256": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+      "bytes": 16863
+    },
+    "laterHeadFocusedReplay": "Effective10PASS plus2Core compilers; original6PASS/4Lua51fixture failures retained",
+    "native": {
+      "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+      "basis": "Root-confirmed command/visual/persistence metadata and existing extracted report; no native action by documentation agent",
+      "permission": "Root-only Mario main client; Bank entirely excluded",
+      "completedCF57": "mainowned-a3 expired and retained; old spikeWatch restored",
+      "currentFutureWatch": {
+        "recordedAtUTC": "2026-11-16T23:57:25.195785+00:00",
+        "state": "No second watch active as last Root confirmation; CF58 controller prepared only",
+        "id": "cf58-mainowned-a1",
+        "requestedFutureSeconds": 600,
+        "controllerCharacters": 246,
+        "controllerSHA256": "dd54399f0ae15f172966396c9f952ef9789107ba2013b7a009e1fa4486c7f07b",
+        "backgroundPreflight": "Timed out at foregroundmainidle5.9held[]",
+        "inputSent": false,
+        "commandSubmitted": false,
+        "journalCreated": false,
+        "leaseCreated": false,
+        "watchArmed": false,
+        "nextAdmission": "Pending a fresh Root-confirmed background opportunity; never infer armed state from preparation"
+      },
+      "currentWatchArmed": false,
+      "nativePerformanceTest": "One CITY/UI finite watch completed; no combat/group/FPS acceptance or A/B gain",
+      "nativeVersionEvidence": "r57 family only; exact loaded hash unproved"
+    },
+    "goal": "ACTIVE; actual lag/native performance acceptance remains open",
+    "Bank": "ENTIRELY EXCLUDED"
+  },
+  "r57HistoricalPreApply": {
+    "status": "Two additional callback-allocation fixes applied/integrated.500standalone scripts/1190syntax and documentation checks pass; all tested source/support/art stable. Timer fix remains external due competing Core edits. Native validation forbidden until explicit user release.",
+    "nativeRestriction": "All game tests, client/process/window/saved-diagnostic inspection and native actions remain forbidden until explicit user release. No owned native action live or queued; automatic continuation does not release the hold.",
+    "borderWake": {
+      "installed": false,
+      "prototype": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-wake-prototype-20261116T203731Z\\review-summary.json",
+      "currentSourceStop": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-shadow-wake-rebase-20261116T205301Z\\DRIFT-STOP.json",
+      "testedSource": "Exact R55 baseline f8cf01da;external candidate d649c149/combat-wake-owner-r56. Neither installed by this task.",
+      "work": "Commit/newburst modeled Flush entries7to5,After arms3to2;all3builds/reads/solves,711getter calls,complete16field mesh and .02/.07 consumption times match. Locked entries8to5;earliest .05deadline and useful locked/readiness/error/reentry recovery retained.",
+      "limits": "Logical stale callbacks become inert;no native timer cancellation, CPU, game adoption or improvement claim. Other task shadow-support-r56 changes preserved;second drift stopped before new baseline/candidate/proof writes.",
+      "currentCoreAtFinalPostcheck": {
+        "normalizedSHA256": "7a13ae78f4fe5fb766db09aa562d6d10d79150847abbff7031881ec7b66e529d",
+        "version": "shadow-support-r56",
+        "originalDelayedCallbackStillPresent": true,
+        "patchedByThisTask": false
+      }
+    },
+    "validation": {
+      "pass": 500,
+      "fail": 0,
+      "syntaxFiles": 1190,
+      "syntaxFailures": 0,
+      "failures": [],
+      "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-full.json",
+      "stability": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-full-stability.json",
+      "changedDuringRun": [],
+      "currentPostGateDrift": [],
+      "ownedLua51": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-owned-lua51.json",
+      "ownedLua51Scope": "2ownedruntime/448prototypes/max19captures/0failures. Full offline models are not native FPS/taint/pixels/security certification.",
+      "documentationValidation": {
+        "exit": 0,
+        "output": "PASS: 1223 classified sources; 625 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 18138 local links. Source inventory/evidence current. No files written.",
+        "scope": "Read-only source inventory/curated evidence/generated view/link consistency; not native or performance acceptance."
+      },
+      "currentSupportAndArtPostGateDrift": [],
+      "priorShadowFailure": {
+        "currentBoundedResults": [
+          {
+            "path": "tests/border_junction_shadows.lua",
+            "exit": 0
+          },
+          {
+            "path": "tests/border_shadow_material.lua",
+            "exit": 0
+          }
+        ],
+        "scope": "Both strict tests now pass in the current combined run after concurrent renderer changes. Those renderer changes belong to their separate owner; this callback slice does not claim that fix or native pixel acceptance."
+      }
+    },
+    "finalPostcheck": {
+      "recordedAtUTC": "2026-11-16T21:26:48.723157+00:00",
+      "ownedSourceAndTestDrift": [],
+      "allLuaPostGateDrift": [],
+      "supportAndArtPostGateDrift": [],
+      "scopedDiffCheck": {
+        "exit": 0,
+        "scope": [
+          "UnitFrames/FluxUnitFrames_Shared.lua",
+          "RaidFrame/FluxRaidUnit.lua",
+          "tests/raid_range_discovery_work.lua",
+          "tests/idle_units.lua",
+          "tests/idle_unit_geometry.lua",
+          "tests/party_native_contracts.lua"
+        ],
+        "qualification": "Git emitted normal LF-to-CRLF notices only. Untracked new fixtures outside Git diff scope are covered by standalone/functional/compiler gates."
+      },
+      "ownedJobsFinished": true,
+      "nativeHold": "ENFORCED. No game/client/process/window/saved-diagnostic operation or preference/input action performed under this hold; no owned native action live or queued. Only explicit user release permits native work.",
+      "goal": "ACTIVE; actual native lag objective and changed-layout border hitch still unverified/unresolved."
+    }
+  },
+  "solverAllocationR58": {
+    "evidence": "docs/validation/solver-allocation-r58-2026-11-17.json",
+    "sourceLF": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "version": "solver-allocation-work-r58",
+    "functional": {
+      "initial": {
+        "checksPerVM": 294,
+        "controlsPerVM": 7,
+        "nativePermissionPairs": 8,
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\allocation-functional-summary.json",
+          "rawSHA256": "7ae383d2ca45ab31c3635bc014ceb00cd8219b7ddc08d22f679dc8a5d0de7046",
+          "lfSHA256": "4da0823835785c5b74bb6de12b53d31c7876e6d62d7e01da5971e1e80b5250e3",
+          "bytes": 28089
+        }
+      },
+      "durable": {
+        "checksPerVM": 313,
+        "controlsPerVM": 8,
+        "nativePermissionFieldPairs": 8,
+        "jobs": 6,
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\durable-draft\\installed-20261117T011406Z\\installed-report.json",
+          "rawSHA256": "4288360545d0d79adee377a0b429d29a2cdcd35e20ca3ebcf4de6365eb410ab2",
+          "lfSHA256": "6c71f1ef1b7c97509490dff94fba4259621483ee461f9cb6b811b255b1f07b23",
+          "bytes": 13063
+        },
+        "frozenCompleteSolveBodyBytes": 17768,
+        "frozenBodySHA256": "73abb6bdfe4ea4b763f00af491facb862347bf0eb1d5b9ac06ddde679734a884",
+        "oracleScope": "Complete frozen R57Solve parent2444; other current helpers deliberately shared. No reverse-pattern oracle or200kCore copy. Not an independent oracle for future shared-helper changes.",
+        "callbacks": "Legacy14/current14; callback-elision control4 rejected; original seven controls retained plus this additional one."
+      },
+      "focused": {
+        "tests": 12,
+        "coreCompilers": 2,
+        "stablePins": 42,
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-postapply-focused\\report.json",
+          "rawSHA256": "482d8df57cef925d44b57b7d4c0b7c8fda60434426bcb0100730f01b3b0f7bde",
+          "lfSHA256": "dde903ec14d054830a76c7730e00e0ae0e379313c503c8c93a570118786f676b",
+          "bytes": 14294
+        },
+        "scope": "Actual installed source models/compiler only; stock51 external loader shim for existing54-stylefixtures; no client/native input/FPS/taint acceptance"
+      },
+      "fullLua54": {
+        "pass": 512,
+        "fail": 0,
+        "syntaxFiles": 1202,
+        "syntaxFailures": 0,
+        "beganUTC": "2026-11-17T01:19:42.214267+00:00",
+        "endedUTC": "2026-11-17T01:23:52.434641+00:00",
+        "stablePins": 1281,
+        "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+        "changedDuringRun": [],
+        "report": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\validation.json",
+          "rawSHA256": "01854bdce683017d0655094ebd4c2ab6042ab7abfaae0751c8ade16b003cb3d4",
+          "lfSHA256": "5b90708061dd5ff6e7f1f3ef86779e2698e1275d10eb340287e27bbd0ab46fe9",
+          "bytes": 540889
+        },
+        "stability": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\stability.json",
+          "rawSHA256": "e02712551dcd025be2f2a4d68b012b9a049fd7e45466793ba9eb60b8aa3102b3",
+          "lfSHA256": "0d8e44f5d381c1004db3ccbed680fa5d079aa8dc8cd08d44c6f2f903f9c0a08f",
+          "bytes": 286757
+        },
+        "scope": "Fresh whole standalone Lua54 suite/compiler only; no wholeLua51/native secure/secret VM,pixels,taint,FPS acceptance. Legacy_tmp excluded explicitly."
+      }
+    },
+    "costScope": "Repeated actual Solve/model only; retain51empty+4.76%CPU/+5.05%wall0saving; native R58 pending"
+  },
+  "rejectedR59Followup": {
+    "evidence": "docs/validation/fieldset-specialization-r59-rejected-2026-11-17.json",
+    "reason": "Below declared5%median CPU reject threshold but insufficient fitness: changed-layout Lua5.1 all3pairs slower/median+0.3363%; Lua5.4median+0.6112%; no consistent improvement in the target changing-layout scenario; Lua5.4strip pair2+9.7345%CPU/+11.1692%wall; extra startup heap/code complexity.",
+    "installedRemains": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "noAllocationBenefitClaim": true
+  },
+  "observabilityR60Followup": {
+    "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+    "evidence": "docs/validation/watch-mesh-phases-r60-2026-11-17.json",
+    "sourceLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "scope": "Applied standalone optional observability only. Preserve this earlier source/performance/rejection/native record as historical; not a tuple performance fallback.",
+    "currentNativeCoordination": {
+      "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+      "basis": "Root-confirmed existing artifact/coordination scope only; no native action by documentation agent",
+      "userReadyAnswered": true,
+      "mainBackgroundStatedByUser": true,
+      "actualWindowUnsafeForBackgroundAdmission": true,
+      "preflightEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+        "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+        "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+        "bytes": 1489
+      },
+      "preflightRecordedUTC": "2026-11-17T03:39:11.715646+00:00",
+      "attempts": [
+        "cf60-mainreload-a1",
+        "cf60-mainreload-a2"
+      ],
+      "status": "Both terminal background timeout;0input/no journal/lease/command",
+      "inputSent": false,
+      "journalsCreated": 0,
+      "leasesCreated": 0,
+      "commandsSent": 0,
+      "pendingHandoffQuestion": "Root asked whether user is on same PC or another device; answer pending. Do not conflate this with already answered Ready.",
+      "retryPolicy": "No further native retry until user handoff; background constraint is not native permission revocation. Root only, main client only, Bank entirely excluded.",
+      "sourceBeforeEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+        "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+        "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+        "bytes": 1287
+      },
+      "repoGameFilePairsMatching": 5,
+      "manualSync": false,
+      "diskEqualityDoesNotProveLoadedAdoption": true,
+      "readonlyObservation": {
+        "evidence": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+          "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+          "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+          "bytes": 1021
+        },
+        "scope": "Root passive PrintWindow checked main loaded city/UI, chat closed/no edit/modal/cast shown. No input/focus/Bank. Private image stays outside Git. This observation is independent of unsafe actual foreground admission.",
+        "loadedVersionStillUnknown": true
+      },
+      "nativeR60Acceptance": "Reload/peek/current loaded version/hash and combat/group/FPS acceptance PENDING; zero successful command inferred from preparation/Ready/source equality.",
+      "historicalCF57": "Three main commands/0Bank belong only to the completed R57 CITY watch protocol audit; no CF58watch or new watch."
+    },
+    "fullLua54": {
+      "status": "ACCEPTED fresh full standalone Lua54 gate",
+      "pass": 512,
+      "fail": 0,
+      "syntaxFiles": 1202,
+      "syntaxFailures": 0,
+      "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+      "beganUTC": "2026-11-17T03:43:28.642610+00:00",
+      "endedUTC": "2026-11-17T03:47:43.027195+00:00",
+      "pins": 1281,
+      "pinExtensions": {
+        ".toc": 8,
+        ".lua": 1202,
+        ".xml": 32,
+        ".txt": 6,
+        ".tga": 33
+      },
+      "changedDuringRun": [],
+      "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\validation.json",
+        "rawSHA256": "00f3976a7050a949851f2e6414e04211f6b0ea04ed4b43ceb5f0aba08067a975",
+        "lfSHA256": "dd4949b31388902d7e4a4c4060591cfaf4ef5d3553c44a85f701aaf3efadd5fb",
+        "bytes": 540911
+      },
+      "stability": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\stability.json",
+        "rawSHA256": "c417257db9f10681c3a7649d4ce1eac0860d63f6df12d0dc4f5af55d6e087ead",
+        "lfSHA256": "36b8a103a22911e44e39ff5ea3ab0dd3c679aae236d3a7d0a2df3e5a5fe0a468",
+        "bytes": 286757
+      },
+      "CoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "OtherLF": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+      "durableTestSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+      "scope": "Whole Lua54 only; separate148checks on51/54 and181prototype limits are not wholeLua51/native secure/secret/pixel/taint/FPS acceptance. No native adoption inferred."
+    },
+    "durableRegression": {
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\durable-test.json",
+        "rawSHA256": "8d370f5aa30d6e2dc8218b3bd1a3bda51cc6c1fc6b28167b5de2c79e93fb0cb5",
+        "lfSHA256": "b81c3e5949ad5e767ea66600e2b21ebd50c8592028d3629a64822952fc5e83b1",
+        "bytes": 516
+      },
+      "test": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_reflow_cost.lua",
+        "rawSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+        "lfSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+        "bytes": 8206
+      },
+      "beforeSHA256": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b",
+      "checksPerVM": 148,
+      "VMs": [
+        "Lua5.1",
+        "Lua5.4"
+      ],
+      "syntax": "PASS both",
+      "jobs": "terminal",
+      "scope": "Existing border_reflow_cost test extended by its owner; only documentation metadata updated here. No new test execution or runtime edit by documentation agent."
+    },
+    "nativeAcceptance": "PENDING; optional observability is not a performance fix or loaded-version proof"
+  },
+  "combatWatchR61Followup": {
+    "evidence": "docs/validation/combat-watch-r61-2026-11-17.json",
+    "appliedOtherLF": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "unchangedCoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "fullLua54": {
+      "status": "ACCEPTED fresh full standalone Lua54 gate",
+      "pass": 513,
+      "fail": 0,
+      "syntaxFiles": 1203,
+      "syntaxFailures": 0,
+      "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+      "beganUTC": "2026-11-17T04:53:36.768603+00:00",
+      "endedUTC": "2026-11-17T04:57:55.726522+00:00",
+      "pins": 1282,
+      "pinExtensions": {
+        ".toc": 8,
+        ".lua": 1203,
+        ".xml": 32,
+        ".txt": 6,
+        ".tga": 33
+      },
+      "changedDuringRun": [],
+      "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\validation.json",
+        "rawSHA256": "097904894c421e689bf7819971d7f0478108a7c2b3870537a408554cd5bd6262",
+        "lfSHA256": "4933d46274c9f5421ae959fd84a33d8cf203491f655be0f2f12b142e1f855240",
+        "bytes": 541303
+      },
+      "stability": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\stability.json",
+        "rawSHA256": "782e2b43b9c50f2d4eebea38463c7f202eb3a98d6954cc4aad0c1b3865a75f90",
+        "lfSHA256": "2b9ebcb852a839e2c19c65fdefffeb6fa620453394f6dcc9c6cad746242e4478",
+        "bytes": 286965
+      },
+      "CoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "OtherLF": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+      "durableTests": {
+        "tests/perf_spike_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+          "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "bytes": 31336
+        },
+        "tests/perf_combat_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+          "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+          "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+          "bytes": 25989
+        }
+      },
+      "scope": "Fresh whole Lua5.4.6 desktop only. Separate695 checks per Lua5.1.5/5.4.6 and4 installed test compilers are scoped evidence, not wholeLua51/native/CPU/FPS/combat/group acceptance."
+    },
+    "durableValidation": {
+      "status": "PASS / INSTALLED TEST SOURCES FROZEN",
+      "tests": {
+        "tests/perf_spike_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+          "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "bytes": 31336
+        },
+        "tests/perf_combat_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+          "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+          "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+          "bytes": 25989
+        }
+      },
+      "newScenesPerVM": 89,
+      "newChecksPerVM": 562,
+      "originalChecksPerVM": 133,
+      "VMs": [
+        "Lua5.1.5",
+        "Lua5.4.6"
+      ],
+      "installedCompilersPassed": 4,
+      "jobsTerminal": true
+    },
+    "scope": "Optional finite-watch lifecycle/accounting; not a main-lag resolution or performance gain. Native acceptance pending."
+  }
+}

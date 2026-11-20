@@ -1,0 +1,508 @@
+{
+  "changeId": "INDEPENDENT-BORDER-REGIONS-R108-20261119",
+  "capturedAtUTC": "2026-11-19T13:37:51.115241+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+      "afterRaw": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3"
+    },
+    "tests/border_region_routing.lua": {
+      "beforeRaw": "df23ba64feba489b4a6d500d7c1d75f9efbc2427e0a236c615c7b850af3d2736",
+      "afterRaw": "724ef05638e1e173f714f486b6a6ba5d5f2a0fe13840881f30e20c917072d6d7"
+    },
+    "tests/independent_border_regions.lua": {
+      "beforeRaw": null,
+      "afterRaw": "b58d81db0005234f1bd5d017cc581a27f1ba21c233323a436345a2741e7d9609"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRaw": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+      "afterRaw": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\independent-border-regions-before-20261119-132952\\source.zip",
+    "sourceZipSHA256": "bbe4e25c6285f848d4f3ae48de9d39b9d3f4ad1305e35d18b236754354fd4dec",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Two alternating public snapshots of the same action strip with four neighboring real-scope party frames and internal dividers. Separate scenario moves one prepared party member while HUD stays still.",
+  "work": {
+    "commits": 4,
+    "beforeAfter": [
+      {
+        "style": 1,
+        "scale": 0.75,
+        "kind": "hover",
+        "updatedRegions": [
+          64,
+          64
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 0.75,
+        "kind": "group",
+        "updatedRegions": [
+          24,
+          4
+        ],
+        "plannedSegments": [
+          54,
+          10
+        ],
+        "plannedMeshes": [
+          22,
+          4
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.0,
+        "kind": "hover",
+        "updatedRegions": [
+          108,
+          108
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.0,
+        "kind": "group",
+        "updatedRegions": [
+          24,
+          4
+        ],
+        "plannedSegments": [
+          54,
+          10
+        ],
+        "plannedMeshes": [
+          20,
+          4
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.25,
+        "kind": "hover",
+        "updatedRegions": [
+          144,
+          144
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.25,
+        "kind": "group",
+        "updatedRegions": [
+          36,
+          4
+        ],
+        "plannedSegments": [
+          44,
+          10
+        ],
+        "plannedMeshes": [
+          18,
+          4
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 0.75,
+        "kind": "hover",
+        "updatedRegions": [
+          64,
+          64
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 0.75,
+        "kind": "group",
+        "updatedRegions": [
+          24,
+          4
+        ],
+        "plannedSegments": [
+          54,
+          10
+        ],
+        "plannedMeshes": [
+          22,
+          4
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.0,
+        "kind": "hover",
+        "updatedRegions": [
+          108,
+          108
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.0,
+        "kind": "group",
+        "updatedRegions": [
+          24,
+          4
+        ],
+        "plannedSegments": [
+          54,
+          10
+        ],
+        "plannedMeshes": [
+          20,
+          4
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.25,
+        "kind": "hover",
+        "updatedRegions": [
+          144,
+          144
+        ],
+        "plannedSegments": [
+          80,
+          40
+        ],
+        "plannedMeshes": [
+          39,
+          23
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.25,
+        "kind": "group",
+        "updatedRegions": [
+          36,
+          4
+        ],
+        "plannedSegments": [
+          44,
+          10
+        ],
+        "plannedMeshes": [
+          18,
+          4
+        ]
+      }
+    ],
+    "rawSHA256": "8c877e06bb8db029e1ef6c4e91df50fa71101531c8bca9f0e6c63e527ee84cc9"
+  },
+  "desktopTiming": {
+    "scope": "Scale 1, Desktop Lua 5.4.6. Seven alternating archived and candidate pairs, aggregate CPU clock.",
+    "timingColumns": [
+      "first two before ms",
+      "first two after ms",
+      "twelve prepared before ms",
+      "twelve prepared after ms"
+    ],
+    "measures": {
+      "1:hover": {
+        "medians": [
+          25.0,
+          18.0,
+          57.0,
+          43.0
+        ],
+        "samples": [
+          [
+            25.0,
+            18.0,
+            60.0,
+            45.0
+          ],
+          [
+            24.0,
+            20.0,
+            61.0,
+            43.0
+          ],
+          [
+            25.0,
+            18.0,
+            58.0,
+            42.0
+          ],
+          [
+            28.0,
+            21.0,
+            55.0,
+            48.0
+          ],
+          [
+            26.0,
+            19.0,
+            54.0,
+            40.0
+          ],
+          [
+            24.0,
+            18.0,
+            52.0,
+            43.0
+          ],
+          [
+            25.0,
+            18.0,
+            57.0,
+            38.0
+          ]
+        ]
+      },
+      "1:group": {
+        "medians": [
+          9.0,
+          3.0,
+          23.0,
+          9.0
+        ],
+        "samples": [
+          [
+            13.0,
+            3.0,
+            22.0,
+            9.0
+          ],
+          [
+            8.0,
+            3.0,
+            22.0,
+            9.0
+          ],
+          [
+            9.0,
+            4.0,
+            23.0,
+            9.0
+          ],
+          [
+            9.0,
+            3.0,
+            23.0,
+            11.0
+          ],
+          [
+            10.0,
+            3.0,
+            25.0,
+            9.0
+          ],
+          [
+            9.0,
+            4.0,
+            23.0,
+            9.0
+          ],
+          [
+            9.0,
+            4.0,
+            25.0,
+            9.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          48.0,
+          35.0,
+          109.0,
+          79.0
+        ],
+        "samples": [
+          [
+            27.0,
+            19.0,
+            64.0,
+            42.0
+          ],
+          [
+            25.0,
+            18.0,
+            63.0,
+            45.0
+          ],
+          [
+            26.0,
+            41.0,
+            60.0,
+            95.0
+          ],
+          [
+            48.0,
+            39.0,
+            116.0,
+            89.0
+          ],
+          [
+            48.0,
+            35.0,
+            115.0,
+            76.0
+          ],
+          [
+            48.0,
+            33.0,
+            109.0,
+            79.0
+          ],
+          [
+            50.0,
+            36.0,
+            113.0,
+            79.0
+          ]
+        ]
+      },
+      "2:group": {
+        "medians": [
+          22.0,
+          8.0,
+          60.0,
+          25.0
+        ],
+        "samples": [
+          [
+            20.0,
+            8.0,
+            54.0,
+            24.0
+          ],
+          [
+            22.0,
+            7.0,
+            74.0,
+            32.0
+          ],
+          [
+            23.0,
+            8.0,
+            60.0,
+            25.0
+          ],
+          [
+            20.0,
+            6.0,
+            57.0,
+            28.0
+          ],
+          [
+            22.0,
+            8.0,
+            63.0,
+            26.0
+          ],
+          [
+            19.0,
+            9.0,
+            52.0,
+            23.0
+          ],
+          [
+            22.0,
+            8.0,
+            62.0,
+            25.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\independent-border-regions-before-20261119-132952\\timing.lua",
+    "rawSHA256": "e65b17e4eb09e45b82d19187e71492c9b6b2a425a1e13806135228d571a026ab"
+  },
+  "preservation": [
+    "same sampled tint, joins and hidden/shown party members at three scales and both styles",
+    "unchanged region object and paint generation identity",
+    "source claims, watcher swap indices and live paint",
+    "normal party frame scopes use existing solver identity; compact raid frames still use their existing separate border renderer"
+  ],
+  "verification": {
+    "focusedPassed": 32,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\independent-border-regions-before-20261119-132952\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\independent-border-regions-before-20261119-132952\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "matches": true
+    },
+    "forever": {
+      "sha256": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "matches": true
+    },
+    "classic": {
+      "sha256": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "matches": true
+    },
+    "classic-era": {
+      "sha256": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "matches": true
+    },
+    "classic-anniversary": {
+      "sha256": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "matches": true
+    }
+  },
+  "nativeAcceptance": "Pending for held-action hitching, party and raid transitions, seamless pixels and combat taint. No game input or profiling changes."
+}

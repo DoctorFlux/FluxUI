@@ -1,0 +1,40 @@
+{
+  "changeId": "LHO-MODERN-RECIPE-PAIR-118-20261119",
+  "status": "FOREVER_QUERY_SPEED_AND_PARITY_PASS_FULL_WORKFLOW_PENDING",
+  "currentProfessionSourceSHA256": "24b89db1d6115716ec6cf065b11199151aec43945bd58b1db81985b94ef10b51",
+  "native": {
+    "source": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-recipe118-paired-20261119\\probe.lua",
+    "sourceSHA256": "9c95254a64215d433e8b3155d5d971f64f32b880d9b4e5fb0d24f045c1c62409",
+    "packetSHA256": "e1ef8b063896e128b8a4dff6e28111d6e431ae26a04e832bc7000610eb77ca90",
+    "controllerSHA256": "6b5ac741c6f12f678d20688fd752d8e2e3318b5ab779a9555ee5066eba07737b",
+    "startJournal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-recipepair118_c-journal.json",
+    "resultImage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\recipepair118-results.png",
+    "resultImageSHA256": "068175e2b7772e976acd98d753dc9ebbd210154c59bbea848f9d961238726fa7",
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "provider": "syndicator",
+    "recordsSeen": 148,
+    "eligibleRecords": 147,
+    "passes": 3,
+    "pairedCalls": 441,
+    "mismatches": 0,
+    "failures": 0,
+    "optimizedWins": 441,
+    "peakDiagnosticBatchMs": 5.902,
+    "fallbackMsPerPass": [
+      138.5646,
+      141.1554,
+      130.8073
+    ],
+    "currentMsPerPass": [
+      44.2621,
+      43.3418,
+      38.9254
+    ],
+    "medianReductionPercent": 68.72087098725072,
+    "methodsRestored": true,
+    "reportedSessionErrorCount": 0,
+    "fallbackDefinition": "Used the loaded method with an exact temporary forwarding public catalogue getter to select its full built-in catalogue route. This adds one forwarding call and uses the same current module and data.",
+    "comparison": "Compared tri-state knownness and exact returned cached record identity immediately within each pair. Execution order alternated by record and pass. Mixed environment and timer overhead excluded from sums except time inside each timed call. Peak is inclusive observer work, not a frame-time sample.",
+    "captureScope": "Start was visually acknowledged and a later read-only image contains the completed report. Earlier two attempts did not send any chat. No reload, jump, item, craft, external addon or configuration change during this capture."
+  }
+}

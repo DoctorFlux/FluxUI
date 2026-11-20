@@ -1,0 +1,806 @@
+{
+  "status": "NATIVE_CURRENT_PASSIVE_SCAN_CAPTURE_ACCEPTED_NOT_PERFORMANCE_GAIN",
+  "recordedUTC": "2026-11-17T11:13:04.435253+00:00",
+  "goalStatus": "ACTIVE",
+  "scenario": {
+    "name": "P88 passive city, auction house closed by user before stage",
+    "actor": "NONE",
+    "itemOrCastEventsObserved": false,
+    "eventRegistrationOrAttribution": "NONE_IN_THIS_PROBE",
+    "RootItemOrCastActions": false,
+    "RootReloadThisTurn": false,
+    "settingsChanges": false,
+    "documentationAgentNativeActions": 0
+  },
+  "identityFromActualJournals": {
+    "pid": 46260,
+    "hwnd": 600248958,
+    "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+    "created": 134392816726299937
+  },
+  "temporaryProbe": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2",
+    "root": "_S88",
+    "nonce": "88a7d612",
+    "slot": "FluxConsumableBest.Scan.Recompute",
+    "requestedSeconds": 30,
+    "mapSHA256": "dbb2f35615f647bb17d759c54330a1c7d5e1249d81069681712199d26cc1ed7c",
+    "restoreOnlyExactOwnedWrapper": true
+  },
+  "rawRootPersonallyViewedLines": {
+    "scan": "P88SCAN 73 73 73 650.01569991 21.199100010563 0 330187.3735908 timer true true",
+    "context": "P88CTX 330157.371 330187.388 9792 9865 85 85 true true",
+    "cleanup": "P88CLEAN true true true"
+  },
+  "scan": {
+    "entered": 73,
+    "completed": 73,
+    "valid": 73,
+    "uncompleted": 0,
+    "inclusiveElapsedSumMs": 650.01569991,
+    "inclusiveElapsedSumMsExactText": "650.01569991",
+    "inclusiveElapsedMaxMs": 21.199100010563,
+    "inclusiveElapsedMaxMsExactText": "21.199100010563",
+    "inclusiveAverageMsDerived": 8.90432465630137,
+    "inclusiveAverageMsRounded": 8.9043,
+    "diagnosticFaults": 0,
+    "preciseDeadlineExactText": "330187.3735908",
+    "stopReason": "timer",
+    "publicNamespaceAndOriginalSlotAtRead": true,
+    "timerAbsentAtRead": true
+  },
+  "context": {
+    "startGetTime": 330157.371,
+    "stopGetTime": 330187.388,
+    "actualElapsedSecondsDerived": 30.017,
+    "BestGenerationBefore": 9792,
+    "BestGenerationAfter": 9865,
+    "BestGenerationDelta": 73,
+    "bagGenerationBefore": 85,
+    "bagGenerationAfter": 85,
+    "startContextIdentity": true,
+    "endContextIdentity": true
+  },
+  "cleanup": {
+    "RootPersonallyViewedAndTimelyFormalACK": true,
+    "ownedResourcesGone": true,
+    "privateRootAbsent": true,
+    "capturedOriginalScanSlot": true,
+    "scope": "P88 resources only; no inference about unrelated roots/controls."
+  },
+  "phases": {
+    "stage": {
+      "run": "p88stageF20261117a",
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88stageF20261117a-journal.json",
+        "sha256": "af16e5b601577d8839577acca90443a5a9d75d9a353a70e90ed5201a42e66f05"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88stageF20261117a-submitted.png",
+        "sha256": "e696fff45e4e20fa97bcf1e5be7dff9f24a6b4ba985ff0fbef25b7dc3f7691f9"
+      },
+      "ACK": "ROOT_VISUAL_ATTESTATION_ACCEPTED",
+      "actualVisualObserver": "Root",
+      "ackLatencyFromCaptureStartSeconds": 29.741718292236328,
+      "queuedPackets": 9,
+      "allPacketsFullyQueued": true,
+      "lockReleased": true
+    },
+    "arm": {
+      "run": "p88armF20261117a",
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88armF20261117a-journal.json",
+        "sha256": "3a4c8c29cfdc83892a60d051c7eb23b91b2621c8ab86dceb3b1b530b8d2d8dd0"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88armF20261117a-submitted.png",
+        "sha256": "3617817aab1efb27b1d8253bce39c89abc2d46172b56798c534912c0f7e4ce52"
+      },
+      "ACK": "ROOT_VISUAL_ATTESTATION_ACCEPTED",
+      "actualVisualObserver": "Root",
+      "ackLatencyFromCaptureStartSeconds": 28.96920919418335,
+      "queuedPackets": 1,
+      "allPacketsFullyQueued": true,
+      "lockReleased": true
+    },
+    "read": {
+      "run": "p88readF20261117a",
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88readF20261117a-journal.json",
+        "sha256": "1a0b98284bd1ebb304b3eaacc29756b2d49f30e2eadf8935219808f5b982d05a"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88readF20261117a-submitted.png",
+        "sha256": "e78dc45b15be6c0203538990ec7f1f47621dd84e94e366101a39c0ae27804f68"
+      },
+      "ACK": "ROOT_VISUAL_ATTESTATION_ACCEPTED",
+      "actualVisualObserver": "Root",
+      "ackLatencyFromCaptureStartSeconds": 50.96778678894043,
+      "queuedPackets": 1,
+      "allPacketsFullyQueued": true,
+      "lockReleased": true
+    },
+    "clean": {
+      "run": "p88cleanF20261117a",
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88cleanF20261117a-journal.json",
+        "sha256": "a63d5ac83ee8ac2703bd9c4f339a511b70451c1125b3dbefb7a8d8121ce6cdd2"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88cleanF20261117a-submitted.png",
+        "sha256": "584eb548c178fef37bec7cf63945664fa86cc82c851b1d6dbd85a80c7e99cc44"
+      },
+      "ACK": "ROOT_VISUAL_ATTESTATION_ACCEPTED",
+      "actualVisualObserver": "Root",
+      "ackLatencyFromCaptureStartSeconds": 28.839756965637207,
+      "queuedPackets": 1,
+      "allPacketsFullyQueued": true,
+      "lockReleased": true
+    }
+  },
+  "desktopProof": {
+    "runtime": "stock Lua5.1.5 only",
+    "cases": 15,
+    "checks": 70,
+    "execution": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r1\\semantic-first\\execution.json",
+      "sha256": "424d668ec0ed09cc9ed98827e4f5e3bec1ffbe93407a0327711d73991db1faa7"
+    },
+    "stdout": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r1\\semantic-first\\stdout.txt",
+      "sha256": "74089a54e1e6832371a9affd6b9a7fcbc4ea76de06a9c9cdd3b9458fad65981f"
+    },
+    "first11PayloadsByteExact": true,
+    "scope": "Packets1..11 semantic proof retained; final partial/foreign-safe packet12 was source-reviewed only before this native CLEAN true3. No semantic rerun or Lua54 proof claimed."
+  },
+  "diskSourcePinsAsRecorded": {
+    "Core/API/Item.lua": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666",
+    "Inventory/FluxConsumableBest/Scan.lua": "9ac3e06c7beba074e4bfa6a26a2b284051b2203a5a43c6cfaa2c3bc18ee349c7",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0ea671b72ca4b570054e702c69bb25add6d17cab53819d756f1d7f10197178b4",
+    "Inventory/FluxConsumableClassify.lua": "ed64be6906af9ffe91363bde303d588dfccd06390300eb94b1104af7a6c92bd1",
+    "Inventory/FluxItemClass.lua": "6e1ed98327313f13e25e60d6048b5317ee4b4d262c0ca62aa96cca1da3a7a640",
+    "Inventory/Init.lua": "e42893e496f0caec36d7a49f52ae6de888fb217120a4a3a2f82c75fb072e936f",
+    "Inventory/Professions.lua": "39c656aefe4399a3f937442ff0f56d55fa02d7efb162ba42ddcc27b82472393a",
+    "Inventory/Restock/FluxRestock_Inv.lua": "38db8778cb5e133720c6997b99abec9bc40139e18c4a0aed74cec258c83584dd",
+    "ExtraButtonSystem/Engine/Events.lua": "8b8165654fe303274ae23a54cb0f9a75fc024e4821d29cff9f3f159f36084b20"
+  },
+  "loadedSourceLimits": {
+    "allNineLoadedByteIdentitiesProved": false,
+    "earlierI88SRC": "Root earlier observed Classify.GetInvalidationRevision=function and Scan.PENDING_ONLY_REASONS.classifyPendingRead=true only; not nine-source byte adoption.",
+    "sourceHashesAreDiskOnly": true
+  },
+  "jumpAndCalibrationRootReport": {
+    "nativeJ7BEffectiveSpaceAction": "AuctionatorCancelUndercutButton:LeftButton",
+    "jumpCorrectlyBlocked": true,
+    "auctionHouseLaterClosedBy": "USER",
+    "hostLaunched": false,
+    "jumpsRunning": false,
+    "freshCalibrationClientSize": [
+      1890,
+      993
+    ],
+    "bg3AndBg4GeometryExplanation": "Hypothesis from changed client geometry only; full stderr cause not proved.",
+    "bg5": "TERMINAL_RED",
+    "controls": "Root F holds absent/HALT retained and shared input lock released as reported. Temporary nonce8 present; host never started/jumps stopped. No Root reload/P90 loaded proof.",
+    "BG6": {
+      "status": "THREE_ADVANCING_GREEN_BACKGROUND_OBSERVATIONS",
+      "clientSize": [
+        1890,
+        993
+      ],
+      "sampleCenters": [
+        [
+          11,
+          982
+        ],
+        [
+          17,
+          982
+        ],
+        [
+          24,
+          982
+        ],
+        [
+          30,
+          982
+        ]
+      ],
+      "observedCounters": [
+        7,
+        3,
+        7
+      ],
+      "userAuctionHouseCloseBeforeThis": true,
+      "nativeKeysAndChatCommandsSent": 0,
+      "automaticAuthorization": false,
+      "activationSupported": false,
+      "nativeRenderingAcceptedFlag": false,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r2\\cue\\calibration-observation-rootF7bg6.json",
+        "sha256": "3ad05464e1376c8f35238ba43933d997e325dc21a8a327290c5444298fde731f"
+      },
+      "currentReadinessProof": false,
+      "supersededBy": "Later Root-ACKed J7ROOT nil true at GetTime332746.068"
+    },
+    "currentCueRoot": "NONCE8_INSTALLED_TIMELY_ROOT_ACK",
+    "currentAutomaticPalette": "NONCE8_BACKGROUND_GREEN_FOREGROUND_UNPROVED",
+    "foregroundActivation": "SETFOREGROUNDWINDOW_FALSE_NO_KEYS_NO_FOREGROUND_PROOF"
+  },
+  "interpretation": [
+    "Inclusive instrumented Scan elapsed only; nested/reentrant spans may overlap and instrumentation overhead is included.",
+    "No exclusive CPU, FPS, p95, matched baseline/current gain or causal item/cast attribution.",
+    "Bag generation equality describes endpoints; no private pending/reuse/full-walk count observed.",
+    "All four host phases were Root-viewed and formally ACKed. Documentation agent hashed files only.",
+    "No source edit, Root reload, settings/item changes or native performance acceptance from this record. Broader Inventory/EBS/client/workflow goal remains active."
+  ],
+  "evidence": {
+    "source_manifest.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\manifest.json",
+      "sha256": "df4d9e643d9e5860c1151fd2fff7fe221c85fa35de2cbc470c4fce1576485c4e"
+    },
+    "source_packets.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\packets.json",
+      "sha256": "dbb2f35615f647bb17d759c54330a1c7d5e1249d81069681712199d26cc1ed7c"
+    },
+    "source_source-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\source-seal.json",
+      "sha256": "fca6166ed2620219423bb159a771c727a1d6f44f62e060f1dcf0036ca87ef1a1"
+    },
+    "source_semantic.lua": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\semantic.lua",
+      "sha256": "0d68d05b4cfb838248370d0d68a336ee4a30a4d5b1825dc3def739a50cca1d87"
+    },
+    "source_RUN_PROTOCOL.md": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\RUN_PROTOCOL.md",
+      "sha256": "022cd1acce763f1e7aaaec6fd760892094022df94b84d18cb4ee7ced8d635d21"
+    },
+    "source_independent-source-review-hook/review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\independent-source-review-hook\\review.json",
+      "sha256": "88180a97c2597f9c3598e3584c25a89a623f4c1f031fe2d4f832852b372dfef2"
+    },
+    "semanticExecution": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r1\\semantic-first\\execution.json",
+      "sha256": "424d668ec0ed09cc9ed98827e4f5e3bec1ffbe93407a0327711d73991db1faa7"
+    },
+    "semanticStdout": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r1\\semantic-first\\stdout.txt",
+      "sha256": "74089a54e1e6832371a9affd6b9a7fcbc4ea76de06a9c9cdd3b9458fad65981f"
+    },
+    "semanticStderr": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r1\\semantic-first\\stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88stageF20261117a-submitted.png",
+      "sha256": "e696fff45e4e20fa97bcf1e5be7dff9f24a6b4ba985ff0fbef25b7dc3f7691f9"
+    },
+    "stage_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88stageF20261117a-submitted-capture.json",
+      "sha256": "5d68ed959292b4c87475cd7b38d3d80df8ca944a07b4df2043d871af66bced65"
+    },
+    "stage_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88stageF20261117a-journal.json",
+      "sha256": "af16e5b601577d8839577acca90443a5a9d75d9a353a70e90ed5201a42e66f05"
+    },
+    "stage_helper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\transport\\stage\\bootstrap.py",
+      "sha256": "d1b5143ac830e3d3e4079cd687e16fc3f610eb555f4fe97b14ecb5c07261f62b"
+    },
+    "arm_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88armF20261117a-submitted.png",
+      "sha256": "3617817aab1efb27b1d8253bce39c89abc2d46172b56798c534912c0f7e4ce52"
+    },
+    "arm_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88armF20261117a-submitted-capture.json",
+      "sha256": "a7a1d89227e08307be038ec27709ffad378e9ef73bc230817974d634653ebede"
+    },
+    "arm_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88armF20261117a-journal.json",
+      "sha256": "3a4c8c29cfdc83892a60d051c7eb23b91b2621c8ab86dceb3b1b530b8d2d8dd0"
+    },
+    "arm_helper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\transport\\arm\\bootstrap.py",
+      "sha256": "b9b29c19c453f818d35c7caeb6b8436f6d33c68b6ad27301ae725fa666b93870"
+    },
+    "read_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88readF20261117a-submitted.png",
+      "sha256": "e78dc45b15be6c0203538990ec7f1f47621dd84e94e366101a39c0ae27804f68"
+    },
+    "read_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88readF20261117a-submitted-capture.json",
+      "sha256": "edaa54e2b2886da2921aeb779d18c61aa711f5f220b55ebf31765226f554286d"
+    },
+    "read_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88readF20261117a-journal.json",
+      "sha256": "1a0b98284bd1ebb304b3eaacc29756b2d49f30e2eadf8935219808f5b982d05a"
+    },
+    "read_helper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\transport\\read\\bootstrap.py",
+      "sha256": "aba9079d0772de56c5715c3fc3ae5e9847703b1949092a731debde150dbdb0dc"
+    },
+    "clean_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88cleanF20261117a-submitted.png",
+      "sha256": "584eb548c178fef37bec7cf63945664fa86cc82c851b1d6dbd85a80c7e99cc44"
+    },
+    "clean_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88cleanF20261117a-submitted-capture.json",
+      "sha256": "05a988d10378978717a0cd44d8f68aba424b43473958daa61e471118ba69e986"
+    },
+    "clean_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p88cleanF20261117a-journal.json",
+      "sha256": "a63d5ac83ee8ac2703bd9c4f339a511b70451c1125b3dbefb7a8d8121ce6cdd2"
+    },
+    "clean_helper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-scan-elapsed-p88-r2\\transport\\clean\\bootstrap.py",
+      "sha256": "25e6cdc47a09e4ddf143b1c5b74c04e5790bbaf7d24d1b9e0e59ca8cef1e0312"
+    },
+    "earlierI88SRC_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-journal.json",
+      "sha256": "60b64e3047b4fbfc585648175b80e013c403f53e4d039635f3fba2f218e58989"
+    },
+    "earlierI88SRC_submitted": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-submitted.png",
+      "sha256": "3860827fb21364560890a702cfb04ae0922afe1f58bf88e509e3905f649749c3"
+    },
+    "P89P_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89pF20261117a-journal.json",
+      "sha256": "dd20b593c32f53b22ff6b4fd502abbbfb195bcfb6d2ca2f2b22e98dd1b4ef48d"
+    },
+    "P89P_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89pF20261117a-submitted.png",
+      "sha256": "c7e1f8f8f2037c844db3de77d0dea6d1b20ed9f001155ff45581dbe38c0466c1"
+    },
+    "P89P_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89pF20261117a-submitted-capture.json",
+      "sha256": "33cdd007b18cb60054aae493d65c5fcb53f771289d133c35ca2ea207ab5ac06d"
+    },
+    "P89F_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89fF20261117a-journal.json",
+      "sha256": "bdb318cb26c16ef4cb8e12336a942d1a34cf3f62fa53d9e4045e2d6d90a9a272"
+    },
+    "P89F_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89fF20261117a-submitted.png",
+      "sha256": "961cfa2841d18febfeddf57f8f8257cdeaa5961720186290332dede09fbdcd3f"
+    },
+    "P89F_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89fF20261117a-submitted-capture.json",
+      "sha256": "d97b3fb77e0ce8987b022e86376b0592c6178b9a4705ce688ae0f6a6a2ebeb3c"
+    },
+    "P89A_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89aF20261117a-journal.json",
+      "sha256": "3c7396906fef93a0362e8142b88a3d9c1ef91cd09210cde5322d3efc718a76eb"
+    },
+    "P89A_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89aF20261117a-submitted.png",
+      "sha256": "45a371d0a2ff1c682d7d21e329e2834afeafce2633843b0e2f1c1bf5f0669ea9"
+    },
+    "P89A_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89aF20261117a-submitted-capture.json",
+      "sha256": "5a0895b1fdc24557066afc3010dbd3764a0b412e9ef55c8fcb92a0237779643e"
+    },
+    "RootFRelease": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\root-F-native-operation-release-20261117\\receipt.json",
+      "sha256": "3b03c8fa71c4b7ba3d6dd920d7adf867c90c9441529a2ab6581eedc38521b0c7"
+    },
+    "RootBG6Calibration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r2\\cue\\calibration-observation-rootF7bg6.json",
+      "sha256": "3ad05464e1376c8f35238ba43933d997e325dc21a8a327290c5444298fde731f"
+    },
+    "FinalJ7_state_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7stateNoF20261117a-journal.json",
+      "sha256": "e88503a740f01cd5fe2d7fbb2c188d79f6d16b5c235e965feaad8b42a90de716"
+    },
+    "FinalJ7_state_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7stateNoF20261117a-submitted.png",
+      "sha256": "5b0f4f1912b6e557e38eca6efb9fc90ad3df59739ec2741abf1e01323fcd5a05"
+    },
+    "FinalJ7_state_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7stateNoF20261117a-submitted-capture.json",
+      "sha256": "c8e8fc74be8b7686ed56980f22c8d912fa9bdb6dfea65f1dfd553097a4a0d27e"
+    },
+    "FinalJ7_root_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7rootNoF20261117a-journal.json",
+      "sha256": "0ba2b03ce77882af51ce9d8677518e9489a66b8a3bc842add80b6dee7345160f"
+    },
+    "FinalJ7_root_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7rootNoF20261117a-submitted.png",
+      "sha256": "57c076e399b921e632cf20eacdc998ca8fabc85580ee88459714dca693551a8e"
+    },
+    "FinalJ7_root_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7rootNoF20261117a-submitted-capture.json",
+      "sha256": "21ac60a07a2d81a37dc06f96c7251c37a15e1851702c7630bd365fa0c4028d0b"
+    },
+    "FinalJ7_lateReadonlyPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\root7-cue-current-readonly.png",
+      "sha256": "0684150ebf8e139e1d0419b8f7fc833abb1489e8375b61aa1a68ae45b383cd07"
+    },
+    "FinalJ7_lateReadonlyMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\root7-cue-current-readonly-capture.json",
+      "sha256": "bf33b1498c84b9d18fdf716eab51d27fb71045ea86739cea7c5ec355b07f6af4"
+    },
+    "Nonce8_sourcePreparation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\source-preparation.json",
+      "sha256": "8ae559c290e02faca782dc0ae2d0ae0958734523730f0d3bb1a19f53357f2fc6"
+    },
+    "Nonce8_sourceSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\source-seal.json",
+      "sha256": "161d468184696d5fdfa91f41957ee1066fe1aacd20b627bac5ff597b69f38b51"
+    },
+    "Nonce8_packetMap": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\packets.json",
+      "sha256": "d0552090847a1feaf88621c40b01a65a97ec6ac4f2cb869c24dde1eb926340df"
+    },
+    "Nonce8_installer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\installer\\bootstrap.py",
+      "sha256": "de955e10ad65c3cf51f9981e8268eb95acf2932a1cf9a4c6e06b6e3c365d3e18"
+    },
+    "Nonce8_unchangedJumpCore": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\jump_core.py",
+      "sha256": "47dfc289547e6a86b6df90a746b33797ecd220c2f9a3431a448df707e76d706d"
+    },
+    "Nonce8_installJournal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j8installNoF20261117b-journal.json",
+      "sha256": "48441e3b5793c6046fe327c4d1cd476ca20a5181bcc84e37aabb0c1bf678db0e"
+    },
+    "Nonce8_submittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j8installNoF20261117b-submitted.png",
+      "sha256": "db41d856b4d6959bd2419c30cf1e6695cc3c8442a1c8351d9b59a5b63df93d1e"
+    },
+    "Nonce8_submittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j8installNoF20261117b-submitted-capture.json",
+      "sha256": "cfa8b338b05169ac75b6cd69cda02aa0f0a2a8cc7d6018c57eab8e9f28a66a51"
+    },
+    "Nonce8_restoreNoActivate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\root8-restore-noactivate.json",
+      "sha256": "5ca3c4f13c53a117282ce83d3e32c0dde1b419aebbf825f5e9450a164ac36dfd"
+    },
+    "Nonce8_BGCalibration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-observation-root8bg1.json",
+      "sha256": "7b8d7b69052324ed30aefdc7f0034bcb80325133d5f44259c6cc0a7560c7e928"
+    },
+    "Nonce8_strictFGRefusal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-observation-root8foregroundReady1.json",
+      "sha256": "d3acba204835023e7b830885d41759c1d3f61129dbf80ee35b4ef7609b6750ec"
+    },
+    "Nonce8_finiteCalibrationAuthorization": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-native-scan-p88-evidence-20261117\\nonce8-final-native-followup-r1\\evidence\\readonly-root8-r1.json",
+      "sha256": "a70974a10be17a2095aa7b31e4f73cee9ef3fdd3177476c8bb2b37a10be7c477",
+      "originalPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\readonly-root8-r1.json"
+    },
+    "Nonce8_sampleCalibration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-native-scan-p88-evidence-20261117\\nonce8-final-native-followup-r1\\evidence\\calibration-root8-r1.json",
+      "sha256": "92e43a77dcc4036cd76c24536986f0b95fbf26e889004e76492d7dea327acd7e",
+      "originalPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-root8-r1.json"
+    }
+  },
+  "P89PostCaptureContextRootReport": {
+    "temporalScope": "Three later queries AFTER P88, not simultaneous and not retroactive exact P88 context.",
+    "phases": {
+      "p": {
+        "run": "p89pF20261117a",
+        "actualVisualObserver": "Root",
+        "timelyFormalACK": true,
+        "ackLatencyFromCaptureStartSeconds": 31.872870683670044,
+        "journal": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89pF20261117a-journal.json",
+          "sha256": "dd20b593c32f53b22ff6b4fd502abbbfb195bcfb6d2ca2f2b22e98dd1b4ef48d"
+        },
+        "submittedPNG": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89pF20261117a-submitted.png",
+          "sha256": "c7e1f8f8f2037c844db3de77d0dea6d1b20ed9f001155ff45581dbe38c0466c1"
+        }
+      },
+      "f": {
+        "run": "p89fF20261117a",
+        "actualVisualObserver": "Root",
+        "timelyFormalACK": true,
+        "ackLatencyFromCaptureStartSeconds": 44.81837558746338,
+        "journal": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89fF20261117a-journal.json",
+          "sha256": "bdb318cb26c16ef4cb8e12336a942d1a34cf3f62fa53d9e4045e2d6d90a9a272"
+        },
+        "submittedPNG": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89fF20261117a-submitted.png",
+          "sha256": "961cfa2841d18febfeddf57f8f8257cdeaa5961720186290332dede09fbdcd3f"
+        }
+      },
+      "a": {
+        "run": "p89aF20261117a",
+        "actualVisualObserver": "Root",
+        "timelyFormalACK": true,
+        "ackLatencyFromCaptureStartSeconds": 61.01802039146423,
+        "journal": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89aF20261117a-journal.json",
+          "sha256": "3c7396906fef93a0362e8142b88a3d9c1ef91cd09210cde5322d3efc718a76eb"
+        },
+        "submittedPNG": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p89aF20261117a-submitted.png",
+          "sha256": "45a371d0a2ff1c682d7d21e329e2834afeafce2633843b0e2f1c1bf5f0669ea9"
+        }
+      }
+    },
+    "rawLines": {
+      "pending": "P89P 330698.867 0 0",
+      "flags": "P89F 330771.132 false false false false true syndicator",
+      "addons": "P89A 330861.7 true true true 0"
+    },
+    "pending": {
+      "GetTime": 330698.867,
+      "pendingAddedCount": 0,
+      "pendingLoadCount": 0,
+      "privatePendingQueueAndAttempts": "UNQUERIED"
+    },
+    "flags": {
+      "GetTime": 330771.132,
+      "derivedLoginScanUntilActive": false,
+      "rawLoadHoldOpen": false,
+      "derivedPortalHoldActive": false,
+      "derivedConjureArmActive": false,
+      "rawInventoryReady": true,
+      "rawInventorySource": "syndicator",
+      "aggregatedShouldSoftHoldOwned": "UNQUERIED",
+      "privateReliabilityComponent": "UNQUERIED",
+      "notImplied": "These raw/time-derived components do not prove aggregated soft hold false."
+    },
+    "addons": {
+      "GetTime": 330861.7,
+      "FluxUILoaded": true,
+      "SyndicatorLoaded": true,
+      "BaganatorLoaded": true,
+      "scriptProfileRaw": "0",
+      "exactLoadedSourceBytes": "UNPROVED"
+    }
+  },
+  "RootFRelease": {
+    "status": "ROOT_F_RELEASED",
+    "owner": "ROOT-JUMP-F-20261117",
+    "recordedUTC": "2026-11-17T11:22:29.006766+00:00",
+    "releasedExactOwnedControls": {
+      "no_jump": "cf0a87d2120738778027dc56167422774ed5369a90e765235e4e51d03d3aea86",
+      "NATIVE_CAPTURE_RESERVATION.json": "08b104087b45e9b6f23ce9c64c1e13d65afd439138bcb41ea79a5b2a8750f1a9"
+    },
+    "inputLockAbsentAsRecorded": true,
+    "haltPreservedSHA256": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+    "allRootNativeOperationsTerminal": true,
+    "jumpHostLaunched": false,
+    "otherControlsTouched": false,
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\root-F-native-operation-release-20261117\\receipt.json",
+      "sha256": "3b03c8fa71c4b7ba3d6dd920d7adf867c90c9441529a2ab6581eedc38521b0c7"
+    },
+    "scope": "Dated exact-owned release; other owners may resume their own coordination checks. Shared COMBAT/CF64 records and other ownership remain untouched."
+  },
+  "plannedClassifySourceSliceRootReport": {
+    "stateAsRootReported": "PLANNED_TEST_BEFORE_EDIT_NOT_APPLIED_OR_NATIVE_ACCEPTED_BY_THIS_RECORD",
+    "owner": "hook_api_contract",
+    "scope": "Private NormalizeLine reuse and percent-no-marker guard.",
+    "noNewProductOrTestExecutionByDocumentationAgent": true
+  },
+  "latestNonce7FinalStateRootReport": {
+    "recordedUTC": "2026-11-17T11:50:41.506560+00:00",
+    "finalLiteralNilQuery": {
+      "run": "j7rootNoF20261117a",
+      "controllerSHA256": "31a3c15888522792827964cf349eb81f48be161f08c20c96a61ed1598d18140d",
+      "RootPersonallyViewedAndTimelyFormalACK": true,
+      "ackLatencyFromCaptureStartSeconds": 38.035319089889526,
+      "lockReleased": true,
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7rootNoF20261117a-journal.json",
+        "sha256": "0ba2b03ce77882af51ce9d8677518e9489a66b8a3bc842add80b6dee7345160f"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7rootNoF20261117a-submitted.png",
+        "sha256": "57c076e399b921e632cf20eacdc998ca8fabc85580ee88459714dca693551a8e"
+      },
+      "rawLine": "J7ROOT nil true 332746.068",
+      "rootType": "nil",
+      "rootIsNil": true,
+      "GetTime": 332746.068,
+      "scope": "Direct literal _J83q==nil observed at this timestamp; not a claim about later state."
+    },
+    "priorStateQuery": {
+      "run": "j7stateNoF20261117a",
+      "controllerSHA256": "121752aafcf7cefd4fe9075486a006a5fd2179db08fabbf8dbcc88fe7d9367e3",
+      "RootPersonallyViewedAndTimelyFormalACK": true,
+      "ackLatencyFromCaptureStartSeconds": 47.44989347457886,
+      "lockReleased": true,
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7stateNoF20261117a-journal.json",
+        "sha256": "e88503a740f01cd5fe2d7fbb2c188d79f6d16b5c235e965feaad8b42a90de716"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7stateNoF20261117a-submitted.png",
+        "sha256": "5b0f4f1912b6e557e38eca6efb9fc90ad3df59739ec2741abf1e01323fcd5a05"
+      },
+      "rawLine": "J7STATE 332352.984 nil nil nil nil false false false false false",
+      "interpretation": "Known initialized cue unavailable/unready. Missing-method sentinels are not false IsShown/Alpha/Scale values from an existing normal frame. Raw fields alone did not distinguish nil from a malformed/foreign table; final J7ROOT supplies direct nil proof."
+    },
+    "currentReadiness": "HISTORICAL_LITERAL_NIL_AT_J7ROOT_TIMESTAMP_BEFORE_LATER_NONCE8_INSTALL",
+    "priorBG6GreenReadiness": "HISTORICAL_SUPERSEDED_BY_LATER_LITERAL_NIL_QUERY",
+    "nonce7SpentNeverReplay": true,
+    "nonce8": "LATER_INSTALLED_WITH_TIMELY_ROOT_ACK_SEE_LATEST_NONCE8",
+    "nextRequirement": "Fresh full nonce8 setup/calibration and current eligibility before future keepalive; fresh-root guard must reject any nonnil foreign value.",
+    "RootReloadSent": false,
+    "RootSawStartupChat": "BugTabs Loaded DB visible",
+    "UIResetActorOrTiming": "UNATTRIBUTED",
+    "clientIdentity": "Same PID46260/HWND600248958; journal birth134392816726299937",
+    "noHostOrJumpsRunning": true,
+    "RootFNoJumpOrReservationRecreated": false,
+    "sharedInputLockReleasedRootReport": true,
+    "HALTRetainedSHA256Prefix": "6990",
+    "nativeGainOrP90LoadedProof": false,
+    "current": false,
+    "supersededBy": "latestNonce8NativeRootReport"
+  },
+  "lastCalibrationAndWatchRootReport": {
+    "lateReadonlyScreenshot": {
+      "captureTime": 1794915434.249554,
+      "size": [
+        1906,
+        1032
+      ],
+      "inputSent": false,
+      "foregroundUnchanged": false,
+      "causeAuthority": "Root reports foreground changed externally; no Root activation."
+    },
+    "strictBothNoF1": "WRONG_MODE_NO_INPUT",
+    "foregroundNoF1": "WRONG_MODE_NO_INPUT",
+    "naturalForegroundWait": {
+      "seconds": 42,
+      "processID": 25754,
+      "terminalExitCode": 0,
+      "attempts": 0,
+      "nativeInputSent": false,
+      "authority": "Root-reported terminal facts, not process inspection by documentation agent."
+    },
+    "lastAutomaticMode1": {
+      "mode": "BACKGROUND",
+      "palette": "UNKNOWN",
+      "notRed": true,
+      "foregroundCalibrationProof": false,
+      "activation": false,
+      "input": false
+    },
+    "nativeHostLaunched": false
+  },
+  "latestNonce8NativeRootReport": {
+    "recordedUTC": "2026-11-17T12:05:48.789449+00:00",
+    "sourcePackage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3",
+    "sourcePeerPASSAsReportedByRoot": true,
+    "sourcePreparation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\source-preparation.json",
+      "sha256": "8ae559c290e02faca782dc0ae2d0ae0958734523730f0d3bb1a19f53357f2fc6"
+    },
+    "sourceSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\source-seal.json",
+      "sha256": "161d468184696d5fdfa91f41957ee1066fe1aacd20b627bac5ff597b69f38b51"
+    },
+    "nonce": "k83n6p8",
+    "firstBegin": {
+      "run": "j8installNoF20261117a",
+      "outcome": "MINIMIZED_HOST_VERIFIED_BEFORE_LOCK_OR_INPUT",
+      "PID": 46260,
+      "windowExists": true,
+      "inputSent": false,
+      "authority": "Root host verification/report; no client inspection by documentation agent."
+    },
+    "restore": {
+      "UTC": "2026-11-17T11:53:57.679766+00:00",
+      "sameBirthVerified": true,
+      "foregroundBefore": 23005356,
+      "foregroundAfter": 23005356,
+      "foregroundUnchanged": true,
+      "inputSent": false,
+      "activationRequested": false,
+      "cursorOrClipboardTouched": false,
+      "restoredBehindActiveAppAsRootReported": true,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\root8-restore-noactivate.json",
+        "sha256": "5ca3c4f13c53a117282ce83d3e32c0dde1b419aebbf825f5e9450a164ac36dfd"
+      }
+    },
+    "installed": {
+      "run": "j8installNoF20261117b",
+      "rawRootPersonallyViewedMarkers": [
+        "J83INIT true",
+        "J83CUE 6 6 419609.386"
+      ],
+      "RootTimelyFormalACK": true,
+      "ACKLatencySeconds": 44.279221296310425,
+      "packetsFullyQueued": 25,
+      "charactersQueued": 4369,
+      "nonce8RuntimeExistsAsObserved": true,
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j8installNoF20261117b-journal.json",
+        "sha256": "48441e3b5793c6046fe327c4d1cd476ca20a5181bcc84e37aabb0c1bf678db0e"
+      },
+      "submittedPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j8installNoF20261117b-submitted.png",
+        "sha256": "db41d856b4d6959bd2419c30cf1e6695cc3c8442a1c8351d9b59a5b63df93d1e"
+      },
+      "spentConsumed": true,
+      "replayNonce7OrNonce8Forbidden": true
+    },
+    "backgroundCalibration": {
+      "all3Green": true,
+      "observedCounters": [
+        6,
+        2,
+        5
+      ],
+      "clientSize": [
+        1890,
+        993
+      ],
+      "sampleCenters": [
+        [
+          11,
+          982
+        ],
+        [
+          17,
+          982
+        ],
+        [
+          24,
+          982
+        ],
+        [
+          30,
+          982
+        ]
+      ],
+      "nativeKeysSent": 0,
+      "chatCommandsSent": 0,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-observation-root8bg1.json",
+        "sha256": "7b8d7b69052324ed30aefdc7f0034bcb80325133d5f44259c6cc0a7560c7e928"
+      }
+    },
+    "calibrationAuthorization": {
+      "purpose": "ROOT_AUTHORIZED_P83_READONLY_CAPTURE_CALIBRATION",
+      "authorizedUntilUnix": 1794917504.2904673,
+      "finiteWindowSecondsAsRootReported": 900,
+      "isJumpHostAuthorization": false,
+      "authorizationSnapshot": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-native-scan-p88-evidence-20261117\\nonce8-final-native-followup-r1\\evidence\\readonly-root8-r1.json",
+        "sha256": "a70974a10be17a2095aa7b31e4f73cee9ef3fdd3177476c8bb2b37a10be7c477",
+        "originalPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\readonly-root8-r1.json"
+      },
+      "calibrationSnapshot": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-native-scan-p88-evidence-20261117\\nonce8-final-native-followup-r1\\evidence\\calibration-root8-r1.json",
+        "sha256": "92e43a77dcc4036cd76c24536986f0b95fbf26e889004e76492d7dea327acd7e",
+        "originalPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-root8-r1.json"
+      }
+    },
+    "foregroundCalibrationAttempt": {
+      "UTC": "2026-11-17T11:58:02.272601+00:00",
+      "priorBGGreen": true,
+      "PCIdle15VerifiedAsRootReported": true,
+      "SetForegroundWindowReturn": false,
+      "foregroundBefore": 692126702,
+      "firstForeground": 692126702,
+      "finalForeground": 692126702,
+      "lastInputUnchanged": true,
+      "nativeKeysSent": 0,
+      "chatCommandsSent": 0,
+      "foregroundProofObtained": false,
+      "jumpHostStarted": false,
+      "pairInjected": false,
+      "noAttachThreadInputWorkaround": true,
+      "coreSHA256": "47dfc289547e6a86b6df90a746b33797ecd220c2f9a3431a448df707e76d706d",
+      "failureClass": "OBSERVED_WINDOWS_REFUSAL_NOT_APPROVAL_REVIEW_REJECTION",
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-adoption-native-r3\\cue\\calibration-observation-root8foregroundReady1.json",
+        "sha256": "d3acba204835023e7b830885d41759c1d3f61129dbf80ee35b4ef7609b6750ec"
+      }
+    },
+    "currentState": "TEMPORARY_NONCE8_BACKGROUND_GREEN_FOREGROUND_PROOF_PENDING_JUMPS_STOPPED",
+    "RootFControlsAbsentAndHALTRetainedAsReported": true,
+    "sharedInputLockReleased": true,
+    "RootReloadSent": false,
+    "P90LoadedBytesOrNativeGainProved": false,
+    "nextRequirement": "Root must obtain allowed fresh foreground proof and remaining host authorization/eligibility. Never replay/reinstall spent nonce7 or8; do not bypass Windows refusal."
+  }
+}

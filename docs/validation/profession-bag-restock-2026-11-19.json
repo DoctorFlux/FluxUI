@@ -1,0 +1,3806 @@
+{
+  "changeId": "LHO-PROFESSION-BAG-RESTOCK-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "provider": "syndicator",
+  "addons": [
+    "_FluxUI",
+    "BugTabs",
+    "Baganator",
+    "Syndicator"
+  ],
+  "checkpoint": {
+    "baseline": "24b89db1d6115716ec6cf065b11199151aec43945bd58b1db81985b94ef10b51",
+    "dir": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/profession-alias-current-20261119T104400Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settings": 21,
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle"
+  },
+  "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "sources": {
+    "baseSha": "24b89db1d6115716ec6cf065b11199151aec43945bd58b1db81985b94ef10b51",
+    "candidateSha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9",
+    "nativeWorkerSha": "9af11ebf4a7d1bb0a0bfaa65483ccd386bd1cac575e233c0d991515bfa4fd1a8",
+    "exactNativeWorker": true,
+    "sources": [
+      {
+        "edition": "_retail_",
+        "sha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9"
+      },
+      {
+        "edition": "_forever_",
+        "sha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9"
+      },
+      {
+        "edition": "_classic_",
+        "sha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9"
+      },
+      {
+        "edition": "_classic_era_",
+        "sha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9"
+      },
+      {
+        "edition": "_anniversary_",
+        "sha": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9"
+      }
+    ],
+    "syntaxRuns": 12
+  },
+  "r298": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag298-restock-bag-rebuild-origins-20261119",
+      "controllerSHA": "5805061dffaaf7652766f62a0a95bffbbe40997f6684bb613659783d091e6f68",
+      "packetSHA": "a183dcca44b7389c23fc3d7cb1524b2aeb133085f8a282bfd402a66f79d6c9b5",
+      "packets": 23,
+      "luaSHA": "b352dbbc3276e1eb0dcf0177ed4d8579247bee71183993671d3a91f8dc08cfb5"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag298-restock-rebuild-result.png",
+      "sha256": "964f5e76942c9c55e0a8b0b80e3d9fcd737dca4f3f1e0f6cd96261deb45bb669"
+    },
+    "restockRebuilds": [
+      {
+        "atMs": 155,
+        "ms": 5.639,
+        "source": "BAG_UPDATE_DELAYED"
+      },
+      {
+        "atMs": 195,
+        "ms": 15.407,
+        "source": "AuctionRestock.Incoming"
+      },
+      {
+        "atMs": 733,
+        "ms": 5.678,
+        "source": "AuctionRestock.Incoming"
+      },
+      {
+        "atMs": 1040,
+        "ms": 5.599,
+        "source": "BAG_UPDATE_DELAYED"
+      },
+      {
+        "atMs": 1085,
+        "ms": 13.636,
+        "source": "AuctionRestock.Incoming"
+      }
+    ],
+    "totalRebuildMs": 45.959,
+    "bagUpdateDelayedEvents": 2,
+    "bagGenerationDelta": 2,
+    "stack": {
+      "itemID": 4599,
+      "count": 18,
+      "from": "0:8",
+      "temporary": "2:14",
+      "bothSlotsVerifiedRestored": true,
+      "cursorClear": true,
+      "totalUnchanged": true
+    },
+    "originalGetRowsRestored": true,
+    "errorDelta": 0
+  },
+  "r299": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag299-restock-profession-bag-attribution-20261119",
+      "controllerSHA": "2dad9042c47119b1425c6d97ae2094f34d44b28b10bd4eba028cbf6ed65b26c0",
+      "packetSHA": "4149731f9c412da7fe5890b52d5abaf588130cc9c6efc14ff7267eee44cd8074",
+      "packets": 28,
+      "luaSHA": "92901165d66274bc394cb2c840101d23a1fb9d0d227488548f010a1e576e3036"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag299-profession-bag-result.png",
+      "sha256": "12ffe53213fc0adaa47a2fdf5dedbf427c2e57c8a7fd0699a1aecba541662bbf"
+    },
+    "inventoryPublications": [
+      "professions",
+      "professions",
+      "professions"
+    ],
+    "restockRebuilds": 5,
+    "bagUpdateDelayedEvents": 2,
+    "bagGenerationDelta": 2,
+    "professionEvents": [
+      {
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "atMs": 218,
+        "inclusiveMs": 28.54
+      },
+      {
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "atMs": 419,
+        "inclusiveMs": 20.529
+      },
+      {
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "atMs": 1101,
+        "inclusiveMs": 33.149
+      }
+    ],
+    "stack": {
+      "itemID": 4599,
+      "count": 18,
+      "from": "0:8",
+      "temporary": "2:14",
+      "bothSlotsVerifiedRestored": true,
+      "cursorClear": true,
+      "totalUnchanged": true
+    },
+    "allMethodsRestored": true,
+    "errorDelta": 0,
+    "totalInclusiveProfessionMs": 82.218,
+    "scope": "Profession envelopes include the Restock listeners in this sample. R298 timings come from a separate sample."
+  },
+  "r300": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag300-tailoring-catalogue-native-queries-20261119",
+      "controllerSHA": "640c4aa2444b4b2f325962360015de8b4aab777afb3ca36b712f10cee7899073",
+      "packetSHA": "19d555f16ad29d3222eb0f77fc60be87d9db77a208ead700894d52e5317e6358",
+      "packets": 14,
+      "luaSHA": "33a63fb8856bd0f57d70ee0192fdbf0e5ec63e4b022c3b0e271abe8e1f8e43e9"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag300_a-submitted.png",
+      "sha256": "d0e366018f9b27c3435f6d1566551ea0ce179a66367ec7512ad281709635094b"
+    },
+    "allRecipeIDs": 471,
+    "filteredRecipeIDs": 101,
+    "unionRecipeIDs": 471,
+    "professionSpells": 0,
+    "learnedRecipes": 101,
+    "outputDataItemIDs": 101,
+    "schematicOutputItemIDs": 101,
+    "qualityCandidates": 0,
+    "getterTimeMs": {
+      "GetRecipeInfo": 6.429,
+      "GetRecipeSchematic": 1.243,
+      "GetRecipeOutputItemData": 0.896,
+      "GetRecipeQualityItemIDs": 0.073
+    },
+    "scope": "Read-only native API pass on the current Tailoring catalogue. No method replaced."
+  },
+  "r301": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag301-tailoring-alias-filter-native-pairs-20261119",
+      "controllerSHA": "125bfcd5404b2163e9a34183a6481bf6e44d027f7d6e090d8a5037834db0063f",
+      "packetSHA": "76686e2edd3ddc482c61309cd8eac2e4d86295469615d8ea13f13fa00f1f8c69",
+      "packets": 26,
+      "luaSHA": "2c639b0dec328d3cc26c54e02dec083567279fe9a7f053e871b08453ec100774"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag301-alias-pairs-result.png",
+      "sha256": "fe3fd38d2535fdde128b8596ec663d39001fbc6a4230b39d38b4074e05752d6e"
+    },
+    "comparedPairsMs": [
+      [
+        0.863,
+        0.581
+      ],
+      [
+        0.757,
+        0.759
+      ],
+      [
+        0.927,
+        0.57
+      ],
+      [
+        0.891,
+        0.747
+      ],
+      [
+        1.019,
+        0.575
+      ]
+    ],
+    "medianMs": [
+      0.891,
+      0.581
+    ],
+    "wholeCharacterRecipeCount": 148,
+    "matchedReferencesPerPair": 101,
+    "mismatches": 0,
+    "scope": "Exact candidate ranking worker on live cached recipe references, with the requested-key table prepared outside the timed calls. Includes ranking and selected membership, excludes key preparation, the full event and frame timing."
+  },
+  "jump": {
+    "workerPid": 10224,
+    "intervalSeconds": 180,
+    "lastVerifiedUtc": "2026-11-19T10:45:25.069733+00:00",
+    "latestResult": "Windows refused foreground activation; jump stayed queued"
+  },
+  "reloadSent": false,
+  "remainder": [
+    "Retest real BAG_UPDATE_DELAYED with overlapping Tailoring and Auction Restock after suitable reload.",
+    "Measure and minimize the remaining full profession native read and Restock builds while retaining learning, unlearning, receipt and plan update signals.",
+    "Check active Pending, native crafting completion and other providers/clients."
+  ],
+  "auctionRecipeBatchFollowUp": {
+    "beforeEvidence": {
+      "nativeRestockRowBuilds": "R298 five builds totaling 45.959 ms on two count-neutral bag changes",
+      "note": "The full Restock build also has other costs. The new change addresses batched crafting recipe catalogue queries, which are separate from the ordinary inventory refresh."
+    },
+    "r335": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag335-native-recipe-output-catalogue-pairs-20261119",
+        "controllerSHA": "73981438c5b49405255bceb11ea5c071934f550f6d7a3558024888c9b702c3c5",
+        "packetSHA": "36169f7266de1d1de961b2983afb229f0be721080bad881a43911119f9c1dcd7",
+        "packets": 15,
+        "luaSHA": "875e1ae7495731048a489b5fbdae96c69fa20c77c50c8dd9078e4f6e3d4e53d5"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag335_a-submitted.png",
+        "pngSha": "edcbdbaf17d6e1289b7f64700ab224d78f3e9243762f50a5d3dad0b585084874",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag335_a-submitted-capture.json",
+        "metaSha": "5d4bd08788fe2b59bb168813cac6b37676092b2e72450d615f3bdbc8e470d003",
+        "started": 1795093804.3666346,
+        "time": 1795093806.373283,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 58435671,
+          "idle": 0.422,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "capture": {
+        "time": 1795093833.6605227,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag335-recipe-catalogue-pairs-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "ccdbe6454d5d0258e93da856d160accae9a46d533302497c4206753f6bb82280"
+      },
+      "clientWindows": [
+        "Auction Buy",
+        "Baganator backpack"
+      ],
+      "outputs": [
+        2633,
+        3928,
+        5634,
+        6149,
+        8544
+      ],
+      "matchedRecordsPerPair": 3,
+      "mismatchedOutputs": 0,
+      "pairsMs": [
+        [
+          2.011,
+          1.029
+        ],
+        [
+          1.807,
+          1.043
+        ],
+        [
+          1.856,
+          0.897
+        ]
+      ],
+      "mediansMs": [
+        1.856,
+        1.029
+      ],
+      "bagGenerationStable": true,
+      "bugTabsCurrentSessionErrors": 0,
+      "scope": "Native real recipe data. Matching record reference order per queried item. Timed catalogue reads exclude item eligibility discovery and the rest of Auction Restock."
+    },
+    "checkpoints": {
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "settingsExist": 21,
+      "settingsContentsCopied": false,
+      "dir": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/auction-recipe-batch-20261119T131200Z"
+    },
+    "sources": {
+      "Inventory/Professions.lua": {
+        "before": "a8246c7edd923a8a8c4f953017bb05454395f410526d208c8686bb77268b0e20",
+        "after": "6888be5728f3a567201f8a69ed3f33a98115bcdbe98fe7e26d73acc41ef0e60d",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-recipe-batch-20261119T131200Z\\Professions.candidate.lua"
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": {
+        "before": "143c59c192e7d235c974783bb43dde49a1ab665cdf48a32475456caad44e9952",
+        "after": "ef0ee0e8db67c7637075fbd6ed8fbda2095add05d33e4dff7fb021813fc8863d",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-recipe-batch-20261119T131200Z\\FluxAuctionRestockCraft.final.lua",
+        "interim": "4700ecc9f026b348e54c82f46fa589ba9a094f99fc16fb2bb09f8b9a236d4435"
+      }
+    },
+    "installed": {
+      "clients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "exactSourceFiles": 10,
+      "installedSyntaxChecks": 20,
+      "versions": [
+        "Lua 5.1.5",
+        "Lua 5.4.6"
+      ]
+    },
+    "r334": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag334-visible-backpack-bag-change-timing-20261119",
+        "controllerSHA": "4b39a46c240ae0cb8bf39d7322a093323fbc4eb63897ebe239862b5e1e01f788",
+        "packetSHA": "eb1c10a3e51a98f6bc4dc36f5863b8afb0a79ba4c720cff85092fe75497b813b",
+        "packets": 31,
+        "luaSHA": "b5180123c5d4723a04afcbab453bd948cd89ba8dcdec5657bfe1e469b2439734"
+      },
+      "submitted": false,
+      "why": "Idle capture poll timed out before input. Native Auction Buy also became visible, so the no-commerce bag move guard would have deferred."
+    },
+    "r336": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag336-exact-recipe-worker-native-parity-20261119",
+        "controllerSHA": "d1018e7fc372932aaa7a5186c44fff5b918efc216188a1277c9c555654a64294",
+        "packetSHA": "4f9e894f4a49b8b75dbc02b74a78c9b267819e45cfc60e5fa6ff16dbdc9e6c7c",
+        "packets": 21,
+        "luaSHA": "6aa9861c9f038bd792c9956d3b8f2bf2ae67b7480da98ddd5e35828a0461cfc0"
+      },
+      "postcheck": {
+        "time": 1795094289.092712,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag336-input-guard-postcheck.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      "outcome": "Nine packets reached their journal before the physical modifier guard. The final execution packet was not reached. The postcheck showed closed chat and the same panels."
+    },
+    "r337": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag337-native-exact-recipe-worker-short-20261119",
+        "controllerSHA": "4a94ef66279d5a4c37263413230706a93705366cf0e3eace191240cc35a8a779",
+        "packetSHA": "e91002621879509b88bce27a7f9c9090968e216160d4ec052b2838570f916c28",
+        "packets": 16,
+        "luaSHA": "52cef636af096754092722b440b01310ca2895169376e30d9e2710d7fa096da0"
+      },
+      "submitted": true,
+      "scope": "Shortened exact-worker check prepared against the same five real item IDs.",
+      "windowAfterGuard": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 263434,
+        "last": 59295765,
+        "idle": 0.078,
+        "held": [],
+        "drawable": false
+      },
+      "initialAdmissionOutcome": "Admission stopped before input because WoW was no longer drawable.",
+      "outcome": "Exact isolated worker finished on the next drawable window.",
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag337_a-submitted.png",
+        "pngSha": "3f253e4befaf5de1c77ba0d0b72662c5f2fc688ff672272e7172287a58b95964",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag337_a-submitted-capture.json",
+        "metaSha": "636250d00c5706d345dc4ffe6ddfb0f7e9a703d45d9768e64496f29c8352af78",
+        "started": 1795094835.8167331,
+        "time": 1795094838.1663313,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 263434,
+          "last": 59467500,
+          "idle": 0.046,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "matchedRecords": 3,
+      "mismatchedRecords": 0,
+      "outputs": 5,
+      "perItemMs": 2.02,
+      "batchMs": 0.928,
+      "bagGenerationStable": true,
+      "bugTabsCurrentSessionErrors": 0,
+      "leaseReleased": true
+    },
+    "coverage": "Batching applies to a comparison of at least five distinct supported craftable output item IDs when the catalogue and item-class owners are intact. Release/small refresh and public replacement cases continue through the prior per-row function. No new saved data, timer or gameplay action."
+  },
+  "loadedAuctionRecipeFollowUp": {
+    "readiness": {
+      "trial": "R346",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag346-native-auction-recipe-and-pending-readiness-20261119",
+        "controllerSHA": "e4ca73ef68747a9e0c15aff46df606c0c24fe30d6608739536399d96ae16caa9",
+        "packetSHA": "c0a39944ef533d42c60ada9a38aa87f58191c73fa527655bd8a7aeba713583ad",
+        "packets": 6,
+        "luaSHA": "2543eac8f456e6b11984f9043bd67865b73c0956d4b72130733c492863f8be51"
+      },
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag346_a-submitted.png",
+        "pngSha": "2973881bf04dc11f1d9fb9c5b5ef0ea41374a263d13e762496998b4ebeb02f69",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag346_a-submitted-capture.json",
+        "metaSha": "04fe9aa0536435fa7ad2926c291a2e2752bfc4c76b67d04ad14344192dfaada8",
+        "started": 1795096416.83292,
+        "time": 1795096418.6808562,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 263434,
+          "last": 61032843,
+          "idle": 15.719,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "eligibleCarriedItems": 5,
+      "configuredRowsInMemory": 0,
+      "restockActive": false,
+      "auctionOpen": false,
+      "receiptsPending": false,
+      "followupPresent": false,
+      "debugGetUpvalueAvailable": false
+    },
+    "loadedRefresh": {
+      "trial": "R347",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag347-native-loaded-auction-craft-refresh-20261119",
+        "controllerSHA": "807bf2d8e3102acc13e48659054d3304147f5f4bf4bf7368aac173788b446210",
+        "packetSHA": "5ced18250d86d5636e8b53772c0a5a16d84e8028c02f6b2263eb6fd328d59f7a",
+        "packets": 12,
+        "luaSHA": "dd5e8c99fc35cfb65e56cf09cac9d73f739687c5b65fa1b9e3a706c36ef75dfc"
+      },
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag347_a-submitted.png",
+        "pngSha": "77c7bdddeb11fe4a3a3695302dc964c85601731392ea0a12dadd6c0c7295b721",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag347_a-submitted-capture.json",
+        "metaSha": "12427ef60cd113aab4eac795f8d15df3e6f57b4bb48716fd4461ca685f86508a",
+        "started": 1795096544.71271,
+        "time": 1795096546.6002216,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 263434,
+          "last": 61155125,
+          "idle": 21.312,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "itemIDs": [
+        2633,
+        3928,
+        5634,
+        6149,
+        8544
+      ],
+      "learnedInputsPerPath": [
+        3,
+        3
+      ],
+      "sameRecordsInSameOrder": 3,
+      "lastBatchStackLines": [
+        167,
+        296
+      ],
+      "perItemMs": 2.417,
+      "installedRefreshMs": 1.65,
+      "bagGenerationStable": true,
+      "errorCountUnchanged": true,
+      "observerRestoredBeforeTiming": true,
+      "scope": "One timed pair with all commerce closed. A synchronous recipe-knowledge observer confirmed the same live input references and direct catalogue branch on line 296. The production refresh populates its usual private recipe lookup cache. No auction search, purchase, sale, or craft was initiated."
+    }
+  },
+  "idleProfessionListFollowUp": {
+    "id": "LHO-PROFESSION-IDLE-LIST-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "profile": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "sha256": "6888be5728f3a567201f8a69ed3f33a98115bcdbe98fe7e26d73acc41ef0e60d"
+    },
+    "eventSchema": {
+      "version": "1.60.1.70938",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua#L1387",
+      "hasPayload": false
+    },
+    "baselineOnly": true,
+    "auctionClosed": true,
+    "recipeFactPass": {
+      "run": "R371",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag371-profile-native-profession-fact-publication-fixed-owner-20261119",
+        "controllerSHA": "dddacec61a1cfbab4102bfeb812b5a4cade9524b6bea599afb5602c84187d5d1",
+        "packetSHA": "82901d6c4fe7553522cc67d7fe3ec285ef96ffc88a868446210b1c3a668de396",
+        "packets": 16,
+        "luaSHA": "ade6b2045d32673d7d4f0f69cd608640e0e0a47e8eb27f49c1ae7b7fdb08bf0d"
+      },
+      "cleanupPublicationCount": 47,
+      "visibleSampleSubset": [
+        {
+          "event": "TRADE_SKILL_DATA_SOURCE_CHANGED",
+          "handlerMs": 20.744,
+          "comparedMs": 3.344,
+          "notifyMs": 0.767,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 17.478,
+          "comparedMs": 3.381,
+          "notifyMs": 0.727,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 17.463,
+          "comparedMs": 3.4,
+          "notifyMs": 0.704,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 15.398,
+          "comparedMs": 3.387,
+          "notifyMs": 0.782,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 17.334,
+          "comparedMs": 3.371,
+          "notifyMs": 0.713,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 14.903,
+          "comparedMs": 3.337,
+          "notifyMs": 0.784,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 38.023,
+          "comparedMs": 3.401,
+          "notifyMs": 0.747,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 13.175,
+          "comparedMs": 3.448,
+          "notifyMs": 0.675,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "handlerMs": 14.079,
+          "comparedMs": 3.476,
+          "notifyMs": 0.676,
+          "published": true,
+          "learnedRows": 101,
+          "equal": true
+        }
+      ],
+      "comparedFacts": [
+        "skill identity",
+        "ordered recipe records",
+        "unlearned recipe tombstones",
+        "profession name",
+        "needsOpen"
+      ],
+      "comparisonTimerOutsideHandler": true,
+      "displayedSubsetOnly": true,
+      "filterRestored": true,
+      "callbacksRestored": true
+    },
+    "quietCadencePass": {
+      "run": "R374",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag374-live-idle-profession-event-cadence-20261119",
+        "controllerSHA": "3a9062edb6d2f24108430db0bf09773dd4005967ff871839dec2c4d1a0f77541",
+        "packetSHA": "6dc0c9724c87ba54db14f00ad22004ac6753bec26e986805fe01e7f466da0c75",
+        "packets": 18,
+        "luaSHA": "a83bd7f9a37b658cdbdd8e3651871bb45bc824be94a098d9f29c5258c8853586"
+      },
+      "seconds": 24,
+      "events": 3,
+      "handlers": 3,
+      "handlerElapsedSortedMs": [
+        12.652,
+        13.336,
+        13.709
+      ],
+      "eventOffsetsSeconds": [
+        7.49,
+        20.91,
+        23.53
+      ],
+      "delayedBagEvents": 0,
+      "bagGenerationDelta": 0,
+      "itemDataLoadEventsObserved": 0,
+      "legacyItemInfoEventsObserved": 0,
+      "playerCastEvents": 0,
+      "newLuaErrors": 0,
+      "callbacksRestored": true,
+      "professionPanelRestoredClosed": true
+    },
+    "initialObserverFailure": {
+      "run": "R370",
+      "cause": "Used an unexported inventory global and raised an assertion before installing wrappers.",
+      "correctedIn": "R371"
+    },
+    "scope": "Live callbacks. No inventory actions, artificial event delivery, profiling preference changes, or addon runtime edits. No FPS attribution.",
+    "nextWork": "Reduce work inside passive profession catalogue refreshes while preserving changed recipes, unlearn observations, delayed metadata, filter changes, current craftability and preparation for pending craft actions.",
+    "captures": {
+      "profession371_filters": {
+        "filename": "profession371_filters.png",
+        "sha256": "127ecd3f16afe6599983471b1c65e67a7a931a6d942d5b6bb7d0660e67300a37"
+      },
+      "profession371_material_applied": {
+        "filename": "profession371_material_applied.png",
+        "sha256": "ecb7a1171047fe5311818490fd20721262470628846d507cceebb570e957f5a2"
+      },
+      "profession371_material_restored": {
+        "filename": "profession371_material_restored.png",
+        "sha256": "ce5dfc96f88a4fe5190ee697d66e4fa2d39623f96cec38d00834bf4fbce847e0"
+      },
+      "profession371_close_capture": {
+        "filename": "profession371_close_capture.png",
+        "sha256": "32cc7bcbe609b371c176a24764c2da23031a831e94bbe7322715233976508659"
+      },
+      "profession374_rate_final": {
+        "filename": "profession374_rate_final.png",
+        "sha256": "17c9c3d3aa19e1610cad87d668bc8877ad4e6a1888d6bf5659f180f8472ce774"
+      },
+      "profession374_closed_final": {
+        "filename": "profession374_closed_final.png",
+        "sha256": "2449d6962cc6a8f27f218eaec2fb9a5ee2a8cf5db54207cffce6cb46ad9f1cd1"
+      }
+    },
+    "transportCaptureHashes": {
+      "r371": "531f64bad2227c36e877f3ee15c952fb96921fb636a4a38b21718448f59e8119",
+      "r369": "5cc7dab685c136758edb6df195e4313e08a485d68c3a57818fb8345d8ac59178",
+      "r374": "5eac9cf4f9c479681988a371fad78a2823a81163bf0e3a4836f91b5f5424783d",
+      "r373": "84cae08c614926acb51a441934788d4bf6d6107e995732fd1aadc5e81d05b101"
+    }
+  },
+  "observedRecipeRankFollowUp": {
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "beforeSha256": "6888be5728f3a567201f8a69ed3f33a98115bcdbe98fe7e26d73acc41ef0e60d",
+      "afterSha256": "dfcfa111457c668d8d21630b65456e753b1c3c88947218953ff0f66a38acf403",
+      "prototypeSha256": "7170dc759ca9162213dd2df39cd1024c1773b6d9f18d2f995bf0c71413a7cc6a",
+      "workerSha256": "4b158f4c9af8ed0717db57b9b846a323287466da75c837c831fb76efc3f0279d"
+    },
+    "checkpoint": {
+      "folder": "profession-observed-rank-20261119T153709Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "095831d2cf4b7f583054104d5a5ba751991950ebb4c584f8be27f546f04b18ab",
+      "settingsPresenceCounts": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "rejected": {
+      "run": "R375",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag375-paired-live-profession-observed-alias-rank-20261119",
+        "controllerSHA": "b6ae9426d4b30d1cc8755a431f05829ae4ddb924f87f6267dd8b025b2e2e748f",
+        "packetSHA": "67f6027200bb2c7ef9b3a6b86b52681e95decf6759bb562a6ae5c681c8d0d474",
+        "packets": 35,
+        "luaSHA": "a008e27a2d9e24d614a2b000943671e6c2a44d691e878e52cbcf2142acacf008"
+      },
+      "screenshotSha256": "fed52871a6dc239982a38934323ccb0247f6c76a5e8980fa6acc8be3c81e4e5c",
+      "baselineMs": [
+        3.374,
+        3.211,
+        3.436
+      ],
+      "candidateMs": [
+        3.399,
+        3.34,
+        3.321
+      ],
+      "matchingRefs": 101,
+      "sweepsPerHalf": 6,
+      "scope": "Numeric filter around the original ordered-list builder. Prepared key tables outside timing. Mixed pairs."
+    },
+    "lookup": {
+      "run": "R376",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag376-paired-live-profession-direct-alias-rank-20261119",
+        "controllerSHA": "ecd1d16516f32386c9521f94162ee07adec601ae1f65d1299e25ac47edfc5ffa",
+        "packetSHA": "aee4629933532ec02ddc078d600d88e9762825b02a8477856db33481852d4a62",
+        "packets": 32,
+        "luaSHA": "ea809906368e627956387a42268d3e40e046f780f2b40d0230076038a57cea15"
+      },
+      "screenshotSha256": "d7efb50dadc2d1f257ae991887a8be93a3ef09c0108232d6ddd4071a27e3e736",
+      "baselineMs": [
+        4.731,
+        4.148,
+        4.992
+      ],
+      "candidateMs": [
+        3.2,
+        3.038,
+        2.989
+      ],
+      "medianBaselineMs": 4.731,
+      "medianCandidateMs": 3.038,
+      "percentReduced": 35.8,
+      "sweepsPerHalf": 6,
+      "matchingRefs": 101,
+      "bagGenerationDelta": 0,
+      "scope": "Paired native replay on live Tailoring SavedVariables. Timed the observed-ID setup, alias rank and result lookup. It did not time the whole profession scan."
+    },
+    "loaded": {
+      "run": "R379",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag379-loaded-profession-native-equivalence-20261119",
+        "controllerSHA": "99694964a90d9b648b00139ecd39533087034bc9a836b72e880e4a48f4da2182",
+        "packetSHA": "3fd9a80350b97f243bcb17037e975683786f116722b0b0703982ed6bcb1d7187",
+        "packets": 12,
+        "luaSHA": "d1b1d68becb6aa8c84426f56cd9a591b1cdc4ef6a97b18328dffab2ef0bd8200"
+      },
+      "openerScreenshotSha256": "f7d0839faeb7f6ef8be50c9b6e0ff9be2ba425d03c47fb47fe586020e2fe156d",
+      "callbacks": 10,
+      "displayedTimingMs": [
+        15.435,
+        19.116,
+        16.07,
+        39.977,
+        24.994,
+        22.472
+      ],
+      "displayedAliasChecks": 6,
+      "numericRows": 101,
+      "nameRows": 101,
+      "displayedReferenceMismatches": 0,
+      "newLuaErrors": 0,
+      "bagGenerationDelta": 0,
+      "originalCallbackRestored": true,
+      "closedPanelAndChatConfirmed": true,
+      "scope": "Actual Tailoring open and close after targeted R377 reload. Whole handler timings were unpaired and the observed spike persists.",
+      "cleanupScreenshot": {
+        "file": "prof379_restored.png",
+        "sha256": "308cf296de77e57ea18108dfdf8b874a11797b04232f59464981501875940abe"
+      }
+    },
+    "validation": {
+      "installedClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "syntaxPasses": 10,
+      "allocationChecksBefore": 3063,
+      "allocationChecksAfter": 3063,
+      "knowledgeChecks": 524,
+      "catalogueWorkChecks": 637,
+      "closedProfessionFollowupChecks": 1220,
+      "lua51CompatibilityLauncherUsedForOlderLoadAPIs": true,
+      "allocationTestLocatorUpdated": true,
+      "nativeOtherClientsPending": true
+    },
+    "scope": "Optimized ranking of ordinary modern numeric saved IDs. Kept fresh native queries, scan cadence, alias revocations, and the existing catalogue path for legacy, unusual saved IDs, replaced methods and runtimes with distinct number text keys.",
+    "remaining": "Whole profession callbacks still spike. Attribute learnedness reads, schematic reads and cache store work in the loaded handler before changing event cadence. Cross-client, provider, active crafting and Pending checks remain open.",
+    "jump": {
+      "priorWorker": 16492,
+      "retiredCompletedPairs": 12,
+      "newWorker": 10920,
+      "intervalSeconds": 180,
+      "pairRecorded": true
+    },
+    "id": "LHO-PROFESSION-OBSERVED-RANK-20261119"
+  },
+  "unchangedAliasAndNativeListFollowUp": {
+    "client": "Forever 1.60.1/70959/16001",
+    "profile": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "baseline": "dfcfa111457c668d8d21630b65456e753b1c3c88947218953ff0f66a38acf403",
+      "candidate": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+      "installed": [
+        {
+          "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+          "client": "_retail_"
+        },
+        {
+          "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+          "client": "_forever_"
+        },
+        {
+          "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+          "client": "_classic_"
+        },
+        {
+          "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+          "client": "_classic_era_"
+        },
+        {
+          "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+          "client": "_anniversary_"
+        }
+      ],
+      "syntaxPasses": 10,
+      "fullLoadedCandidatePending": true
+    },
+    "checkpoint": {
+      "folder": "profession-idempotent-alias-20261119T160417Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "095831d2cf4b7f583054104d5a5ba751991950ebb4c584f8be27f546f04b18ab",
+      "settingsPresence": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "feedback": {
+      "run": "R382",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag382-native-tailoring-feedback-three-phases-20261119",
+        "controllerSHA": "3c448844b99ad5ec16ec9a124c6e77c081c93191031db225c729525a8a9b60be",
+        "packetSHA": "40a06c7e961f2e39b39197725f51b8e6bc307ee528997fd587c8fa93821790f3",
+        "packets": 19,
+        "luaSHA": "a6d67d38fc55c55096816641625e3b41093fbd2b2b70ddae2589d4daeafb44f9"
+      },
+      "seconds": 108,
+      "phaseSeconds": 36,
+      "nativeEvents": [
+        15,
+        5,
+        5
+      ],
+      "handlerElapsedMs": [
+        221.519,
+        0,
+        76.03
+      ],
+      "phaseHandlerActive": [
+        true,
+        false,
+        true
+      ],
+      "otherProfEvents": [
+        0,
+        0,
+        0
+      ],
+      "bagGenerationDelta": 0,
+      "newLuaErrors": 0,
+      "originalOwnerRestored": true,
+      "conclusion": "Native events still arrived while FluxUI bypassed its list-update handler. This rules out FluxUI as the sole source, not possible amplification. The first normal phase also follows initial panel warm-up."
+    },
+    "alias": {
+      "run": "R384",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag384-native-repeat-observed-alias-sync-cost-20261119",
+        "controllerSHA": "ff81bc84059a5432cad79d127c20367adec78908f7b70ba358d83b2fae4935e1",
+        "packetSHA": "583d1173a58f2a836209ce8e961e0ec4a93792b4b2878d2b91476f7d7210191a",
+        "packets": 32,
+        "luaSHA": "1076917347e5be27821f2349778505eab674bd438ee5f2f305ef36ab81c96594"
+      },
+      "captureSha256": "ed2164f4190be688fbf643935bccf2807493919ab21b004d60877e706a766d77",
+      "aliases": 8,
+      "originalCopiedAliases": 1,
+      "proposedCopiedAliases": 0,
+      "learnedRows": 101,
+      "pairedIterations": 16,
+      "baselineMs": [
+        3.446,
+        3.547,
+        3.322
+      ],
+      "candidateMs": [
+        1.37,
+        1.374,
+        1.289
+      ],
+      "secondsIndependentOfWholeRefresh": true,
+      "scope": "Real committed Tailoring observations and saved aliases. The prototype used the existing reconciliation worker on private outer tables. Row references and removal values matched. Final code adds fallback checks for absent recipe or removal tables."
+    },
+    "queries": [
+      {
+        "profession": "Tailoring",
+        "run": "R385",
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag385-native-tailoring-learned-predicate-cost-bound-20261119",
+          "controllerSHA": "4d82dd53a138ce85be41941315082a9c6a5bc26c0cdec524eddd8e07ea533954",
+          "packetSHA": "33b8c64d37a85573dd63b2724285e00a2ece125912019b583266635207cbb62f",
+          "packets": 12,
+          "luaSHA": "052e37668b78f688c68c748929489a92bcd93e183102cc6bf1b8bfbf5504099e"
+        },
+        "captureSha256": "656f6450391e8ec876a7abe69e066b205c23b12036ee8ac858658c2a68f7a51e",
+        "listed": 471,
+        "learned": 101,
+        "predicateMismatches": 0,
+        "unavailableRecipeFlags": 0,
+        "baselineMs": [
+          5.513,
+          6.25,
+          5.668
+        ],
+        "candidateMs": [
+          1.478,
+          1.36,
+          1.348
+        ]
+      },
+      {
+        "profession": "Alchemy",
+        "run": "R386",
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag386-native-alchemy-learned-predicate-control-20261119",
+          "controllerSHA": "78db0be4ff91f7f2261c4a62a2ae44682dcd3f5e3c0d9ed34447bfcbc4bc7b2a",
+          "packetSHA": "e48ca921c9edd757c52f1b183ec5b20dffd737a614ee74caac521473776068e2",
+          "packets": 12,
+          "luaSHA": "8887433ec54b7a0eec9cd89f4d1ba4c5735b6fc632cef05027341427784178aa"
+        },
+        "captureSha256": "436aa915ec1b89f7fcd16c96a6f557085c608d3f05f2c8bb8677b5fe2fccbf29",
+        "listed": 196,
+        "learned": 23,
+        "predicateMismatches": 0,
+        "unavailableRecipeFlags": 0,
+        "baselineMs": [
+          2.173,
+          2.191,
+          2.044
+        ],
+        "candidateMs": [
+          0.337,
+          0.325,
+          0.335
+        ]
+      },
+      {
+        "profession": "First Aid",
+        "run": "R387",
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag387-native-first-aid-learned-predicate-control-20261119",
+          "controllerSHA": "09f8dcd0fad6dada451ed3e4336203e5bea2606c627af43e8d1716787dde770e",
+          "packetSHA": "35748504f5d9d2aeddfa8965893d3345484d1ec816648e6783590ba4a1d24439",
+          "packets": 12,
+          "luaSHA": "67c29c1efe16ccfabd88dea1164e2f85d268cc6f5b8e94aeafe3b7e1dfcd3b63"
+        },
+        "captureSha256": "d4878b51dcc27c04c43e3ab481e4bfbe1cf0c9ddb71425374cb26672f782908f",
+        "listed": 32,
+        "learned": 19,
+        "predicateMismatches": 0,
+        "unavailableRecipeFlags": 0,
+        "baselineMs": [
+          0.627,
+          0.407,
+          0.369
+        ],
+        "candidateMs": [
+          0.184,
+          0.261,
+          0.315
+        ]
+      }
+    ],
+    "queryScope": "The probe used the cheap spellbook test first, then GetRecipeInfo for positive or uncertain calls. It kept the learned counts and flags on the sampled character. It did not establish equivalence for unlearning, native late metadata, other characters, or other clients. The alternate predicate was not installed.",
+    "references": {
+      "nativeListHandler": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsFrame.lua#L124",
+      "spellbookPredicate": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L737"
+    },
+    "regression": {
+      "cases": {
+        "aliasState": 30,
+        "aliasWork": 31,
+        "recipeKnowledge": 524,
+        "catalogueWork": 637,
+        "publicCatalogueAllocation": 3063,
+        "closedProfessionFollowup": 1220
+      },
+      "syntaxLua51": true,
+      "syntaxLua54": true
+    },
+    "cleanup": {
+      "originalTailoringTabRestored": true,
+      "professionsAndChatClosed": true,
+      "fixtureOwnersRestored": true,
+      "noCraftOrInventoryActions": true,
+      "reloadSentInThisPass": false,
+      "jumpWorker": 10920
+    },
+    "id": "LHO-PROFESSION-UNCHANGED-ALIAS-20261119",
+    "captures": {
+      "feedback": {
+        "file": "prof382_rate.png",
+        "sha256": "971feadd502ca04794b53cb055a8d2ec7057b80deaf7f69eee38799c06267c0c"
+      },
+      "restored": {
+        "file": "prof387_closed.png",
+        "sha256": "a8b5c6e9e031153293edb99dc43add6ce3a44e86baa91c466077a8c8721eb31a"
+      }
+    }
+  },
+  "nativeBulkAndInstalledAliasFollowUp": {
+    "client": "Forever 1.60.1/70959/16001",
+    "profile": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "file": "Inventory/Professions.lua",
+      "sha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+      "matchingInstalledCopies": 5
+    },
+    "bulk": {
+      "run": "R388",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag388-native-profession-bulk-learned-completeness-20261119",
+        "controllerSHA": "3d04de368c88cea31e494126cb5e1da4e2c1f444da428ec711f363fd23c9a141",
+        "packetSHA": "6295babb6b646704a410a3b6dc88acf1d71e89e783f04e1cdfa8901f3ac6d86b",
+        "packets": 14,
+        "luaSHA": "8e4d7e65a7b7d948f47b03533263e6021082dd79c819e54a0dd0d227851aa1c5"
+      },
+      "testedCalls": [
+        "profession enum",
+        "profession enum and skill line",
+        "profession enum and parent skill line",
+        "skill-line ID",
+        "skill-line ID supplied in both positions"
+      ],
+      "tailoring": {
+        "skillLine": 197,
+        "professionEnum": 7,
+        "known": 101,
+        "bulkMatches": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "bulkExtras": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "filteredMatches": 101
+      },
+      "alchemy": {
+        "skillLine": 171,
+        "professionEnum": 3,
+        "known": 23,
+        "bulkMatches": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "bulkExtras": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "filteredMatches": 23
+      },
+      "nativeDeclaration": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+      "temporaryReaderRemoved": true
+    },
+    "filter": {
+      "run": "R390",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag390-native-alchemy-filtered-catalogue-counterexample-20261119",
+        "controllerSHA": "15700d28270eb1114135ad67cfaca8dfc0ec68f17559838fa67b1b68fb6a20d5",
+        "packetSHA": "d12bc34b85005dc164b8da6c01f57f279161a1640bd16a2e03578c972e150ac9",
+        "packets": 6,
+        "luaSHA": "6e1c9417dbfceb10f7edefb708b08f2048896ee2c965befbae219d8a960a26ad"
+      },
+      "captureSha256": "4255e9d045db86dfbc474a96d2915a51af5a941c07b4cdc52f9de29646efa7b0",
+      "knownWithHaveMaterials": 23,
+      "filteredWithHaveMaterials": 0,
+      "showLearned": true,
+      "showUnlearned": false,
+      "knownWithoutOutputItemData": 0,
+      "filterRestored": true
+    },
+    "native": {
+      "probe": "R393",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag393-loaded-alias-parity-and-craft-cache-work-20261119",
+        "controllerSHA": "f5ffcd8a927b93892ceba4909fe0568a41712717d111916cee9bdc9b89373bf1",
+        "packetSHA": "ec866f2dc9b770e6bd921cda4f32024629512becd8a1e0e7803f63cf2b083165",
+        "packets": 19,
+        "luaSHA": "afd8e705e36f9d8982f204046e88e723b0adddd49b1af2111ea4c2297ad2383f"
+      },
+      "reload": "R392",
+      "open": "R394",
+      "matchesPerVisiblePair": 101,
+      "visiblePairs": 6,
+      "referenceMismatches": 0,
+      "wholeHandlerMs": [
+        14.558,
+        12.157,
+        23.011,
+        19.467,
+        16.19,
+        12.43
+      ],
+      "callbacksWithProfessionPublication": 15,
+      "craftabilityCacheClears": 60,
+      "afterPublicationClears": 15,
+      "synchronousCraftRecipeListBuilds": 0,
+      "bagGenerationDelta": 0,
+      "bugTabsDelta": 0,
+      "wrappersRestored": true,
+      "scope": "Actual installed callbacks with Tailoring open, Auction and other commerce closed. Times are unpaired. No isolated invalidation timing or FPS claim."
+    },
+    "final": {
+      "tailoringSelectionRestored": true,
+      "professionAndChatClosed": true,
+      "runtimeLuaEditedThisPass": false,
+      "priorJumpPid": 10920,
+      "priorJumpPairs": 14,
+      "jumpPid": 25264,
+      "jumpIntervalSeconds": 180
+    },
+    "relevantRemaining": "Recipe learning, unlearning, late item data, craft triggers, other clients and the Auction Restock callback while professions are open. The standard per-recipe eligibility checks remain active.",
+    "id": "LHO-PROFESSION-BULK-AND-LOADED-ALIAS-20261119",
+    "captures": {
+      "tailoringBulk": {
+        "file": "prof388_tailoring_bulk.png",
+        "sha256": "346937ede857cc2dbdcec5333fc2eb94146867676b6aed79c2c45bcd2eb2ad5f"
+      },
+      "alchemyBulk": {
+        "file": "prof388_alchemy_bulk.png",
+        "sha256": "8682084964e4ed075f157e0e8825ecb310d4bac95d8c8157f4e904a6d0daa7d3"
+      },
+      "final": {
+        "file": "prof393_closed.png",
+        "sha256": "cdaed8c6b827a9ab3b9d45019118c0b7dc83e7243cc4f52ea6ae0075b0147f50"
+      }
+    }
+  },
+  "identicalRecipeRecordMerge": {
+    "loadedVerification": {
+        "run": "R424",
+        "loadedSourceSha256": "53bc5af9210c7093108a0e8bd99f6d40edc3c95c7d3997ae05a11fd31fe5c6b4",
+        "reloadRun": "R423",
+        "professionOpenRun": "R425",
+        "probeSha256": "be7fb49b1398907e4d4833db27287e6e3ca4b5cc5c7c56653c273ec8a20a9893",
+        "screenshots": {
+            "afterReload": "e746a469665391d6af3f9a2752981a0170fbdb53b077ec318f4161e8d984fd77",
+            "progress": "935932fe1a833f02caf25c5af02b302c13343cc08e556141a4f9d7cd53f13eb6",
+            "finalReport": "db9dfa32610481e68ffdb527c7f5225e07b706028fcb278bac1d8f519912730e",
+            "panelRestored": "d18dbc9d259583c919cee9799dec0e4fa67945cda72452683c79eadf64e5bc04"
+        },
+        "receivedEvents": 5,
+        "checkedEvents": 5,
+        "visibleTimingMsByEvent": {
+            "1": 13.676,
+            "2": 15.283,
+            "4": 23.003,
+            "5": 22.137
+        },
+        "timingScope": "One loaded condition only. Event 3 had scrolled away before the retained visual capture. All five events were counted and four result lines were retained.",
+        "namedAndNumericCountsInVisibleResults": [
+            101,
+            101
+        ],
+        "sameReferencesInVisibleResults": 101,
+        "tombstonesEqualInVisibleResults": true,
+        "missingVisibleEventResult": 3,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "observerRestored": true,
+        "tailoringClosed": true,
+        "jump": {
+            "pid": 42052,
+            "verifiedSpacePairs": 3,
+            "movementAcknowledged": false
+        }
+    },
+    "changeId": "LHO-PROFESSION-IDENTICAL-RECORD-MERGE-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "enabledAddons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "native": {
+      "run": "R422",
+      "probeSha256": "0a42118f9c7b1314ca3c810fe477ed197a57b5486a285d58c91a4f1eae9168c6",
+      "referenceScreenshotSha256": "1e9f168249694a3f55932648145dc0a0049227327baf0a7ae8e0316858345d98",
+      "resultScreenshotSha256": "11198a17b3867fff5636cea6f11061aca75844916b7c2d8696670723383ec9de",
+      "scope": "Actual saved named and numeric Tailoring aliases with all commerce panels closed. Timed only the original and guarded merge predicates over the same recipe tables.",
+      "namedRows": 101,
+      "numericRows": 101,
+      "identicalPlainRecordPairs": 101,
+      "aliasTraversalsPerTrial": 16,
+      "baselineMs": [
+        2.085,
+        2.023,
+        2.035
+      ],
+      "candidateMs": [
+        0.477,
+        0.497,
+        0.475
+      ],
+      "mediansMs": [
+        2.035,
+        0.477
+      ],
+      "fieldsCheckedPerTrial": [
+        21008,
+        0
+      ],
+      "mergeDecisionsChanged": 0,
+      "newErrors": 0,
+      "bagGenerationDelta": 0
+    },
+    "checkpoint": {
+      "folder": "profession-identical-record-20261119T181400Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "source": "Inventory/Professions.lua",
+      "sourceSha256": "a2bb2c23cf74156030450396cc3fb7c1e8a3b162b89efed6703a54829d65f387",
+      "historySha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsFilesPresent": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "installed": {
+      "sourceSha256": "53bc5af9210c7093108a0e8bd99f6d40edc3c95c7d3997ae05a11fd31fe5c6b4",
+      "checks": 10,
+      "installs": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "regressions": [
+        "profession_alias_event_work.lua",
+        "profession_catalogue_allocation.lua",
+        "profession_catalogue_work.lua",
+        "profession_recipe_knowledge.lua",
+        "auction_restock_crafting.lua",
+        "auction_restock_craft_settle.lua",
+        "auction_restock_followup_craft.lua",
+        "auction_restock_followup_closed_profession.lua",
+        "auction_restock_passive.lua"
+      ],
+      "nativeLoadedState": "R424 verified on Forever"
+    },
+    "remaining": [
+      "Additional native active craft workflow parity",
+      "Independent passive auction stock rebuild avoidance with complete mail and metadata invalidation",
+      "Native whole-handler frame-time and broader client or addon profiles"
+    ]
+  },
+  "namedAliasReconcile": {
+    "id": "LHO-PROFESSION-NAMED-ALIAS-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "directory": "profession-named-alias-20261119T195139Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySHA256": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "settingsFilesPresentByClient": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "sources": {
+      "file": "Inventory/Professions.lua",
+      "before": "53bc5af9210c7093108a0e8bd99f6d40edc3c95c7d3997ae05a11fd31fe5c6b4",
+      "after": "c489418811a870d01126be077bf5e24c87f5ed30acede89dc8032931b3f455fd"
+    },
+    "projection": {
+      "run": "R448",
+      "probeSha256": "d0d3517c8829bc48db78a32a13f5693837d6047bc5d2ea791d843a60eeb35353",
+      "screenshotSha256": "44490dad154075cf857a58b7cb61c3886a36c8ec0282f2485d2ca9edbdfa54dd",
+      "listedIDs": 471,
+      "learned": 101,
+      "recipeInfoMs": 6.438,
+      "schematicsMs": 1.114,
+      "earlierMs": [
+        4.832,
+        0.989,
+        1.072,
+        0.988
+      ],
+      "combinedMs": [
+        0.982,
+        1.691,
+        0.965,
+        0.933
+      ],
+      "equal": true,
+      "installed": false
+    },
+    "beforeNatural": {
+      "run": "R449",
+      "probeSha256": "5119b4ed04475ae92f6463d1f659e99e30923a1e4293fdba6e483c27b0a2643e",
+      "screenshotSha256": "19df0770c43b718af2f01e7051491cc8eac63bad7eb2b45015a5c2ab07abeba4",
+      "events": 6,
+      "retainedShownNamedAliasMs": [
+        1.247,
+        1.184,
+        1.202,
+        1.167,
+        1.232
+      ],
+      "note": "Measured from primary cache invalidation call to named alias cache invalidation call."
+    },
+    "paired": {
+      "run": "R451",
+      "probeSha256": "f2f52a9eb904d6b1c1ce5e9659da0173f42344ccaaf43692462fc3b0c9f0e5c9",
+      "screenshotSha256": "756e0a5c663afebd17baac723c3325cf341d65c2bfe1471cf64f0e16d6a0960e",
+      "originalMs": [
+        1.283,
+        1.166,
+        1.118,
+        1.488
+      ],
+      "candidateMs": [
+        0.9,
+        0.88,
+        0.88,
+        0.903
+      ],
+      "mediansMs": [
+        1.2245,
+        0.89
+      ],
+      "matches": true,
+      "candidateUsedAllPairs": true,
+      "rows": 101,
+      "scope": "Timed the original and guarded named save on shallow copies of the actual loaded Tailoring cache and character aliases. Production database and inventory were not modified by the comparison.",
+      "inputNote": "R450 hit the input deadline before completing. A verified blank Say box was closed with Escape. R451 completed Lua execution before its capture deadline and an independent no-input screenshot retained its full output."
+    },
+    "loaded": {
+      "run": "R453 after R452 reload, R454 open",
+      "probeSha256": "4ffa3e050a60a34246ddebf8e00b88435d9b108d7500d5c4724445bdd04f2f0d",
+      "screenshotSha256": "b30895aa80be2d403eb469e7cae405a2989c15c8173eedc8f11a9c19ff4eabc0",
+      "totalMs": [
+        11.218,
+        14.357,
+        33.564,
+        22.91,
+        19.522,
+        21.573
+      ],
+      "extractionAndFirstSaveMs": [
+        9.404,
+        12.442,
+        31.275,
+        20.719,
+        17.363,
+        19.345
+      ],
+      "namedAliasMs": [
+        0.929,
+        0.949,
+        1.141,
+        1.106,
+        1.087,
+        1.088
+      ],
+      "sameRecipeReferencesEach": 101,
+      "independentAliasArrays": true,
+      "matchingRemovalFlags": true,
+      "noNewErrors": true,
+      "bagGenerationDelta": 0,
+      "observerRestored": true,
+      "note": "Natural events after reload, unpaired whole-handler timings."
+    },
+    "validation": {
+      "syntaxChecks": 10,
+      "matchingInstalls": 5,
+      "existingScriptsPassed": 8,
+      "lua51AliasEventChecks": 107,
+      "regressionSha256": "41cbcdd74afc65b03a39e5670b63698a594a06368e56ec93636ff6f959902395"
+    },
+    "cleanup": {
+      "tailoringClosed": true,
+      "restorationSha256": "22047602a598c14d869ddd4b2b58ad1e058ea733e2bcf69fcbee620f71f9c29d",
+      "operationsOnItems": false,
+      "jumpPid": 25892,
+      "jumpPairs": 2,
+      "jumpStatus": "injected-movement-unverified"
+    },
+    "remaining": "Recipe extraction and the first reconciliation remain the largest measured spike. Additional native client and provider combinations, live crafting and FPS remain unverified."
+  },
+  "settledLearnedRecipeList": {
+    "id": "LHO-PROFESSION-CONFIRMED-UNLEARNED-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "provider": "Syndicator bridge loaded",
+    "sourceReference": "Local Blizzard Forever 1.60.1.70425, TradeSkillUI filter and spellbook behavior checked against native build 70959",
+    "checkpoint": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-confirmed-unlearned-20261119T201234Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "settingsFilesFound": {
+        "retail": 1,
+        "forever": 1,
+        "classic": 1,
+        "era": 1,
+        "anniversary": 2
+      }
+    },
+    "sources": {
+      "Inventory/Professions.lua": {
+        "before": "c489418811a870d01126be077bf5e24c87f5ed30acede89dc8032931b3f455fd",
+        "after": "6ac8b67fb9540ad699fe9fcb9746d0a797db0b9b7a8d22e0a1e684b359ba6b16",
+        "identicalInstalledCopies": 5
+      }
+    },
+    "eligibility": {
+      "probe": "R456",
+      "ownedProfession": 197,
+      "nativeRecipeCount": 471,
+      "nativeLearned": 101,
+      "confirmedUnlearned": 370,
+      "hiddenLearned": 0,
+      "unlearnedInFilteredList": 0,
+      "spellbookAndFilterMisses": 0,
+      "professionLevelLearnedQueryDisagreements": 370,
+      "bagGenerationChanges": 0,
+      "newLuaErrors": 0,
+      "probeSha256": "8f1605d8da860601a1efc39bcff7d6ee9d91233c2aeed70e47bdd3ab964e2273",
+      "captureSha256": "6c0ad881b90686c677f98364e1ad08188a697f0bc61df88bff35c94389911eee"
+    },
+    "isolatedRead": {
+      "probe": "R457",
+      "fullReadMs": [
+        5.188,
+        4.124,
+        4.053,
+        4.19
+      ],
+      "guardedReadMs": [
+        1.195,
+        1.275,
+        1.137,
+        1.151
+      ],
+      "medianMs": {
+        "full": 4.157,
+        "guarded": 1.173
+      },
+      "recipeInfoCalls": {
+        "full": 471,
+        "guarded": 101
+      },
+      "equalLearnedAndRemovedSets": 4,
+      "bagGenerationChanges": 0,
+      "newLuaErrors": 0,
+      "probeSha256": "47b49e9624c1dbe153e09b07b660823296d4f4a7ae621edbb2c74389d14071a6",
+      "captureSha256": "686b3aaa4ead218007896ae24825271ab2526ffa649994d952d33a9a84d0b690"
+    },
+    "loadedNatural": {
+      "probe": "R459 and R460",
+      "reload": "R458",
+      "events": 6,
+      "learnedReferencesPerAlias": 101,
+      "removalFlags": 370,
+      "bagGenerationChanges": 0,
+      "newLuaErrors": 0,
+      "observersRestored": true,
+      "preservedEventSamples": [
+        {
+          "ordinal": 1,
+          "totalMs": 8.277,
+          "extractionAndFirstSaveMs": 6.365,
+          "aliasMs": 1.008
+        },
+        {
+          "ordinal": 3,
+          "totalMs": 13.158,
+          "extractionAndFirstSaveMs": 10.899,
+          "aliasMs": 1.146
+        },
+        {
+          "ordinal": 4,
+          "totalMs": 13.212,
+          "extractionAndFirstSaveMs": 10.828,
+          "aliasMs": 1.132
+        },
+        {
+          "ordinal": 5,
+          "totalMs": 13.741,
+          "extractionAndFirstSaveMs": 11.509,
+          "aliasMs": 1.124
+        },
+        {
+          "ordinal": 6,
+          "totalMs": 11.53,
+          "extractionAndFirstSaveMs": 9.351,
+          "aliasMs": 0.993
+        }
+      ],
+      "firstCaptureSha256": "9cbf0efc5515019d1224a9eb62935438358e757a961b6a1892c3c821803eed9e",
+      "laterCaptureSha256": "d917711ccd2d869f1bcfe13df95bcd09df143687f1e921bf9031b02809bca46e"
+    },
+    "loadedPaired": {
+      "probe": "R462, all four diagnostic rows recovered by R463",
+      "method": "Settled native recipe event followed immediately by P.ForceScanOpen on the same open Tailoring view. Commerce panels closed.",
+      "fullMs": [
+        13.075,
+        13.055,
+        13.511,
+        14.056
+      ],
+      "guardedMs": [
+        8.189,
+        8.165,
+        8.503,
+        9.182
+      ],
+      "medianMs": {
+        "full": 13.293,
+        "guarded": 8.346
+      },
+      "equalRowsAndRemovalFlags": 4,
+      "bagGenerationChanges": 0,
+      "newLuaErrors": 0,
+      "observersRestored": true,
+      "probeSha256": "7c5d84180b32485fcba4470e83628919e4fbd5c6ddb52c682239ca9dd16e0bc2",
+      "captureSha256": "f3af4768ad6bbdd8c7aaa28ed00f62c2c3c98035aea8da9d0fbc8d73c2d40a67"
+    },
+    "validation": {
+      "syntaxChecks": 10,
+      "passedRegressionScripts": 8,
+      "lua51AliasChecks": 133,
+      "checks": [
+        "first full scan and stable settled scan",
+        "uncertain spellbook information and changed filters",
+        "cache reseed and immediate spellbook acquisition",
+        "removal and explicit learn event",
+        "close invalidation and full forced scan"
+      ]
+    },
+    "cleanup": {
+      "lastCaptureSha256": "699bd52af18db87b13bd0fd5dda0891a049835da865777929060a18a9e5bcd01",
+      "tailoringClosed": true,
+      "existingEmptyTargetRestored": true,
+      "jump": {
+        "process": 40164,
+        "periodSeconds": 180,
+        "requiresPcIdle": false,
+        "movementAcknowledged": false
+      }
+    },
+    "remaining": "Live learning, active crafting, other provider and client combinations, combined Auction Restock load and whole-frame FPS still need native checks."
+  },
+  "settledLearnedRecipeListWithAuction": {
+    "id": "LHO-PROFESSION-LEARNED-LIST-AUCTION-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "scenario": "Auction Restock active and stocked; native opening Tailoring callbacks. No pending receipts, searches, offers, vendor craft plans or transaction. Each natural scan followed by a full native forced scan and the same Craft cache flush. Both halves included one Restock rebuild.",
+    "sourceSha256": {
+      "Inventory/Professions.lua": "6ac8b67fb9540ad699fe9fcb9746d0a797db0b9b7a8d22e0a1e684b359ba6b16",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "aa07f334b8cd5fd939fc896d61b7b45349489bc9374eb6546e444c9fbcb06985",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "5e17c5603a68166b8e5b6a336e55530c6f33c80e96f2ef51327d620ec6d02b64",
+      "Inventory/Restock/Core/FluxRestockList.lua": "92912c173ee1371f43139ee37e26100dfb500493452b4ca0d330c7a42224b560"
+    },
+    "paired": {
+      "probe": "R464 and natural opening via R465",
+      "fullMs": [
+        13.92,
+        16.253,
+        16.559,
+        15.775
+      ],
+      "installedMs": [
+        13.041,
+        12.746,
+        12.823,
+        12.772
+      ],
+      "medianMs": {
+        "full": 16.014,
+        "installed": 12.7975
+      },
+      "fullRowMs": [
+        4.156,
+        4.067,
+        4.143,
+        4.037
+      ],
+      "installedRowMs": [
+        4.039,
+        4.18,
+        4.162,
+        4.157
+      ],
+      "equalLearnedRowsAndRemovalSets": 4,
+      "equalVisibleHiddenRowsAndPotionTargets": 4,
+      "rowsEqualToPriorVisibleState": 4,
+      "bagBankWarbandMailGenerationsStable": true,
+      "newLuaErrors": 0,
+      "observersRestored": true,
+      "probeSha256": "9d8fc51aa10c06f6027065c4c5b3db6461f73b2c921682348840a90c3cf7fbab",
+      "captureSha256": "f41e835a655bccbb4f0eaced3be852c4ba496d2b0ad38ce6c7821497a67a5bfa"
+    },
+    "breakdown": {
+      "probe": "R466",
+      "method": "Timed installed row rebuild with scoped Auction method observers. Measured target-list query afterward with the installed options shape for this idle closed-bank scenario. Method timings are inclusive and can overlap.",
+      "totalMs": [
+        4.704,
+        4.681,
+        4.926
+      ],
+      "targetListMs": [
+        2.675,
+        2.668,
+        3.763
+      ],
+      "targetCount": 9,
+      "methodMs": {
+        "RefreshMailFacts": [
+          0.01,
+          0.011,
+          0.014
+        ],
+        "SetItemUnits": [
+          0.65,
+          0.648,
+          0.638
+        ],
+        "Need": [
+          0.182,
+          0.191,
+          0.181
+        ],
+        "IsVendorItem": [
+          0.02,
+          0.018,
+          0.02
+        ],
+        "MaterialRows": [
+          0.001,
+          0.001,
+          0.001
+        ],
+        "CapturePotionTargets": [
+          0.544,
+          0.549,
+          0.546
+        ],
+        "ApplyPotionReplacements": [
+          0.082,
+          0.084,
+          0.083
+        ]
+      },
+      "equalRowsAndPotions": 3,
+      "stableGenerations": true,
+      "newLuaErrors": 0,
+      "probeSha256": "461023890b729757e3808c4f5234e9d8707838417d297d18d32f357b472f89bd",
+      "captureSha256": "f6688ec9f4f7f5e7d0dc4f46bffd47ca4efb12c3cd22c5a53de8825f33471eaa"
+    },
+    "cleanup": {
+      "panelsClosed": true,
+      "targetRestored": true,
+      "probe": "R467",
+      "captureSha256": "ab4a1d53d5971d3594d5c1be36ed1ed8547339b0d415dd20e09903ee19b9a95b",
+      "jumpPID": 40164,
+      "jumpPairsReported": 7,
+      "movementAcknowledged": false
+    },
+    "remaining": "Profile the target-list portion while preserving per-provider freshness for bag, bank and spell reagent reads. Native pending receipts, active purchasing or crafting, whole-frame time and other client/provider modes were outside this capture."
+  },
+  "stockQueryBreakdown": {
+    "probeR468": "Prototype reported a Lua error after using the wrong spell inventory owner. R469 uses the actual Restock owner and completed without new errors.",
+    "r469": {
+      "targetListMs": [
+        3.958,
+        2.933,
+        2.911,
+        3.508
+      ],
+      "warmTierBagsMs": [
+        0.032,
+        0.029,
+        0.027,
+        0.038
+      ],
+      "tierBankMs": [
+        0.7,
+        0.676,
+        0.663,
+        0.679
+      ],
+      "visibleReagentMs": [
+        0.259,
+        0.256,
+        0.253,
+        0.264
+      ],
+      "tierThresholdMs": [
+        0.016,
+        0.015,
+        0.015,
+        0.015
+      ],
+      "tierCountsMatched": 5,
+      "bankUnique": 21,
+      "warbandUnique": 0,
+      "probeSha256": "dacf003a7e5be76f67cc8680af64c510a419c6b05156d0622e763fee14fbb4b4",
+      "captureSha256": "453745ba60bb667b00a35b8aa5b40e0816a086189bc3d4cbecb830cec74ed765"
+    },
+    "r470": {
+      "baselineMs": [
+        3.907,
+        2.857,
+        2.893
+      ],
+      "instrumentedMs": [
+        2.608,
+        2.645,
+        2.617
+      ],
+      "chargeInfoReads": 6,
+      "observedChargeInfoMs": [
+        0.269,
+        0.277,
+        0.267
+      ],
+      "rowParity": true,
+      "probeSha256": "94d766cddea6ffe516f96e58563b94433fb2066340a1a8293f2d2d333d676708",
+      "captureSha256": "5fdbcd1914dcc5c0c4e19084e7e2873110346de4239f4fc7726c866202b9968a",
+      "scope": "Fixed-order observer pairs, not a candidate comparison."
+    },
+    "r471": {
+      "nativeTierBankMs": [
+        0.657,
+        0.719,
+        0.764
+      ],
+      "positivePerListCounts": 4,
+      "knownNonConsumableExclusions": 17,
+      "overlapWithDirectRows": 0,
+      "chargedDirectRows": 0,
+      "directCount": 4,
+      "positiveClassificationsInBank": 0,
+      "probeSha256": "d0ea33de548186d2e30b7dcb8b9d67dfc7e67ead060f880117c045e150196c23",
+      "captureSha256": "fbc1f46295766e31c679531d4a2192a5dcf61a2a9efdb406deb283b832b63d8e"
+    },
+    "r472": {
+      "rowOnlyMs": [
+        3.877,
+        3.87,
+        3.796
+      ],
+      "fullAssemblyMs": [
+        3.808,
+        3.784,
+        3.77
+      ],
+      "nativeTextReads": 5,
+      "sharedAcrossStageBoundary": 0,
+      "pairedRowsExact": 3,
+      "newLuaErrors": 0,
+      "restored": true,
+      "probeSha256": "2e3745500640e1e4ce839fe890de47c876975de367a93d545e804e774b2892bc",
+      "captureSha256": "8d34260ab6ba51e3d24d4713838513dd39f2c2a389eabe6c97d54c92056403ff"
+    },
+    "outcome": "The broader tooltip scope removed no native reads in this real profile. Closed-bank counts did not overlap the direct target rows. Retained existing Restock runtime and shifted the next change to measured backpack reveal work."
+  },
+  "nativeFirstProfessionOpen": {
+    "id": "LHO-FIRST-TAILORING-PUBLICATIONS-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "Inventory/Professions.lua",
+    "diskSourceSHA256": "6ac8b67fb9540ad699fe9fcb9746d0a797db0b9b7a8d22e0a1e684b359ba6b16",
+    "diskCopies": [
+      "Retail",
+      "Forever"
+    ],
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "profiler": "scriptProfile=0; debugprofilestop and frame elapsed",
+    "learnedRecipes": 102,
+    "cold": {
+      "runs": [
+        "R526",
+        "R527"
+      ],
+      "initiallyLoadedProfessionAddons": false,
+      "screenshotSHA256": "d8ea8b65e2495746ad4b0ce9b3cb9b3f7f9d9aa90206ed5b4b46bdd4a0f62a81",
+      "screenshot": "resume527_tailoring_first.png",
+      "showMs": 0.07,
+      "firstListMs": 0.01,
+      "scanEvents": [
+        {
+          "event": "TRADE_SKILL_DATA_SOURCE_CHANGED",
+          "relativeSeconds": 50.51,
+          "handlerMs": 16.75,
+          "inclusiveNotifyMs": 0.7,
+          "nearbyFrameGapMs": 129
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "relativeSeconds": 50.51,
+          "handlerMs": 12.76,
+          "inclusiveNotifyMs": 0.69,
+          "nearbyFrameGapMs": 129
+        },
+        {
+          "event": "TRADE_SKILL_LIST_UPDATE",
+          "relativeSeconds": 50.59,
+          "handlerMs": 13.76,
+          "inclusiveNotifyMs": 0.75,
+          "nearbyFrameGapMs": 149
+        }
+      ],
+      "pendingFlushMs": [
+        0,
+        0,
+        0
+      ],
+      "bagGenerationStable": true,
+      "observerRestored": true,
+      "newLuaErrors": 0
+    },
+    "outputFallback": {
+      "run": "R528",
+      "screenshotSHA256": "1bde228e53a42a4766ef6acfb7cf7490391561ec167ece922b77afca3df44c95",
+      "screenshot": "resume528_tailoring_result.png",
+      "pairedReaderMs": [
+        [
+          0.768,
+          0.697
+        ],
+        [
+          0.691,
+          0.715
+        ],
+        [
+          0.679,
+          0.802
+        ],
+        [
+          0.637,
+          0.753
+        ]
+      ],
+      "primarySuccessesPerPass": 102,
+      "fallbackReads": 0,
+      "sameOutputIdsAndLinks": true,
+      "newLuaErrors": 0,
+      "retained": false
+    },
+    "warm": [
+      {
+        "runs": [
+          "R529",
+          "R530"
+        ],
+        "screenshot": "resume531_tailoring_publications.png",
+        "screenshotSHA256": "7c758a3aaa16a6da8b744012b490e4f05e154a59606feec1ae4a2a8f39495bd2",
+        "sameFrameSourceAndListMs": [
+          11.85,
+          7.62
+        ],
+        "storedRecordEquality": true,
+        "caveat": "Captured outer cache references. Later alias propagation can replace their field references."
+      },
+      {
+        "runs": [
+          "R532",
+          "R533"
+        ],
+        "screenshot": "resume534_tailoring_fields.png",
+        "screenshotSHA256": "5b552409e3c60707b5ecb3d440e0e3b8b0bd8960cad29814be7f85ca9aea9804",
+        "sameFrameSourceAndListMs": [
+          12.38,
+          8.5
+        ],
+        "numericRecordsAndRemovalFlagsEqual": true,
+        "namedRecordsAndRemovalFlagsEqual": true,
+        "compare": "Retained published recipe and tombstone arrays at each event boundary. Compared their contents after the events. Excluded the publication timestamp."
+      }
+    ],
+    "cleanup": {
+      "testPanelClosed": true,
+      "observersRestored": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "itemOperations": 0
+    },
+    "decision": "Keep the existing event handling until a freshness signal or a separately validated shared-work change covers new metadata, learning and revocation. A matching warm publication does not establish that future source and list deliveries are interchangeable. Nearby frame gaps contain client work as well as FluxUI.",
+    "helper": {
+      "pid": 10920,
+      "intervalSeconds": 180,
+      "lastObservedSpacePairLocal": "2026-11-20T00:34:39+01:00",
+      "movementAcknowledged": false
+    }
+  },
+  "observedRecipeRevocations": {
+    "id": "LHO-PROFESSION-OBSERVED-REMOVALS-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "checkpoint": {
+      "folder": "profession-observed-tombstones-20261119T234205Z",
+      "gitHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "nonemptySettingsFiles": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "sources": {
+      "path": "Inventory/Professions.lua",
+      "baselineSHA256": "6ac8b67fb9540ad699fe9fcb9746d0a797db0b9b7a8d22e0a1e684b359ba6b16",
+      "installedSHA256": "17755f0a0d47e7ea698cb13c212bfa74936cf514fd65469bbfcfdc05b5fa82d8",
+      "installedDiskCopies": [
+        "Retail",
+        "Forever",
+        "Classic progression",
+        "Classic Era",
+        "Anniversary"
+      ]
+    },
+    "nativeBaseline": {
+      "run": "R535",
+      "probeSHA256": "bf8d9bfce4f4d064ee60f1e7457766f5d2ff81a896f32ea73cede881d3e939a5",
+      "rawScreenshot": "resume535_profession_revoked.png",
+      "screenshotSHA256": "8b4032357e61e340971ebba494e3cc5402cfee759ca5c90101ed43859be67b3d",
+      "observedRecipes": 102,
+      "returnedRecipes": 102,
+      "aliases": 9,
+      "storedRemovalFlags": 1110,
+      "passesPerRound": 8,
+      "rotatingOrder": true,
+      "units": "ms per eight ranking calls",
+      "columns": [
+        "baseline",
+        "filter flags by observed id",
+        "probe observed ids separately for each alias"
+      ],
+      "sampleMs": [
+        [
+          4.002,
+          3.297,
+          3.143
+        ],
+        [
+          4.048,
+          3.342,
+          3.365
+        ],
+        [
+          4.204,
+          3.288,
+          3.33
+        ],
+        [
+          4.266,
+          3.718,
+          3.313
+        ],
+        [
+          4.62,
+          3.314,
+          3.481
+        ],
+        [
+          4.464,
+          3.269,
+          3.354
+        ]
+      ],
+      "medianMsPerPass": [
+        0.529375,
+        0.4131875,
+        0.41775
+      ],
+      "exactRecipeReferenceEquality": true,
+      "stableBagGeneration": true,
+      "errors": 0
+    },
+    "nativeLoaded": {
+      "reload": "R536",
+      "cold": {
+        "runs": [
+          "R537",
+          "R538"
+        ],
+        "screenshotSHA256": "293f0710aad3c9f68587ffdb7ae9d021ee437c26749902905513f198f780bdd3",
+        "sourceAndListMs": [
+          15.44,
+          9.66
+        ]
+      },
+      "warm": {
+        "runs": [
+          "R540",
+          "R541"
+        ],
+        "screenshotSHA256": "22034de39bbeda42a4703a8ad0f314b8b4fe32126e77d8f466c67d54a48acdc6",
+        "sourceAndListMs": [
+          16.47,
+          8.24
+        ]
+      },
+      "bothSameFrameSourceAndList": true,
+      "stableBagGeneration": true,
+      "numericAndNamedRecipesAndRemovalFlagsEqual": true,
+      "recipeCount": 102,
+      "errors": 0,
+      "panelClosed": true,
+      "observersRestored": true
+    },
+    "tests": {
+      "syntaxChecks": 10,
+      "stockLua54PassingScripts": 8,
+      "lua51PassingScripts": 5,
+      "lua51FixtureCompatibility": "Stock Lua 5.1 with desktop loadfile/load compatibility in runner only. Catalogue allocation, storm dispatch and Extra profession ranks failed at matching assertions on checkpoint and edited source."
+    },
+    "result": "Only rank removals that could affect the current observed recipe set. Ranking, explicit removal and notifications are preserved. Before/after loaded warm samples vary and do not establish a full handler or FPS improvement. Active craft and other native client/provider tests remain open.",
+    "jump": {
+      "cue": "R74",
+      "pid": 2292,
+      "intervalSeconds": 180,
+      "mode": "background calibration confirmed",
+      "movementAcknowledged": false
+    }
+  },
+  "firstReadyRecipeReadComparison": {
+    "id": "LHO-PROFESSION-SAVED-NEGATIVE-PREDICATE-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "sourceFile": "Inventory/Professions.lua",
+    "diskSHA256": "17755f0a0d47e7ea698cb13c212bfa74936cf514fd65469bbfcfdc05b5fa82d8",
+    "runs": [
+      "R543",
+      "R544"
+    ],
+    "probeSHA256": "0430cc50963e111679b927c32a68e38853a258eef8adcfe7cc7499a8332af51e",
+    "rawScreenshot": "resume544_current_recipe_removals.png",
+    "screenshotSHA256": "f26c30d75d92e196f2de686d698cc946d0afea24b5295483d780ff801e73a03f",
+    "scope": "Real warm Tailoring reopen on the ready source-change and following list events. Two getter loops ran in order before the installed callback. Candidate accepted only IDs absent from the current filtered list, explicitly revoked under both saved keys and still absent from the native player spellbook. No timing claim for the window or addon event. Both actual runtime callbacks still ran.",
+    "events": [
+      {
+        "event": "TRADE_SKILL_DATA_SOURCE_CHANGED",
+        "fullRecipeInfoReads": 471,
+        "candidateRecipeInfoReads": 102,
+        "skipped": 369,
+        "filtered": 102,
+        "unavailableRows": 0,
+        "excludedRows": 0,
+        "fullMs": 6.61,
+        "candidateMs": 1.8,
+        "learnedAndRemovalSetsEqual": true,
+        "unfilteredLearnedOnly": true
+      },
+      {
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "fullRecipeInfoReads": 471,
+        "candidateRecipeInfoReads": 102,
+        "skipped": 369,
+        "filtered": 102,
+        "unavailableRows": 0,
+        "excludedRows": 0,
+        "fullMs": 5.42,
+        "candidateMs": 1.43,
+        "learnedAndRemovalSetsEqual": true,
+        "unfilteredLearnedOnly": true
+      }
+    ],
+    "tableCheck": "Exact sets checked both ways. The alternative full loop is an isolated comparison. The installed list-update path already skips confirmed unlearned IDs when the in-session list matches.",
+    "bagGenerationStable": true,
+    "newLuaErrors": 0,
+    "observerRestored": true,
+    "panelClosed": true,
+    "counterProbe": {
+      "run": "R545",
+      "armedWithPanelClosed": true,
+      "openPacketsAbortedBeforeInput": [
+        "R546",
+        "R547",
+        "R548"
+      ],
+      "counterAtClosed": null,
+      "readySourceCounterObserved": false,
+      "screenshotAfterTimer": "resume549_source_counter_timeout.png",
+      "counterContract": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua#L360",
+      "nativeUiUse": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsFrame.lua#L208"
+    },
+    "decision": "Retain current first-source native verification. The faster predicate matched this settled screen, but this test did not cover first-session data, learning, missing metadata or progression. The documented sourceCounter is used by Blizzard for source identity; it is not established as a revision for every learned/craftability/metadata field. Confirm its live event boundary for any proposal to reuse in-session evidence.",
+    "runtimeChanged": false
+  },
+  "firstReadyProfessionSourceCounter": {
+    "id": "LHO-PROFESSION-READY-SOURCE-COUNTER-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "sha256": "17755f0a0d47e7ea698cb13c212bfa74936cf514fd65469bbfcfdc05b5fa82d8",
+      "runtimeChanged": false
+    },
+    "run": "R560, first Tailoring open since R558 reload",
+    "samples": {
+      "closedCounter": null,
+      "loadingShow": {
+        "sourceCounter": 32,
+        "ready": true,
+        "changing": true,
+        "handlerMs": 0,
+        "existingRows": 102
+      },
+      "firstReadySource": {
+        "sourceCounter": 33,
+        "ready": true,
+        "changing": false,
+        "handlerMs": 24.16,
+        "savedRows": 102,
+        "rowsAndRemovalsEqualToPrevious": true
+      },
+      "sameFrameList": {
+        "sourceCounter": 33,
+        "ready": true,
+        "changing": false,
+        "handlerMs": 13.63,
+        "savedRows": 102,
+        "rowsAndRemovalsEqualToPrevious": true
+      },
+      "readyHandlersCombinedMs": 37.79,
+      "closedCounterAfter": null
+    },
+    "checks": {
+      "observerRestored": true,
+      "panelRestored": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0
+    },
+    "decision": "The counter changed between the loading and ready event in this capture. Keep the current source verification and synchronous publications. Same-counter, same-frame parity here does not certify freshness under filter changes, a learned spell or late item metadata. The observer compared tables retained at each event after the measured callback. This measures that FluxUI handler only.",
+    "externalSources": {
+      "professionInfo": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUITypesDocumentation.lua#L360",
+      "frameSourceComparison": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Professions/Blizzard_ProfessionsFrame.lua#L208"
+    },
+    "captures": {
+      "submitted": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag560_a-submitted.png",
+        "sha256": "32a05206200a9f65cd5c67e8e535fe88bc786ac49d0815cc40c5ad007786743c"
+      },
+      "closed": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume560_tailoring_counter_finished.png",
+        "sha256": "836bab05530491c0d2fc58b499a5927da526460b042927a9c600128fa465b091"
+      },
+      "probe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/560-first-tailoring-ready.lua",
+        "sha256": "ae8a32be9bbfa4883a4430624a3ee508835e23b3090f37fdf52076743e687dd8"
+      }
+    },
+    "jump": {
+      "pid": 28812,
+      "intervalSeconds": 180,
+      "loggedPairsAtCheck": 3,
+      "movementAcknowledged": false
+    }
+  },
+  "combinedModernRecipeReagentExtraction": {
+    "id": "LHO-PROFESSION-COMBINED-REAGENTS-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "beforeSHA256": "17755f0a0d47e7ea698cb13c212bfa74936cf514fd65469bbfcfdc05b5fa82d8",
+      "afterSHA256": "d2b48f6b0812b138e93491d200dbf85df2f0c29906e0f58242807a7e07d1adc9",
+      "allFiveInstallHashesMatched": true,
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-combined-reagents-20261120T011046Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "17755f0a0d47e7ea698cb13c212bfa74936cf514fd65469bbfcfdc05b5fa82d8",
+        "bundle": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+        "settings": {
+          "_retail_": 2,
+          "_forever_": 3,
+          "_classic_": 2,
+          "_classic_era_": 4,
+          "_anniversary_": 32
+        }
+      }
+    },
+    "samples": {
+      "before": {
+        "directSamplesMs": [
+          1.41,
+          1.239,
+          1.089,
+          1.033,
+          1.065,
+          1.705
+        ],
+        "medianMs": 1.1640000000000001,
+        "firstSourceMs": 24.16,
+        "sameFrameListMs": 13.63,
+        "combinedHandlerMs": 37.79
+      },
+      "after": {
+        "directSamplesMs": [
+          1.139,
+          1.224,
+          0.881,
+          0.903,
+          0.915,
+          1.201
+        ],
+        "medianMs": 1.0270000000000001,
+        "firstSourceMs": 23.17,
+        "sameFrameListMs": 8.63,
+        "combinedHandlerMs": 31.8
+      },
+      "direct": {
+        "activeRecipeRows": 102,
+        "reagentSlots": 298,
+        "incompleteCraftSnapshots": 0,
+        "emptyFlatLists": 0,
+        "matchingPairs": 6,
+        "alternatingOrder": true
+      }
+    },
+    "scope": "R561 ran the exact earlier collectors and the candidate combined collector on the same live Tailoring specimens. Every compared field in the two saved outputs matched in all six alternating pairs. The benchmark profiled the extraction, including live quality reads, and did not time source lookup or the whole frame.",
+    "loaded": {
+      "runs": [
+        "R562 reload",
+        "R563 first Tailoring open"
+      ],
+      "showCounter": 34,
+      "readySourceCounter": 35,
+      "listCounter": 35,
+      "readySourceAndListSameFrame": true,
+      "savedRows": 102,
+      "savedRowsAndRemovalFlagsMatch": true,
+      "newLuaErrors": 0,
+      "bagGenerationStable": true,
+      "panelClosed": true,
+      "observerRestored": true,
+      "matchesReloadReadiness": true
+    },
+    "fallbacks": "Incomplete or missing schematics retain the earlier flat reagent extraction and invalid/incomplete snapshot semantics. Optional-only fallback, basic preference, output/yield reads, quality capture and publication timing are retained.",
+    "regressions": {
+      "lua54Scripts": {
+        "character_recipe_cache": 848,
+        "profession_alias_event_work": 113,
+        "profession_recipe_knowledge": 524,
+        "profession_catalogue_work": 637,
+        "profession_catalogue_allocation": 3063,
+        "craft_mixed_first_aid": 1645,
+        "auction_restock_crafting": 836,
+        "auction_restock_followup_closed_profession": 1220,
+        "consumable_craft_identity": 620,
+        "extra_profession_ranks": 34376
+      },
+      "lua51InstalledSyntax": 5,
+      "lua54InstalledSyntax": 5,
+      "fixtureAdjustment": "The implementation-specific collector tracer now recognizes both collector entry points. The 637-check fixture passed against the checkpoint and installed candidate. Every other fixture passed before and after without modification."
+    },
+    "remaining": "The two reload-separated handler samples are unpaired and do not establish a total open or first-frame improvement. Real crafting, native provider and client matrix, and the residual first-ready scan and reconciliation work remain.",
+    "jump": {
+      "cue": "R78",
+      "supervisorPid": 38896,
+      "pid": 32412,
+      "intervalSeconds": 180,
+      "firstSpacePairLogged": true,
+      "movementAcknowledged": false
+    },
+    "captures": {
+      "nativePairs": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume561_tailoring_joined_capture_result.png",
+        "sha256": "200a5f4edd655c8f69a52ab77b81653888d48cf8436cc6663a1c9300dbf9c359"
+      },
+      "loadedOpen": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume563_loaded_tailoring_extraction_result.png",
+        "sha256": "761a086311bd0419aa1b205dc28739e4fce460de61bf5faea446e411b5fd0838"
+      },
+      "reload": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag562_a-submitted.png",
+        "sha256": "fb0b2bf982e89c3eb88d47903c979b0322e01729427a5660e23fae1394960991"
+      },
+      "pairProbe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/561-extract-recipe-probe.lua",
+        "sha256": "f6dfc71b6947c4eaf5e9cbe91a4c3ad9534baa01b4ce15c764a51f1960c22637"
+      },
+      "loadedProbe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/563-loaded-tailoring-ready.lua",
+        "sha256": "5cdef77ce612833b1755ffc84307ac2dd65a71256be0b9d9bc6ab8fdd50eec7e"
+      }
+    }
+  },
+  "warmReadySourceStoreAttribution": {
+    "id": "LHO-PROFESSION-SOURCE-STORE-ATTRIBUTION-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "sha256": "d2b48f6b0812b138e93491d200dbf85df2f0c29906e0f58242807a7e07d1adc9",
+      "runtimeChanged": false
+    },
+    "run": "R564 one real warm Tailoring reopen",
+    "samples": [
+      {
+        "event": "source",
+        "handlerMs": 13.493,
+        "prefixMs": 0.258,
+        "preStoreMs": 9.965,
+        "firstStoreMs": 1.614,
+        "namedAliasStoreMs": 0.941,
+        "notifyMs": 0.702
+      },
+      {
+        "event": "list",
+        "handlerMs": 8.369,
+        "prefixMs": 0.227,
+        "preStoreMs": 4.674,
+        "firstStoreMs": 1.754,
+        "namedAliasStoreMs": 0.977,
+        "notifyMs": 0.718
+      },
+      {
+        "event": "list",
+        "handlerMs": 8.64,
+        "prefixMs": 0.237,
+        "preStoreMs": 5.074,
+        "firstStoreMs": 1.681,
+        "namedAliasStoreMs": 0.95,
+        "notifyMs": 0.682
+      }
+    ],
+    "scope": "The prefix ends when GetProfessionKnowledge returns. Each StoreSkill entry is marked at its CharKey read and each store ends at its craftability invalidation call. The pre-store interval covers native recipe metadata, schematic and output reads, list verification and payload preparation. This measures a warm native reopen and the temporary observer has small overhead. Store spans do not cover the subsequent cache wipe. Two storage-key calls and four invalidation calls were observed on all three deliveries.",
+    "checks": {
+      "panelClosed": true,
+      "observerRestored": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0
+    },
+    "decision": "Prioritize recipe acquisition on the first ready source. The source spent 9.965 ms before saving compared with 2.555 ms across both saves. Preserve the loading boundary, proven current removals, and positive recipe freshness as measured in R560. Do not spend the next pass on an unproven named alias micro-optimization.",
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume564_first_store_results.png",
+      "sha256": "43a911265904abd695d6a22ff2ab85eb06f98a0ae950da5ffe34224c11e2c571"
+    },
+    "probe": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/564-tailoring-first-store-timing.lua",
+      "sha256": "c6b3018ef7e97afae0a4813c9a38cb9afadefbd0a54fe45cedccac22b685ba3d"
+    },
+    "separateCastAttempt": {
+      "run": "R565",
+      "scope": "Prepared a real Conjure Food cancel trace for live cast owner selection and target-chrome cleanup. Foreground input changed after the source capture. No packets sent, address nonce unspent, and reservation released.",
+      "sourceCaptureSHA256": "8cd53deae5e6eae74aeafd24289e15f05f10baa01207e020baed5142d2ea4e51",
+      "panelOrItemChanges": false
+    },
+    "jump": {
+      "pid": 32412,
+      "intervalSeconds": 180,
+      "loggedPairsAtLastState": 4,
+      "movementAcknowledged": false
+    }
+  },
+  "firstReadyProfessionGetterAttribution": {
+    "id": "LHO-PROFESSION-FIRST-READY-READ-COST-20261120",
+    "run": "R585",
+    "client": "Forever 1.60.1/70959/16001",
+    "providerProfile": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "sourceFile": "Inventory/Professions.lua",
+    "sourceSHA256": "d2b48f6b0812b138e93491d200dbf85df2f0c29906e0f58242807a7e07d1adc9",
+    "context": "First ready Tailoring source after verified reload R583. The production event ran first. A next-tick timer confirmed the same source counter 37 and unchanged bag generation. It ran four alternating sweeps of native getter groups before restoration. The timed intervals include protected calls and saving their immediate return values; result shape checks ran outside timing.",
+    "sourceCounter": 37,
+    "sourceBodyMs": 14.026,
+    "readGroups": {
+      "learnedInfo": {
+        "calls": 102,
+        "valid": 102,
+        "ms": [
+          1.589,
+          2.215,
+          2.281,
+          1.768
+        ]
+      },
+      "unlearnedInfo": {
+        "calls": 369,
+        "valid": 369,
+        "ms": [
+          5.921,
+          6.721,
+          6.702,
+          6.712
+        ]
+      },
+      "unlearnedSpellbook": {
+        "calls": 369,
+        "negative": 369,
+        "ms": [
+          0.219,
+          0.22,
+          0.25,
+          0.207
+        ]
+      },
+      "schematics": {
+        "calls": 102,
+        "completeBasicShape": 102,
+        "ms": [
+          1.068,
+          1.105,
+          1.064,
+          0.933
+        ]
+      },
+      "outputs": {
+        "calls": 102,
+        "withItemID": 102,
+        "ms": [
+          0.637,
+          0.557,
+          0.665,
+          0.579
+        ]
+      },
+      "qualityItems": {
+        "calls": 102,
+        "nonempty": 0,
+        "ms": [
+          0.065,
+          0.062,
+          0.075,
+          0.061
+        ]
+      }
+    },
+    "observerRestored": true,
+    "panelClosed": true,
+    "bagGenerationStable": true,
+    "newLuaErrors": 0,
+    "runtimeLuaChanged": false,
+    "probeSHA256": "f4f28e5fa79086e0f74ce28fba35dda69f99b3c697a185cb5606caa579c7f311",
+    "screenshot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume585_recipe_getters_results.png",
+    "screenshotSHA256": "8dba01890598c65fb812b6698b0dadf11f50d63333ff0a24edddd14f978799df",
+    "decision": "Prioritize native unlearned-recipe read reduction on the first ready source. The direct spellbook check did not establish equivalence for excluded or unavailable rows, foreign professions, stale saved aliases, recipe learning and filtered views. Require current authoritative admission, preserve every learned recipe lookup and the existing event/publication cadence, and verify the full saved output before use."
+  },
+  "retainedRecipeRemovalsOnReadySource": {
+    "id": "LHO-PROFESSION-RETAIN-SAVED-REMOVALS-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "profile": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "source": {
+      "file": "Inventory/Professions.lua",
+      "before": "d2b48f6b0812b138e93491d200dbf85df2f0c29906e0f58242807a7e07d1adc9",
+      "after": "30dd26404e9e853114be537c58f9042258736b7196a70fe11624a4d6a9990004",
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-retained-removals-20261120T025140Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "d2b48f6b0812b138e93491d200dbf85df2f0c29906e0f58242807a7e07d1adc9",
+        "bundle": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+        "settings": {
+          "_retail_": {
+            "count": 4,
+            "bytes": 37548
+          },
+          "_forever_": {
+            "count": 5,
+            "bytes": 1426099
+          },
+          "_classic_": {
+            "count": 4,
+            "bytes": 15929
+          },
+          "_classic_era_": {
+            "count": 8,
+            "bytes": 500321
+          },
+          "_anniversary_": {
+            "count": 29,
+            "bytes": 1838645
+          }
+        }
+      },
+      "installedCopies": 5,
+      "syntaxChecks": 10
+    },
+    "preEdit": {
+      "run": "R585",
+      "naturalSourceMs": 14.026
+    },
+    "reload": {
+      "run": "R586",
+      "startupPNG": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump83_a-source.png",
+      "startupSHA256": "c62b67ff3b12962b422d0f6cf2f126bf4d66cf2809b06c407b8409549c70412f"
+    },
+    "loaded": {
+      "run": "R587",
+      "naturalSourceMs": 9.824,
+      "learnedRecipes": 102,
+      "savedRemovals": 369,
+      "newRemovalObservations": 0,
+      "bothAliasesExact": true,
+      "bagGenerationStable": true,
+      "panelClosed": true,
+      "newLuaErrors": 0,
+      "observerRestored": true,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume587_retained_recipe_results.png",
+      "pngSha256": "585d5d4e710946405d5703dc10f0326cacf30accf2c896bd7a698d88282b8967",
+      "probeSha256": "f291e81033c3fc359931ebc334a30610ed7775da4872be155c8c76f711128bc4"
+    },
+    "pairs": {
+      "scope": "Four alternating pairs on the live, unchanged Tailoring source. The existing TRADE_SKILL_SHOW route forces a full read; TRADE_SKILL_DATA_SOURCE_CHANGED admits the optimized path. Both route through the loaded production handler and compare every saved recipe field, array order and persistent removal under both keys. The diagnostic repeats withheld only the pending craft flush, restored it after each call, and retained profession notifications. The natural callback used the unchanged full lifecycle.",
+      "fullMs": [
+        37.938,
+        29.145,
+        22.475,
+        19.555
+      ],
+      "optimizedMs": [
+        15.467,
+        20.92,
+        14.909,
+        13.87
+      ],
+      "medianFullMs": 25.81,
+      "medianOptimizedMs": 15.188
+    },
+    "regressions": {
+      "lua54Scripts": 12,
+      "lua54FocusedChecks": 76,
+      "lua51FocusedChecks": 152
+    },
+    "jump": {
+      "intervalSeconds": 180,
+      "workerPid": 32468
+    },
+    "pending": [
+      "Matched open/close and passive frame-time windows",
+      "Live filtered and changed recipe coverage, restock with profession open, other providers and clients"
+    ]
+  },
+  "currentPassiveProfessionReadCost": {
+    "id": "LHO-PROFESSION-CURRENT-PASSIVE-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": {
+      "path": "Inventory/Professions.lua",
+      "sha256": "30dd26404e9e853114be537c58f9042258736b7196a70fe11624a4d6a9990004"
+    },
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "nativePassive": {
+      "run": "R588",
+      "seconds": 34,
+      "commerceClosed": true,
+      "firstSource": {
+        "handlerMs": 7.748,
+        "notifyMs": 0.721,
+        "learned": 102,
+        "savedRemovals": 369,
+        "freshRemovals": 0
+      },
+      "listDeliveries": [
+        {
+          "afterSeconds": 0.01,
+          "handlerMs": 7.528,
+          "notifyMs": 0.715,
+          "freshRemovals": 0,
+          "exactSavedFacts": true
+        },
+        {
+          "afterSeconds": 26.57,
+          "handlerMs": 8.632,
+          "notifyMs": 0.826,
+          "freshRemovals": 0,
+          "exactSavedFacts": true
+        }
+      ],
+      "frames": {
+        "count": 7280,
+        "peakMs": 53,
+        "countAtLeast35Ms": 1,
+        "scope": "Context only. Includes native frame work and one diagnostic comparison per profession event. The observed gap has no attributed owner."
+      },
+      "delayedBagEvents": 0,
+      "sourceCounterChanges": 0,
+      "screenshot": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume588_current_idle_profession_results.png",
+        "sha256": "dde37087ee12f1a2a1b30e86d7801814d517fe4b8ee0782eaaa39692b38a9f78"
+      },
+      "probeSHA256": "4225a7fbb86ef7c75bc9e9ee379eaa16a2cb0d0d98549daf6e936e571b53bfee"
+    },
+    "nativeSplit": {
+      "run": "R589",
+      "events": [
+        [
+          "source",
+          9.465,
+          0.231,
+          6.136,
+          1.51,
+          0.865,
+          0.705
+        ],
+        [
+          "list",
+          8.89,
+          0.233,
+          5.553,
+          1.48,
+          0.842,
+          0.764
+        ],
+        [
+          "list",
+          12.341,
+          0.43,
+          8.323,
+          1.781,
+          0.904,
+          0.883
+        ],
+        [
+          "list",
+          10.814,
+          0.272,
+          7.215,
+          1.673,
+          0.899,
+          0.739
+        ]
+      ],
+      "columns": [
+        "tag",
+        "handlerMs",
+        "prefixMs",
+        "beforeFirstStoreMs",
+        "firstStoreMs",
+        "aliasStoreMs",
+        "notifyMs"
+      ],
+      "storeKeyReadsEach": 3,
+      "craftInvalidationsEach": 4,
+      "sourceCapture": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume589_current_source_store_results.png",
+        "sha256": "8e8d5f45f05946b734519af422467fe9e41369f440e9c2c20bad75677ba4f9e1"
+      },
+      "cleanupCapture": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume589_current_source_store_closed.png",
+        "sha256": "9c241c108dc777e21f57baa3e2f659b768e39df01b4213deea0a3c6510604014"
+      },
+      "probeSHA256": "808da4f7dd5ab7021fc03617db9e96ff96408f47741ee2a90a394d030bc7d0de"
+    },
+    "observersRestoredBoth": true,
+    "panelClosedBoth": true,
+    "bagGenerationStableBoth": true,
+    "newLuaErrorsBoth": 0,
+    "runtimeChanged": false,
+    "next": "Recipe reads outrank storage in four natural deliveries. Preserve fresh learned, craftable and late metadata values. Auction Restock's current light callback rebuilds rows on profession and mail pulses. A generation-only bypass still has independent time expiry and metadata counterexamples. Repeat actual Restock-open scope when the real Auction House is accessible; compare full visible and hidden rows, potion targets and receipt state."
+  },
+  "loadedProfessionFilterAndCandidateCosts": {
+    "id": "LHO-PROFESSION-FILTER-CANDIDATES-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "source": "Inventory/Professions.lua",
+    "sourceSHA256": "30dd26404e9e853114be537c58f9042258736b7196a70fe11624a4d6a9990004",
+    "runtimeChanged": false,
+    "comparisons": {
+      "run": "R590",
+      "recipes": 102,
+      "sharedRowReferences": 0,
+      "scope": "Two real snapshots from before and after a single ready source event. All fields including nested tables matched. Eight measurements time only exact structural comparison.",
+      "ms": [
+        3.021,
+        2.934,
+        2.866,
+        2.858,
+        2.868,
+        2.861,
+        2.816,
+        2.862
+      ],
+      "medianMs": 2.864,
+      "decision": "Comparison alone exceeded the measured combined save spans in the three R589 list samples; no row reuse change applied.",
+      "probeSHA256": "ff2a81ccaf3d1f81fd623e460cabd7347e2ffead2d785ffb419a87b6bd009ae6",
+      "evidence": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume590_current_native_row_equality.png",
+        "sha256": "0003e0786dd6caa1c3e0bf5a275722bab603296ef91514c5e8a6e827ec4aa52d"
+      }
+    },
+    "ranks": {
+      "run": "R591",
+      "scope": "Exact original rank body and two prospective removal loops reading actual loaded aliases, commerce closed. Timings exclude result comparisons.",
+      "recipeReferences": 102,
+      "aliases": 9,
+      "nonemptyRemovalTables": 6,
+      "removalFlags": 1110,
+      "originalMs": [
+        0.511,
+        0.527,
+        0.447,
+        0.542,
+        0.481,
+        0.424,
+        0.528,
+        0.467
+      ],
+      "reverseLookupMs": [
+        0.386,
+        0.491,
+        0.414,
+        0.412,
+        0.478,
+        0.447,
+        0.387,
+        0.505
+      ],
+      "switchAfterObservedCountMs": [
+        0.427,
+        0.434,
+        0.535,
+        0.478,
+        0.412,
+        0.521,
+        0.427,
+        0.47
+      ],
+      "medians": [
+        0.496,
+        0.4305,
+        0.452
+      ],
+      "exactResultReferences": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "decision": "Reverse lookup saved about 0.066 ms at the median and won six of eight pairs; sparse aliases and other clients remain unmeasured. Both options remain unapplied.",
+      "probeSHA256": "d1091b090f9d14f72144cc272f62edffacdf6cbdf1e63e601dcc99f97c2fa760",
+      "evidence": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume591_live_saved_rank_results.png",
+        "sha256": "469f2f8d411de8b08474313d8fd3d4e2b5b4ed6aafaad3f60fe21adf3759c368"
+      }
+    },
+    "filter": {
+      "run": "R595",
+      "initialVisibleRecipes": 102,
+      "filteredVisibleRecipes": 0,
+      "restoredVisibleRecipes": 102,
+      "bothAliasesEqualAtEveryStage": true,
+      "persistentRemovalFlags": 369,
+      "newRemovalObservationsDuringFilter": 369,
+      "newRemovalObservationsOnFirstRestore": 369,
+      "restoredFilterValue": false,
+      "panelClosed": true,
+      "bagGenerationStable": true,
+      "observerRestored": true,
+      "newLuaErrors": 0,
+      "probeSHA256": "cbf51d79357f0a5e1e6f1e580545d026cb334b6c785a5a69a319f051c13cafc2",
+      "evidence": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume595_loaded_profession_filter_results.png",
+        "sha256": "88546db0792cdaa3edc8863e4e183dbdfaa1f5ce3ef90427a8f79be7dd46df84"
+      }
+    },
+    "trinket": {
+      "sourceSHA256": "b73d216239fec966facbc74d7ce1a839d4119af9df4001663b97682fcef69bd2",
+      "runs": [
+        "R592",
+        "R594",
+        "R597"
+      ],
+      "configuredBindings": [
+        "wheel",
+        "wheel"
+      ],
+      "idlePollingCandidateExecuted": false,
+      "firstProbeError": {
+        "time": "04:13:16",
+        "count": 1,
+        "objectMethod": "IsEventRegistered",
+        "cause": "Unfiltered frame enumeration reached an object without this method. Probe-only; error history preserved."
+      },
+      "evidence": [
+        {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume592_trinket_idle_check.png",
+          "sha256": "25fd53de47d8609c9159289568e67a075d563cbdeee8cbe176ea3e192c5d9e1f"
+        },
+        {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume594_trinket_idle_paired_results.png",
+          "sha256": "3691517137ecdf44a0386361c00f1d22d7a992ea2ff9c445879d5f87ede13bd5"
+        },
+        {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume597_trinket_readback_classification.png",
+          "sha256": "093988cb58a8669e4fd0fe4d0c0d36a3c451797354e99a7fa68fadf39d0729ae"
+        }
+      ]
+    }
+  },
+  "numericFullRecipeCatalogue": {
+    "id": "LHO-PROFESSION-NUMERIC-FULL-CATALOGUE-20261120",
+    "beforeSHA256": "30dd26404e9e853114be537c58f9042258736b7196a70fe11624a4d6a9990004",
+    "afterSHA256": "091ba439122373fa843ed1fd794930b88d56638e17a44b626a4129f958a10fb1",
+    "checkpoint": {
+      "utc": "2026-11-20T04:01:28Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsMetadataCounts": {
+        "_retail_": 4,
+        "_forever_": 5,
+        "_classic_": 4,
+        "_classic_era_": 8,
+        "_anniversary_": 29
+      }
+    },
+    "host": {
+      "scope": "actual saved catalogue in host Lua 5.1",
+      "rows": 149,
+      "aliases": 9,
+      "pairs": [
+        [
+          0.3952133333333333,
+          0.3331473333333333
+        ],
+        [
+          0.3939786666666667,
+          0.33037
+        ],
+        [
+          0.4053886666666667,
+          0.3610993333333333
+        ],
+        [
+          0.4091913333333333,
+          0.35038
+        ],
+        [
+          0.40981466666666666,
+          0.349948
+        ],
+        [
+          0.433038,
+          0.3468
+        ],
+        [
+          0.4375733333333333,
+          0.374072
+        ],
+        [
+          0.42061533333333334,
+          0.3395453333333333
+        ],
+        [
+          0.3922813333333333,
+          0.33349866666666667
+        ],
+        [
+          0.39710666666666666,
+          0.33027666666666666
+        ]
+      ],
+      "medianOld": 0.40729,
+      "medianNumeric": 0.3431726666666667
+    },
+    "hostComparison": {
+      "identicalRowReferencesInOrder": true,
+      "alternatingBatches": 10,
+      "callsPerBatch": 150
+    },
+    "focusedRegression": {
+      "lua54Checks": 3153,
+      "scenarios": 175
+    },
+    "native": {
+      "R606": "Foreground transition stopped upload before execution. No chat draft remained. Partial diagnostic accumulator can be cleared by reload.",
+      "R607": "Stopped before sending any input when foreground activity changed.",
+      "installedRepeat": "pending"
+    }
+  },
+  "loadedNumericCatalogueBagMove": {
+    "id": "LHO-NUMERIC-CATALOGUE-LIVE-BAG-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "provider": "Syndicator with Baganator loaded",
+    "scenario": "Original closed-backpack R603 bag move and return after R610 verified reload",
+    "afterSHA256": "091ba439122373fa843ed1fd794930b88d56638e17a44b626a4129f958a10fb1",
+    "beforeRecipeListMs": [
+      4.592,
+      4.362
+    ],
+    "recipeListCalls": [
+      3,
+      3
+    ],
+    "afterRecipeListMs": [
+      4.468,
+      3.713
+    ],
+    "afterBestCraftableMs": [
+      4.513,
+      3.755
+    ],
+    "afterInvalidations": [
+      1,
+      1
+    ],
+    "afterNotifyMs": [
+      0.722,
+      0.628
+    ],
+    "afterGridMs": [
+      0.199,
+      0.148
+    ],
+    "maxNearbyFrameGapMs": [
+      26,
+      26
+    ],
+    "sequentialSinglePair": true,
+    "bagGenerations": [
+      5,
+      6,
+      7
+    ],
+    "bagEvents": [
+      1,
+      1
+    ],
+    "bagFrom": [
+      0,
+      8
+    ],
+    "bagTo": [
+      3,
+      5
+    ],
+    "nativeAndFluxCount": [
+      18,
+      18
+    ],
+    "gridSelectionMatched": true,
+    "itemRestored": true,
+    "cursorClear": true,
+    "observersRestored": true,
+    "scans": 0,
+    "newLuaErrors": 0,
+    "reload": {
+      "run": 610,
+      "restartVisible": true
+    },
+    "rawEvidence": {
+      "run": 611,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume611_live_bag_craft_after.png",
+      "pngSHA256": "f72be004269028769731370a7f0360365afa6ec6228ff13b2bb661ce2b02ef3e",
+      "probeSHA256": "2bca021575676ceffc3161c427c0cc12836904f97881e4fb5b74cb87f99f7f0a"
+    },
+    "keepalive": {
+      "revision": "R86",
+      "hostPid": 18360,
+      "intervalSeconds": 180,
+      "spacePairsVerified": 1,
+      "characterMovementVerified": false
+    }
+  },
+  "potionFallbackStaticReads": {
+    "id": "LHO-CRAFT-POTION-FALLBACK-STATIC-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "provider": "Baganator and Syndicator loaded",
+    "sourceSHA256Before": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "sourceSHA256After": "60559e25f69fdbb5039733af772f486d00d0ca8b4a36158034fed121ac3b6a49",
+    "checkpoint": {
+      "utc": "20261120T051843Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "source": {
+        "Inventory/Craft.lua": {
+          "hash": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-fallback-native-20261120T051843Z\\Craft.lua.before"
+        },
+        "tests/craft_mixed_first_aid.lua": {
+          "hash": "d906989f2ae280d9cc3638d140be9dfc2937bc66e000eff01b79097552ad522d",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-fallback-native-20261120T051843Z\\craft_mixed_first_aid.lua.before"
+        }
+      },
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "comparison": {
+      "run": 626,
+      "scope": "Exact prior and candidate fallback implementations in-game on the current saved catalogue and live item classifier output",
+      "catalogueRows": 149,
+      "actualFallbackRows": 131,
+      "comparisonCountPerTimingBatch": 3144,
+      "matchesByKind": [
+        0,
+        0,
+        0
+      ],
+      "allParity": true,
+      "oldMs": [
+        2.428,
+        2.44,
+        2.498,
+        2.423,
+        2.496,
+        2.456,
+        2.482,
+        2.484
+      ],
+      "candidateMs": [
+        1.892,
+        1.902,
+        1.86,
+        1.945,
+        1.867,
+        1.887,
+        1.884,
+        1.979
+      ],
+      "medianOld": 2.469,
+      "medianCandidate": 1.8895,
+      "stableBagGeneration": true,
+      "newLuaErrors": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume626_craft_fallback_results.png",
+      "pngSHA256": "d9b2ced6596ef467d893112dbb1e257a3ac137b4a954b592568cac2b4be1687a",
+      "probeSHA256": "5145c0fc9175231f17f7243bdddb301133eb58fef836495fea481a6a17e25a7a"
+    },
+    "implementation": "Keep the same health, mana, potion and bandage tests. Skip the owned static lookup when potion text alone settles a verdict, leaving native subclass for relevant uncertain names. Foreign static providers and bandages keep the original read.",
+    "regressions": {
+      "focused": 3965,
+      "pairedFirstAidCases": 90,
+      "fallbackSamples": 12,
+      "clientFamilies": 5,
+      "scripts": 9,
+      "syntaxChecks": 10,
+      "matchingInstalledPaths": 5
+    },
+    "reload": {
+      "run": 627,
+      "submissionSHA256": "e3b8f03169f12b041d0ddec7b5ef353ddae89233c260a4649941f448a015eab9",
+      "startupSHA256": "7dc0cf0d2314d09af2e19636c71e579b746ddb2bff0e8311ba1ba9b6b2f6d197"
+    },
+    "loadedBagMove": {
+      "baselineRun": 611,
+      "run": 628,
+      "originalSlot": [
+        0,
+        8
+      ],
+      "temporarySlot": [
+        3,
+        5
+      ],
+      "stack": 18,
+      "returned": true,
+      "cursorClear": true,
+      "gridMatches": true,
+      "lootOrCommerce": false,
+      "bagGenerations": [
+        5,
+        6,
+        7
+      ],
+      "events": [
+        1,
+        1
+      ],
+      "beforeRecipeListMs": [
+        4.468,
+        3.713
+      ],
+      "recipeListMs": [
+        4.818,
+        3.634
+      ],
+      "recipeLists": [
+        3,
+        3
+      ],
+      "bestMs": [
+        4.867,
+        3.673
+      ],
+      "nearbyFrameMs": [
+        34,
+        31
+      ],
+      "notifyMs": [
+        0.679,
+        0.644
+      ],
+      "gridFlushMs": [
+        0.167,
+        0.169
+      ],
+      "scans": 0,
+      "observersRestored": true,
+      "newLuaErrors": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume628_loaded_craft_fallback_bag.png",
+      "pngSHA256": "5c3fe00ffcaa933ad503a1171b36f8b676bef865a3e2c558b66bbcbc36257fd5",
+      "probeSHA256": "f08debe58e15dd655b40aceb2682a49eda0dc621992dc917734c5304c96ad18b"
+    },
+    "keepalive": {
+      "revision": "R91",
+      "pid": 42760,
+      "intervalSeconds": 180,
+      "reservation1": "Stopped before input on foreground change; own lease released",
+      "reservation2": "Cue installed and calibrated",
+      "movementAcknowledged": false
+    }
+  },
+  "catalogueTextAliases": {
+    "id": "LHO-PROFESSION-TEXT-ALIAS-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": "Syndicator and Baganator",
+    "sourceBefore": "091ba439122373fa843ed1fd794930b88d56638e17a44b626a4129f958a10fb1",
+    "sourceAfter": "358014c828dd2b9a046ac17e05ec7f2c8a75430b503da894b01dc6a28bed962f",
+    "checkpoint": {
+      "utc": "20261120T054709Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "source": {
+        "Inventory/Professions.lua": {
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\professions-ordinary-alias-key-20261120T054709Z\\Professions.lua.before",
+          "hash": "091ba439122373fa843ed1fd794930b88d56638e17a44b626a4129f958a10fb1"
+        },
+        "tests/profession_catalogue_allocation.lua": {
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\professions-ordinary-alias-key-20261120T054709Z\\profession_catalogue_allocation.lua.before",
+          "hash": "53d2053141d114f1ac900ceba3637606c5bf84aa7d4b03a26be2e026615f41b4"
+        }
+      },
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "receipt": {
+      "run": 632,
+      "sourceCraft": "60559e25f69fdbb5039733af772f486d00d0ca8b4a36158034fed121ac3b6a49",
+      "sourceConsumableBind": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "action": "One real Conjure Food completed and added 14 Conjured Pumpernickel (item 1487); no commerce",
+      "nativeCount": [
+        56,
+        70
+      ],
+      "fluxCount": [
+        56,
+        70
+      ],
+      "foodFace": [
+        1487,
+        1487
+      ],
+      "events": {
+        "castSucceeded": 1,
+        "bagDelayed": 3,
+        "generation": [
+          5,
+          8
+        ]
+      },
+      "work": {
+        "invalidate": [
+          3,
+          0.018
+        ],
+        "list": [
+          6,
+          6.644
+        ],
+        "catalogue": [
+          6,
+          5.096
+        ],
+        "classify": [
+          1948,
+          1.134
+        ],
+        "materials": [
+          32,
+          0.61
+        ],
+        "notify": [
+          3,
+          2.326
+        ],
+        "grid": [
+          3,
+          0.726
+        ]
+      },
+      "metric": "Call count and inclusive milliseconds over the 6.8s capture. Classifier and material intervals can overlap other work. The temporary classifier wrapper may affect ownership-gated fast paths. Peak is nearby frame gap, with no causal attribution.",
+      "peakMs": 44,
+      "observersRestored": true,
+      "errorDelta": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume632_native_food_receipt.png",
+      "pngSHA256": "fa8222f172b4cd88c354898c08538a48ac4df55eb4b5652d0ad641d3f28f2b39",
+      "probeSHA256": "9a02584236dca9ae56bf05d30cdebc1f5fc26b9c0e5edc0e77987354fab43f78"
+    },
+    "comparison": {
+      "run": 634,
+      "notMeasured": [
+        {
+          "run": 633,
+          "reason": "Direct realm and name concatenation missed the owned character-key mapping. Diagnostic finished without running timing."
+        }
+      ],
+      "scope": "Actual saved rows from the owned character DB. Exact loaded catalogue references and order compared to extracted before and candidate paths.",
+      "rawRows": 298,
+      "returnedRows": 149,
+      "aliases": 9,
+      "flagOccurrences": 1110,
+      "buildsPerBatch": 18,
+      "rotatedPairs": 8,
+      "old": [
+        13.046,
+        12.678,
+        12.902,
+        13.014,
+        12.997,
+        12.708,
+        13.322,
+        13.432
+      ],
+      "alt": [
+        12.017,
+        12.008,
+        12.309,
+        11.964,
+        12.115,
+        12.207,
+        12.753,
+        12.251
+      ],
+      "medianOld": 13.0055,
+      "medianCandidate": 12.161000000000001,
+      "gainPercent": 6.493406635654134,
+      "rowReferenceAndOrderParity": true,
+      "stableBagGeneration": true,
+      "errorDelta": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-cat634_a-submitted.png",
+      "pngSHA256": "b65eb23ed4eff6e8cac2bbfd4b5f5342c772be0692f40eaf7791dbde1c936642",
+      "probeSHA256": "0a66d9e9daf8b8cbfa856138de43e90f580c211e6b7b4869f514d9b07ddcc666"
+    },
+    "implementation": "Reuse current readable string alias when the standard tostring is still installed. Preserve the original converter timing and repeated replacement callbacks, other key types, and all ranked rows and data reads.",
+    "validation": {
+      "scripts": 8,
+      "catalogueChecks": 3156,
+      "catalogueScenarios": 176,
+      "lua54SyntaxChecks": 6,
+      "matchingInstalledCopies": 5
+    },
+    "reload": {
+      "run": 635,
+      "submissionSHA256": "4204345c98a47ebfa4df3714f25a540af38bb5e5895b190bfac0a3006ea92671",
+      "verifiedFreshStartupSHA256": "156853fd5c6984bc9594cf9ef12bfef8f8c325b48c932eb58814b18c57a028e9"
+    },
+    "afterWorkflow": {
+      "run": 636,
+      "attempts": [
+        "Stopped before input due to WoW foreground mode transition",
+        "Stopped before input due to WoW foreground mode transition"
+      ],
+      "ownReservationsReleased": true,
+      "loadedMeasurement": "Passed R636 third reservation. See catalogueRemovalLookup.afterWorkflow.",
+      "earlyAttemptsMovedItems": false
+    },
+    "keepalive": {
+      "previous": "R92",
+      "status": "Original worker retired gracefully after reload. Fresh readiness handled separately.",
+      "replacement": {
+        "run": "R93",
+        "host": 36096,
+        "intervalSeconds": 180,
+        "backgroundCalibration": true,
+        "lastResult": "AssertionError('Activation request refused; no input')",
+        "spacePairs": 0,
+        "movementAcknowledged": false,
+        "cuePNG": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump93pro_a-submitted.png",
+        "cueSHA256": "3501b25337f74179f44489591181eee4306d1ba3974bd6e5805feea0ce7d441a"
+      }
+    }
+  },
+  "catalogueRemovalLookup": {
+    "id": "LHO-CATALOGUE-REVOCATION-VALIDATION-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "provider": "Syndicator and Baganator",
+    "source": "358014c828dd2b9a046ac17e05ec7f2c8a75430b503da894b01dc6a28bed962f",
+    "afterWorkflow": {
+      "run": "636 third reservation",
+      "returnedOriginal": true,
+      "from": [
+        0,
+        8
+      ],
+      "temporary": [
+        2,
+        14
+      ],
+      "units": 18,
+      "itemID": 4599,
+      "exactNativeAndFluxCount": 18,
+      "bagGenerations": [
+        10,
+        11,
+        12
+      ],
+      "delayedBagEvents": [
+        1,
+        1
+      ],
+      "gridSelectionsMatched": true,
+      "temporarySlotEmpty": true,
+      "cursorClear": true,
+      "newLuaErrors": 0,
+      "observersRestored": true,
+      "recipeListCounts": [
+        3,
+        3
+      ],
+      "recipeListMs": [
+        4.355,
+        4.759
+      ],
+      "catalogueCounts": [
+        3,
+        3
+      ],
+      "catalogueMs": [
+        2.934,
+        3.436
+      ],
+      "bestCallMs": [
+        4.403,
+        4.807
+      ],
+      "notifyMs": [
+        0.74,
+        0.776
+      ],
+      "gridFlushMs": [
+        0.209,
+        0.206
+      ],
+      "nearbyFrameGapMs": [
+        39,
+        29
+      ],
+      "previousListMs": [
+        4.818,
+        3.634
+      ],
+      "scans": 0,
+      "analysis": "Separate reload samples, with additional catalogue timing instrumentation in R636. These prove live workflow parity for the exercised slots and current profile. Full-list and frame-time gains are unverified.",
+      "probeSHA256": "0717fbbf6cda0e5a870de94ddd76570d2aa0805e0dfadd67189e16100c7444a0",
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume636_catalogue_loaded_move.png",
+      "pngSHA256": "794267a298ee704d10e215794c3705c48496e9b38f3d137ced832f0cbc7bc07d",
+      "readback": {
+        "run": "638 third reservation",
+        "earlierAttempts": "Minimized client stopped first reservation and foreground input stopped second before command.",
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-read638_c-submitted.png",
+        "pngSHA256": "9de6ab3c9fdb72d3e1afbaa88f24d3729a439eb46a789dc3321ad602e3fae15d"
+      }
+    },
+    "revocationLookup": {
+      "purpose": "Check whether scanning removal flags only for referenced recipe IDs improves the observed repeated catalogue work without changing revoked recipe handling.",
+      "rows": 149,
+      "rawRows": 298,
+      "activeRemovalMaps": 6,
+      "flagOccurrences": 1110,
+      "buildsPerBatch": 12,
+      "pairedSamples": 8,
+      "parity": "All 149 exact references and order matched the live catalogue at every sample. Bag generation stable and zero new errors.",
+      "simple": {
+        "run": 639,
+        "base": [
+          8.427,
+          8.278,
+          8.414,
+          8.109,
+          8.421,
+          8.522,
+          8.428,
+          8.187
+        ],
+        "candidate": [
+          7.934,
+          7.121,
+          7.01,
+          7.02,
+          7.008,
+          7.746,
+          7.073,
+          7.274
+        ],
+        "baseMedian": 8.4175,
+        "candidateMedian": 7.097,
+        "gain": 15.687555687555687,
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume639_live_revocation.png",
+        "pngSHA256": "d40757760c8157931942bacbafb330cc2be46f831013ee185c99112d53e05995",
+        "probeSHA256": "8389c4f105564093b8688cd7ce826f2eba6a0b0757f0eb06344df5360b947b7e"
+      },
+      "guarded": {
+        "run": 640,
+        "base": [
+          8.21,
+          8.34,
+          9.065,
+          8.264,
+          8.929,
+          11.024,
+          9.762,
+          9.54
+        ],
+        "candidate": [
+          9.252,
+          9.512,
+          9.311,
+          9.554,
+          9.825,
+          11.013,
+          10.785,
+          10.277
+        ],
+        "baseMedian": 8.997,
+        "candidateMedian": 9.6895,
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume640_live_guarded_revocation.png",
+        "pngSHA256": "2fc53949d59a0dbc348374e3d55e1e1518e0c70d6609aff621e4da0d41cd496d",
+        "probeSHA256": "d42a15ed693ce5a495a9e0ddc474996f4c2f02e599ae2becc2cad2f007b16f2e"
+      },
+      "decision": "Retain the existing eager revocation snapshot. Lazy table reads require preserving snapshot semantics against reentrant replacement callbacks, and the measured guarded candidate took longer overall."
+    },
+    "keepalive": {
+      "pid": 36096,
+      "status": "running",
+      "pairs": 0,
+      "movementAcknowledged": false,
+      "last": {
+        "atUTC": "2026-11-20T07:04:16.765402+01:00",
+        "status": "deferred-or-failed",
+        "movementAcknowledged": false,
+        "error": "AssertionError('Input/focus changed during capture')"
+      }
+    }
+  },
+  "nativeCraftFallbackBagCatalogueOwners": {
+    "run": 686,
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": [
+      "Syndicator",
+      "Baganator"
+    ],
+    "case": "Same actual stack moved and returned with backpack and commerce windows closed.",
+    "itemID": 4599,
+    "quantity": 18,
+    "sourceSlot": [
+      0,
+      8
+    ],
+    "temporarySlot": [
+      3,
+      1
+    ],
+    "originRestored": true,
+    "temporarySlotEmpty": true,
+    "cursorEmpty": true,
+    "carriedFlux": 18,
+    "carriedNative": 18,
+    "gridSelectionsUnchanged": true,
+    "bagGenerations": [
+      7,
+      8,
+      9
+    ],
+    "classifierQueue": [
+      0,
+      0
+    ],
+    "wrappersRestored": true,
+    "newLuaErrors": 0,
+    "scope": "One actual reversible move. Timings for nested callbacks overlap and include debug stack collection during attribution. Peak frame intervals also include client and rendering work.",
+    "directions": {
+      "out": {
+        "delayedEvents": 1,
+        "frameIntervalMs": 25,
+        "craftInvalidation": [
+          1,
+          0.088
+        ],
+        "craftEdges": [
+          3,
+          0.043
+        ],
+        "bestCraft": [
+          3,
+          4.737
+        ],
+        "listRecipes": [
+          3,
+          4.699
+        ],
+        "catalogue": [
+          3,
+          3.471
+        ],
+        "bagPublishMs": 0.602,
+        "grid": [
+          1,
+          0,
+          0.162
+        ]
+      },
+      "back": {
+        "delayedEvents": 1,
+        "frameIntervalMs": 26,
+        "craftInvalidation": [
+          1,
+          0.087
+        ],
+        "craftEdges": [
+          3,
+          0.04
+        ],
+        "bestCraft": [
+          3,
+          4.21
+        ],
+        "listRecipes": [
+          3,
+          4.167
+        ],
+        "catalogue": [
+          3,
+          3.126
+        ],
+        "bagPublishMs": 0.631,
+        "grid": [
+          1,
+          0,
+          0.172
+        ]
+      }
+    },
+    "callerEvidence": {
+      "invalidateLine": 2776,
+      "catalogueLine": 3017,
+      "decoded": "ConsumableBind native delayed-bag event handler invalidates the craft cache. All six catalogue stacks reached the owned ApplyRightClick closure. The Best scan observer printed no recompute reason in either direction. The probe's broad B substring label is insufficient to establish Best recompute ownership."
+    },
+    "sourceSHA256": {
+      "consumableBind": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "craft": "60559e25f69fdbb5039733af772f486d00d0ca8b4a36158034fed121ac3b6a49",
+      "professions": "358014c828dd2b9a046ac17e05ec7f2c8a75430b503da894b01dc6a28bed962f"
+    },
+    "probeSHA256": "42c6375379a911df58628aceb3d08ef84b204ef6a1176e50653bd748660b1797",
+    "capture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag686_move_readback.png",
+    "captureSHA256": "3a272ecc4e8307f5cff881e0e6e6a11a94111c176a1e015d737649a6e9be8553",
+    "next": "Reduce combat craft refresh work on verified unchanged native reagent counts while retaining the fallback for unavailable dependencies, unsettled metadata and delayed provider changes.",
+    "reagentCheck": {
+      "run": 687,
+      "actualSavedRecipes": 149,
+      "selectors": [
+        {
+          "kind": "bandage",
+          "rows": 9,
+          "craftableRows": 0,
+          "reagentIDs": 6
+        },
+        {
+          "kind": "healPotion",
+          "rows": 5,
+          "craftableRows": 0,
+          "reagentIDs": 11
+        },
+        {
+          "kind": "manaPotion",
+          "rows": 2,
+          "craftableRows": 0,
+          "reagentIDs": 4
+        }
+      ],
+      "uniqueReagentIDs": 19,
+      "allSelectedRowsHaveReagentIDs": true,
+      "fullSelectorMs": [
+        2.954,
+        2.933,
+        2.961,
+        3.122
+      ],
+      "liveCountReadMs": [
+        0.24,
+        0.244,
+        0.243,
+        0.24
+      ],
+      "mediansMs": {
+        "fullSelector": 2.9575,
+        "liveCounts": 0.2415
+      },
+      "pairCount": 4,
+      "selectorResultsStable": true,
+      "nativeStockStable": true,
+      "bagGenerationUnchanged": true,
+      "moneyUnchanged": true,
+      "newLuaErrors": 0,
+      "probeSHA256": "45a69bfe818db60da55a5ae3a85050b162167732dbb77e9005715d032f42589f",
+      "capture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag687_reagent_result.png",
+      "captureSHA256": "5dafdec471f3af2ca478962d68b628dbb51656012f731c305c2f175008ceb288",
+      "scope": "Independent timing of the existing selectors and a read-only sweep of the 19 known native reagent counts. There were no craftable recipes in this sample. This is a budget for a possible validation gate; the cache shortcut and its dependency completeness are not demonstrated.",
+      "keepalive": {
+        "revision": "R100",
+        "workerPID": 25324,
+        "intervalSeconds": 180,
+        "completeSpacePairs": 1,
+        "characterMovementVerified": false,
+        "reason": "The readiness palette was absent after a fresh startup. The first installer variant failed local preflight on cue nonce length before sending input. The corrected variant installed and was calibrated."
+      }
+    }
+  }
+}

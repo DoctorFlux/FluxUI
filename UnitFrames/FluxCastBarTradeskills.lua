@@ -113,12 +113,17 @@ local function build(bar)
     -- Black outside the rectangle is essential: clamping its white edge
     -- would reveal the entire animation instead of only current progress.
     if mask:SetTexture("Interface\\Buttons\\WHITE8X8", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE") == false then return end
+    if mask.SetSnapToPixelGrid then mask:SetSnapToPixelGrid(false) end
+    if mask.SetTexelSnappingBias then mask:SetTexelSnappingBias(0) end
     fill:AddMaskTexture(mask)
     -- Above the animated ARTWORK fill, below native nameplate text/shields
     -- at OVERLAY sublevel 1. Equal fill/flare layers can obscure the glow.
     local flare = timer:CreateTexture(nil, "OVERLAY", nil, 0)
     flare:SetBlendMode("ADD")
     flare:Hide()
+    -- Native profession bars mask both textures. The wide tip otherwise
+    -- reaches back across the icon divider at the start of a craft.
+    flare:AddMaskTexture(mask)
     local v = {mask = mask, fill = fill, flare = flare, animation = animation, flipbook = flipbook}
     views[bar] = v
     return v
@@ -138,6 +143,10 @@ function Trades.Apply(bar, record, db)
     if changed then
         v.animation:Stop()
         v.fill:SetAtlas(art.fill, false)
+        -- Keep the animated fill on the same unsnapped edge as its native
+        -- progress mask and the shared border at fractional UI scales.
+        if v.fill.SetSnapToPixelGrid then v.fill:SetSnapToPixelGrid(false) end
+        if v.fill.SetTexelSnappingBias then v.fill:SetTexelSnappingBias(0) end
         v.flipbook:SetFlipBookRows(art.rows)
         v.flipbook:SetFlipBookFrames(art.rows * 2)
         if art.flare then v.flare:SetAtlas(art.flare, false) end

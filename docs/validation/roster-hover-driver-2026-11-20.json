@@ -1,0 +1,1711 @@
+{
+  "changeId": "ROSTER-HOVER-DRIVER-20261120",
+  "roadmapTracks": [
+    "HUD-2"
+  ],
+  "capturedAtUTC": "2026-11-20T09:04:58.761690+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Binding/Input/FluxMouseoverKeybind.lua": {
+      "beforeRaw": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+      "afterRaw": "fe1b67a347f6561c8848ffa78aa91e0aa22da95ce0a1ebaf650e5a1d6f2438b1",
+      "afterNormalized": "fe1b67a347f6561c8848ffa78aa91e0aa22da95ce0a1ebaf650e5a1d6f2438b1"
+    },
+    "tests/raid_binding_cast.lua": {
+      "beforeRaw": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be",
+      "afterRaw": "04432ba0d4b2e9cdd86679ef763cdf7e985b2e83ca9dc98fa79ee92c07a858cc",
+      "afterNormalized": "04432ba0d4b2e9cdd86679ef763cdf7e985b2e83ca9dc98fa79ee92c07a858cc"
+    },
+    "tests/group_roster_performance.lua": {
+      "beforeRaw": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "afterRaw": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "afterNormalized": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a"
+    }
+  },
+  "evidence": {
+    "cases": {
+      "live/settled": {
+        "client": "live",
+        "case": "settled",
+        "work": {
+          "trial": 1,
+          "bursts": 30,
+          "bindingQueries": [
+            570,
+            0
+          ],
+          "protectedWrites": [
+            0,
+            0
+          ],
+          "elapsedMs": [
+            1.0,
+            1.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              6.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          5.0,
+          3.0
+        ]
+      },
+      "live/party": {
+        "client": "live",
+        "case": "party",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            164,
+            75
+          ],
+          "protectedWrites": [
+            185,
+            185
+          ],
+          "elapsedMs": [
+            1.0,
+            1.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              2.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          1.0,
+          1.0
+        ]
+      },
+      "live/raid": {
+        "client": "live",
+        "case": "raid",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            1179,
+            600
+          ],
+          "protectedWrites": [
+            1480,
+            1480
+          ],
+          "elapsedMs": [
+            7.0,
+            8.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              8.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              8.0,
+              6.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              8.0,
+              9.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          7.0,
+          7.0
+        ]
+      },
+      "forever/settled": {
+        "client": "forever",
+        "case": "settled",
+        "work": {
+          "trial": 1,
+          "bursts": 30,
+          "bindingQueries": [
+            570,
+            0
+          ],
+          "protectedWrites": [
+            0,
+            0
+          ],
+          "elapsedMs": [
+            2.0,
+            0.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              6.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              6.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              4.0,
+              3.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          5.0,
+          3.0
+        ]
+      },
+      "forever/party": {
+        "client": "forever",
+        "case": "party",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            164,
+            75
+          ],
+          "protectedWrites": [
+            185,
+            185
+          ],
+          "elapsedMs": [
+            1.0,
+            1.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              2.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          1.0,
+          1.0
+        ]
+      },
+      "forever/raid": {
+        "client": "forever",
+        "case": "raid",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            1179,
+            600
+          ],
+          "protectedWrites": [
+            1480,
+            1480
+          ],
+          "elapsedMs": [
+            7.0,
+            8.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              8.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          7.0,
+          7.0
+        ]
+      },
+      "classic/settled": {
+        "client": "classic",
+        "case": "settled",
+        "work": {
+          "trial": 1,
+          "bursts": 30,
+          "bindingQueries": [
+            570,
+            0
+          ],
+          "protectedWrites": [
+            0,
+            0
+          ],
+          "elapsedMs": [
+            1.0,
+            0.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              6.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          5.0,
+          3.0
+        ]
+      },
+      "classic/party": {
+        "client": "classic",
+        "case": "party",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            164,
+            75
+          ],
+          "protectedWrites": [
+            185,
+            185
+          ],
+          "elapsedMs": [
+            1.0,
+            1.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          1.0,
+          1.0
+        ]
+      },
+      "classic/raid": {
+        "client": "classic",
+        "case": "raid",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            1179,
+            600
+          ],
+          "protectedWrites": [
+            1480,
+            1480
+          ],
+          "elapsedMs": [
+            7.0,
+            7.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              6.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          7.0,
+          7.0
+        ]
+      },
+      "classic_era/settled": {
+        "client": "classic_era",
+        "case": "settled",
+        "work": {
+          "trial": 1,
+          "bursts": 30,
+          "bindingQueries": [
+            570,
+            0
+          ],
+          "protectedWrites": [
+            0,
+            0
+          ],
+          "elapsedMs": [
+            1.0,
+            0.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              6.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          5.0,
+          4.0
+        ]
+      },
+      "classic_era/party": {
+        "client": "classic_era",
+        "case": "party",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            69,
+            15
+          ],
+          "protectedWrites": [
+            110,
+            110
+          ],
+          "elapsedMs": [
+            0.0,
+            0.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              69,
+              15
+            ],
+            "protectedWrites": [
+              110,
+              110
+            ],
+            "elapsedMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              69,
+              15
+            ],
+            "protectedWrites": [
+              110,
+              110
+            ],
+            "elapsedMs": [
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              69,
+              15
+            ],
+            "protectedWrites": [
+              110,
+              110
+            ],
+            "elapsedMs": [
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              69,
+              15
+            ],
+            "protectedWrites": [
+              110,
+              110
+            ],
+            "elapsedMs": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              69,
+              15
+            ],
+            "protectedWrites": [
+              110,
+              110
+            ],
+            "elapsedMs": [
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          0.0,
+          1.0
+        ]
+      },
+      "classic_era/raid": {
+        "client": "classic_era",
+        "case": "raid",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            419,
+            120
+          ],
+          "protectedWrites": [
+            880,
+            880
+          ],
+          "elapsedMs": [
+            1.0,
+            2.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              419,
+              120
+            ],
+            "protectedWrites": [
+              880,
+              880
+            ],
+            "elapsedMs": [
+              2.0,
+              2.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              419,
+              120
+            ],
+            "protectedWrites": [
+              880,
+              880
+            ],
+            "elapsedMs": [
+              2.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              419,
+              120
+            ],
+            "protectedWrites": [
+              880,
+              880
+            ],
+            "elapsedMs": [
+              1.0,
+              2.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              419,
+              120
+            ],
+            "protectedWrites": [
+              880,
+              880
+            ],
+            "elapsedMs": [
+              1.0,
+              2.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              419,
+              120
+            ],
+            "protectedWrites": [
+              880,
+              880
+            ],
+            "elapsedMs": [
+              2.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          2.0,
+          2.0
+        ]
+      },
+      "classic_anniversary/settled": {
+        "client": "classic_anniversary",
+        "case": "settled",
+        "work": {
+          "trial": 1,
+          "bursts": 30,
+          "bindingQueries": [
+            570,
+            0
+          ],
+          "protectedWrites": [
+            0,
+            0
+          ],
+          "elapsedMs": [
+            1.0,
+            0.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              3.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              4.0,
+              4.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 180,
+            "bindingQueries": [
+              3420,
+              0
+            ],
+            "protectedWrites": [
+              0,
+              0
+            ],
+            "elapsedMs": [
+              5.0,
+              4.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          5.0,
+          4.0
+        ]
+      },
+      "classic_anniversary/party": {
+        "client": "classic_anniversary",
+        "case": "party",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            164,
+            75
+          ],
+          "protectedWrites": [
+            185,
+            185
+          ],
+          "elapsedMs": [
+            1.0,
+            1.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              164,
+              75
+            ],
+            "protectedWrites": [
+              185,
+              185
+            ],
+            "elapsedMs": [
+              1.0,
+              1.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          1.0,
+          1.0
+        ]
+      },
+      "classic_anniversary/raid": {
+        "client": "classic_anniversary",
+        "case": "raid",
+        "work": {
+          "trial": 1,
+          "bursts": 1,
+          "bindingQueries": [
+            1179,
+            600
+          ],
+          "protectedWrites": [
+            1480,
+            1480
+          ],
+          "elapsedMs": [
+            7.0,
+            7.0
+          ]
+        },
+        "timing": [
+          {
+            "trial": 1,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 2,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              8.0
+            ]
+          },
+          {
+            "trial": 3,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 4,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              7.0
+            ]
+          },
+          {
+            "trial": 5,
+            "bursts": 1,
+            "bindingQueries": [
+              1179,
+              600
+            ],
+            "protectedWrites": [
+              1480,
+              1480
+            ],
+            "elapsedMs": [
+              7.0,
+              8.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          7.0,
+          7.0
+        ]
+      }
+    },
+    "rawWork": "HOVER_ROSTER client=live case=settled trial=1 bursts=30 keyReads=570/0 writes=0/0 ms=1.000/1.000\r\nHOVER_ROSTER client=live case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\r\nHOVER_ROSTER client=live case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\r\nHOVER_ROSTER client=forever case=settled trial=1 bursts=30 keyReads=570/0 writes=0/0 ms=2.000/0.000\r\nHOVER_ROSTER client=forever case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\r\nHOVER_ROSTER client=forever case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\r\nHOVER_ROSTER client=classic case=settled trial=1 bursts=30 keyReads=570/0 writes=0/0 ms=1.000/0.000\r\nHOVER_ROSTER client=classic case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\r\nHOVER_ROSTER client=classic case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\r\nHOVER_ROSTER client=classic_era case=settled trial=1 bursts=30 keyReads=570/0 writes=0/0 ms=1.000/0.000\r\nHOVER_ROSTER client=classic_era case=party trial=1 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/0.000\r\nHOVER_ROSTER client=classic_era case=raid trial=1 bursts=1 keyReads=419/120 writes=880/880 ms=1.000/2.000\r\nHOVER_ROSTER client=classic_anniversary case=settled trial=1 bursts=30 keyReads=570/0 writes=0/0 ms=1.000/0.000\r\nHOVER_ROSTER client=classic_anniversary case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\r\nHOVER_ROSTER client=classic_anniversary case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\r\nRaid binding casting: 1288 checks; five native source handlers; nine rejected negative controls",
+    "rawTiming": "HOVER_ROSTER client=live case=settled trial=1 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=live case=settled trial=2 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=live case=settled trial=3 bursts=180 keyReads=3420/0 writes=0/0 ms=6.000/3.000\nHOVER_ROSTER client=live case=settled trial=4 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=live case=settled trial=5 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=live case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=live case=party trial=2 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=live case=party trial=3 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/2.000\nHOVER_ROSTER client=live case=party trial=4 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=live case=party trial=5 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=live case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=live case=raid trial=2 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\nHOVER_ROSTER client=live case=raid trial=3 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=live case=raid trial=4 bursts=1 keyReads=1179/600 writes=1480/1480 ms=8.000/6.000\nHOVER_ROSTER client=live case=raid trial=5 bursts=1 keyReads=1179/600 writes=1480/1480 ms=8.000/9.000\nHOVER_ROSTER client=forever case=settled trial=1 bursts=180 keyReads=3420/0 writes=0/0 ms=6.000/3.000\nHOVER_ROSTER client=forever case=settled trial=2 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=forever case=settled trial=3 bursts=180 keyReads=3420/0 writes=0/0 ms=6.000/4.000\nHOVER_ROSTER client=forever case=settled trial=4 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=forever case=settled trial=5 bursts=180 keyReads=3420/0 writes=0/0 ms=4.000/3.000\nHOVER_ROSTER client=forever case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=forever case=party trial=2 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=forever case=party trial=3 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=forever case=party trial=4 bursts=1 keyReads=164/75 writes=185/185 ms=2.000/1.000\nHOVER_ROSTER client=forever case=party trial=5 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=forever case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=forever case=raid trial=2 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\nHOVER_ROSTER client=forever case=raid trial=3 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=forever case=raid trial=4 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=forever case=raid trial=5 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic case=settled trial=1 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic case=settled trial=2 bursts=180 keyReads=3420/0 writes=0/0 ms=6.000/3.000\nHOVER_ROSTER client=classic case=settled trial=3 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic case=settled trial=4 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic case=settled trial=5 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic case=party trial=2 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic case=party trial=3 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/0.000\nHOVER_ROSTER client=classic case=party trial=4 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic case=party trial=5 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic case=raid trial=2 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic case=raid trial=3 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic case=raid trial=4 bursts=1 keyReads=1179/600 writes=1480/1480 ms=6.000/7.000\nHOVER_ROSTER client=classic case=raid trial=5 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic_era case=settled trial=1 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic_era case=settled trial=2 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic_era case=settled trial=3 bursts=180 keyReads=3420/0 writes=0/0 ms=6.000/3.000\nHOVER_ROSTER client=classic_era case=settled trial=4 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic_era case=settled trial=5 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic_era case=party trial=1 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/0.000\nHOVER_ROSTER client=classic_era case=party trial=2 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/1.000\nHOVER_ROSTER client=classic_era case=party trial=3 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/1.000\nHOVER_ROSTER client=classic_era case=party trial=4 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/0.000\nHOVER_ROSTER client=classic_era case=party trial=5 bursts=1 keyReads=69/15 writes=110/110 ms=0.000/1.000\nHOVER_ROSTER client=classic_era case=raid trial=1 bursts=1 keyReads=419/120 writes=880/880 ms=2.000/2.000\nHOVER_ROSTER client=classic_era case=raid trial=2 bursts=1 keyReads=419/120 writes=880/880 ms=2.000/1.000\nHOVER_ROSTER client=classic_era case=raid trial=3 bursts=1 keyReads=419/120 writes=880/880 ms=1.000/2.000\nHOVER_ROSTER client=classic_era case=raid trial=4 bursts=1 keyReads=419/120 writes=880/880 ms=1.000/2.000\nHOVER_ROSTER client=classic_era case=raid trial=5 bursts=1 keyReads=419/120 writes=880/880 ms=2.000/1.000\nHOVER_ROSTER client=classic_anniversary case=settled trial=1 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic_anniversary case=settled trial=2 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic_anniversary case=settled trial=3 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/3.000\nHOVER_ROSTER client=classic_anniversary case=settled trial=4 bursts=180 keyReads=3420/0 writes=0/0 ms=4.000/4.000\nHOVER_ROSTER client=classic_anniversary case=settled trial=5 bursts=180 keyReads=3420/0 writes=0/0 ms=5.000/4.000\nHOVER_ROSTER client=classic_anniversary case=party trial=1 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic_anniversary case=party trial=2 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic_anniversary case=party trial=3 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic_anniversary case=party trial=4 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic_anniversary case=party trial=5 bursts=1 keyReads=164/75 writes=185/185 ms=1.000/1.000\nHOVER_ROSTER client=classic_anniversary case=raid trial=1 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic_anniversary case=raid trial=2 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\nHOVER_ROSTER client=classic_anniversary case=raid trial=3 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic_anniversary case=raid trial=4 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/7.000\nHOVER_ROSTER client=classic_anniversary case=raid trial=5 bursts=1 keyReads=1179/600 writes=1480/1480 ms=7.000/8.000\nRaid binding casting: 12664 checks; five native source handlers; nine rejected negative controls\n",
+    "timingScope": "Five alternating pairs use production FluxMouseoverKeybind and modeled native write APIs. Each settled burst emits 20 roster notifications. Fresh five- and forty-cell groups exercise first discovery. Matched counts and prepared route signatures establish the affected callback work. Actual invitation and frame-time cost are outside this fixture."
+  },
+  "parity": "Stable mouse-only roster discovery now skips an action-bar binding scan. Thirty modeled bursts across each client profile go from 570 native binding reads to zero. Early registrations still sample each action binding once per scan, including keys after nil or empty results. Forty newly discovered raid cells cut binding reads from 1,179 to 600 in the Forever model and from 419 to 120 in the Era model. Mouse and wheel routes, discovery and protected write counts match.",
+  "rules": "Only spell-hover routes qualify for the native unit-exists driver. When the last spell-hover route is removed under the mouse, the same out-of-combat lifecycle parks that driver. Public routing detection still recognizes ordinary mouse and wheel bindings. Full binding and Edit Mode refreshes, frame registration and combat deferral retain their existing owners.",
+  "checkpoint": {
+    "createdUTC": "2026-11-20T09:01:20.9576604Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "installedSettingsFileCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Binding/Input/FluxMouseoverKeybind.lua": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/raid_binding_cast.lua": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be",
+      "docs/STATUS.md": "435c10ba498dfe39ac317faaa38547d9e96bc3369b62c1efbaf24f64f3d61d83",
+      "docs/DECISIONS.md": "448daaf9afc3828c4d8c1890fa623e590b6200d7cd137187111e7b8af41684d0",
+      "docs/WORK_LOG.md": "31563bf3270d0c66b0462582a5456e920a6d33d27e76e9ee357548bf92375792",
+      "NEXT_SESSION.md": "e5690a8a75029cf0d017af47d96da96902014136531ef6ba28e959667fa10e4f",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "404190d3b9c13f3fea564b6eaa3eb332673260bacb70d6dfc8de46fbbd42f4fe",
+      "docs/13-binding-system.md": "65eb8a0d43b38dde6593dbd48533218a7c6cecee38778608a8b1c7007ec6b221",
+      "docs/GROUP_ROSTER_PERFORMANCE.md": "01bea2ca90df4169a2c72a791f5e5f8b56f12c261da30418fe88f0299906737f",
+      "docs/CLIENT_VALIDATION.md": "a4964f10edd000eb5ecf1ee7269bfad9bb5e540852ee14183bb1cf91467693c2",
+      "docs/FEATURE_PARITY.csv": "4d6413b1404c937d2e104e20f6128196a55a464e8b259a27da49151572b0ea11",
+      "docs/PERFORMANCE_RESULTS.csv": "5efaaf433a543c9d0efef20a13375cb009e21b4ad67f3411606b90ca3fafd1ad",
+      "docs/CLIENT_MATRIX.csv": "77c2d2a6c1d5e3e8482848f447d596a58c2fec13fb2af0963b37afaf9f8c7d34",
+      "docs/reference/verification.json": "8a2563d9ea45adf3bded419db2185f63b90cb5aee4c131fbe5c248155469b97c"
+    }
+  },
+  "verification": {
+    "focusedPassed": 46,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/trinket_regen_refresh.lua": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_panel_settle.lua": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/grid_envelope_work.lua": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "tests/idle_info_layout.lua": "848dfbc036cb12e9794827fd8a786d03128c64a36ca3e3a6ca48254f12c6ae8b",
+      "tests/info_all_stats.lua": "d75d700b8d6d0cdc23a418b55dba02fcd844fc2c47cf6d9534151fb68fb6a2a3",
+      "tests/info_combat_stats.lua": "f40271f54b49e6821fc1d9655a68911b5a8cc4860569e82e4938d716a163bf57",
+      "tests/border_junctions.lua": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_observer_refresh.lua": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+      "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+      "tests/border_fallback_opacity.lua": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79",
+      "tests/raid_binding_cast.lua": "04432ba0d4b2e9cdd86679ef763cdf7e985b2e83ca9dc98fa79ee92c07a858cc",
+      "tests/raid_party_binding_cast.lua": "9978e68057f35e25761ddf5554ce7b64fe3bfb7e00ad7fd17e60ab942a0b408b",
+      "tests/mouseover_native.lua": "d8b9b3ba24d6317a860da9e1d83453d446a7eb11a9f18f60610bb603c1128bc3",
+      "tests/native_mouse_suppression.lua": "899210f970242de8662d3b78f45f352836894421e9a244eb4aa7f0d09800a1ed",
+      "tests/roster_native_hover_cleanup.lua": "7fb8b4c66731c991ea43c55413a0089875df48f211df7c74d3eda2ef415fe1da",
+      "tests/group_ghost_hover.lua": "4c5c26762245cac75624e2d45da96e47ddd1a11d2d717747c4de84a11f9a17e4",
+      "tests/binding_hover_modifier_routes.lua": "532021cbac5928fa821e8aacb459cc7b3000f11496bb038518097345ac6cf793",
+      "tests/hover_children_varargs.lua": "f8c4aa49f49507bc9d0f3f6fe7c38e90e1124a8371818004dc0005afe76fdf89",
+      "tests/consumable_roster_bindings.lua": "c7a658fe200c1fd2dc6e739ffd11fa856cfd2af1e979523aa64d0161428091fc"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-roster-hover-driver-2026-11-20-100120\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-roster-hover-driver-2026-11-20-100120\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-roster-hover-driver-2026-11-20-100120\\syntax.json"
+  },
+  "nativeAcceptance": "Current live invite, leave, raid conversion timing and combat taint remain pending. Full action-strip, border seams, minimap and combat exit acceptance remain part of the active roadmap."
+}

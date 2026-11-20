@@ -455,18 +455,6 @@ local function HookReopenOnDialogHide()
 	end)
 end
 
-local function ForceAccountBindingSetInDialog()
-	After(0, function()
-		local chk = _G.KeyboundDialogCheck
-		if chk and chk.SetChecked then
-			chk:SetChecked(false)
-		end
-		if LoadBindings then
-			LoadBindings(1)
-		end
-	end)
-end
-
 function BM:Activate()
 	if InLockdown() then
 		return
@@ -522,7 +510,9 @@ KeyBound:RegisterCallback("LIBKEYBOUND_ENABLED", function()
 		RegisterAll()
 		BM:SetBindingModeActive(true)
 	end
-	ForceAccountBindingSetInDialog()
+	-- LibKeyBound initializes its checkbox from GetCurrentBindingSet(). Keep
+	-- that selection and any unsaved edits; opening the binder must not load
+	-- the account keyboard over a character's current bindings.
 end)
 
 KeyBound:RegisterCallback("LIBKEYBOUND_DISABLED", function()

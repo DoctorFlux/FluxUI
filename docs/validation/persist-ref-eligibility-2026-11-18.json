@@ -1,0 +1,175 @@
+{
+  "utc": "2026-11-18T20:20:20.491113+00:00",
+  "before": {
+    "Inventory/FluxConsumableBest/Persist.lua": "e2f68fd0cc9e7de4d98c68d00b95dd88690b1c0a6be82cb1297012f1791ed9a1",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f"
+  },
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "historyVerified": true,
+  "settingsStatRows": 12,
+  "settingsContentsCopied": false,
+  "newSimulations": 0,
+  "nativeBefore": {
+    "passes": 7,
+    "stored": 4,
+    "ms": [
+      4.6179999709129,
+      4.3368000388145,
+      5.2754000425339,
+      5.6672999858856
+    ],
+    "notifyMs": [
+      0.036399960517883,
+      0.036699950695038,
+      0.0557000041008,
+      0.043299973011017
+    ],
+    "allRuntimeRetained": true,
+    "allOK": true,
+    "methodsRestored": true,
+    "reportsRemoved": true,
+    "errors": 0,
+    "source": "native99/100 current real passive path;sequential batch notFPS proof"
+  },
+  "change_id": "LHO-PERSIST-REF-ELIGIBILITY-20261118",
+  "status": "PAUSED_BY_USER;ADOPTED101_NATIVE103_COUNT_SELECTION_PASS;AFTER_TIMING_PENDING",
+  "after": {
+    "Inventory/FluxConsumableBest/Persist.lua": "7082172e7f26df0c9c8bc87330a262bf26eb23f48c90115294b54452f1e9f6b2",
+    "Inventory/FluxConsumableBest/Scan.lua": "21883c7d637ef49221d432852a5d30755cff44c074a9b8750daecc06e14ea4aa"
+  },
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "21883c7d637ef49221d432852a5d30755cff44c074a9b8750daecc06e14ea4aa",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+    "Inventory/Professions.lua": "9a12130da2c3d726165611d07a742507478db716d59e71f32fc78c27b3cc6783",
+    "Inventory/FluxConsumableBest/Persist.lua": "7082172e7f26df0c9c8bc87330a262bf26eb23f48c90115294b54452f1e9f6b2"
+  },
+  "syntax": [
+    {
+      "path": "Inventory/FluxConsumableBest/Persist.lua",
+      "phase": "before",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Persist.lua",
+      "phase": "after",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Persist.lua",
+      "phase": "before",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Persist.lua",
+      "phase": "after",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "phase": "before",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "phase": "after",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "phase": "before",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "exit": 0
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/Scan.lua",
+      "phase": "after",
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "exit": 0
+    }
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-persist-ref-eligibility-20261118",
+  "updatedUTC": "2026-11-18T20:25:10.440914+00:00",
+  "change": "Private per-scan approvals avoid duplicate permanent-gate checks only for same numeric ID/kind within current frame/serial/revision/bag/publication generation and defining owners. Public GetRef/MaybeUpdateRef remain ordinary;missing/changed owners/reentry/laterframes/ineligible IDs take live path. Existing normalization/scrubbing/ratchet/coldretry/cadence paths retained.",
+  "loadOrder": "TOC112Persist precedes119Professions;lazy first-use profession-owner pin added before native adoption.",
+  "sourceProof": {
+    "GetRefOriginalCoreRestored": true,
+    "UpdateRefOriginalCoreRestored": true,
+    "VendorRemainderUnchanged": true,
+    "scope": "Normalized text source proof only;no synthetic/runtime tests. Other branch/override/reentry/secret cases require native acceptance."
+  },
+  "pauseUTC": "2026-11-18T20:48:23.691208+00:00",
+  "native103": {
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "project": 18,
+    "unique": 54,
+    "countMismatches": 0,
+    "syndicatorLoaded": true,
+    "baganatorLoaded": true,
+    "source": "syndicator",
+    "ready": true,
+    "queue": 4,
+    "food": [
+      1487,
+      14,
+      841
+    ],
+    "preferences": [
+      0,
+      120,
+      30
+    ],
+    "errors": 0,
+    "cursorClear": true
+  },
+  "native101": "Guarded reload readiness ACKed;fresh ref101-adopted-startup.png independently personally viewed. Actual after sources7082172e/21883c7d adopted;no loaded-byte hashes.",
+  "native104": "104a physical modifier guard rejected before input. Retry command was rejected by automatic approval review on user pause;no after timing run/read105. Do not claim a performance gain or replay spent setup.",
+  "pauseReload": "Guarded pause-only ReloadUI command queued by pause1811reload_b with stop markers intact;no print ACK expected. Independent startup capture then failed because target was minimized. Completion/world return unconfirmed;latest user instruction requires stopping without further checks.",
+  "jumpPause": "R19host33664 previously stopped/verified absent. R20supervisor37448 stopped-before-launch/verified absent;no R20host ever launched. CANCEL and native/JUMP_STOP retained. No jumps until explicit continue.",
+  "resume": [
+    "Read this checkpoint/current source identities and preserve newer work.",
+    "Do not restart anything until explicit continue. Reload cleanup command was sent;revalidate actual client/session and assume temporary code invalid until checked.",
+    "Fresh diagnostics/jump cue only if needed on resume;never replay99-103 or104a partial state.104a sent no input;retry was denied due pause.",
+    "Next required work: after timing under104/105-equivalent fresh run,then paired fallback/public-ref/fullrecord and safe mutation checks. No performance/FPS/hitch success claim yet.",
+    "Preserve7082172e Persist/21883c7d Scan;priorScore13f/parser689/recipe9a/queue36a/Craft853 etc unchanged.30sourcepins and original source/history/settings checkpoint available.",
+    "No simulations;no externalSyndicator/Baganator edits;no buy/sell/delete;full original scope remains unfinished."
+  ],
+  "pauseMarkerSHA": {
+    "CANCEL": "9bdf952870ef5391a0bcc819591897a9d6f022e2119bb3cc1e40d3283eaced80",
+    "native\\JUMP_STOP": "af4870712c4ea9c85d702adb89bfe611465c6858b80700a9629890d60fffd750"
+  }
+}

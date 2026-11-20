@@ -28,8 +28,11 @@ end
 
 local sessionActive = false
 local refreshPending = false
+local refreshPendingGeneration
 local refreshTimer = nil
 local settleWait = false
+-- Closing the session invalidates deferred work without requiring cancelable timers.
+local sessionGeneration = 0
 
 local function IsAutomationQuiet()
     local inv = Inv()
@@ -135,24 +138,30 @@ FluxVendorSession = {
     end,
 }
 
-local function DoVendorRefresh(opts)
+local function DoVendorRefresh(opts, generation)
+    if generation ~= sessionGeneration then return end
     refreshTimer = nil
     opts = opts or {}
-    if not FluxVendorSession.IsOpen() then
+    local open = FluxVendorSession.IsOpen()
+    if generation ~= sessionGeneration then return end
+    if not open then
         refreshPending = false
         settleWait = false
         return
     end
     -- Same predicate as OnQuietSettled. Burst/buy/sell still skip heavy UI
     -- via ShouldDeferBagVisuals elsewhere; they must not recurse here.
-    if IsAutomationQuiet() then
+    local quiet = IsAutomationQuiet()
+    if generation ~= sessionGeneration then return end
+    if quiet then
         if settleWait then
             return
         end
         settleWait = true
         FluxVendorSession.OnPurchaseStormSettled(function()
+            if generation ~= sessionGeneration then return end
             settleWait = false
-            DoVendorRefresh(opts)
+            DoVendorRefresh(opts, generation)
         end)
         return
     end
@@ -164,6 +173,7 @@ local function DoVendorRefresh(opts)
             ui.ScheduleJunkUIRefresh(false)
         end
     end
+    if generation ~= sessionGeneration then return end
     if opts.restockData ~= false and ui then
         if ui.ScheduleMerchantUpdate then
             ui.ScheduleMerchantUpdate("data")
@@ -180,6 +190,7 @@ FluxVendorSessionRefresh = {
         FluxVendorSession.SetOpen(true)
     end,
     EndVendorSession = function()
+        sessionGeneration = sessionGeneration + 1
         sessionActive = false
         FluxVendorSession.SetOpen(false)
         refreshPending = false
@@ -187,13 +198,18 @@ FluxVendorSessionRefresh = {
         settleWait = false
     end,
     RequestVendorRefresh = function(opts)
-        if refreshPending then
+        if refreshPending and refreshPendingGeneration == sessionGeneration then
             return
         end
+        local generation = sessionGeneration
+        if refreshPendingGeneration ~= generation then
+            settleWait = false
+        end
         refreshPending = true
+        refreshPendingGeneration = generation
         refreshTimer = true
         After(0.15, function()
-            DoVendorRefresh(opts)
+            DoVendorRefresh(opts, generation)
         end)
     end,
 }

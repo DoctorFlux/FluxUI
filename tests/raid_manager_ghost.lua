@@ -1,9 +1,11 @@
 -- Actual Layout/Hide modules plus supplied native selection/manager handlers.
 -- FLUX_RAID_UPSTREAM_CACHE or arg1 selects the task's pinned source cache.
+-- --compare <archive> compares native group classification with archived Lua.
 -- Desktop geometry/input contracts do not establish native pixels or taint.
 local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a"):gsub("\r\n","\n");f:close();return s end
 local layout,hide,compat=read("RaidFrame/FluxRaidLayout.lua"),read("Blizzard/Hide.lua"),read("RaidFrame/FluxRaidCompat.lua")
-local cache=arg[1] or os.getenv("FLUX_RAID_UPSTREAM_CACHE")
+local archivedLayout=arg[1]=="--compare" and read(assert(arg[2]))
+local cache=(not archivedLayout and arg[1]) or os.getenv("FLUX_RAID_UPSTREAM_CACHE")
 local checks=0
 local function check(ok,why)checks=checks+1;assert(ok,why)end
 local function func(source,name)
@@ -73,6 +75,7 @@ local function fixture(branch,source)
     function methods:GetHeight()return self.height or 140 end
     function methods:SetPoint(...)write(self);self.points={...}end
     function methods:GetPoint()return table.unpack(self.points)end
+    function methods:GetNumPoints()return self.points[1] and 1 or 0 end
     function methods:ClearAllPoints()write(self);self.points={}end
     function methods:SetAllPoints()end
     function methods:SetHeight(value)write(self);self.height=value end
@@ -186,6 +189,14 @@ local function exercise(branch,source)
     e.FluxRaid_ApplyBlizzardCompactGridHidden();s:flush()
     check(root.alpha==0 and native.selectionHighlight.alpha==0,"dedicated selection alpha removes the ignore-parent ghost")
     check(native.readyCheckIcon.alpha==0 and native.readyCheckIcon.Icon.alpha==0,"dedicated ready frame and texture alpha remove both ignore-parent layers")
+    local selectionWrites,readyWrites=native.selectionHighlight.alphaWrites,native.readyCheckIcon.alphaWrites
+    for _=1,20 do e.FluxRaid_ApplyBlizzardCompactGridHidden();s:flush() end
+    check(native.selectionHighlight.alphaWrites==selectionWrites and native.readyCheckIcon.alphaWrites==readyWrites,
+        "stable suppressed overlays receive no repeat alpha writes across repeated roster-style sweeps")
+    native.selectionHighlight.alpha=1;native.selectionHighlight.ignoreParentAlpha=true
+    e.FluxRaid_ApplyBlizzardCompactGridHidden();s:flush()
+    check(native.selectionHighlight.alphaWrites==selectionWrites+1 and native.selectionHighlight.alpha==0
+        and not native.selectionHighlight.ignoreParentAlpha,"native drift is repaired once even when listed by both pool and named slot")
     check(root.scripts.OnEvent==eventHandler and root.events.GROUP_ROSTER_UPDATE and root.parent==e.UIParent and root.shown,
         "native scripts/events/parent/visibility stay owned by Blizzard")
     for i=1,100 do
@@ -277,8 +288,18 @@ local function preparedSolo(branch,source)
     container.gridTop=470
     e.FluxRaid_InstallManagerHooks();e.FluxRaid_PositionContainer()
     local y=mgr.points[5]
+    local priorWrites=s.writes
+    e.FluxRaid_PositionContainer()
+    check(s.writes==priorWrites,"matching raid manager and container avoid protected writes")
     check(y~=nil and math.abs(y*mgr:GetEffectiveScale()-(470+20)*s.uiScale)<1e-8,
         "solo pool preparation positions the full manager above its future secure grid")
+    local scale=mgr.scale
+    mgr.scale=scale+0.00000001
+    mgr.points[5]=y+0.000001
+    e.FluxRaid_PositionContainer()
+    check(s.writes==priorWrites,"native numeric rounding needs no geometry write")
+    mgr.scale=scale
+    mgr.points[5]=y
     mgr:Hide();s.combat=true
     local writes=s.writes
     s.nativeVisibility=true;mgr:Show();s.nativeVisibility=false;s:flush()
@@ -290,14 +311,76 @@ local function preparedSolo(branch,source)
     check(math.abs((mgr.points[5]-y)*mgr.scale-40)<1e-8,
         "a bound member's actual top takes priority over solo preparation after combat")
 end
+
+local function NativeGroupRoster(branch,source)
+    local e,s,_,_,root,_,_,_,cell=fixture(branch,source)
+    local members={}
+    local holder=e.CreateFrame("Frame","LegacyPartyUnitPoolHost")
+    local party=e.CreateFrame("Frame","PartyFrame")
+    for i=1,5 do members[i]=cell(nil,holder,.5) end
+    local reads,visits=0,0
+    party.PartyMemberFramePool={EnumerateActive=function()
+        reads=reads+1
+        local index=0
+        return function()
+            index=index+1
+            if members[index] then visits=visits+1;return members[index] end
+        end
+    end}
+    e.FluxRaid_InstallManagerHooks()
+    local raid={}
+    for group=1,8 do
+        local header=e.CreateFrame("Frame","CompactRaidGroup"..group,root)
+        for i=1,5 do
+            raid[#raid+1]=cell("CompactRaidGroup"..group.."Member"..i,header,.7)
+        end
+    end
+    for _=1,2 do
+        for _,frame in ipairs(raid) do
+            e.CompactUnitFrame_UpdateSelectionHighlight(frame)
+            check(frame.selectionHighlight.alpha==0 and not frame.selectionHighlight.ignoreParentAlpha,
+                "nested native raid cells lose their orphan highlight")
+        end
+    end
+    local namedReads,namedVisits=reads,visits
+    members[2].GetName=function() return e.secret end
+    members[3].GetName=function() error("name getter denied") end
+    s.combat,s.nativeVisibility=true,true
+    for _,frame in ipairs(members) do
+        e.CompactUnitFrame_UpdateSelectionHighlight(frame)
+        check(frame.selectionHighlight.alpha==0 and not frame.selectionHighlight.ignoreParentAlpha,
+            "active pooled frames still suppress in combat with absent, private or denied names")
+    end
+    local stranger=cell("FluxUnrelatedSelectionFrame",holder,.75)
+    e.CompactUnitFrame_UpdateSelectionHighlight(stranger)
+    check(stranger.selectionHighlight.alpha==.75 and stranger.selectionHighlight.ignoreParentAlpha,
+        "unrelated frames remain controlled by their other owner")
+    local fluxOwned=cell("CompactRaidGroup99Member1",holder,.65)
+    fluxOwned._fluxRaidUnit=true
+    e.CompactUnitFrame_UpdateSelectionHighlight(fluxOwned)
+    check(fluxOwned.selectionHighlight.alpha==.65,"Flux-owned raid visuals keep their own selection")
+    for index=1,#members do members[index]=nil end
+    local retired=cell(nil,holder,.7)
+    e.CompactUnitFrame_UpdateSelectionHighlight(retired)
+    check(retired.selectionHighlight.alpha==.7,"frames outside the active pool stay untouched")
+    s.combat,s.nativeVisibility=false,false
+    return namedReads,namedVisits
+end
+
 for _,branch in ipairs({"live","forever","classic","classic_era","classic_anniversary"})do
     exercise(branch);preparedSolo(branch)
+    local calls,visits=NativeGroupRoster(branch,layout)
+    check(calls==0 and visits==0,"known grouped raid names bypass the active party pool")
+    if archivedLayout then
+        local oldCalls,oldVisits=NativeGroupRoster(branch,archivedLayout)
+        print(("RAID_CHROME_POOL|%s|%d|%d|%d|%d"):format(branch,oldCalls,calls,oldVisits,visits))
+    end
 end
 local ghost=layout:gsub('region:SetAlpha%(0%)','-- omitted selection suppression')
 check(not pcall(exercise,"forever",ghost),"negative control detects the native ignore-parent-alpha ghost")
-local x=layout:gsub('        x,\n','        200,\n')
+local x=layout:gsub('mgr:SetPoint%("BOTTOMLEFT",UIParent,"BOTTOMLEFT",x,y%)','mgr:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",200,y)')
 check(not pcall(exercise,"forever",x),"negative control detects unwanted horizontal manager movement")
-local opaque=layout:gsub('if Secret%(alpha%) or type%(alpha%)~="number" then return end','if type(alpha)~="number" then return end')
+local opaque=layout:gsub('local private=Secret%(alpha%)','local private=false',1)
 check(not pcall(exercise,"forever",opaque),"negative control rejects scalar inspection before the secret guard")
 local unprepared=layout:gsub('    if not top then top=PhysicalTop%(State%.containerFrame%) end\n','')
 check(not pcall(preparedSolo,"forever",unprepared),"negative control catches solo startup leaving the manager at native Y")

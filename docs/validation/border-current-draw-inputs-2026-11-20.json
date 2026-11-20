@@ -1,0 +1,310 @@
+{
+  "changeId": "BORDER-CURRENT-DRAW-INPUTS-R182-20261120",
+  "borderVersion": "current-draw-inputs-r182",
+  "capturedAtUTC": "2026-11-20T06:36:20.733526+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "031db8d553222816eae3ed4884bf91b3bd91af9c61ffcfe226e76b128c4810fe",
+      "afterRaw": "697850f6e1333a99aff4a596a6471a039e09d428eba6ad681b2a48fbac73967b",
+      "afterNormalized": "697850f6e1333a99aff4a596a6471a039e09d428eba6ad681b2a48fbac73967b"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-current-draw-inputs-before-20261120T072756702\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_forever_": 3,
+      "_classic_": 2,
+      "_anniversary_": 10,
+      "_classic_era_": 4,
+      "_retail_": 2
+    }
+  },
+  "work": {
+    "scope": "Actual border engine with warmed strip crossings and roster-unit reflows, both border styles. Setter and source counters span twelve moves. Timing and allocation samples cover 24 moves per trial, with execution order alternating and collection suspended during the measured interval.",
+    "samples": {
+      "hover": {
+        "1": {
+          "elapsedMs": [
+            [
+              110.0,
+              102.0
+            ],
+            [
+              105.0,
+              100.0
+            ],
+            [
+              119.0,
+              107.0
+            ],
+            [
+              105.0,
+              102.0
+            ],
+            [
+              104.0,
+              101.0
+            ]
+          ],
+          "allocationKiB": [
+            [
+              10650.185,
+              10657.765
+            ],
+            [
+              10650.32,
+              10657.963
+            ],
+            [
+              10647.82,
+              10655.463
+            ],
+            [
+              10646.824,
+              10654.467
+            ],
+            [
+              10646.867,
+              10654.51
+            ]
+          ],
+          "steps": 12,
+          "vertices": 355,
+          "widgetCount": 1277,
+          "repeatedPaintChecks": [
+            990,
+            0
+          ],
+          "drawSourceParentReads": [
+            72,
+            54
+          ],
+          "elapsedMedianMs": [
+            105.0,
+            102.0
+          ],
+          "allocationMedianKiB": [
+            10647.82,
+            10655.463
+          ]
+        },
+        "2": {
+          "elapsedMs": [
+            [
+              247.0,
+              219.0
+            ],
+            [
+              211.0,
+              197.0
+            ],
+            [
+              326.0,
+              258.0
+            ],
+            [
+              227.0,
+              216.0
+            ],
+            [
+              207.0,
+              237.0
+            ]
+          ],
+          "allocationKiB": [
+            [
+              10598.226,
+              10605.819
+            ],
+            [
+              10598.424,
+              10606.018
+            ],
+            [
+              10598.924,
+              10606.518
+            ],
+            [
+              10597.928,
+              10605.521
+            ],
+            [
+              10597.971,
+              10605.564
+            ]
+          ],
+          "steps": 12,
+          "vertices": 446,
+          "widgetCount": 1341,
+          "repeatedPaintChecks": [
+            924,
+            0
+          ],
+          "drawSourceParentReads": [
+            72,
+            54
+          ],
+          "elapsedMedianMs": [
+            227.0,
+            219.0
+          ],
+          "allocationMedianKiB": [
+            10598.226,
+            10605.819
+          ]
+        }
+      },
+      "roster": {
+        "1": {
+          "elapsedMs": [
+            [
+              137.0,
+              140.0
+            ],
+            [
+              150.0,
+              142.0
+            ],
+            [
+              136.0,
+              126.0
+            ],
+            [
+              252.0,
+              127.0
+            ],
+            [
+              252.0,
+              255.0
+            ]
+          ],
+          "allocationKiB": [
+            [
+              14986.744,
+              14995.602
+            ],
+            [
+              14986.814,
+              14995.672
+            ],
+            [
+              14987.314,
+              14996.172
+            ],
+            [
+              14986.318,
+              14995.176
+            ],
+            [
+              14986.334,
+              14995.191
+            ]
+          ],
+          "steps": 12,
+          "vertices": 809,
+          "widgetCount": 1675,
+          "repeatedPaintChecks": [
+            522,
+            0
+          ],
+          "drawSourceParentReads": [
+            132,
+            42
+          ],
+          "elapsedMedianMs": [
+            150.0,
+            140.0
+          ],
+          "allocationMedianKiB": [
+            14986.744,
+            14995.602
+          ]
+        },
+        "2": {
+          "elapsedMs": [
+            [
+              430.0,
+              393.0
+            ],
+            [
+              365.0,
+              372.0
+            ],
+            [
+              337.0,
+              336.0
+            ],
+            [
+              340.0,
+              346.0
+            ],
+            [
+              335.0,
+              367.0
+            ]
+          ],
+          "allocationKiB": [
+            [
+              20466.236,
+              20470.174
+            ],
+            [
+              20466.307,
+              20470.244
+            ],
+            [
+              20466.807,
+              20470.744
+            ],
+            [
+              20465.811,
+              20469.748
+            ],
+            [
+              20465.826,
+              20469.764
+            ]
+          ],
+          "steps": 12,
+          "vertices": 1276,
+          "widgetCount": 2203,
+          "repeatedPaintChecks": [
+            702,
+            0
+          ],
+          "drawSourceParentReads": [
+            120,
+            36
+          ],
+          "elapsedMedianMs": [
+            340.0,
+            367.0
+          ],
+          "allocationMedianKiB": [
+            20466.236,
+            20470.174
+          ]
+        }
+      }
+    },
+    "replaySHA256": "d4122f1948259965a45a86ff68d2f72536cc3ad38798528d01da4b74301d702f",
+    "clockScope": "Desktop Lua timings include modeled widget calls. Live WoW frame time remains an independent measurement."
+  },
+  "parity": "Sampled T/X junctions, shadows, strip and unit edges, geometry counts, texture objects and modeled widget setter counts match. Public colors and opacity from current fragments remain live each commit. Private alpha still flows to its native sink. A source parent shared within a single synchronous paint is sampled again during the next commit; the full draw outside the regional paint keeps its fresh parent reads.",
+  "verification": {
+    "focusedPassed": 35,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-current-draw-inputs-before-20261120T072756702\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-current-draw-inputs-before-20261120T072756702\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-current-draw-inputs-before-20261120T072756702\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "tests/auction_restock.lua"
+    ]
+  },
+  "nativeAcceptance": "Native first and repeated drag or drop, cursor crossings, party/raid transitions, side seam appearance and combat taint remain pending."
+}

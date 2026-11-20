@@ -1469,7 +1469,11 @@ local function GetAuraPanelAnchorOffsets(frame)
     if frame._fluxCompactFocus then
         local scale = frame._fluxFocusAuraPanelScale or 1
         if type(scale) ~= "number" or not (scale > 0) then scale = 1 end
-        return 0, 0, 7 / scale
+        local nest=7
+        if Border and Border.GetJoinTracks then
+            local tracks=Border:GetJoinTracks();nest=5+2+tracks.Top-tracks.Bottom
+        end
+        return 0, 0, nest / scale
     end
     return -10, 0, 10
 end
@@ -1501,8 +1505,64 @@ local function PositionAuraCaption(container)
     end
 end
 
+local function SameAuraLayoutNumber(current, wanted)
+    return not IsSecretValue(current) and type(current) == "number" and math.abs(current - wanted) < 1/1024
+end
+
+local function SetAuraLayoutSize(frame, width, height)
+    if frame.GetSize then
+        local ok, actualWidth, actualHeight = pcall(frame.GetSize, frame)
+        if ok and SameAuraLayoutNumber(actualWidth, width) and SameAuraLayoutNumber(actualHeight, height) then return end
+    end
+    frame:SetSize(width, height)
+end
+
+local function SetAuraPanelAnchor(frame, point, relative, relativePoint, x, y)
+    if frame.GetNumPoints and frame.GetPoint then
+        local ok, count = pcall(frame.GetNumPoints, frame)
+        if ok and not IsSecretValue(count) and count == 1 then
+            local found, p, parent, rp, ox, oy = pcall(frame.GetPoint, frame, 1)
+            if found and not IsSecretValue(p) and not IsSecretValue(parent) and not IsSecretValue(rp)
+                and p == point and parent == relative and rp == relativePoint
+                and SameAuraLayoutNumber(ox, x) and SameAuraLayoutNumber(oy, y) then return end
+        end
+    end
+    frame:ClearAllPoints()
+    frame:SetPoint(point, relative, relativePoint, x, y)
+end
+
 local function LayoutCompactFocusAuraBorder(frame, container, width, height)
-    if not frame._fluxCompactFocus then return false end
+    if not frame._fluxCompactFocus then
+        if InCombatLockdown and InCombatLockdown() then return true end
+        local border=container.borderFrame
+        local above=ShouldAurasAnchorAboveUnit(frame)
+        local anchor=GetAuraPanelAnchorFrame(frame)
+        local insets=anchor.FluxBorderFrame and anchor.FluxBorderFrame._fluxBorderInsets
+        local padY=insets and insets[2] or 2
+        local top,bottom=8,8
+        if Border and Border.GetJoinTracks then
+            local tracks=Border:GetJoinTracks();top,bottom=tracks.Top,tracks.Bottom
+        end
+        local _,_,nest=GetAuraPanelAnchorOffsets(frame)
+        local y=nest+bottom-top-padY-5
+        if not above then y=-y end
+        local point=(above and "BOTTOM" or "TOP")..(container.containerType=="Buff" and "LEFT" or "RIGHT")
+        local x=container.containerType=="Buff" and 10 or 0
+        local w=math.max(1,width-13)
+        local old=border._fluxAuraBorderLayout
+        if not old or old[1]~=w or old[2]~=height or old[3]~=point or old[4]~=y then
+            border:SetSize(w,height);border:ClearAllPoints();border:SetPoint(point,container,point,x,y)
+            border._fluxAuraBorderLayout={w,height,point,y}
+        end
+        if not border._fluxFocusAuraCornersApplied then
+            for _,spec in ipairs(COMPACT_FOCUS_AURA_CORNERS) do
+                local corner=border[spec[1]]
+                if corner then corner:ClearAllPoints();corner:SetPoint(spec[2],border,spec[2],spec[3],spec[4]) end
+            end
+            border._fluxFocusAuraCornersApplied=true
+        end
+        return true
+    end
     local scale = frame._fluxFocusAuraPanelScale or 1
     local border = container.borderFrame
     local borderScale = 1 / scale
@@ -1511,7 +1571,7 @@ local function LayoutCompactFocusAuraBorder(frame, container, width, height)
         border:SetScale(borderScale)
         border._fluxFocusAuraBorderScale = borderScale
     end
-    border:SetSize(width * scale, height * scale)
+    SetAuraLayoutSize(border, width * scale, height * scale)
     if not border._fluxFocusAuraCornersApplied then
         for _, spec in ipairs(COMPACT_FOCUS_AURA_CORNERS) do
             local corner = border[spec[1]]
@@ -1534,11 +1594,11 @@ local function RefreshBorderedAuraContainerDimensions(container)
     local containerWidth, containerHeight = ComputeAuraContainerWidthHeight(frame, nil, container)
     local baseSize = container._fluxAuraBaseSize or DEFAULT_AURA_SIZE
 
-    container:SetSize(containerWidth, containerHeight)
+    SetAuraLayoutSize(container, containerWidth, containerHeight)
     container._fluxAuraPanelWidth = containerWidth
     PositionAuraCaption(container)
     if not LayoutCompactFocusAuraBorder(frame, container, containerWidth, containerHeight) then
-        container.borderFrame:SetSize(containerWidth, containerHeight)
+        SetAuraLayoutSize(container.borderFrame, containerWidth, containerHeight)
     end
 
     local xF = GetFluxAuraLayoutXSqueezeMult()
@@ -1580,21 +1640,19 @@ function UF.UpdateAuraPosition(frame)
 
     if frame.BuffContainer then
         frame.BuffContainer._fluxAuraGrowUpward = auraFrameAbove
-        frame.BuffContainer:ClearAllPoints()
         if auraFrameAbove then
-            frame.BuffContainer:SetPoint("BOTTOMLEFT", anchorFrame, "TOPLEFT", buffNestX, -nestY)
+            SetAuraPanelAnchor(frame.BuffContainer, "BOTTOMLEFT", anchorFrame, "TOPLEFT", buffNestX, -nestY)
         else
-            frame.BuffContainer:SetPoint("TOPLEFT", anchorFrame, "BOTTOMLEFT", buffNestX, nestY)
+            SetAuraPanelAnchor(frame.BuffContainer, "TOPLEFT", anchorFrame, "BOTTOMLEFT", buffNestX, nestY)
         end
         PositionAurasInBorderedContainer(frame.BuffContainer)
     end
     if frame.DebuffContainer then
         frame.DebuffContainer._fluxAuraGrowUpward = auraFrameAbove
-        frame.DebuffContainer:ClearAllPoints()
         if auraFrameAbove then
-            frame.DebuffContainer:SetPoint("BOTTOMRIGHT", anchorFrame, "TOPRIGHT", debuffNestX, -nestY)
+            SetAuraPanelAnchor(frame.DebuffContainer, "BOTTOMRIGHT", anchorFrame, "TOPRIGHT", debuffNestX, -nestY)
         else
-            frame.DebuffContainer:SetPoint("TOPRIGHT", anchorFrame, "BOTTOMRIGHT", debuffNestX, nestY)
+            SetAuraPanelAnchor(frame.DebuffContainer, "TOPRIGHT", anchorFrame, "BOTTOMRIGHT", debuffNestX, nestY)
         end
         PositionAurasInBorderedContainer(frame.DebuffContainer)
     end
@@ -1806,6 +1864,7 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
 
     -- Create border frame (battlefield style) - exactly like old version
     local borderFrame = CreateFrame("Frame", containerName .. "Border", container)
+    borderFrame._FluxBorderAuraPanel = true
     borderFrame:SetSize(containerWidth, containerHeight)
     borderFrame:SetPoint("CENTER", container, "CENTER", 0, 0)
     borderFrame:SetFrameStrata("BACKGROUND")
@@ -1831,9 +1890,13 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
         end
 
         if t then
+            -- Use the shared factory's cell dimensions on every client. Atlas
+            -- metadata and the old 17x17 fallback must not reshape these caps.
+            t:SetSize(16, (key == "TL" or key == "TR") and 17 or 16)
             t:SetPoint(point, xOfs, yOfs)
             t:SetVertexColor(0.6, 0.6, 0.6, 0.4)
             parent[key] = t
+            if Border and Border.RegisterPiece then Border:RegisterPiece(t, key, true, .4) end
         end
         return t
     end
@@ -1861,8 +1924,12 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
         end
 
         if t then
+            if key == "Top" then t:SetHeight(17)
+            elseif key == "Bottom" then t:SetHeight(16)
+            else t:SetWidth(16) end
             t:SetVertexColor(0.6, 0.6, 0.6, 0.4)
             parent[key] = t
+            if Border and Border.RegisterPiece then Border:RegisterPiece(t, key, true, .4) end
         end
         return t
     end
@@ -1904,7 +1971,7 @@ local function CreateBorderedAuraContainer(frame, containerType, maxAuras, auras
     LayoutCompactFocusAuraBorder(frame, container, containerWidth, containerHeight)
 
     -- Keep caption/timer typography at panel scale when the border follows body scale.
-    local labelParent = frame._fluxCompactFocus and container or borderFrame
+    local labelParent = container -- Border-only fitting must not move captions or aura content.
     -- Add label
     local label = labelParent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     container._fluxAuraCaption = label

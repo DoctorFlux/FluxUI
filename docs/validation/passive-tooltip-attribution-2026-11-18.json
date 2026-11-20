@@ -1,0 +1,338 @@
+{
+  "change_id": "LHO-PASSIVE-TOOLTIP-ATTRIBUTION-20261118",
+  "status": "NATIVE_ATTRIBUTION_SCOPED_PASS;NO_PRODUCT_LUA_EDIT;FULL_GOAL_ACTIVE",
+  "utc": "2026-11-18T20:11:49.630318+00:00",
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+    "Inventory/Professions.lua": "9a12130da2c3d726165611d07a742507478db716d59e71f32fc78c27b3cc6783"
+  },
+  "retailForeverPairs": 29,
+  "newSimulations": 0,
+  "client": {
+    "pid": 42724,
+    "hwnd": 50333792,
+    "birthFileTime": 134394624880288175,
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "project": 18,
+    "freshlyRead98": true
+  },
+  "trace92": {
+    "seconds": 3,
+    "observed": 7,
+    "stored": 4,
+    "columns": [
+      "fullMs",
+      "textMs",
+      "infoMs",
+      "firstMs"
+    ],
+    "rows": [
+      [
+        4.4109,
+        2.24,
+        0.058,
+        0.1352
+      ],
+      [
+        4.1809,
+        2.0809,
+        0.0573,
+        0.1391
+      ],
+      [
+        5.2885,
+        2.3052,
+        0.0603,
+        0.1407
+      ],
+      [
+        4.4043,
+        2.1649,
+        0.0581,
+        0.1357
+      ]
+    ],
+    "textCallsPerRow": 17,
+    "infoCallsPerRow": 82,
+    "firstCallsPerRow": 17,
+    "allReasons": "classifyPendingRead",
+    "allRuntimeIdentityRetained": true,
+    "allCallsSucceeded": true,
+    "allMethodsRestored": true,
+    "precision": "Rounded6decimal PNG transcription;original captures retained",
+    "scope": "Inclusive nested timings overlap/include wrappers;not additive exclusive costs,FPS,hitch or beforeafter evidence. Summary93 clipped;DONE92 independently confirms7/restoredtrue;all4rows fully visible."
+  },
+  "trace94": {
+    "reason": "classifyPendingRead",
+    "sameRuntime": true,
+    "restored": true,
+    "columns": [
+      "id",
+      "calls",
+      "pending",
+      "subclass"
+    ],
+    "rows": [
+      [
+        1487,
+        1,
+        false,
+        5
+      ],
+      [
+        1645,
+        2,
+        false,
+        5
+      ],
+      [
+        2633,
+        1,
+        true,
+        1
+      ],
+      [
+        3703,
+        1,
+        true,
+        5
+      ],
+      [
+        3928,
+        2,
+        false,
+        1
+      ],
+      [
+        4599,
+        3,
+        false,
+        5
+      ],
+      [
+        4601,
+        1,
+        false,
+        5
+      ],
+      [
+        5634,
+        1,
+        true,
+        1
+      ],
+      [
+        6149,
+        2,
+        false,
+        1
+      ],
+      [
+        7516,
+        1,
+        true,
+        8
+      ],
+      [
+        8544,
+        2,
+        false,
+        7
+      ]
+    ],
+    "callerLabelsValid": false,
+    "reasonLabelsInvalid": "Filename search across full debugstack matched FluxConsumableClassify.lua inside unnamed loadstring source. Per-item counts/pendingflags remainvalid. Future traces need explicit chunk names/anchored actual addon frames."
+  },
+  "actualPendingText": {
+    "item2633": "Disease/poison cure up to35;requires22",
+    "item3703": "Typical alcoholic beverage;10sec cooldown",
+    "item5634": "Stun/movement immunity30sec;does not remove existing effects;requires20",
+    "item7516": "Soulbound;unique;right click to read",
+    "scope": "Current returned strings only;no proof future/cold/partial data cannot change. No forced rejection/retry policy change."
+  },
+  "cleanup98": {
+    "ownedCodeAndReports92and94Absent": true,
+    "jumpCueActive": true,
+    "cursorClear": true,
+    "sessionErrors": 0,
+    "food": [
+      1487,
+      14,
+      841
+    ],
+    "preferences": [
+      0,
+      120,
+      30
+    ]
+  },
+  "newRuntimeEdits": 0,
+  "newReloads": 0,
+  "nativeAPIReplacements": 0,
+  "itemActions": 0,
+  "externalAddonSourceEdits": 0,
+  "artifacts": [
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip92-stage-costs-20261118",
+      "controllerSHA": "7593b81dc12caf202fa7301cadeba23c74f28de69b83f45dd5593ecb308e662f",
+      "packetSHA": "f7635adea042d009e9ad50a08376c2440c7788d99c2b01344bcf6ef52174e946",
+      "packetCount": 13,
+      "root": "_T92",
+      "nonce": "t92u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip93-stage-read-20261118",
+      "controllerSHA": "cca8d317919401bc21b690bde3ef25e44dba7c2763bbb60a38394e989b63271a",
+      "packetSHA": "0d395e94900f57c693fb8dd186a81ba317ce5aa5ce8c09c1632ec4c1d7642b0b",
+      "packetCount": 6,
+      "root": "_R93",
+      "nonce": "r93u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip94-real-callers-20261118",
+      "controllerSHA": "1da089e8e62d435cbd8fc43af1ca207c1746641888bbfc9a5bcf34182d9763c4",
+      "packetSHA": "e28098d50799f868dd869bba2f32cf11227ed3ac4663ca9d6345f658c0f9a50a",
+      "packetCount": 12,
+      "root": "_T94",
+      "nonce": "t94u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip95-callers-read-20261118",
+      "controllerSHA": "e9739c754508b9c49f7c0f3b424abe65d8cf5df46becf7eb387de4b02a894aaf",
+      "packetSHA": "021799fcf0771ac1a16f18fa5e1809b36f08ffe85cb77debedc6a6e80c394abe",
+      "packetCount": 2,
+      "root": "_R95",
+      "nonce": "r95u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip96-real-stack-text-20261118",
+      "controllerSHA": "7a3f9f9c5d1829b27ebe2b78eb76bf60128168f98585eb133d03cf0b117104bb",
+      "packetSHA": "42ebbf83b2f3e1d8bb395554a7ba1aeb5a8eb50c3d5d4e1fd6d6e61cba1a27f3",
+      "packetCount": 3,
+      "root": "_R96",
+      "nonce": "r96u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip97-filtered-detail-clean-20261118",
+      "controllerSHA": "aa190b0a202cceac314fe496d27fd8c7bbefefae476d597a5755298288520295",
+      "packetSHA": "a1a36cfdfcc5c7b752f54380f3c911a14110ef7c7da93b8289ae8b85b32212c4",
+      "packetCount": 4,
+      "root": "_R97",
+      "nonce": "r97u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-tooltip98-cleanup-read-20261118",
+      "controllerSHA": "94fb01212e62b403664b7816b8ced3cb5e49d27143326c3938df5b10178bde15",
+      "packetSHA": "4c4051aa090bccf4d4b849a91e010b07e426fbe4b98b8223478e0eb0ccd0d736",
+      "packetCount": 3,
+      "root": "_R98",
+      "nonce": "r98u6k2",
+      "sourceOnly": true
+    }
+  ],
+  "receipts": [
+    {
+      "run": "tooltip92trace_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip92trace_a-journal.json",
+      "journalSHA": "c744dbfcc5f67f239844ecd284b854eeafec51cc9b0934fafc1f1cb9f2620d07",
+      "pngSHA": "f1729d607771b9be47b27c8a0c3e4c2ef5f1402ea4bcaf360f2f7da429db6e63",
+      "stage": "ack-visually-attested"
+    },
+    {
+      "run": "tooltip93read_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip93read_a-journal.json",
+      "journalSHA": "303fcb023a623adb17c10d8c1e46110e0e5e3d5b1b30f43d722aa23f88da264d",
+      "pngSHA": "f2b34674007e9d9c95ded02d343c24a4c6236fb54b130efaf38ab5c0c3cc27fc",
+      "stage": "ack-visually-attested"
+    },
+    {
+      "run": "tooltip94callers_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip94callers_a-journal.json",
+      "journalSHA": "481c3ab7b5d4f9a64fbf8a58629c9ed538b3c906d82853e5dcb41eec4d23798b",
+      "pngSHA": "b592377beb8ca58c1bba1519aa143d8ddfc42b3835ed676b0297ba5c52ba574d",
+      "stage": "ack-visually-attested"
+    },
+    {
+      "run": "tooltip95read_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip95read_a-journal.json",
+      "journalSHA": "aed954d2e81567e1abde17871463568ffdecc1ab5a3d8afa3aa8ea42b77d7173",
+      "pngSHA": "f17320bc60c4e7aeb06f8b9c0370443e14b489596503b395a9bfaa454f3256bd",
+      "stage": "ack-visually-attested"
+    },
+    {
+      "run": "tooltip96details_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip96details_a-journal.json",
+      "journalSHA": "710b1bbfc18519462288c7f6b4941a330b86b25be8784809aab86f799a2e0e95",
+      "pngSHA": "fada5940140ff9931aa14dd91ba0a50cf7fb5549be9951f6fdad6fcf9715ccc2",
+      "stage": "ack-visually-attested"
+    },
+    {
+      "run": "tooltip97clean_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip97clean_a-journal.json",
+      "journalSHA": "b14bb8df778926cca2806916f86b51e0be9ffa4f33fcc840064f29dea202db04",
+      "pngSHA": "f77f057ea072d4fc46616e9fb20b6d0c76766263dd8ac24e94b3286dfeb77cca",
+      "stage": "submitted"
+    },
+    {
+      "run": "tooltip98cleanup_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tooltip98cleanup_a-journal.json",
+      "journalSHA": "16a587de588a1a85029b40bd2d4fa04e10a78be9495dd8e87ed28338a4e81041",
+      "pngSHA": "26c568e7c30baa10e0b0a4110cafec59586f6cb6aa57b5da7277af3d4a4ad6a8",
+      "stage": "ack-visually-attested"
+    }
+  ],
+  "captureLimits": [
+    "96unfiltered stack overflowed viewport;97filtered frames also partly clipped. Only visible Scan.lua642/Best.lua176 tail used;complete caller attribution unproven.",
+    "97submitted PNG was personally viewed;ACK attempted too late and correctly rejected as stale. Never restamped/replayed.98fresh independent read/ACK confirms cleanup/errors/preferences;97is not labelled ACKed."
+  ],
+  "next": [
+    "Remove redundant valid-item eligibility reads with pass-local lifetime and defining-method/override/reentry guards only;no candidate implemented/measured yet.",
+    "Keep0.4s cold retries and present features;do not force-reject pendingIDs on present text alone.",
+    "FullLHO01-13ACTIVE;workflow/provider-off/client/taint/pixels/controller/matchedFPS-spikes open."
+  ],
+  "jump": {
+    "revision": "R19",
+    "root": "_J90q",
+    "nonce": "j18n90a7",
+    "hostPID": 33664,
+    "supervisorPID": 14932,
+    "pairsAtRead": 11,
+    "movementAcknowledged": false
+  }
+}

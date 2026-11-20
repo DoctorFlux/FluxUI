@@ -16,6 +16,16 @@ local bagsChange = { kind = "none", added = nil, removed = nil, dirty = {} }
 local bankChange = { kind = "none", added = nil, removed = nil, dirty = {} }
 local keyBuf = {}
 local C = Inv.Containers
+local slotDiffCapability = rawget(ns, "InventorySlotDiff")
+local slotDiffOwner, ownedSlotDiff
+if type(slotDiffCapability) == "table" then
+	slotDiffOwner = rawget(slotDiffCapability, "owner")
+	ownedSlotDiff = rawget(slotDiffCapability, "diff")
+end
+local bankRowsReusable = C == slotDiffOwner
+	and rawget(Inv, "Containers") == C
+	and type(ownedSlotDiff) == "function"
+	and rawget(C, "DiffSlots") == ownedSlotDiff
 local bagsItemSets = C.NewItemSetLog()
 local bankItemSets = C.NewItemSetLog()
 
@@ -89,7 +99,7 @@ local function CurrentCharacter()
 	return api.GetCharacter(name), name
 end
 
-local function SubtractBagCounts(byBag, bagID, counts)
+local function SubtractBagCounts(byBag, bagID, counts, beforeKeys)
 	local dest = byBag[bagID]
 	if not dest then
 		return
@@ -97,6 +107,7 @@ local function SubtractBagCounts(byBag, bagID, counts)
 	for _, rec in pairs(dest) do
 		local id = rec and NumericItemID(rec.itemID)
 		if id then
+			if beforeKeys and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
 			local n = (counts[id] or 0) - (rec.count or 0)
 			if n <= 0 then
 				counts[id] = nil
@@ -208,11 +219,7 @@ function Adapter.RebuildBags(dirtyBags)
 	local touched, delta, beforeKeys = {}, {}, {}
 	for bagID in pairs(dirtyBags) do
 		local old = snap.byBag[bagID]
-		for _, rec in pairs(old or {}) do
-			local id = rec and NumericItemID(rec.itemID)
-			if id and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
-		end
-		SubtractBagCounts(snap.byBag, bagID, counts)
+		SubtractBagCounts(snap.byBag, bagID, counts, beforeKeys)
 		local i = indexByBag[bagID]
 		FillFromSlots(bagID, bags and i and bags[i], snap.byBag, counts, old, beforeKeys)
 		C.DiffSlots(old, snap.byBag[bagID], touched, delta)
@@ -259,13 +266,26 @@ function Adapter.RebuildBank(dirtyBags)
 	local touched, delta, beforeKeys = {}, {}, {}
 	for bagID in pairs(dirtyBags) do
 		local old = snap.byBag[bagID]
-		for _, rec in pairs(old or {}) do
-			local id = rec and NumericItemID(rec.itemID)
-			if id and beforeKeys[id] == nil then beforeKeys[id] = counts[id] ~= nil end
-		end
-		SubtractBagCounts(snap.byBag, bagID, counts)
+		SubtractBagCounts(snap.byBag, bagID, counts, beforeKeys)
 		local i = indexByBag[bagID]
-		FillFromSlots(bagID, CharacterBankSlotArray(char, cons, i), snap.byBag, counts, nil, beforeKeys)
+		if bankRowsReusable and (rawget(Inv, "Containers") ~= C
+			or rawget(C, "DiffSlots") ~= ownedSlotDiff) then
+			bankRowsReusable = false
+		end
+		local previous = bankRowsReusable and old or nil
+		FillFromSlots(bagID, CharacterBankSlotArray(char, cons, i), snap.byBag, counts, previous, beforeKeys)
+		if bankRowsReusable and (rawget(Inv, "Containers") ~= C
+			or rawget(C, "DiffSlots") ~= ownedSlotDiff) then
+			bankRowsReusable = false
+		end
+		if previous and not bankRowsReusable then
+			local slots = snap.byBag[bagID]
+			for slot, row in pairs(slots) do
+				if row == previous[slot] then
+					slots[slot] = { itemID = row.itemID, count = row.count, link = row.link }
+				end
+			end
+		end
 		C.DiffSlots(old, snap.byBag[bagID], touched, delta)
 	end
 	snap.generation = (snap.generation or 0) + 1
@@ -538,16 +558,18 @@ local function Request(token)
 	Flux.Scheduler.Request("inventory", token)
 end
 
+local function FlushAuctions(tokens)
+	auctionsPending = false
+	if Inv.source ~= "syndicator" then return end
+	if Adapter.RebuildAuctions() then tokens.auctions = true end
+end
+
 local function QueueAuctions()
 	if Inv.source ~= "syndicator" or auctionsPending then return end
 	auctionsPending = true
 	-- Syndicator emits a callback for every row while rebuilding owned auctions.
 	-- Read the final list once, before this bucket's existing inventory listeners.
-	Flux.Scheduler.Request("inventory", "syndicatorAuctionRefresh", function(tokens)
-		auctionsPending = false
-		if Inv.source ~= "syndicator" then return end
-		if Adapter.RebuildAuctions() then tokens.auctions = true end
-	end)
+	Flux.Scheduler.Request("inventory", "syndicatorAuctionRefresh", FlushAuctions)
 end
 
 local function FlushMail()

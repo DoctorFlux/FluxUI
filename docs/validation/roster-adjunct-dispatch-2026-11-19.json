@@ -1,0 +1,1554 @@
+{
+  "changeId": "ROSTER-ADJUNCT-DISPATCH-20261119",
+  "capturedAtUTC": "2026-11-19T07:57:39.490092+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Remove repeated raid/party roster work during joins and leaves. The thread goal also includes cursor enter/leave with a carried action.",
+  "changes": [
+    "The existing deferred raid roster handler now dispatches optional healer adjunct work after prepared unit reconciliation.",
+    "Missing-buff refreshes share the raid unit paint queue and are covered by pending full or aura paint. A scheduled friendly target paint already includes its optional pass.",
+    "With optional features disabled, the roster dispatch skips scanning frames and creates no second timer. Pet/target recovery and native visibility are retained."
+  ],
+  "identities": {
+    "beforeRaw": {
+      "RaidFrame/FluxRaidHealerExtras.lua": "526f84c798ee7d4e0ae1a54f76ee220d9791f3a990edfa8e7ea275d130d7cb96",
+      "RaidFrame/FluxRaidLayout.lua": "c1de89c8297e1f17b536b062b9808bd5c68aa3bc29544b0625055889e00a4abe",
+      "RaidFrame/FluxRaidUnit.lua": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a"
+    },
+    "afterRaw": {
+      "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+      "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+      "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+    },
+    "fixtureRaw": "c5062db298af399737d381f5e644f3355ba8f5c5ee6860cf810d327949cf9199",
+    "sourceExtractionFixture": {
+      "path": "tests/raid_spell_refresh_work.lua",
+      "beforeRaw": "ef09b9d24d1db08be7428ced199a6726473eae6bbd0f7411d53a9ad6283e53f0",
+      "afterRaw": "c96295762d0fb7e036796024e65e6f8f115d504dec83922658f1b9ab6d0ac77b"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-adjunct-dispatch-before-20261119T074947Z\\source.zip",
+    "archiveSHA256": "726b073b0017c41e1edb6ba846f113a6dfe26861ce413aa6e1466b8f76d99698",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "pairs": 5,
+    "clientModels": 5,
+    "rosterEventsPerBurst": 20,
+    "frames": 40,
+    "baselineAndReverseCallbackOrders": true,
+    "scenarioNotes": "Actual dispatcher, paint queue and optional buff classifier, modeled public and legacy aura APIs and native widgets. Additional checks cover token replacement, hide, target, independent aura updates and combat.",
+    "scope": "Operation counts only. No client latency claim.",
+    "rows": [
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "timers": 2,
+        "updateCalls": 40
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "timers": 2,
+        "updateCalls": 40
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "timers": 2,
+        "updateCalls": 40
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "timers": 2,
+        "updateCalls": 40
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "timers": 2,
+        "updateCalls": 40
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 880,
+        "timers": 2,
+        "fullPaint": 40,
+        "updateCalls": 80
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "timers": 1,
+        "auraQueries": 0,
+        "updateCalls": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "timers": 1,
+        "auraQueries": 0,
+        "updateCalls": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "timers": 1,
+        "auraQueries": 0,
+        "updateCalls": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "timers": 1,
+        "auraQueries": 0,
+        "updateCalls": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "timers": 1,
+        "auraQueries": 0,
+        "updateCalls": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "timers": 1,
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "fullPaint": 40
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "updateCalls": 40,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "updateCalls": 40,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "updateCalls": 40,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "updateCalls": 40,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "updateCalls": 40,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "timers": 2,
+        "updateCalls": 80,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "timers": 1,
+        "auraQueries": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1,
+        "auraQueries": 440
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "timers": 2,
+        "auraQueries": 0,
+        "updateCalls": 40
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "fullPaint": 40,
+        "timers": 2,
+        "auraQueries": 880,
+        "updateCalls": 80
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "updateCalls": 0,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "updateCalls": 0,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "updateCalls": 0,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "updateCalls": 0,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "auraQueries": 0,
+        "updateCalls": 0,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "auraQueries": 440,
+        "updateCalls": 40,
+        "fullPaint": 40,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 40,
+        "timers": 2,
+        "auraQueries": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 40,
+        "timers": 2,
+        "auraQueries": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 40,
+        "timers": 2,
+        "auraQueries": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 40,
+        "timers": 2,
+        "auraQueries": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 40,
+        "timers": 2,
+        "auraQueries": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 80,
+        "timers": 2,
+        "fullPaint": 40,
+        "auraQueries": 880
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "auraQueries": 0,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "live",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "auraQueries": 0,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "forever",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "auraQueries": 0,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "auraQueries": 0,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_era",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctDisabled",
+        "updateCalls": 0,
+        "auraQueries": 0,
+        "timers": 1
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullFirst",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "clientModel": "classic_anniversary",
+        "scenario": "adjunctFullSecond",
+        "updateCalls": 40,
+        "auraQueries": 440,
+        "timers": 1,
+        "fullPaint": 40
+      }
+    ]
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "maxUpvaluesConservative": 16,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-adjunct-dispatch-before-20261119T074947Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-adjunct-dispatch-before-20261119T074947Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-adjunct-dispatch-before-20261119T074947Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "readOnlyInstallVerification": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+        "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+        "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+        "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+        "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+        "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+        "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+        "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+        "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "RaidFrame/FluxRaidHealerExtras.lua": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+        "RaidFrame/FluxRaidLayout.lua": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+        "RaidFrame/FluxRaidUnit.lua": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb"
+      }
+    }
+  },
+  "nativeAcceptance": "Pending. Join/leave in raid and party, combat taint, and loaded client behavior. No gameplay/profiler changes."
+}

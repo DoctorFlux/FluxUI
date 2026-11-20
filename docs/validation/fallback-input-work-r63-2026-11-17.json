@@ -1,0 +1,289 @@
+{
+  "changeId": "FALLBACK-INPUT-WORK-R63-20261117",
+  "goalStatus": "ACTIVE",
+  "status": "REJECTED/REMOVED: both installed R63 trials failed their declared CPU gates. Exact pretrial Core and array test restored; no R63 native acceptance or improvement.",
+  "currentSource": {
+    "path": "Core/BorderJunctions.lua",
+    "version": "watch-mesh-phases-r60",
+    "rawSHA256": "4fa7c12add20c1caec6202372c8f55fe63711920ff28af3753da8c7069668c39",
+    "lfSHA256": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "arrayTestRawSHA256": "ad0656a691319710e9db719153de9ebf123599680f798f10b963eb9a6e38d28e",
+    "unchangedOtherRawSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef"
+  },
+  "checkpoint": {
+    "preimageDirectory": "runtime-before-20261117T0642Z",
+    "verificationSHA256": "a507ef2c767a2d35e37e13f4261582fb3a3237cd334f3d30caff5edda376f35e",
+    "datedSourceHistoryDirectory": "combat-watch-before-20261117T040814Z",
+    "archivedFilesVerified": 3064,
+    "historyVerified": true,
+    "mainSettingsMetadataEntries": 4,
+    "settingsScope": "Main account and Mario-Super metadata only; no settings contents copied or changed; Bank excluded. Checkpoints remain external to AddOns."
+  },
+  "restoration": {
+    "atUTC": "2026-11-17T07:17:21.010192+00:00",
+    "report": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/r63-rejected-installed-20261117T071721Z/restoration.json",
+    "scope": "Root restored only the owned trial after current-byte guards; existing dirty work and earlier accepted combat/group changes preserved.",
+    "rejectedSourcesRetainedExternally": true,
+    "r63RetainedInRuntime": false
+  },
+  "rejectedTrials": {
+    "scalarOnly": {
+      "status": "REJECTED/REMOVED",
+      "version": "fallback-input-work-r63",
+      "rawSHA256": "d5584803fb036c3c5bd05fd339fa5ee0608c63687f5d039e8a19550e18bf59fa",
+      "lfSHA256": "40f3056339a4345b76f02f7770b9e3fb8f0cee2eb6eb0c3677e14906239a06b7",
+      "implementation": "Seven guarded inputs returned in locals; original private vector reconstructed only on cache miss; lazy ordered matching and original Snapshot retained.",
+      "testRawSHA256": "b26e91f766bc8cad1a2c3467b4583591cb12e72eecf8b40fc56a4935beb2af1a"
+    },
+    "combined": {
+      "status": "REJECTED/REMOVED",
+      "version": "fallback-input-work-r63",
+      "rawSHA256": "420ea6524c5f80221f90648e1c97992b0a51d0dd7f05212d38c9d1528e1caef6",
+      "lfSHA256": "1f34567d6e135c4bec0612a2b7a1919f8473e9cad99c28f78494ee35dcc09eb6",
+      "implementation": "Scalar inputs plus direct private appends replacing the FallbackPlanInputs Add closure; no native or public-owner query omitted."
+    }
+  },
+  "historicalValidation": {
+    "scope": "Evidence for rejected trials only; neither trial is retained or accepted. No restored-baseline rerun is claimed by this record.",
+    "scalarFocused": {
+      "checksEachLua515And546": 42524,
+      "newOrderingAssertions": 16,
+      "testRawSHA256": "b26e91f766bc8cad1a2c3467b4583591cb12e72eecf8b40fc56a4935beb2af1a",
+      "lua51Loader": "Existing r57-later-head-focused-20261116/lua51_model_loader.lua supplies test-only load/table.unpack compatibility.",
+      "compilerPrototypesEachVM": 181,
+      "maximumUpvalues": {
+        "lua515": 55,
+        "lua546": 56
+      },
+      "stackSlotsBeforeAfter": {
+        "FallbackInputs": {
+          "lua515": [
+            13,
+            21
+          ],
+          "lua546": [
+            13,
+            21
+          ]
+        },
+        "FallbackMatches": {
+          "lua515": [
+            10,
+            14
+          ],
+          "lua546": [
+            10,
+            14
+          ]
+        },
+        "FallbackTriangles": {
+          "lua515": [
+            40,
+            48
+          ],
+          "lua546": [
+            41,
+            49
+          ]
+        }
+      },
+      "upvaluesUnchanged": {
+        "FallbackInputs": 3,
+        "FallbackMatches": 1,
+        "FallbackTriangles": {
+          "lua515": 11,
+          "lua546": 12
+        }
+      }
+    },
+    "combinedFocused": {
+      "planCacheChecksLua546": 5992,
+      "compilerPrototypesEachVM": 180,
+      "maximumUpvalues": {
+        "lua515": 55,
+        "lua546": 56
+      }
+    },
+    "scalarWholeGate": {
+      "sourceRawSHA256": "d5584803fb036c3c5bd05fd339fa5ee0608c63687f5d039e8a19550e18bf59fa",
+      "scriptsPassed": 514,
+      "syntaxPassed": 1204,
+      "failures": 0,
+      "reportSHA256": "92412c4ba0917873065b0ef943db4389f37566b5e8705472138058609b7ad210",
+      "stabilitySHA256": "16a027b0a66267020022e77bbe237a748201dcc25ec6d03e5a05ed8bf877c9ee",
+      "qualification": "Core, Other and changed test stayed stable; Inventory/FluxConsumableBest/Scan.lua changed under another owner during the run. Mixed-snapshot pass; not a globally frozen final-source gate."
+    }
+  },
+  "cost": {
+    "status": "BOTH REJECTED. Fixed gates stopped at the declared CPU limit; incomplete later cells are NOT RUN. Allocation savings do not override CPU rejection.",
+    "meter": "Own-child GetProcessTimes user+kernel CPU at held READY/DONE boundaries; normal GC. Load, fixture setup, five warmups and full GC precede the span. Separate GC-stopped allocation windows; Lua wall labels are not CPU.",
+    "resolutionMs": 15.625,
+    "requiredMinimumObservedCpuTicks": 128,
+    "plannedChildCellsEachTrial": 48,
+    "noRetimingOrThresholdRelaxation": true,
+    "fixtureScope": "Production full-operation cache ON. Three counter-only fixture wrappers removed only in external timing copies; no tuple adapter timed. Cold is ReleaseAll/cold generation on pooled widgets, not addon startup. Matched shapes/checksums and pins passed.",
+    "combined": {
+      "completedChildCells": 24,
+      "minimumObservedCpuTicks": 199,
+      "stopReason": "Lua54 warm median CPU +8.143% exceeded declared5% limit.",
+      "medianPercent": {
+        "cold515Cpu": -2.927,
+        "cold546Cpu": -0.455,
+        "cold546Wall": 0.168,
+        "warm515Cpu": 1.835,
+        "warm515Wall": 2.948,
+        "warm546Cpu": 8.143,
+        "warm546Wall": 9.327
+      },
+      "warm546PairCpuPercent": [
+        20.848,
+        -8.504,
+        8.143
+      ],
+      "warm546PairWallPercent": [
+        69.205,
+        -7.407,
+        9.327
+      ],
+      "additionalAdversePairs": [
+        {
+          "scene": "warm515",
+          "pair": 3,
+          "cpuPercent": 7.336,
+          "wallPercent": 14.922
+        },
+        {
+          "scene": "cold546",
+          "pair": 3,
+          "cpuPercent": 1.717,
+          "wallPercent": 2.644
+        }
+      ],
+      "allocationSavedBytesPerBothStyleCycle": {
+        "cold515": 24192,
+        "cold546Median": 23344,
+        "warm515": 9856,
+        "warm546Median": 9104
+      },
+      "unrun": "Changed and direct-helper mixed cost cells were not run.",
+      "evidence": {
+        "results": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/cost-results.json",
+          "sha256": "44c1e5a29a961cfc0b7946e1cbd5122b647647084ad78b0b2a627768866553da"
+        },
+        "raw": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/cost-raw.jsonl",
+          "sha256": "66d1e02c0cc6a598e59cba70ddaf0efdea78bc93c5c0a5d6d2a89213f738ce86"
+        },
+        "protocol": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/protocol.json",
+          "sha256": "bbb6b7dcc3982c538204c265c48ba6afa77eb30e5cb59e980f8e44f04652773f"
+        },
+        "preparedManifest": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/prepared.json",
+          "sha256": "0c7c597ad9a23856b6135ed8cfbe078de7dc764d29c66c673aeb68cf6d75fe29"
+        }
+      }
+    },
+    "scalarOnly": {
+      "completedChildCells": 6,
+      "minimumObservedCpuTicks": 232,
+      "stopReason": "Lua51 cold median CPU +9.677% exceeded declared5% limit.",
+      "cold515MedianCpuPercent": 9.677,
+      "cold515MedianWallPercent": -3.073,
+      "cold515PairCpuPercent": [
+        4.215,
+        12.069,
+        9.677
+      ],
+      "cold515PairWallPercent": [
+        -4.409,
+        -3.073,
+        43.871
+      ],
+      "allocationSavedBytesPerBothStyleCycle": 14336,
+      "unrun": "All later scenarios and Lua54 cost cells were not run. Distinct scalar source used the same fixed counts/order/gate without a new pilot.",
+      "evidence": {
+        "results": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-only-r63-measure-20261117/cost-results.json",
+          "sha256": "3ceb55cff209ebae46d9909e4eb9718d08dd50f13c1ee30b33c961e64f1d0368"
+        },
+        "raw": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-only-r63-measure-20261117/cost-raw.jsonl",
+          "sha256": "c3df4182c4a3ef4ee54823e2761abd48e88f3cca5fff1c635082166d1a538b3b"
+        },
+        "protocolAndInputPins": {
+          "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-only-r63-measure-20261117/protocol.json",
+          "sha256": "00ec808b1e336eb3bfe0922ee1dc0aca484c13644be3065cd25f3a39d439f1e2"
+        }
+      }
+    }
+  },
+  "counterProof": {
+    "scope": "Actual full consumers baseline4fa versus combined420e on both VMs/styles; no new scalar-only counter run after its CPU failure. Counts are model work, not native gain.",
+    "perBothStyle56Cycle": {
+      "cold": {
+        "fallbackTrianglesCalls": 896,
+        "leafHits": 0,
+        "leafMisses": 896
+      },
+      "warm": {
+        "fallbackTrianglesCalls": 0,
+        "leafHits": 0,
+        "leafMisses": 0
+      },
+      "changed": {
+        "fallbackTrianglesCalls": 16,
+        "leafHits": 0,
+        "leafMisses": 16
+      },
+      "directHelperMixed": {
+        "fallbackTrianglesCalls": 40,
+        "leafHits": 40,
+        "leafMisses": 0
+      }
+    },
+    "warm": {
+      "fullOperationPlanHits": 112,
+      "fallbackPlanInputsCalls": 112,
+      "oldAddCalls": 2912,
+      "oldAddClosures": 112
+    },
+    "aggregateFallbackCompileHits": {
+      "warm": 896,
+      "changed": 880
+    },
+    "interpretation": "The three production cold/warm/changed models have ZERO leaf-cache hits. Aggregate896warm/880changed hits arise from full-operation reuse, which already bypasses FallbackInputs. No per-hit byte-saving or native-gain claim.",
+    "workEvidence": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/work-results.json",
+      "sha256": "e72d96a387692eb5647f44eee13c06aa324e9730a20f2a493bda18284ad5fbd3"
+    },
+    "appendEvidence": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e588-403e-7323-ace6-319b729c71a8/border-scalar-r63-measure-20261117/add-work-results.json",
+      "sha256": "440d37e5950734337380216e8ed70c9135fc4c0e846c307ad32caf457b893177"
+    },
+    "historicalAttributionLimit": "CF57 was an R57-family city watch, not a controlled combat or group transition. Its2021 aggregate fallback hits include full-operation reuse and do not establish removed input-vector counts."
+  },
+  "native": {
+    "r63Status": "NOT RUN/NOT RETAINED. Both trials restored before the later reload; no R63 loaded adoption, combat/group improvement or FPS claim.",
+    "baselineCaptureStatus": "IN PROGRESS / retention and review pending as reported by Root; this documentation task performs no native or saved-diagnostic reads.",
+    "rootReportedChronology": [
+      {
+        "atUTC": "2026-11-17T07:21:09Z",
+        "event": "Main-only background reload completed after exact restoration; restored disk identities were checked before the command."
+      },
+      {
+        "atUTC": "2026-11-17T07:26:25Z",
+        "event": "CF62 city120s watch armed; user could not reach combat."
+      },
+      {
+        "atUTC": "2026-11-17T07:34:09Z",
+        "event": "After combat-ready coordination, Root reported CF64true for a120s watch near an Elwynn wolf. Actual retained event results are not yet established here."
+      }
+    ],
+    "preservation": "Prior CF62 report is held under CF64hold.old; owned retention/restoration and review remain Root's responsibility. Preserve profiler preferences and all prior diagnostic roots.",
+    "policy": "Main Mario only; Bank excluded; WoW remains background; Root is sole native actor.",
+    "limits": "Native first/repeated combat entry/exit and party/raid join/leave in both display modes remain open. Desktop counts do not establish native CPU, frame latency, FPS, taint safety or pixel parity."
+  },
+  "documentationScope": "Only this R63 report, its seven owned Markdown markers and four CSV ledgers updated. No runtime/test/settings/native changes."
+}

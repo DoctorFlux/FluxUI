@@ -1,0 +1,754 @@
+{
+  "changeId": "BORDER-REGIONAL-RENDER-R67-20261118",
+  "capturedAtUTC": "2026-11-18T10:44:04.346627+00:00",
+  "goalStatus": "COMPLETE; direct Lua implementation and user acceptance; exhaustive independent native certification not claimed",
+  "implementation": "Direct Core Lua changes; regional-render-r67",
+  "scope": "Actual-source desktop checks and source fingerprints; not native GPU/FPS/taint or native hitch acceptance",
+  "beforeCoreLF": "ea6003d5b307492778e75a80d559ff92da199be1b9633c188300d18d3839511b",
+  "afterCore": {
+    "raw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "lf": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843"
+  },
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "raw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+      "lf": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843"
+    },
+    "tests/border_locality.lua": {
+      "raw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "lf": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_geometry_phase.lua": {
+      "raw": "dc6d78eb32891593671b1b822626230d9567ca006631501c25cc8a5d72c9ad45",
+      "lf": "dc6d78eb32891593671b1b822626230d9567ca006631501c25cc8a5d72c9ad45"
+    },
+    "tests/border_idle_trace.lua": {
+      "raw": "aa41f663927dcd85969e2184cdd2e0a050bed974e960918b446693263dde6bf9",
+      "lf": "aa41f663927dcd85969e2184cdd2e0a050bed974e960918b446693263dde6bf9"
+    },
+    "tests/border_junctions.lua": {
+      "raw": "efd3bd84727b8d39802c75c100f037fb9748eeb9e8ca917f8d0f660e4a4a6c1f",
+      "lf": "efd3bd84727b8d39802c75c100f037fb9748eeb9e8ca917f8d0f660e4a4a6c1f"
+    },
+    "tests/border_solver_allocation_work.lua": {
+      "raw": "6cd0e1a68002cd6f0353a888a89fce4f427eb8f846020b06c38413a7a186a26f",
+      "lf": "6cd0e1a68002cd6f0353a888a89fce4f427eb8f846020b06c38413a7a186a26f"
+    },
+    "tests/border_native_alpha.lua": {
+      "raw": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "lf": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae"
+    },
+    "tests/border_native_unit_rgb.lua": {
+      "raw": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+      "lf": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f"
+    },
+    "tests/border_private_paint.lua": {
+      "raw": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+      "lf": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0"
+    }
+  },
+  "checkpoint": {
+    "externalReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\builder-locality-checkpoint-20261118.json",
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\builder-locality-before-20261118T082844Z\\source.zip",
+    "archiveSHA256": "c7b86caf5881a090331aee87d4961e5c49eaaf9cfb36903a513fb24f36038658"
+  },
+  "runtimeChanges": [
+    "retained spatial output and public raw geometry; changed-parent/dependency reads only",
+    "existing solver/planner selected nearby groups; native renderer reused",
+    "indexed cell-local listener/source-pool publication; no full field sweep",
+    "registration/removal tracks old parent; private/public recovery invalidates source owner",
+    "existing native RGB/alpha sinks; unsupported private paint conservatively retires without overwriting its native source",
+    "small cast scopes remain unsplit; untouched rounded caps remain native",
+    "shared decorative canvas levels reconcile from logical operation metadata",
+    "existing scheduler/atomic commit/budgets; no new input route, setting, timer or mask attachment"
+  ],
+  "focusedGate": {
+    "coreBeforeRaw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "coreAfterRaw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "stable": true,
+    "count": 68,
+    "failed": [],
+    "seconds": 98.34,
+    "rows": [
+      {
+        "file": "tests\\border_aura_crest.lua",
+        "code": 0,
+        "seconds": 0.153,
+        "output": "Aura crest: 1216 checks PASS; exact native rectangles; both styles/four scales/registration orders; continuous crest; one source per sample; bounded stem; static reuse; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_aura_sampling.lua",
+        "code": 0,
+        "seconds": 0.122,
+        "output": "Aura UV sampling: 880 checks PASS; real canonical UVs/native rectangles; paths and negative client IDs; both styles/scales; nonsingular endpoint fields; static reuse; native GPU acceptance pending\n"
+      },
+      {
+        "file": "tests\\border_branch_compile_cache.lua",
+        "code": 0,
+        "seconds": 1.139,
+        "output": "BRANCH_COMPILE_WORK|1|56|54|2|56|0\nBRANCH_COMPILE_WORK|2|56|54|2|56|0\nBorder branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_branch_coverage.lua",
+        "code": 0,
+        "seconds": 0.281,
+        "output": "Branch coverage: 504 checks PASS; short/long shared owners; T/X; both axes/styles/scales; no missing or doubled source fields; static recolor; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_canvas_layers.lua",
+        "code": 0,
+        "seconds": 0.134,
+        "output": "Border canvas layers: 780 checks PASS; shared source with multiple peer strata/levels/orders; retained source visibility; no later canvas demotion; both styles/scales; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_cap_junctions.lua",
+        "code": 0,
+        "seconds": 0.808,
+        "output": "Cap-safe junctions: 18804 checks PASS; real compact outline/divider rendering; both styles and fractional scales; preserved outer shapes; no stacked cap/mesh area; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_clip_work.lua",
+        "code": 0,
+        "seconds": 0.032,
+        "output": "Border clip work: 441 checks PASS; distantCapCalls=0 distantCapBuilds=0 geometry=2111483736\n"
+      },
+      {
+        "file": "tests\\border_combat_transitions.lua",
+        "code": 0,
+        "seconds": 0.035,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim\n"
+      },
+      {
+        "file": "tests\\border_cost_reasons.lua",
+        "code": 0,
+        "seconds": 0.069,
+        "output": "Border cost reasons: 342 checks PASS; actual watched preflight reasons/counts, unchanged rows, native getter parity, private retirement/recovery and bounded output; native timings unmeasured\n"
+      },
+      {
+        "file": "tests\\border_draw_reuse.lua",
+        "code": 0,
+        "seconds": 1.65,
+        "output": "DRAW_REUSE_WORK style=1 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=334513276 beforeMesh=215315591\nDRAW_REUSE_WORK style=2 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=822842411 beforeMesh=997882298\nborder draw reuse: 14568 checks passed\n"
+      },
+      {
+        "file": "tests\\border_dropdown.lua",
+        "code": 0,
+        "seconds": 0.011,
+        "output": "Border dropdown: 6 checks PASS; native font/render/controller acceptance pending\n"
+      },
+      {
+        "file": "tests\\border_dynamic_layout.lua",
+        "code": 0,
+        "seconds": 0.486,
+        "output": "Dynamic border layouts: 402 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending\n"
+      },
+      {
+        "file": "tests\\border_fallback_array_guards.lua",
+        "code": 0,
+        "seconds": 1.279,
+        "output": "FALLBACK_ARRAY_WORK style=1 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=1 junctions=56 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=56 calls=0 validations=0 warmFingerprints=0\nBorder fallback array guards: 42508 checks PASS; public-only immutable snapshots; plan-only positive/negative pairs; direct mutations; private/current recovery; exact legacy fingerprints\n"
+      },
+      {
+        "file": "tests\\border_fallback_compile_cache.lua",
+        "code": 0,
+        "seconds": 0.417,
+        "output": "FALLBACK_COMPILE_WORK|1|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nFALLBACK_COMPILE_WORK|2|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nBorder fallback compile cache: 1226 checks PASS; numeric parity/current paint/blockers; source validity; merge isolation; committed-only bounded generations; native FPS/pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_fallback_opacity.lua",
+        "code": 0,
+        "seconds": 0.326,
+        "output": "FALLBACK_OPACITY_WORK style=1 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=419162723\nFALLBACK_OPACITY_WORK style=2 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=361236605\nborder fallback opacity: 4634 checks passed\n"
+      },
+      {
+        "file": "tests\\border_fallback_plan_cache.lua",
+        "code": 0,
+        "seconds": 7.118,
+        "output": "its=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=492/492 hits=49 misses=7\nLOCAL_PLAN style=2 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=16/16 subtracts=22/22 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=16/16 subtracts=22/22 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nBorder fallback plan cache: 5992 checks PASS; current native geometry/source validation; immutable public plan metadata; current paint/priority/opaque alpha; release/rollback/budgets; native latency pending\n"
+      },
+      {
+        "file": "tests\\border_geometry_phase.lua",
+        "code": 0,
+        "seconds": 1.496,
+        "output": "PHASE_WORK|1|7374|485|160|640|4480\nPHASE_WORK|2|7374|485|160|640|4480\nBorder geometry phase: 38 checks PASS; exact native/hidden/private/missing/depth/budget/cycle contracts; alignment/exception/future-phase freshness; actual mesh parity and shared-anchor API work. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_hidden_anchors.lua",
+        "code": 0,
+        "seconds": 0.38,
+        "output": "Hidden unit anchors: 6154 checks PASS; delayed native root/corner/edge rectangles AND origins; exact public anchor geometry; intrinsic sizes; both styles/five units/three scales; first/repeated visibility0reads/solves/resources; actual moves; private/cycle/budget guards; native acceptance pending\n"
+      },
+      {
+        "file": "tests\\border_idle_trace.lua",
+        "code": 0,
+        "seconds": 0.021,
+        "output": "Border idle trace: 11 checks PASS; finite same-interval producer/read evidence; registration/removal/settings/event causes; bounded records; no stale quiet-capture reasons or persistent timer\n"
+      },
+      {
+        "file": "tests\\border_incremental_commit.lua",
+        "code": 0,
+        "seconds": 0.579,
+        "output": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=114 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=101 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nborder incremental commit: 1894 checks passed\n"
+      },
+      {
+        "file": "tests\\border_junction_shadows.lua",
+        "code": 0,
+        "seconds": 13.948,
+        "output": "border junction shadows: 486929 checks PASS; 56 scenes, 240576 source-footprint samples; actual factory/Core/TGA; native testing deferred\n"
+      },
+      {
+        "file": "tests\\border_junctions.lua",
+        "code": 0,
+        "seconds": 0.671,
+        "output": "Border junctions: 4841 checks PASS; bounded interval/bucket solver, mask-free disjoint fragments, live tint/alpha, two styles, shared panels and overlay/combat lifecycle. Native GPU/FPS/taint pending.\n"
+      },
+      {
+        "file": "tests\\border_locality.lua",
+        "code": 0,
+        "seconds": 6.783,
+        "output": "Regional render style=1 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=1 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=1 scale=1.25 retained=60 updated=4 rectReads=2/26\nRegional render style=2 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=2 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=2 scale=1.25 retained=60 updated=4 rectReads=2/26\nActual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.\n"
+      },
+      {
+        "file": "tests\\border_lua_upvalues.lua",
+        "code": 0,
+        "seconds": 0.017,
+        "output": "Border Lua upvalues: 128 functions PASS; maximum=51, conservative desktop limit60 including_ENV; native reload still required\n"
+      },
+      {
+        "file": "tests\\border_native_alpha.lua",
+        "code": 0,
+        "seconds": 0.111,
+        "output": "Native unit alpha: 640 checks PASS; initial private alpha; public recolor/opaque alpha; zero topology work/resources; native SetAlpha sink only; public RGB; combat paint; actual native taint/performance pending\n"
+      },
+      {
+        "file": "tests\\border_native_unit_rgb.lua",
+        "code": 0,
+        "seconds": 0.104,
+        "output": "Native unit RGB: 600 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim\n"
+      },
+      {
+        "file": "tests\\border_nearby_panels.lua",
+        "code": 0,
+        "seconds": 1.357,
+        "output": "Nearby panel borders: 1452 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending\n"
+      },
+      {
+        "file": "tests\\border_observer_refresh.lua",
+        "code": 0,
+        "seconds": 1.434,
+        "output": "OBSERVER_WORK|1|parents=360->4|sources=360->360\nOBSERVER_WORK|2|parents=360->4|sources=360->360\nBorder observer refresh: 63 checks PASS; complete mesh parity, localized observer API work, native source privacy/missing freshness, anchor replacement/parent/scale/cycle/budget guards. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_optional_unit_parts.lua",
+        "code": 0,
+        "seconds": 10.324,
+        "output": "UNIT_FALLBACK checks=272 samples=177498 baselineMissing=3108 candidateMissing=0 worstMissingAlpha=1\nCACHE_GUARDS style1 PASS; warm/current/moved/static/profile/unknown/cap guard\nCACHE_GUARDS style2 PASS; warm/current/moved/static/profile/unknown/cap guard\nUnit fallback cache/profile guards: 334 checks PASS; actual source producer/factory/Core, no native acceptance claim\nFOREIGN_PROFILE style1 samples138 doubled86 overdraw67 regions14 inactive10 unchanged\nFOREIGN_PROFILE style2 samples60 doubled54 overdraw54 regions20 inactive10 unchanged\nOptional unit parts: 357 checks PASS; actual factory/Core/TGA, four Ts+X, exact hidden RGBA, active mesh parity, partial/own parallel backups, eligibility, current generation, budgets; native validation pending\n"
+      },
+      {
+        "file": "tests\\border_owner_phase.lua",
+        "code": 0,
+        "seconds": 0.026,
+        "output": "Render owner phase: 246 checks PASS; complete-public negatives only; private/missing/cycle/budget recovery; live hierarchy freshness; query guards; actual commit/release cleanup; both styles\n"
+      },
+      {
+        "file": "tests\\border_owner_visibility.lua",
+        "code": 0,
+        "seconds": 0.205,
+        "output": "Border owner visibility: 2641 checks PASS; own source/host hide and public alpha-zero; whole/partial overlap; both styles/scales; one source per interval; zero solves/reads/allocations including combat; native pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_paint_order.lua",
+        "code": 0,
+        "seconds": 0.034,
+        "output": "Border paint order: 128 checks PASS; sibling aura/background frames; both registration orders/styles; retained stratum/visibility/scale; static reuse; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_party_container.lua",
+        "code": 0,
+        "seconds": 1.144,
+        "output": "CONTAINER|style=1|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=1|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nParty container borders: 164 checks; 2026-11-18T10:36:11Z; actual Core/Border/init prefix; no native latency claim\n"
+      },
+      {
+        "file": "tests\\border_party_isolation.lua",
+        "code": 0,
+        "seconds": 0.101,
+        "output": "Party border isolation: 72 checks PASS; member/preview identity; neutral HUD bridge; detached logical hosts; internal joins; both styles/scales; static reuse; native group pixels pending\n"
+      },
+      {
+        "file": "tests\\border_prepared_icons.lua",
+        "code": 0,
+        "seconds": 1.057,
+        "output": "Prepared class borders: 576 checks PASS; actual shared slot producer and divider paint; first/repeated player target/focus; modern/legacy API shapes; both styles/alignments/mirrors/scales; zero transition reads/solves/resources; no hidden spec duplicate; combat guard; real settings update\n"
+      },
+      {
+        "file": "tests\\border_private_paint.lua",
+        "code": 0,
+        "seconds": 0.14,
+        "output": "Private border paint: 2428 checks PASS; alpha/RGBA retirement once; repeated focus-style sinks0reads/solves/full requests; original opaque source preserved; no opaque value copied; combat deferral; native taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\border_reflow_cost.lua",
+        "code": 0,
+        "seconds": 0.035,
+        "output": "Border reflow cost: 148 checks PASS; existing finite-watch epochs; legacy aggregate/nested mesh algebra; retained peak; zero default clocks; opaque/faulty midpoint and draw recovery; native timings pending\n"
+      },
+      {
+        "file": "tests\\border_registration_pairs.lua",
+        "code": 0,
+        "seconds": 0.314,
+        "output": "Register pair controls: 185 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback\n"
+      },
+      {
+        "file": "tests\\border_render_basis.lua",
+        "code": 0,
+        "seconds": 0.313,
+        "output": "RENDER_BASIS_WORK style=1 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=797656323\nFIELD_ARGS_WORK style=1 calls=1000 native=1 tables=1\nRENDER_BASIS_WORK style=2 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=894356635\nFIELD_ARGS_WORK style=2 calls=1000 native=1 tables=1\nborder render basis: 40 checks passed\n"
+      },
+      {
+        "file": "tests\\border_render_pool_work.lua",
+        "code": 0,
+        "seconds": 0.075,
+        "output": "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045\nRENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962\nRENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497\nborder render pool work: 1034 checks passed\n"
+      },
+      {
+        "file": "tests\\border_resource_hold.lua",
+        "code": 0,
+        "seconds": 0.102,
+        "output": "Resource border hold: 230 checks PASS; real power producer and solver; clear-return target/focus/party/pet/ToT; zero reads/solves; actual no-resource state preserved; native counters pending\n"
+      },
+      {
+        "file": "tests\\border_retained_units.lua",
+        "code": 0,
+        "seconds": 0.287,
+        "output": "Retained unit borders: 15894 checks PASS; initial hidden prebuild; target/focus/party/pet/ToT show/hide/fade; zero reads/solves/allocations; combat native inheritance; immediate material; real layout invalidation; native pixels pending\n"
+      },
+      {
+        "file": "tests\\border_shadow_material.lua",
+        "code": 0,
+        "seconds": 0.224,
+        "output": "Shadow material support: 111147 PASS; exact TGA alpha/half-texel margins; natural/tint parity; trusted handles; live support-change/recovery rebuilds; static tint/RGB; private/recolor/cropped UV recovery; offline only\n"
+      },
+      {
+        "file": "tests\\border_solve_pair_identity.lua",
+        "code": 0,
+        "seconds": 4.638,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nBorder pair identity: 182 checks PASS; exact complete operations/source mutations; per-pass ownership/caps/budgets; stale-miss controls; native performance/pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\border_solver_allocation_work.lua",
+        "code": 0,
+        "seconds": 8.441,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nMETACALLBACK|legacy=14|current=14|elision-control=4\nCONTROL|plane-concat-elision|REJECTED\nCONTROL|first-match|REJECTED\nCONTROL|persistent-point-index|REJECTED\nBorder solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim\n"
+      },
+      {
+        "file": "tests\\border_source_phase.lua",
+        "code": 0,
+        "seconds": 0.314,
+        "output": "SOURCE_PHASE_WORK style=1 sources=25 coldCalls=25 changedCalls=25 mesh=1929517577 changedMesh=1543180358 fields=409\nSOURCE_PHASE_WORK style=2 sources=25 coldCalls=25 changedCalls=25 mesh=1391507343 changedMesh=791779424 fields=409\nBorder source phase: 916 checks PASS; current native source validation; pure-plan reuse; fresh material and opaque alpha; failure/budget cleanup; exact reflow meshes. Native latency pending\n"
+      },
+      {
+        "file": "tests\\border_static_geometry.lua",
+        "code": 0,
+        "seconds": 0.457,
+        "output": "Static border geometry: 22 checks PASS; native float precision;100 no-op layout rounds with500 unrelated pieces; real pixel moves and immediate paint; no native FPS claim\n"
+      },
+      {
+        "file": "tests\\border_static_pieces.lua",
+        "code": 0,
+        "seconds": 1.675,
+        "output": "Static unit pieces: 63660 checks PASS; R34 own Hide/Show and opacity-zero trace; hidden prebuild; logical/global ownership; zero probes/solves/resources; combat paint; real moves rebuild; native acceptance pending\n"
+      },
+      {
+        "file": "tests\\border_strip_envelope.lua",
+        "code": 0,
+        "seconds": 4.589,
+        "output": "Strip/envelope border: 5798 checks PASS; 144 actual factory/Strip/Unified/Core scenes; 1080 one-source crest samples; unchanged roots/static warm checks; native pixels/FPS/taint pending\n"
+      },
+      {
+        "file": "tests\\border_types.lua",
+        "code": 0,
+        "seconds": 0.097,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n"
+      },
+      {
+        "file": "tests\\border_unit_contours.lua",
+        "code": 0,
+        "seconds": 0.957,
+        "output": "Unit contour borders: 930 checks PASS; both styles/scales; rounded source caps; filled aura turns; top-middle T; target/focus/party/pet/ToT hide/fade/show; static recolor; native combat/pixels pending\n"
+      },
+      {
+        "file": "tests\\border_unit_paint_idempotence.lua",
+        "code": 0,
+        "seconds": 0.034,
+        "output": "DIRECT_ALPHA_WORK\t1\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t1\ttrue\t0\t0\nDIRECT_ALPHA_WORK\t2\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t2\ttrue\t0\t0\nUnitPaint public idempotence: 166 checks PASS; native source suppression; changed RGB/alpha; source visibility; private scalar native sinks/recovery; private RGB retirement; rebuilt fields; both styles. Native taint/FPS pending.\n"
+      },
+      {
+        "file": "tests\\border_wake_ownership.lua",
+        "code": 0,
+        "seconds": 0.337,
+        "output": "Border wake ownership: 328 checks PASS; 40 lifecycle/render scenarios; useful early-return/error recovery, same deadlines, stale callbacks, native privacy/reentry, combat and fallbacks; no native/CPU claim\n"
+      },
+      {
+        "file": "tests\\border_window_bounds.lua",
+        "code": 0,
+        "seconds": 0.653,
+        "output": "Flux Window bounds: 972 checks PASS; fixed decorative/content geometry; HIGH side/map/header moves and embed-like visibility; window paint owner; detach/reconnect; static reuse; both styles/scales/module exports; conflicting fixed references; native pixels pending\n"
+      },
+      {
+        "file": "tests\\unit_portrait_backdrop_gap.lua",
+        "code": 0,
+        "seconds": 0.586,
+        "output": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nPortrait backdrop gap: 26496 checks /288 actual constructors PASS; both styles/atlas-file paths/mirrors/scales; corner exclusions; color/alpha/private sinks; no warm geometry/resources; native pixels pending\n"
+      },
+      {
+        "file": "tests\\unit_portrait_border_fit.lua",
+        "code": 0,
+        "seconds": 0.6,
+        "output": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\n"
+      },
+      {
+        "file": "tests\\unit_portrait_overlay_attachment.lua",
+        "code": 0,
+        "seconds": 13.447,
+        "output": "Portrait overlay attachment: 264382 checks; 216 actual Border/Core/Shared helper scenes; native pixels/taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\stance_portrait_backdrop_contact.lua",
+        "code": 0,
+        "seconds": 0.71,
+        "output": "Portrait border fit: 45792 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nStance/portrait backdrop: 2208 checks /288 actual scenes PASS; source chrome and anchor; attach/detach; unchanged corners/roots; warm combat static; native pixels/taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\castbar_border_junctions.lua",
+        "code": 0,
+        "seconds": 2.842,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13522 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\castbar_border_layout.lua",
+        "code": 0,
+        "seconds": 0.317,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 2020 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\party_cast_border_layout.lua",
+        "code": 0,
+        "seconds": 0.086,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 835 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "file": "tests\\strip_border_spacing.lua",
+        "code": 0,
+        "seconds": 0.01,
+        "output": "Strip border spacing: 60 checks PASS; actual layout; preserved dimensions/packing/input; two-unit chrome/content shift; native pixels pending\n"
+      },
+      {
+        "file": "tests\\minimap_side_packing.lua",
+        "code": 0,
+        "seconds": 0.707,
+        "output": "Minimap side packing: 32026 checks PASS; two columns shrink to half-native before third; zero neighbor gaps; count/order/window preservation; tiny-height screen fallback; scales and density boundaries; reuse/combat guards; native pixels pending\n"
+      },
+      {
+        "file": "tests\\minimap_side_inset.lua",
+        "code": 0,
+        "seconds": 0.13,
+        "output": "Minimap side cells: 14121 checks PASS; counts1..120; side scales10/100/200; UI scales.75/1/1.25; zero added visual gaps; unchanged embed/actions; combat deferral; native pixels/controller pending\n"
+      },
+      {
+        "file": "tests\\micro_border_screen_fit.lua",
+        "code": 0,
+        "seconds": 0.135,
+        "output": "MicroMenu screen border: 6480 checks PASS; actual factory/fitter; both styles; screen/menu scales; left/right/bottom clipping; matched backdrop; unchanged content; static cache; combat guard; native pixels/controller pending\n"
+      },
+      {
+        "file": "tests\\trinket_appearance.lua",
+        "code": 0,
+        "seconds": 0.013,
+        "output": "Trinket appearance: 33 checks PASS; live ring/backplate, four accents, usability restore; native rendering pending\n"
+      },
+      {
+        "file": "tests\\mini_unit_border_fit.lua",
+        "code": 0,
+        "seconds": 1.096,
+        "output": "mini_unit_border_fit: 3634 passed; 24 scenes; 464 raw-art cap samples; 25904 raw contour samples\n"
+      },
+      {
+        "file": "tests\\mini_unit_colors.lua",
+        "code": 0,
+        "seconds": 0.131,
+        "output": "Mini unit colors: 11148 checks PASS; 12 real Border/shared/party color scenes; both styles/all accents; owner availability; independent ToT PC/NPC; party setting and appearance; existing combat/dispel priorities. Native pixels/taint/FPS pending\n"
+      }
+    ]
+  },
+  "syntax": {
+    "files": 1218,
+    "failures": [],
+    "coreRaw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "coreAfterRaw": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843"
+  },
+  "upvalues": {
+    "files": 1,
+    "prototypes": 226,
+    "maximum": 51,
+    "failures": []
+  },
+  "matchedDesktopWork": {
+    "dateUTC": "2026-11-18T10:40:23.936219+00:00",
+    "coreLF": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "control": "same actual source; regional dispatch disabled only; full renderer; not a native baseline",
+    "scope": "Lua5.4.6 model CPU with GC enabled; 1ms clock resolution; live heap delta is not allocation; no FPS/GPU/taint/native latency claim",
+    "exitCode": 0,
+    "rawOutput": "LOCALITY_WORK style=1 trial=1 regionalMs=4.000 fullMs=6.000 regionalReads=2 fullReads=26 regionalKB=908.263 fullKB=1271.765 updated=4 cells=50\nLOCALITY_WORK style=1 trial=2 regionalMs=3.000 fullMs=12.000 regionalReads=2 fullReads=26 regionalKB=936.824 fullKB=-2573.104 updated=4 cells=50\nLOCALITY_WORK style=1 trial=3 regionalMs=5.000 fullMs=5.000 regionalReads=2 fullReads=26 regionalKB=963.830 fullKB=1271.765 updated=4 cells=50\nLOCALITY_WORK style=1 trial=4 regionalMs=5.000 fullMs=5.000 regionalReads=2 fullReads=26 regionalKB=926.173 fullKB=1262.693 updated=4 cells=50\nLOCALITY_WORK style=1 trial=5 regionalMs=4.000 fullMs=6.000 regionalReads=2 fullReads=26 regionalKB=963.296 fullKB=1262.641 updated=4 cells=50\nLOCALITY_WORK style=1 trial=6 regionalMs=5.000 fullMs=5.000 regionalReads=2 fullReads=26 regionalKB=926.110 fullKB=1262.631 updated=4 cells=50\nLOCALITY_WORK style=1 trial=7 regionalMs=4.000 fullMs=13.000 regionalReads=2 fullReads=26 regionalKB=963.233 fullKB=-10871.929 updated=4 cells=50\nLOCALITY_WORK style=2 trial=1 regionalMs=8.000 fullMs=6.000 regionalReads=2 fullReads=26 regionalKB=519.003 fullKB=1550.735 updated=4 cells=50\nLOCALITY_WORK style=2 trial=2 regionalMs=9.000 fullMs=7.000 regionalReads=2 fullReads=26 regionalKB=-340.538 fullKB=1530.626 updated=4 cells=50\nLOCALITY_WORK style=2 trial=3 regionalMs=5.000 fullMs=7.000 regionalReads=2 fullReads=26 regionalKB=1266.750 fullKB=1539.319 updated=4 cells=50\nLOCALITY_WORK style=2 trial=4 regionalMs=5.000 fullMs=22.000 regionalReads=2 fullReads=26 regionalKB=1210.643 fullKB=-4726.848 updated=4 cells=50\nLOCALITY_WORK style=2 trial=5 regionalMs=5.000 fullMs=6.000 regionalReads=2 fullReads=26 regionalKB=1256.127 fullKB=1538.755 updated=4 cells=50\nLOCALITY_WORK style=2 trial=6 regionalMs=5.000 fullMs=7.000 regionalReads=2 fullReads=26 regionalKB=1205.087 fullKB=1530.006 updated=4 cells=50\nLOCALITY_WORK style=2 trial=7 regionalMs=5.000 fullMs=7.000 regionalReads=2 fullReads=26 regionalKB=1255.491 fullKB=1529.953 updated=4 cells=50\n",
+    "rows": [
+      {
+        "style": 1.0,
+        "trial": 1.0,
+        "regionalMs": 4.0,
+        "fullMs": 6.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 908.263,
+        "fullKB": 1271.765,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 2.0,
+        "regionalMs": 3.0,
+        "fullMs": 12.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 936.824,
+        "fullKB": -2573.104,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 3.0,
+        "regionalMs": 5.0,
+        "fullMs": 5.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 963.83,
+        "fullKB": 1271.765,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 4.0,
+        "regionalMs": 5.0,
+        "fullMs": 5.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 926.173,
+        "fullKB": 1262.693,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 5.0,
+        "regionalMs": 4.0,
+        "fullMs": 6.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 963.296,
+        "fullKB": 1262.641,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 6.0,
+        "regionalMs": 5.0,
+        "fullMs": 5.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 926.11,
+        "fullKB": 1262.631,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 1.0,
+        "trial": 7.0,
+        "regionalMs": 4.0,
+        "fullMs": 13.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 963.233,
+        "fullKB": -10871.929,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 1.0,
+        "regionalMs": 8.0,
+        "fullMs": 6.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 519.003,
+        "fullKB": 1550.735,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 2.0,
+        "regionalMs": 9.0,
+        "fullMs": 7.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": -340.538,
+        "fullKB": 1530.626,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 3.0,
+        "regionalMs": 5.0,
+        "fullMs": 7.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 1266.75,
+        "fullKB": 1539.319,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 4.0,
+        "regionalMs": 5.0,
+        "fullMs": 22.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 1210.643,
+        "fullKB": -4726.848,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 5.0,
+        "regionalMs": 5.0,
+        "fullMs": 6.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 1256.127,
+        "fullKB": 1538.755,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 6.0,
+        "regionalMs": 5.0,
+        "fullMs": 7.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 1205.087,
+        "fullKB": 1530.006,
+        "updated": 4.0,
+        "cells": 50.0
+      },
+      {
+        "style": 2.0,
+        "trial": 7.0,
+        "regionalMs": 5.0,
+        "fullMs": 7.0,
+        "regionalReads": 2.0,
+        "fullReads": 26.0,
+        "regionalKB": 1255.491,
+        "fullKB": 1529.953,
+        "updated": 4.0,
+        "cells": 50.0
+      }
+    ],
+    "medians": [
+      {
+        "style": 1,
+        "regionalMs": 4.0,
+        "fullMs": 6.0
+      },
+      {
+        "style": 2,
+        "regionalMs": 5.0,
+        "fullMs": 7.0
+      }
+    ]
+  },
+  "observations": {
+    "dividerMove": {
+      "updatedRegions": 4,
+      "retainedRegions": [
+        34,
+        46,
+        60
+      ],
+      "nativeGeometryReads": {
+        "regional": 2,
+        "fullControl": 26
+      }
+    },
+    "nativeRGB": 600,
+    "nativeAlpha": 640,
+    "unsupportedPrivatePaint": 2428,
+    "regionalChecks": 144267,
+    "castSectionChecks": 13522
+  },
+  "failedExperimentsRetained": [
+    "external numeric hidden-parent evaluator omitted native inheritance; corrected evaluator retained",
+    "initial regional mesh missed authoritative alpha when a branch extended outside the source rectangle; fixed zero-normal plan binding",
+    "whole-list publisher replaced by indexed membership; exact mathematical GPU diagonal samples moved off ambiguous top-left coverage boundaries; index/source-claim invariants retained",
+    "private recovery skipped its unchanged-snapshot parent; explicit owner refresh added",
+    "high-scale cast tiling caused a crest gap; small cast scopes now retain unsplit original geometry",
+    "frozen solver-only native-query oracle now explicitly excludes regional dispatch; actual regional consumer checked separately"
+  ],
+  "nativeAcceptance": {
+    "Forever": "User-context acceptance: no noticeable hitches remain after requested R67 load. Client/build/loaded hash not independently queried; no numeric FPS/CPU/taint/GPU claim.",
+    "Retail": "pending",
+    "ClassicProgression": "pending"
+  },
+  "unchanged": "No secure attributes, action routing, original HUD positions, saved values, native foreground control or publication changed",
+  "limitations": [
+    "full settings/display/unsafe/foreign changes deliberately retain the complete transaction",
+    "model timings use synthetic native methods and 1ms CPU clock; cannot predict in-client latency",
+    "no Lua5.1 VM or native secure-VM/GPU run in this gate; Lua5.4 syntax and 60-upvalue checks are separate"
+  ],
+  "dependentSourceAndArtworkIdentities": {
+    "FluxBorder.lua": "a1c597c9e96d48602b62dbdfa7f2ba5d38dd803f2a4769254f89596dd55317f0",
+    "Bars/Layout.lua": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2",
+    "Bars/Strip.lua": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a",
+    "Bars/Pet/Layout.lua": "3533c21a0e9bb1f9a56316c19bfe47b26b92b0e3469915cd4ab3e5557f9a8342",
+    "Bars/Stance/Init.lua": "4dc29ee7c0a588039c840ef8fd8d31d96b0a80efb6d2a6d6363d78fe698ef5e0",
+    "Bars/Stance/Layout.lua": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd",
+    "Minimap/FluxMinimap.lua": "3864733e565243f4fbec7510691524d93484dc04d2ead84231624e67a0e1efa3",
+    "Minimap/FluxMinimapButtons.lua": "e331285db772169b2fd984990c02f54f2029d807b7e92ea1e36ca3db2675066c",
+    "RaidFrame/FluxRaidLayout.lua": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "784c5f2c89532168c51160690f9d377a5005a011b494b497606e709e3bc198de",
+    "UnitFrames/FluxCastBar.lua": "c540421fa2884786e05928e7b118f858d763f769d81c4b25d85224cb7c68d177",
+    "UnitFrames/FluxCastBarThemes.lua": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+    "UnitFrames/FluxCastBarTradeskills.lua": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+    "Texture/borders/Battlefield100.tga": "d24ade5a6c859a7f6c8b6a32bb1d7b04d22522897d03451fab434cea755969f7",
+    "Texture/borders/ForeverMetal150.tga": "d8db6d7338d4040e3413599614ccf17229c286bc431340dc85d5a8c340f9eb59",
+    "Texture/borders/ForeverMetal150Tint.tga": "a567a02d161e202d58b3a36362f318295e3f636a4c5fffd2b59c02f1ef397455"
+  },
+  "dependentIdentityScope": "Post-gate identities; dated before checkpoint available separately. Only Core exact before/after stability was watched through the68-script gate; no re-certification of other owners.",
+  "userFeedback": [
+    {
+      "message": "The hitches are much better",
+      "provenance": "User reply to R67 reload/scenario question; no diagnostic commands requested"
+    },
+    {
+      "message": "No noticeable hitches remain",
+      "provenance": "Latest user reply to explicit residual-hitch question",
+      "scope": "General user acceptance; no individual-event counts, independent loaded hash/build, CPU/FPS, GPU or taint capture"
+    }
+  ],
+  "acceptedAtUTC": "2026-11-18T10:53:28.199462+00:00"
+}

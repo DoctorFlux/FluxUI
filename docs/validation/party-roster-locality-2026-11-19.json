@@ -1,0 +1,287 @@
+{
+  "changeId": "PARTY-ROSTER-LOCALITY-R73-20261119",
+  "atUTC": "2026-11-18T23:07:14.053291+00:00",
+  "userReport": "After R72, joining and leaving a regular party still hitches. No questions or in-game test requests.",
+  "modes": {
+    "playerStyle": "For a previously reconciled solo/party roster with prepared normal-party drivers, shown host, and every compact header known hidden, use the party visibility/paint owners and skip compact layout and roster walks.",
+    "compact": "For a settled solo/party roster in raid-style mode, retain secure layout and reconcile the five slots in group one. Hidden raid groups and MT/MA attachments require no additional walk.",
+    "fallback": "Initial preparation, raid conversions, unexpected/unknown compact visibility, hidden host recovery and explicit settings retain the complete path. Existing lockdown deferral remains."
+  },
+  "castIdentity": "Use a public nonempty UnitGUID and matching cast bar state to retain a visible party member’s cast on GROUP_ROSTER_UPDATE. Missing/private GUIDs, replacements, and hide/show continue the normal reset and sample path.",
+  "source": {
+    "beforeRaw": {
+      "RaidFrame/FluxRaidLayout.lua": "944ce38dbc0e1aae48691b586516bf3c8acc5819aee1be6ed7bd472a8be97a68",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "UnitFrames/FluxUnitFrames_Party.lua": "3bee5b50b5b974dcd9e0a8511e2893ba88be450d6c7f2d9c4307072476ca8e36"
+    },
+    "afterRaw": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da"
+    },
+    "fixtureRaw": {
+      "tests/group_roster_performance.lua": "9c30c5c7a0d2a4303d47780231c022fd1c29aff158b87a0befb26599b0502733",
+      "tests/raid_roster_layout_work.lua": "43fba348bb7fc923b2f55b83181638e2e264b76d47c6cf503f5172af0c23600c",
+      "tests/raid_party_frames.lua": "3c685a0c0b62a0ea780efb9ceb610f24c27974921bf84ff3bc0309a9560e95d0"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\normal-party-r73-before-20261118T225657Z\\source.zip",
+    "archiveSha256": "6d3a2a985666836d430ce0cf892de3717d753dc02613a661b71b7f6414409171",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "matchesCandidate": true
+    }
+  },
+  "nativeReferences": {
+    "source": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureStateDriver.lua",
+    "rawPins": {
+      "retail": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "forever": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "classic": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "classic-era": "bebd4a4b18e610233ff8f734df7b473df08fe25b1ce383b0c7883ae962a63029",
+      "classic-anniversary": "e7eb9ea10a65127d92fef048305f02a60f56ed58ee30f9a8ce16a8e0209543db"
+    }
+  },
+  "matchedOperationReplay": {
+    "baseline": "Exact archived R72 production source",
+    "candidate": "Exact R73 production source",
+    "scope": "Five client policy fixtures with identical mocked driver state. For each policy, 20 solo/party alternations in each frame style and 20 stable-member cast refresh opportunities after initial paint.",
+    "normalColumns": "trial,client,mode,layout before/after,child unit reads before/after,MTMA refresh calls before/after,paints",
+    "castColumns": "trial,client,mode,cast resets before/after,cast queries before/after,full paints before/after",
+    "rows": [
+      [
+        "1",
+        "live",
+        "normal",
+        "20",
+        "0",
+        "1600",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "live",
+        "compact",
+        "20",
+        "20",
+        "1600",
+        "100",
+        "20",
+        "0",
+        "100"
+      ],
+      [
+        "1",
+        "live",
+        "retained-cast",
+        "20",
+        "0",
+        "20",
+        "0",
+        "20",
+        "20"
+      ],
+      [
+        "2",
+        "forever",
+        "normal",
+        "20",
+        "0",
+        "1600",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "2",
+        "forever",
+        "compact",
+        "20",
+        "20",
+        "1600",
+        "100",
+        "20",
+        "0",
+        "100"
+      ],
+      [
+        "2",
+        "forever",
+        "retained-cast",
+        "20",
+        "0",
+        "20",
+        "0",
+        "20",
+        "20"
+      ],
+      [
+        "3",
+        "classic",
+        "normal",
+        "20",
+        "0",
+        "1600",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "3",
+        "classic",
+        "compact",
+        "20",
+        "20",
+        "1600",
+        "100",
+        "20",
+        "0",
+        "100"
+      ],
+      [
+        "3",
+        "classic",
+        "retained-cast",
+        "20",
+        "0",
+        "20",
+        "0",
+        "20",
+        "20"
+      ],
+      [
+        "4",
+        "classic_era",
+        "normal",
+        "20",
+        "0",
+        "1600",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "4",
+        "classic_era",
+        "compact",
+        "20",
+        "20",
+        "1600",
+        "100",
+        "20",
+        "0",
+        "100"
+      ],
+      [
+        "4",
+        "classic_era",
+        "retained-cast",
+        "20",
+        "0",
+        "20",
+        "0",
+        "20",
+        "20"
+      ],
+      [
+        "5",
+        "classic_anniversary",
+        "normal",
+        "20",
+        "0",
+        "1600",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "5",
+        "classic_anniversary",
+        "compact",
+        "20",
+        "20",
+        "1600",
+        "100",
+        "20",
+        "0",
+        "100"
+      ],
+      [
+        "5",
+        "classic_anniversary",
+        "retained-cast",
+        "20",
+        "0",
+        "20",
+        "0",
+        "20",
+        "20"
+      ]
+    ],
+    "rawReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\normal-party-r73-before-20261118T225657Z\\party-replay.csv",
+    "parity": "Active cell and full party paint counts matched in paired versions. Fight-state visibility, same-token replacement, private/unknown identity, readiness and roster geometry were exercised in separate regression fixtures."
+  },
+  "verification": {
+    "focused": 179,
+    "syntax": 1225,
+    "maxUpvalues": 16,
+    "prototypes": 220,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\normal-party-r73-before-20261118T225657Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\normal-party-r73-before-20261118T225657Z\\syntax.json",
+    "selected": {
+      "tests/group_roster_performance.lua": "Group roster performance: 211 checks PASS; operation counts only; native performance/taint pending",
+      "tests/raid_roster_layout_work.lua": "Party roster prepared delegation: 5432 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.",
+      "tests/raid_party_frames.lua": "Party player-style frames: 1125 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending",
+      "tests/raid_combat_roster_transitions.lua": "Combat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending",
+      "tests/roster_focus_dock.lua": "Roster focus dock: 188 checks PASS; first/settings/default/unknown/drift recovery; body/scale/parent/context; combat+reentrant native-header policy; notification retention. Native latency/taint/pixels pending.",
+      "tests/unit_outer_party_geometry.lua": "PASS actual Party dispatcher/queue -> Shared geometry-stage 60 checks; other Shared painter bodies modeled; no native performance claim"
+    },
+    "otherOwnerFilesSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending. R73 was verified offline. Reported join/leave latency, render parity and live combat taint require native acceptance."
+}

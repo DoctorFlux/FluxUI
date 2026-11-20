@@ -23,6 +23,34 @@ local function GetAnchorFrame()
     return anchorFrame
 end
 
+local function PublicScale(value)
+    if issecretvalue and issecretvalue(value) then return nil end
+    if type(value) == "number" and value > 0 and value < math.huge then return value end
+end
+
+-- SetOwner/default anchoring does not reset a scale left by a previous hover
+-- source. Restore the normal UIParent-relative size when taking HUD ownership.
+-- Keep an explicitly configured TacoTip scale; never change its saved settings.
+local function RestoreTooltipScale(tooltip)
+    if tooltip ~= GameTooltip or not tooltip.GetScale or not tooltip.SetScale then return end
+    if tooltip.IsForbidden and tooltip:IsForbidden() then return end
+    if FluxEditModeBusy and FluxEditModeBusy() then return end
+    if tooltip.IsProtected and tooltip:IsProtected() and InCombatLockdown and InCombatLockdown() then return end
+    local scale = 1
+    local config = _G.TacoTipConfig
+    if type(config) == "table" then scale = PublicScale(config.tooltip_scale) or 1 end
+    local parent = tooltip.GetParent and tooltip:GetParent()
+    if parent and parent ~= UIParent and parent.GetEffectiveScale and UIParent and UIParent.GetEffectiveScale then
+        local parentScale = PublicScale(parent:GetEffectiveScale())
+        local uiScale = PublicScale(UIParent:GetEffectiveScale())
+        if not parentScale or not uiScale then return end
+        scale = PublicScale(scale * uiScale / parentScale)
+        if not scale then return end
+    end
+    local current = PublicScale(tooltip:GetScale())
+    if current and math.abs(current - scale) > 0.0001 then tooltip:SetScale(scale) end
+end
+
 --- Same placement as the HUD tooltip hook: above FluxWindowFrame TOPLEFT (+30y).
 --- @param tooltip? GameTooltip or default container; defaults to GameTooltipDefaultContainer or GameTooltip
 --- @return boolean true if points were applied
@@ -40,6 +68,7 @@ function ns.ApplyHUDTooltipPosition(tooltip)
         if combat and combat.Defer then combat.Defer("hud.tooltip.position", ReapplyTooltipContainer) end
         return false
     end
+    RestoreTooltipScale(t)
     local frame = GetAnchorFrame()
     if not frame then return false end
     -- Edit Mode's overrides write snapping and the manager's dirty flag. Use
@@ -88,6 +117,7 @@ end
 if _G.GameTooltip_SetDefaultAnchor then
     hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
         if not tooltip then return end
+        RestoreTooltipScale(tooltip)
 
         -- Check if this is one of the main tooltips
         local isMainTooltip = (tooltip == GameTooltip) or (tooltip == GameTooltipDefaultContainer)

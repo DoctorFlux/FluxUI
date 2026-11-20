@@ -43,7 +43,11 @@ local function fixture(client, mode)
     end
     function env.GetMacroInfo(id) return "Macro" .. tostring(id), 1, "/cast Test" end
     function env.GetMacroIndexByName(name) return tonumber(name:match("%d+")) end
-    function env.GetCursorInfo() return s.cursor and s.cursor.type end
+    function env.GetCursorInfo()
+        if not s.cursor then return end
+        if s.cursor.type == "spell" then return "spell", 1, "spell", s.cursor.id end
+        return s.cursor.type, s.cursor.id, s.cursor.subType
+    end
     function env.ClearCursor() if mode == "clear_throw" then error("injected clear error") end; s.cursor = nil end
     local function pickup(kind, id, subType)
         check(not s.combat, "no protected pickup during combat")
@@ -64,7 +68,10 @@ local function fixture(client, mode)
     end
     env.C_EquipmentSet = { PickupEquipmentSet = function(id) return pickup("equipmentset", id) end,
         GetEquipmentSetInfo = function(id) return "Set" .. tostring(id) end }
-    env.C_MountJournal = { Pickup = function(id) return pickup("mount", id) end }
+    env.C_MountJournal = {
+        GetMountInfoByID = function(id) return "Mount" .. tostring(id), 32235 end,
+        Pickup = function() error("mountID must not be used as a filtered display index") end,
+    }
     env.C_PetJournal = { PickupPet = function(id) return pickup("summonpet", id) end }
     function env.PickupCompanion(kind, id) return pickup("companion", id, kind) end
     function env.CreateFrame()
@@ -93,7 +100,7 @@ for _, client in ipairs({ "classic_era", "classic_anniversary", "classic", "live
         R.ActionBars.Apply(profile.bars)
         profile.bars.slots[1].id = 116; profile.bars.stanceCustomSlots[1].id = 116
         s.combat = false; s.regen()
-        check(s.custom[1].id == 133 and (modern or s.slots[1].id == 133), "queued restore must use its original detached snapshot")
+        check(s.custom[1].id == 133 and s.slots[1].id == 133, "queued restore must use its original detached snapshot on every client")
     end
     if selection == "SEC-03-cancel" then
         local s, R = fixture(client, "combat")
@@ -114,14 +121,11 @@ for _, client in ipairs({ "classic_era", "classic_anniversary", "classic", "live
             check(not R.Apply.IsRunning() and s.checkpoint and s.checkpoint.step == "bars" and s.clears == 0,
                 client .. " failed bars retain retry checkpoint")
         end
-        local _, _, _, _, modern = fixture(client)
-        if not modern then
-            for _, mode in ipairs({ "pickup_throw", "pickup_false", "pickup_noop", "place_throw", "place_noop", "read_throw", "clear_throw" }) do
-                local s, R = fixture(client, mode)
-                R.Apply.Run("Failure")
-                check(#s.done() == 1 and not s.done()[1][2] and s.checkpoint and s.clears == 0, client .. " " .. mode .. " is a retryable failure")
-                check(not R.Apply.IsRunning(), "failed restore releases active profile")
-            end
+        for _, mode in ipairs({ "pickup_throw", "pickup_false", "pickup_noop", "place_throw", "place_noop", "read_throw", "clear_throw" }) do
+            local s, R = fixture(client, mode)
+            R.Apply.Run("Failure")
+            check(#s.done() == 1 and not s.done()[1][2] and s.checkpoint and s.clears == 0, client .. " " .. mode .. " is a retryable failure")
+            check(not R.Apply.IsRunning(), "failed restore releases active profile")
         end
         do
             local s, R, profile = fixture(client, "stance_false")
@@ -140,7 +144,7 @@ for _, client in ipairs({ "classic_era", "classic_anniversary", "classic", "live
             s.combat = false; s.regen()
             check(#s.done() == 1 and s.done()[1][2] and not R.Apply.IsRunning() and not s.checkpoint, "real completion advances once")
             check(s.custom[1].id == 133, "deferred stance data detached from editable profile")
-            check(modern and s.placements == 0 or (not modern and s.slots[1].id == 133), "deferred slots detached; modern loadouts still own native slots")
+            check(s.slots[1].id == 133, "deferred native slots use detached snapshot on every client")
         end
         do
             local s, R = fixture(client, "combat")
@@ -213,18 +217,15 @@ for _, client in ipairs({ "classic_era", "classic_anniversary", "classic", "live
         }
         s.slots[5] = { type = "spell", id = 116 }
         R.Apply.Run("Public controls")
-        check(#s.done() == 1 and s.done()[1][2] and not s.checkpoint, client .. " ordinary restore succeeds once")
+        check(#s.done() == 1 and s.done()[1][2] and not s.checkpoint,
+            client .. " ordinary restore succeeds once: " .. tostring(s.warning))
         check(s.custom[1].id == 133 and s.order[1] == "spell:133" and s.hidden["spell:133"], "stance order/hidden/custom features retained")
-        if modern then
-            check(s.placements == 0 and s.pickups == 0 and s.slots[5].id == 116, "modern native loadout slots untouched")
-        else
-            check(not s.slots[5] and s.slots[1].id == 133 and s.slots[2].id == 6948 and s.slots[3].type == "macro"
-                and s.slots[4].type == "equipmentset" and s.slots[6].type == "mount" and s.slots[7].type == "companion"
-                and s.slots[8].type == "summonpet", "classic spell/item/macro/equipment/mount/companion/pet/clear restore retained")
-            local placements = s.placements
-            R.Apply.Run("Matching")
-            check(s.placements == placements and #s.done() == 2 and s.done()[2][2], "already matching fast path avoids rewrites")
-        end
+        check(not s.slots[5] and s.slots[1].id == 133 and s.slots[2].id == 6948 and s.slots[3].type == "macro"
+            and s.slots[4].type == "equipmentset" and s.slots[6].type == "spell" and s.slots[6].id == 32235 and s.slots[7].type == "companion"
+            and s.slots[8].type == "summonpet", "all-client spell/item/macro/equipment/mount/companion/pet/clear restore retained")
+        local placements = s.placements
+        R.Apply.Run("Matching")
+        check(s.placements == placements and #s.done() == 2 and s.done()[2][2], "already matching fast path avoids rewrites")
     end
 end
 print("respec action-bar completion: " .. checks .. " checks passed (" .. (selection or "all cases") .. "; five client models; native pending)")

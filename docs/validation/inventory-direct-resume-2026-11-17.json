@@ -1,0 +1,138 @@
+{
+  "id": "LHO-DIRECT-INVENTORY-RESUME-20261117",
+  "utc": "2026-11-17T20:24:08.939817+00:00",
+  "status": "APPLIED_SOURCE_REVIEW_AND_SYNTAX_PASS; goal active; native/performance acceptance pending",
+  "userDirection": "Resume direct Inventory Lua optimization using existing findings; no further simulations",
+  "branch": "main",
+  "newRuntimeChanges": [
+    {
+      "utc": "2026-11-17T20:17:31.712112+00:00",
+      "file": "Inventory/Index.lua",
+      "beforeSha256": "d2a7834344eb8aae785b810a8d7bb10ec3668e85a3541d4759d55536df3efac1",
+      "afterSha256": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+      "changes": [
+        "Reuse existing private EMPTY_OPTS in canonical unique queries; override argument identity unchanged",
+        "Read existing normalized option scalars directly in Find/ForEachLocation instead of constructing private option tables",
+        "Construct stateless location walker functions once; pass current callback explicitly"
+      ],
+      "preserved": [
+        "Fresh output maps and location rows",
+        "ReadOpts evaluation including charges read and HasWarband call",
+        "Snapshot traversal and callback ordering",
+        "Callback retain/reentrancy ownership",
+        "Public unique-query override fallback and supplied option identity",
+        "Counts; links; regions; keyring/reagent bag filter",
+        "No timer/event/API/cadence/appearance/settings changes"
+      ],
+      "validation": "Both Lua5.1.5 and Lua5.4.6 syntax PASS; source review only; no simulation/benchmark/native acceptance",
+      "lineEndings": "Preserved original; intermediate CRLF conversion corrected before validation"
+    },
+    {
+      "utc": "2026-11-17T20:20:34.332367+00:00",
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "beforeSha256": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+      "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+      "settingsPathsAvailable": 125,
+      "scope": "Private charge-tooltip workers only; keep reads, error protection, cache and cadence",
+      "afterSha256": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+      "changes": [
+        "Four fixed protected tooltip workers",
+        "Two fixed line getters with explicit per-call data context"
+      ],
+      "preserved": [
+        "Per-line data.lines access",
+        "Per-call native tooltip method and slot mapper lookups inside pcall",
+        "Original modern data-first / fallback ordering",
+        "Fresh results and caches; localized patterns; item queries",
+        "No commerce actions; no external addon changes"
+      ],
+      "validation": "Both Lua5.1.5 and Lua5.4.6 syntax PASS; source review only; no simulation/benchmark/native acceptance"
+    }
+  ],
+  "currentSources": {
+    "Inventory/Index.lua": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "ad0cd9a84d9464fcc558ad9b72d6a142b76653ae01551cdff4653254ce491e54",
+    "Inventory/Craft.lua": "819e5b69041ce82e18b4a2c2b281ccc3d96452c3dc099af5c5fb3562a2bbb10a"
+  },
+  "backlogClosed": {
+    "auction": {
+      "before": "d6c94547b3cc98a2f9fa12df924421aef074cf5cd78ef31837099dbdf74bb242",
+      "after": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+      "change": "One private module comparator replaces commodity offer comparator construction; fresh sorted copy and numeric comparison/cap/quantity behavior retained",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-price-worker-p95-application\\source-review.json",
+      "receiptSha256": "b2e9f7f6a7a363ae2221ce62d7e9ddc9d5027ee618a21dc14a800b1b7a00e5c4"
+    },
+    "tooltip": {
+      "before": "4d9a34e34e26b45b9feebb53e8db18a331675a14bc5fb53b82a47b90085e59df",
+      "after": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+      "change": "Three private comparators; same field reads/ties/fresh fallback arrays",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\tooltip-sort-workers-p95-20261117T125524Z\\application.json",
+      "receiptSha256": "8cb5084a7fdad0e5475874614fd1ef70149f27212587946a90e24f5837de5402"
+    },
+    "spellReagents": {
+      "before": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+      "after": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+      "change": "Two private protected workers; fresh reagent output and fallback/section/pending/recovery behavior retained; dynamic public sort callbacks unchanged",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-spell-reagent-workers-20261117T125609Z\\application.json",
+      "receiptSha256": "2ddfa7b22bced594f20b85b966071373577e268e55210f391d24faecc964dacd"
+    }
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-index-options-20261117-resume\\checkpoint.json",
+    "sha256": "dc8acc6b22b192465f88a9f2d8f71328ed3bb5628ca0dad553aecfa08ad47fff",
+    "chargeCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-index-options-20261117-resume\\charge-checkpoint.json",
+    "historyVerified": true,
+    "settingsAvailabilityPaths": 125,
+    "settingsScope": "Metadata only; no private values copied or modified"
+  },
+  "review": {
+    "index": [
+      "ReadOpts original evaluation and HasWarband/charges reads retained",
+      "Find/ForEachLocation use normalized scalars without private materialized flag table",
+      "Nil/false canonical unique defaults use existing private empty table; supplied options and override fallback unchanged",
+      "Walkers receive original per-call callback; fresh rows, dynamic snapshots, bag filter, region iteration order and reentrant ownership retained",
+      "Stateful GetUniqueItemIDs accumulation workers intentionally untouched"
+    ],
+    "charge": [
+      "Each native tooltip method and bank mapper lookup stays inside pcall",
+      "Explicit data context retains data.lines lookup for every parsed line",
+      "Modern TooltipInfo/SurfaceArgs and native fallback ordering retained",
+      "Localized charge patterns, cache/metadata behavior, API count probes and all commerce logic unchanged"
+    ],
+    "ordinaryEnvironment": "Ordinary native Lua pcall/table.sort and private helpers; arbitrary substituted primitive callback-identity observers/debug-upvalue mutation are not certified"
+  },
+  "validation": {
+    "syntax": 14,
+    "versions": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "mode": "-p only; addon chunks not executed",
+    "record": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-index-options-20261117-resume\\syntax-results.json",
+    "recordSha256": "ef97418d42d60961a2c589fa2e01e810e9b475e369ae908e067b9aca98522212",
+    "newSimulations": 0,
+    "newBenchmarks": 0,
+    "nativeActions": 0,
+    "functionalSuite": "NOT RUN; user stopped simulations; historical suites do not certify new source",
+    "measuredPerformanceGain": "NOT ESTABLISHED; source-level allocation-site removal only; no CPU/allocated-byte/FPS result"
+  },
+  "continuity": {
+    "priorPauseReloadUtc": "2026-11-17T13:05:16Z",
+    "temporaryTestGlobals": "Cleared by prior reload; not reinstalled in this slice",
+    "ownedPauseControls": "Exact hashes archived and released on explicit resume; foreign INPUT_HALTED retained",
+    "nativeJumpHelper": "Not running; no input/helper rebuilt",
+    "previousNativeEvidence": "P85/P88 predate current source; retained as hotspot leads only"
+  },
+  "remaining": [
+    "Native loaded-source and functional acceptance on Retail/Forever/Classic progression",
+    "Legal addon combinations: builtin only; Syndicator only; Syndicator+Baganator",
+    "Inventory/cast/crafting and bag/receive/loot spike validation",
+    "Vendor/restock/AH/pending/bank/mail whole-workflow checks",
+    "Stale mail: prior user measure-in-game-first decision retained; no attachment mutation",
+    "No guild-bank or void-storage callback work; no external Syndicator/Baganator edits"
+  ]
+}

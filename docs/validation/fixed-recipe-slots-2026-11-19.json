@@ -1,0 +1,108 @@
+{
+  "utc": "2026-11-18T22:59:07.8353707Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 20,
+  "settingsContentsCopied": false,
+  "source": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+  "before": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+  "after": "143c59c192e7d235c974783bb43dde49a1ab665cdf48a32475456caad44e9952",
+  "changeId": "LHO-FIXED-RECIPE-SLOTS-20261119",
+  "status": "APPLIED_AND_RELOADED_FOREVER_SCOPED_READ_PASS_TIMING_UNCONCLUSIVE",
+  "sourceCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-fixed-recipe-slots-20261118",
+  "verification": {
+    "compilerBeforeAfterPass": {
+      "Lua 5.1": 2,
+      "Lua 5.4": 2
+    },
+    "unchangedSourceOutsideVariants": true,
+    "beforeRestoredByRemovingSingleOptionBranch": true,
+    "sixCurrentRetailForeverDiskPairs": true,
+    "newSimulations": 0,
+    "removedTemporaryTablesPerFixedSlot": "One next-variant array and three tables per extant variant: record, requirements map and allocation array. Final reagent allocation records and order stay.",
+    "variantLimit": 64
+  },
+  "native": {
+    "runtime": {
+      "buildName": "1.60.1",
+      "build": 70959,
+      "interface": 16001,
+      "provider": "syndicator",
+      "sessionBugTabsFirstCount": 0
+    },
+    "adoption": "Readiness print and fresh startup in the same Forever process after our guarded ReloadUI. Initial reservation released with Space held and zero commands.",
+    "recipePairs": [
+      {
+        "itemID": 8544,
+        "recipeID": 10840,
+        "variants": 1,
+        "yield": 1,
+        "allocationSlots": 1,
+        "beforeMs": 0.94450000021607,
+        "afterMs": 1.0710000004619
+      },
+      {
+        "itemID": 3530,
+        "recipeID": 3277,
+        "variants": 1,
+        "yield": 1,
+        "allocationSlots": 1,
+        "beforeMs": 0.77169999945909,
+        "afterMs": 0.70180000085384
+      }
+    ],
+    "readScope": "These are one elapsed sample per recipe per side across a reload. IDs, yields, allocation slot counts and variant counts match. Each call includes catalogue lookup and validations, so they cannot isolate allocation impact or frame time.",
+    "earlierChanges": {
+      "GetRecipeKnowledge": {
+        "modernRecipeID": 18560,
+        "known": true,
+        "reagents": 1
+      },
+      "BankGetItemLink": {
+        "itemID": 1191,
+        "expectedNonNil": true,
+        "matchesSnapshot": true,
+        "bankOpen": false
+      }
+    },
+    "captures": {
+      "craftvariants114_a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftvariants114_a-journal.json",
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftvariants114_a-submitted.png",
+        "imageSha256": "d10bb0d693e2cda87f3f1cf4096a5d6dadb841625bb2a3b0409571a30d388287"
+      },
+      "craftadopt115_b": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftadopt115_b-journal.json",
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftadopt115_b-submitted.png",
+        "imageSha256": "36edf017b6dc991480e3ae219429d81407b23003f2594d4014b657071aa1a5e6"
+      },
+      "craftvariants116_a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftvariants116_a-journal.json",
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-craftvariants116_a-submitted.png",
+        "imageSha256": "f3919a34e2de0de0a162f81737108d96cb990f764ba584cb63b644e2596bdc2b"
+      },
+      "adoption117_a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-adoption117_a-journal.json",
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-adoption117_a-submitted.png",
+        "imageSha256": "df0a01b28856acb07d50aac9c860c2daffd25290845aa255012017b06a21339e"
+      },
+      "reloadWorldReturn": {
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\craftadopt115-world-return.png",
+        "imageSha256": "361a500df96dac6ea58f6270221e4e4e755c45700d6db29a8cbeab27a79c2219"
+      }
+    },
+    "actions": {
+      "actualCrafts": 0,
+      "commercialOrItemActions": 0,
+      "profilerSettingChanges": 0,
+      "jumpsSent": 0,
+      "scriptsRemain": false
+    }
+  },
+  "remaining": [
+    "Repeated matched latency and native workflow frame spikes",
+    "Multi-choice recipe parity plus active Pending and real crafting events",
+    "Full bank, provider-off, mail, Retail and Classic runtime verification"
+  ]
+}

@@ -4,8 +4,16 @@
     Classify + effective restore matching / counting via FluxConsumableBest.
 ]]
 
+local _, ns = ...
 local Tiers = FluxRestockTiers
 local P = Tiers._Private
+
+local bagCountsRecord = type(ns) == "table" and rawget(ns, "RestockUniqueBagCountsQuery")
+local bagCountsOwner, bagCountsTable, bagCountsGetter, bagCountsQuery
+if type(bagCountsRecord) == "table" then
+    bagCountsOwner, bagCountsTable = rawget(bagCountsRecord, "owner"), rawget(bagCountsRecord, "bags")
+    bagCountsGetter, bagCountsQuery = rawget(bagCountsRecord, "getter"), rawget(bagCountsRecord, "query")
+end
 
 local function NumericItemID(value)
     local n = tonumber(value)
@@ -39,10 +47,14 @@ end
 
 -- C_Item.GetItemCount, bypassing snapshot + IsReliable. Restock need must
 -- see stacks already in bags even when Syndicator has not flushed.
-local function LiveBagCount(inv, itemID)
+local function LiveBagCount(inv, itemID, positiveCounts)
     itemID = NumericItemID(itemID)
     if not itemID then
         return 0
+    end
+    local previous = positiveCounts and positiveCounts[itemID]
+    if previous then
+        return previous
     end
     if inv and inv.GetLiveCount then
         local n = NumericCount(inv.GetLiveCount(itemID, {
@@ -52,6 +64,7 @@ local function LiveBagCount(inv, itemID)
             charges = false,
         }))
         if n > 0 then
+            if positiveCounts then positiveCounts[itemID] = n end
             return n
         end
     end
@@ -85,6 +98,22 @@ local function ForEachUniqueBagStack(inv, fn)
     if not inv or type(fn) ~= "function" then
         return 0
     end
+    if inv == bagCountsOwner and inv.Bags == bagCountsTable
+        and inv.Bags and inv.Bags.GetUniqueItems == bagCountsGetter and type(bagCountsQuery) == "function" then
+        local counts = bagCountsQuery()
+        if type(counts) == "table" then
+            local stacks = 0
+            for itemID, count in pairs(counts) do
+                itemID = NumericItemID(itemID)
+                local n = NumericCount(count)
+                if itemID and n > 0 then
+                    stacks = stacks + 1
+                    fn(itemID, n)
+                end
+            end
+            return stacks
+        end
+    end
     local unique = inv.Bags and inv.Bags.GetUniqueItems and inv.Bags.GetUniqueItems()
     if type(unique) ~= "table" and inv.GetUniqueItems then
         unique = inv.GetUniqueItems({ bags = true, bank = false, warband = false })
@@ -109,15 +138,33 @@ end
 
 -- Live container walk (not snapshot ForEachLocation). Used when unique-map
 -- totals are 0 because Syndicator/builtin snapshots have not flushed yet.
-local function ForEachLiveBagStack(inv, fn)
+local function ForEachLiveBagStack(inv, fn, liveSlots, readSlot, getGeneration)
     if not inv or type(fn) ~= "function" then
         return
     end
     if inv.GetBagContainerIDs and inv.GetContainerItemInfo then
         for _, bag in ipairs(inv.GetBagContainerIDs()) do
             local numSlots = inv.GetContainerNumSlots and inv.GetContainerNumSlots(bag) or 0
+            local slots
+            if readSlot and numSlots > 0 then
+                slots = liveSlots[bag]
+                if not slots then
+                    slots = {}
+                    liveSlots[bag] = slots
+                end
+            end
             for slot = 1, numSlots do
-                local info = inv.GetContainerItemInfo(bag, slot)
+                local info
+                if slots and getGeneration() == liveSlots.generation then
+                    info = slots[slot]
+                    if not info then
+                        local complete
+                        info, complete = readSlot(bag, slot)
+                        if complete then slots[slot] = info end
+                    end
+                else
+                    info = inv.GetContainerItemInfo(bag, slot)
+                end
                 local itemID = info and NumericItemID(info.itemID)
                 local n = info and NumericCount(info.count or info.stackCount) or 0
                 if itemID and n > 0 then
@@ -148,8 +195,7 @@ local function AxisFromClassify(kind, cls)
     return tonumber(cls.health or cls.effective) or 0
 end
 
---- Classify item into a tier kind record, or nil.
-function P.ClassifyItem(itemID, itemLink)
+local function ClassifyItem(itemID, itemLink, wantedKind)
     itemID = tonumber(itemID)
     if not itemID then
         return nil
@@ -162,6 +208,12 @@ function P.ClassifyItem(itemID, itemLink)
             local effective = cls.effective or 0
             if Score and Score.EffectiveFromClassify then
                 effective = Score.EffectiveFromClassify(cls)
+            end
+            -- The tier query discards other kinds. Food still needs the
+            -- water-axis checks below, and custom records keep their reads.
+            if wantedKind and type(cls) == "table" and getmetatable(cls) == nil
+                and cls.kind ~= wantedKind and not (wantedKind == "water" and cls.kind == "food") then
+                return nil
             end
             return {
                 kind = cls.kind,
@@ -207,8 +259,20 @@ function P.ClassifyItem(itemID, itemLink)
     return nil
 end
 
+--- Classify item into a tier kind record, or nil.
+function P.ClassifyItem(itemID, itemLink)
+    return ClassifyItem(itemID, itemLink)
+end
+local classifyTierItem = P.ClassifyItem
+
 function P.ClassificationForTierCount(kind, itemID, itemLink)
-    local cls = P.ClassifyItem(itemID, itemLink)
+    local classify = P.ClassifyItem
+    local cls
+    if classify == classifyTierItem then
+        cls = ClassifyItem(itemID, itemLink, kind)
+    else
+        cls = classify(itemID, itemLink)
+    end
     if not cls then
         return nil
     end
@@ -688,9 +752,40 @@ function P.ItemMatchesTierLooseForBank(kind, cls)
     return P.RoundTier(P.TierAxisValue(kind, cls)) > 0
 end
 
+local tierItemClass = P.IC()
+local tierClassifier = P.ClassifyMod()
+local tierGetStatic = tierItemClass and tierItemClass.GetStatic
+local tierFallback = tierItemClass and tierItemClass.ClassifyConsumable
+local tierClassify = tierClassifier and tierClassifier.Classify
+local classifyForTierCount = P.ClassificationForTierCount
+local matchLooseTier, isTierUsable = P.ItemMatchesTierLooseForBank, P.IsTierItemUsable
+local matchStrictTier = P.ItemMatchesTierForBank
+
+local function HasOriginalTierClassifiers()
+    return tierGetStatic and tierClassify and tierFallback
+        and P.IC() == tierItemClass and P.ClassifyMod() == tierClassifier
+        and tierItemClass.GetStatic == tierGetStatic and tierItemClass.ClassifyConsumable == tierFallback
+        and tierClassifier.Classify == tierClassify and P.ClassifyItem == classifyTierItem
+        and P.ClassificationForTierCount == classifyForTierCount
+        and P.ItemMatchesTierLooseForBank == matchLooseTier and P.IsTierItemUsable == isTierUsable
+end
+
+local function IsKnownNonConsumable(itemID)
+    local info = tierGetStatic(itemID)
+    local classID = info and info.classID
+    return type(classID) == "number" and classID ~= 0
+end
+
+local function RejectedNonConsumable(kind, itemID)
+    -- Both classifiers reject this class without reading its tooltip. Use the
+    -- real classifier so an already-known classification still takes precedence.
+    return HasOriginalTierClassifiers() and IsKnownNonConsumable(itemID)
+        and classifyForTierCount(kind, itemID) == nil
+end
+
 function Tiers.ItemMatchesRestockKind(kind, itemID)
     itemID = tonumber(itemID)
-    if not itemID or not P.IsTierItemUsable(kind, itemID) then
+    if not itemID or RejectedNonConsumable(kind, itemID) or not P.IsTierItemUsable(kind, itemID) then
         return false
     end
     local fj = P.FJ()
@@ -699,6 +794,31 @@ function Tiers.ItemMatchesRestockKind(kind, itemID)
     end
     local cls = P.ClassificationForTierCount(kind, itemID)
     return P.ItemMatchesTierLooseForBank(kind, cls)
+end
+
+local bankTierItemMatches = Tiers.ItemMatchesRestockKind
+local bankTierClassifierCache = type(ns) == "table" and rawget(ns, "ConsumableRejectedCacheQuery")
+local bankTierSettledKind = bankTierClassifierCache and bankTierClassifierCache.settledKind
+local bankTierBest = P.Best and P.Best()
+local bankTierScore = bankTierBest and bankTierBest.Score
+local bankTierUsable = bankTierScore and bankTierScore.IsUsable
+local bankTierExcluded = bankTierScore and bankTierScore.IsExcludedFromBest
+local bankTierEffective = bankTierScore and bankTierScore.EffectiveFromClassify
+local bankTierKnownUnusable = bankTierScore and bankTierScore.IsKnownUnusable
+local bankTierJunk = P.FJ and P.FJ()
+local bankTierInferior = bankTierJunk and bankTierJunk.IsUpgradeInferior
+
+local function GetBankTierSettledKindReader()
+    if not bankTierSettledKind or bankTierClassifierCache.owner ~= tierClassifier
+        or bankTierClassifierCache.classify ~= tierClassify or not HasOriginalTierClassifiers() then
+        return nil
+    end
+    if bankTierScore and P.Best() == bankTierBest and bankTierBest.Score == bankTierScore
+        and bankTierScore.IsUsable == bankTierUsable and bankTierScore.IsExcludedFromBest == bankTierExcluded
+        and bankTierScore.EffectiveFromClassify == bankTierEffective and bankTierScore.IsKnownUnusable == bankTierKnownUnusable
+        and bankTierJunk and P.FJ() == bankTierJunk and bankTierJunk.IsUpgradeInferior == bankTierInferior then
+        return bankTierSettledKind
+    end
 end
 
 function Tiers.StackMatchesBankRestockKind(kind, itemID, itemLink)
@@ -729,7 +849,13 @@ local function SumUniqueMap(countsOrUnique, kind, matcher)
     return total
 end
 
-function Tiers.GetTierCount(kind, merchantIndex, minimumTier)
+local flux = type(ns) == "table" and rawget(ns, "Flux")
+local inventory = flux and flux.Inventory
+local bagGeneration = inventory and inventory.GetBagGeneration
+local isReliable = inventory and inventory.IsReliable
+local getTierSlotReader = type(ns) == "table" and ns.GetRestockTierSlotReader
+
+local function GetTierCount(kind, merchantIndex, minimumTier, liveSlots)
     if not Tiers.IsTierEligible(kind) then
         return 0
     end
@@ -801,12 +927,29 @@ function Tiers.GetTierCount(kind, merchantIndex, minimumTier)
         end
         total = total + consider(itemID, n)
     end)
+    local readSlot
+    if liveSlots and getTierSlotReader and bagGeneration and isReliable
+        and flux.Inventory == inventory and inventory.GetBagGeneration == bagGeneration
+        and inventory.IsReliable == isReliable and isReliable()
+        and inv and inv.IsMerchantOpen and not inv.IsMerchantOpen()
+        and inv.IsBankOpen and not inv.IsBankOpen() then
+        readSlot = getTierSlotReader(inv)
+        if readSlot then
+            local generation = bagGeneration()
+            if liveSlots.generation ~= generation then
+                wipe(liveSlots)
+                liveSlots.generation = generation
+            end
+        end
+    end
+    -- Keep classification, matching and callback order per tier. Only complete
+    -- occupied slots are shared between walks in this one target-list build.
     ForEachLiveBagStack(inv, function(itemID, n, link)
         if counted[itemID] then
             return
         end
         total = total + consider(itemID, n, link)
-    end)
+    end, liveSlots, readSlot, bagGeneration)
 
     if total > 0 then
         P.countCache.kinds[cacheKey] = total
@@ -814,12 +957,23 @@ function Tiers.GetTierCount(kind, merchantIndex, minimumTier)
     return total
 end
 
+function Tiers.GetTierCount(kind, merchantIndex, minimumTier)
+    return GetTierCount(kind, merchantIndex, minimumTier)
+end
+
+local tierCount = Tiers.GetTierCount
+function P.GetTierCountForRestockList(kind, merchantIndex, liveSlots)
+    if Tiers.GetTierCount == tierCount then
+        return GetTierCount(kind, merchantIndex, nil, liveSlots)
+    end
+    return Tiers.GetTierCount(kind, merchantIndex)
+end
+
 function Tiers.GetSnapshotTierCount(kind)
     return Tiers.GetTierCount(kind, nil)
 end
 
-function Tiers.GetTierBagTotalForBankRestock(kind)
-    local inv = P.Inv()
+local function TierBagTotalForBankRestock(inv, kind, positiveCounts)
     local totals = {}
     local function add(itemID, n)
         itemID = NumericItemID(itemID)
@@ -827,7 +981,7 @@ function Tiers.GetTierBagTotalForBankRestock(kind)
         if not itemID then
             return
         end
-        local live = LiveBagCount(inv, itemID)
+        local live = LiveBagCount(inv, itemID, positiveCounts)
         n = math.max(n, live)
         if n <= 0 then
             return
@@ -881,8 +1035,15 @@ function Tiers.GetTierBagTotalForBankRestock(kind)
         counted[itemID] = true
         total = total + n
     end
+    local readKind = positiveCounts and GetBankTierSettledKindReader()
     for itemID, n in pairs(totals) do
-        if known[itemID] or Tiers.ItemMatchesRestockKind(kind, itemID) then
+        local matches = Tiers.ItemMatchesRestockKind
+        local classifiedKind = not known[itemID] and readKind and matches == bankTierItemMatches and readKind(itemID)
+        -- A settled mismatch cannot contribute to this tier. Leave unknown
+        -- kinds and food that may count as water on the full live path.
+        local mismatch = classifiedKind and classifiedKind ~= kind and P.KIND_FIELDS[classifiedKind]
+            and not (kind == "water" and classifiedKind == "food")
+        if known[itemID] or (not mismatch and matches(kind, itemID)) then
             credit(itemID, n)
         end
     end
@@ -896,7 +1057,46 @@ function Tiers.GetTierBagTotalForBankRestock(kind)
     return total
 end
 
-function Tiers.GetBankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
+function Tiers.GetTierBagTotalForBankRestock(kind)
+    return TierBagTotalForBankRestock(P.Inv(), kind)
+end
+
+local bankTierTotal = Tiers.GetTierBagTotalForBankRestock
+local restockInventory = P.Inv()
+local restockLiveCount = restockInventory and restockInventory.GetLiveCount
+local index = inventory and inventory.Index
+local inventoryLiveCount = inventory and inventory.GetLiveCount
+local indexLiveCount = index and index.GetLiveCount
+local indexCount = index and index.GetCount
+local itemAPI = flux and flux.Item
+local itemCount = itemAPI and itemAPI.GetCount
+local nativeItemCount, legacyItemCount = C_Item and C_Item.GetItemCount, GetItemCount
+
+function P.GetBankTierBagTotal(kind, positiveCounts)
+    local read = Tiers.GetTierBagTotalForBankRestock
+    local inv = P.Inv()
+    -- Share only positive carried counts within this target build. Each tier
+    -- still evaluates its own known items, matching rules, and live fallback.
+    if read == bankTierTotal and inventory and restockLiveCount and inv == restockInventory
+        and inv.GetLiveCount == restockLiveCount and flux.Inventory == inventory
+        and inventoryLiveCount and inventory.GetLiveCount == inventoryLiveCount
+        and indexLiveCount and inventory.Index == index and index.GetLiveCount == indexLiveCount
+        and index.GetCount == indexCount and itemCount and flux.Item == itemAPI and itemAPI.GetCount == itemCount
+        and (C_Item and C_Item.GetItemCount) == nativeItemCount and GetItemCount == legacyItemCount
+        and isReliable and inventory.IsReliable == isReliable and bagGeneration
+        and inventory.GetBagGeneration == bagGeneration and isReliable() then
+        local generation = bagGeneration()
+        if positiveCounts.generation ~= generation then
+            wipe(positiveCounts)
+            positiveCounts.generation = generation
+        end
+        return TierBagTotalForBankRestock(inv, kind, positiveCounts)
+    end
+    wipe(positiveCounts)
+    return read(kind)
+end
+
+local function BankCountForKind(kind, merchantIndex, minimumTier, strictOnly, closedCounts, skipStock)
     if not Tiers.IsTierEligible(kind) then
         return 0
     end
@@ -905,6 +1105,7 @@ function Tiers.GetBankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
         return 0
     end
     local ref = math.max(P.GetTierRestockThreshold(kind, merchantIndex), tonumber(minimumTier) or 0)
+    if skipStock then return 0 end
     local strict, loose = 0, 0
     local function consider(itemID, n, itemLink)
         itemID = tonumber(itemID)
@@ -945,14 +1146,74 @@ function Tiers.GetBankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
             end
         end
     end
+    local canReject = closedCounts and HasOriginalTierClassifiers() and P.ItemMatchesTierForBank == matchStrictTier
     for itemID in pairs(seen) do
-        consider(itemID, inv.Bank.GetCount(itemID, { bank = true, warband = true }) or 0)
+        local n = closedCounts and closedCounts[itemID]
+        if not n then
+            -- A known non-consumable with no classification cannot contribute
+            -- to any tier. The per-list false entry records that exclusion,
+            -- independently of native zero counts, which are never cached.
+            if canReject and (n == false or (IsKnownNonConsumable(itemID) and classifyTierItem(itemID) == nil)) then
+                closedCounts[itemID] = false
+            else
+                n = inv.Bank.GetCount(itemID, { bank = true, warband = true }) or 0
+                if closedCounts then
+                    local positive = tonumber(n)
+                    if positive and positive > 0 then closedCounts[itemID] = positive end
+                end
+            end
+        end
+        if n then consider(itemID, n) end
     end
     if strictOnly then return strict end
     if strict > 0 then
         return strict + loose
     end
     return loose
+end
+
+function Tiers.GetBankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
+    return BankCountForKind(kind, merchantIndex, minimumTier, strictOnly)
+end
+
+local readTierBankCount = Tiers.GetBankCountForKind
+local restockBank = restockInventory and restockInventory.Bank
+local bankCount = restockBank and restockBank.GetCount
+local bankIsOpen = restockBank and restockBank.IsOpen
+local bankIsLive = restockBank and restockBank.IsLive
+local bankGeneration = restockBank and restockBank.GetGeneration
+local characterCounts = restockBank and restockBank.GetCharacterCounts
+local warbandCounts = restockBank and restockBank.GetWarbandCounts
+local hasWarband = restockInventory and restockInventory.HasWarband
+local snapshotGeneration = inventory and inventory.GetSnapshotGeneration
+
+function P.GetBankCountForRestockList(kind, merchantIndex, closedCounts, skipStock)
+    local read = Tiers.GetBankCountForKind
+    local inv = P.Inv()
+    -- A list build can reuse positive closed-bank values across its tiers.
+    -- Keep native reads for an open bank, unsettled inventory, or a different provider.
+    if read == readTierBankCount and inv == restockInventory and restockBank and inv.Bank == restockBank
+        and bankCount and restockBank.GetCount == bankCount
+        and bankIsOpen and restockBank.IsOpen == bankIsOpen
+        and bankIsLive and restockBank.IsLive == bankIsLive
+        and bankGeneration and restockBank.GetGeneration == bankGeneration
+        and restockBank.GetCharacterCounts == characterCounts and restockBank.GetWarbandCounts == warbandCounts
+        and inv.HasWarband == hasWarband and inventory and flux.Inventory == inventory
+        and snapshotGeneration and inventory.GetSnapshotGeneration == snapshotGeneration
+        and bagGeneration and inventory.GetBagGeneration == bagGeneration
+        and itemCount and flux.Item == itemAPI and itemAPI.GetCount == itemCount
+        and (C_Item and C_Item.GetItemCount) == nativeItemCount and GetItemCount == legacyItemCount
+        and not bankIsOpen() and not bankIsLive()
+        and isReliable and inventory.IsReliable == isReliable and isReliable() then
+        local bank, bags = bankGeneration(), bagGeneration()
+        if closedCounts.bankGeneration ~= bank or closedCounts.bagGeneration ~= bags then
+            wipe(closedCounts)
+            closedCounts.bankGeneration, closedCounts.bagGeneration = bank, bags
+        end
+        return BankCountForKind(kind, merchantIndex, nil, nil, closedCounts, skipStock)
+    end
+    wipe(closedCounts)
+    if read then return read(kind, merchantIndex) end
 end
 
 function Tiers.GetCachedTooltipReferenceTier(kind)

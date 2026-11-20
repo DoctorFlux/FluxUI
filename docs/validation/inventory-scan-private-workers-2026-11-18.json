@@ -1,0 +1,222 @@
+{
+  "id": "LHO-SCAN-PRIVATE-WORKERS-20261118",
+  "utc": "2026-11-17T23:38:27.766636+00:00",
+  "file": "Inventory\\FluxConsumableBest\\Scan.lua",
+  "before": "c88a6e83312383db899ab9beaa02a870a5d5080661fdd35bbd006568ca47e643",
+  "after": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+  "syntax": [
+    {
+      "vm": "Lua5.1.5",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "mode": "syntax only"
+    },
+    {
+      "vm": "Lua5.4.6",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "mode": "syntax only"
+    }
+  ],
+  "simulations": 0,
+  "benchmarks": 0,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-scan-private-workers-20261118\\checkpoint.json",
+  "nativeAcceptance": "SCOPED smoke PASS Forever70938/16001 with both external addons: ready/counts/seven top selections match; BugTabs0",
+  "performanceGain": "UNMEASURED; repeated helper/table constructions removed at source only",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9"
+  },
+  "changes": [
+    "Publication walker reused with fresh per-call traversal maps passed explicitly",
+    "Private fixed mana-gem order allocated once; membership and counts still queried live",
+    "Resume ticker reuses private body; 1.5-second interval, cancellation and 0-delay recompute unchanged"
+  ],
+  "previousNativeEvidence": "docs/validation/inventory-provider-combos-2026-11-18.json",
+  "nativeSmoke": {
+    "utc": "2026-11-17T23:45:49.166145+00:00",
+    "runs": [
+      {
+        "run": "swreload_20261118a",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swreload_20261118a-journal.json",
+        "journalSha256": "d50ddcca9e15d72de77d279f3eb80a7025c3864c1eaaac0bca01c07260e67b8b",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swreload_20261118a-submitted.png",
+          "pngSha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swreload_20261118a-submitted-capture.json",
+          "metaSha": "7831ad56f3893e0c386877f434c99c7a12b7b1a81b064c6c17cca49915212c6b",
+          "started": 1794958856.282893,
+          "time": 1794958858.617869,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 26544,
+              "hwnd": 460342,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394186555517743
+            },
+            "fg": 692126702,
+            "last": 375263765,
+            "idle": 296.281,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "watchdogPid": 48676,
+        "ack": "ack-visually-attested"
+      },
+      {
+        "run": "swstate_20261118a",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swstate_20261118a-journal.json",
+        "journalSha256": "4becf112f82fa84e3d27a451c81bf8c88bfd6fa2b0aee6fe00c7e5c5e984b9b8",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swstate_20261118a-submitted.png",
+          "pngSha": "7391e41d35014959a2d5fac8c34ba662d81401df72f33e83b774026738a470bc",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swstate_20261118a-submitted-capture.json",
+          "metaSha": "6651164a11a088f0aa1fa202dd75454045f38371d174d85cf067877a0f115ee9",
+          "started": 1794958916.4702604,
+          "time": 1794958918.2587242,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 26544,
+              "hwnd": 460342,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394186555517743
+            },
+            "fg": 692126702,
+            "last": 375263765,
+            "idle": 356.469,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "watchdogPid": 57248,
+        "ack": "ack-visually-attested"
+      },
+      {
+        "run": "swladder_20261118a",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swladder_20261118a-journal.json",
+        "journalSha256": "62e03ff1aac387029b6beff1758684bb1c46be515b82a276f9ce2b51c5fcd57f",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swladder_20261118a-submitted.png",
+          "pngSha": "a18bc016c14292248d9589d305abdbbdfbd1a4280f4875716515ba55d090fa45",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-swladder_20261118a-submitted-capture.json",
+          "metaSha": "79cd075a35d42f1b27b2aff77b56ca47e1e13a21ce23745599f4bcc4fc2025b3",
+          "started": 1794958976.0522032,
+          "time": 1794958977.9524474,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 26544,
+              "hwnd": 460342,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394186555517743
+            },
+            "fg": 692126702,
+            "last": 375263765,
+            "idle": 416.047,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "watchdogPid": 58348,
+        "ack": "ack-visually-attested"
+      }
+    ],
+    "result": {
+      "source": "syndicator",
+      "ready": true,
+      "loaded": {
+        "Syndicator": true,
+        "Baganator": true
+      },
+      "enableStates": {
+        "Syndicator": {
+          "GUID": 2,
+          "account": 2
+        },
+        "Baganator": {
+          "GUID": 2,
+          "account": 2
+        }
+      },
+      "foodCounts": [
+        42,
+        42
+      ],
+      "scriptProfile": 0,
+      "BugTabs": 0,
+      "ladders": {
+        "food": [
+          3,
+          1487,
+          42
+        ],
+        "water": [
+          2,
+          3772,
+          18
+        ],
+        "bandage": [
+          1,
+          8544,
+          20
+        ],
+        "healPotion": [
+          1,
+          3928,
+          5
+        ],
+        "manaPotion": [
+          1,
+          6149,
+          5
+        ],
+        "healthstone": [
+          0,
+          null,
+          null
+        ],
+        "managem": [
+          2,
+          5513,
+          1
+        ]
+      }
+    },
+    "comparison": "Lengths/topIDs/topcounts unchanged from pre-edit both-addon state; full lower ladder rows not captured",
+    "limitations": [
+      "No controlled spike/CPU/FPS measurement",
+      "Private publication walker/ticker branch not specifically instrumented",
+      "C1/C2 checks preceded this Scan helper edit",
+      "No other-client native acceptance",
+      "No bank/vendor/AH/mail workflow acceptance"
+    ],
+    "cleanup": {
+      "hostWatchdogsAbsentAt": "2026-11-17T23:44:06.7472864Z",
+      "inputLockAbsent": true,
+      "noJumpHelperRunning": true,
+      "foreignInputHaltRetained": true
+    },
+    "finalWorldBanner": "World refresh in 4 Minutes; verify fresh world/client before further input"
+  }
+}

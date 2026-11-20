@@ -1,0 +1,308 @@
+{
+  "changeId": "BORDER-TILE-FIELDS-R166-20261120",
+  "borderVersion": "border-tile-fields-r166",
+  "capturedAtUTC": "2026-11-20T01:46:11.507996+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "ecf95ab4c4ab0f5fe5a5c9bb1f237e5061dfc62178b4336dbd9fce0e2a17c832",
+      "afterRaw": "444ac01f883312c09ca4458597e4bad1388f60432936ec29a0cd10235bf15ad5",
+      "afterNormalized": "444ac01f883312c09ca4458597e4bad1388f60432936ec29a0cd10235bf15ad5"
+    },
+    "tests/border_region_routing.lua": {
+      "beforeRaw": "724ef05638e1e173f714f486b6a6ba5d5f2a0fe13840881f30e20c917072d6d7",
+      "afterRaw": "4e0c71a3651b64bd0195623ad5536fbe8dfcca7bc5c487bed9c4fc0b11f9a480",
+      "afterNormalized": "4e0c71a3651b64bd0195623ad5536fbe8dfcca7bc5c487bed9c4fc0b11f9a480"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": [
+      {
+        "client": "_retail_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_forever_",
+        "directory": true,
+        "settingsFiles": 3
+      },
+      {
+        "client": "_classic_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_classic_era_",
+        "directory": true,
+        "settingsFiles": 4
+      },
+      {
+        "client": "_anniversary_",
+        "directory": true,
+        "settingsFiles": 10
+      }
+    ]
+  },
+  "work": {
+    "scope": "Two cold local changes with a populated HUD per pair. The action strip, grid, Info and Trinket borders move in the hover case. Four prepared raid cell borders translate in the roster case. The roster scope has zero tile polygon construction in either version.",
+    "countOrder": [
+      "before scratch polygons",
+      "after scratch polygons"
+    ],
+    "resourceOrder": [
+      "before process seconds",
+      "after process seconds",
+      "before incremental Lua heap KiB",
+      "after incremental Lua heap KiB"
+    ],
+    "counts": {
+      "hover-1": [
+        [
+          429,
+          216
+        ],
+        [
+          429,
+          216
+        ],
+        [
+          429,
+          216
+        ]
+      ],
+      "roster-1": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "hover-2": [
+        [
+          496,
+          216
+        ],
+        [
+          496,
+          216
+        ],
+        [
+          496,
+          216
+        ]
+      ],
+      "roster-2": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "resourceSamples": {
+      "hover-1": [
+        [
+          0.03,
+          0.027,
+          6341.9,
+          5889.7
+        ],
+        [
+          0.03,
+          0.029,
+          6335.8,
+          6094.8
+        ],
+        [
+          0.03,
+          0.028,
+          6125.1,
+          6094.7
+        ],
+        [
+          0.028,
+          0.029,
+          6193.7,
+          6097.9
+        ],
+        [
+          0.028,
+          0.029,
+          6129.4,
+          6099.0
+        ]
+      ],
+      "roster-1": [
+        [
+          0.005,
+          0.006,
+          837.8,
+          837.8
+        ],
+        [
+          0.005,
+          0.006,
+          837.8,
+          837.8
+        ],
+        [
+          0.005,
+          0.005,
+          837.8,
+          837.8
+        ],
+        [
+          0.004,
+          0.006,
+          837.8,
+          837.8
+        ],
+        [
+          0.006,
+          0.006,
+          837.8,
+          837.8
+        ]
+      ],
+      "hover-2": [
+        [
+          0.027,
+          0.028,
+          6264.1,
+          5968.2
+        ],
+        [
+          0.026,
+          0.025,
+          6086.5,
+          5807.5
+        ],
+        [
+          0.028,
+          0.026,
+          6095.1,
+          5816.0
+        ],
+        [
+          0.027,
+          0.028,
+          6095.4,
+          5977.2
+        ],
+        [
+          0.035,
+          0.03,
+          6273.2,
+          5843.5
+        ]
+      ],
+      "roster-2": [
+        [
+          0.005,
+          0.005,
+          824.5,
+          824.5
+        ],
+        [
+          0.006,
+          0.006,
+          824.5,
+          824.5
+        ],
+        [
+          0.004,
+          0.006,
+          824.5,
+          824.5
+        ],
+        [
+          0.006,
+          0.005,
+          824.5,
+          824.4
+        ],
+        [
+          0.004,
+          0.005,
+          824.5,
+          824.5
+        ]
+      ]
+    },
+    "resourceMedians": {
+      "hover-1": [
+        0.03,
+        0.029,
+        6193.7,
+        6094.8
+      ],
+      "roster-1": [
+        0.005,
+        0.006,
+        837.8,
+        837.8
+      ],
+      "hover-2": [
+        0.027,
+        0.028,
+        6095.4,
+        5843.5
+      ],
+      "roster-2": [
+        0.005,
+        0.005,
+        824.5,
+        824.5
+      ]
+    },
+    "clockMethod": "Five matched desktop runs. Order reverses on the second change. Lua GC is suspended during each measured transaction. Native UI calls are modeled.",
+    "trialFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\bench.lua": "968c8412fe56a19e0842e0061bd0ad8e59e5e8b059a0882fae2ab75ae30b71ac",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\split-early.lua": "241f52d72fa5f6196d131500988f56043b43e71f2f1c0d7dfa8e2e598aab86b9",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\direct-tile.lua": "444ac01f883312c09ca4458597e4bad1388f60432936ec29a0cd10235bf15ad5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\count-1.txt": "ec4cffdab23955006236e2d4ddf534eae8e270a0a296b062df60b6558b405861",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\count-2.txt": "ec4cffdab23955006236e2d4ddf534eae8e270a0a296b062df60b6558b405861",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\count-3.txt": "ec4cffdab23955006236e2d4ddf534eae8e270a0a296b062df60b6558b405861",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\clock-1.txt": "6703e53ffe325e79fc6cad27ff07cd81603966cd2288607180b41dabd9785a10",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\clock-2.txt": "271fe7336bb2d3103c86ca4c292a909f9b6e5cd07894359dcd6bd0a41f167236",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\clock-3.txt": "4157c933c175c6ac422561db0cc8c83b0fbb9a4d9c4e6504200fc21668d29204",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\clock-4.txt": "b8ce666c93f80a9b63c51403eaa923a6daad3a25021a93446ad2a7b5c10d953c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\clock-5.txt": "81458f4bc5c385693f0de4861019ef9232092311e88a6d682dd1d90856bf9c88",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\route-1.txt": "96c3c8bc34457986f55234334e42dc9459837542098cd4fba5827288b03eee83",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\route-2.txt": "091d50f6964df03003b8b2a77c1606e6bbf45c6e785f1f8cda0e18a9cbf01840",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\route-3.txt": "8152fec1c58b32beef4c705db8d4330744e5c3ffb2cf075eab394a280c2d30e8"
+    },
+    "discardedPrototype": "An additional half-plane classification change with early straddle detection matched the deterministic cut digest but yielded mixed timings in the whole-layout model. The selected source retains the original half-plane clip."
+  },
+  "parity": "Exact raw tile vertices, UVs, both primitive kinds and ordering match the archive through containment, crossing, touching, skewed quads and degenerate triangles. The populated HUD matches sampled seams, solve counts and output size.",
+  "verification": {
+    "focusedPassed": 39,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-tile-fields-before-20261120T023918511\\upvalues.json",
+    "failedSmoke": "The separate Bars smoke source assertions expect StopReticleHighlight to follow PlayReticle. The current Overlay source puts that helper first, so those two assertions examine an empty body. The checker does not load the regional border builder.",
+    "otherOwnerSyntaxOnly": [
+      "Core/ButtonFX/Overlay.lua"
+    ]
+  },
+  "nativeAcceptance": "Live cursor crossing and slot resize cost, group join and leave cost, seam pixels and combat taint remain pending."
+}

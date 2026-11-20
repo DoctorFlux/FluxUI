@@ -12,6 +12,7 @@ The current reference includes Forever's separately probed secure bar paging, na
 
 Development rules are in [CONTRIBUTING.md](../CONTRIBUTING.md); see
 [current status](STATUS.md) and [development tasks](DEVELOPMENT.md) for ongoing work.
+The [release roadmap](RELEASE_ROADMAP.md) defines what finishes the current addon release effort.
 
 Read the [product and system overview](01-product-overview.md), then [runtime architecture](07-runtime-architecture.md). For a particular feature, use its system chapter below. For a setting, command, saved table, or source filename, start with Reference.
 

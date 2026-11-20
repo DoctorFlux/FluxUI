@@ -363,26 +363,42 @@ end
 local mtSlots = mtCount > 0 and math.ceil(mtCount / 4) or 0
 local slots = math.max(9, count + mtSlots)
 local rank = 0
-for group = 1, 8 do
-    local header = self:GetFrameRef("roster-group" .. group)
+for group = 1, 9 do
+    local header, x, y, visible
+    if group <= 8 then
+        header = self:GetFrameRef("roster-group" .. group)
+        visible = occupied[group]
+        x, y = (slots - group) * step, 0
+        if visible then
+            x = (slots - 1 - rank) * step
+            rank = rank + 1
+        end
+    elseif mt then
+        header = mt
+        x, y = math.max(0, slots - count - mtSlots) * step, 0
+        if mtCount >= 4 then
+            local mtStep = self:GetAttribute("roster-mt-step") or 1
+            local height = self:GetAttribute("roster-column-height") or 0
+            y = math.max(0, height - math.min(4, mtCount) * mtStep) + (self:GetAttribute("roster-mt-extra-y") or 60)
+        end
+        visible = mtCount > 0 and count > 0
+    end
     if header then
-        local x = (slots - group) * step
-        if occupied[group] then x = (slots - 1 - rank) * step rank = rank + 1 end
-        header:ClearAllPoints()
-        header:SetPoint("TOPLEFT", "$parent", "TOPLEFT", x, 0)
-        header:SetAlpha(occupied[group] and 1 or 0)
+        local matches
+        if header:GetNumPoints() == 1 then
+            local point, relative, relativePoint, oldX, oldY = header:GetPoint(1)
+            matches = point == "TOPLEFT" and relative == container and relativePoint == "TOPLEFT"
+                and oldX == x and oldY == y
+        end
+        if not matches then
+            header:ClearAllPoints()
+            header:SetPoint("TOPLEFT", "$parent", "TOPLEFT", x, y)
+        end
+        header:SetAlpha(visible and 1 or 0)
     end
 end
-if mt then
-    local mtStep = self:GetAttribute("roster-mt-step") or 1
-    local height = self:GetAttribute("roster-column-height") or 0
-    local y = 0
-    if mtCount >= 4 then y = math.max(0, height - math.min(4, mtCount) * mtStep) + (self:GetAttribute("roster-mt-extra-y") or 60) end
-    mt:ClearAllPoints()
-    mt:SetPoint("TOPLEFT", "$parent", "TOPLEFT", math.max(0, slots - count - mtSlots) * step, y)
-    mt:SetAlpha(mtCount > 0 and count > 0 and 1 or 0)
-end
-container:SetWidth(slots * step)
+local width = slots * step
+if container:GetWidth() ~= width then container:SetWidth(width) end
 ]=]
 
 -- Native state-visibility is handled directly by SecureStateDriver.resolveDriver.
@@ -487,34 +503,77 @@ function Secure.AttachHeaderChild(child)
     if InCombat() then return false end
     local header, restricted = EnsureHub()
     if not header then return false end
-    local body = [[ if name == "unit" and control:GetAttribute("roster-layout-ready") then control:RunAttribute("_flux-roster-layout") end ]]
+    -- Layout depends on occupied slots, while the underlying attribute
+    -- listener still binds and paints each changed unit token.
+    local body = [[
+        if name ~= "unit" then return end
+        local occupied = type(value) == "string" and value ~= "" and 1 or 0
+        if self:GetAttribute("flux-roster-occupied") == occupied then return end
+        self:SetAttribute("flux-roster-occupied", occupied)
+        if control:GetAttribute("roster-layout-ready") then control:RunAttribute("_flux-roster-layout") end
+    ]]
     local ok = restricted.WrapScript and restricted.WrapScript(header, child, "OnAttributeChanged", body)
     if not ok then ok = pcall(nativeWrap, header, child, "OnAttributeChanged", body) end
     childWrappers[child] = ok and true or nil
+    if ok then
+        local unit = child:GetAttribute("unit")
+        if not (issecretvalue and issecretvalue(unit)) then
+            child:SetAttribute("flux-roster-occupied", type(unit) == "string" and unit ~= "" and 1 or 0)
+        end
+    end
     return ok and true or false
 end
 
--- Call OOC after precreating/wrapping all 40 group and 40 MT/MA children.
+-- Call OOC after precreating all children and wrapping the layout observers.
 -- The container must inherit SecureFrameTemplate to accept a secure frame ref.
 function Secure.RefreshRosterLayout(container, groups, mt, options)
     if InCombat() or not container or type(groups) ~= "table" then return false end
     local header, restricted = EnsureHub()
     if not header then return false end
     options = options or {}
-    header:SetFrameRef("roster-container", container)
-    for i = 1, 8 do
-        if groups[i] then header:SetFrameRef("roster-group" .. i, groups[i])
-        else header:SetAttribute("frameref-roster-group" .. i, nil) end
+    local function SetLayoutAttribute(key,value)
+        local current=header:GetAttribute(key)
+        if issecretvalue and issecretvalue(current) or current~=value then header:SetAttribute(key,value) end
     end
-    if mt then header:SetFrameRef("roster-mt", mt) else header:SetAttribute("frameref-roster-mt", nil) end
-    header:SetAttribute("roster-step", tonumber(options.colStep) or (FluxRaidVisuals and FluxRaidVisuals.FRAME_WIDTH or 72))
-    header:SetAttribute("roster-column-height", tonumber(options.columnHeight) or (FluxRaid_GetColumnHeight and FluxRaid_GetColumnHeight() or 215))
-    header:SetAttribute("roster-cell-height", FluxRaidVisuals and FluxRaidVisuals.FRAME_HEIGHT or 44)
-    header:SetAttribute("roster-cell-gap", -(FluxRaidVisuals and FluxRaidVisuals.CELL_JOIN_OVERLAP or 4))
-    header:SetAttribute("roster-mt-step", tonumber(options.mtChildStep) or (FluxRaid_GetMTMAChildStep and FluxRaid_GetMTMAChildStep() or 66))
-    header:SetAttribute("roster-mt-extra-y", tonumber(options.mtExtraY) or 60)
-    header:SetAttribute("_flux-roster-layout", ROSTER_LAYOUT)
-    header:SetAttribute("roster-layout-ready", true)
+    local references = header._fluxRosterReferences
+    if not references then
+        references = {}
+        header._fluxRosterReferences = references
+    end
+    local function ReadReference(key)
+        local ok, value = pcall(header.GetAttribute, header, key)
+        if ok and not (issecretvalue and issecretvalue(value)) then return value end
+        return nil
+    end
+    local function SetLayoutReference(label, frame)
+        local key = "frameref-" .. label
+        local saved = references[label]
+        if not frame then
+            references[label] = nil
+            header:SetAttribute(key, nil)
+            return
+        end
+        -- The native setter stores a handle. Reuse it only when the same
+        -- owned frame and the actual backing attribute still agree.
+        if saved and rawequal(saved.frame, frame) and rawequal(saved.handle, ReadReference(key)) then return end
+        references[label] = nil
+        header:SetFrameRef(label, frame)
+        local installed = ReadReference(key)
+        if installed ~= nil then references[label] = { frame = frame, handle = installed } end
+    end
+    SetLayoutReference("roster-container", container)
+    for i = 1, 8 do
+        SetLayoutReference("roster-group" .. i, groups[i])
+    end
+    SetLayoutReference("roster-mt", mt)
+    SetLayoutAttribute("roster-step", tonumber(options.colStep) or (FluxRaidVisuals and FluxRaidVisuals.FRAME_WIDTH or 72))
+    SetLayoutAttribute("roster-column-height", tonumber(options.columnHeight) or (FluxRaid_GetColumnHeight and FluxRaid_GetColumnHeight() or 215))
+    SetLayoutAttribute("roster-cell-height", FluxRaidVisuals and FluxRaidVisuals.FRAME_HEIGHT or 44)
+    SetLayoutAttribute("roster-cell-gap", -(FluxRaidVisuals and FluxRaidVisuals.CELL_JOIN_OVERLAP or 4))
+    SetLayoutAttribute("roster-mt-step", tonumber(options.mtChildStep) or (FluxRaid_GetMTMAChildStep and FluxRaid_GetMTMAChildStep() or 66))
+    SetLayoutAttribute("roster-mt-extra-y", tonumber(options.mtExtraY) or 60)
+    SetLayoutAttribute("_flux-roster-layout", ROSTER_LAYOUT)
+    SetLayoutAttribute("roster-layout-ready", true)
     local body = [[ self:RunAttribute("_flux-roster-layout") ]]
     if restricted.ExecutePaging then return restricted.ExecutePaging(header, body) end
     return pcall(header.Execute, header, body)

@@ -4,6 +4,10 @@
     Inventory-backed food/water bind helpers (from unused Bridge + Refresh).
 ]]
 
+local _, ns = ...
+local uniqueBagQueryOwners = type(ns) == "table" and rawget(ns, "InventoryUniqueItemIDQuery")
+local ladderUsabilityQuery = type(ns) == "table" and rawget(ns, "InventoryLadderUsabilityQuery")
+
 FluxEBSConsumableBridge = FluxEBSConsumableBridge or {}
 local Bridge = FluxEBSConsumableBridge
 _G.FluxEBSConsumableBind = Bridge
@@ -190,7 +194,7 @@ local function BagCount(itemID, includeCharges, kind)
 end
 
 --- Drop 0-count / leftover / unusable entries so the next owned item of the kind can bind.
-local function FilterLiveOwned(list, preferCharges, kind)
+local function FilterLiveOwned(list, preferCharges, kind, approved)
     if type(list) ~= "table" then
         return {}
     end
@@ -202,7 +206,11 @@ local function FilterLiveOwned(list, preferCharges, kind)
         if id then
             local n = BagCount(id, preferCharges, kind)
             local recKind = (rec and rec.kind) or kind
-            local blocked = Score and Score.IsBlockedForBest and Score.IsBlockedForBest(id, recKind)
+            -- Best just checked this exact fresh row in the same query. Keep
+            -- live counts above, and recheck changed owners or combo-food kinds.
+            local checked = approved and approved[rec] == rec.itemID and recKind == kind
+                and ladderUsabilityQuery.matches(Score)
+            local blocked = not checked and Score and Score.IsBlockedForBest and Score.IsBlockedForBest(id, recKind)
             if n > 0 and not blocked then
                 local copy = {}
                 for k, v in pairs(rec) do
@@ -614,17 +622,17 @@ function Bridge.GetBestOwned(kind, opts)
     local compareOpts = ScoreCompareOpts(kind, opts)
     if fromLadder and fromBest then
         if Score and Score.IsBetter and Score.IsBetter(fromLadder, fromBest, compareOpts) then
-            return fromLadder
+            return fromLadder, ladder
         end
         if Score and Score.IsBetter and Score.IsBetter(fromBest, fromLadder, compareOpts) then
             local n = BagCount(fromBest.itemID, preferCharges, kind)
             if n > 0 then
                 fromBest.count = n
-                return fromBest
+                return fromBest, ladder
             end
-            return fromLadder
+            return fromLadder, ladder
         end
-        return fromLadder
+        return fromLadder, ladder
     end
     local pick = fromLadder or fromBest
     if pick and pick.itemID and not SoftHolding() then
@@ -634,11 +642,19 @@ function Bridge.GetBestOwned(kind, opts)
         end
         pick.count = n
     end
-    return pick
+    return pick, ladder
 end
 
 --- Cached owned ladders keyed by kind + bag generation (avoids Classify-all on every Update).
 local ladderCache = {} -- [cacheKey] = { gen = number, list = table }
+
+local function ReadUniqueBagItems(inv)
+    if inv.GetUniqueItems then
+        return inv.GetUniqueItems({ bags = true, bank = false, warband = false })
+    elseif inv.Bags and inv.Bags.GetUniqueItems then
+        return inv.Bags.GetUniqueItems()
+    end
+end
 
 local function LadderCacheKey(kind, preferCharges, allowComboDrinks)
     return tostring(kind or "")
@@ -737,7 +753,14 @@ function Bridge.GetOwnedLadder(kind, opts)
     local B = Best()
     local Score = B and B.Score
     if B and B.GetLadder then
-        local fromBest = B.GetLadder(kind, { allowComboDrinks = allowComboDrinks })
+        local fromBest, approved
+        local query = ladderUsabilityQuery
+        if query and B == query.owner and getmetatable(B) == nil
+            and B.GetLadder == query.publicQuery and query.matches(Score) then
+            fromBest, approved = query.query(kind, { allowComboDrinks = allowComboDrinks })
+        else
+            fromBest = B.GetLadder(kind, { allowComboDrinks = allowComboDrinks })
+        end
         if type(fromBest) == "table" and #fromBest > 0 then
             local bagGen = (inv and inv.GetBagGeneration and inv.GetBagGeneration()) or 0
             local scanGen = tonumber(B._bagGenAtScan)
@@ -746,7 +769,7 @@ function Bridge.GetOwnedLadder(kind, opts)
                 or (B.IsConjureArmActive and B.IsConjureArmActive())
                 or (B._pendingAdded and next(B._pendingAdded))
             local login = inv and inv.IsLoginHold and inv.IsLoginHold()
-            local live = FilterLiveOwned(fromBest, preferCharges, kind)
+            local live = FilterLiveOwned(fromBest, preferCharges, kind, approved)
             if #live > 0 and not (stale and (chasing or login)) then
                 ladderCache[LadderCacheKey(kind, preferCharges, allowComboDrinks)] = {
                     gen = bagGen,
@@ -762,14 +785,21 @@ function Bridge.GetOwnedLadder(kind, opts)
         return out
     end
 
+    -- A valid ladder cache still checks live counts/usability below. Only the
+    -- defining snapshot builder can skip making discarded per-item records.
+    local owners = uniqueBagQueryOwners
+    local deferUnique = type(owners) == "table" and inv == owners.owner
+        and type(owners.fullQuery) == "function" and inv.GetUniqueItems == owners.fullQuery
+        and inv.Index == owners.index and type(owners.index) == "table"
+        and owners.index.GetUniqueItems == owners.indexQuery
+        and type(owners.bagGeneration) == "function" and inv.GetBagGeneration == owners.bagGeneration
+        and owners.index.GetSnapshotGeneration == owners.indexGeneration
     local unique
-    if inv.GetUniqueItems then
-        unique = inv.GetUniqueItems({ bags = true, bank = false, warband = false })
-    elseif inv.Bags and inv.Bags.GetUniqueItems then
-        unique = inv.Bags.GetUniqueItems()
-    end
-    if type(unique) ~= "table" then
-        return out
+    if not deferUnique then
+        unique = ReadUniqueBagItems(inv)
+        if type(unique) ~= "table" then
+            return out
+        end
     end
 
     local gen = (inv.GetBagGeneration and inv.GetBagGeneration())
@@ -780,6 +810,13 @@ function Bridge.GetOwnedLadder(kind, opts)
     local cached = ladderCache[key]
     if cached and cached.gen == gen and cached.bestGen == bestGen and cached.list then
         return FilterLiveOwned(cached.list, preferCharges, kind)
+    end
+
+    if deferUnique then
+        unique = ReadUniqueBagItems(inv)
+        if type(unique) ~= "table" then
+            return out
+        end
     end
 
     local maxHP, maxMana = 1, 0
@@ -852,9 +889,99 @@ function Bridge.GetOwnedLadder(kind, opts)
     return out
 end
 
---- Promote only when tracked is empty or a strictly better owned ID exists.
+local function IsFoodOrWater(kind)
+    return kind == "food" or kind == "water"
+end
+
+-- Reuse the ordinary best tier and strength. Stack size only breaks ties for use.
+local function PickUseStack(kind, best, ladder, opts, live)
+    if not best or best.uncertain or not IsFoodOrWater(kind) then
+        return best
+    end
+    local bestModule = Best()
+    local score = bestModule and bestModule.Score
+    local tier = score and (kind == "food" and score.FoodTier or score.WaterDrinkTier)
+    local comboDrinks = kind == "water" and WaterAllowsComboDrinks(opts)
+    local function Strength(rec)
+        return (comboDrinks and tonumber(rec.mana)) or rec.effective
+    end
+    local candidates = { [best.itemID] = best }
+    local hasTie = false
+    if tier then
+        local bestTier, strength = tier(best), Strength(best)
+        for _, rec in ipairs(ladder or {}) do
+            if rec.itemID ~= best.itemID and tier(rec) == bestTier and Strength(rec) == strength then
+                candidates[rec.itemID] = rec
+                hasTie = true
+            end
+        end
+    end
+    if not live and not hasTie then
+        return best
+    end
+
+    local picked, smallest, pickedBag, pickedSlot
+    local function Consider(bag, slot, rec, count)
+        if not rec then return end
+        count = tonumber(count)
+        if not count or count <= 0 or (smallest and count > smallest) then return end
+        if count == smallest then
+            if rec ~= picked then
+                if picked == best or (rec ~= best and rec.itemID > picked.itemID) then return end
+            elseif bag > pickedBag or (bag == pickedBag and slot >= pickedSlot) then
+                return
+            end
+        end
+        picked, smallest, pickedBag, pickedSlot = rec, count, bag, slot
+    end
+
+    local flux = _G.Flux
+    local inventory = flux and flux.Inventory
+    if live then
+        local container = flux and flux.Container
+        local bags = inventory and inventory.Containers
+        if container and bags and bags.GetCarriedBagIDs then
+            for _, bag in ipairs(bags.GetCarriedBagIDs()) do
+                -- Blizzard's secure item parser accepts nonnegative bag IDs.
+                if bag >= 0 then
+                    for slot = 1, container.GetNumSlots(bag) do
+                        local info = container.GetItemInfo(bag, slot)
+                        if info and not info.isLocked then
+                            Consider(bag, slot, candidates[info.itemID], info.stackCount)
+                        end
+                    end
+                end
+            end
+        end
+    else
+        local snapshot = inventory and inventory.snapshots and inventory.snapshots.bags
+        for bag, slots in pairs(snapshot and snapshot.byBag or {}) do
+            if bag >= 0 then
+                for slot, info in pairs(slots) do
+                    Consider(bag, slot, candidates[info.itemID], info.count)
+                end
+            end
+        end
+    end
+    return picked or best, pickedBag, pickedSlot, hasTie and candidates or nil
+end
+
+local function GetButtonOwned(kind, opts, live)
+    local best, ladder = Bridge.GetBestOwned(kind, opts)
+    return PickUseStack(kind, best, ladder, opts, live)
+end
+
+--- Promote when tracked is empty, a better ID exists, or a use stack wins a tier tie.
 function Bridge.PromoteIfBetter(kind, trackedItemID, opts)
-    local best = Bridge.GetBestOwned(kind, opts)
+    local best, ladder = Bridge.GetBestOwned(kind, opts)
+    local choices
+    if opts and opts.preferSmallStacks then
+        local picked, bag, _, candidates = PickUseStack(kind, best, ladder, opts)
+        choices = candidates
+        if bag then
+            return picked.itemID, picked.count, choices
+        end
+    end
     trackedItemID = tonumber(trackedItemID)
     local B = Best()
     local Score = B and B.Score
@@ -862,18 +989,18 @@ function Bridge.PromoteIfBetter(kind, trackedItemID, opts)
         return nil, trackedItemID and BagCount(trackedItemID, opts and opts.charges) or 0
     end
     if not trackedItemID then
-        return best.itemID, best.count or 0
+        return best.itemID, best.count or 0, choices
     end
     local trackedCount = BagCount(trackedItemID, opts and opts.charges)
     if trackedCount <= 0 then
-        return best.itemID, best.count or 0
+        return best.itemID, best.count or 0, choices
     end
     -- Never keep a latched stack this character cannot use yet (level / skill).
     if Score and Score.IsBlockedForBest and Score.IsBlockedForBest(trackedItemID, kind) then
-        return best.itemID, best.count or 0
+        return best.itemID, best.count or 0, choices
     end
     if best.itemID == trackedItemID then
-        return trackedItemID, trackedCount
+        return trackedItemID, trackedCount, choices
     end
     local tracked = {
         itemID = trackedItemID,
@@ -895,14 +1022,14 @@ function Bridge.PromoteIfBetter(kind, trackedItemID, opts)
             tracked.kind = cls.kind or kind
             -- Recuperate off: combo food must leave the water button.
             if kind == "water" and not WaterAllowsComboDrinks(opts) and cls.kind == "food" then
-                return best.itemID, best.count or 0
+                return best.itemID, best.count or 0, choices
             end
         end
     end
     if Score and Score.IsBetter and Score.IsBetter(best, tracked, ScoreCompareOpts(kind, opts)) then
-        return best.itemID, best.count or 0
+        return best.itemID, best.count or 0, choices
     end
-    return trackedItemID, trackedCount
+    return trackedItemID, trackedCount, choices
 end
 
 function Bridge.CanCreate(kind)
@@ -2266,7 +2393,7 @@ function Bridge.CombatSwapTooltipKind(btn, homeKind)
 end
 
 local function SwapOwnedItemID(kind)
-    local best = Bridge.GetBestOwned(kind)
+    local best = GetButtonOwned(kind)
     local id = best and tonumber(best.itemID)
     if not id or best.uncertain then
         return nil
@@ -2586,7 +2713,7 @@ local function RefreshConsumableFaces()
             else
                 local showingRecup = spec.kind == "food"
                     and module.GetPreferRecuperate and module.GetPreferRecuperate()
-                local best = Bridge.GetBestOwned(spec.kind)
+                local best = GetButtonOwned(spec.kind)
                 local bestID = (best and not best.uncertain) and tonumber(best.itemID) or nil
                 local tracked = tonumber(module._trackedItemID)
                 local shown = tracked
@@ -2608,7 +2735,7 @@ local function RefreshConsumableFaces()
                 local swapSpec = SWAP_PARTNER[spec.kind]
                 local swapOn = swapSpec and Bridge.GetConsumableCombatSwap(swapSpec.setting)
                 if not need and not soft and swapOn then
-                    local partner = Bridge.GetBestOwned(swapSpec.partner)
+                    local partner = GetButtonOwned(swapSpec.partner)
                     local partnerID = (partner and not partner.uncertain) and tonumber(partner.itemID) or nil
                     local body = btn._fluxCombatSwapBody
                     if partnerID and (not body or not MacroHasItem(body, partnerID)) then
@@ -2814,6 +2941,50 @@ local function InCombat()
     return InCombatLockdown and InCombatLockdown()
 end
 
+local function WireFoodWaterUse(btn, kind)
+    local widget = btn.Widget
+    if not widget or not widget.HookScript then return end
+
+    local attr, original, temporary
+    widget:HookScript("PreClick", function(w, button, down)
+        -- Both grids use the existing press-only secure dispatch.
+        if not down or InCombat() or (button ~= "LeftButton" and button ~= "KeyBind")
+            or w._hasCursorItem or (CursorHasItem and CursorHasItem()) then return end
+
+        local useKind, attribute = kind, "item"
+        local body = btn._fluxCombatSwapBody
+        if body then
+            if not body:find("/use %[nocombat%] item:%d+") then return end
+            local swap = SWAP_PARTNER[kind]
+            useKind = swap.combatUsesPartner and kind or swap.partner
+            attribute = "macrotext"
+        elseif btn.ActionType ~= "item" then
+            return
+        end
+        if not IsFoodOrWater(useKind) or Bridge().ShouldHoldItemIdentity() then return end
+
+        local value = w:GetAttribute(attribute)
+        if not value or (body and value ~= body) then return end
+        local _, bag, slot = GetButtonOwned(useKind, nil, true)
+        if not bag or InCombat() or w:GetAttribute(attribute) ~= value then return end
+
+        local location = bag .. " " .. slot
+        attr, original = attribute, value
+        temporary = body and body:gsub("/use %[nocombat%] item:%d+", "/use [nocombat] " .. location, 1) or location
+        w:SetAttribute(attr, temporary)
+    end)
+    widget:HookScript("PostClick", function(w)
+        -- The bag address belongs to this dispatch only. Leave the persistent
+        -- item ID or swap macro available for painting and future combat clicks.
+        if attr and not InCombat() then
+            if w:GetAttribute(attr) == temporary then
+                w:SetAttribute(attr, original)
+            end
+            attr, original, temporary = nil, nil, nil
+        end
+    end)
+end
+
 --- Wire a consumable button module.
 --- opts: {
 ---   module, btn, kind, charges?,
@@ -2836,6 +3007,8 @@ function Refresh.Attach(opts)
     local btn = opts.btn
     local kind = opts.kind
     local charges = opts.charges == true
+    local preferSmallStacks = IsFoodOrWater(kind)
+    local selectionOpts = { charges = charges, preferSmallStacks = preferSmallStacks }
     local listenerKey = opts.listenerKey or ("EBS:" .. kind)
     local bindingName = opts.bindingName
     local wantsMiddleDelete = opts.middleClickDelete or opts.middleClickDeleteConjured
@@ -2858,6 +3031,9 @@ function Refresh.Attach(opts)
     Module._pendingUpdate = false
     Module._debounceGen = 0
     Module._bindingName = bindingName
+    if SWAP_PARTNER[kind] then
+        WireFoodWaterUse(btn, kind)
+    end
 
     local function AssertLocked()
         btn.ButtonLocked = true
@@ -3291,7 +3467,8 @@ function Refresh.Attach(opts)
         if not B then
             return
         end
-        local nextID, nextCount = B.PromoteIfBetter(kind, Module._trackedItemID or Module._latchItemID, { charges = charges })
+        local nextID, nextCount, stackChoices = B.PromoteIfBetter(kind, Module._trackedItemID or Module._latchItemID, selectionOpts)
+        Module._stackChoices = stackChoices
         -- Only bind when bags confirm a real count. If the promoted ID is 0,
         -- walk the owned ladder so another item of this kind can take the slot.
         local realNext = 0
@@ -3314,9 +3491,12 @@ function Refresh.Attach(opts)
         end
         if nextID and realNext > 0 then
             nextCount = realNext
-            local changed = force or nextID ~= Module._trackedItemID
-            if changed then
+            local changed = nextID ~= Module._trackedItemID
+            if force or changed then
                 BindItem(nextID, nextCount)
+                if changed and preferSmallStacks and B.GetConsumableCombatSwap and B.GetConsumableCombatSwap("potions") then
+                    B.QueueConsumableFaceRefresh()
+                end
             else
                 CommitLatch(nextID, nextCount)
                 ApplyCount(nextID, nextCount)
@@ -3507,7 +3687,17 @@ function Refresh.Attach(opts)
                     ScheduleCraftRefresh()
                 end
             end
-            if depleted or replenished or Module._pendingUpdate or (ctx and (ctx.force or ctx.recovery)) then
+            local stacksChanged = false
+            if Module._stackChoices and not btn.IsRecuperateMode then
+                local touched = ctx and (ctx.touchedItemIDs or changed)
+                for itemID in pairs(Module._stackChoices) do
+                    if not touched or touched[itemID] then
+                        stacksChanged = true
+                        break
+                    end
+                end
+            end
+            if depleted or replenished or stacksChanged or Module._pendingUpdate or (ctx and (ctx.force or ctx.recovery)) then
                 ScheduleUpdate(ctx and (ctx.force or ctx.recovery))
             end
             -- Newly owned/better items arrive through Best's batched publish.

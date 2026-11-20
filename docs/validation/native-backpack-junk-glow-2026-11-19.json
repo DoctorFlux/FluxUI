@@ -1,0 +1,221 @@
+{
+  "changeId": "LHO-NATIVE-BACKPACK-JUNK-GLOW-20261119",
+  "client": "Forever 1.60.1 / 70959 / 16001",
+  "target": {
+    "pid": 9012,
+    "hwnd": 3541714
+  },
+  "source": {
+    "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\texture-first-paint-20261119T025524Z",
+    "before": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 40,
+    "settingsContentsCopied": false,
+    "after": "7bb62e7834ab0c57f506b2a797e4b6fe71a0d471798541eed7a0cae0cd0ea217",
+    "installedHashMatches": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "syntax": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ]
+  },
+  "scope": "Native combined backpack with Syndicator loaded and Baganator temporarily disabled for the current character. Each matched capture follows a reload and includes two real opens and closes. No simulated result or item action.",
+  "measurement": {
+    "identification": "Read from each combined item button's GetRegions. The glow texture is file ID 130739, OVERLAY sublevel 6, ADD blend, about 67 by 67 on this client, centered on the item button. The fingerprint uses a size tolerance. Regions are inspected outside the timed ToggleAllBags call. Reagent and other individual windows are outside the region total.",
+    "originalObserver": {
+      "resultPNG": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag176-matrix-result.png",
+        "sha": "74c6998ad30384360d60afa31247133d4af28fa05fe0d05044a7c6d625607b97"
+      },
+      "submittedPNG": "004fefd39f40ece1daa43ab1d6a9cc8550d777840abe24044d8c30df71999594",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag176-textures-safe-20261119",
+        "controllerSHA": "cf247c1df44b0ec7891374f273cfa9854266b165e92715a4dc9c8a4e8485999a",
+        "packetSHA": "d0d0b25a73928c3671a171821405aaad9c2710ee7f02a6430c56424d5a28fc01",
+        "packets": 27,
+        "luaSHA": "d4535e4cd60135f84695ba647555617a838c423b3bc6c50318986a290e7887ad"
+      },
+      "coldOpenMs": 152.6447,
+      "warmOpenMs": 27.155,
+      "frameGapsMs": [
+        17,
+        162,
+        18,
+        38,
+        18
+      ],
+      "updateItemsMs": [
+        123.61,
+        11.39
+      ],
+      "result": "The initial predicate missed the textures. R181 identified the real regions after the two opens. R183 and R184 use the corrected predicate."
+    },
+    "identify": {
+      "resultPNG": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag181_a-submitted.png",
+        "sha": "c0fd8a1d1737ffe3a50effb29e8e9b2f3552d1914e7fa080ac18476bffcc7d25"
+      },
+      "submittedPNG": "c0fd8a1d1737ffe3a50effb29e8e9b2f3552d1914e7fa080ac18476bffcc7d25",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag181-texture-identify-20261119",
+        "controllerSHA": "bdab33d895cd542b2422926e50db34bd4d0a5994481367ce0297005dc739f2e6",
+        "packetSHA": "9a6e54b75634c0a01b860778448d4ff21276f98741ecdd3096ef7a54e058d8d3",
+        "packets": 9,
+        "luaSHA": "10dbbd45469497d51fe6b869eb329436d7df60b03d7e3d47a34cf0de1e2c5575"
+      },
+      "matchingAfterTwoOpens": 76,
+      "hiddenAfterTwoOpens": 76
+    },
+    "before": {
+      "resultPNG": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag183-matrix-result.png",
+        "sha": "aa7753621e64ca129509a043f636793caf31901469d3653f7888eed3e86c0f48"
+      },
+      "submittedPNG": "b784e448d2ccfeacec1b91c930bc593aa5c0efb354314985539fc49160cf2aab",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag183-textures-20261119",
+        "controllerSHA": "dfef5c19b1ab8cc12436d2071175c7736e990fa5a4052433321d2838f91d6996",
+        "packetSHA": "415569003b4c09dc2a02d92195acfc638f82e34e77d70b0d37558eb45a6c70a5",
+        "packets": 27,
+        "luaSHA": "562c1c67e03af4bd29267f26daa0aa87fc07a91b0cbd291e99a2ebf8ed5fb9cd"
+      },
+      "openMs": [
+        155.2313,
+        24.7363
+      ],
+      "closeMs": [
+        1.3767,
+        1.4063
+      ],
+      "updateItemsMs": [
+        125,
+        9.48
+      ],
+      "frameGapsMs": [
+        15,
+        164,
+        22,
+        36,
+        17
+      ],
+      "totalGlows": [
+        0,
+        76,
+        76
+      ],
+      "hiddenGlows": [
+        0,
+        76,
+        76
+      ],
+      "fallbackCoinRegions": [
+        0,
+        0,
+        0
+      ]
+    },
+    "after": {
+      "resultPNG": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag184-matrix-result.png",
+        "sha": "246b02545171ceb49d082186aed507604eac10fce3699d7a28e44d7a8daac7c8"
+      },
+      "submittedPNG": "e14060d7e1642410e53c0c1afe9f06a93b772b7098b99bd6ccc8263c9980583c",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag184-textures-20261119",
+        "controllerSHA": "7643e9a6f7bf836a5f15321d4d4800a4b397b1067ac4a74891373b5ba3c3a336",
+        "packetSHA": "2d5fe396246a7aa6d98f5456a88dc8367c4c551f4e3615a5c60f5d4511388741",
+        "packets": 27,
+        "luaSHA": "8264b99d79327c052b2e308b12472b6745a78736a59689b1a4f80f5ea5698126"
+      },
+      "openMs": [
+        157.9288,
+        27.6643
+      ],
+      "closeMs": [
+        1.4748,
+        1.4125
+      ],
+      "updateItemsMs": [
+        128.57,
+        12.6
+      ],
+      "frameGapsMs": [
+        17,
+        169,
+        18,
+        39,
+        23
+      ],
+      "totalGlows": [
+        0,
+        0,
+        0
+      ],
+      "hiddenGlows": [
+        0,
+        0,
+        0
+      ],
+      "fallbackCoinRegions": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "parity": {
+    "callsPerOpen": 112,
+    "positiveJunkVerdictsPerOpen": 0,
+    "slotOrderGeometrySignature": "76/156267093/430.0/489.0",
+    "luaErrors": 0,
+    "profile": "0",
+    "coinAndGlowSettingsEnabled": true,
+    "bagGenerationUnchangedWithinEachSample": true,
+    "closedStateRestored": true,
+    "observerMethodsRestored": true,
+    "remaining": "Verify first show and later hide with a real positive Junk item, including recycled and bank buttons. Native behavior outside Forever remains unverified."
+  },
+  "restoration": {
+    "resultPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag180_a-submitted.png",
+      "sha": "b296804daeb886882ae94eba11fb86268344d91f1d55cd628740d445dbe4f121"
+    },
+    "submittedPNG": "b296804daeb886882ae94eba11fb86268344d91f1d55cd628740d445dbe4f121",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag180-texture-restoration-20261119",
+      "controllerSHA": "2275368e78fd668c2b0bb30d4aca35486692f2f4176a84d33566f462dd36ec76",
+      "packetSHA": "614532f12d4f45fa1ea98a8b5187e07522f64bf551f9b537710ae33ef6bd64a7",
+      "packets": 9,
+      "luaSHA": "6489181c9abbc3700eb99b4d6525d17803e998b2f07e98d7c393d433b6cc8805"
+    },
+    "activeProvider": "syndicator",
+    "enableFlags": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "bothLoaded": true,
+    "keepalive": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/keepalive-p83-live20261119f-state.json",
+      "state": {
+        "status": "running",
+        "pid": 7200,
+        "pairs": 1,
+        "movementAcknowledged": false,
+        "nextDueInSeconds": 180,
+        "lastStatus": "injected-movement-unverified"
+      }
+    }
+  },
+  "conclusion": "76 avoidable hidden regions removed from the first combined backpack open. In the matched single pair, cold and warm timing and frame gaps were slightly worse. The allocation improvement is verified and the overall native hitch is open. Timing varies across reloads; the pair does not establish a timing regression attributable to the change.",
+  "next": "Use the pinned Forever UpdateItems order to time native container/quest metadata, the item quality and extended appearance calls, and cooldown/tooltip separately. Include FluxUI callbacks where reached. Continue real Pending, mail, bank, vendor, receive, craft and cast investigations independently."
+}

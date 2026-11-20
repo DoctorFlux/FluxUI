@@ -1,6 +1,6 @@
 -- FluxRespec_ActionBars.lua
--- Snapshot / restore Flux action-bar slots (Classic) and stance-bar order (all clients).
--- Retail/Forever talent loadouts own slots 1–120; Capture then only stores stance layout.
+-- Snapshot / restore Flux action-bar slots and stance-bar order on every client.
+-- Explicit saved slots are restored after talents, independently of native loadouts.
 
 local addonName, ns = ...
 
@@ -12,6 +12,7 @@ local Compat = R.Compat
 
 local NUM_COLUMNS = 19
 local NUM_NATIVE = 12
+local ValidEntry
 
 local function SlotMath()
     local flux = (ns and ns.Flux) or _G.Flux
@@ -47,20 +48,22 @@ local function InLockdown()
     return InCombatLockdown and InCombatLockdown()
 end
 
-local function MaxActionPage()
-    local n = tonumber(_G.NUM_ACTIONBAR_PAGES)
-    if type(n) == "number" and n > 0 then
-        return math.max(n, 10)
-    end
-    return 18
-end
-
 --- Unique Blizzard action slots Flux hosts (paged mains, static 13–19, SHIFT/CTRL minis).
 function ActionBars.CollectSlots()
     local set = {}
     local SM = SlotMath()
-    local maxPage = MaxActionPage()
-    for page = 1, maxPage do
+    local transient = {}
+    local api = _G.C_ActionBar
+    for _, name in ipairs({ "GetVehicleBarIndex", "GetOverrideBarIndex", "GetTempShapeshiftBarIndex", "GetExtraBarIndex" }) do
+        if api and api[name] then
+            local ok, page = pcall(api[name])
+            if ok and type(page) == "number" and page > 0 then transient[page] = true end
+        end
+    end
+    -- Shared MultiActionBars loads pages 13–15 on Retail/Forever/Classic.
+    -- Pages 11/12 and vehicle/override/temporary pages are not saved user bars.
+    for page = 1, 15 do
+        if (page <= 10 or page >= 13) and not transient[page] then
         for col = 1, NUM_NATIVE do
             local slot
             if SM and SM.MainSlot then
@@ -71,6 +74,7 @@ function ActionBars.CollectSlots()
             if type(slot) == "number" and slot > 0 then
                 set[slot] = true
             end
+        end
         end
     end
     for col = NUM_NATIVE + 1, NUM_COLUMNS do
@@ -123,9 +127,13 @@ local function CaptureSlot(slot)
     if not ok then
         return { empty = true }, false
     end
+    if _G.issecretvalue and (_G.issecretvalue(actionType) or _G.issecretvalue(id) or _G.issecretvalue(subType)) then
+        return nil, false
+    end
     if not actionType or actionType == "" then
         return { empty = true }, true
     end
+    if type(actionType) ~= "string" or id == nil then return nil, false end
     local entry = {
         type = actionType,
         id = id,
@@ -133,22 +141,29 @@ local function CaptureSlot(slot)
     }
     if actionType == "macro" then
         if GetMacroInfo and id then
-            local name, icon, body = GetMacroInfo(id)
+            local readOK, name, icon, body = pcall(GetMacroInfo, id)
+            if not readOK or not name then return nil, false end
             entry.name = name
             entry.icon = icon
             entry.body = body
         elseif GetActionText then
-            entry.name = GetActionText(slot)
+            local readOK, name = pcall(GetActionText, slot)
+            if not readOK then return nil, false end
+            entry.name = name
         end
     elseif actionType == "equipmentset" then
         if type(id) == "number" and C_EquipmentSet and C_EquipmentSet.GetEquipmentSetInfo then
-            local n = C_EquipmentSet.GetEquipmentSetInfo(id)
+            local readOK, n = pcall(C_EquipmentSet.GetEquipmentSetInfo, id)
+            if not readOK or not n then return nil, false end
             entry.name = n
         elseif GetActionText then
-            entry.name = GetActionText(slot)
+            local readOK, name = pcall(GetActionText, slot)
+            if not readOK then return nil, false end
+            entry.name = name
         end
     elseif GetActionText then
-        local text = GetActionText(slot)
+        local readOK, text = pcall(GetActionText, slot)
+        if not readOK then return nil, false end
         if type(text) == "string" and text ~= "" then
             entry.text = text
         end
@@ -167,12 +182,21 @@ local function EntriesMatch(a, b)
     if aEmpty or bEmpty then
         return false
     end
+    local aMount = a.type == "mount" or a.type == "summonmount"
+    local bMount = b.type == "mount" or b.type == "summonmount"
+    if aMount and bMount then return a.id == b.id end
     if a.type ~= b.type then
+        -- Placing a collected mount via its spell can expose either descriptor.
+        local mount, spell = aMount and a or bMount and b, a.type == "spell" and a or b.type == "spell" and b
+        if mount and spell and _G.C_MountJournal and _G.C_MountJournal.GetMountInfoByID then
+            local _, spellID = _G.C_MountJournal.GetMountInfoByID(mount.id)
+            return spellID ~= nil and spell.id == spellID
+        end
         return false
     end
     if a.type == "macro" then
         if a.name and b.name then
-            return a.name == b.name
+            return a.name == b.name and (not a.body or not b.body or a.body == b.body)
         end
         return a.id == b.id
     end
@@ -380,6 +404,7 @@ function ActionBars.ApplyStanceLayout(snap)
     if type(snap) ~= "table" then
         return false
     end
+    if snap.stanceSlotOrder == nil and snap.stanceHiddenSlots == nil and snap.stanceCustomSlots == nil then return true end
     local Stance = StanceMod()
     if not Stance then
         return false
@@ -407,7 +432,7 @@ function ActionBars.ApplyStanceLayout(snap)
             end
         end
     end
-    if Stance.SetSavedCustomSlots then
+    if snap.stanceCustomSlots ~= nil and Stance.SetSavedCustomSlots then
         local list = snap.stanceCustomSlots
         if type(list) ~= "table" then
             list = {}
@@ -421,13 +446,18 @@ function ActionBars.ApplyStanceLayout(snap)
 end
 
 function ActionBars.Capture()
-    local skipSlots = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
-    if skipSlots then
-        return ActionBars.CaptureStanceLayout()
-    end
+    if R.Apply and R.Apply.IsRunning and R.Apply.IsRunning() then return nil, "ACTION_BARS_APPLY_PENDING" end
+    if InLockdown() then return nil, "IN_COMBAT" end
+    if not GetCursorInfo then return nil, "ACTION_BARS_CURSOR_UNAVAILABLE" end
+    local cursorOK, cursorType = pcall(GetCursorInfo)
+    if not cursorOK then return nil, "ACTION_BARS_CURSOR_FAILED" end
+    if cursorType ~= nil then return nil, "ACTION_BARS_CURSOR_BUSY" end
     local slots = {}
     for _, slot in ipairs(SortedSlots(ActionBars.CollectSlots())) do
-        slots[slot] = CaptureSlot(slot)
+        local called, entry, readable = pcall(CaptureSlot, slot)
+        if not called or not readable then return nil, "ACTION_BARS_READ_FAILED" end
+        if not ValidEntry(entry) then return nil, "ACTION_BARS_UNSUPPORTED_ACTION" end
+        slots[slot] = entry
     end
     local stance = ActionBars.CaptureStanceLayout()
     return {
@@ -441,6 +471,148 @@ end
 local function Pickup(fn, ...)
     local called, result = pcall(fn, ...)
     return called and result ~= false
+end
+
+local function PositiveID(id)
+    return type(id) == "number" and id > 0 and id < math.huge and id == math.floor(id)
+end
+
+-- Missing/malformed entries are never shorthand for a saved empty slot.
+ValidEntry = function(entry)
+    if type(entry) ~= "table" then return false end
+    if entry.name ~= nil and type(entry.name) ~= "string" then return false end
+    if entry.body ~= nil and type(entry.body) ~= "string" then return false end
+    if entry.subType ~= nil and type(entry.subType) ~= "string" then return false end
+    if entry.empty == true then return entry.type == nil and entry.id == nil end
+    if entry.empty ~= nil and entry.empty ~= false then return false end
+    local t, id = entry.type, entry.id
+    if t == "summonpet" or t == "battlepet" then return type(id) == "string" and id ~= "" end
+    if t == "equipmentset" or t == "mount" or t == "summonmount" then return id == 0 or PositiveID(id) end
+    if t == "spell" or t == "item" or t == "macro" or t == "mount" or t == "companion" or t == "flyout" or t == "outfit" then
+        return PositiveID(id)
+    end
+    return false
+end
+
+local function ValidSnapshot(snap)
+    if type(snap) ~= "table" or (snap.slots ~= nil and type(snap.slots) ~= "table") then return false end
+    for _, key in ipairs({ "stanceSlotOrder", "stanceHiddenSlots", "stanceCustomSlots" }) do
+        if snap[key] ~= nil and type(snap[key]) ~= "table" then return false end
+    end
+    if snap.slots then
+        for slot, entry in pairs(snap.slots) do
+            -- Older snapshots included temporary pages through slot 216. Keep
+            -- those snapshots readable, but never restore their temporary slots.
+            if not PositiveID(slot) or slot > 216 or not ValidEntry(entry) then return false end
+        end
+    end
+    return true
+end
+
+local function CursorEmpty()
+    if not GetCursorInfo then return false end
+    local ok, kind = pcall(GetCursorInfo)
+    return ok and kind == nil
+end
+
+-- Resolve identities that Blizzard may renumber, without falling back to a
+-- reused numeric macro/equipment index when a saved name no longer exists.
+local function ResolveEntry(entry)
+    local out = CopyTable(entry)
+    if out.type == "macro" and out.name then
+        if not GetMacroIndexByName or not GetMacroInfo then return nil end
+        local function matches(id)
+            if not PositiveID(id) then return false end
+            local name, _, body = GetMacroInfo(id)
+            return name == out.name and (out.body == nil or body == out.body)
+        end
+        local id = matches(out.id) and out.id or GetMacroIndexByName(out.name)
+        if not matches(id) and _G.GetNumMacros then
+            local account, character = _G.GetNumMacros()
+            id = nil
+            for candidate = 1, account do
+                if matches(candidate) then id = candidate; break end
+            end
+            if not id then
+                local constants = _G.Constants and _G.Constants.MacroConsts
+                local base = constants and constants.MAX_ACCOUNT_MACROS or _G.MAX_ACCOUNT_MACROS or 120
+                for candidate = base + 1, base + character do
+                    if matches(candidate) then id = candidate; break end
+                end
+            end
+        end
+        if not matches(id) then return nil end
+        out.id = id
+    elseif out.type == "equipmentset" and out.name then
+        local api = _G.C_EquipmentSet
+        if not api or not api.GetEquipmentSetInfo then return nil end
+        local found
+        if api.GetEquipmentSetIDs then
+            for _, id in ipairs(api.GetEquipmentSetIDs() or {}) do
+                if api.GetEquipmentSetInfo(id) == out.name then found = id; break end
+            end
+        elseif api.GetEquipmentSetInfo(out.id) == out.name then
+            found = out.id
+        end
+        if found == nil then return nil end
+        out.id = found
+    elseif out.type == "flyout" then
+        local book = _G.C_SpellBook
+        local bank = _G.Enum and _G.Enum.SpellBookSpellBank and _G.Enum.SpellBookSpellBank.Player
+        if book and book.GetNumSpellBookSkillLines and book.GetSpellBookSkillLineInfo and book.GetSpellBookItemInfo and bank then
+            for tab = 1, book.GetNumSpellBookSkillLines() do
+                local info = book.GetSpellBookSkillLineInfo(tab)
+                if info then
+                    for slot = info.itemIndexOffset + 1, info.itemIndexOffset + info.numSpellBookItems do
+                        local item = book.GetSpellBookItemInfo(slot, bank)
+                        local flyout = _G.Enum.SpellBookItemType and _G.Enum.SpellBookItemType.Flyout
+                        if item and item.itemType == flyout and item.actionID == out.id then
+                            out.bookSlot, out.bookBank, out.modernBook = slot, bank, true
+                            return out
+                        end
+                    end
+                end
+            end
+        elseif _G.GetNumSpellTabs and _G.GetSpellTabInfo and _G.GetSpellBookItemInfo then
+            for tab = 1, _G.GetNumSpellTabs() do
+                local _, _, offset, count = _G.GetSpellTabInfo(tab)
+                for slot = offset + 1, offset + count do
+                    local kind, id = _G.GetSpellBookItemInfo(slot, _G.BOOKTYPE_SPELL or "spell")
+                    if kind == "FLYOUT" and id == out.id then
+                        out.bookSlot, out.bookBank = slot, _G.BOOKTYPE_SPELL or "spell"
+                        return out
+                    end
+                end
+            end
+        end
+        return nil
+    elseif (out.type == "mount" or out.type == "summonmount") and out.id == 0 then
+        -- Native journal uses Pickup(0) for the random-favorite mount action.
+        if not (_G.C_MountJournal and _G.C_MountJournal.Pickup) then return nil end
+    elseif (out.type == "mount" or out.type == "summonmount") and _G.C_MountJournal and _G.C_MountJournal.GetMountInfoByID then
+        local _, spellID = _G.C_MountJournal.GetMountInfoByID(out.id)
+        if not PositiveID(spellID) then return nil end
+        out.mountSpellID = spellID
+    end
+    return out
+end
+
+local function CursorMatches(entry)
+    if not GetCursorInfo then return false end
+    local ok, kind, id, subType, spellID = pcall(GetCursorInfo)
+    if not ok or not kind then return false end
+    if _G.issecretvalue and (_G.issecretvalue(kind) or _G.issecretvalue(id) or _G.issecretvalue(spellID)) then return false end
+    if entry.type == "spell" then
+        return kind == "spell" and spellID == entry.id
+    end
+    if entry.type == "summonpet" or entry.type == "battlepet" then
+        return (kind == "summonpet" or kind == "battlepet") and id == entry.id
+    end
+    if entry.type == "mount" or entry.type == "summonmount" then
+        if kind == "spell" then return spellID ~= nil and spellID == entry.mountSpellID end
+        return (kind == "mount" or kind == "summonmount") and id == entry.id
+    end
+    return kind == entry.type and id == entry.id
 end
 
 local function PickupForEntry(entry)
@@ -464,16 +636,6 @@ local function PickupForEntry(entry)
             return Pickup(_G.PickupItem, id)
         end
     elseif t == "macro" then
-        local name = entry.name
-        if name and _G.GetMacroIndexByName then
-            local idx = _G.GetMacroIndexByName(name)
-            if idx and idx > 0 and _G.PickupMacro then
-                return Pickup(_G.PickupMacro, idx)
-            end
-        end
-        if name and _G.PickupMacro then
-            return Pickup(_G.PickupMacro, name)
-        end
         if id and _G.PickupMacro then
             return Pickup(_G.PickupMacro, id)
         end
@@ -485,16 +647,27 @@ local function PickupForEntry(entry)
         if setID and C_EquipmentSet and C_EquipmentSet.PickupEquipmentSet then
             return Pickup(C_EquipmentSet.PickupEquipmentSet, setID)
         end
-    elseif t == "mount" and id then
-        if _G.C_MountJournal and _G.C_MountJournal.Pickup then
-            return Pickup(_G.C_MountJournal.Pickup, id)
+    elseif t == "outfit" and _G.C_TransmogOutfitInfo and _G.C_TransmogOutfitInfo.PickupOutfit then
+        return Pickup(_G.C_TransmogOutfitInfo.PickupOutfit, id)
+    elseif (t == "mount" or t == "summonmount") and id then
+        -- MountJournal.Pickup expects a filtered DISPLAY INDEX, not mountID.
+        if id == 0 and _G.C_MountJournal and _G.C_MountJournal.Pickup then
+            return Pickup(_G.C_MountJournal.Pickup, 0)
+        elseif entry.mountSpellID and _G.C_Spell and _G.C_Spell.PickupSpell then
+            return Pickup(_G.C_Spell.PickupSpell, entry.mountSpellID)
+        elseif entry.mountSpellID and _G.PickupSpell then
+            return Pickup(_G.PickupSpell, entry.mountSpellID)
         end
     elseif t == "companion" and id then
         if _G.PickupCompanion then
             return Pickup(_G.PickupCompanion, entry.subType or "MOUNT", id)
         end
-    elseif t == "flyout" and id and _G.PickupSpell then
-        return Pickup(_G.PickupSpell, id)
+    elseif t == "flyout" and entry.bookSlot then
+        if entry.modernBook and _G.C_SpellBook and _G.C_SpellBook.PickupSpellBookItem then
+            return Pickup(_G.C_SpellBook.PickupSpellBookItem, entry.bookSlot, entry.bookBank)
+        elseif _G.PickupSpellBookItem then
+            return Pickup(_G.PickupSpellBookItem, entry.bookSlot, entry.bookBank)
+        end
     elseif t == "summonpet" or t == "battlepet" then
         if _G.C_PetJournal and _G.C_PetJournal.PickupPet and id then
             return Pickup(_G.C_PetJournal.PickupPet, id)
@@ -506,14 +679,17 @@ end
 -- Slot APIs do not report completion through a return value. Check the public
 -- slot state after each operation instead of treating a successful pcall as a
 -- restored action. A partial restore is retryable through the load checkpoint.
-local function ClearSlot(slot)
+local function ClearSlot(slot, previous)
     if not PickupAction or not ClearCursor then
         return false, "ACTION_BARS_API_UNAVAILABLE"
     end
+    if not CursorEmpty() then return false, "ACTION_BARS_CURSOR_BUSY" end
     local ok = pcall(PickupAction, slot)
-    local cleared = pcall(ClearCursor)
-    if not ok or not cleared then return false, "ACTION_BARS_CLEAR_FAILED" end
     local live, readable = CaptureSlot(slot)
+    if not ok or not readable or not live.empty or not CursorMatches(previous) then return false, "ACTION_BARS_CLEAR_FAILED" end
+    if InLockdown() then return false, "ACTION_BARS_STATE_CHANGED" end
+    if not pcall(ClearCursor) then return false, "ACTION_BARS_CLEAR_FAILED" end
+    live, readable = CaptureSlot(slot)
     return readable and live.empty == true, "ACTION_BARS_CLEAR_FAILED"
 end
 
@@ -521,25 +697,37 @@ local function PlaceEntryOnSlot(slot, entry)
     local live, readable = CaptureSlot(slot)
     if not readable then return false, "ACTION_BARS_READ_FAILED" end
     if EntriesMatch(live, entry) then return true end
-    if not entry or entry.empty or not entry.type then
-        return ClearSlot(slot)
+    if entry.empty == true then
+        return ClearSlot(slot, live)
     end
     if not PlaceAction or not ClearCursor then
         return false, "ACTION_BARS_API_UNAVAILABLE"
     end
-    if (CursorHasItem and CursorHasItem()) or (GetCursorInfo and GetCursorInfo()) then
-        if not pcall(ClearCursor) then return false, "ACTION_BARS_CURSOR_FAILED" end
-    end
-    if not PickupForEntry(entry) then
-        pcall(ClearCursor)
+    if not CursorEmpty() then return false, "ACTION_BARS_CURSOR_BUSY" end
+    if InLockdown() then return false, "ACTION_BARS_STATE_CHANGED" end
+    local previous = live
+    if not PickupForEntry(entry) or not CursorMatches(entry) then
+        if not InLockdown() and CursorMatches(entry) then pcall(ClearCursor) end
         return false, "ACTION_BARS_PICKUP_FAILED"
     end
-    local placed = pcall(PlaceAction, slot)
-    local cleared = pcall(ClearCursor)
-    if not placed or not cleared then return false, "ACTION_BARS_PLACE_FAILED" end
     live, readable = CaptureSlot(slot)
-    if not readable or not EntriesMatch(live, entry) then
+    if InLockdown() or not readable or not EntriesMatch(live, previous) then
+        if not InLockdown() and CursorMatches(entry) then pcall(ClearCursor) end
+        return false, "ACTION_BARS_STATE_CHANGED"
+    end
+    local placed = pcall(PlaceAction, slot)
+    live, readable = CaptureSlot(slot)
+    if not placed or not readable or not EntriesMatch(live, entry) then
+        -- Do not discard a displaced live action when placement failed. A
+        -- successful placement is the only path allowed to clear that cursor.
         return false, "ACTION_BARS_VERIFY_FAILED"
+    end
+    if InLockdown() then return false, "ACTION_BARS_STATE_CHANGED" end
+    if not CursorEmpty() then
+        -- Placement may run callbacks. Only retire our selected/displaced
+        -- payload; a different cursor belongs to its new owner.
+        if not CursorMatches(previous) and not CursorMatches(entry) then return false, "ACTION_BARS_CURSOR_CHANGED" end
+        if not pcall(ClearCursor) then return false, "ACTION_BARS_CURSOR_FAILED" end
     end
     return true
 end
@@ -573,12 +761,27 @@ function ActionBars.CancelPendingApply(callback)
 end
 
 local function ApplyNow(snap)
-    local skipSlots = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
-    if not skipSlots and type(snap.slots) == "table" then
-        local order = SortedSlots(snap.slots)
+    if not ValidSnapshot(snap) then return false, "ACTION_BARS_INVALID_SNAPSHOT" end
+    if ActionBars.MatchesSnapshot(snap) then return true end
+    if type(snap.slots) == "table" then
+        local owned = ActionBars.CollectSlots()
+        local slots = {}
+        for slot, entry in pairs(snap.slots) do if owned[slot] then slots[slot] = entry end end
+        local order = SortedSlots(slots)
+        local entries = {}
+        -- Resolve and read the complete requested set before clearing any slot.
         for i = 1, #order do
             local slot = order[i]
-            local called, ok, reason = pcall(PlaceEntryOnSlot, slot, snap.slots[slot])
+            local live, readable = CaptureSlot(slot)
+            if not readable then return false, "ACTION_BARS_READ_FAILED" end
+            local entry = ResolveEntry(snap.slots[slot])
+            if not entry then return false, "ACTION_BARS_IDENTITY_UNAVAILABLE" end
+            entries[slot] = entry
+            if not EntriesMatch(live, entry) and not CursorEmpty() then return false, "ACTION_BARS_CURSOR_BUSY" end
+        end
+        for i = 1, #order do
+            local slot = order[i]
+            local called, ok, reason = pcall(PlaceEntryOnSlot, slot, entries[slot])
             if not called then return false, "ACTION_BARS_SLOT_FAILED" end
             if not ok then return false, reason end
         end
@@ -589,13 +792,14 @@ local function ApplyNow(snap)
 end
 
 local function RunRequest(request)
-    local ok, reason = ApplyNow(request.snapshot)
+    local called, ok, reason = pcall(ApplyNow, request.snapshot)
+    if not called then ok, reason = false, "ACTION_BARS_READ_FAILED" end
     Complete(request, ok, reason)
     return ok, reason
 end
 
 function ActionBars.Apply(snap, callback)
-    if type(snap) ~= "table" then
+    if not ValidSnapshot(snap) then
         if callback then callback(false, "ACTION_BARS_INVALID_SNAPSHOT") end
         return false, "ACTION_BARS_INVALID_SNAPSHOT"
     end
@@ -638,23 +842,26 @@ function ActionBars.MatchesSnapshot(snap)
     if type(snap) ~= "table" then
         return true
     end
-    local skipSlots = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
-    if not skipSlots and type(snap.slots) == "table" then
+    if not ValidSnapshot(snap) then return false end
+    if type(snap.slots) == "table" then
+        local owned = ActionBars.CollectSlots()
         for slot, want in pairs(snap.slots) do
+            if owned[slot] then
             local live, readable = CaptureSlot(slot)
             if not readable or not EntriesMatch(live, want) then
                 return false
             end
+            end
         end
     end
     local liveStance = ActionBars.CaptureStanceLayout()
-    if not StanceMapsEqual(liveStance.stanceSlotOrder, snap.stanceSlotOrder) then
+    if snap.stanceSlotOrder ~= nil and not StanceMapsEqual(liveStance.stanceSlotOrder, snap.stanceSlotOrder) then
         return false
     end
-    if not StanceMapsEqual(liveStance.stanceHiddenSlots, snap.stanceHiddenSlots) then
+    if snap.stanceHiddenSlots ~= nil and not StanceMapsEqual(liveStance.stanceHiddenSlots, snap.stanceHiddenSlots) then
         return false
     end
-    if not CustomListsEqual(liveStance.stanceCustomSlots, snap.stanceCustomSlots) then
+    if snap.stanceCustomSlots ~= nil and not CustomListsEqual(liveStance.stanceCustomSlots, snap.stanceCustomSlots) then
         return false
     end
     return true

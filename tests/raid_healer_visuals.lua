@@ -454,6 +454,27 @@ visuals.ApplyRaidFrameTunables({ auraTransparency=100})
 check(upperLeft._fluxTrimLayer.parent==upperLeft and upperLeft._fluxNativeBronze.top.alpha==1 and visuals.AURA_ICON_ALPHA==0,
     "aura transparency and range fade cannot erase the textured grid border")
 local beforeJoinedMutation,beforePoints=mutations,#upperLeft.points
+local topWrites=0
+local topTrim=upperLeft._fluxNativeBronze.top
+topTrim.SetShown=function(self,value) topWrites=topWrites+1;methods.SetShown(self,value) end
+local currentEdges=upperLeft._fluxJoinedEdges
+for _=1,20 do nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges,true) end
+check(topWrites==0,"matching joined border does not rewrite texture visibility")
+upperLeft.powerBarUsedHeight=0
+nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges,true)
+check(topWrites==1 and not upperLeft._fluxNativeBronze.power.shown,"power divider changes invalidate retained visibility")
+upperLeft.powerBarUsedHeight=8
+nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges,true)
+check(topWrites==2 and upperLeft._fluxNativeBronze.power.shown,"power divider returns after its state changes")
+topTrim:Hide()
+nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges)
+check(topWrites==3 and topTrim.shown,"explicit chrome refresh still reapplies matching trim")
+local savedLines=upperLeft._fluxJoinedLines
+upperLeft._fluxJoinedLines=nil
+check(not nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges,true),"unprepared lines are not cached as drawn")
+upperLeft._fluxJoinedLines=savedLines
+nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,currentEdges,true)
+check(topWrites==4 and topTrim.shown,"newly available border lines draw even with the same adjacency")
 combat=true
 nativeEnv.FluxRaidVisuals.SetJoinedEdges(upperLeft,{exteriorTop=false,exteriorLeft=false,bottom=true,right=true})
 check(mutations==beforeJoinedMutation and #upperLeft.points==beforePoints and upperLeft._fluxNativeBronze.bottom.shown

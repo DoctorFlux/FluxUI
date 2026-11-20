@@ -66,7 +66,7 @@ local production = slice(source, "local HORIZ_MERGE_GROUPS_PRIMARY", "--- Worst-
 local before = replaceSection(production, "local function _ApplyMergeCascadeUntilFit", "local function _ApplyMergeCascadeUntilRowCount", oldMerge)
 before = replaceSection(before, "    local function _RunHorizontalMergePipeline", "    local prev = nil", oldPipeline)
 
-local function run(code, keys, width, fontSize, revision, metrics)
+local function run(code, keys, width, fontSize, revision, metrics, repeatWidths)
     local count = { font = 0, text = 0, width = 0, bind = 0, getters = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
     local active, pool = {}, {}
@@ -134,7 +134,26 @@ local function run(code, keys, width, fontSize, revision, metrics)
     end
     env._ClearInfoFrameEntryTooltip = function(fs) fs.tooltip = nil end
     local apply = assert(load(code .. "\nreturn ApplyHorizontalStripTextLayoutDynamic", "@production-info-layout", "t", env))()
-    apply(fontSize, 6, 8)
+    local heap
+    if repeatWidths then
+        collectgarbage("collect")
+        collectgarbage("stop")
+        heap = collectgarbage("count")
+    end
+    local started = os.clock()
+    if repeatWidths then
+        for _, nextWidth in ipairs(repeatWidths) do
+            width = nextWidth
+            apply(fontSize, 6, 8)
+        end
+    else
+        apply(fontSize, 6, 8)
+    end
+    local elapsed = (os.clock() - started) * 1000
+    if heap then
+        heap = collectgarbage("count") - heap
+        collectgarbage("restart")
+    end
     local snapshot = {}
     for i, fs in ipairs(pool) do
         snapshot[i] = { shown = fs.shown }
@@ -143,7 +162,7 @@ local function run(code, keys, width, fontSize, revision, metrics)
             snapshot[i].anchors, snapshot[i].tooltip, snapshot[i].spacing = fs.anchors, fs.tooltip, fs.spacing
         end
     end
-    return snapshot, count
+    return snapshot, count, elapsed, heap
 end
 local function equal(a, b)
     if type(a) ~= type(b) then return false end
@@ -188,7 +207,7 @@ print(string.format("idle info layout: width/font/text native calls per fitting3
     old.width, old.font, old.text, new.width, new.font, new.text))
 if arg[1] ~= "--baseline" then
     check(old.width == 18 and old.font == 21 and old.text == 21, "retained production control reproduces baseline")
-    check(new.width == 6 and new.font == 9 and new.text == 9, "candidate measures each changed list once")
+    check(new.width == 3 and new.font == 6 and new.text == 6, "candidate measures each changed list once")
     local mutations = {
         { "stale merge width", function(value)
             return replace(value, '            width = _MeasureRL(out, fontSize)', '            width = width')
@@ -198,12 +217,13 @@ if arg[1] ~= "--baseline" then
                 '            useFont = useFont - 1')
         end },
         { "stale hybrid width", function(value)
-            return replace(value, '    local width = _MeasureRL(rl, useFont)', '    local width = 0')
+            return replace(value, '    if not sameText then width = _MeasureRL(rl, useFont) end',
+                '    if not sameText then width = 0 end')
         end },
         { "removed emergency merge", function(value)
-            local line = 'rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)'
-            value = replace(value, line, 'rl = rl')
-            return replace(value, line, 'rl = rl')
+            local line = '_ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)'
+            value = replace(value, 'rl, width = '..line, 'rl, width = rl, width')
+            return replace(value, 'rl = '..line, 'rl = rl')
         end },
     }
     for _, mutation in ipairs(mutations) do
@@ -213,11 +233,40 @@ if arg[1] ~= "--baseline" then
     end
     local _, redundant = run(before, keys, 2000, 10)
     local ok, err = pcall(function()
-        assert(redundant.width == 6 and redundant.font == 9 and redundant.text == 9,
+        assert(redundant.width == 3 and redundant.font == 6 and redundant.text == 6,
             "candidate measures each changed list once")
     end)
     check(not ok and tostring(err):find("candidate measures each changed list once", 1, true),
         "old repeated measurements fail the native-call budget")
     print("idle info layout: " .. (#mutations + 1) .. " behavioral mutations rejected")
+end
+local checkpoint = os.getenv("FLUX_INFO_MEASURE_CHECKPOINT")
+if checkpoint then
+    local baseline = assert(io.open(checkpoint .. "/StatusBars-FluxInfoFrame.lua", "rb"))
+    local exact = slice(baseline:read("*a"):gsub("\r\n", "\n"), "local HORIZ_MERGE_GROUPS_PRIMARY",
+        "--- Worst-case horizontal cluster width")
+    baseline:close()
+    local benchmark = os.getenv("FLUX_INFO_MEASURE_TIMING") == "1"
+    for _, case in ipairs({
+        {"system", {"fps", "ping"}, 130, 170},
+        {"dense", cases[3], 140, 820},
+        {"hybrid", cases[5], 186, 268},
+    }) do
+        local widthChanges = {}
+        for i = 1, benchmark and 600 or 60 do widthChanges[i] = i%2 == 1 and case[3] or case[4] end
+        for trial = 1, benchmark and 5 or 1 do
+            local expected, old, oldMs, oldHeap
+            if trial%2 == 1 then expected, old, oldMs, oldHeap = run(exact, case[2], 0, 10, "123", .65, widthChanges) end
+            local actual, current, currentMs, currentHeap = run(production, case[2], 0, 10, "123", .65, widthChanges)
+            if trial%2 == 0 then expected, old, oldMs, oldHeap = run(exact, case[2], 0, 10, "123", .65, widthChanges) end
+            check(equal(expected, actual), "exact-source width changes keep the same text, anchors and tooltip")
+            print(("INFO_WIDTH profile=%s trial=%d changes=%d widths=%d/%d fonts=%d/%d texts=%d/%d ms=%.3f/%.3f kib=%.2f/%.2f")
+                :format(case[1], trial, #widthChanges, old.width, current.width, old.font, current.font,
+                    old.text, current.text, oldMs, currentMs, oldHeap, currentHeap))
+            check(old.getters == current.getters and current.width <= old.width and current.font <= old.font
+                and current.text <= old.text, "exact-source width changes retain providers and never add measurements")
+            if case[1]=="system" then check(current.width==old.width/2, "fitting system text measures once per width") end
+        end
+    end
 end
 print("idle info layout: " .. checks .. " comparisons passed")

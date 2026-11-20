@@ -60,7 +60,7 @@ local function fixture(branch, capabilities)
     function methods:GetHeight() return self.height end
     function methods:GetLeft() return 0 end
     function methods:GetRight() return self.width end
-    function methods:ClearAllPoints() self.points = {} end
+    function methods:ClearAllPoints() self.points = {}; self.allPoints = nil end
     function methods:SetPoint(...) spriteWrite(self);state.work.positions=state.work.positions+1;self.points[#self.points+1] = {...} end
     function methods:SetAllPoints(target) self.allPoints = target end
     function methods:EnableMouse(value) self.mouse = value end
@@ -363,13 +363,13 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary","cl
             local before=bar.TimerBar.manualWrites
             ns.CastBarThemes.Finish(bar)
             check(professionFill(s,bar)==fill and source:GetAlpha()==0 and bar.TimerBar.manualWrites==before,
-                branch.." completion retains art under existing fade and timing")
+                branch.." theme finish retains art under existing fade and timing")
             local completionFlare
             for _,tex in ipairs(s.textures) do
                 if tex.atlas=="Skillbar_Flare_"..kit and tex:IsVisible() then completionFlare=tex end
             end
             check(completionFlare and math.abs(completionFlare:GetAlpha()-.6)<.00001,
-                branch.." soft skill-up flare remains through completion hold/fade")
+                branch.." native-owner theme finish keeps its skill-up flare")
             bar:Hide()
             check(source:GetAlpha()==1 and not group.playing and not fill:IsVisible() and not completionFlare:IsVisible(),
                 branch.." hiding stops animation and restores fill")
@@ -1156,6 +1156,21 @@ end
 
 -- Start each school with a fresh particle pool. Animating only Fire first can
 -- hide uninitialized fields that other emitters inherit from reused flames.
+-- Solve ordinary public native anchors independently of the clip implementation.
+local schoolCorners={TOPLEFT={0,1},TOPRIGHT={1,1},BOTTOMLEFT={0,0},BOTTOMRIGHT={1,0},LEFT={0,.5},RIGHT={1,.5},TOP={.5,1},BOTTOM={.5,0},CENTER={.5,.5}}
+local function schoolRect(o,seen)
+    seen=seen or {};assert(not seen[o],"school anchor cycle");seen[o]=true
+    local x,y,w,h=0,0,o.width,o.height
+    if o.allPoints then x,y,w,h=schoolRect(o.allPoints,seen)
+    elseif o.points and o.points[1] then
+        local function target(p)local a,b,c,d=schoolRect(p[2]or o.parent,seen);local k=schoolCorners[p[3]or p[1]];return a+k[1]*c+(p[4]or 0),b+k[2]*d+(p[5]or 0)end
+        local p=o.points[1];local ax,ay=target(p);local a=schoolCorners[p[1]];local q=o.points[2]
+        if q then local bx,by=target(q);local b=schoolCorners[q[1]];if b[1]~=a[1]then w=(bx-ax)/(b[1]-a[1])end;if b[2]~=a[2]then h=(by-ay)/(b[2]-a[2])end end
+        x,y=ax-a[1]*w,ay-a[2]*h
+    end
+    seen[o]=nil;return x,y,w,h
+end
+local function schoolNear(a,b)return math.abs(a-b)<1e-7 end
 for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","classic"}) do
     for _, school in ipairs({
         {"arcane",5143}, {"shadow",686}, {"holy",2061}, {"nature",5176},
@@ -1231,14 +1246,28 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
     check(#fx.ThemeForMask(80).components==2 and fx.ThemeForMask(1)==nil,"all hybrid components / physical fallback")
     check(fx.ThemeForMask(72).components[1].dark[1]==0.43 and fx.ThemeForMask(72).components[2].dark[1]==0.10,"hybrid colors retain their base palettes")
     local player=s.NewBar("player"); local target=s.NewBar("target"); local focus=s.NewBar("focus"); local pet=s.NewBar("pet")
+    local owner=player:GetParent();owner.outerBorderPadding=36;owner.outerBorderAlignment="BOTTOM"
+    owner.outerBorderFrame=e.CreateFrame("Frame",nil,owner);owner.outerBorderFrame:SetSize(300,124)
+    owner.atlasBorderFrame=e.CreateFrame("Frame",nil,owner);owner.atlasBorderFrame:SetSize(300,88)
+    ns.Border.GetJoinTracks=function()return {Top=8,Bottom=8,Right=9.5}end
+    ns.Border.GetSideTrackOffset=function(_,side,pad)assert(side=="Right"and pad==2);return -pad+7-16+9.5 end
+    player:UpdateLayout()
     local function reset() for _,bar in ipairs({player,target,focus,pet}) do bar:Hide() end end
     s.Cast("player",133)
     check(player:GetStatusBarTexture():GetAlpha()==0 and s.claimed>0, "themed fill / swing slot claim")
     local playerVisual=getVisuals(fx)[player]
     check(playerVisual.fill.parent==player.TimerBar,
         branch.." school fill shares the actual unit-frame progress bar")
-    check(playerVisual.backdrop.parent==player and not playerVisual.backdropHost,
-        branch.." unit-frame school artwork keeps its existing parent")
+    check(playerVisual.backdrop.parent==player.FillEffectHost and playerVisual.halo.parent==player.FillEffectHost
+        and player.FillEffectHost.parent==player.FillEffectClip and player.FillEffectClip.clipped
+        and not playerVisual.backdropHost,
+        branch.." unit-frame school glow and backdrop retain the prepared owned clip")
+    local cx,cy,cw,ch=schoolRect(player.FillEffectClip);local fillX,fillY,fillWidth,fillHeight=schoolRect(player.TimerBar)
+    local _,by,_,bh=schoolRect(player.BorderFrame);local ix,_,iw=schoolRect(player.IconFrame)
+    check(schoolNear(cx,ix+iw-11+9.5)and schoolNear(cy,by+11-8)and schoolNear(cy+ch,by+bh+4-8),
+        branch.." clip follows actual icon-right and header-core geometry")
+    check(schoolNear(cx+cw,fillX+fillWidth)and schoolNear(ch,fillHeight+4)and cx>fillX,
+        branch.." glow reaches the former vertical guard bands while excluding native fill underlap into the icon")
     check(player.Spark.color[1]==playerVisual.theme.bright[1]
         and player.Spark.color[2]==playerVisual.theme.bright[2]
         and player.Spark.color[3]==playerVisual.theme.bright[3],
@@ -1287,7 +1316,9 @@ for _, branch in ipairs({"live","forever","classic_era","classic_anniversary","c
     check(player._fluxSchoolCast==nil and player:GetStatusBarTexture():GetAlpha()==1,"interrupt restores default red feedback")
     s.Cast("player",133)
     s.Event(player,"UNIT_SPELLCAST_STOP","player","cast-1",133)
-    check(player._fluxSchoolCast and player._fluxSchoolCast.finished and player:GetStatusBarTexture():GetAlpha()==0,"successful hold remains themed")
+    check(player._fluxSchoolCast==nil and player:GetStatusBarTexture():GetAlpha()==1
+        and player.TimerBar.color[1]==.12 and player.TimerBar.color[2]==.86 and player.TimerBar.color[3]==.15,
+        "successful unit hold releases school effects and shows green")
     s.Cast("player",133)
     ns.CastBar.StartCustomTimer(player,{duration=5,kind="flight"})
     check(player._fluxSchoolCast==nil and player.customTimer and player:GetStatusBarTexture():GetAlpha()==1,"flight timer clears school")
@@ -1368,6 +1399,8 @@ for _,branch in ipairs({"live","forever","classic_era","classic_anniversary"}) d
     fx.Begin(proxy,"nameplate1",133,"Boule de feu",false,nil,true)
     local v=getVisuals(fx)[proxy]
     check(v and v.theme and v.fill.parent==native,branch.." nameplate paints native bar with shared theme")
+    check(v.halo.parent==proxy and not proxy.FillEffectHost,
+        branch.." nameplate halo retains its original proxy owner and layer while unit rows clip their own school backdrops")
     check(v.backdropHost and v.backdrop.parent==v.backdropHost
         and v.backdropHost:GetParent()==proxy:GetParent()
         and v.backdropHost:GetFrameLevel()==proxy:GetParent():GetFrameLevel()

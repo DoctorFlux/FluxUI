@@ -2598,7 +2598,7 @@ local function BuildMainFrame()
     rows.bars = MakeRow(scrollChild, 22)
     rows.bars.icon:SetTexture(ACTION_BARS_CATEGORY_ICON)
     rows.bars.label:SetText("Action Bars:")
-    -- Retail: Blizzard owns action slots; row still shows Flux stance bar layout.
+    -- Saved native slots and Flux stance layout share this row on every client.
 
     rows.infoFrame = MakeRow(scrollChild, 22)
     rows.infoFrame.icon:SetTexture("Interface\\Icons\\INV_Misc_Note_01")
@@ -3132,7 +3132,13 @@ do
         pcall(function() UI._liveFrame:RegisterEvent("GET_ITEM_INFO_RECEIVED") end)
         pcall(function() UI._liveFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED") end)
         pcall(function() UI._liveFrame:RegisterEvent("TRAIT_CONFIG_UPDATED") end)
-        UI._liveFrame:SetScript("OnEvent", scheduleRefresh)
+        UI._liveFrame:SetScript("OnEvent", function(self, event, unit, ...)
+            if event == "PLAYER_SPECIALIZATION_CHANGED" then
+                local sharedEvents = _G.Flux and _G.Flux.Events
+                if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(unit) then return end
+            end
+            scheduleRefresh(self, event, unit, ...)
+        end)
     end
     if not UI._equipFrame then
         UI._equipFrame = CreateFrame("Frame")

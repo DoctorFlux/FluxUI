@@ -147,5 +147,38 @@ do
     check(not e.FluxBaganatorCompat._junkInitialized, "absent optional Baganator does not initialize")
 end
 
+do
+    local config = {
+        junk_plugin = "fluxui",
+        category_display_order = { "default_questitem" },
+        category_sections = {},
+    }
+    local t = boot(config)
+    local e, compat = t.env, t.compat
+    local reasons = e.Baganator.Constants.RefreshReason
+    local layouts = 0
+    reasons.Layout = nil
+    e.Baganator.API.RequestLayoutUpdate = function() layouts = layouts + 1 end
+    e.FluxNCConsumables = {
+        GetData = function() return { presets = { default = { items = { 42 } } } } end,
+    }
+    assert(loadfile("BaganatorCompat/FluxBaganator_ConsumablesCategories.lua", "t", e))()
+    assert(loadfile("BaganatorCompat/FluxBaganator_EquipmentSetSection.lua", "t", e))()
+    check(compat.SyncConsumablesCategories(), "consumable category contents publish before refresh")
+    check(compat.EnsureEquipmentSetSection(), "equipment set section publishes before refresh")
+    check(not compat.SyncConsumablesCategories() and not compat.EnsureEquipmentSetSection(),
+        "unchanged categories require no new refresh")
+    check(#t.refreshes == 2 and layouts == 0, "each category change requests one refresh without a separate layout")
+    for _, request in ipairs(t.refreshes) do
+        check(#request == 2 and request[1] == reasons.ItemWidgets and request[2] == reasons.Searches,
+            "supported requests use only the published widget and search reasons")
+    end
+    reasons.Searches = nil
+    config.category_display_order = { "default_questitem" }
+    config.category_sections = {}
+    check(compat.EnsureEquipmentSetSection() and layouts == 1 and #t.refreshes == 3,
+        "older provider without a search reason uses the previous layout fallback")
+end
+
 print(("Baganator junk detector: %d checks, %d failures; native icons/categories pending"):format(checks, failures))
 if failures > 0 then os.exit(1) end

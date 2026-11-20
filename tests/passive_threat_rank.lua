@@ -6,7 +6,7 @@ local function read(p) local f=assert(io.open(p,'rb'));local s=f:read('*a'):gsub
 local current=read(source)
 local old
 if baseline then old=read(baseline) else
- local a=assert(current:find('function Threat.GetPlayerRank(targetUnit)',1,true));local b=assert(current:find('\nlocal function ForeverMeterRow',a,true))
+ local a=assert(current:find('function Threat.GetPlayerRank(',1,true));local b=assert(current:find('\nlocal function ForeverMeterRow',a,true))
  old=current:sub(1,a-1)..read('tests/fixtures/passive_threat_rank_before.txt')..current:sub(b)
 end
 local checks=0
@@ -44,7 +44,7 @@ local function boot(body,group,pets,mode,sample)
  end end
  local ns={Flux={Client={isForever=true},Secrets={IsSecretValue=function(v) return rawequal(v,opaque) end,CanAccessValue=function(v) return not rawequal(v,opaque) end}}}
  assert(load(body,'@rank-production','t',env))('_FluxUI',ns)
- return ns.Flux.Threat,counts
+ return ns.Flux.Threat,counts,env
 end
 for _,group in ipairs({1,5,40}) do for _,pets in ipairs({false,true}) do
  for _,mode in ipairs({'public','missing','failed','secret','mixed'}) do for sample=1,55 do
@@ -69,6 +69,41 @@ do
  check(threat.SetRankPercentText(fs,2,50)==false,'failed text sinks report failure to invalidate output cache')
  failed=false
  check(threat.SetRankPercentText(fs,2,50)==true,'recovered text sink reports successful retry')
+end
+for _,mode in ipairs({'public','failed','secret','mixed'}) do
+ local direct, directReads=boot(current,40,true,mode,2)
+ local batched, batchedReads=boot(current,40,true,mode,2)
+ local batch={}
+ for _=1,12 do
+  check(direct.GetPlayerRank('target')==batched.GetPlayerRankForNameplateBatch('target',batch),
+   'rank stays per target when group identity reads are shared')
+ end
+ check(directReads.detailed==batchedReads.detailed,'a non-tank batch retains every target-specific detail sample')
+ if mode=='public' then
+  check(batchedReads.guid*12==directReads.guid,'only the first public group identity read remains')
+ elseif mode=='mixed' then
+  check(batchedReads.guid<directReads.guid and batchedReads.guid>directReads.guid/12,'private pet identities remain fresh')
+ else
+  check(batchedReads.guid==directReads.guid,'unusable identities use fresh guarded reads')
+ end
+end
+do
+ local threat,reads,env=boot(current,40,true,'public',9)
+ check(threat.GetPlayerRank('target')==1 and reads.detailed==1,
+  'a sampled tanking player already has rank one')
+ local batch={}
+ threat.GetPlayerRankForNameplateBatch('target',batch)
+ local old=env.UnitGUID
+ env.UnitGUID=function(unit) return unit=='player' and 'replacement-player' or old(unit) end
+ threat.GetPlayerRankForNameplateBatch('target',batch)
+ check(batch.threatRankGUIDs.player=='replacement-player','a changed GUID provider starts a fresh batch sample')
+ local external=0
+ threat.GetPlayerRank=function(unit,...)
+  check(unit=='target' and select('#',...)==0,'replaced rank provider keeps the original call signature')
+  external=external+1
+  return 3
+ end
+ check(threat.GetPlayerRankForNameplateBatch('target',batch)==3 and external==1,'batch uses an externally replaced rank method')
 end
 if output then local f=assert(io.open(output,'wb'));f:write('checks=',checks,'\n');for _,r in ipairs(rows) do for _,phase in ipairs({'before','after'}) do for k,v in pairs(r[phase]) do f:write(tostring(r.pets),' ',phase,' ',k,'=',v,'\n') end end end;f:close() end
 print('PASS threat rank: '..checks..' actual-code checks; native secret permissions/FPS not measured')

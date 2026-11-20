@@ -1,0 +1,46 @@
+{
+  "recordedUTC": "2026-11-17T13:13:00.750342+00:00",
+  "goalStatus": "paused-by-user",
+  "sourceFiles": {
+    "Inventory/FluxConsumableClassify.lua": "ad0cd9a84d9464fcc558ad9b72d6a142b76653ae01551cdff4653254ce491e54",
+    "Inventory/Index.lua": "d2a7834344eb8aae785b810a8d7bb10ec3668e85a3541d4759d55536df3efac1",
+    "Inventory/Craft.lua": "819e5b69041ce82e18b4a2c2b281ccc3d96452c3dc099af5c5fb3562a2bbb10a",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d"
+  },
+  "sourceSnapshot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pause-cleanup-20261117\\source-after",
+  "pauseRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pause-cleanup-20261117\\pause-state.json",
+  "pauseRecordSHA256": "953816a79078cea7d45a2ba14e7ffb60d6b3a5f8ecdbaeb1d5aa4c6d13fa7bc5",
+  "sourceEdits": [
+    "Prebuild private health/mana tooltip patterns.",
+    "Hoist two full inventory-query workers; keep fresh rows.",
+    "Hoist eligible First Aid profession fallback worker.",
+    "Hoist state-free commodity price comparator.",
+    "Hoist three state-free inventory tooltip comparators.",
+    "Hoist two protected spell-reagent tooltip workers; keep protected method lookups and fresh per-call state."
+  ],
+  "syntaxOnly": {
+    "files": 6,
+    "compiles": 12,
+    "lua51": "PASS",
+    "lua54": "PASS",
+    "chunksExecuted": false
+  },
+  "simulationStatus": "Stopped/cancelled at user request; no new simulation or benchmark is authorized by continue alone.",
+  "reload": "COMPLETED_AND_CORROBORATED",
+  "reloadUTC": "2026-11-17T13:05:16Z",
+  "temporaryCodeCleared": true,
+  "allOwnNativeInputAndJumpHostsStopped": true,
+  "cancelAndJumpStopSHA256": "f0c0c00e86a21f89c846ee2e1080ec2601c6d475a428f46eaf8a8407824a0099",
+  "nativeBehaviorPerformanceClientAcceptance": "PENDING",
+  "resumeNext": [
+    "Read current continuity and preserve any newer user edits before comparing the six recorded source hashes.",
+    "Continue direct Inventory/ExtraButtonSystem Lua optimization; simulations remain disabled.",
+    "Finish late auction/tooltip/spell-reagent source-review/ledger entries from preserved receipts; no automatic new test batches.",
+    "Clear only exact-owned pause controls on explicit continue; verify desktop client identity and foreign ownership before any input.",
+    "Client has reloaded; temporary diagnostic/jump code must be newly installed only if needed. Never replay consumed nonce7/8.",
+    "In-game adoption, behavior and performance across all clients/provider combinations remain pending."
+  ],
+  "unfinishedDocumentation": "P92\u201394 records already written. Late AuctionData/Tooltip/SpellReagents combined ledger work can finish on resume from application receipts; do not treat syntax as functional/native evidence."
+}

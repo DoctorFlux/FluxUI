@@ -1,0 +1,1047 @@
+{
+  "changeId": "STRIP-CHAT-DOCK-R120-20261119",
+  "capturedAtUTC": "2026-11-19T16:12:16.757814+00:00",
+  "sources": {
+    "Bars/Init.lua": {
+      "beforeRaw": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+      "afterRaw": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+      "afterRaw": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+      "afterRaw": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6"
+    },
+    "Other/FluxChatFrame.lua": {
+      "beforeRaw": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22",
+      "afterRaw": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f"
+    },
+    "tests/chat_layout.lua": {
+      "beforeRaw": "b3b0f542d1df1d45e03c934acf9ae86fb81bb328ef2cd11f55ed01f7a3f621ab",
+      "afterRaw": "d3e733db64bd365c19f20d3bda853564c1d955b923f1311840627002362b9f1b"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "8cdc762f137cfc029ceb4a42a9a506e8e554947f6848c651800b350be51a975a",
+      "afterRaw": "398161ef8154f561d1aee06d354290ad42de63c203cfa5a5bb2946ea7cea13c3"
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "beforeRaw": "cd133d08e49a1a49e67e16a4b86154b022f4b87f23c4482d6069d26795d0d9f3",
+      "afterRaw": "2e45167c92a88fc9a93f77de3c25e3f60b0fc7fd6d23f828cb027b9100b5a1fd"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\source.zip",
+    "sourceZipSHA256": "8ec7becfcda9cb93bf17cf4b0e63af7a5e27b359e69304723c1dce9db95e0b7a",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenarios": {
+    "heldAction": "Strip hover crosses with a held spell, item or macro and no slot change. Chat uses the resulting envelope before the border commit. A coalesced cursor change retains the broad dependency path.",
+    "chatDock": "Repeated settled chat rectangles and real floor changes in all three menu placements. Compare the exact prior forced path with the candidate. Replay the actual chat, raid and focus positioning functions together."
+  },
+  "work": {
+    "chat": {
+      "live:1": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "live:2": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "live:3": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_era:1": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_era:2": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_era:3": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_anniversary:1": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_anniversary:2": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic_anniversary:3": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic:1": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic:2": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "classic:3": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "forever:1": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "forever:2": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      },
+      "forever:3": {
+        "writes": [
+          100,
+          0
+        ],
+        "focus": [
+          20,
+          0
+        ],
+        "raid": [
+          20,
+          0
+        ],
+        "saves": [
+          40,
+          0
+        ]
+      }
+    },
+    "dock": {
+      "live:1:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "live:1:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      },
+      "live:2:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "live:2:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      },
+      "live:3:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "live:3:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      },
+      "forever:1:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "forever:1:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      },
+      "forever:2:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "forever:2:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      },
+      "forever:3:false": {
+        "partition": [
+          40,
+          0
+        ],
+        "aura": [
+          60,
+          0
+        ],
+        "raidPoints": [
+          0,
+          0
+        ]
+      },
+      "forever:3:true": {
+        "partition": [
+          40,
+          40
+        ],
+        "aura": [
+          60,
+          60
+        ],
+        "raidPoints": [
+          20,
+          20
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\compare.lua": "4f2cce5a52dec1f2e95ba5879f05f9977eee5de36ffe30ee690a7a6c78a4dbbf",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\matched.txt": "6e7781eea388aa5abe4fa60b9f6f1593a828605528026070ce776aac78c0ada4",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\work.txt": "42d46b98489a88510f8c4e9deb40095c1f5401c7fce0b486657389b14219a3f4"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6, seven alternating exact-source pairs for each modeled Retail/Forever menu placement and floor change state. Each sample runs 480 applications of the chat, raid and focus functions and their existing scheduled callbacks. Mock widgets and downstream partition/outer frame counters are modeled sinks.",
+    "results": {
+      "live:1:false": {
+        "medians": [
+          10.0,
+          1.0
+        ],
+        "samples": [
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            11.0,
+            1.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            11.0,
+            1.0
+          ]
+        ]
+      },
+      "live:1:true": {
+        "medians": [
+          11.0,
+          10.0
+        ],
+        "samples": [
+          [
+            11.0,
+            10.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            10.0,
+            10.0
+          ],
+          [
+            11.0,
+            10.0
+          ],
+          [
+            11.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0
+          ],
+          [
+            10.0,
+            13.0
+          ]
+        ]
+      },
+      "live:2:false": {
+        "medians": [
+          11.0,
+          2.0
+        ],
+        "samples": [
+          [
+            11.0,
+            1.0
+          ],
+          [
+            12.0,
+            2.0
+          ],
+          [
+            12.0,
+            1.0
+          ],
+          [
+            12.0,
+            1.0
+          ],
+          [
+            11.0,
+            2.0
+          ],
+          [
+            11.0,
+            2.0
+          ],
+          [
+            10.0,
+            2.0
+          ]
+        ]
+      },
+      "live:2:true": {
+        "medians": [
+          11.0,
+          11.0
+        ],
+        "samples": [
+          [
+            11.0,
+            10.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            12.0,
+            11.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            10.0,
+            12.0
+          ],
+          [
+            11.0,
+            12.0
+          ],
+          [
+            11.0,
+            12.0
+          ]
+        ]
+      },
+      "live:3:false": {
+        "medians": [
+          10.0,
+          1.0
+        ],
+        "samples": [
+          [
+            13.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            11.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ]
+        ]
+      },
+      "live:3:true": {
+        "medians": [
+          11.0,
+          11.0
+        ],
+        "samples": [
+          [
+            10.0,
+            11.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            10.0,
+            10.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            12.0,
+            11.0
+          ],
+          [
+            11.0,
+            10.0
+          ]
+        ]
+      },
+      "forever:1:false": {
+        "medians": [
+          10.0,
+          1.0
+        ],
+        "samples": [
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            11.0,
+            1.0
+          ],
+          [
+            9.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ]
+        ]
+      },
+      "forever:1:true": {
+        "medians": [
+          10.0,
+          10.0
+        ],
+        "samples": [
+          [
+            10.0,
+            10.0
+          ],
+          [
+            9.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0
+          ],
+          [
+            10.0,
+            10.0
+          ],
+          [
+            11.0,
+            10.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            12.0,
+            13.0
+          ]
+        ]
+      },
+      "forever:2:false": {
+        "medians": [
+          11.0,
+          2.0
+        ],
+        "samples": [
+          [
+            12.0,
+            2.0
+          ],
+          [
+            11.0,
+            2.0
+          ],
+          [
+            12.0,
+            1.0
+          ],
+          [
+            11.0,
+            1.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            11.0,
+            2.0
+          ],
+          [
+            11.0,
+            2.0
+          ]
+        ]
+      },
+      "forever:2:true": {
+        "medians": [
+          11.0,
+          12.0
+        ],
+        "samples": [
+          [
+            11.0,
+            12.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            12.0,
+            11.0
+          ],
+          [
+            11.0,
+            12.0
+          ],
+          [
+            12.0,
+            12.0
+          ],
+          [
+            11.0,
+            12.0
+          ]
+        ]
+      },
+      "forever:3:false": {
+        "medians": [
+          10.0,
+          2.0
+        ],
+        "samples": [
+          [
+            10.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            11.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            10.0,
+            2.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            11.0,
+            2.0
+          ]
+        ]
+      },
+      "forever:3:true": {
+        "medians": [
+          11.0,
+          11.0
+        ],
+        "samples": [
+          [
+            11.0,
+            10.0
+          ],
+          [
+            10.0,
+            11.0
+          ],
+          [
+            11.0,
+            10.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            12.0,
+            12.0
+          ],
+          [
+            11.0,
+            11.0
+          ],
+          [
+            11.0,
+            12.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "action-strip dependent layout settles the current grid and Info/Trinket envelope before chat measurement",
+    "normal chat, roster and explicit forced requests retain the original route",
+    "native chat point and size, relative owner and Edit Mode metadata must match before skipping a pin",
+    "private, missing or failing widget getters use the current pin path",
+    "a changed strip floor can move the raid dock while side-column chat keeps its rectangle",
+    "real geometry changes, combat anchor protection, and held-drag pin remain supported"
+  ],
+  "verification": {
+    "focusedPassed": 81,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chat-dock-before-20261119-170532\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Init.lua": {
+        "sha256": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+        "matches": true
+      },
+      "FluxDefaultSettings.lua": {
+        "sha256": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+        "matches": true
+      },
+      "Other/FluxChatFrame.lua": {
+        "sha256": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/Init.lua": {
+        "sha256": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+        "matches": true
+      },
+      "FluxDefaultSettings.lua": {
+        "sha256": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+        "matches": true
+      },
+      "Other/FluxChatFrame.lua": {
+        "sha256": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/Init.lua": {
+        "sha256": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+        "matches": true
+      },
+      "FluxDefaultSettings.lua": {
+        "sha256": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+        "matches": true
+      },
+      "Other/FluxChatFrame.lua": {
+        "sha256": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/Init.lua": {
+        "sha256": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+        "matches": true
+      },
+      "FluxDefaultSettings.lua": {
+        "sha256": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+        "matches": true
+      },
+      "Other/FluxChatFrame.lua": {
+        "sha256": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Init.lua": {
+        "sha256": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+        "matches": true
+      },
+      "FluxDefaultSettings.lua": {
+        "sha256": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+        "matches": true
+      },
+      "Other/FluxChatFrame.lua": {
+        "sha256": "14d87e9cc1acc96230c9553dddc9d21df60b53499833f58d38f3350aa1a2203f",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action and drop latency, party and raid transitions, HUD seam pixels and combat taint. No game input or profiling changes."
+}

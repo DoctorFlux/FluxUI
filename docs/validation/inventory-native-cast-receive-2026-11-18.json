@@ -1,0 +1,237 @@
+{
+  "change_id": "LHO-NATIVE-CAST-RECEIVE33-20261118",
+  "status": "SCOPED_NATIVE_CAST_CANCEL_FINISH_RECEIVE_AND_COUNT_PASS;FULL_GOAL_ACTIVE",
+  "recordedUTC": "2026-11-18T14:33:41.029292+00:00",
+  "newAddonLuaEdits": 0,
+  "newSimulations": 0,
+  "client": {
+    "exe": "F:/World of Warcraft/_forever_/Wow.exe",
+    "pid": 42724,
+    "hwnd": 50333792,
+    "creationFILETIME": 134394624880288175,
+    "version": "1.60.1",
+    "build": "70959",
+    "interfacePriorSameProcess": 16001,
+    "projectPriorSameProcess": 18
+  },
+  "actions": [
+    "Actual highest-known Conjure Food cast",
+    "Actual /stopcasting cancellation about0.244s after START",
+    "Actual second highest-known Conjure Food completed",
+    "Created14 Conjured Pumpernickel retained"
+  ],
+  "watch": {
+    "seconds": 30.006999999983,
+    "thresholdMs": 50,
+    "frameCount": 4362,
+    "peakFrameMs": 45.000001788139,
+    "observedCallbacks": 998,
+    "spikeCount": 0,
+    "callbackCount": 1,
+    "diagnosticMs": 69.822097182274,
+    "diagnosticPeakMs": 0.15439999103546,
+    "errorsBefore": 0,
+    "errorsAfter": 0,
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "originGetTimeBefore": 428631.826,
+    "originGetTimeAfter": 428631.826,
+    "armedGetTime": 428631.826,
+    "cleanupGetTime": 428671.829
+  },
+  "eventsRelativeSecondsRoundedTo3": [
+    {
+      "at": 8.093,
+      "event": "HOST_CAST_BATCH"
+    },
+    {
+      "at": 8.438,
+      "event": "UNIT_SPELLCAST_START"
+    },
+    {
+      "at": 8.682,
+      "event": "UNIT_SPELLCAST_STOP"
+    },
+    {
+      "at": 8.814,
+      "event": "UNIT_SPELLCAST_INTERRUPTED"
+    },
+    {
+      "at": 8.814,
+      "event": "UNIT_SPELLCAST_INTERRUPTED"
+    },
+    {
+      "at": 8.814,
+      "event": "UNIT_SPELLCAST_INTERRUPTED"
+    },
+    {
+      "at": 9.111,
+      "event": "UNIT_SPELLCAST_START"
+    },
+    {
+      "at": 9.256,
+      "event": "HOST_LAST_CAST_SENT"
+    },
+    {
+      "at": 12.017,
+      "event": "UNIT_SPELLCAST_SUCCEEDED"
+    },
+    {
+      "at": 12.017,
+      "event": "UNIT_SPELLCAST_STOP"
+    },
+    {
+      "at": 12.074,
+      "event": "BAG_UPDATE_DELAYED"
+    },
+    {
+      "at": 12.437,
+      "event": "BAG_UPDATE_DELAYED"
+    }
+  ],
+  "slowCallbacks": [
+    {
+      "at": 12.455000000016,
+      "ms": 15.837100028992,
+      "kind": "Scheduler",
+      "key": "structural.callback",
+      "tokens": "border.junctions",
+      "tokensType": "string",
+      "failed": false
+    }
+  ],
+  "inventory": {
+    "bagGenerationBefore": 7,
+    "bagGenerationAfter": 9,
+    "newItemID": 1487,
+    "newItemName": "Conjured Pumpernickel",
+    "fluxCount": 14,
+    "nativeCount": 14,
+    "allCarriedUniqueIDs": 54,
+    "countMismatches": 0,
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "classifyQueueAfter": 4,
+    "cursorClear": true
+  },
+  "restoration": {
+    "priorDiagnosticRootExactIdentity": true,
+    "priorSpikeWatchExactIdentity": true,
+    "ownEventFrameDetached": true,
+    "ownWatchInactive": true,
+    "ownCodeRootRemoved": true,
+    "ownDataRootRemoved": true,
+    "jumpCuePriorFlagRestored": true,
+    "profileCapsUnchanged": true,
+    "otherDiagnosticRootsPreserved": true
+  },
+  "probeError": {
+    "when": "After watch expired and cleanup;third read-report packet",
+    "cause": "Temporary printer called table.concat(v.tokens or {}, ',') but native report stores tokens as string",
+    "sessionErrorCountAfter": 1,
+    "correctedWith": "tostring(v.tokens)",
+    "nativeTypeVerified": "string",
+    "newProductErrorsObservedDuringWatch": 0,
+    "errorLogPreserved": true,
+    "doNotClaimWholeSessionZeroErrors": true
+  },
+  "actors": [
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-cast33-food-events-20261118",
+      "run": "cast33_a",
+      "sourceSHA": "2824fbd82284251e03f9f2e219d5dead620567733330cbda76ab0d739b4fd302",
+      "packetsSHA": "02f53c0536b3b95418dc5818c9d609131723ed779215affd5a07022aebc5b00a",
+      "personalViewAndFormalAck": true,
+      "status": "ACCEPTED"
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-cast33-read-20261118",
+      "run": "cast33read_a",
+      "sourceSHA": "0a7f9e2f1eec4cf8ec2d8e30febbe594ad373c0a26ae739a8635195cd0bf22d2",
+      "packetsSHA": "d67c7d06572baead50ceb7450c44df374c38935ec7ff43b0b50e00ad3f1fcbfe",
+      "personalViewAndFormalAck": true,
+      "status": "READ_FORMATTER_ONE_ERROR"
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-cast33-final-20261118",
+      "run": "cast33final_a",
+      "sourceSHA": "eea86ad3db9b13809fc91cc4b489dc302e99c1a746bd23f240b4c34ed37783d1",
+      "packetsSHA": "e46ddecbc7afb908f6dba83193d88df8fc28852f737e921c276691adaad2892d",
+      "personalViewAndFormalAck": true,
+      "status": "ACCEPTED"
+    }
+  ],
+  "screenshots": {
+    "jq4-cast33_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-cast33_a-submitted.png",
+      "sha256": "779accdb804285b145ba2a7bd2aaf0c610bb2bf33c4c83a7a704c7bcf825fb39"
+    },
+    "cast33-auto-cleanup.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast33-auto-cleanup.png",
+      "sha256": "25b88b8a6ee18596fa4d7d7039aca1ffd068af0a2f37e21083b29ae5e1457e8b"
+    },
+    "jq4-cast33read_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-cast33read_a-submitted.png",
+      "sha256": "63de841f08a3ae1141f156065219b62690335b5b0265c243542532cf9a05b444"
+    },
+    "jq4-cast33final_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-cast33final_a-submitted.png",
+      "sha256": "60de8a22bb9612a030cf2de601f5baac44639d5f8149d627fbc8a5c24465a6f0"
+    }
+  },
+  "limits": [
+    "One observed30s window, no matched before/after FPS/spike benefit",
+    "No >=50ms recorded gap; smaller spikes or work outside observed Flux services are not excluded",
+    "Native callbacks are inclusive; one15.8371ms border.junctions callback correlates with receive but is not inventory-exclusive CPU",
+    "Exact loaded BorderJunctions/Cast revisions not pinned at arm; do not certify or blame a particular concurrent revision",
+    "PrintWindow/setup/world/system/party activity remains a confound; unrelated party/loot commands were not sent by this goal",
+    "Both-addons state inherited from accepted restoration31, no reload in32/33; provider-off mutations, cold/deplete/charges,craft/channel/pet/delay/taint/pixels/controller/allclient workflows remain open",
+    "Food selection changed legitimately after new conjured food; do not claim equality with previous4599/18/1338 selection",
+    "Safe macro conditions nocombat/nochanneling; no secure operation attempted from timer or ordinary addon Lua",
+    "User away/no questions; no purchases/sales/deletion/consumption/mail/craftqueue/external-addon edits"
+  ],
+  "inventoryEBSAndHelperSourcePinsVerifiedAfterObservation": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef"
+  },
+  "sourcePinCount": 26,
+  "sourcePinScope": "24 tracked Inventory/EBS sources plus Container and PerfCapture helper identities inherited from32; verified unchanged after33; not a complete loaded-cast/border pin",
+  "finalHelperVerification": {
+    "utc": "2026-11-18T14:35:01Z",
+    "hostPID": 49768,
+    "clientPID": 42724,
+    "bothProcessesLive": true,
+    "pairs": 22,
+    "lastSpaceUpUTC": "2026-11-18T14:32:15.464299+00:00",
+    "movementVisuallyVerified": false,
+    "priorApplicationRestoreRequested": true
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "changeId": "BORDER-SIMPLE-INTERVALS-R163-20261120",
+  "capturedAtUTC": "2026-11-20T01:08:13.319024+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "9a042e48f7889d8e3cfa4ce632225e1136a5c610a701e5732562583c4be835e7",
+      "afterRaw": "6f701826325f22477aad35802913bcb8c51d4cedea1dc0bbdb70ade91c079562",
+      "afterNormalized": "6f701826325f22477aad35802913bcb8c51d4cedea1dc0bbdb70ade91c079562"
+    },
+    "tests/border_solve_pair_identity.lua": {
+      "beforeRaw": "6cf67e747eefc5919f1e2663b2de79b53941aece1a01c140ecbe18ffaa790782",
+      "afterRaw": "da1a155db8191fac0c4da469fd05c0422c9937632f6164d7090c6318f78d36fe",
+      "afterNormalized": "dd89a2c34621daf587f406a4ba976e6326bbbc61b1eaea6212681567ce1902a2"
+    },
+    "tests/regional_border_cuts.lua": {
+      "beforeRaw": "876130c9683b28d9e1fce841cecc03adedcaa9b0f66bf64a74656856a2985467",
+      "afterRaw": "8c2db76a06c56abe0c9b115477246dd20e16fec84d4e30f19f35b215bf331d62",
+      "afterNormalized": "8c2db76a06c56abe0c9b115477246dd20e16fec84d4e30f19f35b215bf331d62"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\source.zip",
+    "sourceZipSHA256": "cc7e068b59cdf373df729c7cd6b187e5d56b499295dff49baf4727ac189e90e7",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched desktop runs across both border styles, with two cold strip and roster transitions plus a dense overlap comparison in each style. Only the external instrumented copies count boundary walks, sorts and inspected keeper corner candidates.",
+    "samples": [
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "hover",
+        "boundaryWalks": [
+          19,
+          0
+        ],
+        "boundarySorts": [
+          19,
+          0
+        ],
+        "cornerCandidateVisits": [
+          608,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "roster",
+        "boundaryWalks": [
+          8,
+          0
+        ],
+        "boundarySorts": [
+          8,
+          0
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "boundaryWalks": [
+          72,
+          66
+        ],
+        "boundarySorts": [
+          72,
+          42
+        ],
+        "cornerCandidateVisits": [
+          0,
+          0
+        ]
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\before-instrumented.lua": "f71981df11148ff9d620b59b74892509059116505c46501746d2efe21bd192c1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\after-instrumented.lua": "339c697cb212c1ca901578b2af01f3e8add1e4a13b7470fb3b94f70ed7854f11",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\upvalues.json": "8843e5e5ef1046d20f43c2bd6849e547b2b08afdb5f6e0857cef7eec823e54e2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\matched-1.txt": "51b42b78ef449df044d7bd4c70480144bd655cd3b1080ea35b4981a4cb1eeb82",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\solver-1.txt": "7d1d728c8664ad69f92d6a4fc6bd345ec68332865759166309358bb0d8fa2759",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\matched-2.txt": "51b42b78ef449df044d7bd4c70480144bd655cd3b1080ea35b4981a4cb1eeb82",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\solver-2.txt": "7d1d728c8664ad69f92d6a4fc6bd345ec68332865759166309358bb0d8fa2759",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\matched-3.txt": "51b42b78ef449df044d7bd4c70480144bd655cd3b1080ea35b4981a4cb1eeb82",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\solver-3.txt": "7d1d728c8664ad69f92d6a4fc6bd345ec68332865759166309358bb0d8fa2759"
+    },
+    "limits": "Counts measure selected pure Lua solver work and desktop graphics parity. Native frame times, actual roster event cascades, pixels and taint remain pending."
+  },
+  "preservation": [
+    "An untouched parallel pair emits the existing cut and corner geometry directly. A pair with ownership chains still resolves all overlapping intervals and enforces the same boundary and operation limits.",
+    "An opposing side cannot share a corner. Other coincident caps still use the same tolerance and preserve duplicate backup-owner order.",
+    "The exact-source solver oracle checks all outputs and source mutations for 184 cases and rejects five harmful controls.",
+    "Desktop renderer checks retain live visibility backups, sampled joins, private material fallback, and prepared replays. No new runtime probe or frame method."
+  ],
+  "verification": {
+    "focusedPassed": 40,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\focused-r163-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-simple-intervals-before-20261120-015948\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for first and repeated cold strip, actual drag/drop, party/raid join and leave timing, seam pixels and combat taint."
+}

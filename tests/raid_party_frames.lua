@@ -75,7 +75,10 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
             SetTexCoord=function(s,...)s.uv={...}end,
             SetSize=function(s,w,h)s.width,s.height=w,h end,SetHeight=function(s,h)s.height=h end,
             SetColorTexture=function(s,...)s.color={...}end,SetPoint=function(s,...)s.point={...}end,
-            ClearAllPoints=function(s)s.point=nil end,SetDrawLayer=function()end,SetAtlas=function(s,a,use)s.atlas=a;s.useAtlasSize=use end,
+            ClearAllPoints=function(s)s.point=nil end,SetDrawLayer=function(s,l,n)s.layer,s.sublevel=l,n end,
+            GetDrawLayer=function(s)return s.layer,s.sublevel end,GetSize=function(s)return s.width,s.height end,
+            GetNumPoints=function(s)return s.point and 1 or 0 end,GetPoint=function(s)return table.unpack(s.point or {})end,
+            SetAtlas=function(s,a,use)s.atlas=a;s.useAtlasSize=use end,
             Show=function(s)s.shown=true end,Hide=function(s)s.shown=false end,IsShown=function(s)return s.shown end}
     end
     function methods:HookScript(key,fn)
@@ -96,22 +99,30 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     end
     local UF={}
     ns.UnitFrames=UF; e.UF=UF
-    local badgeSource=read("UnitFrames/FluxUnitFrames_Shared.lua")
+    local badgeSource=read(os.getenv("FLUX_PARTY_SHARED_SOURCE") or "UnitFrames/FluxUnitFrames_Shared.lua")
     local badgeStart=assert(badgeSource:find("local function PvpValueIsSecret",1,true))
     local badgeEnd=assert(badgeSource:find("function UF.CreateOuterBorder",badgeStart,true))
     assert(load(badgeSource:sub(badgeStart,badgeEnd-1),"@shared-pvp-badge","t",e))()
+    local geometryStart=assert(badgeSource:find("do\nlocal function NameStripGeometryPublic",1,true))
+    local geometryEnd=assert(badgeSource:find("--- Combat/rest beside level",geometryStart,true))
+    assert(load(badgeSource:sub(geometryStart,geometryEnd-1),"@name-strip-native-geometry","t",e))()
+    local styleStart=assert(badgeSource:find("    if (self._fluxPartyMember or self._fluxPartyPet or self._fluxCompactFocus)",geometryEnd,true))
+    local styleEnd=assert(badgeSource:find("    -- Geometry skipped on combat entry",styleStart,true))
+    local finishSharedText=assert(load("return function(self,deferPartyIndicators)\n"..
+        badgeSource:sub(styleStart,styleEnd-1).."end","@shared-outer-style-handoff","t",e))()
     UF.CreateBaseFrame=function(unit,parent,w,h,_,options)
         calls[#calls+1]={"base",unit,w,h,options}
         local frame=e.CreateFrame("Button",options and options.name or "FluxUnitFrame_"..unit,parent)
         frame.unit=unit;frame.width,frame.height=w,h;frame._fluxPartyPreview=options and options.preview
         frame:SetAttribute("unit",unit)
         frame.UpdatePartition=function(s)calls[#calls+1]={"partition",s};s:UpdateOuterBorder()end
-        frame.UpdateOuterBorder=function(s)
+        frame.UpdateOuterBorder=function(s,deferPartyIndicators)
             calls[#calls+1]={"chrome",s}
             if s.classIcon then
                 s.classIcon:SetSize(36,36);s.classIcon:SetPoint("TOPLEFT",s.outerBorderFrame,"TOPLEFT",0,-4);s.classIcon:Show()
                 s.specIcon:SetPoint("TOPLEFT",s.classIcon,"TOPRIGHT",0,0)
             end
+            finishSharedText(s,deferPartyIndicators)
         end
         return frame
     end
@@ -128,7 +139,8 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     end
     UF.UpdateHealth=function(f)calls[#calls+1]={"health",f.unit}end
     UF.UpdatePower=function(f)calls[#calls+1]={"power",f.unit}end
-    UF.UpdatePortrait=function(f,unit)calls[#calls+1]={"portrait",unit}end
+    UF.UpdateBorderColors=function(f)calls[#calls+1]={"borderColors",f}end
+    UF.UpdatePortrait=function(f,unit,roster)calls[#calls+1]={"portrait",unit,roster}end
     ns.CastBar={CreateCastBar=function(f,unit)
         f.CastBar=e.CreateFrame("Frame",nil,f);calls[#calls+1]={"cast",unit}
         f.CastBar.IconFrame=e.CreateFrame("Frame",nil,f.CastBar)
@@ -158,7 +170,8 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     e.StatusBarSetValueImmediate=function(b,v)b:SetValue(v)end
     e.ApplyBlizzardShieldFillToStatusBar=function(b)b:SetStatusBarColor(.14,.33,.7,.7)end
     e.ApplyBlizzardHealAbsorbFillToStatusBar=function(b)b:SetStatusBarColor(.68,.28,.28,.7)end
-    e.API={SafeUnitGetTotalAbsorbs=function()return 0 end,SafeUnitGetTotalHealAbsorbs=function()return 0 end}
+    e.API={SafeUnitGetTotalAbsorbs=function()return 0 end,SafeUnitGetTotalHealAbsorbs=function()return 0 end,
+        IsSecretValue=function(value)return e.issecretvalue and e.issecretvalue(value)end}
     e.FluxSafeRegisterUnitEvent=function(frame,event,unit)frame:RegisterUnitEvent(event,unit)end
     local va=assert(ufSource:find("function UF.LayoutVerticalTargetHealth",1,true))
     local vb=assert(ufSource:find("function UF.UpdateHealth(self, unit)",va,true))
@@ -195,7 +208,7 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     end
     e.pets={};e.targets={}
     e.UnitHealth=function()return 80 end;e.UnitHealthMax=function()return 100 end;e.UnitIsConnected=function()return true end
-    assert(loadfile("UnitFrames/FluxUnitFrames_Party.lua","t",e))("_FluxUI",ns)
+    assert(loadfile(os.getenv("FLUX_PARTY_FRAME_SOURCE") or "UnitFrames/FluxUnitFrames_Party.lua","t",e))("_FluxUI",ns)
     local P=ns.PartyFrames
     local opaque=setmetatable({},{__eq=function()error("opaque comparison")end})
     e.issecretvalue=function(v)return rawequal(v,opaque)end
@@ -212,6 +225,10 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     db.partyAsRaid=false
     check(P.ApplyOptions()and P.ready and #P.members==4 and #P.pets==4,"all four owners and pets prepared before exposure")
     local member=P.members[1]
+    for i=1,4 do
+        check(P.members[i]._FluxBorderIndependent and P.pets[i]._FluxBorderIndependent and P.targets[i]._FluxBorderIndependent,
+            "live party/member pet/target factories opt into independent border scopes")
+    end
     check(member._fluxPartyPvpLayer.level<member._fluxPartyIndicatorLayer.level,"native PvP badge is behind the level layer")
     e.GetPVPTimer=function()error("another member must never use the player's PvP timer")end
     e.UnitIsPVPFreeForAll=function()return false end;e.UnitIsPVP=function()return true end
@@ -290,10 +307,52 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     e.pets[1]=false;refresh()
     check(member._fluxPartyHealthTextAnchor.point[1]=="BOTTOMRIGHT","without pet health text fills the bar for vertical centering")
     check(member._fluxPartyNameTextAnchor.points[1][4]==namePetX,"pet does not unnecessarily narrow the name header")
-    e.targets[1]=true;refresh();check(P.targets[1].shown,"native state driver handles combat target acquisition")
+    -- The shared header fixture treats every visual child as protected.
+    -- Model secure visibility under lockdown and exercise paint outside it.
+    e.combat=false;flushTimers();e.combat=true
+    local target=P.targets[1]
+    local targetPaints,targetResets=0,0
+    local updateTarget,resetTarget=UF.UpdateVerticalTargetHealth,UF.ResetVerticalTargetHealth
+    UF.UpdateVerticalTargetHealth=function(f,unit,rosterRefresh)
+        if f==target then targetPaints=targetPaints+1 end
+        return updateTarget(f,unit,rosterRefresh)
+    end
+    UF.ResetVerticalTargetHealth=function(f)
+        if f==target then targetResets=targetResets+1 end
+        return resetTarget(f)
+    end
+    local function NotifyPartyRoster(frame)
+        if P.QueueRosterUpdate then
+            P.QueueRosterUpdate()
+        else
+            frame.scripts.OnEvent(frame,"GROUP_ROSTER_UPDATE")
+        end
+    end
+    e.targets[1]=true;refresh();check(target.shown,"native state driver handles combat target acquisition")
+    for _=1,20 do NotifyPartyRoster(target) end
+    check(targetPaints==0 and targetResets==(P.QueueRosterUpdate and 0 or 1),
+        "party-target roster burst defers the visual paint during the native reveal")
+    e.combat=false
+    flushTimers()
+    check(targetPaints==1 and targetResets==1,"party-target roster burst resets identity and paints its current visible state once")
+    target.scripts.OnEvent(target,"UNIT_TARGET")
+    check(targetPaints==2 and targetResets==2,"a direct target change still paints and resets immediately")
+    e.combat=true
     for i=1,4 do check(P.targets[i].width==30 and P.targets[i].height==121,"party target keeps prepared narrow size through combat roster changes")end
     e.targets[1]=false;refresh();check(not P.targets[1].shown,"native state driver handles combat target loss")
+    NotifyPartyRoster(target)
+    -- Its owner is still visible and will receive the broader roster paint.
+    -- The synthetic helper treats the decorative children as protected.
+    e.combat=false;flushTimers();e.combat=true
+    check(targetPaints==2 and targetResets==3,"hidden party target clears through OnHide and skips subsequent roster work")
+    UF.UpdateVerticalTargetHealth,UF.ResetVerticalTargetHealth=updateTarget,resetTarget
+    local rangeChecks=0
+    e.FluxRaid_EnsureRangePoll=function()rangeChecks=rangeChecks+1 end
     e.mode="raid";refresh();for _,f in ipairs(P.members)do check(not f.shown,"party mode hides immediately on combat raid conversion")end
+    check(rangeChecks==0,"party retirement books range reconciliation into the shared batch")
+    flushTimers()
+    check(rangeChecks==1,"party and pet retirement reconcile range once regardless of hidden slots")
+    e.FluxRaid_EnsureRangePoll=nil
     e.mode="solo";refresh();for _,f in ipairs(P.pets)do check(not f.shown,"all pet input rectangles disappear after combat group leave")end
     check(e.created==created,"roster changes in combat allocate no widgets")
     local writes=e.writes
@@ -324,10 +383,95 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     member:Show();flushTimers()
     check(member.CastBar._refreshCalls==refreshes+1,"owner show reads the current cast after secure visibility dispatch")
     resets=member.CastBar._resetCalls;refreshes=member.CastBar._refreshCalls
-    for i=1,20 do member.scripts.OnEvent(member,"GROUP_ROSTER_UPDATE") end
+    for _=1,20 do NotifyPartyRoster(member) end
     check(member.CastBar._resetCalls==resets and member.CastBar._refreshCalls==refreshes,"roster burst postpones duplicate cast/portrait paints to one batch")
     flushTimers()
     check(member.CastBar._resetCalls==resets+1 and member.CastBar._refreshCalls==refreshes+1,"roster slot update resets old cast and samples its current member")
+    local guid = "party-member-a"
+    e.UnitGUID = function(unit) if unit == member.unit then return guid end end
+    local function rosterCast()
+        NotifyPartyRoster(member)
+        flushTimers()
+    end
+    do
+        guid = "party-indicator-member"
+        member.leaderIcon:Show()
+        member.mainTankIcon:Show()
+        rosterCast()
+        local work={styles=0,layouts=0,roleWrites=0}
+        local style,layout=P.StyleText,P.LayoutIndicators
+        P.StyleText=function(frame,...)
+            if frame==member then work.styles=work.styles+1 end
+            return style(frame,...)
+        end
+        P.LayoutIndicators=function(frame,...)
+            if frame==member then work.layouts=work.layouts+1 end
+            return layout(frame,...)
+        end
+        for _,icon in ipairs({member.leaderIcon,member.mainTankIcon,member.partyRoleIcon}) do
+            for _,method in ipairs({"ClearAllPoints","SetPoint","SetSize","SetDrawLayer"}) do
+                local write=icon[method]
+                icon[method]=function(self,...)
+                    work.roleWrites=work.roleWrites+1
+                    return write(self,...)
+                end
+            end
+        end
+        for _=1,4 do
+            for _=1,20 do NotifyPartyRoster(member) end
+            flushTimers()
+        end
+        print(("PARTY_INDICATOR_WORK|%s|%d|%d|%d"):format(client,work.styles,work.layouts,work.roleWrites))
+        check(work.styles==4 and work.layouts==4 and work.roleWrites==0,
+            "one text and indicator pass per settled roster burst, with no unchanged role writes")
+        check(member.partyRoleIcon.point[2]==member.PortraitFrame and member.partyRoleIcon.layer=="OVERLAY"
+            and member.partyRoleIcon.sublevel==7,"settled role art stays at its owned portrait position and depth")
+        local tank=member.mainTankIcon
+        member.leaderIcon:Hide()
+        tank:SetSize(44,36);tank:SetDrawLayer("ARTWORK",1)
+        rosterCast()
+        check(tank.point[4]==2 and tank.point[5]==-1 and tank.width==22 and tank.height==18
+            and tank.layer=="OVERLAY" and tank.sublevel==7,"role changes repack and repair current size and depth")
+        local get=tank.GetPoint
+        tank.GetPoint=function()return "TOPLEFT",opaque,"TOPLEFT",2,-1 end
+        work.roleWrites=0
+        rosterCast()
+        check(work.roleWrites>=2 and tank.point[2]==member.PortraitFrame,
+            "unreadable role anchor uses the original placement")
+        tank.GetPoint=get
+        P.StyleText,P.LayoutIndicators=style,layout
+        guid = "party-member-a"
+    end
+    e.activePartyCast = true
+    rosterCast()
+    resets, refreshes = member.CastBar._resetCalls, member.CastBar._refreshCalls
+    check(member.CastBar.shown,"a newly observed member can start with an active cast")
+    for _=1,20 do rosterCast() end
+    check(member.CastBar._resetCalls==resets and member.CastBar._refreshCalls==refreshes and member.CastBar.shown,
+        "confirmed unchanged member keeps active cast through roster changes")
+    guid, e.activePartyCast = "party-member-b", false
+    rosterCast()
+    check(member.CastBar._resetCalls==resets+1 and member.CastBar._refreshCalls==refreshes+1 and not member.CastBar.shown,
+        "same party token must refresh immediately when the member changes")
+    local opaqueGuid, existingSecret = {}, e.issecretvalue
+    guid = opaqueGuid
+    e.issecretvalue = function(value) return rawequal(value,opaqueGuid) or existingSecret and existingSecret(value) end
+    rosterCast()
+    rosterCast()
+    check(member.CastBar._resetCalls==resets+3 and member.CastBar._refreshCalls==refreshes+3,
+        "private member identity keeps the conservative refresh path")
+    e.issecretvalue = existingSecret
+    guid = "party-member-b"
+    rosterCast()
+    refreshes = member.CastBar._refreshCalls
+    member:Hide();member:Show();flushTimers()
+    check(member.CastBar._refreshCalls==refreshes+1,"a previously hidden member samples its current cast regardless of identity")
+    e.UnitGUID = nil
+    local rosterPortrait
+    for _, call in ipairs(calls) do
+        if call[1] == "portrait" and call[2] == member.unit then rosterPortrait = call[3] end
+    end
+    check(rosterPortrait == true, "queued roster paint opts into validated portrait reuse")
     member.scripts.OnEvent(member,"READY_CHECK")
     check(member.readyCheckIcon.shown and member.partyRoleIcon.atlas=="roleicon-tiny-tank","actual raid ready-check and native role adapters paint party")
     member.scripts.OnEvent(member,"READY_CHECK_FINISHED")
@@ -355,7 +499,14 @@ for _,client in ipairs({"live","forever","classic","classic_era","classic_annive
     for _,f in ipairs(P.members)do check(e.ClickCastFrames[f.outerBorderFrame]and f.outerBorderFrame._fluxRaidUnit,"party casting registers the actual owned hit rectangle including primary-chord support")end
     e.FluxRaidPreview={PaintPartyAuras=function(f,i)f.sampleAuras=i end}
     P.RefreshPreview(true)
+    for _,pet in ipairs(P.preview.pets)do
+        local painted=false
+        for _,call in ipairs(calls)do if call[1]=="borderColors" and call[2]==pet then painted=true;break end end
+        check(painted,"preview pets use their unit/owner border-color painter")
+    end
     for i,f in ipairs(P.preview.members)do
+        check(f._FluxBorderIndependent and P.preview.pets[i]._FluxBorderIndependent and P.preview.targets[i]._FluxBorderIndependent,
+            "preview members use the same independent border contract as live members")
         check(f._fluxPartyPreview and f.noEvents and not f.outerBorderFrame.mouse and f.sampleAuras==i,
             "sample party reuses the component factory without live events, cast/binding registration or hit rectangles")
         check(f.width==260 and f.height==85 and f.scale==P.members[i].scale,

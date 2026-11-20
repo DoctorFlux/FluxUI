@@ -1,0 +1,91 @@
+{
+  "id": "CAST-COMPLETION-20261116",
+  "dateUTC": "2026-11-16T21:45:20.526946+00:00",
+  "status": "IMPLEMENTED; OFFLINE SCOPED VALIDATION PASS; NATIVE DEFERRED BY USER",
+  "requirements": "docs/CAST_COMPLETION.md CFIN01-CFIN05",
+  "screenshot": "codex-clipboard-2a9b84be-8a2e-4497-8f99-68f617fd0f37.png",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-finish-before-20261116T212349Z",
+  "checkpointFiles": 3029,
+  "historyVerified": true,
+  "archiveVerified": true,
+  "changedDuringArchive": [],
+  "settings": "39 paths checked by stat metadata only outside AddOns; no settings contents opened/copied/changed or closed-client backup claim",
+  "sourceHashes": {
+    "UnitFrames/FluxCastBar.lua": {
+      "normalized": "734c005d641f3ea26b7c030985b90ec608515120817db5c9bc6897c1258aaea6",
+      "raw": "57a6f2eaada528f2a026e7f9b23502bf62bb5543d3f817403c287de5954c9adf"
+    },
+    "tests/castbar_completion_visual.lua": {
+      "normalized": "dcb992cbb8f52e30be7adc80b23a00e8706eac568c45379abde1e60eaf254fe7",
+      "raw": "dcb992cbb8f52e30be7adc80b23a00e8706eac568c45379abde1e60eaf254fe7"
+    }
+  },
+  "beforeCastBarNormalized": "70e05f014fe0eb973289bb75455956d7a43441974c69ab0a1bf2621f78f73d40",
+  "implementation": "Only the shared successful CastStop surface changes: modern full standard/channel success atlases become existing UI-StatusBar with authored muted gold (.82,.70,.42). Classic keeps (.12,.86,.15) green; one common paint follows existing cast/channel value handling. No active-cast, interrupt, school/profession implementation, position, size, border topology, option, locale string, input, timer or driver changes.",
+  "lifecycle": {
+    "normalCast": "Existing engine duration detach and full value retained",
+    "channel": "Existing empty value retained",
+    "holdSeconds": 0.35,
+    "fadeSeconds": 0.75,
+    "interrupt": "Existing art, hold1.0/fade.3 and ownership retained",
+    "sourceOverlays": "Existing school/profession layers remain over the quiet base, including current native animation ownership",
+    "header": "Existing OnHide/header and swing-slot release path retained"
+  },
+  "validation": {
+    "focusedScripts": 11,
+    "focusedFailures": 0,
+    "completionChecks": 12535,
+    "consumerClientScenes": 150,
+    "clientModels": [
+      "live",
+      "forever",
+      "classic_era",
+      "classic_anniversary",
+      "classic"
+    ],
+    "units": [
+      "player",
+      "target",
+      "focus",
+      "pet",
+      "party1"
+    ],
+    "cases": "Casts/channels; themes off/colors off/unmapped; exact progress, palette, timing, icon; rapid recast/stale fade/reset/hide; interrupt; school and profession batches; no new fill/icon/chrome geometry, Border.ApplyTo, resources or drivers",
+    "compilerFiles": 1,
+    "compilerPrototypes": 146,
+    "maximumUpvalues": 33,
+    "syntaxFiles": 1193,
+    "freshCompiled": 9,
+    "inheritedUnchanged": 1184,
+    "wholeCorpusFunctionalRun": false,
+    "sourceStable": true
+  },
+  "negativeControl": "Archived source fails specifically on ui-castingbar-full-standard instead of plain UI-StatusBar. Existing trough CENTER anchor resets/backdrop paint are counted separately; not misreported as newly added work.",
+  "review": "Read-only independent review found no introduced duration/channel/interrupt/secret/cadence/API/lifecycle issue. Later runtime changes from initial d14293... candidate only correct two stale comments; final isolated test and compiler pass on final bytes.",
+  "controllerLocalization": "Decorative fill only; no focus stop/input/UI text added. Existing native spell labels and controller paths retained; native validation deferred.",
+  "nativeTesting": {
+    "status": "DEFERRED BY USER",
+    "until": "User explicitly allows in-game testing again",
+    "noClientQueriesInputCapturesOrProfiling": true,
+    "nativeAppearanceTaintFpsControllerAcceptance": false
+  },
+  "sourceApiScope": "Existing local vertex-fill helper and statusbar APIs; existing retained client contracts, no new API family or runtime capability probe",
+  "manualInstallationCopies": false,
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-finish-existing-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-finish-final-test.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-finish-final-upvalues.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-completion-visual-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-finish-fixture-inspection.json"
+  ],
+  "documentation": {
+    "generation": "PASS:1225 sources/625 reachable/444 settings/584 literal defaults",
+    "validation": "PASS:1225 sources/625 reachable/444 settings/24 SavedVariables/18149 local links; evidence current"
+  },
+  "finalFreeze": {
+    "utc": "2026-11-16T21:50:17.342989+00:00",
+    "ownedSourcesStable": true,
+    "ownedJobsRunning": 0,
+    "nativeTestingHeld": true
+  }
+}

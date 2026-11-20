@@ -492,9 +492,14 @@ function Watch.Start()
 	Ev.Register("PLAYER_UPDATE_RESTING", function()
 		RequestCond("combat")
 	end)
-	Ev.Register("GROUP_ROSTER_UPDATE", function()
-		RequestCond("combat")
-	end)
+	local pf = Bars.ProgramFace
+	if not (pf and pf.RegisterRosterRefresh and pf.RegisterRosterRefresh()) then
+		Ev.Register("GROUP_ROSTER_UPDATE", function()
+			local current = Bars.ProgramFace
+			if current and current.RequestRosterRefresh then current.RequestRosterRefresh()
+			else RequestCond("combat") end
+		end)
+	end
 	Ev.Register("PLAYER_MOUNT_DISPLAY_CHANGED", function()
 		RequestCond("combat")
 	end)
@@ -521,12 +526,14 @@ function Watch.Start()
 			return
 		end
 		local page = State.GetCurrentPage()
+		local swap = State.CurrentSwap and State.CurrentSwap()
 		local hosts = Bars.hosts
 		for col = 1, Bars.NUM_NATIVE do
 			local hostRecord = hosts[col]
 			local mainHost = hostRecord and hostRecord.main
 			if mainHost and (not mainHost._fluxPromoted or page >= 11) then
-				local newSlot = State.GetMainSlot(col, page)
+				local newSlot = State.ResolveCurrentSlot and State.ResolveCurrentSlot(mainHost, nil, swap)
+					or State.GetMainSlot(col, page)
 				local moved = newSlot and newSlot ~= mainHost.slot
 				if moved then
 					Bars.Hosts.IndexSlot(mainHost, newSlot)
@@ -840,7 +847,7 @@ function Watch.Start()
 		consumeTouched()
 	end
 
-	Ev.Register("ACTIONBAR_SLOT_CHANGED", function(_, slot)
+	Watch.slotEvents = Ev.Register("ACTIONBAR_SLOT_CHANGED", function(_, slot)
 		local n = tonumber(slot)
 		if n and n ~= 0 then
 			slotDirty[n] = true
@@ -851,24 +858,19 @@ function Watch.Start()
 			slotQueued = true
 			Flux.Timer.Defer(FlushSlotChanged)
 		end
-	end)
+	end) and Ev
 
 	Ev.Register("MODIFIER_STATE_CHANGED", function()
-		-- Combat: index host.slot for paint / VFX / badges. Clicks already
-		-- resolve against the pre-stamped nomod / shift- / ctrl- sets.
+		-- Index the displayed slot on every secure modifier edge, including
+		-- out of combat: the native display ChildUpdate can arrive later.
+		-- Clicks already resolve against the pre-stamped modifier sets.
 		-- Never RequestLayout (holding a modifier must not restamp).
 		local State = Bars.State
 		if State then
-			if InLockdown() then
-				if State.IndexLiveSlots then
-					State.IndexLiveSlots()
-				end
-			else
-				if not (State.UsesSecurePaging and State.UsesSecurePaging()) then
-					if State.ApplySlotsInsecure then
-						State.ApplySlotsInsecure()
-					end
-				end
+			if not InLockdown() and not (State.UsesSecurePaging and State.UsesSecurePaging()) then
+				if State.ApplySlotsInsecure then State.ApplySlotsInsecure() end
+			elseif State.IndexLiveSlots then
+				State.IndexLiveSlots()
 			end
 		end
 		-- Re-parse only when some overlay/Extra/slot-macro body has [mod].
@@ -893,7 +895,7 @@ function Watch.Start()
 		Bars.RequestPaint("bars.cooldown")
 	end)
 
-	Ev.Register("UPDATE_BINDINGS", function()
+	Watch.bindingEvents = Ev.Register("UPDATE_BINDINGS", function()
 		if Bars.Clicks and Bars.Clicks.InvalidateKeys then
 			Bars.Clicks.InvalidateKeys()
 		elseif Bars.Hosts and Bars.Hosts.InvalidateKeys then
@@ -915,7 +917,7 @@ function Watch.Start()
 		else
 			Bars.Hosts.RefreshKeys()
 		end
-	end)
+	end) == true and Ev or nil
 
 	-- Vehicle/override enter: Bars.Vehicle owns the deferred apply (strip,
 	-- leftover, OOC ForceApply, paints). Do not Sweep collectors here —

@@ -9,6 +9,14 @@ if type(Spells) ~= "table" then
     return
 end
 
+-- Only Index.lua can establish the fresh-ID query owned by this inventory.
+local snapshotItemIDQuery = rawget(ns, "InventoryUniqueItemIDQuery")
+local snapshotItemIDOwner, snapshotItemIDs
+if type(snapshotItemIDQuery) == "table" then
+    snapshotItemIDOwner = rawget(snapshotItemIDQuery, "owner")
+    snapshotItemIDs = rawget(snapshotItemIDQuery, "query")
+end
+
 local wipe = wipe or function(t)
     for k in pairs(t) do
         t[k] = nil
@@ -191,21 +199,41 @@ local function RememberItemName(itemID, name)
     if not itemID or not name or name == "" then
         return
     end
-    if IsSoulShardName(name) then
-        return
+    if type(name) == "string" then
+        local key = name:lower()
+        if blacklistedReagentNames[key] == true then return end
+        nameToItemID[key] = itemID
+        pendingReagentNames[key] = nil
+    else
+        if IsSoulShardName(name) then return end
+        nameToItemID[name:lower()] = itemID
+        pendingReagentNames[name:lower()] = nil
     end
-    nameToItemID[name:lower()] = itemID
-    pendingReagentNames[name:lower()] = nil
 end
 
-local function GetItemNameForID(itemID)
+local itemNameOwner = C_Item
+local nativeItemName = type(itemNameOwner) == "table" and issecurevariable
+    and issecurevariable(itemNameOwner, "GetItemNameByID") and rawget(itemNameOwner, "GetItemNameByID")
+
+local function GetItemNameForID(itemID, names)
     itemID = tonumber(itemID)
     if not itemID then
         return nil
     end
+    -- One Restock rebuild can share names already returned by the native reader.
+    -- Unavailable names, legacy fallbacks and replacement readers stay live.
+    local reuse = names and C_Item == itemNameOwner and type(nativeItemName) == "function"
+        and rawget(itemNameOwner, "GetItemNameByID") == nativeItemName
+        and (not issecretvalue or not issecretvalue(itemID)) and itemID == itemID
+    if reuse and names[itemID] then
+        return names[itemID]
+    end
     if C_Item and C_Item.GetItemNameByID then
         local n = C_Item.GetItemNameByID(itemID)
         if type(n) == "string" and n ~= "" then
+            if reuse and (not issecretvalue or not issecretvalue(n)) then
+                names[itemID] = n
+            end
             return n
         end
     end
@@ -218,22 +246,32 @@ local function GetItemNameForID(itemID)
     return nil
 end
 
-local function HarvestVisibleItemNames()
+local function HarvestVisibleItemNames(names)
     local api = Flux and Flux.Inventory
+    local complete = false
     if api and api.GetUniqueItems then
-        local set = api.GetUniqueItems({ bags = true, bank = true, warband = true })
+        local set
+        if api == snapshotItemIDOwner and type(snapshotItemIDs) == "function"
+            and rawget(api, "GetUniqueItemIDs") == snapshotItemIDs then
+            set = snapshotItemIDs({ bags = true, bank = true, warband = true })
+            complete = names ~= nil and type(set) == "table"
+        else
+            set = api.GetUniqueItems({ bags = true, bank = true, warband = true })
+        end
         if type(set) == "table" then
             for itemID in pairs(set) do
                 itemID = tonumber(itemID)
-                local name = GetItemNameForID(itemID)
+                local name = GetItemNameForID(itemID, names)
                 if name then
                     RememberItemName(itemID, name)
                 end
+                if complete and ((issecretvalue and issecretvalue(itemID)) or not names[itemID]) then complete = false end
             end
         end
     end
     if GetMerchantNumItems and GetMerchantItemLink then
         local num = GetMerchantNumItems() or 0
+        if num > 0 then complete = false end
         for i = 1, num do
             local link = GetMerchantItemLink(i)
             local itemID = link and tonumber(link:match("item:(%d+)"))
@@ -252,6 +290,7 @@ local function HarvestVisibleItemNames()
             end
         end
     end
+    return complete
 end
 
 local function GetItemIDFromName(itemName)
@@ -406,6 +445,42 @@ local function CollectReagentsFromTooltipData(data, reagents)
     end
 end
 
+local function SetScannerSpell(tip, spellID)
+    tip:SetSpellByID(spellID)
+end
+
+local function CollectReagentsFromScanner(base, numLines, reagents)
+    local inSection = false
+    for line = 1, numLines do
+        local textObj = _G[base .. "TextLeft" .. line]
+        if textObj and textObj.GetText then
+            local raw = AccessibleString(textObj:GetText())
+            if raw then
+                for id in raw:gmatch("item:(%d+)") do
+                    local n = tonumber(id)
+                    if n and not IsBlacklistedReagent(n) then
+                        reagents[#reagents + 1] = { itemID = n }
+                    end
+                end
+                local lineText = raw:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|n", " ")
+                local itemsPart = ExtractReagentItemsFromLine(lineText)
+                if itemsPart then
+                    inSection = true
+                    if itemsPart ~= "" then
+                        AddReagentNamesFromText(itemsPart, reagents)
+                    end
+                elseif inSection then
+                    if IsReagentSectionEndLine(lineText) then
+                        inSection = false
+                    else
+                        AddReagentNamesFromText(lineText, reagents)
+                    end
+                end
+            end
+        end
+    end
+end
+
 local function CollectReagentsFromTooltip(spellID)
     local reagents = {}
     if C_TooltipInfo then
@@ -424,42 +499,10 @@ local function CollectReagentsFromTooltip(spellID)
         local tip = GetScanner()
         tip:ClearLines()
         WipeTip(tip)
-        pcall(function()
-            tip:SetSpellByID(spellID)
-        end)
+        pcall(SetScannerSpell, tip, spellID)
         local base = tip:GetName() or "FluxSpellReagentTip"
         local numLines = math.min(40, math.max(0, tip:NumLines() or 0))
-        pcall(function()
-            local inSection = false
-            for line = 1, numLines do
-                local textObj = _G[base .. "TextLeft" .. line]
-                if textObj and textObj.GetText then
-                    local raw = AccessibleString(textObj:GetText())
-                    if raw then
-                        for id in raw:gmatch("item:(%d+)") do
-                            local n = tonumber(id)
-                            if n and not IsBlacklistedReagent(n) then
-                                reagents[#reagents + 1] = { itemID = n }
-                            end
-                        end
-                        local lineText = raw:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|n", " ")
-                        local itemsPart = ExtractReagentItemsFromLine(lineText)
-                        if itemsPart then
-                            inSection = true
-                            if itemsPart ~= "" then
-                                AddReagentNamesFromText(itemsPart, reagents)
-                            end
-                        elseif inSection then
-                            if IsReagentSectionEndLine(lineText) then
-                                inSection = false
-                            else
-                                AddReagentNamesFromText(lineText, reagents)
-                            end
-                        end
-                    end
-                end
-            end
-        end)
+        pcall(CollectReagentsFromScanner, base, numLines, reagents)
     end
     for i = 1, #reagents do
         local r = reagents[i]
@@ -585,9 +628,9 @@ local function GetSpellBaseNameKey(spellID)
     return base:lower()
 end
 
-local function ResolvePendingReagentNames()
-    HarvestVisibleItemNames()
-    local changed = false
+local function ResolvePendingReagentNames(names, skipHarvest)
+    local complete = skipHarvest or HarvestVisibleItemNames(names)
+    local changed, unresolved = false, false
     for spellID, reagents in pairs(reagentBySpell) do
         if type(reagents) == "table" then
             for i = 1, #reagents do
@@ -602,12 +645,14 @@ local function ResolvePendingReagentNames()
                             spellsUsingReagent[id][spellID] = true
                         end
                         changed = true
+                    else
+                        unresolved = true
                     end
                 end
             end
         end
     end
-    return changed
+    return changed, complete, unresolved
 end
 
 FinalizeActiveReagents = function(runMigration)
@@ -810,12 +855,17 @@ function Spells.AreReagentsWarmed()
     return reagentsWarmDone
 end
 
-function Spells.OnVisibleItemsChanged()
-    local changed = ResolvePendingReagentNames()
+local function UpdateVisibleReagentNames(names, skipHarvest)
+    local changed, complete, unresolved = ResolvePendingReagentNames(names, skipHarvest)
     if changed and reagentsWarmDone then
         FinalizeActiveReagents(true)
         return true
     end
+    return false, not changed and complete, unresolved
+end
+
+function Spells.OnVisibleItemsChanged()
+    local changed = UpdateVisibleReagentNames()
     return changed
 end
 
@@ -869,6 +919,53 @@ function Spells.IsReagentItem(itemID)
         return activeReagentItemIDs[itemID] == true
     end
     return allReagentItemIDs[itemID] == true
+end
+
+if type(nativeItemName) == "function" then
+    local refresh, isReagent = Spells.Refresh, Spells.IsReagentItem
+    local publicQuery, getSet = Spells.OnVisibleItemsChanged, Spells.GetReagentItemIDSet
+    local blacklist = Spells.IsBlacklistedReagent
+    local function CanReuseLookup(api)
+        return reagentsWarmDone and not reagentsDirty and api and api == snapshotItemIDOwner
+            and Flux.Inventory == api and rawget(api, "GetUniqueItemIDs") == snapshotItemIDs
+            and C_Item == itemNameOwner and rawget(itemNameOwner, "GetItemNameByID") == nativeItemName
+            and Spells.Refresh == refresh and Spells.IsReagentItem == isReagent
+            and Spells.GetReagentItemIDSet == getSet and Spells.IsBlacklistedReagent == blacklist
+            and Spells.OnVisibleItemsChanged == publicQuery and api.GetBagGeneration and api.GetSnapshotGeneration
+            and api.IsMerchantOpen and not api.IsMerchantOpen() and api.IsBankOpen and not api.IsBankOpen()
+    end
+    local function CollectForRestock(names)
+        local changed, complete, unresolved = UpdateVisibleReagentNames(names)
+        local api = Flux and Flux.Inventory
+        if complete and not changed and CanReuseLookup(api) then
+            local bags, bank, warband = api.GetBagGeneration(), api.GetSnapshotGeneration("bank"),
+                api.GetSnapshotGeneration("warband")
+            if bags ~= nil and bank ~= nil and warband ~= nil then
+                return changed, { api = api, source = api.source, bags = bags, bank = bank, warband = warband,
+                    spells = reagentWarmGen, unresolved = unresolved }
+            end
+        end
+        return changed
+    end
+    local function CanReuseStamp(stamp)
+        local api = stamp.api
+        return reagentWarmGen == stamp.spells and CanReuseLookup(api) and api.source == stamp.source
+            and api.GetBagGeneration() == stamp.bags and api.GetSnapshotGeneration("bank") == stamp.bank
+            and api.GetSnapshotGeneration("warband") == stamp.warband
+    end
+    ns.InventoryReagentVisibleNames = {
+        owner = Spells,
+        publicQuery = publicQuery,
+        query = CollectForRestock,
+        retry = function(stamp)
+            if not CanReuseStamp(stamp) then return nil end
+            if not stamp.unresolved then return false end
+            -- Item metadata can arrive independently of container generations.
+            -- Retry the unresolved names without repeating the visible-item walk.
+            local changed = UpdateVisibleReagentNames(nil, true)
+            return changed
+        end,
+    }
 end
 
 local function FormatSpellReagentLabel(spellID)

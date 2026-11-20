@@ -914,21 +914,84 @@ local function ThemedRGB()
 	return 0.6, 0.6, 0.6
 end
 
-local function EnsureEmptySlot(widget)
+local function ChromeDimensions(widget)
+	local w = widget._fluxLayoutW or (widget.GetWidth and widget:GetWidth())
+	local h = widget._fluxLayoutH or (widget.GetHeight and widget:GetHeight())
+	if issecretvalue and issecretvalue(w) or type(w) ~= "number" or not (w >= 1 and w < math.huge) then w = nil end
+	if issecretvalue and issecretvalue(h) or type(h) ~= "number" or not (h >= 1 and h < math.huge) then h = nil end
+	return w, h
+end
+
+local function ChromeActive(widget)
+	local shown = widget.IsShown and widget:IsShown()
+	if issecretvalue and issecretvalue(shown) or type(shown) ~= "boolean" then return end
+	return shown and not widget._fluxParked
+end
+
+local function LiveNormalTexture(widget)
+	return widget.NormalTexture or (widget.GetNormalTexture and widget:GetNormalTexture())
+end
+
+local function NormalArtwork(tex)
+	if issecretvalue and issecretvalue(tex) then return end
+	local art = tex and tex.GetTexture and tex:GetTexture()
+	if issecretvalue and issecretvalue(art) then return end
+	if type(art) == "string" and art ~= "" or type(art) == "number" and art ~= 0 then return art end
+end
+
+local function RingSizer()
+	local ebs = Flux.EBS
+	return ebs and ebs.Style and ebs.Style.SizeRing
+end
+
+local function RegionShown(region, expected)
+	if not region then return not expected end
+	local shown = region.IsShown and region:IsShown()
+	return not (issecretvalue and issecretvalue(shown)) and shown == expected
+end
+
+local function NormalPaint(tex)
+	if issecretvalue and issecretvalue(tex) then return end
+	if not (tex and tex.GetVertexColor and tex.GetAlpha) then return end
+	local r, g, b = tex:GetVertexColor()
+	local a = tex:GetAlpha()
+	if issecretvalue and (issecretvalue(r) or issecretvalue(g) or issecretvalue(b) or issecretvalue(a)) then return end
+	if a == 1 and type(r) == "number" and type(g) == "number" and type(b) == "number" then return r, g, b end
+end
+
+local function CanReuseChrome(widget, record)
+	if not record or not record.width or not record.height or not record.art
+		or not widget._fluxArtHooked or widget._fluxArtHooked ~= widget.UpdateButtonArt then return false end
+	local active = ChromeActive(widget)
+	if active == false then
+		-- Parking changes the face's anchor. Keep the last fitted art so the
+		-- reveal can verify the live regions without repainting them.
+		return true
+	end
+	if not active or record.ringSizer ~= RingSizer()
+		or record.backdrop ~= widget.BackgroundTexture or record.overlay ~= widget._fluxQuickslotRing
+		or record.slotArt ~= widget.SlotArt or record.slotBackground ~= widget.SlotBackground
+		or record.pushed ~= widget.PushedTexture or record.checked ~= widget.CheckedTexture
+		or record.highlight ~= widget.HighlightTexture or record.border ~= widget.Border then return false end
+	-- A replaced or hidden native region takes the ordinary repair path.
+	local normal = LiveNormalTexture(widget)
+	if issecretvalue and issecretvalue(normal) then return false end
+	if normal ~= record.normal or NormalArtwork(normal) ~= record.art
+		or not RegionShown(normal, true) or not RegionShown(record.backdrop, true)
+		or not RegionShown(record.slotArt, false) or not RegionShown(record.slotBackground, false) then return false end
+	local r, g, b = NormalPaint(normal)
+	if r ~= record.red or g ~= record.green or b ~= record.blue then return false end
+	local w, h = ChromeDimensions(widget)
+	return w == record.width and h == record.height
+end
+
+local function EnsureEmptySlot(widget, w, h)
 	local bg = widget.BackgroundTexture
 	if not bg then
 		bg = widget:CreateTexture(nil, "BACKGROUND", nil, -2)
 		widget.BackgroundTexture = bg
 		bg:SetTexture(EMPTY_SLOT)
 		bg:SetTexCoord(0, 1, 0, 1)
-	end
-	local w = widget.GetWidth and widget:GetWidth() or 0
-	local h = widget.GetHeight and widget:GetHeight() or 0
-	if type(w) ~= "number" or w < 1 then
-		w = Bars.CONFIG.buttonSize
-	end
-	if type(h) ~= "number" or h < 1 then
-		h = Bars.CONFIG.buttonSize
 	end
 	bg:ClearAllPoints()
 	bg:SetPoint("CENTER", widget, "CENTER", 0, 0)
@@ -939,26 +1002,27 @@ local function EnsureEmptySlot(widget)
 	return bg
 end
 
-local function ApplyChrome(widget)
-	local EBS = Flux.EBS
+local function ApplyChrome(widget, rememberLayout)
 	local record = skinRecords[widget]
 	if not record then
 		record = { Widget = widget, categoryScope = "character" }
 		skinRecords[widget] = record
 	end
+	-- Discard the previous fit before a writer can fail or reenter.
+	record.width = nil
+	local w, h = ChromeDimensions(widget)
+	local size = Bars.CONFIG.buttonSize
 	if widget.SlotArt then
 		widget.SlotArt:Hide()
 	end
 	if widget.SlotBackground then
 		widget.SlotBackground:Hide()
 	end
-	EnsureEmptySlot(widget)
-	if EBS and EBS.Style and EBS.Style.SizeRing then
-		EBS.Style.SizeRing(record)
-	end
+	EnsureEmptySlot(widget, w or size, h or size)
+	local ringSizer = RingSizer()
+	if ringSizer then ringSizer(record) end
 	local r, g, b = ThemedRGB()
-	local tex = widget.NormalTexture
-		or (widget.GetNormalTexture and widget:GetNormalTexture())
+	local tex = LiveNormalTexture(widget)
 	if tex then
 		tex:SetVertexColor(r, g, b, 1)
 		tex:SetAlpha(1)
@@ -973,13 +1037,28 @@ local function ApplyChrome(widget)
 	if widget.BackgroundTexture then
 		widget.BackgroundTexture:SetVertexColor(r, g, b, 1)
 	end
+	if rememberLayout and widget._fluxArtHooked and widget._fluxArtHooked == widget.UpdateButtonArt then
+		local art = NormalArtwork(tex)
+		-- Native textures round color channels. Record the applied color for
+		-- exact comparisons with subsequent native reads.
+		local red, green, blue = NormalPaint(tex)
+		if art and red ~= nil then
+			record.normal, record.art = tex, art
+			record.backdrop, record.overlay = widget.BackgroundTexture, overlay
+			record.slotArt, record.slotBackground = widget.SlotArt, widget.SlotBackground
+			record.pushed, record.checked = widget.PushedTexture, widget.CheckedTexture
+			record.highlight, record.border = widget.HighlightTexture, widget.Border
+			record.red, record.green, record.blue = red, green, blue
+			record.ringSizer = ringSizer
+			record.width, record.height = w, h
+		end
+	end
 end
 
 local function HookButtonArt(widget)
 	if widget._fluxArtHooked or not widget.UpdateButtonArt then
 		return
 	end
-	widget._fluxArtHooked = true
 	-- Instance wrap only. hooksecurefunc on a mixin method can wrap the shared
 	-- function every stock button calls from Update().
 	local orig = widget.UpdateButtonArt
@@ -989,15 +1068,17 @@ local function HookButtonArt(widget)
 			return
 		end
 		self._fluxSkinning = true
-		ApplyChrome(self)
+		ApplyChrome(self, not InLockdown())
 		self._fluxSkinning = nil
 	end
+	widget._fluxArtHooked = widget.UpdateButtonArt
 end
 
-function Blizzard.SkinButton(widget)
+function Blizzard.SkinButton(widget, reuseLayoutChrome)
 	if not widget then
 		return
 	end
+	if reuseLayoutChrome and CanReuseChrome(widget, skinRecords[widget]) then return end
 	if widget.SlotArt then
 		widget.SlotArt:Hide()
 	end
@@ -1005,7 +1086,7 @@ function Blizzard.SkinButton(widget)
 		widget.SlotBackground:Hide()
 	end
 	HookButtonArt(widget)
-	ApplyChrome(widget)
+	ApplyChrome(widget, true)
 end
 
 function Blizzard.Prepare()

@@ -1,0 +1,146 @@
+{
+  "changeId": "LHO-PROFESSION-ALIAS-OVERLAP-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "provider": "syndicator",
+  "addons": [
+    "_FluxUI",
+    "BugTabs",
+    "Baganator",
+    "Syndicator"
+  ],
+  "checkpoint": {
+    "baseline": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9",
+    "dir": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/profession-alias-overlap-20261119T105800Z",
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settings": 21
+  },
+  "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "sources": {
+    "base": "74591177c4df2594039e5e1cc31d5a7cf4a30f5171a2747d4abdf5e15126eeb9",
+    "candidate": "a8246c7edd923a8a8c4f953017bb05454395f410526d208c8686bb77268b0e20",
+    "candidateWorker": "ba4cbeacabc94cdb83426db847d2d4b1a86976380d5eba76d9a695c56e9983f4",
+    "verifiedFiveInstallCopies": true,
+    "syntaxChecks": 12,
+    "baseReconstructedByRemovingGuard": true
+  },
+  "r302": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag302-tailoring-learnedness-contract-20261119",
+      "controllerSHA": "0540bbd38701e8de0da5da000c1280c18d8585b58d58ce7145ee01677ce5fd1a",
+      "packetSHA": "866658e856cf64575c4afa1375e6cc76069c20e14c8202445d846cce03c8b52e",
+      "packets": 8,
+      "luaSHA": "1d6dc299e4978f68fba7ebe119030c411b3e72c39ba7cfbfff79a6d5f5ef054c"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag302_a-submitted.png",
+      "sha256": "72eb1068946a50a2e976b434eca27c304c46e6882ea234263663bbd81b46eae5"
+    },
+    "recipeLearned": 101,
+    "recipeUnlearned": 370,
+    "noFlag": 0,
+    "mismatches": {
+      "IsRecipeProfessionLearned": {
+        "learned": 0,
+        "unlearned": 370
+      },
+      "C_SpellBook.IsSpellKnown": {
+        "learned": 0,
+        "unlearned": 0
+      },
+      "IsSpellKnown": {
+        "learned": 101,
+        "unlearned": 0
+      },
+      "visibleFilteredList": {
+        "learned": 0,
+        "unlearned": 0
+      }
+    },
+    "scope": "Current Tailoring filter only. No proof of equivalent semantics during learning or on other clients."
+  },
+  "r303": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag303-restock-bag-profession-parity-20261119",
+      "controllerSHA": "6276efe9c059dfbd19f0ff507025b2820f48373aec59a681c5e17e741674d407",
+      "packetSHA": "4059e0cbeb30edbce8a6e24fce2093a94ea4c6d4564f2b6f24990e4468229ea5",
+      "packets": 28,
+      "luaSHA": "346cdd1739419e8a5ced358426ad464191606b87b2a02871d5ee4d58e55071b3"
+    },
+    "status": "Foreground or recent PC input guard stopped launch; no command or item movement"
+  },
+  "r304": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag304-tailoring-unrelated-alias-native-work-20261119",
+      "controllerSHA": "c04d591d8bf4ce0022d6603046693e7b6bed99566d95ad8fe055ee3c385b4419",
+      "packetSHA": "16ae20ddf62edea37fdaad95ef08e298ae1e29e8f8bd7d14edc08e78fd6bf865",
+      "packets": 18,
+      "luaSHA": "ed234093a08fc3f8b64cef62480d7ecfaca435d8b7a5adac1a5f98e87f230563"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag304-alias-readonly-result.png",
+      "sha256": "af33b2e50b343d903d5f298a9bb048c9192edc756345431551d75462b914cf30"
+    },
+    "actualObservations": 471,
+    "aliases": 8,
+    "canSkip": 7,
+    "decisionMismatches": 0,
+    "batchRepeats": 4,
+    "pairsMs": [
+      [
+        1.63,
+        0.653
+      ],
+      [
+        1.577,
+        0.627
+      ],
+      [
+        1.565,
+        0.608
+      ]
+    ],
+    "nativeTimingScope": "Four live saved-alias sweeps per half; prototype predicate before source edit. Production adds ordinary-table guards. No mutation or FPS measure.",
+    "transport": "WoW foreground changed during post-submission capture. The independent read showed all expected results, closed chat and unchanged foreground during that read."
+  },
+  "r305": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag305-tailoring-alias-overlap-exact-20261119",
+      "controllerSHA": "88d116d0203615c9707970d5627031afbdead9d057e6129e69d54abba667b2f4",
+      "packetSHA": "d3b60322df1dad75358991f77f99254e6b655e9553772c16bf773c5451edda9a",
+      "packets": 20,
+      "luaSHA": "31d0188ac7f3a2023009c39eac295c088c53b2c91ed4b2258073da516288ff6b"
+    },
+    "status": "Exact guard script prepared and Lua 5.1 syntax checked. Lease released before input after the host detected a held key."
+  },
+  "apiReference": {
+    "target": "Forever packaged snapshot 1.60.1.70938; installed client 70959",
+    "retailPackagedCommit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "classicPackagedCommit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "foreverPinnedApi": "https://raw.githubusercontent.com/Gethe/wow-ui-source/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TradeSkillUIDocumentation.lua",
+    "foreverPinnedSpellBook": "https://raw.githubusercontent.com/Gethe/wow-ui-source/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua"
+  },
+  "reloadSent": false,
+  "pending": [
+    "Observe exact candidate in a suitable loaded client and repeat an event timing.",
+    "Attribute remaining profession-driven Restock rebuilds with full row equivalence and bag snapshot generations.",
+    "Check active Pending, real crafting transitions and other providers and clients."
+  ],
+  "r306": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag306-tailoring-alias-final-native-check-20261119",
+      "controllerSHA": "4487ca02d3bb3a1834a6125ce3e91b340dc3e4648ca9b04d1e4f01dcb976e126",
+      "packetSHA": "4726b4a1637569e0cabc47b84e2d4ecda97ec5d1e6989fa2ef59a2f34d82a1f8",
+      "packets": 20,
+      "luaSHA": "bbdfca3db0b8f5ad67b13f9fc9b74162ee4b0072208ae95e2aab43625eab13d8"
+    },
+    "stage": "aborted-no-retry",
+    "inputAttempted": true,
+    "leaseReleased": true,
+    "result": "Physical modifier interrupted the script. Read-only inspection confirmed no open chat draft, with both existing panels visible. No usable timing.",
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag306-safe-draft-verification.png",
+      "sha256": "6b5acfe515d10b291c4426421d6dd81f8d3d62a18f6bbac6ce7d1eabed995877"
+    }
+  }
+}

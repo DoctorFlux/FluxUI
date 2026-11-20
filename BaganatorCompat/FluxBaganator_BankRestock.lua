@@ -11,10 +11,18 @@ local BANK_VIEW_PREFIXES = {
 
 -- Baganator names bank views as Prefix .. skinKey (e.g. ...Frameblizzard),
 -- not Prefix .. "1"/"2". Keep numeric suffixes as a legacy fallback.
-local BANK_VIEW_SUFFIXES = {
-    "1", "2",
-    "blizzard", "blizzard_black", "dark", "elvui", "gw2_ui", "ndui",
-}
+local BANK_VIEW_FRAME_NAMES = {}
+do
+    local suffixes = {
+        "1", "2",
+        "blizzard", "blizzard_black", "dark", "elvui", "gw2_ui", "ndui",
+    }
+    for _, suffix in ipairs(suffixes) do
+        for _, prefix in ipairs(BANK_VIEW_PREFIXES) do
+            BANK_VIEW_FRAME_NAMES[#BANK_VIEW_FRAME_NAMES + 1] = prefix .. suffix
+        end
+    end
+end
 
 local function GetRestockButton()
     return _G.FluxBankRestockButton
@@ -30,6 +38,31 @@ local function TagsIncludeBank(tags)
         end
     end
     return tags.bank == true
+end
+
+local indexedRegistry, indexedGetter
+local indexedFrameCount = 0
+local bankFrameIndexes = {}
+
+local function IsBankFrameEntry(entry)
+    return entry and entry.regionType == "ButtonFrame" and entry.region and TagsIncludeBank(entry.tags)
+end
+
+local function GetBankFrameIndexes(frames, getter)
+    local size = #frames
+    if frames ~= indexedRegistry or getter ~= indexedGetter or size < indexedFrameCount then
+        indexedRegistry, indexedGetter = frames, getter
+        indexedFrameCount = 0
+        bankFrameIndexes = {}
+    end
+    -- Baganator's skin registrations append records for newly created frames.
+    for i = indexedFrameCount + 1, size do
+        if IsBankFrameEntry(frames[i]) then
+            bankFrameIndexes[#bankFrameIndexes + 1] = i
+        end
+    end
+    indexedFrameCount = size
+    return bankFrameIndexes
 end
 
 local function VisitBankView(view, seen, callback)
@@ -49,14 +82,24 @@ function Compat.ForEachBaganatorBankView(callback)
 
     local api = _G.Baganator and _G.Baganator.API
     local skins = api and api.Skins
-    if skins and skins.GetAllFrames then
-        local ok, frames = pcall(skins.GetAllFrames, skins)
+    local getFrames = skins and skins.GetAllFrames
+    if getFrames then
+        local ok, frames = pcall(getFrames, skins)
         if ok and type(frames) == "table" then
-            for i = 1, #frames do
-                local entry = frames[i]
-                if entry and entry.regionType == "ButtonFrame" and entry.region
-                    and TagsIncludeBank(entry.tags) then
-                    VisitBankView(entry.region, seen, callback)
+            if type(skins.RegisterListener) == "function" then
+                local indexes = GetBankFrameIndexes(frames, getFrames)
+                for i = 1, #indexes do
+                    local entry = frames[indexes[i]]
+                    if IsBankFrameEntry(entry) then
+                        VisitBankView(entry.region, seen, callback)
+                    end
+                end
+            else
+                for i = 1, #frames do
+                    local entry = frames[i]
+                    if IsBankFrameEntry(entry) then
+                        VisitBankView(entry.region, seen, callback)
+                    end
                 end
             end
         end
@@ -75,10 +118,8 @@ function Compat.ForEachBaganatorBankView(callback)
         end
     end
 
-    for s = 1, #BANK_VIEW_SUFFIXES do
-        for p = 1, #BANK_VIEW_PREFIXES do
-            VisitBankView(_G[BANK_VIEW_PREFIXES[p] .. BANK_VIEW_SUFFIXES[s]], seen, callback)
-        end
+    for i = 1, #BANK_VIEW_FRAME_NAMES do
+        VisitBankView(_G[BANK_VIEW_FRAME_NAMES[i]], seen, callback)
     end
 end
 

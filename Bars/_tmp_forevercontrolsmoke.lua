@@ -1,15 +1,23 @@
 -- lua Bars/_tmp_forevercontrolsmoke.lua
 -- Actual Forever SecureStateDriver/SecureTemplates plus Flux Restricted,
 -- State, Clicks, ButtonFX, Layout and SlotProgram. Engine taint is not modeled.
+-- Optional argument supplies the archived Bars/State.lua for matched counts.
 local root = (arg[0]:match('^(.*)[/\\]') or '.') .. '/../'
 local function read(path)
     local f = assert(io.open(root .. path, 'r')); local s = f:read('*a'); f:close(); return s
+end
+local archivedState
+if arg[1] then
+    local file = assert(io.open(arg[1], 'r'))
+    archivedState = file:read('*a')
+    file:close()
 end
 local function compile(src, env) return assert(load(src, 'control fixture', 't', env)) end
 local v8Math = assert(loadfile(root..'../__Backup/v8/_FluxUI/Bars/SlotMath.lua'))('_FluxUI', { Flux={Bars={}} })
 local function boot(initialSwap, promotion, broken, normalPage)
     normalPage=normalPage or 1
     local locked, secure, kind, swap, casts = false, false, 'normal', initialSwap, {}
+    local dispatchModifiersHidden = false
     local frames, binds, ns = {}, {}, { Flux = { Bars = {}, Cap = { hasRestrictedClosures = false } } }
     local env = setmetatable({}, { __index = _G }); env._G = env
     local F, B = ns.Flux, ns.Flux.Bars
@@ -30,6 +38,14 @@ local function boot(initialSwap, promotion, broken, normalPage)
     end
     function Frame:SetAttribute(name, value)
         assert(not locked or secure, 'insecure combat write: '..tostring(self.name)..':'..name)
+        local work = env.hoverWork
+        if work and self.attrs["flux-column"] then
+            work.writes = work.writes + 1
+            if name == "flux-applied-mods" and value == nil then work.resets = work.resets + 1 end
+            if name == "flux-live-sec" or name == "flux-live-tert" then
+                work.liveWrites = (work.liveWrites or 0) + 1
+            end
+        end
         local changed = self.attrs[name] ~= value; self.attrs[name] = value
         if changed then
             if self.scripts.OnAttributeChanged then
@@ -76,9 +92,11 @@ local function boot(initialSwap, promotion, broken, normalPage)
         local body=assert(self.attrs[name],name); return run(self,body)
     end
     function Frame:ChildUpdate(name, message)
+        local work = env.hoverWork
+        if work and name == 'fluxreset' then work.broadcasts = (work.broadcasts or 0) + 1 end
         for _, child in ipairs(self.children or {}) do
             local body = child.attrs['_childupdate-'..name]
-            if body then run(child, body, { message = message }) end
+            if body then run(child, body, { message = message, control = self }) end
         end
     end
     env.CreateFrame = function(_, name, parent)
@@ -92,10 +110,12 @@ local function boot(initialSwap, promotion, broken, normalPage)
     env.UIParent = env.CreateFrame('Frame', 'UIParent')
     env.NUM_ACTIONBAR_BUTTONS, env.NUM_ACTIONBAR_PAGES = 12, 6
     env.UnitClass = function() return 'Priest', 'PRIEST' end
-    env.IsShiftKeyDown = function() return swap == 1 end
-    env.IsControlKeyDown = function() return swap == 2 end
+    env.IsShiftKeyDown = function() return not dispatchModifiersHidden and swap == 1 end
+    env.IsControlKeyDown = function() return not dispatchModifiersHidden and swap == 2 end
     env.IsAltKeyDown = function() return false end
-    env.IsModifiedClick = function(key) return (key == 'SHIFT' and swap == 1) or (key == 'CTRL' and swap == 2) end
+    env.IsModifiedClick = function(key)
+        return not dispatchModifiersHidden and ((key == 'SHIFT' and swap == 1) or (key == 'CTRL' and swap == 2))
+    end
     env.GetCVarBool, env.UnitExists = function() return false end, function() return false end
     env.GetModifiedClick = function() return 'NONE' end
     env.GetCursorInfo = function() end
@@ -147,7 +167,10 @@ local function boot(initialSwap, promotion, broken, normalPage)
         macroRuns = macroRuns+1; assert(body == '/cast SavedProgram', 'routing macro entered normal input')
         casts[#casts+1] = 'SavedProgram'
     end }
-    local function loadFlux(path) return compile(read(path), env)('_FluxUI', ns) end
+    local function loadFlux(path)
+        local source = path == 'Bars/State.lua' and archivedState or read(path)
+        return compile(source, env)('_FluxUI', ns)
+    end
     loadFlux('Core/ButtonFX/Click.lua'); loadFlux('Core/Engine/Restricted.lua')
     assert(not F.Restricted.Works(), 'v8 click policy changed')
     if broken then
@@ -202,7 +225,13 @@ local function boot(initialSwap, promotion, broken, normalPage)
         local w = B.hosts[col][row or 'main'].widget
         local button = 'LeftButton'
         if key then w,button = table.unpack(assert(binds['KEY'..col])) end
+        -- The secure driver has already selected the live main. Bound native
+        -- clicks can consume Shift/Ctrl before OnClick; mouse input retains
+        -- its independent press-time modifier lookup.
+        local previous = dispatchModifiersHidden
+        dispatchModifiersHidden = key and true or false
         casts = {}; w:Click(button, true); w:Click(button, false)
+        dispatchModifiersHidden = previous
         assert(#casts == 1, 'click must execute exactly once: '..#casts)
         return casts[1]
     end
@@ -266,4 +295,100 @@ assert(mouse=='SavedProgram' and key=='SavedProgram','overlay normal input: '..t
 t.advance('mindcontrol',1); assert(t.press(1,false)==121 and t.press(1,true)==121)
 t.advance('normal',0); assert(t.press(1,false)=='SavedProgram' and t.press(1,true)=='SavedProgram')
 boot(0,0,true)
-print('Forever control smoke passed: '..checks..' native mouse/key/mini actions; combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe')
+local function hoverFixture(page)
+    local t = boot(0,0,nil,page)
+    local slots = { [1]=true, [62]=true, [27]=true, [63]=true, [15]=true, [55]=true, [43]=true }
+    t.env.HasAction = function(slot) return slots[slot] end
+    t.env.GetCursorInfo = function() return t.cursor end
+    t.B.Strip.frame.IsMouseOver = function() return t.hover end
+    t.B.Layout.Invalidate()
+    t.B.Layout.Apply()
+    t.B.SlotProgram.ApplyMap({[1]='/cast SavedProgram'})
+    return t, slots
+end
+local function compareRoutes(actual, expected)
+    for column=1,19 do
+        for _, row in ipairs({'main', 'sec', 'tert'}) do
+            local a, b = actual.B.hosts[column][row].widget, expected.B.hosts[column][row].widget
+            for _, name in ipairs({'action','state','flux-applied','flux-applied-mods',
+                'flux-live-sec','flux-live-tert','type','macrotext'}) do
+                assert(a:GetAttribute(name)==b:GetAttribute(name), row..column..' mismatch: '..name)
+            end
+            for _, prefix in ipairs({'','alt-','ctrl-','alt-ctrl-','shift-','alt-shift-','ctrl-shift-','alt-ctrl-shift-'}) do
+                for _, suffix in ipairs({'action*','type*','typerelease*','clickbutton*','macrotext*','IsEmpowerSpell*'}) do
+                    local name = prefix .. suffix
+                    assert(a:GetAttribute(name)==b:GetAttribute(name), row..column..' alias mismatch: '..name)
+                end
+            end
+            if a:IsShown() then
+                assert(actual.press(column,false,row)==expected.press(column,false,row),'hover face changes cast')
+            end
+        end
+        if column<=12 then
+            assert(actual.press(column,true)==expected.press(column,true),'hover changes bound action')
+        end
+    end
+end
+local function countedLayout(t, hover)
+    local work = {writes=0,resets=0,liveWrites=0,broadcasts=0}
+    t.env.hoverWork = work
+    t.B.Layout.Apply(hover)
+    t.env.hoverWork = nil
+    return work
+end
+for _,page in ipairs({1,2}) do
+    local candidate, liveSlots = hoverFixture(page)
+    local oracle, oracleSlots = hoverFixture(page)
+    local before, after, liveWrites, broadcasts = 0, 0, 0, 0
+    for _,kind in ipairs({'spell','item','macro'}) do
+        for edge=1,2 do
+            candidate.cursor, oracle.cursor = kind, kind
+            candidate.hover, oracle.hover = edge==1, edge==1
+            local new, old = countedLayout(candidate, true), countedLayout(oracle, false)
+            assert(new.resets==0 and old.resets==57 and new.writes<old.writes,
+                'a pure hover only repaints changed secure routes')
+            before, after = before+old.writes, after+new.writes
+            liveWrites, broadcasts = liveWrites+new.liveWrites, broadcasts+new.broadcasts
+            compareRoutes(candidate,oracle)
+            for swap=0,2 do
+                candidate.advance('normal',swap)
+                oracle.advance('normal',swap)
+                compareRoutes(candidate,oracle)
+            end
+        end
+    end
+    assert(after < before * 0.4, 'pure hover keeps each unchanged modifier lane')
+    if not archivedState then
+        assert(liveWrites == 0 and broadcasts == 0, 'settled hover samples occupancy without a reset or unchanged writes')
+    end
+    -- Native contents can change before ACTIONBAR_SLOT_CHANGED is delivered.
+    liveSlots[62], oracleSlots[62] = nil, nil
+    candidate.hover, oracle.hover = true, true
+    local resample = countedLayout(candidate, true)
+    countedLayout(oracle, false)
+    assert(resample.liveWrites > 0, 'hover publishes an occupancy change before its event')
+    compareRoutes(candidate, oracle)
+    -- A client without the native probe drops the old samples and uses flags.
+    local candidateProbe, oracleProbe = candidate.env.HasAction, oracle.env.HasAction
+    candidate.env.HasAction, oracle.env.HasAction = nil, nil
+    candidate.hover, oracle.hover = false, false
+    countedLayout(candidate, true)
+    countedLayout(oracle, false)
+    compareRoutes(candidate, oracle)
+    candidate.env.HasAction, oracle.env.HasAction = candidateProbe, oracleProbe
+    liveSlots[63], oracleSlots[63] = nil, nil
+    candidate.B.Layout.InvalidateMappings()
+    oracle.B.Layout.InvalidateMappings()
+    local drop = countedLayout(candidate, false)
+    oracle.B.Layout.Apply(false)
+    assert(drop.resets==57,'real slot edits retain forced refresh')
+    compareRoutes(candidate,oracle)
+    -- An unavailable optional hover snippet keeps the established full path.
+    candidate.env.FluxActionStripHeaderMain:SetAttribute('_fluxHoverApply',nil)
+    candidate.hover=true
+    local fallback = countedLayout(candidate, true)
+    assert(fallback.resets==12,'missing optional route force-applies its header')
+    print(('Forever held hover page=%d attribute setters=%d/%d'):format(page,before,after))
+    print(('HOVER_OCCUPANCY|%d|%d|%d|%d|%d'):format(page,before,after,liveWrites,broadcasts))
+end
+print('Forever control smoke passed: '..checks..' native mouse/key/mini actions; consumed keyboard globals, combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe')

@@ -1,0 +1,257 @@
+{
+  "changeId": "COMBAT-WATCH-R61-20261117",
+  "recordedAtUTC": "2026-11-17T05:01:46.407682+00:00",
+  "goalStatus": "ACTIVE; full combat and party/raid hitch objective remains open",
+  "status": "APPLIED optional finite-watch repair and combat delivery/next-driver-gap observability; fresh fullLua54 513scripts/1203syntax PASS with1282pins stable. Separate695checks perVM/4testcompilers PASS. Native current adoption/registration/delivery/combat/group/FPS acceptance pending.",
+  "requirements": [
+    "docs/COMBAT_TRANSITION_PERFORMANCE.md CT02,CT03,CT09,CT11,CT12,CT18",
+    "docs/PARTY_BORDER_PERFORMANCE.md PRW03-PRW05 remain open native acceptance boundaries"
+  ],
+  "source": {
+    "baselineOtherSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+    "appliedOther": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Other\\FluxPerfCapture.lua",
+      "rawSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+      "lfSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+      "bytes": 49120
+    },
+    "unchangedCore": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+      "rawSHA256": "4fa7c12add20c1caec6202372c8f55fe63711920ff28af3753da8c7069668c39",
+      "lfSHA256": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "bytes": 199061
+    },
+    "diagnosticSchema": "diagnosticVersion3; combatTransitions.schemaVersion1",
+    "installedTests": {
+      "tests/perf_spike_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+        "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "bytes": 31336
+      },
+      "tests/perf_combat_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+        "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+        "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+        "bytes": 25989
+      }
+    },
+    "appliedAtUTC": "2026-11-17T04:52:46.924095+00:00"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-before-20261117T040814Z",
+    "sourceHistoryFiles": 3064,
+    "sourceAndHistoryVerifiedByRoot": true,
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "settings": "Four main-only metadata records verified; no Bank/private settings contents copied"
+  },
+  "intentionalBugFixes": [
+    "Nontrue/malformed/private event registration or partial setup failure refuses arming, releases owned observers/registrations/scripts and preserves prior diagnostic roots; the one native frame remains hidden for reuse.",
+    "Finite release/read reentry cannot make stale A overwrite, clear or expire replacement B, including B starting and stopping during A release.",
+    "A publication refusal/cancellation or raw failure rolls back only still-owned saved state; exact opaque/falsy original errors retain precedence over cleanup errors.",
+    "Recursive Update cannot overwrite an inflight batch; raw Update errors release the busy guard and finalize the detached batch without inventing a prior time boundary."
+  ],
+  "combatAccounting": {
+    "measures": "Deliveries of PLAYER_REGEN_DISABLED and PLAYER_REGEN_ENABLED to this finite armed owner, correlated with the next eligible driver-frame elapsed interval. Initial combat state remains unknown.",
+    "identity": "For each direction: delivered = sampledEvents + firstUnmeasured + invalidUnmeasured + stoppedUnmeasured + actual pending + actual inflight; Stop finalizes pending/inflight exactly once.",
+    "boundaries": "Detach before existing external reads. Deliveries during reads belong to the next interval. First/no-prior, invalid/private/overflow/backward and stopped batches are explicitly unmeasured. Valid zero has explicit sample presence.",
+    "boundedRows": "Two preallocated independent worst rows retain public finite sample-time/gapMs, including below-threshold samples and ring wrap; both directions may share one gap.",
+    "notMeasured": "No event-exclusive CPU, event reaction latency, addon causality, party/raid delivery attribution, native rendering or FPS gain."
+  },
+  "overheadAndPreservation": {
+    "off": "No added ongoing OFF native reads, frames, events, callbacks, timers or scans. Module-load helper closures are added.",
+    "active": "Two extra owned regen registrations while armed; scalar accounting/privacy guards; one static-body protected Update call. No added event-time/native clock, unit/combat-state query, recurring driver or timer. Existing normal gap/context allocations remain.",
+    "clockLimit": "Observer seam, counter, protection and detach overhead is not fully included in existing diagnostic clock sections. No CPU/allocation benchmark or improvement claim.",
+    "healthyParity": "Two same-VM complete-module runs preserve legacy report projection,86-read count/order and command console output. Event API calls change2 to6 for the two added registrations/unregistrations.",
+    "assumption": "Final native security predicates and Lua primitives are trusted for final atomicity. No guarantee against arbitrary continuously mutating foreign replacements; bounded finite seams only, no retry framework.",
+    "unchanged": "Existing commands/output, finite watch policy, healthy heap/profiler/query cadence, saved roots/preferences and R60 Core mesh observation remain."
+  },
+  "evidence": {
+    "baseline": {
+      "manifest": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-lifecycle-baseline-20261117\\manifest.json",
+        "rawSHA256": "fea4c3d3e20092064247c18ea5dc43d82b50499d83210e921114666f84a02e38",
+        "lfSHA256": "af1ad7a7b57369be649c52465d40546546fcedf7b9e99d3dd1da3d4d3418ea98",
+        "bytes": 1319
+      },
+      "reproduction": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-lifecycle-baseline-20261117\\reproduce.lua",
+        "rawSHA256": "2180b7194181aa9ab4c1a3447386434ecf955d9c47cb483204c78d9d4039977c",
+        "lfSHA256": "2180b7194181aa9ab4c1a3447386434ecf955d9c47cb483204c78d9d4039977c",
+        "bytes": 7956
+      },
+      "scope": "Complete frozen module678efe; six variants/26checks per VM under injected API/service/clock hooks. Not observed native occurrence or lag cause. Nominal RegisterEvent fixture corrected to true.",
+      "erratum": "Frozen README says Lua5.4.8; actual executable is Lua5.4.6. Original bytes retained."
+    },
+    "finalV5Report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-candidate-20261117\\final-v5-fixed\\report.json",
+      "rawSHA256": "ad46b5151490135e28e3574318cfc44639e6d884115b8f543339c7f7cd52755d",
+      "lfSHA256": "ef7192cfcfec7254d9710823674a2ba43b4f6a8c4690f4e6d8b7e41bddc1741c",
+      "bytes": 31157
+    },
+    "finalManifest": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-candidate-20261117\\final-v5-fixed\\manifest.json",
+      "rawSHA256": "21daf9e23fc038b5602586b5cef2857f1a7621a75636399b61538ac0f7eaae50",
+      "lfSHA256": "34c17655634ac3bedf28cddb5267d309ab6ec5904642db761967aa877a547915",
+      "bytes": 6411
+    },
+    "reviewChronology": "Report final-source-review-pending and installedOtherUnchanged are historical pre-application statuses; later Root+Group signoff/applied receipt establishes acceptance. V1-V4 raw sources/failed review history retained.",
+    "inputProvenance": "24 original pre-proof inputs unchanged;15 later-pinned additions comprise14 generated mutants plus1 parity-receipt driver. Not39 inputs pre/post stable. Root verified all53 final manifest files. Five V3 drivers reconstructed after later edits match original V3 hashes; explicitly after-the-fact, not contemporaneous snapshots.",
+    "controls": "14 actual compiled source mutants per VM,28 behavioral assertion rejections; not syntax/load rejection. V4 negative control retained.",
+    "functional": "89scenes/562new checks plus133original checks per Lua5.1.5/Lua5.4.6; actual complete production module with frozen original fixture. Final compiler checks pass.",
+    "parity": [
+      {
+        "vm": "lua51",
+        "candidateSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+        "baselineSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+        "fixtureSHA256": "300f42c4e64de218377449fdafdb226a0fe20868bb88218febc4ceeef3168fd9",
+        "driverSHA256": "012773bb22e5b8c9e449b2e66fedad7f9f6e2d17f4724d017e293671e30a5171",
+        "rawFile": "parity-sequences-lua51.json",
+        "rawSHA256": "77ecf65e5caf9d5f5dc7d7c1f8c834cf98f4a4d68eac4f347142ccea17355571",
+        "queryCalls": 86,
+        "baselineEventAPICalls": 2,
+        "candidateEventAPICalls": 6
+      },
+      {
+        "vm": "lua54",
+        "candidateSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+        "baselineSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+        "fixtureSHA256": "300f42c4e64de218377449fdafdb226a0fe20868bb88218febc4ceeef3168fd9",
+        "driverSHA256": "012773bb22e5b8c9e449b2e66fedad7f9f6e2d17f4724d017e293671e30a5171",
+        "rawFile": "parity-sequences-lua54.json",
+        "rawSHA256": "77ecf65e5caf9d5f5dc7d7c1f8c834cf98f4a4d68eac4f347142ccea17355571",
+        "queryCalls": 86,
+        "baselineEventAPICalls": 2,
+        "candidateEventAPICalls": 6
+      }
+    ],
+    "nativeAPIContract": {
+      "artifact": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-readiness-20261117\\api-evidence.json",
+        "rawSHA256": "18a47f4cc9e2e3bd2b765df41505a41882287d0a000977abc6502855a3abf643",
+        "lfSHA256": "18a47f4cc9e2e3bd2b765df41505a41882287d0a000977abc6502855a3abf643",
+        "bytes": 4073
+      },
+      "scope": "Group source-pinned Retail/Forever/Classic declarations; boolean RegisterEvent and synchronous no-payload regen events. Availability is not native registration/delivery acceptance."
+    },
+    "appliedReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-candidate-20261117\\applied.json",
+      "rawSHA256": "0d290a272faa154716d8a6524b59cd9ddd7527240c67ebdfc35b2f782380ddac",
+      "lfSHA256": "3ba6f6a08c1325c0d5eeef70086051081b4f5324449be72641a6404148242e33",
+      "bytes": 2586
+    },
+    "durableInstalledReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-candidate-20261117\\installed-test-gate\\report.json",
+      "rawSHA256": "5ca6fab3ae4dca06ab8ef132795abfab28d1da2c6a702db4b62bb2fda73eb91f",
+      "lfSHA256": "8c35bc2b367d1c6cac00fabfe343d227b3202f560638ff027016dbf842bcc3ff",
+      "bytes": 3570
+    }
+  },
+  "durableValidation": {
+    "status": "PASS / INSTALLED TEST SOURCES FROZEN",
+    "tests": {
+      "tests/perf_spike_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+        "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "bytes": 31336
+      },
+      "tests/perf_combat_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+        "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+        "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+        "bytes": 25989
+      }
+    },
+    "newScenesPerVM": 89,
+    "newChecksPerVM": 562,
+    "originalChecksPerVM": 133,
+    "VMs": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "installedCompilersPassed": 4,
+    "jobsTerminal": true
+  },
+  "fullR61Validation": {
+    "status": "ACCEPTED fresh full standalone Lua54 gate",
+    "pass": 513,
+    "fail": 0,
+    "syntaxFiles": 1203,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "beganUTC": "2026-11-17T04:53:36.768603+00:00",
+    "endedUTC": "2026-11-17T04:57:55.726522+00:00",
+    "pins": 1282,
+    "pinExtensions": {
+      ".toc": 8,
+      ".lua": 1203,
+      ".xml": 32,
+      ".txt": 6,
+      ".tga": 33
+    },
+    "changedDuringRun": [],
+    "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+    "report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\validation.json",
+      "rawSHA256": "097904894c421e689bf7819971d7f0478108a7c2b3870537a408554cd5bd6262",
+      "lfSHA256": "4933d46274c9f5421ae959fd84a33d8cf203491f655be0f2f12b142e1f855240",
+      "bytes": 541303
+    },
+    "stability": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\stability.json",
+      "rawSHA256": "782e2b43b9c50f2d4eebea38463c7f202eb3a98d6954cc4aad0c1b3865a75f90",
+      "lfSHA256": "2b9ebcb852a839e2c19c65fdefffeb6fa620453394f6dcc9c6cad746242e4478",
+      "bytes": 286965
+    },
+    "CoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "OtherLF": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "durableTests": {
+      "tests/perf_spike_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+        "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+        "bytes": 31336
+      },
+      "tests/perf_combat_watch.lua": {
+        "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+        "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+        "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+        "bytes": 25989
+      }
+    },
+    "scope": "Fresh whole Lua5.4.6 desktop only. Separate695 checks per Lua5.1.5/5.4.6 and4 installed test compilers are scoped evidence, not wholeLua51/native/CPU/FPS/combat/group acceptance."
+  },
+  "historicalBoundaries": {
+    "R57": "Historical CF57 CITY watch only; version-family not exact loaded hash, no combat/group/FPS/A-B acceptance.",
+    "R58": "Accepted scoped solver allocation/model cost and historical full512/1202 preserved; empty51 and other recorded risks retained.",
+    "R59": "Tuple/combined performance proposals rejected/unapplied; no allocation gain claim.",
+    "R60": "Independent optional mesh prepare/draw observation applied to unchangedCore1108; accepted historical full512/1202/1281 and148checks perVM retained."
+  },
+  "nativeCurrent": {
+    "status": "PENDING native loaded-source adoption, regen registration/delivery, combat/group/FPS/secure/visual acceptance",
+    "permission": "Root alone owns Mario main-client native work; Bank entirely excluded; game remains background",
+    "coordination": "Ready answered; separate same-PC/another-device handoff question remains pending per latest Root message. No repeated question or native action by curation agent.",
+    "latestRootObservation": "Root read-only exact main identity/foreground/idle observation was unsafe for background admission; no capture/lease/journal/input/Bank. Current character/world/chat were not refreshed; any future command requires a fresh Root PNG certificate. Readiness is not loaded R61 adoption.",
+    "readinessEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r61-adoption\\readiness.json",
+      "rawSHA256": "ee3009880e7f6999d9cd378a7d532e87cce8c07bdf70ee6195c64e60c3b10afb",
+      "lfSHA256": "03917cf3fdbe06725124df30cfc4019b3c842a6beec46c0d84fcf6d2de6bc8b8",
+      "bytes": 1344
+    },
+    "sourceEquality": "Root records repo/game Core1108 and Othere790 matching with no manual sync. Disk equality does not prove loaded adoption.",
+    "historicalCF57": "Three main commands/zero Bank belong only to historical R57 CITY watch. Zero retained combat gaps lacked transition counters; not current native acceptance or A/B gain."
+  },
+  "publication": {
+    "privateSettingsIncluded": false,
+    "privateImagesIncluded": false,
+    "rawReportsCopied": false,
+    "scope": "Curated identities/counts/contracts only; no native/client/settings operation by documentation agent"
+  },
+  "documentationAcceptance": {
+    "recordedAtUTC": "2026-11-17T05:01:46.407682+00:00",
+    "scope": "Fresh desktop validation accepted; observability and ownership repair only. No new native result or CPU/FPS/event-latency/party-attribution claim.",
+    "priorRecords": "R57 native CITY sample, R58 modeled performance and full gate, R59 rejections, R60 independent observability/full gate preserved as historical snapshots."
+  }
+}

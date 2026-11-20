@@ -1,0 +1,340 @@
+{
+  "id": "LHO-IDLE-FOLLOWUP-NATIVE-SHUTDOWN-20261118",
+  "utc": "2026-11-18T08:34:17.244020+00:00",
+  "serverShutdownUserWarning": "9-10 minutes; bounded checks completed and input stopped before announced shutdown",
+  "client": {
+    "pid": 42724,
+    "hwnd": 50333792,
+    "birthFileTime": 134394624880288175,
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "runtimeBuild": "NOT QUERIED in this process"
+  },
+  "sourceSet": [
+    {
+      "file": "Inventory/Index.lua",
+      "sha256": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca"
+    },
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "sha256": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "sha256": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2"
+    },
+    {
+      "file": "Inventory/Tooltip.lua",
+      "sha256": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4"
+    },
+    {
+      "file": "Inventory/SpellReagents.lua",
+      "sha256": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d"
+    },
+    {
+      "file": "Inventory/FluxConsumableClassify.lua",
+      "sha256": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540"
+    },
+    {
+      "file": "Inventory/Craft.lua",
+      "sha256": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/Scan.lua",
+      "sha256": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/Init.lua",
+      "sha256": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "sha256": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+      "sha256": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632"
+    },
+    {
+      "file": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+      "sha256": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "sha256": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9"
+    },
+    {
+      "file": "Inventory/Syndicator/Adapter.lua",
+      "sha256": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/Watch.lua",
+      "sha256": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492"
+    },
+    {
+      "file": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+      "sha256": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "sha256": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "sha256": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508"
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+      "sha256": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12"
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+      "sha256": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36"
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "sha256": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d"
+    }
+  ],
+  "retailForeverPairsMatched": 21,
+  "runs": {
+    "newstate_20261118a": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newstate_20261118a-journal.json",
+      "payload": "/run local a=Flux.Inventory;local f=C_AddOns.IsAddOnLoaded;print('LHOBAG',a.source,a.IsReady(),f('Syndicator'),f('Baganator'),a.GetCount(1487),C_Item.GetItemCount(1487),GetCVar('scriptProfile'),(BugTabs.GetSessionCounts()))",
+      "stage": "submitted",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newstate_20261118a-submitted.png",
+        "pngSha": "e3a2c4af19620008aabea247d800454071b50246e72e030ac94207f89342ac24",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newstate_20261118a-submitted-capture.json",
+        "metaSha": "56a09261202f55ef21f2108dc0dd4d9023bdc976f627a2e024c115a0861a2fd1",
+        "started": 1794990283.5995882,
+        "time": 1794990285.6715255,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 692126702,
+          "last": 406975796,
+          "idle": 12.907,
+          "held": [],
+          "drawable": true
+        }
+      }
+    },
+    "newidle_20261118a": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118a-journal.json",
+      "payload": "/run local a=FluxAuctionRestock;if not a.Settings().followup and not InCombatLockdown()then local t=debugprofilestop();local b=a.Followup.GetBankTargets();print('F21',#b,debugprofilestop()-t,(BugTabs.GetSessionCounts()))else print('F21','held')end",
+      "stage": "ack-visually-attested",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118a-submitted.png",
+        "pngSha": "109a03fb887ee238fb5f87211eef226ef4aa0d56a457d4366e01d0e2867a888e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118a-submitted-capture.json",
+        "metaSha": "fc2610294adaff06e11f25e978c3f8c828d2e01821cbd55c5b990dd1508ba6fb",
+        "started": 1794990572.6094058,
+        "time": 1794990574.774699,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 692126702,
+          "last": 407274281,
+          "idle": 3.437,
+          "held": [],
+          "drawable": true
+        }
+      }
+    },
+    "newreload_20261118a": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newreload_20261118a-journal.json",
+      "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then ReloadUI()end",
+      "stage": "ack-visually-attested",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newreload_20261118a-submitted.png",
+        "pngSha": "8797454cbf9272aaf42a852a27d8df3c543311d5caa7a9078e85b252c010a9ad",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newreload_20261118a-submitted-capture.json",
+        "metaSha": "f8f3b20a309588e9265230fdae9db8e4d98447cbfa345de0f4fc538384b4e43a",
+        "started": 1794990682.1727967,
+        "time": 1794990685.3457034,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 692126702,
+          "last": 407387281,
+          "idle": 0.0,
+          "held": [],
+          "drawable": true
+        }
+      }
+    },
+    "newidle_20261118b": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118b-journal.json",
+      "payload": "/run local a=FluxAuctionRestock;if not a.Settings().followup and not InCombatLockdown()then local t=debugprofilestop();local b=a.Followup.GetBankTargets();print('F21',#b,debugprofilestop()-t,(BugTabs.GetSessionCounts()))else print('F21','held')end",
+      "stage": "ack-visually-attested",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118b-submitted.png",
+        "pngSha": "f533e37ca4541e08651d897e7a554ee37f3994ee7c6d2dd24507eb724e69739f",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-newidle_20261118b-submitted-capture.json",
+        "metaSha": "775b1297b85b7734c502f135bb6acf47da549b038f7437aa2e4622e575b1d0a3",
+        "started": 1794990740.0097933,
+        "time": 1794990742.0866766,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 692126702,
+          "last": 407444375,
+          "idle": 0.75,
+          "held": [],
+          "drawable": true
+        }
+      }
+    }
+  },
+  "observations": {
+    "state": {
+      "source": "syndicator",
+      "ready": true,
+      "syndicatorLoaded": true,
+      "baganatorLoaded": true,
+      "item1487Snapshot": 0,
+      "item1487Native": 0,
+      "scriptProfile": "0",
+      "bugTabsSessionErrors": 0,
+      "ack": "Personally viewed late after original 120s certificate age; left commandAcknowledged=false, did not replay or restamp"
+    },
+    "preOwnReloadIdle": {
+      "targets": 0,
+      "ms": 0.014899969100952,
+      "errors": 0,
+      "loadedSourceIdentity": "Uncertain before our reload; cannot use as pinned baseline"
+    },
+    "ownReload": "New loading screen visually ACKed; world returned in next fresh source capture",
+    "postOwnReloadIdle": {
+      "targets": 0,
+      "ms": 0.02209997177124,
+      "errors": 0,
+      "scope": "Single actual canonical zero-job GetBankTargets call after own observed reload; saved-job and combat guard passed"
+    }
+  },
+  "performanceGain": "UNMEASURED; no matched baseline or FPS/frame-spike claim",
+  "nativePending": [
+    "Active pending jobs",
+    "Merchant bursts, close and cancellation",
+    "Current 21-file set across remaining provider combinations and clients",
+    "Matched lag-spike measurements"
+  ],
+  "inputStopped": true,
+  "sharedInputLockAbsent": true,
+  "hostObserverCheck": "No Python native-newclient controllers or prior observer4404 found; only process-query shell matched its own search string",
+  "profilerSettingsChanged": false,
+  "itemActionsIssued": false,
+  "addonToggles": false,
+  "externalAddonEdits": false,
+  "runtimeLuaEditsThisSlice": 0,
+  "simulations": 0,
+  "goal": "ACTIVE; game checks deferred for scheduled shutdown, not user-paused",
+  "resume": "Verify exact client/window/world and readiness/build/providers anew. Own reload reset prior temporary runtime state. Reinject only required diagnostics. Do not reuse stale screenshot certificates.",
+  "idlePendingBankTargetRefresh": {
+    "id": "LHO-PENDING-IDLE-REFRESH-20261120",
+    "date": "2026-11-20",
+    "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+    "beforeSHA256": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "afterSHA256": "cf566567876908044035e4e1cdb8eec8000248f390456cf199bdb105b5ab75d3",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "checkpoint": {
+      "folder": "pending-idle-refresh-20261120T003603Z",
+      "gitHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "samples": {
+      "scope": "Four serial 48-call batches on each loaded revision with the same method wrappers and no job, combat, bank or commerce open. Versions separated by a reload. A passive 14-second observation includes about 11 seconds with no induced queries and excludes the timed batches from passive counters.",
+      "before": {
+        "run": "R553",
+        "probeSHA256": "587222cefde7451b96a57cdcf5094a099b33ac6fb46d1b2f4ed40f87dcce7ca5",
+        "screenshotSHA256": "43d0bf013e119a8e1e5cb3c60468a28b68a03fb9b125b458544184b3272f7ed9",
+        "batchMs": [
+          0.316,
+          0.316,
+          0.318,
+          0.326
+        ],
+        "settingsLookupsPerBatch": 192
+      },
+      "after": {
+        "reload": "R554",
+        "run": "R555",
+        "probeSHA256": "66201bb6b8a25d659aeccb94aff10e5d3c14d9d420bcc147be467050b1dc3cdb",
+        "screenshotSHA256": "d2a7e3ef3417c9b797e08c5f4ad63c0d04365afe922e4d4b4b20ca17cddce4ab",
+        "batchMs": [
+          0.139,
+          0.143,
+          0.148,
+          0.163
+        ],
+        "settingsLookupsPerBatch": 48
+      },
+      "batchMediansMs": [
+        0.317,
+        0.1455
+      ],
+      "refreshesPerBatch": 48,
+      "paintCallsPerBatch": 48,
+      "returnedTargetsPerBatch": 0,
+      "passiveCalls": [
+        0,
+        0
+      ],
+      "stableBagGeneration": true,
+      "newLuaErrors": 0,
+      "wrappersRestored": true
+    },
+    "validation": {
+      "installedSourceMatches": 5,
+      "compilerChecks51And54": 10,
+      "passingLua54Scripts": 8,
+      "passingLua51ScriptsWithCompatibilityShim": 4
+    },
+    "scope": "Removing duplicate job reads and empty bank-goal allocations reduces one repeated idle read. Current paint still runs. Retirement of nonempty goals and the post-callback active job check remain. No passive cost or whole-frame improvement claimed. Native active Pending requires a genuine outstanding job and separate context.",
+    "jump": {
+      "cue": "R76",
+      "pid": 42164,
+      "supervisor": 41960,
+      "label": "live20261120ad",
+      "worksAtClientSize": [
+        1903,
+        1000
+      ],
+      "observedSpaceDownUtc": "2026-11-20T00:40:22.522700Z",
+      "movementAcknowledged": false
+    }
+  }
+}

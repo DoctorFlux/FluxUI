@@ -199,6 +199,8 @@ function EventHandlers:GROUP_ROSTER_UPDATE()
     if FluxRaid_OnRosterOrPartyChanged then
         FluxRaid_OnRosterOrPartyChanged()
     end
+    local party = ns.PartyFrames
+    if party and party.QueueRosterUpdate then party.QueueRosterUpdate() end
 end
 
 function EventHandlers:PARTY_MEMBERS_CHANGED()
@@ -238,9 +240,11 @@ function EventHandlers:PLAYER_REGEN_DISABLED()
 end
 
 function EventHandlers:SPELLS_CHANGED()
-    if InCombatLockdown() then
-        FluxRaid_QueueWork(FluxRaid_ApplyOptionsFromDB)
-    else FluxRaid_ApplyOptionsFromDB() end
+    -- Learning/override notifications change dispel/aura capabilities, not the
+    -- saved cell geometry or secure roster drivers. Reuse queued unit paint.
+    if State.isInitialized and FluxRaid_IsFluxRaidEnabled() and FluxRaid_RefreshVisibleUnits then
+        FluxRaid_RefreshVisibleUnits("spells")
+    end
 end
 
 function EventHandlers:HIDDEN_GROUP_BUFFS_CHANGED()

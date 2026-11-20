@@ -1,0 +1,977 @@
+{
+  "changeId": "BORDER-SNAPSHOT-COPY-R137-20261119",
+  "capturedAtUTC": "2026-11-19T20:08:07.660571+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+      "afterRaw": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "8aa034d22edf07ead59e3a5d245acfff6a362426384b8adeba717ed7127dc5e9",
+      "afterRaw": "27eb98f62093ec6af96120bc95c176f8d673a28849cfaff297b9dd7f61ac4703"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\source.zip",
+    "sourceZipSHA256": "1e324d215ffaf83c324830071d840e56825adccc58debd39bd4bacfbd1eb8a33",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per border style in three scenarios. The production renderer replays four held-action crossings, or four transitions where independent party-linked or raid-linked outlines acquire and lose valid geometry on a populated modeled HUD. The first pair compares sampled drawing at every transition. Later pairs check the endpoints. Rebuild, region and primitive counts agree.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "rectangles": "552/0",
+          "maps": "106/6"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "rectangles": "192/0",
+          "maps": "36/3"
+        }
+      ]
+    },
+    "workCounters": "Counts track rectangle copies and temporary lookup maps allocated by Spatial.Copy. Source geometry reads and independently writable operation rectangles are outside the counters.",
+    "timingScope": "Five alternating uninstrumented desktop Lua pairs per style per scenario each cover four full reflows. The isolated replay invokes the source snapshot and solver copy stages 64 times on identical populated input and tests output coordinates and source ownership. Collection is stopped during each allocation measure. These measure desktop Lua and modeled widget calls.",
+    "uninstrumentedTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "98.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "101.000/90.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "99.000/80.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "180.000/169.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "77.000/101.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "81.000/84.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "77.000/102.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "124.000/134.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "94.000/75.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "121.000/121.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "18.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "53.000/53.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "24.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "37.000/40.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "17.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "40.000/39.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "22.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "43.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "18.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "46.000/45.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "17.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "61.000/58.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "23.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "50.000/48.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "17.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "48.000/48.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "22.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "52.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "20.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "44.000/42.000"
+        }
+      ]
+    },
+    "uninstrumentedTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 77.0,
+            "median": 94.0,
+            "max": 99.0
+          },
+          {
+            "min": 73.0,
+            "median": 80.0,
+            "max": 102.0
+          }
+        ],
+        "2": [
+          {
+            "min": 81.0,
+            "median": 121.0,
+            "max": 180.0
+          },
+          {
+            "min": 84.0,
+            "median": 121.0,
+            "max": 169.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 17.0,
+            "median": 18.0,
+            "max": 24.0
+          },
+          {
+            "min": 19.0,
+            "median": 21.0,
+            "max": 22.0
+          }
+        ],
+        "2": [
+          {
+            "min": 37.0,
+            "median": 43.0,
+            "max": 53.0
+          },
+          {
+            "min": 39.0,
+            "median": 45.0,
+            "max": 53.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 17.0,
+            "median": 20.0,
+            "max": 23.0
+          },
+          {
+            "min": 19.0,
+            "median": 21.0,
+            "max": 22.0
+          }
+        ],
+        "2": [
+          {
+            "min": 44.0,
+            "median": 50.0,
+            "max": 61.0
+          },
+          {
+            "min": 42.0,
+            "median": 48.0,
+            "max": 58.0
+          }
+        ]
+      }
+    },
+    "isolatedSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "107.000/89.000",
+          "kib": "44730.500/32446.500"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "107.000/88.000",
+          "kib": "44730.500/32446.500"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "106.000/90.000",
+          "kib": "44730.500/32446.500"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "113.000/87.000",
+          "kib": "44730.500/32446.500"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "109.000/89.000",
+          "kib": "44730.500/32446.500"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "192.000/154.000",
+          "kib": "44626.500/32342.500"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "188.000/171.000",
+          "kib": "44626.500/32342.500"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "181.000/150.000",
+          "kib": "44626.500/32342.500"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "217.000/154.000",
+          "kib": "44626.500/32342.500"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "187.000/152.000",
+          "kib": "44626.500/32342.500"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "100.000/84.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "101.000/83.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "100.000/88.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "98.000/83.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "182.000/163.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "216.000/155.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "182.000/155.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "186.000/160.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "177.000/148.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "181.000/157.000",
+          "kib": "44730.500/33022.500"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "186.000/155.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "194.000/154.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "199.000/149.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "193.000/164.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "189.000/165.000",
+          "kib": "44730.500/33022.500"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "64",
+          "segments": "216",
+          "ms": "185.000/160.000",
+          "kib": "44626.500/32918.500"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "64",
+          "segments": "216",
+          "ms": "188.000/152.000",
+          "kib": "44626.500/32918.500"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "64",
+          "segments": "216",
+          "ms": "204.000/177.000",
+          "kib": "44626.500/32918.500"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "64",
+          "segments": "216",
+          "ms": "182.000/158.000",
+          "kib": "44626.500/32918.500"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "64",
+          "segments": "216",
+          "ms": "189.000/158.000",
+          "kib": "44626.500/32918.500"
+        }
+      ]
+    },
+    "isolatedTimeSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 106.0,
+            "median": 107.0,
+            "max": 113.0
+          },
+          {
+            "min": 87.0,
+            "median": 89.0,
+            "max": 90.0
+          }
+        ],
+        "2": [
+          {
+            "min": 181.0,
+            "median": 188.0,
+            "max": 217.0
+          },
+          {
+            "min": 150.0,
+            "median": 154.0,
+            "max": 171.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 98.0,
+            "median": 100.0,
+            "max": 182.0
+          },
+          {
+            "min": 83.0,
+            "median": 84.0,
+            "max": 163.0
+          }
+        ],
+        "2": [
+          {
+            "min": 177.0,
+            "median": 182.0,
+            "max": 216.0
+          },
+          {
+            "min": 148.0,
+            "median": 155.0,
+            "max": 160.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 186.0,
+            "median": 193.0,
+            "max": 199.0
+          },
+          {
+            "min": 149.0,
+            "median": 155.0,
+            "max": 165.0
+          }
+        ],
+        "2": [
+          {
+            "min": 182.0,
+            "median": 188.0,
+            "max": 204.0
+          },
+          {
+            "min": 152.0,
+            "median": 158.0,
+            "max": 177.0
+          }
+        ]
+      }
+    },
+    "isolatedHeapGrowthKiB": {
+      "hover": {
+        "1": [
+          {
+            "min": 44730.5,
+            "median": 44730.5,
+            "max": 44730.5
+          },
+          {
+            "min": 32446.5,
+            "median": 32446.5,
+            "max": 32446.5
+          }
+        ],
+        "2": [
+          {
+            "min": 44626.5,
+            "median": 44626.5,
+            "max": 44626.5
+          },
+          {
+            "min": 32342.5,
+            "median": 32342.5,
+            "max": 32342.5
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 44730.5,
+            "median": 44730.5,
+            "max": 44730.5
+          },
+          {
+            "min": 33022.5,
+            "median": 33022.5,
+            "max": 33022.5
+          }
+        ],
+        "2": [
+          {
+            "min": 44730.5,
+            "median": 44730.5,
+            "max": 44730.5
+          },
+          {
+            "min": 33022.5,
+            "median": 33022.5,
+            "max": 33022.5
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 44730.5,
+            "median": 44730.5,
+            "max": 44730.5
+          },
+          {
+            "min": 33022.5,
+            "median": 33022.5,
+            "max": 33022.5
+          }
+        ],
+        "2": [
+          {
+            "min": 44626.5,
+            "median": 44626.5,
+            "max": 44626.5
+          },
+          {
+            "min": 32918.5,
+            "median": 32918.5,
+            "max": 32918.5
+          }
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\compare.lua": "242698eb2d1849c05c2b138072997b8dd58f5cf260ca503e53453c03752f3491",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\matched.txt": "cecf141f538a1c156a357662a3aa3608e0b5faef6e441222d621449917359efb",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\timing.txt": "2c8f1733567373542b033e2f1eb4a42c4733503eced0cfd19aad04ad80ec64cd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\isolated.lua": "32cda21996396ccc64b76bf703b6374dbd82e687b6113b00c0b4f15d9ba415b0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\isolated.txt": "7cb2893d98b4629454032984e770a65ed2cab9c29478375f60add59c5fb8ac8b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\control-fixture.lua": "21f27316f135f943f24e45860613d19cc2d4fe2758879c407e8463b356b48b2a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\control-driver.lua": "a92536061d52b00d38ee6cfb5622e11fa4137bd2d49c2f5a495c1576c8649f26",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\duplicated-rect.lua": "8e7ea6d1a8d0c736f16757391c3661cc2a1f4ce438ac2460b7ebd1beb51e3f1e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\retained-map.lua": "57bd87dacf4c5a750d9cce50e6965de812dfaba12796d4fa79d246ae5fad32bd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\controls.txt": "da568b611ca8061556d42bfcfccaf8e39ccdc4431f52ad0881f47d43c22e213b"
+    }
+  },
+  "preservation": [
+    "Raw geometry and solver records share sampled public source bounds. Mutable piece and segment records remain separate, and cropped operation rectangles belong to the solver.",
+    "Copy lookup maps are discarded at the end of the copy. A moved source produces fresh bounds while the previous pose keeps its existing values.",
+    "Both styles pass source-bound integrity, prepared-pose checks and regional seam comparisons. Native membership and cursor performance remain pending."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4",
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...snapshot-copy-before-20261119-210131/control-fixture.lua:71: raw snapshots share their source bounds and drop the temporary copy map",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\t...snapshot-copy-before-20261119-210131/control-fixture.lua:71: in main chunk",
+      "\t...-snapshot-copy-before-20261119-210131/control-driver.lua:3: in main chunk",
+      "\t[C]: in ?",
+      "Rejected duplicated-rect",
+      "STRIP_POSE style=1 solve=6/2 plan=6/2 preparedHits=4",
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...snapshot-copy-before-20261119-210131/control-fixture.lua:71: raw snapshots share their source bounds and drop the temporary copy map",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\t...snapshot-copy-before-20261119-210131/control-fixture.lua:71: in main chunk",
+      "\t...-snapshot-copy-before-20261119-210131/control-driver.lua:3: in main chunk",
+      "\t[C]: in ?",
+      "Rejected retained-map"
+    ],
+    "leafRecertification": {
+      "previousReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\focused-before-leaf-recheck.json",
+      "rerun": "tests/border_strip_poses.lua",
+      "sourceStable": true,
+      "reason": "Added an explicit source-bounds assertion to the leaf test while the suite ran. No runtime source changed during the suite."
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-snapshot-copy-before-20261119-210131\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, border seam pixels, and combat taint. No client input, settings or profiling changes."
+}

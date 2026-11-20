@@ -1,5 +1,78 @@
 # Shared APIs, refresh services and button feedback
 
+<!-- COMBAT-FANOUT-20261116 -->
+16 November `COMBAT-FANOUT-20261116`: full combat refreshes/recovery retained with fresh-native icon/trinket geometry guards and protected callback-body reuse. 496 offline scripts PASS/1 new shadow assertion FAIL; 1187 syntax PASS; composed current-source observations; owned runtime stable. Native tests/inspection HELD until explicit user release. [Exact work, native getter tax, CPU regressions/rejected prototypes and scope](validation/combat-fanout-2026-11-16.json).
+<!-- /COMBAT-FANOUT-20261116 -->
+
+
+16 November `COMBAT-TRANSITIONS-20261116`: R51 `prepared-guards-r51` extends
+the existing finite combat capture with callback provenance for both combat
+events and named/light/heavy defer queues. No extra monitor or default clock is
+added; raw frame/native callbacks remain attribution gaps. Preserve queue order,
+reentrant lockdown/error handling, live native/private checks and existing cadence.
+The101/36/8 consumer source ledgers are distinct from a live registration census.
+Combined R51 aggregate474 PASS/0FAIL and1165 syntax PASS follows one legacy
+extractor correction/four bounded replays; eight owned runtime files stayed
+stable, not one globally frozen sweep. Global690 files/24916 prototypes max57/0fail;
+31944 border guard checks PASS. Native R51 remains pending.
+[Requirements and evidence](COMBAT_TRANSITION_PERFORMANCE.md).
+
+15 November: range now follows the selected cast target, independently of idle
+icons, pinned tooltips and reverse badge token swaps. Plain actions apply the
+native friendly/hostile eligibility rule. The reported Frostbolt/friendly-hover
+case is confirmed in game. [Rules and scoped validation](CAST_RANGE_TARGETING.md).
+
+15 November: hotkey text and mouse/scroll/space glyphs turn red only for the
+existing out-of-range result. Original gray text/white art returns in range;
+binding/modifier/size refreshes retain the correct color. No new range probes or
+polling. [Four-surface requirements and validation](HOTKEY_RANGE_GLYPHS.md).
+
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS,
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Quiet native R50 now measured218.36ms versus R49's207.94ms; hitch/CB36 OPEN.
+Unconditional index rejected; adaptive keeps R49
+flat publication/buckets≤4 and lazily indexes only queried larger buckets. Numeric/
+current-paint/token/budget guards and fresh native coordinates remain. Common24 CPU
+mixed+1.43%,56−6.20%; dense−78.12% stress-only. Further native captures require
+all owned CPU/docs jobs finished. No native gain or solve optimization is claimed.
+[Requirements and evidence](CONNECTED_BORDERS.md).
+
+Historical earlier 15 November exact pre-connection restore: the junction service and all its hooks,
+scheduler registration, script/mask capability logic and extra graphics are
+removed at the user's request. Shared border code matches the earlier verified
+checkpoint, with independent original rendering and original appearance options.
+The later paint-only Trinket helper is also reverted. [Current restore and native limits](04-visual-system.md).
+
+15 November 08:58:53 UTC current clock correction: this exact desktop Lua
+5.4.6 binary advances `os.clock` while blocked on stdin (0.512s/1.011s),
+while whole-child GetProcessTimes CPU was 0.015625s/0s. Earlier `os.clock`
+figures therefore measure elapsed time, not isolated CPU. R29
++10.74%/+13.61%/-12.52% and R27 16–38% are matched desktop elapsed results.
+Historical CPU labels and raw reports are retained with this overriding
+interpretation. R27 104→0 transient bytes/query and other GC-controlled
+allocation counts retain their stated scope; no CPU/FPS gain follows.
+Future timings must identify their clock and distinguish measured-chunk
+elapsed time from independently captured whole-child process CPU.
+
+15 November R33 EBS range helpers (`LHO-EBS-RANGE-WORK-R33-20261115`): Paint now
+reuses two private functions while passing this invocation's btn/range owner/unit.
+Dynamic public method lookups, item revision/write order, raw errors/arity and
+reentry remain. Existing0.18s lane, immediate invalidation, callbacks and native
+modeled work are unchanged. Direct232B/probe transient slope is removed; mixed
+producer2264→1104B/sequence. Full395/1083 and durable40/295 pass before apply;
+native source adoption/event-spike/FPS/taint/pixels/controller remain pending.
+The absent-target elapsed path is3ms slower/250000 calls; keep it separate from
+quantized whole-child process CPU and the earlier clock correction. No observer
+was installed by the failed-before-keys supervised preflight; native halt/hold stay.
+[Source, ranges and lifecycle scope](validation/lag-hotspots-native-attribution-2026-11-14.json).
+
+15 November ButtonFX cast equality: `SpellIdsMatch` reuses stateless private
+comparison callbacks while retaining protected equality, public matcher/native
+reads, errors/reentry and all interrupt/reticle/progress/fade cadence. Five desktop
+pairs give modeled CPU 377->306 ms per 200 sequences; allocation 50,961.934->3,919.746
+KiB with GC stopped. Full 389 scripts/1,077 syntax PASS; native after-candidate,
+taint, pixels/controller and FPS remain pending. [Exact comparison and native scope](validation/casting-equality-work-2026-11-15.json).
+
 14 November casting/inventory lag: Cast/VFX protected callbacks reuse stateless functions while native queries, errors, private timers and paint cadence remain. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
 
 13 November world-cursor tooltip ownership: binding hints/owners, protected-gear decoration and consumable separator bookkeeping live in private weak-key tables. Clear/hide callbacks preserve Blizzard's shared tooltip Lua fields; existing text, HUD positioning and refresh/input owners remain. [Source comparison, regressions and native limits](SECRET_TOOLTIP_METER_ERRORS.md#world-cursor-follow-up-at-202955).
@@ -126,9 +199,29 @@ Collector ownership has a client exception: `Action.LeaveBlizzardCollector()` is
 | [`Overlay.lua`](../Core/ButtonFX/Overlay.lua) | `Attach`, cast/channel/empower fills, reticle, interrupt/end-burst, checked/pushed chrome, live-state queries, clear/sync/transfer functions. Builds isolated child visuals and chooses native or Classic fallback animation. Resizing respects separate X squeeze and native height. |
 | [`Cast.lua`](../Core/ButtonFX/Cast.lua) | `Register`, `Start`, `PickOwners`, `FollowColumn`, `AdoptFace`, `Debug`: one owned spellcast dispatcher for player/pet; resolves shown spell/rank/item/macro identity, selects matching visible owners, and transfers/adopts/clears cast presentation across row or face changes. Pet state is isolated from player state. |
 
+The existing action-slot memo is limited to BeginSlotPass/EndSlotPass. Paint.Flush
+and Effects.FlushDirty use the hoisted WithSlotPassCleanup boundary: an outward
+error closes a pass begun during that invocation and rethrows the same error
+object; a pre-Begin error leaves an unrelated outer pass intact. Successful
+callbacks and the existing single-active-pass behavior are retained. The private
+live-name native-result helper is also hoisted, with fresh native/formatter lookups
+and no cross-query cache. R26 cleanup adds a small measured desktop cost; R27
+removes a per-query closure. Native adoption/performance remain unverified after
+the halted reload attempt. [Evidence and limits](validation/lag-hotspots-native-attribution-2026-11-14.json).
+
+
 Cast event handling distinguishes success, ordinary stop/cancel, interrupt, channel and empower endings, and reticle target/clear. Delayed stop cleanup checks generations so an old callback cannot cancel a newer cast. `FollowColumn` reconciles the currently shown face with in-flight presentation. Post-DF VFX remain enabled; pre-DF follows the action-bar `spellCastVFX` option.
 
 These files use client-specific templates, atlas checks and bundled media; visual identity and asset provenance are described in [04-visual-system.md](04-visual-system.md) and [34-assets.md](34-assets.md). `Click2.lua` exists but is not the loaded click implementation.
+
+The Era/Anniversary [combined-bag shim](../Inventory/Builtin/FluxClassicCombinedBag.lua)
+now repins only to a locally shown private host after a parent mismatch, and
+returns items only while that host still owns them. Two predicates preserve
+normal layouts/adoption cadence; no frame, timer, event or API was added. The
+five-bag source model remains12 refresh/layout passes and640 HostFor calls.
+Retail/Forever/MoP exit this owner; native acceptance remains pending. R28/R29
+shortcuts remain unapplied, and R30 confirms existing provider batching rather
+than adding another layer. [Decisions and scoped evidence](validation/lag-hotspots-native-attribution-2026-11-14.json).
 
 ## Legacy facade and diagnostics
 
@@ -139,3 +232,10 @@ These files use client-specific templates, atlas checks and bundled media; visua
 Diagnostics change what is instrumented and can add polling/wrappers while active. Use the [verification procedure](41-verification.md) and exact [command reference](31-commands-and-bindings.md), especially for `/fluxperf`, whose final handler is the later-loaded diagnostic file.
 
 The [idle performance follow-up](45-idle-performance.md) uses a native Forever baseline to guide bounded changes: the mouseover watchdog sleeps without a unit, repeated Forever fallback strings share one parse per sweep, and unit-frame health/threat samples use existing timer wrappers at unchanged deadlines. Timerless clients retain the private unit-frame OnUpdate fallback. `FluxUI_GetUnitFramePollStats` exposes active timer flags; kernel ticker counts alone do not enumerate these timer-driven samples.
+
+
+Player-only specialization consumers use `Flux.Events.IsPlayerUnitEvent(unit)`.
+It rejects only a public unit confirmed different from player; own aliases and
+missing, unknown or restricted identity keep the historical refresh. It stores
+no unit identity. Group/member-specific consumers continue handling their own
+notifications. See [R70 roster review](validation/roster-transitions-2026-11-18.json).

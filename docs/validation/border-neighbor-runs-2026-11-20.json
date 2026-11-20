@@ -1,0 +1,426 @@
+{
+  "changeId": "BORDER-NEIGHBOR-RUNS-R170-20261120",
+  "borderVersion": "border-neighbor-runs-r170",
+  "capturedAtUTC": "2026-11-20T02:27:09.210805+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "444ac01f883312c09ca4458597e4bad1388f60432936ec29a0cd10235bf15ad5",
+      "afterRaw": "28148468f10a1b97728e46acd11e18871ea0648b95f4184c35181dd1f42c60b9",
+      "afterNormalized": "28148468f10a1b97728e46acd11e18871ea0648b95f4184c35181dd1f42c60b9"
+    },
+    "tests/border_region_routing.lua": {
+      "beforeRaw": "4e0c71a3651b64bd0195623ad5536fbe8dfcca7bc5c487bed9c4fc0b11f9a480",
+      "afterRaw": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30",
+      "afterNormalized": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": [
+      {
+        "client": "_retail_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_forever_",
+        "directory": true,
+        "settingsFiles": 3
+      },
+      {
+        "client": "_classic_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_classic_era_",
+        "directory": true,
+        "settingsFiles": 4
+      },
+      {
+        "client": "_anniversary_",
+        "directory": true,
+        "settingsFiles": 10
+      }
+    ]
+  },
+  "work": {
+    "scope": "Two cold relative strip or roster changes in a populated HUD fixture under both border styles. The retained selection phase also runs in isolation over the same shape.",
+    "countOrder": [
+      "before membership checks",
+      "after membership checks",
+      "before copy owner lookups",
+      "after copy owner lookups"
+    ],
+    "wholeResourceOrder": [
+      "before Lua seconds",
+      "after Lua seconds",
+      "before Lua heap KiB with GC suspended",
+      "after Lua heap KiB with GC suspended"
+    ],
+    "counts": {
+      "hover-1": [
+        [
+          392,
+          98,
+          464,
+          116
+        ],
+        [
+          392,
+          98,
+          464,
+          116
+        ],
+        [
+          392,
+          98,
+          464,
+          116
+        ]
+      ],
+      "roster-1": [
+        [
+          392,
+          98,
+          472,
+          118
+        ],
+        [
+          392,
+          98,
+          472,
+          118
+        ],
+        [
+          392,
+          98,
+          472,
+          118
+        ]
+      ],
+      "hover-2": [
+        [
+          392,
+          98,
+          464,
+          116
+        ],
+        [
+          392,
+          98,
+          464,
+          116
+        ],
+        [
+          392,
+          98,
+          464,
+          116
+        ]
+      ],
+      "roster-2": [
+        [
+          392,
+          98,
+          472,
+          118
+        ],
+        [
+          392,
+          98,
+          472,
+          118
+        ],
+        [
+          392,
+          98,
+          472,
+          118
+        ]
+      ]
+    },
+    "wholeResources": {
+      "hover-1": [
+        [
+          0.028,
+          0.029,
+          5892.8,
+          6105.9
+        ],
+        [
+          0.029,
+          0.03,
+          5893.1,
+          6106.2
+        ],
+        [
+          0.028,
+          0.028,
+          5886.3,
+          5887.8
+        ],
+        [
+          0.03,
+          0.029,
+          6093.3,
+          5884.0
+        ],
+        [
+          0.031,
+          0.03,
+          5882.8,
+          6095.9
+        ]
+      ],
+      "roster-1": [
+        [
+          0.006,
+          0.005,
+          837.8,
+          839.9
+        ],
+        [
+          0.005,
+          0.005,
+          837.8,
+          839.9
+        ],
+        [
+          0.005,
+          0.006,
+          837.8,
+          839.9
+        ],
+        [
+          0.005,
+          0.005,
+          837.8,
+          839.9
+        ],
+        [
+          0.005,
+          0.005,
+          837.8,
+          839.9
+        ]
+      ],
+      "hover-2": [
+        [
+          0.027,
+          0.027,
+          5986.9,
+          5989.0
+        ],
+        [
+          0.029,
+          0.027,
+          5997.2,
+          5999.3
+        ],
+        [
+          0.028,
+          0.026,
+          5966.8,
+          5791.1
+        ],
+        [
+          0.028,
+          0.028,
+          5789.6,
+          5968.6
+        ],
+        [
+          0.026,
+          0.026,
+          5790.1,
+          5835.5
+        ]
+      ],
+      "roster-2": [
+        [
+          0.005,
+          0.006,
+          824.5,
+          826.6
+        ],
+        [
+          0.005,
+          0.005,
+          824.5,
+          826.6
+        ],
+        [
+          0.005,
+          0.006,
+          824.5,
+          826.6
+        ],
+        [
+          0.006,
+          0.005,
+          824.5,
+          826.6
+        ],
+        [
+          0.005,
+          0.005,
+          824.5,
+          826.6
+        ]
+      ]
+    },
+    "wholeMedians": {
+      "hover-1": [
+        0.029,
+        0.029,
+        5892.8,
+        6095.9
+      ],
+      "roster-1": [
+        0.005,
+        0.005,
+        837.8,
+        839.9
+      ],
+      "hover-2": [
+        0.028,
+        0.027,
+        5966.8,
+        5968.6
+      ],
+      "roster-2": [
+        0.005,
+        0.005,
+        824.5,
+        826.6
+      ]
+    },
+    "isolatedOrder": [
+      "before Lua seconds per 1000 passes",
+      "after Lua seconds per 1000 passes",
+      "total selected segments"
+    ],
+    "isolated": {
+      "1": [
+        [
+          0.046,
+          0.04,
+          28000
+        ],
+        [
+          0.045,
+          0.038,
+          28000
+        ],
+        [
+          0.046,
+          0.038,
+          28000
+        ],
+        [
+          0.044,
+          0.038,
+          28000
+        ],
+        [
+          0.045,
+          0.038,
+          28000
+        ]
+      ],
+      "2": [
+        [
+          0.045,
+          0.037,
+          28000
+        ],
+        [
+          0.044,
+          0.037,
+          28000
+        ],
+        [
+          0.044,
+          0.038,
+          28000
+        ],
+        [
+          0.042,
+          0.038,
+          28000
+        ],
+        [
+          0.041,
+          0.036,
+          28000
+        ]
+      ]
+    },
+    "isolatedMedians": {
+      "1": [
+        0.045,
+        0.038,
+        28000
+      ],
+      "2": [
+        0.044,
+        0.037,
+        28000
+      ]
+    },
+    "rawArchiveRoute": [
+      "REGION_ROUTE after query=272 rect=144 owners=4 outputFields=144",
+      "REGION_ROUTE retainedGroupMetadataReads=0/0",
+      "REGION_ROUTE tileClipPlanes=49/49",
+      "REGION_TILE_FIELDS polygons=228/228 planes=654/654",
+      "REGION_SCOPE intersectionChecks=272/272",
+      "REGION_NEIGHBORS sourceSegments=692 overlapChecks=128/128",
+      "REGION_ROUTE before query=272 rect=144 owners=4 outputFields=144",
+      "REGION_ROUTE sample=1 before=0.690ms after=0.680ms",
+      "REGION_ROUTE sample=2 before=0.690ms after=0.690ms",
+      "REGION_ROUTE sample=3 before=0.690ms after=0.710ms",
+      "REGION_ROUTE sample=4 before=0.710ms after=0.720ms",
+      "REGION_ROUTE sample=5 before=0.740ms after=0.690ms",
+      "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS"
+    ],
+    "trialFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\bench-final.lua": "64c6a91b9bab6a85746f169af8df9fbe3723b5480022c110a52ddba93c6fa91a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\bench-isolated.lua": "4feb0d6228384d2d5a03f247bd9975361fb2f731f0eb5a790b5fe5361303950e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\query-runs-only.lua": "5f7c31de352b41cc573e91b36fd4522d59cfe8f521eb857a8d6019aaca0ac091",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-indexed-copy-isolated.txt": "8e65c9a9c9fb99a78e6f11fbbf1900cdcbb24b87ae6ec42112089d155308eb1d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-indexed-copy.lua": "0fc94e6a4a203c7ecb1377d865a760b24bdf69b2b996e788c21222c036e70cd5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\reconstruct-prototype.py": "ab1176ab079e7d9d03cd644b9ddd74d52546806d56ec02efe4c23565578987bc",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\count-1.txt": "3e069b5d39b12885d2e2bc5e2afd62c4f4337463413952e9d9d5a47e745b14e0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\count-2.txt": "3e069b5d39b12885d2e2bc5e2afd62c4f4337463413952e9d9d5a47e745b14e0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\count-3.txt": "3e069b5d39b12885d2e2bc5e2afd62c4f4337463413952e9d9d5a47e745b14e0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\clock-1.txt": "32184eea2888faf89ec42a8920bd2c68c2012a74ddc2d9a7bc5b7c9e55be5b28",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\clock-2.txt": "b6ed5e6b41329e851b00c6b4ca84462b055d2315255c1f0b953bc85a26acd7bd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\clock-3.txt": "f528337c382452d1a43a709626a888c211905a1bdcff89c168b579518d3ae209",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\clock-4.txt": "d203a614a172522fb9893bd63257024c230c1084f1ce0b18a78dda4fcb2891fe",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\clock-5.txt": "286b53acb12e25bc757e8c0c47e89b83da9dfaf08472db5a6ad1c842917f30c0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-clock-1.txt": "9722803513e0588b76b374f637832fc0f1c4c5b02a7d086c03e92adcb1f7ef96",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-clock-2.txt": "8bd2aa16ffd1e6c0c898aeee9bcae2b9584518c5d6f5e15d11c38de8ef5d12f2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-clock-3.txt": "e9910859603bdfaea8a4ce0a71a8b2f365a227edfa3dd3d59506f0f36f57f159",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-clock-4.txt": "c447e909a0b22b31bc1fac4f3c1e0c5c9bf65298f2cb75505bdbfea305045af0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\prototype-clock-5.txt": "1995ab7d20f4a08ca145009f5431be43807a6cee37482121a4b3e53cd090636b"
+    },
+    "trialNotes": "Both prototypes reduced selection probes. The first added run metadata without sharing copy lookups. The second shared copy lookups with mixed isolated timings. The selected source also writes output by its known sequence index, improving the isolated clock in all ten matched trials."
+  },
+  "parity": "Sampled borders, operation counts and fragment counts match in both styles. Direct routing tests preserve exact source order even for interleaved groups, and exercise retained roster scopes, cast scopes and boundaries.",
+  "verification": {
+    "focusedPassed": 43,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-neighbor-runs-before-20261120T031810381\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Core/ButtonFX/Cast.lua",
+      "tests/cast_dispatch_hotspot_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Native held-action crossing and roster transition timing, seam pixels and combat taint remain pending."
+}

@@ -94,12 +94,6 @@ local function RuneSnap(profile)
     return profile.runes
 end
 
---- Retail (post-DF): talents/action-bar layout are owned by Blizzard loadouts, so the Respec pipeline
---- skips the Bars step entirely — see StepBars / ProfileAlreadyFullyApplied / NextStepLabel below.
-local function SkipBarsOnRetail()
-    return Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts() == true
-end
-
 local function SetStatus(msg)
 end
 
@@ -421,7 +415,7 @@ function Apply.NextStepLabel(profileOrName)
     local state = Apply._state
     if state then
         if state.phase == "bars" then
-            return SkipBarsOnRetail() and "Updating stance bar…" or "Updating bars…", "bars-running"
+            return "Updating bars…", "bars-running"
         elseif state.phase == "consumables" then
             return "Switching consumables…", "consumables-running"
         elseif state.phase == "spellbook" then
@@ -740,11 +734,11 @@ StepBars = function()
         return
     end
     if R.ActionBars and R.ActionBars.MatchesSnapshot and R.ActionBars.MatchesSnapshot(profile.bars) then
-        SetStatus(SkipBarsOnRetail() and "Stance bar layout already matches." or "Action bars already match.")
+        SetStatus("Action bars already match.")
         StepConsumables()
         return
     end
-    SetStatus(SkipBarsOnRetail() and "Updating stance bar layout…" or "Updating action bar slots that differ from this profile…")
+    SetStatus("Updating action bar slots that differ from this profile…")
     local function afterBars(ok, reason)
         if Apply._state ~= state or not state.waitingForBars then return end
         state.waitingForBars = nil

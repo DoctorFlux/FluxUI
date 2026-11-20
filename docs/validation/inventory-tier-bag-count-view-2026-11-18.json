@@ -1,0 +1,498 @@
+{
+  "id": "LHO-TIER-BAG-COUNT-VIEW-20261118",
+  "before": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/FluxRestock_Inv.lua": "38db8778cb5e133720c6997b99abec9bc40139e18c4a0aed74cec258c83584dd",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "4dea0444ef27e33d6c031bfcfde1df045ab7321e03523ef367888fd769ccb634"
+  },
+  "after": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c"
+  },
+  "syntax": [
+    {
+      "file": "Inventory/Index.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca"
+    },
+    {
+      "file": "Inventory/Index.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca"
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "38db8778cb5e133720c6997b99abec9bc40139e18c4a0aed74cec258c83584dd"
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "38db8778cb5e133720c6997b99abec9bc40139e18c4a0aed74cec258c83584dd"
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "4dea0444ef27e33d6c031bfcfde1df045ab7321e03523ef367888fd769ccb634"
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "4dea0444ef27e33d6c031bfcfde1df045ab7321e03523ef367888fd769ccb634"
+    },
+    {
+      "file": "Inventory/Index.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad"
+    },
+    {
+      "file": "Inventory/Index.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad"
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8"
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8"
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c"
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "stderr": "",
+      "sha256": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c"
+    }
+  ],
+  "mode": "Only source comparison and syntax; no Lua runtime model, simulation or timing",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c"
+  },
+  "pairReceipt": [
+    {
+      "file": "Inventory/Index.lua",
+      "expected": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+      "retail": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+      "forever": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "expected": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+      "retail": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+      "forever": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "expected": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+      "retail": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+      "forever": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+      "match": true
+    },
+    {
+      "file": "Inventory/Tooltip.lua",
+      "expected": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+      "retail": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+      "forever": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+      "match": true
+    },
+    {
+      "file": "Inventory/SpellReagents.lua",
+      "expected": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+      "retail": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+      "forever": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+      "match": true
+    },
+    {
+      "file": "Inventory/FluxConsumableClassify.lua",
+      "expected": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+      "retail": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+      "forever": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+      "match": true
+    },
+    {
+      "file": "Inventory/Craft.lua",
+      "expected": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+      "retail": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+      "forever": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+      "match": true
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/Scan.lua",
+      "expected": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+      "retail": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+      "forever": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+      "match": true
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/Init.lua",
+      "expected": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+      "retail": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+      "forever": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "expected": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+      "retail": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+      "forever": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+      "expected": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+      "retail": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+      "forever": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+      "expected": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+      "retail": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+      "forever": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+      "match": true
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "expected": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+      "retail": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+      "forever": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+      "match": true
+    },
+    {
+      "file": "Inventory/Syndicator/Adapter.lua",
+      "expected": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+      "retail": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+      "forever": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+      "match": true
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/Watch.lua",
+      "expected": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+      "retail": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+      "forever": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+      "expected": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+      "retail": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+      "forever": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "expected": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+      "retail": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+      "forever": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+      "match": true
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "expected": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "retail": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "forever": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+      "expected": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+      "retail": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+      "forever": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+      "expected": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+      "retail": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+      "forever": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+      "expected": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+      "retail": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+      "forever": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "expected": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+      "retail": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+      "forever": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+      "match": true
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "expected": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+      "retail": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+      "forever": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+      "match": true
+    }
+  ],
+  "utc": "2026-11-18T08:52:12.643548+00:00",
+  "sourceConservation": [
+    {
+      "file": "Inventory/Index.lua",
+      "proof": "Removing only the new private view/selection additions restores the complete before file exactly after newline decoding; existing implementation bodies unchanged"
+    },
+    {
+      "file": "Inventory/Restock/FluxRestock_Inv.lua",
+      "proof": "Removing only the new private view/selection additions restores the complete before file exactly after newline decoding; existing implementation bodies unchanged"
+    },
+    {
+      "file": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "proof": "Removing only the new private view/selection additions restores the complete before file exactly after newline decoding; existing implementation bodies unchanged"
+    }
+  ],
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-tier-bag-count-view-20261118\\checkpoint.json",
+  "settingsMetadata": {
+    "paths": 125,
+    "mode": "Fresh stat-only; values not read/copied"
+  },
+  "sourceFacts": [
+    "ForEachUniqueBagStack discards all GetUniqueItems row fields except itemID key and count",
+    "Index.AddUniqueRegion creates one record per unique item and sums counts on every bag walk",
+    "New count view must preserve current byBag scan, duplicate summation, zero membership, source link reads and override fallback; no snapshot-counts substitution or cache"
+  ],
+  "mechanism": "Fresh scalar ID/count map replaces discarded per-ID row objects only for canonical defining bag query owners; no persistent result cache",
+  "preserved": [
+    "Same bag byBag walk, ID conversion, duplicate count sum, zero/negative membership and source link reads",
+    "Same unique-item callback order/membership/counts for canonical maps; original record path remains verbatim for replacements",
+    "Same live container fallback, classification, usability, positive count cache and pending/cold-zero retry behavior",
+    "Same events, timers, update delays, commands, settings and UI",
+    "Public GetUniqueItems and snapshot objects unchanged; no provider-source edits"
+  ],
+  "sourceAllocationAccounting": "For N>0 unique IDs, the old canonical restock bag path creates an options row, outer map and N item records. New private path creates outer numeric map and one lazy link-read map: N fewer temporary tables per reached canonical query. Empty view avoids the options row. Source accounting only, not measured runtime memory/CPU/FPS. Three private routing records/closures persist at load.",
+  "sourceCallers": [
+    "Tiers.GetBagOwnedTier",
+    "Tiers.GetJunkReferenceTier candidate rebuild",
+    "Tiers.GetTierCount",
+    "Tiers.GetTierBagTotalForBankRestock"
+  ],
+  "fallbackOwners": [
+    "Different restock owner/bag table/bag getter",
+    "Replaced RI.GetUniqueItems",
+    "Different Flux.Inventory owner",
+    "Replaced Inv.GetUniqueItems or Index.GetUniqueItems",
+    "Missing private helper record"
+  ],
+  "loadOrder": "_FluxUI.toc: Index78 -> Restock_Inv525 -> Tiers_Match534; no TOC edits",
+  "nativeAcceptance": "Current23 ownreload/five real tier-query results plus actual normal/forwarding-fallback owned-food1338/item4601 match PASS within stated scope. Final ready/Syndicator+Baganator/profile0/errors0 observed on build70959/16001/project18. No matched gain, quantity/zero mutation, all-kind parity, vendor/bank/craft/combo or other-client acceptance. New24 ownership source edits are separate and not reloaded.",
+  "nativePending": [
+    "Real bag/tier counts including duplicate stacks and zero",
+    "Real vendor populated count refresh, active craft/pending and bank consumers",
+    "Canonical and replaced getter routes with restoration",
+    "Legal Syndicator/Baganator combinations and other native clients",
+    "Matched lag-spike/performance measurements"
+  ],
+  "performanceGain": "UNMEASURED",
+  "simulationRuns": 0,
+  "newMockTests": 0,
+  "nativeInputsThisSlice": 2,
+  "runtimeFilesChangedThisSlice": 3,
+  "externalAddonEdits": false,
+  "manualSync": false,
+  "goal": "ACTIVE",
+  "nativeAfter": {
+    "id": "LHO-TIER-BAG-COUNT-NATIVE-20261118",
+    "utc": "2026-11-18T09:02:51.780890+00:00",
+    "client": {
+      "pid": 42724,
+      "hwnd": 50333792,
+      "birthFileTime": 134394624880288175,
+      "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+      "runtimeBuild": "Not queried in this process"
+    },
+    "availability": "Passive image at08:55UTC shows world available; announced shutdown did not establish current unavailability",
+    "sourceAdoption": "Normal guarded own reload observed; world returned and current23 source pairs remain pinned",
+    "runs": {
+      "tierview_reload_20261118a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierview_reload_20261118a-journal.json",
+        "stage": "ack-visually-attested",
+        "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then ReloadUI()end",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierview_reload_20261118a-submitted.png",
+          "pngSha": "8797454cbf9272aaf42a852a27d8df3c543311d5caa7a9078e85b252c010a9ad",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierview_reload_20261118a-submitted-capture.json",
+          "metaSha": "c9a4b3257e1f4b65686907d18c762df05eeef671ac05cc5163fff676cd40f339",
+          "started": 1794992266.857547,
+          "time": 1794992269.2380095,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 42724,
+              "hwnd": 50333792,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394624880288175
+            },
+            "fg": 82909804,
+            "last": 408960593,
+            "idle": 11.375,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "inputEnqueued": true
+      },
+      "tiercount_20261118a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tiercount_20261118a-journal.json",
+        "stage": "ack-visually-attested",
+        "payload": "/run local t=FluxRestockTiers;t.InvalidateTierQueryCache();for k in ('food water bandage healPotion manaPotion'):gmatch('%S+')do local s=debugprofilestop();print('TC23',k,t.GetTierCount(k),debugprofilestop()-s)end",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tiercount_20261118a-submitted.png",
+          "pngSha": "56b42bd660a8bfdc833d0e0bd2a0f7d428ebe9ac6517b1d06fb242453d1097cf",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tiercount_20261118a-submitted-capture.json",
+          "metaSha": "3bb15ee56bc896d0bb1c4aec6c48c6eff627b9a2cdf8dfc19ffcdb1f2ea7d037",
+          "started": 1794992344.2123885,
+          "time": 1794992346.2146008,
+          "stage": "submitted",
+          "baseline": {
+            "identity": {
+              "pid": 42724,
+              "hwnd": 50333792,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394624880288175
+            },
+            "fg": 692126702,
+            "last": 409047375,
+            "idle": 1.953,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "inputEnqueued": true
+      },
+      "tierfallback_20261118a": {
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118a-journal.json",
+        "stage": "aborted-no-retry",
+        "payload": "/run local t=FluxRestockTiers;local b=FluxRestock.Inv.Bags;local f=b.GetUniqueItems;local x,y=t.GetBagOwnedTier('food');b.GetUniqueItems=function(...)return f(...)end;local ok,a,c=pcall(t.GetBagOwnedTier,'food');b.GetUniqueItems=f;print('VF23',ok,x,y,a,c)",
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118a-source.png",
+          "pngSha": "4999f35cf7c80637cc86a14052943059dce915af796293fb8bbc6dc4b751af12",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118a-source-capture.json",
+          "metaSha": "6acac46eb96e7e12269e31bb21b648c6b4e3d09f157e2f9a8fc9cf327eeb5c15",
+          "started": 1794992396.360577,
+          "time": 1794992398.3204648,
+          "stage": "source",
+          "baseline": {
+            "identity": {
+              "pid": 42724,
+              "hwnd": 50333792,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134394624880288175
+            },
+            "fg": 692126702,
+            "last": 409100640,
+            "idle": 0.828,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "inputEnqueued": false
+      }
+    },
+    "queries": [
+      {
+        "kind": "food",
+        "count": 19,
+        "msPrinted": "2.9793999791145"
+      },
+      {
+        "kind": "water",
+        "count": 19,
+        "msPrinted": "2.4582000374794"
+      },
+      {
+        "kind": "bandage",
+        "count": 20,
+        "msPrinted": "2.1829000115395"
+      },
+      {
+        "kind": "healPotion",
+        "count": 5,
+        "msPrinted": "2.6480000019073"
+      },
+      {
+        "kind": "manaPotion",
+        "count": 5,
+        "msPrinted": "2.4950000047684"
+      }
+    ],
+    "queryScope": "Real GetTierCount calls after public transient query-cache invalidation. Five complete results; no direct per-item aggregate/native parity read or frame-spike claim. One sample/kind, no pinned baseline.",
+    "fallbackScope": "Initial attest stopped on foreground mode change; same unsent live run re-observation then aborted on foreground input activity. No command characters or Enter enqueued; wrapper never installed. Do not replay terminal run ID.",
+    "recordedErrorCount": "Not queried after current23 reload; no global zero-error assertion",
+    "persistentProbeGlobals": false,
+    "temporaryWrapperInstalled": false,
+    "profilerSettingsChanged": false,
+    "itemsTouched": false,
+    "sourcePairsMatchedAfter": 23,
+    "inputLockAbsent": true,
+    "hostNativeObserversAbsent": true,
+    "jumpHelper": "Not running",
+    "performanceGain": "UNMEASURED",
+    "goal": "ACTIVE"
+  },
+  "nativeFollowup23": "docs/validation/inventory-tier-bag-native-followup-2026-11-18.json"
+}

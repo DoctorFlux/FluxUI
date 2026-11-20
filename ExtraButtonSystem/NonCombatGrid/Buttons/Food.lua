@@ -535,7 +535,8 @@ function Module.Create(grid)
     local bindEvents = CreateFrame("Frame")
     bindEvents:RegisterEvent("PLAYER_ENTERING_WORLD")
     bindEvents:RegisterEvent("UPDATE_BINDINGS")
-    bindEvents:RegisterEvent("GROUP_ROSTER_UPDATE")
+    -- Conjure precedence follows learned spells. Stock and displayed counts
+    -- already refresh through the inventory listener.
     -- SPELLS_CHANGED rides the debounced, signature-gated Core bus; the direct
     -- frame registration stays only as fallback when the bus is missing.
     do

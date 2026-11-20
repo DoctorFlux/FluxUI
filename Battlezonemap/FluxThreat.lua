@@ -119,6 +119,7 @@ local function CreatePluginFrames()
 
     local lastThreatPollTime = 0
     local threatPollDeferred = false
+    local rosterRefreshPending, rosterRefreshQueued
 
     -- -------------------------------------------------------------------
     -- OnDetailsEvent
@@ -715,6 +716,7 @@ local function CreatePluginFrames()
     -- -------------------------------------------------------------------
     local function UpdateDisplay()
         if not Threat.Active then return end
+        rosterRefreshPending = nil
 
         local inst = Threat:GetPluginInstance()
         if not inst then return end
@@ -811,21 +813,34 @@ local function CreatePluginFrames()
     end
 
     function Threat:Start()
+        rosterRefreshPending = nil
         Threat:HideBars()
         threatPollDeferred = true
         lastThreatPollTime = 0
     end
 
     function Threat:Stop()
+        rosterRefreshPending = nil
         Threat:HideBars()
     end
 
     function Threat:Cancel()
+        rosterRefreshPending = nil
         Threat:HideBars()
         Threat.Active = false
         if Threat.SyncThreatPollingScript then
             Threat:SyncThreatPollingScript()
         end
+    end
+
+    local function FlushRosterRefresh()
+        rosterRefreshQueued = nil
+        if not rosterRefreshPending then return end
+        rosterRefreshPending = nil
+        if not Threat.Active or not Threat.pluginGloballyEnabled then return end
+        threatPollDeferred = false
+        lastThreatPollTime = GetTime()
+        UpdateDisplay()
     end
 
     function Threat:OnThreatListOrRosterEvent(event, unitTarget)
@@ -837,9 +852,14 @@ local function CreatePluginFrames()
                 UpdateDisplay()
             end
         elseif event == "GROUP_ROSTER_UPDATE" then
-            threatPollDeferred = false
-            lastThreatPollTime = GetTime()
-            UpdateDisplay()
+            -- Join/leave can deliver several notifications before the next
+            -- paint. A synchronous threat update can consume the same work.
+            rosterRefreshPending = true
+            if not rosterRefreshQueued then
+                rosterRefreshQueued = true
+                if C_Timer and C_Timer.After then C_Timer.After(0, FlushRosterRefresh)
+                else FlushRosterRefresh() end
+            end
         end
     end
 
@@ -884,6 +904,7 @@ local function CreatePluginFrames()
 
     local function syncThreatPollingScript()
         if not Threat.pluginGloballyEnabled then
+            rosterRefreshPending = nil
             ThreatFrame:SetScript("OnUpdate", nil)
             return
         end

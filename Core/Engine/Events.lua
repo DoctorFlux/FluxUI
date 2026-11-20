@@ -71,6 +71,42 @@ end
 
 -- Central dispatcher. Frame created at file scope.
 local handlers = {} -- event -> { fn, ... }
+local callbackOrigins = setmetatable({}, { __mode = "k" })
+-- The client can omit debug.getinfo. Keep registration provenance for the
+-- small regen subscriber set, once per function, so a finite spike capture can
+-- identify an anonymous callback without collecting stacks during gameplay.
+local function RememberRegenOrigin(event, fn)
+	if issecretvalue and issecretvalue(fn) then return end
+	if event ~= "PLAYER_REGEN_ENABLED" and event ~= "PLAYER_REGEN_DISABLED" or callbackOrigins[fn] ~= nil then return end
+	callbackOrigins[fn] = false
+	if type(debugstack) ~= "function" then return end
+	local ok, stack = pcall(debugstack, 2, 5, 0)
+	if not ok or (issecretvalue and issecretvalue(stack)) or type(stack) ~= "string" then return end
+	for line in stack:gmatch("[^\r\n]+") do
+		local path = line:gsub("\\", "/")
+		if path:match(":%d+") and not path:find("Core/Engine/Events.lua", 1, true) then
+			callbackOrigins[fn] = line:sub(1, 220)
+			return
+		end
+	end
+end
+
+function Events.GetCallbackOrigin(fn)
+	if issecretvalue and issecretvalue(fn) then return end
+	return callbackOrigins[fn] or nil
+end
+
+-- Specialization notifications also describe other group members. Player-only
+-- consumers can ignore a confirmed other unit; absent/private/unknown identity
+-- preserves the historical refresh. Never cache unit identity across events.
+function Events.IsPlayerUnitEvent(unit)
+    if issecretvalue and issecretvalue(unit) then return true end
+    if type(unit)~="string" or unit=="player" or not UnitIsUnit then return true end
+    local same=UnitIsUnit(unit,"player")
+    if issecretvalue and issecretvalue(same) then return true end
+    return same~=false
+end
+
 local dispatchDepth, dirtyHandlers = {}, {}
 local dispatch = CreateFrame("Frame")
 dispatch:Hide()
@@ -181,6 +217,7 @@ function Events.Register(eventName, fn)
 		end
 	end
 	list[#list + 1] = fn
+	RememberRegenOrigin(eventName, fn)
 	return true
 end
 

@@ -1,0 +1,103 @@
+-- Complete production owner/producers, with native APIs/frame sinks modeled.
+-- Five client labels select actual Secrets backend policy, not native VM proof.
+local M = {}
+local function pack(...) return { n=select('#',...), ... } end
+M.pack=pack
+local function read(path)
+ local f=assert(io.open(path,'rb'));local b=f:read('*a');f:close();return b
+end
+function M.new(root,client,paintSource)
+ local s={now=10,units={target=true,focus=true,mouseover=true},frames={},timers={},trace={},errors={},
+  counts={unit=0,spell=0,item=0,itemSpell=0,rangePaint=0,colors=0},range=true,blocked=false}
+ local e=setmetatable({}, {__index=_G});e._G=e;e.SlashCmdList={}
+ function s.note(v)s.trace[#s.trace+1]=v end
+ e.wipe=function(t)for k in pairs(t)do t[k]=nil end;return t end
+ e.GetTime=function()return s.now end
+ e.InCombatLockdown=function()return s.combat or false end
+ e.issecretvalue=function(v)return type(v)=='table' and v.secret==true end
+ e.canaccessvalue=function(v)return not(type(v)=='table' and v.inaccessible==true)end
+ e.canaccesssecrets=function()return not s.combat end
+ e.UnitExists=function(u)s.counts.unit=s.counts.unit+1;s.note('unit:'..tostring(u));return s.units[u]end
+ e.UnitIsDead=function()return false end
+ e.UnitCanAttack=function(_,u)return u=='target' end
+ e.UnitCanAssist=function(_,u)return u~='target' end
+ e.geterrorhandler=function()return function(v)s.errors[#s.errors+1]=v end end
+ e.C_EventUtils={IsEventValid=function()return true end}
+ e.CreateFrame=function()
+  local f={scripts={},events={},shown=true};s.frames[#s.frames+1]=f
+  function f:SetScript(k,v)self.scripts[k]=v end
+  function f:GetScript(k)return self.scripts[k]end
+  function f:RegisterEvent(k)self.events[k]=true end
+  function f:UnregisterEvent(k)self.events[k]=nil end
+  function f:RegisterUnitEvent(k,u)self.events[k]=u end
+  function f:Hide()self.shown=false end
+  function f:Show()self.shown=true end
+  function f:IsShown()return self.shown end
+  return f
+ end
+ local c={key=client,isRetail=client=='midnight',isMidnight=client=='midnight',isCamelot=client=='forever',
+  isForever=client=='forever',isEra=client=='era',isAnniversary=client=='anniversary',
+  isClassic=client=='classic',isPostDF=client=='midnight' or client=='forever',majorVersion=client=='midnight' and 12 or 1}
+ local F={Client=c,Module={Register=function(name,module)s.module=module end},
+  Timer={After=function(delay,fn)s.timers[#s.timers+1]={at=s.now+delay,fn=fn}end},
+  Safecall=function(fn,...)return pcall(fn,...)end,
+  MouseoverCast={IsActive=function()return s.mouseover or false end},
+  Spell={GetOverrideSpell=function(id)return id end,
+   IsInRange=function(id,u)s.counts.spell=s.counts.spell+1;s.note('spell:'..tostring(id)..':'..u);return s.range end,
+   IsUsable=function()return true,false end},
+  Item={IsInRange=function(id,u)s.counts.item=s.counts.item+1;s.note('item:'..tostring(id)..':'..u);return s.range end,
+   CanCheckRange=function(u)return not s.blocked end,
+   GetSpell=function(id)s.counts.itemSpell=s.counts.itemSpell+1;s.note('itemspell:'..tostring(id));return s.itemSpellName,s.itemSpellID end,
+   IsUsable=function()return true,false end,IsConsumable=function()return false end,
+   UsesConsumableCharges=function()return false end}}
+ local ns={Flux=F};e.Flux=F;s.env,s.flux,s.ns=e,F,ns
+ local files={'Core/API/Secrets.lua','Core/API/Secrets_Classic.lua','Core/API/Secrets_Midnight.lua',
+  'Core/Engine/Events.lua','Core/Engine/Ticker.lua','Core/Engine/Scheduler.lua','Core/Engine/Range.lua',
+  'ExtraButtonSystem/Init.lua','ExtraButtonSystem/Engine/Paint.lua','ExtraButtonSystem/Engine/Range.lua'}
+ for _,rel in ipairs(files)do
+  local source=rel=='ExtraButtonSystem/Engine/Paint.lua' and paintSource or nil
+  local path=source or(root..'/'..rel)
+  assert(load(read(path),'@'..rel,'t',e))('_FluxUI',ns)
+ end
+ s.paint=F.EBS.Paint
+ for i=1,100 do local n,v=debug.getupvalue(s.paint.UpdateRange,i);if not n then break end;if n=='ProbeRange'then s.probe=v end end
+ assert(type(s.probe)=='function','private whole-owner ProbeRange missing')
+ F.Range.Start();F.EBS.Start()
+ function s.drain()
+  local turns=0
+  while #s.timers>0 do
+   turns=turns+1;assert(turns<100,'model timer loop')
+   local q=s.timers;s.timers={}
+   for _,t in ipairs(q)do if t.at<=s.now then t.fn()else s.timers[#s.timers+1]=t end end
+   if #s.timers>0 and s.timers[1].at>s.now then break end
+  end
+ end
+ function s.advance(dt)
+  s.now=s.now+dt
+  for _,f in ipairs(s.frames)do if f.shown and f.scripts.OnUpdate then f.scripts.OnUpdate(f,dt)end end
+  s.drain()
+ end
+ function s.dispatch(event,...)
+  for _,f in ipairs(s.frames)do
+   local u=f.events[event]
+   if u and f.scripts.OnEvent and(u==true or u==select(1,...))then f.scripts.OnEvent(f,event,...)end
+  end
+ end
+ function s.event(event,...)s.dispatch(event,...);s.drain()end
+ function s.button(kind,id)
+  local w={shown=true,visible=true}
+  function w:IsShown()return self.shown end
+  function w:IsVisible()return self.shown and self.visible end
+  local icon={SetVertexColor=function()s.counts.colors=s.counts.colors+1 end,SetDesaturated=function()end}
+  local b={ActionType=kind or'spell',ActionValue=id or 101,SpellId=id or 101,ItemId=kind=='item' and(id or 201)or nil,
+   Widget=w,WIcon=icon,WNormalTexture={SetVertexColor=function()end}}
+  return b
+ end
+ function s.resetTrace()s.trace={} end
+ function s.instrumentRange()
+  local orig=s.paint.UpdateRange
+  s.paint.UpdateRange=function(...)s.counts.rangePaint=s.counts.rangePaint+1;return orig(...)end
+ end
+ return s
+end
+return M

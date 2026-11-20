@@ -119,12 +119,14 @@ local function Fixture(native, failAt, source,client)
     function methods:SetPoint(...)legal(self);self.points[#self.points+1]={...}end
     function methods:ClearAllPoints()legal(self);self.points={}end
     function methods:SetTexture(value)legal(self);self.texture=value end
+    function methods:GetTexture()legal(self);return self.texture end
     function methods:SetTexCoord(...)legal(self);self.coords={...}end
     function methods:SetAtlas(value)legal(self);self.atlas=value end
     function methods:SetDesaturated(value)legal(self);self.desaturated=value end
     function methods:SetColorTexture(...)legal(self);self.color={...}end
     function methods:SetVertexColor(...)legal(self);self.color={...}end
     function methods:SetText(value)legal(self);self.text=value end
+    function methods:GetText()legal(self);if self.text~=nil then return tostring(self.text) end end
     function methods:SetAlpha(value)legal(self);self.alpha=value end
     function methods:SetScale(value)legal(self);self.scale=value end
     function methods:SetFrameLevel(value)legal(self);self.level=value end
@@ -246,16 +248,20 @@ local function Fixture(native, failAt, source,client)
         end
         return frame
     end
-    local frame=e.CreateFrame("Button")
-    frame.healthBar=e.CreateFrame("StatusBar",nil,frame)
-    frame.healthBar.width=66
-    frame._fluxAuraLayer=e.CreateFrame("Frame",nil,frame)
-    frame._fluxTextLayer=e.CreateFrame("Frame",nil,frame)
-    frame._fluxHighlightLayer=e.CreateFrame("Frame",nil,frame)
-    frame._fluxHighlightLayer.level=24
-    frame._fluxTrimLayer=e.CreateFrame("Frame",nil,frame)
-    frame._fluxTrimLayer.level=20
-    frame.unit,frame.optionTable="party1",{}
+    local function CreateUnit(unit)
+        local frame=e.CreateFrame("Button")
+        frame.healthBar=e.CreateFrame("StatusBar",nil,frame)
+        frame.healthBar.width=66
+        frame._fluxAuraLayer=e.CreateFrame("Frame",nil,frame)
+        frame._fluxTextLayer=e.CreateFrame("Frame",nil,frame)
+        frame._fluxHighlightLayer=e.CreateFrame("Frame",nil,frame)
+        frame._fluxHighlightLayer.level=24
+        frame._fluxTrimLayer=e.CreateFrame("Frame",nil,frame)
+        frame._fluxTrimLayer.level=20
+        frame.unit,frame.optionTable=unit,{}
+        return frame
+    end
+    local frame=CreateUnit("party1")
     local data={}
     e.C_UnitAuras={GetAuraDataByIndex=function(unit,index,filter)
         check(unit==frame.unit,"aura scans follow bound unit")
@@ -280,7 +286,87 @@ local function Fixture(native, failAt, source,client)
     end
     NativePolicy(e,client or "forever")
     local module=loadModule(e)
-    return e,module,frame,frames,boxes,data
+    return e,module,frame,frames,boxes,data,CreateUnit
+end
+
+local function ReplayRetirement(client,count,archive)
+    local e,auras,_,_,_,_,createUnit=Fixture(true,nil,archive,client)
+    local cells, tokens, trace, work = {}, {}, {}, {}
+    for i=1,count do
+        local party=count==5
+        local unit=party and (i==1 and "player" or "party"..(i-1)) or "raid"..i
+        local frame=createUnit(unit)
+        frame._fluxPartyMember=party
+        auras.Setup(frame)
+        cells[i], tokens[i]=frame,unit
+    end
+    local unitWrites, hideWrites=0,0
+    for _,frame in ipairs(cells) do
+        for _,box in pairs(frame._fluxAuraContainers) do
+            local set,hide=box.SetUnit,box.Hide
+            function box:SetUnit(unit)
+                unitWrites=unitWrites+1
+                return set(self,unit)
+            end
+            function box:Hide()
+                hideWrites=hideWrites+1
+                return hide(self)
+            end
+        end
+    end
+    local function Step(joined)
+        unitWrites,hideWrites=0,0
+        for i,frame in ipairs(cells) do
+            if joined then
+                frame.unit=tokens[i]
+                auras.Update(frame)
+            else
+                frame.unit=nil
+                auras.Clear(frame)
+            end
+            local boxes=frame._fluxAuraContainers
+            for _,key in ipairs({"buffs","dispel","dispelPlain","dispelBorder","partyDispelGlow"}) do
+                local box=boxes[key]
+                local expected=joined and (key=="buffs" or key=="dispel" or
+                    (frame._fluxPartyMember and key=="partyDispelGlow") or
+                    (not frame._fluxPartyMember and key=="dispelBorder")) or false
+                check(box.shown==expected and box.events==expected and box.unit==(expected and tokens[i] or "none"),
+                    "each native owner subscribes only while its unit and presentation are live")
+                trace[#trace+1]=box.unit..":"..tostring(box.shown)..":"..tostring(box.events)
+            end
+        end
+        work[#work+1]=unitWrites
+        work[#work+1]=hideWrites
+    end
+    Step(true)
+    e.combat,e.restricted=true,true
+    Step(false) -- Secure header removal retires the unit.
+    Step(false) -- OnHide can retire the same unit again in the same transition.
+    e.combat,e.restricted=false,false
+    Step(true)
+    return table.concat(trace,"/"),work
+end
+
+if arg[1]=="--owner-retirement" then
+    local archive
+    if arg[2] then
+        local file=assert(io.open(arg[2],"rb"))
+        archive=file:read("*a");file:close()
+    end
+    for _,client in ipairs({"live","forever"}) do
+        for _,count in ipairs({5,40}) do
+            local state,work=ReplayRetirement(client,count)
+            check(table.concat(work,",")==table.concat({3*count,0,3*count,3*count,0,0,3*count,0},","),
+                "only active owners get a binding or retirement write")
+            if archive then
+                local oldState,oldWork=ReplayRetirement(client,count,archive)
+                check(state==oldState,"join/leave owner subscriptions and visibility match the archive")
+                print(("AURA_RETIRE|%s|%d|%s|%s"):format(client,count,table.concat(oldWork,","),table.concat(work,",")))
+            end
+        end
+    end
+    print("Native aura retirement: "..checks.." matched desktop checks")
+    return
 end
 
 for _,client in ipairs({"retail","forever"})do
@@ -366,6 +452,38 @@ for _,client in ipairs({"retail","forever"})do
     check(groups.buffs.groups.classBuffs.enabled and groups.buffs.groups.raidBuffs.enabled
         and groups.buffs.unit=="party1","native present class buffs remain visible out of combat")
     check(not border.shown and groups.partyDispelGlow.shown and groups.partyDispelGlow.unit=="party1","party uses its independent native glow owner")
+    local visibilityWrites,unitWrites=0,0
+    local function CountVisibility(object)
+        local set=object.SetShown
+        function object:SetShown(value)
+            visibilityWrites=visibilityWrites+1
+            return set(self,value)
+        end
+    end
+    for _,box in pairs(groups) do
+        CountVisibility(box)
+        local set=box.SetUnit
+        function box:SetUnit(unit)
+            unitWrites=unitWrites+1
+            return set(self,unit)
+        end
+    end
+    CountVisibility(rows.top);CountVisibility(rows.bottom)
+    for i=1,20 do auras.Update(frame) end
+    check(visibilityWrites==0 and unitWrites==0,"stable roster repaint keeps native aura bindings and visibility")
+    groups.buffs:Hide();rows.top:Hide()
+    auras.Update(frame)
+    check(visibilityWrites==2 and unitWrites==0 and groups.buffs.shown and rows.top.shown,
+        "unchanged policy repairs visibility drift on the exact owners")
+    local isShown=groups.buffs.IsShown
+    function groups.buffs:IsShown() return {secret=true} end
+    auras.Update(frame)
+    check(visibilityWrites==3 and groups.buffs.shown,"opaque native visibility retains the existing setter")
+    groups.buffs.IsShown=isShown
+    frame.unit="party3";auras.Update(frame)
+    check(unitWrites>0 and groups.buffs.unit=="party3" and groups.partyDispelGlow.unit=="party3",
+        "prepared group policy still binds the latest unit")
+    frame.unit="party1";auras.Update(frame)
     e.restricted=true;e.combat=true;auras.Update(frame)
     check(not groups.buffs.groups.classBuffs.enabled and groups.buffs.groups.raidBuffs.enabled,"combat disables class group without disabling short buffs")
     e.combat=false;e.dispelHighlight=false;auras.Update(frame)
@@ -381,7 +499,8 @@ for _,client in ipairs({"retail","forever"})do
     end
     frame.optionTable.displayBuffs=false;frame.optionTable.displayDebuffs=false;auras.Update(frame)
     for _,box in pairs(groups)do check(not box.shown and box.unit=="none"and not box.events,"disabled rows release native unit subscriptions")end
-    frame.optionTable={};frame.unit="party2";auras.Update(frame)
+    frame.optionTable={};frame.unit="party2"
+    check(auras.Update(frame)~=true,"native owner keeps the caller's readable overlay cleanup")
     check(groups.buffs.unit=="party2"and groups.dispelPlain.unit=="party2","native row owners follow unit reassignment")
     e.dispelHighlight=true;auras.Update(frame)
     check(not border.shown and groups.partyDispelGlow.shown and groups.partyDispelGlow.unit=="party2","native party glow follows the reassigned unit through its public owner")
@@ -399,6 +518,26 @@ for _,client in ipairs({"retail","forever"})do
     auras.Clear(frame)
     for _,box in pairs(groups)do check(not box.shown and box.unit=="none"and not box.events,"clear retires every native owner")end
     check(not rows.top.shown and not rows.bottom.shown,"clear hides both row hosts")
+    unitWrites,visibilityWrites=0,0
+    auras.Clear(frame)
+    check(unitWrites==0 and visibilityWrites==0,"repeat cleanup keeps retired owners and rows hidden without writes")
+    local buff=groups.buffs
+    e.combat=false;auras.Update(frame)
+    local set=buff.SetUnit
+    local denied={}
+    function buff:SetUnit(token)
+        if token=="none" then error(denied,0) end
+        return set(self,token)
+    end
+    local ok,errorValue=pcall(auras.Clear,frame)
+    check(not ok and errorValue==denied,"failed retirement keeps the native error")
+    buff.SetUnit=set
+    auras.Clear(frame)
+    check(buff.unit=="none" and not buff.shown and not buff.events,"the next cleanup retries a failed retirement")
+    function buff:IsShown() return {secret=true} end
+    local before=visibilityWrites
+    auras.Clear(frame)
+    check(visibilityWrites==before+1,"unreadable visibility still forces the existing owned visibility setter")
 end
 
 local function Aura(id,duration,extra)
@@ -842,7 +981,15 @@ do
             local aura=Aura(id,20,{isHarmful=true,isRaid=true,dispelName="Magic",canActivePlayerDispel=true})
             data.HARMFUL[#data.HARMFUL+1]=aura;data["HARMFUL|RAID"][#data["HARMFUL|RAID"]+1]=aura
         end
-        module.Setup(frame);module.Update(frame)
+        module.Setup(frame)
+        local paints,updateDispel=0,module.UpdateDispel
+        module.UpdateDispel=function(owner)
+            paints=paints+1
+            return updateDispel(owner)
+        end
+        check(module.Update(frame)==true and paints==1,
+            client..": readable auras report the single completed dispel pass")
+        module.UpdateDispel=updateDispel
         local buffs,debuffs=frame._fluxAuraCorners.buffs,frame._fluxAuraCorners.debuffs
         check(buffs[1].width==11 and buffs[1].height==11 and debuffs[1].width==11
             and debuffs[2].width==11 and debuffs[3].width==11 and debuffs[4].width==11,
@@ -912,6 +1059,49 @@ do
     local e,auras,frame,frames=Fixture(true)
     e.combat=true;local count=#frames;auras.Setup(frame)
     check(#frames==count and frame._fluxNeedsPrivateAuraSync,"combat setup defers all row and pool allocation")
+end
+do
+    local _,auras,frame,_,_,data=Fixture(false,nil,nil,"classic")
+    local buff=Aura(17,30,{isHelpful=true,applications=3})
+    data.HELPFUL={buff}
+    auras.Setup(frame)
+    auras.Update(frame)
+    local icon=frame._fluxAuraCorners.buffs[1]
+    local blank=frame._fluxAuraCorners.buffs[2]
+    local changes=0
+    local function CountWrite(object,key)
+        local write=object[key]
+        object[key]=function(self,...)changes=changes+1;return write(self,...)end
+    end
+    CountWrite(icon.Icon,"SetTexture")
+    CountWrite(icon.Count,"SetText")
+    CountWrite(icon,"SetShown")
+    CountWrite(blank,"SetShown")
+    CountWrite(icon.Cooldown,"SetShown")
+    for _=1,4 do auras.Update(frame) end
+    check(changes==0,"same readable aura and empty slot retain their confirmed widget paint")
+    icon.Icon.texture=0
+    icon.Count.text="stale"
+    icon.shown,blank.shown=false,true
+    icon.Cooldown.shown=false
+    auras.Update(frame)
+    check(changes==5 and icon.Icon.texture==1017 and icon.Count.text==3 and icon.shown
+        and not blank.shown and icon.Cooldown.shown,"live texture, text and visibility drift are repaired")
+    local getTexture=icon.Icon.GetTexture
+    icon.Icon.GetTexture=function()return {secret=true}end
+    icon.Count.GetText=function()error("text denied")end
+    changes=0
+    auras.Update(frame)
+    check(changes==2 and icon.Icon.texture==1017 and icon.Count.text==3,
+        "opaque or denied getters retain the original paint writes")
+    icon.Icon.GetTexture=getTexture
+    buff.icon,buff.applications,buff.duration=2000,2,0
+    auras.Update(frame)
+    check(icon.Icon.texture==2000 and icon.Count.text==2 and not icon.Cooldown.shown
+        and not icon._fluxCountdownText.shown,"a changed aura updates art, stacks and countdown visibility")
+    data.HELPFUL={}
+    auras.Update(frame)
+    check(not icon.shown,"a removed aura retires its visible icon")
 end
 do
     local file=assert(io.open("RaidFrame/FluxRaidAuras.lua","rb"));local source=file:read("*a");file:close()
@@ -986,7 +1176,8 @@ do
             "clients without the formatter API retain native duration formatting")
     end
     do
-        local changed,count=source:gsub('if icon._fluxCountdownText then icon._fluxCountdownText:Hide%(%) end','-- omitted timer cleanup')
+        local changed,count=source:gsub('if icon._fluxCountdownText then SetOwnedShown%(icon._fluxCountdownText,timed%) end',
+            'if icon._fluxCountdownText and timed then SetOwnedShown(icon._fluxCountdownText,true) end')
         check(count>0,"negative control targets detached timer cleanup")
         local ok=pcall(function()
             local _,module,frame,_,_,data=Fixture(false,nil,changed,"classic")
@@ -1035,7 +1226,7 @@ do
             frame.optionTable.displayOnlyDispellableDebuffs=true;module.Update(frame)
             assert(frame._fluxAuraContainers.dispel.groups.bossDebuffs.filter=="HARMFUL|RAID","an unfiltered boss bypassed strict native mode")
         end},
-        {"retired native unit",'box:SetUnit%("none"%)%;box:Hide%(%)','box:Hide()',function(e,module,frame)
+        {"retired native unit",'SetBoxUnit%(native.units,box,"none"%)','-- missing native unit retirement',function(e,module,frame)
             local original=frame._fluxAuraContainers.buffs
             module.Clear(frame)
             assert(original.unit=="none","a hidden native owner retained its unit subscription")

@@ -1,0 +1,188 @@
+{
+  "changeId": "LHO-ITEM-INFO-ONCE-20261119",
+  "source": "Inventory/FluxItemClass.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-info-once-20261119T042409Z",
+    "before": "6e1ed98327313f13e25e60d6048b5317ee4b4d262c0ca62aa96cca1da3a7a640",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false
+  },
+  "after": "85c16cb1888511d4b6af8cd68f8ad1f2bb0ab6b62e0b070e95da39f1d04a5f10",
+  "matchingInstalledClients": [
+    "_retail_",
+    "_forever_",
+    "_classic_",
+    "_classic_era_",
+    "_anniversary_"
+  ],
+  "syntax": [
+    "Lua 5.1 before and after",
+    "Lua 5.4 before and after"
+  ],
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "birthFileTime": "134395136956432074",
+    "scriptProfile": "0",
+    "ghost": true
+  },
+  "upstream": {
+    "source": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua#L590",
+    "scope": "Pinned Forever 70938 source declares a multi-return call that may return nothing. The prior compatibility path for table-shaped and legacy responses is retained."
+  },
+  "r200": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag200-item-metadata-20261119",
+      "controllerSHA": "9f5bb46a2fbb57bedafbb8f573213891be32014744b97ae317d7d0e9289c2aa4",
+      "packetSHA": "a432b4344286f42092e36c451448a1c961719b7026aaf833c6afd967053c9ef6",
+      "packets": 29,
+      "luaSHA": "aa679dc090b266a45cff49a510f6a927dbd144cbe696dc9c4b16390e9195e39f",
+      "current": "6e1ed98327313f13e25e60d6048b5317ee4b4d262c0ca62aa96cca1da3a7a640"
+    },
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag200_a-submitted.png",
+      "sha": "5447ab108fe72852ba8fba900e38bbd9de91a95b66a579da8ede8d06d68e2527"
+    },
+    "acknowledged": true,
+    "ids": 42,
+    "tupleFirstReturns": 42,
+    "wholeRecordsEqual": 42,
+    "wholeRecordsMatchLoadedFacade": 42,
+    "bagGenerationStable": true,
+    "errors": 0,
+    "recordsPerBatch": 336,
+    "rule": "Each variant reads the real warmed client metadata and runs the exact private record builder without FluxUI's per-item record cache. Paired trials alternated order.",
+    "trials": [
+      {
+        "order": "before then candidate",
+        "beforeMs": 4.1317,
+        "candidateMs": 2.2385
+      },
+      {
+        "order": "candidate then before",
+        "beforeMs": 4.0534,
+        "candidateMs": 2.3774
+      },
+      {
+        "order": "before then candidate",
+        "beforeMs": 4.1325,
+        "candidateMs": 2.2013
+      }
+    ],
+    "medianBeforeMs": 4.1317,
+    "medianCandidateMs": 2.2385,
+    "nativeCallsForOneRecordOnTuplePath": {
+      "before": 2,
+      "candidate": 1,
+      "sourceDerived": true
+    }
+  },
+  "r201": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag201-direct-provider-matrix-20261119",
+      "controllerSHA": "d2e2442db117a4c0081f513e7849157dd7f3ed3e6854fbe520c9a2367664ea37",
+      "packetSHA": "3797926b98b3094f3862bda96dbdce60202851d0da10c6cf048b537a3aab5414",
+      "packets": 1
+    },
+    "loadingScreen": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag201_a-submitted.png",
+      "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0"
+    },
+    "returnedToWorld": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump30_info201_a-source.png",
+      "sha": "1b8e8427c920eab389c67d3b0fb9dad18563cf96275b2f065f15135e59800c50"
+    },
+    "acknowledged": true
+  },
+  "r202": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag202-item-metadata-adopted-20261119",
+      "controllerSHA": "f4760c0c3ab445534f66608b526ad1fd67e3b6143824da1ca2d4fb7933275ecc",
+      "packetSHA": "248bae59ca030522e235cf14e78f6fefbd1e7ab83694151cf1dc0094193e33d6",
+      "packets": 18,
+      "luaSHA": "3df5273b9c6b9421bf20fc3bde032eac6821e1a174db8d0691c023899d3c7705"
+    },
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag202_a-submitted.png",
+      "sha": "84b65738746f583e4750c10d7edc4e6444a1b8b7c241c3c62d54496a39240586"
+    },
+    "error": "Diagnostic read stopped on Flux.Inventory.Bags which is nil. The error is from the temporary script, not from the source edit. The transport released its input lock."
+  },
+  "r203": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag203-item-metadata-adopted-20261119",
+      "controllerSHA": "445a30bb5f6f768816daf196e074c1f6d5d5dfea7f409860a3c9a55879e3fc2d",
+      "packetSHA": "9dc6ede60cd8b39e79e53a25c632d932d40a9bbd305597eab15cd7e917b757f7",
+      "packets": 18,
+      "luaSHA": "bc6efdbd22c4518312a29d36e14b4e57e5fec8e7ebec5e3e383daac6df405399"
+    },
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag203_a-submitted.png",
+      "sha": "baec53d586e624ffe1d0cf5bdeaa8574d06cc258ba533511c92b461b53276dcb"
+    },
+    "acknowledged": true,
+    "records": 42,
+    "metadataMatches": 42,
+    "bagCountsMatchNative": 42,
+    "bagGenerationStable": true,
+    "sessionErrors": 1,
+    "newErrors": 0,
+    "existingError": "R202 diagnostic nil Bags field, preserved and attributed",
+    "loadedProviders": [
+      "Syndicator",
+      "Baganator"
+    ],
+    "inventorySource": "syndicator"
+  },
+  "keepalive": {
+    "retired": {
+      "pid": 40076,
+      "status": "stopped",
+      "pairs": 4,
+      "reason": null
+    },
+    "cue": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump30_info201_a-submitted.png",
+      "sha": "7aad4868f302a40f9c74c212ca91e46b9a28d3fc67855da9f18080cbc18235e1"
+    },
+    "current": {
+      "pid": 39308,
+      "status": "running",
+      "pairs": 1,
+      "movement": false,
+      "supervisor": 33880,
+      "last": "2026-11-19T05:28:01.418357+01:00",
+      "leasePresent": false
+    },
+    "intervalSeconds": 180
+  },
+  "limitations": [
+    "The timed path is uncached in FluxUI and warm in the native client. The measurement does not establish savings for warm FluxUI lookups, cold client load latency, or whole-frame spikes.",
+    "The native sample used the five ordinary carried bags with both external addons loaded. Table and legacy returns were reviewed in source. Live client families besides Forever, first-open hitches and transaction workflows require separate checks."
+  ],
+  "pinnedAPIDeclarations": {
+    "forever": {
+      "version": "1.60.1.70938",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua#L625",
+      "returnsMayBeAbsent": true
+    },
+    "retail": {
+      "version": "12.1.5.70783",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua#L603",
+      "returnsMayBeAbsent": true
+    },
+    "classic": {
+      "version": "5.5.4.70631",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "source": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/ItemDocumentation.lua#L392",
+      "returnsMayBeAbsent": true
+    }
+  }
+}

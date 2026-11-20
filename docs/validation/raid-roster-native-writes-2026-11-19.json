@@ -1,0 +1,216 @@
+{
+  "changeId": "RAID-ROSTER-NATIVE-WRITES-R104-20261119",
+  "capturedAtUTC": "2026-11-19T12:43:39.280859+00:00",
+  "scope": "Avoid equal raid roster reference, anchor, width and label writes",
+  "sources": {
+    "RaidFrame/FluxRaidSecure.lua": {
+      "beforeRaw": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "afterRaw": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197"
+    },
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeRaw": "db773a6d71738f99dee58f295504363777a21985268459190e18ef7e3f9fd9d2",
+      "afterRaw": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac"
+    },
+    "tests/raid_roster_native_writes.lua": {
+      "beforeRaw": null,
+      "afterRaw": "760a072d4de15014f2289476d47f1cf8a8ad5f9331928d676db2c4d70388c7b6"
+    },
+    "tests/raid_roster_layout_work.lua": {
+      "beforeRaw": "53108e41ea1ab0c996dd267ec03330850a6bd49518330ac68f8de73543358cc2",
+      "afterRaw": "25046671d6f324990be6d64e4328a674da919079e2579465d4194cfdd00b39b1"
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "afterRaw": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471"
+    },
+    "tests/raid_healer_secure.lua": {
+      "beforeRaw": "44ffde5dfe648160d872bfa408ff83d075066cdb20e84bb7bf98e1f34e5d81bb",
+      "afterRaw": "44ffde5dfe648160d872bfa408ff83d075066cdb20e84bb7bf98e1f34e5d81bb"
+    },
+    "tests/roster_focus_dock.lua": {
+      "beforeRaw": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38",
+      "afterRaw": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-native-writes-r104-before-20261119T123706Z\\source.zip",
+    "archiveSHA256": "420ada50cae8a138b66a309a25d2e660c3acea9a3dd6067c24db8df46b8ef322",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "nativeSourceEvidence": {
+    "priorRecord": "docs/validation/group-ghost-hover-2026-11-14.json",
+    "pins": {
+      "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    },
+    "files": [
+      {
+        "file": "classic-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354"
+      },
+      {
+        "file": "classic-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "b8ea7dbc62a279d612b0ab50bf0998e9a016d5d3cb613adbd00cae34f5cc6d77"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c34baf4b5bb6c8cc62ff086bbcb68185e026a31161c73b25faa847d7452a0ddb"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548"
+      }
+    ],
+    "contracts": [
+      "SetFrameRef installs a backing handle through the native handler",
+      "Each restricted GetFrameRef resolves the backing attribute",
+      "Restricted frame handles do not expose GetAlpha"
+    ]
+  },
+  "replay": {
+    "scope": "Exact archived and current addon Lua plus the captured native frame-reference setter and dispatcher",
+    "stableUpdates": 6,
+    "clientSourceTargets": [
+      "live",
+      "forever",
+      "classic",
+      "classic_era",
+      "classic_anniversary"
+    ],
+    "counts": {
+      "referenceWrites": [
+        60,
+        0
+      ],
+      "anchorWrites": [
+        108,
+        0
+      ],
+      "widthWrites": [
+        6,
+        0
+      ],
+      "labelWrites": [
+        102,
+        0
+      ]
+    },
+    "checks": [
+      "initial creation, changed MT option, frame replacement and backing drift",
+      "denied or opaque reads take the original native setter",
+      "known anchored pose, shifted container correction, party and raid labels, and combat deferral",
+      "actual roster event and prepared secure layout transitions in the focused suite"
+    ],
+    "rows": [
+      "ROSTER_REFS live stable=60/0",
+      "ROSTER_REFS forever stable=60/0",
+      "ROSTER_REFS classic stable=60/0",
+      "ROSTER_REFS classic_era stable=60/0",
+      "ROSTER_REFS classic_anniversary stable=60/0",
+      "ROSTER_PRESENTATION stable anchors=108/0 width=6/0 labels=102/0",
+      "Roster writes preserve placement, label repair, reference recovery and combat deferral."
+    ],
+    "captureSHA256": "67bb9183f437f6d49b16e711633e9a66956cbcbc209006d4b2391c15f4186ebf"
+  },
+  "verification": {
+    "focused": 40,
+    "focusedPassed": 39,
+    "syntax": 1247,
+    "compilerMaximumUpvalues": 15,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-native-writes-r104-before-20261119T123706Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-native-writes-r104-before-20261119T123706Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidSecure.lua": {
+        "sha256": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197",
+        "matchesCandidate": true
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+        "matchesCandidate": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidSecure.lua": {
+        "sha256": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197",
+        "matchesCandidate": true
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+        "matchesCandidate": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidSecure.lua": {
+        "sha256": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197",
+        "matchesCandidate": true
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+        "matchesCandidate": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidSecure.lua": {
+        "sha256": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197",
+        "matchesCandidate": true
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+        "matchesCandidate": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidSecure.lua": {
+        "sha256": "5cf1f50ceff7dd544cbf5acb5a2108c1a77d1b684284b5931620c3cd719cf197",
+        "matchesCandidate": true
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

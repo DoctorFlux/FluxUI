@@ -1,0 +1,1266 @@
+{
+  "changeId": "LHO-PENDING-TASK-COPY-P57-20261116",
+  "recordedUTC": "2026-11-16T12:31:46.528564+00:00",
+  "goalStatus": "ACTIVE",
+  "status": "REJECTED_UNAPPLIED",
+  "sourceIdentity": {
+    "actualBaseline": {
+      "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+      "sha256": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5"
+    },
+    "externalOriginal": "b780c478d3758e1e2e7257e1ac0f436ffa1f13c05d2e9f19a52da674c1d04e59",
+    "externalFinal": "36e2ade44e179eb5252492c77ae69ab38795e03937c7ce6e0ebfab2b9a589402",
+    "finalOnlyComments": true
+  },
+  "baseline": {
+    "contextsPerRuntime": 18,
+    "checks": {
+      "Lua51": 373,
+      "Lua54": 372
+    },
+    "nonfirstTaskCopyTables": {
+      "twoTwoSlot": 10,
+      "tenTwoSlot": 90,
+      "fiftyTwoSlot": 490,
+      "tenEightSlot": 198
+    },
+    "scope": "Actual private table-constructor counts in modeled callback; not bytes/FPS."
+  },
+  "functional": {
+    "contextsPerVariantPerRuntime": 21,
+    "sameVMObservationPairs": 66,
+    "combinedChecks": {
+      "Lua51": 853,
+      "Lua54": 850
+    },
+    "allBusinessTraceStateRowsSettingsAndPrimitiveSequenceEqual": true,
+    "errors": "Opaque objects retain identity; only exact known private file/line prefixes normalized for NaN/stack-overflow classes.",
+    "clientScope": "Five family labels/two provider flags distributed across models; no full cross product or native provider acceptance."
+  },
+  "finalEquivalence": {
+    "original": "b780c478d3758e1e2e7257e1ac0f436ffa1f13c05d2e9f19a52da674c1d04e59",
+    "final": "36e2ade44e179eb5252492c77ae69ab38795e03937c7ce6e0ebfab2b9a589402",
+    "onlyTwoInlineComments": true,
+    "newlinesBoth": 728,
+    "sameChunkNameFullDebugDumps51And54Equal": true,
+    "receiptSHA256": "f63bc3a8fa5d2b14ae0db6f34a0b0c089cc409875148de055bc6629303b07162"
+  },
+  "timingProtocol": {
+    "CPUChildren": 60,
+    "profiles": 10,
+    "alternatingPairs": 3,
+    "sourcePinsFrozenCWD": 31,
+    "quietRouteSmokeContexts": 20,
+    "childSeconds": 45,
+    "batchSeconds": 300,
+    "CANCELPollSeconds": 0.05,
+    "reruns": 0,
+    "nativeActions": 0
+  },
+  "allTenCPUAndWallProfiles": [
+    {
+      "profile": "no-job",
+      "iterations": 15000,
+      "CPUms": {
+        "baseline": [
+          62.5,
+          62.5,
+          62.5
+        ],
+        "candidate": [
+          62.5,
+          62.5,
+          62.5
+        ],
+        "baselineMedian": 62.5,
+        "candidateMedian": 62.5,
+        "baselineRange": [
+          62.5,
+          62.5
+        ],
+        "candidateRange": [
+          62.5,
+          62.5
+        ],
+        "medianDelta": 0.0,
+        "medianPercentChange": 0.0,
+        "pairedDeltas": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pairedPercentChanges": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "candidateFasterPairs": 0,
+        "tiedPairs": 3,
+        "candidateSlowerPairs": 0
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          85.50290000857785,
+          77.34340001479723,
+          84.66709998901933
+        ],
+        "candidate": [
+          79.62309999857098,
+          75.97619999432936,
+          79.93450001231395
+        ],
+        "baselineMedian": 84.66709998901933,
+        "candidateMedian": 79.62309999857098,
+        "baselineRange": [
+          77.34340001479723,
+          85.50290000857785
+        ],
+        "candidateRange": [
+          75.97619999432936,
+          79.93450001231395
+        ],
+        "medianDelta": -5.043999990448356,
+        "medianPercentChange": -5.957449813566926,
+        "pairedDeltas": [
+          -5.879800010006875,
+          -1.3672000204678625,
+          -4.732599976705387
+        ],
+        "pairedPercentChanges": [
+          -6.876725829670104,
+          -1.767700954711445,
+          -5.589656404104037
+        ],
+        "candidateFasterPairs": 3,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        312500,
+        156250,
+        156250
+      ],
+      "candidateKernelTicks100ns": [
+        312500,
+        312500,
+        312500
+      ],
+      "baselineUserTicks100ns": [
+        312500,
+        468750,
+        468750
+      ],
+      "candidateUserTicks100ns": [
+        312500,
+        312500,
+        312500
+      ]
+    },
+    {
+      "profile": "one-two-slot",
+      "iterations": 3000,
+      "CPUms": {
+        "baseline": [
+          734.375,
+          671.875,
+          656.25
+        ],
+        "candidate": [
+          875.0,
+          687.5,
+          656.25
+        ],
+        "baselineMedian": 671.875,
+        "candidateMedian": 687.5,
+        "baselineRange": [
+          656.25,
+          734.375
+        ],
+        "candidateRange": [
+          656.25,
+          875.0
+        ],
+        "medianDelta": 15.625,
+        "medianPercentChange": 2.3255813953488373,
+        "pairedDeltas": [
+          140.625,
+          15.625,
+          0.0
+        ],
+        "pairedPercentChanges": [
+          19.148936170212767,
+          2.3255813953488373,
+          0.0
+        ],
+        "candidateFasterPairs": 0,
+        "tiedPairs": 1,
+        "candidateSlowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          754.9285999848507,
+          679.7744999930728,
+          683.1489999894984
+        ],
+        "candidate": [
+          877.7512999949977,
+          704.9659000185784,
+          679.6745999890845
+        ],
+        "baselineMedian": 683.1489999894984,
+        "candidateMedian": 704.9659000185784,
+        "baselineRange": [
+          679.7744999930728,
+          754.9285999848507
+        ],
+        "candidateRange": [
+          679.6745999890845,
+          877.7512999949977
+        ],
+        "medianDelta": 21.81690002907999,
+        "medianPercentChange": 3.193578564766305,
+        "pairedDeltas": [
+          122.82270001014695,
+          25.191400025505573,
+          -3.4744000004138798
+        ],
+        "pairedPercentChanges": [
+          16.26944588039341,
+          3.705846574968947,
+          -0.5085859747240045
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 2
+      },
+      "baselineKernelTicks100ns": [
+        625000,
+        781250,
+        312500
+      ],
+      "candidateKernelTicks100ns": [
+        625000,
+        468750,
+        468750
+      ],
+      "baselineUserTicks100ns": [
+        6718750,
+        5937500,
+        6250000
+      ],
+      "candidateUserTicks100ns": [
+        8125000,
+        6406250,
+        6093750
+      ]
+    },
+    {
+      "profile": "two-two-slot",
+      "iterations": 2000,
+      "CPUms": {
+        "baseline": [
+          812.5,
+          1015.625,
+          859.375
+        ],
+        "candidate": [
+          843.75,
+          921.875,
+          937.5
+        ],
+        "baselineMedian": 859.375,
+        "candidateMedian": 921.875,
+        "baselineRange": [
+          812.5,
+          1015.625
+        ],
+        "candidateRange": [
+          843.75,
+          937.5
+        ],
+        "medianDelta": 62.5,
+        "medianPercentChange": 7.2727272727272725,
+        "pairedDeltas": [
+          31.25,
+          -93.75,
+          78.125
+        ],
+        "pairedPercentChanges": [
+          3.8461538461538463,
+          -9.230769230769232,
+          9.090909090909092
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          822.0225999830291,
+          1025.1571999979205,
+          934.9892000027467
+        ],
+        "candidate": [
+          903.2574000011664,
+          948.8256000040565,
+          963.1273999984842
+        ],
+        "baselineMedian": 934.9892000027467,
+        "candidateMedian": 948.8256000040565,
+        "baselineRange": [
+          822.0225999830291,
+          1025.1571999979205
+        ],
+        "candidateRange": [
+          903.2574000011664,
+          963.1273999984842
+        ],
+        "medianDelta": 13.836400001309812,
+        "medianPercentChange": 1.4798459705490894,
+        "pairedDeltas": [
+          81.23480001813732,
+          -76.33159999386407,
+          28.138199995737523
+        ],
+        "pairedPercentChanges": [
+          9.882307374494866,
+          -7.445843427136727,
+          3.0094679163839393
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 2
+      },
+      "baselineKernelTicks100ns": [
+        156250,
+        625000,
+        468750
+      ],
+      "candidateKernelTicks100ns": [
+        312500,
+        781250,
+        781250
+      ],
+      "baselineUserTicks100ns": [
+        7968750,
+        9531250,
+        8125000
+      ],
+      "candidateUserTicks100ns": [
+        8125000,
+        8437500,
+        8593750
+      ]
+    },
+    {
+      "profile": "ten-two-slot",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1187.5,
+          1546.875,
+          1171.875
+        ],
+        "candidate": [
+          1203.125,
+          1453.125,
+          1125.0
+        ],
+        "baselineMedian": 1187.5,
+        "candidateMedian": 1203.125,
+        "baselineRange": [
+          1171.875,
+          1546.875
+        ],
+        "candidateRange": [
+          1125.0,
+          1453.125
+        ],
+        "medianDelta": 15.625,
+        "medianPercentChange": 1.3157894736842104,
+        "pairedDeltas": [
+          15.625,
+          -93.75,
+          -46.875
+        ],
+        "pairedPercentChanges": [
+          1.3157894736842104,
+          -6.0606060606060606,
+          -4.0
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1182.7794999990147,
+          1617.3598000023048,
+          1172.672099986812
+        ],
+        "candidate": [
+          1237.4686000111979,
+          1485.257599997567,
+          1142.913799994858
+        ],
+        "baselineMedian": 1182.7794999990147,
+        "candidateMedian": 1237.4686000111979,
+        "baselineRange": [
+          1172.672099986812,
+          1617.3598000023048
+        ],
+        "candidateRange": [
+          1142.913799994858,
+          1485.257599997567
+        ],
+        "medianDelta": 54.68910001218319,
+        "medianPercentChange": 4.623778143959102,
+        "pairedDeltas": [
+          54.68910001218319,
+          -132.10220000473782,
+          -29.758299991954118
+        ],
+        "pairedPercentChanges": [
+          4.623778143959102,
+          -8.167768235895908,
+          -2.537648844232653
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "baselineKernelTicks100ns": [
+        625000,
+        625000,
+        312500
+      ],
+      "candidateKernelTicks100ns": [
+        156250,
+        625000,
+        156250
+      ],
+      "baselineUserTicks100ns": [
+        11250000,
+        14843750,
+        11406250
+      ],
+      "candidateUserTicks100ns": [
+        11875000,
+        13906250,
+        11093750
+      ]
+    },
+    {
+      "profile": "ten-eight-slot",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1765.625,
+          1781.25,
+          1718.75
+        ],
+        "candidate": [
+          1750.0,
+          1812.5,
+          1750.0
+        ],
+        "baselineMedian": 1765.625,
+        "candidateMedian": 1750.0,
+        "baselineRange": [
+          1718.75,
+          1781.25
+        ],
+        "candidateRange": [
+          1750.0,
+          1812.5
+        ],
+        "medianDelta": -15.625,
+        "medianPercentChange": -0.8849557522123894,
+        "pairedDeltas": [
+          -15.625,
+          31.25,
+          31.25
+        ],
+        "pairedPercentChanges": [
+          -0.8849557522123894,
+          1.7543859649122806,
+          1.8181818181818181
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1807.2259999753442,
+          1857.451799995033,
+          1781.7267999926116
+        ],
+        "candidate": [
+          1814.7458000166807,
+          1829.3156999861822,
+          1780.0006000034045
+        ],
+        "baselineMedian": 1807.2259999753442,
+        "candidateMedian": 1814.7458000166807,
+        "baselineRange": [
+          1781.7267999926116,
+          1857.451799995033
+        ],
+        "candidateRange": [
+          1780.0006000034045,
+          1829.3156999861822
+        ],
+        "medianDelta": 7.519800041336566,
+        "medianPercentChange": 0.4160962735949548,
+        "pairedDeltas": [
+          7.519800041336566,
+          -28.136100008850917,
+          -1.726199989207089
+        ],
+        "pairedPercentChanges": [
+          0.4160962735949548,
+          -1.5147687820984725,
+          -0.09688353956477767
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "baselineKernelTicks100ns": [
+        156250,
+        156250,
+        468750
+      ],
+      "candidateKernelTicks100ns": [
+        937500,
+        468750,
+        0
+      ],
+      "baselineUserTicks100ns": [
+        17500000,
+        17656250,
+        16718750
+      ],
+      "candidateUserTicks100ns": [
+        16562500,
+        17656250,
+        17500000
+      ]
+    },
+    {
+      "profile": "bank-ten",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1093.75,
+          1125.0,
+          1203.125
+        ],
+        "candidate": [
+          1062.5,
+          1046.875,
+          1234.375
+        ],
+        "baselineMedian": 1125.0,
+        "candidateMedian": 1062.5,
+        "baselineRange": [
+          1093.75,
+          1203.125
+        ],
+        "candidateRange": [
+          1046.875,
+          1234.375
+        ],
+        "medianDelta": -62.5,
+        "medianPercentChange": -5.555555555555555,
+        "pairedDeltas": [
+          -31.25,
+          -78.125,
+          31.25
+        ],
+        "pairedPercentChanges": [
+          -2.857142857142857,
+          -6.944444444444445,
+          2.5974025974025974
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1107.3984000249766,
+          1175.6521000061184,
+          1246.3296000205446
+        ],
+        "candidate": [
+          1122.6283999858424,
+          1092.7580000134185,
+          1291.265800013207
+        ],
+        "baselineMedian": 1175.6521000061184,
+        "candidateMedian": 1122.6283999858424,
+        "baselineRange": [
+          1107.3984000249766,
+          1246.3296000205446
+        ],
+        "candidateRange": [
+          1092.7580000134185,
+          1291.265800013207
+        ],
+        "medianDelta": -53.02370002027601,
+        "medianPercentChange": -4.510152282295082,
+        "pairedDeltas": [
+          15.229999960865825,
+          -82.89409999269992,
+          44.936199992662296
+        ],
+        "pairedPercentChanges": [
+          1.375295463721306,
+          -7.050903918962806,
+          3.6054828507580625
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 2
+      },
+      "baselineKernelTicks100ns": [
+        625000,
+        312500,
+        468750
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        468750,
+        781250
+      ],
+      "baselineUserTicks100ns": [
+        10312500,
+        10937500,
+        11562500
+      ],
+      "candidateUserTicks100ns": [
+        10156250,
+        10000000,
+        11562500
+      ]
+    },
+    {
+      "profile": "vendor-ten",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1171.875,
+          1375.0,
+          1250.0
+        ],
+        "candidate": [
+          1359.375,
+          1359.375,
+          1218.75
+        ],
+        "baselineMedian": 1250.0,
+        "candidateMedian": 1359.375,
+        "baselineRange": [
+          1171.875,
+          1375.0
+        ],
+        "candidateRange": [
+          1218.75,
+          1359.375
+        ],
+        "medianDelta": 109.375,
+        "medianPercentChange": 8.75,
+        "pairedDeltas": [
+          187.5,
+          -15.625,
+          -31.25
+        ],
+        "pairedPercentChanges": [
+          16.0,
+          -1.1363636363636365,
+          -2.5
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1229.952100024093,
+          1484.7462000034284,
+          1298.798200004967
+        ],
+        "candidate": [
+          1459.1785999946296,
+          1423.1853999954183,
+          1290.5333999951836
+        ],
+        "baselineMedian": 1298.798200004967,
+        "candidateMedian": 1423.1853999954183,
+        "baselineRange": [
+          1229.952100024093,
+          1484.7462000034284
+        ],
+        "candidateRange": [
+          1290.5333999951836,
+          1459.1785999946296
+        ],
+        "medianDelta": 124.38719999045134,
+        "medianPercentChange": 9.57709981350264,
+        "pairedDeltas": [
+          229.22649997053668,
+          -61.56080000801012,
+          -8.264800009783357
+        ],
+        "pairedPercentChanges": [
+          18.637026593641043,
+          -4.146217044223988,
+          -0.6363421207198895
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "baselineKernelTicks100ns": [
+        468750,
+        468750,
+        937500
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        937500,
+        468750
+      ],
+      "baselineUserTicks100ns": [
+        11250000,
+        13281250,
+        11562500
+      ],
+      "candidateUserTicks100ns": [
+        13125000,
+        12656250,
+        11718750
+      ]
+    },
+    {
+      "profile": "waiting-ten",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1406.25,
+          1312.5,
+          1296.875
+        ],
+        "candidate": [
+          1406.25,
+          1250.0,
+          1171.875
+        ],
+        "baselineMedian": 1312.5,
+        "candidateMedian": 1250.0,
+        "baselineRange": [
+          1296.875,
+          1406.25
+        ],
+        "candidateRange": [
+          1171.875,
+          1406.25
+        ],
+        "medianDelta": -62.5,
+        "medianPercentChange": -4.761904761904762,
+        "pairedDeltas": [
+          0.0,
+          -62.5,
+          -125.0
+        ],
+        "pairedPercentChanges": [
+          0.0,
+          -4.761904761904762,
+          -9.63855421686747
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 1,
+        "candidateSlowerPairs": 0
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1692.4610999994911,
+          1368.078900006367,
+          1372.0855000137817
+        ],
+        "candidate": [
+          1499.726100009866,
+          1327.9153000039514,
+          1215.8257999981288
+        ],
+        "baselineMedian": 1372.0855000137817,
+        "candidateMedian": 1327.9153000039514,
+        "baselineRange": [
+          1368.078900006367,
+          1692.4610999994911
+        ],
+        "candidateRange": [
+          1215.8257999981288,
+          1499.726100009866
+        ],
+        "medianDelta": -44.170200009830296,
+        "medianPercentChange": -3.2192017195274367,
+        "pairedDeltas": [
+          -192.73499998962507,
+          -40.16360000241548,
+          -156.25970001565292
+        ],
+        "pairedPercentChanges": [
+          -11.387854054056723,
+          -2.935766351065612,
+          -11.388481258207554
+        ],
+        "candidateFasterPairs": 3,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        468750,
+        625000,
+        312500
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        312500,
+        156250
+      ],
+      "baselineUserTicks100ns": [
+        13593750,
+        12500000,
+        12656250
+      ],
+      "candidateUserTicks100ns": [
+        13593750,
+        12187500,
+        11562500
+      ]
+    },
+    {
+      "profile": "busy-ten",
+      "iterations": 500,
+      "CPUms": {
+        "baseline": [
+          1140.625,
+          1093.75,
+          1078.125
+        ],
+        "candidate": [
+          1125.0,
+          1093.75,
+          1093.75
+        ],
+        "baselineMedian": 1093.75,
+        "candidateMedian": 1093.75,
+        "baselineRange": [
+          1078.125,
+          1140.625
+        ],
+        "candidateRange": [
+          1093.75,
+          1125.0
+        ],
+        "medianDelta": 0.0,
+        "medianPercentChange": 0.0,
+        "pairedDeltas": [
+          -15.625,
+          0.0,
+          15.625
+        ],
+        "pairedPercentChanges": [
+          -1.36986301369863,
+          0.0,
+          1.4492753623188406
+        ],
+        "candidateFasterPairs": 1,
+        "tiedPairs": 1,
+        "candidateSlowerPairs": 1
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          1184.4095999840647,
+          1581.635600014124,
+          1112.631700001657
+        ],
+        "candidate": [
+          1161.2824000185356,
+          1122.8256999747828,
+          1155.88679999928
+        ],
+        "baselineMedian": 1184.4095999840647,
+        "candidateMedian": 1155.88679999928,
+        "baselineRange": [
+          1112.631700001657,
+          1581.635600014124
+        ],
+        "candidateRange": [
+          1122.8256999747828,
+          1161.2824000185356
+        ],
+        "medianDelta": -28.522799984784797,
+        "medianPercentChange": -2.408187166430308,
+        "pairedDeltas": [
+          -23.127199965529144,
+          -458.8099000393413,
+          43.25509999762289
+        ],
+        "pairedPercentChanges": [
+          -1.952635301659181,
+          -29.008571888192456,
+          3.8876386496590447
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "baselineKernelTicks100ns": [
+        312500,
+        156250,
+        0
+      ],
+      "candidateKernelTicks100ns": [
+        156250,
+        937500,
+        468750
+      ],
+      "baselineUserTicks100ns": [
+        11093750,
+        10781250,
+        10781250
+      ],
+      "candidateUserTicks100ns": [
+        11093750,
+        10000000,
+        10468750
+      ]
+    },
+    {
+      "profile": "mail-first",
+      "iterations": 5000,
+      "CPUms": {
+        "baseline": [
+          46.875,
+          46.875,
+          46.875
+        ],
+        "candidate": [
+          46.875,
+          62.5,
+          62.5
+        ],
+        "baselineMedian": 46.875,
+        "candidateMedian": 62.5,
+        "baselineRange": [
+          46.875,
+          46.875
+        ],
+        "candidateRange": [
+          46.875,
+          62.5
+        ],
+        "medianDelta": 15.625,
+        "medianPercentChange": 33.33333333333333,
+        "pairedDeltas": [
+          0.0,
+          15.625,
+          15.625
+        ],
+        "pairedPercentChanges": [
+          0.0,
+          33.33333333333333,
+          33.33333333333333
+        ],
+        "candidateFasterPairs": 0,
+        "tiedPairs": 1,
+        "candidateSlowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baseline": [
+          178.4001000050921,
+          102.86509999423288,
+          79.79750001686625
+        ],
+        "candidate": [
+          115.50479999277741,
+          93.24319998268038,
+          159.4621999829542
+        ],
+        "baselineMedian": 102.86509999423288,
+        "candidateMedian": 115.50479999277741,
+        "baselineRange": [
+          79.79750001686625,
+          178.4001000050921
+        ],
+        "candidateRange": [
+          93.24319998268038,
+          159.4621999829542
+        ],
+        "medianDelta": 12.639699998544529,
+        "medianPercentChange": 12.287646635499478,
+        "pairedDeltas": [
+          -62.89530001231469,
+          -9.621900011552498,
+          79.66469996608794
+        ],
+        "pairedPercentChanges": [
+          -35.25519324850124,
+          -9.353901383551806,
+          99.83357868260254
+        ],
+        "candidateFasterPairs": 2,
+        "tiedPairs": 0,
+        "candidateSlowerPairs": 1
+      },
+      "baselineKernelTicks100ns": [
+        312500,
+        156250,
+        0
+      ],
+      "candidateKernelTicks100ns": [
+        0,
+        312500,
+        312500
+      ],
+      "baselineUserTicks100ns": [
+        156250,
+        312500,
+        468750
+      ],
+      "candidateUserTicks100ns": [
+        468750,
+        312500,
+        312500
+      ]
+    }
+  ],
+  "allFourReusedGCProfiles": [
+    {
+      "profile": "one-output",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 183321,
+            "N8": 366553,
+            "slopeBytesPerRefresh": 45808.0,
+            "interceptBytes": 89.0
+          },
+          "candidate": {
+            "N4": 183321,
+            "N8": 366553,
+            "slopeBytesPerRefresh": 45808.0,
+            "interceptBytes": 89.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 183321,
+            "N8": 366553,
+            "slopeBytesPerRefresh": 45808.0,
+            "interceptBytes": 89.0
+          },
+          "candidate": {
+            "N4": 183321,
+            "N8": 366553,
+            "slopeBytesPerRefresh": 45808.0,
+            "interceptBytes": 89.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        }
+      ]
+    },
+    {
+      "profile": "two-outputs",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 301909,
+            "N8": 603637,
+            "slopeBytesPerRefresh": 75432.0,
+            "interceptBytes": 181.0
+          },
+          "candidate": {
+            "N4": 292533,
+            "N8": 584885,
+            "slopeBytesPerRefresh": 73088.0,
+            "interceptBytes": 181.0
+          },
+          "slopeDeltaBytes": -2344.0,
+          "slopePercentChange": -3.1074345105525505
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 301909,
+            "N8": 603637,
+            "slopeBytesPerRefresh": 75432.0,
+            "interceptBytes": 181.0
+          },
+          "candidate": {
+            "N4": 292533,
+            "N8": 584885,
+            "slopeBytesPerRefresh": 73088.0,
+            "interceptBytes": 181.0
+          },
+          "slopeDeltaBytes": -2344.0,
+          "slopePercentChange": -3.1074345105525505
+        }
+      ]
+    },
+    {
+      "profile": "ten-outputs",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 1410741,
+            "N8": 2820565,
+            "slopeBytesPerRefresh": 352456.0,
+            "interceptBytes": 917.0
+          },
+          "candidate": {
+            "N4": 1323029,
+            "N8": 2645141,
+            "slopeBytesPerRefresh": 330528.0,
+            "interceptBytes": 917.0
+          },
+          "slopeDeltaBytes": -21928.0,
+          "slopePercentChange": -6.221485802483147
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 1410741,
+            "N8": 2820565,
+            "slopeBytesPerRefresh": 352456.0,
+            "interceptBytes": 917.0
+          },
+          "candidate": {
+            "N4": 1323029,
+            "N8": 2645141,
+            "slopeBytesPerRefresh": 330528.0,
+            "interceptBytes": 917.0
+          },
+          "slopeDeltaBytes": -21928.0,
+          "slopePercentChange": -6.221485802483147
+        }
+      ]
+    },
+    {
+      "profile": "ten-eight-slots-stress",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 3272309,
+            "N8": 6543701,
+            "slopeBytesPerRefresh": 817848.0,
+            "interceptBytes": 917.0
+          },
+          "candidate": {
+            "N4": 3093013,
+            "N8": 6185109,
+            "slopeBytesPerRefresh": 773024.0,
+            "interceptBytes": 917.0
+          },
+          "slopeDeltaBytes": -44824.0,
+          "slopePercentChange": -5.480725024698966
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 3272309,
+            "N8": 6543701,
+            "slopeBytesPerRefresh": 817848.0,
+            "interceptBytes": 917.0
+          },
+          "candidate": {
+            "N4": 3093013,
+            "N8": 6185109,
+            "slopeBytesPerRefresh": 773024.0,
+            "interceptBytes": 917.0
+          },
+          "slopeDeltaBytes": -44824.0,
+          "slopePercentChange": -5.480725024698966
+        }
+      ]
+    }
+  ],
+  "reusedGC": {
+    "rawWindows": 32,
+    "children": 2,
+    "trials": 2,
+    "N": [
+      4,
+      8
+    ],
+    "repeatMeasurement": false,
+    "transferByFinalBytecodeEquivalence": true
+  },
+  "verification": {
+    "CPURecords": 60,
+    "stdoutHashAndWorkJSONChecked": 60,
+    "stderrEmpty": 60,
+    "kernelUserRawTickArithmeticChecked": 60,
+    "allTotalCPUOn15_625msGrid": true,
+    "positiveFiniteWallChecked": 60,
+    "scheduleExact": true,
+    "pairedWorkComparisons": 30,
+    "pairedWorkFields": 390,
+    "all31CurrentAndFrozenPinsStable": true,
+    "reusedGCChildren": 2,
+    "reusedGCRawWindows": 32,
+    "reusedGCPairedFactFields": 176,
+    "sourceEquivalence51and54FullDebugBytesVerified": true,
+    "noMeasurementReruns": true
+  },
+  "findings": [
+    "One-output CPU median+2.3256%, two-output+7.2727%, vendor+8.75%, ten-two-slot+1.3158%. One has two slower CPU pairs and one tie; two is two slower/one faster. Vendor/ten-two-slot medians regress although two of their paired samples improve; do not suppress this within-batch variation.",
+    "Bank CPU median-5.5556% has two faster/one slower pairs; waiting-4.7619% has two faster/one tie. Ten-eight-slot median-0.8850% still has two slower CPU pairs. Busy median ties with one faster/one tie/one slower. None establishes a robust general workflow/spike win.",
+    "No-job all three CPU pairs tie. Mail-first CPU median+33.3333% is one15.625ms tick with two slower/one tie; its target copy branch is never reached. Retain it as whole-child/control variation, not evidence of a causal copy-branch penalty. Wall medians and raw pairs remain separate and unreconciled by averaging.",
+    "GC-stopped transient-growth slopes are unchanged one-output45808B/refresh; two-output75432to73088(-2344B,-3.1074%); ten-output352456to330528(-21928B,-6.2215%); wide817848to773024(-44824B,-5.4807%). RawN4/N8 and intercepts, both trials, verified independently. These modest model savings do not establish retained-heap or GC-pause improvement.",
+    "Final36e2 is bytecode-equivalent to b780 under same chunk name with debug data in51/54, so original32GC windows transfer without a repeated measurement. CPU uses the separately reviewed frozen31-file CWD route and final source."
+  ],
+  "scopeAndLimits": [
+    "One fixed batch, three alternating pairs/profile, no retuning/resampling. Whole own-child user+kernel CPU includes interpreter/setup/source/20warmups/final facts/normalGC; monotonic wall is launch-through-communicate.15.625ms CPU quantum and broad within-batch variation limit precision.",
+    "Actual modeled Followup/defaultList/Professions/Data/Craft code with controlled provider/native/count/bank/mail/UI endpoints, inherited fixed assertions/scalar counters, overwritten Paint sink. No native WoW CPU/FPS/frame-spike/prevalence/adoption or production acceptance.",
+    "The32GC windows used5warmups and a stopped collector around only public Refresh work; they measure transient heap growth from two N points, not retained heap, peak allocation traffic or pause times. Internal scratch hashing/branches remain real candidate costs.",
+    "Root owns final decision. Goal stays ACTIVE and production P57 remains unapplied. No tests, measurements, source/docs/native actions were executed by this review."
+  ],
+  "decision": "Reject current P57; baseline428d remains. Transient growth savings do not justify mixed/regressing common/default CPU results. No unchanged rerun, next variant or cost/application authorized.",
+  "durableDraft": {
+    "status": "UNCOMPILED_UNEXECUTED_EXTERNAL_SOURCE_ONLY",
+    "sha256": "4743ac5ac8d7ec4c2d0503844e68b93a3c510fc2d8f5582373ed6f8d311e955e",
+    "repositoryTestAdded": false
+  },
+  "nativeAcceptance": "No P57 candidate loaded/applied, native FPS/spike/taint/adoption or workflow acceptance. P54 accepted Cast instrumentation remains separate history.",
+  "evidence": {
+    "externalRelativeBase": "pending-task-copy-triage/candidate-r1",
+    "aggregateSHA256": "1b7e2bbe070ee4d64e3edbb1abb7cc9c38149762f1b7c988e6dea7c4ee1b2290",
+    "aggregateSealSHA256": "a537e4fd954319587ef7fde1c59944cfa6942e9e687862cd84e20950a9b5a7b8",
+    "rawSHA256": "0755b2bf8df751bd12c0f209910cf16263e1204ed4ef067dd3e0da7c1f3b013b",
+    "independentNumericSHA256": "58be9c60e187171dcf9258e597eb221e9969414607206627d293eda88914ff2a",
+    "functionalSHA256": "09aaf52f7a0458757c796b4f87d3fb1cb5643be6c5094c5095f5169f4720382f",
+    "GCAnalysisSHA256": "8c130a868f6b1b3c88f2b65294c7e72d68dda5f80fabc96d3589ede3795cbb73"
+  },
+  "actions": {
+    "addonLuaEdits": 0,
+    "addonTestEdits": 0,
+    "providerSettingsWrites": 0,
+    "nativeInputByExperiment": 0,
+    "profilerPreferenceChanges": 0,
+    "manualSync": 0,
+    "publication": 0
+  }
+}

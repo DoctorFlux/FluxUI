@@ -1,0 +1,801 @@
+{
+  "changeId": "PREPARED-STRIP-SAMPLING-R88-20261119",
+  "capturedAtUTC": "2026-11-19T09:58:02.558568+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce the drawing work that remains when the action strip restores prepared held-action border geometry.",
+  "changes": [
+    "Save normal and fallback texture coordinates with a retained strip pose after first use. Revalidate artwork, source texture coordinates and masks on pose restore.",
+    "Retain UV arrays for strip junction triangles and quads. Resolve color and alpha on the native draw path without caching their values.",
+    "Skip basis and draw-layer setup for fallback plans with no rectangles."
+  ],
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "66f102f410ad19e08a67356ffa8643db23addf8dcd792ba7daa08886e16421e5",
+      "afterRaw": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "20969389e5b3b95e24a8aa6a6ceecc23a805b874bfc610d2f92839f948d96b13",
+      "afterRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\source.zip",
+    "archiveSHA256": "d8e91822241f59c4400febadbd6dd83cefea448173a58c967196131182d8ad8a",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Desktop native-widget model, two border styles and two scenes. Dock is synthetic and does not reproduce a group event.",
+    "warmStripCoordinateCalculationsBefore": {
+      "median": 343.0,
+      "range": [
+        317.0,
+        401.0
+      ]
+    },
+    "warmStripCoordinateCalculationsAfter": 0,
+    "fallbackSetup": {
+      "strip": {
+        "before": {
+          "median": 141.0,
+          "range": [
+            139.0,
+            143.0
+          ]
+        },
+        "after": {
+          "median": 22.5,
+          "range": [
+            22.0,
+            23.0
+          ]
+        }
+      },
+      "dock": {
+        "before": {
+          "median": 121.0,
+          "range": [
+            118.0,
+            124.0
+          ]
+        },
+        "after": {
+          "median": 8.5,
+          "range": [
+            8.0,
+            9.0
+          ]
+        }
+      }
+    },
+    "exactVisibleFields": {
+      "matches": 24,
+      "coverage": [
+        "artwork path",
+        "rectangle",
+        "UV coordinates",
+        "vertex offsets",
+        "opacity",
+        "frame level",
+        "vertex color"
+      ],
+      "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\exact.txt",
+      "sha256": "205bd46074ac2b81c7e02f53a6188fb0d4be9ed41ccf84eced909c96fcdd855b"
+    },
+    "paired": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "rectUV": 114.0,
+          "meshUV": 236.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 0.0,
+          "milliseconds": 20.0
+        },
+        "after": {
+          "rectUV": 114.0,
+          "meshUV": 236.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 0.0,
+          "milliseconds": 16.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "rectUV": 113.0,
+          "meshUV": 204.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 0.0,
+          "milliseconds": 15.0
+        },
+        "after": {
+          "rectUV": 113.0,
+          "meshUV": 204.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 0.0,
+          "milliseconds": 17.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "rectUV": 114.0,
+          "meshUV": 236.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 1.0,
+          "milliseconds": 7.0
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "rectUV": 113.0,
+          "meshUV": 204.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "rectUV": 114.0,
+          "meshUV": 236.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 1.0,
+          "milliseconds": 7.0
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0,
+          "poseHit": 1.0,
+          "milliseconds": 7.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "rectUV": 113.0,
+          "meshUV": 204.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 221.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 0.0,
+          "milliseconds": 21.0
+        },
+        "after": {
+          "rectUV": 115.0,
+          "meshUV": 221.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 0.0,
+          "milliseconds": 18.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 286.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 0.0,
+          "milliseconds": 18.0
+        },
+        "after": {
+          "rectUV": 115.0,
+          "meshUV": 286.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 0.0,
+          "milliseconds": 17.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 221.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 1.0,
+          "milliseconds": 8.0
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 1.0,
+          "milliseconds": 4.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 286.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 1.0,
+          "milliseconds": 7.0000000000001
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 1.0,
+          "milliseconds": 8.9999999999999
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 221.0,
+          "fallbackSetup": 139.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 1.0,
+          "milliseconds": 5.9999999999998
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0,
+          "poseHit": 1.0,
+          "milliseconds": 6.0000000000002
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "rectUV": 115.0,
+          "meshUV": 286.0,
+          "fallbackSetup": 143.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 1.0,
+          "milliseconds": 5.9999999999998
+        },
+        "after": {
+          "rectUV": 0.0,
+          "meshUV": 0.0,
+          "fallbackSetup": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0,
+          "poseHit": 1.0,
+          "milliseconds": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 14.0
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 19.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 11.0
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 208.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 245.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0,
+          "poseHit": 0.0,
+          "milliseconds": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 16.0
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 13.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 118.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 8.9999999999999
+        },
+        "after": {
+          "rectUV": 70.0,
+          "meshUV": 213.0,
+          "fallbackSetup": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0,
+          "poseHit": 0.0,
+          "milliseconds": 11.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 124.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 13.0
+        },
+        "after": {
+          "rectUV": 64.0,
+          "meshUV": 282.0,
+          "fallbackSetup": 9.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0,
+          "poseHit": 0.0,
+          "milliseconds": 12.0
+        }
+      }
+    ],
+    "timing": {
+      "scope": "Uninstrumented comparisons except for border stats. Lua process timings include allocation and collection. Mixed results do not establish a speedup.",
+      "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\clock.txt",
+      "sha256": "1deb75e565a74ced01cce7155a0354ec3e91d2bb63848d865bb3ecf5bd0cf903",
+      "summariesMilliseconds": {
+        "strip": {
+          "1": {
+            "before": {
+              "median": 7.0,
+              "range": [
+                6.0,
+                13.0
+              ]
+            },
+            "after": {
+              "median": 7.0,
+              "range": [
+                5.0,
+                11.0
+              ]
+            }
+          },
+          "2": {
+            "before": {
+              "median": 6.0,
+              "range": [
+                6.0,
+                11.0
+              ]
+            },
+            "after": {
+              "median": 6.9999999999999,
+              "range": [
+                5.0000000000001,
+                10.0
+              ]
+            }
+          }
+        },
+        "dock": {
+          "1": {
+            "before": {
+              "median": 9.9999999999999,
+              "range": [
+                7.0000000000001,
+                17.0
+              ]
+            },
+            "after": {
+              "median": 9.0000000000003,
+              "range": [
+                7.0000000000001,
+                20.0
+              ]
+            }
+          },
+          "2": {
+            "before": {
+              "median": 12.0,
+              "range": [
+                8.0,
+                20.0
+              ]
+            },
+            "after": {
+              "median": 11.0,
+              "range": [
+                6.9999999999997,
+                25.0
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "verification": {
+    "focused": 198,
+    "syntax": 1233,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-strip-sampling-r88-before-20261119T095020Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Held-action cursor hitch, party and raid timing, live seams and combat taint pending. No native input or profiling changes."
+}

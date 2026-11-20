@@ -139,6 +139,28 @@ function Compat.ResolveBaganatorItemButtonSlot(button)
     end
 end
 
+local itemRegistrationSkins, itemRegistrationGetter, itemRegistrationFrames
+local itemRegistrationCount, itemRegistrationIndices = 0, {}
+
+local function GetItemRegistrationIndices(skins, frames)
+    local count = #frames
+    if itemRegistrationSkins ~= skins or itemRegistrationGetter ~= skins.GetAllFrames
+        or itemRegistrationFrames ~= frames or count < itemRegistrationCount then
+        itemRegistrationSkins, itemRegistrationGetter, itemRegistrationFrames = skins, skins.GetAllFrames, frames
+        itemRegistrationCount, itemRegistrationIndices = 0, {}
+    end
+
+    -- Baganator appends immutable skin registrations, including new skin pools.
+    for i = itemRegistrationCount + 1, count do
+        local details = frames[i]
+        if details and details.regionType == "ItemButton" then
+            itemRegistrationIndices[#itemRegistrationIndices + 1] = i
+        end
+    end
+    itemRegistrationCount = count
+    return itemRegistrationIndices
+end
+
 function Compat.ForEachRegisteredBaganatorItemButton(callback)
     if type(callback) ~= "function" then
         return
@@ -152,9 +174,10 @@ function Compat.ForEachRegisteredBaganatorItemButton(callback)
     if type(frames) ~= "table" then
         return false
     end
+    local indices = skins.RegisterListener and GetItemRegistrationIndices(skins, frames)
     local seen = {}
-    for i = 1, #frames do
-        local details = frames[i]
+    for i = 1, indices and #indices or #frames do
+        local details = frames[indices and indices[i] or i]
         local button = details and details.region
         if button and details.regionType == "ItemButton" and not seen[button] then
             seen[button] = true

@@ -1,0 +1,839 @@
+{
+  "changeId": "BORDER-ROSTER-BOUNDS-R178-20261120",
+  "borderVersion": "roster-shared-bounds-r178",
+  "capturedAtUTC": "2026-11-20T04:25:07.792803+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+      "afterRaw": "99a5231bfef9875f03c6971eb9b5d2e18d15bcf7285602a1eb3d63d7fee10359",
+      "afterNormalized": "99a5231bfef9875f03c6971eb9b5d2e18d15bcf7285602a1eb3d63d7fee10359"
+    },
+    "tests/border_junctions.lua": {
+      "beforeRaw": "efd3bd84727b8d39802c75c100f037fb9748eeb9e8ca917f8d0f660e4a4a6c1f",
+      "afterRaw": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+      "afterNormalized": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "801a40cb8199ab75a259aacf225c8305b4a6120d8d39e0dae401caae09650170",
+      "afterRaw": "5d7e1e4f06a2a7b481dbac9dfe66e9992cc18bb636735403793c7990a1a8a160",
+      "afterNormalized": "5d7e1e4f06a2a7b481dbac9dfe66e9992cc18bb636735403793c7990a1a8a160"
+    },
+    "tests/border_regional_draw_work.lua": {
+      "beforeRaw": "5387cd471f88a2c9e6ef887243785d3d33d380c0db89f4106caeaa193f3ffa83",
+      "afterRaw": "7b0fd4802ea8c5efeb7facc17e828a17e0c5892cbc7f465836a8c1264984dc55",
+      "afterNormalized": "7b0fd4802ea8c5efeb7facc17e828a17e0c5892cbc7f465836a8c1264984dc55"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-roster-anchors-before-20261120T051358506\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Production renderer and its six mesh texture geometry setters with modeled widgets. Twelve warmed transitions, two first roster compiles, the first two prepared restores and one unseen change after warming.",
+    "setterColumns": [
+      "ClearAllPoints",
+      "SetPoint",
+      "SetAllPoints",
+      "SetSize",
+      "SetVertexOffset",
+      "SetTexCoord"
+    ],
+    "warmed": {
+      "cases": {
+        "strip-1": {
+          "baseline": [
+            0,
+            1128,
+            0,
+            936,
+            1944,
+            984
+          ],
+          "candidate": [
+            0,
+            1128,
+            0,
+            936,
+            1944,
+            984
+          ],
+          "boxSetterTotals": [
+            2064,
+            2064
+          ]
+        },
+        "roster-1": {
+          "baseline": [
+            0,
+            3804,
+            0,
+            1860,
+            8544,
+            1932
+          ],
+          "candidate": [
+            600,
+            2544,
+            492,
+            600,
+            8544,
+            1932
+          ],
+          "boxSetterTotals": [
+            5664,
+            4236
+          ]
+        },
+        "strip-2": {
+          "baseline": [
+            0,
+            1296,
+            0,
+            1020,
+            2304,
+            1020
+          ],
+          "candidate": [
+            0,
+            1296,
+            0,
+            1020,
+            2304,
+            1020
+          ],
+          "boxSetterTotals": [
+            2316,
+            2316
+          ]
+        },
+        "roster-2": {
+          "baseline": [
+            0,
+            6276,
+            0,
+            3588,
+            18972,
+            3696
+          ],
+          "candidate": [
+            1692,
+            3432,
+            1500,
+            744,
+            18972,
+            3696
+          ],
+          "boxSetterTotals": [
+            9864,
+            7368
+          ]
+        }
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "firstCompiles": {
+      "cases": {
+        "roster-1": {
+          "baseline": [
+            62,
+            686,
+            0,
+            392,
+            1709,
+            384
+          ],
+          "candidate": [
+            62,
+            686,
+            0,
+            392,
+            1709,
+            384
+          ],
+          "boxSetterTotals": [
+            1140,
+            1140
+          ]
+        },
+        "roster-2": {
+          "baseline": [
+            144,
+            1168,
+            0,
+            649,
+            3330,
+            643
+          ],
+          "candidate": [
+            144,
+            1168,
+            0,
+            649,
+            3330,
+            643
+          ],
+          "boxSetterTotals": [
+            1961,
+            1961
+          ]
+        }
+      },
+      "objectCounts": {
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "firstRestores": {
+      "cases": {
+        "roster-1": {
+          "baseline": [
+            0,
+            634,
+            0,
+            366,
+            1492,
+            336
+          ],
+          "candidate": [
+            208,
+            364,
+            195,
+            96,
+            1492,
+            336
+          ],
+          "boxSetterTotals": [
+            1000,
+            863
+          ]
+        },
+        "roster-2": {
+          "baseline": [
+            0,
+            1068,
+            0,
+            698,
+            3246,
+            670
+          ],
+          "candidate": [
+            462,
+            513,
+            439,
+            143,
+            3246,
+            670
+          ],
+          "boxSetterTotals": [
+            1766,
+            1557
+          ]
+        }
+      },
+      "objectCounts": {
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "unseenAfterWarmup": {
+      "cases": {
+        "roster-1": {
+          "baseline": [
+            22,
+            291,
+            0,
+            299,
+            1205,
+            327
+          ],
+          "candidate": [
+            45,
+            215,
+            0,
+            223,
+            1205,
+            327
+          ],
+          "boxSetterTotals": [
+            612,
+            483
+          ]
+        },
+        "roster-2": {
+          "baseline": [
+            47,
+            550,
+            0,
+            551,
+            2535,
+            679
+          ],
+          "candidate": [
+            104,
+            433,
+            0,
+            434,
+            2535,
+            679
+          ],
+          "boxSetterTotals": [
+            1148,
+            971
+          ]
+        }
+      },
+      "objectCounts": {
+        "roster-1": [
+          1722,
+          1722
+        ],
+        "roster-2": [
+          2280,
+          2280
+        ]
+      }
+    },
+    "clockColumns": [
+      "baseline Lua ms",
+      "candidate Lua ms",
+      "baseline temporary KiB",
+      "candidate temporary KiB"
+    ],
+    "clock": {
+      "samples": {
+        "strip-1": [
+          [
+            56.0,
+            65.0,
+            5540.1,
+            5540.0
+          ],
+          [
+            58.0,
+            63.0,
+            5537.3,
+            5537.2
+          ],
+          [
+            64.0,
+            61.0,
+            5537.5,
+            5537.5
+          ],
+          [
+            55.0,
+            63.0,
+            5537.0,
+            5537.0
+          ],
+          [
+            61.0,
+            53.0,
+            5537.0,
+            5537.0
+          ]
+        ],
+        "roster-1": [
+          [
+            68.0,
+            74.0,
+            7968.1,
+            7894.5
+          ],
+          [
+            71.0,
+            77.0,
+            7968.2,
+            7894.6
+          ],
+          [
+            85.0,
+            76.0,
+            7968.4,
+            7894.9
+          ],
+          [
+            73.0,
+            68.0,
+            7967.9,
+            7894.4
+          ],
+          [
+            69.0,
+            96.0,
+            7967.9,
+            7894.4
+          ]
+        ],
+        "strip-2": [
+          [
+            104.0,
+            105.0,
+            5548.0,
+            5548.1
+          ],
+          [
+            108.0,
+            127.0,
+            5548.2,
+            5548.3
+          ],
+          [
+            93.0,
+            109.0,
+            5548.5,
+            5548.6
+          ],
+          [
+            95.0,
+            96.0,
+            5548.0,
+            5548.1
+          ],
+          [
+            99.0,
+            97.0,
+            5548.0,
+            5548.1
+          ]
+        ],
+        "roster-2": [
+          [
+            176.0,
+            173.0,
+            10845.7,
+            10853.6
+          ],
+          [
+            185.0,
+            178.0,
+            10845.8,
+            10853.7
+          ],
+          [
+            213.0,
+            174.0,
+            10846.0,
+            10853.9
+          ],
+          [
+            192.0,
+            194.0,
+            10845.5,
+            10853.4
+          ],
+          [
+            203.0,
+            231.0,
+            10845.5,
+            10853.4
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          58.0,
+          63.0,
+          5537.3,
+          5537.2
+        ],
+        "roster-1": [
+          71.0,
+          76.0,
+          7968.1,
+          7894.5
+        ],
+        "strip-2": [
+          99.0,
+          105.0,
+          5548.0,
+          5548.1
+        ],
+        "roster-2": [
+          192.0,
+          178.0,
+          10845.7,
+          10853.6
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "stripShapeAssignment": {
+      "scope": "An upper bound on reassigning active mesh fields while holding canvas, source, size, normalized vertices and texture coordinates equal. Ignores ordering constraints and does not propose rearranging live widgets.",
+      "columns": [
+        "style",
+        "edge",
+        "active committed fields",
+        "same relative shape on prior field",
+        "best possible relative shape matches",
+        "same box and relative shape on prior field",
+        "best possible full-box matches"
+      ],
+      "rows": [
+        [
+          1,
+          1,
+          293,
+          81,
+          85,
+          63,
+          65
+        ],
+        [
+          1,
+          2,
+          261,
+          81,
+          85,
+          63,
+          65
+        ],
+        [
+          2,
+          1,
+          283,
+          87,
+          89,
+          62,
+          62
+        ],
+        [
+          2,
+          2,
+          348,
+          87,
+          89,
+          62,
+          62
+        ]
+      ]
+    },
+    "alternatives": [
+      {
+        "decision": "Sharing every regional box added strip geometry calls. Keep it external.",
+        "anchorWork": {
+          "cases": {
+            "strip-1": {
+              "baseline": [
+                0,
+                1128,
+                0,
+                960,
+                2016,
+                984
+              ],
+              "candidate": [
+                216,
+                1014,
+                114,
+                846,
+                2016,
+                984
+              ],
+              "boxSetterTotals": [
+                2088,
+                2190
+              ]
+            },
+            "roster-1": {
+              "baseline": [
+                0,
+                3744,
+                0,
+                1968,
+                9048,
+                2028
+              ],
+              "candidate": [
+                1272,
+                1086,
+                1110,
+                630,
+                9048,
+                2028
+              ],
+              "boxSetterTotals": [
+                5712,
+                4098
+              ]
+            },
+            "strip-2": {
+              "baseline": [
+                0,
+                1296,
+                0,
+                1008,
+                2400,
+                996
+              ],
+              "candidate": [
+                396,
+                1074,
+                222,
+                786,
+                2400,
+                996
+              ],
+              "boxSetterTotals": [
+                2304,
+                2478
+              ]
+            },
+            "roster-2": {
+              "baseline": [
+                0,
+                6072,
+                0,
+                3384,
+                18708,
+                3648
+              ],
+              "candidate": [
+                2568,
+                1410,
+                2394,
+                726,
+                18708,
+                3648
+              ],
+              "boxSetterTotals": [
+                9456,
+                7098
+              ]
+            }
+          },
+          "objectCounts": {
+            "strip-1": [
+              1277,
+              1277
+            ],
+            "roster-1": [
+              1675,
+              1675
+            ],
+            "strip-2": [
+              1341,
+              1341
+            ],
+            "roster-2": [
+              2203,
+              2203
+            ]
+          }
+        }
+      },
+      {
+        "decision": "Binding every roster redraw added work on the first new geometry.",
+        "anchorWork": {
+          "cases": {
+            "roster-1": {
+              "baseline": [
+                62,
+                689,
+                0,
+                399,
+                1747,
+                400
+              ],
+              "candidate": [
+                479,
+                197,
+                449,
+                118,
+                1747,
+                400
+              ],
+              "boxSetterTotals": [
+                1150,
+                1243
+              ]
+            },
+            "roster-2": {
+              "baseline": [
+                144,
+                1177,
+                0,
+                723,
+                3750,
+                769
+              ],
+              "candidate": [
+                982,
+                270,
+                937,
+                149,
+                3750,
+                769
+              ],
+              "boxSetterTotals": [
+                2044,
+                2338
+              ]
+            }
+          },
+          "objectCounts": {
+            "roster-1": [
+              1675,
+              1675
+            ],
+            "roster-2": [
+              2203,
+              2203
+            ]
+          }
+        }
+      },
+      {
+        "decision": "Binding every eligible field on the first prepared restore still introduced extra point work.",
+        "anchorWork": {
+          "cases": {
+            "roster-1": {
+              "baseline": [
+                0,
+                628,
+                0,
+                326,
+                1444,
+                326
+              ],
+              "candidate": [
+                458,
+                185,
+                442,
+                102,
+                1444,
+                326
+              ],
+              "boxSetterTotals": [
+                954,
+                1187
+              ]
+            },
+            "roster-2": {
+              "baseline": [
+                0,
+                1018,
+                0,
+                464,
+                2794,
+                482
+              ],
+              "candidate": [
+                916,
+                240,
+                901,
+                86,
+                2794,
+                482
+              ],
+              "boxSetterTotals": [
+                1482,
+                2143
+              ]
+            }
+          },
+          "objectCounts": {
+            "roster-1": [
+              1675,
+              1675
+            ],
+            "roster-2": [
+              2203,
+              2203
+            ]
+          }
+        }
+      }
+    ],
+    "artifactSHA256": {
+      "measure.lua": "2144839def52204b3ba137dd4654bf94f729631df56875a4483fab0315412c68",
+      "locality-fixture.lua": "d1b68db879c3e02732cdb35d09b8cc6080ec4a274bf3ce901d9daa5c99d48496",
+      "baseline.lua": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+      "adaptive-roster.lua": "961ab55ea48afadb9682b20875954c340ad0631c7173b2928ee91fb12b739d36",
+      "adaptive-roster-setters.txt": "70a255bfa8b50f99883f9915f51d06373f0a8c3bb83824d197c3375f52effaa2",
+      "measure-first-roster.lua": "bfad7b306f3e5e0f3993df3016ffd579213c436c38d94a2b660c82df3d2696aa",
+      "measure-first-restores.lua": "4c1e19afade0884f61f120c68ef291083fd4540c569013623645ce89c9aab6c0",
+      "measure-unseen-roster.lua": "a751321036ec4efc7416aa72d3738038af691102e6279f599388364e91d8a134",
+      "adaptive-first-roster.txt": "cb25033c365d5f7f2ef5dd0e5b0a40db353d23007c2716ca5f95c9ae12b1a027",
+      "adaptive-first-restores.txt": "a08598a1693a5b776dd54926d27cb4bb544571b70f7b45677412ec3a1350c8a8",
+      "adaptive-unseen-roster.txt": "3210a2d1c57aa5f49fbab69f5d89ffe0fba1a524f18d75bfd80e62024a8a8aa5",
+      "adaptive-quiet-clock.txt": "197b0eb2a79ae039af0d20fee6a33989d0c6b00ec54b01b3ad3b360a6d690a58",
+      "setters.txt": "67c042be9faa7241c7401556291625d4d739b4337a743cf5f33d71525198d1e9",
+      "reusable-box.lua": "e4989548bd2d4887b1726c140c850f7d3f91f619015998e179c9590e957d2421",
+      "first-roster-setters.txt": "68785e8e571a7123d7f34a7a20791d15b828f3808e855d44ea6a33b7eb98dbaf",
+      "roster-final.lua": "d74da15f5568f5f55f7ed60afd14f0d8a52223c14855af250a9300035f2f9d75",
+      "first-restores-setters.txt": "a98b8b7143ec11531d14b24cd7466c424f367da303bbabb864bc71d08f25f367",
+      "prepared-roster-only.lua": "75d479a0f1d2eb7e2907b6e615d3e1ce9afe7fe192bfe02114a58c7d81ded2be",
+      "prepared-first-roster.txt": "ec4c546c0c639f07ba373384378bcfb44b165d87af27e01866ec0d4a47ccb90f",
+      "strip-relative-shapes.lua": "ce24f45b9bfe919dc96f26b54d741a8b054b7417d72e19070775bc5e3942b3be",
+      "strip-relative-shapes.txt": "10f625d033621da47bf3bedbe70a867dd6f9d119399cde13bdbe7297fcadd42c"
+    }
+  },
+  "parity": "Same modeled field counts, vertex and UV calls and sampled seams. Followers retain their own paint, follow a directly anchored triangle in the same operation and detach before taking the leader role. Exact setter errors and partial attachment cleanup have directed coverage. Existing action-strip layout and binding fixtures passed.",
+  "verification": {
+    "focusedPassed": 51,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-roster-anchors-before-20261120T051358506\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-roster-anchors-before-20261120T051358506\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-roster-anchors-before-20261120T051358506\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Respec/FluxRespec_GearSetLock.lua"
+    ]
+  },
+  "nativeAcceptance": "Native join and leave latency, action-strip hitches, pixel parity and combat taint remain pending."
+}

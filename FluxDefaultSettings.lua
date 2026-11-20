@@ -891,7 +891,132 @@ function FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForFrame(frame, colum
     return FluxUILayoutSqueeze.ComputeHorizontalSqueezeFactorForRow(centerX, barRightMax, frameMargin, effectiveScale, columnCount, slotWidth, spacing)
 end
 
-function FluxUILayoutSqueeze.NotifyLayoutDependents()
+-- Squeeze callback bodies are shared across notifications. Keep their original
+-- global/method lookups inside pcall, without allocating closures on each exit.
+-- Grid slots retain local geometry when only their owning panel translates.
+local function GridNumberMatches(current, expected)
+    return not (issecretvalue and (issecretvalue(current) or issecretvalue(expected)))
+        and type(current) == "number" and type(expected) == "number"
+        and math.abs(current - expected) < 0.0001
+end
+
+local function GridSizeMatches(frame, width, height)
+    local w, h = frame:GetSize()
+    return GridNumberMatches(w, width) and GridNumberMatches(h, height)
+end
+
+local function GridAnchorsMatch(frame, ...)
+    local count = frame:GetNumPoints()
+    if (issecretvalue and issecretvalue(count)) or count ~= select("#", ...) / 5 then return false end
+    for index = 1, count do
+        local point, parent, relative, x, y = frame:GetPoint(index)
+        if issecretvalue and (issecretvalue(point) or issecretvalue(parent) or issecretvalue(relative)
+            or issecretvalue(x) or issecretvalue(y)) then return false end
+        local wantPoint, wantParent, wantRelative, wantX, wantY = select(index * 5 - 4, ...)
+        if point ~= wantPoint or parent ~= wantParent or relative ~= wantRelative
+            or x ~= wantX or y ~= wantY then return false end
+    end
+    return true
+end
+
+-- The expected points are passed as the same five arguments used by SetPoint.
+function FluxUILayoutSqueeze.CanKeepGridAnchors(frame, ...)
+    local ok, matches = pcall(GridAnchorsMatch, frame, ...)
+    return ok and matches
+end
+
+local function GridPackingMatches(grid, packing, multiplier, resize)
+    local ebs = _G.Flux and _G.Flux.EBS
+    if packing.frame ~= grid.Frame or packing.multiplier ~= multiplier
+        or packing.size ~= grid.ButtonSize or packing.spacing ~= grid.Spacing
+        or packing.style ~= (ebs and ebs.Style)
+        or #packing.buttons ~= #grid.Buttons then return false end
+    local shown = grid.Frame:IsShown()
+    if (issecretvalue and issecretvalue(shown)) or not shown
+        or not resize and not GridSizeMatches(grid.Frame, packing.width, packing.height) then return false end
+
+    for index, btn in ipairs(grid.Buttons) do
+        local row = packing.buttons[index]
+        local slot, widget = btn.SlotFrame, btn.Widget
+        if row.button ~= btn or row.slot ~= slot or row.widget ~= widget
+            or row.assisted ~= btn.IsLABButton
+            or row.group ~= grid.ColumnGroups[btn] or row.order ~= grid.ButtonOrder[btn]
+            or row.priority ~= grid.ColumnPriorities[btn] then return false end
+        local slotShown = slot and slot:IsShown()
+        if (issecretvalue and issecretvalue(slotShown)) or slotShown ~= (row.x ~= nil) then return false end
+        if slotShown then
+            if not GridNumberMatches(slot:GetNumPoints(), 1) then return false end
+            local point, parent, relative, x, y = slot:GetPoint(1)
+            if issecretvalue and (issecretvalue(point) or issecretvalue(parent) or issecretvalue(relative)) then return false end
+            if point ~= "BOTTOMLEFT" or parent ~= grid.Frame or relative ~= "BOTTOMLEFT"
+                or not GridNumberMatches(x, row.x) or not GridNumberMatches(y, row.y)
+                or not resize and not GridSizeMatches(slot, packing.slotWidth, packing.slotHeight) then return false end
+            if widget then
+                local level = widget:GetFrameLevel()
+                if (issecretvalue and issecretvalue(level)) or type(level) ~= "number"
+                    or not GridNumberMatches(slot:GetFrameLevel(), level - 1) then return false end
+            end
+        end
+        if widget and (not (resize and widget.SetSize) and not GridSizeMatches(widget, packing.faceWidth, packing.size)
+            or not GridNumberMatches(widget:GetScale(), multiplier)) then return false end
+    end
+    return true
+end
+
+function FluxUILayoutSqueeze.CanKeepGridPacking(grid, multiplier, allowWidthChange)
+    local packing = grid._fluxStripPacking
+    if not packing or grid._layoutBatchPending or grid._pendingRegenRelayout
+        or grid._relayoutScheduled then return false end
+    local getFactor = FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor
+    local factor = getFactor and getFactor() or 1
+    if issecretvalue and issecretvalue(factor) or type(factor) ~= "number"
+        or not (factor > 0 and factor <= 1) then return false end
+    local resize = factor ~= packing.factor
+    if resize and not (allowWidthChange and packing.columns) then return false end
+    -- Validate the public geometry that the strip path will keep. Existing
+    -- sizes need no read when this same transaction will replace them.
+    local ok, matches = pcall(GridPackingMatches, grid, packing, multiplier, resize)
+    if not ok or not matches or packing ~= grid._fluxStripPacking or grid._layoutBatchPending
+        or grid._pendingRegenRelayout or grid._relayoutScheduled then return false end
+    return true, factor, resize and packing or nil
+end
+
+function FluxUILayoutSqueeze.NewGridPacking(grid, multiplier)
+    local ebs = _G.Flux and _G.Flux.EBS
+    local buttons, byButton = {}, {}
+    for index, button in ipairs(grid.Buttons) do
+        local row = { button = button, slot = button.SlotFrame, widget = button.Widget,
+            assisted = button.IsLABButton,
+            group = grid.ColumnGroups[button], order = grid.ButtonOrder[button], priority = grid.ColumnPriorities[button] }
+        buttons[index], byButton[button] = row, row
+    end
+    return { frame = grid.Frame, buttons = buttons, size = grid.ButtonSize, spacing = grid.Spacing,
+        multiplier = multiplier, style = ebs and ebs.Style }, byButton
+end
+
+local function NotifySqueezeCombatGrid(stripCrossing)
+    if stripCrossing then FluxCombatManager.Grid:Relayout(true)
+    else FluxCombatManager.Grid:Relayout() end
+end
+
+local function NotifySqueezeNonCombatGrid(stripCrossing)
+    if stripCrossing then FluxNonCombatAPI.DefaultGrid:Relayout(true)
+    else FluxNonCombatAPI.DefaultGrid:Relayout() end
+end
+
+local function NotifySqueezeButtonGrid()
+    FluxButtonAPI.DefaultGrid:Relayout()
+end
+
+local function NotifySqueezeLegacyFlyout()
+    FluxFlyoutFrame.OnDependentsLayoutChanged()
+end
+
+local function NotifySqueezeMinimap()
+    FluxMinimap:RefreshBlizzardBuffDebuffSqueeze()
+end
+
+function FluxUILayoutSqueeze.NotifyLayoutDependents(deferPetBorderCommit, stripCrossing, deferChat)
     if InCombatLockdown and InCombatLockdown() then
         if _G.Flux and _G.Flux.Combat and _G.Flux.Combat.Defer then
             _G.Flux.Combat.Defer("layout.squeeze.dependents", FluxUILayoutSqueeze.NotifyLayoutDependents)
@@ -906,26 +1031,31 @@ function FluxUILayoutSqueeze.NotifyLayoutDependents()
         FluxUILayoutSqueeze.InvalidateEmulatedDependentCache()
     end
     local Flux = _G.Flux
-    if FluxTrinketMenu and FluxTrinketMenu.ApplyHorizontalSqueeze then
+    local stripTrinketLayout = stripCrossing and FluxTrinketMenuManager and FluxTrinketMenuManager.UpdateStripAnchor
+    if not stripTrinketLayout and FluxTrinketMenu and FluxTrinketMenu.ApplyHorizontalSqueeze then
         pcall(FluxTrinketMenu.ApplyHorizontalSqueeze)
     end
     if FluxCombatManager and FluxCombatManager.Grid and FluxCombatManager.Grid.Relayout then
-        pcall(function() FluxCombatManager.Grid:Relayout() end)
+        pcall(NotifySqueezeCombatGrid, stripCrossing)
     end
     if _G.FluxNonCombatGrid_ApplyScreenBottomAnchor then
         pcall(_G.FluxNonCombatGrid_ApplyScreenBottomAnchor)
     end
     if _G.FluxNonCombatAPI and FluxNonCombatAPI.DefaultGrid and FluxNonCombatAPI.DefaultGrid.Relayout then
-        pcall(function() FluxNonCombatAPI.DefaultGrid:Relayout() end)
+        pcall(NotifySqueezeNonCombatGrid, stripCrossing)
     end
     if FluxCombatManager and FluxCombatManager.UpdateAnchor then
         pcall(FluxCombatManager.UpdateAnchor, FluxCombatManager)
     end
-    if FluxTrinketMenuManager and FluxTrinketMenuManager.UpdateAnchor then
+    if stripTrinketLayout and FluxTrinketMenuManager and FluxTrinketMenuManager.UpdateStripAnchor then
+        pcall(FluxTrinketMenuManager.UpdateStripAnchor, FluxTrinketMenuManager)
+    elseif FluxTrinketMenuManager and FluxTrinketMenuManager.UpdateAnchor then
         pcall(FluxTrinketMenuManager.UpdateAnchor, FluxTrinketMenuManager)
+    elseif stripTrinketLayout and FluxTrinketMenu and FluxTrinketMenu.ApplyHorizontalSqueeze then
+        pcall(FluxTrinketMenu.ApplyHorizontalSqueeze)
     end
     if _G.FluxButtonAPI and FluxButtonAPI.DefaultGrid and FluxButtonAPI.DefaultGrid.Relayout then
-        pcall(function() FluxButtonAPI.DefaultGrid:Relayout() end)
+        pcall(NotifySqueezeButtonGrid)
     end
     if _G.FluxSpellBookSlots_ApplyHorizontalSqueeze then
         pcall(_G.FluxSpellBookSlots_ApplyHorizontalSqueeze)
@@ -934,24 +1064,37 @@ function FluxUILayoutSqueeze.NotifyLayoutDependents()
     if Flyout and Flyout.OnDependentsLayoutChanged then
         pcall(Flyout.OnDependentsLayoutChanged)
     elseif _G.FluxFlyoutFrame and FluxFlyoutFrame.OnDependentsLayoutChanged then
-        pcall(function() FluxFlyoutFrame.OnDependentsLayoutChanged() end)
+        pcall(NotifySqueezeLegacyFlyout)
     end
-    if _G.FluxChatFrame_ApplyPrimaryPosition then
+    if not deferChat and _G.FluxChatFrame_ApplyPrimaryPosition then
         pcall(_G.FluxChatFrame_ApplyPrimaryPosition, true)
     end
     if Flux and Flux.Bars and Flux.Bars.BadgeHost and Flux.Bars.BadgeHost.RefreshLayout then
-        pcall(Flux.Bars.BadgeHost.RefreshLayout)
+        if stripCrossing then
+            pcall(Flux.Bars.BadgeHost.RefreshLayout, true)
+        else
+            pcall(Flux.Bars.BadgeHost.RefreshLayout)
+        end
     end
     if _G.FluxMinimap and FluxMinimap.RefreshBlizzardBuffDebuffSqueeze then
-        pcall(function() FluxMinimap:RefreshBlizzardBuffDebuffSqueeze() end)
+        pcall(NotifySqueezeMinimap)
     end
     if Flux and Flux.Bars and Flux.Bars.Pet and Flux.Bars.Pet.LayoutButtons then
-        pcall(Flux.Bars.Pet.LayoutButtons)
+        if deferPetBorderCommit == true and stripCrossing == true then
+            pcall(Flux.Bars.Pet.LayoutButtons, true, true)
+        elseif deferPetBorderCommit == true then
+            pcall(Flux.Bars.Pet.LayoutButtons, true)
+        else
+            pcall(Flux.Bars.Pet.LayoutButtons)
+        end
     end
-    if Flux and Flux.Bars and Flux.Bars.Stance and Flux.Bars.Stance.RequestSizeOnly then
-        pcall(Flux.Bars.Stance.RequestSizeOnly)
+    local stance = Flux and Flux.Bars and Flux.Bars.Stance
+    if stance then
+        local request = deferPetBorderCommit == true and stripCrossing == true and stance.RequestStripLayout
+            or stance.RequestSizeOnly
+        if request then pcall(request) end
     end
-    if _G.FluxUnitFrames_ApplyPlayerStatusBarLayout then
+    if not stripCrossing and _G.FluxUnitFrames_ApplyPlayerStatusBarLayout then
         pcall(_G.FluxUnitFrames_ApplyPlayerStatusBarLayout)
     end
     local auraX = FluxUILayoutSqueeze.GetEffectiveEmulatedDependentXFactorForUnitFrames

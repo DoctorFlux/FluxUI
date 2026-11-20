@@ -242,8 +242,13 @@ local function ApplyCoinAndGlow(button, isJunk, showIcons, showGlow)
         fluxIcon = fluxIcon or NewIcon(button)
         fluxIcon:SetShown(showCoin)
     end
-    local glow = Glows[button] or NewGlow(button)
-    glow:SetShown(isJunk and showGlow)
+    local glow = Glows[button]
+    if isJunk and showGlow then
+        glow = glow or NewGlow(button)
+        glow:Show()
+    elseif glow then
+        glow:Hide()
+    end
 end
 
 local function HasActiveSlotDecorators()
@@ -376,21 +381,23 @@ local function ResolveButtonBagSlot(button, frame)
     return bag, slot
 end
 
+local function ProtectedSlotKeyOk(bag, slot)
+    local b = tonumber(bag)
+    local s = tonumber(slot)
+    if b == nil or s == nil then
+        return false
+    end
+    if b ~= b or s ~= s then
+        return false
+    end
+    if b ~= math.floor(b) or s ~= math.floor(s) or s < 1 then
+        return false
+    end
+    return true
+end
+
 local function SlotKeyOk(bag, slot)
-    local ok, good = pcall(function()
-        local b = tonumber(bag)
-        local s = tonumber(slot)
-        if b == nil or s == nil then
-            return false
-        end
-        if b ~= b or s ~= s then
-            return false
-        end
-        if b ~= math.floor(b) or s ~= math.floor(s) or s < 1 then
-            return false
-        end
-        return true
-    end)
+    local ok, good = pcall(ProtectedSlotKeyOk, bag, slot)
     return ok and good or false
 end
 
@@ -452,6 +459,12 @@ local function IterateNamedItemButtons(frame, call)
     end
 end
 
+local function VisitEnumeratedItemButtons(frame, visit)
+    for _, button in frame:EnumerateValidItems() do
+        visit(button)
+    end
+end
+
 -- Combined bags pool extra buttons past GetBagSize(). EnumerateValidItems is 1..size.
 local function ForEachItemButton(frame, call)
     if not frame or not call then
@@ -465,11 +478,7 @@ local function ForEachItemButton(frame, call)
         end
     end
     if frame.EnumerateValidItems then
-        pcall(function()
-            for _, button in frame:EnumerateValidItems() do
-                Visit(button)
-            end
-        end)
+        pcall(VisitEnumeratedItemButtons, frame, Visit)
     end
     if frame.Items then
         for i = 1, #frame.Items do
@@ -523,6 +532,21 @@ local function GetModernBankItemButtonPool()
     return panel and panel.itemButtonPool
 end
 
+local function PaintDirtyModernBankPool(pool, dirtyBags, showIcons, showGlow)
+    for button in pool:EnumerateActive() do
+        local bag = button.GetBankTabID and button:GetBankTabID()
+        if bag and dirtyBags[bag] then
+            UpdateModernBankButton(button, showIcons, showGlow)
+        end
+    end
+end
+
+local function PaintModernBankPool(pool, showIcons, showGlow)
+    for button in pool:EnumerateActive() do
+        UpdateModernBankButton(button, showIcons, showGlow)
+    end
+end
+
 local function PaintModernBankButtonsForDirtyBags(dirtyBags, force)
     if ShouldSkipAllPaint() or not IsUnifiedBankPaintReady() then
         return
@@ -539,14 +563,7 @@ local function PaintModernBankButtonsForDirtyBags(dirtyBags, force)
         return
     end
     local showIcons, showGlow = GetDisplayFlags()
-    pcall(function()
-        for button in pool:EnumerateActive() do
-            local bag = button.GetBankTabID and button:GetBankTabID()
-            if bag and dirtyBags[bag] then
-                UpdateModernBankButton(button, showIcons, showGlow)
-            end
-        end
-    end)
+    pcall(PaintDirtyModernBankPool, pool, dirtyBags, showIcons, showGlow)
 end
 
 local function CollectBankDirtyBags(dirtyBags, out)
@@ -837,11 +854,7 @@ PaintAllModernBankButtons = function(force)
         return
     end
     local showIcons, showGlow = GetDisplayFlags()
-    pcall(function()
-        for button in pool:EnumerateActive() do
-            UpdateModernBankButton(button, showIcons, showGlow)
-        end
-    end)
+    pcall(PaintModernBankPool, pool, showIcons, showGlow)
 end
 
 local function ScheduleUnifiedContainerPaint(frame)

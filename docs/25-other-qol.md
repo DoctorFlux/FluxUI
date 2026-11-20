@@ -1,5 +1,24 @@
 # Chat, trade, tooltips, vehicles, and other HUD helpers
 
+14 November `TOOLTIP-SCALE-20261114`: whole-tooltip shrinking now has a
+HUD ownership correction. Default-anchor/HUD placement restores normal native
+UI-relative scale after a prior hover leaves a smaller size; scaled-parent
+inheritance is compensated. Explicit TacoTip tooltip_scale remains honored.
+The existing Blizzard tooltip, exact (0,30) anchor, native scripts/fonts/health,
+input and update cadence remain. No added hook/event/frame/timer/polling.
+
+202 focused scale checks across five client models PASS; pre-change scale leak
+reproduced and six compiled harmful controls rejected. Unit/pet/raid and Edit Mode
+regressions plus pinned native-update desktop replay PASS. Full 386 scripts /
+1074 Lua syntax PASS; every final Lua identity verified.
+Fresh 2817-file external source/history checkpoint and 130 settings metadata
+entries verified; one runtime owner and one new regression only. No native
+client input/reload/settings/profiler writes, external addon edits or publication.
+Actual incident writer, native pixels/taint/controller acceptance remain NOT RUN.
+The unrelated profiling goal stays paused. Reload OOC and repeat the tiny-tooltip
+hover sequence, including professions/scaled buttons then unit/pet/raid/world.
+[Requirements, limits and exact source](validation/tooltip-scale-2026-11-14.json).
+
 The loaded `Other/` modules complete Flux's surrounding interface. They include persistent chat setup, copy/URL tools, chat-column controls, trade food/water, equipment flyouts, native-frame positioning, vehicle affordances and HUD tooltip placement. Character-panel code now lives under `CharacterInfo/`; the old `Other/FluxCharacterStats/` tree is an unloaded predecessor, not a second active stat backend.
 
 ## Chat setup and layout ownership

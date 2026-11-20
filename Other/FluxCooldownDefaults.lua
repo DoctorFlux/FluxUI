@@ -391,7 +391,11 @@ if client.isRetail or client.isForever or client.isCamelot then
     Flux.Events.Register("PLAYER_LOGIN", function() loggedIn = true; Defaults.Request() end)
     for _, event in ipairs({"PLAYER_ENTERING_WORLD", "PLAYER_SPECIALIZATION_CHANGED", "UPDATE_SHAPESHIFT_FORM",
         "DISPLAY_SIZE_CHANGED", "UI_SCALE_CHANGED", "EDIT_MODE_LAYOUTS_UPDATED"}) do
-        Flux.Events.Register(event, Defaults.Request)
+        Flux.Events.Register(event, function(name, unit, ...)
+            if name == "PLAYER_SPECIALIZATION_CHANGED" and Flux.Events.IsPlayerUnitEvent
+                and not Flux.Events.IsPlayerUnitEvent(unit) then return end
+            Defaults.Request(name, unit, ...)
+        end)
     end
     Flux.Events.Register("ADDON_LOADED", function(_, name)
         if name == "Blizzard_CooldownViewer" then Defaults.Request() end

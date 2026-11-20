@@ -243,6 +243,11 @@ local function MakeInitializer(container, width, height)
 	end
 end
 
+local function PublicLayoutNumber(value)
+	return not (issecretvalue and issecretvalue(value)) and type(value) == "number"
+		and value == value and math.abs(value) < math.huge
+end
+
 local function GroupLayout(width, height, spacing, layoutIndex)
 	local layout = {
 		elementWidth = width,
@@ -254,6 +259,34 @@ local function GroupLayout(width, height, spacing, layoutIndex)
 		layout.layoutIndex = layoutIndex
 	end
 	return layout
+end
+
+-- These groups belong to this addon and are created only by AddGroup below.
+-- Public SetUnit/SetEnabled do not replace them; ClearAuraGroups is private in
+-- the native CustomAuraContainer contract. Keep successful layout arguments,
+-- never aura data, native group handles, membership or private frame state.
+local groupLayouts = setmetatable({}, { __mode = "k" })
+
+local function ForgetGroupLayout(engine, key)
+	local layouts = groupLayouts[engine]
+	if layouts then layouts[key] = nil end
+end
+
+local function SetGroupLayout(engine, key, width, height, spacing, layoutIndex)
+	local method = engine.SetAuraGroupLayout
+	local public = not (issecretvalue and (issecretvalue(method) or issecretvalue(layoutIndex)))
+		and PublicLayoutNumber(width) and PublicLayoutNumber(height) and PublicLayoutNumber(spacing)
+		and (layoutIndex == nil or PublicLayoutNumber(layoutIndex))
+	local layouts = groupLayouts[engine]
+	local old = layouts and layouts[key]
+	if public and old and old[1] == width and old[2] == height and old[3] == spacing
+		and old[4] == layoutIndex and old[5] == method then return end
+	ForgetGroupLayout(engine, key)
+	local ok = pcall(method, engine, key, GroupLayout(width, height, spacing, layoutIndex))
+	if ok and public then
+		if not layouts then layouts = {}; groupLayouts[engine] = layouts end
+		layouts[key] = { width, height, spacing, layoutIndex, method }
+	end
 end
 
 local function GroupOptions(maxAuras, sort, dir, init, layout, candidateFilters)
@@ -319,12 +352,12 @@ local function ResizeGroupButtons(engine, key, width, height)
 		return
 	end
 	local ok, count = pcall(engine.GetAuraGroupFrameCount, engine, key)
-	if not ok or type(count) ~= "number" then
+	if not ok or not PublicLayoutNumber(count) or count < 0 then
 		return
 	end
 	for i = 1, count do
 		local got, frame = pcall(engine.GetAuraGroupFrame, engine, key, i)
-		if got and frame and frame.SetSize then
+		if got and not (issecretvalue and issecretvalue(frame)) and frame and frame.SetSize then
 			pcall(frame.SetSize, frame, width, height)
 		end
 	end
@@ -332,10 +365,15 @@ end
 
 local function HasGroup(engine, key)
 	if not engine or not engine.HasAuraGroup then
+		if engine then ForgetGroupLayout(engine, key) end
 		return false
 	end
 	local ok, has = pcall(engine.HasAuraGroup, engine, key)
-	return ok and has
+	if not ok or (issecretvalue and issecretvalue(has)) or has ~= true then
+		ForgetGroupLayout(engine, key)
+		return false
+	end
+	return true
 end
 
 local function IconSizes(container)
@@ -364,7 +402,7 @@ local function ApplyGroupSizes(container)
 	local width, height, ownW, ownH, spacing = IconSizes(container)
 	if container.containerType == "Buff" then
 		if HasGroup(engine, "buffs") then
-			pcall(engine.SetAuraGroupLayout, engine, "buffs", GroupLayout(width, height, spacing))
+			SetGroupLayout(engine, "buffs", width, height, spacing)
 			if engine.SetAuraGroupMaxFrameCount then
 				pcall(engine.SetAuraGroupMaxFrameCount, engine, "buffs", maxAuras)
 			end
@@ -373,21 +411,21 @@ local function ApplyGroupSizes(container)
 		return
 	end
 	if HasGroup(engine, "own") then
-		pcall(engine.SetAuraGroupLayout, engine, "own", GroupLayout(ownW, ownH, spacing, 1))
+		SetGroupLayout(engine, "own", ownW, ownH, spacing, 1)
 		if engine.SetAuraGroupMaxFrameCount then
 			pcall(engine.SetAuraGroupMaxFrameCount, engine, "own", maxAuras)
 		end
 		ResizeGroupButtons(engine, "own", ownW, ownH)
 	end
 	if HasGroup(engine, "other") then
-		pcall(engine.SetAuraGroupLayout, engine, "other", GroupLayout(width, height, spacing, 2))
+		SetGroupLayout(engine, "other", width, height, spacing, 2)
 		if engine.SetAuraGroupMaxFrameCount then
 			pcall(engine.SetAuraGroupMaxFrameCount, engine, "other", maxAuras)
 		end
 		ResizeGroupButtons(engine, "other", width, height)
 	end
 	if HasGroup(engine, "all") then
-		pcall(engine.SetAuraGroupLayout, engine, "all", GroupLayout(width, height, spacing))
+		SetGroupLayout(engine, "all", width, height, spacing)
 		if engine.SetAuraGroupMaxFrameCount then
 			pcall(engine.SetAuraGroupMaxFrameCount, engine, "all", maxAuras)
 		end
@@ -431,6 +469,7 @@ function UF.SyncEngineAuras(container, frame)
 end
 
 local function AddGroup(engine, key, filter, options)
+	ForgetGroupLayout(engine, key)
 	if not engine.AddAuraGroup then
 		return false
 	end

@@ -131,7 +131,8 @@ local function boot(shape, provider, tracking, calendar)
     end
     e.FluxMinimapHiddenFrame = widget("Hidden", e.UIParent)
     e.FluxMinimapHiddenFrame:Hide()
-    local cleanup = assert(source:match("(function FluxMinimap:CleanupBlizzardFrames%(%)%s.-)\nfunction FluxMinimap:CleanupTimeManager"))
+    local cleanup = source:match("(local function MinimapNativeValue.-)\nfunction FluxMinimap:CleanupTimeManager")
+        or assert(source:match("(function FluxMinimap:CleanupBlizzardFrames%(%)%s.-)\nfunction FluxMinimap:CleanupTimeManager"))
     local text = "local embeddedState = { isEmbedded = false }\n" .. cleanup .. "\n" .. block
     local chunk
     if loadstring then chunk = assert(loadstring(text)); setfenv(chunk, e)

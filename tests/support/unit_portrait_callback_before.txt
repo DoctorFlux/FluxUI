@@ -1,0 +1,174 @@
+-- Retained pre-extraction production owner bodies; all surrounding helpers stay current.
+return {
+camera = [====[
+local function ApplyPortraitCamera(portrait, keepIfClose)
+    if not portrait or portrait._fluxQuestionMark then
+        return
+    end
+    pcall(function()
+        local customCamera = CanFramePortraitHead(portrait)
+        if keepIfClose and customCamera then
+            local ok, d = pcall(portrait.GetCameraDistance, portrait)
+            if ok and PortraitCameraNumber(d) and d >= 0.35 and d < 1.55 then
+                return
+            end
+        end
+        if portrait.SetCamDistanceScale then
+            portrait:SetCamDistanceScale(1)
+        end
+        if portrait.SetPortraitZoom then
+            portrait:SetPortraitZoom(1)
+        end
+        if portrait.SetPosition then
+            portrait:SetPosition(0, 0, 0)
+        end
+        if portrait.SetModelScale then
+            portrait:SetModelScale(1.0)
+        end
+        if customCamera then
+            ApplyPortraitHeadCamera(portrait)
+            return
+        end
+        -- Preserve Forever's no-baked-camera policy even if a camera method
+        -- is unavailable; engine portrait zoom still provides the first crop.
+        if IsCamelotPortraitClient() then return end
+        if IsPostDFPortraitClient() then
+            if portrait.RefreshCamera then
+                portrait:RefreshCamera()
+            end
+            return
+        end
+        if portrait.SetCamera then
+            portrait:SetCamera(0)
+        end
+    end)
+end
+]====],
+setUnit = [====[
+local function SetPortraitUnit(portrait, unit)
+    if not portrait or not unit then
+        return false
+    end
+    BindPortraitUnit(portrait, unit)
+    if portrait.SetDoBlend then
+        pcall(portrait.SetDoBlend, portrait, false)
+    end
+    if portrait.SetKeepModelOnHide then
+        pcall(portrait.SetKeepModelOnHide, portrait, true)
+    end
+    ApplyPortraitCamera(portrait)
+    local ok = pcall(function()
+        portrait:SetUnit(unit, false)
+    end)
+    if not ok then
+        ok = pcall(portrait.SetUnit, portrait, unit)
+    end
+    ApplyPortraitCamera(portrait)
+    return ok
+end
+]====],
+paint = [====[
+function UF.UpdatePortrait(self, unit)
+    if self._fluxPortraitDisabled then
+        return
+    end
+    if not self.Portrait then return end
+
+    -- ALWAYS use self.unit, never a passed unit parameter that might be wrong
+    -- This prevents cross-contamination between portrait frames
+    unit = self._fluxPartyPreview and "player" or self.unit
+
+    if not PortraitUnitExists(unit) or not PortraitFrameIsVisuallyShown(self) then
+        HideEmptyUnitPortrait(self)
+        return
+    end
+
+    -- Every real paint (3D, question mark, or flat) invalidates the empty model.
+    self.Portrait._fluxEmptyCleared = nil
+    local use3D = (not FluxUnitFrames_ShouldUse3DPortrait) or FluxUnitFrames_ShouldUse3DPortrait()
+
+    if not use3D then
+        self.Portrait._fluxBlizzardFallback = nil
+        self.Portrait._fluxQuestionMark = nil
+        pcall(function()
+            if self.Portrait.SetKeepModelOnHide then
+                self.Portrait:SetKeepModelOnHide(false)
+            end
+            if self.Portrait.ClearModel then
+                self.Portrait:ClearModel()
+            end
+        end)
+        self.Portrait:Hide()
+        if self.Portrait2D then
+            pcall(function()
+                SetPortraitTexture(self.Portrait2D, unit)
+            end)
+            self.Portrait2D:Show()
+        end
+        return
+    end
+
+    if self.Portrait2D then
+        self.Portrait2D:Hide()
+    end
+
+    -- Unavailable 3D units use the engine's cached/fallback portrait texture.
+    if PortraitShouldShowOutOfRangeMark(self, unit) then
+        ShowBlizzardPortraitFallback(self.Portrait, self, unit)
+        return
+    end
+
+    -- Use animated 3D portrait - like Blizzard's UnitFramePortrait_Update
+    -- Live DF: portrait zoom before SetUnit. Forever: engine zoom, no RefreshCamera.
+    self.Portrait._fluxQuestionMark = nil
+    BindPortraitUnit(self.Portrait, unit)
+    local applied, assigned = pcall(function()
+        self.Portrait:ClearModel()
+        return SetPortraitUnit(self.Portrait, unit)
+    end)
+    if not applied or assigned == false then
+        ShowBlizzardPortraitFallback(self.Portrait, self, unit)
+        return
+    end
+    ApplyPortraitCamera(self.Portrait)
+    SchedulePortraitCameraRefresh(self.Portrait)
+    if self.Portrait.GetModelFileID then
+        local id = self.Portrait:GetModelFileID()
+        if not IsSecretValue(id) and (id == nil or id == 0) then
+            ShowBlizzardPortraitFallback(self.Portrait, self, unit)
+            return
+        end
+    end
+    self.Portrait._fluxBlizzardFallback = nil
+    self.Portrait:Show()
+end
+]====],
+geometry = [====[
+function UF.SyncPortraitModelGeometry(self)
+    if not self or not self.Portrait or not self.PortraitFrame then return end
+    local pf = self.PortraitFrame
+    local portraitSize = pf._fluxLayoutWidth
+        or (pf.GetWidth and PublicGeometryNumber(pf:GetWidth()))
+    if not portraitSize or portraitSize <= 0 then
+        local ignoredWidth
+        ignoredWidth, portraitSize = UF.GetFramePublicDimensions(self)
+    end
+    if not portraitSize or portraitSize <= 0 then return end
+    local contentSize = portraitSize - 4
+    if contentSize < 1 then contentSize = 1 end
+    -- Both regions are owned here; resizing their container does not change
+    -- the CENTER anchor. Cache only completed geometry, never a failed write.
+    local function sync(region)
+        if not region then return end
+        if region._fluxPortraitGeometryFrame == pf and region._fluxPortraitGeometrySize == contentSize then return end
+        region._fluxPortraitGeometryFrame, region._fluxPortraitGeometrySize = nil, nil
+        region:ClearAllPoints()
+        region:SetSize(contentSize, contentSize)
+        region:SetPoint("CENTER", pf, "CENTER", 0, 0)
+        region._fluxPortraitGeometryFrame, region._fluxPortraitGeometrySize = pf, contentSize
+    end
+    pcall(sync, self.Portrait)
+    if self.Portrait2D then pcall(sync, self.Portrait2D) end
+end
+]====],
+}

@@ -27,6 +27,12 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
                 FluxUnitFrames_ShouldShowClassIcon = function() return enabled end,
             }, { __index = _G })
             assert(load(helper, "@actual-safe-string", "t", env))()
+            local geometryStart = source:find("-- Current native state for name-strip icon geometry", 1, true)
+            if geometryStart then
+                local geometryEnd = assert(source:find("--- Combat/rest beside level", geometryStart, true))
+                env.UF = {}
+                assert(load(source:sub(geometryStart, geometryEnd - 1), "@actual-icon-geometry", "t", env))()
+            end
             local search = 1
             for route = 1, 2 do
                 local a = assert(source:find("-- Update class icon for players", search, true))

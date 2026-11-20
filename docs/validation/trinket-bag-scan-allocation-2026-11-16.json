@@ -1,0 +1,1942 @@
+{
+  "changeId": "LHO-TRINKET-BAG-SCAN-P58-20261116",
+  "recordedUTC": "2026-11-16T13:44:43.178637+00:00",
+  "status": "APPLIED_SCOPED_POSTCHECK_PASS",
+  "goalStatus": "ACTIVE",
+  "sourceIdentity": {
+    "baselineSHA256": "bb18c01170be67a91a0e2f0eff8135635fd0454690db4d9477de11a9d23cea91",
+    "actualOwnedHashes": {
+      "tests/trinket_bag_scan_work.lua": "8a2d11da5381df5ca2742226538bb970d924edab54ab2fc51a11c713e5e7263e",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "7d8f645c180cf49a46db19fdbaba2110e4960684f8abdee0d917635ca3b11313"
+    },
+    "appliedUTC": "2026-11-16T13:21:00.276150+00:00",
+    "branch": "main",
+    "HEAD": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "hooksPath": ".githooks"
+  },
+  "behavior": "Private snapshot location maps replace temporary per-slot wrappers; itemID/count/link reads, duplicate last-location choice, all3scans/query cadence, foreignFluxInv row map, public outputs/caches and combat recovery retained.",
+  "functional": {
+    "pairedScenariosPerVM": 17,
+    "ownerContextsPerVM": 34,
+    "combinedChecksPerVM": 648,
+    "sameVMObservationPairs": 34,
+    "comparedLeafFields": 4800,
+    "clientScope": "Five family labels and provider flags distributed; no fullcrossproduct/native certification.",
+    "harmfulSources": 3,
+    "targetedRejectionsPerVM": 4,
+    "positiveControlPairs": 4
+  },
+  "durable": {
+    "semanticChecksPerRun": 222,
+    "authorizedJobs": 4,
+    "candidateWrapperRowsAcross3Scans": 0,
+    "baselineMeasureWrapperRowsAcross3Scans": 96,
+    "wrapperCounterIsNotHeapOrCPU": true,
+    "initialSourceSHA256": "1853770de07d39ebddb5f58c34511ef895db31fe31d7800d8345f47cf70138de",
+    "initialFailure": "Observer incorrectly assertedtable for legitimate native-slotfallback uniqueItems=nil; got.id masked the case failure. Originalsource/firstfailure retained; correction handles onlynilfallback and guardsgot while preservingbehaviorchecks.",
+    "finalSourceSHA256": "8a2d11da5381df5ca2742226538bb970d924edab54ab2fc51a11c713e5e7263e"
+  },
+  "checkpoint": {
+    "sha256": "ed3a4bd391b49db095f43068a90e30619b79c0519e73200d5732c38e1cbdc171",
+    "startedUTC": "2026-11-16T13:08:02.497381+00:00",
+    "completedUTC": "2026-11-16T13:08:26.856845+00:00",
+    "sourceZIP_SHA256": "8b1740cc6f9019badc66f61e71bcf3a2e1a2b90f26da1b7915ecf716712f89d4",
+    "archiveEntries": 2956,
+    "everyEntryHashVerified": true,
+    "parentHistorySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "parentBundleVerified": true,
+    "settingsKnown": 125,
+    "settingsAvailable": 125,
+    "privateValuesReadOrCopied": false
+  },
+  "integration": {
+    "resolutionSHA256": "5627060ec03eb4d6d32694c38abb04674da260331e6f6bb7161f53bef40b0116",
+    "initialReportSHA256": "847e04f5d252c44bbd2d92a714de54aea20fe11fb52df8ecac6c705028ad65d4",
+    "referenceSupplementSHA256": "20e4971f1b4dcac53b1c8f721e3e54a5cff0d0ccb766d3302c3396c70a5e6672",
+    "candidateDistinctScriptsPassing": 8,
+    "baselineCoverage": 7,
+    "pairedExistingScripts": 6,
+    "newCandidateRegression": 1,
+    "sharedUnchangedMenuPress": "4284checks; exact5shortrefs; changedowner notloaded",
+    "initialFailuresRetained": "Missing relative external references before menupress execution; R3 redirects only5exact references toshortexternalcopies; actual readtrace proves changedTM/newtest are not loaded, unchangedaddoninputs equalarchive. One commonexecution coversbothidenticalinputs; prior failures retained.",
+    "concurrentUnrelatedRuntimeDriftPreserved": [
+      "Core/BorderJunctions.lua",
+      "tests/border_reflow_cost.lua"
+    ],
+    "currentWholeCorpusPassClaim": false
+  },
+  "postApply": {
+    "reportSHA256": "2b81806d551393a5353cfa3135a104a1347ef9b081e2539b417c856323f7a3c9",
+    "actualBehaviorJobs": 5,
+    "ownedSyntaxJobs": 4,
+    "readOnlyDiskIdentities": 10,
+    "fiveInstallsAllMatch": true,
+    "manualSync": false,
+    "nativeReloadOrSourceAdoptionClaim": false
+  },
+  "costProtocol": {
+    "CPUChildren": 36,
+    "GCChildren": 2,
+    "GCRawWindows": 48,
+    "sourcePins": 5,
+    "warmups": 20,
+    "CPUQuantumMs": 15.625,
+    "protocolSHA256": "2912eeb915c709868abe8ac346341d63db6d0cc24271a6abbdd956e8554454bf",
+    "reruns": 0
+  },
+  "allSixCPUAndWallProfiles": [
+    {
+      "profile": "empty",
+      "iterations": 10000,
+      "CPUms": {
+        "baselineRaw": [
+          718.75,
+          750.0,
+          734.375
+        ],
+        "candidateRaw": [
+          703.125,
+          718.75,
+          750.0
+        ],
+        "baselineMedian": 734.375,
+        "candidateMedian": 718.75,
+        "baselineRange": [
+          718.75,
+          750.0
+        ],
+        "candidateRange": [
+          703.125,
+          750.0
+        ],
+        "medianDelta": -15.625,
+        "medianPercentChange": -2.127659574468085,
+        "pairedDeltas": [
+          -15.625,
+          -31.25,
+          15.625
+        ],
+        "pairedPercentChanges": [
+          -2.1739130434782608,
+          -4.166666666666666,
+          2.127659574468085
+        ],
+        "fasterPairs": 2,
+        "tiedPairs": 0,
+        "slowerPairs": 1
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          748.0582999996841,
+          768.6657000158448,
+          783.4181000071112
+        ],
+        "candidateRaw": [
+          740.2892999816686,
+          740.9260999993421,
+          773.439899989171
+        ],
+        "baselineMedian": 768.6657000158448,
+        "candidateMedian": 740.9260999993421,
+        "baselineRange": [
+          748.0582999996841,
+          783.4181000071112
+        ],
+        "candidateRange": [
+          740.2892999816686,
+          773.439899989171
+        ],
+        "medianDelta": -27.739600016502663,
+        "medianPercentChange": -3.6087989897208703,
+        "pairedDeltas": [
+          -7.769000018015504,
+          -27.739600016502663,
+          -9.978200017940253
+        ],
+        "pairedPercentChanges": [
+          -1.0385554198140419,
+          -3.6087989897208703,
+          -1.2736749403479035
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        468750,
+        312500,
+        312500
+      ],
+      "candidateKernelTicks100ns": [
+        156250,
+        0,
+        0
+      ],
+      "baselineUserTicks100ns": [
+        6718750,
+        7187500,
+        7031250
+      ],
+      "candidateUserTicks100ns": [
+        6875000,
+        7187500,
+        7500000
+      ]
+    },
+    {
+      "profile": "small1",
+      "iterations": 10000,
+      "CPUms": {
+        "baselineRaw": [
+          812.5,
+          828.125,
+          843.75
+        ],
+        "candidateRaw": [
+          812.5,
+          843.75,
+          890.625
+        ],
+        "baselineMedian": 828.125,
+        "candidateMedian": 843.75,
+        "baselineRange": [
+          812.5,
+          843.75
+        ],
+        "candidateRange": [
+          812.5,
+          890.625
+        ],
+        "medianDelta": 15.625,
+        "medianPercentChange": 1.8867924528301887,
+        "pairedDeltas": [
+          0.0,
+          15.625,
+          46.875
+        ],
+        "pairedPercentChanges": [
+          0.0,
+          1.8867924528301887,
+          5.555555555555555
+        ],
+        "fasterPairs": 0,
+        "tiedPairs": 1,
+        "slowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          834.8095999972429,
+          858.2874999847263,
+          906.5977999998722
+        ],
+        "candidateRaw": [
+          880.4827000130899,
+          864.5642999908887,
+          905.1775999832898
+        ],
+        "baselineMedian": 858.2874999847263,
+        "candidateMedian": 880.4827000130899,
+        "baselineRange": [
+          834.8095999972429,
+          906.5977999998722
+        ],
+        "candidateRange": [
+          864.5642999908887,
+          905.1775999832898
+        ],
+        "medianDelta": 22.195200028363615,
+        "medianPercentChange": 2.585986633704742,
+        "pairedDeltas": [
+          45.67310001584701,
+          6.276800006162375,
+          -1.4202000165823847
+        ],
+        "pairedPercentChanges": [
+          5.471079874500467,
+          0.7313167215267697,
+          -0.15665160632229472
+        ],
+        "fasterPairs": 1,
+        "tiedPairs": 0,
+        "slowerPairs": 2
+      },
+      "baselineKernelTicks100ns": [
+        468750,
+        468750,
+        156250
+      ],
+      "candidateKernelTicks100ns": [
+        312500,
+        0,
+        468750
+      ],
+      "baselineUserTicks100ns": [
+        7656250,
+        7812500,
+        8281250
+      ],
+      "candidateUserTicks100ns": [
+        7812500,
+        8437500,
+        8437500
+      ]
+    },
+    {
+      "profile": "dense32",
+      "iterations": 3000,
+      "CPUms": {
+        "baselineRaw": [
+          484.375,
+          453.125,
+          437.5
+        ],
+        "candidateRaw": [
+          437.5,
+          406.25,
+          406.25
+        ],
+        "baselineMedian": 453.125,
+        "candidateMedian": 406.25,
+        "baselineRange": [
+          437.5,
+          484.375
+        ],
+        "candidateRange": [
+          406.25,
+          437.5
+        ],
+        "medianDelta": -46.875,
+        "medianPercentChange": -10.344827586206897,
+        "pairedDeltas": [
+          -46.875,
+          -46.875,
+          -31.25
+        ],
+        "pairedPercentChanges": [
+          -9.67741935483871,
+          -10.344827586206897,
+          -7.142857142857142
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          529.4087000074796,
+          486.4882999972906,
+          495.5296000116505
+        ],
+        "candidateRaw": [
+          458.10440002242103,
+          448.4809999994468,
+          436.9114000000991
+        ],
+        "baselineMedian": 495.5296000116505,
+        "candidateMedian": 448.4809999994468,
+        "baselineRange": [
+          486.4882999972906,
+          529.4087000074796
+        ],
+        "candidateRange": [
+          436.9114000000991,
+          458.10440002242103
+        ],
+        "medianDelta": -47.04860001220368,
+        "medianPercentChange": -9.494609405996638,
+        "pairedDeltas": [
+          -71.3042999850586,
+          -38.0072999978438,
+          -58.61820001155138
+        ],
+        "pairedPercentChanges": [
+          -13.468667965609782,
+          -7.8125825426953694,
+          -11.829404340360938
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        468750,
+        468750,
+        156250
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        312500,
+        0
+      ],
+      "baselineUserTicks100ns": [
+        4375000,
+        4062500,
+        4218750
+      ],
+      "candidateUserTicks100ns": [
+        3906250,
+        3750000,
+        4062500
+      ]
+    },
+    {
+      "profile": "dense160",
+      "iterations": 1000,
+      "CPUms": {
+        "baselineRaw": [
+          343.75,
+          328.125,
+          328.125
+        ],
+        "candidateRaw": [
+          250.0,
+          265.625,
+          250.0
+        ],
+        "baselineMedian": 328.125,
+        "candidateMedian": 250.0,
+        "baselineRange": [
+          328.125,
+          343.75
+        ],
+        "candidateRange": [
+          250.0,
+          265.625
+        ],
+        "medianDelta": -78.125,
+        "medianPercentChange": -23.809523809523807,
+        "pairedDeltas": [
+          -93.75,
+          -62.5,
+          -78.125
+        ],
+        "pairedPercentChanges": [
+          -27.27272727272727,
+          -19.047619047619047,
+          -23.809523809523807
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          361.4829999860376,
+          356.42870000447147,
+          360.8404000115115
+        ],
+        "candidateRaw": [
+          279.39579999656416,
+          291.98310000356287,
+          280.8329999970738
+        ],
+        "baselineMedian": 360.8404000115115,
+        "candidateMedian": 280.8329999970738,
+        "baselineRange": [
+          356.42870000447147,
+          361.4829999860376
+        ],
+        "candidateRange": [
+          279.39579999656416,
+          291.98310000356287
+        ],
+        "medianDelta": -80.00740001443774,
+        "medianPercentChange": -22.17251727131589,
+        "pairedDeltas": [
+          -82.08719998947345,
+          -64.4456000009086,
+          -80.00740001443774
+        ],
+        "pairedPercentChanges": [
+          -22.708453784173553,
+          -18.080923337570773,
+          -22.17251727131589
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        312500,
+        156250,
+        468750
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        625000,
+        156250
+      ],
+      "baselineUserTicks100ns": [
+        3125000,
+        3125000,
+        2812500
+      ],
+      "candidateUserTicks100ns": [
+        2031250,
+        2031250,
+        2343750
+      ]
+    },
+    {
+      "profile": "duplicate160",
+      "iterations": 1000,
+      "CPUms": {
+        "baselineRaw": [
+          281.25,
+          281.25,
+          296.875
+        ],
+        "candidateRaw": [
+          171.875,
+          171.875,
+          171.875
+        ],
+        "baselineMedian": 281.25,
+        "candidateMedian": 171.875,
+        "baselineRange": [
+          281.25,
+          296.875
+        ],
+        "candidateRange": [
+          171.875,
+          171.875
+        ],
+        "medianDelta": -109.375,
+        "medianPercentChange": -38.88888888888889,
+        "pairedDeltas": [
+          -109.375,
+          -109.375,
+          -125.0
+        ],
+        "pairedPercentChanges": [
+          -38.88888888888889,
+          -38.88888888888889,
+          -42.10526315789473
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          297.1613999980036,
+          294.4582999916747,
+          330.21470002131537
+        ],
+        "candidateRaw": [
+          191.4223000057973,
+          195.55860001128167,
+          199.4340000092052
+        ],
+        "baselineMedian": 297.1613999980036,
+        "candidateMedian": 195.55860001128167,
+        "baselineRange": [
+          294.4582999916747,
+          330.21470002131537
+        ],
+        "candidateRange": [
+          191.4223000057973,
+          199.4340000092052
+        ],
+        "medianDelta": -101.60279998672195,
+        "medianPercentChange": -34.19111633859732,
+        "pairedDeltas": [
+          -105.73909999220632,
+          -98.89969998039305,
+          -130.78070001211017
+        ],
+        "pairedPercentChanges": [
+          -35.583053516680394,
+          -33.58699686277794,
+          -39.604748063507856
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        625000,
+        156250,
+        156250
+      ],
+      "candidateKernelTicks100ns": [
+        468750,
+        156250,
+        468750
+      ],
+      "baselineUserTicks100ns": [
+        2187500,
+        2656250,
+        2812500
+      ],
+      "candidateUserTicks100ns": [
+        1250000,
+        1562500,
+        1250000
+      ]
+    },
+    {
+      "profile": "foreign32",
+      "iterations": 3000,
+      "CPUms": {
+        "baselineRaw": [
+          359.375,
+          375.0,
+          359.375
+        ],
+        "candidateRaw": [
+          375.0,
+          375.0,
+          375.0
+        ],
+        "baselineMedian": 359.375,
+        "candidateMedian": 375.0,
+        "baselineRange": [
+          359.375,
+          375.0
+        ],
+        "candidateRange": [
+          375.0,
+          375.0
+        ],
+        "medianDelta": 15.625,
+        "medianPercentChange": 4.3478260869565215,
+        "pairedDeltas": [
+          15.625,
+          0.0,
+          15.625
+        ],
+        "pairedPercentChanges": [
+          4.3478260869565215,
+          0.0,
+          4.3478260869565215
+        ],
+        "fasterPairs": 0,
+        "tiedPairs": 1,
+        "slowerPairs": 2
+      },
+      "wholeChildWallMs": {
+        "baselineRaw": [
+          397.32590000494383,
+          395.424299989827,
+          419.95710000628605
+        ],
+        "candidateRaw": [
+          376.3520000211429,
+          387.4415000027511,
+          393.24289999785833
+        ],
+        "baselineMedian": 397.32590000494383,
+        "candidateMedian": 387.4415000027511,
+        "baselineRange": [
+          395.424299989827,
+          419.95710000628605
+        ],
+        "candidateRange": [
+          376.3520000211429,
+          393.24289999785833
+        ],
+        "medianDelta": -9.884400002192706,
+        "medianPercentChange": -2.487731104886371,
+        "pairedDeltas": [
+          -20.973899983800948,
+          -7.98279998707585,
+          -26.714200008427724
+        ],
+        "pairedPercentChanges": [
+          -5.278764858656325,
+          -2.0187934801379743,
+          -6.361173559877392
+        ],
+        "fasterPairs": 3,
+        "tiedPairs": 0,
+        "slowerPairs": 0
+      },
+      "baselineKernelTicks100ns": [
+        156250,
+        312500,
+        312500
+      ],
+      "candidateKernelTicks100ns": [
+        156250,
+        156250,
+        625000
+      ],
+      "baselineUserTicks100ns": [
+        3437500,
+        3437500,
+        3281250
+      ],
+      "candidateUserTicks100ns": [
+        3593750,
+        3593750,
+        3125000
+      ]
+    }
+  ],
+  "allSixGCProfiles": [
+    {
+      "profile": "empty",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 28500,
+            "N8": 56148,
+            "slopeBytesPerPulse": 6912.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 28500,
+            "N8": 56148,
+            "slopeBytesPerPulse": 6912.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 28500,
+            "N8": 56148,
+            "slopeBytesPerPulse": 6912.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 28500,
+            "N8": 56148,
+            "slopeBytesPerPulse": 6912.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        }
+      ]
+    },
+    {
+      "profile": "small1",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 45172,
+            "N8": 89492,
+            "slopeBytesPerPulse": 11080.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 43732,
+            "N8": 86612,
+            "slopeBytesPerPulse": 10720.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -360.0,
+          "slopePercentChange": -3.2490974729241873
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 45172,
+            "N8": 89492,
+            "slopeBytesPerPulse": 11080.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 43732,
+            "N8": 86612,
+            "slopeBytesPerPulse": 10720.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -360.0,
+          "slopePercentChange": -3.2490974729241873
+        }
+      ]
+    },
+    {
+      "profile": "dense32",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 183892,
+            "N8": 366932,
+            "slopeBytesPerPulse": 45760.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 114004,
+            "N8": 227156,
+            "slopeBytesPerPulse": 28288.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -17472.0,
+          "slopePercentChange": -38.18181818181819
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 183892,
+            "N8": 366932,
+            "slopeBytesPerPulse": 45760.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 114004,
+            "N8": 227156,
+            "slopeBytesPerPulse": 28288.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -17472.0,
+          "slopePercentChange": -38.18181818181819
+        }
+      ]
+    },
+    {
+      "profile": "dense160",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 563668,
+            "N8": 1126484,
+            "slopeBytesPerPulse": 140704.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 185428,
+            "N8": 370004,
+            "slopeBytesPerPulse": 46144.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -94560.0,
+          "slopePercentChange": -67.2049124403002
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 563668,
+            "N8": 1126484,
+            "slopeBytesPerPulse": 140704.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 185428,
+            "N8": 370004,
+            "slopeBytesPerPulse": 46144.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -94560.0,
+          "slopePercentChange": -67.2049124403002
+        }
+      ]
+    },
+    {
+      "profile": "duplicate160",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 527956,
+            "N8": 1055060,
+            "slopeBytesPerPulse": 131776.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 114004,
+            "N8": 227156,
+            "slopeBytesPerPulse": 28288.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -103488.0,
+          "slopePercentChange": -78.53326857697913
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 527956,
+            "N8": 1055060,
+            "slopeBytesPerPulse": 131776.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 114004,
+            "N8": 227156,
+            "slopeBytesPerPulse": 28288.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": -103488.0,
+          "slopePercentChange": -78.53326857697913
+        }
+      ]
+    },
+    {
+      "profile": "foreign32",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 81748,
+            "N8": 162644,
+            "slopeBytesPerPulse": 20224.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 81748,
+            "N8": 162644,
+            "slopeBytesPerPulse": 20224.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 81748,
+            "N8": 162644,
+            "slopeBytesPerPulse": 20224.0,
+            "interceptBytes": 852.0
+          },
+          "candidate": {
+            "N4": 81748,
+            "N8": 162644,
+            "slopeBytesPerPulse": 20224.0,
+            "interceptBytes": 852.0
+          },
+          "slopeDeltaBytes": 0.0,
+          "slopePercentChange": 0.0
+        }
+      ]
+    }
+  ],
+  "allGCRawWindows": {
+    "baseline": [
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 4,
+        "deltaBytes": 28500,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 8,
+        "deltaBytes": 56148,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 4,
+        "deltaBytes": 28500,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 8,
+        "deltaBytes": 56148,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 4,
+        "deltaBytes": 45172,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 8,
+        "deltaBytes": 89492,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 4,
+        "deltaBytes": 45172,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 8,
+        "deltaBytes": 89492,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 183892,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 366932,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 183892,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 366932,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 563668,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 1126484,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 563668,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 1126484,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 527956,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 1055060,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 527956,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 1055060,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 81748,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 162644,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 81748,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 162644,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      }
+    ],
+    "candidate": [
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 4,
+        "deltaBytes": 28500,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 8,
+        "deltaBytes": 56148,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 4,
+        "deltaBytes": 28500,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 0,
+        "cacheIDs": 0,
+        "checksum": 8,
+        "deltaBytes": 56148,
+        "flyout0": 0,
+        "flyout1": 0,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 0,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 0,
+        "pendingTimers": 0,
+        "profile": "empty",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 4,
+        "deltaBytes": 43732,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 8,
+        "deltaBytes": 86612,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 4,
+        "deltaBytes": 43732,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 101,
+        "cacheIDs": 1,
+        "checksum": 8,
+        "deltaBytes": 86612,
+        "flyout0": 1,
+        "flyout1": 1,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 101,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 1,
+        "pendingTimers": 0,
+        "profile": "small1",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 114004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 227156,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 114004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 227156,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 185428,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 370004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 185428,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 370004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "dense160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 114004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 227156,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 114004,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 227156,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 58430,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "duplicate160",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 81748,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 162644,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 1,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 4,
+        "deltaBytes": 81748,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 4,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      },
+      {
+        "baggedIDSum": 410,
+        "cacheIDs": 4,
+        "checksum": 8,
+        "deltaBytes": 162644,
+        "flyout0": 4,
+        "flyout1": 4,
+        "frameCount": 2,
+        "iterations": 8,
+        "locationChecksum": 1030,
+        "macro0": "/use 13",
+        "macro1": "/use 14",
+        "number": 4,
+        "pendingTimers": 0,
+        "profile": "foreign32",
+        "slot0Shown": true,
+        "slot1Shown": true,
+        "trial": 2,
+        "visibility": "both_equipped"
+      }
+    ]
+  },
+  "numericVerification": {
+    "CPURecords": 36,
+    "kernelUserRawTickArithmetic": 36,
+    "allTotalCPUOn15_625msGrid": true,
+    "finitePositiveWall": 36,
+    "stdoutHashAndParsedWork": 36,
+    "emptyStderrHash": 36,
+    "exactDeclaredAlternatingSchedule": true,
+    "pairedCPUWorkComparisons": 18,
+    "pairedCPUWorkFields": 324,
+    "GCChildren": 2,
+    "GCRawWindows": 48,
+    "pairedGCWindows": 24,
+    "pairedGCNonByteFields": 408,
+    "all5LiveAndFrozenPinsExact": true,
+    "artifactPins": 9,
+    "measurementRerunsByReviewer": 0
+  },
+  "findings": [
+    "Dense32, dense160 and duplicate160 improve all3CPU and wall pairs each. MedianCPU changes -10.3448%/-23.8095%/-38.8889%, wall -9.4946%/-22.1725%/-34.1911%; stopped-GC slope reductions38.1818%/67.2049%/78.5333% respectively. These consistent conditional model gains plus one-file private representation scope support bounded integration.",
+    "Small1 CPUmedian+1.8868% (+15.625ms), wall+2.5860%; CPU two slower/one tie with tail+46.875ms preserved. Growth falls360B/pulse (3.2491%) despite equal constructor count; the extra map write/branch remains real overhead.",
+    "Foreign32 CPUmedian+4.3478% (+15.625ms), two slower/one tie; wallmedian-2.4877% with3faster pairs. Added foreign branch is executed, so CPU regression must not be dismissed as an unreachable control. Foreign GC allrawN4/N8/slopes/intercepts unchanged.",
+    "Empty CPUmedian-2.1277% with two faster/one slower, wall-3.6088%; raw growth identical. Do not attribute this mixed control difference to eliminated row constructors (there are none).",
+    "All paired modeled work/state facts match. Preserve everyrawpair, small/foreign regressions and one-bag160stress limitation; no further P58 variant or timing rerun recommended."
+  ],
+  "historicalNumericReviewLimits": [
+    "Whole own-child user+kernel CPU and separate launch-through-communicate monotonic wall include interpreter/source/setup20warmups/finalchecks/normalGC. Threepairs/profile and15.625ms quantum limit precision; no per-callback exclusiveCPU estimate asserted.",
+    "Actual OOC Manager pulse/timer/threeScan/Visibility/Bindings code; native/provider/slot/equipment/UI endpoints are modeled and constant fakeinfo records prepared in setup. 160rows reside in one modelbag0. No actual bagcapacity/frequency/nativequerycost or clientadoption/FPS/taint proof.",
+    "GC interval covers only actual pulse loops with stopped collector; setup20warmups/fullcollection/finalfacts outside. Transient growth is not retainedheap, peak allocation traffic or GCpause time.",
+    "Root must still complete checkpoint/durable/integration/current-source guards before any promotion. Baseline remains installed as of this source guard; goalACTIVE."
+  ],
+  "nativeAcceptance": "No P58 native reload, loaded-byte adoption, FPS/frame-spike/taint/rendering or allworkflow acceptance. Earlier acceptedP54 instrumentation remains separate evidence.",
+  "nextLeadP59": {
+    "id": "P59",
+    "status": "DEFERRED_NO_CANDIDATE_NO_COST",
+    "baselineSHA256": "1a9cd05e1ae492554c57793cf7fef29690688b091dcdcd3ee831637e2838a323",
+    "coverage": "8contexts/13phases/183checks each51/54",
+    "reason": "Public ReadSlot/Diff rows, extras/metatables and held references make unconditional reuse uncertified. No new ownership protocol/candidate/cost approved."
+  },
+  "evidence": {
+    "externalRelativeBase": "trinket-temp-map-p58-r1",
+    "artifactSHA256": {
+      "application.json": "e174b03d2684c614c39c8acc22be1852cda85a7013b8bb458bae832467036b2e",
+      "post-apply-r1/report.json": "2b81806d551393a5353cfa3135a104a1347ef9b081e2539b417c856323f7a3c9",
+      "checkpoint-20261116/checkpoint.json": "ed3a4bd391b49db095f43068a90e30619b79c0519e73200d5732c38e1cbdc171",
+      "integration-r1/resolution.json": "5627060ec03eb4d6d32694c38abb04674da260331e6f6bb7161f53bef40b0116",
+      "integration-r1/native-reference-supplement-r3/report.json": "20e4971f1b4dcac53b1c8f721e3e54a5cff0d0ccb766d3302c3396c70a5e6672",
+      "independent-combined-numeric-review-count-agent/review.json": "51bc6f438836311f9a1515d420c5f37c435b060bad2c058bf5b5830dc7afdff3",
+      "cost-single-batch-r1/raw.json": "79e696baf890912317d6da9fce4ee2da5351f0417ff01def4d5633522fc96858",
+      "allocation-single-batch-r1/raw.json": "55577edbf553b4e6db5306e3b49228a18cf2a8bb1da2bf112dfde1c996ca558c"
+    },
+    "pairedReportSHA256": "80829fe9b15d3da5e1319d518bfe8a955a2b29d8bc3058a065fe5d15dc81de33",
+    "durableReportSHA256": "42588afa0bfc96d86fd2f4a4cbd7fff735d3470719db4313a9904e634b3bec53",
+    "harmfulReportSHA256": "a266127513d753c4967d8f8f9b2593267b1520d4c0e1ddee294acc4bc9bdda67",
+    "jointPrepPeerSHA256": "bf223532a78989c02a0520bd880d6130c1274e8c7542cd98a24938dda1052788"
+  },
+  "actionsByDocsEditor": {
+    "runtimeOrTestLuaEdits": 0,
+    "native": 0,
+    "costOrModelReruns": 0,
+    "settingsProviderProfilerChanges": 0,
+    "manualSyncCommitPublication": 0
+  }
+}

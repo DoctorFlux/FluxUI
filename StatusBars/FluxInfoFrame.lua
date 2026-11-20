@@ -1945,8 +1945,9 @@ local function _RlEntryHasSystemStat(entry)
 end
 
 --- After merge: iLvl / G.S. short only when this chunk's keys include Dur/FPS/ping (same merged segment).
-local function _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey)
-    local out = {}
+local function _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey, updateMeasuredList)
+    local out = updateMeasuredList and rl or {}
+    local sameText = updateMeasuredList == true
     for i, entry in ipairs(rl) do
         local srcKeys = entry.keys or { entry.key }
         local useShortIlvlGs = _RlEntryHasSystemStat(entry)
@@ -1962,14 +1963,23 @@ local function _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey)
                 parts[#parts + 1] = fullByKey[k] or compactByKey[k] or ""
             end
         end
-        out[i] = {
-            fs = entry.fs,
-            key = entry.key,
-            keys = srcKeys,
-            text = table.concat(parts, " | "),
-        }
+        local text = table.concat(parts, " | ")
+        if updateMeasuredList then
+            if sameText then
+                sameText = not (issecretvalue and (issecretvalue(text) or issecretvalue(entry.text)))
+                    and text == entry.text
+            end
+            entry.text = text
+        else
+            out[i] = {
+                fs = entry.fs,
+                key = entry.key,
+                keys = srcKeys,
+                text = text,
+            }
+        end
     end
-    return out
+    return out, sameText
 end
 
 --- Rebuild current render list texts from compact sources while preserving the
@@ -2357,14 +2367,17 @@ local function ApplyHorizontalStripTextLayoutDynamic(fontSize, padLeft, gap)
             width = _MeasureRL(rl, useFont)
         end
         if width > availableW then
-            rl = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)
+            rl, width = _ApplyMergeCascadeUntilFit(rl, HORIZ_MERGE_GROUPS_EMERGENCY, useFont, availableW, width)
         end
-        return rl, useFont
+        return rl, useFont, width
     end
 
-    local rl, useFont = _RunHorizontalMergePipeline(textsShort, fontSize)
-    rl = _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey)
-    local width = _MeasureRL(rl, useFont)
+    local rl, useFont, width = _RunHorizontalMergePipeline(textsShort, fontSize)
+    local sameText
+    -- This list belongs to the current pass. Keep its FontStrings and font
+    -- size, updating only the labels before the remaining fit checks.
+    rl, sameText = _ApplyHybridIlvlGsTextsToRenderList(rl, fullByKey, compactByKey, true)
+    if not sameText then width = _MeasureRL(rl, useFont) end
     while useFont > 7 and width > availableW do
         useFont = useFont - 1
         width = _MeasureRL(rl, useFont)
@@ -4431,10 +4444,40 @@ end
 --- Pixels to grow the UnifiedBorder gap backdrop past the Info slot (covers border seams vs grids). Only when forRealInfoFrame is false.
 local ACTION_STRIP_GAP_BACKDROP_BLEED = 4
 
+do
+    local function SlotPointMatches(frame, index, point, owner, relativePoint, x, y)
+        local p, relative, rp, ox, oy = frame:GetPoint(index)
+        if issecretvalue and (issecretvalue(p) or issecretvalue(relative) or issecretvalue(rp)
+            or issecretvalue(ox) or issecretvalue(oy)) then return false end
+        return p == point and relative == owner and rp == relativePoint and ox == x and oy == y
+    end
+
+    local function SlotPointsMatch(frame, left, leftX, right, rightX, bleed)
+        local count = frame:GetNumPoints()
+        if issecretvalue and issecretvalue(count) then return false end
+        return count == (right and 3 or 2)
+            and SlotPointMatches(frame, 1, "BOTTOMLEFT", left, "BOTTOMRIGHT", leftX, -bleed)
+            and (not right or SlotPointMatches(frame, 2, "BOTTOMRIGHT", right, "BOTTOMLEFT", rightX, -bleed))
+            and SlotPointMatches(frame, count, "TOP", left, "TOP", 0, bleed)
+    end
+
+    function InfoFrame._AnchorActionStripSlot(frame, left, leftX, right, rightX, bleed, stripCrossing)
+        -- The native points already follow their owners when the grids move.
+        if stripCrossing == true and frame.GetNumPoints and frame.GetPoint then
+            local ok, matches = pcall(SlotPointsMatch, frame, left, leftX, right, rightX, bleed)
+            if ok and matches then return end
+        end
+        frame:ClearAllPoints()
+        frame:SetPoint("BOTTOMLEFT", left, "BOTTOMRIGHT", leftX, -bleed)
+        if right then frame:SetPoint("BOTTOMRIGHT", right, "BOTTOMLEFT", rightX, -bleed) end
+        frame:SetPoint("TOP", left, "TOP", 0, bleed)
+    end
+end
+
 --- Same rectangle as the FPS/durability strip on the action bar row. Used by LayoutActionStrip and UnifiedBorder gap fill when Info lives elsewhere.
 --- @param forRealInfoFrame boolean true for FluxInfoFrame (stats height); false for backdrop-only sibling frame
 --- @return boolean whether the slot exists and `f` was anchored
-local function PositionFrameInActionStripSlot(f, forRealInfoFrame)
+local function PositionFrameInActionStripSlot(f, forRealInfoFrame, stripCrossing)
     local e = (not forRealInfoFrame and ACTION_STRIP_GAP_BACKDROP_BLEED) or 0
     if not f then
         return false
@@ -4488,16 +4531,15 @@ local function PositionFrameInActionStripSlot(f, forRealInfoFrame)
         return true
     end
 
-    local dynH = GetDynamicVerticalHeight()
-    local combatHeight = (combatFrame and combatFrame:GetHeight()) or dynH
-    local nonCombatHeight = nonCombatFrame:GetHeight() or dynH
-    local targetHeight = math.max(combatHeight, nonCombatHeight)
-
     if forRealInfoFrame then
-        f:SetHeight(targetHeight)
+        local dynH = GetDynamicVerticalHeight()
+        local combatHeight = (combatFrame and combatFrame:GetHeight()) or dynH
+        local nonCombatHeight = nonCombatFrame:GetHeight() or dynH
+        f:SetHeight(math.max(combatHeight, nonCombatHeight))
     end
 
-    local infoLeftRef = nonCombatFrame
+    local leftX = borderPadding / 2 - e
+    local rightX = e - borderPadding / 2
     local stripExtraWidth = 0
 
     if combatGridShown then
@@ -4511,19 +4553,14 @@ local function PositionFrameInActionStripSlot(f, forRealInfoFrame)
             if gapWidth - borderPadding - stripExtraWidth < 100 then
                 return false
             end
-            f:ClearAllPoints()
-            f:SetPoint("BOTTOMLEFT", infoLeftRef, "BOTTOMRIGHT", borderPadding / 2 - e, -e)
-            f:SetPoint("BOTTOMRIGHT", combatFrame, "BOTTOMLEFT", -borderPadding / 2 + e, -e)
-            f:SetPoint("TOP", nonCombatFrame, "TOP", 0, e)
+            InfoFrame._AnchorActionStripSlot(f, nonCombatFrame, leftX, combatFrame, rightX, e, stripCrossing)
             return true
         else
             if forRealInfoFrame then
                 UpdateStats()
             end
             f:SetWidth(CalculateMinimalWidth())
-            f:ClearAllPoints()
-            f:SetPoint("BOTTOMLEFT", infoLeftRef, "BOTTOMRIGHT", borderPadding / 2 - e, -e)
-            f:SetPoint("TOP", nonCombatFrame, "TOP", 0, e)
+            InfoFrame._AnchorActionStripSlot(f, nonCombatFrame, leftX, nil, nil, e, stripCrossing)
             if forRealInfoFrame and FluxCombatManager and FluxCombatManager.UpdateAnchor then
                 C_Timer.After(0.1, function()
                     if FluxCombatManager and FluxCombatManager.UpdateAnchor then FluxCombatManager:UpdateAnchor() end
@@ -4533,36 +4570,28 @@ local function PositionFrameInActionStripSlot(f, forRealInfoFrame)
         end
     else
         if actionBarActive then
-            f:ClearAllPoints()
-            f:SetPoint("BOTTOMLEFT", infoLeftRef, "BOTTOMRIGHT", borderPadding / 2 - e, -e)
-            f:SetPoint("BOTTOMRIGHT", actionBar, "BOTTOMLEFT", 2, -e)
-            f:SetPoint("TOP", nonCombatFrame, "TOP", 0, e)
+            InfoFrame._AnchorActionStripSlot(f, nonCombatFrame, leftX, actionBar, 2, e, stripCrossing)
             return true
         elseif trinketMenuShown then
-            f:ClearAllPoints()
-            f:SetPoint("BOTTOMLEFT", infoLeftRef, "BOTTOMRIGHT", borderPadding / 2 - e, -e)
-            f:SetPoint("BOTTOMRIGHT", trinketMenu, "BOTTOMLEFT", -borderPadding / 2 + e, -e)
-            f:SetPoint("TOP", nonCombatFrame, "TOP", 0, e)
+            InfoFrame._AnchorActionStripSlot(f, nonCombatFrame, leftX, trinketMenu, rightX, e, stripCrossing)
             return true
         else
             if forRealInfoFrame then
                 UpdateStats()
             end
             f:SetWidth(CalculateMinimalWidth())
-            f:ClearAllPoints()
-            f:SetPoint("BOTTOMLEFT", infoLeftRef, "BOTTOMRIGHT", borderPadding / 2 - e, -e)
-            f:SetPoint("TOP", nonCombatFrame, "TOP", 0, e)
+            InfoFrame._AnchorActionStripSlot(f, nonCombatFrame, leftX, nil, nil, e, stripCrossing)
             return true
         end
     end
 end
 
 --- UnifiedBorder: fills the action-strip slot when Info is top-left / status-integrated (same geometry as LayoutActionStrip).
-function InfoFrame.PositionActionStripSlotFrame(f)
-    return PositionFrameInActionStripSlot(f, false)
+function InfoFrame.PositionActionStripSlotFrame(f, stripCrossing)
+    return PositionFrameInActionStripSlot(f, false, stripCrossing)
 end
 
-local function LayoutActionStrip()
+local function LayoutActionStrip(stripCrossing)
     InfoFrame.SetAnchoredByStatusBarColumn(false)
     if frame then
         frame.FluxIntegratedLoc1FullWidthCentered = nil
@@ -4573,7 +4602,7 @@ local function LayoutActionStrip()
     if not frame then
         return
     end
-    if not PositionFrameInActionStripSlot(frame, true) then
+    if not PositionFrameInActionStripSlot(frame, true, stripCrossing) then
         frame:Hide()
         return
     end
@@ -4806,6 +4835,7 @@ local function UpdatePositionImmediate()
     if placement == "screenTopLeft" and frame:IsShown() then
         UpdateStats()
     end
+    InfoFrame._positionedPlacement = placement
 end
 
 --- Status-integrated: only anchors (LayoutIntegrated) on the hot path; chrome/borders/PVP less often.
@@ -4821,6 +4851,7 @@ local function RunIntegratedLayoutPass(includeHeavyDependents)
     if GetPlacement() ~= "statusIntegrated" then return end
 
     LayoutIntegrated()
+    InfoFrame._positionedPlacement = "statusIntegrated"
 
     if includeHeavyDependents then
         lastIntegratedHeavyAt = GetTime()
@@ -5073,23 +5104,24 @@ end
 -- EVENT-BASED: Grid position updates via hooks and frame scripts (no continuous OnUpdate)
 -- Hook into grid relayout functions if available
 local function HookGridRelayout()
+    local function GridLayoutChanged()
+        if not initialized or not frame or not frame:IsShown() then return end
+        if FluxUnifiedBorder and FluxUnifiedBorder.RequestGridLayoutUpdate then
+            FluxUnifiedBorder.RequestGridLayoutUpdate()
+        else
+            UpdatePosition()
+        end
+    end
+
     -- Try to hook grid relayout functions
     if FluxNonCombatGrid and FluxNonCombatGrid.Relayout and not FluxNonCombatGrid._fluxInfoRelayoutHooked then
         FluxNonCombatGrid._fluxInfoRelayoutHooked = true
-        hooksecurefunc(FluxNonCombatGrid, "Relayout", function()
-            if initialized and frame and frame:IsShown() then
-                UpdatePosition()
-            end
-        end)
+        hooksecurefunc(FluxNonCombatGrid, "Relayout", GridLayoutChanged)
     end
     
     if FluxCombatGrid and FluxCombatGrid.Relayout and not FluxCombatGrid._fluxInfoRelayoutHooked then
         FluxCombatGrid._fluxInfoRelayoutHooked = true
-        hooksecurefunc(FluxCombatGrid, "Relayout", function()
-            if initialized and frame and frame:IsShown() then
-                UpdatePosition()
-            end
-        end)
+        hooksecurefunc(FluxCombatGrid, "Relayout", GridLayoutChanged)
     end
     
     -- Hook grid frame OnSizeChanged (OnMove doesn't exist in WoW, so we use a timer for position changes)
@@ -5098,20 +5130,12 @@ local function HookGridRelayout()
     
     if combatGrid and combatGrid.Frame and not combatGrid.Frame._fluxInfoSizeHooked then
         combatGrid.Frame._fluxInfoSizeHooked = true
-        combatGrid.Frame:HookScript("OnSizeChanged", function()
-            if initialized and frame and frame:IsShown() then
-                UpdatePosition()
-            end
-        end)
+        combatGrid.Frame:HookScript("OnSizeChanged", GridLayoutChanged)
     end
     
     if nonCombatGrid and nonCombatGrid.Frame and not nonCombatGrid.Frame._fluxInfoSizeHooked then
         nonCombatGrid.Frame._fluxInfoSizeHooked = true
-        nonCombatGrid.Frame:HookScript("OnSizeChanged", function()
-            if initialized and frame and frame:IsShown() then
-                UpdatePosition()
-            end
-        end)
+        nonCombatGrid.Frame:HookScript("OnSizeChanged", GridLayoutChanged)
     end
 end
 
@@ -5234,6 +5258,19 @@ end
 
 -- Export UpdatePosition for external refresh (e.g. when Combat Grid hides)
 InfoFrame.UpdatePosition = UpdatePosition
+
+function InfoFrame.UpdateAfterStripLayout()
+    if InCombatLockdown() then return end
+    local placement = GetPlacement()
+    if not initialized or not frame or InfoFrame._positionedPlacement ~= placement then
+        return UpdatePosition()
+    end
+    if placement == "actionStrip" then
+        -- The changing gap can affect wrapping and visibility. The normal
+        -- strip placement updates both without restyling other panels.
+        LayoutActionStrip(true)
+    end
+end
 
 --- Immediate full layout (options / user toggles placement). Bypasses status-integrated throttle.
 function InfoFrame.ForceUpdatePosition()

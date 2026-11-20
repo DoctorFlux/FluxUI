@@ -608,7 +608,11 @@ gateEvents:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 gateEvents:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 pcall(gateEvents.RegisterEvent, gateEvents, "PLAYER_SPECIALIZATION_CHANGED")
 pcall(gateEvents.RegisterEvent, gateEvents, "ACTIVE_TALENT_GROUP_CHANGED")
-gateEvents:SetScript("OnEvent", function()
+gateEvents:SetScript("OnEvent", function(_, event, unit)
+    if event == "PLAYER_SPECIALIZATION_CHANGED" then
+        local sharedEvents = _G.Flux and _G.Flux.Events
+        if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(unit) then return end
+    end
     local FluxBinding = _G.FluxBinding
     if FluxBinding and FluxBinding.NotifyLoadGatesChanged then
         FluxBinding.NotifyLoadGatesChanged()

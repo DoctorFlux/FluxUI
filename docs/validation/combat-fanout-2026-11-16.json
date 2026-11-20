@@ -1,0 +1,516 @@
+{
+  "changeId": "COMBAT-FANOUT-20261116",
+  "capturedAtUTC": "2026-11-16T20:10:18.978444+00:00",
+  "branch": "main",
+  "status": "Three offline optimizations applied; baseline shadow-model assertion remains open; full lag objective active, native validation forbidden until explicit user release.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-before-20261116T190141Z",
+  "checkpointSourceFiles": 3018,
+  "historyBundleVerified": true,
+  "settingsMetadataVerifiedBeforeEdits": 8,
+  "privateSettingsCopied": false,
+  "nativeRestriction": {
+    "state": "HOLD",
+    "release": "Only an explicit later user instruction releases this restriction; automatic goal continuation does not.",
+    "scope": "No game testing, native Lua/profiling/input, client/process/window inspection, captures or saved-diagnostic collection.",
+    "afterUserInstruction": "No owned native action live or queued; no native action performed after the instruction. Offline Lua/source work continued."
+  },
+  "identities": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "before": {
+        "raw": "d7ea0d5d5c883f0ad5958c2d1aa55842fe2a21f3727c894d7139bd5ec3beaced",
+        "normalized": "db650736772025656b42db1f538e412e1499165d6d4e4becc29b9cd63d6e9fd0"
+      },
+      "after": {
+        "raw": "593135aac06983c4a5349b33decdce2b40c23dee6be9fe483024ff20f0b9dc72",
+        "normalized": "94dd868dc7363a75a3afce937266d336f3f808e0cf127f8c163e3e54a690c95f"
+      }
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": {
+      "before": {
+        "raw": "7d8f645c180cf49a46db19fdbaba2110e4960684f8abdee0d917635ca3b11313",
+        "normalized": "e96128c748e4a18f2d01d892d652177de0671dc5bf181eaebbaa9c85481e4af7"
+      },
+      "after": {
+        "raw": "b73d216239fec966facbc74d7ce1a839d4119af9df4001663b97682fcef69bd2",
+        "normalized": "831e0531e3f4fd0b84365e671928e8f2cf915928c9dba15653f853d9c979e135"
+      }
+    },
+    "FluxDefaultSettings.lua": {
+      "before": {
+        "raw": "fc824353f1ad1e415d6dcbb9fbf4b400d70a4ce32ab63d2f92bb195e6c672844",
+        "normalized": "fc824353f1ad1e415d6dcbb9fbf4b400d70a4ce32ab63d2f92bb195e6c672844"
+      },
+      "after": {
+        "raw": "08ef869d2bca3c03f50b86f8eda9f4e8697ebfd18323b1f7460c9dd8987e771c",
+        "normalized": "08ef869d2bca3c03f50b86f8eda9f4e8697ebfd18323b1f7460c9dd8987e771c"
+      }
+    },
+    "tests/unit_visual_geometry_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "024acd749d6e5a0a6e19e3fa2ad5abb6eae3ea2444dbfda06fbd87d75a6b31d5",
+        "normalized": "024acd749d6e5a0a6e19e3fa2ad5abb6eae3ea2444dbfda06fbd87d75a6b31d5"
+      }
+    },
+    "tests/unit_class_icon_secrets.lua": {
+      "before": {
+        "raw": "247a46907efcc57cc64c744f6b124febe9f030b64211abb77575e77fd5d41f1d",
+        "normalized": "247a46907efcc57cc64c744f6b124febe9f030b64211abb77575e77fd5d41f1d"
+      },
+      "after": {
+        "raw": "ea23ec0396b56513c9d2811507854da9325ecf2d1e0b4c26c5c883cc7e66a09e",
+        "normalized": "ea23ec0396b56513c9d2811507854da9325ecf2d1e0b4c26c5c883cc7e66a09e"
+      }
+    },
+    "tests/unit_indicator_layout.lua": {
+      "before": {
+        "raw": "fec0c2aafafa70aa431c3b1e7ff0faa6b8a945763764373d562761bfc9cfbb59",
+        "normalized": "fec0c2aafafa70aa431c3b1e7ff0faa6b8a945763764373d562761bfc9cfbb59"
+      },
+      "after": {
+        "raw": "710ec68c827ecc0631b97c112bb70612f1693aa8d3a094a7db8d7c6c63e996d1",
+        "normalized": "710ec68c827ecc0631b97c112bb70612f1693aa8d3a094a7db8d7c6c63e996d1"
+      }
+    },
+    "tests/trinket_squeeze_geometry_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "313886b72b3ffcf96ff222a5890589916512ad931ff86e5bcb0a6ab259b23049",
+        "normalized": "313886b72b3ffcf96ff222a5890589916512ad931ff86e5bcb0a6ab259b23049"
+      }
+    },
+    "tests/squeeze_notification_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "3447172cfbdaa52eb841fd7d6fe79b3a2746d76a85346c0093bd5f617003b4ca",
+        "normalized": "3447172cfbdaa52eb841fd7d6fe79b3a2746d76a85346c0093bd5f617003b4ca"
+      }
+    }
+  },
+  "concurrentChangesPreserved": [
+    {
+      "path": "Bars/Layout.lua",
+      "after": {
+        "raw": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2",
+        "normalized": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2"
+      }
+    },
+    {
+      "path": "Bars/Strip.lua",
+      "after": {
+        "raw": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a",
+        "normalized": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a"
+      }
+    },
+    {
+      "path": "Core/BorderJunctions.lua",
+      "after": {
+        "raw": "bc00e074fadf434404163a2e89da537f8f880ab8e6fd8dd46eb89a15ee42bb83",
+        "normalized": "f8cf01da8659a72d7bb28c14e89ac9cc1a8d336bf9df4d676ac3fadcab3ef833"
+      }
+    },
+    {
+      "path": "Inventory/Index.lua",
+      "after": {
+        "raw": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711",
+        "normalized": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711"
+      }
+    },
+    {
+      "path": "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "after": {
+        "raw": "d6c94547b3cc98a2f9fa12df924421aef074cf5cd78ef31837099dbdf74bb242",
+        "normalized": "d6c94547b3cc98a2f9fa12df924421aef074cf5cd78ef31837099dbdf74bb242"
+      }
+    },
+    {
+      "path": "Inventory/Restock/FluxRestock_Inv.lua",
+      "after": {
+        "raw": "d56520026c0f15053754226ccd88af53611885e63f176af99034e964a52800bb",
+        "normalized": "d56520026c0f15053754226ccd88af53611885e63f176af99034e964a52800bb"
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "CF01",
+      "requirement": "Reduce redundant class/spec and combat/rest geometry on entry/exit while preserving the entire visual refresh.",
+      "result": "APPLIED; fresh public getter guards only; queries/textures/ShowHide/metadata/name reserve/health and both combat-icon placement calls remain.",
+      "evidence": "34 integrated semantic checks;21 focused scripts; baseline and7 harmful controls rejected; exact non-geometry setter trace/final geometry match."
+    },
+    {
+      "id": "CF02",
+      "requirement": "Reduce trinket squeeze geometry repeated by the exit dependent notification and anchor manager without dropping either recovery pass.",
+      "result": "APPLIED; both squeeze calls and every Style/arrow/border/clip update remain. Current-state/missing/private/error/reentry behavior covered.",
+      "evidence": "402 checks/VM,10 focused scripts;12 deterministic baseline/candidate proof processes;260to0 geometry writes with260 extra reads per10 notifications."
+    },
+    {
+      "id": "CF03",
+      "requirement": "Remove per-notification callback closures while retaining full dependent order, argument and protected-error behavior.",
+      "result": "APPLIED; five file-local callback bodies resolve current global/method values inside the original pcall boundary. No event/notification/timer/binding repair skipped.",
+      "evidence": "2100 checks/VM; exact baseline semantic replay passes but work budget fails; three harmful controls rejected on each VM. Whole body default CPU/allocation measurements below."
+    },
+    {
+      "id": "CF04",
+      "requirement": "Investigate actual changed-layout border planning/commit CPU without accepting output-equivalent but slower candidates.",
+      "result": "THREE PROTOTYPES REJECTED/UNAPPLIED. Cached fingerprint helper/scalar rewrite, combined draw-basis scalar reuse and tolerance-only variant preserve modeled output but fail common CPU gate.",
+      "evidence": "360 fresh child cost samples;60 exact scene/native-read proofs; retained raw variation and warm-loop/whole-child distinction; no live Core mutation from prototypes."
+    },
+    {
+      "id": "CF05",
+      "requirement": "Honor the user prohibition on game testing until explicitly released.",
+      "result": "ENFORCED. Persisted first in continuity records; all agents confirm no owned native work live or queued. Goal remains active for offline work."
+    }
+  ],
+  "work": {
+    "unitVisual": {
+      "combat30": {
+        "geometryBefore": 210,
+        "after": 0,
+        "gettersBefore": 300,
+        "afterGetters": 510
+      },
+      "rest30": {
+        "geometryBefore": 300,
+        "after": 0,
+        "gettersBefore": 270,
+        "afterGetters": 570
+      },
+      "preserved": "Full queries/non-geometry native setter trace;30 health updates;actual name budgets255/287;pending combat/spec recovery."
+    },
+    "trinketSqueeze": {
+      "tenNotifications": 10,
+      "actualSqueezeCalls": 20,
+      "geometryBefore": 260,
+      "geometryAfter": 0,
+      "gettersBefore": 40,
+      "gettersAfter": 300,
+      "styleCalls": 40,
+      "clipCalls": 40,
+      "arrowLayerCalls": 20,
+      "limit": "Exact comparisons deliberately add no tolerance; float32 native rounding may retain setters. No native reduction claim."
+    },
+    "notificationCallbacks": {
+      "21PassesLegacyUniqueFunctionsBefore": 105,
+      "after": 5,
+      "modernBefore": 84,
+      "modernAfter": 4,
+      "meaning": "Candidate callback functions are allocated once at source load; no new per-notification callback objects.",
+      "cpuAllocationSummary": [
+        {
+          "vm": "51",
+          "scenario": "default",
+          "cpuBeforeMedian": 0.18,
+          "cpuAfterMedian": 0.16,
+          "allocationKiB5000Before": 585.9375,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 1500000,
+          "callbackCallsAfter": 1500000
+        },
+        {
+          "vm": "51",
+          "scenario": "legacy-max",
+          "cpuBeforeMedian": 0.206,
+          "cpuAfterMedian": 0.158,
+          "allocationKiB5000Before": 976.5625,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 1600000,
+          "callbackCallsAfter": 1600000
+        },
+        {
+          "vm": "51",
+          "scenario": "empty",
+          "cpuBeforeMedian": 0.039,
+          "cpuAfterMedian": 0.04,
+          "allocationKiB5000Before": 0.0,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 100000,
+          "callbackCallsAfter": 100000
+        },
+        {
+          "vm": "54",
+          "scenario": "default",
+          "cpuBeforeMedian": 0.169,
+          "cpuAfterMedian": 0.145,
+          "allocationKiB5000Before": 585.9375,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 1500000,
+          "callbackCallsAfter": 1500000
+        },
+        {
+          "vm": "54",
+          "scenario": "legacy-max",
+          "cpuBeforeMedian": 0.185,
+          "cpuAfterMedian": 0.151,
+          "allocationKiB5000Before": 976.5625,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 1600000,
+          "callbackCallsAfter": 1600000
+        },
+        {
+          "vm": "54",
+          "scenario": "empty",
+          "cpuBeforeMedian": 0.046,
+          "cpuAfterMedian": 0.042,
+          "allocationKiB5000Before": 0.0,
+          "allocationKiB5000After": 0.0,
+          "callbackCallsBefore": 100000,
+          "callbackCallsAfter": 100000
+        }
+      ],
+      "limits": "Standalone warmed actual notification Lua body with modeled endpoints; not native FPS/CPU/heap.51empty median .039to.040s regression retained. Load-window heap deltas include compiler/interning/collection and cannot establish retained heap."
+    }
+  },
+  "validation": {
+    "scripts": 496,
+    "scriptFailures": 1,
+    "syntaxFiles": 1187,
+    "syntaxFailures": 0,
+    "totalObservedScripts": 497,
+    "composition": {
+      "baseReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-final.json",
+      "basePass": 496,
+      "freshShadowResult": {
+        "path": "tests/border_junction_shadows.lua",
+        "exit": 1,
+        "wallSeconds": 0.0481,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/border_junction_shadows.lua:8: source shadow footprint has no transparent hole: style1 scale0.75 Top/Left hs1.00 vs1.00 shortfalse up mixedfalse x-8.863 y8.423 raw0.019608 final0.000000 fields0\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_junction_shadows.lua:8: in local 'check'\n\ttests/border_junction_shadows.lua:116: in main chunk\n\t[C]: in ?\n"
+      },
+      "freshShadowSyntax": 0,
+      "sourceDeltaFromBase": [
+        "tests/border_junction_shadows.lua"
+      ],
+      "allOtherSourcesMatch": true,
+      "provenanceReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-test-provenance-20261116\\checkpoint-runtime-control.json"
+    },
+    "globalFunctionalAcceptance": "OPEN: new unowned strict shadow assertion fails on both current and pre-root Core+Strip. Not weakened or discarded; renderer/model contract still unresolved.",
+    "changedDuringRun": [],
+    "currentManifestVerifiedAfterGate": false,
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-composed.json",
+    "stability": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-composed-stability.json",
+    "baseFullRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-final.json",
+    "priorSweep": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-full.json",
+    "priorScope": "496scripts/1186syntax passed with stable Lua during that run; three unowned inventory files changed afterward and were preserved. Current sweep supersedes the old snapshot.",
+    "lua51": {
+      "scope": "Offline stockLua5.1 compiler; direct source plus explicit external BOM-only adjustments; no game testing",
+      "files": 690,
+      "directPass": 679,
+      "maximum": 53,
+      "failures": [],
+      "rawReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-runtime-lua51-raw.json",
+      "BOMAdjustments": [
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua",
+          "originalSHA256": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua",
+          "originalSHA256": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua",
+          "originalSHA256": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua",
+          "originalSHA256": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua",
+          "originalSHA256": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua",
+          "originalSHA256": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua",
+          "originalSHA256": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua",
+          "originalSHA256": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua",
+          "originalSHA256": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua",
+          "originalSHA256": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02",
+          "exit": 0,
+          "maximum": 0,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        },
+        {
+          "path": "libs/LibWindow-1.1/LibWindow-1.1.lua",
+          "originalSHA256": "306e722c2799d8edbb5d3165d3d8b414e88a5cb544fcbd24b2a2b1a15a893dd4",
+          "exit": 0,
+          "maximum": 4,
+          "error": "",
+          "scope": "External compiler input strips initial UTF-8 BOM only; installed third-party file unchanged; not native loader certification"
+        }
+      ],
+      "currentConcurrentSourceSupplement": {
+        "paths": [
+          "Inventory/Index.lua",
+          "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+          "Inventory/Restock/FluxRestock_Inv.lua"
+        ],
+        "sourceHashes": {
+          "Inventory/Index.lua": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711",
+          "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "d6c94547b3cc98a2f9fa12df924421aef074cf5cd78ef31837099dbdf74bb242",
+          "Inventory/Restock/FluxRestock_Inv.lua": "d56520026c0f15053754226ccd88af53611885e63f176af99034e964a52800bb"
+        },
+        "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-concurrent-lua51.json",
+        "note": "Unowned inventory changes after first gate preserved; direct fresh compilation supersedes those prior prototype rows."
+      }
+    },
+    "ownedRuntimeLua51": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-fanout-owned-lua51.json",
+    "focused": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\unit-visual-geometry\\report.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\trinket-squeeze-geometry-final.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\squeeze-notification-work\\controls.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\squeeze-notification-work\\samples.json"
+    ],
+    "prototypeReports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-builder-scalar-prototype-20261116T192353Z\\decision.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-builder-scalar-prototype-20261116T192353Z\\tolerance-decision.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-builder-scalar-prototype-20261116T192353Z\\cpu-window-clarification.json"
+    ],
+    "gateSnapshotWasVerified": true,
+    "finalWorkspaceFunctionalAcceptance": "OPEN; all three owned combat optimizations remain tested and unchanged, while current whole-corpus functional/documentation acceptance and native performance are pending.",
+    "documentationValidation": {
+      "exit": 1,
+      "issues": [
+        "Stale source inventory: tests/border_shadow_material.lua",
+        "Recorded verification predates current source: tests/border_junction_shadows.lua"
+      ],
+      "scope": "Generated views refreshed once; concurrent shadow-test work continued afterward. This failure is retained rather than repeatedly rewriting another task\u2019s evolving tests or claiming a current all-green gate."
+    }
+  },
+  "newShadowAssertion": {
+    "path": "tests/border_junction_shadows.lua",
+    "source": "Concurrent unowned test appeared during full collection; ran separately on current source without changing its assertion.",
+    "result": "Same first strict failure in six Lua5.1/5.4 runs including exact checkpoint Core and Strip, with other runtime/factory/art dependencies matched.",
+    "limits": "A baseline mismatch exposed by the new test; not caused by the three optimizations. Renderer versus model/sampler correctness remains unproven.",
+    "reports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-test-provenance-20261116\\report.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-test-provenance-20261116\\checkpoint-runtime-control.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-test-provenance-20261116\\dependencies.json"
+    ],
+    "finalBoundedReplay": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-final-supplement-20261116T202126Z\\report.json",
+      "reportSHA256": "23ecb04bf84443765b817dff9b27c1dbbab4c2f8e6d2e5e02c6a3465b775544f",
+      "testHash": "3674c0ece277c32da14a60e544862ab41f7cfa7aea044b4ac8bd9424d9350139",
+      "result": "Four strict runs (current and exact checkpoint Core/Strip/factory/art, Lua5.1/5.4) fail at the same first sample; current and snapshot syntax pass. Exact tested bytes preserved externally; no test/assertion/runtime edit by this task."
+    }
+  },
+  "preRestrictionPassiveEvidence": {
+    "savedWatch": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\saved-watch-attribution-20261116.json",
+    "scope": "One host window/read-only capture and literal-only existing-diagnostic parse completed BEFORE the user prohibition. No input/focus/diagnostic arming.",
+    "nativeBuild": "Forever70938",
+    "borderBuildMs": 258.9176,
+    "planMs": 101.7966,
+    "commitMs": 90.8235,
+    "limits": "Saved timestamp timezone unstated; loaded source/version absent; all14 spike UI snapshots combat=false; transition trigger unknown. No current-candidate adoption, combat cause or native gain proved.",
+    "currentSourceFact": "R54 already writes cost.borderVersion and has a regression; duplicate metadata field briefly prepared by root was removed, with no resulting Core change from this slice."
+  },
+  "remaining": [
+    "Current-source first/repeated combat entry/exit and group join/leave native timings/taint/render/input require later explicit user release.",
+    "New strict shadow sampler assertion fails equivalently on exact pre-root Core+Strip and current code; diagnose renderer/model contract without weakening it. No current whole-corpus functional acceptance claim.",
+    "Actual changed-layout border hitch remains unresolved; three external prototypes were rejected rather than applied for allocation savings.",
+    "Full visual/dependent refreshes remain intentional recovery paths. This slice only skips proven-equal geometry and callback allocation.",
+    "Guild-bank/void-storage callbacks remain out of scope; no saved profiles/defaults/commands/bindings/integrations or authored appearance changes."
+  ],
+  "sourceContracts": "Existing Retail297d7aaa/Forever handwrittenbebcb6bf+generated9dc84f0d/Classice5d9b3a2 contracts and TOCs retained; existing Era/Anniversary paths preserved. No new WoW API/target/visible UI/input framework.",
+  "publication": "No commit/push/branch/reset/manual installation copy; main and identity hooks retained.",
+  "finalPostcheck": {
+    "recordedAtUTC": "2026-11-16T20:24:02.301256+00:00",
+    "nativeRestriction": "HOLD; no owned game/client/process/window/saved-diagnostic action performed, live or queued after the user instruction. Only explicit user release permits native work.",
+    "ownedSourcesAndTestsStable": true,
+    "scopedGitDiffCheck": {
+      "exit": 0,
+      "scope": [
+        "UnitFrames/FluxUnitFrames_Shared.lua",
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+        "FluxDefaultSettings.lua",
+        "tests/unit_class_icon_secrets.lua",
+        "tests/unit_indicator_layout.lua"
+      ],
+      "note": "Normal repository line-ending policy; Git emitted only expected LF-to-CRLF notices. New untracked regression files were outside git diff scope."
+    },
+    "historicalGate": {
+      "pass": 496,
+      "fail": 1,
+      "syntaxPass": 1187,
+      "scope": "Timestamped composed observations, not a certification of later concurrently edited test files."
+    },
+    "sourceDriftSinceGate": [
+      {
+        "path": "tests/border_junction_shadows.lua",
+        "recorded": "c38cfa63ecc5aadac86ee6f05b2e67c435939aa34725d2a372c22223624a2056",
+        "observed": "3674c0ece277c32da14a60e544862ab41f7cfa7aea044b4ac8bd9424d9350139"
+      }
+    ],
+    "concurrentAdditionalTest": {
+      "path": "tests/border_shadow_material.lua",
+      "exists": true,
+      "scope": "Concurrent unowned development test; not included in the historical 1187-file gate. Preserved; no result inferred."
+    },
+    "boundedFinalShadowReplay": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\shadow-final-supplement-20261116T202126Z\\report.json",
+      "reportSHA256": "23ecb04bf84443765b817dff9b27c1dbbab4c2f8e6d2e5e02c6a3465b775544f",
+      "testHash": "3674c0ece277c32da14a60e544862ab41f7cfa7aea044b4ac8bd9424d9350139",
+      "result": "Four strict runs (current and exact checkpoint Core/Strip/factory/art, Lua5.1/5.4) fail at the same first sample; current and snapshot syntax pass. Exact tested bytes preserved externally; no test/assertion/runtime edit by this task."
+    },
+    "latestDocumentationCheck": {
+      "exit": 1,
+      "issues": [
+        "Stale source inventory: tests/border_shadow_material.lua",
+        "Recorded verification predates current source: tests/border_junction_shadows.lua"
+      ],
+      "scope": "Generated views refreshed once; concurrent shadow-test work continued afterward. This failure is retained rather than repeatedly rewriting another task\u2019s evolving tests or claiming a current all-green gate."
+    },
+    "overallAcceptance": "OPEN; all three owned combat optimizations remain tested and unchanged, while current whole-corpus functional/documentation acceptance and native performance are pending.",
+    "ownedJobsFinished": true,
+    "publication": "No commit, push or branch change."
+  }
+}

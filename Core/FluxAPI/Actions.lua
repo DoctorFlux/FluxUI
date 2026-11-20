@@ -108,7 +108,13 @@ do
             FluxSafeRegisterEvent(spellCacheInvalidator, "TRAIT_CONFIG_UPDATED")
         end
     end
-    spellCacheInvalidator:SetScript("OnEvent", _FluxAPICompat_ClearSpellCache)
+    spellCacheInvalidator:SetScript("OnEvent", function(self, event, unit, ...)
+        if event == "PLAYER_SPECIALIZATION_CHANGED" then
+            local sharedEvents = _G.Flux and _G.Flux.Events
+            if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(unit) then return end
+        end
+        _FluxAPICompat_ClearSpellCache(self, event, unit, ...)
+    end)
     FluxAPICompat._ClearSpellInfoCache = _FluxAPICompat_ClearSpellCache
 end
 

@@ -827,26 +827,27 @@ local function OverrideSpellCastAnimScripts(frame)
 	end)
 end
 
-local function InstallStubs(widget)
-	widget.ClearReticle = function(self)
-		local rf = self.TargetReticleAnimFrame
-		if rf then
-			if rf.HighlightAnim and rf.HighlightAnim.Stop then
-				pcall(rf.HighlightAnim.Stop, rf.HighlightAnim)
-			end
-			pcall(rf.Hide, rf)
-		end
+local function StopReticleHighlight(widget)
+	local reticle = widget and widget.TargetReticleAnimFrame
+	if not reticle then
+		return
 	end
+	local anim = reticle.HighlightAnim
+	if anim and anim.Stop then
+		pcall(anim.Stop, anim)
+	end
+	if reticle.Hide then
+		pcall(reticle.Hide, reticle)
+	end
+end
 
-	widget.StopTargettingReticleAnim = function(self)
-		local rf = self.TargetReticleAnimFrame
-		if rf then
-			if rf.HighlightAnim and rf.HighlightAnim.Stop then
-				pcall(rf.HighlightAnim.Stop, rf.HighlightAnim)
-			end
-			pcall(rf.Hide, rf)
-		end
-	end
+local function StopAttachedReticle(widget)
+	StopReticleHighlight(widget)
+end
+
+local function InstallStubs(widget)
+	widget.ClearReticle = StopAttachedReticle
+	widget.StopTargettingReticleAnim = StopAttachedReticle
 
 	widget.ClearInterruptDisplay = function(self)
 		if self.InterruptDisplay then
@@ -1785,27 +1786,45 @@ function Overlay.PlayReticle(widget)
 	Overlay.ApplyChecked(widget, false)
 end
 
-local function StopReticleHighlight(widget)
-	local reticle = widget and widget.TargetReticleAnimFrame
-	if not reticle then
-		return
-	end
-	local anim = reticle.HighlightAnim
-	if anim and anim.Stop then
-		pcall(anim.Stop, anim)
-	end
-	if reticle.Hide then
-		pcall(reticle.Hide, reticle)
-	end
+local function IsIdleReticle(reticle, anim)
+	return type(reticle) == "table" and rawget(reticle, "Hide") == nil and rawget(reticle, "IsShown") == nil
+		and reticle:IsShown() == false
+		and (not anim or (type(anim) == "table" and rawget(anim, "Stop") == nil
+			and rawget(anim, "IsPlaying") == nil and rawget(anim, "IsPaused") == nil
+			and rawget(anim, "IsPendingFinish") == nil
+			and anim:IsPlaying() == false and anim:IsPaused() == false and anim:IsPendingFinish() == false))
 end
 
 function Overlay.ClearReticle(widget)
 	if not widget then
 		return
 	end
+	local wasTargeting = widget._fluxHadReticle or widget._fluxReticleLive
 	widget._fluxHadReticle = nil
 	widget._fluxReticleLive = nil
-	StopReticleHighlight(widget)
+	local triedIdleStop = false
+	-- Both owned methods repeat the same stop and hide on an idle frame.
+	-- Active effects, custom methods and failures use the full reset.
+	if not wasTargeting and widget.ClearReticle == StopAttachedReticle
+		and widget.StopTargettingReticleAnim == StopAttachedReticle then
+		local reticle = widget.TargetReticleAnimFrame
+		local anim = reticle and reticle.HighlightAnim
+		local ok, idle = pcall(IsIdleReticle, reticle, anim)
+		if ok and idle then
+			local stopped = not anim or pcall(anim.Stop, anim)
+			local hidden = pcall(reticle.Hide, reticle)
+			triedIdleStop = true
+			if stopped and hidden and rawequal(widget.TargetReticleAnimFrame, reticle)
+				and rawequal(reticle.HighlightAnim, anim)
+				and not widget._fluxHadReticle and not widget._fluxReticleLive
+				and widget.ClearReticle == StopAttachedReticle and widget.StopTargettingReticleAnim == StopAttachedReticle then
+				return
+			end
+		end
+	end
+	if not triedIdleStop then
+		StopReticleHighlight(widget)
+	end
 	if widget.ClearReticle then
 		pcall(widget.ClearReticle, widget)
 	end

@@ -13,6 +13,7 @@ local dirty = {
 }
 local layoutPending = false
 local lastVisibleCount = -1
+local settledLayout
 
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
@@ -24,6 +25,57 @@ local function Defer(key, fn)
 	elseif not InLockdown() then
 		fn()
 	end
+end
+
+-- Read current native geometry on every pass. Missing, failed or private
+-- getters retain the original setters; no desired-state cache can hide drift.
+local function NativeValue(frame, method, ...)
+	local getter = frame[method]
+	if (issecretvalue and issecretvalue(getter)) or type(getter) ~= "function" then return false end
+	local ok, a, b, c, d, e = pcall(getter, frame, ...)
+	if not ok or (issecretvalue and (issecretvalue(a) or issecretvalue(b)
+		or issecretvalue(c) or issecretvalue(d) or issecretvalue(e))) then return false end
+	return true, a, b, c, d, e
+end
+
+local function SetSize(frame, width, height)
+	local ok, w, h = NativeValue(frame, "GetSize")
+	if not (issecretvalue and (issecretvalue(width) or issecretvalue(height)))
+		and ok and w == width and h == height then return end
+	frame:SetSize(width, height)
+end
+
+local function SetScale(frame, scale)
+	local ok, current = NativeValue(frame, "GetScale")
+	if not (issecretvalue and issecretvalue(scale)) and ok and current == scale then return end
+	frame:SetScale(scale)
+end
+
+local function SetParent(frame, parent)
+	local ok, current = NativeValue(frame, "GetParent")
+	if not (issecretvalue and issecretvalue(parent)) and ok and current == parent then return end
+	frame:SetParent(parent)
+end
+
+local function LayoutNumberMatches(value, expected)
+	return not (issecretvalue and (issecretvalue(value) or issecretvalue(expected)))
+		and type(value) == "number" and type(expected) == "number" and math.abs(value - expected) < 0.0001
+end
+
+local function PointMatches(frame, point, relative, relativePoint, x, y)
+	local ok, count = NativeValue(frame, "GetNumPoints")
+	if ok and count == 1 then
+		local public, p, parent, rp, ox, oy = NativeValue(frame, "GetPoint", 1)
+		return public and not (issecretvalue and issecretvalue(relative)) and p == point and parent == relative
+			and rp == relativePoint and LayoutNumberMatches(ox, x) and LayoutNumberMatches(oy, y)
+	end
+	return false
+end
+
+local function SetSinglePoint(frame, point, relative, relativePoint, x, y)
+	if PointMatches(frame, point, relative, relativePoint, x, y) then return end
+	frame:ClearAllPoints()
+	frame:SetPoint(point, relative, relativePoint, x, y)
 end
 
 local function SqueezeX()
@@ -121,13 +173,38 @@ local function WindowFrame()
 	return _G.FluxWindowFrame
 end
 
-local function SyncPlayerScale(frame)
+local function DesiredScale(frame)
 	local player = Stance.ShouldAnchorToPlayerBorder() and (ns.PlayerFrame or _G.FluxUIPlayerFrame)
 	-- Anchoring does not inherit scale: the secure stance root stays under UIParent.
-	local scale = player and player:GetEffectiveScale() / frame:GetParent():GetEffectiveScale() or 1
+	return player and player:GetEffectiveScale() / frame:GetParent():GetEffectiveScale() or 1
+end
+
+local function SyncPlayerScale(frame)
+	local scale = DesiredScale(frame)
 	if frame:GetScale() ~= scale then
 		frame:SetScale(scale)
 	end
+end
+
+local function AnchorPoint()
+	if Stance.ShouldAnchorToPlayerBorder() then
+		local player = ns.PlayerFrame or _G.FluxUIPlayerFrame
+		local obf = player and player.outerBorderFrame
+		if obf then
+			-- -STANCE_ANCHOR_GAP: negative GAP moves the cluster toward the unitframe.
+			return "RIGHT", obf, "LEFT", -Stance.STANCE_ANCHOR_GAP, 0
+		end
+	end
+	if ShouldAnchorAboveStatusLoc2() then
+		return "BOTTOMRIGHT", _G.FluxStatusBarContainer, "TOPRIGHT",
+			Stance.STANCE_WINDOW_GAP_X, Stance.STATUS_LOC2_STACK_GAP
+	end
+	-- Detached: left of FluxWindow TOPLEFT (backup), not the action strip.
+	local wf = WindowFrame()
+	if wf then
+		return "TOPRIGHT", wf, "TOPLEFT", Stance.STANCE_WINDOW_GAP_X, Stance.STANCE_WINDOW_GAP_Y
+	end
+	return "TOPRIGHT", UIParent, "TOPRIGHT", -80, -80
 end
 
 function Stance.Anchor()
@@ -141,34 +218,7 @@ function Stance.Anchor()
 	end
 	SyncPlayerScale(frame)
 	Stance.ApplyBorderChrome()
-	frame:ClearAllPoints()
-	if Stance.ShouldAnchorToPlayerBorder() then
-		local player = ns.PlayerFrame or _G.FluxUIPlayerFrame
-		local obf = player and player.outerBorderFrame
-		if obf then
-			-- -STANCE_ANCHOR_GAP: negative GAP moves the cluster toward the unitframe.
-			frame:SetPoint("RIGHT", obf, "LEFT", -Stance.STANCE_ANCHOR_GAP, 0)
-			if Bars.Pet and Bars.Pet.UpdatePosition then
-				Bars.Pet.UpdatePosition()
-			end
-			return
-		end
-	end
-	if ShouldAnchorAboveStatusLoc2() then
-		local sb = _G.FluxStatusBarContainer
-		frame:SetPoint("BOTTOMRIGHT", sb, "TOPRIGHT", Stance.STANCE_WINDOW_GAP_X, Stance.STATUS_LOC2_STACK_GAP)
-		if Bars.Pet and Bars.Pet.UpdatePosition then
-			Bars.Pet.UpdatePosition()
-		end
-		return
-	end
-	-- Detached: left of FluxWindow TOPLEFT (backup), not the action strip.
-	local wf = WindowFrame()
-	if wf then
-		frame:SetPoint("TOPRIGHT", wf, "TOPLEFT", Stance.STANCE_WINDOW_GAP_X, Stance.STANCE_WINDOW_GAP_Y)
-	else
-		frame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -80, -80)
-	end
+	SetSinglePoint(frame, AnchorPoint())
 	if Bars.Pet and Bars.Pet.UpdatePosition then
 		Bars.Pet.UpdatePosition()
 	end
@@ -196,7 +246,7 @@ local function EnsureSlot(btn, parent)
 	local slot = btn.SlotFrame
 	if slot then
 		if parent and slot.SetParent then
-			pcall(slot.SetParent, slot, parent)
+			pcall(SetParent, slot, parent)
 		end
 		return slot
 	end
@@ -211,6 +261,50 @@ local function EnsureSlot(btn, parent)
 	return slot
 end
 
+local function Sizing(frame, visibleCount)
+	local usePetSlot = not Stance.ShouldAnchorToPlayerBorder()
+	local outerH = (not usePetSlot) and PlayerOuterH() or nil
+	local metrics = Stance.ComputeLayoutMetrics(visibleCount, usePetSlot, outerH)
+	if usePetSlot then
+		local petF = Bars.Pet and Bars.Pet.GetFrame and Bars.Pet.GetFrame()
+		if petF and frame.GetEffectiveScale then
+			local eff = frame:GetEffectiveScale()
+			if eff and eff > 0 then
+				local petH = petF.GetHeight and petF:GetHeight() or 0
+				local petScale = petF.GetEffectiveScale and petF:GetEffectiveScale() or 1
+				local matchPetTotalH = (petH * petScale) / eff
+				if matchPetTotalH > 1 then
+					local naturalH = metrics.innerH + metrics.layoutPadV * 2
+					if matchPetTotalH >= naturalH then
+						metrics.actual_height = matchPetTotalH
+						local contentInnerH = matchPetTotalH - metrics.layoutPadV * 2
+						metrics.stackInset = math.max(0, (contentInnerH - metrics.clusterV) / 2)
+					else
+						metrics.actual_height = naturalH
+					end
+				end
+			end
+		end
+	end
+	return metrics, usePetSlot
+end
+
+local function SlotPoint(metrics, index)
+	local size = metrics.button_size
+	local slotW = metrics.slot_width or size
+	local spacingX = metrics.spacing_x or (Stance.STANCE_SPACING * (metrics.x_factor or 1))
+	local column = math.floor((index - 1) / metrics.num_rows)
+	local row = (index - 1) % metrics.num_rows
+	return -metrics.layoutPadH - column * (slotW + spacingX),
+		-metrics.layoutPadV - (metrics.stackInset + row * (size + Stance.STANCE_SPACING))
+end
+
+local function ClipsChildren(metrics)
+	local client = Flux.Client
+	return (metrics.x_factor or 1) < 1
+		and not (client and (client.isAnyClassic or client.isPostDF == false))
+end
+
 function Stance.ApplyLayout()
 	local frame = Stance.GetFrame()
 	if not frame then
@@ -223,6 +317,7 @@ function Stance.ApplyLayout()
 		end)
 		return false
 	end
+	settledLayout = nil
 	SyncPlayerScale(frame)
 	if dirty.extrasDiscover and Stance.InvalidateExtras then
 		Stance.InvalidateExtras()
@@ -255,37 +350,11 @@ function Stance.ApplyLayout()
 			visible[#visible + 1] = idx
 		end
 	end
-	local usePetSlot = not Stance.ShouldAnchorToPlayerBorder()
-	local outerH = (not usePetSlot) and PlayerOuterH() or nil
-	local metrics = Stance.ComputeLayoutMetrics(#visible, usePetSlot, outerH)
+	local metrics, usePetSlot = Sizing(frame, #visible)
 	local size = metrics.button_size
 	local slotW = metrics.slot_width or size
 	local xF = metrics.x_factor or 1
-	local spacingX = metrics.spacing_x or (Stance.STANCE_SPACING * xF)
-	local actual_width, actual_height = metrics.actual_width, metrics.actual_height
-	local stackInset = metrics.stackInset
-	if usePetSlot then
-		local petF = Bars.Pet and Bars.Pet.GetFrame and Bars.Pet.GetFrame()
-		if petF and frame.GetEffectiveScale then
-			local eff = frame:GetEffectiveScale()
-			if eff and eff > 0 then
-				local petH = petF.GetHeight and petF:GetHeight() or 0
-				local petScale = petF.GetEffectiveScale and petF:GetEffectiveScale() or 1
-				local matchPetTotalH = (petH * petScale) / eff
-				if matchPetTotalH > 1 then
-					local naturalH = metrics.innerH + metrics.layoutPadV * 2
-					if matchPetTotalH >= naturalH then
-						actual_height = matchPetTotalH
-						local contentInnerH = actual_height - metrics.layoutPadV * 2
-						stackInset = math.max(0, (contentInnerH - metrics.clusterV) / 2)
-					else
-						actual_height = naturalH
-					end
-				end
-			end
-		end
-	end
-	frame:SetSize(actual_width, actual_height)
+	SetSize(frame, metrics.actual_width, metrics.actual_height)
 
 	if Stance.BeginExtraVisualPass then
 		Stance.BeginExtraVisualPass()
@@ -293,6 +362,7 @@ function Stance.ApplyLayout()
 	local shown = {}
 	local visibleIndex = 0
 	local bindWidgets = {}
+	local visibleButtons = {}
 	for v = 1, #visible do
 		local idx = visible[v]
 		local btn
@@ -319,16 +389,17 @@ function Stance.ApplyLayout()
 		if btn and btn.Widget then
 			visibleIndex = visibleIndex + 1
 			bindWidgets[#bindWidgets + 1] = btn.Widget
+			visibleButtons[visibleIndex] = btn
 			-- Native Extra Button height; face width follows xF (same as HUD
 			-- extras). Visual stance size is SetScale inside a SlotFrame.
 			local native = (Bars.CONFIG and Bars.CONFIG.buttonSize) or 44
 			local faceW = native * xF
 			local faceH = native
 			local slot = EnsureSlot(btn, frame)
-			btn.Widget:SetSize(faceW, faceH)
+			SetSize(btn.Widget, faceW, faceH)
 			btn.Widget._fluxStanceButtonSize = size
 			if btn.Widget.SetScale then
-				pcall(btn.Widget.SetScale, btn.Widget, size / native)
+				pcall(SetScale, btn.Widget, size / native)
 			end
 			-- Placement 2 sits with the pet bar. Stamp the squeezed face so the
 			-- ring, border, and highlight match it (GetWidth is still square here).
@@ -347,30 +418,20 @@ function Stance.ApplyLayout()
 			if Stance.AttachReorderControls then
 				Stance.AttachReorderControls(btn)
 			end
-			local col = math.floor((visibleIndex - 1) / metrics.num_rows)
-			local row = (visibleIndex - 1) % metrics.num_rows
-			local x = -(col * (slotW + spacingX))
-			local y = stackInset + (row * (size + Stance.STANCE_SPACING))
+			local x, y = SlotPoint(metrics, visibleIndex)
 			if slot then
-				slot:SetSize(slotW, size)
-				slot:ClearAllPoints()
-				slot:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -metrics.layoutPadH + x, -metrics.layoutPadV - y)
+				SetSize(slot, slotW, size)
+				SetSinglePoint(slot, "TOPRIGHT", frame, "TOPRIGHT", x, y)
 				if slot.SetClipsChildren then
-					local clip = (metrics.x_factor or 1) < 1
-					if Flux.Client and (Flux.Client.isAnyClassic or Flux.Client.isPostDF == false) then
-						clip = false
-					end
-					pcall(slot.SetClipsChildren, slot, clip)
+					pcall(slot.SetClipsChildren, slot, ClipsChildren(metrics))
 				end
 				if btn.Widget.SetParent then
-					pcall(btn.Widget.SetParent, btn.Widget, slot)
+					pcall(SetParent, btn.Widget, slot)
 				end
-				btn.Widget:ClearAllPoints()
-				btn.Widget:SetPoint("CENTER", slot, "CENTER", 0, 0)
+				SetSinglePoint(btn.Widget, "CENTER", slot, "CENTER", 0, 0)
 				slot:Show()
 			else
-				btn.Widget:ClearAllPoints()
-				btn.Widget:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -metrics.layoutPadH + x, -metrics.layoutPadV - y)
+				SetSinglePoint(btn.Widget, "TOPRIGHT", frame, "TOPRIGHT", x, y)
 			end
 			btn.Widget:Show()
 			if Stance.ApplyExtraActiveVisual and (btn.spellData or btn._fluxStanceMageArmorForm) then
@@ -402,6 +463,11 @@ function Stance.ApplyLayout()
 	dirty.layout = false
 	dirty.formsVisual = false
 	dirty.extrasVisual = false
+	if FluxBorder and FluxBorder.Junctions then
+		FluxBorder.Junctions:CommitLayout()
+	end
+	settledLayout = { frame = frame, border = frame.FluxBorderFrame, widgets = bindWidgets,
+		buttons = visibleButtons, petSlot = usePetSlot }
 	return true
 end
 
@@ -432,6 +498,58 @@ end
 
 function Stance.RequestSizeOnly()
 	Stance.RequestLayout("size")
+end
+
+local function SizeMatches(frame, width, height)
+	local ok, w, h = NativeValue(frame, "GetSize")
+	return ok and LayoutNumberMatches(w, width) and LayoutNumberMatches(h, height)
+end
+
+local function ValueMatches(frame, method, expected)
+	local ok, value = NativeValue(frame, method)
+	return ok and value == expected
+end
+
+local function StripLayoutMatches(layout, frame)
+	if layout.frame ~= frame or layout.border ~= frame.FluxBorderFrame
+		or layout.widgets ~= Stance.visibleBindWidgets then return false end
+	local count = #layout.widgets
+	local ok, scale = NativeValue(frame, "GetScale")
+	local desired = DesiredScale(frame)
+	if not ok or not LayoutNumberMatches(scale, desired)
+		or not PointMatches(frame, AnchorPoint()) or not ValueMatches(frame, "IsShown", count > 0) then return false end
+	local metrics, petSlot = Sizing(frame, count)
+	if petSlot ~= layout.petSlot or not SizeMatches(frame, metrics.actual_width, metrics.actual_height) then return false end
+	local size = metrics.button_size
+	local native = (Bars.CONFIG and Bars.CONFIG.buttonSize) or 44
+	local clip = ClipsChildren(metrics)
+	for i, widget in ipairs(layout.widgets) do
+		local button = layout.buttons[i]
+		local slot = button.SlotFrame
+		local x, y = SlotPoint(metrics, i)
+		local scaleOK, faceScale = NativeValue(widget, "GetScale")
+		if button.Widget ~= widget or not slot or not scaleOK or not LayoutNumberMatches(faceScale, size / native)
+			or not SizeMatches(widget, native * (metrics.x_factor or 1), native)
+			or not SizeMatches(slot, metrics.slot_width or size, size)
+			or not ValueMatches(widget, "GetParent", slot) or not ValueMatches(slot, "GetParent", frame)
+			or not ValueMatches(widget, "IsShown", true) or not ValueMatches(slot, "IsShown", true)
+			or not PointMatches(widget, "CENTER", slot, "CENTER", 0, 0)
+			or not PointMatches(slot, "TOPRIGHT", frame, "TOPRIGHT", x, y)
+			or (slot.SetClipsChildren and not ValueMatches(slot, "DoesClipChildren", clip)) then return false end
+	end
+	return true
+end
+
+function Stance.RequestStripLayout()
+	local frame = Stance.GetFrame()
+	if not frame then return end
+	-- A strip crossing translates the existing anchor's owner. Form discovery,
+	-- bindings and button paint retain their normal event paths.
+	if settledLayout and not dirty.layout and not InLockdown() then
+		local ok, matches = pcall(StripLayoutMatches, settledLayout, frame)
+		if ok and matches then return end
+	end
+	Stance.RequestSizeOnly()
 end
 
 function Stance.RequestFormsVisual()

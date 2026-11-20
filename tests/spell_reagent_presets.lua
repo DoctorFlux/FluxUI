@@ -14,10 +14,21 @@ for _,modern in ipairs({false,true})do
  local slots={{3561,0,true},{9002,0,false},{9003,9004,true},{3561,0,true},{9004,0,true}}
  local queue={};e.C_Timer={After=function(_,f)queue[#queue+1]=f end};e.GetItemInfo=function(id)if id=='Summoning reagent' or id==16583 then return 'Summoning reagent','|Hitem:16583|h[Summoning reagent]|h' end end;e.GetSpellInfo=function(id)return names[id]end
  e.Flux={AfterLoad=function()end,Secrets={SafeAccessibleString=function(v)return type(v)=='string'and v or nil end},Inventory={GetUniqueItems=function()return{}end}}
+ local inv=e.Flux.Inventory
+ local bagGeneration,harvests=1,0
+ local visible,itemNames={},{}
+ local merchantOpen=false
+ inv.GetUniqueItemIDs=function()harvests=harvests+1;return visible end
+ inv.GetBagGeneration=function()return bagGeneration end
+ inv.GetSnapshotGeneration=function()return 1 end
+ inv.IsBankOpen=function()return false end
+ inv.IsMerchantOpen=function()return merchantOpen end
+ local ns={Flux=e.Flux,InventoryUniqueItemIDQuery={owner=inv,query=inv.GetUniqueItemIDs}}
  if modern then
   e.C_Spell={GetSpellInfo=function(id)return{name=names[id]}end};e.C_TooltipInfo={GetSpellByID=function(id)scans[id]=(scans[id]or 0)+1;return{lines={{leftText=text[id]}}}end}
   e.C_Flyout={GetFlyoutInfo=function()return{name='Travel',numSlots=#slots,isKnown=true}end,GetFlyoutSlotInfo=function(_,i)local v=slots[i];return{spellID=v[1],overrideSpellID=v[2],isKnown=v[3],name=names[v[1]],specID=63}end}
-  e.C_Item={GetItemNameByID=function()return nil end,GetItemCount=function()return 0 end}
+  e.C_Item={GetItemNameByID=function(id)return itemNames[id] end,GetItemCount=function()return 0 end}
+  e.issecurevariable=function()return true end
   e.C_SpellBook={GetNumSpellBookSkillLines=function()return 1 end,GetSpellBookSkillLineInfo=function()return{itemIndexOffset=0,numSpellBookItems=#ids}end,GetSpellBookItemInfo=function(i)return{actionID=ids[i],itemType=ids[i]==99 and 2 or 1}end}
  else
   e.GetNumSpellTabs=function()return 1 end;e.GetSpellTabInfo=function()return'Test',nil,0,#ids end;e.GetSpellBookItemInfo=function(i)return ids[i]==99 and 'FLYOUT' or 'SPELL',ids[i]end
@@ -29,7 +40,7 @@ for _,modern in ipairs({false,true})do
   local f={name=name};function f:SetOwner()end;function f:ClearLines()end;function f:GetName()return self.name end;function f:NumLines()return self.spell and 1 or 0 end;function f:SetSpellByID(id)scans[id]=(scans[id]or 0)+1;self.spell=id;e.FluxSpellReagentTipTextLeft1={GetText=function()return text[id]end}end;function f:RegisterEvent()end;function f:SetScript()end;return f
  end
  assert(load(read(spellApiSource),'@'..spellApiSource,'t',e))('test',{Flux=e.Flux})
- assert(load(read(reagentSource),'@'..reagentSource,'t',e))('test',{Flux=e.Flux})
+ assert(load(read(reagentSource),'@'..reagentSource,'t',e))('test',ns)
  S.Refresh();local n=0;while #queue>0 do n=n+1;assert(n<100,'warm loop');table.remove(queue,1)()end
  check(S.AreReagentsWarmed(),'reagent warm completes')
  check(S.IsReagentItem(17031),'cold-cache teleport rune indexed')
@@ -42,13 +53,49 @@ for _,modern in ipairs({false,true})do
  check(S.IsReagentItem(16583),'non-shard summoning reagent is not guessed to be Soul Shard')
  check(not S.IsReagentItem(6265),'Soul Shard excluded before item name loads')
  check(not S.UsesReagents(3562),'reagent-free travel stays free')
- assert(load(read('Inventory/Restock/Core/FluxRestockList.lua'),'@FluxRestockList.lua','t',e))()
+ assert(load(read('Inventory/Restock/Core/FluxRestockList.lua'),'@FluxRestockList.lua','t',e))('test',ns)
+ harvests=0
  local list=e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true,forceRefresh=true});local seen={}
  for _,r in ipairs(list)do seen[r.itemID]=r end
  for id,target in pairs({[17031]=25,[17032]=8,[17020]=7,[16583]=6})do check(seen[id] and seen[id].restockSource=='spellReagent','reagent belongs in Preset restock '..id);check(seen[id].target==target,'saved target preserved '..id)end
  check(seen[999]and seen[999].restockSource=='manual','ordinary manual items unchanged')
  check(not seen[6265],'no automatic Soul Shard target')
  check(saved.restockItems[17031].countBank==true,'bank flag retained without migration/reset')
+ if modern and ns.InventoryReagentVisibleNames.retry then
+  check(harvests==1,'warm list harvests names only once')
+  local query=ns.InventoryReagentVisibleNames
+  local _,stamp=query.query({})
+  check(stamp and query.retry(stamp)==false,'complete native name reads allow the fast path')
+  bagGeneration=bagGeneration+1
+  check(query.retry(stamp)==nil,'bag generation change invalidates the in-pass proof')
+  local getSet=S.GetReagentItemIDSet
+  S.GetReagentItemIDSet=function()return getSet()end
+  harvests=0
+  e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true})
+  check(harvests>1,'replaced public set reader retains discovery retries')
+  S.GetReagentItemIDSet=getSet
+  visible[999]=true
+  harvests=0
+  e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true})
+  check(harvests>1,'missing visible name retains discovery retries')
+  itemNames[999]='Manual item'
+  harvests=0
+  e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true})
+  check(harvests==1,'resolved visible name enables the warm path again')
+  merchantOpen=true
+  harvests=0
+  e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true})
+  check(harvests>1,'open merchant retains the original discovery path')
+  merchantOpen=false
+  local _,unresolved=query.query({})
+  check(unresolved and unresolved.unresolved,'name-only rows retain live lookup work')
+  e.C_Item.GetItemInfoByName=function(name)
+   if name:find('Arcane Powder',1,true)then return 17020 end
+   return nil
+  end
+  check(query.retry(unresolved)==true,'late item metadata still resolves within the same restock rebuild')
+  check(S.IsReagentItem(17020),'late resolution preserves the active spell reagent')
+ end
  if measure then
   local start=os.clock();local rows=0
   for i=1,1000 do rows=rows+#e.FluxVendorAuto.GetRestockTargetItems({forOptionsPanel=true,forceRefresh=true})end

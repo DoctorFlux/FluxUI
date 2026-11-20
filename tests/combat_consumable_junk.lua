@@ -195,5 +195,33 @@ for _, family in ipairs({ "forever", "live", "era", "anniversary", "mists" }) do
         end
     end
 end
+do
+    local t = boot("forever")
+    local ic = t.env.FluxItemClass
+    local getInfo = ic.GetInfo
+    local reads = 0
+    ic.GetInfo = function(id)
+        reads = reads + 1
+        return getInfo(id)
+    end
+    local ordinary, pending = 710020, 710021
+    t.add(1, ordinary, { name = "Ordinary material", classID = 7 })
+    t.add(2, pending, { name = "Pending drink", classID = 0 })
+    check(not t.fj.IsConjuredConsumable(ordinary) and reads == 1, "first known ordinary query loads facts")
+    check(not t.fj.IsConjuredConsumable(ordinary) and reads == 1, "settled negative skips repeat metadata reads")
+    t.hidden[pending] = true
+    check(not t.fj.IsConjuredConsumable(pending), "missing item data does not invent a conjured item")
+    local coldReads = reads
+    check(not t.fj.IsConjuredConsumable(pending) and reads == coldReads + 1, "unresolved item data continues to retry")
+    t.hidden[pending] = nil
+    t.facts[pending].name = "Conjured Drink"
+    t.fj.OnItemDataLoaded(pending)
+    check(t.fj.IsConjuredConsumable(pending), "late metadata preserves conjured protection")
+    local settledReads = reads
+    check(t.fj.IsConjuredConsumable(pending) and reads == settledReads, "settled positive skips repeat metadata reads")
+    t.facts[pending].name = "Ordinary Drink"
+    t.fj.InvalidateItemRules(pending)
+    check(not t.fj.IsConjuredConsumable(pending) and reads == settledReads + 1, "item invalidation re-reads current facts")
+end
 print(("Combat consumable junk: %d checks, %d failures; native acceptance pending"):format(checks, failures))
 assert(failures == 0, "combat consumable junk regression")

@@ -1,0 +1,11 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-field-size-before-20261116T161806Z",
+  "verified": true,
+  "sourceFiles": 2992,
+  "settingsMetadataFiles": 129,
+  "settingsWrites": false,
+  "sha256": {
+    "source.zip": "73d0b83134fa03f881a5daa32471f1094896ef0ed303fd042fa0887f1b5c2a82",
+    "history.bundle": "cd5d7e189e9ff13d7f21cd2fe57e73055cbc150dcb055f02f342bd7722092606"
+  }
+}

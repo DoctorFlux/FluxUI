@@ -1,0 +1,160 @@
+{
+  "id": "WORLD-MAP-COMBAT-20261120",
+  "date": "2026-11-20",
+  "report": {
+    "localTime": "11:17:40 Europe/Copenhagen",
+    "trigger": "Combat entry or exit",
+    "blocked": "Button:SetPassThroughButtons",
+    "sourceMatch": "The pinned Forever stack resolves to QUEST_WATCH_LIST_CHANGED at QuestDataProvider.lua:95."
+  },
+  "reference": {
+    "version": "1.60.1.70938",
+    "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "stack": [
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua#L173-L175",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua#L145-L155",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua#L91-L98",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua#L327-L335",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua#L288-L299"
+    ],
+    "assessment": "Native OnShow registers provider events. Addon-driven World Map show and SetMapID are plausible upstream taint origins. The native stack matches the report; the first taint writer was not captured."
+  },
+  "candidate": {
+    "file": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+    "beforeSha256": "19d76597aa3207a505b171371c812a684cd6a536c36c3a487efaa239489f28ec",
+    "afterSha256": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+    "behavior": "Forever routes Map Pins through the existing battlefield providers and HBD router before original World Map activation can run. The original World Map is never hosted by this route. Other clients retain the original-surface route.",
+    "tradeoff": "Direct World Map addon drawings are visible in the normal map. The battlefield view displays only pins supplied through its supported providers and HBD routes.",
+    "settingsWrites": false,
+    "manualSync": false
+  },
+  "checkpoint": {
+    "externalName": "world-map-combat-before-20261120T102224Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "verifiedSourceFiles": 3365,
+    "settingsMetadataFiles": 11,
+    "settingsContentsCopied": false,
+    "sourceZipSha256": "31c18e9b1f35802483c94e5d034b2e21a2a4167e3a327e064e7ce2834354bcf5",
+    "historyBundleSha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2"
+  },
+  "desktop": {
+    "fixture": "tests/world_map_surface.lua",
+    "fixtureSha256": "93e980c89147be3916392b682baa6e77fe3cc3f9843c69ae32e28e2b795890ac",
+    "lua51": {
+      "surfaceChecks": 22189,
+      "mapMoverChecks": 315,
+      "syntax": "Both touched Lua files compiled"
+    },
+    "lua54": {
+      "surfaceChecks": 22189,
+      "mapMoverChecks": 315,
+      "providerCombatChecks": 36,
+      "providerDetachChecks": 31,
+      "hbdChecks": 1969,
+      "idleMapChecks": 2493,
+      "mapInitializationChecks": 8464,
+      "disabledWindowMoverChecks": 220,
+      "questieRestedXPSmoke": "Pass",
+      "syntax": "Both touched Lua files compiled"
+    },
+    "baselineControl": "Exact before source rejected on both VMs at the Forever battlefield ownership assertion.",
+    "scope": "Modeled activation, ownership, combat deferral and existing routes. No native taint, appearance or performance measurement."
+  },
+  "installedCopySha256": {
+    "_retail_": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+    "_forever_": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+    "_classic_": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+    "_classic_era_": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+    "_anniversary_": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748"
+  },
+  "native": {
+    "client": "Forever",
+    "executableVersion": "1.60.1.70959",
+    "processId": 9012,
+    "windowHandle": 3541714,
+    "windowTitle": "World of Warcraft",
+    "candidateLoaded": "Unverified",
+    "combatValidation": "Pending",
+    "scenario": "After reload, verify native quest-pin refresh on combat entry and exit with Flux's battlefield view and the full World Map in separate runs."
+  },
+  "supersededBy": "WORLD-MAP-COMBAT-SURFACE-20261120",
+  "originalSurfaceFollowUp": {
+    "id": "WORLD-MAP-COMBAT-SURFACE-20261120",
+    "requirement": "Retain the original World Map in Flux, including direct addon drawings, through combat. Address protected quest refreshes without replacing native methods, scripts or providers.",
+    "combatBoundarySources": [
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsDocumentation.lua#L97-L105",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/RestrictedActionsConstantsDocumentation.lua#L6-L26",
+      "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedMapDataProviders/QuestDataProvider.lua#L91-L99"
+    ],
+    "solution": "Forever keeps the original root and pauses its existing quest-watch, quest-log and quest-POI frame subscriptions at the documented pre-restriction event or combat entry. The original scene stays visible. OOC restoration coalesces a burst into one missed-event refresh. No provider, pool, native script or global method replacement.",
+    "scope": "The fix covers the reported WorldMap OnEvent path and the three quest events sharing it. Other native or third-party callback paths and first-writer taint remain unverified.",
+    "beforeSha256": {
+      "Battlezonemap/FluxBattlefieldWorldMap.lua": "8f2417e564d16957061f53542a48eaead11505f27277740fc0369c4a50f92e56",
+      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "29524886b28de0595619616541cd58bb9ea48b44b605b6cc526eed3006b8e748",
+      "tests/world_map_surface.lua": "93e980c89147be3916392b682baa6e77fe3cc3f9843c69ae32e28e2b795890ac"
+    },
+    "afterSha256": {
+      "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0",
+      "tests/world_map_surface.lua": "9c443b63cef66dd96dca73d333fe2dada5879bd2a32c92faea727eaebe5bbec0"
+    },
+    "checkpoint": {
+      "externalName": "world-map-combat-surface-before-20261120T103308Z",
+      "sourceFiles": 3366,
+      "settingsMetadataFiles": 11,
+      "sourceZipSha256": "cfa2c4215c0544f1793828d1f027cd4f9c569f7d4b8952d604be18a1ee08fb11",
+      "historyBundleSha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2"
+    },
+    "desktop": {
+      "surfaceChecksPerVM": 22241,
+      "mapMoverChecksPerVM": 315,
+      "lua54ScriptsPassed": 9,
+      "syntaxBothVMs": 3,
+      "beforeControls": [
+        "Previous surface failed to hold the native quest event before lockdown.",
+        "Previous Forever routing failed to mount the original World Map."
+      ],
+      "cases": [
+        "Original native scene and addon children visible",
+        "Unrelated notifications preserved",
+        "No extra refresh without missed quest events",
+        "One refresh after an event burst",
+        "Late-lockdown retry",
+        "Rapid reentry",
+        "Normal full-map handoff",
+        "Disabled map subscriptions"
+      ]
+    },
+    "installedRuntime": {
+      "_retail_": {
+        "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+        "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0"
+      },
+      "_forever_": {
+        "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+        "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0"
+      },
+      "_classic_": {
+        "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+        "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0"
+      },
+      "_classic_era_": {
+        "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+        "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0"
+      },
+      "_anniversary_": {
+        "Battlezonemap/FluxBattlefieldWorldMap.lua": "61881dc25029211f5e646336137ac7867e8a444125e22b542d1d3e447d973ed8",
+        "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "2219d2080cf266a6000dfb244b939615c7bd353b2e9c0fab3a7aa85c6be162f0"
+      }
+    },
+    "native": {
+      "version": "1.60.1.70959",
+      "processId": 9012,
+      "windowHandle": 3541714,
+      "candidateLoaded": "Unverified",
+      "pending": "Actual restriction ordering, world map scene, quest pin refresh, addon-action-blocked/taint and controller input."
+    },
+    "manualSync": false,
+    "settingsWrites": false
+  }
+}

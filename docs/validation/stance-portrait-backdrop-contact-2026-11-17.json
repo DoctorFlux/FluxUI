@@ -1,0 +1,173 @@
+{
+  "changeId": "STANCE-PORTRAIT-BACKDROP-CONTACT-20261117",
+  "capturedAtUTC": "2026-11-17T11:42:11.897292+00:00",
+  "requirement": "Remaining vertical gap beside player portrait when attached stance bar is present. Supersedes prior one-unit-only fill adequacy.",
+  "userImage": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-7096e0af-77a5-4444-b0e7-1dfa558907e1.png",
+  "sourceBeforeLF": {
+    "FluxBorder.lua": "a1c597c9e96d48602b62dbdfa7f2ba5d38dd803f2a4769254f89596dd55317f0",
+    "Bars/Stance/Init.lua": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+    "Bars/Stance/Layout.lua": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "784c5f2c89532168c51160690f9d377a5005a011b494b497606e709e3bc198de",
+    "Core/BorderJunctions.lua": "ea6003d5b307492778e75a80d559ff92da199be1b9633c188300d18d3839511b",
+    "tests/unit_portrait_backdrop_gap.lua": "ab60ecfa03cdb263dbaf7415c54fe9275e2bbad2f7f7d4e50fd60281003a355b",
+    "docs/COMBAT_COLLABORATION_BORDER_REPLY.md": "7b95b81447eb55f2f9d386be65d54ca94cee434d9e28dad47c7825c918a861d0"
+  },
+  "currentSources": {
+    "FluxBorder.lua": {
+      "lfSHA256": "a1c597c9e96d48602b62dbdfa7f2ba5d38dd803f2a4769254f89596dd55317f0",
+      "rawSHA256": "a1c597c9e96d48602b62dbdfa7f2ba5d38dd803f2a4769254f89596dd55317f0"
+    },
+    "Bars/Stance/Init.lua": {
+      "lfSHA256": "4dc29ee7c0a588039c840ef8fd8d31d96b0a80efb6d2a6d6363d78fe698ef5e0",
+      "rawSHA256": "4dc29ee7c0a588039c840ef8fd8d31d96b0a80efb6d2a6d6363d78fe698ef5e0"
+    },
+    "tests/unit_portrait_backdrop_gap.lua": {
+      "lfSHA256": "ab60ecfa03cdb263dbaf7415c54fe9275e2bbad2f7f7d4e50fd60281003a355b",
+      "rawSHA256": "ab60ecfa03cdb263dbaf7415c54fe9275e2bbad2f7f7d4e50fd60281003a355b"
+    },
+    "tests/stance_portrait_backdrop_contact.lua": {
+      "lfSHA256": "08182720893c2f31c16c3f01a8653071b6b0df6329418186d72c779dd2436b93",
+      "rawSHA256": "08182720893c2f31c16c3f01a8653071b6b0df6329418186d72c779dd2436b93"
+    }
+  },
+  "unchangedSources": {
+    "Core/BorderJunctions.lua": "ea6003d5b307492778e75a80d559ff92da199be1b9633c188300d18d3839511b",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "784c5f2c89532168c51160690f9d377a5005a011b494b497606e709e3bc198de",
+    "Bars/Stance/Layout.lua": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd"
+  },
+  "checkpoint": {
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-checkpoint-20261117.json",
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-before-20261117T113543Z\\source.zip",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "headCovered": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settings": "8existing settings metadata records only;no settings content copied or changed. Earlier full-inset candidate also checkpointed externally."
+  },
+  "cause": "Portrait continuation covered one of the two authored inset units. Separately, attached stance RIGHT anchor uses -STANCE_ANCHOR_GAP=4 toward player shell, but symmetric backdrop padding5.5 stops1.5 UI units short of player edge. Border-mesh matches alone do not prove backdrop coverage.",
+  "implementation": {
+    "portrait": "Existing continuation TOPLEFT now anchors to portrait TOPLEFT at0/-7, instead of background TOPLEFT at-1/-5. BOTTOMRIGHT remains original background BOTTOMLEFT0/+5. Full horizontal inset is filled;top/bottom corner exclusions unchanged.",
+    "stance": "Only mode=player in ApplyBorderChrome sets BackgroundFrame.BOTTOMRIGHT X to STANCE_ANCHOR_GAP. Combining this with actual Anchor RIGHT-to-player-LEFT at -gap makes the backdrop endpoint exactly player-left. Left and vertical padding are unchanged;mode=petslot retains original ApplyTo defaults.",
+    "work": "One additional background SetPoint only during an existing cold/mode-change chrome construction. Existing lastBorderMode and lockdown guards remain. No new runtime frame/texture/mask/event/hook/timer/input/settings/controller focus;no mesh registration or invalidation. Core/Shared/Stance.Layout byte identities unchanged.",
+    "color": "All RGB/private/alpha/visibility behavior is inherited from prior prepared fill;no color setters or material policy changed."
+  },
+  "validation": {
+    "gateReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-final-gate-20261117.json",
+    "focusedScriptsPassed": 6,
+    "results": [
+      {
+        "path": "tests/stance_portrait_backdrop_contact.lua",
+        "exitCode": 0,
+        "stdout": "Portrait border fit: 45792 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nStance/portrait backdrop: 2208 checks /288 actual scenes PASS; source chrome and anchor; attach/detach; unchanged corners/roots; warm combat static; native pixels/taint/FPS pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_backdrop_gap.lua",
+        "exitCode": 0,
+        "stdout": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nPortrait backdrop gap: 26496 checks /288 actual constructors PASS; both styles/atlas-file paths/mirrors/scales; corner exclusions; color/alpha/private sinks; no warm geometry/resources; native pixels pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/stance_player_scale.lua",
+        "exitCode": 0,
+        "stdout": "stance player scale: 21 checks\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/stance_regen_geometry_work.lua",
+        "exitCode": 0,
+        "stdout": "stance regen geometry work: 468 checks PASS; native latency/geometry/taint pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/mini_unit_border_fit.lua",
+        "exitCode": 0,
+        "stdout": "mini_unit_border_fit: 3634 passed; 24 scenes; 464 raw-art cap samples; 25904 raw contour samples\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_overlay_attachment.lua",
+        "exitCode": 0,
+        "stdout": "Portrait overlay attachment: 234080 checks; 216 actual Border/Core/Shared helper scenes; native pixels/taint/FPS pending\n",
+        "stderr": ""
+      }
+    ],
+    "syntax": [
+      {
+        "path": "Bars/Stance/Init.lua",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "path": "FluxBorder.lua",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "path": "tests/stance_portrait_backdrop_contact.lua",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_backdrop_gap.lua",
+        "exitCode": 0,
+        "stderr": ""
+      }
+    ],
+    "newContactTest": "2208checks/288 actual portrait constructor and actual Stance chrome+Anchor scenes;45792 retained partition/geometry checks;styles/mirrors/alignments/fractional scales;attach/detach/rejoin;warm locked/unlocked chrome0geometry/resources.",
+    "portraitRegression": "26496 checks/288scenes +30816 geometry assertions on full inset;corner exclusions and private/legacy paint remain.",
+    "negativeControls": {
+      "oldStance": {
+        "exitCode": 1,
+        "expectedCoverageFailure": true,
+        "stdout": "",
+        "stderr": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/stance_portrait_backdrop_contact.lua:13: attached stance backdrop meets player frame without uncovered vertical strip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/stance_portrait_backdrop_contact.lua:13: in upvalue 'check'\n\ttests/stance_portrait_backdrop_contact.lua:41: in global 'ProbeStanceBackdrop'\n\tactual-portrait-with-stance-contact:88: in main chunk\n\ttests/stance_portrait_backdrop_contact.lua:64: in main chunk\n\t[C]: in ?\n"
+      },
+      "oldOneUnitPortrait": {
+        "exitCode": 1,
+        "expectedCoverageFailure": true,
+        "stdout": "",
+        "stderr": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: ...-7e41-8c99-dfbc0d58153b\\portrait-full-inset-negative.lua:6: full portrait inset has backdrop coverage up to the portrait edge\nstack traceback:\n\t[C]: in function 'assert'\n\t...-7e41-8c99-dfbc0d58153b\\portrait-full-inset-negative.lua:6: in upvalue 'check'\n\t...-7e41-8c99-dfbc0d58153b\\portrait-full-inset-negative.lua:24: in global 'InspectPortraitBackdrop'\n\tactual-portrait-fit-plus-backdrop-gap:89: in main chunk\n\t...-7e41-8c99-dfbc0d58153b\\portrait-full-inset-negative.lua:68: in main chunk\n\t[C]: in ?\n"
+      },
+      "portraitReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-full-inset-gate-20261117.json"
+    },
+    "fixtureCorrection": "Native SetPoint replaces a named point;older constructor mock appended duplicate BOTTOMRIGHT and read superseded point. Corrected native semantics;initial receipt retained. Old actual Init still fails real shared-endpoint coverage.",
+    "retainedInitialFailure": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-gate-initial-fixture-20261117.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-upvalues.json",
+    "compiler": {
+      "files": 2,
+      "prototypes": 90,
+      "maximum": 9,
+      "failures": []
+    },
+    "sourceStability": "Final pins stable;only new test fixture corrected after initial six-script gate;five other PASS observations retained on identical runtime. Final new positive/archived-negative and four compiles rerun.",
+    "native": "NOT RUN: exact loaded adoption, stance-present/absent screenshot comparison, combat taint, CPU/GPU/FPS. UI-unit source geometry is not a native physical-pixel claim.",
+    "documentation": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-portrait-fill-doc-validation-20261117.json",
+      "generation": "PASS;1249sources;625reachable",
+      "audit": "10same unrelated owner source-fingerprint drifts only;not full-repository PASS",
+      "otherOwnerDrift": [
+        "Bars/SpellRank.lua",
+        "Core/API/Item.lua",
+        "ExtraButtonSystem/Engine/Events.lua",
+        "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "Inventory/FluxConsumableBest/Scan.lua",
+        "Inventory/FluxConsumableClassify.lua",
+        "Inventory/FluxItemClass.lua",
+        "Inventory/Init.lua",
+        "Inventory/Professions.lua",
+        "Inventory/Restock/FluxRestock_Inv.lua"
+      ]
+    },
+    "ownedDiffCheck": "PASS;main retained;line-ending notices only"
+  },
+  "coordination": "Performance owner retains combined gate and Mario-only native reload/capture;no input/lease/profiler write here. Foreign ROOT-JUMP-F and CF62/CF64/CF65 remain untouched.",
+  "portraitPreimage": {
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-full-inset-checkpoint-20261117.json",
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-full-inset-before-20261117T112655Z\\source.zip",
+    "sourceLF": "a813956fbc303a75cbeeaa49a8f2db66c82b97b621811783c5c7a43dd92120f6"
+  },
+  "effectiveTaskBeforeLF": {
+    "FluxBorder.lua": "a813956fbc303a75cbeeaa49a8f2db66c82b97b621811783c5c7a43dd92120f6",
+    "Bars/Stance/Init.lua": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7"
+  },
+  "finalFreezeUTC": "2026-11-17T11:46:54.404795+00:00"
+}

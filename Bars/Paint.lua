@@ -8,6 +8,31 @@ local Bars = Flux.Bars
 local Paint = {}
 Bars.Paint = Paint
 
+local function SetHotkeyText(fs, text)
+	if not fs then return end
+	local H = Flux.Hotkey
+	if H and H.SetText then H.SetText(fs, text) else fs:SetText(text) end
+end
+
+local function SetHotkeyRange(fs, outOfRange, forceColor)
+	if not fs then return end
+	local H = Flux.Hotkey
+	if H and H.SetRange then
+		H.SetRange(fs, outOfRange, forceColor)
+	elseif fs.SetTextColor and (forceColor or fs._fluxBarRangeRed ~= outOfRange) then
+		fs._fluxBarRangeRed = outOfRange
+		if outOfRange then fs:SetTextColor(1, 0.1, 0.1) else fs:SetTextColor(0.75, 0.75, 0.75) end
+	end
+end
+
+local function SyncHotkeyRange(host, outOfRange)
+	if not host then return end
+	outOfRange = outOfRange == true
+	SetHotkeyRange(host.WHotKey, outOfRange)
+	local widget = host.widget
+	SetHotkeyRange(widget and widget._fluxHotkeyMod, outOfRange)
+end
+
 local QUESTION = "Interface\\Icons\\INV_Misc_QuestionMark"
 
 local function IsQuestionTex(tex)
@@ -1128,6 +1153,8 @@ local function ClearEmptyCooldown(host)
 end
 
 local function ClearEmptyUsable(host)
+	host._outOfRange = false
+	SyncHotkeyRange(host, false)
 	host._fluxRankDesaturated = false
 	if host.widget then
 		host.widget._fluxRankDesaturated = false
@@ -1247,6 +1274,31 @@ local function ApplyUsableColor(host, r, g, b)
 	ApplyIconColor(host, r, g, b)
 end
 
+local function ApplyUsableState(host, C, charge, usable, noMana, countDark, itemEmpty)
+	if noMana == true then
+		ApplyUsableColor(host, C.mana[1], C.mana[2], C.mana[3])
+		return
+	end
+	if charge == "empty" or itemEmpty then
+		ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
+		return
+	end
+	if countDark and charge ~= "ready" then
+		ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
+		return
+	end
+	if usable == false and charge ~= "ready" then
+		ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
+		return
+	end
+	if usable == true or charge == "ready" then
+		ApplyUsableColor(host, C.usable[1], C.usable[2], C.usable[3])
+		return
+	end
+	-- Keep the usable layer, independently of temporary range red.
+	ApplyIconColor(host, host._usableR or C.usable[1], host._usableG or C.usable[2], host._usableB or C.usable[3])
+end
+
 function Paint.UpdateUsable(host)
 	local slot = LiveSlot(host)
 	local C = Bars.COLOR
@@ -1266,35 +1318,11 @@ function Paint.UpdateUsable(host)
 	-- spell that just went 0→1 must not stay gray (OOR / OOM still win).
 	-- 0 charges / 0 items always dim, including mid-combat when the API is
 	-- secret: last-known empty and the painted 0 digit still win.
-	local function paint(usable, noMana, countDark, itemEmpty)
-		if noMana == true then
-			ApplyUsableColor(host, C.mana[1], C.mana[2], C.mana[3])
-			return
-		end
-		if charge == "empty" or itemEmpty then
-			ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
-			return
-		end
-		if countDark and charge ~= "ready" then
-			ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
-			return
-		end
-		if usable == false and charge ~= "ready" then
-			ApplyUsableColor(host, C.unusable[1], C.unusable[2], C.unusable[3])
-			return
-		end
-		if usable == true or charge == "ready" then
-			ApplyUsableColor(host, C.usable[1], C.usable[2], C.usable[3])
-			return
-		end
-		-- Keep the usable layer, independently of temporary range red.
-		ApplyIconColor(host, host._usableR or C.usable[1], host._usableG or C.usable[2], host._usableB or C.usable[3])
-	end
 
 	if nextId and Flux.Spell and Flux.Spell.IsUsable then
 		local usable, noMana = Flux.Spell.IsUsable(nextId)
 		if usable ~= nil then
-			paint(usable, noMana, false, false)
+			ApplyUsableState(host, C, charge, usable, noMana, false, false)
 			return
 		end
 	end
@@ -1302,7 +1330,7 @@ function Paint.UpdateUsable(host)
 	if kind == "spell" and shown and Flux.Spell and Flux.Spell.IsUsable then
 		local usable, noMana = Flux.Spell.IsUsable(shown)
 		if usable ~= nil then
-			paint(usable, noMana, SlotCountUnusable(slot) or DisplayedZero(host), false)
+			ApplyUsableState(host, C, charge, usable, noMana, SlotCountUnusable(slot) or DisplayedZero(host), false)
 			return
 		end
 		-- nil = unknown (Extra SpellUsable): do not gray; use the slot.
@@ -1335,7 +1363,7 @@ function Paint.UpdateUsable(host)
 	-- Mana gem / potion at 0: IsUsableAction can stay true. Darken from count.
 	local itemEmpty = kind == "item" and OverlayItemEmptyUnusable(host, shown)
 	local countDark = SlotCountUnusable(slot) or itemEmpty or DisplayedZero(host)
-	paint(usable, noMana, countDark, itemEmpty)
+	ApplyUsableState(host, C, charge, usable, noMana, countDark, itemEmpty)
 end
 
 local function ItemUseSpellId(itemId)
@@ -1406,21 +1434,37 @@ end
 -- Overlay clicks follow that body, so they must not inherit the mouseover-cast
 -- hub sitting on the action button underneath. Plain slots use the hub, gated
 -- so leftover unit=mouseover is ignored while the toggle is off.
-local function RangeUnit(host)
+local function CastRangeContext(host)
 	local slot = LiveSlot(host)
 	local face = FaceBoundToSlot(host, slot) and host._fluxFace
+	local R = Flux.Range
+	local Action = Flux.EBS and Flux.EBS.Action
+	if face and face._fluxStripFace and Action and Action.CastFromBody then
+		local PF = Bars.ProgramFace
+		local body = PF and PF.CastBodyForSlot and PF.CastBodyForSlot(slot) or face.MacroBody
+		if type(body) == "string" and body ~= "" then
+			local kind, id, unit = Action.CastFromBody(body)
+			if not kind or not id then return nil, nil, nil, true end
+			if R and R.ResolveUnit then unit = R.ResolveUnit(nil, unit) end
+			return kind, id, unit, true
+		end
+	end
 	local macroUnit = face and face.MacroTarget
 	local overlay = face and face._fluxStripFace
 	local widget
 	if not overlay then widget = host and host.widget end
-	local R = Flux.Range
 	if R and R.ResolveUnit then
-		return R.ResolveUnit(widget, macroUnit)
+		return nil, nil, R.ResolveUnit(widget, macroUnit, "action", slot), false
 	end
-	if type(macroUnit) == "string" and macroUnit ~= "" and macroUnit ~= "player" and macroUnit ~= "cursor" then
-		return macroUnit
+	if type(macroUnit) == "string" and macroUnit ~= "" then
+		return nil, nil, macroUnit ~= "cursor" and macroUnit or nil, false
 	end
-	return "target"
+	return nil, nil, "target", false
+end
+
+local function RangeUnit(host)
+	local _, _, unit = CastRangeContext(host)
+	return unit
 end
 
 function Paint.NeedsRange(host)
@@ -1457,7 +1501,18 @@ local function ProbeRange(host, slot)
 	if not R then
 		return nil
 	end
-	local unit = RangeUnit(host)
+	local castKind, castId, unit, handled = CastRangeContext(host)
+	if handled then
+		if castKind == "spell" and castId then
+			host._fluxRangeItem = nil
+			return R.CheckSpell(castId, unit)
+		end
+		if castKind == "item" and castId then
+			return ProbeItemRange(host, R, castId, unit)
+		end
+		host._fluxRangeItem = nil
+		return nil
+	end
 	local face = FaceBoundToSlot(host, slot) and host._fluxFace
 	if face then
 		if face.MacroMode == "spell" and face.SpellId then
@@ -1497,6 +1552,7 @@ function Paint.UpdateRange(host)
 	if Paint.NeedsRange(host) then
 		local inRange, keepLast = ProbeRange(host, LiveSlot(host))
 		if keepLast then
+			SyncHotkeyRange(host, host._outOfRange)
 			return
 		end
 		oor = (inRange == false)
@@ -1504,9 +1560,11 @@ function Paint.UpdateRange(host)
 		host._fluxRangeItem = nil
 	end
 	if host._outOfRange == oor then
+		SyncHotkeyRange(host, oor)
 		return
 	end
 	host._outOfRange = oor
+	SyncHotkeyRange(host, oor)
 	Paint.UpdateUsable(host)
 end
 
@@ -1532,7 +1590,10 @@ function Paint.ApplySlotRange(slot, isInRange, checksRange)
 			if not (face and face._fluxStripFace) and RangeUnit(host) == "target" then
 				if host._outOfRange ~= oor then
 					host._outOfRange = oor
+					SyncHotkeyRange(host, oor)
 					Paint.UpdateUsable(host)
+				else
+					SyncHotkeyRange(host, oor)
 				end
 			end
 		end
@@ -1849,7 +1910,7 @@ local function WidgetHotkeyXFactor(widget)
 	return math.max(0.4, math.min(1, f))
 end
 
-local function PrepareHotKey(fs, widget)
+local function PrepareHotKey(fs, widget, outOfRange)
 	if not fs then
 		return
 	end
@@ -1867,7 +1928,7 @@ local function PrepareHotKey(fs, widget)
 	if font then
 		pcall(fs.SetFont, fs, font, fontSize, "OUTLINE")
 	end
-	fs:SetTextColor(0.75, 0.75, 0.75)
+	SetHotkeyRange(fs, outOfRange == true, true)
 	fs:SetJustifyH("RIGHT")
 	if fs.SetJustifyV then
 		pcall(fs.SetJustifyV, fs, "TOP")
@@ -1877,7 +1938,7 @@ local function PrepareHotKey(fs, widget)
 	end
 end
 
-local function ModifierOverlay(widget, hotKey)
+local function ModifierOverlay(widget, hotKey, outOfRange)
 	if not widget then
 		return nil
 	end
@@ -1891,7 +1952,7 @@ local function ModifierOverlay(widget, hotKey)
 	if font then
 		pcall(overlay.SetFont, overlay, font, HotkeyFontSize(), "OUTLINE")
 	end
-	overlay:SetTextColor(0.75, 0.75, 0.75)
+	SetHotkeyRange(overlay, outOfRange == true, true)
 	overlay:SetPoint("RIGHT", hotKey, "RIGHT", -KEY_ICON_SIZE, 0)
 	widget._fluxHotkeyMod = overlay
 	return overlay
@@ -1918,9 +1979,10 @@ function Paint.UpdateHotkey(host)
 	end
 	local widget = host.widget
 	if host.row and host.row ~= "main" then
+		SyncHotkeyRange(host, false)
 		if host._hotkey ~= "" then
 			host._hotkey = ""
-			fs:SetText("")
+			SetHotkeyText(fs, "")
 			fs:Hide()
 		end
 		if widget and widget._fluxHotkeyMod then
@@ -1928,6 +1990,9 @@ function Paint.UpdateHotkey(host)
 		end
 		return
 	end
+	-- The range owner may update before the label exists, or a modifier/bind
+	-- refresh may reuse the same text. Synchronize before either cache return.
+	SyncHotkeyRange(host, host._outOfRange)
 	local key = ""
 	if host.bindingCommand and GetBindingKey then
 		key = GetBindingKey(host.bindingCommand) or ""
@@ -1962,9 +2027,9 @@ function Paint.UpdateHotkey(host)
 		return
 	end
 	host._hotkey = sig
-	PrepareHotKey(fs, widget)
+	PrepareHotKey(fs, widget, host._outOfRange)
 	if text == "" then
-		fs:SetText("")
+		SetHotkeyText(fs, "")
 		fs:Hide()
 		if widget and widget._fluxHotkeyMod then
 			widget._fluxHotkeyMod:Hide()
@@ -1972,14 +2037,14 @@ function Paint.UpdateHotkey(host)
 		return
 	end
 	if isIcon and prefix ~= "" and widget then
-		fs:SetText(text)
-		local overlay = ModifierOverlay(widget, fs)
+		SetHotkeyText(fs, text)
+		local overlay = ModifierOverlay(widget, fs, host._outOfRange)
 		overlay:ClearAllPoints()
 		overlay:SetPoint("RIGHT", fs, "RIGHT", -iconW, 0)
-		overlay:SetText(prefix)
+		SetHotkeyText(overlay, prefix)
 		overlay:Show()
 	else
-		fs:SetText(text)
+		SetHotkeyText(fs, text)
 		if widget and widget._fluxHotkeyMod then
 			widget._fluxHotkeyMod:Hide()
 		end
@@ -2324,7 +2389,7 @@ function Paint.EachDirty(fn)
 	end
 end
 
-function Paint.Flush(tokens)
+local function FlushSlotPassBody(tokens, layoutFaces)
 	local full = (tokens == nil) or tokens["bars"] == true
 	local hasDirty = tokens and tokens["bars.dirty"] and true or false
 	local icon = full or (tokens and tokens["bars.icon"])
@@ -2347,8 +2412,10 @@ function Paint.Flush(tokens)
 	-- move must not swallow a coalesced cooldown/charge/icon event.
 	if full then
 		for host in pairs(dirtyHosts) do
+			if layoutFaces and host.widget then layoutFaces[host.widget] = true end
 			dirtyHosts[host] = nil
 		end
+		if layoutFaces and not next(layoutFaces) then return end
 	elseif hasDirty then
 		if anyLane then
 			painted = {}
@@ -2436,7 +2503,11 @@ function Paint.Flush(tokens)
 					Bars.Flyout.Update(host)
 				end
 			end
-		elseif icon or count or checked or equipped or cooldown or usable then
+		elseif icon or count or checked or equipped or cooldown or usable or range then
+			if range then
+				host._outOfRange = false
+				SyncHotkeyRange(host, false)
+			end
 			-- Parked / empty surfaces skip the value lanes, but leftover gold,
 			-- leftover item-count digits, leftover noform icons, leftover equipped borders,
 			-- leftover form-page cooldown swipes, leftover dim, and leftover assist ants still drop.
@@ -2496,7 +2567,7 @@ function Paint.Flush(tokens)
 	end
 
 	Bars.ForEachHost(function(host)
-		if not (painted and painted[host]) then
+		if (not layoutFaces or layoutFaces[host.widget]) and not (painted and painted[host]) then
 			PaintOne(host, true)
 		end
 	end)
@@ -2507,6 +2578,15 @@ function Paint.Flush(tokens)
 	if Perf then
 		Perf.Stop(passKey)
 	end
+end
+
+
+function Paint.Flush(tokens, layoutFaces)
+	local FX = Flux.ButtonFX
+	if FX and FX.WithSlotPassCleanup then
+		return FX.WithSlotPassCleanup(FlushSlotPassBody, tokens, layoutFaces)
+	end
+	return FlushSlotPassBody(tokens, layoutFaces)
 end
 
 function Paint.ClearCache(host)
@@ -2534,6 +2614,7 @@ function Paint.ClearCache(host)
 	host._checked = nil
 	host._equipped = nil
 	host._outOfRange = nil
+	SyncHotkeyRange(host, false)
 	host._hotkey = nil
 	host._hotkeyRaw = nil
 	host._hotkeyLive = nil

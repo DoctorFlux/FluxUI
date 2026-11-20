@@ -1,0 +1,2062 @@
+{
+  "changeId": "INDEXED-REGIONS-R81-20261119",
+  "capturedAtUTC": "2026-11-19T07:30:18.237667+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce the work of a single border build on party/raid join or leave and on action-strip enter/leave while holding an action.",
+  "historicalNativeAttribution": {
+    "client": "Forever",
+    "borderVersion": "party-paint-r68",
+    "source": "docs/validation/roster-region-routing-2026-11-19.json",
+    "borderCallbackMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "currentBuildMeasured": false
+  },
+  "changes": {
+    "operationSelection": "Index the dirty regions once and reuse the same coordinates for altered and retained operation selection and for field routing. Keep cast-plane selection semantics, operation order and clipped boundaries.",
+    "segmentPublication": "Publish the same solved input segment lookup once when multiple changed tiles share it. Tile diagnostics retain their own solved reference.",
+    "stripLevels": "Read native frame levels for regional contacts requiring the raised strip seam. Keep the complete fallback path and final shared canvas reconciliation."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+    },
+    "fixturesRaw": {
+      "tests/border_region_routing.lua": "0add3b3aeb1e631dae75ab19dd63460d2160ca16411a6215e077f51fb205e675"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\source.zip",
+    "archiveSHA256": "7bf2184ed3d8f6a372158f4557c4a093b56ce76f0f86a91406e3727062f8a02f",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "pairedChecks": {
+    "mixedScopes": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\region-paired.txt",
+      "rows": [
+        "REGION_ROUTE after query=272 rect=144 owners=2 outputFields=144",
+        "REGION_ROUTE retainedGroupMetadataReads=0/0",
+        "REGION_ROUTE tileClipPlanes=40/40",
+        "REGION_SCOPE intersectionChecks=36444/272",
+        "REGION_ROUTE before query=36444 rect=144 owners=2 outputFields=144",
+        "REGION_ROUTE sample=1 before=0.740ms after=0.740ms",
+        "REGION_ROUTE sample=2 before=0.800ms after=0.780ms",
+        "REGION_ROUTE sample=3 before=0.790ms after=0.710ms",
+        "REGION_ROUTE sample=4 before=0.780ms after=0.700ms",
+        "REGION_ROUTE sample=5 before=0.770ms after=0.750ms",
+        "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS"
+      ],
+      "outcome": "404 ordered operations across sparse HUD tiles, long runs, touching boundaries and dedicated cast scopes. Exact region selection and existing routed output fields."
+    },
+    "actualRegionalRenderer": {
+      "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\local-update-paired.lua",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\local-update-paired.txt",
+      "rows": [
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 1,
+          "before": {
+            "scopeProbes": 857.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 2,
+          "before": {
+            "scopeProbes": 867.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 3,
+          "before": {
+            "scopeProbes": 857.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 4,
+          "before": {
+            "scopeProbes": 867.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 5,
+          "before": {
+            "scopeProbes": 857.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 6,
+          "before": {
+            "scopeProbes": 867.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 1,
+          "before": {
+            "scopeProbes": 837.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 2,
+          "before": {
+            "scopeProbes": 847.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 3,
+          "before": {
+            "scopeProbes": 837.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 4,
+          "before": {
+            "scopeProbes": 847.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 5,
+          "before": {
+            "scopeProbes": 837.0,
+            "stripLevels": 56.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 6,
+          "before": {
+            "scopeProbes": 847.0,
+            "stripLevels": 58.0,
+            "segmentWrites": 864.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "scopeProbes": 53.0,
+            "stripLevels": 13.0,
+            "segmentWrites": 36.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 1,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 2,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 3,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 4,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 5,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 6,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 1,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 2,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 3,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 4,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 5,
+          "before": {
+            "scopeProbes": 515.0,
+            "stripLevels": 40.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 6,
+          "before": {
+            "scopeProbes": 513.0,
+            "stripLevels": 42.0,
+            "segmentWrites": 640.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "scopeProbes": 41.0,
+            "stripLevels": 0.0,
+            "segmentWrites": 32.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        }
+      ],
+      "outcome": "24 matched updates across two styles and two poses. The strip scene contains two unit frames and neighboring Info, combat and Trinket panels. The dock scene is a synthetic multi-panel layout, separate from in-game group events. Sampled field output and operation, region and triangle counts match."
+    },
+    "modelTiming": {
+      "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\local-update-clock.lua",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\local-update-clock.txt",
+      "summary": {
+        "strip": {
+          "1": {
+            "before": {
+              "median": 16.0,
+              "range": [
+                12.0,
+                33.0
+              ]
+            },
+            "after": {
+              "median": 17.5,
+              "range": [
+                12.0,
+                38.0
+              ]
+            }
+          },
+          "2": {
+            "before": {
+              "median": 16.0,
+              "range": [
+                14.0,
+                34.0
+              ]
+            },
+            "after": {
+              "median": 17.0,
+              "range": [
+                13.0,
+                29.0
+              ]
+            }
+          }
+        },
+        "dock": {
+          "1": {
+            "before": {
+              "median": 11.0,
+              "range": [
+                8.0,
+                29.0
+              ]
+            },
+            "after": {
+              "median": 10.0,
+              "range": [
+                8.9999999999999,
+                20.0
+              ]
+            }
+          },
+          "2": {
+            "before": {
+              "median": 11.5,
+              "range": [
+                8.0,
+                24.0
+              ]
+            },
+            "after": {
+              "median": 11.0,
+              "range": [
+                7.0000000000001,
+                17.0
+              ]
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 1,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 25.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 2,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 3,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 4,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 27.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 5,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 6,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 7,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 8,
+          "before": {
+            "ms": 33.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 9,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 10,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 11,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 12,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 13,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 19.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 14,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 38.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 15,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 16,
+          "before": {
+            "ms": 20.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 21.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 17,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 18,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 19,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          },
+          "after": {
+            "ms": 31.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 380.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 1,
+          "trial": 20,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 355.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 1,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 19.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 2,
+          "before": {
+            "ms": 19.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 3,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 4,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 29.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 5,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 13.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 6,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 21.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 7,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 8,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 21.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 9,
+          "before": {
+            "ms": 33.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 10,
+          "before": {
+            "ms": 20.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 21.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 11,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 12,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 22.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 13,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 14,
+          "before": {
+            "ms": 34.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 15,
+          "before": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 16,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 17,
+          "before": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 14.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 18,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 18.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 19,
+          "before": {
+            "ms": 17.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          },
+          "after": {
+            "ms": 27.0,
+            "dirtyRegions": 39.0,
+            "operations": 27.0,
+            "triangles": 362.0
+          }
+        },
+        {
+          "scene": "strip",
+          "style": 2,
+          "trial": 20,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 39.0,
+            "operations": 28.0,
+            "triangles": 446.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 1,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 2,
+          "before": {
+            "ms": 29.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 3,
+          "before": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 9.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 4,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 5,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 6,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 7,
+          "before": {
+            "ms": 19.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 9.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 8,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 9,
+          "before": {
+            "ms": 9.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 10,
+          "before": {
+            "ms": 9.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 11,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 12,
+          "before": {
+            "ms": 21.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 9.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 13,
+          "before": {
+            "ms": 8.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 14,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 15,
+          "before": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 16,
+          "before": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 17,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 18,
+          "before": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 20.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 19,
+          "before": {
+            "ms": 9.9999999999998,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 251.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 1,
+          "trial": 20,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          },
+          "after": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 300.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 1,
+          "before": {
+            "ms": 20.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 13.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 2,
+          "before": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 3,
+          "before": {
+            "ms": 18.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 7.0000000000001,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 4,
+          "before": {
+            "ms": 9.0000000000003,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 9.9999999999998,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 5,
+          "before": {
+            "ms": 8.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 6,
+          "before": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 17.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 7,
+          "before": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 8,
+          "before": {
+            "ms": 16.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 9,
+          "before": {
+            "ms": 8.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 10,
+          "before": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 11,
+          "before": {
+            "ms": 24.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 12,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 13,
+          "before": {
+            "ms": 8.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 14,
+          "before": {
+            "ms": 10.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 15,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 16,
+          "before": {
+            "ms": 24.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 15.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 17,
+          "before": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 18,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 11.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 19,
+          "before": {
+            "ms": 12.0,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          },
+          "after": {
+            "ms": 8.9999999999999,
+            "dirtyRegions": 30.0,
+            "operations": 20.0,
+            "triangles": 265.0
+          }
+        },
+        {
+          "scene": "dock",
+          "style": 2,
+          "trial": 20,
+          "before": {
+            "ms": 13.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          },
+          "after": {
+            "ms": 16.0,
+            "dirtyRegions": 30.0,
+            "operations": 21.0,
+            "triangles": 349.0
+          }
+        }
+      ],
+      "qualifier": "80 paired runs with actual renderer code and modeled native widgets. Lua os.clock uses coarse desktop resolution and excludes real native frame and GPU work. Native latency remains pending."
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889"
+      }
+    }
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "upvaluesLua51Maximum": 50,
+    "prototypes": 237,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-selection-r81-before-20261119T072233Z\\upvalues.json",
+    "selected": {
+      "tests/border_region_routing.lua": "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS",
+      "tests/border_locality.lua": "Actual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.",
+      "tests/border_regional_draw_work.lua": "Regional sprite reuse: 120918 checks PASS;canonical art/retained indexes/native paint/context epochs/global budgets;native GPU/CPU/taint pending",
+      "tests/border_solver_allocation_work.lua": "Border solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim",
+      "tests/strip_drag_hover_edges.lua": "Strip drag hover edges: 27 checks; enter/leave while holding the same action. Native timing and seams pending.",
+      "tests/group_roster_performance.lua": "Group roster performance: 211 checks PASS; operation counts only; native performance/taint pending"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for live first/repeated party and raid transitions, held-cursor enter/leave, both strip side seams and combat taint. No native session or profiler changes."
+}

@@ -17,6 +17,15 @@ local Inv = Flux.Inventory
 Inv.Craft = Inv.Craft or {}
 local Craft = Inv.Craft
 
+-- Resolve reagent names from IDs without constructing unused item records.
+-- Only the private Index owner/helper pair may replace the public query path.
+local snapshotItemIDQuery = rawget(ns, "InventoryUniqueItemIDQuery")
+local snapshotItemIDOwner, snapshotItemIDs
+if type(snapshotItemIDQuery) == "table" then
+    snapshotItemIDOwner = rawget(snapshotItemIDQuery, "owner")
+    snapshotItemIDs = rawget(snapshotItemIDQuery, "query")
+end
+
 local DREAMLESS_SLEEP_IDS = {
     [12190] = true,
     [20002] = true,
@@ -63,28 +72,23 @@ local function Classify()
     return _G.FluxConsumableClassify
 end
 
-local function ClientFlags()
+-- These predicates stay live; the recipe paths need no aggregate flags table.
+local function IsPostDF()
     local C = Flux.Client
     local api = _G.FLUX_API
-    return {
-        isPostDF = (C and C.isPostDF) or (api and api.isPostDF) or false,
-        isCamelot = (C and (C.isCamelot or C.isForever)) or (api and (api.isCamelot or api.isForever)) or false,
-        isEra = (C and (C.isEra or C.isClassicEra)) or (api and api.isClassicEra) or false,
-        isTBC = (C and C.isTBC) or (api and api.isTBC) or false,
-        isWrath = (C and C.isWrath) or (api and api.isWrath) or false,
-        isCata = (C and C.isCata) or (api and api.isCata) or false,
-        isMists = (C and C.isMists) or (api and api.isMists) or false,
-        isRetail = (C and C.isRetail) or (api and api.isRetail) or false,
-    }
+    return ((C and C.isPostDF) or (api and api.isPostDF) or false) and true or false
 end
 
 local function IsCamelot()
-    return ClientFlags().isCamelot and true or false
+    local C = Flux.Client
+    local api = _G.FLUX_API
+    return ((C and (C.isCamelot or C.isForever))
+        or (api and (api.isCamelot or api.isForever)) or false) and true or false
 end
 
 --- Live Dragonflight+ dropped First Aid. Forever kept it (camelot isPostDF is true).
 local function UsesFirstAidProfession()
-    return IsCamelot() or not ClientFlags().isPostDF
+    return IsCamelot() or not IsPostDF()
 end
 
 --- Forever moved healing potion recipes onto First Aid.
@@ -148,12 +152,23 @@ local function ReagentItemID(r)
     if type(name) ~= "string" or name == "" or not Inv.GetUniqueItems then
         return nil
     end
-    local unique = Inv.GetUniqueItems({
-        bags = true,
-        bank = false,
-        warband = false,
-        equipped = false,
-    })
+    local unique
+    if Inv == snapshotItemIDOwner and type(snapshotItemIDs) == "function"
+        and rawget(Inv, "GetUniqueItemIDs") == snapshotItemIDs then
+        unique = snapshotItemIDs({
+            bags = true,
+            bank = false,
+            warband = false,
+            equipped = false,
+        })
+    else
+        unique = Inv.GetUniqueItems({
+            bags = true,
+            bank = false,
+            warband = false,
+            equipped = false,
+        })
+    end
     if type(unique) ~= "table" then
         return nil
     end
@@ -207,10 +222,6 @@ function Craft.GetCraftableCount(reagentsOrRecipe)
         return 0
     end
     return minCraftable
-end
-
-local function IsPostDF()
-    return ClientFlags().isPostDF and true or false
 end
 
 local function Reagents(pairsList)
@@ -320,6 +331,14 @@ local function SpellLooksKnown(spellName)
     return false
 end
 
+local function HasFirstAid()
+    return AnyProfessionSpellKnown(PROFESSION_SPELLS_BANDAGE)
+        or SpellLooksKnown("First Aid")
+        or SpellLooksKnown("Apprentice First Aid")
+        or SpellLooksKnown("Expert First Aid")
+        or SpellLooksKnown("Artisan First Aid")
+end
+
 function Craft.HasProfessionForKind(kind)
     kind = kind and tostring(kind) or nil
     local needles = ProfessionNeedlesForKind(kind)
@@ -329,13 +348,6 @@ function Craft.HasProfessionForKind(kind)
     local P = Prof()
     if P and P.HasProfessionName and P.HasProfessionName(needles) then
         return true
-    end
-    local function HasFirstAid()
-        return AnyProfessionSpellKnown(PROFESSION_SPELLS_BANDAGE)
-            or SpellLooksKnown("First Aid")
-            or SpellLooksKnown("Apprentice First Aid")
-            or SpellLooksKnown("Expert First Aid")
-            or SpellLooksKnown("Artisan First Aid")
     end
     if kind == "bandage" then
         if UsesFirstAidProfession() then
@@ -402,13 +414,18 @@ end
 
 local SUBCLASS_POTION = 1
 local SUBCLASS_BANDAGE = 7
+local recipeItemClass = _G.FluxItemClass
+local recipeGetStatic = recipeItemClass and recipeItemClass.GetStatic
 
 --- Name / subclass fallback when tooltip classify is pending or unavailable.
 --- Keeps craft detection working before item tooltips finish loading.
 local function RecipeMatchesKindHeuristic(recipe, kind, itemID)
     local name = (recipe and recipe.name or ""):lower()
     local IC = _G.FluxItemClass
-    local st = IC and IC.GetStatic and IC.GetStatic(itemID)
+    local getStatic = IC and IC.GetStatic
+    -- Potion names must identify the restore kind even when the subclass matches.
+    local deferStatic = kind ~= "bandage" and IC == recipeItemClass and getStatic == recipeGetStatic
+    local st = not deferStatic and getStatic and getStatic(itemID)
     local subclassID = st and (st.subClassID or st.subclassID)
     if kind == "bandage" then
         if subclassID == SUBCLASS_BANDAGE or name:find("bandage", 1, true) then
@@ -417,24 +434,21 @@ local function RecipeMatchesKindHeuristic(recipe, kind, itemID)
         return false, 0
     end
     if kind == "healPotion" then
-        local looksPotion = subclassID == SUBCLASS_POTION
-            or name:find("potion", 1, true)
-            or name:find("injector", 1, true)
-        if looksPotion and not name:find("mana", 1, true)
-            and (name:find("heal", 1, true) or name:find("health", 1, true)
-                or name:find("healing", 1, true) or name:find("rejuvenation", 1, true)) then
-            return true, 1
+        if not (name:find("heal", 1, true) or name:find("rejuvenation", 1, true))
+            or name:find("mana", 1, true) then
+            return false, 0
         end
+    elseif kind ~= "manaPotion" or not name:find("mana", 1, true) then
         return false, 0
     end
-    if kind == "manaPotion" then
-        local looksPotion = subclassID == SUBCLASS_POTION
-            or name:find("potion", 1, true)
-            or name:find("injector", 1, true)
-        if looksPotion and name:find("mana", 1, true) then
+    if subclassID == SUBCLASS_POTION or name:find("potion", 1, true) or name:find("injector", 1, true) then
+        return true, 1
+    end
+    if deferStatic and getStatic then
+        st = getStatic(itemID)
+        if st and (st.subClassID or st.subclassID) == SUBCLASS_POTION then
             return true, 1
         end
-        return false, 0
     end
     return false, 0
 end
@@ -552,6 +566,22 @@ function Craft.GetOutputPerCraft(recipeOrEntry)
     return n
 end
 
+local function RecipeRankLess(a, b)
+    if a.effective ~= b.effective then
+        return a.effective > b.effective
+    end
+    -- Same restore: Engineering (injectors) before Alchemy when both listed.
+    local aEng, bEng = IsEngineeringRecipe(a), IsEngineeringRecipe(b)
+    if aEng ~= bEng then
+        return aEng
+    end
+    local am, bm = tonumber(a.maxStack) or 0, tonumber(b.maxStack) or 0
+    if am ~= bm then
+        return am > bm
+    end
+    return (a.outputItemID or 0) > (b.outputItemID or 0)
+end
+
 --- All cached recipes for kind, sorted by restore value desc.
 --- Tie-break: Engineering over Alchemy, then larger output maxStack, then higher outputItemID.
 function Craft.ListRecipesForKind(kind)
@@ -561,12 +591,14 @@ function Craft.ListRecipesForKind(kind)
     end
     local P = Prof()
     local all = P and P.ListAllCachedRecipes and P.ListAllCachedRecipes() or {}
-    local raw = {}
+    local raw, effective = {}, nil
     for i = 1, #all do
         local recipe = all[i]
         local ok, eff = RecipeMatchesKind(recipe, kind)
         if ok then
-            raw[#raw + 1] = { recipe = recipe, effective = eff }
+            local index = #raw + 1
+            effective = effective or {}
+            raw[index], effective[index] = recipe, eff
         end
     end
     -- Forever heal potions (and Classic/Forever bandages) must not lose to a
@@ -574,29 +606,28 @@ function Craft.ListRecipesForKind(kind)
     local preferFirstAid = (kind == "healPotion" and HealPotionsUseFirstAid())
         or (kind == "bandage" and UsesFirstAidProfession())
     if preferFirstAid then
-        local firstAidOnly = {}
+        local retained = 0
         for i = 1, #raw do
-            if IsFirstAidRecipe(raw[i].recipe) then
-                firstAidOnly[#firstAidOnly + 1] = raw[i]
+            if IsFirstAidRecipe(raw[i]) then
+                retained = retained + 1
+                raw[retained], effective[retained] = raw[i], effective[i]
             end
         end
-        if #firstAidOnly > 0 then
-            raw = firstAidOnly
-        else
-            local untagged = {}
+        if retained == 0 then
             for i = 1, #raw do
-                local r = raw[i].recipe
+                local r = raw[i]
                 if not r.skillLineID and (not r.skillName or r.skillName == "") then
-                    untagged[#untagged + 1] = raw[i]
+                    retained = retained + 1
+                    raw[retained], effective[retained] = r, effective[i]
                 end
             end
-            raw = untagged
         end
+        for i = #raw, retained + 1, -1 do raw[i], effective[i] = nil, nil end
     end
     local out = {}
     for i = 1, #raw do
-        local recipe = raw[i].recipe
-        local eff = raw[i].effective
+        local recipe = raw[i]
+        local eff = effective[i]
         local outputItemID = tonumber(recipe.outputItemID)
         EnsureRecipeReagents(recipe)
         local reagents = FillReagentsFromStatic(recipe, kind)
@@ -620,21 +651,7 @@ function Craft.ListRecipesForKind(kind)
             craftableItems = craftableOps * outputPerCraft,
         }
     end
-    table.sort(out, function(a, b)
-        if a.effective ~= b.effective then
-            return a.effective > b.effective
-        end
-        -- Same restore: Engineering (injectors) before Alchemy when both listed.
-        local aEng, bEng = IsEngineeringRecipe(a), IsEngineeringRecipe(b)
-        if aEng ~= bEng then
-            return aEng
-        end
-        local am, bm = tonumber(a.maxStack) or 0, tonumber(b.maxStack) or 0
-        if am ~= bm then
-            return am > bm
-        end
-        return (a.outputItemID or 0) > (b.outputItemID or 0)
-    end)
+    table.sort(out, RecipeRankLess)
     return out
 end
 

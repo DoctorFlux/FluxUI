@@ -1,0 +1,209 @@
+{
+  "changeId": "LHO-RESTORE-PARSER-PATTERNS-20261119",
+  "file": "Inventory/FluxConsumableClassify.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restore-duration-literals-20261119T055108Z",
+    "before": "37606d4fd7b8ca672363c1e3a0cc40f663f5ea1662b30cebc0dc83f7be7fe63b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false
+  },
+  "betweenEdits": "3c62bba750aa4f3dcb760eca22e217c04ca955abb937ded987790f6f4624ded4",
+  "after": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+  "installed": {
+    "_retail_": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+    "_forever_": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+    "_classic_": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+    "_classic_era_": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868",
+    "_anniversary_": "fc5f73294d9ebbc062a9c9fcb4a1f5ef16e7eb63ab84c1c22dea2f7324752868"
+  },
+  "compatibility": "No change to locale pattern strings, resource floor math, watcher lifetimes, eligibility checks, or the periodic retry cadence. Each duration guard is a literal required by its pattern. Every potion suffix contains the matching resource literal.",
+  "syntax": [
+    "Lua 5.1 original, intermediate and final",
+    "Lua 5.4 original, intermediate and final"
+  ],
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "locale": "enUS",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "birthFileTime": "134395136956432074"
+  },
+  "r224": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag224-restore-duration-literal-baseline-20261119",
+      "controllerSHA": "38752d5efe88d82595703305a513c36a6a926187bb43f796f5a471c05728e9f1",
+      "packetSHA": "11ae60cfc33db5bf1ef188e2cc397434d2a0c4b53be0ef7de3e69268263e7958",
+      "packets": 23,
+      "luaSHA": "08fd321b608c9d99a7a2642f182da60ef918d6d9ee6c381aeec75310e5ec0376"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag224_a-submitted.png",
+      "pngSha": "0a5144a5deea2c06dd668c39a9b57a00282ae7adad07052aa32057b06b5d854a",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag224_a-submitted-capture.json",
+      "metaSha": "1d37aab656df06db8891876e30d6e23360c5e68f9e5915f77a30f7a52064aec2",
+      "started": 1795067414.7232811,
+      "time": 1795067417.4598835,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 32046437,
+        "idle": 0.016,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "ids": 18,
+    "positiveDurationAnswers": 4,
+    "alreadyPendingIDsAtRead": 0,
+    "mismatches": 0,
+    "batchSize": 288,
+    "trials": [
+      [
+        4.8663,
+        0.5234
+      ],
+      [
+        4.6461,
+        0.6035
+      ],
+      [
+        5.271,
+        0.6642
+      ]
+    ],
+    "medianBeforeMs": 4.8663,
+    "medianCandidateMs": 0.6035
+  },
+  "r225": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag225-potion-minimum-native-axis-20261119",
+      "controllerSHA": "b10b76b8f753e3ab0fc7a2c171b4cfb169a0b342d4536e2470d0e7ad34cf6476",
+      "packetSHA": "77d6dd15419acb05baa0c3a7cec5ecb36059d037189fe9133bfeadb317ae4152",
+      "packets": 29,
+      "luaSHA": "c9e70b2d04f164c3ca2c4faf159adca2ec7c7b47446089a927e3e3f127274385"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag225_a-submitted.png",
+      "pngSha": "a4058dc19a29e650b1f0f220f6aa3e6e08eaf764021f015c4574542ee98131c7",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag225_a-submitted-capture.json",
+      "metaSha": "37342756015bdc6f8964b44284fb238ac155559252bc79eff4ba009568b8b914",
+      "started": 1795067603.89707,
+      "time": 1795067606.273038,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 32102234,
+        "idle": 133.391,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "readablePotionRecords": 4,
+    "positiveResourceAxes": 2,
+    "batchSize": 64,
+    "axesMatchingProductionBefore": 2,
+    "axesWithVerifiedMinimumBelowMaximum": 2,
+    "mismatches": 0,
+    "trials": [
+      [
+        1.4823,
+        1.0319
+      ],
+      [
+        1.4344,
+        1.0354
+      ],
+      [
+        1.3961,
+        1.0019
+      ]
+    ],
+    "medianBeforeMs": 1.4344,
+    "medianCandidateMs": 1.0319
+  },
+  "r226": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag226-read-native-parser-and-vendor-before-20261119",
+      "controllerSHA": "a992ec608207a7f69b878af1681c36033c24fea3cfd7abc372f9fd638c14cd00",
+      "packetSHA": "0ea9d6c90591bfea834793895bd063b84dbf31be47153080145f979b59361207",
+      "packets": 11,
+      "luaSHA": "850ea7f8a04452b3f8e2ac9b2419c99ff9e68203f527c344fe3b027682554c93"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag226_a-submitted.png",
+      "pngSha": "e47413c70a4ee4e0a565ecb6f01e8ff1fc06cb7a8c185a798d3eb0788433633c",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag226_a-submitted-capture.json",
+      "metaSha": "17f09ad9b77bf0d418e193ebf73f413a0a24b8e85d48a1c7621c18d02c453c39",
+      "started": 1795067813.5057187,
+      "time": 1795067816.5746388,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 32284968,
+        "idle": 160.266,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "status": "Before reload; live running version",
+    "inventoryIds": 42,
+    "parseRecords": 18,
+    "potionRecords": 4,
+    "reportedPendingIds": 3,
+    "bagCountMismatches": 0,
+    "parserDigest": 2084729402,
+    "vendorDigest": 1878899242,
+    "provider": "syndicator",
+    "sessionErrors": 0
+  },
+  "r228": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag228-direct-provider-matrix-20261119",
+      "controllerSHA": "70f1d86a21513f2c25a61b97c18bcd0fbe535316653eef532e67fa97b373d124",
+      "packetSHA": "13a6fab58eefab15906b7b296bf319ffe9e3555e4ef31892c1f666a4ce50c47e",
+      "packets": 1
+    },
+    "result": "Unused reload reservation released due to observed PC control resume. No command from this reservation sent."
+  },
+  "otherChecks": "R229 cold load event observer and R230 production digest are prepared. No after-reload check was executed in this slice. Native periodic timing, non-enUS clients, merchant drawing and frame latency remain pending.",
+  "jumpHelper": {
+    "batch": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r36-20261119",
+    "supervisorPID": 16796,
+    "verified": {
+      "PID": 29940,
+      "since": "2026-11-19T06:02:44.0777260Z",
+      "window": 3541714,
+      "status": "running",
+      "pairs": 0
+    },
+    "priorWorkerStopped": true,
+    "priorPairs": 7,
+    "movementConfirmed": false
+  },
+  "liveAdoptionEvidence": "docs/validation/parser-vendor-live-2026-11-19.json"
+}

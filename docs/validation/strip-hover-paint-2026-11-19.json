@@ -1,0 +1,266 @@
+{
+  "changeId": "STRIP-HOVER-PAINT-R113-20261119",
+  "capturedAtUTC": "2026-11-19T14:36:01.596392+00:00",
+  "sources": {
+    "Bars/Init.lua": {
+      "beforeRaw": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+      "afterRaw": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+      "afterRaw": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb"
+    },
+    "Bars/Paint.lua": {
+      "beforeRaw": "7b6273f75e501f79c5cb287cb5e03b303f6226965b676d1e8a9fec090db34bb0",
+      "afterRaw": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501"
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "beforeRaw": "9764cb31ef47b78a84442a858b66ef50ba08d47a9204a76e02a9ee5227cd4084",
+      "afterRaw": "cd133d08e49a1a49e67e16a4b86154b022f4b87f23c4482d6069d26795d0d9f3"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "3088b4c913b61cc18ef2c44a95b29d42deebc6106cedddb31003721472de7f25",
+      "afterRaw": "5d7bc9a7371aa87408b0c34cba90485c434eb2a4e4c57c616a4aedaf42d15c59"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-paint-before-20261119-152848\\source.zip",
+    "sourceZipSHA256": "cef790885c4b9c58c9c87b91d06d5b1c77631722ef633b6d6701face315b9ba6",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Hold the same action and cross the action strip repeatedly, leaving each hover change time to settle. Start from fully painted sparse and dense strips with top and bottom minis.",
+  "work": {
+    "columns": [
+      "SetSize before",
+      "SetSize after",
+      "icon updates before",
+      "icon updates after",
+      "hotkey updates before",
+      "hotkey updates after",
+      "glow requests before",
+      "glow requests after"
+    ],
+    "perTwelveCrossings": {
+      "false:false": [
+        612,
+        0,
+        276,
+        108,
+        684,
+        432,
+        684,
+        432
+      ],
+      "false:true": [
+        684,
+        0,
+        336,
+        84,
+        684,
+        300,
+        684,
+        300
+      ],
+      "true:false": [
+        612,
+        0,
+        276,
+        108,
+        684,
+        432,
+        684,
+        432
+      ],
+      "true:true": [
+        684,
+        0,
+        336,
+        84,
+        684,
+        300,
+        684,
+        300
+      ]
+    },
+    "rawSHA256": "12e0b82ec5bf77e29575460179f03897d81474ba32471cf158888110a5f36316"
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6. Seven alternating exact source pairs. Each timing sample covers 320 settled crossings in the host fixture. Values represent modeled Lua work plus mock calls.",
+    "results": {
+      "false": {
+        "medians": [
+          63.0,
+          62.0
+        ],
+        "samples": [
+          [
+            65.0,
+            62.0
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            63.0,
+            60.0
+          ],
+          [
+            63.0,
+            62.0
+          ],
+          [
+            62.0,
+            65.0
+          ],
+          [
+            62.0,
+            61.0
+          ],
+          [
+            63.0,
+            62.0
+          ]
+        ]
+      },
+      "true": {
+        "medians": [
+          64.0,
+          58.0
+        ],
+        "samples": [
+          [
+            63.0,
+            56.0
+          ],
+          [
+            65.0,
+            57.0
+          ],
+          [
+            62.0,
+            57.0
+          ],
+          [
+            64.0,
+            58.0
+          ],
+          [
+            66.0,
+            85.0
+          ],
+          [
+            62.0,
+            68.0
+          ],
+          [
+            64.0,
+            58.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-paint-before-20261119-152848\\matched.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-paint-before-20261119-152848\\matched.txt"
+  },
+  "preservation": [
+    "exact button geometry, shown and parked state, slot IDs and secure mapping flags",
+    "identical modeled display values after each matched crossing",
+    "refresh queued slot dirties even when their button geometry is stationary",
+    "preserve full paint for other drag or structural events",
+    "repair native size drift and retain the writer for restricted reads",
+    "existing layout and combat deferral, side envelope and border commit paths"
+  ],
+  "verification": {
+    "focusedPassed": 50,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-paint-before-20261119-152848\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-paint-before-20261119-152848\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Init.lua": {
+        "sha256": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+        "matches": true
+      },
+      "Bars/Paint.lua": {
+        "sha256": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/Init.lua": {
+        "sha256": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+        "matches": true
+      },
+      "Bars/Paint.lua": {
+        "sha256": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/Init.lua": {
+        "sha256": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+        "matches": true
+      },
+      "Bars/Paint.lua": {
+        "sha256": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/Init.lua": {
+        "sha256": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+        "matches": true
+      },
+      "Bars/Paint.lua": {
+        "sha256": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Init.lua": {
+        "sha256": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+        "matches": true
+      },
+      "Bars/Paint.lua": {
+        "sha256": "8bb52991b7ef84df30136e67c7fbeac5d62bc54511d0203a7256daafcd620501",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action frame time, registered join pixels, native binding and combat/taint behavior, and party/raid membership latency. No game input or profiling changes."
+}

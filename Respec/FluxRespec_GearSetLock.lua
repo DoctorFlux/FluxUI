@@ -92,7 +92,8 @@ function GearSetLock.IsSlotProtected(bag, slot)
     end
     bag = tonumber(bag)
     slot = tonumber(slot)
-    if not bag or not slot then
+    -- Bag category and widget paints query every occupied slot.
+    if not bag or not slot or protectedCount == 0 then
         return false
     end
     return protectedSlots[SlotKey(bag, slot)] == true
@@ -684,6 +685,13 @@ function GearSetLock.ShouldShowManualClickGuard(bag, slot)
         return true
     end
     return false
+end
+
+function GearSetLock.IsShieldContextActive()
+    if contextSnapshotActive then
+        return snapDisenchant or snapMerchantSell
+    end
+    return GearSetLock.IsDisenchantContext() or GearSetLock.IsMerchantSellContext()
 end
 
 function GearSetLock.ShouldShowShieldVisual(bag, slot)

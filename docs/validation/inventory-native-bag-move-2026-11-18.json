@@ -1,0 +1,296 @@
+{
+  "utc": "2026-11-18T13:48:14.022692+00:00",
+  "sourceSlot": [
+    0,
+    8
+  ],
+  "destinationSlot": [
+    2,
+    4
+  ],
+  "itemID": 4599,
+  "stackCount": 18,
+  "returnAfterSeconds": 2,
+  "maxReturnAttempts": 10,
+  "returnRetrySeconds": 0.2,
+  "watchSeconds": 30,
+  "cleanupAfterSeconds": 40,
+  "preserve": "Existing diagnostic root/report exact references;scriptProfile preferences;owned jump cue prior a flag;only own watch stopped. No vendor/AH/bank/item use or deletion calls. Destination rechecked before placement to prevent swaps.",
+  "basis": "Accepted bag32read_a and bag32empty_a:source unlocked18;destination genericbag2/free7/firstempty4;cursor clear/no merchant/no combat/no cast/no active watch;both addons loaded;counts18/18/errors0.",
+  "packetSHA": "03c56006a4863b502dfcbf87df3e8f326ca580cc60ecfc041c27afe9dbb22fc7",
+  "controllerSHA": "eb1037867feda99472670d699702d5e07557d80bd562f8b526ca1b70f8a65a59",
+  "syntax": "Lua5.1/5.4 parse only PASS;no simulation/no native execution yet",
+  "status": "NATIVE_MOVE_RETURN_AND_RESTORATION_PASS;broader inventory/FPS goal ACTIVE",
+  "preMoveDelaySeconds": 8,
+  "reason": "Let existing watch collect eligible driver frames before actual movement;do not infer a timed initial gap from an unprimed watch.",
+  "rawReportRoot": "_M32r;owned nonce;data only;no hook/frame/timer;remove after extraction",
+  "phaseTiming": "Each actual attempted out/return records reverse flag/GetTime interval/pcall/result/inclusive direct-call ms. PrintWindow setup capture can contribute unrelated early frame gaps;correlate phase timestamps.",
+  "observedStart": {
+    "run": "bag32move_a",
+    "watchStartPersonallyViewedAndFormallyAcknowledged": true,
+    "submittedPNG": "jq4-bag32move_a-submitted.png",
+    "sha256": "7ae841d21c5c5c0ea032561372c6e191a6a1386991a8897c6a92136cbe27af87",
+    "capturedUnix": 1795010002.5638704
+  },
+  "sourceIdentitiesAtObservation": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef"
+  },
+  "observedContext": {
+    "sourceBag": 0,
+    "sourceSlot": 8,
+    "itemID": 4599,
+    "quantity": 18,
+    "unlocked": true,
+    "destBag": 2,
+    "destSlot": 4,
+    "destBagFamily": 0,
+    "destBagFreeCount": 7,
+    "sourceProvider": "syndicator",
+    "loaded": [
+      true,
+      true
+    ],
+    "bagGenerationBefore": 5,
+    "beforeCount": [
+      18,
+      18
+    ],
+    "beforeErrorSession": 0,
+    "noActiveWatchBefore": true,
+    "cursorClearBefore": true,
+    "merchantClosedBefore": true
+  },
+  "pauseRecovery": "First stop jump helper with native/JUMP_STOP. If _M32 exists and nonce matches, call its Z() to stop only own watch and restore prior diagnostic roots/cue;verify food at0:8 qty18,dest2:4 empty,cursorclear. If outtrue/backfalse, use guarded M(true) only when predicates pass. Never reload before cursor/item/diagnostic restoration evidence.",
+  "id": "LHO-NATIVE-BAG-MOVE32-20261118",
+  "utcUpdated": "2026-11-18T14:13:22.885352+00:00",
+  "nativeBuild": {
+    "version": "1.60.1",
+    "build": "70959",
+    "interface": "Prior sameprocess16001",
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "watchSeconds": 30.001000000047
+  },
+  "result": {
+    "outSucceeded": true,
+    "returnSucceeded": true,
+    "returnAttempts": 1,
+    "sourceSlot": [
+      0,
+      8,
+      4599,
+      18
+    ],
+    "destinationSlot": [
+      2,
+      4,
+      null
+    ],
+    "cursorClear": true,
+    "bagGenerationBefore": 5,
+    "bagGenerationAfter": 7,
+    "foodCountAfter": [
+      18,
+      18
+    ],
+    "selectedFoodAfter": [
+      4599,
+      18,
+      1338
+    ],
+    "postMoveUniqueIDs": 53,
+    "postMoveCountMismatches": 0,
+    "bugTabsSessionAfter": 0,
+    "priorDiagnosticRootRestored": true,
+    "priorSpikeReportRestored": true,
+    "watchInactiveAfter": true,
+    "temporaryProbeRootRemoved": true,
+    "temporaryRawDataRootRemoved": true,
+    "noNewSimulation": true,
+    "noAddonLuaEditThisSlice": true,
+    "noBuySellDeleteUseCraftQueueOrExternalAddonEdit": true
+  },
+  "phases": [
+    {
+      "reverse": false,
+      "startGetTime": 426712.797,
+      "endGetTime": 426712.797,
+      "pcall": true,
+      "placed": true,
+      "inclusiveDirectMs": 4.2416999936104
+    },
+    {
+      "reverse": true,
+      "startGetTime": 426714.801,
+      "endGetTime": 426714.801,
+      "pcall": true,
+      "placed": true,
+      "inclusiveDirectMs": 3.0835999846458
+    }
+  ],
+  "watch": {
+    "frames": 4667,
+    "observedCallbacks": 273,
+    "spikeCount": 3,
+    "callbackCount": 2,
+    "peakFrameMs": 248.00001084805,
+    "recordedDiagnosticMs": 78.313300907612,
+    "recordedDiagnosticPeakMs": 0.44149994850159,
+    "spikes": [
+      {
+        "at": 2.5400000000373,
+        "gapMs": 120.00000476837,
+        "peakCallbackMs": 190.06940001249,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "busy": [
+          {
+            "kind": "Scheduler",
+            "key": "eval.listener",
+            "count": 3
+          },
+          {
+            "kind": "Scheduler",
+            "key": "structural.listener",
+            "count": 1
+          },
+          {
+            "kind": "Scheduler",
+            "key": "structural.callback",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "at": 2.788000000005,
+        "gapMs": 248.00001084805,
+        "peakCallbackMs": 0.29750001430511,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "busy": [
+          {
+            "kind": "Events",
+            "key": "CHAT_MSG_SYSTEM",
+            "count": 1
+          },
+          {
+            "kind": "Scheduler",
+            "key": "structural.listener",
+            "count": 1
+          },
+          {
+            "kind": "Scheduler",
+            "key": "structural.callback",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "at": 4.9760000000242,
+        "gapMs": 93.000002205372,
+        "peakCallbackMs": 0.12639999389648,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "busy": [
+          {
+            "kind": "Scheduler",
+            "key": "structural.listener",
+            "count": 1
+          },
+          {
+            "kind": "Scheduler",
+            "key": "structural.callback",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "callbacks": [
+      {
+        "at": 2.5400000000373,
+        "inclusiveMs": 190.06940001249,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "label": "Scheduler:structural.callback:unmapped",
+        "tokens": [
+          "border.junctions"
+        ],
+        "failed": false
+      },
+      {
+        "at": 4.8830000000307,
+        "inclusiveMs": 72.338499963284,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "label": "Scheduler:structural.callback:unmapped",
+        "tokens": [
+          "border.junctions"
+        ],
+        "failed": false
+      }
+    ]
+  },
+  "interpretation": {
+    "moveEarliestWatchOffsetSeconds": 8,
+    "returnAfterMoveSeconds": 2,
+    "directAPIWork": "Guard checks and real PickupContainerItem transaction envelopes;not full asynchronous bag-update cost or exclusive CPU. GetTime can have frame granularity.",
+    "gapOwnership": "All3recorded gaps and both>=10ms observed callbacks preceded the deliberately delayed item move. Both slow callback buckets carry only border.junctions. Source has border and EBS vendor-bind structural requesters;token narrows these recorded slow buckets to border work. Exact loaded BorderJunctions source hash was not captured;do not declare a specific border revision regressed.",
+    "captureConfound": "PrintWindow setup capture and dynamic world/party/system activity occurred during this watch. BG observed at capture boundaries only;no continuous focus trace.",
+    "inventoryScope": "One out-and-return relocation with both addons loaded. No >=50ms recorded gap during/after those phases within this window;no >=10ms observed Flux-service callback after them. This is not all inventory callbacks, cold data,loot/quantity depletion,bank/mail/vendor/AH/casting,all providers/all clients or a matched before/after FPS gain.",
+    "noUnrelatedEdits": "Border work left to its existing owner;this goal remains focused on Inventory/EBS."
+  },
+  "evidence": {
+    "readPlan": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag32read_a-submitted.png",
+      "sha256": "8d09cc5e7419d6ec47033ca7a362c176d61ef427d560e4f7af4566a6bb2d19a9"
+    },
+    "emptySlots": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag32empty_a-submitted.png",
+      "sha256": "33bb4b5221c16c90299c0d2010b420e69d9afd7abdb294eae523f997166f2798"
+    },
+    "result": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag32-move-return-result.png",
+      "sha256": "9d1b581272a705810e2a7cef650e3dfb153480ea5b7248d3606730da87fdb4df"
+    },
+    "phasesAndCallbacks": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag32report_a-submitted.png",
+      "sha256": "52386cdc8eb3f85bc406220bd999835be7037f12a6103691be28991387930760"
+    },
+    "tokens": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag32tokens_a-submitted.png",
+      "sha256": "a373987282a00676b7113e989371d8ca195a8b9e602bdd7701d8eb5f77e38f36"
+    },
+    "final": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag32final_a-submitted.png",
+      "sha256": "d577c59d547f330ae05bab61bd40d388a433e0b65c8bf1ac4001eea22b3a6259"
+    }
+  },
+  "goal": "ACTIVE",
+  "next": "Native Food cast cancel/completion and receiving new items under bounded optional timing;preserve current all-feature/source/client scope;no questions while user away."
+}

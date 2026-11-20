@@ -1,0 +1,210 @@
+{
+  "changeID": "BLIZZARD-TOOLTIP-20261114",
+  "createdUTC": "2026-11-14T20:00:59.667876+00:00",
+  "requirements": {
+    "BT-01": "All existing addon client families use the pre-existing Blizzard GameTooltip; no FluxUnitTooltip display frame is created.",
+    "BT-02": "Retain exact HUD BOTTOMLEFT to FluxWindowFrame TOPLEFT placement at x0 y30; adjacent pet happiness remains ANCHOR_RIGHT as before.",
+    "BT-03": "Retain native scripts, health bar, native update cadence, unit/raid contents, context instruction, pet happiness and embedded pet aura features.",
+    "BT-04": "Retire Flux owner callbacks and pet icons on native hide, clear or SetOwner; stale leaves/updates cannot dismiss or reclaim a newer item/world/unit tooltip.",
+    "BT-05": "No saved-data migration, option, texture/font/layout change outside native tooltip selection; preserve keyboard/mouse/controller owners and prior paused profiling work."
+  },
+  "design": "User already selected Blizzard tooltip and existing position. Implement accepted design directly; no separate mock-up required.",
+  "controller": "Passive tooltip and non-mouse pet decorations add no focus targets or bindings. Preserve existing native owner/cursor/input paths. Actual gamepad focus/pixels remain NOT RUN on each client.",
+  "testingChoice": "Existing native/manual retest preference retained. This task used no client control, input, reload, gameplay, profiler/settings writes or resumed diagnostic probes.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-native-checkpoint",
+    "files": 2816,
+    "settingsMetadataEntries": 130,
+    "settingsContentsCopied": false,
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "sourceZipVerified": true,
+    "historyBundleVerified": true
+  },
+  "sourceIdentities": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRawSHA256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "afterRawSHA256": "5feb8940f20967678b0810ce314d6b48a3cb24dcbece7644a92377a715f392c4",
+      "afterNormalizedSHA256": "f55c67964b3d828ef5874a19882d98b71eb971e46ea91847148d5218b4b63c06"
+    },
+    "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua": {
+      "beforeRawSHA256": "af909c089b6d06c064047aea36bc026d8913dffcd9329ba03ab55e51e2e3bed8",
+      "afterRawSHA256": "6e67ee92164581641ef8e0bbcf1c235a45b90b5589b7ca3eca211fd4eeac3b37",
+      "afterNormalizedSHA256": "3cb66a9d99daf46bbb9e06f0e77d58e9302189d421505f5da157d80f4dd7b026"
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRawSHA256": "43190918c412fff15dc3e9ce861bac0154043e70bbe9bcb885d59994c9d6aa4c",
+      "afterRawSHA256": "bb584206279a1e0e5f52f72c3cb41c03c422cbf5cc60b03a96780fbf18572ac3",
+      "afterNormalizedSHA256": "bb584206279a1e0e5f52f72c3cb41c03c422cbf5cc60b03a96780fbf18572ac3"
+    },
+    "UnitFrames/FluxUnitFrames_FocusTarget.lua": {
+      "beforeRawSHA256": "eb856db4bd2927784cef78b78c46db1549cd84a26230ff39d9d39d77bd54f2d4",
+      "afterRawSHA256": "4355514d19ed071fcea01c9a8eaead52e909403be96ad6fb37e730724cd38ce4",
+      "afterNormalizedSHA256": "4355514d19ed071fcea01c9a8eaead52e909403be96ad6fb37e730724cd38ce4"
+    },
+    "UnitFrames/FluxUnitFrames_PetTarget.lua": {
+      "beforeRawSHA256": "78cf7a34e4ce6065d84ef6e2e207b6d69b97388b11993d7a40ae9092076849d4",
+      "afterRawSHA256": "b820766c275b596f129fcb6a6b87f3f64831309dbdaa4e4aac63fe359279674a",
+      "afterNormalizedSHA256": "b820766c275b596f129fcb6a6b87f3f64831309dbdaa4e4aac63fe359279674a"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRawSHA256": "50747f3550ec9411da6a8d1987621d9063b0404a81388fad2375e388bfdf7819",
+      "afterRawSHA256": "55438188e35ad6af7093e523b91bfef4c6f1aa27651fa738c69f6d5d142f8219",
+      "afterNormalizedSHA256": "55438188e35ad6af7093e523b91bfef4c6f1aa27651fa738c69f6d5d142f8219"
+    },
+    "tests/unit_tooltip_ownership.lua": {
+      "beforeRawSHA256": "16f559d6d5762a7f548837bf902815e09e9dc44640358493b312a2efced2949d",
+      "afterRawSHA256": "b59346ffece5292a5a8a31a235446e6fc05dc328867825604262cc2be6171796",
+      "afterNormalizedSHA256": "b59346ffece5292a5a8a31a235446e6fc05dc328867825604262cc2be6171796"
+    },
+    "tests/bars_contract_regression.lua": {
+      "beforeRawSHA256": "3324ae7a7a70c1bf97314975d43143e03b5346c45ced7fd702fb47e783fb3564",
+      "afterRawSHA256": "7fbe2169e55d0637bbd98458bd2c36a0854a116377bab0b2bb94418739a162fa",
+      "afterNormalizedSHA256": "7fbe2169e55d0637bbd98458bd2c36a0854a116377bab0b2bb94418739a162fa"
+    }
+  },
+  "upstream": {
+    "retail": {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "build": "12.1.5 (70783)",
+      "family": "Mainline",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins."
+    },
+    "forever": {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "build": "1.60.1 (70938)",
+      "family": "Mainline",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins."
+    },
+    "classic": {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "build": "5.5.4 (70631)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins."
+    },
+    "classic_era": {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "build": "1.15.9 (70576)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins."
+    },
+    "classic_anniversary": {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "build": "2.5.6 (70577)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins."
+    }
+  },
+  "implementation": [
+    "UF.GetUnitTooltip returns Blizzard GameTooltip. Flux owner/GUID/rebuild/refresh state lives in UF.UnitTooltipState rather than native frame fields.",
+    "Native owner is actual addon unit surface; owner.UpdateTooltip follows all five pinned native implementations. Native tooltip updater, OnShow and health scripts/mixins are not replaced.",
+    "Three once-only lifecycle hooks on native hide/clear/SetOwner retire Flux state. Shared tooltip contains existing pet icon children; switching to another owner clears them.",
+    "Raid native rejection and empty recycled tokens dismiss stale content; owner-specific leave handlers preserve newer native tooltips. Existing fade policy retained.",
+    "Other/FluxHUDTooltip.lua remains byte-identical; no new option, translation key, event, frame, ticker or recurring polling loop. Existing passive diagnostic goal remains paused."
+  ],
+  "desktop": {
+    "unitTooltipChecks": 725,
+    "clientModels": [
+      "retail",
+      "forever",
+      "classic",
+      "classic_era",
+      "classic_anniversary"
+    ],
+    "pinnedNativeUpdateReplay": "725 PASS using external source files for all five clients and actual HUD positioning module",
+    "fullScriptsPassed": 385,
+    "fullScriptsFailed": 0,
+    "syntaxPassed": 1073,
+    "sourceManifestVerified": true,
+    "fullRunProvenance": "Initial full run: 383/385; stale raid helper fixture adapted to native tooltip ownership. Both failures replayed successfully; all 1073 Lua syntax checks repeated after fixture changes; final manifest verified.",
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-native-final.json",
+    "negativeControls": [
+      {
+        "control": "duplicate-tooltip",
+        "compiled": true,
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:7: live: no duplicate display tooltip allocated\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:7: in upvalue 'check'\n\ttests/unit_tooltip_ownership.lua:96: in global 'CreateFrame'\n\tunit-tooltip-owner:21: in field 'GetUnitTooltip'\n\tunit-tooltip-owner:104: in field 'HideUnitTooltip'\n\ttests/unit_tooltip_ownership.lua:157: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "native-metadata",
+        "compiled": true,
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:103: native tooltip field written: _fluxUnitTipGuid\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:103: in metamethod 'newindex'\n\tunit-tooltip-owner:78: in field 'ShowUnitTooltip'\n\ttests/unit_tooltip_ownership.lua:164: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "replace-native-script",
+        "compiled": true,
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:7: live: native tooltip script never replaced\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:7: in upvalue 'check'\n\ttests/unit_tooltip_ownership.lua:46: in method 'SetScript'\n\tunit-tooltip-owner:25: in field 'GetUnitTooltip'\n\tunit-tooltip-owner:65: in field 'ShowUnitTooltip'\n\ttests/unit_tooltip_ownership.lua:164: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "unowned-dismiss",
+        "compiled": true,
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:7: live: old owner cannot dismiss another unit tooltip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:7: in local 'check'\n\ttests/unit_tooltip_ownership.lua:180: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "ownerless-anchor",
+        "compiled": true,
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:7: live: native owner is actual hovered frame\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:7: in local 'check'\n\ttests/unit_tooltip_ownership.lua:169: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "control": "original-source",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_tooltip_ownership.lua:7: live: lookup uses existing Blizzard tooltip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_tooltip_ownership.lua:7: in local 'check'\n\ttests/unit_tooltip_ownership.lua:158: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "pinnedNativeUpdateReplayReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-pinned-native-replay.json"
+  },
+  "scopeGuard": {
+    "changedLuaXMLTOCSinceCheckpoint": [
+      "RaidFrame/FluxRaidUnit.lua",
+      "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+      "UnitFrames/FluxUnitFrames_Party.lua",
+      "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+      "UnitFrames/FluxUnitFrames_PetTarget.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua",
+      "tests/bars_contract_regression.lua",
+      "tests/unit_tooltip_ownership.lua"
+    ],
+    "allOtherSourcePreserved": true,
+    "hudPositionOwnerRawSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab"
+  },
+  "nativeAcceptance": {
+    "status": "NOT RUN on every client; no pixel/taint/controller/FPS claim",
+    "steps": [
+      "Reload out of combat when convenient; hover player/target/focus/pet/party/raid/real preview cells and action/item/world sources.",
+      "Confirm a single Blizzard tooltip remains at the old HUD position; pet happiness retains its adjacent placement.",
+      "Rapidly move between unit, pet, raid, item, action and world tooltips; confirm no duplicate panel, leaked aura icons, stale refresh or old-owner dismissal.",
+      "Check unit disappearance, hidden group ancestors, raid slot reuse, native SetUnit rejection and raid fade; repeat safe hovers in combat.",
+      "Check Edit Mode exit/position, localized native text, health/status bars, comparison tooltips, controller cursor and Lua/taint errors on Retail/Forever/Era/Anniversary/MoP."
+    ]
+  },
+  "publication": "No commit/push/manual installation synchronization performed; current main and all pre-existing edits preserved.",
+  "documentationValidation": {
+    "command": "python docs/tools/validate_docs.py",
+    "result": "PASS",
+    "classifiedSources": 1106,
+    "reachableTOCXML": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17456,
+    "sourceInventoryEvidenceCurrent": true
+  }
+}

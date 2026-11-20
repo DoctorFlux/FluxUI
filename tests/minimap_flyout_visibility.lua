@@ -1,6 +1,8 @@
 -- Runs production flyout positioning/secure bodies with protected-write guards.
 -- Native input dispatch, frame protection/taint, pixels and controller NOT RUN.
 -- Optional first argument replaces the repository source root for comparisons.
+-- Optional second argument supplies the archived arrow source for work counts.
+-- Use --layers as the third argument for a baseline that already reuses points.
 local root = arg[1] or '.'
 local function read(path)
     local f = assert(io.open(root .. '/' .. path, 'rb'))
@@ -14,10 +16,18 @@ local sources = {
 }
 local checks = 0
 local function check(value, label) checks = checks + 1; assert(value, label) end
-local function run(src, client)
+local measureLayers = arg[3] == '--layers'
+local function run(src, client, archivedArrows)
     local e = setmetatable({}, { __index = _G }); e._G = e
     local combat, depth, writes, wraps, blocked = false, 0, 0, 0, 0
     local frames, methods = {}, {}
+    local arrowGeometryWrites, arrowLayerWrites = 0, 0
+    local function countArrowWrite(frame)
+        if frame.name == 'Arrow' then arrowGeometryWrites = arrowGeometryWrites + 1 end
+    end
+    local function countLayerWrite(frame)
+        if frame.name == 'Arrow' then arrowLayerWrites = arrowLayerWrites + 1 end
+    end
     local flyout = { attached = {}, OPENER_ATTR = '_FLUXFLYOUT_OPENER', OPENER_TYPE = 'FLUXFLYOUT_OPENER' }
     local ns = { Flux = { EBS = { Flyout = flyout } } }
     local restricted = {
@@ -62,21 +72,25 @@ local function run(src, client)
         end
     end
     function methods:GetParent() return self.parent end
-    function methods:SetParent(parent) legal(); self.parent = parent end
+    function methods:SetParent(parent) legal(); countLayerWrite(self); self.parent = parent end
     function methods:IsShown() return self.shown end
     function methods:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
     function methods:Show() shown(self, true) end
     function methods:Hide() shown(self, false) end
     function methods:GetName() return self.name end
     function methods:GetFrameLevel() return self.level end
-    function methods:SetFrameLevel(v) legal(); self.level = v end
+    function methods:SetFrameLevel(v) legal(); countLayerWrite(self); self.level = v end
     function methods:GetFrameStrata() return self.strata end
-    function methods:SetFrameStrata(v) legal(); self.strata = v end
-    function methods:SetScale(v) legal(); self.scale = v end
-    function methods:SetSize(w, h) legal(); self.width, self.height = w, h end
+    function methods:SetFrameStrata(v) legal(); countLayerWrite(self); self.strata = v end
+    function methods:GetScale() return self.scale end
+    function methods:SetScale(v) legal(); countLayerWrite(self); self.scale = v end
+    function methods:GetSize() return self.width, self.height end
+    function methods:SetSize(w, h) legal(); countArrowWrite(self); self.width, self.height = w, h end
     function methods:GetEffectiveScale() return self.scale * (self.parent and self.parent:GetEffectiveScale() or 1) end
-    function methods:ClearAllPoints() legal(); self.point = nil end
-    function methods:SetPoint(...) legal(); self.point = { ... } end
+    function methods:GetNumPoints() return self.point and 1 or 0 end
+    function methods:GetPoint() return table.unpack(self.point) end
+    function methods:ClearAllPoints() legal(); countArrowWrite(self); self.point = nil end
+    function methods:SetPoint(...) legal(); countArrowWrite(self); self.point = { ... } end
     function methods:SetToplevel() legal() end
     function methods:GetAttribute(k) return self.attrs[k] end
     function methods:SetAttribute(k, v) legal(); self.attrs[k] = v end
@@ -139,6 +153,67 @@ local function run(src, client)
     -- next open may happen in combat, when Popup.Place cannot repair scale.
     flyout.PlacePopup = e.Popup.Place
     flyout.IsOpen = function(widget) return flyout.attached[widget].popup:IsShown() end
+    local squeeze = 1
+    e.FluxUILayoutSqueeze = { GetActionBarHorizontalSqueezeFactor = function() return squeeze end }
+    flyout.Arrow.RefreshAll()
+    local start, startLayers = arrowGeometryWrites, arrowLayerWrites
+    for step = 1, 12 do
+        slot:SetPoint('RIGHT', owner, 'RIGHT', step % 2 == 0 and 0 or -16, 0)
+        flyout.Arrow.RefreshAll()
+        check(arrow.point[1] == 'TOP' and arrow.point[2] == host and arrow.point[5] == 6,
+            client .. ': arrow remains attached to the moved host')
+    end
+    local crossingWrites = arrowGeometryWrites - start
+    local crossingLayers = arrowLayerWrites - startLayers
+    check(crossingWrites == (archivedArrows and not measureLayers and 36 or 0), client .. ': settled flyout arrow geometry writes')
+    check(crossingLayers == (archivedArrows and 48 or 0), client .. ': settled layer and scale writes')
+    squeeze = 0.75
+    opts.direction, opts.anchorFrame = 'LEFT', slot
+    flyout.Arrow.RefreshAll()
+    check(arrow.width == 17.25 and arrow.point[1] == 'LEFT' and arrow.point[2] == slot and arrow.point[4] == -6,
+        client .. ': actual squeeze, direction and attachment changes settle immediately')
+    arrow:SetSize(1, 1); arrow:ClearAllPoints()
+    flyout.Arrow.RefreshAll()
+    check(arrow.width == 17.25 and arrow.point[2] == slot, client .. ': drifted current geometry is repaired')
+    local secret = setmetatable({}, { __eq = function() error('private position compared') end })
+    e.issecretvalue = function(value) return rawequal(value, secret) end
+    arrow.GetPoint = function() return secret, slot, 'LEFT', -6, 0 end
+    arrow.GetSize = function() error('test getter denied') end
+    arrow.GetParent = function() return secret end
+    arrow.GetScale = function() error('test getter denied') end
+    start, startLayers = arrowGeometryWrites, arrowLayerWrites
+    flyout.Arrow.RefreshAll()
+    arrow.GetPoint, arrow.GetSize, arrow.GetParent, arrow.GetScale = nil, nil, nil, nil
+    check(arrowGeometryWrites == start + 3, client .. ': private or denied values keep the safe repair')
+    check(arrowLayerWrites == startLayers + 4, client .. ': unreadable layer values keep the safe repair')
+
+    local nextSlot = frame('NewSlot', owner, 0.9)
+    host:SetParent(nextSlot)
+    host:SetFrameStrata('HIGH')
+    host:SetFrameLevel(41)
+    host:SetScale(.72)
+    opts.visibilityParent = nextSlot
+    flyout.Arrow.RefreshAll()
+    check(arrow:GetParent() == nextSlot and arrow:GetFrameStrata() == 'HIGH' and arrow:GetFrameLevel() == 47
+        and arrow:GetScale() == host:GetEffectiveScale() / nextSlot:GetEffectiveScale(), client .. ': changed native owner and layer repair')
+    opts.visibilityParent = nil
+    flyout.Arrow.RefreshAll()
+    check(arrow:GetParent() == e.FluxUnifiedBorderFrame and arrow:GetFrameLevel() == 30,
+        client .. ': unified border owns ordinary arrows')
+    e.FluxUnifiedBorderFrame:Hide()
+    flyout.Arrow.RefreshAll()
+    check(arrow:GetParent() == e.UIParent and arrow:GetFrameLevel() == 9, client .. ': hidden border restores UIParent fallback')
+    e.FluxUnifiedBorderFrame:Show()
+    host:SetParent(slot); host:SetFrameStrata('MEDIUM'); host:SetFrameLevel(25); host:SetScale(.6)
+    opts.visibilityParent = slot
+    flyout.Arrow.RefreshAll()
+    start, startLayers = arrowGeometryWrites, arrowLayerWrites
+    combat = true
+    flyout.Arrow.RefreshAll()
+    combat = false
+    check(arrowGeometryWrites == start and arrowLayerWrites == startLayers, client .. ': refresh does not change protected geometry in combat')
+    opts.direction, opts.anchorFrame, squeeze = 'UP', nil, 1
+    flyout.Arrow.RefreshAll()
     local layout = assert(src.layout:match('(function M:LayoutSlots%(%).-)\nfunction M:RefreshAppearanceAccent'))
     local layoutMethod = assert(load([[
 local M, containerFrame, visibilityFrame, buttonWidgets, layoutMode = ...
@@ -148,7 +223,7 @@ local NativeSize = function() return 44 end
 local SideGeometry = function() return 1, 1, 13.2, 500, 500, 1 end
 local LayoutIndices = function() return {1} end
 local UIUnits = function() return 800 end
-local CONFIG = {ContainerPadding = 4}
+local CONFIG = {ContainerPadding = 4, SideButtonInset = 2}
 ]] .. layout .. '\nreturn M.LayoutSlots', '@actual strip closed-popup sizing', 't', e))(
         { GetSetting = function() return 1 end }, owner, owner, {{ Widget = host, SlotFrame = slot }}, 'side')
     layoutMethod({ GetSetting = function() return 1 end })
@@ -192,14 +267,28 @@ local CONFIG = {ContainerPadding = 4}
     execute(arrow, arrow, flyout.Secure.OPENER_SCRIPT)
     check(popup:GetParent() == e.UIParent and popup:IsVisible(), client .. ': ordinary secure open preserved')
     check(math.abs(popup:GetEffectiveScale() - host:GetEffectiveScale()) < 0.00001, client .. ': ordinary popup scale preserved')
+    return crossingWrites, crossingLayers
 end
-for _, client in ipairs({ 'retail', 'forever', 'classic', 'legacy' }) do run(sources, client) end
+local archived
+if arg[2] then
+    local f = assert(io.open(arg[2], 'rb'))
+    archived = { arrow = f:read('*a'):gsub('\r\n', '\n'), secure = sources.secure, popup = sources.popup, layout = sources.layout }
+    f:close()
+end
+for _, client in ipairs({ 'retail', 'forever', 'classic', 'legacy' }) do
+    local writes, layers = run(sources, client)
+    if archived and writes then
+        local oldWrites, oldLayers = run(archived, client, true)
+        print(('STRIP_ARROW_GEOMETRY|%s|%d|%d'):format(client, oldWrites, writes))
+        print(('STRIP_ARROW_LAYERS|%s|%d|%d'):format(client, oldLayers, layers))
+    end
+end
 local mutants = {
     { key = 'secure', from = 'popup:SetParent(visibilityParent or uiParent)', to = 'popup:SetParent(uiParent)' },
     { key = 'secure', from = 'control:ClearBindings()', to = '-- removed binding release' },
     { key = 'secure', from = 'control:Hide()', to = '-- removed popup close' },
     { key = 'popup', from = 'popup:SetParent(parent)', to = 'popup:SetParent(UIParent)' },
-    { key = 'arrow', from = 'arrowFrame:SetParent(visibilityParent)', to = 'arrowFrame:SetParent(UIParent)' },
+    { key = 'arrow', from = 'parent = visibilityParent', to = 'parent = UIParent' },
     { key = 'popup', from = 'local us = parent:GetEffectiveScale() or 1', to = 'local us = UIParent:GetEffectiveScale() or 1' },
     { key = 'popup', from = 'if self.ClearBindings and not (self._fluxVisibilityParent and Flyout.InLockdown()) then', to = 'if self.ClearBindings then' },
     { key = 'popup', from = 'if self.kids and not (self._fluxVisibilityParent and Flyout.InLockdown()) then', to = 'if self.kids then' },

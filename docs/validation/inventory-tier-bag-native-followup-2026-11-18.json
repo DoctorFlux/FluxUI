@@ -1,0 +1,137 @@
+{
+  "id": "LHO-TIER-BAG-FALLBACK-NATIVE-20261118",
+  "utc": "2026-11-18T09:23:49.204598+00:00",
+  "sourceScope": "Preceding23 source set loaded by own tierview_reload_20261118a; these reads preceded the two vendor row-ownership source edits. No acceptance transferred to new24 set.",
+  "client": {
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 42724,
+    "hwnd": 50333792,
+    "birthFileTime": 134394624880288175,
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "WOW_PROJECT_ID": 18
+  },
+  "runs": {
+    "tierbuild_20261118a": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierbuild_20261118a-journal.json",
+      "payload": "/run local a=Flux.Inventory;local v,b,_,i=GetBuildInfo();print('BS23',v,b,i,WOW_PROJECT_ID,a.source,a.IsReady(),GetCVar('scriptProfile'),(BugTabs.GetSessionCounts()))",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierbuild_20261118a-submitted.png",
+        "pngSha": "00301e704f100cf4522ea2dc877201245943934249f861ca8ddcf7f68c0ef17b",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierbuild_20261118a-submitted-capture.json",
+        "metaSha": "aa2c0c1d25f00bf61eff07a60933ef0cbe652dbfaf4b82231197b8291f6d15e3",
+        "started": 1794992745.2051985,
+        "time": 1794992747.335755,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 50333792,
+          "last": 409410062,
+          "idle": 40.25,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested"
+    },
+    "tierfallback_20261118b": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118b-journal.json",
+      "payload": "/run local t=FluxRestockTiers;local b=FluxRestock.Inv.Bags;local f=b.GetUniqueItems;local x,y=t.GetBagOwnedTier('food');b.GetUniqueItems=function(...)return f(...)end;local ok,a,c=pcall(t.GetBagOwnedTier,'food');b.GetUniqueItems=f;print('VF23',ok,x,y,a,c)",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118b-submitted.png",
+        "pngSha": "998cbacab75a39d8740507c8e1db4bd3bcb01fe9dc23f756cb4e1e7bfc836a4e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierfallback_20261118b-submitted-capture.json",
+        "metaSha": "ac88ff2c5b5afe42d8a5720b800f244786449cea821ec88b35647a156c3d9800",
+        "started": 1794992831.1011803,
+        "time": 1794992833.0756905,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 50333792,
+          "last": 409473343,
+          "idle": 62.86,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested"
+    },
+    "tierstate_20261118b": {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierstate_20261118b-journal.json",
+      "payload": "/run local a=Flux.Inventory;local f=C_AddOns.IsAddOnLoaded;print('LHOBAG',a.source,a.IsReady(),f('Syndicator'),f('Baganator'),a.GetCount(1487),C_Item.GetItemCount(1487),GetCVar('scriptProfile'),(BugTabs.GetSessionCounts()))",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierstate_20261118b-submitted.png",
+        "pngSha": "7587d65eabda787b985b71855c2ade4b48ed59a29a1f9abfa68c3c613e0b7a80",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tierstate_20261118b-submitted-capture.json",
+        "metaSha": "cfb48daacec3f20f6e374654f01d6d96dae25eb20389761d962c2b5e839851ab",
+        "started": 1794992984.1934888,
+        "time": 1794992986.2924223,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 50333792,
+          "last": 409473343,
+          "idle": 215.953,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested"
+    }
+  },
+  "buildState": {
+    "inventorySource": "syndicator",
+    "ready": true,
+    "scriptProfile": 0,
+    "bugTabsSessionErrors": 0
+  },
+  "ownedFoodFallback": {
+    "pcallSuccess": true,
+    "normal": {
+      "tier": 1338,
+      "itemID": 4601
+    },
+    "forwardingFallback": {
+      "tier": 1338,
+      "itemID": 4601
+    },
+    "data": "Actual original getter; no fake API data",
+    "restoration": "Original bag getter assigned back unconditionally after pcall and before observed output; no separate identity read printed",
+    "scope": "GetBagOwnedTier food only; not direct item-total/count-view parity for every kind or native spike comparison"
+  },
+  "finalState": {
+    "inventorySource": "syndicator",
+    "ready": true,
+    "SyndicatorLoaded": true,
+    "BaganatorLoaded": true,
+    "item1487Snapshot": 0,
+    "item1487Native": 0,
+    "scriptProfile": 0,
+    "bugTabsSessionErrors": 0
+  },
+  "helpersExitedHostVerified": true,
+  "inputLockAbsent": true,
+  "persistentProbeGlobals": false,
+  "temporaryWrapperRemaining": false,
+  "itemActions": false,
+  "profilerSettingsChanged": false,
+  "externalAddonEdits": false,
+  "simulationRuns": 0,
+  "goal": "ACTIVE"
+}

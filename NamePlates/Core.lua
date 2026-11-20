@@ -224,14 +224,21 @@ function NP.AttachHost(host, plate, extraLevel)
 	if not host or not plate then
 		return false
 	end
-	if host:GetParent() ~= plate then
+	local attached = host:GetParent() == plate
+	if not attached then
 		if not pcall(host.SetParent, host, plate) then
 			return false
 		end
 	end
 	local ok, level = pcall(plate.GetFrameLevel, plate)
 	if ok and type(level) == "number" and not NP.IsSecret(level) then
-		pcall(host.SetFrameLevel, host, level + NP.FRAME_LEVEL_OFFSET + (extraLevel or 0))
+		local wanted = level + NP.FRAME_LEVEL_OFFSET + (extraLevel or 0)
+		if attached then
+			-- Keep the native level when a settled host already matches.
+			local readable, current = pcall(host.GetFrameLevel, host)
+			if readable and not NP.IsSecret(current) and current == wanted then return true end
+		end
+		pcall(host.SetFrameLevel, host, wanted)
 	end
 	return true
 end
@@ -482,16 +489,24 @@ function NP.RegisterModule(name, module)
 end
 
 local function EachModule(method, ...)
+	-- A successful RefreshAll can cover the unit loop for modules that opt in.
+	local batch = method == "Refresh" and select(2, ...)
+	local covered = batch and batch.completedModules
+	local completed
 	for i = 1, #modules do
 		local module = modules[i]
 		local fn = module[method]
-		if fn then
+		if fn and not (covered and covered[module]) then
 			local ok, err = pcall(fn, ...)
-			if not ok and geterrorhandler then
+			if ok and method == "RefreshAll" and module.refreshAllCoversUnits then
+				completed = completed or {}
+				completed[module] = true
+			elseif not ok and geterrorhandler then
 				geterrorhandler()(err)
 			end
 		end
 	end
+	return completed
 end
 
 local driver = CreateFrame("Frame")
@@ -552,14 +567,32 @@ function NP.RefreshUnit(unit)
 	end
 end
 
+local pendingRosterRefresh
+
 function NP.RefreshAll()
+	pendingRosterRefresh = nil
 	-- Explicit refreshes also reconcile native replacement/style rebuilds.
 	for unit in pairs(activePlates) do activePlates[unit] = nil end
 	NP.GetDB()
-	EachModule("RefreshAll")
+	local completed = EachModule("RefreshAll")
+	-- Objective lookup results belong only to this synchronous refresh pass.
+	-- Keep standalone RefreshUnit calls and the next poll independently fresh.
+	local batch = { completedModules = completed }
 	for unit in pairs(activeUnits) do
-		EachModule("Refresh", unit)
+		EachModule("Refresh", unit, batch)
 	end
+end
+
+local function QueueRosterRefresh()
+	if pendingRosterRefresh then return end
+	if not (C_Timer and C_Timer.After) then NP.RefreshAll(); return end
+	local function refresh()
+		if pendingRosterRefresh ~= refresh then return end
+		pendingRosterRefresh = nil
+		NP.RefreshAll()
+	end
+	pendingRosterRefresh = refresh
+	C_Timer.After(0, refresh)
 end
 
 driver:SetScript("OnUpdate", function(self, elapsed)
@@ -597,6 +630,8 @@ events:SetScript("OnEvent", function(_, event, unit)
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		ScanPlates()
 		NP.RefreshAll()
+	elseif event == "GROUP_ROSTER_UPDATE" then
+		QueueRosterRefresh()
 	else
 		NP.RefreshAll()
 	end
@@ -789,11 +824,12 @@ do
 		if not npc then return end
 		local loaded = Questie and Questie.db and QuestieLoader and type(QuestieLoader.ImportModule) == "function"
 			and not (Questie.API and Questie.API.isReady == false)
-		local key = loaded and npc or unit
+		local tooltips = loaded and QuestieLoader:ImportModule("QuestieTooltips")
+		-- A present loader may still have no tooltip module. Native fallback
+		-- associations belong to each unit, even when NPC identities match.
+		local key = tooltips and npc or unit
 		if cache[key] then return cache[key] end
 		local rows = {}
-		cache[key] = rows
-		local tooltips = loaded and QuestieLoader:ImportModule("QuestieTooltips")
 		local entries = tooltips and tooltips.lookupByKey and tooltips.lookupByKey["m_" .. npc]
 		if not tooltips then NativeRows(unit, rows, cache) end
 		local seen = {}
@@ -822,6 +858,9 @@ do
 			if a.questID == b.questID then return a.index < b.index end
 			return a.questID < b.questID
 		end)
+		-- A provider can throw while updating objectives. Never let another
+		-- unit consume a partially built row set after the dispatcher reports it.
+		cache[key] = rows
 		return rows
 	end
 
@@ -867,6 +906,17 @@ do
 		return visible and NP.BoolTest(shown, false)
 	end
 
+	-- Recheck native placement before skipping writes on an unchanged badge.
+	local function HasRowAnchor(host, container, x)
+		local shown, points = host:IsShown(), host:GetNumPoints()
+		if NP.IsSecret(shown) or NP.IsSecret(points) or shown ~= true or points ~= 1 then return false end
+		local point, relative, relativePoint, offsetX, offsetY = host:GetPoint(1)
+		return not (NP.IsSecret(point) or NP.IsSecret(relative) or NP.IsSecret(relativePoint)
+			or NP.IsSecret(offsetX) or NP.IsSecret(offsetY))
+			and point == "TOPLEFT" and relative == container and relativePoint == "BOTTOMLEFT"
+			and offsetX == x and offsetY == 3
+	end
+
 	local function Layout(unit, state, container)
 		if not state then return end
 		local width = 0
@@ -884,9 +934,15 @@ do
 		if not state.layoutDirty and state.container == container and state.x == x then return end
 		state.layoutDirty, state.container, state.x = false, container, x
 		for _, host in ipairs(state) do
-			host:ClearAllPoints()
-			if host.attached and pcall(host.SetPoint, host, "TOPLEFT", container, "BOTTOMLEFT", x, 3) then host:Show()
-			else host:Hide() end
+			local ok, placed
+			if host.attached and host.GetNumPoints and host.GetPoint and host.IsShown then
+				ok, placed = pcall(HasRowAnchor, host, container, x)
+			end
+			if not (ok and placed) then
+				host:ClearAllPoints()
+				if host.attached and pcall(host.SetPoint, host, "TOPLEFT", container, "BOTTOMLEFT", x, 3) then host:Show()
+				else host:Hide() end
+			end
 			x = x + host.questWidth + 4
 		end
 	end
@@ -930,7 +986,7 @@ do
 		Release(unit)
 		visibleUnits[unit] = nil
 	end
-	function Quest.Refresh(unit) Update(unit, {}) end
+	function Quest.Refresh(unit, batch) Update(unit, batch or {}) end
 	function Quest.RefreshAll()
 		Subscribe()
 		dirty = true

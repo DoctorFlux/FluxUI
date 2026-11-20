@@ -1,0 +1,369 @@
+{
+  "changeId": "LHO-CONTINUATION-20261114",
+  "capturedUtc": "2026-11-14T11:56:21.528584+00:00",
+  "status": "Five-owner continuation integrated; broad goal active with unresolved provider/native acceptance",
+  "requirements": [
+    "LHO-01",
+    "LHO-02",
+    "LHO-03",
+    "LHO-04",
+    "LHO-05",
+    "LHO-06",
+    "LHO-07",
+    "LHO-08",
+    "LHO-09",
+    "LHO-10",
+    "LHO-11",
+    "LHO-12",
+    "LHO-13"
+  ],
+  "checkpointFiles": 2792,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\checkpoint-20261114T104637Z",
+  "branch": "main",
+  "head": "26f886e3ea5371b196ab235d2dace0c156002285",
+  "sourceHashes": {
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+      "before": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+      "current": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827"
+    },
+    "Inventory/Professions.lua": {
+      "before": "3788996a133adcbbfa2b0a8e111ee8e126d77a5ae32a547695f5fbbd951b3526",
+      "current": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad"
+    },
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+      "before": "6b07eb9493aa02bbf051c5bfc604597a0a90a9a3b05b611751af2fa8d276bc33",
+      "current": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+    },
+    "Inventory/Restock/FluxRestock_Inv.lua": {
+      "before": "925d68b91c127ee7659e4706064a6aa312367073a88cc335c94acca80972f010",
+      "current": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f"
+    },
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+      "before": "3ec2c2a14bc8aa661a33e1afd20df665a5e6852f977e899530dcf9d34e995d6e",
+      "current": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5"
+    }
+  },
+  "newTests": {
+    "tests/auction_restock_viewport_actions.lua": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+    "tests/auction_restock_viewport_work.lua": "a3f244a349fa829814d85d31acd8f420c34635dd768b7afd084e3540e0e2eb95",
+    "tests/bulk_capacity_work.lua": "17e984a60d1aa432968bd59d0fcdd287b65e4d9f8db13854c265c5cd706bd2e0",
+    "tests/profession_catalogue_work.lua": "5220dc5901a337abe949e97266df06fb4dd5eab86b85da439d883bb70083fa44"
+  },
+  "updatedFixtures": {
+    "tests/auction_restock_scroll.lua": {
+      "before": "0290c92b64aba3e0f6cdae6ff961c4747aa615d086774c4791849bd8d0f00893",
+      "current": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99"
+    },
+    "tests/commerce_redundant_work.lua": {
+      "before": "a91c1bbbb6e82d04ff22617d76e4cf46d2f56c7942e6e5b318eb631fba7447eb",
+      "current": "b9511fef47d183687691e9c618e3c61df1ed6548c15d20f4001ceda6f6b59637"
+    }
+  },
+  "integration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 379,
+    "scriptsFail": 0,
+    "syntaxFiles": 1067,
+    "syntaxFailures": 0,
+    "runtime": {
+      "lua.exe": "ed7edea70015f3f9474a29ed3154f9c867f22b44c91fd9b557aadee8c7dc76c7",
+      "luac.exe": "af668f47ca5e6ee3ede34442d28443d472ec34ebe7fcfd71e556ce13d7edaadc"
+    },
+    "scope": "Current continuation whole desktop suite, normalized Lua hashes stable through run. Native FPS, secure VM, pixels and controller acceptance remain separate."
+  },
+  "preservation": {
+    "appearanceXMLTOC": {
+      "count": 257,
+      "allRawSHA256Match": true
+    },
+    "optionsBindings": {
+      "count": 85,
+      "allRawSHA256Match": true
+    },
+    "defaultsSettingsOwners": {
+      "count": 7,
+      "allRawSHA256Match": true
+    },
+    "licenseFiles": {
+      "count": 5,
+      "allRawSHA256Match": true
+    }
+  },
+  "otherLuaUnchanged": {
+    "count": 1057,
+    "allRawSHA256Match": true
+  },
+  "cumulativeRuntimeOwners": [
+    "Core/ButtonFX/Cast.lua",
+    "ExtraButtonSystem/Engine/Button.lua",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+    "Inventory/Builtin/Bank.lua",
+    "Inventory/Professions.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+    "Inventory/Restock/FluxRestock_Inv.lua",
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
+    "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua",
+    "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
+    "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
+    "Inventory/Syndicator/Adapter.lua",
+    "Mail/CategoryAttach.lua",
+    "UnitFrames/FluxCastBar.lua"
+  ],
+  "installedCopies": {
+    "count": 80,
+    "allMatchReadOnly": true,
+    "loadedRuntimeIdentityCertified": false
+  },
+  "externalSyndicator": {
+    "files": 41,
+    "allSHA256MatchCheckpoint": true,
+    "readOnly": true
+  },
+  "professionCapacity": {
+    "checksPerSet": 770,
+    "matchedPairs": 3,
+    "harmfulControls": 13,
+    "evidence": "lag-hotspots-commerce-continuation-2026-11-14.json"
+  },
+  "auction": {
+    "workChecks": 117900,
+    "actionChecks": 88620,
+    "geometryChecks": 11404,
+    "matchedPairs": 3,
+    "harmfulControls": 17,
+    "existingFocusedScripts": 44,
+    "independentReview": "PASS; no open correctness blockers in reviewed current source",
+    "openingObjects": [
+      15021,
+      4549
+    ],
+    "nativeFrames": [
+      4012,
+      4012
+    ],
+    "twentyRepaints": {
+      "widthMeasurements": [
+        20000,
+        960
+      ],
+      "textWrites": [
+        100140,
+        4940
+      ],
+      "iconWrites": [
+        20000,
+        960
+      ]
+    },
+    "physicalPool": "Original ordinal native frame owners up to maximum simultaneous row count; no ever-seen item-key retention.",
+    "fullViewportPhysicalPooling": "Original AVS-02 NOT MET and explicitly superseded; rejected per-key variant not retained.",
+    "smallCaseTradeoff": "Desktop7/20-row fixture medians add10-40 microseconds per refresh and20-row allocation adds44KB per10 warm refreshes. No added passive tooltip/market queries, callbacks or slower cadence.",
+    "nativeScope": "No native AH FPS, pixels, controller or taint certification from these fixtures."
+  },
+  "native": {
+    "date": "2026-11-14",
+    "scope": "Existing open empty mailbox on Forever; read-only getter timing and passive native addon-profiler observation",
+    "pid": 40032,
+    "hwnd": 7995860,
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "client": "Forever 1.60.1 (70938), interface 16001",
+    "source": "syndicator",
+    "mailboxShown": true,
+    "inboxCount": 0,
+    "inboxTotal": 0,
+    "fluxSnapshotItemTotal": 0,
+    "fluxReliable": true,
+    "nativeMailCommandPending": false,
+    "receiveAttachmentSlots": 16,
+    "scriptProfile": 0,
+    "nativeAddOnProfilerEnabled": true,
+    "hardwareAndFullAddonListCaptured": false,
+    "loadedRuntimeSourceIdentityCertified": false,
+    "getInboxNumItems": {
+      "callsPerTrial": 1000,
+      "elapsedMilliseconds": [
+        0.041800007224083,
+        0.040500000119209,
+        0.0397999988269806
+      ],
+      "includes": "Lua loop, timer subtraction and native getter; one compact output after the three trials",
+      "excludes": "Header, attachment, item metadata, provider scan, Flux publication, notification and populated-inbox latency"
+    },
+    "passiveObservation": {
+      "startGetTime": 72520.969,
+      "endGetTime": 72533.891,
+      "durationSeconds": 12.922,
+      "thresholdMilliseconds": [
+        1,
+        5,
+        10,
+        50,
+        100,
+        500,
+        1000
+      ],
+      "startCounters": [
+        347518,
+        27710,
+        12927,
+        966,
+        273,
+        24,
+        11
+      ],
+      "endCounters": [
+        347748,
+        27710,
+        12927,
+        966,
+        273,
+        24,
+        11
+      ],
+      "deltas": [
+        230,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "counterRule": "Nested native metric counters for _FluxUI in the same existing process/session; never summed. No reset or reload.",
+      "control": "No gameplay or mail operations requested during the observation. Existing crowded city scene, bags and mailbox open; desktop app focus changed between non-WoW apps. Other addons and user activity are uncontrolled.",
+      "notEstablished": [
+        "Matched before/after improvement",
+        "FPS gain",
+        "Populated attachment processing",
+        "Cold metadata completion",
+        "Native all-client parity",
+        "Mail fallback latency policy"
+      ]
+    },
+    "safety": {
+      "mailTakenSentReturnedDeleted": false,
+      "itemsBoughtSoldDeletedMoved": false,
+      "foregroundActivationOrSystemWideInputOrClipboardControl": false,
+      "targetedBackgroundWindowMessages": true,
+      "profilerOrFPSPreferencesChanged": false,
+      "savedDiagnosticRootsChanged": false,
+      "temporaryGlobalProbeInstalled": false,
+      "note": "The helper only posted the listed /run read-only commands to the exact verified background WoW window. foregroundUnchanged=false in the timing submission reflects desktop focus switching between background apps; target guards passed at every command boundary."
+    },
+    "evidence": [
+      "native-mail-empty-read-submission.json",
+      "native-mail-readback-submission.json",
+      "native-mail-empty-timing-submission.json",
+      "empty-mailbox-timing-readback.png",
+      "empty-mailbox-native-timing.png"
+    ],
+    "decision": "User requested in-game measurement before accepting a mail fallback delay. Empty inbox establishes only the stated fixed-cost and existing snapshot observations. The populated/cold-mail latency decision remains pending; no mail runtime fix was applied."
+  },
+  "remaining": [
+    "Populated/cold-mail native timing and user latency-policy decision",
+    "Actual-source closed-bank loss and stale-mail producer counterexamples; no full remedy applied",
+    "Native bank-cache readiness/count-only provenance and provider-off persistence proof",
+    "Matched native whole-workflow CPU/frame-time; provider-disabled and other clients; pixels/controller/secure VM"
+  ],
+  "actions": {
+    "externalProviderWrites": false,
+    "manualSync": false,
+    "publication": false,
+    "settingsOrProfilerPreferenceWrites": false,
+    "nativeItemsBoughtSoldDeletedMoved": false,
+    "nativeMailTakenSentReturnedDeleted": false
+  },
+  "artifacts": {
+    "checkpoint-location.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\checkpoint-location.json",
+      "sha256": "9d880be1319ba3e27f1d2f1514ca46ac6c950ceddfa5ac684cede3e2282ecf03"
+    },
+    "checkpoint-20261114T104637Z/checkpoint.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\checkpoint-20261114T104637Z\\checkpoint.json",
+      "sha256": "670b79973bf2100f3634818813d87aa2bf2386e30db66d9c9b1b12a39416adb2"
+    },
+    "integration-pre-manifest.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\integration-pre-manifest.json",
+      "sha256": "f01cbbc7b7367cdc59f6b097e50996ee8d65165365272146ad04ca7a68b02f99"
+    },
+    "integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\integration-full.json",
+      "sha256": "bfca45d9e877b6eb298a63591e04554462e6220fc411049f238c8979df15fdc8"
+    },
+    "integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\integration-stability.json",
+      "sha256": "a6bc86802c26d4734b37f517a8e7d6724ba115447ed87e809f4066630f891025"
+    },
+    "final-source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\final-source-guard.json",
+      "sha256": "99e3b6b054fee53c0dbc33f5c8648e1a3324ce190aa2cfe81bcfdf1d334b154f"
+    },
+    "commerce/audit-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\audit-summary.json",
+      "sha256": "8e6863a8f64e934d727d24b255c9350f1f221b74aa888a7f27860b26a757ce7e"
+    },
+    "commerce/candidate-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\candidate-comparison.json",
+      "sha256": "ed45acbaab4efb6d9b6f2655dd5cd7d60e38d78810d0b65d4ddc34f594dedfb8"
+    },
+    "commerce/cast-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\cast-peer-review.json",
+      "sha256": "b987ff03d297997a9b070f25be67049ed5ee68e1c9cdb22fb50453a266efa841"
+    },
+    "auction_scale/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\comparison.json",
+      "sha256": "0f418d2ee4cbfb33195e136e57e526ed714783ca56135c101593591542c61a7d"
+    },
+    "auction_scale/audit-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\audit-summary.json",
+      "sha256": "0d10c73c5bb4696b619fb3d900334b124781f2f2d8eda73276866c1776e07d6e"
+    },
+    "auction_scale/candidate-manifest.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\candidate-manifest.json",
+      "sha256": "042123ef3aa7296260adc7151f2f5e53308263a52f9794acdcc113fc0cc47706"
+    },
+    "auction_scale/final-requirements.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\final-requirements.json",
+      "sha256": "47973a1b133a2bf5820032f6d1f6bf5c5f26e8fc0d460325b970b4f57e44ba37"
+    },
+    "commerce/ah-final-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\ah-final-peer-review.json",
+      "sha256": "f991f85c6dce5b0cd2a89f2cae64eb2c00f6d1970632e2f1778f0c65afdbb049"
+    },
+    "commerce/ah-size-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\commerce\\ah-size-comparison.json",
+      "sha256": "a995e26b7a0e3269bd9a818ba1696dc03e1cc5cdfcae88d4eb07fb930cf9b599"
+    },
+    "providers/causal-baseline.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\causal-baseline.json",
+      "sha256": "7bdd0b45ab5da682e82cdd96fc39e2ec890fd7bb8a48dae66324f2196bfb7f6a"
+    },
+    "providers/bank-authority-boundary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\bank-authority-boundary.json",
+      "sha256": "a3db0a82cb0f2b9742713a5ac9246911039a299908d38439f4d166858a029999"
+    },
+    "native/empty-mailbox-observation.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\native\\empty-mailbox-observation.json",
+      "sha256": "87a9a0f90c1bcf172d998b2dca37177c224d5847e56d54dd5f14ab8f4af42f41"
+    },
+    "docs-validation.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\docs-validation.txt",
+      "sha256": "986452be2c6595b8b96c3cd1d4b6dd0076bf0f01d2973ab5c8ce4e357fd88f32"
+    },
+    "final-read-only-check.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\final-read-only-check.json",
+      "sha256": "24ebef329f011e8d6de30acf9c7cddcbc21e56c677d59f43eef23d6181e98c56"
+    }
+  },
+  "finalReadOnlyCheck": {
+    "capturedUtc": "2026-11-14T11:58:42.141408+00:00",
+    "all1067LuaHashesMatchFullPassingRun": true,
+    "external41FilesStillMatchCheckpoint": true,
+    "documentation": "PASS: 1100 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17356 local links. Source inventory/evidence current. No files written.",
+    "runtimeEditsAfterFullRun": false,
+    "goalStatus": "active; actual producer/native acceptance gaps retained"
+  }
+}

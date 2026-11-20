@@ -101,4 +101,29 @@ for _,family in ipairs{'live','forever','classic','classic_era','classic_anniver
     start('cast',101)
     check(nested and w.mode=='cast'and pet.mode=='cast','same-stack player/pet dispatch retains private payloads')
 end
+
+for _,family in ipairs{'live','forever','classic','classic_era','classic_anniversary'}do
+    local s,_,flux,w,other=make(family)
+    local cast=flux.ButtonFX.Cast
+    local frame=cast._frame
+    local function deliver(event,...)
+        frame.scripts.OnEvent(frame,event,'player',...)
+    end
+    s.kind,s.sid,s.start='cast',101,s.time
+    deliver('UNIT_SPELLCAST_START','Cast-payload',101,999)
+    check(cast.Debug().lastSpell==101 and w.mode=='cast','trailing cast-bar ID does not select a second spell on start')
+    s.kind=nil
+    other.mode=nil
+    deliver('UNIT_SPELLCAST_INTERRUPTED','Cast-payload',101,'Creature-interrupter',999)
+    check(cast.Debug().interrupt==101 and w.mode=='interrupt'and other.mode==nil,
+        'interrupt actor and cast-bar ID do not redirect the spell effect')
+    s.time=s.time+2
+    s.kind,s.sid,s.start='cast',101,s.time
+    deliver('UNIT_SPELLCAST_START','Spell101','Rank 4',908,101)
+    check(cast.Debug().lastSpell==101 and w.mode=='cast','legacy name and rank payload still selects the last spell ID')
+    s.kind=nil
+    deliver('UNIT_SPELLCAST_SUCCEEDED','Cast-second',101,999)
+    check(cast.Debug().finish==101 and w.mode=='finish','completion retains the real spell identity')
+end
+
 print('Cast dispatch hotspot: '..checks..' checks PASS; five client models; native FPS/taint/pixels NOT RUN')

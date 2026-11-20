@@ -1,11 +1,6 @@
 -- FluxBattlefieldMapWorldFeatures.lua
--- Mirrors World Map data providers (Blizzard layers + third-party addon pins) onto the
--- embedded BattlefieldMapFrame. Addons that only register on WorldMapFrame are cloned
--- onto the battlefield map while the feature is enabled.
---
--- Limitations:
---   - Addons that parent frames directly to WorldMapFrame (not AddDataProvider) are not mirrored.
---   - Some exotic custom providers may fail to clone cleanly.
+-- Map Pins shares the original World Map rendering surface with the embedded
+-- battlefield area. The provider/HBD route is available when hosting is unavailable.
 
 local addonName, addonTable = ...
 
@@ -940,7 +935,7 @@ local function UpdateToggleTooltip()
             GameTooltip:AddLine("Waiting for map addons (" .. tostring(reason) .. "). Open the world map once or /reload.", 1, 0.82, 0, true)
         else
             GameTooltip:AddLine(" ", 1, 1, 1)
-            GameTooltip:AddLine("Addons that draw directly on the world map frame without data providers may not appear.", 0.7, 0.7, 0.7, true)
+            GameTooltip:AddLine("Shares the World Map and its addon content here. Opening the large map returns it to its normal window.", 0.7, 0.7, 0.7, true)
         end
         GameTooltip:Show()
     end
@@ -1034,6 +1029,16 @@ function FluxBattlefieldMapWorldFeatures:Activate()
         state.pendingDeactivate = false
         return
     end
+    if FluxBattlefieldWorldMap then
+        -- The original World Map owns every addon icon and drawing. Release
+        -- the optional fallback routes BEFORE showing that same source surface.
+        if FluxBattlefieldMapPinRouter then FluxBattlefieldMapPinRouter:Uninstall() end
+        if FluxBattlefieldMapProviders then FluxBattlefieldMapProviders:Detach(GetBattlefieldMap()) end
+        if FluxBattlefieldWorldMap:Activate(GetBattlefieldMap()) then
+            UpdateToggleVisual()
+            return
+        end
+    end
     if FluxBattlefieldMapProviders and FluxBattlefieldMapProviders.Attach then
         FluxBattlefieldMapProviders:Attach(GetBattlefieldMap())
     end
@@ -1044,6 +1049,7 @@ function FluxBattlefieldMapWorldFeatures:Activate()
 end
 
 function FluxBattlefieldMapWorldFeatures:Deactivate()
+    if FluxBattlefieldWorldMap then FluxBattlefieldWorldMap:Deactivate() end
     if InCombatLockdown() then
         state.pendingDeactivate = true
         state.pendingActivate = false
@@ -1064,6 +1070,7 @@ local function ScheduleActivateRetry()
     if not state.isActive or not FluxBattlefieldMapWorldFeatures:IsEnabled() then
         return
     end
+    if FluxBattlefieldWorldMap and FluxBattlefieldWorldMap:IsActive() then return end
     if FluxBattlefieldMapPinRouter and FluxBattlefieldMapPinRouter.ScheduleKickstart then
         FluxBattlefieldMapPinRouter:ScheduleKickstart()
     end
@@ -1154,6 +1161,18 @@ local function PrintStatus()
         print("  lastFailure=" .. tostring(state.lastDepFailure))
     end
     print(string.format("  mirrored=%d added=%d", mirrored, added))
+    if FluxBattlefieldWorldMap then
+        local surface = FluxBattlefieldWorldMap:GetDiagnostics()
+        print("  worldSurface=" .. tostring(surface.reason))
+        print("  worldSurfaceVisible=" .. tostring(surface.mapVisible) .. " strata=" .. tostring(surface.mapStrata)
+            .. " blackoutShown=" .. tostring(surface.blackoutShown) .. " blackoutStrata=" .. tostring(surface.blackoutStrata))
+        print("  surfaceRoot " .. surface.root)
+        print("  surfaceViewport " .. surface.viewport)
+        print("  surfaceScroll " .. surface.scroll)
+        print("  surfaceCanvas " .. surface.canvas)
+        print("  surfaceScene=" .. tostring(surface.sceneWidth) .. "x" .. tostring(surface.sceneHeight)
+            .. " canvasScale=" .. tostring(surface.canvasScale) .. " framebuffer=" .. tostring(surface.framebuffer))
+    end
     if FluxBattlefieldMapPinRouter then
         local route = FluxBattlefieldMapPinRouter.GetRouteLabel and FluxBattlefieldMapPinRouter:GetRouteLabel() or "?"
         local hbd = FluxBattlefieldMapPinRouter.IsHBDAvailable and FluxBattlefieldMapPinRouter:IsHBDAvailable()

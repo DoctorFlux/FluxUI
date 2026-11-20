@@ -8,9 +8,9 @@
 -- ACTIONBUTTON* onto a per-slot hidden name is forbidden in combat.
 -- Shift/Ctrl remap the same physical key, so ACTIONBUTTONn cannot target the
 -- visible host; every strip key is SetOverrideBindingClick onto that host.
--- There is no override for "SHIFT-1": an unbound modified key falls through to
--- the bare key, and the modifier then picks the slot at press time through the
--- host's shift-action* / ctrl-action* attributes (see Bars/State.lua).
+-- Bare keys and otherwise-unassigned SHIFT/CTRL variants route explicitly.
+-- Modified dispatch must not depend on the client's bare-key fallback. The
+-- same host still chooses its prepared slot at press time (see Bars/State.lua).
 local addonName, ns = ...
 local Flux = ns.Flux
 
@@ -18,8 +18,22 @@ local Bars = Flux.Bars
 local Clicks = {}
 Bars.Clicks = Clicks
 
-local lastKeySig
+local installedKeys
+local bindingRevision = 0
 local started = false
+local KEY_MODIFIERS = { "SHIFT-", "CTRL-" }
+
+local function IsBareKey(key)
+	local prefix = key:match("^([A-Z]+)%-")
+	return prefix ~= "ALT" and prefix ~= "CTRL" and prefix ~= "SHIFT" and prefix ~= "META" and prefix ~= "CMD"
+end
+
+local function UnassignedModifierChord(key, command)
+	if type(GetBindingAction) ~= "function" then return false end
+	local ok, action = pcall(GetBindingAction, key, false)
+	if not ok or (issecretvalue and issecretvalue(action)) then return false end
+	return action == "" or action == "NONE" or action == command
+end
 
 local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
@@ -102,6 +116,29 @@ local function WrapClicks()
 	return not FX or not FX.Click or not FX.Click.UsesWrap or FX.Click.UsesWrap()
 end
 
+-- The main's secure state publishes the proxy's complete live action bundle.
+-- Remove legacy specific selectors which could outrank that bundle, retaining
+-- its bare fields when bindings are refreshed. Unit policy remains inherited.
+local KEYER_SELECTORS = {
+	"type", "typerelease", "action", "macro", "macrotext", "clickbutton", "unit", "checkmouseovercast",
+}
+local KEYER_PREFIXES = { "", "shift-", "ctrl-", "alt-", "ctrl-shift-", "alt-shift-", "alt-ctrl-", "alt-ctrl-shift-", "*" }
+function Clicks.InheritKeyerActions(keyer)
+	if not keyer or InLockdown() then return false end
+	for _, name in ipairs(KEYER_SELECTORS) do
+		for _, prefix in ipairs(KEYER_PREFIXES) do
+			if prefix ~= "" and keyer:GetAttribute(prefix .. name) ~= nil then keyer:SetAttribute(prefix .. name, nil) end
+			if keyer:GetAttribute(prefix .. name .. "1") ~= nil then keyer:SetAttribute(prefix .. name .. "1", nil) end
+			if keyer:GetAttribute(prefix .. name .. "*") ~= nil then keyer:SetAttribute(prefix .. name .. "*", nil) end
+		end
+		local inherit = name == "unit" or name == "checkmouseovercast"
+		if keyer:GetAttribute("useparent-" .. name) ~= inherit then
+			keyer:SetAttribute("useparent-" .. name, inherit)
+		end
+	end
+	return true
+end
+
 local function EnsureKeyer(widget, column)
 	local name = "FluxActionStripKey" .. tostring(column)
 	local keyer = _G[name]
@@ -124,26 +161,30 @@ local function EnsureKeyer(widget, column)
 		keyer:RegisterForClicks("AnyDown")
 		keyer:SetAttribute("useOnKeyDown", true)
 		keyer:SetAttribute("pressAndHoldAction", false)
-		-- useparent-<name> recurses with the same modifier prefix and button
-		-- suffix, so the host's shift-action* / shift-type* / shift-macrotext*
-		-- twins resolve straight through this proxy.
-		keyer:SetAttribute("useparent-type", true)
-		keyer:SetAttribute("useparent-typerelease", true)
-		keyer:SetAttribute("useparent-action", true)
-		keyer:SetAttribute("useparent-macrotext", true)
-		keyer:SetAttribute("useparent-clickbutton", true)
 		keyer:SetAttribute("useparent-unit", true)
 		keyer:SetAttribute("useparent-checkmouseovercast", true)
 		keyer._fluxKeyerReady = true
 	elseif widget and keyer.SetParent then
 		keyer:SetParent(widget)
 	end
+	Clicks.InheritKeyerActions(keyer)
+	local State = Bars.State
+	local header = State and State.HeaderFor and State.HeaderFor(column, "main")
+	if header and header.SetFrameRef then header:SetFrameRef("keyer-" .. column, keyer) end
+	-- A new/reused proxy needs the current bundle even if the main's secure
+	-- applied-slot guard will skip an otherwise unchanged ChildUpdate.
+	if State and State.SyncMainKeyer then State.SyncMainKeyer(widget, keyer) end
 	local PP = ns.FluxBindingPushPress or _G.FluxBindingPushPress
 	if PP and PP.HookKeyer then
 		PP.HookKeyer(keyer, column)
 	end
 	return keyer
 end
+
+local EMPOWER_ALIASES = {
+	{ "ctrl-shift-", "shift-" }, { "alt-", "" }, { "alt-shift-", "shift-" },
+	{ "alt-ctrl-", "ctrl-" }, { "alt-ctrl-shift-", "shift-" },
+}
 
 --- OOC only. Combat page swaps use the restricted ChildUpdate trailer.
 function Clicks.ReassertEmpower()
@@ -168,6 +209,11 @@ function Clicks.ReassertEmpower()
 			widget:SetAttribute(prefix .. "IsEmpowerSpell*",
 				swapSlot and SlotIsEmpower(swapSlot) or false)
 		end
+		-- Compound modifiers share the same three prepared slot selections.
+		-- Reuse their flags instead of querying the native spell API again.
+		for _, pair in ipairs(EMPOWER_ALIASES) do
+			widget:SetAttribute(pair[1] .. "IsEmpowerSpell*", widget:GetAttribute(pair[2] .. "IsEmpowerSpell*") or false)
+		end
 		local FX = Flux.ButtonFX
 		if WrapClicks() then
 			widget:SetAttribute("pressAndHoldAction", true)
@@ -188,10 +234,30 @@ function Clicks.ReassertEmpower()
 end
 
 function Clicks.InvalidateKeys()
-	lastKeySig = nil
+	installedKeys = nil
+	bindingRevision = bindingRevision + 1
 end
 
-function Clicks.RefreshKeys()
+local function RoutesStillReady(routes, owner, wrapped)
+	if not routes or routes.owner ~= owner or routes.wrapped ~= wrapped
+		or routes.lookup ~= GetBindingKey or routes.install ~= SetOverrideBindingClick
+		or #routes.hosts ~= Bars.NUM_COLUMNS then return false end
+	for column, route in ipairs(routes.hosts) do
+		local col = Bars.hosts[column]
+		local host = col and col.main
+		local widget = host and host.widget
+		if route.widget ~= widget or route.command ~= (host and host.bindingCommand) then return false end
+		if widget and not wrapped then
+			local keyer = _G["FluxActionStripKey" .. column]
+			if not keyer or not keyer._fluxKeyerReady then return false end
+			local action = keyer:GetAttribute("action")
+			if (issecretvalue and issecretvalue(action)) or action == nil then return false end
+		end
+	end
+	return true
+end
+
+function Clicks.RefreshKeys(hoverOnly)
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.keys", Clicks.RefreshKeys)
@@ -202,6 +268,15 @@ function Clicks.RefreshKeys()
 	if not owner or not SetOverrideBindingClick or not GetBindingKey then
 		return false
 	end
+
+	local wrapped = not not WrapClicks()
+	local previous = installedKeys
+	local revision = bindingRevision
+	local watch = Bars.Watch
+	local reuse = hoverOnly == true and watch and watch.bindingEvents and watch.bindingEvents == Flux.Events
+	-- A pure hover moves the faces while the binding event owns key changes.
+	-- Keep checking host identities and the native proxy's live action bundle.
+	if reuse and RoutesStillReady(previous, owner, wrapped) and previous == installedKeys then return true end
 
 	local sig = {}
 	for column = 1, Bars.NUM_COLUMNS do
@@ -218,10 +293,14 @@ function Clicks.RefreshKeys()
 		sig[#sig + 1] = host and host.widget and host.widget:GetName() or "-"
 	end
 	sig = table.concat(sig, "|")
-	if sig == lastKeySig then
+	if not reuse and previous and sig == previous.signature and RoutesStillReady(previous, owner, wrapped)
+		and previous == installedKeys then
 		return true
 	end
 	local complete = true
+	local routes = { owner = owner, wrapped = wrapped, lookup = GetBindingKey, install = SetOverrideBindingClick,
+		hosts = {}, signature = sig }
+	installedKeys = nil
 
 	if ClearOverrideBindings then
 		ClearOverrideBindings(owner)
@@ -229,12 +308,13 @@ function Clicks.RefreshKeys()
 	for column = 1, Bars.NUM_COLUMNS do
 		local col = Bars.hosts[column]
 		local host = col and col.main
+		routes.hosts[column] = { widget = host and host.widget, command = host and host.bindingCommand }
 		if host and host.bindingCommand and host.widget then
 			local widgetName = host.widget:GetName()
 			if widgetName then
 				local clickName = widgetName
 				local clickButton = "KeyBind"
-				if not WrapClicks() then
+				if not wrapped then
 					local keyer = EnsureKeyer(host.widget, column)
 					if not keyer then complete = false end
 					clickName = keyer and keyer:GetName() or widgetName
@@ -249,6 +329,17 @@ function Clicks.RefreshKeys()
 					local key = keys[i]
 					if key and key ~= "" then
 						if not pcall(SetOverrideBindingClick, owner, false, key, clickName, clickButton) then complete = false end
+						-- ALT and Shift+Ctrl chords belong to Binding's free-chord
+						-- owner. Ordinary Shift/Ctrl bar routes use this same keyer,
+						-- unless the player assigned that exact native chord elsewhere.
+						if IsBareKey(key) then
+							for _, prefix in ipairs(KEY_MODIFIERS) do
+								local chord = prefix .. key
+								if UnassignedModifierChord(chord, host.bindingCommand) then
+									if not pcall(SetOverrideBindingClick, owner, false, chord, clickName, clickButton) then complete = false end
+								end
+							end
+						end
 					end
 				end
 			end
@@ -258,7 +349,7 @@ function Clicks.RefreshKeys()
 		end
 	end
 	Clicks.ReassertEmpower()
-	if complete then lastKeySig = sig end
+	if complete and revision == bindingRevision then installedKeys = routes end
 	return complete
 end
 

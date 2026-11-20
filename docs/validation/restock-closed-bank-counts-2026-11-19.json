@@ -1,0 +1,174 @@
+{
+  "utc": "2026-11-19T00:51:49.2730169Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": [
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "file": "FluxRestockTiers_Match.lua",
+      "before": "9618e22b98a0afd60c0cbb404537f45cba838b900e84900e0719d505903dfe68"
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockList.lua",
+      "file": "FluxRestockList.lua",
+      "before": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81"
+    }
+  ],
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 21,
+  "settingsContentsCopied": false,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-restock-list-bank-counts-20261119T005149Z",
+  "afterSources": [
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "before": "9618e22b98a0afd60c0cbb404537f45cba838b900e84900e0719d505903dfe68",
+      "after": "fc653013d065d765e8c2b590040b04bf078ff5db856a348eb9aefd5f1e4f2c47",
+      "forever": "fc653013d065d765e8c2b590040b04bf078ff5db856a348eb9aefd5f1e4f2c47",
+      "mirrorMatches": true
+    },
+    {
+      "path": "Inventory/Restock/Core/FluxRestockList.lua",
+      "before": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+      "after": "a277da099817780a93da19627b8c27cf874f5d6042cbe65fba2ff9ed8ccb1e5f",
+      "forever": "a277da099817780a93da19627b8c27cf874f5d6042cbe65fba2ff9ed8ccb1e5f",
+      "mirrorMatches": true
+    }
+  ],
+  "changeId": "LHO-RESTOCK-CLOSED-BANK-COUNTS-20261119",
+  "status": "APPLIED_NATIVE_RESTOCK_AND_AUCTION_ROWS_PAIRED_PASS",
+  "previousTurn": "Progress. Native 134 validated the separate bank target carried-count sharing and 32% observed gain.",
+  "native": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "provider": "Existing Syndicator profile; no provider enable-state change during this continuation",
+    "pending135": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-pending135_a-submitted.png",
+      "sha": "7ebe742ddab26611874162b7dbc05bbf2c08f6b403c6114fa6e35bc3885c4150",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-pending135-idle-and-rows-20261119",
+        "controllerSHA": "5cef01d14925608c36b937626d6bb7a566725a7c360e2b7113bf82eef4303eab",
+        "packetSHA": "9adc3ffb46ae19f1e94f5e802fe5740b2f6902f3a09f13ec0c90bb8520e2ad7a",
+        "packets": 11,
+        "luaSHA": "c0796bc39db2177374fb3bf80a6f68552dfa5ce783376a5b675de031293aeaa8"
+      },
+      "idlePendingTargetCount": 0,
+      "idlePendingMs": 0.0146,
+      "idleSettingsCalls": 4,
+      "idlePaintCalls": 1,
+      "auctionVisibleRows": 6,
+      "auctionRebuildMs": 46.4484,
+      "restockSourceMs": 44.266,
+      "restored": true,
+      "errors": 0
+    },
+    "attribution136": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-restock136_a-submitted.png",
+      "sha": "933cc5803075b12209b0ba4cb4687468b06ed2da0914f4fc376759505ff12243",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock136-row-owner-20261119",
+        "controllerSHA": "089b75036cf2289b5584f30f2f26561958e9e3cb7e4f0f94f77cb57ab8adce16",
+        "packetSHA": "45e7c6552728fd2eba71beebd996532bb75248412519922ede29c05539beca36",
+        "packets": 12,
+        "luaSHA": "eab2637f2ed783c2577a4929a6765d4d11b11d66880d5bb8e52fc97de396c5ee"
+      },
+      "sharedRows": 9,
+      "restockMs": 31.8841,
+      "carriedTierCalls": 5,
+      "carriedTierMs": 0.082,
+      "bankTierCalls": 5,
+      "bankTierMs": 28.115,
+      "bankCountCallsIncludingDirectRows": 109,
+      "bankCountMs": 25.426,
+      "usabilityCallsWithinScope": 0,
+      "restored": true,
+      "errors": 0
+    },
+    "overlap137": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-restock137_a-submitted.png",
+      "sha": "0202119a53b3995ee18dd336d4fdd8426ec96447235c29c914906823f9dab471",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock137-bank-overlap-20261119",
+        "controllerSHA": "b6311b281fb02cfa02ea7cacc24df55a9b71f4ea37e40852e81165c3f37c9a78",
+        "packetSHA": "caf570579680a32072a870f5f368ce78048fce43a9f9d89774d55e86798a5bb5",
+        "packets": 9,
+        "luaSHA": "68f370b39fcdaae2ff7ad89f829f156fd904af1f63f7782408a335269ceb6d40"
+      },
+      "sharedRows": 9,
+      "restockMs": 30.6475,
+      "bankTierQuantityReads": 105,
+      "positiveReads": 105,
+      "repeatPositiveReads": 84,
+      "distinctIDs": 21,
+      "repeatCountMismatches": 0,
+      "nonpositiveReads": 0,
+      "restored": true,
+      "errors": 0
+    },
+    "reload138": {
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock138-bank-reload-20261119",
+        "controllerSHA": "e3ead62bbf2cc8e3d927797478894cc60f932f0afbcfa73579f5e6f3e68a4c31",
+        "packetSHA": "42797ee9d18a3117faf0e3af8d451a2f688d10d0b3bcf90250b0270d5ef93f9f"
+      },
+      "loadingCaptureSHA": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/restock138-world-return.png",
+      "sha": "c49bffeeff80d81aface5e52a52679b05af6fa17bbc0d6c5e78796fdd66a7c55",
+      "worldReturn": true
+    },
+    "matched139": {
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock139-paired-row-build-20261119",
+        "controllerSHA": "e3e68e5c667fa78cc51f670ffa25beac12a036e6497b4fd44b629e0178d17608",
+        "packetSHA": "42a7ef95d2695772d76edc73f08358d317a5686225551fd91370bd0b2a50afde",
+        "packets": 17,
+        "luaSHA": "9fb1fde1ebdb8730d847001d92ae269963d6a734e4c3e9f6755d4a1c4a056c95"
+      },
+      "submittedSHA": "8d250f369709e1f66e47fd94af1d02c32c62c7c17d940a21bb83cc610ea04af4",
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/restock139-results.png",
+      "sha": "37f2a34a0d6b21b8f386b761876274a686478aadb2af452406bc8c72b014a4fc",
+      "order": [
+        "baseline",
+        "candidate",
+        "candidate",
+        "baseline"
+      ],
+      "baselineMs": [
+        46.4809,
+        34.6308
+      ],
+      "candidateMs": [
+        18.209,
+        19.5612
+      ],
+      "sharedPositiveIDs": [
+        21,
+        21
+      ],
+      "visibleRows": 6,
+      "sharedRows": 9,
+      "hiddenVendorRows": 1,
+      "rowsAndFieldsEqualInBothPairs": true,
+      "bagGeneration": 5,
+      "bagAndBankGenerationsStable": true,
+      "observersRestored": true,
+      "errors": 0
+    }
+  },
+  "behavior": "Share positive closed-bank quantities per shared Restock target build with the original inventory count owners. Bags and bank generation changes invalidate reuse. Open bank, replacement queries, unreliable inventory, and zero quantities keep the existing query path. Tier classification, thresholds, restock targets, refresh cadence, settings and execution ownership are retained.",
+  "method": "Real current inventory and configured targets. The same observer records full A.GetRows(true) elapsed time in opposing orders. Baseline routes each tier through its original independent query. Candidate uses the loaded batch. Compare all returned fields in the nine shared, six visible, and one hidden row arrays. Cumulative nested timing includes wrappers and is not additive. Commerce windows closed and no active Pending job. No item moves, commerce actions, settings or profiler changes or new simulations.",
+  "sourceChecks": {
+    "versions": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ],
+    "beforeAfterPassCount": 8,
+    "diffWhitespace": "pass",
+    "retailForeverPairs": 2
+  },
+  "remaining": [
+    "Active Pending stages and visible merchant, Auction House and bank open/close behavior, supported provider combinations, and other clients",
+    "Full frame-time captures on actual casts, loot, crafting, receipts or commerce events",
+    "The three-minute jump helper is stopped; no current-epoch cue or verified automatic jumps."
+  ]
+}

@@ -6,8 +6,46 @@ local CB = ns.CastBar
 -- ---------------------------------------------------------------------------
 -- Default position: buff aura panel TOPLEFT at ChatFrame1 TOPRIGHT (re-applied from FluxChatFrame)
 -- ---------------------------------------------------------------------------
-function FluxUIPositionFocusFrameDefault()
+local function FocusRosterNative(frame, method, ...)
+    if issecretvalue and issecretvalue(frame) or not frame then return false end
+    local getter=frame[method]
+    if issecretvalue and issecretvalue(getter) or type(getter)~="function" then return false end
+    local ok,a,b,c,d,e=pcall(getter,frame,...)
+    if not ok or issecretvalue and (issecretvalue(a) or issecretvalue(b) or issecretvalue(c) or issecretvalue(d) or issecretvalue(e)) then return false end
+    return true,a,b,c,d,e
+end
+
+local function FocusRosterNumber(value)
+    return not (issecretvalue and issecretvalue(value)) and type(value)=="number"
+        and value==value and value>0 and value<math.huge
+end
+
+local function IsPreparedRosterFocusAt(frame, x, y)
+    local ready,pending,pendingOuter=frame._fluxRaidDockPrepared,frame.needsPartitionRelayout,frame.needsOuterBorderUpdate
+    if issecretvalue and (issecretvalue(ready) or issecretvalue(pending) or issecretvalue(pendingOuter))
+        or ready~=true or pending or pendingOuter then return false end
+    local partition,outer=frame.UpdatePartition,frame.UpdateOuterBorder
+    local oldPartition,oldOuter=frame._fluxRaidDockPartition,frame._fluxRaidDockOuter
+    if issecretvalue and (issecretvalue(partition) or issecretvalue(outer) or issecretvalue(oldPartition) or issecretvalue(oldOuter))
+        or partition~=oldPartition or outer~=oldOuter then return false end
+    local width,height=frame._fluxLayoutWidth,frame._fluxLayoutHeight
+    if not FocusRosterNumber(width) or not FocusRosterNumber(height) then return false end
+    local public,nativeWidth=FocusRosterNative(frame,"GetWidth")
+    local known,nativeHeight=FocusRosterNative(frame,"GetHeight")
+    if not public or not known or not FocusRosterNumber(nativeWidth) or not FocusRosterNumber(nativeHeight)
+        or math.abs(nativeWidth-width)>=1/1024 or math.abs(nativeHeight-height)>=1/1024 then return false end
+    local parentKnown,parent=FocusRosterNative(frame,"GetParent")
+    local pointsKnown,count=FocusRosterNative(frame,"GetNumPoints")
+    if not parentKnown or parent~=UIParent or not pointsKnown or count~=1 then return false end
+    local ok,point,relative,rp,ox,oy=FocusRosterNative(frame,"GetPoint",1)
+    return ok and point=="BOTTOMRIGHT" and relative==UIParent and rp=="BOTTOMLEFT"
+        and type(ox)=="number" and type(oy)=="number"
+        and math.abs(ox-x)<1/1024 and math.abs(oy-y)<1/1024
+end
+
+function FluxUIPositionFocusFrameDefault(rosterOnly)
     if InCombatLockdown() then return end
+    local fromRoster=not (issecretvalue and issecretvalue(rosterOnly)) and rosterOnly==true
     local frame = ns.FocusFrame
     if not frame then return end
 
@@ -16,13 +54,14 @@ function FluxUIPositionFocusFrameDefault()
     if sideBySide and FluxRaid_GetPlacement2FocusAnchorBottomRight then
         local rx, ry = FluxRaid_GetPlacement2FocusAnchorBottomRight()
         if rx and ry then
-            frame:ClearAllPoints()
             -- Raid coordinates are in UIParent units; SetPoint offsets are in
             -- this scaled focus frame's units (including its compact body scale).
             local parentScale = UIParent:GetEffectiveScale()
             local focusScale = frame:GetEffectiveScale()
             local relative = focusScale / parentScale
             if relative <= 0 then relative = 1 end
+            if fromRoster and IsPreparedRosterFocusAt(frame,rx/relative,ry/relative) then return end
+            frame:ClearAllPoints()
             frame:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMLEFT", rx / relative, ry / relative)
             if frame.UpdatePartition then
                 frame:UpdatePartition()
@@ -33,6 +72,8 @@ function FluxUIPositionFocusFrameDefault()
             if _G.FluxUnitFrames_UpdateFocusAuraLayoutForRaidStack then
                 _G.FluxUnitFrames_UpdateFocusAuraLayoutForRaidStack()
             end
+            frame._fluxRaidDockPrepared = type(frame.UpdatePartition)=="function" and type(frame.UpdateOuterBorder)=="function" or nil
+            frame._fluxRaidDockPartition,frame._fluxRaidDockOuter = frame.UpdatePartition,frame.UpdateOuterBorder
             return
         end
     end

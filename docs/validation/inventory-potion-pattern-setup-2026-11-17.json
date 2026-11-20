@@ -1,0 +1,107 @@
+{
+  "id": "LHO-POTION-PATTERN-SETUP-20261117",
+  "utc": "2026-11-17T21:05:29.836330+00:00",
+  "status": "APPLIED_SOURCE_REVIEW_SYNTAX_PASS; goal active",
+  "userDirection": "Direct Inventory Lua optimization using previous findings; no further simulations/benchmarks/probe construction",
+  "application": {
+    "utc": "2026-11-17T21:04:08.590577+00:00",
+    "file": "Inventory/FluxConsumableClassify.lua",
+    "before": "d1a07334059ce53ac7cfdaf487d65ffef416d97558cbc66aced04beecaa39efe",
+    "after": "d7037d850f06cadf4018f662df13b4fc111d6e72a78e18398f11705a4d494ddc",
+    "syntax": [
+      {
+        "vm": "Lua5.1.5",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "sourceSha256": "d7037d850f06cadf4018f662df13b4fc111d6e72a78e18398f11705a4d494ddc"
+      },
+      {
+        "vm": "Lua5.4.6",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "sourceSha256": "d7037d850f06cadf4018f662df13b4fc111d6e72a78e18398f11705a4d494ddc"
+      }
+    ],
+    "sourceReview": [
+      "Generic health/mana order and exact gmatch pattern strings unchanged",
+      "Potion patterns built with original amount, separators, suffixes, frontier and percent-ending strings",
+      "Each resource/mode has2suffix rows; each row4ranges then original up-to pattern",
+      "Runtime retains line/suffix/range match order; same math and sanitization/zero-floor logic",
+      "Percent truthiness still chooses percent versus flat; resource maximum early-return/factor/duration remain",
+      "No tooltip text/result/metadata/resource caching or skipped native reads",
+      "All classification output freshness and pending/invalidation/cadence unchanged"
+    ],
+    "staticConstructionScope": "2generic strings and40potion strings prepared once:2resources*2modes*2suffixes*(4ranges+1upper). This is source-derived structure, not runtime counts or bytes.",
+    "tradeoff": "Additional fixed private pattern tables/strings and small load-time setup replace per-line concatenation. No retained-byte/startup-time/CPU/FPS measurements.",
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "functionalNativeAcceptance": "Pending",
+    "performanceGain": "Not measured"
+  },
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "d7037d850f06cadf4018f662df13b4fc111d6e72a78e18398f11705a4d494ddc",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "43f9a81edea184244bce4cea8c2ccb5ddde1140d0dee75b4fd49b1c72b31330b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-potion-pattern-setup-20261117\\checkpoint.json",
+    "sha256": "76519979acdf4197810473628ab2e7769885e9e606fc1aafd27a1fcbf3756b3d",
+    "historyVerified": true,
+    "settingsAvailabilityPaths": 125,
+    "privateValuesReadOrWritten": false
+  },
+  "sourceMechanism": "Original concatenation expressions for fixed potion amount/separator/ending/frontier/upper patterns now run once at load for every private resource/mode combination. Runtime iterates prepared patterns in original suffix/range order. Generic health/mana patterns and two-unit list also prepared once.",
+  "tradeoff": "Fixed private pattern rows/tables and load-time setup; no new result cache, metadata cache or skipped matches/native reads. No retained-byte, startup-time or runtime-cost measurement.",
+  "validation": {
+    "newSyntaxPasses": 2,
+    "mode": "Lua5.1.5/5.4.6 -p only; addon chunks not executed",
+    "sourceReview": [
+      "Generic health/mana order and exact gmatch pattern strings unchanged",
+      "Potion patterns built with original amount, separators, suffixes, frontier and percent-ending strings",
+      "Each resource/mode has2suffix rows; each row4ranges then original up-to pattern",
+      "Runtime retains line/suffix/range match order; same math and sanitization/zero-floor logic",
+      "Percent truthiness still chooses percent versus flat; resource maximum early-return/factor/duration remain",
+      "No tooltip text/result/metadata/resource caching or skipped native reads",
+      "All classification output freshness and pending/invalidation/cadence unchanged"
+    ],
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "nativeFunctionality": "PENDING",
+    "CPU_AllocatedBytes_GCPause_FPS_or_lagSpikeGain": "NOT ESTABLISHED",
+    "aggregate": "Current15source identities rechecked; older functional/source/native records stay attached to original hashes"
+  },
+  "preserved": [
+    "Original separator/suffix text including dash variants and percent/frontier matching",
+    "Same resource maximum/factor/duration and0.001 tolerance/minimum/up-to arithmetic",
+    "Same matches and fresh outputs, public classification paths, pending/invalidation and item-data recovery",
+    "Every native count/name/metadata/resource call and refresh timer/event remains",
+    "Features, appearance, commands, saved data and optional providers unchanged",
+    "External Syndicator/Baganator untouched; guild-bank/void callbacks excluded"
+  ],
+  "remaining": [
+    "Current-source native correctness and spike improvement",
+    "Supported clients and3legal provider combinations",
+    "Casting/interrupt/cancel/success/crafting and bag/loot/receive workflows",
+    "Vendor/restock/AH/pending/bank/mail native checks",
+    "Stale-mail prior measure-first instruction retained"
+  ],
+  "nativeState": "No game input/probe/jump/reload/helper started; foreign controls and other goal reports preserved."
+}

@@ -136,6 +136,22 @@ frame:UpdatePartition()
 assert(frame.HealthPowerSeparator.shown and frame.HealthPowerSeparator.alpha == secret)
 
 -- Exercise the actual HP text layout with a nested target and a centered ToT.
+-- A cleared watched unit returns a zero maximum without establishing a new
+-- resource layout. Retain both its last alpha and its public layout fact.
+for _,previous in ipairs({100, 0, secret}) do
+    modern, maximum = true, previous
+    env.UnitExists = function() return true end
+    UF.UpdatePower(frame, frame.unit)
+    local alpha, fact, height = frame._fluxMainPowerAlpha, frame._fluxHasMainPower, frame.Health._fluxTextAnchor.height
+    env.UnitExists = function() return false end
+    maximum = 0
+    UF.UpdatePower(frame, frame.unit)
+    assert(frame._fluxMainPowerAlpha == alpha and frame.HealthPowerSeparator.alpha == alpha,
+        "clearing a unit retains its prepared resource and separator alpha")
+    assert(frame._fluxHasMainPower == fact and frame.Health._fluxTextAnchor.height == height,
+        "clearing a unit cannot collapse/reanchor the prepared resource layout")
+end
+env.UnitExists = function() return true end
 local healthUF = {
     UpdateHealPrediction = function() end,
     ShouldShowAFKHealthOverlay = function() return false end,

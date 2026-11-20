@@ -68,12 +68,14 @@ ns.FluxMouseoverKeybind = FluxMouseoverKeybind
 local header = nil
 local registeredFrames = {}
 local registeredLookup = {}
+local hoverLeaveCallbacks = setmetatable({}, { __mode = "k" })
 local pendingFrames = {}
 local pendingRosterRegistration = false
 local rosterRegistrationScheduled = false
 local pendingRosterBindingRefresh = false
 local unitExistsDriverRegistered = false
 local pendingHoverRoutingFlush = false
+local nativeBindingCapabilityGap = false
 local ufHoverCount = 0
 local pendingDriverPark = false
 local SyncHoverRoutingLifecycle
@@ -365,14 +367,15 @@ local function IsBareMouseButtonClaimedBySpellHover(buttonIndex)
 end
 
 --- UF hover: route SHIFT/CTRL on bare spell-hover columns to FluxActionStripButton{col} (shared-slot [mod]).
-local function AppendBarModifierBindsForSpellHoverColumns(bindKeys, bindBtnNames)
+local function AppendBarModifierBindsForSpellHoverColumns(bindKeys, bindBtnNames, skipMouseButtons)
     local seen = {}
     for i = 1, #bindKeys do
         seen[NormalizeChord(bindKeys[i])] = true
     end
     for i = 1, #spellHoverKeys do
         local key = spellHoverKeys[i]
-        if not IsBareSpellHoverChord(key) then
+        local kind = ClassifyMouseKeybind(key)
+        if not IsBareSpellHoverChord(key) or (skipMouseButtons and kind == "button") then
             -- skip
         else
             local nk = NormalizeChord(key)
@@ -393,7 +396,7 @@ local function AppendBarModifierBindsForSpellHoverColumns(bindKeys, bindBtnNames
                             local cn = NormalizeChord(chord)
                             if cn ~= "" and not IsSpellHoverChord(chord) and not seen[cn] then
                                 seen[cn] = true
-                                bindKeys[#bindKeys + 1] = chord
+                                bindKeys[#bindKeys + 1] = cn
                                 bindBtnNames[#bindBtnNames + 1] = btnName
                             end
                         end
@@ -467,6 +470,23 @@ end
 -- KEYBIND SCANNING
 -- ---------------------------------------------------------------------------
 
+local function AppendMouseKeybinds(entry, forDetection, btnPrefixes, btnIndices, btnCommands, wheelKeys, wheelBtnNames, ...)
+    for k = 1, select("#", ...) do
+        local key = select(k, ...)
+        if key and key ~= "" and (forDetection or not IsSpellHoverChord(key)) then
+            local kind, modPrefix, buttonIndex = ClassifyMouseKeybind(key)
+            if kind == "button" then
+                table.insert(btnPrefixes, modPrefix)
+                table.insert(btnIndices, buttonIndex)
+                table.insert(btnCommands, "/click " .. entry.button)
+            elseif kind == "wheel" then
+                table.insert(wheelKeys, key)
+                table.insert(wheelBtnNames, entry.button)
+            end
+        end
+    end
+end
+
 local function ScanMouseKeybindsInternal(forDetection)
     local btnPrefixes = {}
     local btnIndices = {}
@@ -476,20 +496,8 @@ local function ScanMouseKeybindsInternal(forDetection)
 
     for _, entry in ipairs(ACTION_BINDINGS) do
         if forDetection or _G[entry.button] then
-            for k = 1, select('#', GetBindingKey(entry.binding)) do
-                local key = select(k, GetBindingKey(entry.binding))
-                if key and key ~= "" and (forDetection or not IsSpellHoverChord(key)) then
-                    local kind, modPrefix, buttonIndex = ClassifyMouseKeybind(key)
-                    if kind == "button" then
-                        table.insert(btnPrefixes, modPrefix)
-                        table.insert(btnIndices, buttonIndex)
-                        table.insert(btnCommands, "/click " .. entry.button)
-                    elseif kind == "wheel" then
-                        table.insert(wheelKeys, key)
-                        table.insert(wheelBtnNames, entry.button)
-                    end
-                end
-            end
+            AppendMouseKeybinds(entry, forDetection, btnPrefixes, btnIndices, btnCommands, wheelKeys, wheelBtnNames,
+                GetBindingKey(entry.binding))
         end
     end
 
@@ -905,31 +913,90 @@ local function UpdateSecureBindingData()
     local buttonBindKeys, buttonBtnNames, buttonVirtualBtns = {}, {}, {}
     if isEditModeClient then
         buttonBindKeys, buttonBtnNames, _, _ = BuildButtonBindData()
-        buttonVirtualBtns = {}
-        for i = 1, #buttonBindKeys do
-            -- Backup parity: bar UF hover routes use "Keybind", not LeftButton.
-            buttonVirtualBtns[i] = "Keybind"
+    else
+        -- A bare keyboard/wheel _HC override also catches an unbound modified
+        -- chord. Keep those modifiers on the strip even without Edit Mode;
+        -- real mouse buttons continue through the unit frame's typeN attrs.
+        AppendBarModifierBindsForSpellHoverColumns(buttonBindKeys, buttonBtnNames, true)
+    end
+    local routedKeys, routedNames, routedButtons, nativeBindKeys, nativeBindActions = {}, {}, {}, {}, {}
+    local FB = _G.FluxBinding
+    local Click = Flux and Flux.ButtonFX and Flux.ButtonFX.Click
+    local usesWrap = not Click or not Click.UsesWrap or Click.UsesWrap()
+    for i = 1, #buttonBindKeys do
+        local key, name = buttonBindKeys[i], buttonBtnNames[i]
+        local worldName, worldButton
+        if FB and FB.GetWorldChordTarget then
+            worldName, worldButton = FB.GetWorldChordTarget(key)
+        end
+        local native = GetBindingAction and GetBindingAction(key, false)
+        local col = tonumber(name:match("^FluxActionStripButton(%d+)$"))
+        local ownCommand = col and ACTION_BINDINGS[col] and ACTION_BINDINGS[col].binding
+        if not worldName and type(native) == "string" and native ~= "" and native ~= "NONE"
+            and native ~= ownCommand then
+            -- A foreign native command retains this exact chord while the bare
+            -- key remains hover-owned. The secure header prepares it verbatim.
+            nativeBindKeys[#nativeBindKeys + 1] = key
+            nativeBindActions[#nativeBindActions + 1] = native
+        else
+            local button = worldButton or (usesWrap and "KeyBind" or "LeftButton")
+            if worldName then
+                name = worldName
+            elseif not usesWrap then
+                local keyer = col and _G["FluxActionStripKey" .. col]
+                if keyer and keyer.GetName then
+                    local keyerName = keyer:GetName()
+                    if type(keyerName) == "string" and keyerName ~= "" then
+                        name = keyerName
+                    end
+                end
+            end
+            routedKeys[#routedKeys + 1] = key
+            routedNames[#routedNames + 1] = name
+            routedButtons[#routedButtons + 1] = button
         end
     end
+    buttonBindKeys, buttonBtnNames, buttonVirtualBtns = routedKeys, routedNames, routedButtons
 
     local command = string.format([[
+        local previousButton = currentButton or hoverButton
+        if previousButton then
+            self:RunFor(previousButton, self:GetAttribute("clear-bindings"))
+        end
+        if %s and not self.SetBinding then
+            -- Do not substitute strip/HC actions for an unsupported native
+            -- command route. Leave owned hover routing inactive for retry.
+            wheelKeys, buttonBindKeys, spellHoverKeys, nativeBindKeys =
+                newtable(), newtable(), newtable(), newtable()
+            self:SetAttribute("flux-native-binding-gap", true)
+            return
+        end
+        self:SetAttribute("flux-native-binding-gap", false)
         wheelKeys                   = %s
         wheelBtnNames               = %s
         buttonBindKeys              = %s
         buttonBtnNames              = %s
         buttonVirtualBtns           = %s
+        nativeBindKeys              = %s
+        nativeBindActions           = %s
         spellHoverKeys              = %s
         spellHoverBtnNames          = %s
         spellHoverMouseButtons      = %s
         spellHoverIsButton          = %s
         spellHoverIsPrimary         = %s
         allowMouseButtonBindingClick = %s
+        if previousButton then
+            self:RunFor(previousButton, self:GetAttribute("setup-bindings"))
+        end
     ]],
+        #nativeBindKeys > 0 and "true" or "false",
         FormatNewtable(wheelKeys),
         FormatNewtable(wheelBtnNames),
         FormatNewtable(buttonBindKeys),
         FormatNewtable(buttonBtnNames),
         FormatNewtable(buttonVirtualBtns),
+        FormatNewtable(nativeBindKeys),
+        FormatNewtable(nativeBindActions),
         FormatNewtable(spellHoverKeys),
         FormatNewtable(spellHoverBtns),
         FormatNewtable(spellHoverMouseButtons),
@@ -942,13 +1009,11 @@ local function UpdateSecureBindingData()
         return false
     end
 
-    HeaderExecute([[
-        local btn = currentButton
-        if btn ~= nil then
-            self:RunFor(btn, self:GetAttribute("clear-bindings"))
-            self:RunFor(btn, self:GetAttribute("setup-bindings"))
-        end
-    ]])
+    nativeBindingCapabilityGap = header:GetAttribute("flux-native-binding-gap") == true
+    if nativeBindingCapabilityGap then
+        pendingHoverRoutingFlush = true
+        return false
+    end
     pendingHoverRoutingFlush = false
     return true
 end
@@ -969,6 +1034,8 @@ local function CreateHeader()
         buttonBindKeys              = newtable()
         buttonBtnNames              = newtable()
         buttonVirtualBtns           = newtable()
+        nativeBindKeys              = newtable()
+        nativeBindActions           = newtable()
         spellHoverKeys              = newtable()
         spellHoverBtnNames          = newtable()
         spellHoverMouseButtons      = newtable()
@@ -976,10 +1043,30 @@ local function CreateHeader()
         spellHoverIsPrimary         = newtable()
         allowMouseButtonBindingClick = false
         currentButton               = nil
+        hoverButton                 = nil
+    ]])
+
+    -- Read the current secure unit, including wrapped aura/catcher descendants.
+    -- Roster reassignment and effective visibility may change during combat.
+    HeaderSetSnippet("valid-hover", [[
+        if not self:IsVisible() then return false end
+        local owner = self
+        local unit = owner:GetAttribute("unit")
+        while owner and (type(unit) ~= "string" or unit == "") do
+            owner = owner:GetParent()
+            unit = owner and owner:GetAttribute("unit")
+        end
+        return type(unit) == "string" and unit ~= "" and UnitExists(unit)
     ]])
 
     -- Secure snippet: OnEnter - set up override bindings (wheel + mouse buttons)
     HeaderSetSnippet("setup-bindings", [[
+        if not control:RunFor(self, control:GetAttribute("valid-hover")) then
+            if currentButton == self then
+                control:RunFor(self, control:GetAttribute("clear-bindings"))
+            end
+            return
+        end
         if currentButton ~= nil and currentButton ~= self then
             control:RunFor(currentButton, control:GetAttribute("clear-bindings"))
         end
@@ -999,6 +1086,10 @@ local function CreateHeader()
                 local vbtn = buttonVirtualBtns[i] or "Keybind"
                 self:SetBindingClick(true, key, btnName, vbtn)
             end
+        end
+        for i = 1, table.maxn(nativeBindKeys) do
+            local key, action = nativeBindKeys[i], nativeBindActions[i]
+            if key and action then self:SetBinding(true, key, action) end
         end
         for i = 1, table.maxn(spellHoverKeys) do
             local key     = spellHoverKeys[i]
@@ -1028,6 +1119,10 @@ local function CreateHeader()
             local key = buttonBindKeys[i]
             if key then self:ClearBinding(key) end
         end
+        for i = 1, table.maxn(nativeBindKeys) do
+            local key = nativeBindKeys[i]
+            if key then self:ClearBinding(key) end
+        end
         for i = 1, table.maxn(spellHoverKeys) do
             local key   = spellHoverKeys[i]
             local isBtn = spellHoverIsButton[i]
@@ -1047,7 +1142,7 @@ local function CreateHeader()
     HeaderSetSnippet("_onattributechanged", [[
         if name == "unit-exists" and value == "false" and currentButton ~= nil then
             local btn = currentButton
-            if btn:IsUnderMouse() and btn:IsVisible() then
+            if btn:IsUnderMouse() and self:RunFor(btn, self:GetAttribute("valid-hover")) then
                 -- Stay armed; mouse still over the arming surface (incl. auras).
             else
                 self:RunFor(btn, self:GetAttribute("clear-bindings"))
@@ -1125,7 +1220,8 @@ local function HookUfHoverDriver(frame)
     frame._fluxUfHoverDriverHooked = true
     local entered = false
     pcall(frame.HookScript, frame, "OnEnter", function()
-        if entered then return end
+        local owner = frame.__fluxHovercastOwner
+        if not (registeredLookup[frame] or (owner and registeredLookup[owner])) or entered then return end
         entered = true
         NoteUfHoverEnter()
     end)
@@ -1136,6 +1232,8 @@ local function HookUfHoverDriver(frame)
     end
     pcall(frame.HookScript, frame, "OnLeave", leave)
     pcall(frame.HookScript, frame, "OnHide", leave)
+    hoverLeaveCallbacks[frame] = hoverLeaveCallbacks[frame] or {}
+    hoverLeaveCallbacks[frame].driver = leave
 end
 
 -- ---------------------------------------------------------------------------
@@ -1144,14 +1242,33 @@ end
 
 local ENTER_SNIPPET = [[
     local hdr = control
+    hoverButton = self
     hdr:RunFor(self, hdr:GetAttribute("setup-bindings"))
 ]]
 
 local LEAVE_SNIPPET = [[
     local hdr = control
+    if hoverButton == self then hoverButton = nil end
     -- Sibling/child may have already re-armed; only clear if we still own it.
     if currentButton == self then
         hdr:RunFor(self, hdr:GetAttribute("clear-bindings"))
+    end
+]]
+
+-- Prepared outside combat; Blizzard's secure attribute dispatch owns combat
+-- roster changes. Clear a disappearing/reassigned owner or wrapped child, then
+-- rearm only when the new secure unit still exists under the cursor.
+local UNIT_CHANGED_SNIPPET = [[
+    if name == "unit" and (currentButton or hoverButton) then
+        local btn = currentButton or hoverButton
+        local owner = btn
+        while owner and owner ~= self do owner = owner:GetParent() end
+        if owner == self then
+            control:RunFor(btn, control:GetAttribute("clear-bindings"))
+            if btn:IsUnderMouse() then
+                control:RunFor(btn, control:GetAttribute("setup-bindings"))
+            end
+        end
     end
 ]]
 
@@ -1166,7 +1283,8 @@ WrapHovercastEnterLeave = function(frame)
             local enterOk = R.WrapScript(header, frame, "OnEnter", ENTER_SNIPPET)
             local leaveOk = R.WrapScript(header, frame, "OnLeave", LEAVE_SNIPPET)
             local hideOk = R.WrapScript(header, frame, "OnHide", LEAVE_SNIPPET)
-            wrapped = enterOk and leaveOk and hideOk and true or false
+            local unitOk = R.WrapScript(header, frame, "OnAttributeChanged", UNIT_CHANGED_SNIPPET)
+            wrapped = enterOk and leaveOk and hideOk and unitOk and true or false
         end
     elseif header.WrapScript then
         -- Camelot Restricted.WrapScript no-ops. Call the header directly so UF
@@ -1174,7 +1292,8 @@ WrapHovercastEnterLeave = function(frame)
         local enterOk = pcall(header.WrapScript, header, frame, "OnEnter", ENTER_SNIPPET)
         local leaveOk = pcall(header.WrapScript, header, frame, "OnLeave", LEAVE_SNIPPET)
         local hideOk = pcall(header.WrapScript, header, frame, "OnHide", LEAVE_SNIPPET)
-        wrapped = enterOk and leaveOk and hideOk and true or false
+        local unitOk = pcall(header.WrapScript, header, frame, "OnAttributeChanged", UNIT_CHANGED_SNIPPET)
+        wrapped = enterOk and leaveOk and hideOk and unitOk and true or false
     end
     if not wrapped then
         return false
@@ -1196,11 +1315,13 @@ local function UnwrapHovercastEnterLeave(frame)
             R.UnwrapScript(header, frame, "OnEnter")
             R.UnwrapScript(header, frame, "OnLeave")
             R.UnwrapScript(header, frame, "OnHide")
+            R.UnwrapScript(header, frame, "OnAttributeChanged")
         end
     elseif header.UnwrapScript then
         pcall(header.UnwrapScript, header, frame, "OnEnter")
         pcall(header.UnwrapScript, header, frame, "OnLeave")
         pcall(header.UnwrapScript, header, frame, "OnHide")
+        pcall(header.UnwrapScript, header, frame, "OnAttributeChanged")
     end
     frame.__fluxHovercastWrapped = nil
     frame.__fluxHovercastOwner = nil
@@ -1299,6 +1420,8 @@ local function UnwrapHovercastMouseChildren(owner)
     local list = owner and owner.__fluxHovercastChildWraps
     if not list then return end
     for i = 1, #list do
+        local leave = hoverLeaveCallbacks[list[i]]
+        if leave and leave.driver then leave.driver() end
         UnwrapHovercastEnterLeave(list[i])
     end
     wipe(list)
@@ -1430,7 +1553,14 @@ local function RegisterBlizzardSecureFrame(frame)
     return true
 end
 
+local function NativePlayerHoverSuppressed(frame)
+    local blizz = Flux and Flux.Blizz
+    return frame == _G.PlayerFrame and blizz and blizz.IsMouseSuppressed
+        and blizz.IsMouseSuppressed(frame)
+end
+
 local function RegisterFrame(frame)
+    if NativePlayerHoverSuppressed(frame) then return end
     if not frame or registeredLookup[frame] then return end
     if BlizzardButtonsMustStaySecure() and IsBlizzardSecureUnitButton(frame) then
         RegisterBlizzardSecureFrame(frame)
@@ -1470,7 +1600,7 @@ local function RegisterFrame(frame)
         frame._fluxMacrotextPeekHooked = true
         local entered = false
         pcall(frame.HookScript, frame, "OnEnter", function()
-            if entered then return end
+            if not registeredLookup[frame] or entered then return end
             entered = true
             local PP = _G.FluxBindingPushPress
             if PP and PP.WakeUfHoverFromUnitFrame then
@@ -1489,6 +1619,8 @@ local function RegisterFrame(frame)
         end
         pcall(frame.HookScript, frame, "OnLeave", leave)
         pcall(frame.HookScript, frame, "OnHide", leave)
+        hoverLeaveCallbacks[frame] = hoverLeaveCallbacks[frame] or {}
+        hoverLeaveCallbacks[frame].peek = leave
     end
 
     table.insert(registeredFrames, frame)
@@ -1500,6 +1632,12 @@ local function UnregisterFrame(frame)
     if not frame then return end
     if not registeredLookup[frame] then return end
     if InCombatLockdown() then return end
+
+    local leave = hoverLeaveCallbacks[frame]
+    if leave then
+        if leave.driver then leave.driver() end
+        if leave.peek then leave.peek() end
+    end
 
     if frame._fluxBlizzardSecureWrapOnly then
         -- UnwrapScript only. SetPassThroughButtons / SetAttribute would taint.
@@ -1530,6 +1668,36 @@ local function UnregisterFrame(frame)
         end
     end
     registeredLookup[frame] = nil
+end
+
+local function SyncNativePlayerSuppression()
+    if not header or InCombatLockdown() or (FluxEditModeBusy and FluxEditModeBusy()) then return false end
+    local frame = _G.PlayerFrame
+    if not frame then return true end
+    if NativePlayerHoverSuppressed(frame) then
+        if registeredLookup[frame] then
+            -- The context scan is only visual bookkeeping. Clear the actual
+            -- secure override before dropping our native-player wrappers.
+            -- Frame refs and execution belong to Flux's header, not PlayerFrame.
+            local function clear(surface)
+                header:SetFrameRef("native-player", surface)
+                return HeaderExecute([[
+                    local frame = self:GetFrameRef("native-player")
+                    if currentButton == frame then
+                        self:RunFor(frame, self:GetAttribute("clear-bindings"))
+                    end
+                ]])
+            end
+            if not clear(frame) then return false end
+            for _, child in ipairs(frame.__fluxHovercastChildWraps or {}) do
+                if not clear(child) then return false end
+            end
+            UnregisterFrame(frame)
+        end
+    else
+        RegisterFrame(frame)
+    end
+    return true
 end
 
 local function ProcessPendingFrames()
@@ -1594,17 +1762,15 @@ local function RegisterFluxUnitFrames()
     end
 end
 
-local function RegisterBlizzardButton(frame)
-    if not frame or not frame.RegisterForClicks then
-        return
-    end
-    if FluxRaidOwnsCompactFrames() and IsBlizzardCompactOrPartyButton(frame) then
-        return
-    end
-    RegisterFrame(frame)
-end
-
 local function RegisterBlizzardFrames()
+    -- All candidates share the same raid-frame ownership setting in this scan.
+    local ownsCompactFrames = FluxRaidOwnsCompactFrames()
+    local function RegisterBlizzardButton(frame)
+        if not frame or registeredLookup[frame] or not frame.RegisterForClicks then return end
+        if ownsCompactFrames and IsBlizzardCompactOrPartyButton(frame) then return end
+        RegisterFrame(frame)
+    end
+
     local names = {
         "PlayerFrame", "TargetFrame", "FocusFrame",
         "PetFrame", "TargetFrameToT", "FocusFrameToT",
@@ -1664,6 +1830,7 @@ local function RegisterAllMouseoverFrames()
             Clique.header = header
         end
     end
+    SyncNativePlayerSuppression()
     RegisterFluxUnitFrames()
     RegisterFluxRaidMouseoverFramesIfPresent()
     if not IsClickedLoaded() then
@@ -1683,7 +1850,10 @@ SyncHoverRoutingLifecycle = function()
             Clique.header = header
         end
     end
-    if HasActiveRoutingData() and ufHoverCount > 0 then
+    RebuildSpellHoverChordSet()
+    -- The exists driver follows spell-hover routes. Ordinary mouse and wheel
+    -- bindings do not use it, even when a roster refresh discovers new frames.
+    if ufHoverCount > 0 and #spellHoverKeys > 0 then
         RegisterUnitExistsDriver()
     else
         UnregisterUnitExistsDriver()
@@ -1786,6 +1956,7 @@ local _hoverScanUntil = 0
 local function FrameUnderMouse(f)
     if not f or f:IsForbidden() then return false end
     if f.IsShown and not f:IsShown() then return false end
+    if f.IsVisible and not f:IsVisible() then return false end
     if f.IsMouseOver then
         local ok, v = pcall(f.IsMouseOver, f)
         if ok and v then return true end
@@ -1797,8 +1968,17 @@ local function FrameUnderMouse(f)
     return false
 end
 
+local function RegisteredMouseFrameActive(frame)
+    if not frame then return false end
+    if frame.IsVisible and not frame:IsVisible() then return false end
+    local blizz = Flux and Flux.Blizz
+    -- Shown alpha-zero native roots retain their unit/vehicle handlers. A
+    -- geometric hover query must not turn them back into binding surfaces.
+    return not (blizz and blizz.IsMouseSuppressed and blizz.IsMouseSuppressed(frame))
+end
+
 local function RegisteredFrameContainsRegion(frame, region)
-    if not frame or not region then return false end
+    if not RegisteredMouseFrameActive(frame) or not region then return false end
     if region == frame then return true end
     if region.IsDescendantOf then
         local ok, desc = pcall(region.IsDescendantOf, region, frame)
@@ -1834,12 +2014,14 @@ local function _PerformHoverContextScan()
     end
     for i = 1, #registeredFrames do
         local f = registeredFrames[i]
-        if FrameUnderMouse(f) then
-            return true
-        end
-        if f and f.GetChildren then
-            local ok, hovered = pcall(ChildrenUnderMouse, f)
-            if ok and hovered then return true end
+        if RegisteredMouseFrameActive(f) then
+            if FrameUnderMouse(f) then
+                return true
+            end
+            if f.GetChildren then
+                local ok, hovered = pcall(ChildrenUnderMouse, f)
+                if ok and hovered then return true end
+            end
         end
     end
     return false
@@ -1867,14 +2049,22 @@ function FluxMouseoverKeybind:RegisterFrame(frame)
     RegisterFrame(frame)
 end
 
+function FluxMouseoverKeybind:IsFrameRegistered(frame)
+    return registeredLookup[frame] == true
+end
+
+function FluxMouseoverKeybind:SyncNativePlayerSuppression()
+    return SyncNativePlayerSuppression()
+end
+
 --- Drop hovercast on Blizzard compact/party/raid buttons only. Flux unit
 --- frames stay registered. Called when Flux raid frames own the group UI.
 function FluxMouseoverKeybind:UnregisterBlizzardCompactRaidFrames()
-    if InCombatLockdown() then
+    if not header or InCombatLockdown() then
         return
     end
     local function drop(frame)
-        if frame and IsBlizzardCompactOrPartyButton(frame) then
+        if frame and registeredLookup[frame] and IsBlizzardCompactOrPartyButton(frame) then
             UnregisterFrame(frame)
         end
     end
@@ -2012,7 +2202,7 @@ function FluxMouseoverKeybind:DebugRouting()
         end
     end
     print(string.format(
-        "[FluxMouseoverKeybind] prebuilt=%s raw=%d expanded=%d claimedMouse=%s hasEditMode=%s allowMouseBindingClick=%s registeredFrames=%d childWraps=%d pendingFlush=%s",
+        "[FluxMouseoverKeybind] prebuilt=%s raw=%d expanded=%d claimedMouse=%s hasEditMode=%s allowMouseBindingClick=%s registeredFrames=%d childWraps=%d pendingFlush=%s nativeCommandGap=%s",
         tostring(spellHoverPrebuiltFromDirectBind),
         nRaw,
         nExp,
@@ -2021,7 +2211,8 @@ function FluxMouseoverKeybind:DebugRouting()
         tostring(isEditModeClient),
         #registeredFrames,
         childWraps,
-        tostring(pendingHoverRoutingFlush)
+        tostring(pendingHoverRoutingFlush),
+        tostring(nativeBindingCapabilityGap)
     ))
     for i = 1, math.min(nExp, 8) do
         local isBtn = spellHoverIsButton[i] and "btn" or "kb/wheel"

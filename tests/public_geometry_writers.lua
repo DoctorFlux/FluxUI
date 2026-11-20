@@ -29,7 +29,9 @@ for _,client in ipairs({"era","anniversary","live","forever"})do
         return f
     end
     e.FluxUILayoutSqueeze={GetEffectiveEmulatedDependentXFactorForUnitFrames=function()return .75 end}
-    run("local _,ns=...;local UF=ns.UnitFrames\n"..slice(shared,"local emulatedSqueezeFrames = {}","function UF.RegisterEmulatedHorizontalSqueeze(frame)"))
+    run("local _,ns=...;local UF,API=ns.UnitFrames,ns.API\n"
+        ..slice(shared,"local function ValueIsSecret(value)","-- The addon owns these dimensions")
+        ..slice(shared,"local emulatedSqueezeFrames = {}","function UF.RegisterEmulatedHorizontalSqueeze(frame)"))
     local f=frame(200,60);uf.ApplyEmulatedHorizontalSqueezeForFrame(f)
     check(f.actualWidth==150 and f.partitions==1,"real squeeze writer and relayout route")
     combat=true;uf.ApplyEmulatedHorizontalSqueezeForFrame(f);check(f.partitions==1,"squeeze defers protected size writes in combat");combat=false

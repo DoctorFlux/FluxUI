@@ -5,10 +5,49 @@
     Caps classification work per pulse; resumes on item data load.
 ]]
 
+local _, ns = ...
+
 FluxConsumableBest = FluxConsumableBest or {}
 local Best = FluxConsumableBest
 Best.Scan = Best.Scan or {}
 local Scan = Best.Scan
+
+-- The bag walk consumes keys only. Index.lua establishes this private owner
+-- pair; its helper retains public GetUniqueItems overrides and fresh results.
+local snapshotItemIDQuery = type(ns) == "table" and rawget(ns, "InventoryUniqueItemIDQuery")
+local snapshotItemIDOwner, snapshotItemIDs
+if type(snapshotItemIDQuery) == "table" then
+    snapshotItemIDOwner = rawget(snapshotItemIDQuery, "owner")
+    snapshotItemIDs = rawget(snapshotItemIDQuery, "query")
+end
+
+local carriedSnapshot = type(ns) == "table" and rawget(ns, "InventoryCarriedSnapshotQuery")
+local carriedOwner, carriedFacade, carriedCount
+if type(carriedSnapshot) == "table" then
+    local query = rawget(carriedSnapshot, "query")
+    if type(query) == "function" then
+        carriedOwner = rawget(carriedSnapshot, "owner")
+        carriedFacade = rawget(carriedSnapshot, "facade")
+        carriedCount = query
+    end
+end
+
+local rejectedCache = type(ns) == "table" and rawget(ns, "ConsumableRejectedCacheQuery")
+local rejectedOwner, rejectedClassify, rejectedPending, queryRejectedCache
+if type(rejectedCache) == "table" then
+    rejectedOwner = rawget(rejectedCache, "owner")
+    rejectedClassify = rawget(rejectedCache, "classify")
+    rejectedPending = rawget(rejectedCache, "pending")
+    queryRejectedCache = rawget(rejectedCache, "query")
+end
+
+local function IsCachedRejection(classify, itemID)
+    return type(classify) == "table" and classify == rejectedOwner
+        and getmetatable(classify) == nil and type(queryRejectedCache) == "function"
+        and rawget(classify, "Classify") == rejectedClassify
+        and rawget(classify, "IsPending") == rejectedPending
+        and queryRejectedCache(itemID)
+end
 
 local CLASSIFY_CAP = 24
 local LOAD_CAP = 8
@@ -16,16 +55,23 @@ local PENDING_CAP = 40
 local MAX_CLASSIFY_FOLLOWUPS = 3
 -- Stop re-queuing a single stuck ID; do NOT permanently reject (cold-load tooltips).
 local MAX_ITEM_PENDING_ATTEMPTS = 8
+-- Private lookup order only; classification membership and owned counts stay live.
+local MANA_GEM_ORDER = { 36799, 33312, 22044, 8008, 8007, 5513, 5514 }
 local pendingQueue = {}
 local pendingSet = {}
 local pendingAttempts = {} -- [itemID] = attempts while still pending/classify-deferred
 local loadsThisPulse = 0
 local lastBankScanGen = -1
 local classifyFollowups = 0
+local stableScan
+local scanSerial = 0
+local recordingCounts, recordingKinds, recordingBlocked, recordingRefs
+local resolvedThisPulse = 0
 
 -- Follow-up drain pulses may skip the full unique walk. Real bag/bank/login
 -- pulses must always walk so counts and new items update CombatGrid.
 local PENDING_ONLY_REASONS = {
+    classifyPendingRead = true,
     classifyPendingOnly = true,
     classifyPending = true,
     classifyResume = true,
@@ -41,6 +87,140 @@ end
 
 local function Inv()
     return InvAPI() or _G.FluxInv
+end
+
+-- Only the defining inventory/classification owners may reuse a completed walk.
+-- Public replacements keep the full query path, including their side effects.
+local ownedInv = InvAPI()
+local ownedIndex = ownedInv and ownedInv.Index
+local ownedClassify = _G.FluxConsumableClassify
+local ownedScore = Best.Score
+local ownedGetCount = ownedInv and ownedInv.GetCount
+local ownedGetUnique = ownedInv and ownedInv.GetUniqueItems
+local ownedGetGeneration = ownedInv and ownedInv.GetBagGeneration
+local ownedReady = ownedInv and ownedInv.IsReady
+local ownedIndexCount = ownedIndex and ownedIndex.GetCount
+local ownedIndexUnique = ownedIndex and ownedIndex.GetUniqueItems
+local ownedIndexGeneration = ownedIndex and ownedIndex.GetSnapshotGeneration
+local ownedClassifyItem = ownedClassify and ownedClassify.Classify
+local ownedInvalidate = ownedClassify and ownedClassify.InvalidateCache
+local ownedRevision = ownedClassify and ownedClassify.GetInvalidationRevision
+local ownedPools = ownedScore and ownedScore.GetPools
+local ownedBlocked = ownedScore and ownedScore.IsBlockedForBest
+local ownedBetter = ownedScore and ownedScore.IsBetter
+local ownedUsable = ownedScore and ownedScore.IsUsable
+local ownedEffective = ownedScore and ownedScore.EffectiveFromClassify
+local ownedMaxStack = ownedScore and ownedScore.GetMaxStack
+local ownedRank = ownedScore and ownedScore.HealthstoneRank
+local ownedFoodTier = ownedScore and ownedScore.FoodTier
+local ownedWaterTier = ownedScore and ownedScore.WaterDrinkTier
+local ownedManaRelevant = Best.IsManaKindRelevant
+local ownedPersist = Best.Persist
+local ownedUpdateRef = ownedPersist and ownedPersist.MaybeUpdateRef
+local validatedPersist = type(ns) == "table" and rawget(ns, "InventoryValidatedPersistQuery")
+local updateValidatedRef
+if type(validatedPersist) == "table" and rawget(validatedPersist, "owner") == ownedPersist
+    and rawget(validatedPersist, "publicQuery") == ownedUpdateRef then
+    updateValidatedRef = rawget(validatedPersist, "query")
+end
+local ownedVendor = Best.VendorMemory
+local ownedVendorCandidates = ownedVendor and ownedVendor.GetVendorCandidates
+
+local function SameOwners(api, classify, score)
+    return api == ownedInv and api and api.Index == ownedIndex and ownedIndex
+        and type(ownedGetCount) == "function" and api.GetCount == ownedGetCount
+        and type(ownedGetUnique) == "function" and api.GetUniqueItems == ownedGetUnique
+        and type(ownedGetGeneration) == "function" and api.GetBagGeneration == ownedGetGeneration
+        and type(ownedReady) == "function" and api.IsReady == ownedReady
+        and ownedIndex.GetCount == ownedIndexCount and ownedIndex.GetUniqueItems == ownedIndexUnique
+        and ownedIndex.GetSnapshotGeneration == ownedIndexGeneration
+        and classify == ownedClassify and classify and classify.Classify == ownedClassifyItem
+        and classify.InvalidateCache == ownedInvalidate and type(ownedRevision) == "function"
+        and classify.GetInvalidationRevision == ownedRevision
+        and score == ownedScore and score and score.GetPools == ownedPools
+        and score.IsBlockedForBest == ownedBlocked and score.IsBetter == ownedBetter
+        and score.IsUsable == ownedUsable
+        and score.EffectiveFromClassify == ownedEffective and score.GetMaxStack == ownedMaxStack
+        and score.HealthstoneRank == ownedRank and score.FoodTier == ownedFoodTier
+        and score.WaterDrinkTier == ownedWaterTier and Best.IsManaKindRelevant == ownedManaRelevant
+        and Best.Persist == ownedPersist and ownedPersist and ownedPersist.MaybeUpdateRef == ownedUpdateRef
+        and Best.VendorMemory == ownedVendor and ownedVendor and ownedVendor.GetVendorCandidates == ownedVendorCandidates
+end
+
+-- Pass this publication's traversal state explicitly; nested scans must never
+-- share its seen set or the fresh value snapshots retained for reuse checks.
+local function VisitPublishedState(t, depth, states, seen)
+    if type(t) ~= "table" or getmetatable(t) ~= nil or depth > 3 then return false end
+    if seen[t] then return true end
+    seen[t] = true
+    if #states >= 128 then return false end
+    local values, count = {}, 0
+    local row = { owner = t, values = values }
+    states[#states + 1] = row
+    for k, v in pairs(t) do
+        if issecretvalue and (issecretvalue(k) or issecretvalue(v)) then return false end
+        local valueType = type(v)
+        if valueType ~= "table" and valueType ~= "number" and valueType ~= "string" and valueType ~= "boolean" then return false end
+        values[k] = v
+        count = count + 1
+        if type(v) == "table" and not VisitPublishedState(v, depth + 1, states, seen) then return false end
+    end
+    row.size = count
+    return true
+end
+
+local function PublishedState(runtime, ladders, combo)
+    local states, seen = {}, {}
+    if not VisitPublishedState(runtime, 1, states, seen)
+        or not VisitPublishedState(ladders, 1, states, seen)
+        or not VisitPublishedState(combo, 1, states, seen) then return nil end
+    return states
+end
+
+local function PublishedUnchangedFull(states)
+    if not states then return false end
+    for i = 1, #states do
+        local row = states[i]
+        if getmetatable(row.owner) ~= nil then return false end
+        for k, v in pairs(row.owner) do
+            if issecretvalue and (issecretvalue(k) or issecretvalue(v)) then return false end
+            if type(v) == "table" and getmetatable(v) ~= nil then return false end
+            if row.values[k] ~= v then return false end
+        end
+        for k, v in pairs(row.values) do
+            local current = rawget(row.owner, k)
+            if issecretvalue and issecretvalue(current) then return false end
+            if current ~= v then return false end
+        end
+    end
+    return true
+end
+
+local canonicalSecretValueCheck = issecretvalue
+
+local function PublishedUnchanged(states)
+    if issecretvalue ~= canonicalSecretValueCheck then return PublishedUnchangedFull(states) end
+    if not states then return false end
+    for i = 1, #states do
+        local row = states[i]
+        if getmetatable(row.owner) ~= nil then return false end
+        local count = 0
+        for k, v in pairs(row.owner) do
+            if issecretvalue and (issecretvalue(k) or issecretvalue(v)) then return false end
+            if type(v) == "table" and getmetatable(v) ~= nil then return false end
+            if row.values[k] ~= v then return false end
+            count = count + 1
+        end
+        -- Matching values exclude new/changed keys; cardinality also detects
+        -- removals, without walking every saved key a second time.
+        if count ~= row.size then return false end
+    end
+    return true
+end
+
+local function RememberCount(itemID, count)
+    if recordingCounts then recordingCounts[itemID] = count end
+    return count
 end
 
 local function RegionsWantBank(regions)
@@ -124,22 +304,27 @@ end
 local function CountOwned(itemID)
     local api = InvAPI()
     if api and api.GetCount then
-        return api.GetCount(itemID, {
+        local getCount = api.GetCount
+        if api == carriedOwner and getCount == carriedFacade and carriedCount then
+            local count = carriedCount(itemID)
+            if count ~= nil then return RememberCount(itemID, count) end
+        end
+        return RememberCount(itemID, getCount(itemID, {
             bags = true,
             bank = false,
             warband = false,
             equipped = false,
-        }) or 0
+        }) or 0)
     end
     local inv = Inv()
     if not inv then
         return 0
     end
     if inv.GetCount then
-        return inv.GetCount(itemID, { bags = true, bank = false, warband = false }) or 0
+        return RememberCount(itemID, inv.GetCount(itemID, { bags = true, bank = false, warband = false }) or 0)
     end
     if inv.Bags and inv.Bags.GetCount then
-        return inv.Bags.GetCount(itemID) or 0
+        return RememberCount(itemID, inv.Bags.GetCount(itemID) or 0)
     end
     return 0
 end
@@ -162,11 +347,17 @@ local function BuildCandidate(itemID, cls, maxHP, maxMana, source)
     -- Unloaded item data must still compete (login / conjure). Drop only
     -- known-unusable (level / skill) — never situational IsUsableItem
     -- (false for food/water in combat).
-    if Score.IsBlockedForBest and Score.IsBlockedForBest(itemID, cls.kind) then
-        return nil
-    elseif not Score.IsBlockedForBest and Score.IsKnownUnusable and Score.IsKnownUnusable(itemID, cls.kind) then
-        return nil
+    local blocked
+    if Score.IsBlockedForBest then
+        blocked = Score.IsBlockedForBest(itemID, cls.kind)
+    elseif Score.IsKnownUnusable then
+        blocked = Score.IsKnownUnusable(itemID, cls.kind)
     end
+    if recordingKinds then
+        recordingKinds[itemID] = cls.kind
+        recordingBlocked[itemID] = blocked and true or false
+    end
+    if blocked then return nil end
     local count = CountOwned(itemID)
     if count <= 0 then
         return nil
@@ -238,7 +429,7 @@ local function SortLadder(list, kind, allowComboDrinks)
     return list
 end
 
-local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
+local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget, resolvedItems)
     local Classify = _G.FluxConsumableClassify
     local IC = _G.FluxItemClass
     if not Classify or not Classify.Classify then
@@ -246,6 +437,11 @@ local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
     end
     itemID = tonumber(itemID)
     if not itemID then
+        return classifyBudget
+    end
+    -- Pending, added, conjure-priority and bank walks can revisit the same ID.
+    -- A ready owned candidate is already complete for this synchronous pass.
+    if resolvedItems and resolvedItems[itemID] then
         return classifyBudget
     end
     -- Match Classify's static class rejection before spending a load/classify
@@ -273,7 +469,12 @@ local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
         end
         return classifyBudget
     end
-    classifyBudget = classifyBudget - 1
+    -- Keep the ordinary call (and its hooks), but do not spend candidate/parse
+    -- budget on a defining classifier's already-settled negative cache hit.
+    -- Missing contracts or public replacements retain the original budgeting.
+    if not IsCachedRejection(Classify, itemID) then
+        classifyBudget = classifyBudget - 1
+    end
     local cls = Classify.Classify(itemID)
     if not cls or not Best.IsValidKind(cls.kind) then
         -- Partial tooltip / pending classify: keep retrying (mage-table loot).
@@ -299,6 +500,7 @@ local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
     if not cand then
         return classifyBudget
     end
+    resolvedThisPulse = resolvedThisPulse + 1
     local Score = Best.Score
     local cur = bestByKind[cls.kind]
     if Score.IsBetter(cand, cur, true) then
@@ -327,9 +529,32 @@ local function ConsiderItem(itemID, bestByKind, maxHP, maxMana, classifyBudget)
         end
     end
     if not cls.isConjured then
+        if recordingRefs then
+            recordingRefs[#recordingRefs + 1] = { kind = cls.kind, candidate = cand }
+        end
         Best.Persist.MaybeUpdateRef(cls.kind, cand)
     end
+    if resolvedItems then
+        resolvedItems[itemID] = true
+    end
     return classifyBudget
+end
+
+-- The ticker reads current module state on every invocation; it captures no
+-- individual scan. Reuse its body without retaining a completed scan's locals.
+local function ResumeClassifyQueue()
+    if #pendingQueue <= 0 then
+        if Best._classifyResumeTicker then
+            Best._classifyResumeTicker:Cancel()
+            Best._classifyResumeTicker = nil
+        end
+        classifyFollowups = 0
+        return
+    end
+    classifyFollowups = 0
+    if Best.RequestRecompute then
+        Best.RequestRecompute({ reason = "classifyResume", delay = 0 })
+    end
 end
 
 function Scan.Recompute(opts)
@@ -342,6 +567,36 @@ function Scan.Recompute(opts)
     if inv and inv.IsAutomationQuiet and inv.IsAutomationQuiet() then
         Best._dirty = true
         return false
+    end
+
+    scanSerial = scanSerial + 1
+    local serial = scanSerial
+    local previous = stableScan
+    stableScan = nil
+    recordingCounts, recordingKinds, recordingBlocked, recordingRefs = nil, nil, nil, nil
+    resolvedThisPulse = 0
+    local readPending = opts.reason == "classifyPendingRead"
+    local readAPI = InvAPI()
+    local readClassify = _G.FluxConsumableClassify
+    local readScore = Best.Score
+    local ownersMatch = SameOwners(readAPI, readClassify, readScore)
+    local reuse = readPending and previous and not opts.force and not opts.forceBank
+        and not opts.regions and ownersMatch
+        and readAPI.IsReady and readAPI.IsReady() and not BankIsOpen()
+        and not (MerchantFrame and MerchantFrame:IsShown())
+        and not (Best.IsLoginScanActive and Best.IsLoginScanActive())
+        and not (Best.ShouldSoftHoldOwned and Best.ShouldSoftHoldOwned())
+        and not (Best.IsConjureArmActive and Best.IsConjureArmActive())
+        and not next(Best._pendingAdded or {}) and not next(Best._pendingLoad or {})
+        and readAPI.source == previous.source and readAPI.GetBagGeneration() == previous.bagGeneration
+        and readClassify.GetInvalidationRevision() == previous.revision
+        and Best._generation == previous.generation and Best._runtime == previous.runtime
+        and Best._ladders == previous.ladders
+        and Best._laddersComboWater == previous.combo and PublishedUnchanged(previous.published)
+    if reuse then
+        for id in pairs(pendingAttempts) do
+            if not pendingSet[id] then reuse = false; break end
+        end
     end
 
     -- Real bag/login/zone pulses reset the classify-followup budget so pending
@@ -360,6 +615,7 @@ function Scan.Recompute(opts)
         end
         wipe(pendingAttempts)
     end
+    local revisionAfterReset = reuse and readClassify.GetInvalidationRevision()
 
     loadsThisPulse = 0
     Best._scanLists = {}
@@ -370,7 +626,15 @@ function Scan.Recompute(opts)
 
     local Score = Best.Score
     local maxHP, maxMana = Score.GetPools()
+    reuse = reuse and previous.maxHP == maxHP and previous.maxMana == maxMana
+    local countsThisPulse, kindsThisPulse, blockedThisPulse = {}, {}, {}
+    local refsThisPulse = {}
+    recordingCounts, recordingKinds, recordingBlocked = countsThisPulse, kindsThisPulse, blockedThisPulse
+    recordingRefs = refsThisPulse
     local bestByKind = {}
+    -- Keep this pass-local across reentrant scans. Public owner replacements
+    -- retain their original repeated queries and callback behavior.
+    local resolvedItems = ownersMatch and {}
     local budget = CLASSIFY_CAP
     local hadPending = #pendingQueue > 0
 
@@ -380,14 +644,85 @@ function Scan.Recompute(opts)
         pendingQueue = {}
         pendingSet = {}
         for i = 1, #q do
-            budget = ConsiderItem(q[i], bestByKind, maxHP, maxMana, budget)
+            budget = ConsiderItem(q[i], bestByKind, maxHP, maxMana, budget, resolvedItems)
+        end
+        -- Read demand keeps polling unresolved IDs at the existing 0.4s cadence.
+        -- A newly usable result or any invalidation/count/eligibility change must
+        -- take the full path so lower ladder entries and late winners stay fresh.
+        if reuse and resolvedThisPulse == 0 and #q == #pendingQueue then
+            for i = 1, #q do
+                if q[i] ~= pendingQueue[i] then reuse = false; break end
+            end
+            recordingCounts, recordingKinds, recordingBlocked, recordingRefs = nil, nil, nil, nil
+            if reuse then
+                for id, count in pairs(previous.counts) do
+                    if CountOwned(id) ~= count then reuse = false; break end
+                end
+            end
+            local approvedRefs = updateValidatedRef and {}
+            if reuse and Score.IsBlockedForBest then
+                for id, kind in pairs(previous.kinds) do
+                    local blocked = Score.IsBlockedForBest(id, kind) and true or false
+                    if blocked ~= previous.blocked[id] then reuse = false; break end
+                    if approvedRefs and not blocked then approvedRefs[id] = kind end
+                end
+            end
+            if reuse then
+                local approval
+                if approvedRefs and type(updateValidatedRef) == "function" and type(GetTime) == "function" then
+                    local clock, frame = GetTime, GetTime()
+                    approval = {
+                        ids = approvedRefs,
+                        current = function(id)
+                            if Score.IsExcludedFromBest(id) then return false end
+                            return GetTime == clock and clock() == frame and scanSerial == serial
+                                and SameOwners(readAPI, readClassify, Score)
+                                and readClassify.GetInvalidationRevision() == revisionAfterReset
+                                and readAPI.GetBagGeneration() == previous.bagGeneration
+                                and Best._generation == previous.generation
+                                and Best._runtime == previous.runtime and Best._ladders == previous.ladders
+                                and Best._laddersComboWater == previous.combo
+                        end,
+                    }
+                end
+                -- Persist still receives its ordinary updates, even when a user
+                -- reset the remembered reference while metadata was pending.
+                for i = 1, #previous.refs do
+                    local ref = previous.refs[i]
+                    if approval then
+                        updateValidatedRef(ref.kind, ref.candidate, approval)
+                    else
+                        ownedUpdateRef(ref.kind, ref.candidate)
+                    end
+                end
+            end
+            if reuse and scanSerial == serial and Best._generation == previous.generation
+                and readClassify.GetInvalidationRevision() == revisionAfterReset
+                and readAPI.GetBagGeneration() == previous.bagGeneration
+                and Best._runtime == previous.runtime and Best._ladders == previous.ladders
+                and Best._laddersComboWater == previous.combo and PublishedUnchanged(previous.published)
+                and SameOwners(readAPI, readClassify, Score) and not BankIsOpen() then
+                Best._scanLists = previous.scanLists
+                Best._dirty = false
+                Best._generation = (Best._generation or 0) + 1
+                previous.generation = Best._generation
+                previous.revision = readClassify.GetInvalidationRevision()
+                stableScan = previous
+                if Best._notifyListeners then Best._notifyListeners() end
+                if Best.RequestRecompute then
+                    Best.RequestRecompute({ reason = "classifyPending", delay = 0.4 })
+                end
+                return true
+            end
+            recordingCounts, recordingKinds, recordingBlocked = countsThisPulse, kindsThisPulse, blockedThisPulse
+            recordingRefs = refsThisPulse
         end
         -- Pending-only early-return ONLY for classify follow-up pulses.
         -- inv/bag/bank/login/zone must always full-walk or CombatGrid goes stale
         -- (0-count, new loot, bank items never detected while classifyQ>0).
         -- Cold login: never skip the unique walk while the login-scan window is open.
         local loginScan = Best.IsLoginScanActive and Best.IsLoginScanActive()
-        if #pendingQueue > 0 and reason and PENDING_ONLY_REASONS[reason] and not loginScan then
+        if #pendingQueue > 0 and reason ~= "classifyPendingRead" and reason and PENDING_ONLY_REASONS[reason] and not loginScan then
             -- Keep prior runtime kinds that were not refreshed this pulse,
             -- but never keep a consumed (count 0) identity as best.
             local kindsChanged = false
@@ -444,6 +779,7 @@ function Scan.Recompute(opts)
                 bestByKind[drop[i]] = nil
             end
             Best._runtime = bestByKind
+            recordingCounts, recordingKinds, recordingBlocked, recordingRefs = nil, nil, nil, nil
             if kindsChanged then
                 Best._generation = (Best._generation or 0) + 1
                 if Best._notifyListeners then
@@ -492,13 +828,18 @@ function Scan.Recompute(opts)
     end
     if type(added) == "table" then
         for itemID in pairs(added) do
-            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
         end
     end
 
     local unique
     if api and api.GetUniqueItems then
-        unique = api.GetUniqueItems({ bags = true, bank = false, warband = false, equipped = false })
+        if api == snapshotItemIDOwner and type(snapshotItemIDs) == "function"
+            and rawget(api, "GetUniqueItemIDs") == snapshotItemIDs then
+            unique = snapshotItemIDs({ bags = true, bank = false, warband = false, equipped = false })
+        else
+            unique = api.GetUniqueItems({ bags = true, bank = false, warband = false, equipped = false })
+        end
     elseif inv and inv.Bags and inv.Bags.GetUniqueItems then
         unique = inv.Bags.GetUniqueItems()
     end
@@ -520,16 +861,18 @@ function Scan.Recompute(opts)
                 name = GetItemInfo(itemID)
             end
             if type(name) == "string" and name:lower():find("conjured", 1, true) then
-                budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+                budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
             end
         end
     end
     if type(unique) == "table" then
         for itemID in pairs(unique) do
             if budget <= 0 then
-                QueuePending(itemID, false)
+                if not (resolvedItems and resolvedItems[tonumber(itemID)]) then
+                    QueuePending(itemID, false)
+                end
             else
-                budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+                budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
             end
         end
     end
@@ -566,7 +909,7 @@ function Scan.Recompute(opts)
             for itemID, rec in pairs(bankUnique) do
                 if budget <= 0 then break end
                 if (tonumber(rec and rec.count) or 0) > 0 then
-                    budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+                    budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
                 end
             end
         elseif inv and inv.Bank then
@@ -576,7 +919,7 @@ function Scan.Recompute(opts)
                     for itemID, n in pairs(counts) do
                         if budget <= 0 then break end
                         if (tonumber(n) or 0) > 0 then
-                            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+                            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
                         end
                     end
                 end
@@ -587,7 +930,7 @@ function Scan.Recompute(opts)
                     for itemID, n in pairs(war) do
                         if budget <= 0 then break end
                         if (tonumber(n) or 0) > 0 then
-                            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget)
+                            budget = ConsiderItem(itemID, bestByKind, maxHP, maxMana, budget, resolvedItems)
                         end
                     end
                 end
@@ -678,9 +1021,8 @@ function Scan.Recompute(opts)
         local Classify = _G.FluxConsumableClassify
         local ids = Classify and Classify.MANA_GEM_IDS
         if ids then
-            local ordered = { 36799, 33312, 22044, 8008, 8007, 5513, 5514 }
-            for i = 1, #ordered do
-                local id = ordered[i]
+            for i = 1, #MANA_GEM_ORDER do
+                local id = MANA_GEM_ORDER[i]
                 if ids[id] then
                     local n = CountOwned(id)
                     if n > 0 then
@@ -825,6 +1167,19 @@ function Scan.Recompute(opts)
             Best._bagGenAtScan = inv.Bags.GetGeneration() or 0
         end
     end
+    recordingCounts, recordingKinds, recordingBlocked, recordingRefs = nil, nil, nil, nil
+    if #pendingQueue > 0 and scanSerial == serial and SameOwners(InvAPI(), _G.FluxConsumableClassify, Score) then
+        stableScan = {
+            revision = ownedRevision(), generation = Best._generation,
+            bagGeneration = Best._bagGenAtScan, source = readAPI and readAPI.source,
+            maxHP = maxHP, maxMana = maxMana, runtime = Best._runtime,
+            ladders = Best._ladders, scanLists = Best._scanLists,
+            combo = Best._laddersComboWater,
+            published = PublishedState(Best._runtime, Best._ladders, Best._laddersComboWater),
+            counts = countsThisPulse, kinds = kindsThisPulse, blocked = blockedThisPulse,
+            refs = refsThisPulse,
+        }
+    end
     if Best._notifyListeners then
         Best._notifyListeners()
     end
@@ -838,20 +1193,7 @@ function Scan.Recompute(opts)
         else
             -- Cap hit with backlog remaining: slow resume until drained (don't drop work).
             if not Best._classifyResumeTicker and C_Timer and C_Timer.NewTicker then
-                Best._classifyResumeTicker = C_Timer.NewTicker(1.5, function()
-                    if #pendingQueue <= 0 then
-                        if Best._classifyResumeTicker then
-                            Best._classifyResumeTicker:Cancel()
-                            Best._classifyResumeTicker = nil
-                        end
-                        classifyFollowups = 0
-                        return
-                    end
-                    classifyFollowups = 0
-                    if Best.RequestRecompute then
-                        Best.RequestRecompute({ reason = "classifyResume", delay = 0 })
-                    end
-                end)
+                Best._classifyResumeTicker = C_Timer.NewTicker(1.5, ResumeClassifyQueue)
             end
         end
     else

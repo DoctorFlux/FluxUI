@@ -1,0 +1,525 @@
+{
+  "id": "PARTY-BORDER-WORK-20261117",
+  "completedLocalDate": "2026-11-17",
+  "timezone": "Europe/Copenhagen",
+  "dateUTC": "2026-11-17T00:16:50.704890+00:00",
+  "status": "IMPLEMENTED; FOCUSED OFFLINE PASS; NATIVE PARTY HITCH CAPTURE/FEEDBACK PENDING",
+  "requirements": "docs/PARTY_BORDER_PERFORMANCE.md PRW01-PRW05",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z",
+    "qualification": "Verified current runtime recovery checkpoint, including exact selected runtime bytes, full source archive integrity and Git history. Whole-tree-current claim excluded because concurrent documentation changes were preserved.",
+    "startedUtc": "2026-11-16T23:33:37.821074+00:00",
+    "completedUtc": "2026-11-16T23:34:36.450339+00:00",
+    "runtimeCurrentVerifiedUtc": "2026-11-16T23:36:45.539101+00:00",
+    "runtimeBaselineVerifiedForEdit": true,
+    "wholeTreeCurrent": false,
+    "historyVerified": true,
+    "archiveVerified": true,
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "files": 3050,
+    "settingsMetadataOnly": true,
+    "settingsAvailable": 39,
+    "runtimeChangedDuringArchive": [],
+    "documentationChangedDuringArchive": [
+      "NEXT_SESSION.md",
+      "docs/CLIENT_VALIDATION.md",
+      "docs/DECISIONS.md",
+      "docs/STATUS.md",
+      "docs/WORK_LOG.md",
+      "docs/WORLD_MAP_SURFACE.md"
+    ],
+    "sourceArchiveSha256": "16df44989eb7b0532f2bfbdd3036416a3e63a2db97d33ea78641a5664fd214fa",
+    "historyBundleSha256": "afef14eb74063e0d6e478725f10b6d22236d07510fc6c6eac35dcf85a15a49a3",
+    "expectedPrefixMatches": {
+      "Core/BorderJunctions.lua": true,
+      "UnitFrames/FluxUnitFrames_Shared.lua": true,
+      "FluxBorder.lua": true,
+      "UnitFrames/FluxUnitFrames_Party.lua": true,
+      "UnitFrames/FluxCastBar.lua": true,
+      "UnitFrames/FluxCastBarTradeskills.lua": true
+    },
+    "selectedRuntimeHashes": {
+      "Core/BorderJunctions.lua": {
+        "rawSha256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "lfSha256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "rawSha256": "96e70d2c4b25bc8929814139511f6e7fda61576e55bfa07efb02629410aa098d",
+        "lfSha256": "0c69a4c3717c316f1aeac62f97f4699cdcd0f10c190f16904e5b1a0693acb43b"
+      },
+      "FluxBorder.lua": {
+        "rawSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+        "lfSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+      },
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "rawSha256": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0",
+        "lfSha256": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0"
+      },
+      "RaidFrame/FluxRaidLayout.lua": {
+        "rawSha256": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+        "lfSha256": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b"
+      },
+      "RaidFrame/FluxRaidFrame.lua": {
+        "rawSha256": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532",
+        "lfSha256": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532"
+      },
+      "Core/Engine/Scheduler.lua": {
+        "rawSha256": "e63870668c8bbf95c27b8cf0d2d8399c6ce1f4b556fa09a6b2dd9937f779a095",
+        "lfSha256": "e63870668c8bbf95c27b8cf0d2d8399c6ce1f4b556fa09a6b2dd9937f779a095"
+      },
+      "UnitFrames/FluxCastBar.lua": {
+        "rawSha256": "06eb83e4801acb48539211622acd5c91eb9f8898824c943428ba36c2abaf1951",
+        "lfSha256": "67fc6ee3b204db3ee4dcf7f53e84ecf1a79911fb9c334f0a2be201fc6a2f1044"
+      },
+      "UnitFrames/FluxCastBarTradeskills.lua": {
+        "rawSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1",
+        "lfSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1"
+      },
+      "RaidFrame/FluxRaidSecure.lua": {
+        "rawSha256": "9dc1fdb075b8a77f27f597d3d3356257ee6379027f8247fd72c610832720dad7",
+        "lfSha256": "9dc1fdb075b8a77f27f597d3d3356257ee6379027f8247fd72c610832720dad7"
+      }
+    },
+    "nativeCaptureOverlap": "Pending optional user party-watch; any sample overlapping this UTC interval is confounded by checkpoint CPU/disk work. No native process/window/input operations were performed."
+  },
+  "runtimeFilesChanged": [
+    "RaidFrame/FluxRaidLayout.lua"
+  ],
+  "baselineNormalized": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+  "finalSource": {
+    "raw": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+    "normalized": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff"
+  },
+  "testSources": {
+    "tests/border_party_container.lua": {
+      "raw": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "normalized": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed"
+    },
+    "tests/raid_roster_layout_work.lua": {
+      "raw": "6c3e40a596b0ee610b179e02870cfab1ee5fcd5082e3649c6e3661d9ddbda35a",
+      "normalized": "6c3e40a596b0ee610b179e02870cfab1ee5fcd5082e3649c6e3661d9ddbda35a"
+    }
+  },
+  "changes": [
+    "Use existing retained flag only on exact bare unit-only FluxRaidContainer; native visibility/alpha paint no longer causes geometry read/alignment",
+    "Let existing secure prepared layout own canonical group positions+width once; preserve unowned disabledMTMA placement, unprepared path, fallback/retry",
+    "All secure executions, slot mapping, full same-token fresh paints/bindings/auras/range/MTMA/focus notifications remain"
+  ],
+  "validation": {
+    "uniqueFocusedScripts": 13,
+    "final12": {
+      "results": [
+        {
+          "path": "tests/raid_roster_layout_work.lua",
+          "exitCode": 0,
+          "output": "WORK forever party unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=1/1 bind=0/0\nWORK forever party transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=1/1\nWORK forever party transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever party transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK forever party transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever party transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever party transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK forever party transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK forever party mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK forever party mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK forever raid unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=0/0\nWORK forever raid transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever raid transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever raid transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK forever raid transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever raid transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever raid transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK forever raid transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK forever raid mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK forever raid mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live party unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=1/1 bind=0/0\nWORK live party transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=1/1\nWORK live party transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live party transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live party transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live party transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live party mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live party mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live raid unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=0/0\nWORK live raid transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live raid transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live raid transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live raid mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live raid mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nParty roster prepared delegation: 5428 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.\n"
+        },
+        {
+          "path": "tests/roster_focus_dock.lua",
+          "exitCode": 0,
+          "output": "Roster focus dock: 188 checks PASS; first/settings/default/unknown/drift recovery; body/scale/parent/context; combat+reentrant native-header policy; notification retention. Native latency/taint/pixels pending.\n"
+        },
+        {
+          "path": "tests/raid_header_precreation.lua",
+          "exitCode": 0,
+          "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1160 checks, 0 failures\n"
+        },
+        {
+          "path": "tests/raid_party_frames.lua",
+          "exitCode": 0,
+          "output": "Party player-style frames: 1075 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+        },
+        {
+          "path": "tests/raid_healer_secure.lua",
+          "exitCode": 0,
+          "output": "Raid healer secure: 255908 checks; five native wrap/state/roster/click source implementations; desktop only\n"
+        },
+        {
+          "path": "tests/raid_combat_roster_transitions.lua",
+          "exitCode": 0,
+          "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+        },
+        {
+          "path": "tests/raid_group_conversion_conditions.lua",
+          "exitCode": 0,
+          "output": "Universal group conversion conditions: 53615 checks / 2800 combat transitions PASS; native client acceptance separate\n"
+        },
+        {
+          "path": "tests/raid_native_sizing_layout.lua",
+          "exitCode": 0,
+          "output": "Raid native sizing layout: 11 checks; actual column/mini reservations and shared preview/live XML; one rejected stale-height control\n"
+        },
+        {
+          "path": "tests/raid_native_member_order.lua",
+          "exitCode": 0,
+          "output": "Raid native member order: 58 checks; five native discrete/party ordering implementations, alphabetical negative control; desktop source execution only\n"
+        },
+        {
+          "path": "tests/group_roster_performance.lua",
+          "exitCode": 0,
+          "output": "ROSTER|live|party|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3\nROSTER|live|raid|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4\nROSTER|live|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|live|extras|rebinds=0|paints=46|allocations=0|protectedWrites=0|timers=1\nROSTER|forever|party|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3\nROSTER|forever|raid|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4\nROSTER|forever|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|forever|extras|rebinds=0|paints=46|allocations=0|protectedWrites=0|timers=1\nROSTER|classic|party|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3\nROSTER|classic|raid|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4\nROSTER|classic|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic|extras|rebinds=0|paints=46|allocations=0|protectedWrites=0|timers=1\nROSTER|classic_era|party|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3\nROSTER|classic_era|raid|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4\nROSTER|classic_era|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic_era|extras|rebinds=0|paints=46|allocations=0|protectedWrites=0|timers=1\nROSTER|classic_anniversary|party|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=3\nROSTER|classic_anniversary|raid|headerShows=0|allocations=0|attributes=0|unitSyncs=1|partyLayouts=0|extraLayouts=0|timers=4\nROSTER|classic_anniversary|binding|discoveries=1|keyQueries=0|protectedWrites=0|timers=1\nROSTER|classic_anniversary|extras|rebinds=0|paints=46|allocations=0|protectedWrites=0|timers=1\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|partyPaint|castRefreshes=4|rangeChecks=1|paints=8|castResets=4|timers=1\nGroup roster performance: 163 checks PASS; operation counts only; native performance/taint pending\n"
+        },
+        {
+          "path": "tests/raid_connected_grid.lua",
+          "exitCode": 0,
+          "output": "Raid connected grid: 34 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls\n"
+        },
+        {
+          "path": "tests/raid_manager_ghost.lua",
+          "exitCode": 0,
+          "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; reference source trees\n"
+        }
+      ],
+      "negativeControl": {
+        "path": "tests/raid_roster_layout_work.lua",
+        "alternateSource": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-RaidLayout-baseline.lua",
+        "exitCode": 1,
+        "expectedFailure": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/raid_roster_layout_work.lua:57: unchanged-prepared removes only delegated transient header clears\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_roster_layout_work.lua:57: in upvalue 'check'\n\ttests/raid_roster_layout_work.lua:199: in local 'pair'\n\ttests/raid_roster_layout_work.lua:205: in main chunk\n\t[C]: in ?\n"
+      },
+      "syntax": {
+        "exitCode": 0,
+        "results": [
+          {
+            "path": "RaidFrame/FluxRaidLayout.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_roster_layout_work.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/roster_focus_dock.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_header_precreation.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_party_frames.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_healer_secure.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_combat_roster_transitions.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_group_conversion_conditions.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_native_sizing_layout.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_native_member_order.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/group_roster_performance.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_connected_grid.lua",
+            "exitCode": 0,
+            "output": ""
+          },
+          {
+            "path": "tests/raid_manager_ghost.lua",
+            "exitCode": 0,
+            "output": ""
+          }
+        ]
+      },
+      "upvalues": {
+        "exitCode": 0,
+        "output": "WoW upvalue check: 1 files / 92 prototypes; maximum=16; 0 failures (limit60)\n",
+        "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-final-upvalues.json"
+      },
+      "changedDuringRun": [],
+      "uiSourceGuard": [
+        "FluxBorder.lua",
+        "Core/BorderJunctions.lua",
+        "UnitFrames/FluxUnitFrames_Shared.lua",
+        "UnitFrames/FluxUnitFrames_Pet.lua",
+        "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+        "UnitFrames/FluxUnitFrames_Party.lua",
+        "UnitFrames/FluxCastBar.lua",
+        "UnitFrames/FluxCastBarThemes.lua",
+        "UnitFrames/FluxCastBarTradeskills.lua"
+      ],
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-final-checks.json"
+    },
+    "container": {
+      "status": "PRODUCTION_FIXTURE_PASS_NATIVE_PENDING",
+      "test": "tests/border_party_container.lua",
+      "testRawSha256": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "testLfSha256": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "testUtc": "2026-11-17T00:04:18Z",
+      "functional": {
+        "checks": 164,
+        "exit": 0,
+        "scenes": 8,
+        "styles": [
+          1,
+          2
+        ],
+        "coldHidden": [
+          false,
+          true
+        ],
+        "currentInitPrefixNoInjection": true
+      },
+      "sourceBefore": {
+        "RaidFrame/FluxRaidLayout.lua": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+        "Core/BorderJunctions.lua": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+        "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed"
+      },
+      "sourceAfter": {
+        "RaidFrame/FluxRaidLayout.lua": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+        "Core/BorderJunctions.lua": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+        "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed"
+      },
+      "changedDuringRun": [],
+      "negative": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-party-container-Layout-before.lua",
+        "sourceArchive": "unit-overlay-border-before-20261116T221600Z/source.zip",
+        "layoutLfSha256": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+        "exit": 1,
+        "witness": "unit-only container visibility requires no geometry wake/read/alignment/solve"
+      },
+      "syntax": {
+        "vm": "Lua5.4 luac -p",
+        "files": [
+          "tests/border_party_container.lua",
+          "RaidFrame/FluxRaidLayout.lua"
+        ],
+        "pass": 2,
+        "fail": 0
+      },
+      "work": {
+        "perVisibilityTransition": {
+          "baseline": {
+            "wakes": 1,
+            "geometryReads": 1,
+            "alignmentEntries": 1,
+            "solves": 0
+          },
+          "candidate": {
+            "wakes": 0,
+            "geometryReads": 0,
+            "alignmentEntries": 0,
+            "solves": 0
+          }
+        },
+        "alphaZeroThenOne": {
+          "baseline": {
+            "wakes": 2,
+            "geometryReads": 2,
+            "alignmentEntries": 2
+          },
+          "candidate": {
+            "wakes": 0,
+            "geometryReads": 0,
+            "alignmentEntries": 0
+          }
+        }
+      },
+      "controls": [
+        "actual Core/Border and runtime Raid Init prefix",
+        "cold-hidden public anchor reconstruction",
+        "exact final material/UV/mesh/RGBA and unit membership equality",
+        "real move/resize/scale/reparent remain observed",
+        "unrelated generic HUD visibility retains normal topology update",
+        "unrelated private rectangle availability is queried fresh on a real layout and recovers publicly"
+      ],
+      "scope": "Only the container marker is isolated here. The combined Layout file also includes separately validated header delegation; that code lies outside this loaded Init prefix.",
+      "limits": [
+        "not actual roster secure-VM execution or native latency/FPS/taint acceptance",
+        "separate Raid bronze joined-border scan/visibility work not optimized in this fixture"
+      ],
+      "runtimeEditedByChild": false,
+      "frozen": true,
+      "jobsStopped": true
+    },
+    "work": {
+      "perContainerVisibilityTransition": {
+        "before": {
+          "queuedWakes": 1,
+          "geometryReads": 1,
+          "alignments": 1,
+          "solves": 0
+        },
+        "after": {
+          "queuedWakes": 0,
+          "geometryReads": 0,
+          "alignments": 0,
+          "solves": 0
+        }
+      },
+      "preparedMTMAOwned": {
+        "headerClearCalls": "18 to9",
+        "headerPointCalls": "18 to9",
+        "containerWidthWrites": "2 to1",
+        "secureExecute": "1 retained",
+        "paintAndBindingCadence": "unchanged"
+      },
+      "disabledMTMA": "Eight duplicated pairs removed; unowned hidden header keeps legacy point"
+    },
+    "qualification": [
+      "No native/game/process/input operations performed.",
+      "Actual production Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync/focus functions execute in a modeled native-slot/protected-widget fixture.",
+      "Partial returned native failures may leave different hidden header poses; readiness/hide/Blizzard restoration/error/retry and successful recovery are preserved.",
+      "No native latency/FPS/pixels/taint acceptance is inferred from modeled work counts."
+    ],
+    "scope": "Matched actual Core/Border/Init and actual Layout/Secure/Sync plus existing fixtures; native CPU/FPS/taint not inferred",
+    "documentationBuild": {
+      "startedUTC": "2026-11-17T00:22:05.756716+00:00",
+      "endedUTC": "2026-11-17T00:22:26.428783+00:00",
+      "exitCode": 0,
+      "stdout": "Generated documentation inventory: 1234 sources; 625 TOC/XML reachable; 444 setting definitions; 584 literal defaults.\n",
+      "stderr": ""
+    },
+    "documentationValidation": {
+      "startedUTC": "2026-11-17T00:23:13.774049+00:00",
+      "endedUTC": "2026-11-17T00:23:38.260004+00:00",
+      "exitCode": 0,
+      "stdout": "PASS: 1234 classified sources; 625 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 18224 local links. Source inventory/evidence current. No files written.\n",
+      "stderr": "",
+      "qualification": "Final documentation validation passes. Earlier concurrent World Map/WindowMover stale evidence cleared before this run; party work did not update their source hashes."
+    },
+    "finalOwnedSourceGuard": {
+      "checkedUTC": "2026-11-17T00:23:38.275945+00:00",
+      "acceptedUI8Drift": [],
+      "raidLayoutMatchesFinal": true,
+      "unappliedAdjacencyBaselinePreserved": true
+    }
+  },
+  "unappliedAdjacencyPrototype": {
+    "frozenUtc": "2026-11-17T00:00:22.994993+00:00",
+    "status": "UNAPPLIED external prototype, frozen",
+    "baselineLF": "6d208e523d1e28d1d63276d3f7bcea94d583ab4af0f24d9979772a08049b2124",
+    "candidateLF": "7ae6d7d85c295f75ecc159d37c2be8cf78439854350444bb5719a25e35989102",
+    "proofSha256": "0465f6502289a70dee6ba619312540bd85537fbed47f25ae393e6b7af6cc18fb",
+    "proofChecks": 594,
+    "existingTopologyChecksPerSource": 34,
+    "timingRunChecks": 642,
+    "sameTokenIdentityControl": {
+      "startedUtc": "2026-11-16T23:59:14.398519+00:00",
+      "completedUtc": "2026-11-16T23:59:14.796754+00:00",
+      "code": 0,
+      "output": "Raid connected grid: 34 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls\nRaid connected grid: 34 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls\nRaid joined adjacency cache: 594 checks PASS; actual full module, exact ordered flags and fresh provider paints; modeled/offline only\n",
+      "scope": "Fixture correction: same unit token retained while identity/class paint changes; candidate/runtime unchanged; no repeated benchmark.",
+      "proofSha256": "0465f6502289a70dee6ba619312540bd85537fbed47f25ae393e6b7af6cc18fb"
+    },
+    "benchmarkUtc": {
+      "startedUtc": "2026-11-16T23:56:53.527255+00:00",
+      "completedUtc": "2026-11-16T23:56:55.829091+00:00"
+    },
+    "timingSummary": [
+      {
+        "cells": 5,
+        "mode": "unchanged",
+        "iterationsPerBlock": 512,
+        "medianDeltaPercent": -37.500000000000625,
+        "rangeDeltaPercent": [
+          -44.44444444444444,
+          -25.0
+        ],
+        "baseMsPerRequestMedian": 0.015625,
+        "candidateMsPerRequestMedian": 0.009765625
+      },
+      {
+        "cells": 5,
+        "mode": "changing",
+        "iterationsPerBlock": 512,
+        "medianDeltaPercent": 24.305555555555557,
+        "rangeDeltaPercent": [
+          10.000000000000009,
+          37.5
+        ],
+        "baseMsPerRequestMedian": 0.0166015625,
+        "candidateMsPerRequestMedian": 0.021484375
+      },
+      {
+        "cells": 40,
+        "mode": "unchanged",
+        "iterationsPerBlock": 128,
+        "medianDeltaPercent": -83.82352941176481,
+        "rangeDeltaPercent": [
+          -84.90566037735849,
+          -80.0
+        ],
+        "baseMsPerRequestMedian": 0.40625,
+        "candidateMsPerRequestMedian": 0.06640625
+      },
+      {
+        "cells": 40,
+        "mode": "changing",
+        "iterationsPerBlock": 128,
+        "medianDeltaPercent": 6.533892382948991,
+        "rangeDeltaPercent": [
+          5.660377358490565,
+          10.909090909090914
+        ],
+        "baseMsPerRequestMedian": 0.41796875,
+        "candidateMsPerRequestMedian": 0.4453125
+      },
+      {
+        "cells": 80,
+        "mode": "unchanged",
+        "iterationsPerBlock": 64,
+        "medianDeltaPercent": -89.79178716020816,
+        "rangeDeltaPercent": [
+          -90.10989010989022,
+          -89.36170212765957
+        ],
+        "baseMsPerRequestMedian": 1.4453125,
+        "candidateMsPerRequestMedian": 0.14843750000000078
+      },
+      {
+        "cells": 80,
+        "mode": "changing",
+        "iterationsPerBlock": 64,
+        "medianDeltaPercent": 2.735436606404351,
+        "rangeDeltaPercent": [
+          -1.0309278350515427,
+          8.98876404494382
+        ],
+        "baseMsPerRequestMedian": 1.4375,
+        "candidateMsPerRequestMedian": 1.4921875
+      }
+    ],
+    "workspaceRuntimeEdited": false,
+    "nativeOperations": false,
+    "jobsRunning": false,
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-report.json",
+    "candidateRawSha256": "cdc6b5f0e751a060b6e9c19a3fce573440e9a9faab51a0bd3ea3a7cbba6d272b"
+  },
+  "native": {
+    "permission": "User tests allowed; game remains background; no agent gameplay/input/capture/profiling performed",
+    "baselineWatchRequest": "Earlier watch/cost/spikes request pending",
+    "currentReloadFeedback": "After reload, party join/leave hitch improved? Pending user response",
+    "sourceAdoption": "No new loaded-code/client-build observation inferred",
+    "cpuOverlapQualification": "Checkpoint/standalone test UTC intervals are preserved; do not call any overlapping user sample a quiet matched timing trial"
+  },
+  "preservedUI": "Earlier user accepted mini connections and crafting/fill fit; eight UI source files unchanged during party gate.",
+  "openWork": "Native join/leave hitch, first true roster reflow and other addon callback sources remain unmeasured; no complete performance-resolution claim."
+}

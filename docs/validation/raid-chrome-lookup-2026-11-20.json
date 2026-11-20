@@ -1,0 +1,178 @@
+{
+  "changeId": "RAID-CHROME-LOOKUP-R153-20261120",
+  "capturedAtUTC": "2026-11-19T23:15:23.670976+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeRaw": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+      "afterRaw": "0dd9220ea27cf81e10524fc33472b27a32bb6946483c03e7632cfe6466a5ad3f",
+      "afterNormalized": "0dd9220ea27cf81e10524fc33472b27a32bb6946483c03e7632cfe6466a5ad3f"
+    },
+    "tests/raid_manager_ghost.lua": {
+      "beforeRaw": "c3678060ebce7bd0ed483ef9336314de835629fcdf18854975a927d8f2852249",
+      "afterRaw": "a49d8bbb95db8028d2d1c793bf2a21828ae711ab1fb1d0c74f4963755324319f",
+      "afterNormalized": "a49d8bbb95db8028d2d1c793bf2a21828ae711ab1fb1d0c74f4963755324319f"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\source.zip",
+    "sourceZipSHA256": "875e91efeecddfa4615b61899ed1a4cac24c06a973ccddb747047e440e3ff35c",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched exact-source pairs per client model. The source-pinned native selection handler is replayed twice over 40 named compact raid cells under eight group headers while a separate five-frame party pool exists.",
+    "samples": [
+      {
+        "trial": 1,
+        "model": "live",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 1,
+        "model": "forever",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_era",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_anniversary",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 2,
+        "model": "live",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 2,
+        "model": "forever",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_era",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_anniversary",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 3,
+        "model": "live",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 3,
+        "model": "forever",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_era",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_anniversary",
+        "beforePoolEnumerations": 80,
+        "afterPoolEnumerations": 0,
+        "beforePoolEntriesVisited": 400,
+        "afterPoolEntriesVisited": 0
+      }
+    ],
+    "metrics": [
+      "Native party pool enumeration calls",
+      "Entries visited in the unrelated pool"
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\matched.txt": "fd4cbf0ec0f11c8ff1fe5cec494424352997bcbaa42d2196696911390bc960ae",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\candidate.txt": "8e794f906bf5fc7a3cdafd61a42ed4f5a34cd5971094e17a35a7cd261772bef5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\upvalues.json": "0916365fbb1e0ccfedfa1a8d3ee76244d3ad9c15ee03bd5aed43f0bc3061c732",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\native-sources.json": "6502602c077bc1b0faaa27f5c448d1b477fd2a0a500a5b7ce2a11c740eced526"
+    },
+    "limits": "The fixture models native dispatch. Counts show work inside the classification path; live event frequency, total invite time, rendering and taint still require native checks."
+  },
+  "preservation": [
+    "Direct parent and named native group checks keep the existing selection suppression behavior.",
+    "Anonymous, private-name, and denied-name frames still qualify through their actual party pool. Out-of-pool names and Flux-owned overlays retain their prior policy.",
+    "Setup, secure roster drivers and restoration keep their existing owners. The pool supplies ownership when the frame name is unavailable."
+  ],
+  "verification": {
+    "focusedPassed": 106,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-chrome-lookup-before-20261120-000929\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for party and raid membership hitches, rapid held-action crossings and drops, native seam pixels and combat taint."
+}

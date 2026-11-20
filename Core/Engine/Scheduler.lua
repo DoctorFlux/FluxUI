@@ -23,6 +23,25 @@ Flux.Engine = Flux.Engine or {}
 Flux.Engine.Scheduler = Scheduler
 
 local type = type
+local callbackOrigins = setmetatable({}, { __mode = "k" })
+local function RememberOrigin(fn)
+	if issecretvalue and issecretvalue(fn) then return end
+	if callbackOrigins[fn] ~= nil then return end
+	callbackOrigins[fn] = false
+	if type(debugstack) ~= "function" then return end
+	local ok, stack = pcall(debugstack, 2, 5, 0)
+	if not ok or (issecretvalue and issecretvalue(stack)) or type(stack) ~= "string" then return end
+	for line in stack:gmatch("[^\r\n]+") do
+		local path = line:gsub("\\", "/")
+		if path:match(":%d+") and not path:find("Core/Engine/Scheduler.lua", 1, true) then
+			callbackOrigins[fn] = line:sub(1, 220); return
+		end
+	end
+end
+function Scheduler.GetCallbackOrigin(fn)
+	if issecretvalue and issecretvalue(fn) then return end
+	return callbackOrigins[fn] or nil
+end
 
 Scheduler.TIERS = {
 	layout = 1,
@@ -140,6 +159,7 @@ function Scheduler.Register(tier, fn)
 	end
 	local list = listeners[tier]
 	list[#list + 1] = fn
+	RememberOrigin(fn)
 end
 
 function Scheduler.BeginPaging()

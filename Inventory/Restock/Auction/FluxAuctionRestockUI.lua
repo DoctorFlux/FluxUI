@@ -327,7 +327,9 @@ local function CreatePanel(owner)
             cell.editBox:SetScript("OnEscapePressed", function(self) if Current(token) then self:Hide(); self:ClearFocus() end end)
             cell.RefreshTip = function(self, cap)
                 if not Current(token) then return end
-                cap = cap or A.PurchaseLimit(self.row.itemID)
+                -- Native OnEnter supplies a mouse-motion boolean. Repaints
+                -- supply an already calculated copper cap, including infinity.
+                if type(cap) ~= "number" then cap = A.PurchaseLimit(self.row.itemID) end
                 f.hoveredUpgrade = nil
                 f.hoveredCell, f.tooltipOwner, f.tooltipBinding = cell, cell, token
                 cell.ShowTip(self, cap)
@@ -486,7 +488,7 @@ local function CreatePanel(owner)
     end
     Layout(f)
     f:HookScript("OnSizeChanged", function() if A.frame == f and f:IsShown() then A.UpdateUI() end end)
-    f:SetScript("OnShow", function() A.ShowSession(); A.UpdateUI() end)
+    f:SetScript("OnShow", ns.AuctionRestockOnShow)
     f:SetScript("OnHide", function()
         Blur()
         for _, cell in ipairs(f.cells) do cell.editBox:ClearFocus(); cell.editBox:Hide() end
@@ -607,6 +609,7 @@ function A.UpdateUI()
     end
     f.status:SetText(text)
 end
+ns.AuctionRestockUpdateUI = A.UpdateUI
 function A.Toggle()
     A.legacy = A.IsLegacy()
     local owner = A.legacy and _G.AuctionFrame or _G.AuctionHouseFrame

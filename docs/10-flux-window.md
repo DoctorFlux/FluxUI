@@ -1,5 +1,29 @@
 # Flux Window, Battlezone map and meters
 
+20 November. On Forever, **Map Pins** hosts the original World Map, including
+addon drawings. The current pins stay visible during combat. The quest-watch,
+quest-log and quest-POI refresh events resume after lockdown ends.
+[Combat report and validation](validation/world-map-combat-2026-11-20.json).
+
+17 November **WORLD-MAP-ANCHOR-20261117**: a later native positioning change
+could leave the original map outside Flux despite correct size/scale/parent.
+Actual root/scroll anchor validation replaces the stale fit cache; WindowMover
+yields while the original scene is hosted, preserving its normal saved layout.
+Whole-scene scaling, opacity and normal map-key handoff
+remain; current native reload verification is pending. The 16 November full-run
+and user results below are historical for their exact sources.
+[Current recovery evidence](validation/world-map-anchor-recovery-2026-11-17.json).
+
+16 November **WORLD-MAP-SURFACE-20261116**: Map Pins shares the original
+World Map scene in the battlefield area, with no addon dependency or adapter
+list. One outer transform scales native player arrow/pins and addon content
+uniformly. The mounted scene stays opaque while moving; normal large-map fade
+returns on handoff. User confirms scene appearance and map-key open/close.
+Full478 scripts/1168 syntax and11,064 source-owner checks pass; other-client,
+controller, combat/taint and CPU/FPS acceptance remain pending.
+[Final implementation and evidence](WORLD_MAP_SURFACE.md). Earlier provider-only,
+Retail isolation and route-line exclusions below are historical where they conflict.
+
 13 November SECRET-UI-20261113 supersedes earlier automatic native meter
 selection claims: Blizzard controls own types/window creation/Current; Flux
 keeps saved layout requests with explicit setup feedback. Unit/pet/raid/preview
@@ -167,3 +191,8 @@ Pins. Check matching guide pins/hover text and pan/zoom; open/close World Map;
 advance a guide step; toggle Map Pins; test RestedXP pins disabled/zero count;
 repeat with Questie absent/present and after a combat-deferred step. Record
 actual client/build and errors before accepting native rendering or taint safety.
+
+<!-- BORDER-SETTERS-THREAT-ROSTER-R89-20261119 -->
+The Details threat display consolidates repeated group change events during combat into one next-update refresh. Target and matching threat-list events still refresh immediately.
+[Setter and threat roster evidence](validation/border-setters-threat-roster-2026-11-19.json).
+<!-- /BORDER-SETTERS-THREAT-ROSTER-R89-20261119 -->

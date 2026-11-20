@@ -73,7 +73,8 @@ local function SchedulePortraitCameraRefresh() end
     env.FluxUnitFrames_ShouldUse3DPortrait = function() return state.use3D end
     env.SetPortraitTexture = function() state.portraitPaints = state.portraitPaints + 1 end
     local visibility = slice(text, "local function SetWatchedFrameAlpha", "--- Empty-target outline:")
-    local portrait = slice(text, "function UF.UpdatePortrait(self, unit)", "--- Resize the PlayerModel")
+    local portraitStart=text:find("-- Protected portrait paint callback:",1,true)and"-- Protected portrait paint callback:"or"function UF.UpdatePortrait(self, unit)"
+    local portrait = slice(text, portraitStart, "--- Resize the PlayerModel")
     assert(load(helpers .. visibility .. portrait .. [[
 return { alpha = SetWatchedFrameAlpha, chrome = ApplyWatchedUnitChrome }
 ]], "@UnitFrames/FluxUnitFrames_Shared.lua:portrait", "t", env))()

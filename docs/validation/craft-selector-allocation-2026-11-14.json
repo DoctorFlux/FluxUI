@@ -1,0 +1,576 @@
+{
+  "changeId": "CRAFT-ALLOCATION-20261114",
+  "capturedUtc": "2026-11-14T13:40:11.937107+00:00",
+  "state": "APPLIED and current whole-suite verified",
+  "runtime": {
+    "Inventory/Craft.lua": {
+      "before": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+      "current": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209"
+    }
+  },
+  "tests": {
+    "tests/craft_mixed_first_aid.lua": "d906989f2ae280d9cc3638d140be9dfc2937bc66e000eff01b79097552ad522d",
+    "tests/craft_selector_allocation_work.lua": "2a877110bbdfad856796af72e98aae3f10d7ab2ec64cb2f16154b021d1ff9ea5"
+  },
+  "requirements": {
+    "changeId": "CRAFT-ALLOCATION-20261114",
+    "state": "Applied exact615d4be after fresh380-script baseline, three paired replays, controls and independent reviews; current383-script integration passes. Native timing remains pending.",
+    "runtimeScope": [
+      "Inventory/Craft.lua"
+    ],
+    "preserve": [
+      "Complete classification pass in original source occurrence order, including repeated references to one recipe table with different effective values.",
+      "Complete First Aid predicate pass; conditional untagged fallback pass; stable retained order.",
+      "Each retained row keeps original output-ID, EnsureReagents, FillStatic, dynamic craft-count, dynamic yield and stack metadata order.",
+      "All original live native queries, public callbacks, fresh public output rows, errors, lower-tier selection, tie breaks and full reagent dependency invalidation.",
+      "No fact caching, late ownership reconstruction, new options/UI, frames, events, timers, polls, saved roots or slower cadence.",
+      "All five existing clients and both real inventory provider fixture paths; native certification remains separate."
+    ],
+    "proposal": "Replace private recipe/effective wrapper objects with parallel per-occurrence arrays; stably compact only those private arrays for First Aid filters. Hoist the stateless sort comparator.",
+    "rejectedPredecessors": "Keep lazy-affordability70344d46 and count-memofb2c8b6d outside the addon; their public-seam counterexamples remain acceptance oracles."
+  },
+  "implementation": "Parallel per-occurrence private recipe/effective arrays, stable private First Aid compaction, one stateless comparator; complete public rows stay fresh.",
+  "nativeQueriesAndPublicCallbackOrder": "Original full classification/count/yield/stack and delegated reader behavior retained; no native-fact cache or query reduction.",
+  "work": {
+    "privateWrappersPer100Recipes": [
+      100,
+      0
+    ],
+    "comparatorIdentitiesAcross11Builds": [
+      11,
+      1
+    ],
+    "nativeReagentReadsTopAffordable": [
+      200,
+      200
+    ],
+    "nativeReagentReadsLowerAffordable": [
+      120,
+      120
+    ],
+    "nativeReagentReadsNoneAffordable": [
+      100,
+      100
+    ]
+  },
+  "pairedReplay": {
+    "pairs": 3,
+    "checksPerCandidate": 4020,
+    "scenarios": 90,
+    "fullScalarTraceBytes": 366699,
+    "fullScalarTraceSHA256": "42e818ccbf4bf1536101bc9558b7f4c8c93b91264da0ada1e5092d819325d5c8"
+  },
+  "independentMixed": {
+    "pairedAssertions": 3380,
+    "pairedCases": 90,
+    "scope": "All five policies/three kinds/six mixed filters; exact ordered callback and output traces; source aliases and independent public rows."
+  },
+  "harmfulControls": [
+    {
+      "name": "lazy-count-order-rejected",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "7b7caa93550637485fec00c96eaab15410e0b610aefd122edfed872d181ca1f4",
+      "results": [
+        {
+          "exit": 1,
+          "tail": [
+            "\t[C]: in function 'assert'",
+            "\t...1114T124621Z\\crafting\\craft_selector_allocation_work.lua:202: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lost-effective-compaction",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "70f164d1b1b49335995f80f320273d63730924dddfc921a17bae937941cae234",
+      "results": [
+        {
+          "exit": 0,
+          "tail": [
+            "CRAFT_SELECTOR mists syndicator bandage have=0 native=100 selected=0",
+            "CRAFT_ALLOCATION mists syndicator bandage sorts=11 comparatorIdentities=1 rawWrappers=0",
+            "Craft selector: 4020 checks; 90 scenarios; 0 failures; native facts mocked"
+          ]
+        },
+        {
+          "exit": 1,
+          "tail": [
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:104: in local 'run'",
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:126: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lost-untagged-fallback",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "670c2319ae6d823b104bd60419e43d338b01bcfbdd790a6d67bf476ab00d1c70",
+      "results": [
+        {
+          "exit": 0,
+          "tail": [
+            "CRAFT_SELECTOR mists syndicator bandage have=0 native=100 selected=0",
+            "CRAFT_ALLOCATION mists syndicator bandage sorts=11 comparatorIdentities=1 rawWrappers=0",
+            "Craft selector: 4020 checks; 90 scenarios; 0 failures; native facts mocked"
+          ]
+        },
+        {
+          "exit": 1,
+          "tail": [
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:99: in local 'run'",
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:126: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "one-effective-for-all-occurrences",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "d9cc0201b8c47e3a6d3938e005a72614d187d4ad21c3a29839810b80100cbf02",
+      "results": [
+        {
+          "exit": 0,
+          "tail": [
+            "CRAFT_SELECTOR mists syndicator bandage have=0 native=100 selected=0",
+            "CRAFT_ALLOCATION mists syndicator bandage sorts=11 comparatorIdentities=1 rawWrappers=0",
+            "Craft selector: 4020 checks; 90 scenarios; 0 failures; native facts mocked"
+          ]
+        },
+        {
+          "exit": 1,
+          "tail": [
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:104: in local 'run'",
+            "\t...ume-20261114T124621Z\\providers\\craft_mixed_first_aid.lua:126: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "original-wrapper-allocations",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "e4eb7000ea1a1d3af8299cfbba7bb327fa7a0295e9d07f3aafe94efb0fcae2e1",
+      "results": [
+        {
+          "exit": 1,
+          "tail": [
+            "\t[C]: in function 'assert'",
+            "\t...1114T124621Z\\crafting\\craft_selector_allocation_work.lua:202: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reversed-rank",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "93556927376be443d3560a4cef960140bd6153b0ce2f505c8ad50bee1585b96c",
+      "results": [
+        {
+          "exit": 1,
+          "tail": [
+            "\t[C]: in function 'assert'",
+            "\t...1114T124621Z\\crafting\\craft_selector_allocation_work.lua:202: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "shared-count-memo-rejected",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "e13eb24dab2f8743b0660516eb7876e2c401c71d68b191be03a85d8267f26379",
+      "results": [
+        {
+          "exit": 1,
+          "tail": [
+            "\t[C]: in function 'assert'",
+            "\t...1114T124621Z\\crafting\\craft_selector_allocation_work.lua:202: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "swallowed-count-error",
+      "compiled": true,
+      "rejected": true,
+      "sourceSHA256": "1fede598af427beac2ef0095a7d2eb6a235e62f074fc3fcda018f7f2d9490f7d",
+      "results": [
+        {
+          "exit": 1,
+          "tail": [
+            "\t[C]: in function 'assert'",
+            "\t...1114T124621Z\\crafting\\craft_selector_allocation_work.lua:202: in main chunk",
+            "\t[C]: in ?"
+          ]
+        }
+      ]
+    }
+  ],
+  "timing": {
+    "scope": "Desktop Lua5.4 ordinary fixture CPU/GC-stopped allocation;no native FPS or retained heap claim",
+    "pairs": 3,
+    "summaries": [
+      {
+        "family": "retail",
+        "kind": "manaPotion",
+        "rows": 0,
+        "beforeSecondsMedian": 0.0,
+        "afterSecondsMedian": 0.0,
+        "beforeSecondsRange": [
+          0.0,
+          0.0
+        ],
+        "afterSecondsRange": [
+          0.0,
+          0.0
+        ],
+        "before10KiB": 3.594,
+        "after10KiB": 3.125,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "retail",
+        "kind": "manaPotion",
+        "rows": 7,
+        "beforeSecondsMedian": 0.002,
+        "afterSecondsMedian": 0.003,
+        "beforeSecondsRange": [
+          0.002,
+          0.003
+        ],
+        "afterSecondsRange": [
+          0.002,
+          0.003
+        ],
+        "before10KiB": 162.969,
+        "after10KiB": 157.188,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "retail",
+        "kind": "manaPotion",
+        "rows": 20,
+        "beforeSecondsMedian": 0.007,
+        "afterSecondsMedian": 0.006,
+        "beforeSecondsRange": [
+          0.006,
+          0.007
+        ],
+        "afterSecondsRange": [
+          0.006,
+          0.007
+        ],
+        "before10KiB": 460.938,
+        "after10KiB": 445.703,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "retail",
+        "kind": "manaPotion",
+        "rows": 100,
+        "beforeSecondsMedian": 0.034,
+        "afterSecondsMedian": 0.034,
+        "beforeSecondsRange": [
+          0.033,
+          0.035
+        ],
+        "afterSecondsRange": [
+          0.034,
+          0.036
+        ],
+        "before10KiB": 2278.438,
+        "after10KiB": 2196.953,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "retail",
+        "kind": "manaPotion",
+        "rows": 500,
+        "beforeSecondsMedian": 0.19,
+        "afterSecondsMedian": 0.184,
+        "beforeSecondsRange": [
+          0.189,
+          0.197
+        ],
+        "afterSecondsRange": [
+          0.184,
+          0.186
+        ],
+        "before10KiB": 11335.938,
+        "after10KiB": 10908.203,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "forever",
+        "kind": "bandage",
+        "rows": 0,
+        "beforeSecondsMedian": 0.0,
+        "afterSecondsMedian": 0.0,
+        "beforeSecondsRange": [
+          0.0,
+          0.001
+        ],
+        "afterSecondsRange": [
+          0.0,
+          0.0
+        ],
+        "before10KiB": 7.109,
+        "after10KiB": 5.547,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "forever",
+        "kind": "bandage",
+        "rows": 7,
+        "beforeSecondsMedian": 0.002,
+        "afterSecondsMedian": 0.002,
+        "beforeSecondsRange": [
+          0.002,
+          0.002
+        ],
+        "afterSecondsRange": [
+          0.002,
+          0.003
+        ],
+        "before10KiB": 167.188,
+        "after10KiB": 159.609,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "forever",
+        "kind": "bandage",
+        "rows": 20,
+        "beforeSecondsMedian": 0.007,
+        "afterSecondsMedian": 0.007,
+        "beforeSecondsRange": [
+          0.007,
+          0.009
+        ],
+        "afterSecondsRange": [
+          0.006,
+          0.007
+        ],
+        "before10KiB": 468.906,
+        "after10KiB": 448.125,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "forever",
+        "kind": "bandage",
+        "rows": 100,
+        "beforeSecondsMedian": 0.034,
+        "afterSecondsMedian": 0.035,
+        "beforeSecondsRange": [
+          0.034,
+          0.034
+        ],
+        "afterSecondsRange": [
+          0.034,
+          0.037
+        ],
+        "before10KiB": 2301.406,
+        "after10KiB": 2199.375,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "forever",
+        "kind": "bandage",
+        "rows": 500,
+        "beforeSecondsMedian": 0.197,
+        "afterSecondsMedian": 0.198,
+        "beforeSecondsRange": [
+          0.188,
+          0.201
+        ],
+        "afterSecondsRange": [
+          0.187,
+          0.205
+        ],
+        "before10KiB": 11418.906,
+        "after10KiB": 10910.625,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "era",
+        "kind": "bandage",
+        "rows": 0,
+        "beforeSecondsMedian": 0.0,
+        "afterSecondsMedian": 0.0,
+        "beforeSecondsRange": [
+          0.0,
+          0.0
+        ],
+        "afterSecondsRange": [
+          0.0,
+          0.0
+        ],
+        "before10KiB": 9.531,
+        "after10KiB": 7.969,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "era",
+        "kind": "bandage",
+        "rows": 7,
+        "beforeSecondsMedian": 0.003,
+        "afterSecondsMedian": 0.003,
+        "beforeSecondsRange": [
+          0.002,
+          0.003
+        ],
+        "afterSecondsRange": [
+          0.002,
+          0.004
+        ],
+        "before10KiB": 169.609,
+        "after10KiB": 162.031,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "era",
+        "kind": "bandage",
+        "rows": 20,
+        "beforeSecondsMedian": 0.007,
+        "afterSecondsMedian": 0.007,
+        "beforeSecondsRange": [
+          0.006,
+          0.007
+        ],
+        "afterSecondsRange": [
+          0.007,
+          0.007
+        ],
+        "before10KiB": 471.328,
+        "after10KiB": 450.547,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "era",
+        "kind": "bandage",
+        "rows": 100,
+        "beforeSecondsMedian": 0.035,
+        "afterSecondsMedian": 0.034,
+        "beforeSecondsRange": [
+          0.033,
+          0.037
+        ],
+        "afterSecondsRange": [
+          0.033,
+          0.035
+        ],
+        "before10KiB": 2303.828,
+        "after10KiB": 2201.797,
+        "nativeQueriesSame": true
+      },
+      {
+        "family": "era",
+        "kind": "bandage",
+        "rows": 500,
+        "beforeSecondsMedian": 0.192,
+        "afterSecondsMedian": 0.189,
+        "beforeSecondsRange": [
+          0.187,
+          0.194
+        ],
+        "afterSecondsRange": [
+          0.188,
+          0.191
+        ],
+        "before10KiB": 11421.328,
+        "after10KiB": 10913.047,
+        "nativeQueriesSame": true
+      }
+    ]
+  },
+  "integration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 383,
+    "scriptsFail": 0,
+    "syntaxFiles": 1071,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "limits": "Desktop Lua5.4 GC-stopped allocation is not retained native heap/GC-pause/FPS proof. CPU results are mixed; no consistent CPU or native FPS improvement claimed.",
+  "rejectedEarlierDesigns": "Lazy affordability changed cold/warm public-helper interleaving. Count memo missed nested Index/Item reader seams. Neither rejected source was applied.",
+  "artifacts": {
+    "checkpoint-location.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\checkpoint-location.json",
+      "sha256": "c69a108be12cf4111c353c5cc1523ead883145d93bb7c10fd5c718008eded693"
+    },
+    "baseline-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\baseline-full.json",
+      "sha256": "7d8d40e7777f8c9f7c75819bf12390e668c5b95d394e2165242ad77ca27a8ade"
+    },
+    "baseline-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\baseline-stability.json",
+      "sha256": "83eaffe4518901d26b2e76b5731b213ea990efb65f5dc33b57e8a6bce621eae4"
+    },
+    "integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-full.json",
+      "sha256": "ad829eeb7ef20fc70d086c98b210acb71405b8dc9ea08890a19d5563827d6f36"
+    },
+    "integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-stability.json",
+      "sha256": "5b1ff690dfbca067b138d881b84134ab8d05be48d27c0c7b7e7612f0f70523a6"
+    },
+    "source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\source-guard.json",
+      "sha256": "ad07c54af62bcd828c432e8515f8c78f6fe44498d53b1eca19b956217352b879"
+    },
+    "crafting/requirements.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\requirements.json",
+      "sha256": "cf2eb7d42ac6faf2e218824358ed99fe700e1ce06804baf84ac4c845490b87d1"
+    },
+    "crafting/applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\applied.json",
+      "sha256": "62b7867a8242a58552e3b684afadfa2cc8c3aaeee1980c9e883e9635286526cd"
+    },
+    "crafting/pair1.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair1.json",
+      "sha256": "be78c254ca6f4e4650ea03d23b2c339c2526ebeb1eadc1acbc2f8a8034da2c27"
+    },
+    "crafting/pair2.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair2.json",
+      "sha256": "17d8804a74622df5c32b27cea6e7c48d2ada143059aff289d27f363a5caa9f2d"
+    },
+    "crafting/pair3.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair3.json",
+      "sha256": "6b8c07d417a5dc429311db3e27be5e19a41b3456380883e114834662ee042078"
+    },
+    "crafting/timing-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\timing-summary.json",
+      "sha256": "37ab91e4a2fa9d08b13e4300c67994289be723800f8c39f92487093610b2d0a4"
+    },
+    "providers/craft-allocation-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-allocation-peer-review.json",
+      "sha256": "1de6e06d228482061928a17d01e0aced1b85ba37da8820b6f6ea1e7e193d5dfb"
+    },
+    "providers/craft-mixed-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-mixed-peer-review.json",
+      "sha256": "4e2638bc6a71e549d38fb21d8d52a7900171ba58e8f0c51cd2b9cd99509f3d93"
+    },
+    "commerce/craft-allocation-static-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\craft-allocation-static-peer-review.json",
+      "sha256": "386b56dbe3b0d418d6c8fbb39a419ae6da9e41c8d2fe940f8481308729d1458f"
+    },
+    "commerce/account-audit-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\account-audit-seal.json",
+      "sha256": "d85602694199b337eb45dff51e2be3a3fb5da2f3be76564df9e5a54254d51451"
+    }
+  }
+}

@@ -1,0 +1,1055 @@
+{
+  "changeId": "RAID-RANGE-BURST-R142-20261119",
+  "capturedAtUTC": "2026-11-19T21:09:17.906375+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+      "afterRaw": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "6bb22533cfdb874316210fa694432892409127f5607d9db6f54254fba711eab2",
+      "afterRaw": "194f4052fed70d9c04e5dbda80470ea146e41acc41413cc9265ef66df63e80b6"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\source.zip",
+    "sourceZipSHA256": "2e0db9007683820b0c61930c62de0f90ea82e59469a49947f412c79187ab6678",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating paired runs per client model, group size and range-event capability. Bind each hidden compact cell, reveal it immediately, drain the existing dispatch, then hide and unbind the group. Runs cover combat and out-of-combat models. The compact and normal-party polling pools use the production owner.",
+    "samples": {
+      "5 cells with fallback": [
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "1",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "2",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "3",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "4",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "5",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "1",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "2",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "3",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "4",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "5",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "1",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "2",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "3",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "4",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "5",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "1",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "2",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "3.000/1.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "3",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "4",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "5",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "1",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "2",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "3",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "3.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "4",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "5",
+          "scans": "15/2",
+          "required": "230/115",
+          "optional": "10/10",
+          "ms": "1.000/2.000"
+        }
+      ],
+      "5 cells with native range": [
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "1",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "2",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "3",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "4",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "5",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "1",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "2",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "3",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "4",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "5",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "1",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "2",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "3",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "4",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "5",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "1",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "2",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "3",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "4",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/2.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "5",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "1",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "3.000/2.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "2",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "3",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "4",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "1.000/1.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "5",
+          "scans": "20/2",
+          "required": "115/115",
+          "optional": "5/5",
+          "ms": "2.000/2.000"
+        }
+      ],
+      "40 cells with fallback": [
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "1",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "12.000/12.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "2",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/12.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "3",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "4",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "12.000/12.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "5",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/12.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "1",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/11.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "2",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/13.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "3",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "4",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "5",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/12.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "1",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "2",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/14.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "3",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/15.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "4",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "5",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "1",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "2",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "17.000/16.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "3",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "15.000/14.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "4",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/14.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "5",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "1",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "2",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "3",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "4",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "13.000/13.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "5",
+          "scans": "120/2",
+          "required": "1840/920",
+          "optional": "80/80",
+          "ms": "14.000/12.000"
+        }
+      ],
+      "40 cells with native range": [
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "1",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "14.000/11.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "2",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "14.000/10.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "3",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "live",
+          "combat": "true",
+          "pair": "4",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/12.000"
+        },
+        {
+          "client": "live",
+          "combat": "false",
+          "pair": "5",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "14.000/10.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "1",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "16.000/11.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "2",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "3",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "forever",
+          "combat": "true",
+          "pair": "4",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "forever",
+          "combat": "false",
+          "pair": "5",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "16.000/10.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "1",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/11.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "2",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/11.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "3",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/12.000"
+        },
+        {
+          "client": "classic",
+          "combat": "true",
+          "pair": "4",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "classic",
+          "combat": "false",
+          "pair": "5",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/13.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "1",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "16.000/11.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "2",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "18.000/14.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "3",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "17.000/13.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "true",
+          "pair": "4",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "17.000/13.000"
+        },
+        {
+          "client": "classic_era",
+          "combat": "false",
+          "pair": "5",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "16.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "1",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "17.000/11.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "2",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/11.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "3",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "17.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "true",
+          "pair": "4",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "combat": "false",
+          "pair": "5",
+          "scans": "160/2",
+          "required": "920/920",
+          "optional": "40/40",
+          "ms": "16.000/10.000"
+        }
+      ]
+    },
+    "desktopTimingEightCyclesMs": {
+      "5 cells with fallback": [
+        {
+          "min": 1.0,
+          "median": 2.0,
+          "max": 3.0
+        },
+        {
+          "min": 1.0,
+          "median": 2.0,
+          "max": 2.0
+        }
+      ],
+      "5 cells with native range": [
+        {
+          "min": 1.0,
+          "median": 2.0,
+          "max": 3.0
+        },
+        {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 2.0
+        }
+      ],
+      "40 cells with fallback": [
+        {
+          "min": 12.0,
+          "median": 13.0,
+          "max": 17.0
+        },
+        {
+          "min": 11.0,
+          "median": 12.0,
+          "max": 16.0
+        }
+      ],
+      "40 cells with native range": [
+        {
+          "min": 14.0,
+          "median": 15.0,
+          "max": 18.0
+        },
+        {
+          "min": 10.0,
+          "median": 11.0,
+          "max": 14.0
+        }
+      ]
+    },
+    "focusedRaidRuntimeRegression": "Raid healer runtime: 7013 checks; complete Compat/Unit modules; three rejected negative controls",
+    "guards": "Pool search counts cover the compact frame pool. Route registration counts cover all required unit events and the optional range event separately. Each desktop timing sample uses identical callbacks with counting disabled. This does not establish native latency.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\compare.lua": "f535f0237e47c1bf51d5668bdc07177983e8a3b1e15158ada041afc3d61fa3ac",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\matched.txt": "44bd9a7a98a3ee06f12830a31f6bb53800fcb6c379fe0e5103d22edd6dc8df19",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\raid-runtime.txt": "c02d33741bb34dd5f927315f2c637ac4bf15ab2ca45d21ce2e6889231b8f6b67",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\control.lua": "682815eda37fd82fff6fb59518e99eedc68316df2cfda074c495a7b939c2083f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\unbatched-discovery.lua": "0394c082cc32af89192c63f7f51c39087a8e3a2e9ae6416a99c73e9f8b615b48",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\duplicate-required-routes.lua": "c63631fce44c18a3dae4e05d0813d57fe02377c786bf113fc8a742563308d8d3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\controls.txt": "aa097e981d784aaad36f457ac74cb50c57950142cca92bdd1d397da286ed21a8"
+    }
+  },
+  "preservation": [
+    "Native bind and reveal keep their current immediate paint and event routing. A visible fallback owner starts the existing ticker immediately.",
+    "When a border wake is pending, inactive lifecycle calls share one discovery of the final frame pools. The last fallback retires during that dispatch.",
+    "Failed range registration can retry independently. Required registration failures keep their original full retry. Periodic range paint uses the current owner and fixed cadence, and explicit discovery still runs immediately."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected unbatched-discovery.lua by native range reveals defer the pool scan and create no ticker",
+      "Rejected duplicate-required-routes.lua by a range-only failure preserves the other unit routes"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-range-burst-before-20261119-220139\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_GearSetShield.lua",
+      "Respec/FluxRespec_GearSetLock.lua",
+      "tests/visible_baganator_work.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

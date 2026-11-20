@@ -88,14 +88,31 @@ local CHEAP_REASON = {
 	page = true,
 	slot = true,
 }
+local DRAG_REASON = {
+	cursor = true,
+	drag = true,
+	drag_end = true,
+	showgrid = true,
+	hidegrid = true,
+}
 
 local pendingStructural = false
 local pendingFullPaint = false
+local pendingDragPaint = false
+local pendingNonHover = false
+local pendingSlotLayout = false
 local layoutQueued = false
 local stockSweepQueued = false
 
 local function RunQueuedLayout()
 	layoutQueued = false
+	local layout = Bars.Layout
+	if pendingDragPaint and not pendingNonHover and layout and layout.HasPendingDragPose
+		and not layout.HasPendingDragPose() then
+		-- The cursor already returned to the applied pose in this frame.
+		pendingDragPaint = false
+		return
+	end
 	Bars.ApplyLayout()
 end
 
@@ -103,9 +120,17 @@ function Bars.RequestLayout(reason)
 	if not Bars.started then
 		return
 	end
+	if reason ~= "drag" then pendingNonHover = true end
+	if reason == "slot" then pendingSlotLayout = true end
 	if not CHEAP_REASON[reason or "smart"] then
-		pendingStructural = true
-		pendingFullPaint = true
+		-- Dragging can reveal placeholders that need a full paint. Native
+		-- grid events suppress stock buttons through their lightweight pass.
+		if DRAG_REASON[reason] then
+			pendingDragPaint = true
+		else
+			pendingStructural = true
+			pendingFullPaint = true
+		end
 	end
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
@@ -220,8 +245,14 @@ function Bars.ApplyLayout()
 	end
 	local structural = pendingStructural
 	local fullPaint = pendingFullPaint
+	local dragPaint = pendingDragPaint
+	local hoverOnly = not pendingNonHover
+	local slotLayout = pendingSlotLayout and not structural
 	pendingStructural = false
 	pendingFullPaint = false
+	pendingDragPaint = false
+	pendingNonHover = false
+	pendingSlotLayout = false
 
 	local Perf = Flux.Perf
 	if Flux.Startup then Flux.Startup.Count("action_layout_passes") end
@@ -232,22 +263,28 @@ function Bars.ApplyLayout()
 	if structural and Bars.Blizzard and Bars.Blizzard.Reassert then
 		Bars.Blizzard.Reassert()
 	end
+	local moved = true
+	local layoutFaces
+	local dragHover = hoverOnly and dragPaint
 	if Bars.Layout and Bars.Layout.Apply then
-		Bars.Layout.Apply()
+		moved, layoutFaces = Bars.Layout.Apply(dragHover, slotLayout)
 	elseif Bars.Strip and Bars.Strip.Layout then
 		Bars.Strip.Layout()
 	end
 	if Bars.Hosts and Bars.Hosts.RefreshKeys then
-		if Bars.Hosts.RefreshKeys() == false then return false end
+		if Bars.Hosts.RefreshKeys(dragHover) == false then return false end
 	elseif Bars.Clicks and Bars.Clicks.RefreshKeys then
-		if Bars.Clicks.RefreshKeys() == false then return false end
+		if Bars.Clicks.RefreshKeys(dragHover) == false then return false end
 	end
 	-- Paging does not full-paint: the secure driver rewrites "action", which
 	-- fires OnActionAttribute and marks exactly the hosts whose slot moved.
 	-- Those dirty hosts, plus whichever lanes the event asked for, run in this
 	-- same scheduler flush.
-	if fullPaint and Bars.Paint and Bars.Paint.Flush then
-		Bars.Paint.Flush(nil)
+	-- Settle both hover edges before painting. A held-cursor crossing only
+	-- repaints changed faces and pending slot paints. Other drag events can
+	-- change button contents without moving their frames.
+	if (fullPaint or dragPaint and moved) and Bars.Paint and Bars.Paint.Flush then
+		Bars.Paint.Flush(nil, hoverOnly and not fullPaint and layoutFaces or nil)
 	end
 	if Perf then
 		Perf.Stop("bars.layout")
@@ -483,9 +520,240 @@ local function DescribePaging()
 	end
 end
 
+-- Explicit read-only recovery probe: compare the documented main row with the
+-- native click calculation and effective key route. Never place/clear actions.
+local function AuditValue(value)
+	local S = Flux.Secrets
+	if (issecretvalue and issecretvalue(value))
+		or (S and S.CanAccessValue and not S.CanAccessValue(value)) then return "<private>" end
+	return tostring(value)
+end
+
+local function AuditRead(fn, ...)
+	if type(fn) ~= "function" then return nil end
+	local ok, a, b = pcall(fn, ...)
+	if ok then return a, b end
+	return "<unavailable>"
+end
+
+local function AuditNumber(value)
+	if AuditValue(value) == "<private>" then return nil end
+	return type(value) == "number" and value or nil
+end
+
+-- Explicit native evidence for a reported modifier route. This never clicks,
+-- casts, changes attributes or stores private macro bodies in SavedVariables.
+local TRACE_PREFIXES = { "", "shift-", "ctrl-", "ctrl-shift-", "alt-", "alt-shift-", "alt-ctrl-", "alt-ctrl-shift-" }
+local function TraceBody(body)
+	if AuditValue(body) == "<private>" then return "<private>" end
+	if type(body) ~= "string" then return AuditValue(body) end
+	return body:gsub("[\r\n]+", " | "):sub(1, 220)
+end
+
+function Bars.TraceColumn(column)
+	if InLockdown() then Flux.Print("Action route trace: leave combat first."); return false end
+	column = tonumber(column)
+	local host = column and Bars.GetMain(column)
+	if not host or not host.widget then Flux.Print("Action route trace: choose a column from 1 to 19."); return false end
+	local w, State, SM = host.widget, Bars.State, Bars.SlotMath
+	local proxy = _G["FluxActionStripKey" .. column]
+	local key = host.bindingCommand and AuditRead(GetBindingKey, host.bindingCommand)
+	local page = State and AuditNumber(AuditRead(State.GetCurrentPage))
+	local opts = { promoted = AuditNumber(AuditRead(w.GetAttribute, w, "flux-promoted")) or 0,
+		hasSec = AuditNumber(AuditRead(w.GetAttribute, w, "flux-has-sec")) == 1,
+		hasTert = AuditNumber(AuditRead(w.GetAttribute, w, "flux-has-tert")) == 1 }
+	Flux.Print("Action route trace r2: column=" .. column .. " page=" .. AuditValue(page)
+		.. " key=" .. AuditValue(key) .. " held=" .. AuditValue(AuditRead(SecureButton_GetModifierPrefix, proxy or w)))
+	print("  live=" .. AuditValue(host.slot) .. " main=" .. AuditValue(AuditRead(w.GetAttribute, w, "action"))
+		.. " mouse=" .. AuditValue(AuditRead(w.CalculateAction, w, "LeftButton"))
+		.. " keyClick=" .. AuditValue(proxy and AuditRead(proxy.CalculateAction, proxy, "LeftButton")))
+	for _, prefix in ipairs(TRACE_PREFIXES) do
+		local swap = prefix:find("shift-", 1, true) and 1 or (prefix:find("ctrl-", 1, true) and 2 or 0)
+		local expected = page and SM and SM.Resolve(column, "main", page, swap, opts)
+		local chord = type(key) == "string" and prefix:upper() .. key or nil
+		print("  " .. (prefix == "" and "nomod" or prefix) .. " expected=" .. AuditValue(expected)
+			.. " binding=" .. AuditValue(chord and AuditRead(GetBindingAction, chord, true)))
+		for i = 1, (proxy and 2 or 1) do
+			local frame = i == 1 and w or proxy
+			local typ = AuditRead(SecureButton_GetModifiedAttribute, frame, "type", "LeftButton", prefix, "1")
+			local slot = AuditRead(SecureButton_GetModifiedAttribute, frame, "action", "LeftButton", prefix, "1")
+			local delegate = AuditRead(SecureButton_GetModifiedAttribute, frame, "clickbutton", "LeftButton", prefix, "1")
+			local text = AuditRead(SecureButton_GetModifiedAttribute, frame, "macrotext", "LeftButton", prefix, "1")
+			local delegateName
+			if AuditValue(delegate) ~= "<private>" and (type(delegate) == "table" or type(delegate) == "userdata") then
+				delegateName = AuditRead(delegate.GetName, delegate)
+				if AuditValue(typ) == "click" then text = AuditRead(delegate.GetAttribute, delegate, "macrotext") end
+			end
+			print("    " .. (i == 1 and "host" or "key") .. " type=" .. AuditValue(typ) .. " action=" .. AuditValue(slot)
+				.. " delegate=" .. AuditValue(delegateName) .. " body=" .. TraceBody(text))
+		end
+	end
+	return true
+end
+
+-- Opt-in observation through the existing push-effect PreClick hooks. The
+-- callback disappears after one input (or timeout); no new frame hook/poll.
+function Bars.TraceNextKey(column)
+	if InLockdown() then Flux.Print("Action input trace: leave combat first."); return false end
+	if not (C_Timer and C_Timer.After) then Flux.Print("Action input trace: timer unavailable."); return false end
+	column = tonumber(column)
+	local host = column and Bars.GetMain(column)
+	if not host or not host.widget then Flux.Print("Action input trace: choose a column from 1 to 19."); return false end
+	local capture
+	capture = function(actualColumn, frame, button, down)
+		if actualColumn ~= column then return end
+		Bars.TraceKeyClick = nil
+		local prefix = AuditRead(SecureButton_GetModifierPrefix, frame)
+		local mapped = button == "KeyBind" and "LeftButton" or button
+		local typ = AuditRead(SecureButton_GetModifiedAttribute, frame, "type", mapped, prefix)
+		local slot = AuditRead(SecureButton_GetModifiedAttribute, frame, "action", mapped, prefix)
+		local macro = AuditRead(SecureButton_GetModifiedAttribute, frame, "macro", mapped, prefix)
+		local text = AuditRead(SecureButton_GetModifiedAttribute, frame, "macrotext", mapped, prefix)
+		local release = AuditRead(SecureButton_GetModifiedAttribute, frame, "typerelease", mapped, prefix)
+		local unit = AuditRead(SecureButton_GetModifiedAttribute, frame, "unit", mapped, prefix)
+		local parsedMods = AuditRead(SecureCmdOptionParse, "[mod:ctrl,mod:shift]both;[mod:shift]shift;[mod:ctrl]ctrl;nomod")
+		Flux.Print("Action input r3: column=" .. column .. " frame=" .. AuditValue(AuditRead(frame.GetName, frame))
+			.. " button=" .. AuditValue(button) .. " down=" .. AuditValue(down) .. " held=" .. AuditValue(prefix))
+		print("  shown=" .. AuditValue(host.slot) .. " type=" .. AuditValue(typ) .. " action=" .. AuditValue(slot)
+			.. " macro=" .. AuditValue(macro) .. " release=" .. AuditValue(release) .. " unit=" .. AuditValue(unit)
+			.. " keyDown=" .. AuditValue(AuditRead(frame.GetAttribute, frame, "useOnKeyDown"))
+			.. " hold=" .. AuditValue(AuditRead(frame.GetAttribute, frame, "pressAndHoldAction"))
+			.. " macroMods=" .. AuditValue(parsedMods)
+			.. " rawShift=" .. AuditValue(AuditRead(IsShiftKeyDown)) .. " rawCtrl=" .. AuditValue(AuditRead(IsControlKeyDown))
+			.. " body=" .. TraceBody(text))
+	end
+	Bars.TraceKeyClick = capture
+	if C_Timer and C_Timer.After then
+		C_Timer.After(12, function()
+			if Bars.TraceKeyClick == capture then
+				Bars.TraceKeyClick = nil
+				Flux.Print("Action input trace expired: no input observed on this column.")
+			end
+		end)
+	end
+	Flux.Print("Action input trace armed for column " .. column .. "; press its key once with the reported modifier.")
+	return true
+end
+
+function Bars.AuditMainRow()
+	if InLockdown() then Flux.Print("Main-row audit: leave combat first."); return end
+	if (IsShiftKeyDown and IsShiftKeyDown()) or (IsControlKeyDown and IsControlKeyDown()) then
+		Flux.Print("Main-row audit: release Shift and Ctrl first."); return
+	end
+	local State, SM, A = Bars.State, Bars.SlotMath, Flux.Action
+	local page = State and State.GetCurrentPage and State.GetCurrentPage() or 1
+	page = AuditNumber(page)
+	if not page then Flux.Print("Main-row audit: page is unavailable."); return end
+	Flux.Print("Main-row audit: page=" .. AuditValue(page) .. "; columns 13-19 stay on their fixed slots.")
+	for column = 1, Bars.NUM_COLUMNS do
+		local host = Bars.GetMain(column)
+		local w = host and host.widget
+		if not w then
+			print(string.format("  %02d missing", column))
+		else
+			local opts = { promoted = AuditNumber(w:GetAttribute("flux-promoted")) or 0,
+				hasSec = AuditNumber(w:GetAttribute("flux-has-sec")) == 1,
+				hasTert = AuditNumber(w:GetAttribute("flux-has-tert")) == 1 }
+			local expected = SM and SM.Resolve(column, "main", page, 0, opts)
+			local click = AuditRead(w.CalculateAction, w, "LeftButton")
+			local proxy = _G["FluxActionStripKey" .. column]
+			local keySlot = proxy and AuditRead(proxy.CalculateAction, proxy, "LeftButton")
+				or AuditRead(w.CalculateAction, w, "KeyBind")
+			local key = host.bindingCommand and AuditRead(GetBindingKey, host.bindingCommand)
+			local route = key and AuditRead(GetBindingAction, key, true)
+			local kind, id = AuditRead(A and A.GetInfo or GetActionInfo, expected)
+			local name
+			if AuditValue(kind) == "spell" and AuditNumber(id) and Flux.Spell then
+				name = AuditRead(Flux.Spell.GetName, id)
+			end
+			local icon = host.WIcon or w.icon or w.Icon
+			local shown = icon and AuditRead(icon.GetTexture, icon)
+			local native = AuditRead(A and A.GetTexture or GetActionTexture, expected)
+			print(string.format("  %02d expected=%s host=%s attr=%s click=%s keyClick=%s key=%s route=%s action=%s/%s %s icon=%s/%s",
+				column, AuditValue(expected), AuditValue(host.slot), AuditValue(w:GetAttribute("action")),
+				AuditValue(click), AuditValue(keySlot), AuditValue(key), AuditValue(route), AuditValue(kind),
+				AuditValue(id), name and AuditValue(name) or "", AuditValue(shown), AuditValue(native)))
+		end
+	end
+end
+
+-- Explicit OOC recovery of our widgets and override routes. Native action-slot
+-- contents and saved profiles remain owned by their existing services.
+local RECOVERY_MODIFIERS = { "", "shift-", "ctrl-" }
+function Bars.RestoreMainRow()
+	if InLockdown() then Flux.Print("Main-row restore: leave combat first."); return false end
+	if (IsShiftKeyDown and IsShiftKeyDown()) or (IsControlKeyDown and IsControlKeyDown()) then
+		Flux.Print("Main-row restore: release Shift and Ctrl first."); return false
+	end
+	local State, Layout, Clicks = Bars.State, Bars.Layout, Bars.Clicks
+	if not Bars.started or not State or not State.Attach or not State.HeaderFor or not State.ForceApply or not State.IndexLiveSlots
+		or not Layout or not Layout.InvalidateMappings or not Layout.ApplyMappings
+		or not Clicks or not Clicks.InvalidateKeys or not Clicks.RefreshKeys then
+		Flux.Print("Main-row restore: action-bar initialization is incomplete."); return false
+	end
+	-- Check the complete row before modifying any widget.
+	for column = 1, Bars.NUM_COLUMNS do
+		local host = Bars.GetMain(column)
+		if not host or not host.widget or not State.HeaderFor(column, "main") then
+			Flux.Print("Main-row restore: a main button or header is missing."); return false
+		end
+	end
+	for column = 1, Bars.NUM_COLUMNS do
+		local host = Bars.GetMain(column)
+		host.column, host.row = column, "main"
+		State.Attach(State.HeaderFor(column, "main"), host.widget, column, "main")
+		local proxy = _G["FluxActionStripKey" .. column]
+		-- A legacy mouse-specific value outranks our documented action* set.
+		-- Hidden key proxies own no slots: they inherit them from this widget.
+		for _, prefix in ipairs(RECOVERY_MODIFIERS) do
+			host.widget:SetAttribute(prefix .. "action1", nil)
+			if proxy then
+				proxy:SetAttribute(prefix .. "action", nil)
+				proxy:SetAttribute(prefix .. "action*", nil)
+				proxy:SetAttribute(prefix .. "action1", nil)
+			end
+		end
+		host.widget:SetAttribute("*action1", nil)
+		if proxy then
+			proxy:SetID(0)
+			proxy:SetParent(host.widget)
+			proxy:SetAttribute("*action1", nil)
+			proxy:SetAttribute("useparent-action", true)
+		end
+	end
+	-- Attach resets occupancy flags; discard the mapping cache before rebuilding
+	-- them so promotion and populated minirows retain their real contents.
+	Layout.InvalidateMappings()
+	Layout.ApplyMappings()
+	Clicks.InvalidateKeys()
+	if Clicks.RefreshKeys() == false or State.ForceApply() == false then
+		Flux.Print("Main-row restore: routing refresh is incomplete."); return false
+	end
+	-- Secure ForceApply can leave action unchanged, so OnAttributeChanged need
+	-- not repair a stale host.slot. Reindex before paint/tooltips use that cache.
+	State.IndexLiveSlots()
+	local Binding = _G.FluxBinding
+	if Binding and Binding.NotifyBarReady then Binding.NotifyBarReady("main-row-restore") end
+	local Paint = Bars.Paint
+	if Paint then
+		if Paint.ClearCache then
+			for column = 1, Bars.NUM_COLUMNS do Paint.ClearCache(Bars.GetMain(column)) end
+		end
+		if Paint.Flush then Paint.Flush(nil) end
+	end
+	Flux.Print("Main-row routing rebuilt for buttons 1-19; placed actions preserved.")
+	return true
+end
+
 SLASH_FLUXBARS1 = "/fluxbars"
 SlashCmdList["FLUXBARS"] = function(msg)
 	msg = msg and msg:match("^%s*(.-)%s*$") or ""
+	if msg == "audit" then Bars.AuditMainRow(); return end
+	if msg == "restore" then Bars.RestoreMainRow(); return end
+	local traceColumn = msg:match("^trace%s+(%d+)$")
+	if traceColumn then Bars.TraceColumn(traceColumn); return end
+	local inputColumn = msg:match("^input%s+(%d+)$")
+	if inputColumn then Bars.TraceNextKey(inputColumn); return end
 	if msg == "mo" or msg == "mouseover" then
 		local MC = Flux.MouseoverCast or _G.FluxMouseoverCast
 		if MC and MC.DebugDump then

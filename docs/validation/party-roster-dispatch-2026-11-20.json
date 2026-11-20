@@ -1,0 +1,515 @@
+{
+  "changeId": "PARTY-ROSTER-DISPATCH-20261120",
+  "capturedAtUTC": "2026-11-20T04:06:36.285610+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRaw": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+      "afterRaw": "1586c6444a85153d5a0e8a034cef697e30979dc5314951bd544039fd8cb06d95",
+      "afterNormalized": "1586c6444a85153d5a0e8a034cef697e30979dc5314951bd544039fd8cb06d95"
+    },
+    "RaidFrame/FluxRaidFrame.lua": {
+      "beforeRaw": "f87c3afc4f1873eebb89a243cebb887ed98b333cd10cfe7752b8efec7361fb4c",
+      "afterRaw": "7c90b47027774a13b5a386275ee94880b9ac9120cf165204e8c481e124293de0",
+      "afterNormalized": "7c90b47027774a13b5a386275ee94880b9ac9120cf165204e8c481e124293de0"
+    },
+    "tests/group_roster_performance.lua": {
+      "beforeRaw": "129a23d292df517ec11302f8a7eec8e4a4022cb9d7b11c9a0c6bc36ee13dbc29",
+      "afterRaw": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf",
+      "afterNormalized": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf"
+    },
+    "tests/raid_party_frames.lua": {
+      "beforeRaw": "9d32b7fb54c4748e6724621ccf249160745d0caf21105dadddf9b230fcdea9ae",
+      "afterRaw": "077169e3cfe5771032d2d61fb10ecc3aa1fcd16bf655d3bff8735986c6fc665a",
+      "afterNormalized": "077169e3cfe5771032d2d61fb10ecc3aa1fcd16bf655d3bff8735986c6fc665a"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-event-before-20261120T045633103\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Twenty modeled GROUP_ROSTER_UPDATE deliveries with four member and four pet slots. Counts include the existing raid event listener and the archived party listeners. No target slots in this count.",
+    "before": {
+      "layoutRequests": 20,
+      "eventVisibleReads": 160,
+      "eventCalls": 180
+    },
+    "after": {
+      "eventCalls": 20,
+      "layoutRequests": 20,
+      "eventVisibleReads": 0
+    },
+    "equalDeferredPaint": {
+      "timers": 1,
+      "castResets": 4,
+      "paints": 8,
+      "castRefreshes": 4,
+      "rangeChecks": 1
+    },
+    "originalSources": {
+      "baseline\\Binding\\Input\\FluxMouseoverKeybind.lua": "422efe18e7a3b68f1da63072a453c53e91e74fcec7ac05a8b1b37a4c9f366431",
+      "baseline\\RaidFrame\\FluxRaidCompat.lua": "98478e559aa3e8ac4176d52d77fc1deeb43b899ec9b248338775a91c8f4e386c",
+      "baseline\\RaidFrame\\FluxRaidFrame.lua": "f87c3afc4f1873eebb89a243cebb887ed98b333cd10cfe7752b8efec7361fb4c",
+      "baseline\\RaidFrame\\FluxRaidHealerExtras.lua": "c1233410d565e087a49f3e0830173a93cd11a24b690b05ece0daee33cbbaee8e",
+      "baseline\\RaidFrame\\FluxRaidLayout.lua": "7da01eea9bfa315020ae1249a0ff54cf9ca5a7c89b16310b72246f74597fd21e",
+      "baseline\\RaidFrame\\FluxRaidUnit.lua": "08fb9814da74b227bd7d0b4749da15f3c6aca91345e48bc397a1df5de8a8f1ab",
+      "baseline\\UnitFrames\\FluxUnitFrames_Party.lua": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4"
+    },
+    "artifacts": {
+      "baseline-work.txt": "c0244adb12e88c11aff72fca31c5f3a429a05872c9b3f76b327649370d7fda0e",
+      "final-work.txt": "18db5a65353f478a04f29e76bac9e48d32c8e462f0eedc48d942f62d558f4fc9"
+    }
+  },
+  "parity": "The shared event uses the same pending paint pass as native visibility changes. Visible target slots reset old health-loss identity once before repaint. A hidden slot does no roster paint. The native header and binding paths remain authoritative. Standalone leadership, loot and ready check behavior is covered.",
+  "borderGeometryAttribution": {
+    "scope": "Actual non-rectangular junction mesh emitter across twelve warmed transitions. Shared box means the same position and size on one operation canvas within one draw. Counts are descriptive. No shared-anchor implementation or measured latency gain is implied.",
+    "columns": [
+      "fields",
+      "distinct boxes",
+      "field anchor changes",
+      "boxes requiring an anchor change",
+      "field size changes",
+      "boxes requiring a size change"
+    ],
+    "rows": {
+      "strip-1": [
+        990,
+        276,
+        258,
+        126,
+        258,
+        126
+      ],
+      "roster-1": [
+        4104,
+        498,
+        3030,
+        378,
+        1554,
+        210
+      ],
+      "strip-2": [
+        1098,
+        258,
+        324,
+        90,
+        324,
+        90
+      ],
+      "roster-2": [
+        7932,
+        618,
+        5172,
+        414,
+        2976,
+        258
+      ]
+    },
+    "artifacts": {
+      "box-geometry-count.lua": "326748a4dcaf5d503995151b7dba9865ed4a57d6b68de9c75a2ea87061e91c6e",
+      "measure-box-geometry.lua": "7be7162a5c81632641f7284ca86b0712aead027a650d0fb12212ec45c70fb012",
+      "box-geometry-samples.txt": "1c1860a1ccdef2123950e8f3761e3075f2f144688255228ce8746fdd54837bfd"
+    }
+  },
+  "actionBorderTrials": [
+    {
+      "decision": "Allow exact rectangular final tile clips from triangles to use the existing quad shape. The paired replay needed more resident widgets, with mixed clocks. External trial only.",
+      "columns": [
+        "baseline ms",
+        "candidate ms",
+        "baseline KiB",
+        "candidate KiB"
+      ],
+      "samples": {
+        "strip-1": [
+          [
+            50.0,
+            50.0,
+            5538.1,
+            5538.1
+          ],
+          [
+            57.0,
+            51.0,
+            5535.4,
+            5535.4
+          ],
+          [
+            60.0,
+            56.0,
+            5535.6,
+            5535.6
+          ],
+          [
+            51.0,
+            52.0,
+            5535.1,
+            5535.1
+          ],
+          [
+            52.0,
+            52.0,
+            5535.1,
+            5535.1
+          ]
+        ],
+        "roster-1": [
+          [
+            67.0,
+            68.0,
+            7896.1,
+            7923.8
+          ],
+          [
+            75.0,
+            76.0,
+            7896.2,
+            7923.9
+          ],
+          [
+            75.0,
+            69.0,
+            7896.4,
+            7924.1
+          ],
+          [
+            71.0,
+            72.0,
+            7895.9,
+            7923.6
+          ],
+          [
+            69.0,
+            69.0,
+            7895.9,
+            7923.6
+          ]
+        ],
+        "strip-2": [
+          [
+            125.0,
+            117.0,
+            5547.7,
+            5547.7
+          ],
+          [
+            108.0,
+            107.0,
+            5547.9,
+            5547.9
+          ],
+          [
+            95.0,
+            98.0,
+            5548.2,
+            5548.1
+          ],
+          [
+            98.0,
+            103.0,
+            5547.7,
+            5547.6
+          ],
+          [
+            98.0,
+            105.0,
+            5547.7,
+            5547.6
+          ]
+        ],
+        "roster-2": [
+          [
+            187.0,
+            184.0,
+            10084.4,
+            10081.2
+          ],
+          [
+            176.0,
+            171.0,
+            10084.5,
+            10081.3
+          ],
+          [
+            179.0,
+            175.0,
+            10084.7,
+            10081.5
+          ],
+          [
+            180.0,
+            224.0,
+            10084.2,
+            10081.0
+          ],
+          [
+            190.0,
+            231.0,
+            10084.2,
+            10081.0
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          52.0,
+          52.0,
+          5535.4,
+          5535.4
+        ],
+        "roster-1": [
+          71.0,
+          69.0,
+          7896.1,
+          7923.8
+        ],
+        "strip-2": [
+          98.0,
+          105.0,
+          5547.7,
+          5547.7
+        ],
+        "roster-2": [
+          180.0,
+          184.0,
+          10084.4,
+          10081.2
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1282
+        ],
+        "roster-1": [
+          1675,
+          1683
+        ],
+        "strip-2": [
+          1341,
+          1344
+        ],
+        "roster-2": [
+          2203,
+          2206
+        ]
+      },
+      "artifacts": {
+        "baseline.lua": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+        "candidate.lua": "a4723a4da8fcb07e0e20973f431f6559b4222fada3c48fa9f5360b7960510ecf",
+        "bench.lua": "aca592991989c15876c1fdd817a75f06de2dd2b56b0ee7291d4610a31ff8dc32",
+        "samples.txt": "26d7a8915916150a900fb415f6915fcd131691f7a810b291c33cc824a4bc2d35"
+      }
+    },
+    {
+      "decision": "Reuse the verified canvas chosen by the prepared draw descriptor. The type 1 strip replay was slower and other timings were mixed. External trial only.",
+      "columns": [
+        "baseline ms",
+        "candidate ms",
+        "baseline KiB",
+        "candidate KiB"
+      ],
+      "samples": {
+        "strip-1": [
+          [
+            53.0,
+            59.0,
+            5538.2,
+            5538.3
+          ],
+          [
+            48.0,
+            52.0,
+            5535.4,
+            5535.5
+          ],
+          [
+            54.0,
+            55.0,
+            5535.7,
+            5535.8
+          ],
+          [
+            52.0,
+            59.0,
+            5535.2,
+            5535.3
+          ],
+          [
+            53.0,
+            60.0,
+            5535.2,
+            5535.3
+          ]
+        ],
+        "roster-1": [
+          [
+            74.0,
+            67.0,
+            8020.4,
+            8022.6
+          ],
+          [
+            83.0,
+            72.0,
+            8020.4,
+            8022.7
+          ],
+          [
+            75.0,
+            77.0,
+            8020.7,
+            8022.9
+          ],
+          [
+            73.0,
+            68.0,
+            8020.2,
+            8022.4
+          ],
+          [
+            69.0,
+            71.0,
+            8020.2,
+            8022.4
+          ]
+        ],
+        "strip-2": [
+          [
+            119.0,
+            106.0,
+            5544.7,
+            5544.5
+          ],
+          [
+            161.0,
+            109.0,
+            5544.9,
+            5544.7
+          ],
+          [
+            105.0,
+            116.0,
+            5545.1,
+            5545.0
+          ],
+          [
+            122.0,
+            108.0,
+            5544.6,
+            5544.5
+          ],
+          [
+            105.0,
+            119.0,
+            5544.6,
+            5544.5
+          ]
+        ],
+        "roster-2": [
+          [
+            196.0,
+            192.0,
+            10316.4,
+            10317.8
+          ],
+          [
+            176.0,
+            172.0,
+            10316.5,
+            10317.9
+          ],
+          [
+            203.0,
+            195.0,
+            10316.7,
+            10318.1
+          ],
+          [
+            119.0,
+            126.0,
+            10316.2,
+            10317.6
+          ],
+          [
+            144.0,
+            183.0,
+            10316.2,
+            10317.6
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          53.0,
+          59.0,
+          5535.4,
+          5535.5
+        ],
+        "roster-1": [
+          74.0,
+          71.0,
+          8020.4,
+          8022.6
+        ],
+        "strip-2": [
+          119.0,
+          109.0,
+          5544.7,
+          5544.5
+        ],
+        "roster-2": [
+          176.0,
+          183.0,
+          10316.4,
+          10317.8
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      },
+      "artifacts": {
+        "baseline.lua": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+        "candidate.lua": "20f3c370431e2be20ae4ffbd2b42eadd20857d7abcae43cf7202338ba5a0a45a",
+        "bench.lua": "aca592991989c15876c1fdd817a75f06de2dd2b56b0ee7291d4610a31ff8dc32",
+        "samples.txt": "5b23a4362dafdf605f9f3bbac0634cec12de9bac9b7a0261ec82e0df1ce445c2"
+      }
+    }
+  ],
+  "verification": {
+    "focusedPassed": 28,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-event-before-20261120T045633103\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-event-before-20261120T045633103\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-event-before-20261120T045633103\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_catalogue_allocation.lua"
+    ]
+  },
+  "nativeAcceptance": "Native party and raid join/leave latency, action-strip reflow and combat taint remain pending."
+}

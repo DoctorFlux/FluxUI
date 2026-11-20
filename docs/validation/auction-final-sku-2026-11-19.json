@@ -1,0 +1,2767 @@
+{
+  "changeId": "LHO-AUCTION-USE-FINAL-SKU-20261119",
+  "file": "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-final-sku-20261119T081945Z",
+    "before": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "after": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false,
+    "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-final-sku-20261119T081945Z\\FluxAuctionRestockData.candidate.lua"
+  },
+  "live": {
+    "client": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": "syndicator",
+    "userSelectedProfile": true,
+    "addonEnableFlagsChangedByThisTurn": false
+  },
+  "sourceEquivalence": "The rejected candidate removed two preliminary A.SetItemUnits calls from GetRows. The public ApplyPotionReplacements callback can read their values before the final update.",
+  "syntax": "Lua 5.1 and 5.4 parsed exact archived and candidate bytes before installing. Whitespace check passed.",
+  "installed": {
+    "_retail_": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "_forever_": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "_classic_": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "_classic_era_": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "_anniversary_": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2"
+  },
+  "r266": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag266-backpack-first-observed-four-addon-profile-20261119",
+      "controllerSHA": "1ed8a579c2d78105fbfaad74e58047f36dc62bee46dbd15e0df4fef3a2d7b5b9",
+      "packetSHA": "674048f91889f1217f6b24031a116b3e5a5d41cc31005d14511844d776977ce7",
+      "packets": 16,
+      "luaSHA": "736ae7c88bf5fe7e74a58e2f968029be2a683e61ebfa481d0d01e33dfd8e2213"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag266_a-submitted.png",
+      "pngSha": "002169ab97b76d2ad7d54dca80c3ce48704cf1266248db6f549965a72aeb2d8b",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag266_a-submitted-capture.json",
+      "metaSha": "61a3306c9cb2e6641bad3e30f8028cbc371afd80828e83db8bcbf1756bab627d",
+      "started": 1795076046.7503095,
+      "time": 1795076048.687262,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 40670406,
+        "idle": 8.078,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "result": {
+      "time": 1795076128.8418276,
+      "pid": 9012,
+      "hwnd": 3541714,
+      "size": [
+        1906,
+        1032
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag266-four-addon-backpack-result.png",
+      "foregroundBefore": 196750,
+      "foregroundAfter": 196750,
+      "foregroundUnchanged": true,
+      "inputSent": false,
+      "sha256": "576b6d41ffd4d36a0368438539a5281ef0aa91d310a01e55e8702b31b4a4851a"
+    },
+    "confirmedAddonCount": 4,
+    "oldCuePresent": false,
+    "firstObservedOpenMs": 37.14,
+    "nearbyPeakFrameGapMs": 55,
+    "frameObserverSeconds": 0.35,
+    "visibleButtons": 55,
+    "bagGenerationStable": true,
+    "returnedToClosed": true,
+    "unchangedAddonSet": true,
+    "errors": 0,
+    "scope": "Single first observed open under the user's four-addon profile. It cannot establish cold parity or frame improvements versus the previous profile.",
+    "resultNote": "Chat scrolled before the delayed screenshot. R267 recovered the exact B266 open line from the local client buffer."
+  },
+  "r267": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag267-four-addon-closed-auction-row-pairs-20261119",
+      "controllerSHA": "e1b1e14a38410df248fdf3f59ecdd0622a83f6d44d23bffe721e81f06a9f29d4",
+      "packetSHA": "4056675f7870442f865801997c117d9a969ce7c9538d5820c201080571902555",
+      "packets": 30,
+      "luaSHA": "69477a69e3fa4068218855f29289faadda236a84d19080ab27d80854f863e31d"
+    },
+    "result": {
+      "time": 1795076294.0919087,
+      "pid": 9012,
+      "hwnd": 3541714,
+      "size": [
+        1906,
+        1032
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag267-four-addon-pairs-result.png",
+      "foregroundBefore": 196750,
+      "foregroundAfter": 196750,
+      "foregroundUnchanged": true,
+      "inputSent": false,
+      "sha256": "7e438bdf36f4e8fd693a9caa85d4aa0fa8cc4219a6172388f961dfa817f8ee0d"
+    },
+    "inputFullyQueued": true,
+    "completedResultConfirmedBySeparateReadOnlyCapture": true,
+    "transportNote": "The foreground became unknown during the screenshot after the full submission. No rerun. A separate capture verified the backpack and all three auction lines.",
+    "windowState": "All commerce closed; no pending receipt, vendor craft plan, queue or active submission.",
+    "beforeMs": [
+      10.222,
+      6.171,
+      7.119
+    ],
+    "afterMs": [
+      4.696,
+      8.267,
+      6.514
+    ],
+    "medianMs": [
+      7.119,
+      6.514
+    ],
+    "orderedFullRowsMatch": [
+      true,
+      true,
+      true
+    ],
+    "visibleRows": 6,
+    "hiddenVendorRows": 1,
+    "potionTargetsAndLimitSourcesMatched": true,
+    "bagGenerationStable": [
+      true,
+      true,
+      true
+    ],
+    "errorsDelta": [
+      0,
+      0,
+      0
+    ],
+    "restoredPublishedReferencesAndLimitSources": true,
+    "scope": "Wall timings varied. One candidate pair was slower. The change is verified to remove calls, and a robust improvement in whole-row timings is unproven."
+  },
+  "historical": {
+    "r260": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag260-warm-backpack-flux-junk-plugin-attribution-20261119",
+        "controllerSHA": "57159b10440e00192aa0a5386650c4b659de6259e37b87041a71b77ba1cd9349",
+        "packetSHA": "0e566eb870f260c0bffc77431f8f54cf1cff7eea5c905b8d6d748363864179de",
+        "packets": 48,
+        "luaSHA": "6673aa219627ec5df2d4ae4bb7756d77a8bdc62e49ceed52f8e71486022bf334"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag260_a-submitted.png",
+        "pngSha": "085d9fa86e04fdb463862bfe8ccd1ef5b0b8565f30430fc7ab98135614b767b3",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag260_a-submitted-capture.json",
+        "metaSha": "ff4a80b53096905f648205268db9caa014ce018489169fbf93c4ea584924e044",
+        "started": 1795074502.5394292,
+        "time": 1795074504.4029243,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 39133796,
+          "idle": 0.469,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795074560.9320939,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag260-warm-flux-junk-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "df7a3d94e14aba7e5ffe1a73d4a5e8310fa4f1fc15712a2a629681913aa04701"
+      },
+      "differentProfile": true,
+      "firstObservedOpenMs": 167.06,
+      "peakFrameGapMs": 195,
+      "slowItemID": 6172,
+      "detailMs": 107.05,
+      "markedIntervalMs": 106.59,
+      "interval": "After IsJunkForDisplay returns and before final callback. SellGuard and FluxJunk call totals include actual registered provider calls.",
+      "sellGuardCallsAndMilliseconds": [
+        94,
+        0.48
+      ],
+      "fluxJunkCallsAndMilliseconds": [
+        94,
+        3.32
+      ]
+    },
+    "excludedNext": "User requested to skip the earlier external-addon hypothesis and reported the four loaded addons. No further tests on the excluded branch."
+  },
+  "jump": {
+    "priorWorkerRetiredPID": 39660,
+    "currentSupervisorPID": 33832,
+    "intervalSeconds": 180,
+    "verifiedCue": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump45_live266_a-submitted.png",
+      "pngSha": "e277dd004ed5cc4850087d70c378b9c76a935bde874873401bf7ef0b17a8a604",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump45_live266_a-submitted-capture.json",
+      "metaSha": "ed752c24f08ffe037ac93ad15d008f5b8b603d4bf3786e7d97b795b8e514a2a9",
+      "started": 1795076561.07797,
+      "time": 1795076563.0935807,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 41164875,
+        "idle": 27.921,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "launchPendingIdleCalibrationAtInitialCheck": true,
+    "oldHelpersStoppedByOwnControls": true,
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r45-20261119",
+    "currentWorkerPID": 36424,
+    "status": "running",
+    "pairsAtCheck": 0,
+    "reason": "PC not known idle15"
+  },
+  "pending": [
+    "Native active auction and Pending, charged or replacement rows under live conditions.",
+    "Matched normal bag event spikes, both EBS grids, bank, vendor, crafting, mail and other provider/client combinations."
+  ],
+  "disposition": "Restored defining source after prior compatibility audit",
+  "candidateInstalledBeforeRestoration": {
+    "_retail_": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "_forever_": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "_classic_": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "_classic_era_": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "_anniversary_": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e"
+  },
+  "restoration": {
+    "priorCandidateSha256": "be6cef54ab9d278a80ea151007297c92a15120e188e5d2627ae7b15fbd45918e",
+    "restoredSha256": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-final-sku-20261119T081945Z",
+    "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "mainHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataRows": 21,
+    "settingsContentsCopied": false,
+    "luaSyntax": [
+      "5.1",
+      "5.4"
+    ],
+    "priorEvidence": "docs/validation/inventory-live-count-flags-2026-11-15.json#initialSetItemUnitsDeletionExperiment",
+    "ordinaryExtension": {
+      "retained": [
+        5,
+        15,
+        3
+      ],
+      "candidate": [
+        null,
+        10,
+        2
+      ],
+      "fields": [
+        "observed capacity",
+        "target",
+        "need"
+      ]
+    },
+    "tierExtension": {
+      "retained": 5,
+      "candidate": "unknown",
+      "finalCanonicalUnitsBoth": 5
+    },
+    "scope": "The two earlier extension cases establish a source compatibility regression. They do not establish that the selected live profile loaded an overriding callback.",
+    "reloadSent": false
+  },
+  "r268": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag268-auction-units-live-source-and-work-count-20261119",
+      "controllerSHA": "57656d75f0a4e681614aab6670063d53f7fc6c2c1408f569de5fbfcf39446aa8",
+      "packetSHA": "8c480b6d26ec88536b6f32b388eaf54f9d8b7b6a7053b67fd301e6510ded6c50",
+      "packets": 12,
+      "luaSHA": "961ddef250dda0e9d8ebadf655fd1359800bcb1df7aac150652b65586cd15441"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag268_a-submitted.png",
+      "pngSha": "616d38278921e4cd92d8502a7345abb098f7a9a65f8a0c66e7ca1fdaf6797f0c",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag268_a-submitted-capture.json",
+      "metaSha": "f19ab00ffb81a0e9e64d008984b13cc4a31d5b9c5034152ac7d284cbeabe173f",
+      "started": 1795077020.5077593,
+      "time": 1795077022.601654,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 41652234,
+        "idle": 0,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "runningSourceLine": 538,
+    "scope": "On Forever 70959 with FluxUI, BugTabs, Baganator and Syndicator, all commerce closed.",
+    "candidateLoaded": false,
+    "setItemUnitsCalls": 14,
+    "positiveChargeReads": 0,
+    "visibleRows": 6,
+    "hiddenVendorRows": 1,
+    "setItemUnitsMilliseconds": 0.685,
+    "stableBagGeneration": true,
+    "errorsDelta": 0,
+    "publishedStateRestored": true
+  },
+  "r270": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag270-four-addon-passive-tooltip-unique-reads-20261119",
+      "controllerSHA": "509cfbdb3aeb792587d467333c658ab4cff43d12a19504c300033790c5c51ec0",
+      "packetSHA": "28743cd64ad92b5b9c8fc692d9f8e4127b316251223869e3ec60d5b87f553266",
+      "packets": 14,
+      "luaSHA": "bbaf63f65065c6a8728fe3e3b0295170cdf6c000348770e73f6279aa8feb22f9"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag270_a-submitted.png",
+      "pngSha": "9e9345b59260a9122fc4f58c4443ca50e747d4245be01acdb25815e93af85544",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag270_a-submitted-capture.json",
+      "metaSha": "76830f70c8401115f68682958d2b1e42ec0c22a08e539b05189a8767f1f3c642",
+      "started": 1795078218.5567505,
+      "time": 1795078220.929437,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 42849734,
+        "idle": 0.547,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "resultPng": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag270-current-passive-tooltip-result.png",
+    "resultSha256": "a3c5c91e808fc238110fd6a87e410b6ba71d8306962c019faa1d5f1cda60175d",
+    "seconds": 5,
+    "passes": 12,
+    "tooltipCalls": 180,
+    "repeatedSameItemAndLinkInPass": 72,
+    "repeatedWithDifferentText": 0,
+    "sameItemDifferentLink": 0,
+    "passTotalMs": 38.98,
+    "passPeakMs": 3.744,
+    "tooltipTotalMs": 26.765,
+    "nearbyPeakFrameGapMs": 36.0,
+    "stableBagGeneration": true,
+    "errorsDelta": 0,
+    "ownersRestored": true,
+    "scope": "The GetTooltipText wrapper invalidated Persist.EligibilityOwnersMatch. These measurements describe the instrumented compatibility fallback only.",
+    "additionalReview": "R274 attributed the 24 repeats across four natural passes to the saved-reference fallback. Both R270 and R274 replaced GetTooltipText, which is pinned by Persist.EligibilityOwnersMatch. That change disables existing same-pass reuse and accounts for the repeated checks. R276 kept the tooltip owner intact and observed zero scans in 5.012 seconds with the auction browser open. Preserve the guarded reuse. A normal-path sample with active classification remains needed."
+  },
+  "nextAttempts": {
+    "bag269": "Idle guard stopped before input. No item moved.",
+    "tooltip271": "Input activity stopped source reservation before script input. Lease released.",
+    "tooltip272": "Auction window open during preflight. Released before input.",
+    "tooltip275": "Foreground mode changed after the first staging packet. The timed body was never submitted. Staging expires on its own.",
+    "auction278": "Idle check stopped before chat input. Native Auction House Restock tab timing and active Pending remain open."
+  },
+  "r273": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag273-four-addon-passive-tooltip-real-callers-20261119",
+      "controllerSHA": "9cf7c4cf7e809782caa7d9c6cb5ecc7b73a24660d6fb9a9d0ec263d3515aeb6c",
+      "packetSHA": "0eeb452e344c5b541f13f81aa0d5f2c5387ee1759122b49e2d5211b06c835758",
+      "packets": 11,
+      "luaSHA": "f130eb7c1f220a7757f44b63820c6d24093d28af49629680c40ba180b741f084"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag273_a-submitted.png",
+      "pngSha": "3b191c56b5d727ef78f781e83fe7f660a2461a158cf6f2cf9bcc90fea0f89e4e",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag273_a-submitted-capture.json",
+      "metaSha": "17bd7440ecffc9852fe5787ee1a8985bc2b22c076f1bda54898e13335c385f53",
+      "started": 1795078463.9645913,
+      "time": 1795078465.7918646,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 43094921,
+        "idle": 0.766,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "passes": 0,
+    "ownersRestored": true
+  },
+  "r274": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag274-four-addon-consumable-live-paths-20261119",
+      "controllerSHA": "9fe4372f30fb695c19c5fc1107090db7a9656da3062a712eb80e4d1137287862",
+      "packetSHA": "8917f71d60d4af160a3cd8d2fc03f36ea572a43a06f6050d24a1ea861203b194",
+      "packets": 11,
+      "luaSHA": "d22413fa8545cc24199a95f93d309765edc55d78d84dd8881c859af919f8336b"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag274_a-submitted.png",
+      "pngSha": "fa013cddeb0a088e67056cb8571b411467ce42539478eb874f694cbcd783c000",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag274_a-submitted-capture.json",
+      "metaSha": "e90fef57277e1035d8b49a89ce1cbf1dce125704b919780d24c5f83cfd66a0db",
+      "started": 1795078573.275922,
+      "time": 1795078575.1443725,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 43204828,
+        "idle": 0.172,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "file": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag274-real-consumable-refresh-paths.png",
+    "sha256": "576b860625f5d581777abaf8345f9632ce4921cfa0311f0e85b42634faf1907a",
+    "passes": 4,
+    "repeated": 24,
+    "path": "Score235.Scan560.Flux172 > Score235.Persist92.Persist134.Scan560.Flux172",
+    "ownersRestored": true,
+    "bagGenerationDelta": 0,
+    "newErrors": 0
+  },
+  "r276": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag276-four-addon-normal-passive-consumable-timing-20261119",
+      "controllerSHA": "a52f83ed9f8a15c53c5222b5412e46207c54da4b2e2a5b5ca397e813b1ceeed5",
+      "packetSHA": "0fc5e609f83e1b7dfe396f7e80ad980a16504d19659c2f64e69d28941809cb9b",
+      "packets": 8,
+      "luaSHA": "104f82da7840b156217532e50d8ef43b7b3f358cd662ec35bb89e1276efa26c5"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag276_a-submitted.png",
+      "pngSha": "e4603ee70685abfd971f5e5cc4ac128467888384ede98ac9592f594400fbcb7b",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag276_a-submitted-capture.json",
+      "metaSha": "ce09698267c6bdc6902a1701b4e754f4ee55ef4fd24a6423dd3ca1946a3bde87",
+      "started": 1795078918.7158175,
+      "time": 1795078920.5397313,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 328068,
+        "last": 43464703,
+        "idle": 85.734,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "file": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag276-normal-passive-consumable-result.png",
+    "sha256": "07039500fc1911e25ca667e5c4cdbed06e901639c140aec3974ba2a089a4658d",
+    "seconds": 5.012,
+    "provider": "syndicator",
+    "normalPasses": 0,
+    "ownerRestored": true,
+    "bagGenerationDelta": 0,
+    "newErrors": 0,
+    "auctionBrowserOpen": true
+  },
+  "r47": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r47-20261119",
+      "pins": {
+        "calibration-proposal.json": "bbd2093e66cc35e3353c64da111fa070ad58c021f909fa65cdd8e556e1cfd8ce",
+        "cue_capture.py": "58fd09c1e2bf7db67ba1275923d2c8ec0206ca1c36ef4341ea8aae9feec1146b",
+        "native_bank_transport_r4.py": "0a29f56cdde887d3aa4f1ef0c53ca7fa255db69f0136f0e4add33a2fe95557d1",
+        "packets.json": "ca49080ebe07c8edd1383379b74ec2a126ecb63147b0d8a44e24ec0d2500de0e",
+        "installer\\bootstrap.py": "8a3d7c2c3df2a205d69214dcd2a85dc2b350436c8142539e830952d71f921982",
+        "jump_core.py": "f129ad32e9023202afc998b0c9f58699d66fba97122905b49d66df19e82d29bd",
+        "keepalive.py": "c3b3b55f632556bfec7a6e1b0bfb67cd49623cc96713e5dfdd22aacbed0e1737",
+        "calibrate.py": "1782f6ce1ff01ed5881de5cf560053ce9b56f30655dbd4cd680333efe3f3e68e",
+        "supervisor.py": "4745c5475603b5340eb6a620260567e3c9475f83641c120d9e9fe201140b3703"
+      },
+      "packets": 25,
+      "holdSha": "7a527eb0eb6cfebfcf8b95fc1752c0273bfe8e1dc9ffa77f1698796b4acef4cd"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump47_live274_b-submitted.png",
+      "pngSha": "f68539abb04ebc65148fa5178b3e7f51ca437fd3dcca04a451fe9e6d2a27cce3",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump47_live274_b-submitted-capture.json",
+      "metaSha": "ea2e74a9db293d372cf5e832333bca6d1ef6c5d95d35319b4de587d7adb07e52",
+      "started": 1795079173.2914646,
+      "time": 1795079175.4020412,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 328068,
+        "last": 43464703,
+        "idle": 340.312,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "supervisorPID": 17376,
+    "workerPID": 36164,
+    "intervalSeconds": 180,
+    "pairsAtFirstReceipt": 1,
+    "movementAcknowledged": false,
+    "notes": "Cue no longer requires Skillet when absent. Installed Skillet retains its queue checks. The new cue removed the owned R46 cue. R45 and R46 workers were retired. Two Space pairs were confirmed. The second deferred for recent input, and character movement was unverified.",
+    "pairsObserved": 2,
+    "spaceDownUtc": [
+      "2026-11-19T09:06:47.393582Z",
+      "2026-11-19T09:10:01.913333Z"
+    ],
+    "modes": [
+      "brief foreground activation after idle",
+      "already foreground after idle"
+    ]
+  },
+  "nativeAuctionLifecycle": {
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "nativeSources": {
+      "FluxAuctionRestock": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+      "FluxAuctionRestockUI": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+      "FluxAuctionRestockData": "ca0d73893f9f3c3b27beee96f4664f4196a5107eb73156ade9fee885751e30da"
+    },
+    "screens": {
+      "auction361AfterHover": {
+        "time": 1795099365.3940248,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction361AfterHover.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "604184809904db3aa9afb73b775356f9d4fe409e2eebe85e445ceca09e5063ae"
+      },
+      "auction361ColdOpen": {
+        "time": 1795099509.7184012,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction361ColdOpen.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "1826472c0b6cf1474778390327c66903b2b9e5deaa4d0aaa0596acc845d9cad2"
+      },
+      "auction361FirstClose": {
+        "time": 1795099541.1150494,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction361FirstClose.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "a8979079d5a4a988cffc2c3a7959e06e9d57d083991536f1cfc20cc5019056a5"
+      },
+      "auction361WarmOpen": {
+        "time": 1795099574.9271154,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction361WarmOpen.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "3784585843a8b54ceb4727b1f9f039fba3329abfdaf44ff0d7eae8eca4b58d13"
+      },
+      "auction361FinalClose": {
+        "time": 1795099600.3076017,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction361FinalClose.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "c499b135e15cd660d8814e8a681e8039cd140b349878e834e5b10090e1152475"
+      },
+      "auction363Buy": {
+        "time": 1795099833.13908,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction363Buy.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "d6efd1db7dce1293ca5436e3fe0299616a959f07db246f8fdd295e60613b32a4"
+      },
+      "auction363RestockOpen": {
+        "time": 1795099865.7026808,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction363RestockOpen.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "9a640b6bb1ab8022e48336bfef97f2e6436721020efbe33e1e05b25580c2fd8a"
+      },
+      "auction363RestockClosed": {
+        "time": 1795099901.8920178,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\auction363RestockClosed.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "34c682dc999fe5a5dbd50ce6a10f1e42636860942150c44d8627a259da691f31"
+      }
+    },
+    "nativeBuy": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag361-native-auction-lifecycle-attribution-20261119",
+        "controllerSHA": "7755ca4a74db25906d41eca8eabf179ad965feb4b2b1d3cd765ea6fee3aa6960",
+        "packetSHA": "ac1a4401f6d27b58cf8eb1fc2746e635020ee5f657c4d0dfde4c8780b2b8dc26",
+        "packets": 17,
+        "luaSHA": "ca492fb82252e6c449443f451f1c115c1749e670ab62544187788e8ae436095a"
+      },
+      "setup": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag361_a-submitted.png",
+        "pngSha": "79eacbd4bbbe6a992d04dcc945f2ec9932865877249daf03422abe65f7057692",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag361_a-submitted-capture.json",
+        "metaSha": "d07e6f533762c79ecab90d8742860f1656e3be210928db38311f24fd1a797139",
+        "started": 1795099450.2146416,
+        "time": 1795099452.1688921,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 63874078,
+          "idle": 207.859,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "coldModuleInitiallyUnloaded": true,
+      "moduleLoaded": "Blizzard_AuctionHouseUI",
+      "coldOpenNearbyGapMs": 118,
+      "warmOpenNearbyGapMs": 30,
+      "firstCloseNearbyGapMs": 22,
+      "attachButtonElapsedMs": [
+        0.231,
+        0.09
+      ],
+      "oneTimedHideSessionMs": 0.017,
+      "restockRowBuilds": 0,
+      "watcherErrorDelta": 0,
+      "observerRestoreConflicts": 0,
+      "secondCloseVisualOnly": true,
+      "scope": "One cold and one warm native Buy-window open. Frame gaps are nearby observations, not measurements of a specific addon or load function. The observer expired before the second close."
+    },
+    "restockTab": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag363-native-restock-tab-startup-and-close-20261119",
+        "controllerSHA": "129febfb46da45ef1978936253ae21a68e9f69fb142beeb9b981f2cf027c31c7",
+        "packetSHA": "5dcdb670ad4b64793139f015613b2c3d34031a9bf4772e4475d4b471b514ae5b",
+        "packets": 16,
+        "luaSHA": "93f9846dbfe8fe99e577a7282ed05c045fdd614efe142ef9142caff2728f6a1e"
+      },
+      "setup": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag363_a-submitted.png",
+        "pngSha": "cb021433d17cc0f50f0abfeef1a10bf4504cc514f3da5b86412a9ad08077afb0",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag363_a-submitted-capture.json",
+        "metaSha": "7deabfa7d5b36ef13ec57c64dc9a2c4524d7919b68935c08e3e3823dc3c5ff24",
+        "started": 1795099772.6412852,
+        "time": 1795099774.4326355,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 64269515,
+          "idle": 134.86,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "showSessionMs": 25.407,
+      "builds": [
+        {
+          "ms": 8.979,
+          "source": "ShowSession",
+          "sourceLine": 955,
+          "elapsedFromShowStartMs": 9.4
+        },
+        {
+          "ms": 8.63,
+          "source": "PrepareNext Advance",
+          "sourceLine": 549,
+          "elapsedFromShowStartMs": 22.7
+        },
+        {
+          "ms": 5.335,
+          "source": "Search response Advance",
+          "sourceLine": 549,
+          "elapsedFromShowStartMs": 101.1
+        }
+      ],
+      "totalFullBuildMs": 22.944,
+      "allGetRowsCalls": [
+        60,
+        22.972
+      ],
+      "hideSession": [
+        2,
+        0.502
+      ],
+      "updates": [
+        8,
+        6.614
+      ],
+      "prepareNext": [
+        1,
+        15.898
+      ],
+      "allSpansInclusive": true,
+      "visibleRows": 6,
+      "finalStateDisplayed": "No configured shortages remain",
+      "closed": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "methodRestoreConflicts": 0,
+      "saleOrPurchase": false
+    },
+    "targetCleanup": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag364-restore-auction-target-20261119",
+        "controllerSHA": "ec64baaf326ddc0e475729df44ffedcc80196c8dce998e7eb2738c3371eecdc0",
+        "packetSHA": "12a79b8d0bf84547bca6028e9187dac7bfafafa2d36c6b82cc3be202eb7bb77b",
+        "packets": 1
+      },
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag364_a-submitted.png",
+        "pngSha": "1a7a9aa4819cbbcb9431f26956bb152be4e382feebaab7a4f4fe33380dde2c1e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag364_a-submitted-capture.json",
+        "metaSha": "bc3660eb8aa48eab5e9c31c17ecff43224cadc6f4ee5ab0553fbe95ff6727386",
+        "started": 1795099991.4924695,
+        "time": 1795099993.249988,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 64451921,
+          "idle": 171.297,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "originalEmptyTargetRestored": true
+    },
+    "jump": {
+      "pid": 41128,
+      "pairs": 7,
+      "status": "running",
+      "reason": null
+    },
+    "mouseReceipts": [
+      {
+        "kind": "hover",
+        "clientXY": [
+          982,
+          345
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "40d9dbc99955f34d228ef298a3555c25dd8e9854f2469b6b92da1a613e90615c",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": false,
+        "time": 1795099342.5264697
+      },
+      {
+        "kind": "open_auction",
+        "clientXY": [
+          982,
+          345
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "79eacbd4bbbe6a992d04dcc945f2ec9932865877249daf03422abe65f7057692",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099504.1787834
+      },
+      {
+        "kind": "close_auction",
+        "clientXY": [
+          763,
+          31
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "1826472c0b6cf1474778390327c66903b2b9e5deaa4d0aaa0596acc845d9cad2",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099535.5044937
+      },
+      {
+        "kind": "open_auction",
+        "clientXY": [
+          954,
+          344
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "a8979079d5a4a988cffc2c3a7959e06e9d57d083991536f1cfc20cc5019056a5",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099568.4817889
+      },
+      {
+        "kind": "close_auction",
+        "clientXY": [
+          763,
+          31
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "3784585843a8b54ceb4727b1f9f039fba3329abfdaf44ff0d7eae8eca4b58d13",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099595.2848678
+      },
+      {
+        "kind": "open_auction",
+        "clientXY": [
+          954,
+          344
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "cb021433d17cc0f50f0abfeef1a10bf4504cc514f3da5b86412a9ad08077afb0",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099823.7192347
+      },
+      {
+        "kind": "open_restock",
+        "clientXY": [
+          292,
+          556
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "d6efd1db7dce1293ca5436e3fe0299616a959f07db246f8fdd295e60613b32a4",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099859.793577
+      },
+      {
+        "kind": "close_auction",
+        "clientXY": [
+          763,
+          31
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432074
+        },
+        "captureSHA256": "9a640b6bb1ab8022e48336bfef97f2e6436721020efbe33e1e05b25580c2fd8a",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795099895.8176131
+      }
+    ]
+  },
+  "restockStartupReuse": {
+    "id": "LHO-AUCTION-RESTOCK-STARTUP-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "profile": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "hashes": {
+        "Inventory/Restock/Auction/FluxAuctionRestock.lua": "2065bf023897b28855b4869bbd3c45512c73c31deabea9a1d3fc441d22f2137d",
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "7f6347836b1b0bdd78ae70bdb03857ceda27f63c2224fe098458fc2d2046a3c3"
+      },
+      "clients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "syntaxChecks": 20
+    },
+    "checkpoint": {
+      "folder": "auction-startup-rows-20261119T150040Z",
+      "gitBundleSha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "originalSourceSha256": {
+        "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+      },
+      "settingsFilesPresent": 21
+    },
+    "observers": {
+      "nativeRun": "R367",
+      "controllerSha256": "0b01d2a9ae88d758ee859c5409519f3596bcfca451c55e65d2d015037708442b",
+      "packetSha256": "badfe3184d22252a77e11e4436aec989bb8978ec55980b079268785e40d9d187",
+      "luaSha256": "e89319c8ebb4b1418665cff65599b6df425d6d6fad23601012982eba372e9290",
+      "scope": "ShowSession wall time via debugprofilestop. RefreshMailFacts marks full GetRows(true) calls. The warm fallback used the existing ScanQueue behavior via an identity-changing pass-through, with immediate restoration. The capture excludes general game FPS."
+    },
+    "timing": [
+      {
+        "trial": 1,
+        "path": "normal",
+        "thermal": "cold Restock after reload",
+        "showSessionMs": 22.419,
+        "startupBuilds": 1,
+        "replyBuilds": 1
+      },
+      {
+        "trial": 2,
+        "path": "fallback",
+        "thermal": "warm",
+        "showSessionMs": 12.398,
+        "startupBuilds": 2,
+        "replyBuilds": 1
+      },
+      {
+        "trial": 3,
+        "path": "normal",
+        "thermal": "warm",
+        "showSessionMs": 7.027,
+        "startupBuilds": 1,
+        "replyBuilds": 1
+      },
+      {
+        "trial": 4,
+        "path": "fallback",
+        "thermal": "warm",
+        "showSessionMs": 12.808,
+        "startupBuilds": 2,
+        "replyBuilds": 1
+      },
+      {
+        "trial": 5,
+        "path": "normal",
+        "thermal": "warm",
+        "showSessionMs": 6.88,
+        "startupBuilds": 1,
+        "replyBuilds": 1
+      }
+    ],
+    "warm": {
+      "fallbackMedianMs": 12.603,
+      "normalMedianMs": 6.9535,
+      "reductionPercent": 44.8,
+      "pairedSavingsMs": [
+        5.371,
+        5.928
+      ]
+    },
+    "priorColdBaseline": {
+      "nativeRun": "R363",
+      "showSessionMs": 25.407,
+      "comparableAsMatchedPair": false
+    },
+    "parity": {
+      "visible": 6,
+      "hiddenVendorRows": 1,
+      "editorItem": 3928,
+      "visibleDigest": 1712008,
+      "hiddenDigest": 2981812,
+      "digestFields": [
+        "itemID",
+        "target",
+        "bagCount",
+        "bankCount",
+        "pending",
+        "need"
+      ],
+      "replyState": "enough",
+      "noTransaction": true,
+      "visualCrop": {
+        "panelCrop": [
+          28,
+          103,
+          745,
+          443
+        ],
+        "pixels": 330035,
+        "pairOneDiff": 0,
+        "pairTwoDiff": 0,
+        "screenshots": {
+          "auction367_restock_four": "9ab3ac03d7dac953ed3c0dcbee377bce19495333e9b00b43a4399806c95b2dc2",
+          "auction367_restock_two": "2d64d112d2896aa9b0bab1743bb3e4cfb35aec944eb07165578a9b9e43048e05",
+          "auction367_restock_cold": "3430cd99d97a2d4ff63d9bfc07306e5fd8f0b7fc472592dbbb6c79f6e3203d0c",
+          "auction367_restock_five": "67447e891c4dc89844505ee123fc802f2cf9d75f35c3b2b0ab9c75004636e37b",
+          "auction367_restock_three": "b21ab68e7e398d893b9874c5724851f94faf88c175228de4046abac657162af8"
+        }
+      }
+    },
+    "cleanup": {
+      "closedPanel": true,
+      "allObserverWrappersRestored": true,
+      "emptyTargetRestoredRun": "R368",
+      "emptyTargetRestoreScreenshotSha256": "32c75c4b4b2a024aa316c0688ea2daf3bcc3bfbc20389383ad2dfd3b80a5206a",
+      "buySellDeleteOrItemMovesPerformed": false
+    },
+    "pendingNativeCoverage": [
+      "Genuine Pending receipts",
+      "Live charged and unresolved targets",
+      "Other clients and provider combinations"
+    ]
+  },
+  "unusedAuctionTierBankFollowUp": {
+    "settledLayoutTiming": {
+        "run": "R407",
+        "probeSha256": "22008142686b263c3aa4382ec04b3c3a44619aadee474450677db3ab2c33cac8",
+        "resultScreenshotSha256": "2a772b1bae01f7282efc30f3d040fb202cd226e0f3b1449f5db72a788bb850a3",
+        "sourceScreenshotSha256": "053bc8cbe79fb010fd1d99ffaaf0f38e3d33a5de85f6df41416428c82115213a",
+        "exactRedundantCellSizeWrites": 0,
+        "cellSetSizeCalls": 6,
+        "baselineMs": [
+            0.2,
+            0.16,
+            0.162
+        ],
+        "dimensionsCheckMs": [
+            0.175,
+            0.168,
+            0.163
+        ],
+        "sameVisibleCellPropertiesAndStatus": true,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "originalRowReferencesRestored": true,
+        "runtimeChange": false,
+        "cleanup": {
+            "emptyTargetRestoredRun": "R408",
+            "screenshotSha256": "2f165b11d9d4ff7e5f1492a76af41946fae90f2650973b26bc9d2a7a92d32de4",
+            "boughtSoldDeletedOrMovedItems": false
+        }
+    },
+    "installedNativeReplay": {
+        "reload": {
+            "rejectedBackgroundOnlyRun": "R403 stopped before typing because the window was foreground",
+            "run": "R404",
+            "exactProcess": 9012,
+            "reviewedDualMode": true,
+            "submittedSha256": "2475b039d71f2c346d59062cfb77b535a5b5007f51c214687539e4f027c1350a",
+            "returnedToWorld": true
+        },
+        "comparison": {
+            "run": "R405",
+            "programSha256": "a963047fbe9305b0d02c10102f3264a584c9657ef7357331e55f29f1939dbd2f",
+            "sourceScreenshotSha256": "32a4b2919ad764bee0a69ef8312a59458e7b433a778e3e979690cbaf8abdbd85",
+            "resultScreenshotSha256": "352a5f774ff9907fdcf750ca9a0c242845c3f3e8593653994811e267fc1ea1b5",
+            "method": "Installed function vs its original fallback invoked through a delegating potion capture, then a separate tier-match call count",
+            "fallbackMs": [
+                5.613,
+                4.59,
+                4.688
+            ],
+            "installedMs": [
+                4.693,
+                4.621,
+                4.661
+            ],
+            "medianMs": [
+                4.688,
+                4.661
+            ],
+            "timingScope": "Three pairs, near-equal medians with one slower installed sample",
+            "knownBankTierMatchCalls": {
+                "fallback": {
+                    "food": 21,
+                    "water": 21
+                },
+                "installed": {
+                    "food": 0,
+                    "water": 0
+                }
+            },
+            "visibleRows": 6,
+            "hiddenRows": 1,
+            "exactRowsAndPotionTargets": true,
+            "bagGenerationDelta": 0,
+            "newErrors": 0,
+            "allWrappersAndRowReferencesRestored": true
+        },
+        "restoration": {
+            "auctionClosed": true,
+            "originalEmptyTargetRestoredRun": "R406",
+            "targetRestorationScreenshotSha256": "4cc38f85aa411af562cf6d765aacc2181fa0ea0147f76eac43e652a0648a542c",
+            "jumpWorkerPid": 41660,
+            "jumpIntervalSeconds": 180,
+            "jumpKeySentAfterReload": true,
+            "gameMovementUnverified": true,
+            "boughtSoldDeletedOrMovedItems": false
+        }
+    },
+    "changeId": "LHO-AUCTION-UNUSED-TIER-BANK-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "enabledAddons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "directoryName": "auction-unused-tier-bank-20261119T165445Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "095831d2cf4b7f583054104d5a5ba751991950ebb4c584f8be27f546f04b18ab",
+      "settingsFileCounts": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      },
+      "beforeSourceSha256": {
+        "Inventory/Restock/Core/FluxRestockList.lua": "e8326ca2d5ee6d15d1683e2f2a004d5eab8152821748b38a37c40e42a824d278",
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "ca0d73893f9f3c3b27beee96f4664f4196a5107eb73156ade9fee885751e30da",
+        "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "ef0ee0e8db67c7637075fbd6ed8fbda2095add05d33e4dff7fb021813fc8863d",
+        "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "7dec5f534686f7558d950cbca4031ef3ee1cbec9f56e477651b54c54f3fadc47",
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "67e208134abf9b2be2bb2820e555f34f6182484b932d21ae0349e3510e752c7e"
+      }
+    },
+    "candidate": {
+      "installedSourceSha256": {
+        "Inventory/Restock/Core/FluxRestockList.lua": "bfeaa61c22e88cfb918c80ed398e29a33a4b6b181068d38339b1eece752dffc1",
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "c247a016425dcdae6fbc08a8f85c74264730f18c38b5d304fb481ab3e120c453",
+        "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "ac41a8cbd7f9cba842e122a86c99dcddc6669831488e5255d8e5c98ba8c11109",
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "038f6d2733f5cb1b781ecc065de675ed935b3caf41d77c57b95f4363865f6395"
+      },
+      "installationCount": 5,
+      "luaSyntaxChecks": 40,
+      "regressionAssertions": {
+        "auctionRestock": 11680,
+        "auctionPotions": 580,
+        "vendorTier": 340,
+        "tierCount": 1710
+      },
+      "loadedNativeVerification": "R405 verified on Forever with Baganator and Syndicator"
+    },
+    "nativeAttribution": {
+      "run": "R399",
+      "nativeTradeSkillListUpdates": 6,
+      "beforeObserverError": "R396 looked up the wrong addon-owned Spell namespace and stopped before attaching observers",
+      "eventsMs": [
+        16.891,
+        16.577,
+        17.806,
+        17.993,
+        18.48,
+        21.616
+      ],
+      "auctionGetRows": {
+        "calls": 6,
+        "totalMs": 31.488
+      },
+      "vendorTargetRows": {
+        "calls": 6,
+        "totalMs": 18.792
+      },
+      "spellRefresh": {
+        "calls": 66,
+        "totalMs": 0.037
+      },
+      "status": "enough",
+      "visibleRows": 6,
+      "hiddenRows": 1,
+      "visibleDigest": 2754543,
+      "hiddenDigest": 1296786,
+      "bagGenerationChanges": 0,
+      "newErrors": 0,
+      "wrappersRestored": true
+    },
+    "livePairs": [
+      {
+        "run": "R400",
+        "beforeMs": [
+          5.165,
+          4.76,
+          4.515
+        ],
+        "afterMs": [
+          4.494,
+          4.463,
+          4.274
+        ],
+        "note": "Temporarily bypassed food and water bank aggregation for already-discarded rows."
+      },
+      {
+        "run": "R402",
+        "beforeMs": [
+          5.192,
+          4.888,
+          4.569
+        ],
+        "afterMs": [
+          4.456,
+          4.48,
+          4.44
+        ],
+        "note": "Preserved the original reference-tier lookup and omitted only stock aggregation."
+      }
+    ],
+    "comparisonConditions": {
+      "settledPanels": [
+        "Auction Restock",
+        "Tailoring"
+      ],
+      "closedPanels": [
+        "Bank",
+        "Merchant",
+        "Mail"
+      ],
+      "noActiveCraftsTransactionsOrSavedVendorCraftPlans": true,
+      "visibleAndHiddenRowsRecursivelyEqual": true,
+      "bagGenerationChanges": 0,
+      "newErrors": 0,
+      "originalRowTablesAndObserversRestored": true
+    },
+    "omittedApproach": "Omitting entire tier rows would also omit saved reference evaluation. R401 expired before sending input.",
+    "cleanup": {
+      "auctionAndTailoringClosed": true,
+      "emptyTargetRestoredRun": "R398",
+      "inventoryOrGoldChangesPerformed": false,
+      "jumpWorkerStillRunning": true
+    },
+    "screenshotsSha256": {
+      "398": "67d83df7053afeadd8db22f648dc999989b5a62729b17084190fe14f95be84a2",
+      "399": "71df27f69246a5f7362be3b938073dbf5872396f5b2b45fec54aebf6db269891",
+      "400": "72f2ef4af4174cce5f239d751f9ebde976794880fa990141b77890e7e14a6776",
+      "402": "ee00e20cba7b0782b7e99a42337c7805b66d62c3b6297661c0ad65f275abdde7"
+    },
+    "pending": [
+      "Determine which unchanged profession publications can safely skip the full Auction Restock rebuild",
+      "Native FPS and other client or addon combinations"
+    ]
+  },
+  "settingsInitialPlanRowReuse": {
+    "installedVerification": {
+        "run": "R418",
+        "reload": {
+            "run": "R417",
+            "screenshotAfterSha256": "82e9eee171d18f6db4b64f7a3e44c1c38e4050c0a18b9a39e14cdc7c7125b43d",
+            "ownsAndReleasedLease": true,
+            "note": "Removed the still-owned reload lease via the reload controller after world return."
+        },
+        "probeSha256": "37c60f8502bda4f5426772605083476093908cd6c6f652bd184520064d2b3dba",
+        "resultScreenshotSha256": "4a47750193afe15afa76a30e421e22c7f0171cc4dd4d1cf21100e2f513f2228d",
+        "installedSourceSha256": "aa07f334b8cd5fd939fc896d61b7b45349489bc9374eb6546e444c9fbcb06985",
+        "fallbackTest": "Delegated the original ScanQueue to exercise its fallback and used the unchanged function for the owned path.",
+        "fallbackMs": [
+            11.147,
+            10.64,
+            10.571
+        ],
+        "installedMs": [
+            5.829,
+            5.749,
+            5.5
+        ],
+        "mediansMs": [
+            10.64,
+            5.749
+        ],
+        "tierTargetReadsEachPair": [
+            10,
+            5
+        ],
+        "visibleRows": 6,
+        "hiddenRows": 1,
+        "allRowsPotionTargetsAndDisplayedStatusMatch": true,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "originalOwnersRestored": true
+    },
+    "changeId": "LHO-AUCTION-SETTINGS-SAME-PASS-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "folder": "auction-settings-rows-20261119T174800Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "source": "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "sourceBeforeSha256": "2065bf023897b28855b4869bbd3c45512c73c31deabea9a1d3fc441d22f2137d",
+      "historySha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "existingSettingsFiles": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "disk": {
+      "sha256": "aa07f334b8cd5fd939fc896d61b7b45349489bc9374eb6546e444c9fbcb06985",
+      "matchingInstallations": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "luaSyntaxChecks": 10,
+      "auctionRegressionScripts": 35,
+      "auctionRegressionAssertions": 320679,
+      "installedNativeReplay": "R418 verified on Forever"
+    },
+    "tierReadFollowUp": {
+      "run": "R409",
+      "probeSha256": "aef453debb4be31fdf544e3526247144405b4fac8a85337a64b7696c96b02634",
+      "resultScreenshotSha256": "38f9a7712e6733f0f44a283e94d903a78f150065738098394c3495d9744de3d9",
+      "baselineMs": [
+        8.173,
+        4.889,
+        4.74
+      ],
+      "reuseMs": [
+        4.837,
+        4.909,
+        4.85
+      ],
+      "bagReads": 9,
+      "bagReadsReused": 9,
+      "bankReads": 0,
+      "bankReadsReused": 0,
+      "sourceCountMismatches": 0,
+      "allRowsAndPotionsMatch": true,
+      "bagGenerationDelta": 0,
+      "newErrors": 0,
+      "decision": "Warm pairs did not improve. Existing positive bag cache remains."
+    },
+    "preliminaryRuns": {
+      "R411": "The zero-shortage-only probe branch did not activate. It recorded two real rebuilds per callback.",
+      "R412": "Probe assertion expected synchronous enough state after a normal native asynchronous auction lookup started. The original row callback had already been restored.",
+      "R413": "Identified the R412 assertion and confirmed the native lookup had started after two builds. Error printed by the diagnostic pcall.",
+      "R414": "Returned cleanly after observing the same asynchronous lookup. No paired timing."
+    },
+    "measured": {
+      "run": "R415",
+      "luaSha256": "ba122175f02a482ca9a11f94ee6a38f65fc09cda1f27f27c5b32e7c48635bfb2",
+      "referenceSha256": "770108807465fbf8db9c6ca9f52593de6083ba5a03de9394a03b2fccacdf2d47",
+      "resultSha256": "4aeaf7885e3cc24d4165f3f28fb977c6223b8b2c86c75d78b5e20487013285a5",
+      "nativeReadOnlyWarmup": true,
+      "baselineMs": [
+        10.779,
+        10.177,
+        10.156
+      ],
+      "reuseMs": [
+        5.496,
+        5.681,
+        5.309
+      ],
+      "mediansMs": [
+        10.177,
+        5.496
+      ],
+      "buildCountsPerCallback": [
+        2,
+        1
+      ],
+      "refreshCallsPerCallback": [
+        2,
+        2
+      ],
+      "exactVisibleRows": 6,
+      "exactHiddenRows": 1,
+      "potionTargetsEqual": true,
+      "newErrors": 0,
+      "bagGenerationDelta": 0,
+      "finalStatus": "enough",
+      "observerRestored": true,
+      "settingsChangedByProbe": false
+    },
+    "cleanup": {
+      "noPurchaseSaleDeletionOrItemMove": true,
+      "auctionClosed": true,
+      "emptyTargetRestoreRun": "R416",
+      "sha256": "dfd11052712a2aeb3a1a3a7878bab90f81b4f70709a1a5978b8d55a5dcb43119",
+      "jumpWorkerPid": 41660
+    },
+    "pending": [
+      "Idle profession-only stock rebuilds",
+      "Native frame-time impact and other clients or provider combinations"
+    ]
+  },
+  "idleProfessionRowAttribution": {
+    "settledStockDependencyRead": {
+        "run": "R427",
+        "probeSha256": "e767815f2c14d49d7b09075f30fb7d81de423934b5ec478b3ac1fc434d21be16",
+        "resultScreenshotSha256": "25cb6c8f536d6b0a0551f0480400aef0469da252bbe9b7926d608f5f7dd7500d",
+        "mailRows": 0,
+        "mailGeneration": 1,
+        "unexpiredMailRows": 0,
+        "expiredMailRows": 0,
+        "cachedBankItemIDs": 21,
+        "idsWithStaticClass": 21,
+        "bankClassificationsPending": 0,
+        "restockRowsWithColdStaticOrClassification": 0,
+        "visibleRows": 6,
+        "hiddenRows": 1,
+        "bagGenerationDelta": 0,
+        "classifierInvalidationDelta": 0,
+        "bestGenerationDelta": 0,
+        "newErrors": 0,
+        "scope": "Read-only settled state with all commerce panels closed. Empty mail in this profile cannot validate expiry handling. Static metadata presence cannot prove dynamic usability is invariant.",
+        "additionalSourceDependency": "Score.IsUsable leaves situational false results uncached. SKILL_LINES_CHANGED invalidates skill caches and recomputes consumable best. A bypass based only on ready static item classes and unchanged stock generations would miss these independent state changes."
+    },
+    "changeId": "LHO-AUCTION-PROFESSION-ROWS-NATIVE-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "run": "R419",
+    "probeSha256": "d48566a49e1354f8532ee0d4105fa169fe55cdf1bd7588f8c90b0d5d003fc3e1",
+    "openTailoringRun": "R420",
+    "sampleScreenshotsSha256": [
+      "ecc6e977e8a9e27f1bae1d25e9f37b6826300ab8806fe22328f719d54a062878",
+      "fa00a5b9c8aabd38746aac80984f63a0d2a29e3cda7969e373d799dd77d28041"
+    ],
+    "elapsedFullMs": [
+      18.274,
+      17.798,
+      19.159,
+      19.135
+    ],
+    "elapsedReuseMs": [
+      13.152,
+      13.887,
+      14.017,
+      13.973
+    ],
+    "excludedExactShadowRebuildMs": [
+      4.989,
+      5.221,
+      5.063,
+      5.032
+    ],
+    "allVisibleHiddenRowsAndPotionTargetsMatchAfterShadowRebuild": true,
+    "generationsTracked": [
+      "bags",
+      "bank",
+      "warband",
+      "mail"
+    ],
+    "generationChanges": 0,
+    "newErrors": 0,
+    "restoredThreeObservers": true,
+    "editorSettingsOrItemsChanged": false,
+    "measurementScope": "Eight alternating real Tailoring events in a settled Auction Restock session. Withheld the single rebuild on alternating events, then ran it immediately outside the handler timer to check the result. This does not measure total frame cost.",
+    "knownAdditionalDependencies": [
+      "Mail fallback expires by wall time independently of inventory generation.",
+      "Item classification and metadata can advance after a delayed item-data event.",
+      "Craft settlement, Pending receipts and saved vendor routes require live validation."
+    ],
+    "candidateInProduction": false,
+    "cleanup": {
+      "auctionAndTailoringClosed": true,
+      "emptyTargetRestoredRun": "R421",
+      "restorationScreenshotSha256": "94f1a1ba8b655de0d3a98df52e722c8cf7727cb3584788649bec5fc5c45466f3",
+      "jumpWorkerPid": 36468,
+      "jumpKeyPressPairs": 4,
+      "movementAcknowledged": false
+    }
+  },
+  "idleMaterialAssemblyAndCountRepeats": {
+    "changeId": "LHO-AUCTION-IDLE-MATERIAL-PLAN-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "enabledAddons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "directory": "auction-empty-material-plan-20261119T184200Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "source": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "sourceSha256": "ef0ee0e8db67c7637075fbd6ed8fbda2095add05d33e4dff7fb021813fc8863d",
+      "historySha256": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "settingsFilesPresent": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "candidate": {
+      "sourceSha256": "68fe627fe73a66a31561b072c13fdc128861530adbf2a832f43e541656a0bd16",
+      "matchingInstalls": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "syntaxChecks": 10,
+      "existingAuctionRegressionScripts": 35,
+      "nativeInstalledReplay": "source loaded in R433; R434 checked combined row rebuild"
+    },
+    "emptyCraftAssembly": {
+      "run": "R429",
+      "probeSha256": "daa2984cde0029f74a7f099681f7afb8fc278f8f1030c7ab473d24dad37b9b82",
+      "screenshotSha256": "aa49ab482430b204149f71e5f28f55773a89e3889545f2813412dc2aaf1bd527",
+      "callsPerSample": 256,
+      "baselineMs": [
+        0.648,
+        0.671,
+        0.653
+      ],
+      "earlyReturnMs": [
+        0.044,
+        0.043,
+        0.044
+      ],
+      "mediansMs": [
+        0.653,
+        0.044
+      ],
+      "visibleRows": 6,
+      "hiddenRows": 1,
+      "exactRowsAndPotionTargets": true,
+      "bagGenerationDelta": 0,
+      "newErrors": 0,
+      "temporaryOwnerRestored": true
+    },
+    "ordinaryLiveCountReuse": {
+      "run": "R428",
+      "probeSha256": "c3e424a6f53445c25980f6cf04a93ec79e478f34aad869ca03203bfe62cc3ecc",
+      "screenshotSha256": "0edc16c2fc27b330e5adbe387cfead0b1413be0c5e5f0a5694b777c331e760aa",
+      "baselineMs": [
+        8.186,
+        4.465,
+        4.699
+      ],
+      "reuseMs": [
+        4.494,
+        4.426,
+        4.385
+      ],
+      "exactRowsAndPotionTargets": true,
+      "matchingLiveCarriedReadsPerBuild": 4,
+      "timingsNote": "Prototype wrapped both paths, replacing temporary owners also made the existing food/water bank shortcut fall back. First baseline was cold. Warm savings varied.",
+      "newCacheInstalled": false
+    },
+    "unusedTierCarry": {
+      "run": "R430",
+      "probeSha256": "490a7e51b0d290de80176b52eaba1f9442b31b0f7d412a8f5a08ff342f649ddd",
+      "screenshotSha256": "d902190e44c069ffd7fe911e5f769854db7a11a5bf95c8173d167db8b775254f",
+      "baselineMs": [
+        6.4,
+        4.617,
+        4.511
+      ],
+      "candidateMs": [
+        4.539,
+        4.591,
+        4.463
+      ],
+      "innerTierBaselineMs": [
+        0.016,
+        0.009,
+        0.007
+      ],
+      "innerTierCandidateMs": [
+        0.009,
+        0.009,
+        0.007
+      ],
+      "exactRowsPotionTargetsAndReferenceTiers": true,
+      "bagGenerationDelta": 0,
+      "newErrors": 0,
+      "countBypassInstalled": false
+    },
+    "cleanup": {
+      "commercePanelsStayedClosed": true,
+      "originalTargetUnchanged": true,
+      "itemOperations": false,
+      "jumpPid": 42052,
+      "jumpKeyPairs": 7
+    }
+  },
+  "coldTierLiveSlots": {
+    "changeId": "LHO-AUCTION-COLD-TIER-SLOTS-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "scenario": "Three alternating pairs on actual Auction Restock rows with cold tier-query caches, closed commerce panels, reliable bags and no active work. CPU timings use debugprofilestop.",
+    "checkpoint": {
+      "directory": "restock-tier-live-slots-20261119T185219Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "settingsFiles": [
+        1,
+        1,
+        1,
+        1,
+        2
+      ]
+    },
+    "sourceHashes": {
+      "Inventory/Restock/FluxRestock_Inv.lua": [
+        "f3890c5ef6b9059056ab8fe029b935177fcea9d35ff1e84f22f6447e23ddaee1",
+        "4d4cfd665ce86f768cb578e75db4b1642512d4120de864b1b2c171aa7d11bb6c"
+      ],
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": [
+        "ac41a8cbd7f9cba842e122a86c99dcddc6669831488e5255d8e5c98ba8c11109",
+        "2e3adcd97191f6677fde6de853bd7b3072de7a9046102f3fbca806cc547e4b12"
+      ],
+      "Inventory/Restock/Core/FluxRestockList.lua": [
+        "bfeaa61c22e88cfb918c80ed398e29a33a4b6b181068d38339b1eece752dffc1",
+        "92912c173ee1371f43139ee37e26100dfb500493452b4ca0d330c7a42224b560"
+      ]
+    },
+    "matchingInstalls": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "syntaxChecks": 30,
+    "regressionScripts": 38,
+    "tierRegressionChecks": 1719,
+    "results": [
+      {
+        "run": "R431",
+        "priorMs": [
+          17.632,
+          12.83,
+          13.118
+        ],
+        "candidateMs": [
+          8.569,
+          8.414,
+          8.162
+        ],
+        "reads": [
+          450,
+          90
+        ],
+        "note": "Diagnostic cached empty and occupied slots.",
+        "probeSha256": "a26a525b5b79f5af829e89112db6f0d2fb5ba5bd6aa22b9b5cc3dd077827e994",
+        "screenshotSha256": "51e1291ff85f45f527f2967c6d6e871032e46ef46f4bc4902d16d1b4b26f5c9c",
+        "exactRowsAndPotionTargets": true,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "temporaryOwnerRestored": true
+      },
+      {
+        "run": "R432",
+        "priorMs": [
+          17.343,
+          13.709,
+          14.752
+        ],
+        "candidateMs": [
+          9.19,
+          10.243,
+          9.694
+        ],
+        "reads": [
+          450,
+          238
+        ],
+        "note": "Diagnostic reused complete occupied normalized slots.",
+        "probeSha256": "35050d73833af997b9b7be149ca0b5af79a239e1ce10c558bc72feef8bbf40ec",
+        "screenshotSha256": "83d371da99678b172f40eda6cb8ae3b0a0f063dcf82e0a0932ad1e6c6cf729d0",
+        "exactRowsAndPotionTargets": true,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "temporaryOwnerRestored": true
+      },
+      {
+        "run": "R434",
+        "priorMs": [
+          16.269,
+          12.19,
+          13.324
+        ],
+        "candidateMs": [
+          9.882,
+          9.31,
+          9.95
+        ],
+        "mediansMs": [
+          13.324,
+          9.882
+        ],
+        "note": "Installed fallback versus installed reuse after UI reload R433.",
+        "probeSha256": "4d0d9adc588273cb2cb2fb54e3f748e0db7c27fc4940ed2252820b4f0eda6c03",
+        "screenshotSha256": "9c421f96a8e8af69807d78691fe18d09d85107dec1715c9bf3c8149050413968",
+        "exactRowsAndPotionTargets": true,
+        "bagGenerationDelta": 0,
+        "newErrors": 0,
+        "temporaryOwnerRestored": true
+      }
+    ],
+    "cleanup": {
+      "jumpPid": 4180,
+      "pcIdleThreshold": "none",
+      "characterMovementAcknowledged": false,
+      "itemOperations": false
+    },
+    "pending": "Whole-frame FPS, warm callback invalidation, and native verification on the other installs."
+  },
+  "warmAuctionBagTooltips": {
+    "id": "LHO-AUCTION-WARM-BAG-TOOLTIPS-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "directory": "auction-warm-bag-tooltip-20261119T191500Z",
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySha256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsPresentByInstall": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "sourceHashes": {
+      "Inventory/FluxItemClass.lua": [
+        "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+        "724db09f4e930d3405a2cfdb9c574026f7f9d8c1277ab58cfcde58284551b6b4"
+      ],
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": [
+        "c247a016425dcdae6fbc08a8f85c74264730f18c38b5d304fb481ab3e120c453",
+        "5e17c5603a68166b8e5b6a336e55530c6f33c80e96f2ef51327d620ec6d02b64"
+      ]
+    },
+    "measurements": [
+      {
+        "id": "R435",
+        "probeSha256": "47ea9eec4fa0712bc19f3a5aa4fcdb0e3cc232c183708518bd7db637e9ad4607",
+        "screenshotSha256": "6401616c2f4acec95367203cb69459b285e6a09c4b43ccd0accaff9eee1effe3",
+        "note": "Classification and Need observers disabled two loaded bank shortcuts. Use only zero bag slot walks as diagnostic evidence."
+      },
+      {
+        "id": "R436",
+        "probeSha256": "322f84595c6647a598e56d83879793d3a321406e70f960975230bfa4f1155f5a",
+        "screenshotSha256": "cb3e168092eef74f3e9ae9bad64686207f75d4063eac65e68e057d02d1fd5448",
+        "note": "109 bank-count queries exposed by forcing the compatibility fallback. The production path does not do this observed work."
+      },
+      {
+        "id": "R437",
+        "probeSha256": "8a8c3063179428bb2c9667345170c70d12c8455f1ce623bf10f0bf178065b87f",
+        "screenshotSha256": "2d96810bf92dd3598f7e83ac3d55db8b06c0e2a1eb71febea812c0bd756de14c",
+        "warmMs": [
+          4.686,
+          4.571,
+          4.61
+        ],
+        "bestRefMs": [
+          1.262,
+          1.276,
+          1.288
+        ],
+        "note": "Loaded row path with ordinary inventory and tier owner guards preserved. Timing includes instrumentation."
+      },
+      {
+        "id": "R438",
+        "probeSha256": "edad224017b4e7918c61720ec49534c0586acdcb7c3150614a53586b02ed6f1c",
+        "screenshotSha256": "97efcfd9240249330611aeff7874f666654f70e1e029de928d1b9630b640a941",
+        "referenceValidation": [
+          9,
+          3
+        ],
+        "priorMs": [
+          4.648,
+          4.39,
+          4.442
+        ],
+        "candidateMs": [
+          3.635,
+          3.598,
+          3.638
+        ],
+        "note": "Diagnostic only. Production preserves all eligibility and reference reads."
+      },
+      {
+        "id": "R439",
+        "probeSha256": "1fc349adf816c42f8d1ff66574024f80db9e31ca0b442e3cdab6cfa113207db0",
+        "screenshotSha256": "fa1a9ab55f88f58d91164611bfe37a1fd2320437292c234b475e4d312664b9f8",
+        "tooltipRequests": [
+          11,
+          5
+        ],
+        "priorMs": [
+          4.498,
+          4.415,
+          4.522
+        ],
+        "candidateMs": [
+          3.692,
+          3.685,
+          3.693
+        ],
+        "note": "Any confirmed text reused in the diagnostic only."
+      },
+      {
+        "id": "R440",
+        "probeSha256": "7ca4d8f9a02d44ea486cd596d90df38aec0db1b40c74f5b7deec8fe3f2982081",
+        "screenshotSha256": "75023f7a4958e7116a208171094fb7c56368e8685e679f34c92f3f50028a191c",
+        "tooltipRequests": [
+          11,
+          5
+        ],
+        "priorMs": [
+          4.733,
+          4.637,
+          4.75
+        ],
+        "candidateMs": [
+          3.984,
+          3.971,
+          4.107
+        ],
+        "nativeSources": {
+          "bag": 4,
+          "hyperlink": 0,
+          "fallback": 1
+        },
+        "note": "Only text matching the native bag tooltip was reused in the candidate."
+      },
+      {
+        "id": "R442",
+        "probeSha256": "5c34ec355f23dacaa88019c2d2a3a4dae3dbf7356ebcb4b2ffba8eab2d434655",
+        "screenshotSha256": "6070f8a431bd7de1d6b143b10ba9cec8785c0e3a7638f2d9b5dd0b8240ddf27f",
+        "afterReload": "R441",
+        "priorMs": [
+          4.455,
+          4.469,
+          4.454
+        ],
+        "candidateMs": [
+          3.767,
+          3.835,
+          3.744
+        ],
+        "mediansMs": [
+          4.455,
+          3.767
+        ],
+        "zeroNewErrors": true,
+        "equalRowsHiddenVendorAndPotionTargets": true,
+        "stableBagGeneration": true,
+        "temporaryTooltipOwnerRestored": true,
+        "nativeBagGetterSecure": true,
+        "note": "Three alternating pairs with actual bag stock and settled rows, commerce panels closed. The fallback was triggered by a pass-through on the public FluxUI tooltip method."
+      }
+    ],
+    "production": "Shares nonempty native bag-tooltip text only inside the row assembly, with guarded item, location, generation, metadata and provider identity checks. Native restriction gates, tooltip parsing, live stock queries, timers and events remain unchanged.",
+    "desktop": {
+      "matchingInstalls": 5,
+      "syntaxChecks": 20,
+      "auctionScriptsPassed": 35,
+      "otherScriptsPassed": 8,
+      "metadataRegressionChecks": 149,
+      "newMetadataRegressionChecks": 9,
+      "preExistingFailure": "consumable_pending_read.lua aborts at foreign readiness callback retains full walk with both checkpoint and candidate, in builtin and syndicator modes."
+    },
+    "pending": "Whole native Tailoring notification envelope, open commerce workflows, in-game pixels and other provider/client combinations.",
+    "cleanup": {
+      "jump": {
+        "pid": 31072,
+        "pairs": 1,
+        "status": "running",
+        "last": "injected-movement-unverified"
+      },
+      "pcIdleThreshold": "none",
+      "itemOperations": false,
+      "commerceWindowsOpened": false
+    }
+  },
+  "warmAuctionNativeTailoring": {
+    "id": "LHO-AUCTION-TAILORING-WARM-LOADED-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "scope": "Eight consecutive client-delivered Tailoring list updates with Auction Restock showing enough stock. Alternated the ordinary installed rebuild and its tooltip fallback. Only the rebuild switched modes. No active craft, pending work or auctions were submitted.",
+    "sources": {
+      "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "professionsSha256": "53bc5af9210c7093108a0e8bd99f6d40edc3c95c7d3997ae05a11fd31fe5c6b4",
+      "itemClassSha256": "724db09f4e930d3405a2cfdb9c574026f7f9d8c1277ab58cfcde58284551b6b4",
+      "auctionDataSha256": "5e17c5603a68166b8e5b6a336e55530c6f33c80e96f2ef51327d620ec6d02b64"
+    },
+    "runs": [
+      {
+        "run": "R443",
+        "controllerSHA256": "c5d5b32de741e9ed5ff525189c1c91e283390d768b88323178caf6f0f1725380",
+        "packetsSHA256": "1c745bbd0e70b06e0948b9ba890740202383f6440776342974f0d4574e54baa7",
+        "probeSHA256": "d11ecafec750b4432d0d3968b047bb7a09048a0035a03020df1551c3ede3bf80",
+        "screenshotSHA256": "cb996b71ebea34424220c7da27f26bedf4a17f7b4e2750db2a0db52f18042eef"
+      },
+      {
+        "run": "R444",
+        "controllerSHA256": "45d13870856088ae4bdc87f662fc84e5e796d6ec96ec6a56fc16b2f0083e1792",
+        "packetsSHA256": "3fda0a7a1b57205f8a8c3535dfd4367a9aa719a6fc46bb389713829663480175",
+        "screenshotSHA256": "ae8c922b5d9f87fe83306701f362a67f01c235ef999813063811ef2b300a5b2f"
+      },
+      {
+        "run": "R445",
+        "controllerSHA256": "b3a0c8fe121df7f811dc001b1f777de9924fc5a947212617ae55729ad911dfbd",
+        "packetsSHA256": "237d766b0b469e1a1e5a028a6eec1997d7b269b0ea6523b1e08f5a8527d54f0c",
+        "probeSHA256": "2907e167b34dc9c1f15554c1c7f999d71a76c36155c974e82de19f54ea8b29b0",
+        "screenshotSHA256": "8d7e50eb8692751756cde910806a15ed38cb408c4d04a19efb9def259e1c07a2"
+      },
+      {
+        "run": "R446",
+        "controllerSHA256": "418a1649542f43eadc105846a9b40b3585da21ef0d80821e9a3d08fbaa964050",
+        "packetsSHA256": "1108b8209b5af85b6d3aed098d7b3155f66905f7880f019e7ef6d53f70b087b3",
+        "screenshotSHA256": "604360139c4d56fec1ceaba754ac75300147b43ada94cdb24c02f408c9c74c28"
+      }
+    ],
+    "samples": [
+      {
+        "index": 1,
+        "mode": "prior",
+        "handlerMs": 20.558,
+        "rowBuildMs": 4.9,
+        "notificationMs": 5.967,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 2,
+        "mode": "reuse",
+        "handlerMs": 21.345,
+        "rowBuildMs": 4.213,
+        "notificationMs": 5.306,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 3,
+        "mode": "prior",
+        "handlerMs": 21.418,
+        "rowBuildMs": 5.369,
+        "notificationMs": 6.562,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 4,
+        "mode": "reuse",
+        "handlerMs": 21.522,
+        "rowBuildMs": 4.617,
+        "notificationMs": 5.842,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 5,
+        "mode": "prior",
+        "handlerMs": 21.59,
+        "rowBuildMs": 4.933,
+        "notificationMs": 6.001,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 6,
+        "mode": "reuse",
+        "handlerMs": 21.171,
+        "rowBuildMs": 4.347,
+        "notificationMs": 5.433,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 7,
+        "mode": "prior",
+        "handlerMs": 22.154,
+        "rowBuildMs": 5.294,
+        "notificationMs": 6.425,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      },
+      {
+        "index": 8,
+        "mode": "reuse",
+        "handlerMs": 20.594,
+        "rowBuildMs": 4.234,
+        "notificationMs": 5.328,
+        "rowBuilds": 1,
+        "exactRowsAndPotionTargets": true,
+        "stockGenerationsStable": true
+      }
+    ],
+    "mediansMs": {
+      "prior": {
+        "handler": 21.504,
+        "rowBuild": 5.1135,
+        "notification": 6.213,
+        "outsideNotification": 15.2225
+      },
+      "installed": {
+        "handler": 21.258,
+        "rowBuild": 4.2905,
+        "notification": 5.3805,
+        "outsideNotification": 15.709
+      }
+    },
+    "note": "0.823 ms lower median for the synchronous row build. Inclusive handler samples overlap, and this does not establish a whole-handler or FPS gain. Independent recipe scan and bookkeeping remain the larger cost.",
+    "cleanup": {
+      "tailoringAndAuctionClosed": true,
+      "originalEmptyTargetRestored": true,
+      "allObserversRestored": true,
+      "noItemsMovedOrTransacted": true,
+      "newErrors": 0,
+      "jump": {
+        "pid": 31072,
+        "pairs": 5,
+        "status": "running",
+        "nextDueInSeconds": 180,
+        "last": "injected-movement-unverified"
+      }
+    },
+    "regression": {
+      "file": "tests/consumable_pending_read.lua",
+      "sha256": "1f150d54806bbb60c6ecede88ed034a149031d5be99587a985ffb6dad1a9c8f9",
+      "before": "Tracked GetUniqueItems only and missed the existing GetUniqueItemIDs path.",
+      "after": "Observe both defining bag enumeration entry points by identity without wrapping them.",
+      "builtinAssertionsPassed": 39,
+      "syndicatorAssertionsPassed": 39,
+      "runtimeSourceChanged": false
+    }
+  },
+  "ownedSearchPrepaint": {
+    "id": "LHO-AUCTION-SEARCH-PREPAINT-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "sourceBefore": "aa07f334b8cd5fd939fc896d61b7b45349489bc9374eb6546e444c9fbcb06985",
+    "sourceAfter": "d82b016c5fc63b3cdca4a59136137c0847d6cd93b297ef02b4fafda1b0eb50b3",
+    "checkpoint": {
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "src": "aa07f334b8cd5fd939fc896d61b7b45349489bc9374eb6546e444c9fbcb06985",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "backup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-search-prepaint-20261120T044214Z\\FluxAuctionRestock.lua.before",
+      "settingsFiles": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "liveBefore": {
+      "r617": {
+        "frameGapNearColdNativeOpenMs": 116,
+        "attachCalls": 2,
+        "attachInclusiveMs": 0.285,
+        "showSessionMs": 12.567,
+        "synchronousRowBuilds": 1,
+        "fullRowBuildsTotal": 2,
+        "visibleRows": 6,
+        "hiddenRows": 1,
+        "closeCalls": 2,
+        "closeInclusiveMs": 0.358,
+        "readback": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume617_auction_hover.png",
+        "readbackSHA256": "b1a8672ce3d94ca70226d8273918999cc2bc311147a557679a1ee44d9456cf75",
+        "openOrigin": "Native open observed while armed. The automation logged hover only.",
+        "purchase": false
+      },
+      "r618": {
+        "showSessionMs": 6.18,
+        "synchronousRowBuilds": 1,
+        "paintsOnShow": 4,
+        "laterPaints": 3,
+        "viewportCalls": 7,
+        "viewportInclusiveMs": 1.121,
+        "readback": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume618_auction_paint_results.png",
+        "readbackSHA256": "8654414ad6c78e38c4e73260dccd5f85924c25c8deeab34740c6c1bdb588ea54",
+        "click": {
+          "kind": "open_auction",
+          "clientXY": [
+            936,
+            298
+          ],
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "captureSHA256": "e6133fb557350716a504a3bbba127290a0ceecf05aa0b9fd8424b64c3c61410a",
+          "foregroundUnchanged": true,
+          "cursorUnchanged": true,
+          "buttonSent": true,
+          "time": 1795149501.1511965
+        }
+      },
+      "r619": {
+        "showSessionMs": 7.713,
+        "synchronousRowBuilds": 1,
+        "paintsOnShow": 4,
+        "laterPaints": 3,
+        "viewportCalls": 7,
+        "viewportInclusiveMs": 1.242,
+        "onShowSequence": [
+          "idle/changed",
+          "idle/searching",
+          "searching/searching",
+          "searching/searching"
+        ],
+        "readback": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume619_real_auction_paint_order.png",
+        "readbackSHA256": "f6e27c42f2a25634d8764e0fc06894116ed457dcd3dcae7a2176aef855a0b1fd",
+        "click": {
+          "kind": "open_auction",
+          "clientXY": [
+            936,
+            298
+          ],
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "captureSHA256": "99987d021a2c101fce9c59db7bcdea499212a2d05b9f8a5cb39547354e0b5153",
+          "foregroundUnchanged": true,
+          "cursorUnchanged": true,
+          "buttonSent": true,
+          "time": 1795149719.9577725
+        }
+      },
+      "cleanup": {
+        "observersRestored": true,
+        "bagGenerationStable": true,
+        "playerMoneyStable": true,
+        "transactionAbsent": true,
+        "auctionClosed": true,
+        "newErrors": 0,
+        "target": "Auctioneer Fitch remained selected."
+      }
+    },
+    "code": "The two owned search starters omit the interim idle-state repaint while retaining completed-state paint before the native search. Replaced methods, an active transaction, or an owned quote retain the existing invalidation path.",
+      "loadedNative": {
+        "marker": "LHO-AUCTION-SEARCH-PREPAINT-LIVE-20261120",
+        "sourceSHA256": "d82b016c5fc63b3cdca4a59136137c0847d6cd93b297ef02b4fafda1b0eb50b3",
+        "restore": {
+          "time": 1795150091.361459,
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "foregroundBefore": 22742608,
+          "initialIconic": true,
+          "inputSent": false,
+          "focusAPIUsed": false,
+          "cursorOrClipboardUsed": false,
+          "requests": [
+            "SetWindowPos HWND_BOTTOM NOSIZE NOMOVE NOACTIVATE ASYNCWINDOWPOS",
+            "ShowWindowAsync SW_SHOWNOACTIVATE",
+            "SetWindowPos final HWND_BOTTOM NOACTIVATE"
+          ],
+          "status": "restored-background",
+          "finalIconic": false,
+          "finalVisible": true,
+          "foregroundAfter": 22742608,
+          "foregroundUnchanged": true,
+          "finished": 1795150091.5068924
+        },
+        "reload": {
+          "run": "R620 second reservation",
+          "freshStartup": true,
+          "submissionSHA256": "338111b65f6cb49b22934802683378e043729b04d8629ae7eab63b7fc19cbe90",
+          "startupSHA256": "40822a5b5487ac8e3443045deceb15eae35f28e4a6ad5e7fe43c833404a5074b"
+        },
+        "cue": {
+          "interrupted": "R88 first reservation stopped on foreground change before input. Second stopped after 15 commands on a physical modifier. All recorded Enter pairs completed.",
+          "partialRootClearedBy": "R621",
+          "recovery": "R89",
+          "hostPID": 11436,
+          "intervalSeconds": 180,
+          "confirmedSpaceKeyPairs": 1,
+          "movementAcknowledged": false
+        },
+        "coldAndFreshBook": {
+          "run": 621,
+          "cold": {
+            "showSessionMs": 12.84,
+            "synchronousRowBuilds": 1,
+            "paintRevisions": 4,
+            "state": "searching"
+          },
+          "freshBookWarm": {
+            "showSessionMs": 4.825,
+            "synchronousRowBuilds": 1,
+            "paintRevisions": 4,
+            "state": "idle",
+            "flow": [
+              "idle/changed",
+              "idle/enough",
+              "idle/enough",
+              "idle/enough"
+            ]
+          },
+          "visibleRows": 6,
+          "hiddenRows": 1,
+          "evidence": {
+            "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume621_loaded_auction_paint.png",
+            "sha256": "1898f66db3bd8dc618ef6ac678df1109239083f549d16b7f75a233c539dcbde5",
+            "probeSHA256": "ea042f191af2a2fe638bc99787b1d4c0d58730a9cc34042ab530227d555a1c06",
+            "mouse": {
+              "kind": "open_auction",
+              "clientXY": [
+                954,
+                342
+              ],
+              "identity": {
+                "pid": 9012,
+                "hwnd": 3541714,
+                "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+                "created": 134395136956432080
+              },
+              "captureSHA256": "30c5d82a32dc8a34552bc6f1a0dd3753d10548dc308759af779a48690a49857f",
+              "foregroundUnchanged": true,
+              "cursorUnchanged": true,
+              "buttonSent": true,
+              "time": 1795150379.6778958
+            }
+          }
+        },
+        "warmExpiredBook": {
+          "run": 622,
+          "showSessionMs": 8.131,
+          "synchronousRowBuilds": 1,
+          "startupPaints": 3,
+          "laterPaints": 3,
+          "viewportInclusiveMs": 1.268,
+          "flow": [
+            "idle/changed",
+            "searching/searching",
+            "searching/searching"
+          ],
+          "visibleRows": 6,
+          "hiddenRows": 1,
+          "attachInclusiveMs": 0.177,
+          "closeInclusiveMs": 0.38,
+          "bagGenerationStable": true,
+          "moneyStable": true,
+          "transaction": false,
+          "observersRestored": true,
+          "newLuaErrors": 0,
+          "auctionClosed": true,
+          "currentTarget": "Auctioneer Fitch",
+          "evidence": {
+            "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume622_warm_search_paint.png",
+            "sha256": "816cfe2208de2b61e31d24f93ac3665bb6068685f7786dec8789445691f0d952",
+            "probeSHA256": "995c4d360cb592cd97faaa74ffdfdcbc77fd2f09bc163b9471b8adce25341e14",
+            "mouse": {
+              "kind": "open_auction",
+              "clientXY": [
+                954,
+                342
+              ],
+              "identity": {
+                "pid": 9012,
+                "hwnd": 3541714,
+                "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+                "created": 134395136956432080
+              },
+              "captureSHA256": "d6e541e260ae7e8e1689254f8c198a2127df24c54da505da88624a45808cc898",
+              "foregroundUnchanged": true,
+              "cursorUnchanged": true,
+              "buttonSent": true,
+              "time": 1795150583.869512
+            }
+          }
+        },
+        "claim": "The matched warm search eliminates the observed idle/searching paint and preserves the three later paints. Overall open time and frame-time gains are unproven. R622 took 8.131 ms compared with R618 6.180 ms and R619 7.713 ms in separate samples."
+      },
+    "verification": {
+      "existingAuctionScripts": 43,
+      "matchingClientPaths": 5,
+      "compilerPasses": 10,
+      "nativeAfter": "R621 and R622 passed on Forever following R620 reload. Additional clients and native potion searches remain pending."
+    },
+    "keepalive": {
+      "revision": "R87",
+      "pid": 9740,
+      "lastConfirmedPairs": 4,
+      "movementAcknowledged": false
+    }
+  },
+  "nativeRowOrderAllocation": {
+    "id": "LHO-AUCTION-ROW-ORDER-ALLOCATION-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": "Syndicator and Baganator",
+    "sourceBefore": "5e17c5603a68166b8e5b6a336e55530c6f33c80e96f2ef51327d620ec6d02b64",
+    "sourceAfter": "694f33f6f1852dd7bc76800503c872b61b858bac9708f6af23c9fe5f77231620",
+    "checkpoint": {
+      "utc": "20261120T061006Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "source": "5e17c5603a68166b8e5b6a336e55530c6f33c80e96f2ef51327d620ec6d02b64",
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-row-order-20261120T061006Z\\FluxAuctionRestockData.lua.before",
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "nativeComparison": {
+      "run": 641,
+      "scope": "Actual six Restock rows obtained while all commerce panels were closed. Alternating sorts reused a work array refilled in reverse order each time. This includes the work-array refill and does not time the rendering pipeline.",
+      "visible": 6,
+      "hidden": 1,
+      "ordinaryRows": 3,
+      "tierRows": 3,
+      "comparisonsPerSort": 12,
+      "repeatedSortsPerBatch": 340,
+      "pairedBatches": 8,
+      "firstBuildMs": 10.331,
+      "base": [
+        3.466,
+        3.93,
+        3.536,
+        3.606,
+        3.719,
+        3.924,
+        3.636,
+        3.519
+      ],
+      "candidate": [
+        2.583,
+        2.613,
+        2.567,
+        2.542,
+        2.64,
+        2.662,
+        2.635,
+        2.623
+      ],
+      "baseMedian": 3.621,
+      "candidateMedian": 2.618,
+      "gainPercent": 27.699530516431917,
+      "exactOrderAndComparatorParity": true,
+      "bagGenerationStable": true,
+      "moneyStable": true,
+      "noTransaction": true,
+      "auctionClosed": true,
+      "newLuaErrors": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume641_live_auction_row_order.png",
+      "pngSHA256": "c2a55dd58a0c067fe02363745ab301434b50863ca6599696b5e7edb6d08a730b",
+      "probeSHA256": "f48d60a02ec550b5787649404736b561ce7718613f63467c5fd14aeee6c71719"
+    },
+    "validation": {
+      "auctionScripts": 44,
+      "lua54SyntaxChecks": 5,
+      "matchingInstalledCopies": 5
+    },
+    "reload": {
+      "run": 642,
+      "verifiedFreshStartup": true,
+      "submissionSHA256": "fd4d094555d5599c5b255ac12c399902046d4621de6f9aba9c53ba6d22e1153c",
+      "startupSHA256": "806316fc4ca6e718e368749bc89cd1fb10a655b2f159ceae76eddc0c9289ab3f"
+    },
+    "liveAuction": {
+      "run": "643 third reservation",
+      "precedingAttempts": "Two reservations stopped before typing when the window became nondrawable",
+      "loadedSortOrderMatchedExactPrior": true,
+      "ordinaryRows": 3,
+      "tierRows": 3,
+      "visible": 6,
+      "hidden": 1,
+      "initialState": "searching",
+      "firstShowMs": 13.814,
+      "firstShowFullRowBuilds": 1,
+      "firstSynchronousModelRevisions": 4,
+      "laterModelRevisions": 5,
+      "work": {
+        "compare": [
+          132,
+          0.129
+        ],
+        "setItemUnits": [
+          28,
+          1.277
+        ],
+        "need": [
+          22,
+          0.591
+        ],
+        "refreshMailFacts": [
+          4,
+          0.024
+        ],
+        "attach": [
+          2,
+          0.264
+        ],
+        "hide": [
+          2,
+          0.358
+        ]
+      },
+      "units": "Counts and inclusive milliseconds over the observed open, query and close. No viewport hook was installed because the panel did not exist before the first open.",
+      "nativeAuctionEventObserved": true,
+      "openingInputAttribution": "Actual native event occurred after installation and before completion readback. The only tool mouse action was a hover submitted without a button; no automated open click was sent.",
+      "bagGenerationStable": true,
+      "moneyStable": true,
+      "noTransaction": true,
+      "panelClosed": true,
+      "auctionClosed": true,
+      "observersRestored": true,
+      "newLuaErrors": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume643_auctioneer_hover.png",
+      "pngSHA256": "5832fa042cf4cc0ef68c67001fae3f3c3b8ee5b59b326b97faf226928360cea0",
+      "probeSHA256": "ed6357f45982dfaed6f27796619b6da0b025470ea43804489eb714eb80c65444"
+    },
+    "keepalive": {
+      "revision": "R94",
+      "pid": 12756,
+      "intervalSeconds": 180,
+      "foregroundPairs": 1,
+      "movementAcknowledged": false,
+      "latestState": "injected-movement-unverified"
+    }
+  },
+  "ownedInitialPlanningPaint": {
+    "id": "LHO-AUCTION-INITIAL-PLAN-PAINT-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": "Syndicator and Baganator",
+    "checkpoint": {
+      "utc": "20261120T062520Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "source": {
+        "Inventory/Restock/Auction/FluxAuctionRestock.lua": {
+          "hash": "d82b016c5fc63b3cdca4a59136137c0847d6cd93b297ef02b4fafda1b0eb50b3",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-initial-paint-20261120T062520Z\\FluxAuctionRestock.lua.before"
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "hash": "7f6347836b1b0bdd78ae70bdb03857ceda27f63c2224fe098458fc2d2046a3c3",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-initial-paint-20261120T062520Z\\FluxAuctionRestockUI.lua.before"
+        },
+        "tests/auction_restock.lua": {
+          "hash": "6555f38a5e069424127c79e950616a8e01f6007c943c69b3607c02b6465d1830",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\auction-initial-paint-20261120T062520Z\\auction_restock.lua.before"
+        }
+      },
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "afterSources": {
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "d7c5b0b2f60b8d4ec8742f18ad68b84dd43c9f1898db06daba5d209437b20a49",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "871af6b5e1524dd164fdf141b5106c5418b4129d6c7c66c57c4953c232cb4f87"
+    },
+    "implementation": "Skip the initial idle/changed paint only for an owned, already eligible panel startup that guarantees a final paint in the same synchronous OnShow call. Keep pre-query, throttle, error, completion and final paints, all invalidation side effects, and direct or replacement paths.",
+    "before": {
+      "run": 645,
+      "warmPanel": true,
+      "agedPrices": true,
+      "fullRowBuilds": 1,
+      "initialToggleMs": 7.656,
+      "visibleRows": 6,
+      "hiddenRows": 1,
+      "initialModelRevisions": 3,
+      "laterModelRevisions": 3,
+      "viewportCalls": 6,
+      "viewportMs": 1.052,
+      "sequence": [
+        "idle/changed",
+        "searching/searching",
+        "searching/searching"
+      ],
+      "stableMoney": true,
+      "stableBagGeneration": true,
+      "transactions": 0,
+      "errors": 0,
+      "closed": true,
+      "observersRestored": true,
+      "mouse": {
+        "kind": "open_auction",
+        "clientXY": [
+          951,
+          341
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "captureSHA256": "9e1365d6deafc622d028c2c48a68c45a15567fafac840f8ba1f1c09a4463d569",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795155849.954699
+      },
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume645_live_startup_paint.png",
+      "pngSHA256": "273117f9ab5747317e593bee93a81ba236828670e48336f3046e1bcdc33af4ca",
+      "probeSHA256": "f383874aa25287a8c331c7418376e1d206f40bd14a5df2da05f58c06fe9652cc"
+    },
+    "verification": {
+      "auctionScripts": 44,
+      "focusedChecks": 11833,
+      "profileVariants": 24,
+      "ownerSequenceRegressionFailedBefore": true,
+      "ownerSequenceRegressionPassedAfter": true,
+      "installedCopies": 5,
+      "lua54SyntaxChecks": 10
+    },
+    "reload": {
+      "run": "646 second reservation",
+      "firstReservation": "stopped before input on foreground activity",
+      "submissionSHA256": "f7f97f0fe34f9859a01e9d700b083901cc877debbcf2e629ba7a5a3bc39bd318",
+      "freshStartupSHA256": "abae3239618929e5b9ab44220d43257a0744138b2018568d9e377e4723b58444"
+    },
+    "after": {
+      "run": 648,
+      "earlierRun647": "Observer installed but the mouse guard stopped before button input. Observer timed out and restored before run 648.",
+      "coldFirstPanel": true,
+      "fullRowBuilds": 1,
+      "initialToggleMs": 14.773,
+      "visibleRows": 6,
+      "hiddenRows": 1,
+      "initialModelRevisions": 3,
+      "laterModelRevisions": 3,
+      "viewportCalls": 6,
+      "viewportMs": 2.278,
+      "sequence": [
+        "searching/searching",
+        "searching/auctionWaiting",
+        "searching/auctionWaiting"
+      ],
+      "observedRemovedState": "idle/changed",
+      "stableMoney": true,
+      "stableBagGeneration": true,
+      "transactions": 0,
+      "errors": 0,
+      "closed": true,
+      "observersRestored": true,
+      "mouse": {
+        "kind": "open_auction",
+        "clientXY": [
+          951,
+          341
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "captureSHA256": "79ef1b8b9132f031b0b69b99b9614a05688ae0b568435d4c34986a5909991976",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795156559.5015285
+      },
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume648_live_startup_paint.png",
+      "pngSHA256": "e195a6715afb5560c1fa9e32c388083e0b65ce6293ec1fcf428a2860e5f6c3d6",
+      "probeSHA256": "870e1dae994b5133f38adeb2a016ff15d6bf92f43295eb26c0e0f83f49fe866d"
+    },
+    "warmRepeat": {
+      "run": 650,
+      "status": "All packets reached the main client; focus changed before controller readback. Independent capture confirmed READY and later timeout with cleanup. No auction opened for this attempt.",
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume650_terminal_read.png",
+      "pngSHA256": "34dcabe5e930eae0ec31f41a2a53cbef389d487c562acc626f79ea63164ed3de",
+      "observersRestored": true,
+      "transactions": 0,
+      "results": "pending"
+    },
+    "timingScope": "Warm searching before and cold throttle-wait after verify the removal of the transient state on the actual loaded path. Comparing their inclusive timings does not establish an opening-time or frame-time gain.",
+    "keepalive": {
+      "revision": "R95",
+      "pid": 38368,
+      "intervalSeconds": 180,
+      "verifiedRunning": true,
+      "completeSpacePairs": 1,
+      "movementAcknowledged": false
+    }
+  }
+}

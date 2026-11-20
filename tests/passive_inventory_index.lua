@@ -232,7 +232,7 @@ local counts = sample("GetCount20000", function() for _ = 1, 20000 do assert(s.i
 budget(counts.normalizedTables or 0, 0, "GetCount constructs no normalized option tables")
 s.native = 3
 local live = sample("GetLiveCount20000", function() for _ = 1, 20000 do assert(s.inv.GetLiveCount(123, opts) == 3) end end)
-budget(live.normalizedTables or 0, 20000, "GetLiveCount retains one normalized options table")
+budget(live.normalizedTables or 0, 0, "Canonical GetLiveCount constructs no normalized option tables")
 budget(live.helperIdentities or 0, 1, "GetLiveCount uses one hoisted conversion helper")
 eq(live.nativeCalls, 20000, "native live count query cadence unchanged")
 s.inv.snapshots.bags.byBag = {}; s.maps = {}

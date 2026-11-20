@@ -1,0 +1,250 @@
+{
+  "changeId": "REGIONAL-ROSTER-POSES-R105-20261119",
+  "capturedAtUTC": "2026-11-19T12:55:19.406659+00:00",
+  "scope": "Reuse up to two recent compiled roster border layouts",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "afterRaw": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc"
+    },
+    "tests/regional_roster_poses.lua": {
+      "beforeRaw": null,
+      "afterRaw": "c677d9c391ab5fffc5282a841a60c18b9b37b840fb330009393dc438165a55ce"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/regional_tile_materials.lua": {
+      "beforeRaw": "c80568dd48573ac6f1aa3f4dda8c8c723bf6272afbdf0f3762c821f18192287d",
+      "afterRaw": "c80568dd48573ac6f1aa3f4dda8c8c723bf6272afbdf0f3762c821f18192287d"
+    },
+    "tests/regional_layout_index.lua": {
+      "beforeRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3",
+      "afterRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08",
+      "afterRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08"
+    },
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeRaw": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+      "afterRaw": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\source.zip",
+    "archiveSHA256": "92fe6837a74500cd18c5a289a99b8f75a6b97b9c206a986aa3d11b52e79ce4b1",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 8,
+    "backgroundRaidFrames": 40,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 party geometry",
+      "type 1 raid geometry",
+      "type 2 party geometry",
+      "type 2 raid geometry"
+    ],
+    "counts": [
+      [
+        8,
+        2,
+        8,
+        2
+      ],
+      [
+        8,
+        2,
+        8,
+        2
+      ],
+      [
+        8,
+        2,
+        8,
+        2
+      ],
+      [
+        8,
+        2,
+        8,
+        2
+      ]
+    ],
+    "countColumns": [
+      "before solves",
+      "after solves",
+      "before plans",
+      "after plans"
+    ],
+    "checks": [
+      "four recurring group origins in two distinct layouts",
+      "sampled joins and listener ownership match the previous renderer",
+      "current paint is applied when reusing an exact geometry match",
+      "changed UV requires new material planning and unseen positions still solve",
+      "combat deferral and global retirement retain their contracts"
+    ],
+    "retentionBound": {
+      "variants": 2,
+      "segments": 256,
+      "operations": 128,
+      "drawingPrimitives": 2048
+    },
+    "rejectedLead": {
+      "reason": "The warmed held cursor and roster scenes contained no fully identical dirty tile descriptors across adjacent transitions",
+      "evidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\regional-output-overlap-r105.txt"
+    },
+    "rows": [
+      "ROSTER_POSE style=1 mode=party solves=8/2 plans=8/2",
+      "ROSTER_POSE style=1 mode=raid solves=8/2 plans=8/2",
+      "ROSTER_POSE style=2 mode=party solves=8/2 plans=8/2",
+      "ROSTER_POSE style=2 mode=raid solves=8/2 plans=8/2",
+      "Roster pose replay preserves sampled joins, live paint, material validation and combat deferral."
+    ],
+    "captureSHA256": "34408d197d49fee3d8b1df96412c4bf2ac93b95502d2f9d37ece0d7a9d71ca1f"
+  },
+  "desktopTiming": {
+    "scope": "Five alternating paired os.clock trials per style, excluding model creation and visual comparisons",
+    "columns": [
+      "old first two",
+      "new first two",
+      "old next 32",
+      "new next 32"
+    ],
+    "unit": "milliseconds",
+    "samples": {
+      "1": {
+        "medians": [
+          5.0,
+          6.0,
+          98.0,
+          67.0
+        ],
+        "trials": [
+          [
+            6.0,
+            7.0,
+            101.0,
+            90.0
+          ],
+          [
+            5.0,
+            9.0,
+            93.0,
+            67.0
+          ],
+          [
+            5.0,
+            6.0,
+            94.0,
+            67.0
+          ],
+          [
+            6.0,
+            5.0,
+            98.0,
+            71.0
+          ],
+          [
+            5.0,
+            6.0,
+            101.0,
+            67.0
+          ]
+        ]
+      },
+      "2": {
+        "medians": [
+          6.0,
+          7.0,
+          110.0,
+          84.0
+        ],
+        "trials": [
+          [
+            6.0,
+            6.0,
+            101.0,
+            84.0
+          ],
+          [
+            5.0,
+            7.0,
+            110.0,
+            81.0
+          ],
+          [
+            5.0,
+            7.0,
+            110.0,
+            83.0
+          ],
+          [
+            11.0,
+            13.0,
+            201.0,
+            165.0
+          ],
+          [
+            12.0,
+            12.0,
+            209.0,
+            159.0
+          ]
+        ]
+      }
+    },
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\timing.txt",
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\time.lua"
+  },
+  "verification": {
+    "focused": 41,
+    "focusedPassed": 40,
+    "syntax": 1248,
+    "compilerMaximumUpvalues": 52,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-roster-poses-r105-before-20261119T124752Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

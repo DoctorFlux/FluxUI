@@ -16,7 +16,7 @@ local function RoundTrip(value)
     end
     return assert(load("return " .. literal(value)))()
 end
-local function boot(client, auctionator, syndicator, saved, character, offline)
+local function boot(client, auctionator, syndicator, saved, character, offline, configure)
     local legacy = client == "Era" or client == "Anniversary"
     local A, st, env = fixture(legacy, auctionator, syndicator)
     local function load(path)
@@ -77,6 +77,7 @@ local function boot(client, auctionator, syndicator, saved, character, offline)
         end
         env.GetTradeSkillReagentItemLink = function(index, reagent) return "item:" .. st.recipeData[st.ids[index]].mats[reagent][1] end
     end
+    if configure then configure(st, env) end
     load("Inventory/Professions.lua")
     st.recipeItems, st.entries = { [100] = true, [101] = true }, { { itemID = 100, name = "Item100", target = 10 } }
     env.FluxItemClass.GetIcon = function(id) return id end

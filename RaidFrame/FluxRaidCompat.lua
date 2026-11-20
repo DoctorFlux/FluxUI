@@ -217,7 +217,7 @@ end
 
 --- Apply Flux option alphas for out-of-range fade on Flux raid/mini CUFs only.
 --- Midnight: SetAlphaFromBoolean accepts secret booleans (AllowedWhenTainted).
-function FluxRaidCompat.ApplyRangeAlpha(frame)
+function FluxRaidCompat.ApplyRangeAlpha(frame, sampledUnit, sampledConnection)
     if not frame or not frame.SetAlpha then
         return
     end
@@ -238,13 +238,16 @@ function FluxRaidCompat.ApplyRangeAlpha(frame)
     local base = visuals.FRAME_BASE_ALPHA or 1
     if not opt or not opt.fadeOutOfRange then SetAlpha(base); return end
     local unit = frame.displayedUnit or frame.unit
-    if not FluxRaidCompat.UnitTokenValid(unit) then
+    local sampled = sampledUnit ~= nil and not IsSecretValue(unit) and unit == sampledUnit
+    if not sampled and not FluxRaidCompat.UnitTokenValid(unit) then
         return
     end
     local targetMini=frame._fluxRaidMini and not frame._fluxExtraPet
     local inAlpha = targetMini and base or base * (visuals.RANGE_ALPHA_IN_RANGE or 0.9)
     local outAlpha = base * (visuals.RANGE_ALPHA_OUT_OF_RANGE or 0.44)
-    local connected = UnitIsConnected and UnitIsConnected(unit)
+    local connected
+    if sampled then connected = sampledConnection
+    else connected = UnitIsConnected and UnitIsConnected(unit) end
     if not IsSecretValue(connected) and connected == false then
         SetAlpha(base)
         return

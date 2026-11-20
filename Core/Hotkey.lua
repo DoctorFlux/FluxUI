@@ -20,6 +20,14 @@ local PATHS = {
 	SP = TEX .. "SpaceBarButton.tga",
 }
 
+-- Full TGA dimensions are required before inline-texture RGB fields. Keep the
+-- original uncropped artwork and geometry; multiplication preserves black ink.
+local SOURCE_SIZE = {
+	[PATHS.BUTTON3] = { 32, 80 }, [PATHS.BUTTON4] = { 32, 80 }, [PATHS.BUTTON5] = { 32, 80 },
+	[PATHS.MOUSEWHEELUP] = { 8, 20 }, [PATHS.MOUSEWHEELDOWN] = { 8, 20 }, [PATHS.SPACE] = { 48, 48 },
+}
+local RANGE_R, RANGE_G, RANGE_B = 1, 0.1, 0.1
+
 local ABBREV = {
 	NUMPAD0 = "N0", NUMPAD1 = "N1", NUMPAD2 = "N2", NUMPAD3 = "N3",
 	NUMPAD4 = "N4", NUMPAD5 = "N5", NUMPAD6 = "N6", NUMPAD7 = "N7",
@@ -35,7 +43,7 @@ function Hotkey.Path(token)
 	return PATHS[string.upper(token)]
 end
 
-function Hotkey.Markup(path, size, width)
+function Hotkey.Markup(path, size, width, r, g, b)
 	if not path then
 		return ""
 	end
@@ -43,7 +51,62 @@ function Hotkey.Markup(path, size, width)
 	width = width or size
 	size = math.max(1, math.floor(size + 0.5))
 	width = math.max(1, math.floor(width + 0.5))
+	local source = SOURCE_SIZE[path]
+	if source and type(r) == "number" and type(g) == "number" and type(b) == "number" then
+		return ("|T%s:%d:%d:0:-1:%d:%d:0:%d:0:%d:%d:%d:%d|t"):format(path, size, width,
+			source[1], source[2], source[1], source[2], r, g, b)
+	end
 	return ("|T%s:%d:%d:0:-1|t"):format(path, size, width)
+end
+
+-- Tint only our known key glyphs, leaving unrelated texture markup alone.
+-- Base strings remain unmodified so returning in range restores white art.
+local function RedGlyphs(text)
+	return (text:gsub("|T([^|]+)|t", function(body)
+		local path, height, width, x, y = body:match("^([^:]+):([^:]+):([^:]+):([^:]+):([^:]+)")
+		local source = path and SOURCE_SIZE[path]
+		if not source then return "|T" .. body .. "|t" end
+		return ("|T%s:%s:%s:%s:%s:%d:%d:0:%d:0:%d:255:26:26|t"):format(path,
+			height, width, x, y, source[1], source[2], source[1], source[2])
+	end))
+end
+
+function Hotkey.IsOutOfRange(fontString)
+	return fontString and fontString._fluxHotkeyOutOfRange == true or false
+end
+
+function Hotkey.SetText(fontString, text)
+	if not fontString then return end
+	if issecretvalue and issecretvalue(text) then return end
+	text = text == nil and "" or tostring(text)
+	fontString._fluxHotkeyBaseText = text
+	local shown = Hotkey.IsOutOfRange(fontString) and RedGlyphs(text) or text
+	if fontString._fluxHotkeyRendered ~= shown then
+		fontString._fluxHotkeyRendered = shown
+		fontString:SetText(shown)
+	end
+end
+
+-- Callers reuse their existing public range decision; no range probe or timer.
+-- Font preparation may reset text color, so it can explicitly force a refresh.
+function Hotkey.SetRange(fontString, outOfRange, forceColor)
+	if not fontString then return end
+	if issecretvalue and issecretvalue(outOfRange) then return end
+	outOfRange = outOfRange == true
+	local changed = fontString._fluxHotkeyOutOfRange ~= outOfRange
+	if not changed and not forceColor then return end
+	fontString._fluxHotkeyOutOfRange = outOfRange
+	if outOfRange then
+		fontString:SetTextColor(RANGE_R, RANGE_G, RANGE_B)
+	else
+		fontString:SetTextColor(0.75, 0.75, 0.75)
+	end
+	local base = fontString._fluxHotkeyBaseText
+	if base == nil and fontString.GetText then
+		local value = fontString:GetText()
+		if not issecretvalue or not issecretvalue(value) then base = value end
+	end
+	Hotkey.SetText(fontString, base or "")
 end
 
 function Hotkey.IconFor(token, size, width)

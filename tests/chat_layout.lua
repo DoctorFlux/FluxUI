@@ -50,11 +50,17 @@ local function fixture(branch, body)
         assert(not (state.combat and chat.protected), "protected chat mutation during combat")
         state.writes = state.writes + 1
     end
-    function chat:ClearAllPoints() mutation() end
-    function chat:SetMovable() mutation() end
-    function chat:SetUserPlaced() mutation() end
+    function chat:ClearAllPoints() mutation(); self.point=nil end
+    function chat:GetNumPoints() return self.point and 1 or 0 end
+    function chat:GetPoint() return table.unpack(self.point or {}) end
+    function chat:SetMovable(value) mutation(); self.movable=value end
+    function chat:IsMovable() return self.movable end
+    function chat:SetUserPlaced(value) mutation(); self.userPlaced=value end
+    function chat:IsUserPlaced() return self.userPlaced end
     function chat:SetSize(w, h) mutation(); self.w, self.h = w, h end
-    function chat:SetPoint(_, _, _, x, y) mutation(); self.x, self.y = x, y end
+    function chat:SetPoint(point, parent, relative, x, y)
+        mutation(); self.point={point,parent,relative,x,y}; self.x, self.y=x,y
+    end
     env.ChatFrame1 = chat
     env.C_Timer = { After = function(_, callback) state.timers[#state.timers + 1] = callback end }
     local eventBody = section(source, 'eventFrame:SetScript("OnEvent", function(self, event)', '\n    if event == "PLAYER_REGEN_DISABLED" then')
@@ -63,6 +69,70 @@ local function fixture(branch, body)
     local apply, restore, drift = assert(load("local _, ns = ...\n" .. (body or production) .. eventBody ..
         "\nreturn ApplyPosition, RestoreLastChatPin, RepinChatIfDrifted", "@production-chat-layout", "t", env))("_FluxUI", { Flux = env.Flux })
     return state, chat, menu, env, apply, restore, drift
+end
+local function settledStripModel(branch, body, pos)
+    local s, chat, _, env, apply=fixture(branch,body)
+    s.pos=pos
+    local focus,raid,saved=0,0,0
+    env.FluxUIPositionFocusFrameDefault=function() focus=focus+1 end
+    env.FluxRaidFrame_UpdatePosition=function() raid=raid+1 end
+    env.SetChatWindowSavedDimensions=function() saved=saved+1 end
+    env.SetChatWindowSavedPosition=function() saved=saved+1 end
+    apply(chat,true)
+    local update=env.FluxChatFrame_UpdateAfterStripLayout or function() env.FluxChatFrame_ApplyPrimaryPosition(true) end
+    local function Counts() return s.writes,focus,raid,saved end
+    local function Account(steps)
+        local a,b,c,d=Counts()
+        for _=1,steps do update() end
+        return s.writes-a,focus-b,raid-c,saved-d
+    end
+    return s,chat,env,update,Account,Counts
+end
+local archived=arg[1] and assert(io.open(arg[1].."/Other-FluxChatFrame.lua","rb"))
+local before=archived and section(archived:read("*a"):gsub("\r\n","\n"),"local function GetChatWidth()","-- CLASS COLORS")
+if archived then archived:close() end
+for _,branch in ipairs({"live","classic_era","classic_anniversary","classic","forever"}) do
+    for _,pos in ipairs({1,2,3}) do
+        local s,chat,env,update,account,counts=settledStripModel(branch,nil,pos)
+        local writes,focus,raid,saves=account(20)
+        check(writes==0 and focus==0 and raid==0 and saves==0,
+            branch..": matching chat and dock skip all settlement writes")
+        if before then
+            local _,_,_,_,baselineWork=settledStripModel(branch,before,pos)
+            local bw,bf,br,bs=baselineWork(20)
+            check(bw==100 and bf==20 and br==20 and bs==40,"archived hover uses the prior forced update")
+            print(("STRIP_CHAT %s pos=%d writes=%d/%d focus=%d/%d raid=%d/%d saves=%d/%d"):format(
+                branch,pos,bw,writes,bf,focus,br,raid,bs,saves))
+        end
+        local priorY=chat.y
+        s.floor=s.floor+12
+        local w,f,r,p=account(1)
+        check(f==1 and r==1,branch..": a new strip floor updates both dock owners")
+        check(pos==2 and chat.y==priorY and w==0 and p==0
+            or pos~=2 and chat.y==priorY+12 and w==5 and p==2,
+            branch..": strip changes lift horizontal chat while the side column keeps its placement")
+        chat.point[2]={}
+        chat.w=chat.w-.125
+        local restore=account(1)
+        check(restore==5 and chat.point[2]==env.UIParent,branch..": crossing repairs native anchor and size drift")
+        chat.systemInfo.anchorInfo2={}
+        check(account(1)==5 and not chat.systemInfo.anchorInfo2,branch..": crossing repairs Edit Mode pin metadata")
+        local opaque={}
+        env.issecretvalue=function(value) return rawequal(opaque,value) end
+        chat.GetNumPoints=function() return opaque end
+        check(account(1)==5,branch..": private anchor proof takes the existing pin path")
+        chat.GetNumPoints=function(self) return self.point and 1 or 0 end
+        local old=chat.GetWidth
+        chat.GetWidth=function() error("test denied read") end
+        check(account(1)==5,branch..": unavailable geometry takes the existing pin path")
+        chat.GetWidth=old
+        env.FluxRaidFrame_UpdatePosition=function() raid=(raid or 0)+1 end
+        local beforeWrites=counts()
+        update()
+        check(counts()==beforeWrites and raid==1,branch..": new dock callback runs with the matching chat rectangle")
+        s.combat=true
+        check(account(1)==0 and s.illegal==0,branch..": strip settlement respects protected combat anchors")
+    end
 end
 local function exercise(branch, body)
     local s, chat, menu, env, apply, restore, drift = fixture(branch, body)

@@ -4,12 +4,14 @@ local base = arg[1] or '.'
 local output = arg[2]
 local measure = arg[3] == '--measure'
 local full = arg[4] == '--full'
+local roster = arg[5] == '--roster'
+local rosterBursts = tonumber(arg[6]) or 1
 local seconds = full and 60 or 2
 local checks = 0
 local function check(v,why) checks=checks+1;assert(v,why) end
 local scenarios = {}
 local sourcePaths = {'NamePlates/Core.lua','NamePlates/Level.lua','NamePlates/Threat.lua','NamePlates/Countdown.lua'}
-local function run(branch, count, fps, topology, churn)
+local function run(branch, count, fps, topology, churn, rankCase)
     local calls, objects, native, now = {}, {}, {}, 0
     local function hit(name) calls[name] = (calls[name] or 0) + 1 end
     local function widget(parent, kind)
@@ -63,7 +65,7 @@ local function run(branch, count, fps, topology, churn)
         return w
     end
     local ui=widget()
-    local Flux={Client={isRetail=branch=='retail',isLiveMidnight=branch=='retail',isForever=branch=='forever',isCamelot=branch=='forever',majorVersion=branch=='retail' and 12 or 1}}
+    local Flux={Client={isRetail=branch=='retail',isLiveMidnight=branch=='retail',isForever=branch=='forever',isCamelot=branch=='forever',isAnyClassic=branch=='classic',majorVersion=branch=='retail' and 12 or 1}}
     Flux.Threat={IsVisibilityAllowed=function() return true end,IsNameplateThreatTarget=function() return true end,GetNumericDisplay=function() hit('ThreatDisplay');return 50,1,false end,
       GetForeverFrameDisplay=function() hit('ThreatDisplay');return 50,1,false end,ShouldShowThreat=function() return true end,
       GetPlayerRank=function() return 2 end,GetTintColor=function() return 1,1,0 end,
@@ -104,6 +106,40 @@ local function run(branch, count, fps, topology, churn)
         native[plate.unitToken]=plate
     end
     local ns={Flux=Flux}
+    local groupSize, tasks = 0, {}
+    if rankCase then
+        local function identity(unit)
+            if unit=='player' then return 'member1' end
+            if unit=='pet' then return 'pet1' end
+            local raid = tonumber(unit:match('^raid(%d+)$'))
+            if raid and groupSize==40 and raid<=groupSize then return 'member'..raid end
+            local raidPet = tonumber(unit:match('^raidpet(%d+)$'))
+            if raidPet and groupSize==40 and raidPet<=groupSize then return 'pet'..raidPet end
+            local party = tonumber(unit:match('^party(%d+)$'))
+            if party and groupSize==5 and party<groupSize then return 'member'..(party+1) end
+            local partyPet = tonumber(unit:match('^partypet(%d+)$'))
+            if partyPet and groupSize==5 and partyPet<groupSize then return 'pet'..(partyPet+1) end
+            return native[unit] and unit or nil
+        end
+        env.UnitExists=function(unit) return identity(unit)~=nil end
+        env.UnitGUID=function(unit) hit('GUID');return identity(unit) end
+        env.IsInRaid=function() return groupSize==40 end
+        env.IsInGroup=function() return groupSize>0 end
+        env.GetNumGroupMembers=function() return groupSize end
+        env.UnitIsUnit=function(first,second) return identity(first)==identity(second) end
+        env.UnitThreatSituation=function() return 1 end
+        env.UnitDetailedThreatSituation=function(unit,target)
+            hit('Detailed')
+            local id=identity(unit)
+            if not id then return end
+            local plateIndex=tonumber(target:match('%d+$')) or 1
+            local rankValue=(tonumber(id:match('%d+$')) or 1)*5
+            local tanking=rankCase=='raidTank' and unit=='player'
+            return tanking, tanking and 3 or 1, 55, 50, unit=='player' and plateIndex*4 or rankValue
+        end
+        env.C_Timer={After=function(_, fn) tasks[#tasks+1]=fn end}
+        assert(loadfile(base..'/Core/API/Threat.lua','t',env))('_FluxUI',ns)
+    end
     for _,p in ipairs(sourcePaths) do assert(loadfile(base..'/'..p,'t',env))('_FluxUI',ns) end
     local eventFrame,driver
     for _,w in ipairs(objects) do
@@ -112,6 +148,39 @@ local function run(branch, count, fps, topology, churn)
     end
     assert(eventFrame and driver,'actual Core driver/event frame found')
     local function event(name,unit) eventFrame.scripts.OnEvent(eventFrame,name,unit) end
+    if rankCase then
+        for i=1,count do event('NAME_PLATE_UNIT_ADDED','nameplate'..i) end
+        local function membership(size)
+            groupSize = size
+            for _=1,20 do event('GROUP_ROSTER_UPDATE') end
+            check(#tasks==1,'one flush per modeled roster burst')
+            local nextTask=tasks[1];tasks[1]=nil;nextTask()
+        end
+        local started=os.clock()
+        calls={}
+        for _=1,rosterBursts do
+            membership(0)
+            membership(rankCase=='party' and 5 or 40)
+        end
+        local elapsed=(os.clock()-started)*1000
+        local painted={}
+        for _,obj in ipairs(objects) do
+            local parent=obj.parent and obj.parent.parent
+            if obj.kind=='FontString' and obj.parent.shown and parent and native[parent.unitToken]==parent
+                and obj.text and obj.text:match('^%d+%s+%d+%%$') then
+                local tint=assert(Flux.NamePlates.ThreatTint(parent.unitToken),'rank keeps its displayed threat tint')
+                painted[#painted+1]=parent.unitToken..'='..obj.text:gsub(' ','.')..'@'..table.concat(tint,',')
+            end
+        end
+        table.sort(painted)
+        check(#painted==count,'every plate paints a threat rank and percent')
+        local guids, details, lookups=calls.GUID,calls.Detailed,calls.GetNamePlateForUnit
+        membership(0)
+        for unit in pairs(native) do check(Flux.NamePlates.ThreatTint(unit)==nil,'leaving clears the group-only tint') end
+        print(('ROSTER_RANK client=%s case=%s bursts=%d guid=%d detailed=%d lookup=%d ms=%.3f paint=%s'):format(
+            branch,rankCase,rosterBursts,guids,details,lookups,elapsed,table.concat(painted,'/')))
+        return
+    end
     local row={branch=branch,plates=count,fps=fps,seconds=seconds,topology=topology,mode=churn and '1000-add-remove-cycles' or 'steady',stub_limitations='plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible'}
     if churn then
         calls={};local before=#objects
@@ -134,6 +203,7 @@ local function run(branch, count, fps, topology, churn)
             check((calls.GetNamePlateForUnit or 0)<=count,'settled lookup cache budget')
             check((calls.SetFont or 0)==0,'stable font budget')
             check((calls.SetPoint or 0)==0,'stable owned anchor budget')
+            check((calls.SetFrameLevel or 0)<=6,'settled nameplate polling skips redundant frame-level writes')
         end
         row.behavior={}
         local function paint()
@@ -171,7 +241,34 @@ local function run(branch, count, fps, topology, churn)
         event('NAME_PLATE_UNIT_REMOVED','nameplate1')
         check(not Flux.NamePlates.activeUnits.nameplate1,'removal clears roster')
     end
+    if not measure and not churn then
+        calls={}
+        local np=Flux.NamePlates
+        local host,first,second=widget(ui),widget(ui),widget(ui)
+        local wanted=first.level+np.FRAME_LEVEL_OFFSET+1
+        check(np.AttachHost(host,first,1) and host.level==wanted and calls.SetFrameLevel==1,'new attachment sets the native level')
+        check(np.AttachHost(host,first,1) and calls.SetFrameLevel==1,'matching native attachment keeps its level')
+        host.level=wanted-1
+        check(np.AttachHost(host,first,1) and host.level==wanted and calls.SetFrameLevel==2,'native level drift is repaired')
+        local getLevel=host.GetFrameLevel
+        local opaque={}
+        env.issecretvalue=function(value) return rawequal(value,opaque) end
+        host.GetFrameLevel=function() return opaque end
+        check(np.AttachHost(host,first,1) and calls.SetFrameLevel==3,'private host level takes the existing writer')
+        host.GetFrameLevel=function() error('host level unavailable') end
+        check(np.AttachHost(host,first,1) and calls.SetFrameLevel==4,'denied host level takes the existing writer')
+        host.GetFrameLevel=getLevel
+        check(np.AttachHost(host,second,1) and host.parent==second and host.level==wanted and calls.SetFrameLevel==5,
+            'replacement parent receives an explicit level even when the old level matches')
+    end
     scenarios[#scenarios+1]=row
+end
+if roster then
+    for _, branch in ipairs({'retail','forever','classic'}) do
+        for _, case in ipairs({'party','raid','raidTank'}) do run(branch,32,144,'pool+list',false,case) end
+    end
+    print('Roster threat replay: '..checks..' checks; actual Core and NamePlates handlers.')
+    return
 end
 for _,branch in ipairs({'retail','forever'}) do
     if full then

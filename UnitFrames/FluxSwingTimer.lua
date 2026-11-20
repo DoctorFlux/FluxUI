@@ -155,6 +155,18 @@ local rangedWSTFrame -- one_bar: shot_bar + auto_shot_cast_bar (WeaponSwingTimer
 local iconFrame, iconTexture
 local swingText, swingTime
 local barBorder, iconBorder
+local UpdateSwingLayout
+function ST._ResumeHeaderLayout()
+    ST._pendingHeaderLayout = nil
+    if UpdateSwingLayout then UpdateSwingLayout() end
+end
+function ST._DeferHeaderLayout()
+    local uf = ns.UnitFrames
+    if not ST._pendingHeaderLayout and uf and uf.DeferProtected then
+        ST._pendingHeaderLayout = true
+        uf.DeferProtected("swing.header.layout", ST._ResumeHeaderLayout)
+    end
+end
 local swingVisible = false
 
 -- Hold + fade when swing timer reaches "ready" (same idea as cast bar finish)
@@ -994,7 +1006,8 @@ end
 
 local function SyncSwingFrameLevel()
     if not swingFrame or not castBar then return end
-    local cl = castBar:GetFrameLevel() or 0
+    local cl = castBar:GetFrameLevel()
+    if not PublicStyleNumber(cl) then return end
     local level
     if castBar.casting or castBar.channeling or castBar.preInterrupt
         or (castBar.holdTime and castBar.holdTime > 0) or castBar.fadeOut then
@@ -1003,7 +1016,10 @@ local function SyncSwingFrameLevel()
         level = cl + 1
     end
     local ok, current = pcall(swingFrame.GetFrameLevel, swingFrame)
-    if not ok or not PublicStyleNumber(current) or current ~= level then swingFrame:SetFrameLevel(level) end
+    if not ok or not PublicStyleNumber(current) or current ~= level then
+        if InCombatLockdown and InCombatLockdown() then ST._DeferHeaderLayout(); return end
+        swingFrame:SetFrameLevel(level)
+    end
 end
 
 local function ClearRangedSwingLinger()
@@ -1318,74 +1334,91 @@ local function RefreshWandTheme()
     end
 end
 
-local function UpdateSwingLayout()
+UpdateSwingLayout = function()
     EnsureSwingFrameAttached()
     if not swingFrame or not castBar then return end
+    SyncSwingFrameLevel()
+    local source = castBar._fluxPreparedLayout
+    local barWidth = source and source.barWidth or castBar:GetWidth()
+    local barHeight = source and source.height or castBar:GetHeight()
+    if not PublicStyleNumber(barWidth) or not PublicStyleNumber(barHeight)
+        or barWidth <= 4 or barHeight <= 4 then return end
+    local innerWidth = source and source.contentWidth or barWidth - 4
+    local innerHeight = source and source.contentHeight or barHeight - 4
+    if not PublicStyleNumber(innerWidth) or not PublicStyleNumber(innerHeight)
+        or innerWidth <= 0 or innerHeight <= 0 then return end
+    local old = swingFrame._fluxPreparedLayout
+    local changed = not old or old.source ~= source or old.width ~= barWidth or old.height ~= barHeight
+        or old.offhand ~= hasOffhand or old.icon ~= castBar.IconFrame or old.fill ~= castBar.TimerBar
+    if changed then
+        if InCombatLockdown and InCombatLockdown() then
+            ST._DeferHeaderLayout()
+        else
+            ST._pendingHeaderLayout = nil
+            swingFrame:SetSize(barWidth, barHeight)
+            swingFrame:ClearAllPoints()
+            swingFrame:SetAllPoints(castBar)
+            local content = swingFrame.FillFrame
+            content:ClearAllPoints()
+            content:SetAllPoints(castBar.TimerBar)
+            iconFrame:SetSize(source and source.iconSize or barHeight, barHeight)
+            iconFrame:ClearAllPoints()
+            iconFrame:SetAllPoints(castBar.IconFrame)
+            iconTexture:ClearAllPoints()
+            iconTexture:SetAllPoints(castBar.Icon)
+            iconBorder:ClearAllPoints()
+            iconBorder:SetAllPoints(castBar.IconBorder)
+            barBorder:ClearAllPoints()
+            barBorder:SetAllPoints(castBar.BorderFrame)
+            swingFrame.HeaderCover:ClearAllPoints()
+            swingFrame.HeaderCover:SetAllPoints(castBar.HeaderCover)
+            swingFrame.TextHolder:ClearAllPoints()
+            -- Fill underlap covers the rounded cast cap; timer labels keep
+            -- their original origin and reserved space beside the time.
+            swingFrame.TextHolder:SetPoint("TOPLEFT", content, "TOPLEFT", math.max(0, innerWidth - barWidth), 0)
+            swingFrame.TextHolder:SetPoint("BOTTOMRIGHT", content, "BOTTOMRIGHT", 0, 0)
 
-    -- Cast bar can report invalid sizes before layout (e.g. width still icon-only); avoid negative inner sizes.
-    local barWidth  = math.max(1, castBar:GetWidth() or 1)
-    local barHeight = math.max(1, castBar:GetHeight() or 1)
-
-    swingFrame:SetSize(barWidth, barHeight)
-    swingFrame:ClearAllPoints()
-    swingFrame:SetAllPoints(castBar)
-
-    -- Icon sits to the LEFT of the bar, mirroring the cast bar icon position
-    local iconSize = barHeight
-    iconFrame:SetSize(iconSize, iconSize)
-    iconFrame:ClearAllPoints()
-    iconFrame:SetPoint("TOPRIGHT", swingFrame, "TOPLEFT", 0, 0)
-
-    local innerWidth  = math.max(0, barWidth - 4)
-    local innerHeight = math.max(0, barHeight - 4)
-
-    if ShouldShowRangedOverlay() then
-        mainBar:Hide()
-        if rangedWSTFrame then
+            -- Prepare every timer mode against the same cast content bounds.
+            -- Switching Shoot/melee in combat only changes native visibility.
             rangedWSTFrame:ClearAllPoints()
-            rangedWSTFrame:SetPoint("TOPLEFT", swingFrame, "TOPLEFT", 2, -2)
-            rangedWSTFrame:SetPoint("BOTTOMRIGHT", swingFrame, "BOTTOMRIGHT", -2, 2)
-            rangedWSTFrame:Show()
+            rangedWSTFrame:SetAllPoints(content)
+            if rangedWSTFrame.FillEffectClip then
+                rangedWSTFrame.FillEffectClip:ClearAllPoints()
+                rangedWSTFrame.FillEffectClip:SetAllPoints(castBar.FillEffectClip or content)
+            end
+            mainBar:ClearAllPoints()
+            offBar:ClearAllPoints()
+            if hasOffhand then
+                local topH = math.floor(innerHeight / 2)
+                local botH = innerHeight - topH
+                mainBar:SetPoint("TOPLEFT", content, "TOPLEFT", 0, 0)
+                mainBar:SetPoint("TOPRIGHT", content, "TOPRIGHT", 0, 0)
+                mainBar:SetHeight(topH)
+                offBar:SetPoint("BOTTOMLEFT", content, "BOTTOMLEFT", 0, 0)
+                offBar:SetPoint("BOTTOMRIGHT", content, "BOTTOMRIGHT", 0, 0)
+                offBar:SetHeight(botH)
+                if mainBar.fillTexture then mainBar.fillTexture:SetSize(innerWidth, topH) end
+                if mainBar.bg then mainBar.bg:SetSize(innerWidth, topH) end
+                if offBar.fillTexture then offBar.fillTexture:SetSize(innerWidth, botH) end
+                if offBar.bg then offBar.bg:SetSize(innerWidth, botH) end
+            else
+                mainBar:SetAllPoints(content)
+                if mainBar.fillTexture then mainBar.fillTexture:SetSize(innerWidth, innerHeight) end
+                if mainBar.bg then mainBar.bg:SetSize(innerWidth, innerHeight) end
+            end
+            swingFrame._fluxPreparedLayout = {source = source, width = barWidth, height = barHeight,
+                offhand = hasOffhand, icon = castBar.IconFrame, fill = castBar.TimerBar}
+            ResizeSparkTexturesForBars()
         end
-        offBar:Hide()
-    elseif hasOffhand then
-        if rangedWSTFrame then rangedWSTFrame:Hide() end
-        mainBar:Show()
-        local halfH = math.floor(innerHeight / 2)
-        local topH  = halfH
-        local botH  = innerHeight - halfH
-
-        mainBar:ClearAllPoints()
-        mainBar:SetPoint("TOPLEFT", swingFrame, "TOPLEFT", 2, -2)
-        mainBar:SetPoint("TOPRIGHT", swingFrame, "TOPRIGHT", -2, -2)
-        mainBar:SetHeight(topH)
-        if mainBar.fillTexture then mainBar.fillTexture:SetSize(innerWidth, topH) end
-        if mainBar.bg then mainBar.bg:SetSize(innerWidth, topH) end
-        mainBar:SetStatusBarColor(unpack(SWING_COLOR_MAIN))
-
-        offBar:ClearAllPoints()
-        offBar:SetPoint("BOTTOMLEFT", swingFrame, "BOTTOMLEFT", 2, 2)
-        offBar:SetPoint("BOTTOMRIGHT", swingFrame, "BOTTOMRIGHT", -2, 2)
-        offBar:SetHeight(botH)
-        if offBar.fillTexture then offBar.fillTexture:SetSize(innerWidth, botH) end
-        if offBar.bg then offBar.bg:SetSize(innerWidth, botH) end
-        offBar:SetStatusBarColor(unpack(SWING_COLOR_OFF))
-        offBar:Show()
-    else
-        if rangedWSTFrame then rangedWSTFrame:Hide() end
-        mainBar:Show()
-        mainBar:ClearAllPoints()
-        mainBar:SetPoint("TOPLEFT", swingFrame, "TOPLEFT", 2, -2)
-        mainBar:SetPoint("BOTTOMRIGHT", swingFrame, "BOTTOMRIGHT", -2, 2)
-        if mainBar.fillTexture then mainBar.fillTexture:SetSize(innerWidth, innerHeight) end
-        if mainBar.bg then mainBar.bg:SetSize(innerWidth, innerHeight) end
-        mainBar:SetStatusBarColor(unpack(SWING_COLOR_MAIN))
-        offBar:Hide()
     end
-
-    ResizeSparkTexturesForBars()
     if ShouldShowRangedOverlay() then
+        mainBar:Hide(); offBar:Hide(); rangedWSTFrame:Show()
         HideMeleeSparks()
+    else
+        rangedWSTFrame:Hide(); mainBar:Show()
+        offBar:SetShown(hasOffhand)
+        mainBar:SetStatusBarColor(unpack(SWING_COLOR_MAIN))
+        offBar:SetStatusBarColor(unpack(SWING_COLOR_OFF))
     end
     if UseNativePlayerSwing() then
         UpdateNativeRangeState()
@@ -2318,6 +2351,19 @@ local function CreateRangedWSTOneBar(parent)
     f:SetMinMaxValues(0, 1)
     f:SetValue(0)
     f.TimerBar = f -- shared school renderer uses this status bar's live fill
+    if f.SetClipsChildren then
+        local effectClip = CreateFrame("Frame", nil, f)
+        effectClip:SetAllPoints(f)
+        effectClip:SetFrameLevel(math.max(0, f:GetFrameLevel() - 1))
+        effectClip:SetClipsChildren(true)
+        effectClip:EnableMouse(false)
+        local effectHost = CreateFrame("Frame", nil, effectClip)
+        effectHost:SetAllPoints(effectClip)
+        effectHost:SetFrameLevel(effectClip:GetFrameLevel())
+        effectHost:EnableMouse(false)
+        f.FillEffectClip = effectClip
+        f.FillEffectHost = effectHost
+    end
     f:Hide()
     local bg = f:CreateTexture(nil, "BACKGROUND")
     bg:SetAllPoints(f)
@@ -2498,9 +2544,23 @@ end
 -- ---------------------------------------------------------------------------
 -- Public: attach to the player cast bar
 -- ---------------------------------------------------------------------------
+function ST._ResumeHeaderAttach()
+    local pending = ST._pendingHeaderAttach
+    ST._pendingHeaderAttach = nil
+    if pending then ST.AttachToCastBar(pending, "player") end
+end
 function ST.AttachToCastBar(playerCastBar, unit)
     if unit ~= "player" then return end
     if swingFrame then
+        return
+    end
+    if InCombatLockdown and InCombatLockdown() then
+        local uf = ns.UnitFrames
+        if uf and uf.DeferProtected then
+            local queued = ST._pendingHeaderAttach ~= nil
+            ST._pendingHeaderAttach = playerCastBar
+            if not queued then uf.DeferProtected("swing.header.attach", ST._ResumeHeaderAttach) end
+        end
         return
     end
     castBar = playerCastBar
@@ -2511,11 +2571,31 @@ function ST.AttachToCastBar(playerCastBar, unit)
     -- Flux perf T2.4: frame starts Hide()d so OnUpdate stays dormant until a
     -- swing event (via ShowSwing) drives it visible.
     swingFrame = CreateFrame("Frame", nil, parentFrame)
+    swingFrame._FluxBorderOwner = parentFrame
+    swingFrame._FluxBorderJunctionRole = "connected"
+    swingFrame._FluxBorderCast = true
     -- Draw below the cast bar so cast textures win if both were visible same slot.
     SyncSwingFrameLevel()
     swingFrame:SetAllPoints(castBar)
     SetSwingAlpha(0)
     swingFrame:Hide()
+
+    local content = CreateFrame("Frame", nil, swingFrame)
+    content:SetAllPoints(castBar.TimerBar)
+    content:EnableMouse(false)
+    swingFrame.FillFrame = content
+    local cover = swingFrame:CreateTexture(nil, "BACKGROUND", nil, -8)
+    cover:SetTexture("Interface\\Buttons\\WHITE8X8")
+    if castBar.HeaderCover then
+        local r, g, b = castBar.HeaderCover:GetVertexColor()
+        cover:SetVertexColor(r, g, b, 1)
+        -- Native paint forwarding retains the prepared row across class/accent
+        -- refreshes, without turning those changes into geometry invalidation.
+        hooksecurefunc(castBar.HeaderCover, "SetVertexColor", function(_, r, g, b)
+            cover:SetVertexColor(r, g, b, 1)
+        end)
+    end
+    swingFrame.HeaderCover = cover
 
     -- Status bars
     mainBar = CreateSwingBar(swingFrame)
@@ -2534,6 +2614,7 @@ function ST.AttachToCastBar(playerCastBar, unit)
     textHolder:SetPoint("TOPLEFT", swingFrame, "TOPLEFT", 2, -2)
     textHolder:SetPoint("BOTTOMRIGHT", swingFrame, "BOTTOMRIGHT", -2, 2)
     textHolder:SetFrameLevel(swingFrame:GetFrameLevel() + 50)
+    swingFrame.TextHolder = textHolder
 
     swingText = textHolder:CreateFontString(nil, "OVERLAY")
     swingText:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
@@ -2565,6 +2646,7 @@ function ST.AttachToCastBar(playerCastBar, unit)
     iconBorder:SetAllPoints()
     if Border then
         Border:ApplyTo(iconBorder, 2, 2, 2, 2)
+        if iconBorder.FluxBorderFrame then iconBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Right" end
         Border:SetClassColor(iconBorder, 1, true)
     end
 
@@ -2574,8 +2656,11 @@ function ST.AttachToCastBar(playerCastBar, unit)
     barBorder:SetAllPoints()
     if Border then
         Border:ApplyTo(barBorder, 2, 2, 2, 2)
+        if barBorder.FluxBorderFrame then barBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Left" end
         Border:SetClassColor(barBorder, 1, true)
     end
+    swingFrame.IconFrame, swingFrame.IconBorder = iconFrame, iconBorder
+    swingFrame.Icon, swingFrame.BorderFrame = iconTexture, barBorder
 
     -- OnUpdate drives the timer
     swingFrame:SetScript("OnUpdate", SwingTimer_OnUpdate)

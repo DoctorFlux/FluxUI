@@ -1,0 +1,973 @@
+{
+  "changeId": "RAID-REASSIGNMENT-R119-20261119",
+  "capturedAtUTC": "2026-11-19T16:00:45.979126+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+      "afterRaw": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862"
+    },
+    "RaidFrame/FluxRaidHealerExtras.lua": {
+      "beforeRaw": "b8fb226a757a29573bd9a97529d30108c9d9949147d8c4dc3dafa52e81f03c0c",
+      "afterRaw": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "360903113ae411416b40691fa6ad0713f5536edaa0bee10d63b6a178bc00c6d8",
+      "afterRaw": "6bb22533cfdb874316210fa694432892409127f5607d9db6f54254fba711eab2"
+    },
+    "tests/group_roster_performance.lua": {
+      "beforeRaw": "c5062db298af399737d381f5e644f3355ba8f5c5ee6860cf810d327949cf9199",
+      "afterRaw": "d51f37a5f61d669af050ced7dea8718a179a18d09af4617d084402fbd98b9c5e"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\source.zip",
+    "sourceZipSHA256": "28cecc3a965b19e6e1772e7c65a628d16361da06be107854f5025150d1555215",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Five modeled clients exercise three waves of native token assignments and roster reconciliation before one update, using five and forty compact cells, outside and inside lockdown. Companion replay submits two roster refreshes before the same queued update.",
+  "work": {
+    "reassignment": {
+      "live": [
+        {
+          "count": "5",
+          "combat": "false",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "5",
+          "combat": "true",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "false",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "true",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "count": "5",
+          "combat": "false",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "5",
+          "combat": "true",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "false",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "true",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "count": "5",
+          "combat": "false",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "5",
+          "combat": "true",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "false",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "true",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        }
+      ],
+      "classic_era": [
+        {
+          "count": "5",
+          "combat": "false",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "5",
+          "combat": "true",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "false",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "true",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        }
+      ],
+      "classic_anniversary": [
+        {
+          "count": "5",
+          "combat": "false",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "5",
+          "combat": "true",
+          "sync": [
+            15,
+            0
+          ],
+          "total": [
+            20,
+            5
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "false",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        },
+        {
+          "count": "40",
+          "combat": "true",
+          "sync": [
+            120,
+            0
+          ],
+          "total": [
+            160,
+            40
+          ],
+          "reveal": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    "companions": {
+      "live": [
+        {
+          "mode": "party",
+          "sameTick": [
+            12,
+            0
+          ],
+          "total": [
+            12,
+            6
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "raid",
+          "sameTick": [
+            82,
+            0
+          ],
+          "total": [
+            82,
+            41
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "mode": "party",
+          "sameTick": [
+            12,
+            0
+          ],
+          "total": [
+            12,
+            6
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "raid",
+          "sameTick": [
+            82,
+            0
+          ],
+          "total": [
+            82,
+            41
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "mode": "party",
+          "sameTick": [
+            12,
+            0
+          ],
+          "total": [
+            12,
+            6
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "raid",
+          "sameTick": [
+            82,
+            0
+          ],
+          "total": [
+            82,
+            41
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        }
+      ],
+      "classic_era": [
+        {
+          "mode": "party",
+          "sameTick": [
+            12,
+            0
+          ],
+          "total": [
+            12,
+            6
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "raid",
+          "sameTick": [
+            82,
+            0
+          ],
+          "total": [
+            82,
+            41
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        }
+      ],
+      "classic_anniversary": [
+        {
+          "mode": "party",
+          "sameTick": [
+            12,
+            0
+          ],
+          "total": [
+            12,
+            6
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "raid",
+          "sameTick": [
+            82,
+            0
+          ],
+          "total": [
+            82,
+            41
+          ],
+          "wake": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\compare.lua": "f84541fb33845689ea987d9c9bf5ddde1bee1bf7c6c6182d80ed1fcdb3ec1945",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\matched.txt": "9e5a6afebd820c796995e038b49e0768c2b2a19fdb5f32089979874b227d946e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\work.txt": "c9e1695fdc37c00bdc2f20acde5ff3b50a5932540a128f13c4edb90bf18c9325",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\companion.lua": "55bb6c38ea6a1fdb5fe11c1d7d4a60ad1f6aebae491c348ee64257543c81af1f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\companion.txt": "eaac5982dc44a518d091ffad6e935fb7994bd153b7cf2556612b36a46fb0c04d"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6, seven alternating exact-source pairs for each modeled client and combat state. Each trial performs 24 waves of three reassignments and three synchronizations followed by the existing dispatcher. The model runs production queue, binding and core paint Lua with display widgets and aura-module calls modeled.",
+    "results": {
+      "live:false": {
+        "medians": [
+          105.0,
+          43.0
+        ],
+        "samples": [
+          [
+            114.0,
+            43.0
+          ],
+          [
+            103.0,
+            44.0
+          ],
+          [
+            105.0,
+            42.0
+          ],
+          [
+            106.0,
+            43.0
+          ],
+          [
+            101.0,
+            42.0
+          ],
+          [
+            102.0,
+            43.0
+          ],
+          [
+            105.0,
+            45.0
+          ]
+        ]
+      },
+      "live:true": {
+        "medians": [
+          113.0,
+          46.0
+        ],
+        "samples": [
+          [
+            102.0,
+            43.0
+          ],
+          [
+            113.0,
+            55.0
+          ],
+          [
+            114.0,
+            46.0
+          ],
+          [
+            107.0,
+            45.0
+          ],
+          [
+            116.0,
+            47.0
+          ],
+          [
+            108.0,
+            49.0
+          ],
+          [
+            115.0,
+            46.0
+          ]
+        ]
+      },
+      "forever:false": {
+        "medians": [
+          114.0,
+          52.0
+        ],
+        "samples": [
+          [
+            111.0,
+            46.0
+          ],
+          [
+            108.0,
+            47.0
+          ],
+          [
+            118.0,
+            47.0
+          ],
+          [
+            111.0,
+            53.0
+          ],
+          [
+            114.0,
+            52.0
+          ],
+          [
+            247.0,
+            99.0
+          ],
+          [
+            261.0,
+            96.0
+          ]
+        ]
+      },
+      "forever:true": {
+        "medians": [
+          230.0,
+          99.0
+        ],
+        "samples": [
+          [
+            222.0,
+            106.0
+          ],
+          [
+            246.0,
+            97.0
+          ],
+          [
+            271.0,
+            99.0
+          ],
+          [
+            229.0,
+            96.0
+          ],
+          [
+            228.0,
+            129.0
+          ],
+          [
+            261.0,
+            122.0
+          ],
+          [
+            230.0,
+            95.0
+          ]
+        ]
+      },
+      "classic:false": {
+        "medians": [
+          238.0,
+          98.0
+        ],
+        "samples": [
+          [
+            242.0,
+            97.0
+          ],
+          [
+            231.0,
+            106.0
+          ],
+          [
+            238.0,
+            103.0
+          ],
+          [
+            231.0,
+            94.0
+          ],
+          [
+            232.0,
+            98.0
+          ],
+          [
+            305.0,
+            118.0
+          ],
+          [
+            243.0,
+            95.0
+          ]
+        ]
+      },
+      "classic:true": {
+        "medians": [
+          235.0,
+          99.0
+        ],
+        "samples": [
+          [
+            233.0,
+            98.0
+          ],
+          [
+            374.0,
+            116.0
+          ],
+          [
+            329.0,
+            101.0
+          ],
+          [
+            225.0,
+            99.0
+          ],
+          [
+            235.0,
+            106.0
+          ],
+          [
+            226.0,
+            97.0
+          ],
+          [
+            265.0,
+            94.0
+          ]
+        ]
+      },
+      "classic_era:false": {
+        "medians": [
+          246.0,
+          111.0
+        ],
+        "samples": [
+          [
+            246.0,
+            98.0
+          ],
+          [
+            234.0,
+            111.0
+          ],
+          [
+            265.0,
+            117.0
+          ],
+          [
+            239.0,
+            121.0
+          ],
+          [
+            245.0,
+            105.0
+          ],
+          [
+            293.0,
+            111.0
+          ],
+          [
+            255.0,
+            97.0
+          ]
+        ]
+      },
+      "classic_era:true": {
+        "medians": [
+          257.0,
+          99.0
+        ],
+        "samples": [
+          [
+            246.0,
+            97.0
+          ],
+          [
+            274.0,
+            94.0
+          ],
+          [
+            284.0,
+            100.0
+          ],
+          [
+            245.0,
+            99.0
+          ],
+          [
+            258.0,
+            96.0
+          ],
+          [
+            243.0,
+            104.0
+          ],
+          [
+            257.0,
+            167.0
+          ]
+        ]
+      },
+      "classic_anniversary:false": {
+        "medians": [
+          251.0,
+          108.0
+        ],
+        "samples": [
+          [
+            284.0,
+            109.0
+          ],
+          [
+            251.0,
+            108.0
+          ],
+          [
+            314.0,
+            148.0
+          ],
+          [
+            246.0,
+            142.0
+          ],
+          [
+            266.0,
+            102.0
+          ],
+          [
+            231.0,
+            98.0
+          ],
+          [
+            250.0,
+            101.0
+          ]
+        ]
+      },
+      "classic_anniversary:true": {
+        "medians": [
+          227.0,
+          94.0
+        ],
+        "samples": [
+          [
+            242.0,
+            90.0
+          ],
+          [
+            220.0,
+            92.0
+          ],
+          [
+            228.0,
+            95.0
+          ],
+          [
+            227.0,
+            94.0
+          ],
+          [
+            223.0,
+            92.0
+          ],
+          [
+            223.0,
+            96.0
+          ],
+          [
+            246.0,
+            97.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "native click unit and event routing are current before visual commit",
+    "the final unit receives a full update through the established OnUpdate driver without a timer",
+    "initial reveal still paints the current unit immediately and retires paint flags covered by that draw",
+    "hide and unbind retire queued paint and release their event registration",
+    "unavailable visibility and mini bindings retain immediate recovery",
+    "companion roster refreshes share the queue while the existing direct target, pet and combat handlers retain their dispatch",
+    "existing secure roster layout and locking behavior"
+  ],
+  "verification": {
+    "focusedPassed": 76,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-reassignment-before-20261119-165438\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "sha256": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "sha256": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "sha256": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "sha256": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "sha256": "72d3deb8e3a6e872c42b580b8f3b8c60fc1fc32e1912414500f793577c033a90",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual group transitions, held-action timing, rendering order before each live frame, seam pixels and combat taint. No client input or profiling changes."
+}

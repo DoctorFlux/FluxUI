@@ -170,7 +170,7 @@ end
 
 -- Same fixture can run the pre-change source to capture native-query counts:
 -- lua tests/data_integrity.lua path/to/baseline-gearsets.lua
-local function gearQueryCounts(source)
+local function gearQueryCounts(source, publicReasons)
     local env = environment()
     local guidCalls, existsCalls, refreshes = 0, 0, 0
     local sourceLookup, sourceNames
@@ -199,6 +199,17 @@ local function gearQueryCounts(source)
         sourceLookup, sourceNames = lookup, names
     end } }
     env.FluxBaganatorCompat = { RequestBaganatorRefresh = function() refreshes = refreshes + 1 end }
+    local layoutRefreshes = 0
+    env.Baganator.API.RequestLayoutUpdate = function() layoutRefreshes = layoutRefreshes + 1 end
+    if publicReasons then
+        env.Baganator.Constants = { RefreshReason = { ItemWidgets = 4, Searches = 16 } }
+        env.Baganator.API.RequestItemButtonsRefresh = function(reasons)
+            check(#reasons == 2 and reasons[1] == 4 and reasons[2] == 16,
+                "changed gear mapping requests only public widget and search reasons")
+            refreshes = refreshes + 1
+        end
+        run("BaganatorCompat/FluxBaganator_Junk.lua", env)
+    end
     run(source, env)
     env.FluxBaganatorCompat.InitGearSets()
     check(refreshes == 1, "gear mapping refresh produced")
@@ -209,10 +220,12 @@ local function gearQueryCounts(source)
     env.FluxBaganatorCompat.RebuildGearSetInfo()
     env.FluxBaganatorCompat.RebuildGearSetInfo()
     check(refreshes == 1, "unchanged gear map skips repeated layout refresh")
+    check(layoutRefreshes == (publicReasons and 0 or 1), "gear mapping retains the separate layout fallback only for older providers")
     return guidCalls / 2, existsCalls / 2
 end
 
 local guids, exists = gearQueryCounts("BaganatorCompat/FluxBaganator_GearSets.lua")
+gearQueryCounts("BaganatorCompat/FluxBaganator_GearSets.lua", true)
 check(guids == 1 and exists == 1, "only matched set slots query native identity")
 print(("PASS: %d data-integrity checks; gear rebuild: %d GUID + %d existence queries (100 bag slots)")
     :format(passed, guids, exists))

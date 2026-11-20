@@ -1,0 +1,856 @@
+{
+  "changeId": "BORDER-ADMISSION-R135-20261119",
+  "capturedAtUTC": "2026-11-19T19:47:34.060663+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+      "afterRaw": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34"
+    },
+    "tests/border_observer_refresh.lua": {
+      "beforeRaw": "cedd73588c273b86c830d72eb04896090949fb05a8ea217cb856124c020de19c",
+      "afterRaw": "be23328c1bbf8d2bb8df9663831521d3cc3f84069dcee2a46112571d0a53dbe9"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\source.zip",
+    "sourceZipSHA256": "3c383cfc11b705e5d8560bfd803c817774fe23fe0b86c22ad94e4e0374328636",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per border style in each of three scenarios. The production renderer executes four held-action crossings, or four transitions where four party-linked or raid-linked outlines acquire or lose valid geometry. The remaining modeled HUD stays present. The first pair checks sampled output at every transition and later pairs sample endpoints. Geometry solves, local scopes, operations, fragments and triangles match. The raid-linked simulation exercises the shared border renderer.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "checks": "8/4",
+          "parents": "392/196",
+          "pieces": "3296/1648"
+        }
+      ]
+    },
+    "workCounters": "Counts include root visits and current registered pieces inspected for regional eligibility.",
+    "timingScope": "Five alternating uninstrumented desktop Lua pairs per style per scenario, each measuring four transitions. A baseline control uses archived Lua on both sides. The snapshots load before timing and the profiler remains untouched. Host variation and modeled widgets limit timing claims.",
+    "uninstrumentedTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "75.000/93.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "88.000/76.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "92.000/70.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "82.000/92.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "100.000/76.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "179.000/148.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "97.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "99.000/92.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "78.000/96.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "91.000/94.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "21.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "50.000/47.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "22.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "45.000/49.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "22.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "43.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "21.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "45.000/48.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "19.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "54.000/43.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "18.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "46.000/42.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "23.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "46.000/47.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "21.000/24.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "46.000/43.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "24.000/18.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "52.000/51.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "19.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "48.000/42.000"
+        }
+      ]
+    },
+    "uninstrumentedTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 75.0,
+            "median": 92.0,
+            "max": 100.0
+          },
+          {
+            "min": 70.0,
+            "median": 76.0,
+            "max": 96.0
+          }
+        ],
+        "2": [
+          {
+            "min": 82.0,
+            "median": 91.0,
+            "max": 179.0
+          },
+          {
+            "min": 76.0,
+            "median": 92.0,
+            "max": 148.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 19.0,
+            "median": 21.0,
+            "max": 22.0
+          },
+          {
+            "min": 19.0,
+            "median": 20.0,
+            "max": 22.0
+          }
+        ],
+        "2": [
+          {
+            "min": 43.0,
+            "median": 45.0,
+            "max": 54.0
+          },
+          {
+            "min": 43.0,
+            "median": 47.0,
+            "max": 49.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 18.0,
+            "median": 21.0,
+            "max": 24.0
+          },
+          {
+            "min": 18.0,
+            "median": 21.0,
+            "max": 24.0
+          }
+        ],
+        "2": [
+          {
+            "min": 46.0,
+            "median": 46.0,
+            "max": 52.0
+          },
+          {
+            "min": 42.0,
+            "median": 43.0,
+            "max": 51.0
+          }
+        ]
+      }
+    },
+    "baselineControlSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "76.000/100.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "90.000/97.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "100.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "88.000/80.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "96.000/74.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "96.000/103.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "100.000/75.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "101.000/81.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "72.000/95.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "96.000/80.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "23.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "52.000/46.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "21.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "47.000/42.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "20.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "57.000/46.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "25.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "45.000/47.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "19.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "50.000/46.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "20.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "52.000/52.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "23.000/18.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "62.000/49.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "21.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "47.000/49.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "23.000/18.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "43.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "23.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "48.000/42.000"
+        }
+      ]
+    },
+    "baselineControlSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 72.0,
+            "median": 96.0,
+            "max": 100.0
+          },
+          {
+            "min": 73.0,
+            "median": 75.0,
+            "max": 100.0
+          }
+        ],
+        "2": [
+          {
+            "min": 88.0,
+            "median": 96.0,
+            "max": 101.0
+          },
+          {
+            "min": 80.0,
+            "median": 81.0,
+            "max": 103.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 19.0,
+            "median": 21.0,
+            "max": 25.0
+          },
+          {
+            "min": 19.0,
+            "median": 20.0,
+            "max": 23.0
+          }
+        ],
+        "2": [
+          {
+            "min": 45.0,
+            "median": 50.0,
+            "max": 57.0
+          },
+          {
+            "min": 42.0,
+            "median": 46.0,
+            "max": 47.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 20.0,
+            "median": 23.0,
+            "max": 23.0
+          },
+          {
+            "min": 18.0,
+            "median": 22.0,
+            "max": 23.0
+          }
+        ],
+        "2": [
+          {
+            "min": 43.0,
+            "median": 48.0,
+            "max": 62.0
+          },
+          {
+            "min": 42.0,
+            "median": 49.0,
+            "max": 52.0
+          }
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\compare.lua": "5e82b23ee9c81f0edbef9f1c9ffdfee3555356abbe2bf0d0ca33fc99efa7f6aa",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\matched.txt": "abe02f4abfbe6a3330557b976c17eb83068dd30f4063f86b55936b00ca965be0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\timing.txt": "e19be0a41e4a0130d06ff08f82cec8fb1131a04b402fada449de4e39febed6e2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\timing-baseline.txt": "b57d69cedeb5b800a26eb80ee1b2ef7d0f45c30d2935f24fc5b682ad19908fee",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\controls.txt": "10a278977067ddfc8ff80fefd16c1600aab7b16231cb7d2a918003a752ba3cfe",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\bad-core.lua": "ba5780b7759b4b34a1232d74bcfae8c17638a864a315e6d67d3da0759d6d9077"
+    }
+  },
+  "preservation": [
+    "Every local layout transaction checks current registrations, authored art and geometry getter ownership.",
+    "A fresh invalidation during the synchronous sampling pass discards the proof and repeats the eligibility check. Registration of foreign artwork during the read takes the full fallback.",
+    "Live geometry and source paint validation are unchanged. A foreign geometry getter introduced on a different border can still prevent reuse on the next read."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "OBSERVER_WORK|1|parents=360->4|sources=360->360",
+      "OBSERVER_WORK|2|parents=360->4|sources=360->360",
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_observer_refresh.lua:7: an observed setter during the read requires a fresh check",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\ttests/border_observer_refresh.lua:7: in local 'check'",
+      "\ttests/border_observer_refresh.lua:111: in main chunk",
+      "\t[C]: in ?",
+      "Rejected compiled suppression of read-phase proof invalidation"
+    ],
+    "changedTestRecertification": {
+      "previousReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\focused-before-leaf-recheck.json",
+      "rerun": "tests/border_observer_refresh.lua",
+      "sourceStable": true,
+      "reason": "Removed an unused local from the leaf test while the suite ran. No runtime source changed during the suite."
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-admission-before-20261119-204016\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, border seam pixels, and combat taint. No client input, settings or profiling changes."
+}

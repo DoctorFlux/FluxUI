@@ -1,0 +1,620 @@
+{
+  "changeID": "LHO-INVENTORY-EVENT-WORKERS-20261117",
+  "recordedUTC": "2026-11-17T10:39:58.496051+00:00",
+  "status": "FOUR_OWNERS_APPLIED_TARGETED_DESKTOP_CHECKS_PASS_NATIVE_PENDING",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": true,
+  "runtimeAppliedByThisDocumentation": false,
+  "sourceIdentity": {
+    "Inventory/Init.lua": "e42893e496f0caec36d7a49f52ae6de888fb217120a4a3a2f82c75fb072e936f",
+    "Inventory/Professions.lua": "39c656aefe4399a3f937442ff0f56d55fa02d7efb162ba42ddcc27b82472393a",
+    "Inventory/Restock/FluxRestock_Inv.lua": "38db8778cb5e133720c6997b99abec9bc40139e18c4a0aed74cec258c83584dd",
+    "ExtraButtonSystem/Engine/Events.lua": "8b8165654fe303274ae23a54cb0f9a75fc024e4821d29cff9f3f159f36084b20"
+  },
+  "durableEBSRegression": {
+    "path": "tests/ebs_event_batch_workers.lua",
+    "sha256": "ef8cb7856b631c7a51cb34dbba280d42750b64ba914ddcdd81eaeff42bf4b6bf"
+  },
+  "changes": {
+    "Inventory/Init.lua": "Hoist the private MERGED_ITEM_SET_FIELDS list and replace pairs(b or {}) with conditional b traversal; CopyKeySet output stays fresh. The private merge worker, discarded merged-context copy avoidance and deferred tier promotion were already present in the98d3 before source, not new in this batch.",
+    "Inventory/Professions.lua": "Reuse two private protected workers; live recipe/roster/fallback queries, scanBusy reset, aliases, notifications and craft flush remain.",
+    "Inventory/Restock/FluxRestock_Inv.lua": "Reuse AppendBankContainerIDs and WalkLiveBankStacks; fresh per-call maps/rows and dynamic native queries/callback order remain.",
+    "ExtraButtonSystem/Engine/Events.lua": "Reuse Legacy Process and six stateless batch callbacks/protected caller; captured use/conditional callbacks unchanged."
+  },
+  "intentionalEBSBugFix": {
+    "trigger": "Idle countOnly/sessionClose dispatcher armed OnUpdate without RefreshButtons; callback then performed no usable/text work and disarmed.",
+    "repair": "Both count-only branches now activate refresh, skipping textures only when no wider refresh is active.",
+    "composition": "Accepted spell events, final full/identity dispatcher and ForceRefresh clear texture skip; existing equipment debounce/narrow skip and form/power/mod skips remain.",
+    "currentChecks": [
+      "idle countOnly and sessionClose perform usable/text with no texture pass",
+      "wider already-pending textures remain",
+      "count-first then spells/full identity/ForceRefresh regain texture pass",
+      "actual equipment callback retains0.15s debounce and its preexisting texture skip",
+      "form-rejected spell request keeps skip",
+      "budget32, per-pass order/cursors/flags, errors continue, dynamic second lookup, bounded reentry and legacy bag/craft callbacks"
+    ]
+  },
+  "validation": {
+    "Init": {
+      "assertions": 168,
+      "qualification": "Four42-check executions: baseline and installed in eachVM;84 installed assertions,84 baseline assertions. Independent peer; sameVM stdout byte-equal.",
+      "compiles": 2,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-context-review-20261117T0800\\report.json",
+        "sha256": "00ae3c2e2911358b7b06035e08347634a696c2d21f1c5c2e89765aad300a948d"
+      },
+      "peer": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-context-review-20261117T0800\\review.json",
+        "sha256": "f50e2d7a72b4c8d95ed4a2b345448426d107881b6cbd36d54a46f3d6bb359dfe"
+      }
+    },
+    "Professions": {
+      "assertions": 2806,
+      "compiles": 2,
+      "functionalRuns": 6,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-profession-workers-20261117T073655Z\\report.json",
+        "sha256": "bbc7a7181d096d4efcf049cbe58ee25c0df017dcb75697777d41ae3fc4bff0e5"
+      },
+      "qualification": "848+524+31 perVM. Nested30-check alias-state line belongs within31 work checks;2346/2346 yields are retained facts, not extra assertions."
+    },
+    "RestockInv": {
+      "assertions": 6836,
+      "compiles": 2,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-bank-private-workers-20261117T073841Z\\report.json",
+        "sha256": "7a3cff51b457c89357db9d73cdbd26c2cc660931a35c29614d591a145bd6719b"
+      },
+      "qualification": "3285 bank-visibility +133 bulk-capacity checks perVM;60slot models, unchanged native/callback cadence in mocks."
+    },
+    "EBS": {
+      "assertions": 148,
+      "checksPerVM": 74,
+      "compiles": 4,
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ebs-events-workers-20261117\\ordering-corrected-first-checks\\report.json",
+        "sha256": "24cad576fe01177892dfe798fe51a3377928f4cf8fb47f0299ee6b1d4cfd59ee"
+      }
+    },
+    "assertionExecutionsAcrossReceipts": 9958,
+    "compilerJobs": 10,
+    "runtimes": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "allReportedChildrenReaped": true,
+    "recordedRawOutputHashesIndependentlyChecked": true,
+    "scope": "Separate targeted before/current/current-owner receipts, not a broad final whole-addon/native comparison."
+  },
+  "preservedHistory": {
+    "EBS": "Earlier65/VM PASS remains dated. Expected pre-fix count-only and count-first/spells failures remain. First post-fix test omitted UpdateUsable endpoint; later ForceRefresh oracle wrongly required RefSpells. Both failures retained; one explicit fixture endpoint and unsupported expectation corrected, without changing required behavior assertions.",
+    "InitAndRI": "Initial source-inverse/extraction newline assertions stopped before source writes; corrected byte handling, no business regression retries.",
+    "Professions": "All initial targeted checks passed; no failure/rerun.",
+    "historicalExperiments": "Earlier P87 native counters, Item precision-INCONCLUSIVE cost, rejected P83/P72/P80 and other-chat R63 rejection/rollback records remain unchanged."
+  },
+  "recovery": {
+    "freshAffectedSourceCopies": "Recorded in each owner application/checkpoint; Init98d3/Professions e096/RI d565/EBS f8b9 before this batch.",
+    "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "settings": "125available paths/stat-only at recorded checkpoints; no private values copied; not an atomic settings or new whole-tree archive."
+  },
+  "native": {
+    "loadedSourceAdoption": "ALL_NINE_BYTE_IDENTITIES_PENDING_AFTER_USER_RELOAD",
+    "reloadValidation": "PENDING_FOR_THIS_BATCH",
+    "performanceAcceptance": "PENDING",
+    "helperStatusAuthority": "Root F holds remain active/HALT retained; C stopped and jumps stopped. Root personally saw nonce7 J83INIT/CUE after all25 packets queued; formal installer ACK rejected stale. BG2 samples are red; no helper launch. No current process/window inspection by documentation agent.",
+    "actionsByDocumentationTask": 0,
+    "preflightRootReport": {
+      "authority": "Root personally viewed new output and reported this result; documentation agent performs no native inspection.",
+      "observedUTC": "2026-11-17T08:19:57Z",
+      "marker": "I87PRE",
+      "version": "1.60.1",
+      "build": 70938,
+      "scriptProfile": 0,
+      "maxFPS": 120,
+      "maxFPSBk": 30,
+      "sixKnownP84P85P87RootsReportedNil": true,
+      "J83qReportedNil": true,
+      "hostIdentity": "Root host-verified same PID46260/HWND600248958/birth134392816726299937 despite sandbox-hidden process listing.",
+      "reloadForThisBatch": false,
+      "loadedSourceProof": false,
+      "rootPersonallyViewedAndJournalACKed": true,
+      "transportChars": 219,
+      "enqueueHostMs": 156,
+      "sourceCaptureUnix": 1794903595.1616373,
+      "ackUnix": 1794903710.678884,
+      "ackAgeSeconds": 115.51724672317505,
+      "ackWithin120Seconds": true
+    },
+    "preReloadDiskRootReport": {
+      "RetailForeverMatchedFilePairs": 9,
+      "scope": "Disk identity only; no loaded-source proof."
+    },
+    "reloadAttemptsRootReport": [
+      {
+        "attempt": 1,
+        "outcome": "FG/BG mode change blocked before input"
+      },
+      {
+        "attempt": 2,
+        "outcome": "Prior lease prevented acquisition; Root then released owned lease"
+      },
+      {
+        "attempt": 3,
+        "outcome": "Begin aborted on LastInput change"
+      },
+      {
+        "attempt": 4,
+        "outcome": "Source captured, attestation blocked on FG/BG change; Root released owned lease"
+      },
+      {
+        "attempt": 5,
+        "outcome": "Read-only45s wait ended PC input remained active; no chat input sent"
+      }
+    ],
+    "batchReloadCommandSent": false,
+    "calibrationRootReport": {
+      "R2": "Hex-SHA check failed before native setup; outputs preserved.",
+      "R3": "Read-only background capture executed three samples with no input; palette unknown.",
+      "R3ReceiptSHA256Prefix": "94552096",
+      "oldCueAbsentAfterExternalReload": true,
+      "D2Launch": "UNRUN_NOT_ADMISSIBLE",
+      "nextRequirement": "Resolve fresh nonce7 red readiness and the failed BG3 child using Root review; no helper launch while readiness is unresolved."
+    },
+    "ownedDRelease": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-20261117\\owned-native-release-D-20261117\\receipt.json",
+      "sha256": "70845feaa5ba2617bc7466ebcaa367435cd192fbf3aabe01ae3f0636d1e458d6",
+      "recordedUTC": "2026-11-17T08:26:33.077111+00:00",
+      "exactHandleNoJumpAndReservationRemoved": true,
+      "inputLockAbsent": true,
+      "noJumpAbsent": true,
+      "reservationAbsent": true,
+      "retainedHaltSHA256": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+      "nativeInputSentByRelease": false
+    },
+    "failedOutputsPreservedRootReport": true,
+    "loadedCapabilitiesRootReport": {
+      "observedUTC": "2026-11-17T08:37:09Z",
+      "rawLine": "I88SRC 321330.829 function true",
+      "observer": "Root personally compared and viewed NEW output, then formally ACKed the source-query journal.",
+      "run": "i88src20261117e1",
+      "capabilities": {
+        "Classify.GetInvalidationRevision": "function",
+        "Scan.PENDING_ONLY_REASONS.classifyPendingRead": true
+      },
+      "provesAllNineLoadedBytes": false,
+      "nativeGainClaim": false,
+      "rootDisposition": "Historical disposition at that query: Best observation did not require a Root reload when the two capabilities were verified. Fresh runtime/ownership gates remain Root responsibility after later user reload.",
+      "evidence": {
+        "source": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-source.png",
+          "sha256": "e2faedf1a45fd202853ee093cf1fe7e0672e627bdbe99fa2216dfda19848ad61"
+        },
+        "submitted": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-submitted.png",
+          "sha256": "3860827fb21364560890a702cfb04ae0922afe1f58bf88e509e3905f649749c3"
+        },
+        "journal": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-journal.json",
+          "sha256": "60b64e3047b4fbfc585648175b80e013c403f53e4d039635f3fba2f218e58989"
+        }
+      },
+      "freshness": "Historical08:37 two-capability proof before later user reload; not renewed all-nine loaded-source proof."
+    },
+    "rootObservationState": {
+      "authority": "Dated Root report after nonce7 install, BG2 calibration and I88IDLE after1 ACK.",
+      "owner": "ROOT-JUMP-F-20261117",
+      "FNoJumpHold": "ACTIVE",
+      "FNoJumpSHA256Prefix": "cf0a87d",
+      "FReservation": "ACTIVE",
+      "FReservationSHA256Prefix": "08b104",
+      "retainedHaltSHA256Prefix": "6990",
+      "inputLease": "No current lease-state assertion.",
+      "cue": "NONCE7_PRESENT_RED_GATE_UNRESOLVED",
+      "nonce7": "ROOT_VISUALLY_OBSERVED_INSTALL_FORMAL_ACK_REJECTED_STALE",
+      "nativeObserver": "P88_NOT_BUILT_NOT_STARTED",
+      "jumps": "STOPPED"
+    },
+    "reloadCoordinationRootReport": {
+      "document": "COMBAT_COLLABORATION.md",
+      "ownerThread": "01a1e588",
+      "CF64Restore": "PENDING_OTHER_THREAD",
+      "preserve": [
+        "CF62hold.old",
+        "CF64"
+      ],
+      "noOverlappingReload": true,
+      "writesByThisTask": false
+    },
+    "coordinationWatchRootReport": {
+      "observedUTC": "2026-11-17T08:48:32Z",
+      "rawLine": "I88COORD false 322013.442",
+      "field": "Flux.PerfCapture.WatchStatus().active",
+      "value": false,
+      "RootPersonallyViewedAndFormalACK": true,
+      "scope": "Inactive-watch flag only; not proof of CF64 restoration or permission to alter other-thread data.",
+      "evidence": {
+        "submitted": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88coord20261117e1-submitted.png",
+          "sha256": "21da2d3d283c1982d5d68d37da9fd03a43af1ebd16e0f4f729a2dcb9da5e26eb"
+        },
+        "journal": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88coord20261117e1-journal.json",
+          "sha256": "ca28600a806b61d52cc6431e116f38c8b12e03deea4a12116a3e61c664eddc1c"
+        }
+      }
+    },
+    "EReleaseRootReport": {
+      "recordedUTC": "2026-11-17T08:51:12Z",
+      "outcome": "Root archived and exactly released owned E controls.",
+      "authority": "Root reported; no control inspection by documentation agent."
+    },
+    "cue6StageRootReport": {
+      "nonce": "k83n6p6",
+      "outcome": "HISTORICAL_PARTIAL_STAGE_THEN_USER_RELOAD_CLEARED_ROOT",
+      "packetsWithFinalEnterQueued": 20,
+      "packet21OpenEnterQueued": true,
+      "packet21FinalEnterQueued": false,
+      "perPacketLuaCompletionClaim": false,
+      "spentImmutable": true,
+      "fullStageReplayForbidden": true,
+      "failedOutputsPreserved": true,
+      "draftRecovery": {
+        "RootCapturedOwnedSayDraft": true,
+        "clientMinimizedAfterCapture": true,
+        "userExplicitlyRestoredClientAndClearedDraft": true,
+        "freshRootViewUTC": "2026-11-17T08:58:52Z",
+        "freshRootView": "Chat already closed and code draft gone.",
+        "EscapeSent": false,
+        "firstInlineEscapeAttempt": "KeyError for packets before native setup; no Escape input."
+      },
+      "partialStateRootACK": {
+        "rawA": "J6A 322958.916 k83n6p6 nil nil nil nil 17",
+        "rawB": "J6B 4 nil nil",
+        "RootPersonallyViewedAndFormalACK": true,
+        "functionCount": 17,
+        "W": "nil",
+        "flags": "nil",
+        "textureCount": 4,
+        "handlers": "none",
+        "fullyInstalled": false,
+        "current": false,
+        "supersededBy": "Fresh J6NOW proves current _J83q absent."
+      },
+      "recovery": {
+        "packets": [
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        "status": "R3_ATTEMPT_FULLY_QUEUED_NOT_ACCEPTED_SPENT",
+        "scope": "Historical nonce6 recovery only: all five commands queued but no J83INIT/CUE acceptance; spent and never replay. User reload later removed that root; Root subsequently installed a fresh nonce7, separately observed with stale formal ACK.",
+        "jumpReady": false,
+        "executionConfirmed": false,
+        "replayForbidden": true
+      }
+    },
+    "nonce6HostCorrectionRootReport": {
+      "status": "SOURCE_ONLY_CORRECTED_SIBLING",
+      "hostSHA256Prefix": "10a5",
+      "childSHA256Prefix": "7d2a",
+      "calibrationSHA256Prefix": "15fea",
+      "backgroundSHA256Prefix": "f620",
+      "oldPackagePreserved": true,
+      "nativeAcceptanceClaim": false,
+      "historical": true,
+      "supersededBy": "Final FAST23a5/recoveryf7f2 source below; older package preserved."
+    },
+    "currentNineProductSourcesRootReport": "All nine applied source files unchanged. No Root batch reload or item actions; later user reload cleared temporary cue. Loaded-byte/native-gain acceptance remains pending.",
+    "nonce6ErrorRootReport": {
+      "rawLine": "J6ERR 328105.877",
+      "RootPersonallyViewedAndTimelyFormalACK": true,
+      "query": "errorqueryb",
+      "lastBlizzardUITemporaryError": {
+        "timestamp": "11:09:53",
+        "count": 4,
+        "family": "same f.z nonce6 assertion guard"
+      },
+      "BugTabsDBMutation": false,
+      "scope": "Read-only native error observation; not a recovery-success assertion."
+    },
+    "currentCueStateRootReport": {
+      "nonce": "k83n6p7",
+      "RootPersonallyViewed": true,
+      "formalInstallerACK": "REJECTED_STALE",
+      "rawMarkers": [
+        "J83INIT true",
+        "J83CUE 6 6"
+      ],
+      "all25PacketsFullyQueued": true,
+      "queuedCharacterCount": 4369,
+      "submittedCaptureUTC": "2026-11-17T10:41:43Z",
+      "cuePalette": "FOUND_ALL_RED_GATE_UNRESOLVED",
+      "helperLaunched": false,
+      "jumps": "STOPPED",
+      "nativeGainClaim": false,
+      "authority": "Root direct visual report; documentation agent did not inspect the client."
+    },
+    "cue6RecoveryR3RootReport": {
+      "run": "j6recoverR3F20261117b",
+      "journal": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j6recoverR3F20261117b-journal.json",
+        "sha256": "c1cfcc698ffee6e0cc1ff708a281d234896634947c98c0921e4101bda7f72449"
+      },
+      "allFivePacketEnqueueFactsComplete": true,
+      "J83INITorCUEPositiveAcceptance": false,
+      "commandAcknowledged": false,
+      "spentNeverReplay": true,
+      "scope": "Queued final Enters are not proof of Lua completion or installed cue; preserve outputs."
+    },
+    "finalFASTSourceRootReport": {
+      "sourceFingerprints": {
+        "readonly": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\j83-nonce6-state-fast-r2\\bootstrap.py",
+          "sha256": "23a5c25d5f6da909b098d970246a059c8948381a2eba20fdf5f1fb874d178f8a"
+        },
+        "recovery": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\j83-nonce6-recovery-21-25-r3\\bootstrap.py",
+          "sha256": "f7f2dfd0edbdb1b5991547a94e0c8c9951b8cb240b8358d6f57e9b1bc976b0e2"
+        }
+      },
+      "normalMockCasesPassed": 34,
+      "leaseFixReviewSHA256Prefix": "0e3201",
+      "leaseBehavior": "Watchdog acquires existing command_claim for up to250ms; deletes input.lock only inside claim; busy/error retains lock with deferred owner recovery.",
+      "earlierHarnessFault": "Prior30s stdout-pipe backpressure harness timeout preserved; output-only controller confirmation retained, not performance retiming.",
+      "nativeAcceptance": false
+    },
+    "nativeFASTAttemptsRootReport": [
+      {
+        "sourceSHA256Prefix": "3e4",
+        "observed": "Root personally saw J6FAST ...17.",
+        "hostCommitMs": 0.5801,
+        "formalACK": "REJECTED_LATE",
+        "acceptedNativeResult": false
+      },
+      {
+        "sourceSHA256Prefix": "23a5",
+        "hostCommitMs": 0.459,
+        "fullyQueuedCommit": true,
+        "postCaptureForeground": 0,
+        "outcome": "ABORTED; no actual output retained",
+        "nativeLuaCompletion": "UNKNOWN",
+        "acceptedNativeResult": false
+      }
+    ],
+    "earlyRecoveryR1RootReport": {
+      "outcome": "Foreground activity/stale-source begins and terminal queue were zero recovery-r1 input.",
+      "scope": "Only those early recovery-r1 attempts; not a claim that the entire native session sent no commands."
+    },
+    "virtualPointerRootReport": {
+      "authorization": "User explicitly allowed virtual WoW-window mousemove/clicks.",
+      "initialAutoReview": "Original mousemove request rejected before process/native input; user exception subsequently granted.",
+      "performed": "Virtual MOUSEMOVE only at reported world point1000,80; tooltip gone.",
+      "clicks": 0,
+      "globalCursorAPIUsed": false
+    },
+    "windowRestoreRootReport": {
+      "action": "Minimized client restored behind other apps using SW_SHOWNOACTIVATE4 and HWND_BOTTOM/noactivate.",
+      "foregroundBeforeAndAfterRootVerified": 131448,
+      "activationOrGlobalCursorClaim": false,
+      "observer": "Root verified natively; no agent window/process action."
+    },
+    "userActivityRootReport": {
+      "observed": [
+        "craft",
+        "auction",
+        "mail"
+      ],
+      "agentItemActions": false,
+      "BugTabsDBMutation": false
+    },
+    "nonce6AbsentRootReport": {
+      "rawLine": "J6NOW 328209.736 nil nil nil nil nil 0",
+      "query": "statequerya",
+      "RootPersonallyViewedAndTimelyFormalACK": true,
+      "J83q": "ABSENT",
+      "causeRootReport": "User reload cleared temporary cue state.",
+      "currentPartial17FunctionClaim": false,
+      "nonce7": "SOURCE_BEING_BUILT_NOT_INSTALLED",
+      "nativeGainClaim": false,
+      "current": false,
+      "supersededBy": "Later fresh nonce7 installation personally observed by Root; formal installer ACK rejected."
+    },
+    "nonce7CalibrationRootReport": {
+      "bg2": "READONLY_PALETTE_FOUND_ALL_RED",
+      "clientSize": [
+        1920,
+        1009
+      ],
+      "paletteROIInclusive": [
+        8,
+        996,
+        33,
+        1000
+      ],
+      "sampleCenters": [
+        [
+          11,
+          998
+        ],
+        [
+          17,
+          998
+        ],
+        [
+          24,
+          998
+        ],
+        [
+          30,
+          998
+        ]
+      ],
+      "readiness": "UNRESOLVED_RED_NO_LAUNCH",
+      "bg3": "CHILD_FAILED_REASON_PENDING_ROOT_REVIEW",
+      "failureCauseInferred": false,
+      "actionsByDocumentationAgent": 0
+    },
+    "i88IdleBracketRootReport": {
+      "before": {
+        "run": "i88idleF20261117before1",
+        "rawLine": "I88IDLE 328561.09 5932 true 85 60129",
+        "GetTime": 328561.09,
+        "BestGeneration": 5932,
+        "dirty": true,
+        "bagGeneration": 85,
+        "classifyRevision": 60129,
+        "RootPersonallyViewed": true,
+        "formalACK": false
+      },
+      "after": {
+        "run": "i88idleF20261117after1",
+        "rawLine": "I88IDLE 329366.614 7874 true 85 79549",
+        "GetTime": 329366.614,
+        "BestGeneration": 7874,
+        "dirty": true,
+        "bagGeneration": 85,
+        "classifyRevision": 79549,
+        "RootPersonallyViewed": true,
+        "timelyFormalACK": true
+      },
+      "delta": {
+        "elapsedSeconds": 805.524,
+        "BestGeneration": 1942,
+        "classifyRevision": 19420,
+        "bagGeneration": 0,
+        "revisionPerPublication": 10
+      },
+      "scope": "Passive/mixed auction-house scene; first endpoint visually observed without formal ACK. No matched workload, full-walk/reuse count, private pending-ID count, CPU/FPS or performance-gain inference."
+    },
+    "invalidationSourceAudit": {
+      "sourcePins": {
+        "Inventory/FluxConsumableClassify.lua": "ed64be6906af9ffe91363bde303d588dfccd06390300eb94b1104af7a6c92bd1",
+        "Inventory/FluxConsumableBest/Scan.lua": "9ac3e06c7beba074e4bfa6a26a2b284051b2203a5a43c6cfaa2c3bc18ee349c7",
+        "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0ea671b72ca4b570054e702c69bb25add6d17cab53819d756f1d7f10197178b4",
+        "Inventory/FluxItemClass.lua": "6e1ed98327313f13e25e60d6048b5317ee4b4d262c0ca62aa96cca1da3a7a640",
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc"
+      },
+      "revisionSemantics": "InvalidateCache increments for every call even absent cached entry; valid ForceReject also increments. GetInvalidationRevision, ResetParseBudget and ordinary Classify reads do not increment directly.",
+      "ownResetDoesNotProveReuseMiss": "Scan489-505 resets each pendingAttempts ID even for classifyPendingRead. Reuse checks revision before own reset479, checks captured revisionAfterReset561 and stores updated revision570. Ten resets can accompany successful reuse; ten pending IDs and reuse branch were not observed natively.",
+      "externalReadRoute": "AH Potion Candidate180 invalidates restoreKnown=false entries during deferred ClassifyBatch367. IC metadata610/restore reset466 and Best level441 also invalidate. External invalidation can fail Scan479 global revision guard, including an unrelated AH item. Contribution to this native mixed scene is a hypothesis, not proven.",
+      "safeDisposition": "No new correctness bug inferred from10:1; do not remove pending resets blindly because they preserve late-tooltip retry behavior. No product edits or new tests from this audit."
+    }
+  },
+  "limits": [
+    "No measured CPU/GC/FPS improvement for this batch, no native event/taint/pixel acceptance.",
+    "Native/conforming Lua primitives and protected-call forwarding are the supported contract; arbitrary diagnostic callback identity, shared-private-list mutation or function-environment inspection is not certified.",
+    "Mail ambiguity remains USER-MEASURE-FIRST; no authority/cadence/item feature change. Guild-bank and void callbacks remain excluded.",
+    "No source/native/provider/settings/control/git changes by this documentation task; Root owns native controls and reload.",
+    "Broader cast/craft/inventory/EBS, vendor/AH, bank/mail and client/provider acceptance remains open."
+  ],
+  "evidence": {
+    "InitReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-context-review-20261117T0800\\report.json",
+      "sha256": "00ae3c2e2911358b7b06035e08347634a696c2d21f1c5c2e89765aad300a948d"
+    },
+    "InitPeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-context-review-20261117T0800\\review.json",
+      "sha256": "f50e2d7a72b4c8d95ed4a2b345448426d107881b6cbd36d54a46f3d6bb359dfe"
+    },
+    "InitCheckpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-20261117\\checkpoint.json",
+      "sha256": "6d59d15f90bf095a8abef6fee871b9c8a86bea64d5b44676f73d32e33806f00f"
+    },
+    "ProfessionsReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-profession-workers-20261117T073655Z\\report.json",
+      "sha256": "bbc7a7181d096d4efcf049cbe58ee25c0df017dcb75697777d41ae3fc4bff0e5"
+    },
+    "ProfessionsApplication": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-profession-workers-20261117T073655Z\\application.json",
+      "sha256": "1854a549a801040b39cb23cf885c46bf96c5b0cc71935e619b150c4e809e70ad"
+    },
+    "RestockReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-bank-private-workers-20261117T073841Z\\report.json",
+      "sha256": "7a3cff51b457c89357db9d73cdbd26c2cc660931a35c29614d591a145bd6719b"
+    },
+    "RestockOutcome": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-bank-private-workers-20261117T073841Z\\outcome.json",
+      "sha256": "9e46197198200f3496ebcc48b60c315114aa01f0ef9fe3c5c6f038360661fdfc"
+    },
+    "EBSReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ebs-events-workers-20261117\\ordering-corrected-first-checks\\report.json",
+      "sha256": "24cad576fe01177892dfe798fe51a3377928f4cf8fb47f0299ee6b1d4cfd59ee"
+    },
+    "EBSOrdering": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ebs-events-workers-20261117\\ordering-report.json",
+      "sha256": "caf59b4db2f7c2e6c76276f2f6795f63f9748dcecb3a81684d28a85473e328aa"
+    },
+    "EBSFirstSlice": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ebs-events-workers-20261117\\report.json",
+      "sha256": "7215afce1f46e53eceb1f9080fd3f40c2d2bf3a4063abb8735494f13f6c4083e"
+    },
+    "RootOwnedDRelease": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\inventory-event-workers-20261117\\owned-native-release-D-20261117\\receipt.json",
+      "sha256": "70845feaa5ba2617bc7466ebcaa367435cd192fbf3aabe01ae3f0636d1e458d6"
+    },
+    "I88SRC_source": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-source.png",
+      "sha256": "e2faedf1a45fd202853ee093cf1fe7e0672e627bdbe99fa2216dfda19848ad61"
+    },
+    "I88SRC_submitted": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-submitted.png",
+      "sha256": "3860827fb21364560890a702cfb04ae0922afe1f58bf88e509e3905f649749c3"
+    },
+    "I88SRC_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88src20261117e1-journal.json",
+      "sha256": "60b64e3047b4fbfc585648175b80e013c403f53e4d039635f3fba2f218e58989"
+    },
+    "I88COORD_submitted": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88coord20261117e1-submitted.png",
+      "sha256": "21da2d3d283c1982d5d68d37da9fd03a43af1ebd16e0f4f729a2dcb9da5e26eb"
+    },
+    "I88COORD_journal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88coord20261117e1-journal.json",
+      "sha256": "ca28600a806b61d52cc6431e116f38c8b12e03deea4a12116a3e61c664eddc1c"
+    },
+    "current_finalFAST": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\j83-nonce6-state-fast-r2\\bootstrap.py",
+      "sha256": "23a5c25d5f6da909b098d970246a059c8948381a2eba20fdf5f1fb874d178f8a"
+    },
+    "current_finalRecovery": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\j83-nonce6-recovery-21-25-r3\\bootstrap.py",
+      "sha256": "f7f2dfd0edbdb1b5991547a94e0c8c9951b8cb240b8358d6f57e9b1bc976b0e2"
+    },
+    "current_unacceptedRecoveryJournal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j6recoverR3F20261117b-journal.json",
+      "sha256": "c1cfcc698ffee6e0cc1ff708a281d234896634947c98c0921e4101bda7f72449"
+    },
+    "nonce7_idle_jq4-j7installF20261117a-journal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7installF20261117a-journal.json",
+      "sha256": "7e500fe1a2a65fe13552954f935ac15f14246cf9f395872e8b8009751d0f043b"
+    },
+    "nonce7_idle_jq4-j7installF20261117a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-j7installF20261117a-submitted.png",
+      "sha256": "da07d845dff9b043646e3e2e8641293123a9cedfd1d0877fdb27a8bad5a39938"
+    },
+    "nonce7_idle_jq4-i88idleF20261117before1-journal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88idleF20261117before1-journal.json",
+      "sha256": "9c82191802c78a1a14ab24826df0ac7151e903ce69d51bc225c36219db28e4eb"
+    },
+    "nonce7_idle_jq4-i88idleF20261117before1-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88idleF20261117before1-submitted.png",
+      "sha256": "99c098fa74062cef0f14f6eda52732eec9e45a2f845f07c88f2ec32139bf4681"
+    },
+    "nonce7_idle_jq4-i88idleF20261117after1-journal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88idleF20261117after1-journal.json",
+      "sha256": "5398856dc755e24f86f64bc8ca5b6467b53514d55ab2853e9dd18fca1676c6f0"
+    },
+    "nonce7_idle_jq4-i88idleF20261117after1-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-i88idleF20261117after1-submitted.png",
+      "sha256": "b8021dfcb63fadfad7e8b0a27af9daddfd19512e080be22dc56b3481230cc4a6"
+    }
+  },
+  "metadataCorrection": {
+    "supersedesValidationSHA256": "af15798fe6f7a5fa78b618d872ba2c448d3b5773ed5697363eae6085ad55727b",
+    "InitScope": "This batch only adds the private static field list and conditional absent-set traversal. Earlier merge-worker/context-copy/tier-promotion edits were already in before98d3.",
+    "changesSourceTestsOrResults": false,
+    "priorReceiptsPreserved": true
+  }
+}

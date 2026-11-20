@@ -82,6 +82,12 @@ function Stance.ApplyBorderChrome()
 	end
 	if mode == "player" then
 		FluxBorder:ApplyTo(frame, Stance.BORDER_PAD_H, Stance.BORDER_PAD_V, Stance.BORDER_PAD_H, Stance.BORDER_PAD_V)
+		-- Anchor() overlaps the player shell by -STANCE_ANCHOR_GAP. Fill to
+		-- that shared edge too; the symmetric 5.5 inset leaves a 1.5-unit slit.
+		local bg = frame.FluxBorderFrame and frame.FluxBorderFrame.BackgroundFrame
+		if bg then
+			bg:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", Stance.STANCE_ANCHOR_GAP, Stance.BORDER_PAD_V)
+		end
 	else
 		FluxBorder:ApplyTo(frame, Stance.PET_SLOT_FLUX_PAD_H, Stance.PET_SLOT_FLUX_PAD_V, Stance.PET_SLOT_FLUX_PAD_H, Stance.PET_SLOT_FLUX_PAD_V)
 	end

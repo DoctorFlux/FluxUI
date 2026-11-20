@@ -39,6 +39,7 @@ local function environment(client)
         self.attributes[key] = value
     end
     function methods:GetParent() return self.parent end
+    function methods:GetFrameRef(name) return self.refs and self.refs[name] end
     function methods:SetParent(parent)
         assert(not env.locked, "protected parenting attempted in combat")
         self.parent = parent
@@ -119,9 +120,10 @@ local function inputCase(client, replacements)
     module("Bars/State.lua", env, flux, replacements)
     local state = flux.Bars.State
     local host = env.CreateFrame("CheckButton")
-    state.Attach(env.UIParent, host, 1, "main")
+    local header = env.CreateFrame("Frame")
+    state.Attach(header, host, 1, "main")
     -- Run the actual snippet captured by Attach, including its modifier routing.
-    env.self, env.message = host, "101"
+    env.self, env.message, env.control = host, "101", header
     host:SetAttribute("flux-has-sec", 1)
     host:SetAttribute("flux-has-tert", 1)
     env.GetActionInfo = function(slot) return "spell", slot end
@@ -137,10 +139,12 @@ local function inputCase(client, replacements)
         local keyer = env.CreateFrame("CheckButton", "FluxActionStripKey1")
         host:SetAttribute("flux-p-61", "/cast Test")
         state.StampLiveClick(host, 61)
-        check(keyer:GetAttribute("macrotext1") == "/cast Test" and keyer:GetAttribute("useOnKeyDown") == true,
-            "Forever macro proxy casts its actual macro on key-down")
-        check(keyer:GetAttribute("pressAndHoldAction") == false and keyer.clicks[1] == "AnyDown" and keyer.clicks[2] == "AnyUp",
-            "Forever macro proxy explicitly clears hold without changing host release semantics")
+        check(keyer:GetAttribute("macrotext1") == nil and keyer:GetAttribute("type1") == nil,
+            "Forever fallback avoids legacy button-specific proxy selectors")
+        check(keyer:GetAttribute("macrotext") == "/cast Test" and keyer:GetAttribute("action") == 61,
+            "Forever fallback publishes the current main program to its keyboard proxy")
+        check(host:GetAttribute("macrotext") == "/cast Test" and host:GetAttribute("typerelease1") == nil,
+            "Forever fallback updates the live display without shadowing pre-stamped click sets")
     end
 end
 
@@ -157,8 +161,19 @@ local function raidCase(client, replacements)
         assert(type(token) == "string" and token ~= "", "SetUnit received missing token")
         tooltipCalls = tooltipCalls + 1; return env.tooltipSuccess
     end, Show = function() end, IsForbidden = function() return false end }
-    env.GameTooltip = { SetUnit = function() error("raid tooltip reused native world-cursor state") end }
-    env.unitFrames = { GetUnitTooltip = function() return tooltip end }
+    env.GameTooltip = tooltip
+    local tipState = {}
+    env.unitFrames = {
+        UnitTooltipState = tipState,
+        BeginUnitTooltip = function(owner)
+            anchors = anchors + 1; tipState.owner = owner; return env.GameTooltip
+        end,
+        IsUnitTooltipOwner = function(owner) return tipState.owner == owner end,
+        SetUnitTooltipRefresh = function(owner, refresh) owner.UpdateTooltip = refresh end,
+        HideUnitTooltip = function(owner)
+            if tipState.owner == owner then owner.UpdateTooltip = nil; tipState.owner = nil end
+        end,
+    }
     env.GameTooltip_SetDefaultAnchor = function() anchors = anchors + 1 end
     module("RaidFrame/FluxRaidUnit.lua", env, flux, replacements)
     local button = { mouseOverHighlight = env.CreateFrame("Texture") }
@@ -424,8 +439,8 @@ local mutations = {
     { "ExtraButtonSystem/Engine/Paint.lua", 'SetIconTexture(btn, QUESTION)', 'SetIconTexture(btn, nil)', "occupied badge placeholder", "unresolved corner stays" },
     { "ExtraButtonSystem/Engine/Badge.lua", 'widget:SetSize(faceW, native)', 'widget:SetSize(43, 43)', "badge native authoring size", "badge face uses native" },
     { "Core/ButtonFX/Overlay.lua", 'local CAST_REF_W = 44', 'local CAST_REF_W = 43', "VFX authoring size", "SpellFX frame uses" },
-    { "Bars/Stance/Layout.lua", 'btn.Widget:SetSize(faceW, faceH)', 'btn.Widget:SetSize(native, native)', "stance per-axis squeeze", "stance face preserves" },
-    { "Bars/Stance/Layout.lua", 'slot:SetSize(slotW, size)', 'slot:SetSize(size, size)', "stance live slot width", "stance SlotFrame tracks" },
+    { "Bars/Stance/Layout.lua", 'SetSize(btn.Widget, faceW, faceH)', 'SetSize(btn.Widget, native, native)', "stance per-axis squeeze", "stance face preserves" },
+    { "Bars/Stance/Layout.lua", 'SetSize(slot, slotW, size)', 'SetSize(slot, size, size)', "stance live slot width", "stance SlotFrame tracks" },
 }
 for _, mutation in ipairs(mutations) do
     local path, before, after, label, expectedFailure = table.unpack(mutation)

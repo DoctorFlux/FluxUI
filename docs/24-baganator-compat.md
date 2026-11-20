@@ -1,5 +1,14 @@
 # Baganator integration: categories, protection, bank state, and wrappers
 
+<!-- LHO-BANK-VIEW-FALLBACK-NAMES-20261120 -->
+20 November. The two FluxUI fixed-name bank view fallbacks now precompute names at load. Each pass still resolves the current registered frames and checks their visibility. New and late-created frames, custom skin names and the prior traversal order remain covered. [Visibility evidence](validation/baganator-bank-view-index-2026-11-19.json#fallbackFrameNames). [Open-bank evidence](validation/bank-tier-live-counts-2026-11-19.json#nativeOpenCharacterBankStackParity).
+
+<!-- LHO-BAGANATOR-ITEM-REGISTRATION-INDEX-20261119 -->
+19 November. FluxUI indexes item-button registrations within Baganator’s skin registry. The traversal still visits known visible layouts first, reads widget visibility on each traversal and deduplicates callbacks in registration order. The index applies to the registered fallback and does not cache slot identity or visibility. [Evidence](validation/baganator-item-registration-index-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-BANK-VIEW-INDEX-20261119 -->
+19 November. The bank integration indexes the public skin registration array, which Baganator appends to when it creates frames. Visibility is still read from the frame. The native comparison found two bank frames among 5,696 registry entries. Frame order and all nine Restock rows matched, with a median of 2.82 ms versus 13.57 ms per rebuild. [Evidence](validation/baganator-bank-view-index-2026-11-19.json).
+
 `FluxBaganatorCompat` connects Flux junk, Respec equipment, consumable presets and bank restock to Baganator. It also changes Baganator configuration and wraps selected cursor APIs while leaving native item identity APIs intact. Its ownership extends beyond drawing a coin on a bag slot. Inventory data delegation to Syndicator is a separate integration and does not depend on the Baganator view layer being present.
 
 ## Startup and dependencies
@@ -15,9 +24,9 @@ The compatibility files are TOC-loaded even when Baganator is absent; most meani
 | Bridge | Implemented behavior |
 |---|---|
 | [`FluxBaganator_Junk.lua`](../BaganatorCompat/FluxBaganator_Junk.lua) | Registers the `FluxUI` / `fluxui` junk plugin. It asks Flux's slot protection and display classifier, then lets Baganator provide junk/category presentation. Rule/item-data changes request coalesced widget/search refreshes. Ordinary bag moves already refresh through the bag ecosystem. |
-| [`FluxBaganator_GearSets.lua`](../BaganatorCompat/FluxBaganator_GearSets.lua) | Publishes Respec profiles and named equipment presets through Baganator's item-set source. Builds identity-aware live gear mappings and icons, using the current inventory facade rather than the unloaded old FluxInv scanner. Double buffering avoids requesting a layout pass when the mapping did not change. |
+| [`FluxBaganator_GearSets.lua`](../BaganatorCompat/FluxBaganator_GearSets.lua) | Publishes Respec profiles and named equipment presets through Baganator's item-set source. Builds identity-aware live gear mappings and icons, using the current inventory facade rather than the unloaded old FluxInv scanner. Double buffering avoids refreshing unchanged maps. Changed gear membership, the Equipment Set section and consumable preset categories use one public widget/search refresh when supported. |
 | [`FluxBaganator_EquipmentSetSection.lua`](../BaganatorCompat/FluxBaganator_EquipmentSetSection.lua) | Ensures a separate **Equipment Set** section in Baganator's active configuration containing `default_auto_equipment_sets`, apart from ordinary Weapons/Armor equipment categories. |
-| [`FluxBaganator_CategoryIcons.lua`](../BaganatorCompat/FluxBaganator_CategoryIcons.lua) | Applies saved/live profile or preset icons to managed category labels. |
+| [`FluxBaganator_CategoryIcons.lua`](../BaganatorCompat/FluxBaganator_CategoryIcons.lua) | Applies saved/live profile or preset icons to managed category labels. Creates the texture when a label first resolves an icon. |
 | [`FluxBaganator_ConsumablesCategories.lua`](../BaganatorCompat/FluxBaganator_ConsumablesCategories.lua) | Maintains **Consumable Presets**, one category per NC preset including Default. Explicit added-item categories have higher priority than Baganator's ordinary food/potion/consumable categories. |
 | [`FluxBaganator_Protection.lua`](../BaganatorCompat/FluxBaganator_Protection.lua) | Installs per-button Respec click guards, batches protection refreshes, and guards the cursor-sale path. |
 | [`FluxBaganator_CategoryVendorBlock.lua`](../BaganatorCompat/FluxBaganator_CategoryVendorBlock.lua) | Filters protected items from wrapped merchant actions/transfers and blocks bulk transfer/right-click actions for Flux-managed set categories. |
@@ -41,7 +50,7 @@ Native `C_Item.GetItemGUID` and `C_Item.DoesItemExist` are no longer replaced. G
 
 ## Refresh and protection data flow
 
-Respec profile/preset changes rebuild set information; inventory changes refresh live allocations. `GEAR_SET_LOCK_CHANGED`, bag-show, merchant-open/close and relevant skin/widget callbacks request protection refreshes. `WithContextSnapshot` shares merchant/disenchant state while walking visible buttons. Generation/cache keys skip unchanged button work.
+Respec profile/preset changes rebuild set information; inventory changes refresh live allocations. `GEAR_SET_LOCK_CHANGED`, bag-show, merchant-open/close and relevant skin/widget callbacks request protection refreshes. `WithContextSnapshot` shares merchant/disenchant state with click guards and the shield painter while walking visible buttons. Standalone shield reads check the current context, and each shield still checks its slot. Generation/cache keys skip unchanged button work.
 
 The bridge deliberately avoids attaching an expensive full protection refresh to every `SetItemDetails` or view-complete callback. Corner-plugin and targeted invalidations handle pooled slot changes. Junk list/visual listeners debounce refreshes, and `RequestBaganatorRefresh(includeLayout)` copies its base reason list before adding layout, so a one-time layout request does not permanently alter every later widget update.
 

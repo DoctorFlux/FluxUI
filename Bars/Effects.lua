@@ -588,7 +588,7 @@ end
 
 local pendingCols = {}
 
-local function FlushDirty()
+local function FlushDirtySlotPassBody()
 	flushQueued = false
 	local n = 0
 	for column in pairs(dirtyCols) do
@@ -610,6 +610,15 @@ local function FlushDirty()
 	if FX and FX.EndSlotPass then
 		FX.EndSlotPass()
 	end
+end
+
+
+local function FlushDirty()
+	local FX = Flux.ButtonFX
+	if FX and FX.WithSlotPassCleanup then
+		return FX.WithSlotPassCleanup(FlushDirtySlotPassBody)
+	end
+	return FlushDirtySlotPassBody()
 end
 
 local function QueueFlush()

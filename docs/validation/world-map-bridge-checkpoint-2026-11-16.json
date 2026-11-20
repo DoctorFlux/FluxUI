@@ -1,0 +1,14 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-bridge-before-20261116T152051Z",
+  "verified": true,
+  "sourceFiles": 2972,
+  "settingsMetadataFiles": 129,
+  "settingsWrites": false,
+  "settingsBackup": "Read-only metadata only; no quiescent settings backup claimed",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "branch": "main",
+  "sha256": {
+    "source.zip": "06af904ec527a37d942ed5f1a7ccf8ebb1f2f4bac42eb43472fd998f91744f57",
+    "history.bundle": "911ca5665cf9d522fb332eb9b99e29c2fb128e74a22b5a15349a32c2f7d8ffed"
+  }
+}

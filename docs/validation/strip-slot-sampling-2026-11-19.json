@@ -1,0 +1,136 @@
+{
+  "changeId": "STRIP-SLOT-SAMPLING-R98-20261119",
+  "capturedAtUTC": "2026-11-19T11:39:16.093478+00:00",
+  "scope": "Action occupancy and active-page reads during held-cursor strip layout",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+      "afterRaw": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f"
+    },
+    "tests/strip_slot_sampling.lua": {
+      "beforeRaw": null,
+      "afterRaw": "d336d0a8fc8c86637edafa2ea87688e76ed54bfb2bf9d42ba635fa1a85ef88f3"
+    },
+    "Bars/Strip.lua": {
+      "beforeRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+      "afterRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253"
+    },
+    "Bars/State.lua": {
+      "beforeRaw": "7966397f746bd2ce6d45a014fcda25e67025570c801595756532a68766414e03",
+      "afterRaw": "7966397f746bd2ce6d45a014fcda25e67025570c801595756532a68766414e03"
+    },
+    "Core/API/Action.lua": {
+      "beforeRaw": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a",
+      "afterRaw": "4960e2a389ba20203d400b12dffc2a67c11370dfb7fe5b3fcf12faf03e4a960a"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-sampling-r98-before-20261119T113255Z\\source.zip",
+    "archiveSHA256": "683f3e0a4e82aea74e195ca92ed235ab4776fcbdeda94b3555196c44bda7d466",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current production layout with modeled secure host placement, action slot and page reads",
+    "crossingsPerCase": 8,
+    "cases": [
+      "sparse-top",
+      "sparse-shapeshift",
+      "full-top",
+      "full-possession"
+    ],
+    "counts": [
+      [
+        1448,
+        460,
+        160,
+        4
+      ],
+      [
+        1436,
+        460,
+        156,
+        4
+      ],
+      [
+        1212,
+        432,
+        156,
+        4
+      ],
+      [
+        1224,
+        460,
+        160,
+        4
+      ]
+    ],
+    "countColumns": [
+      "before action reads",
+      "after action reads",
+      "before page reads",
+      "after page reads"
+    ],
+    "checks": [
+      "current slot sampled once per visual pass",
+      "exact face geometry, promoted mode and secure flags",
+      "top/bottom placement and sparse/full display",
+      "program and idle overlay bodies",
+      "real slot changes and synchronous ForceApply page changes",
+      "separate direct reads, mapping and visual state",
+      "combat defers placement and sampling",
+      "identical border commit, dependent refresh, envelope, point and show counts"
+    ],
+    "rows": [
+      "STRIP_SLOT_READS sparse-top crossings=8 action=1448/460 page=160/4",
+      "STRIP_SLOT_READS sparse-shapeshift crossings=8 action=1436/460 page=156/4",
+      "STRIP_SLOT_READS full-top crossings=8 action=1212/432 page=156/4",
+      "STRIP_SLOT_READS full-possession crossings=8 action=1224/460 page=160/4",
+      "Strip sampling replay passes sparse/full bars, current pages, overlays, synchronous page changes and combat deferral."
+    ],
+    "captureSHA256": "aceea748dbbd09d7d376142c567dbca8c526588fce9065fcfd37dd072e77a624"
+  },
+  "verification": {
+    "focused": 212,
+    "focusedPassed": 211,
+    "syntax": 1242,
+    "compilerMaximumUpvalues": 12,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-sampling-r98-before-20261119T113255Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-sampling-r98-before-20261119T113255Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Native held-cursor latency, party or raid join and leave latency, seam pixels and combat taint remain open. No live input or profiling changes."
+}

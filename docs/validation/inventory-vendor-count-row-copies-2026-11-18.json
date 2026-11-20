@@ -1,0 +1,85 @@
+{
+  "id": "LHO-VENDOR-COUNT-ROW-COPIES-20261118",
+  "utc": "2026-11-18T01:08:50.494563+00:00",
+  "file": "Inventory/Restock/Core/FluxRestockList.lua",
+  "before": "1586463f82a78c37b3d6f7f5513a18d451b0e9beadc4367834403d1a25ab1eb7",
+  "after": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-vendor-count-row-copies-20261118\\checkpoint.json",
+  "syntax": [
+    {
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sourceSha256": "1586463f82a78c37b3d6f7f5513a18d451b0e9beadc4367834403d1a25ab1eb7",
+      "mode": "Syntax only; no addon execution"
+    },
+    {
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "sourceSha256": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+      "mode": "Syntax only; no addon execution"
+    },
+    {
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sourceSha256": "1586463f82a78c37b3d6f7f5513a18d451b0e9beadc4367834403d1a25ab1eb7",
+      "mode": "Syntax only; no addon execution"
+    },
+    {
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "sourceSha256": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+      "mode": "Syntax only; no addon execution"
+    }
+  ],
+  "sourceContract": {
+    "consumer": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "consumerSha256": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+    "method": "A.GetVendorCraftTargets",
+    "readOnlyBaseRows": "Lines 524-526 select source; lines 538-540 copy before SetItemUnits/Need. Lines 569-574 select and copy matched base before SetItemUnits/DirectItems. No other product override/hook found.",
+    "boundary": "Private fresh bases array remains; unmodified ordinary rows are borrowed read-only; craftBaseTarget rows retain full shallow-copy isolation and target replacement."
+  },
+  "mechanism": "Avoid per-row shallow table allocation and pairs traversal when craftBaseTarget is nil; still call canonical crafting getter once with all rows and a fresh list.",
+  "preserved": [
+    "Live tier/item/bank count reads and all existing per-entry updates",
+    "Crafting validation and its invalid-plan/settings/mail side effects still run",
+    "Crafting target rows copied and rebased including zero",
+    "Array order and membership, all metadata fields, timers/events/cadence, rendering, transactions, commands/settings schema"
+  ],
+  "sourceWorkRemoved": "One temporary row table plus one pairs traversal per count refresh row whose craftBaseTarget is nil. No savings for crafting-rebased rows. Not a measured frame-time gain.",
+  "priorNativeEvidence": "docs/validation/inventory-native-vendor-refresh-2026-11-18.json",
+  "priorNativeScope": "Before source populated real panel ran 3.0051000118256ms/errors0. No exact allocation tracing; that is not candidate acceptance.",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/Core/FluxRestockList.lua": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36"
+  },
+  "retailForeverPairsMatched": 20,
+  "nativeAcceptance": "PENDING normal reload and shown vendor refresh; active client still has previous List1586463f. Do not reload merely for this edit while user vendor context is prepared.",
+  "simulationRuns": 0,
+  "benchmarks": 0,
+  "nativeInputsThisSlice": 0,
+  "performanceGain": "UNMEASURED",
+  "goal": "ACTIVE",
+  "unappliedLead": "Empty merchant restock lists rebuild on later data pulses. No guard change: initialization, metadata readiness and merchant-stock membership invalidation need a complete liveness contract first. An empty list is not proven stable."
+}

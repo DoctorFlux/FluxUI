@@ -12,7 +12,8 @@ if class ~= "ROGUE" and class ~= "DRUID" then return end
 
 local Modern = forever and ns.ForeverComboPoints
 if forever and not Modern then return end
-local Combo = NP.RegisterModule("comboPoints", {})
+-- RefreshAll already resolves the current target, even when its plate is absent.
+local Combo = NP.RegisterModule("comboPoints", { refreshAllCoversUnits = true })
 local MAX_POINTS = 5
 local host = NP.CreateHost(68, 12)
 local currentPlate, currentUnit, currentBar

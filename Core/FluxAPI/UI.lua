@@ -898,6 +898,7 @@ function CreateLegacyBattlefieldBorderPiece(parent, layer, useAtlasSize, pieceTy
         texture:SetTexCoord(coords.left, coords.right, coords.top, coords.bottom)
         if useAtlasSize then texture:SetSize(coords.width, coords.height) end
     end
+    if ns.Border and ns.Border.RegisterPiece then ns.Border:RegisterPiece(texture, pieceType) end
     return texture
 end
 
@@ -1351,6 +1352,10 @@ manaCacheFrame:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 manaCacheFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
 pcall(function() manaCacheFrame:RegisterUnitEvent("UNIT_MAXPOWER", "player") end)
 manaCacheFrame:SetScript("OnEvent", function(_self, event, loadedAddon)
+    if event == "PLAYER_SPECIALIZATION_CHANGED" then
+        local sharedEvents = _G.Flux and _G.Flux.Events
+        if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(loadedAddon) then return end
+    end
     if event == "PLAYER_LOGIN" or (event == "ADDON_LOADED" and loadedAddon == "Blizzard_UIPanels_Game") then
         H.RefreshUnifiedBankUIFlags()
     end

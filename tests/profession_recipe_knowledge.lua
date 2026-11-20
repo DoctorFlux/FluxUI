@@ -57,6 +57,48 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         check(retailP.GetProfessionKnowledge("Archaeology") == true and retailP.GetProfessionRank("First Aid") == 60
             and retailP.GetProfessionKnowledge("First Aid") == true,
             "Retail six-slot book keeps Archaeology distinct from the later First Aid slot")
+
+        local paneSaved = Copy(saved)
+        for _, data in pairs(paneSaved.professions["Realm-Alice"].bySkillLine) do
+            data.name = "First Aid"
+            for _, cachedRecipe in ipairs(data.recipes) do
+                cachedRecipe.skillName, cachedRecipe.skillLineID = "First Aid", 129
+            end
+        end
+        local paneA, _, paneEnv, paneP = boot(client, auctionator, syndicator, paneSaved, "Alice", true, function(_, environment)
+            environment.wipe = function(tableToClear) for key in pairs(tableToClear) do tableToClear[key] = nil end end
+        end)
+        paneEnv.GetProfessions = function() return 1, nil, nil, nil, 5 end
+        paneEnv.GetProfessionInfo = function(index)
+            if index == 1 then return "Tailoring", 1, 150, 300, 2, 0, 197 end
+            return "Fishing", 1, 100, 300, 2, 0, 356
+        end
+        local paneRank, paneReads = 150, 0
+        if legacy then
+            paneEnv.GetNumSkillLines = function() return 1 end
+            paneEnv.GetSkillLineInfo = function() paneReads = paneReads + 1; return "First Aid", false, nil, paneRank end
+        else
+            paneEnv.C_SkillInfo = {
+                GetNumSkillLines = function() return 1 end,
+                GetSkillLineInfo = function()
+                    paneReads = paneReads + 1
+                    return { name = "First Aid", skillID = 129, rank = paneRank, isHeader = false }
+                end,
+            }
+        end
+        local paneDescriptor = Copy(descriptor)
+        paneDescriptor.skillName, paneDescriptor.skillLineID = "First Aid", 129
+        check(paneP.GetRecipeKnowledge(paneDescriptor) == true
+            and #paneA.CraftRecipes({ itemID = 100 }) == 1 and paneReads == 1,
+            "a positive skill-pane rank keeps saved recipes available after reload without reopening the profession")
+        paneRank = 0
+        paneP.InvalidateSkillCaches()
+        check(paneP.GetRecipeKnowledge(paneDescriptor) == false and #paneA.CraftRecipes({ itemID = 100 }) == 0,
+            "a zero-rank skill-pane row cannot keep an unlearned recipe available")
+        paneEnv.GetProfessions = function() error("profession roster unavailable") end
+        paneP.InvalidateSkillCaches()
+        check(paneP.GetRecipeKnowledge(paneDescriptor) == true and #paneA.CraftRecipes({ itemID = 100 }) == 1,
+            "temporarily unavailable native knowledge still permits the verified saved recipe")
         env.GetProfessions = function() return 1, nil, nil, nil, nil, nil end
         env.GetProfessionInfo = function() return "Tailoring", 1, 150 end
         check(P.GetProfessionKnowledge("Alchemy") == false and P.GetRecipeKnowledge(descriptor) == false,

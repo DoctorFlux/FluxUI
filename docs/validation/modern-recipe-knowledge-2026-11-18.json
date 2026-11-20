@@ -1,0 +1,61 @@
+{
+  "utc": "2026-11-18T22:44:19.5631050Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "source": "Inventory/Professions.lua",
+  "before": "9a12130da2c3d726165611d07a742507478db716d59e71f32fc78c27b3cc6783",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 20,
+  "settingsContentsCopied": false,
+  "after": "24b89db1d6115716ec6cf065b11199151aec43945bd58b1db81985b94ef10b51",
+  "changeId": "LHO-MODERN-RECIPE-KNOWLEDGE-20261118",
+  "status": "APPLIED_FOREVER_QUERY_TIMING_AND_PARITY_PASS_FULL_WORKFLOW_PENDING",
+  "sourceCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-modern-recipe-knowledge-20261118",
+  "previousTurnClassification": "progress: carried-count and saved-potion guard Lua changes applied",
+  "beforeEvidence": {
+    "priorNativeCatalogueRecords": 148,
+    "priorNativeRecipePath": "Native 79/80 measured live recipe queries on the real catalogue, separate from GetRecipeKnowledge.",
+    "confirmedSourceCost": "Prof.GetRecipeKnowledge built and ranked the full cached catalogue. Auction craft validation can invoke it once per candidate.",
+    "nativeTimingForThisPath": null
+  },
+  "verification": {
+    "lua51BeforeAfter": true,
+    "lua54BeforeAfter": true,
+    "sameFilesOnRetailAndForeverDisk": true,
+    "unrelatedSourceConserved": true,
+    "integerAndFloatRecipeKeyRepresentationsChecked": true,
+    "simulationRuns": 0,
+    "kept": [
+      "Alias ranking by completeness and source",
+      "Original traversal order and revocation rules",
+      "Legacy descriptor schema",
+      "Public catalogue return and replacement path"
+    ],
+    "nativeAcceptance": "Pending for the candidate."
+  },
+  "liveReadiness": {
+    "verifiedForeverProcess": 9012,
+    "window": 3541714,
+    "carriedCountFilesRetailForeverDiskMatch": true,
+    "ah111": "Foreground mode changed before command input. Own lock released.",
+    "charge112": "Focused BugTabs Copy all text. Read-only capture released with no input.",
+    "chargeEligibilityFromSavedMetadata": "No resolved positive record found in the available targeted aggregate check. No charge registry change.",
+    "startupObservedExternally": "Fresh startup messages and one raid secure-handler error in the current session. The top error line is clipped. No attribution to inventory edits or exact reload identity.",
+    "readOnlyRecheckImage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume112-client-recheck.png",
+    "readOnlyRecheckImageSHA256": "5bb4867012652c24fb3ab74fbc84e366f216eb794ebf99667d708f52286cd584",
+    "jumpHelperRunning": false
+  },
+  "native117": {
+    "afterObservedReload": true,
+    "recipeID": 18560,
+    "known": true,
+    "reagentsReturned": 1,
+    "evidence": "fixed-recipe-slots-2026-11-19.json"
+  },
+  "native118": "modern-recipe-paired-native-2026-11-19.json",
+  "remaining": [
+    "Verify end-to-end Pending and crafting frame timing and provider/client variants.",
+    "Record the complete secure startup error separately when accessible.",
+    "Check remaining client/provider and workflow frame spikes."
+  ]
+}

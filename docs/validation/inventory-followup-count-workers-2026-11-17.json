@@ -1,0 +1,146 @@
+{
+  "id": "LHO-FOLLOWUP-COUNT-WORKERS-20261117",
+  "utc": "2026-11-17T20:44:21.726308+00:00",
+  "status": "APPLIED_DIRECT_USER_AUTHORITY; source review and syntax PASS; goal active",
+  "direction": "Continue direct addon Lua optimization without simulations",
+  "application": {
+    "utc": "2026-11-17T20:42:48.727879+00:00",
+    "files": [
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+        "before": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5",
+        "after": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537"
+      },
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+        "before": "366e1bbed993ee73b16a0362f9af01bc73d72eabefcec3cfee1e77c8facb4246",
+        "after": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632"
+      },
+      {
+        "file": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+        "before": "7c475e793a8b4568ecb77c1d6f0301e39ecec637fa9ea4bcd28fc967a0a010ca",
+        "after": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e"
+      }
+    ],
+    "syntax": [
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+        "sha256": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+        "vm": "Lua5.1.5",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      },
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+        "sha256": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+        "vm": "Lua5.4.6",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      },
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+        "sha256": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+        "vm": "Lua5.1.5",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      },
+      {
+        "file": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+        "sha256": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+        "vm": "Lua5.4.6",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      },
+      {
+        "file": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+        "sha256": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+        "vm": "Lua5.1.5",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      },
+      {
+        "file": "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+        "sha256": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+        "vm": "Lua5.4.6",
+        "exit": 0,
+        "stdout": "",
+        "stderr": "",
+        "mode": "Syntax-only -p; no addon chunk execution"
+      }
+    ],
+    "sourceReview": [
+      "Exact same namespace/Flux/defining-function query validation as AuctionData",
+      "Followup Count retains reliable/bag-storm/memo guards and original nil/false getter chain; original two getter lookups",
+      "Physical/charge normalization remains boolean and countMemo publication unchanged",
+      "Craft BagOperations keeps A.GetCraftBagAvailable priority; fallback reads current public getter for each material",
+      "Replaced getters still receive fresh original five-field options; existing inner helper retains its foreign fallback",
+      "Bank comparator body reads and tie order unchanged; table.sort still dynamically selected per list",
+      "No native read, callback, material readiness calculation, protected command, bank movement, saved data, repaint or cadence intentionally changed"
+    ],
+    "historicalLead": "Existing carried-query adoption in AuctionData and previous private-count work; not new consumer native or measured gain acceptance",
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "functionalAcceptance": "Pending",
+    "performanceGain": "Not measured"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-restock-followup-counts-20261117\\checkpoint.json",
+    "sha256": "4a91573346a141b1a4766fc5b1edb64e3dbd2f0cc15f0fe7ee6d0e101bcc9a57",
+    "historyVerified": true,
+    "settingsPathsAvailable": 125,
+    "privateValuesReadOrWritten": false
+  },
+  "mechanism": {
+    "Followup.Count": "Existing authenticated RestockCarriedLiveQuery removes fresh count options on its exact defining-getter route. Reliability/storm/memo checks, nil/false short circuit, two original public getter reads and Number conversion remain.",
+    "FollowupCraft.BagOperations": "Same helper on fallback count path; live A.GetCraftBagAvailable priority remains. Public getter selected anew for each material; foreign getter gets fresh original physical-item options.",
+    "BankSnapshot": "One private slotCountLess worker serves all per-item snapshot groups; original count conversions, field reads, itemID/slot tie breaks and table.sort lookups remain."
+  },
+  "scopeReview": {
+    "sourceOnlyLeads": "Prior private carried query applied to AuctionData; per-material options and per-group sort construction found in actual loaded source.",
+    "notAnIdleHotspot": "Bank move executor hides its frame outside active work; its registered OnUpdate is not treated as an idle callback problem. No mover lifecycle change.",
+    "unusedLegacy": "TOC confirms old FluxInv scanner files are not loaded; no effort spent optimizing their heavy queue.",
+    "preserved": [
+      "Actual count/name/tooltip queries and public fallback behavior",
+      "Fresh outputs and callback state; existing countMemo",
+      "Physical versus charge semantics",
+      "Pending stage selection, readiness, requested/automatic attempts and craft hardware action authorization",
+      "Bank native reads, move choices/order and cadence",
+      "All current events/timers/settings/integrations/appearance",
+      "External Syndicator and Baganator untouched"
+    ]
+  },
+  "validation": {
+    "newSyntaxPasses": 6,
+    "compilers": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "mode": "-p syntax only; addon chunks not executed",
+    "sourceReview": "Scoped diff and existing helper contract inspection",
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "nativeFunctionality": "PENDING",
+    "CPU_AllocatedBytes_FPS_or_lagSpikeGain": "NOT MEASURED",
+    "ordinaryEnvironment": "Ordinary Lua primitives; arbitrary substituted primitive callback-identity/debug-upvalue observers not certified."
+  },
+  "remainingScope": [
+    "Native loaded source/functionality/performance on supported clients",
+    "Builtin only, Syndicator only and Syndicator+Baganator combinations",
+    "Casting/cancel/success; crafting and bag/loot/receive updates",
+    "Vendor/restock/AH/pending/bank/mail complete workflows",
+    "Stale-mail measure-first condition retained; guild-bank/void callbacks excluded"
+  ],
+  "nativeState": "No jump/input/capture helper started; prior pause reload cleared temporary globals; foreign controls and other goal reports retained."
+}

@@ -1,5 +1,1125 @@
 # Client and reference validation — 29 October 2026
 
+20 November. `FOOD-WATER-STACKS-20261120` passed 27 focused desktop checks.
+Pinned Retail `12.1.5.70783` and Forever `1.60.1.70938` FrameXML route the
+secure item argument through `SecureCmdItemParse` and accept the `bag slot`
+form. The local Classic progression `5.5.4.69155`, Era `1.15.9.68808`, and
+Anniversary `2.5.6.68775` snapshots have the same parser. Latest source tips
+could not be resolved in this environment. The initial loaded hook produced a
+user-reported `Bridge` accessor error. All five installed copies now match the
+corrected source. Native mouse and key use, the optional swap, and blocked-action
+checks remain pending after reload.
+[Retail source](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L1104-L1127)
+[Forever source](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L1118-L1141).
+
+20 November. The Auction Restock tooltip and profession cache fixes passed
+desktop checks for Retail, Forever, Classic progression, Era and Anniversary.
+Both installed Lua files match byte for byte across all five clients.
+`Inventory/Professions.lua` SHA-256
+`41d039dc13612f058367366d63f09e002681cfe8030bf6e8b8ee6da8cd50144b`.
+`Inventory/Restock/Auction/FluxAuctionRestockUI.lua` SHA-256
+`8880d3435748662a164efb792941f30fb7959e7d53d5529c7f11b4338a3870f0`.
+Native hover, closed-profession planning and Pending execution remain pending.
+[Auction Restock](AUCTION_RESTOCK.md#saved-recipes-and-row-hover).
+
+20 November. Forever 1.60.1.70959 was running in the verified WoW window. The
+original-map candidate passes the desktop combat lifecycle checks on Lua 5.1
+and 5.4. Live combat event ordering and taint remain pending after reload.
+[Evidence](validation/world-map-combat-2026-11-20.json).
+
+<!-- LHO-ACCEPTANCE-INSTALL-BASELINE-20261120 -->
+20 November. After the performance goal resumed, all five installations matched all 90 closeout Lua hashes and the shared `_FluxUI.toc` hash `50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5`. The installed executable versions are Retail 12.1.5.70783, Forever 1.60.1.70959, Classic progression 5.5.4.70631, Era 1.15.9.70576, and Anniversary 2.5.6.70577. These are on-disk identities. The live smoke checks still need evidence from the loaded clients. [Acceptance checklist](INVENTORY_PERFORMANCE_ROADMAP.md#final-acceptance-checklist).
+
+<!-- LHO-OPTIMIZATION-CLOSEOUT-20261120 -->
+20 November. The closeout compiled 90 scoped Lua files and verified byte-for-byte matches across Retail, Forever, Classic progression, Era and Anniversary. All 82 selected regression scripts passed. The roadmap retains the exact remaining native scenarios. [Closeout](INVENTORY_PERFORMANCE_ROADMAP.md#finish-point).
+
+<!-- LHO-CONJURED-CACHE-READ-20261120 -->
+20 November. Forever with Syndicator and Baganator passed the loaded cold-open and settled metadata check for the 41 item IDs sampled. The test restored the closed backpack and recorded zero new Lua errors. Positives were unavailable in the live sample. Other native clients still need validation. [Evidence](validation/backpack-final-callback-2026-11-19.json#settledConjuredMetadataReads).
+
+<!-- LHO-BANK-CLOSE-LATCH-20261120 -->
+20 November. Forever with Syndicator and Baganator reproduced a visually closed bank while all shared inventory and Restock gates remained live. On the loaded fix, R676 observed the same close events, five clear gates, 21 cached counts matching live, and zero new Lua errors. Focused tests cover close and fresh reopen across all five families. Checks on the other native clients remain pending. [Evidence](validation/bank-tier-live-counts-2026-11-19.json#nativeBankSlotMoveAndCloseLatch).
+
+<!-- LHO-BANK-TIER-SETTLED-KIND-20261120 -->
+20 November. The Forever bank open ran with Syndicator and Baganator. The real tier-candidate comparisons matched the zero-withdrawal result across six pairs with zero Lua errors. All five installed sources match. Positive withdrawal, loaded comparison, cold close and native checks on other clients are pending. [Evidence](validation/bank-tier-live-counts-2026-11-19.json#nativeOpenBankTierKindWork).
+
+<!-- LHO-BANK-VIEW-LOADED-20261120 -->
+20 November. Forever R665 verified the installed visibility sources and exact matches for two frames, nine shared targets, six visible Auction rows, one hidden row and potion facts. Money and inventory stayed stable with zero new Lua errors. R663 separately covered the warm open-bank tooltip and button for its four-row zero-pull profile. Real bank changes and additional clients remain pending. [Loaded comparison](validation/baganator-bank-view-index-2026-11-19.json#loadedFallbackFrameNames). [Open-bank timings](validation/bank-tier-live-counts-2026-11-19.json#nativeOpenBankRestockButton).
+
+<!-- LHO-BANK-VIEW-FALLBACK-NAMES-20261120 -->
+20 November. Forever R662 compared 21 actual character-bank item counts and 22 slots against the independent native reads. All aggregate, stack, lock and location checks matched with zero Lua errors and unchanged carried generation and money. R660 compared isolated candidate visibility reads with the loaded original. A reload was deferred while the actual bank remained open. [Visibility evidence](validation/baganator-bank-view-index-2026-11-19.json#fallbackFrameNames). [Open-bank evidence](validation/bank-tier-live-counts-2026-11-19.json#nativeOpenCharacterBankStackParity).
+
+<!-- LHO-RESTOCK-TARGET-ATTRIBUTION-20261120 -->
+20 November. R656 to R658 recorded native Forever 70959 timings with Syndicator and Baganator. R658 reproduced nine exact target rows with stable money, bag and bank generations and zero new Lua errors. Open bank, real commerce updates and other clients remain pending. [Evidence](validation/bank-tier-matcher-2026-11-19.json#nativeRestockTargetAttribution).
+
+<!-- LHO-RESTOCK-TIER-RECORD-FILTER-20261120 -->
+20 November. On Forever with Syndicator and Baganator, R655 matched all 205 carried tier verdicts, completed six visible and one hidden Restock rows and the closed-bank count reads, and kept money and bag generation stable with zero new Lua errors. The exact ownership regression covers the initial failed branch. Native open-bank, vendor and other client acceptance remain pending. [Evidence](validation/bank-tier-matcher-2026-11-19.json).
+
+<!-- LHO-AUCTION-INITIAL-PLAN-PAINT-20261120 -->
+20 November. Forever with Syndicator and Baganator loaded both startup-paint edits. A real Auction open showed the native auction-waiting status and kept the same six visible and one hidden row. Money, stock and errors were stable, and the panel and observers were cleaned up. Warm repeat and other native clients remain pending. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-ROW-ORDER-ALLOCATION-20261120 -->
+20 November. Forever with both external inventory addons loaded the row comparator edit. In the real Auction Restock open, the six visible rows matched the exact prior order. Money and bag generation were stable. The observer restored and the Auction House closed with no new Lua errors or transaction. Other native clients and active buy and Pending flows remain open. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-CATALOGUE-REVOCATION-VALIDATION-20261120 -->
+20 November. On Forever with both providers loaded, R636 after reload matched native and Flux counts of 18, kept both Extra Button grid selections, completed the stack return with empty cursor and destination, and reported zero new errors. Two experimental native removal paths matched 149 ordered row identities. The full guarded alternative stayed out of production. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-TEXT-ALIAS-20261120 -->
+20 November. Forever with Syndicator and Baganator matched the item receipt and food face. The native before/candidate catalogue comparison matched all 149 ordered record identities. The updated production source was loaded. Focus changes stopped both post-reload move checks before input. Loaded workflow and other client measurements remain open. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-LAZY-CATEGORY-ICON-20261120 -->
+20 November. Forever with Syndicator and Baganator 862 tested ordinary backpack category labels before and after reload. Both runs returned to closed bags, kept bag generation stable, restored the observer and reported zero new Lua errors. Both saw the same count of anchor-preserving and anchor-normalizing applications. Real managed icons and recycled-label transitions need native coverage. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-CRAFT-POTION-FALLBACK-STATIC-20261120 -->
+20 November. Forever with both inventory providers loaded the potion fallback change and passed the closed-backpack move and return. Both grid signatures and counts matched, one delayed event arrived per direction and no Lua errors appeared. Positive fallback parity and provider replacement are covered on five desktop family shapes. Positive native fallback and the other client checks remain open. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-CAST-WIDGET-ENTRY-INDEX-20261120 -->
+20 November. Forever with both inventory providers loaded and matched the ButtonFX registration index across 195 actual buttons in R625. The real Food cancel retained three callbacks and 185 target resets each, with the bag generation stable and no Lua errors. This profile showed no active interrupt owner for Food. Active reticle, other spells and other native client coverage remain pending. [Evidence](validation/casting-equality-work-2026-11-15.json).
+
+<!-- LHO-AUCTION-SEARCH-PREPAINT-LIVE-20261120 -->
+20 November. Forever with both inventory providers confirmed native cold startup, warm reopen using current prices, and warm startup after natural expiry. R622 preserved row counts, bag generation, player money and closed state. Observers were removed, with no transaction or new Lua errors. Native potion browsing and other client checks remain pending. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-SEARCH-PREPAINT-20261120 -->
+20 November. Forever Baseline R617 through R619 opened and closed the live Auction House and Restock panel with both providers loaded. The observed bag generation, money and transaction state were stable, no new errors appeared and all observers restored. The optimized path on native Forever and the other clients remains pending. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-PROTECTION-EMPTY-SLOT-LOOKUP-20261120 -->
+20 November. Forever with both providers matched 52 actual slot verdicts with an empty protected map. Bag generation held and no Lua errors appeared. Both backpack passes closed. Populated protected slots, live vendor context and native checks on other clients remain pending. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-NUMERIC-CATALOGUE-OPEN-BAG-20261120 -->
+20 November. R612 passed the open-backpack move on Forever with Syndicator and Baganator. One redraw per direction matched the R602 callback count. Bag contents, checked Extra Button assignments and cleanup passed. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-NUMERIC-CATALOGUE-LIVE-BAG-20261120 -->
+20 November. Forever with Syndicator and Baganator loaded the updated catalogue and passed one real closed-backpack move and return. Three Craft lists ran in each direction. Checked Extra Button selections, both count readers and the restored cursor and item slot matched. Native adoption on other clients and the open-backpack repeat remain pending. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-NUMERIC-FULL-CATALOGUE-20261120 -->
+20 November. The exact Professions source matches five installed client paths. The recipe data and row parity came from the Forever saved catalogue in host Lua. Native callback timing, client-specific event delivery and reload adoption are pending. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-BAG-MOVE-CRAFT-CATALOGUE-20261120 -->
+20 November. Forever build 70959 with both inventory addons passed an open-category bag slot relocation and return. Each direction delivered one bag event and kept all 18 items, the original grid selections and clear cursor. Scope covers one count-neutral stack. Native changed-count, additional providers and client editions remain open for these latest measurements. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-RESTOCK-REAGENT-VISIBLE-PASS-20261120 -->
+20 November. Forever build 70959 with Syndicator and Baganator passed the installed warm Restock reagent optimization. All six visible rows, one hidden vendor row and the potion targets matched across six paired rebuilds. Observers restored and no Lua errors appeared. Commerce windows were closed. Native cold, open-session, Pending and other-client checks remain due. [Evidence](validation/restock-reagent-name-reads-2026-11-19.json).
+
+<!-- LHO-PROFESSION-FILTER-CANDIDATES-20261120 -->
+20 November. Forever 70959 with both providers passed the native Have Materials guard and restoration for Tailoring. The saved catalogue and all 369 removals matched across 102 visible, zero visible and 102 restored recipes. Other clients, active craft and Restock-open checks remain pending. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-CURRENT-PASSIVE-20261120 -->
+20 November. Forever with both providers passed the scoped passive Tailoring observation. Saved learned and removal facts matched at the observed list events and there were no delayed bag events or new errors. Restock was closed. Cross-client/provider, active crafting and whole-frame comparisons remain open. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-RETAIN-SAVED-REMOVALS-20261120 -->
+20 November. Forever 70959 with Syndicator, Baganator and BugTabs passed the loaded ready-source check, with all 102 recipe rows and 369 persistent removals equal under both keys. All four paired runs matched. Tailoring closed and the probe reported zero new Lua errors. Real changed filters and learning, other clients/providers, frame time and visual parity remain pending. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-FIRST-READY-READ-COST-20261120 -->
+20 November. Forever build 70959 with both providers passed the Tailoring read-cost probe. All 369 unlearned records and spellbook negatives agreed in the sampled profession, and all 102 learned records returned an output item ID. Native absence and exclusion cases, changed filters and other clients remain open for the proposed first-ready-source reduction. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-CAST-MATCHER-NUMERIC-20261120 -->
+20 November. Forever 1.60.1 build 70959 interface 16001 with Syndicator, Baganator and BugTabs passed loaded casting matcher parity for 117 pairs from a real Conjure Food interrupt. The case found zero owning-button matches. The bag generation stayed stable and no new Lua errors appeared. Positive matches, legacy rank and string cases have focused regression coverage. Whole-cancel frame-time, other clients and actual owner animations still need native checks. [Evidence](validation/casting-equality-work-2026-11-15.json).
+
+<!-- LHO-CAST-POSITIONAL-PAYLOAD-20261120 -->
+20 November. The new positional payload regression passes across five client models. All five installed sources match and pass Lua 5.1 and 5.4 syntax. Loaded Forever kept spell 6129 on start, cancel and successful completion. Native and FluxUI food totals matched at 42 before and 56 after the completed cast. Native restricted Retail and other clients still need checking. [Evidence](validation/casting-equality-work-2026-11-15.json).
+
+<!-- LHO-OWNED-IDLE-RETICLE-CLEANUP-20261120 -->
+20 November. Forever 1.60.1/70959/16001 with Syndicator and Baganator verified 200 matching idle reticles per paired pass. Real playing and paused groups cleared on a bar and an Extra Button. Eight regression scripts and ten installed syntax checks passed. Native combat and the other clients remain open. [Evidence](validation/casting-equality-work-2026-11-15.json).
+
+<!-- LHO-CAST-INTERRUPT-TARGET-RESET-20261120 -->
+20 November. Forever 1.60.1/70959/16001 with Syndicator and Baganator delivered three interrupts on each of two real Food cancels. R566 matched frame time for the three interrupts and observed no visible or playing target reticle or visible spell highlight on the 200 reset calls per event. Completion, combat interrupts, active target effects and other clients remain separate acceptance cases. [Evidence](validation/casting-equality-work-2026-11-15.json).
+
+<!-- LHO-PROFESSION-SOURCE-STORE-ATTRIBUTION-20261120 -->
+20 November. Native Forever Tailoring reopen recorded one ready source and two list deliveries. The test panel closed, all observers restored and no new errors or generation changes were observed. The cast replay remains pending after the foreground guard rejected the input epoch. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-COMBINED-REAGENTS-20261120 -->
+20 November. The loaded Forever edit preserved all 102 Tailoring recipes and saved removal flags on the new ready source and the same-frame list event. Tailoring closed and its observer restored, with no new errors or bag generation change. All five installed copy hashes match and passed Lua 5.1 and 5.4 syntax checks. Native checks outside this Forever context remain open. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-READY-SOURCE-COUNTER-20261120 -->
+20 November. Forever 1.60.1/70959/16001 reached Tailoring counters 32 on loading show and 33 on the first ready source and list events, then returned to nil on close. Each event left 102 saved entries. The ready source and list both matched the preceding read of saved rows and removal data. No errors or bag generation change occurred. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-JUNK-SETTINGS-20261120 -->
+20 November. Forever 1.60.1/70959/16001 with Syndicator and Baganator verified the installed Junk display settings change. Both 59-slot reads matched the verdict and fallback counts. The earlier and loaded category views acquired 54 item buttons from the pool, created none and built nine live layout groups on first open. All five installs match source. Native parity on the other clients and provider setups remains open. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-PENDING-IDLE-REFRESH-20261120 -->
+20 November. Forever 1.60.1/70959/16001 with both external inventory addons retired the temporary observer after matching all 192 no-job reads per revision. No Lua error or bag generation change occurred. All five installs match and passed ten Lua syntax checks. Eight Lua 5.4 scripts and four Lua 5.1 scripts with the fixture compatibility shim passed. Live jobs still need native coverage. [Evidence](validation/inventory-idle-followup-native-2026-11-18.json).
+
+<!-- LHO-RESTOCK-BANK-STACKS-LOADED-CLOSED-20261120 -->
+20 November. With the updated files loaded on Forever 1.60.1/70959/16001, R552 confirmed 21 of 21 cached counts against native aggregate counts, zero closed-bank stack results and zero new Lua errors. Bag generation was stable, bank generation was one and both external inventory addons were loaded. Positive native stack, charge and timing checks remain open. [Evidence](validation/bank-tier-live-counts-2026-11-19.json).
+
+<!-- LHO-RESTOCK-UNIQUE-BANK-STACKS-20261120 -->
+20 November. The Restock stack change matches all five installed source copies and passed ten syntax checks. The target regression passed on Lua 5.1 and 5.4. Running client adoption and open-bank workflow timing are pending. The independent Forever R550 closed-bank check matched all 21 positive counts, with stable generations and no new Lua errors. [Stack evidence](validation/bank-tier-live-counts-2026-11-19.json). [Closed-bank evidence](validation/lag-hotspots-provider-counterexamples-2026-11-14.json).
+
+<!-- LHO-PROFESSION-SAVED-NEGATIVE-PREDICATE-20261120 -->
+20 November. Forever with both inventory addons reported identical learned and removed sets across 471 native Tailoring IDs during the two observed callbacks. The alternate predicate consumed 102 full reads, the timing probe kept both production handlers, and no Lua errors appeared. Confirm actual recipe learning, delayed metadata and other clients separately. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-OBSERVED-REMOVALS-20261120 -->
+20 November. Matching source in all five installed clients passed ten Lua 5.1 and 5.4 compiler checks. Eight focused scripts passed under Lua 5.4. Five also passed with the stock Lua 5.1 fixture shim and three failed at the same points on the checkpoint. Loaded Forever 1.60.1/70959/16001 with both inventory addons published the same 102 learned records and removal flags in both first and warm open checks. No new errors or inventory changes occurred. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-FIRST-TAILORING-PUBLICATIONS-20261120 -->
+20 November. Forever 1.60.1/70959/16001 with FluxUI, BugTabs, Syndicator and Baganator exercised one first and two warm native Tailoring opens. The warm runs spent 11.85/7.62 ms and 12.38/8.50 ms in the same-frame source/list callbacks. The repeat compared all 102 learned records and removal flags under both saved keys. Bag generation and session error counts stayed stable. Observers restored and the test panel closed. No craft or transaction ran. Other clients and active crafting remain open. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-COUNT-NEUTRAL-MOVE-BUILTIN-20261120 -->
+20 November. The exact closed-backpack move now passes on Forever with built-in inventory, Syndicator alone, and Syndicator with Baganator. Scope includes unchanged counts and selected grid IDs, real slot deltas, and restoration. The original addon combination was verified after reload. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-COUNT-NEUTRAL-MOVE-PROVIDERS-20261120 -->
+20 November. A real count-neutral move and return on Forever passed with Syndicator and Baganator and with Syndicator alone. The same slot deltas arrived in both profiles. Final native and FluxUI counts were 18, all five checked button assignments matched, and the classifier remained settled. The built-in provider still needs the equivalent move. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-UTILITY-CONSUMABLE-RETRY-20261119 -->
+19 November. The utility consumable classifier source matches at all five installed paths, with five compiler checks and 588 existing assertions passing. Loaded Forever confirmed zero six-second passive scans after reload, with five matching consumable records and Extra Button assignments and zero new Lua errors. Other native client and provider checks are pending. [Evidence](validation/consumable-non-restoring-items-2026-11-19.json).
+
+<!-- LHO-NATIVE-BAG-REDRAW-OWNERS-20261119 -->
+19 November. On Forever with Syndicator and Baganator, receiving 14 Food into existing stock advanced the FluxUI bag generation from 17 to 20 and kept final native and FluxUI counts at 28. Three real bag pulses reached the visible category layout. All probe functions were restored and no new Lua errors appeared. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-NATIVE-FOOD-RECEIPT-20261119 -->
+19 November. On Forever with Syndicator and Baganator, a real Food cast and cancel sequence produced one completed cast and 14 food. Native and FluxUI counts matched. The bag generation rose from 15 to 17 and two delayed bag updates were seen. The observer restored the temporary wrappers and reported zero new Lua errors. This covers the existing open category view and one production receipt. Other providers, clients and a real profession craft remain open. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-REDRAW-FRAME-GAP-20261119 -->
+19 November. R492 covered the settled Forever category backpack with FluxUI, BugTabs, Syndicator and Baganator. The native frame-gap median fell from 36.5 to 33.5 ms across four paired redraws. Every pair used the same snapshot and reduced two redraws to one. Error count stayed stable, the test function was restored, and the backpack stayed open. No timing claim extends to the first open or other client and provider combinations. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-SINGLE-CATEGORY-REFRESH-20261119 -->
+19 November. Gear-set contents, the Equipment Set section and consumable preset categories now request one Baganator refresh through the public widget/search reasons. After reload, four Forever pairs reduced category update calls from two to one and median redraw time from 31.482 ms to 27.103 ms. Category order, item counts and view dimensions matched. No Lua errors occurred. Native build 1.60.1/70959/16001 used Baganator 862 and Syndicator. Other client/provider and bank-view replay remains pending. Forty syntax checks passed and all five installed copies matched. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-SHIELD-CONTEXT-20261119 -->
+19 November. FluxUI's Baganator gear-set shields reuse the existing merchant and disenchant context during protection refresh. Four installed Forever pairs matched all 52 widget results. Context reads fell from 106 to two, and median refresh time fell from 0.882 ms to 0.791 ms. All five installed copies match. The native pair used Forever 1.60.1/70959/16001 with Baganator and Syndicator loaded, commerce closed and no active disenchant. The focused desktop tests cover merchant and standalone disenchant logic. Frame effect and native action protection across other profiles remain pending. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-PROFESSION-LEARNED-LIST-AUCTION-20261119 -->
+19 November. Four native Forever Tailoring updates with Auction Restock open produced the same learned recipes, removal flags, visible and hidden rows, and potion targets as immediate full scans. Median combined time was 16.014 ms with the forced full scan and 12.798 ms with the installed settled path. Each half refreshed Restock once. All four inventory generations stayed stable and no Lua errors appeared. Native build 1.60.1/70959/16001, with FluxUI, BugTabs, Baganator and Syndicator. No inventory or pending changes occurred. The observer restored both owned methods. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-CONFIRMED-UNLEARNED-20261119 -->
+19 November. Settled owned-profession scans can skip full metadata reads for recipes previously confirmed unlearned when the native recipe list, filters and live spellbook still agree. On live Forever Tailoring, median isolated read time dropped from 4.157 ms to 1.173 ms and full metadata calls from 471 to 101. After reload, four native events paired with immediate full scans matched all learned rows and removal flags. Median total scan time fell from 13.293 ms to 8.346 ms. The test used Forever 1.60.1/70959/16001 with commerce panels closed. Ten Lua syntax checks passed across the five identical installed copies. Live crafting, learning, FPS and other client-provider combinations are pending. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-NAMED-ALIAS-20261119 -->
+19 November. The named profession save reuses the current scan's reconciled recipe references when the numeric and named aliases agree. Four paired saves on copies of the actual Forever Tailoring cache reduced the median from 1.225 ms to 0.890 ms. All 101 recipe records, alias order and removal flags matched. After reload, six native Tailoring events confirmed 101 matching records and separate saved arrays, with no new Lua errors. Ten syntax checks and eight regression scripts passed. All five installed sources match. Native checks used Forever with Syndicator and Baganator loaded, Tailoring idle and commerce closed. The test did not submit a craft or change items. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-AUCTION-TAILORING-WARM-LOADED-20261119 -->
+19 November. Eight native Tailoring updates rebuilt Auction Restock once apiece. The installed bag-tooltip path reduced the median Restock rebuild from 5.114 ms to 4.291 ms. The full handler medians were 21.504 ms and 21.258 ms, with overlapping samples. All visible and hidden rows and potion targets matched, four inventory generations stayed stable, and no Lua errors appeared. Tailoring and Auction were closed and the original empty target restored. This native run covers Forever with both Syndicator and Baganator loaded, no craft, and no transactions. The pending-read test covers the two provider modes in its fixture. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-WARM-BAG-TOOLTIPS-20261119 -->
+19 November. Warm Auction Restock now shares nonempty native carried-bag tooltip text during a single row assembly. Consumable eligibility, missing metadata, item moves and changed providers keep their current checks. After reload, the three paired Forever rebuilds fell from a median of 4.455 ms to 3.767 ms. Visible and hidden rows and potion targets matched, the bag generation stayed stable, and no new Lua errors were captured. The source matches five installs, with 20 syntax checks and 43 regression scripts passing. The separate consumable readiness assertion fails identically on the checkpoint and candidate. Forever used FluxUI, BugTabs, Baganator and Syndicator. Open commerce, other client/provider combinations, and whole-frame timing remain open. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-COLD-TIER-SLOTS-20261119 -->
+19 November. Auction Restock shares complete occupied bag slots during one cold target-list build. Empty and incomplete slots still receive fresh reads. Recipe and tier matching retain their original order and cadence. In the installed Forever comparison, the median fell from 13.324 ms to 9.882 ms across three pairs. All seven rows and potion targets matched, the bag generation stayed stable, and no new Lua errors were captured. All five installed source copies match. Thirty syntax checks and 38 regression scripts passed. Whole-frame FPS and native checks on the other installs remain open. The live setup used FluxUI, BugTabs, Syndicator and Baganator with commerce panels closed. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-IDLE-MATERIAL-PLAN-20261119 -->
+19 November. Auction Restock skips craft-material assembly when the owner has no craft plans. In Forever, 256 calls on six actual visible rows took a median of 0.653 ms before and 0.044 ms with the early return. The full rebuild kept all seven rows and potion targets identical. This removes three temporary tables and a row traversal in the idle case. The saving was about 2.4 microseconds per rebuild on this character. All 35 auction regression scripts and ten Lua syntax checks passed. The source matches all five installs and Forever loaded the source in R433. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-PROFESSION-IDENTICAL-RECORD-MERGE-20261119-LOADED -->
+19 November. Reloaded the installed profession merge change in Forever. The loaded Tailoring observer processed five updates and restored itself with a stable bag generation and no new Lua errors. All four retained result lines show 101 matching references in both aliases and identical revocation data. Displayed callback timings ranged from 13.676 to 23.003 ms. These unpaired timings do not establish a whole-handler gain. Tailoring was closed and the jump helper resumed. [Profession evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-IDENTICAL-RECORD-MERGE-20261119 -->
+19 November. Profession storage skips the field scan when the prior and incoming alias already point at the same plain recipe record. Distinct records and custom tables still use the existing merge. All 101 actual named and numeric Tailoring recipe references matched. Six isolated native timing passes over those saved rows reduced the median for 16 merge-check traversals from 2.035 to 0.477 ms. The individual saving is about 0.10 ms per traversal, and the whole callback remains unmeasured. Nine existing regressions passed, the file matches all five installs, and loaded verification is recorded above. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-AUCTION-SETTINGS-SAME-PASS-20261119-LOADED -->
+19 November. The installed Auction Restock settings change was verified in Forever with Syndicator and Baganator. Three pairs against the original fallback halved tier-target reads from ten to five and reduced median callback time from 10.640 to 5.749 ms. All seven rows, potion targets and status text matched. No new Lua errors occurred. The jump helper resumed after the reload and both test panels and the original empty target were restored. Eight actual idle Tailoring events confirmed the separate passive hotspot. Preserving the existing rows during the callback reduced its median from 18.705 to 13.930 ms. The test ran the full rebuild immediately afterward outside the timer and confirmed exact parity. Mail expiration and late item data can change without a stock generation update, so this diagnostic bypass remains out of the addon. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-SETTINGS-SAME-PASS-20261119 -->
+19 November. FluxUI now reuses the Auction Restock rows that a settings change just built when the initial planner still has the same stock, owners and clock. The existing guards retain fresh reads for other owners, receipts, pending or saved craft plans, unknown counts and changed inventory. Three paired comparisons of the real settings callback in warm Forever reduced two synchronous row builds to one and took a median of 10.177 ms versus 5.496 ms. All seven rows and potion targets matched. The test did not change a setting or transact. The initial cold probe hit an assertion because an ordinary native price lookup was still running. The measured pass waited for that lookup to complete and reported no new errors. The installed source matches five clients and all 35 existing auction scripts passed. Loaded verification is recorded in the following entry. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-UNUSED-TIER-BANK-20261119-LOADED -->
+19 November. Revalidated the installed Auction Restock change on Forever after a reload with FluxUI, BugTabs, Baganator and Syndicator. All six visible rows, the hidden row and potion targets matched the original fallback in three paired comparisons. The installed path eliminated 21 food and 21 water bank-tier match calls in a separate count. Timing medians were close at 4.688 and 4.661 ms. The bag generation stayed stable and no new errors were captured. The Auction House was closed and the original empty target restored. The three-minute jump helper resumed after reload. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-UNUSED-TIER-BANK-20261119 -->
+19 November. With Auction Restock and Tailoring open on Forever, six native Tailoring updates synchronously rebuilt identical Restock rows. The rebuilds spent 31.488 ms total inside 16.577–21.616 ms handlers. FluxUI now skips food and water bank-stock aggregation when its own Auction Restock path discards those rows, while keeping reference-tier evaluation and the original path for live banks, replaced providers or vendor craft plans. Three pairs using actual stock and preserving reference evaluation reduced the median row rebuild from 4.888 to 4.456 ms. All six shown rows and the one hidden row matched. All five installed copies match and existing regressions passed. The installed path was verified in the next entry. The rest of the repeated rebuild remains a hotspot. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-PROFESSION-BULK-AND-LOADED-ALIAS-20261119 -->
+19 November. Forever's GetProfessionSpells returned zero entries for Tailoring and Alchemy with five tested signatures, even though live recipe flags confirmed 101 and 23 learned recipes. The native filtered list matched the default views. Applying Have Materials hid all 23 learned Alchemy recipes while the learned toggle stayed enabled. The filter was restored. After reload, the installed unchanged-alias optimization kept all 101 Tailoring recipe references equal between its numeric and named entries in six displayed samples. Fifteen live profession publications cleared the craftability cache 60 times, including 15 clears after dispatch. No synchronous Craft.ListRecipesForKind work ran in those handlers. The six displayed handlers took 12.157–23.011 ms and were unpaired. Bag generation held steady, BugTabs counted zero new errors, and the observers and panel were restored. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-UNCHANGED-ALIAS-20261119 -->
+19 November. Quiet Tailoring produced 15, 5 and 5 native list events in three 36-second windows. The middle window bypassed only FluxUI's passive list handler. The source remained stable, bag generation held and the profiler restored its owner with zero new errors. FluxUI now skips copying an already reconciled recipe alias when the row references and removal flags match. Changed data and older saved entries with missing tables take the usual path. Three paired tests on eight live saved aliases reduced 16 repeat reconciliations from a median of 3.446 to 1.370 ms, about 0.130 ms per pass. One redundant alias copy was avoided. The source hash matches five installs, all ten syntax checks and five existing regression scripts passed, and loaded verification awaits a reload. A separate read-only query comparison matched 699 recipe flags across Tailoring, Alchemy and First Aid. The faster predicate narrowed Tailoring's median learnedness pass from 5.668 to 1.360 ms. These samples do not cover recipe learning, changing providers, late metadata or other clients, so the production scanner keeps the native recipe checks. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-OBSERVED-RANK-20261119 -->
+19 November. FluxUI now ranks ordinary modern observed recipe IDs directly into the saved-alias lookup. Legacy and unusual IDs retain the text-key path, as do replaced catalogue methods. On Forever, three paired tests matched 101 exact saved recipe references. Median for six lookups fell from 4.731 to 3.038 ms, which is 35.8%. The earlier shortcut that retained the ordered list had mixed timings and stayed out. After reload, the loaded Tailoring scan showed 101 matching references by name and numeric ID in six displayed callbacks, no new Lua errors and a stable bag generation. The unpaired whole handler still reached 39.977 ms. Current data proves the isolated lookup gain. The source matches all five installs and passed ten syntax checks. The allocation regression's stale function locator was corrected, and the baseline and candidate passed all 3,063 checks. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-PROFESSION-IDLE-LIST-20261119 -->
+19 November. With Tailoring open and Auction Restock closed on Forever, a 24-second hands-off window produced three native list refreshes at 7.49, 20.91 and 23.53 seconds. FluxUI spent 12.652, 13.336 and 13.709 ms in those handlers. No delayed bag, item-data or player cast event was observed. Bag generation stayed stable and the probe reported zero new errors. An earlier pass recorded 47 profession publications. The displayed comparisons kept all 101 recipe records and tombstones equal, including with the native Have Materials filter changed and restored. The displayed list handlers reached 38.023 ms while publication took under 1 ms. The main cost was inside the scan and store path. Observers were restored and the panel closed. The next candidate must preserve late metadata and genuine learned, unlearned and craftability changes. Runtime Lua was not changed in this pass. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-AUCTION-RESTOCK-STARTUP-20261119 -->
+19 November. Auction Restock now reuses its first row build for the first synchronous scan when the data owners, inventory generations, and time boundary match. The search response still rebuilds the rows. In two paired warm Forever runs with Baganator and Syndicator loaded, median ShowSession fell from 12.603 to 6.954 ms (44.8%) and synchronous builds fell from two to one. Six visible rows, one hidden vendor row, the editor selection and the search-response refresh matched. Both warm panel pairs matched across 330,035 sampled pixels. The original build path remains available for charged or unresolved items, active receipts or craft work, unsettled inventory, and replaced data methods. Genuine Pending receipts and other native client/provider profiles still need validation. Both Lua files match across five installs and passed 20 Lua 5.1 and 5.4 syntax checks. The test observer was removed, the window was closed and the original empty target was restored. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-NATIVE-AUCTION-LIFECYCLE-20261119 -->
+19 November. Opening Forever's native Auction House Buy window for the first time after reload loaded Blizzard_AuctionHouseUI. The nearby frame gap was 118 ms on first open, 30 ms on warm reopen and 22 ms on the first close. FluxUI spent 0.231 and 0.090 ms attaching Restock, with no Restock row builds. The native observer expired before the second close, which was verified visually. Opening the actual FluxUI Restock tab took 25.407 ms inside ShowSession. Two synchronous row rebuilds took 8.979 and 8.630 ms, then the search response rebuilt the rows once more at 5.335 ms. All six displayed targets were stocked. The panel and original empty target were restored, and the observer reported no new Lua errors. Active Pending still needs a session with genuine receipts. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-ORDINARY-CHARGE-20261119 -->
+19 November. Auction Restock reuses confirmed ordinary units only within one row rebuild with the original charge and potion-replacement methods and stable bag, bank and warband generations. Changed item IDs, charged items, unresolved data and open or unsettled bank contexts retain fresh reads. On the loaded Forever client, three paired full rebuilds with commerce closed matched six visible rows and one hidden vendor row on every run. Median elapsed time fell from 4.785 to 4.480 ms. The bag generation stayed stable and no new Lua errors appeared. Thirty syntax checks passed and the sources match across five client installs. Real charged stock, open Auction and Pending, and the other provider/client configurations still need native validation. [Evidence](validation/restock-reagent-name-reads-2026-11-19.json).
+
+<!-- LHO-AUCTION-RECIPE-LOADED-20261119 -->
+19 November. The installed Auction Restock refresh on Forever used the grouped catalogue branch with five eligible carried item IDs. The same three learned inputs reached recipe verification in the same order. A single timed pair took 2.417 ms for the five per-item queries and 1.650 ms for the loaded refresh. The bag generation and Lua error count remained stable. Auction and Pending were inactive. Native price scan, real Pending work and other clients still need timings. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+<!-- LHO-BACKPACK-REAL-UPDATE-20261119 -->
+19 November. A real count-neutral bag move on Forever with Syndicator and Baganator produced one delayed bag event, a 6.40 ms inclusive Baganator view refresh, and 0.16 ms in FluxUI button-face callbacks. The ExtraButton grids kept the same selected items. The bag generation advanced once and the consumable classifier did no full rescan. The one 42 ms frame gap is unattributed. The temporary test tried to schedule restoration while the moved stack was locked. A follow-up after an independently observed reload verified the 18-item stack back in its original slot, the temporary slot empty and the cursor clear. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-JUNK-CACHED-QUALITY-20261119 -->
+19 November. The Junk fallback now reads an already resolved non-gray quality when the Baganator caller supplies only an item ID. Gray, missing, restricted and replacement quality paths use the original rules. Both changed Lua files pass syntax checks across five installs. Three paired native reads matched all 48 carried-item verdicts each time. Every sampled item had known non-gray quality. The isolated median was 0.148 ms for the original gray fallback and 0.013 ms when the probe used quality established before timing. One pair was slower. [Evidence](validation/junk-cached-quality-2026-11-19.json).
+
+<!-- LHO-CLIENT-LOAD-AUDIT-20261119 -->
+19 November. The scoped client load audit found all 181 direct manifest files and the same TOC in Retail, Forever, Classic, Classic Era and Anniversary. The audit pinned all five executable versions and compared 905 file entries. The 180 Lua files passed the Lua 5.1 and 5.4 checks after normalizing byte-order marks on ten temporary BuyEmAll localization copies. The BuyEmAll XML parsed. [Evidence](validation/inventory-client-load-audit-2026-11-19.json).
+
+
+<!-- LHO-PROFESSION-ALIAS-OVERLAP-20261119 -->
+19 November. Lua 5.1 and 5.4 syntax passed across all five installations. Forever verified alias overlap using real Tailoring data. Loaded production timing remains open. [Evidence](validation/profession-alias-overlap-2026-11-19.json).
+
+
+<!-- LHO-PROFESSION-BAG-RESTOCK-20261119 -->
+19 November. Five paired native helper checks matched all 505 current Tailoring recipe references. The median fell from 0.891 to 0.581 ms with the key table prepared before timing. The source matches across five installs and compiled on Lua 5.1 and 5.4. Full event timing needs the candidate loaded. [Evidence](validation/profession-bag-restock-2026-11-19.json).
+
+
+<!-- LHO-CONSUMABLE-NON-RESTORING-20261119 -->
+19 November. The extracted candidate guard recognized all three live inputs and left the restoring food control eligible. Lua 5.1 and 5.4 accepted the source across all five installations. The client still needs a suitable reload and a matched passive timing run. [Evidence](validation/consumable-non-restoring-items-2026-11-19.json).
+
+
+<!-- LHO-RESTOCK-REAGENT-NAME-READS-20261119 -->
+19 November. Forever 1.60.1/70959/16001 with FluxUI, BugTabs, Baganator and Syndicator confirmed the secure item-name getter and a visible Restock tab. The native worker comparisons matched 207 names in each of three pairs. The two exact source copies match on all five installations. The current session retains the prior loaded versions until an eligible reload. [Evidence](validation/restock-reagent-name-reads-2026-11-19.json).
+
+19 November. With Restock and Tailoring visible, three complete row builds took 5.926, 5.461 and 5.772 ms. All six visible rows and the hidden vendor row had identical fingerprints. A real count-neutral bag move triggered one delayed bag event and one touched-item pulse. The capture recorded two Restock row builds totaling 21.907 ms, two paints totaling 0.620 ms, one grid count flush at 0.155 ms and ten consumable scans totaling 28.042 ms. The nearby peak frame gap was 72 ms. The spans can overlap and the frame gap has no attribution. [Evidence](validation/restock-reagent-name-reads-2026-11-19.json).
+
+<!-- LHO-AUCTION-USE-FINAL-SKU-20261119 -->
+19 November. Forever 1.60.1/70959/16001 reported FluxUI, BugTabs, Baganator and Syndicator. R266 restored the closed backpack with no new errors. R267 matched seven ordinary candidate auction rows. R268 confirmed the retained auction implementation at line 538. The exact restored file matches all five client installations. Active Pending, charged live rows and other clients still require native checks. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-BACKPACK-FINAL-CALLBACK-20261119 -->
+19 November. Forever 1.60.1/70959/16001 with Syndicator and Baganator 862 loaded the button index on line 184. The earlier same-session candidate test returned the same 55 visible references, order and stable bag generation. Two post-adoption backpack opens restored closed state. Open bank, alternate client/provider combinations and full frame-spike improvement require separate verification. [Evidence](validation/backpack-final-callback-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-ITEM-REGISTRATION-INDEX-20261119 -->
+19 November. Forever 1.60.1/70959/16001 with Baganator 862 and Syndicator confirmed the bank index in the running addon. The closed-commerce comparison returned the same nine rows and both view refs. The item-button index was compared before editing Lua and matched all 550 references while bags were closed. Exact source copies match across all five installations. Open-bag behavior, active commerce and other native client/provider configurations need separate runs. [Evidence](validation/baganator-item-registration-index-2026-11-19.json).
+
+<!-- COMBAT-CF64-20261117 -->
+17 November: native main-only Forever1.60.1/70938 CF64 finished with31 gaps/
+3 slow callbacks and16 delivered/sampled entries plus16 exits. Worst next
+eligible driver gaps25/17ms are not handler CPU or absence of deferred lag.
+The105.5655ms border callback overlaps its105.6152ms enclosing flush; the815ms
+general gap remains UNATTRIBUTED. Only20of31 ring rows survive.
+
+DiagnosticVersion3/R60 family is observed; exact loaded Core hash is UNKNOWN,
+so newer border work has no native acceptance from CF64. Profiler settings were
+not written; start/end errors0, Bank0. CF64 deep retention passes; original
+`CF62hold.old`7-gap/2-callback report remains retained, restoration pending the
+owned background guard. No own capture lease. Controller/client compatibility,
+taint, pixels, FPS and combat/group hitch acceptance remain open.
+[Sanitized native evidence](validation/combat-cf64-2026-11-17.json).
+<!-- /COMBAT-CF64-20261117 -->
+
+<!-- FALLBACK-INPUT-WORK-R63-20261117 -->
+17 November R63 is REJECTED/REMOVED after BOTH declared desktop CPU gates
+failed. Exact Core4fa7c12a/LF110827 and array testad065 were restored at07:17:21UTC;
+OtherE790 is unchanged. No R63 native test or adoption is claimed. The42,524checks
+perVM and514/1204mixed-snapshot trial pass retain their historical scope.
+
+Root reported the later main-only background reload completed after restoration;
+pre-command disk equality is not loaded-byte proof. CF64 was reported armed
+at07:34:09UTC; retention, event-delivery and combat/group results remain pending.
+Bank is excluded; native CPU/FPS, secure/taint and visual acceptance remain open.
+[Rejected sources and validation](validation/fallback-input-work-r63-2026-11-17.json).
+<!-- /FALLBACK-INPUT-WORK-R63-20261117 -->
+
+<!-- COMBAT-WATCH-R61-20261117 -->
+17 November R61 repairs the OPTIONAL finite spike watch and adds delivered
+combat-entry/exit counts with next eligible driver-frame gap correlation. Failed
+arming preserves prior diagnostics and cleans owned resources; stale callbacks
+cannot overwrite or expire a replacement watch. First, invalid and stopped
+batches stay explicitly unmeasured; valid zero and subthreshold worst gaps remain
+distinct, and counts survive multiple events and spike-ring wrap.
+
+Other changes from678efe to e7908c04; Core110827 and its R60 mesh detail remain.
+Installed tests pass89scenes/562new plus133original checks on each Lua5.1.5/5.4.6;
+four test compiler checks pass. Fourteen compiled mutants per VM are rejected at
+behavioral assertions; two parity runs retain86read order/report projection/console
+output. Fresh wholeLua54 accepts513scripts/1203syntax,0failures;1282source/support pins stable. This does not certify wholeLua51/native behavior.
+
+No ongoing OFF native work is added. Startup helper closures and active scalar,
+privacy, event and protected-Update overhead remain; diagnostic clocks omit part
+of that overhead. Final native security predicates/Lua primitives are trusted,
+without an arbitrary-mutator atomicity guarantee. This is observability and
+ownership repair, not event CPU/latency, party attribution or a CPU/FPS gain.
+
+Root-only Mario native adoption/delivery testing still waits for the existing
+device handoff; Ready was answered. Bank is entirely excluded. Historical CF57
+R57 city watch, R58 scoped gains, rejected R59 candidates and R60 validation remain
+separate. Combat enter/exit and party/raid join/leave hitch acceptance stays OPEN.
+[Exact repairs, sources, proof history and limits](validation/combat-watch-r61-2026-11-17.json).
+<!-- /COMBAT-WATCH-R61-20261117 -->
+
+<!-- WATCH-MESH-PHASES-R60-20261117 -->
+17 November R60 `watch-mesh-phases-r60` is applied as standalone OPTIONAL
+existing-watch observability, independently descended from preexisting4ec7.
+Only cost.meshPhases.prepare/draw scalar detail is added; aggregate mesh and
+five-line output stay. Default-off adds0clocks/watch queries/frames/scans/tables;
+active watch adds one protected midpoint. Midpoint clock lies inside mesh;
+nested allocation/comparisons occur after mesh-end and count in following
+retire/overall. This is not observer-free timing or a CPU/hardware/FPS gain.
+
+Separate external gate passes46scenarios/442checks perVM,7controls perVM,
+8actual fixture runs and181prototypes/max55/56captures; exact whole-body
+projection and independent review pass. Installed durable border_reflow_cost
+passes148checks perVM and both compilers; test94bca1c5 is frozen. Fresh fullR60
+Lua54 accepts512scripts/1202syntax,0failures;1281source/support pins stable;
+historical R58perf/full512/1202 and R59tuple/combined REJECTION stay separate.
+No tuple code, combat-transition counters, events/frames/timers or Other edit.
+
+Ready was ANSWERED for Mario background. Actual foreground stayed unsafe:
+cf60-mainreload-a1/a2 both timed out with0input/no journal/lease/command.
+Separate same-PC/another-device handoff question is pending; no more retries
+until handoff. Root passive main loaded-UI observation sent no input/focus/Bank
+and does not prove loaded R60. Repo/game five-file equality is not adoption.
+Permission remains main-only; this is a BGconstraint, not revocation. Bank
+entirely excluded. Native loaded version/combat/group/FPS results remain pending.
+[Exact observability source/proof and current pending native state](validation/watch-mesh-phases-r60-2026-11-17.json).
+<!-- /WATCH-MESH-PHASES-R60-20261117 -->
+
+
+<!-- FIELDSET-SPECIALIZATION-R59-REJECTED-20261117 -->
+17 November R59 FieldSet tuplee37/combined34ce is UNAPPLIED/REJECTED by
+Root fitness; installed R58 exact540 and full512/1202acceptance stay unchanged.
+All140fixed cells (1163.234s) and70shape/checksum/clock pairs passed, pins stable.
+No median5%CPU threshold breach is insufficient fitness: common changed scenes
+regress (+.336%51, all3pairs slower;+.611%54);54strip has one+9.735%CPU/
++11.169%wall loss. All14case medians/19adverse pairs/rawcells remain. Allocation
+is mostly flat/noisy: NO allocation gain. Startup/live cost rises~4.43KiB51
+(watch4.71),~5.1-5.3KiB54, including a strip6.55KiB outlier.
+
+Cold here clears FieldSet caches on pooled widgets, not addon startup. Reuse
+still forces complete78ops with56meshReuse/1232fields,5320PrepareGETS/0DrawGETS.
+Tuple equivalence assumes stock select. Historical768checks/VM,18states,
+38430calls and134734/135366numericselect opportunities do not prove benefit.
+Separate preexisting metrics4ec7 remains UNAPPLIED observability-only; not a
+post-timing performance fallback or CPU gain. Combat-watch counters are only
+unimplemented source design. No new variant/retest without fresh attribution.
+
+Native R58adoption remains unproved: cf59-mainreload-a1/a2/a3 background preflight
+timeouts sent0input, no lease/journal/command. Ready coordination unanswered;
+this is a background constraint, not native permission revocation. Root alone
+owns further main-client admission. CF57maincommands3/Bank0 remain historical;
+Bank entirely excluded, no CF58watch. Goal ACTIVE; no combat/group/FPS/A-B gain.
+[Exact rejection, all samples, scopes and separate proposals](validation/fieldset-specialization-r59-rejected-2026-11-17.json).
+<!-- /FIELDSET-SPECIALIZATION-R59-REJECTED-20261117 -->
+
+
+<!-- SOLVER-ALLOCATION-R58-20261117 -->
+17 November R58 (`solver-allocation-work-r58`) is applied: only private H/V
+tuple and nil point/patch temporary arrays are elided. Original string keys,
+nine-probe/last-match order, callbacks and native queries remain. Fresh fullLua54
+512scripts/1202syntax PASS;1281pins stable. Separate313checks perVM/eight controls/
+six durable jobs and12focused+twoCorecompiler jobs pass; not wholeLua51/native.
+
+Fixed84CPU+56allocation cells passed Root review; all70shape pairs match.
+Connected/HUD1/HUD8/HUD20 medianCPU51 -9.596/-6.358/-5.729/-7.853%;
+54 -9.524/-5.645/-3.797/-11.976%. These are Solve/model intervals, not native
+discovery/ReadLayout/planning/commit or FPS. Empty51lost all three pairs:
+median+4.762%CPU/+5.048%wall, zero allocation saving; below declared median5%CPU
+reject but retained as risk. Minimum51gain is one clock tick; individual54HUD8
++3.165%/HUD20+1.130% losses remain. Positive startup/live delta<1.3KiB;
+stoppedGC HUD20slopes save339744/299024B percall51/54.
+
+The complete frozen2444Solve shares other current helpers intentionally; future
+helper changes are outside that independent oracle. Numeric indexing remains
+REJECTED (owner-equality changes plane:14concat calls became4; final14).
+Validated56canvas attribution retains1232fields/5320reusePrepare getters, zero
+canvas churn; no unsafe native layer/getter cache was introduced.
+
+Native R58adoption/performance remains pending Root confirmation. Historical
+CF57R57CITY124ms is not R58 or combat/group/FPS/A-B acceptance. Root alone owns
+main-client diagnostics; Bank entirely excluded. Controllers are preparation
+only as last reported, not a loaded-version result. Goal ACTIVE.
+[Exact sources, fixed gate, raw risks and pending native acceptance](validation/solver-allocation-r58-2026-11-17.json).
+<!-- /SOLVER-ALLOCATION-R58-20261117 -->
+
+
+<!-- RESPEC-ACTION-SAFETY-20261116 -->
+16 November (`RESPEC-ACTION-SAFETY-20261116`): explicit native bar slots now save/load on Retail, Forever and Classic after talents. Failed reads, pickup/no-cursor, malformed snapshots, active loads and player drags cannot become destructive empty restores. Stable flyout/macro/mount/set/outfit routes and legacy missing-stance preservation are covered. Auto-rank now verifies the exact spell cursor and destination before advancing saved IDs; binder opening preserves the native account/character set and unsaved keys. Frozen 14 scripts on each Lua5.1/5.4 PASS (28 runs); 18 owned syntax results and 611 compiler prototypes/max25 captures PASS. Native operation/taint/controller/persistence/FPS remain pending. Reload then re-save old Retail/Forever profiles to capture bars; previous snapshots contain stance only. [Requirements, exact sources, checkpoint, regressions and pending checks](validation/respec-action-safety-2026-11-16.json).
+<!-- /RESPEC-ACTION-SAFETY-20261116 -->
+
+
+<!-- USER-NATIVE-TEST-RELEASE-20261116 -->
+The user explicitly released the game-testing hold: “we can test ingame now if
+needed”. This supersedes earlier native-test holds in this chat. Root may inspect
+the current client and perform sequential bounded UI diagnostics for combat/group
+performance; keep WoW in the background, preserve profiler preferences and prior
+diagnostics, and verify client/window/world/combat state before input. Gameplay
+transitions remain user performed. Unrelated jump/crafting/commerce/session holds
+are retained. No native result or current-source adoption is inferred from the
+permission. [Release scope and record](validation/native-test-release-2026-11-16.json).
+<!-- /USER-NATIVE-TEST-RELEASE-20261116 -->
+
+
+<!-- COMBAT-CALLBACK-WORK-20261116 -->
+16 November (`COMBAT-CALLBACK-WORK-20261116`): two additional offline fixes are applied.
+Portrait camera/SetUnit/clear/geometry protected callbacks reuse private bodies
+while all current lookups, native calls, errors, recovery and finite timers stay.
+Range discovery reuses two helpers with current globals/pools and fresh250ms
+ticker callbacks. Portrait114scenarios/105609checks perVM/7controls;range175checks
+perVM/5controls/85matching stage traces. Portrait durable gate105623checks perVM
+includes all seven controls; the external105609check gate is retained separately.
+Independent source review passed.
+
+Declared cost gates passed; all raw samples and small regressions remain.
+Portrait48cells:51empty CPU median+3.398% (onepair+9.338%);54 has slower individual
+2D/3D/max pairs. Startup retained increases are recorded separately from GC slope.
+Range96cells retains54native+1.512%/hidden+0.694%;active fallback transient work
+decreases. These standalone results do not establish native speedup.
+
+17 November R57: `shadow-wake-owner-r57` is applied. The original b8e0fac3
+snapshot passed502scripts/1192syntax with stable1192Lua+38support/art pins;
+strict80comparisons/six controls perVM and installed32job proof stay scoped to it.
+Later244413aa now passes five scripts on both VMs (328/20/63/111147/486467checks)
+and two Core compilers. Initial6PASS/4Lua51load-signature fixture failures remain;
+an external loader wrapper supplies the four corrected passes. Initial1200Lua
+and corrected8Lua+33TGA raw pins stayed stable. No R57CPU benchmark was run.
+
+Root attested NEW Watching for mainowned-a3 (epoch1794872215); its180s native
+CITY crafting/travel/UI watch expired at180.009s:36gaps,4slow callbacks,0errors.
+The r57-family border peak was124.0745ms (commit49.5446,mesh31.0705;
+plan39.5957,fallbackMesh20.1392;geometry14.633,solve19.9651). This is not exact
+loaded-hash adoption, combat/group/FPS acceptance or an A/B improvement. Zero
+retained combat gaps does not prove zero transitions; counters are absent.
+
+NEW CF57saved retention was attested; old spikeWatch was restored exactly and
+new CF57result matches the held new report; CF57prev stayed absent/untouched.
+Mainflush transport acknowledgment is false because its PNG showed Loading;
+fresh on-disk capture timestamps plus matching CF57result prove reload/save
+separately. scriptProfile0/maxFPS120/Bk30 stayed; no SetCVar was used.
+
+Only Root owns Mario main-client diagnostics; Bank commands0, entirely excluded.
+No second watch is active as last confirmed: CF58 main-owned background preflight
+timed out without input/command/journal/lease; controller preparation is not arming.
+Future600s admission stays pending fresh Root confirmation. Goal ACTIVE; native
+combat/group acceptance and changed-layout builder latency remain open.
+[Exact R57 source, scoped replay, curated native evidence and limits](validation/border-wake-owner-r57-2026-11-17.json).
+<!-- /COMBAT-CALLBACK-WORK-20261116 -->
+
+<!-- USER-NATIVE-TEST-HOLD-20261116 -->
+The user explicitly deferred all in-game testing until they say it is available again. Continue source changes and offline tests only. Previous reload/watch/capture requests are on hold; do not initiate client input, game Lua probes or profiling, and do not infer renewed permission from elapsed time. Native acceptance remains deferred; the already supplied R54 sample is historical evidence.
+<!-- /USER-NATIVE-TEST-HOLD-20261116 -->
+
+<!-- NATIVE-TEST-HOLD-20261116 -->
+16 November: the user explicitly prohibits all in-game testing until they say otherwise. Do not run game tests, native Lua/profiling, input, client/window/process inspection, screen captures or saved-diagnostic collection. Previous passive observations remain historical only. No native action from this chat or its assigned agents is live or queued. Offline source work and standalone regression checks may continue; the overall lag goal is ACTIVE. Automatic goal continuations do not release this restriction.
+<!-- /NATIVE-TEST-HOLD-20261116 -->
+
+
+
+<!-- COMBAT-FANOUT-20261116 -->
+16 November combat fan-out (`COMBAT-FANOUT-20261116`): three further offline fixes are
+applied. Full class/spec/combat/rest visual refreshes now skip only matching
+native geometry; both trinket squeeze/recovery passes retain Style/arrow/border/
+clip work while matching geometry setters stop repeating; exit notifications
+reuse five protected callback bodies with the same current lookup/order/arguments.
+496 offline scripts PASS/1 new shadow assertion FAIL; 1187 syntax PASS; composed current-source observations; owned runtime stable. StockLua5.1 runtime compilation:
+690 files/max53 captures; eleven unchanged BOM files use external BOM-only
+compiler inputs, without installed edits or native-loader certification.
+
+Modeled30 entry writes210to0/rest300to0 add210/300 getter reads. Modeled10 exit
+notifications retain20 trinket squeeze calls/40 styles/40 clips;260 geometry
+writes become0 with260 extra reads. Exact comparisons may miss native float32
+rounding; no native CPU/FPS/pixel/taint gain is claimed. Whole notification body
+model default CPU medians51 .180to.160s and54 .169to.145s per100k calls; callback
+counts retained, allocation585.9375to0KiB/5000 calls.51empty CPU .039to.040s and
+load-window heap limitations remain recorded.
+
+All three border prototypes remain REJECTED/UNAPPLIED despite exact modeled
+scene/native-read parity:360 cost samples expose common CPU regressions. A prior
+passive saved watch recorded258.9176ms border cost (planning101.7966/commit90.8235),
+but lacks loaded-source/transition provenance and proves no current native gain.
+The overall lag goal remains ACTIVE. In-game testing/inspection is prohibited
+until the user explicitly releases the hold; automatic continuation is no release.
+The new unowned shadow assertion was retained and fails identically with exact
+pre-root Core+Strip on both Lua VMs. Renderer versus model/sampler correctness
+remains unresolved; the three optimizations are outside that test's dependencies.
+No native action is live/queued. [Requirements CF01–05, exact sources, all tradeoffs
+and remaining checks](validation/combat-fanout-2026-11-16.json).
+<!-- /COMBAT-FANOUT-20261116 -->
+
+
+
+<!-- COMBAT-FANOUT-FINAL-POSTCHECK-20261116 -->
+Final offline postcheck: the three owned combat runtime files and five
+owned tests remain identical to their verified sources. The recorded composed
+gate is 496 PASS / 1 baseline-equivalent shadow assertion FAIL, with 1187 syntax
+passes. A bounded final replay preserved exact updated shadow-test bytes and
+failed the same first sample on both VMs with current and exact checkpoint
+renderer dependencies. Concurrent shadow-test work continued after collection:
+the final documentation checker reported stale `tests/border_shadow_material.lua`
+inventory and a changed `tests/border_junction_shadows.lua` verification hash.
+These failures and exact snapshots are retained; current whole-corpus acceptance
+is OPEN. No owned native action is live or queued. In-game tests/inspection stay
+HELD until explicit user release. [Final postcheck and evidence](validation/combat-fanout-2026-11-16.json).
+<!-- /COMBAT-FANOUT-FINAL-POSTCHECK-20261116 -->
+
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November combat-first transition audit (`GROUP-COMBAT-SPIKES-20261116`): applied seven bounded
+fixes across stance geometry, unsupported assistant binding, duplicate hidden
+TrinketMenu regen recovery, per-pass nameplate quest lookups, minimap indicators,
+raid fallback discovery and LFG bursts. Fresh native-state checks, full paint/
+binding repair, original error/retry/order semantics, aura cadence and saved data
+remain. 491 scripts/1181 syntax PASS; final Lua corpus stable. Lua5.1 compiler:690 runtime files,
+max53 captures; eleven unchanged third-party BOM inputs compiled externally after
+removing only their initial UTF-8 BOM. Initial raw compiler/fixture failures stay
+recorded. No native timing/FPS/taint/pixel acceptance is claimed.
+
+Combat remains the user's priority. Broad player entry visuals and squeeze exit
+dependent fan-out still need attribution; neither was blindly suppressed. Both
+combat-icon placements remain because name fitting needs the first icon's width.
+Current native acceptance and the historical218–232ms border hitch remain open
+in this slice. Concurrent event-reflow-r54 border/raid/focus edits are preserved.
+No client input/focus/clipboard or profiler/settings changes. Source/history and
+eight available settings metadata entries verified outside AddOns before edits.
+See [exact sources, work proofs and remaining combat checks](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
+<!-- WORLD-MAP-ANCHOR-20261117 -->
+17 November (`WORLD-MAP-ANCHOR-20261117`): reopened missing original-map content despite
+Map Pins enabled. Live root kept the saved `BOTTOMLEFT:UIParent:16,374` anchor
+outside the Flux clip. Anchor-only candidate814ae567 passed22,168 isolated
+checks per VM but still failed natively: actual WindowMover SetPoint/SetScale
+posthooks synchronously reapplied saved/session WorldMap coordinates. Surface
+now exposes exact preparation/embedded layout ownership; mover yields at its
+apply/layout/input gates and cancels active gestures before saving temporary
+host geometry. Full-map moving and saved records remain owned by the mover.
+Actual root/scroll anchor validation and coalesced native reflow recovery remain;
+no polling, pin work or new driver. Scoped22,168 surface +315 actual map/mover
+checks pass per Lua5.1/5.4; exact old Engine rejects. Normal mover220 checks and
+character-combat smoke pass;4 owned files compile on both VMs;130 runtime
+prototypes/max25 captures pass. Current sources stayed stable and both installed
+copies match read-only. Earlier scene/opacity confirmations and historical478
+scripts remain scoped to their earlier sources. Current native reload acceptance
+remains pending.
+[Sources, regressions and scope](validation/world-map-anchor-recovery-2026-11-17.json).
+<!-- /WORLD-MAP-ANCHOR-20261117 -->
+
+16 November original map scene (`WORLD-MAP-SURFACE-20261116`): implemented.
+User confirms map fill/addon pins, large-map key open/close, uniform complete-map
+scaling including player arrow, and full opacity while moving on the current
+Forever client. The original map/canvas/pools/providers/callbacks remain the
+source; no addon dependency, adapter list or copied pin/route content. A fixed
+normal source viewport and one outer transform preserve all relative sizes.
+Native renderer flags change only while hidden; normal full-map geometry,
+controls and movement fade return on handoff. Mounted movement fading removes
+only this frame from the native service; mapFade/profiler preferences retained.
+No added polling, canvas scan or per-frame copy. 11,064 Lua5.1/5.4 scene checks,
+1,969 HBD checks and final full478 scripts/1,168 syntax files PASS; Lua corpus
+unchanged during full run. Native acceptance covers the stated user scenarios,
+not other clients, exhaustive addons, controller, combat/taint, pixels or FPS.
+[Requirements](WORLD_MAP_SURFACE.md) and [final evidence](validation/world-map-surface-final-2026-11-16.json).
+Documentation refresh found one subsequently changed unrelated Bars/Paint.lua
+verification hash;current map files still match the final tested version. That
+newer user/parallel work is preserved;the captured full-run pass is not a claim
+about its later revision.
+
+16 November `COMBAT-TRANSITIONS-20261116`: R51 `prepared-guards-r51` preserves
+the existing Retail/Forever/Classic adapter and pinned-source contracts. The
+101/36/8 source-consumer audit includes raw frames and indirect state/visibility
+paths; it does not prove every callback is registered in the current session.
+Aura-group work has1702 checks/14 focused scripts PASS; fresh-state minimap
+guards have166 checks/18 focused scripts PASS; consumable525/20 focused and31944
+border guard checks PASS. Combined R51 aggregate474 PASS/0FAIL and1165 syntax PASS
+follows an initial473/474 sweep, one extractor correction and four bounded replays.
+All eight owned runtime files stayed stable; unrelated World Map/fixture changes
+mean this is not one globally frozen sweep. Global690 runtime files/24916
+prototypes max57/0fail PASS. Native R51 entry/exit, friendly dispel/combat paint,
+input, taint and rendering checks remain pending on all native clients.
+Quiet Forever R50 measured218.36ms reflow versus
+R49's207.94ms; both remain unresolved hitch evidence, not FPS acceptance.
+[Requirements](COMBAT_TRANSITION_PERFORMANCE.md) and
+[evidence](validation/combat-transitions-2026-11-16.json).
+
+15 November cast-target range (`CAST-RANGE-TARGET-20261115`): plain actions now
+range the unit their cast can select, using native helpful/harmful eligibility.
+User confirms native unbound Frostbolt button1 follows the selected enemy while
+hovering a nearby friendly frame. Full executable macro clauses, explicit
+self/focus/mouseover targets and original badge-action clauses supply range;
+idle/reverse/tooltip display targets cannot override them. Unknown/inactive
+casts clear range. Existing cadence, probe memo, layout, settings and secure
+programs retained. New4,288 plain +66 macro +380 integration checks PASS;
+final14 scripts/1,104 syntaxPASS stable. Frozen full413/415 before two scoped
+fixture/stopmacro refinements; unrelated portrait mock remains. Native broader
+coverage/controller/taint/FPS pending. [Requirements and evidence](CAST_RANGE_TARGETING.md).
+
+15 November out-of-range hotkeys (`HOTKEY-RANGE-GLYPHS-20261115`): action bars,
+combat/noncombat grids and TrinketMenu now tint both text and mouse/scroll/space
+artwork red from existing range results. Original gray/white returns in range;
+empty/placeholder binding refresh cannot revive stale red. No added probes,
+timers, input/secure changes or settings writes. 1,144 four-surface and951 Bars
+checks PASS; archived consumer and five harmful controls fail as expected.
+Full411PASS/1unrelatedportraitfixtureFAIL;1,101 syntaxPASS. Final fallback
+guards:10 focused scripts and1,101 syntaxPASS with stable sources. Concurrent unrelated
+BorderJunctions change prevents frozen whole-corpus acceptance. Native new glyph
+rendering/controller/taint/FPS remain pending; earlier Fire Ward cast and modifier
+release confirmation remains valid. [Requirements and evidence](HOTKEY_RANGE_GLYPHS.md).
+
+15 November action routing (`ACTION-ROUTING-RELIABILITY-20261115`): native
+PreClick proved Shift globals are consumed while the large main already shows66;
+old inheritance selected action6. Secure main now publishes its LIVE keyboard
+bundle, with independent mouse modifier sets. Native Ctrl-Shift-½ capture selects
+macro66 and macro parser reports both despite rawkeysfalse. User confirms:
+"Fire Ward casts; icons return correctly." This verifies that reported cast and
+release, not all19/pages/clients/taint/controller/FPS. No macro-condition rewrite.
+
+Also corrected mini inverse page updates, temporary fallback overlays, shared-slot
+badge prewarm, OOC and late-callback display indexing, held-modifier page bursts,
+and hover native/free ownership/reconfigure/retry. New native restricted-builder
+regression rejects the intermediate quoted-function error and accepts correction.
+Focused:363885modifier;864nativehandler;21532visual;547hover;510badge;25920control
+checks PASS. Full408/410 before final control-fixture repair; repaired25920PASS;
+one unrelated portrait fixture misses GetUnitClassColor. No settings/action reset,
+agent input/focus/profiler operation or manual installation copy. Nine Forever
+runtime files match. Native broad acceptance and FPS measurement remain pending.
+[Requirements, sources and measured limits](ACTION_ROUTING_RELIABILITY.md).
+
+15 November shared binding modifiers (`SHARED-BINDING-MODIFIERS-20261115`): fixed the
+keyboard proxy selector leak across main/mini rows and obsolete live LeftButton
+selectors. The saved hidden main11/Shift71/native35 pattern reproduces Shift-F
+casting main11 in the linked GitHub version; candidate selects71 and releases
+back to11 before display updates. 2,271 focused checks; exact246; three harmful
+controls and12 focused scripts PASS. Regular key press OFF still disables that
+binding including ALT; profiles/badges/compiler/settings remain unchanged.
+The first full sweep400PASS/2FAIL preceded final test refinement and concurrent
+changes. Final modifier checks and the bar smoke now PASS; fresh1,092-file
+syntax passes. Other full-sweep results remain historical for newer unrelated
+sources. Native casting/taint/controller/render/FPS acceptance remains pending;
+no client input or manual installation copy. [Requirements and evidence](SHARED_BINDING_MODIFIERS.md).
+
+15 November corrected border types and thickness (`FLUX-BORDER-TYPES-20261115`):
+the earlier stretched artwork was rejected. Type 2 now uses exact gold c60-2x
+pixels extracted read-only from installed Forever 1.60.1.70938, on every client.
+Native padding/title band are removed. The same eight canvas cells, consumer
+sizes, anchors and padding are retained, with matched cap/edge alpha/color joins.
+Appearance adds Border thickness: 50%-200% in 25% steps, default 100% aligned
+to the original type-1 stroke and outward pixel padding. Both types, status
+row/column splits, HP/resource splits, class/spec icon edges and target/focus
+aura panels participate. Natural gold and neutral accent masks share alpha;
+type 1 at 100% restores original atlas/UV and its Forever bronze exception.
+Full 397 scripts / 1,085 syntax PASS, including 652 direct-piece checks; 170 raster
+checks cover all 20 canvases, thickness values, seams and outward padding.
+Installed Forever runtime/art files match read-only. No manual sync, reload,
+input/focus, WTF/profiler writes or new driver. Native source adoption, pixels at
+actual UI scales, taint, controller and performance remain NOT RUN.
+[Corrected source, extraction provenance, checkpoints and limits](validation/border-types-2026-11-15.json).
+
+
+15 November shared border types (`FLUX-BORDER-TYPES-20261115`):
+General Settings → Appearance now offers Border type 1 (existing battlefield)
+and Border type 2 (the options window metal family, rectangular corner).
+Both choices have accent-aware top-border swatches in the native dropdown.
+No tint preserves natural artwork; Forever bronze applies only to type 1.
+The shared service swaps existing texture art and retains all anchors, sizes,
+layers, explicit colors/alpha, backdrops and consumer ownership. No consumer
+files, timers, input, native preferences or other installed clients changed.
+User chose Implement directly; prior Witchcraft preference retained. Six focused
+scripts pass 11,080 checks; final combined gate passes 397 scripts / 1,085 syntax files. Native pixel joins,
+UI-scale fit, persistence, taint and controller acceptance are NOT RUN.
+[Exact source, checkpoint, scope and acceptance](validation/border-types-2026-11-15.json).
+
+
+15 November 01:56 CET R6 follow-up (`LHO-CAST-NATIVE-R6-20261115`):
+current Forever raw Cast callback attribution and highest-Food6129 cancel/completion
+observations PASS. One30.003s window recorded17 valid callbacks,24.890500ms total
+and6.407100ms max; three INTERRUPTED callbacks account for17.5991ms. Aggregate
+bag quantity164->174 is a snapshot delta, with no item-ID attribution. R5 used a
+different observer/UI and one cancel; its10.0534ms maximum cannot establish a
+native gain against R6. Matched desktop improvement remains separate.
+Exact handler/owner restoration, C5nil and unchanged0/true/120/30 preferences
+confirmed; no_jump released and the external jump helper remains active. Current
+390scripts/1078syntax source identities still match. LHO-01–13 stays ACTIVE;
+matched native CPU/FPS, channels/pet, all-client taint/pixels/controller and full
+workflow acceptance remain pending. No agent commerce or queue action.
+[Dated native evidence and comparison limits](validation/casting-equality-work-2026-11-15.json).
+
+15 November 01:13:03 CET (00:13:03 UTC),
+`LHO-BANK-EFFECTIVE-VISIBILITY-20261115`: native BankPanel fallback now requires
+IsVisible rather than its own IsShown bit. This intentionally fixes false bank
+access from a shown but invisible panel. Only those two tokens in Init changed
+69ee82e1->02fcf9ee; durable bank regressionff3d3e8f added. Native PIM/BankFrame,
+event latches, cached/live Baganator priority, warm data, true live zero, error
+behavior and original throttle/refresh cadence remain.
+
+Three exact-source pairs each pass 3,285 checks/340 gate scenarios, including
+430 actual restock-consumer checks across five family models and two providers;
+baseline fails 625 checks. Six compiled harmful controls and 11 focused fixtures
+are retained; independent review PASS. Twenty spaced hidden-panel modeled queries
+reduce capacity probes20->0, item-info probes1,920->0 and item-ID probes2,560->0.
+This is conditional query/callback work, with no unconditional polling or native
+CPU/FPS claim. Full **390 scripts / 1,078 syntax checks PASS**, all Lua stable.
+
+Guarded idle bundle reload began 00:22:04 UTC / 01:22:04 CET. Loading then world
+was observed in the same Forever70938/16001 PID40032/window7995860; foreground
+unchanged. The specific native bug now PASSES: IsBankOpen=false/IsBankLive=false
+with the same BankPanel shown=true/visible=false, sourceSyndicator/readytrue.
+The runtime parent chain was not queried; pinned XML supports the source model.
+C5 global absent; Cast OnEvent function and public same-ID matcher ready. Actual
+after-Cast casts/performance remain pending. Profilertrue/scriptProfile0/caps120/30
+unchanged. Earlier pre-candidate raw cast10.0534ms maximum remains separate.
+
+A modern provider cached row has item1101 quantity1; canonical snapshot count=nil
+at generation739, and successful native C_Item3/4/5-argument calls return carried0/
+includeBank0 through the same global/C backend. This does not establish physical
+absence, aggregate bank totals or native cold-zero authority. After reload the
+count is nil/generation1; this is no data fix. Syndicator cold-close/stale-mail
+races remain. Closed-mailbox cached0/0 proves neither emptiness nor freshness;
+the user-populated100-mail measure-first gate stays open.
+
+Fresh 2,830-file external source/history checkpoint and 126 settings metadata
+preceded edit; 1,077 other Lua/1,840 other non-doc files and 41 Syndicator files
+unchanged. Twenty identities across four owners/five installs match read-only;
+no manual sync. Full LHO-01–13 remains ACTIVE: count/provider authority, native
+whole workflows/after-Cast completion/channels/pet, all clients, taint/pixels/
+controller and matched FPS remain pending. Preserve the first NEXT_SESSION jump
+helper paragraph; external helper still runs under its existing stop/lock rules.
+No item, mail, purchase/sale/delete, queue or preference action by this slice.
+[Exact sources, native scope and remaining acceptance](validation/bank-effective-visibility-2026-11-15.json).
+
+15 November 00:54:09 CET (14 November 23:54:09 UTC),
+`LHO-CAST-EQUALITY-20261115`: ButtonFX spell matching reuses private protected
+comparison helpers. Public/getter/native/paint calls, repeated interrupt/reticle
+handling, progress/fades and event/update cadence remain. Cast98458939 becomes
+773cd852; durable equality regression180c5b16 added. Exact-source tests and two
+independent reviews preceded application; **389 scripts / 1,077 syntax checks
+PASS**, with all normalized Lua identities stable.
+
+Five fresh-process unwrapped desktop pairs over 200 modeled sequences reduce
+median CPU 377->306 ms and transient GC-stopped allocation 50,961.934->3,919.746 KiB;
+independent three pairs reproduce 377->305 ms. The 60-entry/57-added-face fixture
+is synthetic. Protected equality callback identities per interrupt 509->1 while
+all 509 comparisons and other measured work remain. Existing 10,075 plus new
+1,043 checks pass across five models; exact baseline and two compiled harmful
+controls are rejected. Initial failed fixture and preliminary wrapped samples
+are retained. These measurements establish no native CPU, memory, taint or FPS gain.
+
+Before-candidate Forever70938/16001 confirmed highest Food6129 active then
+canceled before completion. Raw 30.009 s observation: 11 callbacks, 24.654100 ms
+total, 10.053400 ms max; START1/STOP1/FAILED0/INTERRUPTED3/SUCCEEDED0 plus six
+other callbacks. Per-event/unit CPU is unproven. Exact script/global cleanup and
+unchanged profiler preferences confirmed. Candidate773 native NOT RUN; no agent
+reload since C1. No native success/completion or old/new gain is inferred.
+
+Fresh 2,828-file external source/history checkpoint and 126 settings metadata
+preceded application; 1,076 other Lua/1,839 other non-doc files and 41 Syndicator
+files unchanged. Fifteen source copies match read-only across five installs;
+no manual sync. New bank context shows hidden BankPanel shown=true/visible=false
+while native banker flags=false; modern bank tabs are active. External regression
+is underway; no bank fix yet. Closed-mailbox cached0/0 proves no freshness or
+emptiness; the user-populated100-mail measure-first gate remains. City crafting
+is incidental context.
+
+Full LHO-01–13 goal stays ACTIVE: native after-candidate cast completion/channels/
+pet, provider-off/all-client whole workflows, bank/mail authority/readiness,
+taint/pixels/controller and matched FPS remain. The 35-command cost-breakdown
+probe is external only, not installed. Preserve the NEXT_SESSION jump-helper
+opening and stop owned helpers on CANCEL/JUMP_STOP before pause/done. No item,
+queue, profiler preference, publication or manual sync action by this slice.
+[Exact sources, raw samples and remaining acceptance](validation/casting-equality-work-2026-11-15.json).
+
+15 November `LHO-REAGENT-NAME-LOWER-20261115`: primitive-string reagent-name
+normalization computes one lowercase key per RememberItemName call. All harvests/
+native-name reads, blacklist/history/aliases, non-string side effects, features,
+look, grids/bridge integration and update cadence remain. Intrinsic lower calls
+7663->2581 per20-row/121-ID desktop rebuild. Three matched pairs give30-rebuild
+CPU medians77->62ms provider-off and82->64ms simulated-on; allocation unchanged.
+These are desktop measurements, with no native FPS claim.
+
+One runtime owner plus durable name-work test changed. Initial full gate387PASS/
+1FAIL/1076syntax exposed an old extracted fixture's missing private blacklist
+table; two local dependencies were added without changing its authority oracle
+or work bounds. Current/prior-C1 fixture passes and C0 remains rejected.
+Final388scripts/1076syntax PASS with exact stable manifest. Durable146checks/
+32owner-cases/5work-cases and3controls plus independent1121checks/15scenarios/
+89arbitrary names pass. Final fixture SHAde6b7759 is recorded in the report.
+
+Fresh2826-file source/history checkpoint+126settings metadata preceded edit;
+external Syndicator41files and all assets/options/defaults/licenses remain.
+Earlier C1 native51-ID22464->10800byte query result is distinct retained evidence.
+Native after-lower NOT RUN; latest reload predates this change. Actual casting
+and whole restock/pending/auction/crafting/vendor/bank/mail/loot/receive/bag/grid
+before-after, provider-off and all-client native acceptance stay pending.
+City crafting is incidental; no item-specific test or forced action.
+
+External user-requested180second jump helper stays separate from passive
+evidence; preserve its NEXT_SESSION top instructions. Stop helper/owned workers
+on resume4/CANCEL or native/JUMP_STOP before pause/done; native/no_jump excludes
+cast captures. No raw cast probe installed. No purchase/sale/delete or queue
+action, profiler preference change, publication or manual sync by this change.
+[Exact sources, measurements, fixture correction and remaining work](validation/reagent-name-lower-work-2026-11-15.json).
+
+14 November `LHO-FRESH-IDS-20261114`: full lag goal ACTIVE; current387scripts/
+1075syntax PASS. Only Index/SpellReagents and one durable regression changed.
+Five-family desktop/provider shapes and independent legacy-override/history
+reviews pass. Forever1.60.1/build70938/interface16001 reloaded under an idle guard;
+new API readiness plus three same-VM query pairs and51-key equality PASS. Query
+allocation22464->10800bytes; CPU0.0608->0.0577ms medians in brief uncontrolled
+samples, no FPS claim. Profilertrue/scriptProfile0/caps120/30 unchanged; source
+Syndicator. No persistent test helper, item/mail/queue actions or external edits.
+Native whole workflows/provider-off/other clients/actual cast edges/taint/pixels/
+controller and bank/mail populated timing remain pending. Exact disk hashes do
+not certify loaded bytecode. Newer tooltip/EBS/unitframe work is preserved.
+[Current sources, raw samples and acceptance limits](validation/passive-inventory-item-ids-2026-11-14.json).
+
+14 November `TOOLTIP-SCALE-20261114`: whole-tooltip shrinking now has a
+HUD ownership correction. Default-anchor/HUD placement restores normal native
+UI-relative scale after a prior hover leaves a smaller size; scaled-parent
+inheritance is compensated. Explicit TacoTip tooltip_scale remains honored.
+The existing Blizzard tooltip, exact (0,30) anchor, native scripts/fonts/health,
+input and update cadence remain. No added hook/event/frame/timer/polling.
+
+202 focused scale checks across five client models PASS; pre-change scale leak
+reproduced and six compiled harmful controls rejected. Unit/pet/raid and Edit Mode
+regressions plus pinned native-update desktop replay PASS. Full 386 scripts /
+1074 Lua syntax PASS; every final Lua identity verified.
+Fresh 2817-file external source/history checkpoint and 130 settings metadata
+entries verified; one runtime owner and one new regression only. No native
+client input/reload/settings/profiler writes, external addon edits or publication.
+Actual incident writer, native pixels/taint/controller acceptance remain NOT RUN.
+The unrelated profiling goal stays paused. Reload OOC and repeat the tiny-tooltip
+hover sequence, including professions/scaled buttons then unit/pet/raid/world.
+[Requirements, limits and exact source](validation/tooltip-scale-2026-11-14.json).
+
+14 November `BLIZZARD-TOOLTIP-20261114`: unit/raid/pet tooltips now share
+Blizzard's existing GameTooltip; no separate FluxUnitTooltip is created. Exact
+HUD anchor remains BOTTOMLEFT to FluxWindowFrame TOPLEFT at (0,30); pet happiness
+keeps its adjacent anchor. Flux bookkeeping stays in UF, native scripts/health
+mixins remain untouched, and native owner callbacks retain update cadence.
+Hide/clear/owner handoff retire old callbacks and pet icons; stale leaves cannot
+hide newer item/world/unit tips. Six runtime owners and two existing tests changed.
+
+725 focused checks across all five client models and pinned Blizzard update
+replays PASS; five compiled harmful controls rejected. Final combined desktop
+index: 385 scripts / 1073 syntax PASS. Initial two stale-fixture failures were
+corrected and replayed; complete final Lua manifest verified. Fresh external
+2816-file source/history checkpoint and 130 settings metadata entries verified.
+All other Lua/XML/TOC and settings preserved. Native visual/taint/combat/controller
+acceptance remains NOT RUN. Reload out of combat and test rapid unit/pet/raid to
+item/world hovers. No client input/reload/profiling/publication or manual sync.
+The unrelated profiling goal remains paused.
+[Requirements, exact source pins and acceptance](validation/blizzard-tooltip-2026-11-14.json).
+
+14 November COMPLETE PAUSE3. Requested /reload submitted19:53:16CET
+(18:53:16UTC); same Forever client returned and settings rewrite/startup observed.
+All temporary test code/counters/function pointers are cleared. No profiling or
+tests after reload; all workers stopped and resume3/CANCEL stays set. Resume ONLY
+when user says continue; re-add optional diagnostics then if needed.
+
+No new product Lua edit in this continuation. Earlier optimizations and newer
+EBS/unit-frame/user work remain. Latest exact source gate385scripts/1073syntax
+matches current files; docs validation passed before pause. Fresh2820file/history
+checkpoint+126settingsmetadata verified; no private settings copies.
+
+Native shared restock callback59.4ms money/52.1ms bag/40.7-42.3ms profession-list;
+same8callback identities. Natural30s methods:198Rows calls/2530.85ms inclusive,
+64Targets calls/1700.84ms; originals restored. No exclusiveCPU/FPS claim. Rawcast
+window0edges and food attempt no active-cast readout do not establish cast cost.
+City crafting is incidental, not an item-specific test.
+
+Fresh-ID C0 stays EXTERNAL/BLOCKED:58%desktop full-row allocation saving, but
+independent tests expose changed facade/delegated getter lookups and copied
+namespace authority. DO NOT APPLY. Correction not started; use followup_task on
+continue, capture getters once and prove trusted-owner fallback before retesting.
+TinyIndex hoist/global harvest skips remain rejected. Original broad goal,
+bank/mail readiness/populated timing and all-client/native acceptance remain.
+[Exact pause, reload and resume order](validation/lag-hotspots-pause3-2026-11-14.json).
+
+14 November19:08CET native hotspot: all eight retained slow spans used the same
+callback. PLAYER_MONEY took59.4ms; BAG_UPDATE_DELAYED52.1ms; six profession-list
+updates40.7–42.3ms. Source points to the pending restock reminder's OnChange /
+Refresh / Build path; native function equality connects all three event kinds.
+This is shared addon work triggered by incidental user crafting, not a test or
+problem specific to the crafted item. The30s window recorded2927callbacks and
+12spans>10ms; inclusive timings do not establish exclusiveCPU or an FPS gain.
+All temporary diagnostics released; profiler settings unchanged. No productLua
+edits by this pass. TinyIndex prototype rejected:136bytes/query saved but
+200-item medianCPU61→64us. Next: faithful Followup/GetRows work proof and natural
+helper timing before editing; raw cast probe externally tested but unarmed.
+The newer EBS profession-rank owner now reports385scripts/1073syntaxPASS; its
+changes are preserved. Earlier docs-check failure was stale references during
+that work; rerun after the current documentation update. Full LHO goal ACTIVE.
+[Exact native rows and continuity](validation/lag-hotspots-native-attribution-2026-11-14.json).
+
+14 November `EBS-PROFESSION-RANKS-20261114`: profession buttons now follow the
+currently learned rank after training, including replacements that keep spellbook
+slot counts unchanged. Shared EBS assignment covers extra/category/minimap hosts
+and badges; utility modifiers and flyouts use the same resolver. Saved assignments,
+favorites and deliberately chosen combat spell ranks remain. Modern/legacy books,
+localized names, secondary-only skills, passive gathering, cold data and combat
+deferral are covered. Skill/learn/world signals use one 250ms burst refresh; a
+configured profession utility slot also uses its existing 75ms rebuild debounce.
+
+34,376 focused checks across five client models, three baseline-fail/candidate-pass
+pairs and eight compiled harmful controls PASS. Full 385 scripts /
+1073 Lua syntax PASS with all Lua identities stable. Fresh external
+2,816-file source/history checkpoint and 130 settings metadata entries verified.
+Other runtime Lua preserved. No client input/reload/profiler/settings writes or
+publication. Native rank training/input/taint/controller/pixels remain pending.
+[Requirements, exact identities and native steps](validation/extra-profession-ranks-2026-11-14.json).
+
+14 November18:51CET native attribution continuation: full LHO goal ACTIVE.
+Two volatile30s windows ended; both diagnostic globals released. Travel control:
+0recipe calls;18service callbacks/max3.0121ms. Natural quest/receipt window:
+3recipe calls10.0094ms total/max3.6228ms;1659service callbacks/max41.5553ms;
+no observed service span>100ms. Inclusive/current-only; no FPS or causal claim.
+Food command/cancel pair submitted; live readout showed no active cast, so
+successful cast validation remains pending. Raw cast frame readiness confirmed;
+its optional timer plan is not installed. No productLua edits by this pass,
+SavedVariables/preferences/newframes/reload. User explained jumping caused /say
+and requested the same route; stray text is cleared. Automatic foreground and
+background permission retained. Last384/1072pass predates four newer EBS edits
+and extra_profession_ranks.lua; preserved, not certified here. All41external
+Syndicator files match. Quick pause uses resume3/CANCEL then reviewed cleanup.
+[Native values and exact continuity](validation/lag-hotspots-native-attribution-2026-11-14.json).
+
+14 November second RESUMPTION verified: full LHO goal remains ACTIVE.
+Current 384scripts/1072syntax PASS; all Lua stable. Professions748cff40
+now removes private catalogue seen-record allocations with lazy rank/key arrays;
+public rows/references, alias/revocation/rank order, errors, reads and cadence kept.
+New durable e34a52c2:3pairs/3063checks/145scenarios;8compiled bad controls;static
+peer PASS.121-entry desktop allocation23.96→10.11KiB/query;CPU190→183us median,
+overlapping ranges and slower individual samples retained. No native FPS claim.
+Fresh2815-file/history checkpoint+126settingsmetadata precedes edit. Other1071Lua,
+257assets/85options/7defaults/5licenses unchanged;90copiesmatch;Syndicator41unchanged.
+Earlier Craft615d4be and Init69ee82e retained; newer user/group-hover work preserved.
+Native27local-only queries after14:44CET reload measured full-list3.54–4.20ms and
+121-row catalogue0.90–1.08ms/110672bytes;normal cache hits0.001–0.0068ms/0bytes.
+Passive46.593s counters had2Flux ticks>100ms; not callback/FPS attribution.
+Unrelated native bag fallback rebuilds all3kinds in actual-source replay, but is
+needed for immediate pre-provider live zero/refill. No invalidation suppression.
+No watcher installed; saved diagnostic root preservation/coverage gap recorded.
+No reload this pass and no temporary global/frame/hook/watch to clean up. Native
+after-candidate/all-client/input/taint/pixel checks plus bank/mail races/readiness
+and populated-mail latency decision remain. Foreground/background read-only input
+permission retained. Quick pause: resume3-20261114T160712Z/CANCEL +activejob/CANCEL,
+stop owned child first; no automatic reload unless requested. No publication/sync.
+[Current native measurements, source comparisons and remaining work](validation/profession-catalogue-allocation-2026-11-14.json).
+
+14 November COMPLETE PAUSE AGAIN — requested /reload submitted 2026-11-14T14:44:27.872850+01:00.
+Forever40032/window7995860 verified; reload/settings rewrite observed; no focus
+change. No further tests/chat probes after reload. Treat old diagnostics/counters
+as cleared. Resume only on explicit "continue"; original broad goal remains.
+Current Craft615d4be and Init69ee82e are applied;383scripts/1071syntax PASS,
+normalized Lua still matches; final pre-pause docs validation PASS. Preserve newer
+group-hover/input work. All settings/assets/features/cadence remain as recorded.
+Latest explicit user permission allows automatic read-only profiling chat input
+with WoW foreground OR background. Keep focus unchanged and no item/mail/queue or
+profiler-setting actions. Two preflight queries succeeded before this reload:
+70938/interface16001, scriptProfile0, native profiler true, Syndicator; recipes
+5heal/2mana/8bandage. No timing batch/before-after comparison ran yet.
+Both account variants and lazy/memo Craft variants stay external/rejected.
+Bank/mail producer races/native readiness/latency decision remain pending.
+Root/job CANCEL flags set; workers stopped, no active owned child. On continue,
+read exact pause record, inspect current source, intentionally clear owned flags,
+verify fresh client context and re-add diagnostics only if needed. Next native
+slice is short recipe timing plus passive natural cast/item event attribution.
+[Exact pause state, new permission, reload boundary and resume order](validation/lag-hotspots-pause-final-2026-11-14.json).
+
+14 November LHO RESUMED by explicit user instruction; full original scope active.
+Previous client reload13:27CET is retained; old temporary diagnostics are cleared.
+Fresh2,806-file source/history checkpoint +125settings metadata precedes edits.
+Current baseline380scripts/1068syntax PASS. Craft615d4be now removes private
+recipe/effective tuple allocation and hoists the stateless comparator; every live
+query, count/metadata order, fresh output row and existing cache/cadence remains.
+Three source pairs/4020checks/90scenarios,3380 independent mixed-filter assertions,
+8controls and two peer reviews PASS.500recipes/10selections allocate428–508KiB
+less in desktop samples; CPU mixed, no native FPS/retained heap claim.
+Earlier Init69ee82e notification copy fix is included in current full validation.
+Both account shortcuts remain external/rejected:100-character miss query67us
+became123us with guards; no per-bag account rescan existed.
+
+Current whole383scripts/1071syntax PASS, all Lua stable; includes the newer
+group-hover owner's changes, preserved against its own identities. Source guard:
+1065 other Lua/257assets/84other options/7defaults/5licenses unchanged; one binding
+file belongs to that concurrent owner.90 performance-owner copies match read-only;
+external Syndicator41 files unchanged. No publication/manual sync/settings writes.
+User explicitly permits background read-only profiling chat input for this goal.
+Approval issue resolved; foreground/desktop guard still sent0commands. No new
+temporary probe is installed; native timing is pending, not inferred from mocks.
+Quick pause: cancel active child first via recorded CANCEL paths; all long suites
+are cancellable, direct focused tests<=5s. Save delta/interrupt workers; no automatic
+reload on a future pause unless requested. Bank/mail authority and native gaps remain.
+[Current resume state, permission and pause controls](validation/lag-hotspots-resumed-2026-11-14.json).
+
+14 November `GROUP-GHOST-HOVER-20261114`: the new screenshot identifies the
+Flux UIParent separator anchored to `FluxUnitFrame_party4` (old Shared.lua:9452).
+It initialized from local IsShown while a group ancestor was hidden; the later
+Hide produced no effective OnHide. Separator/atlas initialization and OnShow now
+use IsVisible; the separator explicitly disables mouse input. Both hover scans
+reject hidden ancestors. Secure casting validates current effective visibility
+and actual unit existence, including wrapped children. Prepared secure unit
+attribute callbacks clear/rearm overrides during combat reassignment without
+requiring mouse movement; leave/hide clears remembered enter ownership.
+
+Requirements include solo empty slots, combat join/leave, party↔raid conversion,
+pet/target disappearance and reused unit slots. Existing roster visibility
+drivers and original native callbacks remain; no ordinary protected combat
+mutation, new frame, event, ticker, state driver, option or saved schema is added.
+There is one extra secure attribute wrapper per existing hover surface.
+
+Full 381 scripts/1,069 syntax PASS with all Lua hashes stable. New 120-check
+regression/five client models; 9 compiled harmful controls; 3 pairs per old owner
+PASS. Two runtime owners and one existing harness changed; one new harness.
+All 10 runtime copies match across five installations read-only. Fresh external
+2,801-file source/history/index checkpoint and 113 settings metadata verified;
+private settings untouched. Native combat/taint/casting/pixels/controller remains
+NOT RUN; reload OOC and reproduce the requested real group transitions.
+The linked TheMizeGuy guide was reviewed at f928572a9428d29327a96c2549b0068101961c4e
+as supplemental guidance; pinned Blizzard contracts remain authoritative.
+No client input, preferences, manual sync or publication. The separate paused
+diagnostic goal remains paused; no temporary native probes were introduced.
+[Causes, source identities, comparisons and pending acceptance](validation/group-ghost-hover-2026-11-14.json).
+
+14 November `PLAYER-GHOST-SECURE-FOLLOWUP-20261114`: user reloaded and still
+reports intermittent hovercast interference; screenshot identifies PlayerFrame.
+The prior geometric/context candidate is not native-accepted. Actual secure
+registration could still arm overrides independently of that visual scan. The
+new candidate removes suppressed native-player/legacy-child registrations,
+clears their active overrides through Flux's header, balances retained legacy
+hooks and restores registration on Blizzard selection. Peer casts remain.
+Combat/Edit Mode gates retain all protected mutations outside those boundaries.
+
+User additionally requests literal deletion, including all Frame Stack listings.
+That requirement is unsupported by the addon API: Blizzard constructs this
+native frame before addon loading and exposes no supported destruction method.
+The frame still exists and can remain in normal or hidden-frame inspection.
+No global nil assignment, native source replacement, root hide/reparent or
+debugger filtering is introduced. Do not report the frame as fully removed.
+
+15 affected desktop scripts and 1,068 syntax checks PASS; 300 casting checks on
+five client models, 9 compiled harmful controls and 3 old/current pairs PASS.
+Other script observations remain historical; no fresh whole-suite claim. Two
+runtime owners/one existing test changed; 10 installed copies match read-only.
+Fresh external 2,799-file source/history/index checkpoint and 113 settings
+metadata entries verified; private settings untouched. Candidate native casts,
+combat/taint/controller acceptance remains NOT RUN. Existing background/user
+retest preference retained; no client input, preferences or publication changes.
+[Failure, implementation and API limit](validation/player-ghost-secure-followup-2026-11-14.json).
+
+14 November `PLAYER-GHOST-HOVER-20261114`: user confirms invisible native
+`PlayerFrame` intercepts hover casting on Forever. The replaced root now has an
+empty hit rectangle in addition to the existing artwork/mouse suppression.
+Flux's binding scan also excludes suppressed roots/subtrees instead of treating
+their shown geometry as an active hover surface. Native player/unit/vehicle/aura
+handlers and independent pet/resources controls remain; original hit rectangle
+and input policy restore on Blizzard selection. Combat/Edit Mode gates retained.
+
+Three runtime owners/two existing harnesses; 3,387 focused checks across five
+client models and 20 harmful controls PASS. Three repeated comparisons per old
+owner reproduce the regression; three candidate repeats PASS. Initial full snapshot
+379 scripts/1,067 syntax PASS; refreshed combined 380 scripts/
+1,068 syntax PASS after unrelated inventory changes; current Lua hashes stable.
+At the original seal 1,062 other Lua and 252 assets/XML/TOCs/fonts were unchanged;
+newer inventory work is retained. All 15 runtime copies match read-only. Fresh
+external 2,797-file source/history/index checkpoint and 113 settings metadata
+entries verified; no private settings copied. No new callbacks, options or data.
+Candidate native hover/combat/taint/controller acceptance remains NOT RUN; reload
+outside combat and test the former rectangle plus the visible Flux player frame.
+Blizzard's retained object may still appear in Frame Stack with show-all filters.
+No client input/focus, settings/profiler writes, manual sync or publication.
+[Evidence and exact source pins](validation/player-ghost-hover-2026-11-14.json).
+
+14 November LHO continuation sealed: five additional runtime owners reduce
+profession scan/output-lookup allocations, warm bulk capacity reads and large AH
+grid repaint work. Fresh2,792-file checkpoint precedes edits. Three paired source
+comparisons/slice;770 profession/capacity checks and13 controls; AH206,520 new
+checks/11,404 geometry checks/17 controls/44 existing scripts; independent reviews
+PASS. Current combined379 scripts/1,067 syntax PASS with every Lua hash stable.
+Original maxN AH native slot pool retained; eager regions paint only on viewport
+visits. Small7/20-row desktop cases add10–40us/refresh and20-row warm allocations
+add44KB/10 refreshes; no extra passive tooltip queries/callbacks or cadence change.
+Source guard:1,057 other Lua/257 assets/85 options/7 defaults/5 licenses unchanged;
+80 cumulative runtime copies match across five installations read-only; external
+Syndicator41 files unchanged. New files need a later reload; disk identity does
+not prove loaded code. Empty-mailbox native observation is separate and unpaired.
+Actual-source closed-bank/stale-mail counterexamples remain unresolved; no bank
+or mail remedy was applied. User requires populated native timing before accepting
+the exceptional mail delay. Broad goal remains active; native whole-workflow FPS,
+other clients, provider-off, pixels/controller/secure-VM acceptance remain pending.
+[Current identities, results and remaining work](validation/lag-hotspots-continuation-2026-11-14.json).
+
 14 November `ADDON-PUBLICATION-20261114`: the user requested publication of the
 full current addon snapshot to DoctorFlux/FluxUI on main, including completed
 auction, consumable, UI/options and casting/inventory work. Preserve all newer
@@ -4387,3 +5507,278 @@ did not edit those owners or tests. Earlier265/265 captures retain their exact
 source scope externally. Quest checks311PASS, seven harmful controls rejected;
 full current source identities/failures are retained in the quest validation JSON.
 <!-- /NPQ-FULL-CURRENT -->
+
+<!-- STRIP-FLYOUT-ARROW-R150-20261119 -->
+RefreshAll anchor tests exercise Retail, Forever and Classic models. The legacy model still checks secure wrapper absence. Native cursor latency, artwork and taint remain pending.
+[Matched validation](validation/strip-flyout-arrow-2026-11-19.json).
+<!-- /STRIP-FLYOUT-ARROW-R150-20261119 -->
+
+<!-- STRIP-HOVER-OCCUPANCY-R151-20261119 -->
+The matched held-action fixture executes production secure bodies using pinned Forever Lua helpers and modeled button transport. Protected native dispatch, taint and latency are pending.
+[Matched validation](validation/strip-hover-occupancy-2026-11-19.json).
+<!-- /STRIP-HOVER-OCCUPANCY-R151-20261119 -->
+
+<!-- STRIP-PLAN-COVERAGE-R152-20261119 -->
+Nine matched strip-width transitions in both border styles compare the production planner and cached replay. Native cursor latency, pixel parity and taint remain pending.
+[Matched validation](validation/strip-plan-coverage-2026-11-19.json).
+<!-- /STRIP-PLAN-COVERAGE-R152-20261119 -->
+
+<!-- RAID-CHROME-LOOKUP-R153-20261120 -->
+The compact raid native selection hook replays grouped cells, pooled party frames and unrelated or addon-owned frames in five client models. Native latency, rendering and taint remain pending.
+[Matched validation](validation/raid-chrome-lookup-2026-11-20.json).
+<!-- /RAID-CHROME-LOOKUP-R153-20261120 -->
+
+<!-- RAID-STABLE-PAINT-R154-20261120 -->
+Production compact roster repaint uses the live widget getter contract in five client models. Native latency, rendering and taint remain pending.
+[Matched validation](validation/raid-stable-paint-2026-11-20.json).
+<!-- /RAID-STABLE-PAINT-R154-20261120 -->
+
+<!-- BORDER-LISTENER-INDEX-R155-20261120 -->
+Regional repaint tests cover both border styles, retained listeners, current owner changes and fallback publication. Native latency, rendering and taint remain pending.
+[Matched validation](validation/border-listener-index-2026-11-20.json).
+<!-- /BORDER-LISTENER-INDEX-R155-20261120 -->
+
+<!-- BORDER-FRAGMENT-MEMBERSHIP-R156-20261120 -->
+Regional redraw fixtures cover both border types, retained source pool membership, live paint and warm rollback. Rapid crossings, roster transitions, native rendering and taint remain pending.
+[Matched validation](validation/border-fragment-membership-2026-11-20.json).
+<!-- /BORDER-FRAGMENT-MEMBERSHIP-R156-20261120 -->
+
+<!-- PET-STRIP-PACKING-R157-20261120 -->
+Desktop fixtures cover post-DF and Classic pet packing, live anchor and clipping drift, protected-read failure, actual squeeze change and combat deferral. Native timing, pixels and taint remain pending.
+[Matched validation](validation/pet-strip-packing-2026-11-20.json).
+<!-- /PET-STRIP-PACKING-R157-20261120 -->
+
+<!-- STANCE-STRIP-LAYOUT-R158-20261120 -->
+Stance strip fixtures cover both dock modes, live size and clip drift, updated pet height and window owner, private reads, dirty form changes and combat deferral. Native timing, pixels and taint remain pending.
+[Matched validation](validation/stance-strip-layout-2026-11-20.json).
+<!-- /STANCE-STRIP-LAYOUT-R158-20261120 -->
+
+<!-- NATIVE-GROUP-HIDE-R159-20261120 -->
+Native group suppression fixtures cover protected reads, shared input owners, dynamic children, late combat-created ghost indicators, and Edit Mode deferral. Native timing, seams and taint remain pending.
+[Matched validation](validation/native-group-hide-2026-11-20.json).
+<!-- /NATIVE-GROUP-HIDE-R159-20261120 -->
+
+<!-- RAID-ACTIVE-HEADERS-R160-20261120 -->
+Prepared roster fixtures cover a hidden tank/assist pool, unscoped party and solo states, shown alpha-zero headers, unavailable visibility, explicit configuration and native unit reveal sequencing. Native timing and taint remain pending.
+[Matched validation](validation/raid-active-headers-2026-11-20.json).
+<!-- /RAID-ACTIVE-HEADERS-R160-20261120 -->
+
+<!-- STRIP-BADGE-PLACEMENT-R161-20261120 -->
+Action-strip corner-badge fixtures cover exact draw placement, inactive page stacks, squeeze, frame-level drift, glow clipping and unreadable geometry. The modeled combat pass defers protected layout. Native timing and taint remain pending.
+[Matched validation](validation/strip-badge-placement-2026-11-20.json).
+<!-- /STRIP-BADGE-PLACEMENT-R161-20261120 -->
+
+<!-- BORDER-RECENT-LAYOUTS-R162-20261120 -->
+Desktop checks cover four recurring widths with the side grids, Info and Trinket borders, three recurring roster layouts, a first-use footprint, eviction, large-plan bounds, native material changes and combat deferral. Actual client timing, pixels and taint remain pending.
+[Matched validation](validation/border-recent-layouts-2026-11-20.json).
+<!-- /BORDER-RECENT-LAYOUTS-R162-20261120 -->
+
+<!-- BORDER-SIMPLE-INTERVALS-R163-20261120 -->
+Both border styles pass desktop comparisons for cold strip and roster layouts, chained visibility backups, duplicate same-side caps, opposing sides and operation budgets. Actual client timing, pixels and taint remain pending.
+[Matched validation](validation/border-simple-intervals-2026-11-20.json).
+<!-- /BORDER-SIMPLE-INTERVALS-R163-20261120 -->
+
+<!-- BORDER-FALLBACK-CLIP-R164-20261120 -->
+Both border styles pass desktop checks for disjoint and intersecting fallback triangles, keeper removal, changed geometry, private paint and rollback. Actual client timing, pixels and taint remain pending.
+[Matched validation](validation/border-fallback-clip-2026-11-20.json).
+<!-- /BORDER-FALLBACK-CLIP-R164-20261120 -->
+
+<!-- STRIP-SHELL-ANCHORS-R165-20261120 -->
+Three matched desktop runs preserve layout and action routes during hover crossovers and slot changes, with the mini row above and below. Live action-strip timing, seam pixels, action input and combat taint remain pending. Party and raid transition timing also remains open.
+[Matched validation](validation/strip-shell-anchors-2026-11-20.json).
+<!-- /STRIP-SHELL-ANCHORS-R165-20261120 -->
+
+<!-- BORDER-TILE-FIELDS-R166-20261120 -->
+Both border styles match the archived regional tile output during desktop tests. Live cursor crossing and slot resize cost, group join and leave cost, seam pixels and combat taint remain pending.
+[Matched validation](validation/border-tile-fields-2026-11-20.json).
+<!-- /BORDER-TILE-FIELDS-R166-20261120 -->
+
+<!-- RAID-AURA-RETIREMENT-R167-20261120 -->
+Matched native aura owner models cover five and forty units on Retail and Forever. Classic client models retain readable fallback coverage. Live party and raid transition timing, native aura pixels and combat taint remain pending.
+[Matched validation](validation/raid-aura-owner-retirement-2026-11-20.json).
+<!-- /RAID-AURA-RETIREMENT-R167-20261120 -->
+
+<!-- STRIP-GRID-ROOT-ANCHORS-R168-20261120 -->
+The grid root comparison covers both the modern and Classic-shaped desktop models, including alternate gamepad anchoring and guarded repair. Live held-action crossing timing, attached seams, combat input and taint remain pending.
+[Matched validation](validation/strip-grid-root-anchors-2026-11-20.json).
+<!-- /STRIP-GRID-ROOT-ANCHORS-R168-20261120 -->
+
+<!-- RAID-UNIT-EVENT-RETIREMENT-R169-20261120 -->
+Group transition event reset and repaint signatures match in five desktop client shapes with both hide and unbind orders. Native party and raid transition timing, actual event delivery, combat taint and action-strip hitch confirmation remain pending.
+[Matched validation](validation/raid-unit-event-retirement-2026-11-20.json).
+<!-- /RAID-UNIT-EVENT-RETIREMENT-R169-20261120 -->
+
+<!-- BORDER-NEIGHBOR-RUNS-R170-20261120 -->
+Both modeled border styles keep the same neighboring sources, routing order and sampled joins. Native held-action crossing and roster transition timing, seam pixels and combat taint remain pending.
+[Matched validation](validation/border-neighbor-runs-2026-11-20.json).
+<!-- /BORDER-NEIGHBOR-RUNS-R170-20261120 -->
+
+<!-- STRIP-EMPTY-PROMOTION-R171-20261120 -->
+Four modeled action strip layouts keep the same secure mapping decisions, face placement and border commit counts. Native held-action crossing and rapid drop timing, seam pixels and combat taint remain pending.
+[Matched validation](validation/strip-empty-promotion-2026-11-20.json).
+<!-- /STRIP-EMPTY-PROMOTION-R171-20261120 -->
+
+<!-- FLYOUT-ARROW-LAYERS-R172-20261120 -->
+All three target model shapes retain the same parent, layer, scale and protected-write behavior on shared flyout refresh. Native held-action crossing timing, arrow and border pixels, and combat taint remain pending.
+[Matched validation](validation/flyout-arrow-layers-2026-11-20.json).
+<!-- /FLYOUT-ARROW-LAYERS-R172-20261120 -->
+
+<!-- BORDER-FALLBACK-PARTITION-R173-20261120 -->
+Both styles retain rectangles, visibility owners, budgets and sampled output in the desktop replay. Native strip/roster hitch timing, seam pixels, and combat taint remain pending.
+[Matched validation](validation/border-fallback-partition-2026-11-20.json).
+<!-- /BORDER-FALLBACK-PARTITION-R173-20261120 -->
+
+<!-- BORDER-LISTENER-RUNS-R174-20261120 -->
+Both modeled border styles retain watcher ownership, field paint order and sampled output. Native hold/drag and party/raid timing, seam pixels, and combat taint remain pending.
+[Matched validation](validation/border-fallback-listeners-2026-11-20.json).
+<!-- /BORDER-LISTENER-RUNS-R174-20261120 -->
+
+<!-- BORDER-LISTENER-LINKS-R175-20261120 -->
+Both border styles retain opacity, listener order and sampled seams through the displayed old and new layouts. Native action drag and roster hitch timing, border pixels and combat taint remain pending.
+[Matched validation](validation/border-listener-links-2026-11-20.json).
+<!-- /BORDER-LISTENER-LINKS-R175-20261120 -->
+
+<!-- BORDER-FIELD-ANCHORS-R176-20261120 -->
+The desktop replay preserves field placement and both styles through strip and roster changes. The verified same-anchor pattern is present in the local Retail, Forever and Classic scroll UI snapshots. Live strip drag/drop and party/raid latency, pixels and combat taint remain pending.
+[Matched validation](validation/border-field-anchors-2026-11-20.json).
+<!-- /BORDER-FIELD-ANCHORS-R176-20261120 -->
+
+<!-- BORDER-FIELD-PAINT-R177-20261120 -->
+Both style replays match the archived renderer in field work and sampled seams after the Lua paint cache change. Native action-strip latency and appearance, party/raid join and leave latency, and combat taint remain open.
+[Matched validation](validation/border-field-paint-2026-11-20.json).
+<!-- /BORDER-FIELD-PAINT-R177-20261120 -->
+
+<!-- PARTY-ROSTER-DISPATCH-20261120 -->
+Desktop roster replay covers compact party, target identity reset, hidden slots, queued and standalone indicator paints, and combat ownership. Native party and raid join/leave latency, action-strip reflow and combat taint remain pending.
+[Matched validation](validation/party-roster-dispatch-2026-11-20.json).
+<!-- /PARTY-ROSTER-DISPATCH-20261120 -->
+
+<!-- BORDER-ROSTER-BOUNDS-R178-20261120 -->
+Desktop border replay covers both styles, texture counts, sampled seams, independent paint, failed attachment cleanup and native-point restoration. Native join and leave latency, action-strip hitches, pixel parity and combat taint remain pending.
+[Matched validation](validation/border-roster-bounds-2026-11-20.json).
+<!-- /BORDER-ROSTER-BOUNDS-R178-20261120 -->
+
+<!-- BORDER-SOURCE-ALPHA-R179-20261120 -->
+Desktop strip and roster replays preserve source opacity, alpha reentry, sampled seams and artwork. Live action-strip and group-change latency, pixel parity and combat taint remain pending.
+[Matched validation](validation/border-source-alpha-2026-11-20.json).
+<!-- /BORDER-SOURCE-ALPHA-R179-20261120 -->
+
+<!-- STRIP-EXPANDED-COLUMNS-20261120 -->
+Desktop sparse, dense and paged strip fixtures match protected update requests and face placement during hover changes. Live action-strip and group-change latency, pixel parity and combat taint remain pending.
+[Matched validation](validation/strip-expanded-columns-2026-11-20.json).
+<!-- /STRIP-EXPANDED-COLUMNS-20261120 -->
+
+<!-- BORDER-OBSERVED-SOURCES-R180-20261120 -->
+Modeled strip and roster changes preserve source geometry and paint, panel alignment, late setter rejection, and client lockdown paths. Live strip and roster latency, pixel parity and combat taint remain pending.
+[Matched validation](validation/border-observed-sources-2026-11-20.json).
+<!-- /BORDER-OBSERVED-SOURCES-R180-20261120 -->
+
+<!-- BORDER-PANEL-ALIGNMENT-POSES-R181-20261120 -->
+Modeled border alignment reuses exact prior layouts at two scales with matching backdrop boundaries, T/X contacts, sampled paint, partial write recovery and combat deferral. Native held-action and roster hitch timing, pixel parity and combat taint remain pending.
+[Matched validation](validation/border-panel-alignment-poses-2026-11-20.json).
+<!-- /BORDER-PANEL-ALIGNMENT-POSES-R181-20261120 -->
+
+<!-- GROUP-NAMEPLATE-ANCHORS-20261120 -->
+Five desktop client models cover coalesced group refresh and follow-up, hidden or replaced anchors, native getter denial and secret offsets. Native group join and leave latency, nameplate rendering and combat taint remain pending.
+[Matched validation](validation/group-nameplate-anchors-2026-11-20.json).
+<!-- /GROUP-NAMEPLATE-ANCHORS-20261120 -->
+
+<!-- GROUP-NAMEPLATE-LEVELS-20261120 -->
+Modeled group and steady updates verify exact overlay layering, reparenting, mismatch, getter denial and private-value handling. Live group join and leave latency, nameplate rendering, combat taint and held-action border timing remain pending.
+[Matched validation](validation/group-nameplate-levels-2026-11-20.json).
+<!-- /GROUP-NAMEPLATE-LEVELS-20261120 -->
+
+<!-- STRIP-INFO-ANCHORS-20261120 -->
+Desktop action-strip settlement covers all Info placements, changing owners and widths, point drift, private or denied points, and layout guards. Native rapid crossings and drops, actual side-seam pixels, in-combat restrictions and group hitch timing remain pending.
+[Matched validation](validation/strip-info-anchors-2026-11-20.json).
+<!-- /STRIP-INFO-ANCHORS-20261120 -->
+
+<!-- STRIP-SLOT-SETTLE-20261120 -->
+Modeled slot grow and shrink preserve the visible art and routed actions across three client profiles. Unit anchor settlement and option coalescing pass. Native rapid pickup/drop and held-action crossings, side seam pixels, combat taint and party/raid hitch timing remain pending.
+[Matched validation](validation/strip-slot-settle-2026-11-20.json).
+<!-- /STRIP-SLOT-SETTLE-20261120 -->
+
+<!-- BORDER-CURRENT-DRAW-INPUTS-R182-20261120 -->
+Desktop replays cover warmed strip crossings, roster moves, private/native paint and changed source material or layer. Native first and repeated drag or drop, cursor crossings, party/raid transitions, side seam appearance and combat taint remain pending.
+[Matched validation](validation/border-current-draw-inputs-2026-11-20.json).
+<!-- /BORDER-CURRENT-DRAW-INPUTS-R182-20261120 -->
+
+<!-- ROSTER-AURA-PAINT-20261120 -->
+Desktop aura reflows cover five client profiles, readable texture and text drift, missing and restricted reads, private descendants, removal, cooldown timing and lockout. Native party and raid join/leave frame time, combat taint and rapid action-strip transitions remain pending.
+[Matched validation](validation/roster-aura-paint-2026-11-20.json).
+<!-- /ROSTER-AURA-PAINT-20261120 -->
+
+<!-- STRIP-EVENT-OWNERSHIP-R183-20261120 -->
+Slot notification, existing action-route and drawn-layer desktop checks pass. Native action-strip crossings, side seams and rapid slot edits still need verification. Party and raid join/leave, embedded minimap and combat taint remain pending for the wider goal.
+[Matched validation](validation/strip-event-ownership-2026-11-20.json).
+<!-- /STRIP-EVENT-OWNERSHIP-R183-20261120 -->
+
+<!-- STRIP-GRID-WIDTH-20261120 -->
+Desktop grid tests cover width changes, full repair on changed anchors or owner, unknown size being replaced in the same pass, existing binding behavior and lockdown deferral. Live action-strip latency, connected side-panel pixels and protected input remain pending. Party/raid join and leave, embedded minimap and combat timing remain open in the broader task.
+[Matched validation](validation/strip-grid-width-2026-11-20.json).
+<!-- /STRIP-GRID-WIDTH-20261120 -->
+
+<!-- BORDER-FIELD-RETIREMENT-R184-20261120 -->
+Regional retirement, source paint, held-action transitions, reused roster layouts, combat deferral and full cleanup passed desktop checks. Live cursor crossings, party/raid join and leave, side seam appearance and combat taint remain pending. Embedded minimap toggles remain open for the broader goal.
+[Matched validation](validation/border-field-retirement-2026-11-20.json).
+<!-- /BORDER-FIELD-RETIREMENT-R184-20261120 -->
+
+<!-- PARTY-TARGET-TRAIL-20261120 -->
+Matched desktop party-target tests cover an active trail, a shield, changed health, a replacement, missing or restricted identity, private health and a reset during a write. Actual party and raid join and leave timing, protected state behavior and the in-game damage trail remain pending. Native held-action strip and border acceptance remain open.
+[Matched validation](validation/party-target-trail-2026-11-20.json).
+<!-- /PARTY-TARGET-TRAIL-20261120 -->
+
+<!-- STRIP-PARKED-CHROME-20261120 -->
+The three desktop client-style replays preserve visible art, geometry, action IDs and per-crossing border commits. Real drops, width changes, substitute/private artwork, gamepad sensing and lockdown are covered by the focused replay suite. Live rapid cursor crossings and drops, including changing side-panel contacts, remain pending for frame time, seams and combat taint. Party and raid join and leave, embedded minimap toggles and combat exit remain open for the broader goal.
+[Matched validation](validation/strip-parked-chrome-2026-11-20.json).
+<!-- /STRIP-PARKED-CHROME-20261120 -->
+
+<!-- BORDER-OBSERVER-SCRATCH-R185-20261120 -->
+Desktop comparison covers held-action crossings, roster reflows, multiple independent anchor changes, restricted-parent recovery, loops and fallback ceilings. Native held-action and rapid-drop latency, real strip-to-panel seams, and party and raid join/leave timing remain pending. Embedded minimap toggles and combat-exit timing and taint also remain open.
+[Matched validation](validation/border-observer-scratch-2026-11-20.json).
+<!-- /BORDER-OBSERVER-SCRATCH-R185-20261120 -->
+
+<!-- PARTY-STATUS-OWNER-20261120 -->
+Desktop replays cover changing party counts, leadership, shared role layout, native anchor repair, public and private name widths, multiple NPC labels, and the existing five client-style party and raid control paths. Live party and raid membership frame times, combat behavior and exact indicator rendering remain unverified. Held-action crossings, rapid drops, embedded minimap toggles and combat-exit timing remain open for the wider goal.
+[Matched validation](validation/party-status-owner-2026-11-20.json).
+<!-- /PARTY-STATUS-OWNER-20261120 -->
+
+<!-- STRIP-GRID-RING-20261120 -->
+The width-change replay exercises actual side-grid layout, art and cooldown writers, direct utility calls and replacement methods. Separate Trinket Menu, input and regional join regressions pass. Live held-action and rapid-drop timing, actual side seams and combat taint remain open. Party and raid membership timing, embedded minimap transitions and combat exit remain open for the wider goal.
+[Matched validation](validation/strip-grid-ring-2026-11-20.json).
+<!-- /STRIP-GRID-RING-20261120 -->
+
+<!-- STRIP-ARROW-OWNER-20261120 -->
+The crossing replay includes modern and legacy trinket widgets, all 20 attached arrows, unreadable anchors and distinct refresh callbacks. Live held-action and rapid-drop timing, actual side seams and combat taint remain open. Party and raid membership timing, embedded minimap transitions and combat exit remain open for the wider goal.
+[Matched validation](validation/strip-arrow-owner-2026-11-20.json).
+<!-- /STRIP-ARROW-OWNER-20261120 -->
+
+<!-- STRIP-INFO-MEASURE-20261120 -->
+Info text coverage includes changed hybrid labels, tight fit thresholds, stable and replaced owners, and all four Info placements. Live held-action and rapid-drop frame time, actual seams and combat taint remain open. The broader goal also keeps group transitions, embedded minimap toggles and combat exits open.
+[Matched validation](validation/strip-info-measure-2026-11-20.json).
+<!-- /STRIP-INFO-MEASURE-20261120 -->
+
+<!-- BORDER-PANEL-INPUTS-R186-20261120 -->
+R186 regression coverage includes both border types, fractional mixed scales, first and repeated widths, disappearing and returning panel owners, deferred combat writes and recovery from interrupted alignment. Live held-action crossings, rapid drops, group join and leave, seams and combat taint remain pending. Unchanged-panel scans in the desktop model establish the cost of that phase during unrelated HUD or unit reflows.
+[Matched validation](validation/border-panel-inputs-2026-11-20.json).
+<!-- /BORDER-PANEL-INPUTS-R186-20261120 -->
+
+<!-- ROSTER-HOVER-DRIVER-20261120 -->
+The group binding fixture covers Retail, Forever, Classic progression, Era and Anniversary models, including native-style wheel bindings with nil results and parking a formerly active spell-hover driver. Current live invite, leave, raid conversion timing and combat taint remain pending. Full action-strip, border seams, minimap and combat exit acceptance remain part of the active roadmap.
+[Matched validation](validation/roster-hover-driver-2026-11-20.json).
+<!-- /ROSTER-HOVER-DRIVER-20261120 -->
+
+<!-- NAMEPLATE-RANK-ROSTER-20261120 -->
+The nameplate replays cover three client models and fixed group sizes across join and leave. The direct rank checks cover public, inaccessible, missing and mixed identities, alias and threat ties, and changed providers. Live party and raid join or leave timing and native secret-value and combat checks remain pending. Action strip, border seams, embedded minimap and combat exit acceptance remain open for the wider goal.
+[Matched validation](validation/nameplate-rank-roster-2026-11-20.json).
+<!-- /NAMEPLATE-RANK-ROSTER-20261120 -->
+
+<!-- BORDER-CELL-BUDGET-R187-20261120 -->
+R187 desktop coverage includes both border styles, capacity-limit admission, cold reset, retained source ownership and replayed strip transitions. Native action-strip latency, party and raid transitions, seam pixels and combat taint remain pending. The desktop replay counts capacity work and does not measure client frame time.
+[Matched validation](validation/border-cell-budget-2026-11-20.json).
+<!-- /BORDER-CELL-BUDGET-R187-20261120 -->
+
+<!-- HUD-ACCEPTANCE-R187-20261120 -->
+R187 is the HUD acceptance candidate. The combined desktop pass covers action-strip crossings and rapid drops, party and raid conversion, local border publication, minimap side buttons and combat regressions. All 48 selected scripts and 1252 Lua syntax checks passed. Current native acceptance is pending. The installed border file matches in all five local client trees. Loaded client identity, frame times, pixels, input and taint require live evidence.
+[Matched validation](validation/hud-acceptance-r187-2026-11-20.json).
+<!-- /HUD-ACCEPTANCE-R187-20261120 -->

@@ -1,0 +1,426 @@
+{
+  "changeId": "BORDER-LISTENER-RUNS-R174-20261120",
+  "borderVersion": "regional-listener-runs-r174",
+  "capturedAtUTC": "2026-11-20T03:08:08.738742+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "d33793d14fd7648677c52e914d28cafca1eda03227662d33841a67f58479f207",
+      "afterRaw": "9ec44aca0ac6c47f7fe7f3b3578ea213dc27de5b5bcd16721607ab8ba599ee40",
+      "afterNormalized": "9ec44aca0ac6c47f7fe7f3b3578ea213dc27de5b5bcd16721607ab8ba599ee40"
+    },
+    "tests/border_registration_pairs.lua": {
+      "beforeRaw": "130eefa83876f6cbdd3be873ff6ae79737dce317e869c09479bb1461570e52cc",
+      "afterRaw": "216b9ef189ff896c0be53e79b52949e84bc68dff23c35ecd3147dc9bee398140",
+      "afterNormalized": "216b9ef189ff896c0be53e79b52949e84bc68dff23c35ecd3147dc9bee398140"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Twelve warmed strip crossings and twelve warmed roster geometry changes per border style, using the actual planner, renderer and modeled widgets.",
+    "countColumns": [
+      "before observer visits",
+      "after observer visits",
+      "before retained listener slots",
+      "after retained listener slots",
+      "same logical field memberships",
+      "candidate shared lookup slots"
+    ],
+    "countSamples": {
+      "strip-1": [
+        [
+          1464,
+          1056,
+          118,
+          82,
+          118,
+          22
+        ],
+        [
+          1464,
+          1068,
+          118,
+          80,
+          118,
+          24
+        ],
+        [
+          1464,
+          1056,
+          118,
+          82,
+          118,
+          22
+        ]
+      ],
+      "roster-1": [
+        [
+          6624,
+          6048,
+          678,
+          546,
+          678,
+          66
+        ],
+        [
+          6624,
+          6060,
+          678,
+          548,
+          678,
+          68
+        ],
+        [
+          6624,
+          6060,
+          678,
+          550,
+          678,
+          64
+        ]
+      ],
+      "strip-2": [
+        [
+          1272,
+          1044,
+          104,
+          72,
+          104,
+          20
+        ],
+        [
+          1272,
+          1044,
+          104,
+          70,
+          104,
+          22
+        ],
+        [
+          1272,
+          1044,
+          104,
+          72,
+          104,
+          20
+        ]
+      ],
+      "roster-2": [
+        [
+          15648,
+          14040,
+          1418,
+          998,
+          1418,
+          266
+        ],
+        [
+          15648,
+          14040,
+          1418,
+          998,
+          1418,
+          270
+        ],
+        [
+          15648,
+          13992,
+          1418,
+          996,
+          1418,
+          268
+        ]
+      ]
+    },
+    "countMedians": {
+      "strip-1": [
+        1464,
+        1056,
+        118,
+        82,
+        118,
+        22
+      ],
+      "roster-1": [
+        6624,
+        6060,
+        678,
+        548,
+        678,
+        66
+      ],
+      "strip-2": [
+        1272,
+        1044,
+        104,
+        72,
+        104,
+        20
+      ],
+      "roster-2": [
+        15648,
+        14040,
+        1418,
+        998,
+        1418,
+        268
+      ]
+    },
+    "variation": "Lua table iteration can change which aliases are consecutive. Logical observer membership is identical in the paired replay.",
+    "clock": {
+      "scope": "Seven ordered alternating pairs with Lua os.clock and garbage collection suspended during each set of twelve crossings.",
+      "columns": [
+        "before Lua ms",
+        "after Lua ms",
+        "before Lua temporary heap KiB",
+        "after Lua temporary heap KiB"
+      ],
+      "samples": {
+        "strip-1": [
+          [
+            58.0,
+            58.0,
+            5741.8,
+            5746.5
+          ],
+          [
+            56.0,
+            61.0,
+            5739.1,
+            5743.8
+          ],
+          [
+            57.0,
+            57.0,
+            5739.3,
+            5744.0
+          ],
+          [
+            59.0,
+            62.0,
+            5738.8,
+            5743.5
+          ],
+          [
+            53.0,
+            57.0,
+            5738.8,
+            5743.5
+          ],
+          [
+            56.0,
+            56.0,
+            5739.8,
+            5744.5
+          ],
+          [
+            57.0,
+            55.0,
+            5738.8,
+            5743.5
+          ]
+        ],
+        "roster-1": [
+          [
+            69.0,
+            72.0,
+            8228.4,
+            8241.1
+          ],
+          [
+            74.0,
+            68.0,
+            8228.4,
+            8241.2
+          ],
+          [
+            70.0,
+            67.0,
+            8228.7,
+            8241.4
+          ],
+          [
+            109.0,
+            67.0,
+            8228.2,
+            8240.9
+          ],
+          [
+            124.0,
+            127.0,
+            8228.2,
+            8240.9
+          ],
+          [
+            124.0,
+            127.0,
+            8229.2,
+            8241.9
+          ],
+          [
+            138.0,
+            129.0,
+            8228.2,
+            8240.9
+          ]
+        ],
+        "strip-2": [
+          [
+            114.0,
+            108.0,
+            5735.0,
+            5740.6
+          ],
+          [
+            104.0,
+            99.0,
+            5735.2,
+            5740.8
+          ],
+          [
+            104.0,
+            118.0,
+            5735.4,
+            5741.1
+          ],
+          [
+            127.0,
+            106.0,
+            5734.9,
+            5740.6
+          ],
+          [
+            104.0,
+            105.0,
+            5734.9,
+            5740.6
+          ],
+          [
+            98.0,
+            106.0,
+            5735.9,
+            5741.6
+          ],
+          [
+            129.0,
+            102.0,
+            5734.9,
+            5740.6
+          ]
+        ],
+        "roster-2": [
+          [
+            177.0,
+            180.0,
+            11073.1,
+            11141.7
+          ],
+          [
+            178.0,
+            238.0,
+            11073.2,
+            11141.7
+          ],
+          [
+            180.0,
+            229.0,
+            11073.4,
+            11142.0
+          ],
+          [
+            194.0,
+            177.0,
+            11072.9,
+            11141.5
+          ],
+          [
+            180.0,
+            169.0,
+            11072.9,
+            11141.5
+          ],
+          [
+            171.0,
+            173.0,
+            11073.9,
+            11142.5
+          ],
+          [
+            176.0,
+            177.0,
+            11072.9,
+            11141.5
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          57.0,
+          57.0,
+          5739.1,
+          5743.8
+        ],
+        "roster-1": [
+          109.0,
+          72.0,
+          8228.4,
+          8241.1
+        ],
+        "strip-2": [
+          104.0,
+          106.0,
+          5735.0,
+          5740.6
+        ],
+        "roster-2": [
+          178.0,
+          177.0,
+          11073.1,
+          11141.7
+        ]
+      }
+    },
+    "orderedVisibilityTests": [
+      [
+        "REGIONAL_OBSERVERS|synthetic|8|3|24|18",
+        "Register pair controls: 257 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ],
+      [
+        "REGIONAL_OBSERVERS|synthetic|8|3|24|18",
+        "Register pair controls: 257 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ],
+      [
+        "REGIONAL_OBSERVERS|synthetic|8|3|24|18",
+        "Register pair controls: 257 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ]
+    ],
+    "artifactSHA256": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\counts-1.txt": "a6bd50d78f7d5201a490e1428c9b37171f9b6f12237cc0a197a75e87b41f4557",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\counts-2.txt": "7feeb74523f87b2f8d9ec6ea462df5549d9def491921140905aa2df15f3928a5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\counts-3.txt": "8a2eba8e44a41676d8ccc6dcc2cd3bd5f554bbfc935269a148cd806dd141727c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\clock.txt": "5d14cfdb41d212aa15265029d907d0a5aff1b90f505a06e07b2dbd6c454ec82b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\bench-regional-r174.lua": "d323ecfefeb01e355575749f0d8f3796449c2b4364422a86d5497a0ef1c17094"
+    }
+  },
+  "parity": "The same logical listeners paint in original order through independent runs, owner hide/show and retained and replaced tiles. Sampled seams and field counts match in both styles. Secret handling, opacity, rollback and budgets are exercised by the focused suite.",
+  "verification": {
+    "focusedPassed": 47,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-listeners-before-20261120T040134023\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native hold/drag and party/raid timing, seam pixels, and combat taint remain pending."
+}

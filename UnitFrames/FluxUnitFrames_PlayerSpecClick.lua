@@ -1184,7 +1184,11 @@ function PSC.Initialize(playerFrame)
         evt:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
         evt:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
         evt:RegisterEvent("PLAYER_TALENT_UPDATE")
-        evt:SetScript("OnEvent", function(_, event)
+        evt:SetScript("OnEvent", function(_, event, unit)
+            if event == "PLAYER_SPECIALIZATION_CHANGED" then
+                local events = ns.Flux and ns.Flux.Events
+                if events and events.IsPlayerUnitEvent and not events.IsPlayerUnitEvent(unit) then return end
+            end
             if event == "ACTIVE_TALENT_GROUP_CHANGED" or event == "PLAYER_SPECIALIZATION_CHANGED" or event == "PLAYER_TALENT_UPDATE" then
                 OnTalentOrSpecChanged()
             end

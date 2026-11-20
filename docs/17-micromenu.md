@@ -1,5 +1,14 @@
 # Micromenu, bag controls and addon buttons
 
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS,
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Native cost PENDING. Adaptive fallback lookup preserves tested meshes/
+fitter/native owners and unchanged small-bucket publication; common CPU is mixed,
+dense gain stress-only. Quiet native capture must wait for all owned CPU/docs jobs
+to finish; last R49 207.94ms leaves208ms hitch/CB36 OPEN. No new monitor/profile
+change or broader controller/taint/FPS guarantee.
+[Border requirements and acceptance](CONNECTED_BORDERS.md).
+
 10 November passive pass 2: Addon-button scans retain cadence and linear snapshots with fewer temporary functions/pattern matches. [Before/after evidence and native limits](PASSIVE_PERFORMANCE_PASS2.md).
 
 <!-- STRESS-FIXES-20261107 -->

@@ -1,0 +1,172 @@
+{
+  "changeId": "STRIP-HOVER-OCCUPANCY-R151-20261119",
+  "capturedAtUTC": "2026-11-19T22:51:57.993416+00:00",
+  "sources": {
+    "Bars/State.lua": {
+      "beforeRaw": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+      "afterRaw": "5ce862a8cf472734e387fc9743074d1a6812e9285572fc169f4cbac5e1f6c15d",
+      "afterNormalized": "3aa274d73198166fe2a1d6413cff0e287c972cf81d5330f1727fb70220033ac1"
+    },
+    "Bars/_tmp_forevercontrolsmoke.lua": {
+      "beforeRaw": "31ea9701a3081a69494775edea025df92ffdd76c161489ac957d29306e888aea",
+      "afterRaw": "9673dd7fae7ae221aa1a2e4f4a2b36984e70c114606eb3de7ffb642b74e18387",
+      "afterNormalized": "9673dd7fae7ae221aa1a2e4f4a2b36984e70c114606eb3de7ffb642b74e18387"
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "beforeRaw": "2e45167c92a88fc9a93f77de3c25e3f60b0fc7fd6d23f828cb027b9100b5a1fd",
+      "afterRaw": "b16000922a15896b609f45c1abf429dd20574e622774b38a7dab8e2789e196f7",
+      "afterNormalized": "b16000922a15896b609f45c1abf429dd20574e622774b38a7dab8e2789e196f7"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\source.zip",
+    "sourceZipSHA256": "14461abd6796b8e5dfbe4d1a2057ffbb9e7093db7cccd9610e16bcf0917657c0",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched pairs with alternating fixture order. Six held-action crossings per page using the production Lua layout and restricted bodies with modeled widget transport and pinned Forever helpers.",
+    "samples": [
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 7452,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 7449,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 5742,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 5739,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 5742,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 5739,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 7452,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 7449,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 7452,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 7449,
+        "liveOccupancyWrites": 1368,
+        "resetBroadcasts": 36
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "page": 1,
+        "fullRefreshWrites": 20151,
+        "hoverAttributeWrites": 5742,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "page": 2,
+        "fullRefreshWrites": 20142,
+        "hoverAttributeWrites": 5739,
+        "liveOccupancyWrites": 0,
+        "resetBroadcasts": 0
+      }
+    ],
+    "metrics": [
+      "Protected button attribute setters",
+      "Live occupancy writes",
+      "Reset ChildUpdate broadcasts"
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\matched.txt": "a940ef6cdc09e707a6026f5b33317ebc2b5b1da8d2840fabc1a5224e130999d7",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\candidate.txt": "60cc4226e7e7b6cf5c5c04ec9fd16298876bb06c94b05b50358ce0c526d83b35",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\baseline.txt": "8883cd02ccdb8428983a1b17c81c9ce1a88c5c35aa01ceeb469d6cf5e092c604",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\upvalues.json": "7e924ce26300c52f54b82be2657b910ec68696b18b6177baf771431655f810e4"
+    },
+    "limits": "Work counts describe the inspected path. They do not establish native latency, frame times, taint, or client input dispatch."
+  },
+  "preservation": [
+    "Current secondary and tertiary slots are still sampled even if an action change precedes its event. Existing packed states stay positive.",
+    "Normal page and modifier behavior, full refresh on real action edits, and recovery for missing optional snippets remain on their current paths.",
+    "All nineteen columns, both tested pages, and selected secure mouse/key/mini routes match the full-refresh oracle. No changes to the border renderer or dependent panel transaction in this slice."
+  ],
+  "verification": {
+    "focusedPassed": 105,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-occupancy-before-20261119-234552\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings, actual drops, party and raid membership latency, native seam pixels and combat taint."
+}

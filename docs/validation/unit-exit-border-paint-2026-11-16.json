@@ -1,0 +1,95 @@
+{
+  "version": "static-unit-paint-r52",
+  "changedId": "COMBAT-TRANSITIONS-20261116",
+  "dateUTC": "2026-11-16T16:18:27.435198+00:00",
+  "sourceHashes": {
+    "Core/BorderJunctions.lua": {
+      "raw": "71e880f48eaef054d1c3805b1b7876e1b6572eaadbafb496836845aa0933d6bf",
+      "normalized": "4510d727e0645fd6e6b2b3a394318b567cc182405bedcb0c2ea06a36df657e94"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "raw": "6e0e787fc08ee6ca14226a0b5c025d117b3fdeb1f6132508d3355af6837d8813",
+      "normalized": "0e97f78bcf3758e7f3adb3e1ee50004066d22a082e7cec313feeec9713ace6f2"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "raw": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558",
+      "normalized": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558"
+    },
+    "tests/border_unit_paint_idempotence.lua": {
+      "raw": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada",
+      "normalized": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada"
+    },
+    "tests/unit_portrait_final_paint.lua": {
+      "raw": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb",
+      "normalized": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb"
+    }
+  },
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-local-plan-before-20261116T155526Z",
+  "changes": [
+    "Skip derived paint only for identical public authored unit RGBA; native source suppression/fallback visibility still run; opaque opacity always forwards",
+    "Choose final normal/combat portrait color once per shared refresh; preserve party unit material classification while red and all direct party consumers"
+  ],
+  "dedicatedUnitPaintChecks": 98,
+  "dedicatedProducerChecks": 3560,
+  "producerStages": 100,
+  "focusedScripts": 20,
+  "syntaxChangedFiles": 5,
+  "upvalues": {
+    "CoreFunctions": 111,
+    "CoreMaximum": 57,
+    "SharedPartyFunctions": 433,
+    "SharedPartyMaximum": 20
+  },
+  "nativeWorkProof": {
+    "type2RepeatedExitDerivedAlphaReadsBefore": 2037,
+    "after": 0,
+    "sourceSuppressionRetained": true,
+    "freshVisibilityAndPrivateNativeSinksRetained": true,
+    "geometryInPaintReplay": 0,
+    "solvesInPaintReplay": 0,
+    "allocationsInPaintReplay": 0
+  },
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-unit-paint-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-producer-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-final-paint-work.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-material-work.json"
+  ],
+  "controls": [
+    "Original repeated unit paint fails work-count assertion",
+    "Unsafe private dedup fails opaque sink forwarding",
+    "Restored normal-first portrait block fails churn assertion",
+    "Skipping party portrait classification fails material assertion"
+  ],
+  "nativeAcceptance": "Pending: first/repeated unit exit lag; full unlocked UpdateOuterBorder geometry/whole callback cost; combat/dispel/class output, taint and other native clients. Paint-only replay zero solves is not proof of all event-edge geometry.",
+  "otherWork": "Actionstrip/seam and local-fallback-plan runtime edits held per user priority; external designs only",
+  "existingForeverDiskMatches": {
+    "Core/BorderJunctions.lua": true,
+    "UnitFrames/FluxUnitFrames_Shared.lua": true,
+    "UnitFrames/FluxUnitFrames_Party.lua": true
+  },
+  "manualInstallationCopies": false,
+  "incrementalSyntaxReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-incremental-syntax.json",
+  "currentSyntaxFiles": 1167,
+  "syntaxScope": "Current syntax inherits unchanged R51 syntax results and freshly compiles all changed/new Lua. Functional scope is R52 focused20; R51 full474 historical. No fresh whole-corpus functional sweep or native certification.",
+  "finalFreezeUTC": "2026-11-16T16:28:30.288885+00:00",
+  "ownedRuntimeTestChangedAfterGate": [],
+  "documentationValidation": {
+    "result": "Concurrent unrelated-source mismatch; unit-owned checks and files unchanged",
+    "issues": [
+      "Battlezonemap/FluxBattlefieldWorldMap.lua changed while documentation was checked",
+      "tests/world_map_surface.lua changed while documentation was checked",
+      "Generated inventory/interfaces/verification snapshot needs independent reconciliation for those newer sources"
+    ],
+    "checkerMadeEdits": false,
+    "scope": "No rerun or unrelated source edits; prioritize unit-frame native exit check"
+  },
+  "ownedCpuJobs": "All runtime/fixture/benchmark/documentation checks completed; held for native capture.",
+  "nativeR52Feedback": {
+    "loadedVersionConfirmed": true,
+    "exitHitch": "User reports still severely laggy; R52 does not satisfy native hitch goal",
+    "minimapToggleBuildMs": 232.41,
+    "followup": "docs/validation/border-builder-2026-11-16.json",
+    "scope": "Original R52 source identities and desktop paint proofs above remain historical and unchanged; no later native latency improvement inferred"
+  }
+}

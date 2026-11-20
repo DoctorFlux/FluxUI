@@ -1,0 +1,196 @@
+{
+  "changeId": "ROSTER-ROLE-CHROME-R129-20261119",
+  "capturedAtUTC": "2026-11-19T18:13:26.540183+00:00",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+      "afterRaw": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638"
+    },
+    "tests/unit_indicator_layout.lua": {
+      "beforeRaw": "710ec68c827ecc0631b97c112bb70612f1693aa8d3a094a7db8d7c6c63e996d1",
+      "afterRaw": "0441d45ed1aa5cc799ed6b089f499a987809014ca43c8443cdda6a206e892e0d"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-role-chrome-before-20261119-190735\\source.zip",
+    "sourceZipSHA256": "1b30fa732ab2bb6fbd880bd058cac7a673e783f2351ad7c9a04eb66bef6e7b32",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs. Each desktop fixture repeats 20 stable role refreshes on player, target and focus. Each refresh uses the two role layouts in UpdateOuterBorder. The count covers Show, Hide, SetSize, ClearAllPoints and SetPoint on the status textures.",
+    "samples": {
+      "trial=1": {
+        "before": {
+          "show": "480",
+          "hide": "720",
+          "size": "960",
+          "clear": "480",
+          "point": "480",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        },
+        "after": {
+          "show": "0",
+          "hide": "0",
+          "size": "0",
+          "clear": "0",
+          "point": "0",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        }
+      },
+      "trial=2": {
+        "after": {
+          "show": "0",
+          "hide": "0",
+          "size": "0",
+          "clear": "0",
+          "point": "0",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        },
+        "before": {
+          "show": "480",
+          "hide": "720",
+          "size": "960",
+          "clear": "480",
+          "point": "480",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        }
+      },
+      "trial=3": {
+        "before": {
+          "show": "480",
+          "hide": "720",
+          "size": "960",
+          "clear": "480",
+          "point": "480",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        },
+        "after": {
+          "show": "0",
+          "hide": "0",
+          "size": "0",
+          "clear": "0",
+          "point": "0",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        }
+      },
+      "trial=4": {
+        "after": {
+          "show": "0",
+          "hide": "0",
+          "size": "0",
+          "clear": "0",
+          "point": "0",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        },
+        "before": {
+          "show": "480",
+          "hide": "720",
+          "size": "960",
+          "clear": "480",
+          "point": "480",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        }
+      },
+      "trial=5": {
+        "before": {
+          "show": "480",
+          "hide": "720",
+          "size": "960",
+          "clear": "480",
+          "point": "480",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        },
+        "after": {
+          "show": "0",
+          "hide": "0",
+          "size": "0",
+          "clear": "0",
+          "point": "0",
+          "geometry": "player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75"
+        }
+      }
+    },
+    "totalTextureWrites": [
+      [
+        3120,
+        0
+      ],
+      [
+        3120,
+        0
+      ],
+      [
+        3120,
+        0
+      ],
+      [
+        3120,
+        0
+      ],
+      [
+        3120,
+        0
+      ]
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-role-chrome-before-20261119-190735\\matched.txt": "21f66ef6d02d3fce9c7eedaa83226d6940a08f33385e980ab4689ec3bd7a5d5d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-role-chrome-before-20261119-190735\\baseline-rejection.txt": "5dd42bdb0e528cfd9a3aa0e2d6710eb7f9a18087c5fe9a03ecd65912fc58ce6e"
+    }
+  },
+  "preservation": [
+    "Role and loot flags are read at each existing layout pass.",
+    "Current public texture visibility, size and anchors are matched before omitting writes. Drift, private state and unavailable native getters retain the setting path.",
+    "The fixture checks active role geometry, group departure, leader-to-assistant changes, and recovery from size, position and visibility drift.",
+    "Native group timing and combat taint remain unverified."
+  ],
+  "verification": {
+    "focusedPassed": 97,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-role-chrome-before-20261119-190735\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-role-chrome-before-20261119-190735\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+        "matches": true
+      }
+    },
+    "forever": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+        "matches": true
+      }
+    },
+    "classic": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

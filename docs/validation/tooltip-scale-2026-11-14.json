@@ -1,0 +1,304 @@
+{
+  "changeID": "TOOLTIP-SCALE-20261114",
+  "createdUTC": "2026-11-14T20:10:51.930766+00:00",
+  "requirements": {
+    "TS-01": "Restore normal UIParent-relative GameTooltip size when Flux takes HUD/default-anchor ownership; shrinking and oversized residual scales must not leak to later hovers.",
+    "TS-02": "Keep exact HUD anchor (0,30), existing single native tooltip, native scripts/fonts/health, input and refresh cadence.",
+    "TS-03": "Respect explicit public TacoTipConfig.tooltip_scale; use native scale1 otherwise. Read preferences live; never edit external addons or settings.",
+    "TS-04": "Skip invalid/opaque scale values, forbidden frames, protected combat frames and Edit Mode layout ownership. Do not modify native container or unrelated tooltip scales.",
+    "TS-05": "No new event/hook/timer/frame/ticker/polling. Stable scale does not produce repeat writes."
+  },
+  "observation": "User confirms the whole tooltip including border shrinks. Desktop actual-HUD fixture reproduces inherited .2/.35/.64 scale before candidate; native originating writer/parent chain remains unobserved.",
+  "attributionLimits": "Installed Skillet 5.66 has conditional shared-GameTooltip SetScale writers; TacoTip1.0.2 has explicit tooltip_scale preference/writers. Their active settings/execution at the incident are NOT established. No claim that either addon caused this particular report.",
+  "implementation": "RestoreTooltipScale runs only in existing HUD placement/default-anchor hook. Default scale1 tracks native UI scale through UIParent; a scaled non-UIParent parent is compensated using public scale values. Existing explicit TacoTip preference wins. No SetScale hook, method replacement, global frame fields or settings write.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checkpoint",
+    "files": 2817,
+    "settingsMetadataEntries": 130,
+    "settingsCopied": false,
+    "sourceZipVerified": true,
+    "historyBundleVerified": true,
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece"
+  },
+  "sourceIdentities": {
+    "Other/FluxHUDTooltip.lua": {
+      "beforeRawSHA256": "c4aa49d37b21852e0430db78c944014487e43e28207e8f8d31e778428d3accab",
+      "afterRawSHA256": "b0f9655f4aed68b66a896986f4570418b6162561aec0330e037808880d3f798f",
+      "afterNormalizedSHA256": "b0f9655f4aed68b66a896986f4570418b6162561aec0330e037808880d3f798f"
+    },
+    "tests/hud_tooltip_scale.lua": {
+      "beforeRawSHA256": null,
+      "afterRawSHA256": "8edb247735b2820d4105172d753b22186d5cdbd727d784ca3fa6ddf8b2f93f53",
+      "afterNormalizedSHA256": "8edb247735b2820d4105172d753b22186d5cdbd727d784ca3fa6ddf8b2f93f53"
+    }
+  },
+  "upstream": {
+    "retail": {
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "build": "12.1.5 (70783)",
+      "family": "Mainline",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins.",
+      "scaleAPISource": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "scaleContract": "SetScale(number) is protected; skip protected-in-combat frames. GetScale returns a number; Retail/Forever may return secret values for Scale aspect. Never inspect opaque values."
+    },
+    "forever": {
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "build": "1.60.1 (70938)",
+      "family": "Mainline",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_GameTooltip/Mainline/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins.",
+      "scaleAPISource": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "scaleContract": "SetScale(number) is protected; skip protected-in-combat frames. GetScale returns a number; Retail/Forever may return secret values for Scale aspect. Never inspect opaque values."
+    },
+    "classic": {
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "build": "5.5.4 (70631)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins.",
+      "scaleAPISource": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "scaleContract": "SetScale(number) is protected; skip protected-in-combat frames. GetScale returns a number; Retail/Forever may return secret values for Scale aspect. Never inspect opaque values."
+    },
+    "classic_era": {
+      "branch": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "build": "1.15.9 (70576)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins.",
+      "scaleAPISource": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "scaleContract": "SetScale(number) is protected; skip protected-in-combat frames. GetScale returns a number; Retail/Forever may return secret values for Scale aspect. Never inspect opaque values."
+    },
+    "classic_anniversary": {
+      "branch": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "build": "2.5.6 (70577)",
+      "family": "Classic",
+      "tooltipPath": "Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_GameTooltip/Classic/GameTooltip.lua",
+      "contract": "Native GameTooltip_OnUpdate dispatches actual owner.UpdateTooltip; GameTooltip is precreated by Blizzard XML; addon must not replace native scripts or health mixins.",
+      "scaleAPISource": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+      "scaleContract": "SetScale(number) is protected; skip protected-in-combat frames. GetScale returns a number; Retail/Forever may return secret values for Scale aspect. Never inspect opaque values."
+    }
+  },
+  "readOnlyExternalReferences": [
+    {
+      "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Skillet/UI/DetailFrame.lua",
+      "sha256": "36fe66acd58ec4248197d3aba362b6880886437b934957912e057c765612f777",
+      "readOnly": true
+    },
+    {
+      "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Skillet/UI/MainFrame.lua",
+      "sha256": "b4c74119bbea19ae7edc552cb246fcbcf4e9126ea75b480e9c493bb04680589a",
+      "readOnly": true
+    },
+    {
+      "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Skillet/Skillet.lua",
+      "sha256": "8009bd4e49b0472a9e460152c4a28cd873bb89d289b7a4bd07c27965809a464c",
+      "readOnly": true
+    },
+    {
+      "path": "F:/World of Warcraft/_forever_/Interface/AddOns/TacoTip/main.lua",
+      "sha256": "34d14caad9ee29003694f84e67800adae12353fa49874e129ba3671805c42085",
+      "readOnly": true
+    }
+  ],
+  "desktop": {
+    "focusedChecks": 202,
+    "clientModels": [
+      "retail",
+      "forever",
+      "classic",
+      "classic_era",
+      "classic_anniversary"
+    ],
+    "comparisonsAndRegressions": [
+      {
+        "label": "before-scale-leak",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\baseline-HUD.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: normal size restored after foreign tooltip scale 0.2\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:50: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "hud_tooltip_scale",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua"
+        ],
+        "exit": 0,
+        "output": "hud_tooltip_scale: 202 checks PASS across five clients; native pixels/taint NOT RUN\n"
+      },
+      {
+        "label": "unit_tooltip_ownership",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/unit_tooltip_ownership.lua"
+        ],
+        "exit": 0,
+        "output": "unit_tooltip_ownership: 725 checks passed (desktop ownership/lifecycle only)\n"
+      },
+      {
+        "label": "edit_mode_native_ownership",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/edit_mode_native_ownership.lua"
+        ],
+        "exit": 0,
+        "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+      },
+      {
+        "label": "edit_mode_recovery",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/edit_mode_recovery.lua"
+        ],
+        "exit": 0,
+        "output": "Edit Mode recovery: 215 checks; five client models and native source methods; negative control passed\n"
+      },
+      {
+        "label": "edit_mode_settings",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/edit_mode_settings.lua"
+        ],
+        "exit": 0,
+        "output": "Edit Mode settings: 363 checks across five clients; two negative controls passed\n"
+      },
+      {
+        "label": "hud_startup",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_startup.lua"
+        ],
+        "exit": 0,
+        "output": "PASS: 25 HUD-startup checks (extracted actual lifecycle/guard functions; WoW taint still requires live tests)\n"
+      },
+      {
+        "label": "tooltip_bookkeeping",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/tooltip_bookkeeping.lua"
+        ],
+        "exit": 0,
+        "output": "tooltip_bookkeeping: 115 checks passed; native taint/secret VM NOT RUN\n"
+      },
+      {
+        "label": "tooltip_taint_diagnostics",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/tooltip_taint_diagnostics.lua"
+        ],
+        "exit": 0,
+        "output": "tooltip_taint_diagnostics: 766 checks PASS; native taint VM NOT RUN\n"
+      },
+      {
+        "label": "unit_tooltip_pinned_native",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/unit_tooltip_ownership.lua"
+        ],
+        "exit": 0,
+        "output": "unit_tooltip_ownership: 725 checks passed (desktop ownership/lifecycle only)\n"
+      },
+      {
+        "label": "no-scale-reset",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\no-scale-reset.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: normal size restored after foreign tooltip scale 0.2\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:50: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "ignore-explicit-preference",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\ignore-explicit-preference.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: explicit existing tooltip preference retained\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:61: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "no-parent-compensation",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\no-parent-compensation.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: scaled parent cannot shrink HUD tooltip\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:71: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "opaque-arithmetic",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\opaque-arithmetic.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:11: secret scale compared\nstack traceback:\n\t[C]: in function 'error'\n\ttests/hud_tooltip_scale.lua:11: in metamethod 'lt'\n\tHUD-tooltip-scale:28: in upvalue 'PublicScale'\n\tHUD-tooltip-scale:41: in upvalue 'RestoreTooltipScale'\n\tHUD-tooltip-scale:71: in field 'ApplyHUDTooltipPosition'\n\ttests/hud_tooltip_scale.lua:66: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "write-every-refresh",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\write-every-refresh.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: stable tooltips do not repeat scale writes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:57: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "protected-combat-write",
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/hud_tooltip_scale.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-checks\\protected-combat-write.lua"
+        ],
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hud_tooltip_scale.lua:6: live: protected combat tooltip receives no scale write\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hud_tooltip_scale.lua:6: in local 'check'\n\ttests/hud_tooltip_scale.lua:102: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "harmfulControls": 6,
+    "wholeSuite": {
+      "passed": 386,
+      "failed": 0,
+      "syntaxPassed": 1074,
+      "allFinalLuaIdentitiesVerified": true,
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db98-2875-7fc0-8548-7ff6457e37f9\\tooltip-scale-full.json"
+    }
+  },
+  "designAndTesting": "Existing accepted Blizzard appearance/position and native/manual retest preference retained. Passive tooltip adds no navigation or focus stop; mouse/keyboard/gamepad paths untouched. Native pixels/taint/controller tests NOT RUN. Profiling goal remains paused.",
+  "nativeAcceptance": [
+    "Reload out of combat; repeat the hover sequence that became tiny.",
+    "Hover scaled action/extra/profession sources then player/pet/raid/item/world targets; verify full border/text size and unchanged HUD position.",
+    "If TacoTip has an explicit tooltip scale, confirm it remains honored. Check native UI scale changes and Edit Mode exit.",
+    "Repeat ordinary hovers in combat and review Lua/taint errors on each available client; no native pass is inferred from desktop counts."
+  ],
+  "preservation": "Only Other/FluxHUDTooltip.lua and a new standalone regression changed since this fresh checkpoint. Other runtime/unit-tooltip changes, user work, saved data, external addons and prior paused diagnostics preserved. No native client input/reload/profiling/publication/sync.",
+  "documentationValidation": {
+    "result": "PASS",
+    "command": "python docs/tools/validate_docs.py",
+    "classifiedSources": 1107,
+    "reachableTOCXML": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17463,
+    "sourceInventoryEvidenceCurrent": true
+  }
+}

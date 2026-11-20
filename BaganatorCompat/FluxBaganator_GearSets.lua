@@ -418,6 +418,9 @@ function Compat.RebuildGearSetInfo()
         return
     end
 
+    if Compat.RequestBaganatorCategoryDataRefresh and Compat.RequestBaganatorCategoryDataRefresh() then
+        return
+    end
     Compat.RequestBaganatorRefresh(true)
     local api = _G.Baganator and _G.Baganator.API
     if api and api.RequestLayoutUpdate then

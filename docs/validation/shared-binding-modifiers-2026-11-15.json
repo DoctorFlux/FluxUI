@@ -1,0 +1,416 @@
+{
+  "changeId": "SHARED-BINDING-MODIFIERS-20261115",
+  "dateUTC": "2026-11-15T15:57:42.009189+00:00",
+  "objective": "Correct shared main/minirow key routing without changing binding profile semantics or settings",
+  "userClarification": "Key press (regular targets) was turned off; ALT macro condition alone does not enable keyboard emission",
+  "github": {
+    "repository": "https://github.com/DoctorFlux/FluxUI",
+    "sha": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "checkpointMatchesPinnedAfterLF": [
+      "Bars/State.lua",
+      "Bars/Clicks.lua",
+      "Bars/SlotProgram.lua",
+      "Bars/BadgeHost.lua",
+      "Binding/Core/Apply.lua",
+      "Binding/Core/MacroFactory.lua",
+      "Binding/Core/ChordMap.lua"
+    ],
+    "defectAlsoInLinkedVersion": true
+  },
+  "sourcePins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+  },
+  "sourceContract": "SecureButton_GetModifiedAttribute resolves local selectors before useparent recursion; pinned SecureTemplates.lua fetched for each target",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\binding-modifiers-before-20261115T154459Z",
+  "sourceFiles": 2879,
+  "sourceZipCRCVerified": true,
+  "historyBundleVerified": true,
+  "availableSettingsMetadata": 4,
+  "priorMetadataPathNoLongerPresent": 1,
+  "privateSettingsCopied": false,
+  "baselineNormalizedSHA256": {
+    "Bars/Clicks.lua": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+    "Bars/State.lua": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef"
+  },
+  "candidateNormalizedSHA256": {
+    "Bars/Clicks.lua": "ee50971250a40431cdfeb5be5fd5cf22cdc7b5e17cae0959702c5516e1eb87f4",
+    "Bars/State.lua": "39a5a655efb1e938dceeeb7af8a4def02d45c79e3d332663321d56758f7826d4",
+    "tests/shared_binding_modifiers.lua": "5126f4590c0dba6d0a333f829234edbf1872acac4a701e5d9815cb6a8efb0237",
+    "tests/bars_contract_regression.lua": "b54ed6b718b0a3db734c21c47c781019cb7ab5731147aa8b9d3ce19e39d3abaa",
+    "Bars/_tmp_barsmoke.lua": "47f0862b4f29dde19fccd96fa9db102252f42e26cb56cb890d4e25027c28175f"
+  },
+  "reproduction": {
+    "diskSnapshotOnly": true,
+    "key": "F",
+    "column": 11,
+    "mainSlot": 11,
+    "shiftSlot": 71,
+    "tertiarySlot": 35,
+    "programs": "main and Shift hidden delegates; tertiary native",
+    "baseline": "Full Shift fallback traversal leaves local proxy clickbutton1 selecting Native11 instead of Native71",
+    "candidate": "Correct inherited selector picks Native71; release before display update picks Native11",
+    "nativeRunningStateNotEstablished": true
+  },
+  "implementation": {
+    "runtimeFiles": [
+      "Bars/State.lua",
+      "Bars/Clicks.lua"
+    ],
+    "proxy": "Key timing retained; selector cleanup and useparent flags owned by Clicks; mini hosts no longer write main proxy bodies",
+    "visibleHost": "Bare live display selectors retained; old owned LeftButton suffix selectors cleared",
+    "compilerAndBadgesUnchanged": true,
+    "savedSettingsActionsBindingsWrites": false,
+    "newEventsTimersPollsOrDrivers": false
+  },
+  "regression": {
+    "checks": 2271,
+    "exactReproducerChecks": 246,
+    "syntaxValidNegativeControlsRejected": 3,
+    "details": {
+      "scope": "Actual addon Lua and pinned native helper; modeled widget transport. No native casting/taint/performance acceptance.",
+      "sha256Normalized": {
+        "Bars/State.lua": "39a5a655efb1e938dceeeb7af8a4def02d45c79e3d332663321d56758f7826d4",
+        "Bars/Clicks.lua": "ee50971250a40431cdfeb5be5fd5cf22cdc7b5e17cae0959702c5516e1eb87f4",
+        "tests/shared_binding_modifiers.lua": "5126f4590c0dba6d0a333f829234edbf1872acac4a701e5d9815cb6a8efb0237"
+      },
+      "records": [
+        {
+          "label": "baseline-exact-shift-F",
+          "args": [
+            "--shape",
+            "hidden_pair",
+            "--state",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\shared-binding-baseline-State.lua",
+            "--clicks",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\shared-binding-baseline-Clicks.lua"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/shared_binding_modifiers.lua:4: hidden_pair/prestamped: actual key action Native11, expected Native71\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/shared_binding_modifiers.lua:4: in local 'check'\n\ttests/shared_binding_modifiers.lua:190: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "label": "candidate-exact-shift-F",
+          "args": [
+            "--shape",
+            "hidden_pair"
+          ],
+          "exit": 0,
+          "stdout": "Shared binding modifier regression: 246 checks PASS (desktop transport only)\n",
+          "stderr": ""
+        },
+        {
+          "label": "candidate-full",
+          "args": [],
+          "exit": 0,
+          "stdout": "Shared binding modifier regression: 2271 checks PASS (desktop transport only)\n",
+          "stderr": ""
+        },
+        {
+          "label": "restore-proxy-writer",
+          "args": [
+            "--shape",
+            "hidden_pair",
+            "--state",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\shared-binding-mutant-restore-proxy-writer.lua"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/shared_binding_modifiers.lua:4: hidden_pair/prestamped: actual key action Native11, expected Native71\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/shared_binding_modifiers.lua:4: in local 'check'\n\ttests/shared_binding_modifiers.lua:190: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "label": "restore-live-clickbutton1",
+          "args": [
+            "--shape",
+            "hidden_pair",
+            "--state",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\shared-binding-mutant-restore-live-clickbutton1.lua"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/shared_binding_modifiers.lua:4: hidden_pair/prestamped: actual key action Native71, expected Native11\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/shared_binding_modifiers.lua:4: in local 'check'\n\ttests/shared_binding_modifiers.lua:190: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "label": "wrong-shift-slot",
+          "args": [
+            "--shape",
+            "hidden_pair",
+            "--state",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\shared-binding-mutant-wrong-shift-slot.lua"
+          ],
+          "exit": 1,
+          "stdout": "",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/shared_binding_modifiers.lua:4: hidden_pair/prestamped: column11 swap1 modified key slot 11, expected 71\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/shared_binding_modifiers.lua:4: in local 'check'\n\ttests/shared_binding_modifiers.lua:170: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    }
+  },
+  "focused": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\binding-modifiers-focused.json",
+    "pass": 12,
+    "fail": 0,
+    "results": [
+      {
+        "path": "tests/shared_binding_modifiers.lua",
+        "exit": 0,
+        "seconds": 0.075,
+        "output": "Shared binding modifier regression: 2271 checks PASS (desktop transport only)\n",
+        "normalizedSHA256": "5126f4590c0dba6d0a333f829234edbf1872acac4a701e5d9815cb6a8efb0237"
+      },
+      {
+        "path": "tests/bars_contract_regression.lua",
+        "exit": 0,
+        "seconds": 0.09,
+        "output": "bars contract regression: 468 production checks across five clients; 13 mutations rejected\n",
+        "normalizedSHA256": "b54ed6b718b0a3db734c21c47c781019cb7ab5731147aa8b9d3ce19e39d3abaa"
+      },
+      {
+        "path": "tests/binding_roadmap_regression.lua",
+        "exit": 0,
+        "seconds": 0.29,
+        "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n",
+        "normalizedSHA256": "c316dd2c0942b1f2a34f82299bb762703b6fe5a89e267cc813e6ac7c645d8c00"
+      },
+      {
+        "path": "tests/bars_startup_retry.lua",
+        "exit": 0,
+        "seconds": 0.027,
+        "output": "assistant rate samples: 600; 85 paints per consumer (600 frames; use --baseline for HEAD comparison)\nbars startup retry: 714 checks passed\n",
+        "normalizedSHA256": "fb7fbd3ad7e3182c94ccf7092235ec5ba06180e9ca38050db527126467f5e8e0"
+      },
+      {
+        "path": "tests/bars_refresh_regression.lua",
+        "exit": 0,
+        "seconds": 0.772,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\n",
+        "normalizedSHA256": "52ee5540b0d47a4935ff5bff434d4cf605bbd63e92fe0ff8ca5472b7908db8c1"
+      },
+      {
+        "path": "tests/main_row_recovery.lua",
+        "exit": 0,
+        "seconds": 2.797,
+        "output": "Main-row recovery: 9448 checks PASS across five client models and fallback/secure-header paths; actual state/layout/click owners and native slot calculator; modeled secure transport, in-game acceptance pending\n",
+        "normalizedSHA256": "e1d20f9e48e687fcba6b0dbde2b40fcfe5ab192c8dae65326f4ee649d0ba73b2"
+      },
+      {
+        "path": "tests/main_row_audit.lua",
+        "exit": 0,
+        "seconds": 0.026,
+        "output": "Main-row audit: 700 checks PASS across five client models; read-only; native results pending\n",
+        "normalizedSHA256": "564da22e84010b371cec18edfb1a9683b4ca6b948784e38e0bf3d67c65ea97e9"
+      },
+      {
+        "path": "tests/restricted_driver_ownership.lua",
+        "exit": 0,
+        "seconds": 0.044,
+        "output": "restricted driver ownership: 264 checks passed (five client models; native taint pending)\n",
+        "normalizedSHA256": "1846c2883f7847b36d718267d9ba8023ab9fb23289c5b018feff1688858d3a1d"
+      },
+      {
+        "path": "Bars/_tmp_forevercontrolsmoke.lua",
+        "exit": 0,
+        "seconds": 6.586,
+        "output": "Forever control smoke passed: 25920 native mouse/key/mini actions; combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe\n",
+        "normalizedSHA256": "887b0290269dd5be6bbea65797c4a144b154174fa53fbc1a88ccd38050aed86e"
+      },
+      {
+        "path": "tests/forever_badge_combat_row_swap.lua",
+        "exit": 0,
+        "seconds": 0.014,
+        "output": "Forever badge combat row swap: 7 checks passed\n",
+        "normalizedSHA256": "fbff81cce33d2e54b020ca72136653c379b961967c406c01b617e68ed59be997"
+      },
+      {
+        "path": "tests/universal_mouseover_priority.lua",
+        "exit": 0,
+        "seconds": 0.045,
+        "output": "Matched plain clicks: classic clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_era clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_anniversary clicks=9 actionQueries=9 polarityQueries=18\nResources: clicks=176 actionQueries=3273 polarityQueries=356 compiles=124\nUniversal mouseover priority: 916 checks, 0 failures; native protected execution pending\n",
+        "normalizedSHA256": "b427c752055031557b4753936856daf39e4c20fce69e357f1c738af96f1187f8"
+      },
+      {
+        "path": "tests/raid_binding_cast.lua",
+        "exit": 0,
+        "seconds": 0.087,
+        "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n",
+        "normalizedSHA256": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be"
+      }
+    ]
+  },
+  "fullSweep": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\binding-modifiers-full.json",
+    "pass": 400,
+    "fail": 2,
+    "syntaxFiles": 1091,
+    "syntaxFailures": 0,
+    "scope": "Full sweep precedes final regression refinement; shared_binding_modifiers failure superseded by focused2271PASS. Unrelated UpdateBorderColors source assertion already absent in pre-edit checkpoint. Concurrent other-owner Lua edits are not certified by this sweep.",
+    "failures": [
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exit": 1,
+        "wallSeconds": 2.1227,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nsource contract FAILED (1)\n  UpdateBorderColors uses ClassColorForUnit\n"
+      },
+      {
+        "path": "tests/shared_binding_modifiers.lua",
+        "exit": 1,
+        "wallSeconds": 0.0179,
+        "output": "lua: tests\\shared_binding_modifiers.lua:4: hidden_pair: modified key selects mapped main/mini slot\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\shared_binding_modifiers.lua:4: in local 'check'\n\ttests\\shared_binding_modifiers.lua:167: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "concurrentOtherOwnerFilesChangedAfterFullManifest": [
+    "FluxBorder.lua",
+    "Inventory/Index.lua",
+    "tests/border_types.lua",
+    "tests/passive_inventory_index.lua",
+    "UnitFrames/FluxUnitFrames_Shared.lua"
+  ],
+  "installedForever": {
+    "manualCopy": false,
+    "observedNormalizedMatch": {
+      "Bars/Clicks.lua": true,
+      "Bars/State.lua": true
+    },
+    "loadedVMAdoption": "Not verified"
+  },
+  "native": {
+    "casting": "PENDING",
+    "secureVMAndTaint": "PENDING",
+    "renderingAndBadges": "PENDING",
+    "controller": "PENDING",
+    "FPS": "Not measured"
+  },
+  "mockup": "No visible UI design change",
+  "testingChoice": "Existing Witchcraft preference retained; no client interaction this slice",
+  "inputFocusClipboardProfilerOrSettingsWrites": false,
+  "publication": false,
+  "independentReview": "No actionable findings; native event gates not executed",
+  "finalSyntax": {
+    "files": 1092,
+    "failures": [],
+    "changedDuringSyntaxRechecked": []
+  },
+  "finalBarSmoke": {
+    "exit": 0,
+    "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+  },
+  "verificationIndexPolicy": "Targeted final results updated; other results explicitly historical; full syntax fresh",
+  "concurrentUnrunScripts": [
+    "tests/inventory_live_count_options.lua"
+  ],
+  "documentationGate": {
+    "result": "Seven issues from concurrent unrelated border work; task sources remain matched",
+    "issues": [
+      "Stale inventory Core/BorderJunctions.lua",
+      "Stale inventory FluxBorder.lua",
+      "Resource asset inventory changed",
+      "Stale generated interfaces view",
+      "Verification predates Core/BorderJunctions.lua",
+      "Verification predates FluxBorder.lua",
+      "Broken CONNECTED_BORDERS.md evidence link"
+    ],
+    "unrelatedConcurrentFilesPreserved": true
+  },
+  "diffCheck": "PASS for task-owned edits",
+  "savedVariableAudit": {
+    "authorization": "User supplied account path and requested saved-variable investigation",
+    "readOnly": true,
+    "settingsWrites": false,
+    "privateDataCopied": false,
+    "metadata": [
+      {
+        "role": "account current",
+        "file": "_FluxUI.lua",
+        "bytes": 342128,
+        "sha256": "3af1370389b3f3153213c1e507a9d67b10000defdf4331824dffd95f58de8fec",
+        "modifiedUTC": "2026-11-15T16:03:18.576354+00:00"
+      },
+      {
+        "role": "account backup",
+        "file": "_FluxUI.lua.bak",
+        "bytes": 342126,
+        "sha256": "4666af271b86916497d350059deb5e913f96e0896eb2dd326eb1872902dcffd3",
+        "modifiedUTC": "2026-11-15T15:56:37.330715+00:00"
+      },
+      {
+        "role": "character current",
+        "file": "_FluxUI.lua",
+        "bytes": 36202,
+        "sha256": "d6d1fdf3e45e96d04bfaad87e572f49eee64e8cdc7884bbb8e978a79e78988ac",
+        "modifiedUTC": "2026-11-15T16:03:18.579865+00:00"
+      },
+      {
+        "role": "character backup",
+        "file": "_FluxUI.lua.bak",
+        "bytes": 36202,
+        "sha256": "98294be285299a297bde3c049a50b784d63a4472af2e1f5ae74315f9a2079e59",
+        "modifiedUTC": "2026-11-15T15:56:37.333740+00:00"
+      },
+      {
+        "role": "account current",
+        "file": "bindings-cache.wtf",
+        "bytes": 2843,
+        "sha256": "ed585fbc00a815ec34526883c549fa119488608d5f7372b5cff886514f0b0b76",
+        "modifiedUTC": "2026-11-15T14:41:15.504836+00:00"
+      }
+    ],
+    "currentAndBackupDB3SemanticAgreement": true,
+    "bindingRows": 9,
+    "nextUid": 21,
+    "maxUid": 20,
+    "uniquePlacements": 7,
+    "malformedActionsFieldsOrders": 0,
+    "duplicateActionPlacementUIDs": 0,
+    "legacyBindingRoots": "Empty",
+    "respecProfiles": "Empty; pendingDraft includes mask is not a binding/action snapshot",
+    "characterOptions": "Default profile/account scope; no actionbar or minirow preference overrides",
+    "badges": "All nine styles default alpha0.75;no hide flags;main and mini cooldown digits enabled",
+    "conditionalEntry": {
+      "uid": 20,
+      "key": "SHIFT-\u00bd",
+      "nativeBaseColumn": 6,
+      "regularEnabled": false,
+      "hovercastEnabled": false,
+      "modAlt": false,
+      "modShiftCtrl": true,
+      "consequence": "No keyboard or hover cast clauses; selected condition does not re-enable either path",
+      "changedSinceEarlierRead": "Earlier snapshot selected ALT; current and backup now select ShiftCtrl"
+    },
+    "hoverOnlyEntry": {
+      "uid": 3,
+      "key": "R",
+      "consequence": "Regular key deliberately remains native; binding adds hover behavior only"
+    },
+    "orderMetadata": "UID20 remains in old BUTTON1 and bare half-key order lists; references remain valid, but membership historical. These lists only order clauses/badges and do not install keys. No cleanup needed for routing.",
+    "nativeBindings": {
+      "cacheEntries": 117,
+      "duplicateKeys": 0,
+      "FColumn": 11,
+      "halfKeyCodepoint": "U+00BD matches source and conditional chord",
+      "explicitShiftFOrCtrlFOverride": false,
+      "altCombatExtraKeys": [
+        "ALT-Q",
+        "ALT-E",
+        "ALT-Z",
+        "ALT-C"
+      ],
+      "unlistedNumericDefaults": "No missing-key conclusion from override cache alone"
+    },
+    "cannotInfer": [
+      "Current loaded VM state",
+      "Native action-slot contents",
+      "Current native page or fallback mode",
+      "Learned spell availability"
+    ],
+    "result": "No structural corruption or saved layout/badge conflict found. Disabled input and current modifier selection explain inactive conditional binding; hidden main/mini profiles match reproduced source defect.",
+    "bootstrap": {
+      "accountDefaultsApplied": true,
+      "firstLoadNonBindingAudit": "done",
+      "bindingBootstrapVersion": 6,
+      "atomicContextValidated": true,
+      "pendingResetOrReseed": false
+    }
+  },
+  "finalTaskManifestStillMatches": true
+}

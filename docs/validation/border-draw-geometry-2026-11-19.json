@@ -1,0 +1,355 @@
+{
+  "changeId": "BORDER-DRAW-GEOMETRY-R115-20261119",
+  "capturedAtUTC": "2026-11-19T15:05:12.963572+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "afterRaw": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85"
+    },
+    "tests/border_incremental_commit.lua": {
+      "beforeRaw": "cac4137547846948adcdd1130b68ee2d0c3ff4c3f1b7818387d8b79d6aa94742",
+      "afterRaw": "236813e05683c50e6c40f77d6bb6c38d7e0e8059a8970dddadd29511b0903d1a"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\source.zip",
+    "sourceZipSHA256": "8d35bc66f940fe938f2a74672f61ac1ce399378190e66a0bae1ed6d53e13bc43",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Both border types and a HUD with 40 additional raid cells. Alternate expanded and collapsed strip layouts and separate roster layout moves. Compare sampled contacts, native writes and exact incremental mesh fingerprints.",
+  "work": {
+    "before": {
+      "1:hover": {
+        "color": 2668,
+        "layer": 908,
+        "path": 2668,
+        "point": 2668,
+        "quad": 1100,
+        "rgbaGuards": 2668,
+        "size": 2668,
+        "triangle": 660,
+        "vertex1": 1760,
+        "vertex2": 1760,
+        "vertex3": 1760,
+        "vertex4": 1760,
+        "genericNativeWrites": 3832,
+        "vertexComparisons": 7040
+      },
+      "1:roster": {
+        "color": 392,
+        "layer": 392,
+        "path": 392,
+        "point": 392,
+        "quad": 0,
+        "rgbaGuards": 392,
+        "size": 392,
+        "triangle": 0,
+        "vertex1": 0,
+        "vertex2": 0,
+        "vertex3": 0,
+        "vertex4": 0,
+        "genericNativeWrites": 248,
+        "vertexComparisons": 0
+      },
+      "2:hover": {
+        "color": 3068,
+        "layer": 920,
+        "path": 3068,
+        "point": 3068,
+        "quad": 1384,
+        "rgbaGuards": 3068,
+        "size": 3068,
+        "triangle": 764,
+        "vertex1": 2148,
+        "vertex2": 2148,
+        "vertex3": 2148,
+        "vertex4": 2148,
+        "genericNativeWrites": 4304,
+        "vertexComparisons": 8592
+      },
+      "2:roster": {
+        "color": 392,
+        "layer": 392,
+        "path": 392,
+        "point": 392,
+        "quad": 0,
+        "rgbaGuards": 392,
+        "size": 392,
+        "triangle": 0,
+        "vertex1": 0,
+        "vertex2": 0,
+        "vertex3": 0,
+        "vertex4": 0,
+        "genericNativeWrites": 248,
+        "vertexComparisons": 0
+      }
+    },
+    "after": {
+      "1:hover": {
+        "box": 2668,
+        "color": 2668,
+        "flatReuse": 1004,
+        "layer": 908,
+        "path": 2668,
+        "quad": 1100,
+        "triangle": 660,
+        "vertexChecks": 3024,
+        "genericNativeWrites": 368,
+        "vertexComparisons": 3024,
+        "rgbaGuards": 0,
+        "previousWriterComparisonsOnSameFields": 7040
+      },
+      "1:roster": {
+        "box": 392,
+        "color": 392,
+        "layer": 392,
+        "path": 392,
+        "quad": 0,
+        "triangle": 0,
+        "vertexChecks": 0,
+        "genericNativeWrites": 0,
+        "vertexComparisons": 0,
+        "rgbaGuards": 0
+      },
+      "2:hover": {
+        "box": 2948,
+        "color": 2948,
+        "flatReuse": 1172,
+        "layer": 920,
+        "path": 2948,
+        "quad": 1296,
+        "triangle": 732,
+        "vertexChecks": 3424,
+        "genericNativeWrites": 384,
+        "vertexComparisons": 3424,
+        "rgbaGuards": 0,
+        "previousWriterComparisonsOnSameFields": 8112
+      },
+      "2:roster": {
+        "box": 392,
+        "color": 392,
+        "layer": 392,
+        "path": 392,
+        "quad": 0,
+        "triangle": 0,
+        "vertexChecks": 0,
+        "genericNativeWrites": 0,
+        "vertexComparisons": 0,
+        "rgbaGuards": 0
+      }
+    },
+    "normalization": "The former writer compares four offsets for every mesh field it visits. Normalize to the same visited fields because independent Lua runs can pick a different warm draw-reuse order.",
+    "boxedWrites": "Native geometry writes use fixed-argument helpers. Generic native write counters omit all new typed helper writes.",
+    "incrementalWitnesses": [
+      "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=114 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480",
+      "INCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=101 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681"
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\field-metrics-before.txt": "ef76e7c01182d6765a116efac25183d64db96a88b0675d953b3ab680d0d0b461",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\field-metrics-after.txt": "c150e36159a85de64a6da9766836d62d4c7e2dcdffd9e0fa11ec550ff9476bf9",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\incremental-before.txt": "59c21c35ad033abbd5b78db52e31874294dd7530d376ed2d4fd0a1f6f3359f46",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\incremental-after.txt": "45011f987d91b41a408d0cc027b26b0493422fdb74e3750035797d325f347206"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6. Seven alternating exact-source pairs for each style and scenario. Each timing trial performs 24 warm reflows.",
+    "results": {
+      "1:hover": {
+        "medians": [
+          248.0,
+          229.0
+        ],
+        "samples": [
+          [
+            131.0,
+            133.0
+          ],
+          [
+            140.0,
+            126.0
+          ],
+          [
+            142.0,
+            228.0
+          ],
+          [
+            248.0,
+            234.0
+          ],
+          [
+            253.0,
+            229.0
+          ],
+          [
+            256.0,
+            256.0
+          ],
+          [
+            282.0,
+            300.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          94.0,
+          89.0
+        ],
+        "samples": [
+          [
+            84.0,
+            85.0
+          ],
+          [
+            99.0,
+            83.0
+          ],
+          [
+            94.0,
+            89.0
+          ],
+          [
+            116.0,
+            104.0
+          ],
+          [
+            96.0,
+            90.0
+          ],
+          [
+            92.0,
+            97.0
+          ],
+          [
+            89.0,
+            84.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          269.0,
+          242.0
+        ],
+        "samples": [
+          [
+            306.0,
+            338.0
+          ],
+          [
+            284.0,
+            261.0
+          ],
+          [
+            271.0,
+            238.0
+          ],
+          [
+            262.0,
+            239.0
+          ],
+          [
+            269.0,
+            242.0
+          ],
+          [
+            261.0,
+            240.0
+          ],
+          [
+            265.0,
+            262.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          97.0,
+          94.0
+        ],
+        "samples": [
+          [
+            97.0,
+            94.0
+          ],
+          [
+            96.0,
+            93.0
+          ],
+          [
+            108.0,
+            105.0
+          ],
+          [
+            100.0,
+            100.0
+          ],
+          [
+            99.0,
+            93.0
+          ],
+          [
+            90.0,
+            99.0
+          ],
+          [
+            88.0,
+            89.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\compare.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\matched-final.txt",
+    "rawSHA256": "cd1539c780177fabbc1ca95b4b5a8026e80a7f364c169706dbfa77d3e4f2cc59"
+  },
+  "preservation": [
+    "same native anchor, size, UV, vertex offset and RGBA values in matched prepared geometry",
+    "same native write counts for the matched incremental mutation and same sampled regional output",
+    "repair partially applied native writers and preserve exact errors for retry",
+    "valid RGBA checked on source read before using the public render writer; existing native private alpha and RGB sinks remain available",
+    "same regional rebuild and lockdown policy"
+  ],
+  "verification": {
+    "focusedPassed": 63,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-geometry-before-20261119-155118\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "match": true
+    },
+    "forever": {
+      "sha256": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "match": true
+    },
+    "classic": {
+      "sha256": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "match": true
+    },
+    "classic-era": {
+      "sha256": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "match": true
+    },
+    "classic-anniversary": {
+      "sha256": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "match": true
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action frame time, join and leave latency, seam pixels and combat taint. No game input or profiling changes."
+}

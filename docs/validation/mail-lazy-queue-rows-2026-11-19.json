@@ -1,0 +1,36 @@
+{
+  "utc": "2026-11-18T23:12:57.7495014Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "source": "Mail/Restock.lua",
+  "before": "09f764dcccfb9e8df31fb583cd8dd960336d4dae7686f94541e7f8d94a128d7d",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 20,
+  "settingsContentsCopied": false,
+  "after": "952b6a1914325da76696dad728dd65a23d0bcf40daaadf44f0354f2a1eed85c5",
+  "changeId": "LHO-MAIL-LAZY-QUEUE-ROWS-20261119",
+  "status": "NATIVE_RELOAD_OBSERVED_POPULATED_RESTOCK_PENDING",
+  "exactSourceCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-mail-lazy-target-rows-20261119",
+  "evidenceBefore": "Prior R8 completed native inbox reads on one message with one attachment. It did not measure this active-restock allocation path. The exact Mail/Restock.lua baseline shows three row constructions for each eligible nonmatching message.",
+  "sourceReview": {
+    "lua51BeforeAfter": true,
+    "lua54BeforeAfter": true,
+    "updatedForeverDiskMatches": true,
+    "changesOnlyInsideSlice": true,
+    "nonmatchingMessageTablesBefore": 3,
+    "nonmatchingMessageTablesAfter": 0,
+    "matchingShapePreserved": true,
+    "nativeAttachmentReadsRemoved": 0,
+    "savedCountsAndAuthorityPreserved": true,
+    "sameClockAndRetryBudget": true
+  },
+  "remaining": [
+    "Populated active-restock timing and parity",
+    "Syndicator stale inbox correction and native authority decision",
+    "Full workflow performance, provider matrix and client acceptance"
+  ],
+  "nativeReload": {
+    "observedWorldReturn": true,
+    "submissionSHA": "419f6c8acd8cab3bc330a8a77675a991fbb63c831a6dee98278be822c3539739"
+  }
+}

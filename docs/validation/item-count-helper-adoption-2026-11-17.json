@@ -1,0 +1,2470 @@
+{
+  "changeID": "LHO-ITEM-HELPER-ADOPTION-20261117",
+  "recordedUTC": "2026-11-17T06:26:42.171212+00:00",
+  "status": "ITEM_PRIVATE_HELPER_ADOPTED_BY_NEW_ROOT_ENGINEERING_DISPOSITION",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": true,
+  "runtimeAppliedByThisDraft": false,
+  "documentationOnly": true,
+  "adoption": {
+    "application": {
+      "status": "APPLIED",
+      "recordedUTC": "2026-11-17T06:17:54.878742+00:00",
+      "target": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Item.lua",
+      "beforeSHA256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+      "afterSHA256": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666",
+      "sourcePathsChanged": 1,
+      "otherPreservedSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+      "manualSync": false,
+      "nativeInput": false,
+      "decisionSHA256": "ca46c2fe847f89af68e6ad9606aa267209c74982c84311fd51ee4b729cb4caf2"
+    },
+    "decision": {
+      "recordedUTC": "2026-11-17T06:17:54.875733+00:00",
+      "status": "ROOT_SOURCE_ADOPTION_DECISION",
+      "basis": "User directs begin addon Lua optimization. Root adopts exact tested private-helper hoist as bounded allocation optimization using functional/quiet parity, qualified warm-route measurement and no observed CPU regression. This is a new engineering disposition, not a rewrite or PASS of the original fixed precision gate and not a user-approved precision waiver.",
+      "originalExperimentDecision": "INCONCLUSIVE; preceding HOLD preserved",
+      "beforeSHA256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+      "afterSHA256": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666",
+      "behavior": "Same public API/native argument order, authoritative carried zero, dynamic modern/legacy/Secrets/converter lookups, fallback errors/reentry and cadence; two private helper closures reused.",
+      "costReportSHA256": "7157c999c9ae2cc0b858c347b3a18f201a3eb7bbe47febda5359b512a39ee02d",
+      "qualifiedWarmMedianCPUms": [
+        4031.25,
+        3906.25
+      ],
+      "warmCPUWarning": "First pair slower by one15.625ms tick; two faster pairs",
+      "directCPU": "Three profiles remain precision-INCONCLUSIVE below128ticks; no retiming or CPU-fitness claim.",
+      "GC": "Modeled184B/direct call avoided, warm2944B/cycle avoided; Item-only retained boot increases125B51/104B54. Not native memory/FPS proof.",
+      "checkpointSHA256": "b830884bef1b529f3276aebc320785c581726bd61acb3cf10e6d718ae36a606c",
+      "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "availableSettings125": true,
+      "loadedNativeAdoption": false,
+      "manualSync": false,
+      "productPaths": [
+        "Core/API/Item.lua"
+      ]
+    },
+    "authority": "Root adopted exact tested owner after renewed user instruction to optimize addon Lua. This is a new engineering disposition, not a new result or user-approved128tick waiver.",
+    "runtimeProductFilesChanged": [
+      "Core/API/Item.lua"
+    ],
+    "durableTest": {
+      "recordedUTC": "2026-11-17T06:21:28.000108+00:00",
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\item_count_dynamic_contract.lua",
+      "sha256": "530bcb4bd6b99730003b23539df351c1c5d9cbbc52d41a982146cbe9cc2eafb4",
+      "alreadyTestedBy": "installed-first-regressions/report.json",
+      "sourceChangedByCopy": false
+    },
+    "OtherPreservedAsDatedRootReport": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "manualSync": false,
+    "nativeSourceAdoption": "Root reports currentRetail+Forever disk Item870e in two folders; no Root manualsync/reload and no loadednative-byte proof. No five-client propagation/adoption claim."
+  },
+  "installedRegression": {
+    "reportSHA256": "e2c7a858a50d885176bfde90e134423e2b6d33f7dea08f023b79d9ad48ad4499",
+    "status": "PASS",
+    "jobs": 14,
+    "functionalChecks": 9868,
+    "compilerJobs": 4,
+    "sourcePinsAtRun": 1211,
+    "allChildrenReaped": true,
+    "allPinsStableAtRun": true,
+    "rawLogHashesVerifiedByThisDraft": 28,
+    "records": [
+      {
+        "label": "dynamic-51-baseline",
+        "checks": 205,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "7068dd940d5b28e752e1679530db818898ec49d48a95c8e735c78284ed52353e",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "dynamic-51-installed",
+        "checks": 205,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "7068dd940d5b28e752e1679530db818898ec49d48a95c8e735c78284ed52353e",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "dynamic-54-baseline",
+        "checks": 205,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "7068dd940d5b28e752e1679530db818898ec49d48a95c8e735c78284ed52353e",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "dynamic-54-installed",
+        "checks": 205,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "7068dd940d5b28e752e1679530db818898ec49d48a95c8e735c78284ed52353e",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "item_count_zero_authority-51",
+        "checks": 245,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "ff3de140e2cbc5d24ee21eb10fec438f64ce545cfc3bd7780b6dbc940f590929",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "combat_grid_live_counts-51",
+        "checks": 2175,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "05c268077f3a48531f3a66adb47e34ca8744bd138928293160559c13b20e7096",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "consumable_hold_reconciliation-51",
+        "checks": 2104,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "fafbd674f0909e5b0c12ed1b7d9c574d1e41f02c06df9f9f1f1ba1a8a71f57a7",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "compile-51-item",
+        "checks": 0,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "compile-51-dynamic",
+        "checks": 0,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "item_count_zero_authority-54",
+        "checks": 245,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "ff3de140e2cbc5d24ee21eb10fec438f64ce545cfc3bd7780b6dbc940f590929",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "combat_grid_live_counts-54",
+        "checks": 2175,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "05c268077f3a48531f3a66adb47e34ca8744bd138928293160559c13b20e7096",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "consumable_hold_reconciliation-54",
+        "checks": 2104,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "fafbd674f0909e5b0c12ed1b7d9c574d1e41f02c06df9f9f1f1ba1a8a71f57a7",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "compile-54-item",
+        "checks": 0,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "compile-54-dynamic",
+        "checks": 0,
+        "exitCode": 0,
+        "reaped": true,
+        "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "scope": "Focused installed-owner and exactdurable-source behavior/compiler checks only; no fullsuite/native/CPU/FPS/taint/pixel acceptance. Durable test was copied after exact external bytes passed; copy did not change source."
+  },
+  "originalCostExperiment": {
+    "decision": "INCONCLUSIVE",
+    "priorRootDisposition": "HOLD_UNAPPLIED preserved as historical before06:17:54 decision",
+    "newRootDisposition": "APPLIED_BOUNDED_ALLOCATION_OPTIMIZATION",
+    "unchangedEvidence": {
+      "execution": "PASS_SCHEMA_COMPLETION_ONLY",
+      "adoptionDecision": "Root HOLD_UNAPPLIED; author overall INCONCLUSIVE",
+      "children": 28,
+      "CPUChildren": 24,
+      "GCChildren": 4,
+      "rawGCWindows": 32,
+      "allRawCellsRetained": true,
+      "allChildrenReaped": true,
+      "pinsStable": true,
+      "noCPURejectVeto": true,
+      "precisionFloorTicks": 128,
+      "quantumMs": 15.625,
+      "precisionInconclusiveProfiles": [
+        "carried-positive",
+        "carried-zero",
+        "extended-fallback"
+      ],
+      "profiles": {
+        "warm-count-update": {
+          "decision": "FIT",
+          "CPU": {
+            "baseline": {
+              "raw": [
+                4140.625,
+                4031.25,
+                3984.375
+              ],
+              "median": 4031.25,
+              "minimum": 3984.375,
+              "maximum": 4140.625,
+              "range": 156.25
+            },
+            "candidate": {
+              "raw": [
+                4156.25,
+                3875.0,
+                3906.25
+              ],
+              "median": 3906.25,
+              "minimum": 3875.0,
+              "maximum": 4156.25,
+              "range": 281.25
+            },
+            "medianDelta": -125.0,
+            "medianDeltaPercent": -3.100775193798455,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 4140.625,
+                "candidate": 4156.25,
+                "delta": 15.625,
+                "deltaPercent": 0.37735849056603765
+              },
+              {
+                "pair": 2,
+                "baseline": 4031.25,
+                "candidate": 3875.0,
+                "delta": -156.25,
+                "deltaPercent": -3.875968992248058
+              },
+              {
+                "pair": 3,
+                "baseline": 3984.375,
+                "candidate": 3906.25,
+                "delta": -78.125,
+                "deltaPercent": -1.9607843137254943
+              }
+            ],
+            "fasterPairs": 2,
+            "slowerPairs": 1,
+            "tiePairs": 0
+          },
+          "wall": {
+            "baseline": {
+              "raw": [
+                4250.0,
+                4077.999999979511,
+                4062.999999965541
+              ],
+              "median": 4077.999999979511,
+              "minimum": 4062.999999965541,
+              "maximum": 4250.0,
+              "range": 187.00000003445894
+            },
+            "candidate": {
+              "raw": [
+                4234.99999998603,
+                3922.000000020489,
+                3983.9999999967404
+              ],
+              "median": 3983.9999999967404,
+              "minimum": 3922.000000020489,
+              "maximum": 4234.99999998603,
+              "range": 312.99999996554106
+            },
+            "medianDelta": -93.99999998277053,
+            "medianDeltaPercent": -2.305051495420374,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 4250.0,
+                "candidate": 4234.99999998603,
+                "delta": -15.000000013969839,
+                "deltaPercent": -0.35294117679929293
+              },
+              {
+                "pair": 2,
+                "baseline": 4077.999999979511,
+                "candidate": 3922.000000020489,
+                "delta": -155.9999999590218,
+                "deltaPercent": -3.8254046091173555
+              },
+              {
+                "pair": 3,
+                "baseline": 4062.999999965541,
+                "candidate": 3983.9999999967404,
+                "delta": -78.9999999688007,
+                "deltaPercent": -1.944376076039156
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "unitsPerChild": 20000,
+          "meaningfullySlowerPairsBeyondOneTick": 0,
+          "positiveWithinOneTickWarnings": 1,
+          "medianCPUReject": false,
+          "meaningfulPairReject": false,
+          "allSixCellsMeetPrecisionFloor": true,
+          "precisionCells": [
+            {
+              "label": "cpu-51-warm-count-update-p1-baseline",
+              "CPUms": 4140.625,
+              "ticks": 265.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-warm-count-update-p2-baseline",
+              "CPUms": 4031.25,
+              "ticks": 258.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-warm-count-update-p3-baseline",
+              "CPUms": 3984.375,
+              "ticks": 255.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-warm-count-update-p1-candidate",
+              "CPUms": 4156.25,
+              "ticks": 266.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-warm-count-update-p2-candidate",
+              "CPUms": 3875.0,
+              "ticks": 248.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-warm-count-update-p3-candidate",
+              "CPUms": 3906.25,
+              "ticks": 250.0,
+              "meets128TickFloor": true
+            }
+          ]
+        },
+        "carried-positive": {
+          "decision": "INCONCLUSIVE",
+          "CPU": {
+            "baseline": {
+              "raw": [
+                2250.0,
+                2078.125,
+                2218.75
+              ],
+              "median": 2218.75,
+              "minimum": 2078.125,
+              "maximum": 2250.0,
+              "range": 171.875
+            },
+            "candidate": {
+              "raw": [
+                1078.125,
+                1140.625,
+                1093.75
+              ],
+              "median": 1093.75,
+              "minimum": 1078.125,
+              "maximum": 1140.625,
+              "range": 62.5
+            },
+            "medianDelta": -1125.0,
+            "medianDeltaPercent": -50.70422535211267,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 2250.0,
+                "candidate": 1078.125,
+                "delta": -1171.875,
+                "deltaPercent": -52.08333333333333
+              },
+              {
+                "pair": 2,
+                "baseline": 2078.125,
+                "candidate": 1140.625,
+                "delta": -937.5,
+                "deltaPercent": -45.11278195488722
+              },
+              {
+                "pair": 3,
+                "baseline": 2218.75,
+                "candidate": 1093.75,
+                "delta": -1125.0,
+                "deltaPercent": -50.70422535211267
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "wall": {
+            "baseline": {
+              "raw": [
+                2266.0000000032596,
+                2156.0000000172295,
+                2250.0
+              ],
+              "median": 2250.0,
+              "minimum": 2156.0000000172295,
+              "maximum": 2266.0000000032596,
+              "range": 109.99999998603016
+            },
+            "candidate": {
+              "raw": [
+                1109.9999999860302,
+                1141.0000000032596,
+                1093.9999999827705
+              ],
+              "median": 1109.9999999860302,
+              "minimum": 1093.9999999827705,
+              "maximum": 1141.0000000032596,
+              "range": 47.0000000204891
+            },
+            "medianDelta": -1140.0000000139698,
+            "medianDeltaPercent": -50.666666667287544,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 2266.0000000032596,
+                "candidate": 1109.9999999860302,
+                "delta": -1156.0000000172295,
+                "deltaPercent": -51.01500441374962
+              },
+              {
+                "pair": 2,
+                "baseline": 2156.0000000172295,
+                "candidate": 1141.0000000032596,
+                "delta": -1015.0000000139698,
+                "deltaPercent": -47.077922078193815
+              },
+              {
+                "pair": 3,
+                "baseline": 2250.0,
+                "candidate": 1093.9999999827705,
+                "delta": -1156.0000000172295,
+                "deltaPercent": -51.37777777854353
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "unitsPerChild": 5000000,
+          "meaningfullySlowerPairsBeyondOneTick": 0,
+          "positiveWithinOneTickWarnings": 0,
+          "medianCPUReject": false,
+          "meaningfulPairReject": false,
+          "allSixCellsMeetPrecisionFloor": false,
+          "precisionCells": [
+            {
+              "label": "cpu-51-carried-positive-p1-baseline",
+              "CPUms": 2250.0,
+              "ticks": 144.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-positive-p2-baseline",
+              "CPUms": 2078.125,
+              "ticks": 133.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-positive-p3-baseline",
+              "CPUms": 2218.75,
+              "ticks": 142.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-positive-p1-candidate",
+              "CPUms": 1078.125,
+              "ticks": 69.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-carried-positive-p2-candidate",
+              "CPUms": 1140.625,
+              "ticks": 73.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-carried-positive-p3-candidate",
+              "CPUms": 1093.75,
+              "ticks": 70.0,
+              "meets128TickFloor": false
+            }
+          ]
+        },
+        "carried-zero": {
+          "decision": "INCONCLUSIVE",
+          "CPU": {
+            "baseline": {
+              "raw": [
+                2218.75,
+                2062.5,
+                2140.625
+              ],
+              "median": 2140.625,
+              "minimum": 2062.5,
+              "maximum": 2218.75,
+              "range": 156.25
+            },
+            "candidate": {
+              "raw": [
+                1093.75,
+                1078.125,
+                1109.375
+              ],
+              "median": 1093.75,
+              "minimum": 1078.125,
+              "maximum": 1109.375,
+              "range": 31.25
+            },
+            "medianDelta": -1046.875,
+            "medianDeltaPercent": -48.90510948905109,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 2218.75,
+                "candidate": 1093.75,
+                "delta": -1125.0,
+                "deltaPercent": -50.70422535211267
+              },
+              {
+                "pair": 2,
+                "baseline": 2062.5,
+                "candidate": 1078.125,
+                "delta": -984.375,
+                "deltaPercent": -47.72727272727273
+              },
+              {
+                "pair": 3,
+                "baseline": 2140.625,
+                "candidate": 1109.375,
+                "delta": -1031.25,
+                "deltaPercent": -48.17518248175182
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "wall": {
+            "baseline": {
+              "raw": [
+                2266.0000000032596,
+                2108.9999999967404,
+                2202.999999979511
+              ],
+              "median": 2202.999999979511,
+              "minimum": 2108.9999999967404,
+              "maximum": 2266.0000000032596,
+              "range": 157.00000000651926
+            },
+            "candidate": {
+              "raw": [
+                1125.0,
+                1125.0,
+                1141.0000000032596
+              ],
+              "median": 1125.0,
+              "minimum": 1125.0,
+              "maximum": 1141.0000000032596,
+              "range": 16.00000000325963
+            },
+            "medianDelta": -1077.999999979511,
+            "medianDeltaPercent": -48.933272809329864,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 2266.0000000032596,
+                "candidate": 1125.0,
+                "delta": -1141.0000000032596,
+                "deltaPercent": -50.353045013310606
+              },
+              {
+                "pair": 2,
+                "baseline": 2108.9999999967404,
+                "candidate": 1125.0,
+                "delta": -983.9999999967404,
+                "deltaPercent": -46.65718349920631
+              },
+              {
+                "pair": 3,
+                "baseline": 2202.999999979511,
+                "candidate": 1141.0000000032596,
+                "delta": -1061.9999999762513,
+                "deltaPercent": -48.20699046691459
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "unitsPerChild": 5000000,
+          "meaningfullySlowerPairsBeyondOneTick": 0,
+          "positiveWithinOneTickWarnings": 0,
+          "medianCPUReject": false,
+          "meaningfulPairReject": false,
+          "allSixCellsMeetPrecisionFloor": false,
+          "precisionCells": [
+            {
+              "label": "cpu-51-carried-zero-p1-baseline",
+              "CPUms": 2218.75,
+              "ticks": 142.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-zero-p2-baseline",
+              "CPUms": 2062.5,
+              "ticks": 132.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-zero-p3-baseline",
+              "CPUms": 2140.625,
+              "ticks": 137.0,
+              "meets128TickFloor": true
+            },
+            {
+              "label": "cpu-51-carried-zero-p1-candidate",
+              "CPUms": 1093.75,
+              "ticks": 70.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-carried-zero-p2-candidate",
+              "CPUms": 1078.125,
+              "ticks": 69.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-carried-zero-p3-candidate",
+              "CPUms": 1109.375,
+              "ticks": 71.0,
+              "meets128TickFloor": false
+            }
+          ]
+        },
+        "extended-fallback": {
+          "decision": "INCONCLUSIVE",
+          "CPU": {
+            "baseline": {
+              "raw": [
+                1796.875,
+                1906.25,
+                1906.25
+              ],
+              "median": 1906.25,
+              "minimum": 1796.875,
+              "maximum": 1906.25,
+              "range": 109.375
+            },
+            "candidate": {
+              "raw": [
+                1296.875,
+                1359.375,
+                1328.125
+              ],
+              "median": 1328.125,
+              "minimum": 1296.875,
+              "maximum": 1359.375,
+              "range": 62.5
+            },
+            "medianDelta": -578.125,
+            "medianDeltaPercent": -30.327868852459016,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 1796.875,
+                "candidate": 1296.875,
+                "delta": -500.0,
+                "deltaPercent": -27.826086956521735
+              },
+              {
+                "pair": 2,
+                "baseline": 1906.25,
+                "candidate": 1359.375,
+                "delta": -546.875,
+                "deltaPercent": -28.688524590163933
+              },
+              {
+                "pair": 3,
+                "baseline": 1906.25,
+                "candidate": 1328.125,
+                "delta": -578.125,
+                "deltaPercent": -30.327868852459016
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "wall": {
+            "baseline": {
+              "raw": [
+                1858.9999999967404,
+                1936.9999999762513,
+                1938.0000000237487
+              ],
+              "median": 1936.9999999762513,
+              "minimum": 1858.9999999967404,
+              "maximum": 1938.0000000237487,
+              "range": 79.00000002700835
+            },
+            "candidate": {
+              "raw": [
+                1313.0000000237487,
+                1375.0,
+                1358.9999999967404
+              ],
+              "median": 1358.9999999967404,
+              "minimum": 1313.0000000237487,
+              "maximum": 1375.0,
+              "range": 61.999999976251274
+            },
+            "medianDelta": -577.9999999795109,
+            "medianDeltaPercent": -29.839958698327184,
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 1858.9999999967404,
+                "candidate": 1313.0000000237487,
+                "delta": -545.9999999729916,
+                "deltaPercent": -29.37062936922803
+              },
+              {
+                "pair": 2,
+                "baseline": 1936.9999999762513,
+                "candidate": 1375.0,
+                "delta": -561.9999999762513,
+                "deltaPercent": -29.013939080182848
+              },
+              {
+                "pair": 3,
+                "baseline": 1938.0000000237487,
+                "candidate": 1358.9999999967404,
+                "delta": -579.0000000270084,
+                "deltaPercent": -29.876160991739585
+              }
+            ],
+            "fasterPairs": 3,
+            "slowerPairs": 0,
+            "tiePairs": 0
+          },
+          "unitsPerChild": 1000000,
+          "meaningfullySlowerPairsBeyondOneTick": 0,
+          "positiveWithinOneTickWarnings": 0,
+          "medianCPUReject": false,
+          "meaningfulPairReject": false,
+          "allSixCellsMeetPrecisionFloor": false,
+          "precisionCells": [
+            {
+              "label": "cpu-51-extended-fallback-p1-baseline",
+              "CPUms": 1796.875,
+              "ticks": 115.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-extended-fallback-p2-baseline",
+              "CPUms": 1906.25,
+              "ticks": 122.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-extended-fallback-p3-baseline",
+              "CPUms": 1906.25,
+              "ticks": 122.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-extended-fallback-p1-candidate",
+              "CPUms": 1296.875,
+              "ticks": 83.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-extended-fallback-p2-candidate",
+              "CPUms": 1359.375,
+              "ticks": 87.0,
+              "meets128TickFloor": false
+            },
+            {
+              "label": "cpu-51-extended-fallback-p3-candidate",
+              "CPUms": 1328.125,
+              "ticks": 85.0,
+              "meets128TickFloor": false
+            }
+          ]
+        }
+      },
+      "GC": {
+        "51": {
+          "itemOnlyBoot": {
+            "baseline": {
+              "beforeBytes": 57257.0,
+              "afterBytes": 83143.0,
+              "deltaBytes": 25886.0
+            },
+            "candidate": {
+              "beforeBytes": 57258.0,
+              "afterBytes": 83269.0,
+              "deltaBytes": 26011.0
+            },
+            "candidateMinusBaselineRetainedDelta": 125.0
+          },
+          "profiles": {
+            "warm-count-update": {
+              "baseline": {
+                "unit": "two-public-episodes cycle",
+                "N0": 1730769.0,
+                "N4": 1820111.0,
+                "N8": 1907727.0,
+                "delta4": 89342.0,
+                "delta8": 176958.0,
+                "slopeBytesPerUnit": 21904.0,
+                "interceptBytes": 1726.0,
+                "rawWindows": [
+                  {
+                    "profile": "warm-count-update",
+                    "units": 4,
+                    "beforeBytes": 1730769.0,
+                    "afterBytes": 1820111.0,
+                    "deltaBytes": 89342.0,
+                    "checksum": "52",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "warm-count-update",
+                    "units": 8,
+                    "beforeBytes": 1730769.0,
+                    "afterBytes": 1907727.0,
+                    "deltaBytes": 176958.0,
+                    "checksum": "104",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "two-public-episodes cycle",
+                "N0": 1730981.0,
+                "N4": 1808547.0,
+                "N8": 1884387.0,
+                "delta4": 77566.0,
+                "delta8": 153406.0,
+                "slopeBytesPerUnit": 18960.0,
+                "interceptBytes": 1726.0,
+                "rawWindows": [
+                  {
+                    "profile": "warm-count-update",
+                    "units": 4,
+                    "beforeBytes": 1730981.0,
+                    "afterBytes": 1808547.0,
+                    "deltaBytes": 77566.0,
+                    "checksum": "52",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "warm-count-update",
+                    "units": 8,
+                    "beforeBytes": 1730981.0,
+                    "afterBytes": 1884387.0,
+                    "deltaBytes": 153406.0,
+                    "checksum": "104",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 212.0,
+              "slopeDeltaBytesPerUnit": -2944.0,
+              "slopeDeltaPercent": -13.440467494521545,
+              "interceptDeltaBytes": 0.0
+            },
+            "carried-positive": {
+              "baseline": {
+                "unit": "public call",
+                "N0": 90039.0,
+                "N4": 90775.0,
+                "N8": 91511.0,
+                "delta4": 736.0,
+                "delta8": 1472.0,
+                "slopeBytesPerUnit": 184.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-positive",
+                    "units": 4,
+                    "beforeBytes": 90039.0,
+                    "afterBytes": 90775.0,
+                    "deltaBytes": 736.0,
+                    "checksum": "28",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-positive",
+                    "units": 8,
+                    "beforeBytes": 90039.0,
+                    "afterBytes": 91511.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "56",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "public call",
+                "N0": 91689.0,
+                "N4": 91689.0,
+                "N8": 91689.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-positive",
+                    "units": 4,
+                    "beforeBytes": 91689.0,
+                    "afterBytes": 91689.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "28",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-positive",
+                    "units": 8,
+                    "beforeBytes": 91689.0,
+                    "afterBytes": 91689.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "56",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 1650.0,
+              "slopeDeltaBytesPerUnit": -184.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            },
+            "carried-zero": {
+              "baseline": {
+                "unit": "public call",
+                "N0": 90079.0,
+                "N4": 90815.0,
+                "N8": 91551.0,
+                "delta4": 736.0,
+                "delta8": 1472.0,
+                "slopeBytesPerUnit": 184.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-zero",
+                    "units": 4,
+                    "beforeBytes": 90079.0,
+                    "afterBytes": 90815.0,
+                    "deltaBytes": 736.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-zero",
+                    "units": 8,
+                    "beforeBytes": 90079.0,
+                    "afterBytes": 91551.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "public call",
+                "N0": 90205.0,
+                "N4": 90205.0,
+                "N8": 90205.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-zero",
+                    "units": 4,
+                    "beforeBytes": 90205.0,
+                    "afterBytes": 90205.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-zero",
+                    "units": 8,
+                    "beforeBytes": 90205.0,
+                    "afterBytes": 90205.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 126.0,
+              "slopeDeltaBytesPerUnit": -184.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            },
+            "extended-fallback": {
+              "baseline": {
+                "unit": "modern+legacy pair",
+                "N0": 110015.0,
+                "N4": 111487.0,
+                "N8": 112959.0,
+                "delta4": 1472.0,
+                "delta8": 2944.0,
+                "slopeBytesPerUnit": 368.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "extended-fallback",
+                    "units": 4,
+                    "beforeBytes": 110015.0,
+                    "afterBytes": 111487.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "60",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "extended-fallback",
+                    "units": 8,
+                    "beforeBytes": 110015.0,
+                    "afterBytes": 112959.0,
+                    "deltaBytes": 2944.0,
+                    "checksum": "120",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "modern+legacy pair",
+                "N0": 111777.0,
+                "N4": 111777.0,
+                "N8": 111777.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "extended-fallback",
+                    "units": 4,
+                    "beforeBytes": 111777.0,
+                    "afterBytes": 111777.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "60",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "extended-fallback",
+                    "units": 8,
+                    "beforeBytes": 111777.0,
+                    "afterBytes": 111777.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "120",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 1762.0,
+              "slopeDeltaBytesPerUnit": -368.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            }
+          },
+          "wallAdministrativeOnly": {
+            "baseline": 63.000000023748726,
+            "candidate": 62.000000034458935
+          }
+        },
+        "54": {
+          "itemOnlyBoot": {
+            "baseline": {
+              "beforeBytes": 48297.0,
+              "afterBytes": 69236.0,
+              "deltaBytes": 20939.0
+            },
+            "candidate": {
+              "beforeBytes": 48298.0,
+              "afterBytes": 69341.0,
+              "deltaBytes": 21043.0
+            },
+            "candidateMinusBaselineRetainedDelta": 104.0
+          },
+          "profiles": {
+            "warm-count-update": {
+              "baseline": {
+                "unit": "two-public-episodes cycle",
+                "N0": 985249.0,
+                "N4": 1055221.0,
+                "N8": 1122117.0,
+                "delta4": 69972.0,
+                "delta8": 136868.0,
+                "slopeBytesPerUnit": 16724.0,
+                "interceptBytes": 3076.0,
+                "rawWindows": [
+                  {
+                    "profile": "warm-count-update",
+                    "units": 4,
+                    "beforeBytes": 985249.0,
+                    "afterBytes": 1055221.0,
+                    "deltaBytes": 69972.0,
+                    "checksum": "52",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "warm-count-update",
+                    "units": 8,
+                    "beforeBytes": 985249.0,
+                    "afterBytes": 1122117.0,
+                    "deltaBytes": 136868.0,
+                    "checksum": "104",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "two-public-episodes cycle",
+                "N0": 985355.0,
+                "N4": 1043551.0,
+                "N8": 1098671.0,
+                "delta4": 58196.0,
+                "delta8": 113316.0,
+                "slopeBytesPerUnit": 13780.0,
+                "interceptBytes": 3076.0,
+                "rawWindows": [
+                  {
+                    "profile": "warm-count-update",
+                    "units": 4,
+                    "beforeBytes": 985355.0,
+                    "afterBytes": 1043551.0,
+                    "deltaBytes": 58196.0,
+                    "checksum": "52",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "warm-count-update",
+                    "units": 8,
+                    "beforeBytes": 985355.0,
+                    "afterBytes": 1098671.0,
+                    "deltaBytes": 113316.0,
+                    "checksum": "104",
+                    "finalN8Facts": [
+                      "profile=warm-count-update",
+                      "timers=0",
+                      "tokens=true",
+                      "item=2287",
+                      "tracked=2287",
+                      "latch=2287",
+                      "latchCount=13",
+                      "text=13",
+                      "forced=13",
+                      "live=true",
+                      "liveID=2287",
+                      "last=13",
+                      "source=syndicator",
+                      "ready=true",
+                      "bagGeneration=26",
+                      "bestGeneration=3",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 106.0,
+              "slopeDeltaBytesPerUnit": -2944.0,
+              "slopeDeltaPercent": -17.603444152116722,
+              "interceptDeltaBytes": 0.0
+            },
+            "carried-positive": {
+              "baseline": {
+                "unit": "public call",
+                "N0": 77140.0,
+                "N4": 77876.0,
+                "N8": 78612.0,
+                "delta4": 736.0,
+                "delta8": 1472.0,
+                "slopeBytesPerUnit": 184.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-positive",
+                    "units": 4,
+                    "beforeBytes": 77140.0,
+                    "afterBytes": 77876.0,
+                    "deltaBytes": 736.0,
+                    "checksum": "28",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-positive",
+                    "units": 8,
+                    "beforeBytes": 77140.0,
+                    "afterBytes": 78612.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "56",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "public call",
+                "N0": 77245.0,
+                "N4": 77245.0,
+                "N8": 77245.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-positive",
+                    "units": 4,
+                    "beforeBytes": 77245.0,
+                    "afterBytes": 77245.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "28",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-positive",
+                    "units": 8,
+                    "beforeBytes": 77245.0,
+                    "afterBytes": 77245.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "56",
+                    "finalN8Facts": [
+                      "profile=carried-positive",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 105.0,
+              "slopeDeltaBytesPerUnit": -184.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            },
+            "carried-zero": {
+              "baseline": {
+                "unit": "public call",
+                "N0": 77268.0,
+                "N4": 78004.0,
+                "N8": 78740.0,
+                "delta4": 736.0,
+                "delta8": 1472.0,
+                "slopeBytesPerUnit": 184.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-zero",
+                    "units": 4,
+                    "beforeBytes": 77268.0,
+                    "afterBytes": 78004.0,
+                    "deltaBytes": 736.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-zero",
+                    "units": 8,
+                    "beforeBytes": 77268.0,
+                    "afterBytes": 78740.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "public call",
+                "N0": 77373.0,
+                "N4": 77373.0,
+                "N8": 77373.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "carried-zero",
+                    "units": 4,
+                    "beforeBytes": 77373.0,
+                    "afterBytes": 77373.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "carried-zero",
+                    "units": 8,
+                    "beforeBytes": 77373.0,
+                    "afterBytes": 77373.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "0",
+                    "finalN8Facts": [
+                      "profile=carried-zero",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=0",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 105.0,
+              "slopeDeltaBytesPerUnit": -184.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            },
+            "extended-fallback": {
+              "baseline": {
+                "unit": "modern+legacy pair",
+                "N0": 93405.0,
+                "N4": 94877.0,
+                "N8": 96349.0,
+                "delta4": 1472.0,
+                "delta8": 2944.0,
+                "slopeBytesPerUnit": 368.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "extended-fallback",
+                    "units": 4,
+                    "beforeBytes": 93405.0,
+                    "afterBytes": 94877.0,
+                    "deltaBytes": 1472.0,
+                    "checksum": "60",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "extended-fallback",
+                    "units": 8,
+                    "beforeBytes": 93405.0,
+                    "afterBytes": 96349.0,
+                    "deltaBytes": 2944.0,
+                    "checksum": "120",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "candidate": {
+                "unit": "modern+legacy pair",
+                "N0": 93614.0,
+                "N4": 93614.0,
+                "N8": 93614.0,
+                "delta4": 0.0,
+                "delta8": 0.0,
+                "slopeBytesPerUnit": 0.0,
+                "interceptBytes": 0.0,
+                "rawWindows": [
+                  {
+                    "profile": "extended-fallback",
+                    "units": 4,
+                    "beforeBytes": 93614.0,
+                    "afterBytes": 93614.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "60",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  },
+                  {
+                    "profile": "extended-fallback",
+                    "units": 8,
+                    "beforeBytes": 93614.0,
+                    "afterBytes": 93614.0,
+                    "deltaBytes": 0.0,
+                    "checksum": "120",
+                    "finalN8Facts": [
+                      "profile=extended-fallback",
+                      "timers=0",
+                      "tokens=true",
+                      "item=1",
+                      "tracked=0",
+                      "latch=0",
+                      "latchCount=0",
+                      "text=7",
+                      "forced=0",
+                      "live=false",
+                      "liveID=0",
+                      "last=0",
+                      "source=direct",
+                      "ready=true",
+                      "bagGeneration=0",
+                      "bestGeneration=0",
+                      "pending=false"
+                    ]
+                  }
+                ]
+              },
+              "preparedN0RetainedDelta": 209.0,
+              "slopeDeltaBytesPerUnit": -368.0,
+              "slopeDeltaPercent": -100.0,
+              "interceptDeltaBytes": 0.0
+            }
+          },
+          "wallAdministrativeOnly": {
+            "baseline": 47.0000000204891,
+            "candidate": 47.0000000204891
+          }
+        }
+      },
+      "scope": [
+        "Normal-GC stock51 whole-child GetProcessTimes user+kernel CPU includes startup/owner compilation/setup/warm/work/checksum/output; wall separately. No exclusive CPU claim.",
+        "Warm primary profile passes all precision cells and both vetoes; three direct controls are precision-INCONCLUSIVE because one or both variants fall below the predeclared128tick floor despite apparent large wins. No adoption FIT or rejection inferred from a pooled result.",
+        "No valid sample removed, resampled, reweighted, smoothed or retuned; no further jobs. All positive one-tick warnings retained.",
+        "GC uses one local cumulativeN0/4/8 sequence per profile/VM/variant, not independent repeated trials; finalN8 facts explicitly accompany both raw windows. Raw intercepts and retained deltas are unmodified.",
+        "Warm slope difference2944B/cycle equals16 qualified publicCount entries times184B per direct call in this model; this supports the scoped constructor attribution, not a native whole-program memory bound.",
+        "Item-only boot retained difference includes whole owner code/environment plus two candidate static helpers; not an isolated object-size measurement. Prepared N0 differences are separately reported and must not all be attributed to those helpers.",
+        "ModelFontString values/direct schema marker fields are fixture-only; inherited visibility/Scheduler/partial EBS-Bars/provider-upstream gaps remain. No nativeFPS/adoption/pixel/taint claim.",
+        "No product owner modified; current Item stays baseline2be703. Root alone decides further disposition; this report authorizes no application."
+      ],
+      "rules": {
+        "minimumCPUTicksPerCell": 128,
+        "quantumMs": 15.625,
+        "medianCPURejectAbovePercent": 5,
+        "meaningfulPairDeltaGreaterThanMs": 15.625,
+        "meaningfulSlowerPairsRejectAtLeast": 2,
+        "oneTickLossesPublishedButNotPairVetoAlone": true
+      },
+      "rawSHA256": "3ec596f3d5a4e8d6352d09989520b36d21b61aea132574af9f33d4f4a923c1f6",
+      "reportSHA256": "7157c999c9ae2cc0b858c347b3a18f201a3eb7bbe47febda5359b512a39ee02d",
+      "analysisSHA256": "6ef40b3e11baff9fcf7051735f76c35ee5a9b93451f5b43eef2fd71e641abd78",
+      "resultSealSHA256": "fb995fe71312211c68933445220bf8d0e191ebe3d772145ae22f73eacf8dc9c5",
+      "noRetimingRetuningResampling": true,
+      "noNativeFPSOrSourceAdoptionClaim": true
+    },
+    "notRewrittenAsFIT": true,
+    "userApprovedPrecisionWaiver": false,
+    "noRetimingRetuningResampling": true,
+    "qualifiedWarmCPU": {
+      "baselineMedianMs": 4031.25,
+      "candidateMedianMs": 3906.25,
+      "medianPercent": -3.100775193798455,
+      "pair1WarningMs": 15.625,
+      "fasterPairs": 2,
+      "scope": "Qualified normalGC stock51 whole-child model, includes startup/warm/output; not native exclusiveCPU/FPS."
+    },
+    "memoryQualifier": "184B/direct modeled transient allocation avoided;2944B/warmcycle. Item-only retained boot+125B51/+104B54. Small cumulativeN4/8windows, not a native memory bound; preparedretention/intercepts remain in original analysis."
+  },
+  "checkpoint": {
+    "existingFourSourceCheckpointSHA256": "b830884bef1b529f3276aebc320785c581726bd61acb3cf10e6d718ae36a606c",
+    "fresh125MetadataSHA256": "fd1af84073412d26d96e93fe5e7966c8554f0e6acc18ea56a45104ab18f94da7",
+    "availablePaths": 125,
+    "privateValuesRead": false,
+    "settingsCopied": 0,
+    "freshHistoryVerifyTextSHA256": "10f1ce72ee2fd14d5b32455c1dca36884d0e89b73d8ed78326f20d5ce96b63f3",
+    "RootReportedHistorySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "scope": "Scoped four-source restore/history and metadata availability only, not a fresh fulluncommitted archive or settings content/atomic snapshot."
+  },
+  "currentOwnerFourDiskPins": {
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Item.lua": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableBest\\Scan.lua": "44e1d5a6b61e2a09d9aa1d1c69ed33aeaf18acb9e63795d146b59bef9cf8cd34",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableBest\\FluxConsumableBest.lua": "5997d2531f0d51e6aaf4ecf1b736b2156e0108992a7f69286c959afb8f645743",
+    "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\Engine\\ConsumableBind.lua": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4"
+  },
+  "priorP87Records": {
+    "baseline": {
+      "r1": "First51 FAIL only final whole-fixture aggregate Scan-count oracle;18records complete;54NOTRUN. Bothcontexts33Scan. Immutable firstfailure retained.",
+      "r2": "First51+54PASS277checks each/83pins/reaped; only final aggregate oracle/phase bookkeeping corrected; same18records/inputs/owners.",
+      "stablePartial10s": {
+        "noUI": {
+          "scan": 3,
+          "publications": 2,
+          "ConsiderItem": 7,
+          "Classify": 7
+        },
+        "actualFood": {
+          "scan": 25,
+          "publications": 25,
+          "ConsiderItem": 75,
+          "Classify": 100,
+          "all25reason": "getLadder",
+          "priorAttemptResets": 25
+        },
+        "stableOwned": 13,
+        "bagGeneration": 9,
+        "lateFiveSeconds": {
+          "noUI_publications": 0,
+          "Food_publications": 12
+        }
+      },
+      "stableBlankNoUI": "25newScan/cumulative26;3sameScan attempt8->nil->1 resets/refills; stable bag. Separate mechanism, not whole-fixture performance ratio.",
+      "metadataRecoveryBoundary": "NoUI rejected state invalidates on late metadata but no selected Food until real newbag pulse; actualFood pending path recovers117/count13 on metadata. Preserve both source facts; no blind pending-reason merge/cap fix."
+    },
+    "reasonProtocol": {
+      "status": "FIRST2_OFFLINE_PASS",
+      "casesEachVM": 21,
+      "checksEachVM": 2023,
+      "packagePins": 28,
+      "externalPins": 12,
+      "totalSourcePayloads": 96,
+      "nativeNormalPathPayloads": 93,
+      "allQualifiedFunctionsEachHelper": 28,
+      "printPages": [
+        6,
+        8
+      ],
+      "bodySHA256": "9a3eaa1b47317b3c5257463c9017ac86dc5b3b78d266de35afc5158a5c212312"
+    },
+    "native": {
+      "marker": "LHO-P87-NATIVE-REASONS-20261117",
+      "recordedUTC": "2026-11-17T05:46:27.938703+00:00",
+      "authority": "Root personally viewed all NEW stage/ARM/2completepages/CLEAN and formallyACKed each; screenshots retained.",
+      "runtime": {
+        "client": "Forever",
+        "version": "1.60.1",
+        "build": 70938,
+        "interface": 16001,
+        "pid": 46260,
+        "hwnd": 600248958,
+        "birth": 134392816726299937,
+        "providerPriorContext": "Syndicator",
+        "loadedSourceByteAdoption": "not established by this diagnostic"
+      },
+      "bodySHA256": "9a3eaa1b47317b3c5257463c9017ac86dc5b3b78d266de35afc5158a5c212312",
+      "sourceSealSHA256": "e6628f8b474c8d11a502e64d05ad1f106898c70e65d92eccbe2bc9adcdf35b99",
+      "unitExecutionSHA256": "db7655659deeafddaa5e19a023b487eacb6288e1723a3cf995654d80ad3fb2c5",
+      "arm": {
+        "execOK": true,
+        "topFail": false,
+        "returnedType": "table",
+        "active": true,
+        "ended": false,
+        "setupFailed": false,
+        "bothSlotsOurs": true
+      },
+      "end": {
+        "ended": true,
+        "active": false,
+        "reason": "expired",
+        "observationValid": true,
+        "invalid": false,
+        "setupFailed": false,
+        "requestedSeconds": 30,
+        "actualDuration": "UNMEASURED_NO_CLOCK"
+      },
+      "before": {
+        "generation": 65135,
+        "dirty": true,
+        "bagGeneration": 13,
+        "namespaceCurrent": true
+      },
+      "after": {
+        "generation": 65209,
+        "dirty": true,
+        "bagGeneration": 13,
+        "namespaceCurrent": true
+      },
+      "rows": [
+        {
+          "worker": "Best.RequestRecompute",
+          "entered": 1466,
+          "completed": 1466,
+          "uncompleted": 0,
+          "counts": {
+            "inv": 0,
+            "getBest": 874,
+            "getLadder": 518,
+            "getAllBest": 0,
+            "level": 0,
+            "regen": 0,
+            "pools": 0,
+            "zone": 0,
+            "loginRetryLate": 0,
+            "portalHoldEnd": 0,
+            "conjure": 0,
+            "buttonLogin": 0,
+            "vendor": 0,
+            "classifyPendingOnly": 0,
+            "classifyPending": 74,
+            "classifyResume": 0,
+            "orphanLoad": 0,
+            "itemData": 0,
+            "nilOpts": 0,
+            "nilReason": 0,
+            "secretOpts": 0,
+            "secretReason": 0,
+            "unknownString": 0,
+            "otherOpts": 0,
+            "otherReason": 0,
+            "diagnosticError": 0
+          }
+        },
+        {
+          "worker": "Best.Scan.Recompute",
+          "entered": 74,
+          "completed": 74,
+          "uncompleted": 0,
+          "counts": {
+            "inv": 0,
+            "getBest": 38,
+            "getLadder": 36,
+            "getAllBest": 0,
+            "level": 0,
+            "regen": 0,
+            "pools": 0,
+            "zone": 0,
+            "loginRetryLate": 0,
+            "portalHoldEnd": 0,
+            "conjure": 0,
+            "buttonLogin": 0,
+            "vendor": 0,
+            "classifyPendingOnly": 0,
+            "classifyPending": 0,
+            "classifyResume": 0,
+            "orphanLoad": 0,
+            "itemData": 0,
+            "nilOpts": 0,
+            "nilReason": 0,
+            "secretOpts": 0,
+            "secretReason": 0,
+            "unknownString": 0,
+            "otherOpts": 0,
+            "otherReason": 0,
+            "diagnosticError": 0
+          }
+        }
+      ],
+      "faults": {
+        "diagnostic": 0,
+        "cleanup": 0,
+        "setupErrorStatus": "none",
+        "diagnosticErrorStatus": "none",
+        "cleanupErrorStatus": "none"
+      },
+      "cleanup": {
+        "rootCurrentBeforeClean": true,
+        "namespaceCurrentBeforeClean": true,
+        "captureTimerPending": false,
+        "stageTimerPending": false,
+        "stageCancelFault": null,
+        "cleanupComplete": true,
+        "sameCommandStrictGuardBeforeRootClean": "both exact original workers/no wrappers/no timers/current roots/namespaces",
+        "NEW_CLEAN": [
+          true,
+          true,
+          true
+        ],
+        "bothCompletePagesPersonallyViewedAndFormallyACKed": true,
+        "ownedHoldArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\p87native-release-20261117a",
+        "holdsReleasedUTC": "2026-11-17T05:44:49.805155+00:00",
+        "INPUT_HALTEDRetained": true
+      },
+      "limits": [
+        "Passive counters, no timing/exact-duration/CPU/FPS or exclusive-work claim.",
+        "Raw first opts.reason only; proxy inherited reason is deliberately not resolved.",
+        "Private pending queues, attempts and classifier cache were not accessed natively.",
+        "Native getter reasons plus stable bag generation support the request-merging hypothesis; actual reset/cap behavior is separately established only by the full-owner replay.",
+        "No source adoption/all-client/provider-combination acceptance from this single existing client.",
+        "No gameplay actor, item move/buy/sell/delete, mail operation, profiler preference or product Lua edit."
+      ],
+      "references": [
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87stage20261117a-journal.json",
+          "sha256": "c6197fbe02f4d33ad46ab7635924a35bb2591574e17f7f6941405872292a3736"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87stage20261117a-submitted.png",
+          "sha256": "d3909cb609db836624f3e5a738e10a5b6f04a091e9425e62d083659cef6f4242"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87stage20261117a-submitted-capture.json",
+          "sha256": "eb638c5eaaaa99495a7bb2bc19d743f7ef3eb99f444c78a041c941809f909705"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87arm20261117a-journal.json",
+          "sha256": "570579e4ddaca9d48c8fe6689c621356331ce8e0c8041c9e2a6ba081059a95d2"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87arm20261117a-submitted.png",
+          "sha256": "5c137d7308e7a8395d882793904cb92970bf40d79c75eb94038869033d5fa934"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87arm20261117a-submitted-capture.json",
+          "sha256": "96d7d85bc89307881615c3dd934cf36dfd13bd1e07d9ae2ab49923eb7ce212ce"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87req20261117a-journal.json",
+          "sha256": "82dcbc8135d1c7f9102c1ff68f7e058e325d7a046a83974912b32e62acf023ad"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87req20261117a-submitted.png",
+          "sha256": "6da07175e8ab7cf2c1a6a90281b51d75d89e360bedb78dff9f92687578eea2c4"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87req20261117a-submitted-capture.json",
+          "sha256": "e7e5dfe053d30dcc795cefef0d3ac4368a7f5e9d5b3824224dcd4129252f7192"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87scan20261117a-journal.json",
+          "sha256": "9c36c8c5dc3db28643e42d026a4b729f41135a886a90b2ecad5e455b34441fc6"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87scan20261117a-submitted.png",
+          "sha256": "c30a40495acfe06ec9e315501bc8b3922f9c4fbcdca4b8cf4494fb86e631b79d"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87scan20261117a-submitted-capture.json",
+          "sha256": "acf42a2b2b7de5eccaeecf856f46793b7a0efb704fdca8ab49b9b932cd996dbf"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87clean20261117a-journal.json",
+          "sha256": "ee891da986ecaa83877b9da22f35927eec740a55741d86ebbf1ae8e07efd163e"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87clean20261117a-submitted.png",
+          "sha256": "1506e574907e6ca6592538ce18b79e2a7cd275e5ac03904346f9b3c3b4579d2c"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p87clean20261117a-submitted-capture.json",
+          "sha256": "17f8234aacb19462b6a951cef060c1e65834ca31b7c4cc68331d61671d887241"
+        }
+      ]
+    },
+    "nativeInterpretation": "All74 observed Scan reasons are getters:38getBest+36getLadder, alongside74classifyPending requests and stable bag13. This supports public request-merging lead; private retry/reset/cap behavior is desktop-only evidence, not directly observed natively. Requested30s has no actual duration/rate/CPU/FPS evidence.",
+    "preserveOriginalP87Validation": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\docs\\validation\\inventory-best-reasons-p87-2026-11-17.json"
+  },
+  "jumpC": {
+    "kind": "DATED_ROOT_REPORTED_C_RESTART",
+    "recordedUTC": "2026-11-17T06:09:21.132390+00:00",
+    "authority": "Root message and immutable launch/auth receipts; author did not inspect client/process/window or poll worker.",
+    "RootReport": {
+      "pid": 3864,
+      "launchedUTC": "2026-11-17T06:04:27.987054+00:00",
+      "reportedState": "running",
+      "firstInjectedPairDownUTC": "2026-11-17T06:04:30.327+00:00",
+      "firstInjectedPairUpUTC": "2026-11-17T06:04:30.383+00:00",
+      "movementObserved": false
+    },
+    "priorB": "PID5872 stopped05:57:36.775410 at Root heartbeat600s freshness assertion;68pairs,last05:57:10.704898. No maxduration inference.",
+    "unchangedGuards": "PCidle15,2advancingcue frames,chat/cast/craft/target/world/binding/identity,mutex/ownkeyup/restore,CANCEL/JUMPSTOP/Root600sheartbeat all retained. No live liveness claim.",
+    "launch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\active-20261117c\\launch.json",
+      "sha256": "5f29f2fc35385cc6199ea93bdff5eee042bb1f23a0dca1bbb4ebaa6f849eadbd"
+    },
+    "authorization": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\authorization-20261117c.json",
+      "sha256": "3e08b6c33ed73349c75c0f5d38ac6b4f96cb16157614de3b06b46736ca84f9fb"
+    },
+    "releasedReservationSHA256": "3de7f5ed5df9318f689657b257229c24b1d79ddf35b5f9b0eee868bfab9d8ee7",
+    "retainedHaltSHA256": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+    "agentActions": 0
+  },
+  "nativeAdoptionPending": true,
+  "priorRejections": "P83 remains REJECTED/UNAPPLIED; its costs and all frozen experiments unchanged.",
+  "nextScope": {
+    "priority": "Root freshclient/control/source guards before any optional loadedItem adoption/reload. Retry design stays source-only and must preserve late metadata,callbacks,current cadence.",
+    "wholeGoal": "Inventory/provider -> Notify -> Best/EBS/Bars burst work and broader client/provider/native acceptance remain ACTIVE/pending. No new gameplay,commerce,mail or item actions authorized by this documentation draft."
+  },
+  "references": {
+    "native": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-native-reason-evidence-20261117\\evidence.json",
+      "sha256": "c9105a038372378572a60fa0639c4bd6b64c2a1149140e4ee23fdb3d8764d8b9"
+    },
+    "nativeIndependent": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-native-reason-evidence-20261117\\independent-file-review.json",
+      "sha256": "199c4bbd00e01fff4c5bb4750118b0a4eeef8cdb57fe6a1eff5a6fe33c4390dc"
+    },
+    "nativeIndependentSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-native-reason-evidence-20261117\\independent-file-review-seal.json",
+      "sha256": "029218f92047f8a1f5e9efa784c951d7e019ea40e829bae5dfa16726c85e7aef"
+    },
+    "baselineR1Failure": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-best-retry-source-brief-20261117\\baseline-r1\\first-execution\\execution.json",
+      "sha256": "03eaaadca083c4c137a2c1fc7e58525d9071c04cd6d7684ada1a55d0bb38a0e3"
+    },
+    "baselineR1Analysis": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-best-retry-source-brief-20261117\\baseline-r1\\independent-first-failure-analysis\\report.json",
+      "sha256": "22b907063ddf525c8ff6d803ce1ae8ff10d1c97ef373f2f73c927a94303d8bf5"
+    },
+    "baselineR2First2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-best-retry-source-brief-20261117\\baseline-r2\\first-execution\\execution.json",
+      "sha256": "b3a23ead9923ff251689d79eb34fd7217e5ccafc5573f20f1f923a1410592286"
+    },
+    "baselineR2Report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-best-retry-source-brief-20261117\\baseline-r2\\final-baseline-report.json",
+      "sha256": "4c67ef039b69ea68010cefcf4663babaf9f968d03d08d69605aae89f9b5ee43a"
+    },
+    "baselineR2Seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-best-retry-source-brief-20261117\\baseline-r2\\final-baseline-seal.json",
+      "sha256": "70337a368ad47a73793b91c3db792faac2858bac7ae5962199e8c2112b03cc8c"
+    },
+    "reasonProtocolFirst2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-reason-observer-p87-native-r1\\protocol-proof\\first-execution\\execution.json",
+      "sha256": "db7655659deeafddaa5e19a023b487eacb6288e1723a3cf995654d80ad3fb2c5"
+    },
+    "reasonProtocolReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-reason-observer-p87-native-r1\\functional-report.json",
+      "sha256": "b7c57e5570bd89f0d2a68d951d2c95d9f0eb4ffb2e419481f15f4e8ea6b1b0f1"
+    },
+    "reasonProtocolSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-reason-observer-p87-native-r1\\functional-seal.json",
+      "sha256": "db80cfe4ffb6558232bfb4a565a08b9d91c30b1c57414f5c4318b0e4485ad2ec"
+    },
+    "reasonSourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-reason-observer-p87-native-r1\\independent-source-review-hook-api-contract-20261117T053607Z\\review.json",
+      "sha256": "33c32592c00041a26babc29a1b4ff52653f9190ce6e8ea4d6ccc6f9dea35febc"
+    },
+    "reasonMap": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-reason-observer-p87-native-r1\\packets.json",
+      "sha256": "052533fc3b929a54bc79c29b80cce197e36794fc5d6f194da76aa1cfc69f3c91"
+    },
+    "itemFunctional": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\functional-report.json",
+      "sha256": "26ed53beb4d5048b1fea448fdad5f084d538afddcf26137808d6bbd27756d33c"
+    },
+    "itemFunctionalSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\functional-result-seal.json",
+      "sha256": "edcbe177b359e963dc57f246b5ee99b7d3d14eb40da85dba73a2cb959b127a75"
+    },
+    "itemSourceContract": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\source-contract.json",
+      "sha256": "0190cc7b0e1f34ab9a6f18c35913f05fa52ae99a956b47379252254e53657295"
+    },
+    "itemQuietDeclaration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\declaration.json",
+      "sha256": "10230ea0974170f3cf1dfcfff004a36a68bc5f0604366e732148a9ce8c1fdb01"
+    },
+    "itemQuietPreparation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\preparation.json",
+      "sha256": "2752281276ce7b48dc3d6af7502d8dae893d4a1a0568d1adfdad7f16943a241e"
+    },
+    "itemCostControllerPeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\independent-controller-source-review-addon-combo\\review.json",
+      "sha256": "c1c05bb13b2b471119913b3c563151e8186012bc2ca42220433efff0567b488c"
+    },
+    "fourSourceCheckpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\adoption-readiness-checkpoint-20261117T053141Z\\report.json",
+      "sha256": "b830884bef1b529f3276aebc320785c581726bd61acb3cf10e6d718ae36a606c"
+    },
+    "itemQuietAdmission": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\quiet-admission.json",
+      "sha256": "8147573fc04afa407e83fa72b67aac5aaa3fff72125df4f72136298a24906c23"
+    },
+    "itemCostRaw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\fixed-first-batch\\raw.json",
+      "sha256": "3ec596f3d5a4e8d6352d09989520b36d21b61aea132574af9f33d4f4a923c1f6"
+    },
+    "itemCostReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\cost-report.json",
+      "sha256": "7157c999c9ae2cc0b858c347b3a18f201a3eb7bbe47febda5359b512a39ee02d"
+    },
+    "itemCostAnalysis": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\cost-analysis.json",
+      "sha256": "6ef40b3e11baff9fcf7051735f76c35ee5a9b93451f5b43eef2fd71e641abd78"
+    },
+    "itemCostSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\candidate-r1\\quiet-r1\\cost-result-seal.json",
+      "sha256": "fb995fe71312211c68933445220bf8d0e191ebe3d772145ae22f73eacf8dc9c5"
+    },
+    "jumpCLaunch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\active-20261117c\\launch.json",
+      "sha256": "5f29f2fc35385cc6199ea93bdff5eee042bb1f23a0dca1bbb4ebaa6f849eadbd"
+    },
+    "jumpCAuthorization": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\authorization-20261117c.json",
+      "sha256": "3e08b6c33ed73349c75c0f5d38ac6b4f96cb16157614de3b06b46736ca84f9fb"
+    },
+    "jumpCDatedReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-continuity-draft-r2\\jump-C-dated-report.json",
+      "sha256": "d891662771784fe7a52f80926ab89389dc8017925023e6550495ce32444a36bb"
+    },
+    "priorDraftReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p87-continuity-draft-r1\\draft-receipt.json",
+      "sha256": "6a92931540af37529bd9394410e554b00b9db1ad92f0e3cef01ea04bec152f1c"
+    },
+    "itemSourceAdoptionDecision": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\decision-before-apply.json",
+      "sha256": "ca46c2fe847f89af68e6ad9606aa267209c74982c84311fd51ee4b729cb4caf2"
+    },
+    "itemSourceApplication": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\application.json",
+      "sha256": "f75fb482e94b1a4f1fd8e8de4a64d85381feedf13ec0852a90f711e73747721f"
+    },
+    "itemRestoreBefore": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\Item-before.lua",
+      "sha256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4"
+    },
+    "itemAppliedAfter": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\Item-after.lua",
+      "sha256": "870e9aa33a29540dd000cc153f54a457f8535ff1bc6bfdb6b9523dd91a4b8666"
+    },
+    "itemDurableInstalled": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\durable-installed.json",
+      "sha256": "f9b541aab04f2dfcd48108c51938cf8da600d589c0e9b3fe6c53f6570ab55cd3"
+    },
+    "itemDurableCurrentSource": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\item_count_dynamic_contract.lua",
+      "sha256": "530bcb4bd6b99730003b23539df351c1c5d9cbbc52d41a982146cbe9cc2eafb4"
+    },
+    "installedRegressionReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\installed-first-regressions\\report.json",
+      "sha256": "e2c7a858a50d885176bfde90e134423e2b6d33f7dea08f023b79d9ad48ad4499"
+    },
+    "fresh125SettingsMetadata": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\settings-stat-only.json",
+      "sha256": "fd1af84073412d26d96e93fe5e7966c8554f0e6acc18ea56a45104ab18f94da7"
+    },
+    "freshHistoryVerifyText": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-helper-adoption-20261117\\history-verify.txt",
+      "sha256": "10f1ce72ee2fd14d5b32455c1dca36884d0e89b73d8ed78326f20d5ce96b63f3"
+    },
+    "priorP87AppliedValidation": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\docs\\validation\\inventory-best-reasons-p87-2026-11-17.json",
+      "sha256": "ee6c10339d8d55a5faa9eab65075eb782a431d1a767b4e293b318fa9a0360c44"
+    }
+  }
+}

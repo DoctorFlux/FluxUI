@@ -1,0 +1,213 @@
+{
+  "changeId": "PORTRAIT-BACKDROP-GAP-20261117",
+  "capturedAtUTC": "2026-11-17T11:10:41.921044+00:00",
+  "userClarification": "Gap is inside the player portrait backdrop, not the class-icon junction.",
+  "scope": "One authored unit of flat fill beneath the left straight inner border shadow; both styles and ordinary full portrait constructors.",
+  "sourceBeforeLF": {
+    "Core/BorderJunctions.lua": "ea6003d5b307492778e75a80d559ff92da199be1b9633c188300d18d3839511b",
+    "FluxBorder.lua": "935a480783d90d7a97ec2ef777614ae51ac9bae20f828c9bdd9818a90d24564e",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "8be85de202d30ca93e0faf912eb2e69fa85429e7292cad23b9a7c9a4592f8475",
+    "tests/border_prepared_icons.lua": "02e6b6f0ec6e3752bf3b3f03c6d28ffa197176665b0c022ad4b7e3ac216467f6",
+    "tests/unit_class_border_canvas.lua": "cb6cda12e1e8a319ff51fd80187fdc6796fbfa14c6df89ba3578c1ed387f0bf5",
+    "tests/unit_outer_geometry.lua": "319977ee63e5c0426a3001f0f09b22f133a808c5188e9b9665de86c97b395a62",
+    "docs/COMBAT_COLLABORATION_BORDER_REPLY.md": "c81c9870fdc1609c86d12ba05226dd98453f5650027d1de04f3dfd0662a744cd"
+  },
+  "currentSources": {
+    "FluxBorder.lua": {
+      "lfSHA256": "a813956fbc303a75cbeeaa49a8f2db66c82b97b621811783c5c7a43dd92120f6",
+      "rawSHA256": "a813956fbc303a75cbeeaa49a8f2db66c82b97b621811783c5c7a43dd92120f6"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "lfSHA256": "784c5f2c89532168c51160690f9d377a5005a011b494b497606e709e3bc198de",
+      "rawSHA256": "1f15485b580da40b2c3fbe11c0f13999bd9d6d18cac6828f3f6ccaa9d84f6ced"
+    },
+    "tests/unit_portrait_backdrop_gap.lua": {
+      "lfSHA256": "4ba9076be72f96680a14de85d677eafda3f816cb8a3544854426aae0a62630c0",
+      "rawSHA256": "4ba9076be72f96680a14de85d677eafda3f816cb8a3544854426aae0a62630c0"
+    }
+  },
+  "coreUnchangedLF": "ea6003d5b307492778e75a80d559ff92da199be1b9633c188300d18d3839511b",
+  "checkpoint": {
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\icon-junction-gap-checkpoint-20261117.json",
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\icon-junction-gap-before-20261117T105306Z\\source.zip",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "headCovered": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settings": "Eight existing settings files: metadata only; no private contents copied."
+  },
+  "sourceDiff": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-backdrop-gap-source.patch",
+  "implementation": {
+    "owner": "Full non-mini portrait constructor calls Border.PreparePortraitBackdrop once before initial color paint.",
+    "geometry": "One plain texture in existing BackgroundFrame, x=-1..0 relative to its left edge; five-unit top/bottom exclusion inside that existing inset frame. Main background bounds, border art/corners, model, parent/child layout and protected roots are unchanged.",
+    "sampling": "Both adjacent flat fills use guarded continuous pixel/texel sampling to retain their shared boundary at fractional scales.",
+    "paint": "Existing backdrop color, native restricted RGB, alpha and show/hide methods keep both textures synchronized. Native RGB goes directly to native sinks without comparison/formatting/arithmetic.",
+    "lifecycle": "Prepare is idempotent and combat-guarded. No new frame/mask/observer/event/ticker/update driver/controller focus/input route. The new plain fill is not registered in the border mesh; mini3/3/5/5 profiles are excluded.",
+    "priority": "Existing normal/default/class/custom/combat/dispel policy remains; no Core builder change or invalidation request added."
+  },
+  "validation": {
+    "gateReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-backdrop-gap-gate-20261117.json",
+    "focusedScriptsPassed": 17,
+    "gateResults": [
+      {
+        "path": "tests/unit_portrait_backdrop_gap.lua",
+        "exitCode": 0,
+        "stdout": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nPortrait backdrop gap: 26208 checks /288 actual constructors PASS; both styles/atlas-file paths/mirrors/scales; corner exclusions; color/alpha/private sinks; no warm geometry/resources; native pixels pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_border_fit.lua",
+        "exitCode": 0,
+        "stdout": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_final_paint.lua",
+        "exitCode": 0,
+        "stdout": "Unit portrait final paint: 3566 checks PASS;100 stages; both styles; current material/classification; ordinary-first output parity; no redundant normal-to-red field repaint; private native opacity; actual friendly dispel; native pixels/taint/FPS pending.\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_combat_restore.lua",
+        "exitCode": 0,
+        "stdout": "Portrait combat restore: 88 actual tint/backdrop/constructor layer checks; no combat geometry writes; native pixels/taint pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_portrait_overlay_attachment.lua",
+        "exitCode": 0,
+        "stdout": "Portrait overlay attachment: 235179 checks; 216 actual Border/Core/Shared helper scenes; native pixels/taint/FPS pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/mini_unit_border_fit.lua",
+        "exitCode": 0,
+        "stdout": "mini_unit_border_fit: 3634 passed; 24 scenes; 464 raw-art cap samples; 25904 raw contour samples\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/mini_unit_colors.lua",
+        "exitCode": 0,
+        "stdout": "Mini unit colors: 11148 checks PASS; 12 real Border/shared/party color scenes; both styles/all accents; owner availability; independent ToT PC/NPC; party setting and appearance; existing combat/dispel priorities. Native pixels/taint/FPS pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/focus_target_colors.lua",
+        "exitCode": 0,
+        "stdout": "Focus target colors: 29560 checks; five client models; focused-unit class/NPC/opaque colors; combat restoration and all accents; native pixels pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/tot_npc_secret_colors.lua",
+        "exitCode": 0,
+        "stdout": "ToT NPC/restricted colors: 288 checks PASS /12 scenes; default NPC material/all accents, opaque name/class/reaction native sinks; no native taint/pixels/FPS claim\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/border_native_unit_rgb.lua",
+        "exitCode": 0,
+        "stdout": "Native unit RGB: 240 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exitCode": 0,
+        "stdout": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/target_chrome_shell.lua",
+        "exitCode": 0,
+        "stdout": "Shared target chrome: 2420 checks PASS; actual target/ToT initializers; original geometry/backdrop ownership; both styles/all accents; portrait and no-target lifecycle; native pixels pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_class_border_canvas.lua",
+        "exitCode": 0,
+        "stdout": "Class border canvas: 24 checks PASS; actual factory; atlas/file/Forever/other clients; two styles; canonical width16; hidden registration\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/border_prepared_icons.lua",
+        "exitCode": 0,
+        "stdout": "Prepared class borders: 576 checks PASS; actual shared slot producer and divider paint; first/repeated player target/focus; modern/legacy API shapes; both styles/alignments/mirrors/scales; zero transition reads/solves/resources; no hidden spec duplicate; combat guard; real settings update\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_outer_geometry.lua",
+        "exitCode": 0,
+        "stdout": "PASS unit outer geometry 79592 checks 640 production-stage shapes; baseline steady 30 writes -> candidate0 +30 native reads per ten calls; native performance and pixels pending\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_outer_lifecycle.lua",
+        "exitCode": 0,
+        "stdout": "PASS actual full Outer completion lifecycle 23 checks; paint/aura helpers modeled; no native combat-safety claim\n",
+        "stderr": ""
+      },
+      {
+        "path": "tests/unit_name_fit_lifecycle.lua",
+        "exitCode": 0,
+        "stdout": "Name/ToT fit lifecycle: 681 checks; five client models; native text/taint pending\n",
+        "stderr": ""
+      }
+    ],
+    "finalRegressionReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-backdrop-gap-final-regression-20261117.json",
+    "finalRegression": {
+      "utc": "2026-11-17T11:08:25.914528+00:00",
+      "testRawSHA256": "4ba9076be72f96680a14de85d677eafda3f816cb8a3544854426aae0a62630c0",
+      "results": [
+        {
+          "label": "current",
+          "exitCode": 0,
+          "stdout": "Portrait border fit: 30816 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nPortrait backdrop gap: 26496 checks /288 actual constructors PASS; both styles/atlas-file paths/mirrors/scales; corner exclusions; color/alpha/private sinks; no warm geometry/resources; native pixels pending\n",
+          "stderr": ""
+        },
+        {
+          "label": "archived",
+          "exitCode": 1,
+          "stdout": "",
+          "stderr": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/unit_portrait_backdrop_gap.lua:6: straight portrait interior has backdrop coverage beneath the inner border shadow\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/unit_portrait_backdrop_gap.lua:6: in upvalue 'check'\n\ttests/unit_portrait_backdrop_gap.lua:23: in global 'InspectPortraitBackdrop'\n\tactual-portrait-fit-plus-backdrop-gap:88: in main chunk\n\ttests/unit_portrait_backdrop_gap.lua:67: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "label": "compile",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "negativeReproducesUncoveredInterior": true,
+      "sourceStable": true
+    },
+    "qualification": "Runtime files unchanged after17-script gate; new regression strengthened to check actual interior coverage and legacy private color sink, then rerun/compiled against current and archived Shared.",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-backdrop-gap-upvalues.json",
+    "compiler": {
+      "files": 2,
+      "prototypes": 448,
+      "maximum": 20,
+      "failures": []
+    },
+    "modelScope": "288 actual constructor/partition/portrait/outer/tint scenes across both styles, atlas/file capability shapes, Forever/other flags, mirrors, alignments and fractional scales.26496 new checks plus30816 existing constructor/geometry assertions. No warm geometry writes or new draw resources in fixture.",
+    "negative": "Archived Shared leaves the tested straight interior point uncovered; current fills it. Old constructor-field assertion retained in first receipt; final negative is coverage-based.",
+    "preservation": "Mini-fit, owner/class/NPC Default, native/private paint, portrait combat restoration, target shell, prepared class icons, names and outer bounds regressions pass.",
+    "native": "NOT RUN: exact loaded adoption; screenshot pixel comparison; combat taint; GPU/FPS and CPU timing. Source/model results do not prove live pixel fit or lag removal.",
+    "documentation": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\portrait-backdrop-gap-doc-validation-20261117.json",
+      "generated": "PASS;1247sources;625reachable",
+      "audit": "Only the same10 other-owner source-fingerprint drifts remain;not a full-repository validation pass",
+      "otherOwnerDrift": [
+        "Bars/SpellRank.lua",
+        "Core/API/Item.lua",
+        "ExtraButtonSystem/Engine/Events.lua",
+        "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "Inventory/FluxConsumableBest/Scan.lua",
+        "Inventory/FluxConsumableClassify.lua",
+        "Inventory/FluxItemClass.lua",
+        "Inventory/Init.lua",
+        "Inventory/Professions.lua",
+        "Inventory/Restock/FluxRestock_Inv.lua"
+      ]
+    },
+    "ownedDiffCheck": "git diff --check PASS;main preserved;line-ending notices only"
+  },
+  "coordination": "Other performance chat retains Mario-only combined gate/native ownership; no own native input or lease; foreign ROOT-JUMP-F and CF62/CF64/CF65/profiler state untouched.",
+  "finalFreezeUTC": "2026-11-17T11:14:36.604981+00:00"
+}

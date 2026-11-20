@@ -830,6 +830,7 @@ local function ApplyVerticalColSeparatorTexture(vsep)
         vsep:SetWidth(COL_SEP_ATLAS_WIDTH)
         vsep:SetHeight(barH)
     end
+    if FluxBorder and FluxBorder.RegisterPiece then FluxBorder:RegisterPiece(vsep, "Left") end
 end
 
 --- Integrated Info uses a narrow worst-case column; remaining width goes to gold/XP/rep (no equal 1/n slice).
@@ -2800,6 +2801,7 @@ function UpdateLayout()
                 sep:SetHeight(17)
             end
 
+            if FluxBorder and FluxBorder.RegisterPiece then FluxBorder:RegisterPiece(sep, "Top") end
             sep:SetVertexColor(sepR, sepG, sepB, 1)
 
             currentY = currentY - BAR_SPACING

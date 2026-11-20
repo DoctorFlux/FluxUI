@@ -1,0 +1,575 @@
+{
+  "changeId": "RAID-PAINT-BATCH-R118-20261119",
+  "capturedAtUTC": "2026-11-19T15:48:53.565281+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "d60db29bb6c99cf9f9b583c6a0d70059c391974a8faad8e0d9646c855642ba39",
+      "afterRaw": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20"
+    },
+    "RaidFrame/FluxRaidAuras.lua": {
+      "beforeRaw": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "afterRaw": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "9ea3e9c2cf67f7d3213def95e2b891c3225637a2cac220ae143fe58d30cc5596",
+      "afterRaw": "360903113ae411416b40691fa6ad0713f5536edaa0bee10d63b6a178bc00c6d8"
+    },
+    "tests/raid_healer_auras.lua": {
+      "beforeRaw": "1d13913b3ffb4b0547e6cdef71ef1af37aff03795912eaabf8f185de6bd6a160",
+      "afterRaw": "f3883eb83ad778ed3619f21c4435cba66cb0e6d4153268b219e35316cc278dc7"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\source.zip",
+    "sourceZipSHA256": "72d7217202a714ab3d0a2208d3544b778581a1364a68a5aae1ab32f1295be270",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Replay a full repaint of five or forty bound compact party or raid cells on five client models. Compare class, status, visibility and aura paint work. Repeat with changed settings, live or opaque unit class updates, missing name regions, and a disabled raid module.",
+  "work": {
+    "memberCounts": {
+      "live": {
+        "5": {
+          "enabled": [
+            5,
+            1
+          ],
+          "name": [
+            5,
+            1
+          ],
+          "cvar": [
+            0,
+            0
+          ],
+          "class": [
+            10,
+            5
+          ],
+          "shown": [
+            50,
+            45
+          ],
+          "dispel": [
+            5,
+            5
+          ]
+        },
+        "40": {
+          "enabled": [
+            40,
+            1
+          ],
+          "name": [
+            40,
+            1
+          ],
+          "cvar": [
+            0,
+            0
+          ],
+          "class": [
+            80,
+            40
+          ],
+          "shown": [
+            400,
+            360
+          ],
+          "dispel": [
+            40,
+            40
+          ]
+        }
+      },
+      "forever": {
+        "5": {
+          "enabled": [
+            5,
+            1
+          ],
+          "name": [
+            5,
+            1
+          ],
+          "cvar": [
+            0,
+            0
+          ],
+          "class": [
+            10,
+            5
+          ],
+          "shown": [
+            50,
+            45
+          ],
+          "dispel": [
+            5,
+            5
+          ]
+        },
+        "40": {
+          "enabled": [
+            40,
+            1
+          ],
+          "name": [
+            40,
+            1
+          ],
+          "cvar": [
+            0,
+            0
+          ],
+          "class": [
+            80,
+            40
+          ],
+          "shown": [
+            400,
+            360
+          ],
+          "dispel": [
+            40,
+            40
+          ]
+        }
+      },
+      "classic": {
+        "5": {
+          "enabled": [
+            5,
+            1
+          ],
+          "name": [
+            5,
+            1
+          ],
+          "cvar": [
+            5,
+            1
+          ],
+          "class": [
+            10,
+            5
+          ],
+          "shown": [
+            50,
+            45
+          ],
+          "dispel": [
+            10,
+            5
+          ]
+        },
+        "40": {
+          "enabled": [
+            40,
+            1
+          ],
+          "name": [
+            40,
+            1
+          ],
+          "cvar": [
+            40,
+            1
+          ],
+          "class": [
+            80,
+            40
+          ],
+          "shown": [
+            400,
+            360
+          ],
+          "dispel": [
+            80,
+            40
+          ]
+        }
+      },
+      "classic_era": {
+        "5": {
+          "enabled": [
+            5,
+            1
+          ],
+          "name": [
+            5,
+            1
+          ],
+          "cvar": [
+            5,
+            1
+          ],
+          "class": [
+            10,
+            5
+          ],
+          "shown": [
+            50,
+            45
+          ],
+          "dispel": [
+            10,
+            5
+          ]
+        },
+        "40": {
+          "enabled": [
+            40,
+            1
+          ],
+          "name": [
+            40,
+            1
+          ],
+          "cvar": [
+            40,
+            1
+          ],
+          "class": [
+            80,
+            40
+          ],
+          "shown": [
+            400,
+            360
+          ],
+          "dispel": [
+            80,
+            40
+          ]
+        }
+      },
+      "classic_anniversary": {
+        "5": {
+          "enabled": [
+            5,
+            1
+          ],
+          "name": [
+            5,
+            1
+          ],
+          "cvar": [
+            5,
+            1
+          ],
+          "class": [
+            10,
+            5
+          ],
+          "shown": [
+            50,
+            45
+          ],
+          "dispel": [
+            10,
+            5
+          ]
+        },
+        "40": {
+          "enabled": [
+            40,
+            1
+          ],
+          "name": [
+            40,
+            1
+          ],
+          "cvar": [
+            40,
+            1
+          ],
+          "class": [
+            80,
+            40
+          ],
+          "shown": [
+            400,
+            360
+          ],
+          "dispel": [
+            80,
+            40
+          ]
+        }
+      }
+    },
+    "shownScope": "Counts setter calls on nine role, power, marker and highlight regions. The removed calls were duplicate role-icon hides in the role and name painters.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\compare.lua": "fca6a6b8dfc83b2739a801112db79d34fca581a9bb1e0a6d368f6d789e9d23f3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\matched.txt": "4163716b64b9e63b02a63bf0529e29b8274d247ad96cc1490d41cbde9fddc740",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\work.txt": "46a3676e2fd0745328379044eb4b3b63410b9a590e5383b04bc50c33d35e6bb1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\visibility-read-rejected.lua": "871a352777b611bd1fafc1516a3e32885da629951a68c1c50df833fc3f3c5668",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\visibility-read-rejected.txt": "acd575bddb91ab8b448970f66bb914bd4fd005debaa5fede64faea3890290f25",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\visibility-read-rejected-proof.json": "98e4b29d748d112964c59b286fb812b824b05818f6173b07494c7abbcc5ff1d5"
+    }
+  },
+  "rejectedVariant": "Replacing nine native visibility writers with per-region reads increased all five desktop medians. The final implementation eliminates the duplicate role hide and retains the ordinary writer path.",
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6, seven alternating exact-source pairs for each modeled client, 240 warm 40-member repaints each. The model instruments public widget calls and models aura dispatch. The timing excludes native widget rendering and aura scans.",
+    "results": {
+      "live": {
+        "medians": [
+          192.0,
+          196.0
+        ],
+        "samples": [
+          [
+            192.0,
+            210.0
+          ],
+          [
+            197.0,
+            200.0
+          ],
+          [
+            195.0,
+            196.0
+          ],
+          [
+            198.0,
+            194.0
+          ],
+          [
+            190.0,
+            192.0
+          ],
+          [
+            183.0,
+            196.0
+          ],
+          [
+            187.0,
+            207.0
+          ]
+        ]
+      },
+      "forever": {
+        "medians": [
+          477.0,
+          462.0
+        ],
+        "samples": [
+          [
+            196.0,
+            400.0
+          ],
+          [
+            517.0,
+            463.0
+          ],
+          [
+            483.0,
+            462.0
+          ],
+          [
+            444.0,
+            454.0
+          ],
+          [
+            477.0,
+            446.0
+          ],
+          [
+            491.0,
+            487.0
+          ],
+          [
+            427.0,
+            519.0
+          ]
+        ]
+      },
+      "classic": {
+        "medians": [
+          504.0,
+          492.0
+        ],
+        "samples": [
+          [
+            536.0,
+            587.0
+          ],
+          [
+            504.0,
+            492.0
+          ],
+          [
+            506.0,
+            487.0
+          ],
+          [
+            479.0,
+            501.0
+          ],
+          [
+            511.0,
+            480.0
+          ],
+          [
+            465.0,
+            482.0
+          ],
+          [
+            463.0,
+            528.0
+          ]
+        ]
+      },
+      "classic_era": {
+        "medians": [
+          539.0,
+          547.0
+        ],
+        "samples": [
+          [
+            512.0,
+            683.0
+          ],
+          [
+            497.0,
+            547.0
+          ],
+          [
+            474.0,
+            504.0
+          ],
+          [
+            539.0,
+            475.0
+          ],
+          [
+            547.0,
+            531.0
+          ],
+          [
+            593.0,
+            811.0
+          ],
+          [
+            615.0,
+            692.0
+          ]
+        ]
+      },
+      "classic_anniversary": {
+        "medians": [
+          492.0,
+          515.0
+        ],
+        "samples": [
+          [
+            571.0,
+            530.0
+          ],
+          [
+            458.0,
+            517.0
+          ],
+          [
+            501.0,
+            515.0
+          ],
+          [
+            481.0,
+            519.0
+          ],
+          [
+            492.0,
+            470.0
+          ],
+          [
+            488.0,
+            488.0
+          ],
+          [
+            505.0,
+            498.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "class lookups remain live for each member and shared only between sinks in one paint",
+    "settings are read again on the next dispatch and standalone events preserve their readers",
+    "native aura owners preserve separate cleanup of legacy dispel overlays",
+    "readable aura renderer reports success only after its one dispel pass",
+    "existing secure roster, lockdown and secret-value handling routes"
+  ],
+  "verification": {
+    "focusedPassed": 76,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-paint-batch-before-20261119-163523\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_catalogue_allocation.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidAuras.lua": {
+        "sha256": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidAuras.lua": {
+        "sha256": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidAuras.lua": {
+        "sha256": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidAuras.lua": {
+        "sha256": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "64792c47f6c4e72142c9e6be28a9af830249bbee44d129f761ad9ecc8133fc20",
+        "matches": true
+      },
+      "RaidFrame/FluxRaidAuras.lua": {
+        "sha256": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual group transitions, held-action timing, seam pixels and combat taint. No client inputs or profiling changes."
+}

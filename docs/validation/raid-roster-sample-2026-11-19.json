@@ -1,0 +1,810 @@
+{
+  "changeId": "RAID-ROSTER-SAMPLE-R140-20261119",
+  "capturedAtUTC": "2026-11-19T20:45:29.969267+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeRaw": "1e42cf68fecac02a15f4e9ed10ba4ded74f74dd8cd823b53b8373f322c1fddac",
+      "afterRaw": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338"
+    },
+    "tests/raid_roster_layout_work.lua": {
+      "beforeRaw": "25046671d6f324990be6d64e4328a674da919079e2579465d4194cfdd00b39b1",
+      "afterRaw": "1a17c3f9b0427cbbd2deb9376ad895e6a5050cc5d8ccae6a7f2671697264f423"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\source.zip",
+    "sourceZipSHA256": "e48c459383cd7a3cb2f5b0809473dc605352fc1c0cb019ad720d1f7e4ea3287a",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating archive/candidate pairs for each modeled client. Execute the production legacy visibility and column placement in three scenarios. A 40-member roster puts four tank or assist roles in its last group. A second run turns off the MT/MA column. The third uses a five-member party.",
+    "samples": {
+      "mt": [
+        {
+          "client": "live",
+          "pair": "1",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "live",
+          "pair": "2",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "live",
+          "pair": "3",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "live",
+          "pair": "4",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/12.000"
+        },
+        {
+          "client": "live",
+          "pair": "5",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/12.000"
+        },
+        {
+          "client": "forever",
+          "pair": "1",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "forever",
+          "pair": "2",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/12.000"
+        },
+        {
+          "client": "forever",
+          "pair": "3",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "forever",
+          "pair": "4",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/11.000"
+        },
+        {
+          "client": "forever",
+          "pair": "5",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "1",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "2",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "3",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "4",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/10.000"
+        },
+        {
+          "client": "classic",
+          "pair": "5",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "1",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "2",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "3",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "4",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "5",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "1",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/11.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "2",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "3",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "4",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "5",
+          "rows": "194/40",
+          "player": "117/1",
+          "ms": "12.000/11.000"
+        }
+      ],
+      "noMT": [
+        {
+          "client": "live",
+          "pair": "1",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "live",
+          "pair": "2",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "live",
+          "pair": "3",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/11.000"
+        },
+        {
+          "client": "live",
+          "pair": "4",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "live",
+          "pair": "5",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "forever",
+          "pair": "1",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/12.000"
+        },
+        {
+          "client": "forever",
+          "pair": "2",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "forever",
+          "pair": "3",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/9.000"
+        },
+        {
+          "client": "forever",
+          "pair": "4",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/9.000"
+        },
+        {
+          "client": "forever",
+          "pair": "5",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "15.000/10.000"
+        },
+        {
+          "client": "classic",
+          "pair": "1",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "11.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "2",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "11.000/9.000"
+        },
+        {
+          "client": "classic",
+          "pair": "3",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic",
+          "pair": "4",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "11.000/11.000"
+        },
+        {
+          "client": "classic",
+          "pair": "5",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "13.000/11.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "1",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "2",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "3",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "4",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "5",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/9.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "1",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "9.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "2",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "3",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "11.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "4",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "5",
+          "rows": "114/40",
+          "player": "77/1",
+          "ms": "10.000/10.000"
+        }
+      ],
+      "party": [
+        {
+          "client": "live",
+          "pair": "1",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "client": "live",
+          "pair": "2",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "live",
+          "pair": "3",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/7.000"
+        },
+        {
+          "client": "live",
+          "pair": "4",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/6.000"
+        },
+        {
+          "client": "live",
+          "pair": "5",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/5.000"
+        },
+        {
+          "client": "forever",
+          "pair": "1",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/5.000"
+        },
+        {
+          "client": "forever",
+          "pair": "2",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/6.000"
+        },
+        {
+          "client": "forever",
+          "pair": "3",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "forever",
+          "pair": "4",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/7.000"
+        },
+        {
+          "client": "forever",
+          "pair": "5",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "8.000/6.000"
+        },
+        {
+          "client": "classic",
+          "pair": "1",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "7.000/6.000"
+        },
+        {
+          "client": "classic",
+          "pair": "2",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic",
+          "pair": "3",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic",
+          "pair": "4",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "client": "classic",
+          "pair": "5",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/6.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "1",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/6.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "2",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "3",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "5.000/5.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "4",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic_era",
+          "pair": "5",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "1",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "2",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "7.000/6.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "3",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "4",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "client": "classic_anniversary",
+          "pair": "5",
+          "rows": "0/0",
+          "player": "0/0",
+          "ms": "6.000/6.000"
+        }
+      ]
+    },
+    "desktopTiming60RefreshesMs": {
+      "mt": {
+        "live": [
+          {
+            "min": 12.0,
+            "median": 12.0,
+            "max": 13.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          }
+        ],
+        "forever": [
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 12.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          }
+        ],
+        "classic": [
+          {
+            "min": 12.0,
+            "median": 13.0,
+            "max": 13.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 11.0
+          }
+        ],
+        "classic_era": [
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 13.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 11.0
+          }
+        ],
+        "classic_anniversary": [
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 12.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 11.0
+          }
+        ]
+      },
+      "noMT": {
+        "live": [
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 11.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 11.0
+          }
+        ],
+        "forever": [
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 15.0
+          },
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 12.0
+          }
+        ],
+        "classic": [
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 13.0
+          },
+          {
+            "min": 9.0,
+            "median": 11.0,
+            "max": 11.0
+          }
+        ],
+        "classic_era": [
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 10.0
+          },
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 10.0
+          }
+        ],
+        "classic_anniversary": [
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 11.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 10.0
+          }
+        ]
+      },
+      "party": {
+        "live": [
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 7.0
+          }
+        ],
+        "forever": [
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 8.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 7.0
+          }
+        ],
+        "classic": [
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 7.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          }
+        ],
+        "classic_era": [
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          }
+        ],
+        "classic_anniversary": [
+          {
+            "min": 6.0,
+            "median": 6.0,
+            "max": 7.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          }
+        ]
+      }
+    },
+    "focusedLayoutRegression": "Party roster prepared delegation: 9715 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.",
+    "guards": "Roster row and player-slot counts cover one full reconciliation. Each desktop CPU sample runs sixty already populated reconciliations with count recording disabled. Native secure runtime and frame-time require live verification.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\compare.lua": "d61573a631bb79c64895614b18a4a6788694fbe60b1c4ad03c716bda7ce7b12d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\matched.txt": "13ea1ae40d8a0224a595ee1a081b81a604f4434da5dc0d2bd40060efe5d56030",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\roster-regression.txt": "8b95dc23c8f87782d777d080a9530773fe111f0213063340aeafce2f0664c81b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\unshared-sample.lua": "edc98dcb9b2be019390173cc523f2a3be27f0166ffdc163dab252e4d3c1814ca",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\controls.txt": "277593ff74c26e459722a590a5047bbc8ea721afb5d438da96ae472a89e2f758"
+    }
+  },
+  "preservation": [
+    "Subgroup and unit availability retain the compatibility path for occupied columns. Tank and assist layout uses known existence or the player slot.",
+    "The roster count honors native party assignments and readable roster roles. An unreadable role or subgroup stays out of assignment or column decisions.",
+    "Group visibility and legacy header geometry share one current roster sample. The prepared native roster path uses its own secure state and combat deferral.",
+    "Matched visible points, alpha, slot assignments, paint and existing secure execution paths."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected unshared-sample.lua by legacy roster samples each slot once for columns and MT visibility"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-sample-before-20261119-213743\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidLayout.lua": {
+        "sha256": "c0bd400545ee58b94fbd06aff472276b1d51cd87e56e5da36abac863e6709338",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

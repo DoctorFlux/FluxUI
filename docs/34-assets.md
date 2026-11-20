@@ -10,7 +10,7 @@ FluxUI uses bundled textures/fonts, native Blizzard atlases and embedded game-da
 | [Media/ActionBar](../Media/ActionBar) | Action-button interrupt/target masks. |
 | [Media/UnitFrames/Retail](../Media/UnitFrames/Retail) | Nine standalone Retail bar-fill TGAs used by Forever's Flux unit-frame display paths. Live continues to use its native atlas paths. |
 | [Texture/ActionBarVFX](../Texture/ActionBarVFX) | Cast/channel fills, inner glows, completion masks, interrupt/target art and placeholder texture. Consumed by the button-effect engine's capability-specific fallbacks. |
-| [Texture/borders](../Texture/borders) | Blizzard-style, glow and lightspark border resources used by border/overlay presentation. |
+| [Texture/borders](../Texture/borders) | Blizzard-style/glow/lightspark resources plus 20 normalized Forever-gold, accent-mask and type-1 thickness canvases restored to the pre-connection checkpoint. [Extraction and attribution](../Texture/borders/README.md). |
 | [Texture](../Texture) | Raid shield, bag portrait, battlefield-map, merchant, mouse/keyboard glyphs and other shared UI art. Several glyphs have BLP/PNG/TGA/legacy variants; presence is not proof every variant is loaded. |
 | [Quest kill/loot icons](../Texture/QuestIcons-NOTICE.txt) | Two unchanged 2,564-byte default Questie BLPs supplied locally for [nameplate progress](19-nameplates.md#quest-kill-and-loot-progress--9-november-2026), including when Questie is absent. Source notice retained; no redistribution license asserted or publication performed. |
 | [Binding media](../Binding/UI/Media/Media.lua) | Binding editor media paths and JetBrains Mono font. See provenance for embedded component attribution. |

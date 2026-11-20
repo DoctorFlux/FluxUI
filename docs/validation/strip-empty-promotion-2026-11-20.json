@@ -1,0 +1,207 @@
+{
+  "changeId": "STRIP-EMPTY-PROMOTION-R171-20261120",
+  "capturedAtUTC": "2026-11-20T02:37:18.713806+00:00",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+      "afterRaw": "3fa725920ecebdbddd639172f6f7958692b37d95ff71296df9db8b588df5ef9e",
+      "afterNormalized": "3fa725920ecebdbddd639172f6f7958692b37d95ff71296df9db8b588df5ef9e"
+    },
+    "tests/strip_slot_sampling.lua": {
+      "beforeRaw": "d336d0a8fc8c86637edafa2ea87688e76ed54bfb2bf9d42ba635fa1a85ef88f3",
+      "afterRaw": "a2f751a99167d4cfccf9dec9b37fce90fdde92d207b17a7d0c9e7efe8e25da98",
+      "afterNormalized": "a2f751a99167d4cfccf9dec9b37fce90fdde92d207b17a7d0c9e7efe8e25da98"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-empty-promotion-before-20261120T033219801\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual coalesced action-strip drag layout Lua with modeled native widgets. Four layouts cover sparse and full strips, top and bottom minis, normal pages, shapeshift and possession.",
+    "order": [
+      "before",
+      "after"
+    ],
+    "countsPerEightCrossings": {
+      "sparse-top": {
+        "visualActionReads": [
+          476,
+          424
+        ],
+        "visualPageReads": [
+          4,
+          4
+        ],
+        "mappingActionReads": [
+          248,
+          176
+        ],
+        "unusedMainPageReads": [
+          40,
+          0
+        ]
+      },
+      "sparse-shapeshift": {
+        "visualActionReads": [
+          476,
+          424
+        ],
+        "visualPageReads": [
+          4,
+          4
+        ],
+        "mappingActionReads": [
+          248,
+          176
+        ],
+        "unusedMainPageReads": [
+          40,
+          0
+        ]
+      },
+      "full-top": {
+        "visualActionReads": [
+          448,
+          396
+        ],
+        "visualPageReads": [
+          4,
+          4
+        ],
+        "mappingActionReads": [
+          248,
+          176
+        ],
+        "unusedMainPageReads": [
+          40,
+          0
+        ]
+      },
+      "full-possession": {
+        "visualActionReads": [
+          476,
+          424
+        ],
+        "visualPageReads": [
+          4,
+          4
+        ],
+        "mappingActionReads": [
+          248,
+          176
+        ],
+        "unusedMainPageReads": [
+          40,
+          0
+        ]
+      }
+    },
+    "rawArchiveRoute": [
+      "STRIP_SLOT_READS sparse-top crossings=8 action=476/424 page=4/4",
+      "STRIP_PROMOTION_READS sparse-top mapping=248/176 emptyMain=40/0",
+      "STRIP_SLOT_READS sparse-shapeshift crossings=8 action=476/424 page=4/4",
+      "STRIP_PROMOTION_READS sparse-shapeshift mapping=248/176 emptyMain=40/0",
+      "STRIP_SLOT_READS full-top crossings=8 action=448/396 page=4/4",
+      "STRIP_PROMOTION_READS full-top mapping=248/176 emptyMain=40/0",
+      "STRIP_SLOT_READS full-possession crossings=8 action=476/424 page=4/4",
+      "STRIP_PROMOTION_READS full-possession mapping=248/176 emptyMain=40/0",
+      "Strip sampling replay passes sparse/full bars, current pages, overlays, synchronous page changes and combat deferral."
+    ],
+    "clock": {
+      "scope": "Seven alternating-order pairs per case using Lua os.clock. Each sample contains 300 crossings cycling spell, item and macro. Native geometry and the border adapter are modeled.",
+      "milliseconds": {
+        "sparse-top": [
+          [
+            56.0,
+            55.0
+          ],
+          [
+            57.0,
+            58.0
+          ],
+          [
+            57.0,
+            58.0
+          ],
+          [
+            60.0,
+            58.0
+          ],
+          [
+            57.0,
+            56.0
+          ],
+          [
+            56.0,
+            55.0
+          ],
+          [
+            60.0,
+            57.0
+          ]
+        ],
+        "full-bottom": [
+          [
+            57.0,
+            54.0
+          ],
+          [
+            56.0,
+            53.0
+          ],
+          [
+            59.0,
+            58.0
+          ],
+          [
+            55.0,
+            55.0
+          ],
+          [
+            56.0,
+            54.0
+          ],
+          [
+            58.0,
+            58.0
+          ],
+          [
+            60.0,
+            59.0
+          ]
+        ]
+      },
+      "medians": {
+        "sparse-top": [
+          57.0,
+          57.0
+        ],
+        "full-bottom": [
+          57.0,
+          55.0
+        ]
+      },
+      "scriptSHA256": "470bcee20900a891608366184e3ad9c8468ae95c33666d051363f64c3c0525d9"
+    }
+  },
+  "parity": "Mapped actions, flags, face points and dependent/envelope/border calls match the archived source. Late page changes and real slot or overlay changes still reach visual layout. Lockdown defers protected layout.",
+  "verification": {
+    "focusedPassed": 43,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-empty-promotion-before-20261120T033219801\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-empty-promotion-before-20261120T033219801\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-empty-promotion-before-20261120T033219801\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native held-action crossing and rapid drop timing, seam pixels and combat taint remain pending."
+}

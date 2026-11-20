@@ -304,21 +304,63 @@ end
 -- TRINKET GRID CREATION
 -- ============================================================================
 
---- Reposition trinket flyout arrows after squeeze or when unified border reparents.
-function TM.RefreshArrowLayersOnBorder()
-    local Flyout = TMFlyout()
-    if Flyout and Flyout.RefreshArrowLayers then
-        Flyout.RefreshArrowLayers()
+-- Compare fresh native geometry only. Unknown/private getters retain the
+-- original writer; no desired-state cache can hide a later native change.
+local function SqueezeNativeValue(frame, method, ...)
+    local getter = frame[method]
+    if (issecretvalue and issecretvalue(getter)) or type(getter) ~= "function" then return false end
+    local ok, a, b, c, d, e = pcall(getter, frame, ...)
+    if not ok or (issecretvalue and (issecretvalue(a) or issecretvalue(b)
+        or issecretvalue(c) or issecretvalue(d) or issecretvalue(e))) then return false end
+    return true, a, b, c, d, e
+end
+
+local function SqueezeSetWidth(frame, width)
+    local ok, current = SqueezeNativeValue(frame, "GetWidth")
+    if (issecretvalue and issecretvalue(width)) or not ok or current ~= width then frame:SetWidth(width) end
+end
+
+local function SqueezeSetHeight(frame, height)
+    local ok, current = SqueezeNativeValue(frame, "GetHeight")
+    if (issecretvalue and issecretvalue(height)) or not ok or current ~= height then frame:SetHeight(height) end
+end
+
+local function SqueezeSetSize(frame, width, height)
+    local ok, w, h = SqueezeNativeValue(frame, "GetSize")
+    if (issecretvalue and (issecretvalue(width) or issecretvalue(height)))
+        or not ok or w ~= width or h ~= height then frame:SetSize(width, height) end
+end
+
+local function SqueezeSetScale(frame, scale)
+    local ok, current = SqueezeNativeValue(frame, "GetScale")
+    if (issecretvalue and issecretvalue(scale)) or not ok or current ~= scale then frame:SetScale(scale) end
+end
+
+local function SqueezeSetPoint(frame, point, relative, relativePoint, x, y)
+    local ok, count = SqueezeNativeValue(frame, "GetNumPoints")
+    if ok and count == 1 then
+        local public, p, parent, rp, ox, oy = SqueezeNativeValue(frame, "GetPoint", 1)
+        if public and p == point and parent == relative and rp == relativePoint and ox == x and oy == y then return end
     end
+    frame:ClearAllPoints()
+    frame:SetPoint(point, relative, relativePoint, x, y)
+end
+
+--- Reposition trinket flyout arrows after squeeze or when unified border reparents.
+function TM.RefreshArrowLayersOnBorder(refreshedArrowLayers)
+    local Flyout = TMFlyout()
+    local refresh = Flyout and Flyout.RefreshArrowLayers
+    -- The envelope already visited the shared engine in this refresh. Keep
+    -- the local slot points, including arrows outside the engine's scan.
+    if refresh and refresh ~= refreshedArrowLayers then refresh() end
     for i = 0, 1 do
-        local w = TM.SlotWidget(i)
-        local arrow = EngineArrow(w)
-        if arrow and w then
+        local widget = TM.SlotWidget(i)
+        local arrow = EngineArrow(widget)
+        if arrow then
             if Flyout and Flyout.Arrow and Flyout.Arrow.ConfigureLayer then
-                Flyout.Arrow.ConfigureLayer(arrow, w)
+                Flyout.Arrow.ConfigureLayer(arrow, widget, true)
             end
-            arrow:ClearAllPoints()
-            arrow:SetPoint("TOP", w, "TOP", 0, 6)
+            SqueezeSetPoint(arrow, "TOP", widget, "TOP", 0, 6)
         end
     end
 end
@@ -341,9 +383,9 @@ function TM.ApplyHorizontalSqueeze()
     if not height and TM.Frame.GetHeight then
         height = TM.Frame:GetHeight()
     end
-    TM.Frame:SetWidth(slotW)
+    SqueezeSetWidth(TM.Frame, slotW)
     if height then
-        TM.Frame:SetHeight(height)
+        SqueezeSetHeight(TM.Frame, height)
     end
     local mult = TM.BUTTON_SLOT_SIZE_MULTIPLIER or 1.2
     local sp = TM.Spacing or 0
@@ -358,7 +400,7 @@ function TM.ApplyHorizontalSqueeze()
         local btn = TM.Buttons and TM.Buttons[i]
         local sf = btn and (btn.SlotFrame or btn.slotFrame)
         if sf then
-            sf:SetSize(slotW, baseSlot)
+            SqueezeSetSize(sf, slotW, baseSlot)
             if sf.SetClipsChildren then
                 -- Pre-DF Quickslot2 ring overhangs the slot; clipping hides it.
                 local clip = xF < 1
@@ -386,16 +428,15 @@ function TM.ApplyHorizontalSqueeze()
             else
                 yOff = (1 - i) * (baseSlot + sp)
             end
-            sf:ClearAllPoints()
-            sf:SetPoint("BOTTOMLEFT", TM.Frame, "BOTTOMLEFT", 0, yOff)
+            SqueezeSetPoint(sf, "BOTTOMLEFT", TM.Frame, "BOTTOMLEFT", 0, yOff)
         end
         if btn and btn.Widget then
             local faceW = btnSize * xF
             if btn.Widget.SetSize then
-                btn.Widget:SetSize(faceW, btnSize)
+                SqueezeSetSize(btn.Widget, faceW, btnSize)
             end
             if btn.Widget.SetScale then
-                btn.Widget:SetScale(mult)
+                SqueezeSetScale(btn.Widget, mult)
             end
             local Style = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Style
             if Style and Style.RefreshSqueezeChrome then
@@ -404,8 +445,8 @@ function TM.ApplyHorizontalSqueeze()
                 FluxButtonUtil:SyncFluxButtonLayerSizesToWidget(btn)
             end
         elseif btn and btn.SetScale then
-            btn:SetSize(btnSize * xF, btnSize)
-            btn:SetScale(mult)
+            SqueezeSetSize(btn, btnSize * xF, btnSize)
+            SqueezeSetScale(btn, mult)
             btn._fluxScaleApplied = nil
             if FluxActionBarAnisoHelpers and FluxActionBarAnisoHelpers.ScaleButtonTextures then
                 FluxActionBarAnisoHelpers.ScaleButtonTextures(btn, btnSize * xF, btnSize)
@@ -418,21 +459,19 @@ function TM.ApplyHorizontalSqueeze()
                         -- Forever is 1.x; never use majorVersion >= 10 here.
                         local isDF = FLUX_API and FLUX_API.isPostDF
                         if isDF then
-                            nt:SetSize(lw * (46 / 44), lh * (45 / 44))
+                        SqueezeSetSize(nt, lw * (46 / 44), lh * (45 / 44))
                         else
-                            nt:SetSize(lw * 1.65, lh * 1.65)
+                        SqueezeSetSize(nt, lw * 1.65, lh * 1.65)
                         end
-                        nt:ClearAllPoints()
-                        nt:SetPoint("CENTER", btn, "CENTER", 0, 0)
+                        SqueezeSetPoint(nt, "CENTER", btn, "CENTER", 0, 0)
                     end
                 end
                 local br = btn.Border or (btn.GetName and _G[btn:GetName() .. "Border"])
                 if br and br.SetSize then
                     local w, h = btn:GetWidth(), btn:GetHeight()
                     if w and h then
-                        br:SetSize(w, h)
-                        br:ClearAllPoints()
-                        br:SetPoint("CENTER", btn, "CENTER", 0, 0)
+                        SqueezeSetSize(br, w, h)
+                        SqueezeSetPoint(br, "CENTER", btn, "CENTER", 0, 0)
                     end
                 end
                 local cd = btn.Cooldown or btn.cooldown
@@ -443,7 +482,7 @@ function TM.ApplyHorizontalSqueeze()
         end
     end
     if TM.ScaleHost and TM.ScaleHost:IsObjectType("Frame") and TM.Frame then
-        TM.ScaleHost:SetSize(math.max(1, TM.Frame:GetWidth()), math.max(1, TM.Frame:GetHeight()))
+        SqueezeSetSize(TM.ScaleHost, math.max(1, TM.Frame:GetWidth()), math.max(1, TM.Frame:GetHeight()))
     end
     if FluxBorder and TM.Frame then
         FluxBorder:ApplyTo(TM.Frame, 0, -4, 0, -4)
@@ -1427,6 +1466,14 @@ function TM.RestoreTrinketBorderColor(button)
     if not button then
         return
     end
+    local EBS = FluxEBS()
+    local style = EBS and EBS.Style
+    local refresh = style and (style.RefreshAccent or style.ApplySlotRing)
+    if button.Widget and refresh then
+        refresh(button, "class")
+        TM.HideEquippedGreenBorder(button)
+        return
+    end
     local r, g, b = GetThemedTrinketVertexRGB()
     if button.WNormalTexture and FluxButtonUtil and FluxButtonUtil.ApplyButtonStyle then
         FluxButtonUtil:ApplyButtonStyle(button, button.categoryScope or "class")
@@ -1692,6 +1739,7 @@ function TM.ScanBagsForTrinkets()
 
     -- Prefer Flux.Inventory bag snapshots (Syndicator or builtin).
     local uniqueItems = nil
+    local uniqueSlots
     local Flux = ns and ns.Flux
     local byBag = Flux and Flux.Inventory and Flux.Inventory.snapshots
         and Flux.Inventory.snapshots.bags and Flux.Inventory.snapshots.bags.byBag
@@ -1708,7 +1756,11 @@ function TM.ScanBagsForTrinkets()
                     for slot, rec in pairs(slots) do
                         local itemID = rec and rec.itemID
                         if itemID then
-                            uniqueItems[itemID] = { bag = bag, slot = slot, count = rec.count, link = rec.link }
+                            -- Keep record reads; only bag/slot are consumed below.
+                            local count, link = rec.count, rec.link
+                            uniqueSlots = uniqueSlots or {}
+                            uniqueItems[itemID] = bag
+                            uniqueSlots[itemID] = slot
                         end
                     end
                 end
@@ -1729,7 +1781,13 @@ function TM.ScanBagsForTrinkets()
         for itemID, rec in pairs(uniqueItems) do
             local equipSlot = GetTrinketEquipSlot(itemID)
             if equipSlot == "INVTYPE_TRINKET" then
-                trinkets[#trinkets + 1] = { id = itemID, bag = rec.bag, slot = rec.slot }
+                local bag, slot
+                if uniqueSlots then
+                    bag, slot = rec, uniqueSlots[itemID]
+                else
+                    bag, slot = rec.bag, rec.slot
+                end
+                trinkets[#trinkets + 1] = { id = itemID, bag = bag, slot = slot }
             end
         end
         table.sort(trinkets, function(a, b)
@@ -2136,11 +2194,22 @@ function TM.UpdateKeybindings(skipBagScan)
                 text = key
             end
         end
-        if text ~= "" then
+        local Flux = (ns and ns.Flux) or _G.Flux
+        local Hotkey = Flux and Flux.Hotkey
+        if Hotkey and Hotkey.SetText then
+            Hotkey.SetText(hotKey, text)
+            if Hotkey.SetRange then
+                local outOfRange = text ~= "" and button._outOfRange == true
+                    and button.ActionType and button.ActionValue ~= nil
+                    and not (button.PlaceholderTexture or button.IgnoreUsabilityVisual)
+                Hotkey.SetRange(hotKey, outOfRange)
+            end
+        else
             hotKey:SetText(text)
+        end
+        if text ~= "" then
             hotKey:Show()
         else
-            hotKey:SetText("")
             hotKey:Hide()
         end
     end
@@ -2508,13 +2577,16 @@ function FluxTrinketMenu_ApplyAppearanceAccent()
         local c = GetClassColor()
         r, g, b = c.r, c.g, c.b
     end
-    -- Slot 13/14: FluxButton uses WNormalTexture + ApplyButtonStyle; legacy ActionButton uses NormalTexture.
+    -- The live EBS owner resolves the widget's current normal texture and paints
+    -- ring/backplate together, just like action/combat/noncombat grid buttons.
+    local EBS = FluxEBS()
     if TM.Buttons then
         for _, button in pairs(TM.Buttons) do
-            if button and button.WNormalTexture and FluxButtonUtil and FluxButtonUtil.ApplyButtonStyle then
-                FluxButtonUtil:ApplyButtonStyle(button, "class")
-            elseif button and button.NormalTexture then
-                button.NormalTexture:SetVertexColor(r, g, b, 1)
+            if button and button.Widget and EBS and EBS.Style and EBS.Style.Apply then
+                EBS.Style.Apply(button, "class")
+                TM.HideEquippedGreenBorder(button)
+            else
+                TM.RestoreTrinketBorderColor(button)
             end
         end
     end

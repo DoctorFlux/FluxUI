@@ -82,7 +82,7 @@ E.model.hidden=false;E.model._fluxBlizzardFallback=nil;E.SetPortraitUnit=functio
 assert(load(slice(shared,"    local success, assigned = pcall(SetPortraitUnit, model, unit)","    -- Store GUID"),"@portrait-create-failed-binding","t",E))()
 check(E.model.hidden and E.model._fluxBlizzardFallback,"failed SetUnit compatibility attempts select the native fallback")
 E.BindPortraitUnit=function()end;E.ApplyPortraitCamera=function()end
-local assign=assert(load(slice(shared,"local function SetPortraitUnit(portrait, unit)","function UF.CreatePortrait" ).."\nreturn SetPortraitUnit","@portrait-bind-result","t",E))()
+local assign=assert(load(slice(shared,shared:find("local SetPortraitUnit\n",1,true)and"local SetPortraitUnit\n"or"local function SetPortraitUnit(portrait, unit)","function UF.CreatePortrait" ).."\nreturn SetPortraitUnit","@portrait-bind-result","t",E))()
 local attempts=0
 local failed={SetUnit=function()attempts=attempts+1;error("no cached unit model")end}
 check(assign(failed,"party1")==false and attempts==2,"both failed native setter signatures are reported to the fallback owner")

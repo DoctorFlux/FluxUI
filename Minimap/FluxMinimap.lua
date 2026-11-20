@@ -88,6 +88,32 @@ FluxMinimap:RegisterEvent("UI_SCALE_CHANGED")
 -- event on ding; Edit Mode InitSystemAnchors already runs, and Flux re-docking
 -- the tracker (SortQuestWatches / PinLayoutHeight / clip rebuild) fights it.
 
+local groupIndicatorsScheduled
+
+local function FlushGroupIndicators()
+    if not FluxMinimap._fluxGroupIndicatorsPending or InCombatLockdown() then return end
+    FluxMinimap._fluxGroupIndicatorsPending = nil
+    FluxMinimap:PositionInstanceDifficulty()
+    FluxMinimap:PositionQueueStatusEye()
+end
+
+local function RunScheduledGroupIndicators()
+    groupIndicatorsScheduled = nil
+    FlushGroupIndicators()
+end
+
+local function QueueGroupIndicators()
+    if InCombatLockdown() then return end
+    FluxMinimap._fluxGroupIndicatorsPending = true
+    if C_Timer and C_Timer.After then
+        if groupIndicatorsScheduled then return end
+        groupIndicatorsScheduled = true
+        C_Timer.After(0, RunScheduledGroupIndicators)
+    else
+        FlushGroupIndicators()
+    end
+end
+
 FluxMinimap:SetScript("OnEvent", function(self, event, ...)
     if event == "PLAYER_LOGIN" then
         if self._fluxLoginPresented then return true end
@@ -294,8 +320,11 @@ FluxMinimap:SetScript("OnEvent", function(self, event, ...)
             end
             if FluxMinimapButtons.RequestRefresh then FluxMinimapButtons:RequestRefresh() end
         end
-    elseif event == "UPDATE_INSTANCE_INFO" or event == "PLAYER_DIFFICULTY_CHANGED" or event == "INSTANCE_GROUP_SIZE_CHANGED" or event == "GROUP_ROSTER_UPDATE" or event == "MINIMAP_UPDATE_TRACKING" then
-        -- Update instance difficulty and tracking when relevant events occur
+        FlushGroupIndicators()
+    elseif event == "INSTANCE_GROUP_SIZE_CHANGED" or event == "GROUP_ROSTER_UPDATE" then
+        -- Both notifications can arrive during the same membership change.
+        QueueGroupIndicators()
+    elseif event == "UPDATE_INSTANCE_INFO" or event == "PLAYER_DIFFICULTY_CHANGED" or event == "MINIMAP_UPDATE_TRACKING" then
         self:PositionIndicators()
     end
 end)
@@ -488,6 +517,54 @@ function FluxMinimap:UpdateStyle()
     end
 end
 
+-- Read current native state every pass. Unknown/private/missing getters keep
+-- the original setter path; no cached public position outlives this call.
+local function MinimapNativeValue(frame, method, ...)
+    local getter = frame[method]
+    if (issecretvalue and issecretvalue(getter)) or type(getter) ~= "function" then return false end
+    local ok, a, b, c, d, e = pcall(getter, frame, ...)
+    if not ok or (issecretvalue and (issecretvalue(a) or issecretvalue(b)
+        or issecretvalue(c) or issecretvalue(d) or issecretvalue(e))) then return false end
+    return true, a, b, c, d, e
+end
+
+local function MinimapSetShown(frame, wanted)
+    local ok, shown = MinimapNativeValue(frame, "IsShown")
+    if not ok or shown ~= wanted then
+        if wanted then frame:Show() else frame:Hide() end
+    end
+end
+
+local function MinimapSetParent(frame, parent, clearPoints)
+    local ok, current = MinimapNativeValue(frame, "GetParent")
+    if not ok or current ~= parent then
+        -- Indicator parent changes can show native frames synchronously. Keep
+        -- their original empty-anchor state visible to those native callbacks.
+        if clearPoints then frame:ClearAllPoints() end
+        frame:SetParent(parent)
+    end
+end
+
+local function MinimapSetScale(frame, scale)
+    local ok, current = MinimapNativeValue(frame, "GetScale")
+    if not ok or current ~= scale then frame:SetScale(scale) end
+end
+
+local function MinimapSetFrameLevel(frame, level)
+    local ok, current = MinimapNativeValue(frame, "GetFrameLevel")
+    if not ok or current ~= level then frame:SetFrameLevel(level) end
+end
+
+local function MinimapSetPoint(frame, point, relative, relativePoint, x, y)
+    local ok, count = MinimapNativeValue(frame, "GetNumPoints")
+    if ok and count == 1 then
+        local public, p, parent, rp, ox, oy = MinimapNativeValue(frame, "GetPoint", 1)
+        if public and p == point and parent == relative and rp == relativePoint and ox == x and oy == y then return end
+    end
+    if not ok or count ~= 0 then frame:ClearAllPoints() end
+    frame:SetPoint(point, relative, relativePoint, x, y)
+end
+
 function FluxMinimap:CleanupBlizzardFrames()
     -- Comprehensive list of frames to hide across all versions
     local framesToHide = {
@@ -513,8 +590,8 @@ function FluxMinimap:CleanupBlizzardFrames()
     for _, name in pairs(framesToHide) do
         local frame = _G[name]
         if frame then
-            frame:Hide()
-            frame:SetParent(FluxMinimapHiddenFrame) -- Reparent to hidden frame
+            MinimapSetShown(frame, false)
+            MinimapSetParent(frame, FluxMinimapHiddenFrame) -- Reparent to hidden frame
             -- Agressive: Hook OnShow to immediately Hide if something tries to show it back
             if not frame.fluxHooked then
                  frame.fluxHooked = true
@@ -527,8 +604,8 @@ function FluxMinimap:CleanupBlizzardFrames()
 
     -- Handle newer zoom buttons (Mainline/Retail) that are parentKey under Minimap
     if Minimap and Minimap.ZoomIn then
-        Minimap.ZoomIn:Hide()
-        Minimap.ZoomIn:SetParent(FluxMinimapHiddenFrame)
+        MinimapSetShown(Minimap.ZoomIn, false)
+        MinimapSetParent(Minimap.ZoomIn, FluxMinimapHiddenFrame)
         if not Minimap.ZoomIn.fluxHooked then
             Minimap.ZoomIn.fluxHooked = true
             if Minimap.ZoomIn.HookScript then
@@ -538,8 +615,8 @@ function FluxMinimap:CleanupBlizzardFrames()
     end
 
     if Minimap and Minimap.ZoomOut then
-        Minimap.ZoomOut:Hide()
-        Minimap.ZoomOut:SetParent(FluxMinimapHiddenFrame)
+        MinimapSetShown(Minimap.ZoomOut, false)
+        MinimapSetParent(Minimap.ZoomOut, FluxMinimapHiddenFrame)
         if not Minimap.ZoomOut.fluxHooked then
             Minimap.ZoomOut.fluxHooked = true
             if Minimap.ZoomOut.HookScript then
@@ -571,7 +648,7 @@ function FluxMinimap:CleanupBlizzardFrames()
     -- end
     
     -- Additional texture cleanup for Classic
-    if MinimapBorderTop then MinimapBorderTop:Hide() end
+    if MinimapBorderTop then MinimapSetShown(MinimapBorderTop, false) end
 end
 
 function FluxMinimap:CleanupTimeManager()
@@ -600,7 +677,6 @@ function FluxMinimap:EnforcePosition()
     
     -- Prevent moving
     Minimap:SetMovable(false)
-    Minimap:ClearAllPoints()
     
     -- Calculate Y Offset for "0 Gap" at the top
     -- We want the InfoBar (which is above Minimap) to touch the top of screen (0).
@@ -612,19 +688,19 @@ function FluxMinimap:EnforcePosition()
     
     local sideOffset = FluxMinimapButtons and FluxMinimapButtons.GetMinimapOffset
         and FluxMinimapButtons:GetMinimapOffset() or 0
-    Minimap:SetPoint(CONFIG.Position[1], CONFIG.Position[2], CONFIG.Position[3], sideOffset, topOffset)
-    Minimap:SetScale(CONFIG.Scale)
+    MinimapSetPoint(Minimap, CONFIG.Position[1], CONFIG.Position[2], CONFIG.Position[3], sideOffset, topOffset)
+    MinimapSetScale(Minimap, CONFIG.Scale)
     
     -- Blizzard reads the cluster's height during protected action-bar layout.
     -- Keep its native anchors/size independent of the movable/embedded minimap.
     if MinimapCluster then
         MinimapCluster:EnableMouse(false) -- Disable cluster mouse interaction
         MinimapCluster:SetMovable(false)
-        MinimapCluster:Hide() -- Hide the cluster which usually contains the border/zone text
+        MinimapSetShown(MinimapCluster, false) -- Hide the cluster which usually contains the border/zone text
         
         -- Keep the Minimap frame itself shown.
-        Minimap:Show()
-        Minimap:SetParent(UIParent) -- Ensure it's not hidden by parent hide
+        MinimapSetShown(Minimap, true)
+        MinimapSetParent(Minimap, UIParent) -- Ensure it's not hidden by parent hide
     end
     
     self:PositionIndicators()
@@ -653,10 +729,9 @@ function FluxMinimap:PositionIndicators()
     end
 
     if trackingBtn then
-        trackingBtn:ClearAllPoints()
-        trackingBtn:SetParent(Minimap)
-        trackingBtn:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset, inset) -- Fixed position
-        trackingBtn:SetFrameLevel(Minimap:GetFrameLevel() + 50) -- Ensure on top
+        MinimapSetParent(trackingBtn, Minimap, true)
+        MinimapSetPoint(trackingBtn, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset, inset) -- Fixed position
+        MinimapSetFrameLevel(trackingBtn, Minimap:GetFrameLevel() + 50) -- Ensure on top
 
         -- In Classic Era, only show tracking button if tracking is active
         if FLUX_API.isClassicEra then
@@ -781,16 +856,15 @@ function FluxMinimap:PositionIndicators()
     end
 
     if mailFrame then
-        mailFrame:ClearAllPoints()
-        mailFrame:SetParent(Minimap)
+        MinimapSetParent(mailFrame, Minimap, true)
         -- Position to the left of the tracking button
         if trackingBtn then
-            mailFrame:SetPoint("RIGHT", trackingBtn, "LEFT", -2, 0)
+            MinimapSetPoint(mailFrame, "RIGHT", trackingBtn, "LEFT", -2, 0)
         else
             -- Fallback if no tracking button
-            mailFrame:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset + 4, inset - 4)
+            MinimapSetPoint(mailFrame, "BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", -inset + 4, inset - 4)
         end
-        mailFrame:SetFrameLevel(Minimap:GetFrameLevel() + 10)
+        MinimapSetFrameLevel(mailFrame, Minimap:GetFrameLevel() + 10)
         -- Ensure border is hidden if possible, but keep icon
         if MiniMapMailBorder then MiniMapMailBorder:Hide() end
 
@@ -864,64 +938,10 @@ function FluxMinimap:PositionIndicators()
         end
     end
 
-    -- 3. Instance Difficulty Banner (Top Right)
-    -- Handle Blizzard's instance difficulty banner
-    -- Only create if the client supports InstanceDifficultyTemplate
-    if Minimap and not Minimap.InstanceDifficulty then
-        -- Check if InstanceDifficultyTemplate exists (modern clients)
-        local hasTemplate = false
-        if pcall(function() return InstanceDifficultyTemplate end) then
-            hasTemplate = true
-        end
-
-        if hasTemplate then
-            -- Create using the template for modern clients
-            local success, frame = pcall(CreateFrame, "Frame", nil, Minimap, "InstanceDifficultyTemplate")
-            if success and frame then
-                Minimap.InstanceDifficulty = frame
-                -- Call OnLoad if it exists
-                if frame.OnLoad then
-                    frame:OnLoad()
-                elseif InstanceDifficultyMixin and InstanceDifficultyMixin.OnLoad then
-                    InstanceDifficultyMixin.OnLoad(frame)
-                end
-            end
-        end
-        -- Note: Legacy clients without InstanceDifficultyTemplate won't get the banner
-        -- This is intentional - they don't have this feature in the base UI
-    end
-
-    -- Position and show the frame if it exists
-    if Minimap.InstanceDifficulty then
-        Minimap.InstanceDifficulty:ClearAllPoints()
-        Minimap.InstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", -5, -5)
-        Minimap.InstanceDifficulty:SetFrameLevel(Minimap:GetFrameLevel() + 20)
-        if Minimap.InstanceDifficulty.Update then
-            Minimap.InstanceDifficulty:Update()
-        end
-        if Minimap.Layout then
-            Minimap:Layout()
-        end
-        Minimap.InstanceDifficulty:Show()
-    end
-
-    -- Handle older client frames
-    if MiniMapInstanceDifficulty then
-        MiniMapInstanceDifficulty:ClearAllPoints()
-        MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", -5, 5)
-        MiniMapInstanceDifficulty:SetFrameLevel(Minimap:GetFrameLevel() + 20)
-        if MiniMapInstanceDifficulty_Update then
-            MiniMapInstanceDifficulty_Update()
-        end
-        MiniMapInstanceDifficulty:Show()
-    end
-
-    if GuildInstanceDifficulty then
-        GuildInstanceDifficulty:ClearAllPoints()
-        GuildInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", -5, 5)
-        GuildInstanceDifficulty:SetFrameLevel(Minimap:GetFrameLevel() + 20)
-        GuildInstanceDifficulty:Show()
-    end
+    -- The full pass already updates both indicators, including when the
+    -- standalone minimap enforces its position after combat.
+    self._fluxGroupIndicatorsPending = nil
+    self:PositionInstanceDifficulty()
 
     -- 4. Shared positioning helper for the objective tracker.
     
@@ -954,14 +974,13 @@ function FluxMinimap:PositionIndicators()
             landingBtn:Hide()
         else
             landingBtn:SetSize(32, 32)
-            landingBtn:ClearAllPoints()
-            landingBtn:SetParent(Minimap)
+            MinimapSetParent(landingBtn, Minimap, true)
             if embeddedState.isEmbedded then
-                landingBtn:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -2, -2)
+                MinimapSetPoint(landingBtn, "BOTTOMLEFT", Minimap, "BOTTOMLEFT", -2, -2)
             else
-                landingBtn:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", 34, -2)
+                MinimapSetPoint(landingBtn, "BOTTOMLEFT", Minimap, "BOTTOMLEFT", 34, -2)
             end
-            landingBtn:SetFrameLevel(Minimap:GetFrameLevel() + 10)
+            MinimapSetFrameLevel(landingBtn, Minimap:GetFrameLevel() + 10)
 
             if landingBtn.RefreshButton and ExpansionLandingPage then
                 landingBtn:RefreshButton()
@@ -973,6 +992,65 @@ function FluxMinimap:PositionIndicators()
 
     -- 6. Queue / PvP buttons (retail DF+ eye, classic PvP battlefield button)
     self:PositionQueueStatusEye()
+end
+
+-- Shared by full minimap layout and the narrower group-event path.
+function FluxMinimap:PositionInstanceDifficulty()
+    if not Minimap then return end
+
+    -- Only create if the client supports InstanceDifficultyTemplate
+    if not Minimap.InstanceDifficulty then
+        -- Check if InstanceDifficultyTemplate exists (modern clients)
+        local hasTemplate = false
+        if pcall(function() return InstanceDifficultyTemplate end) then
+            hasTemplate = true
+        end
+
+        if hasTemplate then
+            -- Create using the template for modern clients
+            local success, frame = pcall(CreateFrame, "Frame", nil, Minimap, "InstanceDifficultyTemplate")
+            if success and frame then
+                Minimap.InstanceDifficulty = frame
+                -- Call OnLoad if it exists
+                if frame.OnLoad then
+                    frame:OnLoad()
+                elseif InstanceDifficultyMixin and InstanceDifficultyMixin.OnLoad then
+                    InstanceDifficultyMixin.OnLoad(frame)
+                end
+            end
+        end
+        -- Note: Legacy clients without InstanceDifficultyTemplate won't get the banner
+        -- This is intentional - they don't have this feature in the base UI
+    end
+
+    -- Position and show the frame if it exists
+    if Minimap.InstanceDifficulty then
+        MinimapSetPoint(Minimap.InstanceDifficulty, "TOPRIGHT", Minimap, "TOPRIGHT", -5, -5)
+        MinimapSetFrameLevel(Minimap.InstanceDifficulty, Minimap:GetFrameLevel() + 20)
+        if Minimap.InstanceDifficulty.Update then
+            Minimap.InstanceDifficulty:Update()
+        end
+        if Minimap.Layout then
+            Minimap:Layout()
+        end
+        Minimap.InstanceDifficulty:Show()
+    end
+
+    -- Handle older client frames
+    if MiniMapInstanceDifficulty then
+        MinimapSetPoint(MiniMapInstanceDifficulty, "TOPRIGHT", Minimap, "TOPRIGHT", -5, 5)
+        MinimapSetFrameLevel(MiniMapInstanceDifficulty, Minimap:GetFrameLevel() + 20)
+        if MiniMapInstanceDifficulty_Update then
+            MiniMapInstanceDifficulty_Update()
+        end
+        MiniMapInstanceDifficulty:Show()
+    end
+
+    if GuildInstanceDifficulty then
+        MinimapSetPoint(GuildInstanceDifficulty, "TOPRIGHT", Minimap, "TOPRIGHT", -5, 5)
+        MinimapSetFrameLevel(GuildInstanceDifficulty, Minimap:GetFrameLevel() + 20)
+        GuildInstanceDifficulty:Show()
+    end
 end
 
 --- Hide classic/legacy LFG minimap buttons (not the retail QueueStatusButton dungeon eye).
@@ -2455,6 +2533,7 @@ function FluxMinimap:EmbedInFrame(parentFrame)
         self:RefreshInfoBarZoneFit()
     end
 
+    if FluxBorder and FluxBorder.Junctions then FluxBorder.Junctions:CommitLayout() end
     return true
 end
 
@@ -2489,6 +2568,7 @@ function FluxMinimap:RefreshEmbeddedLayout()
         self:PositionIndicators()
         if self.Refresh then self:Refresh() end
     end
+    if FluxBorder and FluxBorder.Junctions then FluxBorder.Junctions:CommitLayout() end
 end
 
 -- Keep the map square and leave a usable strip in narrow/tall hosts.
@@ -2598,6 +2678,7 @@ function FluxMinimap:RestoreToNormal()
         self:RefreshInfoBarZoneFit()
     end
     
+    if FluxBorder and FluxBorder.Junctions then FluxBorder.Junctions:CommitLayout() end
     -- Ensure proper sizing after restore (use watcher to handle any delayed sizing issues)
     if not self._restoreSizeWatcher then
         self._restoreSizeWatcher = CreateFrame("Frame")

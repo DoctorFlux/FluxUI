@@ -1,0 +1,164 @@
+{
+  "utc": "2026-11-18T23:41:11.0479668Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "source": "ExtraButtonSystem/Engine/Paint.lua",
+  "before": "808e15ec333509c2172560f23431d0b3583a160bf5ea47c78665b690096a6b44",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 21,
+  "settingsContentsCopied": false,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ebs-count-flush-20261118T234110Z",
+  "after": "7bcb33ab9c499162532205aa513da2682dea4d3412269ac74b4243f569d6ad79",
+  "changeId": "LHO-EBS-BAG-COUNT-PULSE-20261119",
+  "status": "APPLIED_AND_NATIVE_BAG_UPDATE_SMOKE_PASS_TIMING_UNRESOLVED",
+  "nativeBefore": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "provider": "Syndicator",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "reload120": {
+      "observedWorldReturn": true,
+      "submissionSHA": "419f6c8acd8cab3bc330a8a77675a991fbb63c831a6dee98278be822c3539739"
+    },
+    "context121": {
+      "bagGeneration": 5,
+      "itemID": 4599,
+      "count": 18,
+      "source": [
+        0,
+        8
+      ],
+      "emptyDestination": [
+        2,
+        7
+      ],
+      "freeDestinationSlots": 5,
+      "bagFamily": 0,
+      "submissionSHA": "8f7d8683ba0480f001853473339ee41526ebb0c9ad8e4c3a6920f62a64004c0a"
+    },
+    "move122": {
+      "source": [
+        0,
+        8
+      ],
+      "destination": [
+        2,
+        7
+      ],
+      "itemID": 4599,
+      "quantity": 18,
+      "moved": true,
+      "returned": true,
+      "originalSlotVerified": true,
+      "destinationEmpty": true,
+      "cursorClear": true,
+      "bagGeneration": [
+        5,
+        7
+      ],
+      "count": 18,
+      "sessionErrors": 0,
+      "diff": {
+        "calls": 6,
+        "mismatches": 0,
+        "baselineAggregateMsRounded": 0.0702,
+        "candidateAggregateMsRounded": 0.0562,
+        "baselineUsesPcall": true,
+        "originalMethodRestored": true
+      },
+      "paint": {
+        "calls": 2,
+        "touchedMoveItem": 2,
+        "changedMoveItem": 0,
+        "totalMsRounded": 0.3059,
+        "originalMethodRestored": true,
+        "source": "808e15ec"
+      },
+      "foregroundStable": true,
+      "profilerSettingsChanged": false,
+      "reservationAbsentAfterAck": true,
+      "images": {
+        "sourceSHA": "53a43d8f36ae2e9abed7a1ae345b52b05d4a70b72d892db278359fffac49fad6",
+        "submittedSHA": "7b6af577945930699a33e4dba502c07980a03462f3bee13c77d4dc09254de5c4",
+        "result": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/slotmove122-results.png",
+        "resultSHA": "b29d29de89054ad746500034c5051f0f23b0c73a7cce976a2f0bff1be9e0b834"
+      },
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-slotdiff122-real-transition-r2-20261119",
+        "controllerSHA": "adae1a50d8687957dceb724407fed349e01bee8f432b39d31845d44a420d7500",
+        "packetSHA": "6fb5eae172d9cab8ff66c1d5900727dc8f2ef5c3c5853f6a209fc8c4f079c751",
+        "luaSHA": "9cd4163763ee773366e18730d1553eef6e0122fac76ef14f4bb2ee52a4f1e175",
+        "packets": 27
+      }
+    }
+  },
+  "sourceReview": {
+    "outsideFlushCountsIdentical": true,
+    "baselineAndCandidateSyntax": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ],
+    "retailForeverSameDiskHash": true,
+    "simulationsRun": 0,
+    "perEligiblePulse": "Removes one temporary closure and its per-face Lua calls. Processes buttons then badges in the original order.",
+    "preserved": "Same live item/charge/reagent checks, recovery, tint, parked-face handling, equipped routing and boolean result. Subscription and same-frame cadence preserved."
+  },
+  "remaining": [
+    "Native charged-item, reagent, equipment, visual and combat-specific refresh checks",
+    "Measure frame spikes across repeats and remaining providers and clients",
+    "Populated mail and stale-mail authority, bank lifecycle, vendor transactions, AH active Pending, crafting and other original goal coverage"
+  ],
+  "nativeAfter": {
+    "adoption123": {
+      "client": "Forever 1.60.1 / 70959 / 16001",
+      "sourceSHA": "8a424bedccb16cf3f4667ed18f19fb5d64a23e6025d4f0460679f6a9ffb37651",
+      "submittedSHA": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+      "worldReturnSHA": "071ff059c0b0baa9b1c68976e66c154ee5e952d744afcc774acb30c4f19df9ec",
+      "worldReturnImage": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/ebs123-world-return.png",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-ebs123-reload-20261119",
+        "controllerSHA": "2f9067e02d6075e95667bd5f0ca0956aa809f1827231433ce94e7baa2a5a6682",
+        "packetSHA": "0a85a8aa9fc47d8220869e1efecd73813afa264cf356be6c5c2a374920095ee4"
+      }
+    },
+    "move124": {
+      "count": 18,
+      "bagsGeneration": [
+        5,
+        7
+      ],
+      "moved": true,
+      "returned": true,
+      "originalSlotVerified": true,
+      "emptyDestination": true,
+      "cursorClear": true,
+      "sessionErrors": 0,
+      "diff": {
+        "calls": 6,
+        "mismatches": 0,
+        "oldMs": 0.0945,
+        "newMs": 0.0817,
+        "ownerRestored": true
+      },
+      "paint": {
+        "calls": 2,
+        "touchedMoveItem": 2,
+        "changedMoveItem": 0,
+        "totalMs": 0.3577,
+        "ownerRestored": true
+      },
+      "identicalProbeBodyApartFromLabels": true,
+      "sourceSHA": "f97c1dd507d17d29d3f9223a27ff9027b72ee8b8ec9d7f3b4e7d4b2878e57ac9",
+      "submittedSHA": "bf2095075ffe5001bdfe303e5ea0906465d0215f37377c936adcb589bc2507d8",
+      "resultSHA": "fc367c6bd2a0af4069e60b5913dc721087fdda509bc7d2f9886af7ac3a57127d",
+      "resultImage": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/ebsmove124-results.png",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-ebs124-bag-transition-20261119",
+        "controllerSHA": "48b1ab65230f9912e3add191e5fa5f2b05694fd36b09d906cc606bf58b30aca7",
+        "packetSHA": "bd87a7e68aaccad42873c8a4601d117b1aeacc43bc617725ca2000ff313f2e12",
+        "luaSHA": "f12177d129ca157e5a5d78f8bc0723568dafe3293a716ecd2ff0adbf2a848a38"
+      }
+    },
+    "limits": "Independent sessions separated by reload. The single new paint sample is 0.0518 ms higher. Both control diff totals also rose. Operation parity is supported. Cause, FPS and hitch impact remain unverified."
+  }
+}

@@ -54,6 +54,15 @@ end
 
 local ApplyAfterEditMode
 
+local function SuppressAlpha(frame)
+	if not frame.SetAlpha then return end
+	if frame.GetAlpha then
+		local ok, alpha = pcall(frame.GetAlpha, frame)
+		if ok and not (issecretvalue and issecretvalue(alpha)) and alpha == 0 then return end
+	end
+	frame:SetAlpha(0)
+end
+
 local function ApplyHidden(frame)
 	if not hidden[frame] then
 		return
@@ -69,7 +78,7 @@ local function ApplyHidden(frame)
 	if keepParent[frame] then
 		-- Native compact-frame setup reads ancestor visibility during Edit Mode.
 		-- Keep that state and all native scripts untouched, including OnShow.
-		if frame.SetAlpha then frame:SetAlpha(0) end
+		SuppressAlpha(frame)
         Blizz.SetMouseSuppressed(frame, true, skipMouseChild[frame])
 	elseif frame:GetParent() ~= hiddenParent then
 		pcall(frame.SetParent, frame, hiddenParent)
@@ -181,6 +190,38 @@ local function ReleaseMouse(root, frame)
 	mouseStates[frame] = nil
 end
 
+local VisitMouseWidget
+
+local function VisitMouseChildren(root, visited, skipChild, ...)
+	local count = select("#", ...)
+	-- Small child lists are common. Keep the bulk iteration for wide native
+	-- pools so extracting one child never copies a long vararg suffix.
+	if count > 8 then
+		for _, child in ipairs({ ... }) do
+			if not skipChild or not skipChild(child) then VisitMouseWidget(root, child, visited, skipChild) end
+		end
+	else
+		for i = 1, count do
+			local child = select(i, ...)
+			if not skipChild or not skipChild(child) then VisitMouseWidget(root, child, visited, skipChild) end
+		end
+	end
+end
+
+VisitMouseWidget = function(root, widget, visited, skipChild)
+	if visited[widget] then return end
+	visited[widget] = true
+	local saved = mouseStates[widget] or SaveMouse(widget)
+	mouseStates[widget] = saved
+	saved.owners[root] = true
+	for getter, setting in pairs(saved) do
+		if getter ~= "owners" then SetMouseValue(widget, getter, setting[1], false) end
+	end
+	if widget.GetChildren then
+		VisitMouseChildren(root, visited, skipChild, widget:GetChildren())
+	end
+end
+
 --- Alpha-zero native frames still hit-test. Suspend input without changing
 --- native scripts, visibility, parents or unit/vehicle state. Event-time only.
 --- skipChild preserves independently owned unit/class-resource subtrees.
@@ -216,22 +257,7 @@ function Blizz.SetMouseSuppressed(frame, suppressed, skipChild)
 		return true
 	end
 	local visited = {}
-	local function visit(widget)
-		if visited[widget] then return end
-		visited[widget] = true
-		local saved = mouseStates[widget] or SaveMouse(widget)
-		mouseStates[widget] = saved
-		saved.owners[frame] = true
-		for getter, setting in pairs(saved) do
-			if getter ~= "owners" then SetMouseValue(widget, getter, setting[1], false) end
-		end
-		if widget.GetChildren then
-			for _, child in ipairs({ widget:GetChildren() }) do
-				if not skipChild or not skipChild(child) then visit(child) end
-			end
-		end
-	end
-	visit(frame)
+	VisitMouseWidget(frame, frame, visited, skipChild)
 	if previous then
 		for widget in pairs(previous) do
 			if not visited[widget] then ReleaseMouse(frame, widget) end
@@ -239,6 +265,11 @@ function Blizz.SetMouseSuppressed(frame, suppressed, skipChild)
 	end
 	mouseRoots[frame] = visited
 	return true
+end
+
+-- Addon-owned policy, readable even when native mouse switches are secret.
+function Blizz.IsMouseSuppressed(frame)
+	return mouseStates[frame] ~= nil
 end
 
 --- Hide a Blizzard frame by reparenting it under a hidden Flux frame.

@@ -1,0 +1,4095 @@
+{
+  "changeId": "LHO-NATIVE-ATTRIBUTION-20261114",
+  "capturedUtc": "2026-11-14T18:30:41.291528+00:00",
+  "goalStatus": "active; original full scope incomplete",
+  "runtimeEditsThisContinuation": false,
+  "native": {
+    "client": "Forever1.60.1",
+    "build": 70938,
+    "interface": 16001,
+    "pid": 40032,
+    "window": 7995860,
+    "scriptProfile": 0,
+    "maxFPS": 120,
+    "maxFPSBk": 30,
+    "focusActivation": false,
+    "systemWideInput": false,
+    "clipboard": false,
+    "itemBuySellDelete": false,
+    "savedVariablesOrProfilerPreferencesChanged": false,
+    "reloadThisContinuation": false
+  },
+  "input": {
+    "userExplanation": "Concurrent jumping caused the earlier Say incident; user explicitly requested resuming the same route. Sender clears stray text.",
+    "permission": "Previously authorized targeted foreground/background profiling and highest-rank food cast/cancel.",
+    "executionEvidence": "Captured native local readouts establish execution; PostMessage submission alone does not."
+  },
+  "controls": [
+    {
+      "context": "Boat travel/zoning; no recipe query occurred. Natural water creation messages preceded arming, so not a casting/receipt performance sample.",
+      "recipeSeconds": 30.002999999997,
+      "recipeCalls": 0,
+      "recipeMs": 0,
+      "recipeOwnRestore": true,
+      "badClock": false,
+      "observerStart": 94344.299,
+      "observerEnd": 94374.302,
+      "callbacks": 18,
+      "over100Ms": 0,
+      "inclusiveSumMs": 5.336299970746,
+      "maxCallbackMs": 3.012099962901,
+      "releaseHandlesRemaining": 0,
+      "timerReleased": true,
+      "releaseOK": true
+    },
+    {
+      "context": "Natural quest reward receipt/zoning/movement plus authorized food command attempt; scenario uncontrolled",
+      "recipeSeconds": 30.000999999998,
+      "recipeCalls": 3,
+      "recipeInclusiveMs": 10.009399995208,
+      "recipeMaxMs": 3.6228000074625,
+      "recipeOwnRestore": true,
+      "recipeBadClock": false,
+      "observerStart": 95325.452,
+      "observerEnd": 95355.458,
+      "callbacks": 1659,
+      "over100ms": 0,
+      "inclusiveSumMs": 313.08370007575,
+      "maxCallbackMs": 41.55529999733,
+      "releaseHandles": 0,
+      "timerNil": true,
+      "releaseOK": true
+    }
+  ],
+  "foodAttempt": {
+    "liveGetTime": 95331.812,
+    "liveCastingInfo": "no values",
+    "endGetTime": 95332.635,
+    "endCast": null,
+    "endChannel": null,
+    "meaning": "Command was submitted and read-only prints executed; no active food cast witnessed. Not a successful cast/cancel validation; no specific failure cause proven."
+  },
+  "foodAttemptDisposition": "One cast/cancel pair submitted; no active food cast witnessed. Not a successful cast/cancel test; specific failure cause unproven.",
+  "rawCast": {
+    "type": "Frame",
+    "onEventType": "function",
+    "isProtected": false,
+    "isForbidden": false,
+    "combat": false,
+    "registered": [
+      "UNIT_SPELLCAST_START",
+      "UNIT_SPELLCAST_STOP",
+      "UNIT_SPELLCAST_FAILED",
+      "UNIT_SPELLCAST_INTERRUPTED",
+      "UNIT_SPELLCAST_SUCCEEDED"
+    ],
+    "probeInstalled": false
+  },
+  "observerCoverage": [
+    "Flux.Events",
+    "Flux.Ticker",
+    "Flux.Scheduler"
+  ],
+  "recipeWrapperCoverage": "Successful synchronous ListRecipesForKind calls only; no allocations/unwound-error timing.",
+  "limits": [
+    "Inclusive spans can overlap; no exclusive CPU, FPS gain or matched native old/new comparison.",
+    "Services omit raw frame scripts, native timers and external Syndicator callback work.",
+    "Native rawcastprobe restoredcleanly but0eventcalls in30.003s; no castedgecostsample. Two naturalhelper wrappers currentlystaged, no productionmethodreplacement yet; consultattribution-state forlatestcleanup.",
+    "Quest/item/zoning context uncontrolled; no causal event assigned to three recipe queries.",
+    "Loaded-bytecode identity unavailable; latest verified reload precedes Professions edit.",
+    "Bank readiness/provider-off restoration and populated/cold-mail timing pending."
+  ],
+  "cleanup": {
+    "recipeExactOwnedRestore": true,
+    "observerReleaseHandlesRemaining": 0,
+    "observerTimerNil": true,
+    "releaseOK": true,
+    "bothGlobalsAbsentVerified": true,
+    "activeProbe": false,
+    "observer10GlobalAbsentVerified": true
+  },
+  "source": {
+    "capturedUtc": "2026-11-14T17:53:36.515261+00:00",
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-full.json",
+    "checked": 1072,
+    "differences": [
+      "ExtraButtonSystem/Engine/Action.lua",
+      "ExtraButtonSystem/Engine/Watch.lua",
+      "ExtraButtonSystem/FlyoutEngine/Def.lua",
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua"
+    ],
+    "inheritedPass": 384,
+    "syntax": 1072,
+    "rootEditedProductLua": false,
+    "allPreviousManifestPathsMatch": false,
+    "newerLocalChanges": {
+      "ExtraButtonSystem/Engine/Action.lua": "4d24d66c93f3481c9e8c4a9659342a3ec10f1667f9dba0c4ab4e0660897c30f2",
+      "ExtraButtonSystem/Engine/Watch.lua": "7503a3d320ea9e8c7cf39773b78e323d6c23044cd3d26fefbc779151f4458c36",
+      "ExtraButtonSystem/FlyoutEngine/Def.lua": "c58aadb558f82dd8cba4f3679e613656827d2cf2ec6a6e2dfa43b75e86af494e",
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "456129a49bb81a218449d38a5123e49deadac19748c50a892adf3a05bdf40811"
+    },
+    "lastFullSuiteScope": "384 scripts/1072 syntax predates these four newer EBS edits and new extra_profession_ranks.lua; preserved, not overwritten or certified by this pass.",
+    "externalSyndicator": {
+      "files": 41,
+      "allHashesMatch": true,
+      "readOnly": true
+    },
+    "currentPerformanceOwners": {
+      "Inventory/Professions.lua": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+      "Inventory/Craft.lua": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+      "Inventory/Init.lua": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+      "Core/ButtonFX/Cast.lua": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969"
+    }
+  },
+  "evidenceRoot": "lag-hotspots-20261114/resume3-20261114T160712Z",
+  "evidence": [
+    "attribution-state.json",
+    "native/attribution-summary-readout.png",
+    "native/attribution-release-readout.png",
+    "native/cast2-food-1-submission.json",
+    "native/cast2-food-1-readout.png",
+    "native/cast2-summary-readout.png",
+    "native/cast2-release-readout.png",
+    "native/rawcast-readiness-readout.png",
+    "commerce/cast-followup/source-review.json",
+    "native/observer10-summary2-readout.png",
+    "native/observer10-rows-first-readout.png",
+    "native/observer10-rows-last-readout.png",
+    "native/observer10-identity-readout.png",
+    "native/observer10-release-readout.png",
+    "next-inventory-audit/prototype-seal.json",
+    "commerce/helpercost-peer/review.json",
+    "native/helpercost-armed-readout.png",
+    "native/helpercost-auto-readout.png"
+  ],
+  "observer10": {
+    "planSHA256": "1e5806999da01681c4f55d6c3e9c8a1c8011d60a7006fd7f7c591301ea7c3520",
+    "tests": 294,
+    "global": "LHO3T10",
+    "cutoffMs": 10,
+    "timerSeconds": 30,
+    "cleanupSender": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\send_observer10.py",
+    "cleanupFile": "observer10-cleanup-commands.json",
+    "cleanupSHA256": "ccd5a702e8b0df69b6a636f0258fa7be8b58b451fd9e68209e2c53ae6dec13fd",
+    "pause": "Set rootCANCEL first then invoke cleanupSender cleanupFile cleanupSHA256 --cleanup; this bypassesCANCEL only for exact teardown batch.",
+    "armSubmittedUtc": "2026-11-14T18:01:54.317892+00:00",
+    "armAcknowledged": true,
+    "context": "Actual user White Bandit Mask crafting with Skillet and Auctionator selling/restock; no queue/transaction action by probe.",
+    "summaryFirstAttemptExecuted": false,
+    "summaryInputIncident": "Captured leading/trailing manual movement letters; user explanation of concurrent input applies; no summary result inferred. Retrying with actual Backspace key pairs and no post-typing gap.",
+    "result": {
+      "start": 96010.54,
+      "end": 96040.542,
+      "seen": 2927,
+      "strictlyOver10ms": 12,
+      "inclusiveSumMs": 819.5526006728,
+      "maxMs": 59.409300014377,
+      "releaseHandles": 0,
+      "timerNil": true,
+      "releaseOK": true
+    },
+    "summaryRetryExecuted": true,
+    "releasedVerified": true,
+    "rows": [
+      {
+        "sequence": 5,
+        "event": "PLAYER_MONEY",
+        "ms": 59.409300014377,
+        "time": 96019.613
+      },
+      {
+        "sequence": 6,
+        "event": "BAG_UPDATE_DELAYED",
+        "ms": 52.090899989009,
+        "time": 96019.613
+      },
+      {
+        "sequence": 7,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 41.146699994802,
+        "time": 96020.167
+      },
+      {
+        "sequence": 8,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 41.91669999063,
+        "time": 96023.383
+      },
+      {
+        "sequence": 9,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 41.0026999861,
+        "time": 96025.94
+      },
+      {
+        "sequence": 10,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 42.26680001264,
+        "time": 96027.126
+      },
+      {
+        "sequence": 11,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 40.723900005221,
+        "time": 96029.215
+      },
+      {
+        "sequence": 12,
+        "event": "TRADE_SKILL_LIST_UPDATE",
+        "ms": 41.55020000405,
+        "time": 96031.982
+      }
+    ],
+    "allEightCallbackIdentitiesEqual": true,
+    "failedFlagsAllFalse": true,
+    "sourceInference": "Only currentFlux.EventsTRADE_SKILL_LIST_UPDATE registration is privateFollowup.OnChange ->F.Refresh/Build. RawProfessions/FluxInv scans bypassservice. Nativeidentityequality connects all8 retainedhotrows tooneclosure; loadedsourceidentity stillnotcertified."
+  },
+  "docsValidation": {
+    "job": "docs-validate-attribution1-job",
+    "exit": 1,
+    "reason": "13 stale source inventory/verification records from ongoing newer EBS profession-rank changes and new test. Checker wrote nothing. No new-link error reported."
+  },
+  "indexPrototypeRejected": {
+    "baselineSHA256": "10e927b927f8276170eb8a410f1673e40bd26a25633040b505acde3901e0de89",
+    "candidateSHA256": "f811da1cacc7f1a2f50287d0d7788e2017f71caa4f2a11ccf6538187d97586f4",
+    "privateAllocationSavedBytesPerQuery": 136,
+    "cpu200ItemsBaselineMedianUs": 61,
+    "cpu200ItemsCandidateMedianUs": 64,
+    "trials": 3,
+    "disposition": "Rejected; Index.lua untouched; do not tradeCPUfor tinyallocation."
+  },
+  "rawCastNative": {
+    "global": "_FluxC5",
+    "tag": "C5R984",
+    "planManifestSHA256": "6389ab503e710c6a97387cd8969a6c7f0e945ab243823cb29c43ab58532f77eb",
+    "lifecycleChecks": 548,
+    "scenarios": 132,
+    "compiledControlsRejected": 5,
+    "timerSeconds": 30,
+    "target": "Actual storedOnEvent of existing Flux.ButtonFX.Cast._frame only",
+    "cleanupSender": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\send_rawcast.py",
+    "cleanupFile": "rawcast-cleanup-commands.json",
+    "cleanupSHA256": "02e2f14e5f7986d19095169bd83bfbb2c07ded0ef3b92ca04999ad59e6a37be6",
+    "pause": "SetrootCANCELfirst; invoke cleanupSender cleanupFile cleanupSHA256 --cleanup; ifrestoreunconfirmed keepinactivehandlepending; do notclaimclean.",
+    "stagedReadyAcknowledged": true,
+    "stagedGetTime": 97106.903,
+    "armSubmittedUtc": "2026-11-14T18:21:08.901029+00:00",
+    "armAcknowledged": true,
+    "armAckGetTime": 97163.826,
+    "nativeChanges": "Only existing plainFrame OnEventtemporarily wrapped; no newevents/frames, noqueue/cast/itemactions.",
+    "result": {
+      "seconds": 30.002999999997,
+      "completedCalls": 0,
+      "validTimedCalls": 0,
+      "inclusiveSumMs": 0,
+      "maxMs": 0,
+      "clean": true,
+      "badClock": false,
+      "ownAtStop": true,
+      "moduleFrameCurrent": true,
+      "globalsAbsentVerified": true,
+      "scope": "No raw castedgecallback inside sample; longcast underway. No castingcost/FPS or lifecycleacceptanceclaim."
+    }
+  },
+  "followupNativeCardinality": {
+    "outputs": 1,
+    "receipts": 0,
+    "rows": 6,
+    "vendorScanRows": 1
+  },
+  "amplificationProof": {
+    "checks": 1010,
+    "profiles": 30,
+    "clientModels": 5,
+    "providers": 2,
+    "savedRows": 20,
+    "visibleItems": 121,
+    "GetUniqueItemsTraversalsPerGetRows": 21,
+    "harvestNameReads": 2541,
+    "totalNativeNameInvocations": 2581,
+    "spellsRefreshCalls": 63,
+    "OnVisibleCalls": 21,
+    "flagOnlyRowsReturned": 0,
+    "runtimeEdit": false,
+    "globalSkipRemedyRejected": "17actualfunctionchecks:historical/coldnames,aliases,finalize,errors,reentry lost. Needdifferentguardedremedy."
+  },
+  "userContextClarification": "User is crafting normally in the city; crafteditem is incidental context, not a separate requested bug or item-specific acceptance test.",
+  "reagentShortcutsRejected": {
+    "checks": 17,
+    "result": "Global pending-only/unresolved-only/lazy harvest skips lose historical itemnames, aliases, published reagent IDs and error/reentry behavior. No runtime shortcut accepted.",
+    "evidence": "providers/reagent-harvest-review/verdict.json",
+    "sha256": "bdf9449dc4798defeee3886e28efc8fc1b547d4139436318544e0998308450ff"
+  },
+  "newerLocalOwner": {
+    "record": "docs/validation/extra-profession-ranks-2026-11-14.json",
+    "full": {
+      "utc": "2026-11-14T18:01:11.194396+00:00",
+      "exit": 0,
+      "luaCount": 1073,
+      "sourceDrift": [],
+      "pass": 385,
+      "fail": 0,
+      "syntaxFiles": 1073,
+      "syntaxFailures": [],
+      "sha256": "0660059660a349120ad04a9d56001978329b445ba2cf6aa96ff568a1b06296a4"
+    },
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-ranks-final.json",
+    "preserved": true,
+    "note": "Full385/1073passedafterthesixnewEBS files; rootdidnotrunortakecreditforthisnewerowner validation."
+  },
+  "helperCostNative": {
+    "globals": [
+      "_FHR1",
+      "_FHT1"
+    ],
+    "methodOwners": [
+      "FluxAuctionRestock.GetRows",
+      "FluxVendorAuto.GetRestockTargetItems"
+    ],
+    "mechanism": "Exact adaptationofsealed139-check single-result recipe wrapper; currenttwoownersreturnonevalue. Naturalcalls only; no extraGetRows call or autoactions. Two30s timers; separateoverlappinginclusive spans; noallocation/failedcalltiming.",
+    "cleanupSender": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\send_helpercost.py",
+    "cleanupFile": "helpercost-cleanup-commands.json",
+    "cleanupSHA256": "fc08def0f8148173f12603b349e31f120c661f9b3c6c60779f6006270774da27",
+    "pause": "CANCELfirstthenexactcleanupbatch --cleanup; noqueue/cast/itemaction.",
+    "reviewSHA256": "2a3d9357f7c8fbf5cd7720dea95e08f8583c6c62cade56a5faa7e1dbdb16a8d7",
+    "checksPerOwner": 139,
+    "scenariosPerOwner": 38,
+    "armSubmittedUtc": "2026-11-14T18:28:40.035192+00:00",
+    "result": {
+      "rows": {
+        "seconds": 30.004000000001,
+        "calls": 198,
+        "inclusiveMs": 2530.8516998291,
+        "maxMs": 41.333499997854,
+        "ownRestore": true,
+        "badClock": false
+      },
+      "targets": {
+        "seconds": 30.002000000008,
+        "calls": 64,
+        "inclusiveMs": 1700.8391000032,
+        "maxMs": 28.977599993348,
+        "ownRestore": true,
+        "badClock": false
+      },
+      "notes": [
+        "Rows includes cheapGetRows(false)reads; Targets hasothercallers.",
+        "Staggeredoverlappinginclusivewindow totalscannotbeadded/subtractedasexclusiveCPU.",
+        "No artificialhelperinvocations; no buy/sell/delete/queue/reloadaction.",
+        "Auto-completioncalls exactstop:ownedmethods restored; directnilreadbackdeferredbecauseAuctionatorquantity/purchaseUIopen."
+      ]
+    },
+    "explicitGlobalsAbsentReadback": false
+  },
+  "currentTemporaryRuntimeInstrumentation": "R25 stopped and exact four methods/raw script/namespaces restored;timers gone and diagnostic root explicitly nil. No active native probe/helper;external journal pendingCleanup=false.",
+  "passiveR7Followup": {
+    "changeId": "LHO-NATIVE-PASSIVE-R7-20261115",
+    "recordedUtc": "2026-11-15T01:16:48.782616+00:00",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\passive-r7-result.json",
+      "sha256": "d5d658d1263d9b43f9656dbc4a9b55a2b7a9e66cc95255abf9afe692b7a19025"
+    },
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001,
+      "pid": 40032,
+      "hwnd": 7995860
+    },
+    "plan": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\passive-services-plan\\plan.json",
+      "sha256": "312cd1e9918fd9f9a625bd7530789a59702d3ca2ab83c37146774d9cb31a517b",
+      "sealSHA256": "4bdcc104a9d816a0f82ebd6e6374b337b5de4e015e4bfcb2db3a0969bb150fd0",
+      "lifecycleChecks": 392,
+      "sourceChecks": 1066,
+      "harmfulControlsRejected": 4
+    },
+    "context": "Incidental user city crafting and AH activity; item-specific activity not investigated. Agent only staged authorized passive observer/read-only queries; no agent craft/queue/transaction/movement/reload or preference action during capture.",
+    "observation": {
+      "startedGetTime": 121777.99,
+      "endedGetTime": 121807.999,
+      "nominalSeconds": 30,
+      "elapsedSeconds": 30.00899999999092,
+      "observedCallbacks": 2979,
+      "slowThresholdExclusiveMilliseconds": 10,
+      "slowSpans": 12,
+      "inclusiveTotalMilliseconds": 562.46870018542,
+      "inclusiveMaxMilliseconds": 31.461300000548,
+      "retainedRows": [
+        {
+          "slowNumber": 5,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 22.77840000391,
+          "failed": false,
+          "getTime": 121793.366
+        },
+        {
+          "slowNumber": 6,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 31.461300000548,
+          "failed": false,
+          "getTime": 121799.058
+        },
+        {
+          "slowNumber": 7,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 22.766699999571,
+          "failed": false,
+          "getTime": 121801.705
+        },
+        {
+          "slowNumber": 8,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 23.054400011897,
+          "failed": false,
+          "getTime": 121801.832
+        },
+        {
+          "slowNumber": 9,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 23.287900000811,
+          "failed": false,
+          "getTime": 121803.423
+        },
+        {
+          "slowNumber": 10,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 24.684300005436,
+          "failed": false,
+          "getTime": 121804.898
+        },
+        {
+          "slowNumber": 11,
+          "service": "Events",
+          "key": "TRADE_SKILL_LIST_UPDATE",
+          "callbackIdentity": "function: 0000019B96EC8DF0",
+          "milliseconds": 25.301100000739,
+          "failed": false,
+          "getTime": 121805.087
+        },
+        {
+          "slowNumber": 12,
+          "service": "Scheduler",
+          "key": "eval.listener",
+          "callbackIdentity": "function: 0000019BF323EA90",
+          "milliseconds": 11.04430000484,
+          "failed": false,
+          "getTime": 121806.083
+        }
+      ],
+      "discardedSlowRows": 4,
+      "failedScope": "All8retainedslowrows showfalse; othercallbackfailurecounts not separately sampled"
+    },
+    "cleanup": {
+      "remainingReleaseHandles": 0,
+      "timerNil": true,
+      "cleanupOk": true,
+      "armFailure": null,
+      "ownedGlobalAbsent": true,
+      "automaticDetachBeforeOutput": true,
+      "jumpHoldReleased": true,
+      "noScriptMethodReplacement": true
+    },
+    "preferences": {
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "nativeProfilerEnabledAtPreflight": true,
+      "agentWrites": false
+    },
+    "attribution": {
+      "event": "All7retainedEventsrows share same native callback identity. Earlier source attribution points to pending Followup.OnChange/Refresh/Build/GetRows; current R7 does not query function source or prove that local owner by native equality.",
+      "scheduler": "eval.listener is a real slow source dispatch label. Two substantive eval listeners exist in Bars and EBS; no token/callback-owner sampling proves which. Further source audit pending.",
+      "comparison": "Earlier pre-bundle59.4msmax/40ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“42msprofession and this31.46msmax/22ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“25msprofession windows differ in workload, source bundle, observer, item population and UI conditions. No matched causal native reduction or FPS gain claimed."
+    },
+    "limits": [
+      "Inclusive wall intervals may nest/overlap; total is not exclusive addonCPU or frame time.",
+      "Core Events/Ticker/Scheduler only; native direct frame handlers, delayed work and third-party owners outside this optional API are not comprehensively covered.",
+      "Only latest8slowspans retained, notall12 source labels. No sampledhardware/nativewholeworkflow FPS/taint/pixels/controller result.",
+      "First history recovery printed while scanning a rolling chat buffer, causing duplicate/omitted retrieval lines. Native measurement unchanged. Missingrow6 recovered with bounded scan then one print afterloop; aggregate recovered consistently.",
+      "Two read-only screenshots saw foreground change during capture; capture helper calls no activation/input APIs. Input submissions report unchanged foreground."
+    ],
+    "attributionBoundary": "Only7retained TRADE_SKILL_LIST_UPDATE rows are proven to share one native callback. Prior Followup.OnChange/Refresh/Build/GetRows source attribution is retained as inference; R7 did not establish that owner by native equality. Scheduler eval.listener is not attributed to Bars or EBS. First4slow labels were evicted and remain unknown.",
+    "comparisonBoundary": "Current-only inclusive service observation; workload/source bundle/observer/UI differ from earlier59.4ms/40ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“42ms windows. No matched causal native improvement, exclusiveCPU/frame-time or FPS claim.",
+    "currentExactSourceGate": {
+      "scriptsPass": 390,
+      "syntaxFiles": 1078,
+      "all1078NormalizedLuaIdentitiesMatchAtFollowup": true
+    },
+    "lastCompletedPostNativeDocumentationGate": {
+      "recordedUtc": "2026-11-15T01:01:39.603177+00:00",
+      "status": "PASS",
+      "classifiedSources": 1111,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "savedVariables": 24,
+      "localLinks": 17515,
+      "sourceGate": {
+        "files": 1078,
+        "mismatches": 0,
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bankcast-postdocs-source-guard.json",
+        "sha256": "7c68580067c40ac376527ea732946446d34f5883d516da1a42079eeba5c6cf71"
+      },
+      "logs": {
+        "docs-build-bankcastfinal.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-build-bankcastfinal.txt",
+          "sha256": "2b18416825ea8c1107b4a0d3e603344e90223ba4690cd90ea03d971cf401b82d"
+        },
+        "docs-validate-bankcastfinal.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-bankcastfinal.txt",
+          "sha256": "f091b5bd1610551fc38578c7b51c48cfbf4076a301f11e8af5fdd98a95a86c87"
+        }
+      },
+      "scope": "Documentation and current source identities only; no native compatibility/FPS certification"
+    },
+    "documentationGateScope": "The copied1111classified/623reachable/17515links gate predates this concise R7 documentation delta. Final reference rebuild/docs validation remains root-owned.",
+    "rejectedReadOnlyAudits": [
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-remaining-work\\audit.json",
+        "sha256": "e484365461d686fd0cadd577e7016001862a0e3952d2e1fd8e64e51ab964892e",
+        "verdict": "REJECT candidate for current lag fix; external only, no product application",
+        "scope": "External LiveCastName closure hoist:small728-byte/sequence transient reduction;no reproducible material CPU benefit. No source applied. Base-spell memoization remains rejected under current read/invalidation contract.",
+        "candidateMeasurements": {
+          "pairs": 7,
+          "freshProcesses": 14,
+          "sequencesPerProcess": 200,
+          "baselineMedianMs": 304,
+          "candidateMedianMs": 298,
+          "baselineRangeMs": [
+            291,
+            345
+          ],
+          "candidateRangeMs": [
+            295,
+            305
+          ],
+          "pairsCandidateSlower": 2,
+          "baselineKiB": 3919.74609375,
+          "candidateKiB": 3777.55859375,
+          "allocationReductionPercent": 3.6274671011654713,
+          "allocationReductionBytesPerSequence": 728
+        },
+        "baseSpellMemoizationVerdict": "REJECT as unproven and outside the current exact API/read-order contract"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-name-cache-contract\\contract-review.json",
+        "sha256": "396d02261ce84377c1c89673f421965a753129739aafbe827f9b6d639d822d14",
+        "status": "REJECTED_NO_PROVEN_INVALIDATION",
+        "decision": "Reject persistent, per-generation and whole-row-build successful-name memoization for application under present feature/cadence-preservation requirements. No exhaustive native-data generation/invalidation contract was found. This does not claim native API call counts are inherently immutable; a future optimization may reduce them after establishing concrete behavior/observer compatibility.",
+        "baselineCharacterization": {
+          "status": "PASS",
+          "checks": 41,
+          "cases": 15,
+          "scope": "unchanged current whole owner, synthetic native facts, no candidate or native client"
+        },
+        "scope": "Read-only successful item-name cache contract audit;no cache candidate implemented and no runtime change."
+      }
+    ],
+    "goalContinuity": "Full LHO-01 through LHO-13 remains ACTIVE. Grid eval source audit continues;no further candidate approved. Observer handles0/timernil/cleanupOK/no arm failure/_FluxL7nil;no_jump released and existing external180second jump helper active. Preserve its NEXT_SESSION first paragraph and CANCEL/JUMP_STOP/heartbeat/input.lock rules. Incidental user city crafting/AH is not item-specific evidence;no agent craft/commerce/queue action.",
+    "recordScope": "Documentation-only follow-up;historical prior windows, source identities and attribution claims remain dated. No source/test/native/helper/external Syndicator edits."
+  },
+  "mailR8AndJumpR2Followup": {
+    "recordedUtc": "2026-11-15T01:38:32.165494+00:00",
+    "mailEvidence": "docs/validation/lag-hotspots-empty-mailbox-2026-11-14.json",
+    "nativeArtifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-result.json",
+      "sha256": "a080f372880a57492941d4d619e04160c13da02c56528431df54bfa8797f4fed"
+    },
+    "mailAcceptance": "One actual populated mail;6paired passes exact ID/quantity agreement;17full versus2early data reads. Full median0.066300004720688ms(range0.057700008153915ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“0.3948999941349),early median0.069700002670288ms(range0.048600003123283ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“0.2694000005722). DATA-PASS ONLY;no consistent CPU improvement or early-stop application;hidden-tail/100-mail/end-to-end gates remain.",
+    "cleanupAndBackground": "M9FREE/M9CLEARtrue,_FluxM9nil,timerdisposed,no created frame;script0/caps12030 unchanged,zero preference writes. All senderforegroundBefore/After match at67424 or201192,never target7995860;no activation/systeminput/clipboard or agent mail/item/commerce/craft/queue action.",
+    "jumpHelperR2": {
+      "snapshotRecordedUtc": "2026-11-15T01:42:11.708442+00:00",
+      "previousR1": {
+        "status": "failed",
+        "pid": 42416,
+        "startedUtc": "2026-11-14T23:05:22.898480+00:00",
+        "intervalSeconds": 180,
+        "targetPid": 40032,
+        "hwnd": 7995860,
+        "bindingVerified": "LHO4JKEY JUMP; Space",
+        "systemWideInput": false,
+        "activation": false,
+        "clipboard": false,
+        "sent": 34,
+        "stop": "phase CANCEL / GOAL_DONE / stale agent heartbeat600s / changed target",
+        "scope": "Targeted Space key only; actual movement/online state not certified. Explicit user instruction15November.",
+        "lastSent": {
+          "sentUtc": "2026-11-15T01:16:07.532926+00:00",
+          "foregroundUnchanged": true,
+          "input": "Target Space key down/up only"
+        },
+        "reason": "AssertionError('Exact target unavailable')",
+        "stoppedUtc": "2026-11-15T01:19:07.568714+00:00"
+      },
+      "r1FailureScope": "Exact target unavailable was the recorded failure after34sends at01:19:07UTC. Hidden/minimized cause is possible but not proven.",
+      "currentR2Snapshot": {
+        "status": "running",
+        "pid": 46504,
+        "startedUtc": "2026-11-15T01:30:07.784568+00:00",
+        "intervalSeconds": 180,
+        "targetPid": 40032,
+        "hwnd": 7995860,
+        "bindingVerified": "LHO4JKEY JUMP; Space",
+        "systemWideInput": false,
+        "activation": false,
+        "clipboard": false,
+        "sent": 4,
+        "stop": "phase CANCEL / GOAL_DONE / stale agent heartbeat600s / changed target; hidden/minimized waits and retries",
+        "scope": "Targeted Space key only; actual movement/online state not certified. Explicit user instruction15November.",
+        "lastSent": {
+          "sentUtc": "2026-11-15T01:42:08.133803+00:00",
+          "foregroundUnchanged": true,
+          "input": "Target Space key down/up only"
+        }
+      },
+      "statePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-state-r2.json",
+      "stateSHA256AtRead": "07694d9a5a73af08924b108676fcc6ece0b88cae2b79b75ee4711206158efa23",
+      "eventLogPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-events-r2.jsonl",
+      "firstRecordedR2Send": {
+        "sentUtc": "2026-11-15T01:33:07.913847+00:00",
+        "foregroundUnchanged": true,
+        "input": "Target Space key down/up only"
+      },
+      "latestRecordedR2Send": {
+        "sentUtc": "2026-11-15T01:42:08.133803+00:00",
+        "foregroundUnchanged": true,
+        "input": "Target Space key down/up only"
+      },
+      "profileHoldPresentAtRead": false,
+      "source": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\goal_jump_r2.py",
+        "sha256": "e987422a402535b3a47939883581e91815e37c365f0b20d31ecb3f47cf80783d"
+      },
+      "review": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-r2-review.json",
+        "sha256": "491ae301b0c3fc3c1c47dba1b2d4522f1acb25afb7dbe9af52a7f7692dc2d480",
+        "status": "PASS scoped R2 diff/lifecycle review; native execution NOT RUN",
+        "mockChecks": 17,
+        "scope": "AST-extracted disposition and guard only with mocked user32/kernel32; no WinDLL construction, process enumeration or native calls; no helper/repo edits",
+        "findings": [
+          "Visibility/minimized false defers and retries in1s; strict PID/exe failures still stop rather than retarget.",
+          "Deferred continue passes through owned lock finally; no input while hidden/minimized.",
+          "Targeted key-down/up only; key-up remains in finally; no focus/clipboard/system input methods added.",
+          "New r2 state/tmp/events paths preserve original artifacts.",
+          "Existing outer GOAL_DONE check retained; immediate pre-send recheck remains CANCEL/JUMP_STOP only, so a done marker arriving between outer check and send has the same preexisting small race. Atomic done/identity/drawability cancellation is not certified."
+        ]
+      },
+      "rootSelfTestReceipt": "Root reported scoped self-test PASS before R2 startup;independent17AST/mock checks verified in sealed review. No self-test or helper execution by this documentation task.",
+      "runtimeBoundary": "Observed R2 state/event log proves targeted key sends and unchanged foreground only;actual movement or online state is not certified. R2 waits/retries hidden/minimized instead of retargeting, retains strict PID/exe and no activation/system input/clipboard.",
+      "continuity": "Current NEXT_SESSION opening including R2process46504/session52455 is preserved verbatim. Original R1 state/logs retained. Root CANCEL/native JUMP_STOP before pause/done;600second heartbeat,input.lock,no_jump guards remain. Jump sends never count as passive gameplay evidence."
+    },
+    "mailCorrectionDesign": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\mail-correction-design\\initial-design.json",
+      "sha256": "e26db213882f9d489a83c55523f846fe6b49089bd4b339302f390c7adf60ffd6",
+      "status": "DESIGN ONLY; TRIGGER, HYPERLINK IDENTITY AND CADENCE NOT ACCEPTED",
+      "decision": "No mail candidate accepted or implemented. The existing services provide bounded collection and persistence homes, but full correctness plus all-feature/cadence preservation needs a proven trigger/publication policy, metadata authority and delegated-consumer overlay. Timing alone cannot authorize those semantics."
+    },
+    "gridSourceAudit": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\grid-eval-audit\\audit.json",
+      "sha256": "950b38642143d4294b206629f44cb8ec0d7d0a61d9cd5982305adc26ae12b189",
+      "verdict": "Source reachability established; no safe material optimization or native EBS attribution established. No external candidate or product edit.",
+      "scope": "Duplicate UpdateUsable is an unproven source lead;mutable public methods/getters/reentry prevent safe removal without proof. R7eval listener owner remains unattributed;no source candidate approved."
+    },
+    "goalStatus": "ACTIVE;all LHO-01 through LHO-13 retained. No production source change or approved new candidate;root owns final docs/reference/source-identity gate after this delta."
+  },
+  "postR8DocumentationGate": {
+    "recordedUtc": "2026-11-15T01:48:31.336165+00:00",
+    "status": "PASS",
+    "classifiedSources": 1111,
+    "tocXmlReachable": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17521,
+    "sourceFiles": 1078,
+    "mismatches": 0,
+    "sourceGuard": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\r8-postdocs-source-guard.json",
+      "sha256": "7bca7830ee1c5a7bbd40beb960b5fd31d333b2ec270f92ac30210b3e1af90235"
+    },
+    "log": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-r8final.txt",
+      "sha256": "47cafeacbf0eb2586866dc98faf9ee9f6aa637e6ad0b05d8f959e40ae65ccc10"
+    },
+    "scope": "Docs/current Lua identities only; native checks retain their stated scope"
+  },
+  "nativeBankComboFollowup20261115": {
+    "recordId": "LHO-BANK-NATIVE-COMBO-20261115",
+    "recordedUtc": "2026-11-15T03:23:49.842713+00:00",
+    "bankEvidence": "docs/validation/bank-effective-visibility-2026-11-15.json",
+    "status": "REQUESTED_ADDON_MODE_COMPARISON_COMPLETE_ORIGINAL_MODE_RESTORED; FULL_LHO_ACTIVE",
+    "restoredMode": {
+      "sha256": "4aac2626259b3ea39328467d31b4b333fc535471ca818715d99eb44ec629da2d",
+      "comboFinalSamplesReady": true,
+      "restoreRequired": false,
+      "pendingReload": false,
+      "loadedMode": "both-original-restored",
+      "restoredVerifiedUtc": "2026-11-15T03:18:33.546919+00:00"
+    },
+    "queryTimingMediansMs": {
+      "SyndicatorOnly": 1.6419,
+      "neither": 1.6452,
+      "restoredBoth": 1.6463
+    },
+    "result": "Readonly snapshot-count parity and similar query envelopes only; no lag/FPS/whole-workflow gain. Neither live-bank acceptance pending.",
+    "sourceUnchanged": true,
+    "goalStatus": "ACTIVE"
+  },
+  "recipeEventAttributionR10Followup20261115": {
+    "recordId": "LHO-RECIPE-EVENT-ATTRIBUTION-R10-20261115",
+    "recordedUtc": "2026-11-15T02:55:38.607386+00:00",
+    "status": "OFFLINE_AUDIT_COMPLETE_NO_PRODUCT_CANDIDATE_ACCEPTED",
+    "auditSHA256": "b8c09acfe5b91448c56c07c7cd465254b942a6e8497766f4c43eda23d0b9ad0b",
+    "sourceIdentities": {
+      "Core/Engine/Events.lua": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+      "Inventory/Restock/Core/FluxRestockList.lua": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+      "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+      "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+      "tests/auction_restock_sources.lua": "219fd1791ef20d013c85da7945b41b44628904c60c71b191e68b8c8018d3fc0b"
+    },
+    "nativeEventEvidence": "Seven R7 TRADE_SKILL_LIST_UPDATE intervals22.7667..31.4613ms share one callback identity. Current sole central-bus source registrant points to private Followup.OnChange; exact native owner remains source inference.",
+    "exactSourceDesktop": {
+      "checks": 1010,
+      "profiles": 30,
+      "clientModels": 5,
+      "providers": 2,
+      "manualRows": 20,
+      "visibleIDs": 121,
+      "harvests": 21,
+      "nativeNameInvocations": 2581,
+      "harvestNativeNames": 2541,
+      "spellsRefreshCalls": 63,
+      "visibleItemsChangedCalls": 21,
+      "manualPredicateCalls": 20
+    },
+    "nativeCostLimit": "Desktop native-name invocation counts do not attribute exclusive/native name costs or prove the cause of R7 22Ã¢â‚¬â€œ31ms intervals; no native CPU/FPS gain.",
+    "optionalMetadataProbe": {
+      "checks": 95,
+      "nativeExecuted": false,
+      "typeGated": true,
+      "noProbeInstalled": true
+    },
+    "notReadOnly": [
+      "Followup.Refresh may reconcile persisted job outputs/receipts and dispatch existing queues.",
+      "GetRows(true) publishes rows/vendor/mail facts and can initialize saved defaults."
+    ],
+    "candidateRejections": [
+      "LowerMemo whole-path CPU regressed; no product application.",
+      "RowOrder semantics passed but longer normal20row CPU repeats were mixed/regressed; no product application.",
+      "Native-name itemID cache or skipped harvest/predicate changes metadata/history/override/cold-cache semantics."
+    ],
+    "runtimeEdits": false,
+    "nativeActions": false,
+    "goalStatus": "ACTIVE"
+  },
+  "nativeAddonProfilerFollowup20261115": {
+    "id": "LHO-NATIVE-PROFILER-R11-20261115",
+    "recordedUtc": "2026-11-15T03:40:55.929509+00:00",
+    "client": "Forever1.60.1 build70938 interface16001",
+    "sourcePin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "addon": "_FluxUI",
+    "operation": "Read-only existingC_AddOnProfiler, enabledpositive; no reset/MeasureCall/workinvocation/settings/temporaryroots",
+    "presence": {
+      "getTime": 129730.718,
+      "pcallSuccess": true,
+      "enabled": true,
+      "getterType": "function",
+      "enumType": "table"
+    },
+    "timeMetricsDocumentedMilliseconds": {
+      "earlierSnapshot": {
+        "SessionAverageTime": 0.86982710223051,
+        "RecentAverageTime": 2.7872316666667,
+        "EncounterAverageTime": 1.1506054894078,
+        "PeakTime": 4195.9795,
+        "LastTime": 9.8682
+      },
+      "laterSnapshot": {
+        "SessionAverageTime": 0.86655963731868,
+        "RecentAverageTime": 0.21847333333333,
+        "EncounterAverageTime": 1.1506054894078,
+        "PeakTime": 4195.9795,
+        "LastTime": 0.0695
+      },
+      "scope": "Two noncoincident rolling/application/encounter samples, NOT matched optimization before/after. Peak is historical across application and not assigned to this interval."
+    },
+    "counterObservations": {
+      "getTimeBefore": 129987.375,
+      "getTimeAfter": 130369.688,
+      "timestampDifferenceSeconds": 382.313,
+      "before": {
+        "1ms": 549483,
+        "5ms": 212360,
+        "10ms": 53244,
+        "50ms": 6473,
+        "100ms": 2195,
+        "500ms": 30,
+        "1000ms": 15
+      },
+      "after": {
+        "1ms": 550225,
+        "5ms": 212650,
+        "10ms": 53486,
+        "50ms": 6488,
+        "100ms": 2195,
+        "500ms": 30,
+        "1000ms": 15
+      },
+      "nonnegativeIntegerChanges": {
+        "1ms": 742,
+        "5ms": 290,
+        "10ms": 242,
+        "50ms": 15,
+        "100ms": 0,
+        "500ms": 0,
+        "1000ms": 0
+      },
+      "scope": "GetTime printed in command before7getterreads. Metrics are overlapping profiling-tick counts, not events/renderedframes; no total sampledtickcount or window CPU total supplied. No agentreload/reset during interval; no independent VMnonce. Active user crafting/receipts/bank/movement/minimization and diagnostic reads included, NOT idleFPS/callback attribution."
+    },
+    "contextQuery": {
+      "initial": "Original statusquery could pass zero returned values to type; no contextoutput accepted. Counterreads preceding it retained; diagnosticerror activity not excluded from interval.",
+      "desktopFix": "Parenthesized getters collapsezero returns to nil; zero/one/multi controls and failing original reproduced.",
+      "nativeCorrected": {
+        "APCAST": [
+          "string",
+          "nil",
+          false,
+          false
+        ],
+        "APCTXOK": true,
+        "APUI": [
+          false,
+          false,
+          null
+        ]
+      },
+      "uiCaveat": "Legacy TradeSkillFrame absentnil does not imply no craftingUI; visible native crafting and Baganator bank recorded."
+    },
+    "jumpSafety": {
+      "status": "Craft hold removed after native nil/nil casting and Space=JUMP; R2 sent03:47:03/03:50:03UTC resumes180s cadence",
+      "rule": "Defer only as needed for observedcasting; root refreshcastcontextwithin60s toresume promptly; CANCEL stops immediately"
+    },
+    "readPlan": "passive-profiler-api-r11/read-plan-final-r4.json",
+    "desktopControls": 1014,
+    "payloadCompilations": 3,
+    "sourceGuard": {
+      "manifestFiles": 1078,
+      "mismatches": 0,
+      "existingSuite": {
+        "pass": 390,
+        "syntax": 1078
+      },
+      "additionalIgnoredScratch": "_tmp_striplines.lua preserved separately",
+      "scope": "Existing390/1078desktop pass retained because normalizedsourceidentities match; no new fullsuite rerun."
+    },
+    "newProductEdits": false,
+    "nativeFPSGainClaim": false,
+    "nativeTaintOrPixelAcceptance": false
+  },
+  "nativeRowsAttributionR13Followup20261115": {
+    "recordedUtc": "2026-11-15T04:16:08.943018+00:00",
+    "probe": "R13 RowsOnly",
+    "global": "_FluxR13",
+    "tag": "FOLLOWUP_R13",
+    "slot": "FluxAuctionRestock.GetRows",
+    "pendingCleanup": false,
+    "stagingWatchdogSeconds": 60,
+    "armedWindowSeconds": 20,
+    "scope": "20s SCHEDULED naturalcallwindow; stop timestampnotrecorded, readlater128.527safterarm; noGetRowscalls observedthroughwrappedpublicslot. NotnativeFPS/allfunctionalias/privateOnChange acceptance.",
+    "entered": 0,
+    "completed": 0,
+    "valid": 0,
+    "sumMs": 0,
+    "maxMs": 0,
+    "originalMethodRestored": true,
+    "namespaceSame": true,
+    "timerDisposed": true,
+    "globalCleared": true,
+    "preferences": [
+      0,
+      true,
+      120,
+      30
+    ],
+    "armGetTime": 132886.71,
+    "readGetTime": 133015.237
+  },
+  "nativeJumpProbeJ14Followup20261115": {
+    "recordedUtc": "2026-11-15T04:56:47.330075+00:00",
+    "probe": "J14Z",
+    "armed": true,
+    "bad": false,
+    "samples": 87,
+    "unknown": 0,
+    "baselineKnown": true,
+    "maxAbsZDelta": 0,
+    "elapsedSeconds": 2.0070000000123,
+    "samePlayer": true,
+    "foregroundUnchanged": true,
+    "lastInputUnchanged": true,
+    "activity": [],
+    "actualJumpVerified": false,
+    "cleanupVerified": true,
+    "globalCleared": true,
+    "source": "j14z-ack-r1-result.png",
+    "scope": "No falling or height transition observed; AFKcleared during ARM chat+Space sequence, not attributable to Space; raw position notprinted. No online guarantee."
+  },
+  "nativePassiveR17Followup20261115": {
+    "recordedUtc": "2026-11-15T05:02:18.731431+00:00",
+    "probe": "R17 passive services",
+    "client": "Forever1.60.1 build70938 interface16001",
+    "context": "Bank and bags visibly open; userstanding bank, no agent gameplay action during30s scheduled window. Background desktop transport foregroundunchanged; incidental city/world traffic remains.",
+    "startedGetTime": 135522.863,
+    "endedGetTime": 135552.871,
+    "elapsedSeconds": 30.00800000000163,
+    "observedCallbacks": 3475,
+    "over10ms": 0,
+    "inclusiveTotalMs": 304.21050059795,
+    "inclusiveMaxMs": 2.6844000220299,
+    "remainingReleaseHandles": 0,
+    "timerNil": true,
+    "cleanupOK": true,
+    "armFailure": null,
+    "globalCleared": true,
+    "preferences": {
+      "scriptProfile": 0,
+      "maxFPS": 120,
+      "maxFPSBk": 30
+    },
+    "sameObserverAsR7": true,
+    "sourceGuard": "r16-continuation-source-guard.json",
+    "capture": "passive-r17-auto-result.png",
+    "cleanupCapture": "passive-r17-clean-result.png",
+    "scope": "Events/Ticker/Scheduler existing ObserveTiming sites only. Inclusive spans can overlap; raw frame handlers/native timers/external addons not covered. Observer overhead, not exclusiveCPU/frame/FPS. Different activity fromR7, no matched gain."
+  },
+  "nameQueryCostR16Followup20261115": {
+    "recordedUtc": "2026-11-15T05:01:43.010600+00:00",
+    "artifact": "name-query-cost-r16/audit.json",
+    "artifactSHA256": "0ae1e4fc90e51eb68fd2c114175a33232049631abb4724e634e45f1094089567",
+    "status": "Cost map only; no candidate applied; no product/native changes",
+    "totalChecks": 1304,
+    "stableSourceOwners": 9,
+    "nativeItemNames": 2581,
+    "harvestNativeNames": 2541,
+    "blacklistNativeNames": 40,
+    "publicIDQueries": 21,
+    "legacyUniqueRecordQueries": 0,
+    "actualCoreItemCounts": 40,
+    "canonicalAllocationKiBPerQuery": 237.550976563,
+    "r15CompatibilityAllocationKiBPerQuery": 526.1708984376,
+    "allocationComparisonMeaning": "Different fixture routes; NOT an optimization or native performance gain.",
+    "r15Qualification": "Original R15 loader created a fresh addon namespace per file, lost the private Index-to-SpellReagents stamp and measured compatibility GetUniqueItems. Its CPU/allocation values are not canonical trusted-ID path evidence. Item.Count semantic controls,40native counts and2,581names still describe that compatibility fixture. No apply recommendation remains.",
+    "publicCallbackBoundary": "A complete ownership-change fallback could preserve that example. It does not reject every future guarded synchronous snapshot. Native call counts by themselves are not invariants.",
+    "candidateDecision": {
+      "implemented": false,
+      "reason": "The dominant cost is N+1 full name harvests across public callbacks, not an isolated duplicated read inside one private helper. No small elimination was proved equivalent under the required public-callback/reentry/freshness contracts. A scoped snapshot may be practical with a deliberately defined synchronous-read policy and complete ownership fallback, but would need additional design/validation; it was not silently treated as safe or impossible.",
+      "notAReason": "Artificial native mutation per read alone does not reject a defined synchronous snapshot. Native exact call multiplicity is not itself a requirement.",
+      "timing": "No before/after CPU benchmark without a legitimate candidate. No native FPS/taint/current callback cost attribution claimed."
+    }
+  },
+  "vendorSessionLifecycleR21Followup20261115": {
+    "changeId": "LHO-VENDOR-SESSION-R21-20261115",
+    "appliedUtc": "2026-11-15T05:28:26.147924+00:00",
+    "status": "APPLIED;391scripts/1079syntaxPASS;fresh-login startup source inferred;native vendor workflow PENDING",
+    "owner": "Inventory/Restock/Vendor/FluxVendorSession.lua",
+    "baselineSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+    "installedRawSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+    "normalizedLF_SHA256": "23ec74d1d8744610979e7dcb32d32f76625aa539e96b8853afcd475a0e0b682a",
+    "durableTest": "tests/vendor_session_lifecycle.lua",
+    "durableTestSHA256": "4a5d750709b18c9d7eac1efb623452aa03c4084bf003ae6187f7a5c01862f17e",
+    "checkpoint": {
+      "artifact": "checkpoint-before-vendor-session-20261115T051423Z",
+      "verifiedSourceFiles": 2832,
+      "historyVerified": true,
+      "settingsMetadataEntries": 126
+    },
+    "intentionalFix": "After EndVendorSession, old delayed/quiet refresh work cannot publish against a newly opened merchant or clear new pending state. A failed public SetOpen close hook cannot strand new-generation pending or quiet work.",
+    "implementation": [
+      "End-only private monotonic generation invalidates callbacks without cancelable native timers.",
+      "Request captures generation before After and tracks the existing pending/quiet state owner. Different-generation adoption clears stale quiet wait.",
+      "Stale checks precede flag writes and follow actual public IsOpen, quiet getter and first UI callback boundaries.",
+      "Same-generation duplicate Begin and direct SetOpen semantics remain unchanged; public callback/error call order is preserved in tested scope."
+    ],
+    "focusedRegression": {
+      "scenarios": 137,
+      "checks": 502,
+      "candidateFailures": 0,
+      "baselineDesiredFailures": 100,
+      "startGuardOnlyControlFailures": 44,
+      "beginInvalidatingControlFailures": 8,
+      "intermediatePendingOwnerCandidateFailures": 16,
+      "exactActiveSessionTraceCount": 81,
+      "routes": [
+        "C_Timer.After",
+        "FLUX_API.After",
+        "C_Timer exists without After -> FLUX_API",
+        "C_Timer priority with FLUX_API present",
+        "No timer backend -> existing immediate fallback"
+      ],
+      "coverage": [
+        "150ms normal cadence and active-session coalescing",
+        "Default quiet completion retains After0 boundary",
+        "Same-value Begin and direct SetOpen compatibility",
+        "Live options and public UI callback replacement",
+        "Explicit opaque error objects from timer creation, IsOpen, quiet getter, settle registration, UI hooks, options and End hook",
+        "Same-session reentry and cross-End reentry from IsOpen/quiet/junk/After/public settle callback",
+        "Old parked quiet and already-queued zero callback after failed End; new quiet and nonquiet recovery"
+      ],
+      "limits": [
+        "Ordinary desktop Lua5.4.6 only; no native secret VM, taint, pixel, controller or FPS certification.",
+        "Moved source line numbers alter default Lua stack/error text; explicit error-object identity is tested."
+      ]
+    },
+    "independentReview": {
+      "agent": "/root/addon_combo_protocol",
+      "path": "independent-review/final-r3-review.json",
+      "sha256": "494581925a4bfa688036b2cb7a73b76bc9545c0f5f1f7d014652e1204a6edf3f",
+      "fixtureSHA256": "2f3b97beb6a634ef48149a8a4a244409fe66246a856b49df08eab2a8d369686e",
+      "verdict": "PASS_NO_MEANINGFUL_BLOCKER_FOUND",
+      "checks": 54,
+      "negativeControls": 5,
+      "priorRejectedCandidatesRetained": true
+    },
+    "externalAudit": {
+      "artifact": "vendor-session-r21/audit.json",
+      "sha256": "b62bc300d5d2802b8daa5c484b017d8ce958ffb12af33583f80c78687804edf9"
+    },
+    "wholeFacadeFlows": {
+      "trials": "3 matched pairs/route/scenario; alternating baseline-candidate/candidate-baseline/baseline-candidate;36raw samples;50000cycles/run",
+      "allocation": "GC collected then stopped across250whole cycles per raw run; reports whole fixture transient bytes, retained module helper/upvalue memory excluded",
+      "scope": "Entire exact production VendorSession body plus controlled timer/quiet/UI endpoint callbacks. Endpoints count actual public requests; downstream UI scheduling/render/native work excluded.",
+      "summary": {
+        "C_Timer/normal": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 79.0,
+            "cpuRangeMs": [
+              79.0,
+              84.0
+            ],
+            "transientKiBPerCycle": 0.188492187,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 50000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 50000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 81.0,
+            "cpuRangeMs": [
+              81.0,
+              82.0
+            ],
+            "transientKiBPerCycle": 0.235367187,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 50000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 50000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "cpuMedianPercentChange": 2.5316455696202445
+        },
+        "C_Timer/delayed-reopen": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 206.0,
+            "cpuRangeMs": [
+              205.0,
+              209.0
+            ],
+            "transientKiBPerCycle": 0.563554688,
+            "junkCalls": 150000,
+            "restockCalls": 150000,
+            "timersPosted": 150000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 150000,
+            "openReads": 150000,
+            "quietReads": 150000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 147.0,
+            "cpuRangeMs": [
+              145.0,
+              155.0
+            ],
+            "transientKiBPerCycle": 0.469804687,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 100000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 100000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.21
+          },
+          "cpuMedianPercentChange": -28.640776699029125
+        },
+        "C_Timer/quiet-reopen": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 279.0,
+            "cpuRangeMs": [
+              279.0,
+              282.0
+            ],
+            "transientKiBPerCycle": 0.915117188,
+            "junkCalls": 150000,
+            "restockCalls": 150000,
+            "timersPosted": 200000,
+            "zeroTimersPosted": 50000,
+            "timerCallbacks": 200000,
+            "openReads": 200000,
+            "quietReads": 200000,
+            "quietWaits": 50000,
+            "firstUIAt": 0.18
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 231.0,
+            "cpuRangeMs": [
+              219.0,
+              233.0
+            ],
+            "transientKiBPerCycle": 0.876054688,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 150000,
+            "zeroTimersPosted": 50000,
+            "timerCallbacks": 150000,
+            "openReads": 100000,
+            "quietReads": 100000,
+            "quietWaits": 50000,
+            "firstUIAt": 0.32
+          },
+          "cpuMedianPercentChange": -17.204301075268813
+        },
+        "FLUX_API/normal": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 81.0,
+            "cpuRangeMs": [
+              77.0,
+              82.0
+            ],
+            "transientKiBPerCycle": 0.188492187,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 50000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 50000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 85.0,
+            "cpuRangeMs": [
+              82.0,
+              86.0
+            ],
+            "transientKiBPerCycle": 0.235367187,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 50000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 50000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "cpuMedianPercentChange": 4.938271604938271
+        },
+        "FLUX_API/delayed-reopen": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 210.0,
+            "cpuRangeMs": [
+              200.0,
+              213.0
+            ],
+            "transientKiBPerCycle": 0.563554688,
+            "junkCalls": 150000,
+            "restockCalls": 150000,
+            "timersPosted": 150000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 150000,
+            "openReads": 150000,
+            "quietReads": 150000,
+            "quietWaits": 0,
+            "firstUIAt": 0.15
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 151.0,
+            "cpuRangeMs": [
+              150.0,
+              153.0
+            ],
+            "transientKiBPerCycle": 0.469804687,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 100000,
+            "zeroTimersPosted": 0,
+            "timerCallbacks": 100000,
+            "openReads": 50000,
+            "quietReads": 50000,
+            "quietWaits": 0,
+            "firstUIAt": 0.21
+          },
+          "cpuMedianPercentChange": -28.095238095238095
+        },
+        "FLUX_API/quiet-reopen": {
+          "baseline": {
+            "sourceSHA256": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 279.0,
+            "cpuRangeMs": [
+              279.0,
+              285.0
+            ],
+            "transientKiBPerCycle": 0.915117188,
+            "junkCalls": 150000,
+            "restockCalls": 150000,
+            "timersPosted": 200000,
+            "zeroTimersPosted": 50000,
+            "timerCallbacks": 200000,
+            "openReads": 200000,
+            "quietReads": 200000,
+            "quietWaits": 50000,
+            "firstUIAt": 0.18
+          },
+          "candidate": {
+            "sourceSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+            "cyclesPerTrial": 50000,
+            "cpuMedianMs": 231.0,
+            "cpuRangeMs": [
+              229.0,
+              234.0
+            ],
+            "transientKiBPerCycle": 0.876054688,
+            "junkCalls": 50000,
+            "restockCalls": 50000,
+            "timersPosted": 150000,
+            "zeroTimersPosted": 50000,
+            "timerCallbacks": 150000,
+            "openReads": 100000,
+            "quietReads": 100000,
+            "quietWaits": 50000,
+            "firstUIAt": 0.32
+          },
+          "cpuMedianPercentChange": -17.204301075268813
+        }
+      },
+      "normalCost": "Same public calls/150ms cadence; modeled CPU medians +2.53%/+4.94% and transient allocation +48bytes per accepted normal request. This overhead is retained, not hidden by stale-flow savings.",
+      "conditionalWork": "Reopen flows reduce public UI scheduling calls6->2 per cycle. Delayed accepted timers3->2; quiet4->3. Old quiet public wrapper can still post existing After0, whose stale inner body is inert.",
+      "limits": "Synthetic facade flow costs only; no native CPU/FPS/GC-spike gain or claim that downstream requests all become renders.",
+      "preliminary": "Original5000cycle samples and intermediate911candidate50000cycle samples retained separately; only final source-hashed samples support final summary."
+    },
+    "artifactSHA256": {
+      "baseline.lua": "6b84ca26ef5bee395c2dc60a1498442054f108ce458723469b08b5ed6b73211b",
+      "candidate.lua": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+      "candidate.diff": "17c8e2677760548bd12b4b22ae64632b8d400134b1c08bfd7c480d58cd84fff5",
+      "regression.lua": "4444aaf11de38806ff6bc2ed1e26a9e4be0fca370baaa74680dec13aee857f33",
+      "final-quiet-regression-result.json": "8ec8913c566f4b2752e03889698ea2b6b3aa450c4416258f420a89684e07cfa7",
+      "whole-facade-flow.lua": "6c711e5ebc68397a11a4041c4266972a6cd11cab373dd89e099786d1abb956d4",
+      "run-bench.py": "c0fd1b2f6bc81b2e414e20413c04ed542fa0b3f8aa18144cb803d1456ee5b7ab",
+      "whole-flow-raw-samples.json": "cacf03c2b1010cc6ffe7a958db5fc871cc92a97edaa77390a4b865d2eb492bcf",
+      "whole-flow-summary.json": "d74da01ff8fdef07bf4cebd3bad02a3481f0de2520a8ed5ff838bd58d00c2c13",
+      "candidate-initial.lua": "981671267a9dd2a86f23297cbc0084c1b3fb2a9e77fda2ad7f5a05b6eee564e4",
+      "candidate-pending-owner-before-quiet-fix.lua": "911f489ba0a7f01f15656f2ea21b0314756949d6996a389442646d0f99236d7f",
+      "control-start-guard-only.lua": "8b19559bf128f73962b8d1060fb01e1ed84dd6aa4fe71ef859c5a6bd7381d80b",
+      "control-begin-invalidates.lua": "f819bf3be82c86bddfec9a250e031b938dd79337fdebd9195936923c3e469fc0"
+    },
+    "fullSourceGate": {
+      "status": "PASS",
+      "scriptsPass": 391,
+      "scriptsFail": 0,
+      "syntaxFiles": 1079,
+      "syntaxFailures": 0,
+      "sourceStableThroughout": true,
+      "recordedCompletionUtc": "2026-11-15T05:31:00Z",
+      "completionTimeSource": "Root receipt",
+      "report": {
+        "artifact": "vendor-session-integration-full.json",
+        "sha256": "e95007ad5e4047665696764b2952005a18e93a4303e93a628ffc8274cd623e94"
+      },
+      "stability": {
+        "artifact": "vendor-session-integration-stability.json",
+        "sha256": "314a56acd1d209af96401968e8026fbc4b3c00d50eece546efc408fe9905fe56"
+      },
+      "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification."
+    },
+    "native": {
+      "candidateLoaded": true,
+      "candidateLoadedEvidence": "INFERRED_FROM_FRESH_LOGIN_AND_MATCHING_INSTALLED_SOURCE",
+      "reloadPerformed": false,
+      "freshReconnectLoginObserved": true,
+      "workflowAcceptance": "PENDING",
+      "FPSOrTaintAcceptance": false,
+      "temporaryProbeAdded": false
+    },
+    "otherWork": {
+      "R18": "External prototype;not applied",
+      "R19": "Rejected",
+      "idleFocusPermission": "PENDING",
+      "R2": "Stopped",
+      "R3": "Not deployed"
+    },
+    "scope": "One runtime owner and one durable regression;existing licenses preserved;no external-addon/settings/native action by application or this docs slice.",
+    "latestCompletedDocumentationGate": {
+      "recordedUtc": "2026-11-15T05:41:35Z",
+      "status": "PASS",
+      "classifiedSources": 1112,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "savedVariables": 24,
+      "localLinks": 17542,
+      "buildArtifact": "docs-build-R21final.txt",
+      "buildSHA256": "8fac5305146009f45c1fbc29e9e1c570d2104d8a808703b4c07d5b8dde6fc91f",
+      "validationArtifact": "docs-validate-R21final.txt",
+      "validationSHA256": "7f0f37cb9cb78915e36d1ae400407db59d43dcf7d84455526067e2721758579b",
+      "scope": "Completed before this R18/R19 docs delta;root will validate new changed set."
+    },
+    "postDocumentationSourceGuard": {
+      "recordedUtc": "2026-11-15T05:45:13.169100+00:00",
+      "manifestFiles": 1079,
+      "mismatches": 0,
+      "artifact": "vendor-session-final-source-guard.json",
+      "sha256": "fdaf41cf64617a6a1287f5f803d4809cf82f5a609904668a3ac8719635a32309",
+      "scope": "PostR21docs sourceidentityguard, no newfullrun ornativeacceptance"
+    },
+    "nativeAtApplication": {
+      "candidateLoaded": false,
+      "reloadPerformed": false,
+      "workflowAcceptance": "NOT RUN",
+      "FPSOrTaintAcceptance": false,
+      "temporaryProbeAdded": false
+    },
+    "freshStartupFollowup20261115": {
+      "status": "FRESH_STARTUP_SOURCE_INFERRED;VENDOR_WORKFLOW_PENDING",
+      "freshReconnectLoginObserved": true,
+      "expectedCharacterVerifiedWithoutPublishingIdentity": true,
+      "previousTemporaryVmRootsReset": true,
+      "installedRawSHA256": "d260f7d6ea9188e3e08c4fbb43f49e3412a12c3dd41ff654633cc8cb5b360216",
+      "repositoryAndForeverDiskMatch": true,
+      "loadEvidence": "Fresh expected world and facade presence observed after reconnect with matching installed source;applied R21 startup loading inferred,not native bytecode inspection.",
+      "vendorWorkflowAcceptance": "PENDING;no merchant close/reopen workflow exercised by R25",
+      "FPSOrTaintAcceptance": false
+    }
+  },
+  "reagentQuerySnapshotR18Followup20261115": {
+    "changeId": "LHO-REAGENT-SNAPSHOT-R18-20261115",
+    "status": "REJECTED_UNAPPLIED_STOPPED",
+    "sealedUtc": "2026-11-15T05:47:19.444498+00:00",
+    "audit": {
+      "artifact": "reagent-query-snapshot-r18/audit.json",
+      "sha256": "d578642f8a9f72f22b8e74e835c629b9e1bccef61c24ba523a98003e96a3c55f"
+    },
+    "fourProductOwnersUnchanged": {
+      "Inventory/CreateSpells.lua": {
+        "baseline": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a",
+        "current": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a",
+        "unchanged": true
+      },
+      "Inventory/Index.lua": {
+        "baseline": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+        "current": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+        "unchanged": true
+      },
+      "Inventory/SpellReagents.lua": {
+        "baseline": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+        "current": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+        "unchanged": true
+      },
+      "Inventory/Restock/Core/FluxRestockList.lua": {
+        "baseline": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+        "current": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+        "unchanged": true
+      }
+    },
+    "lastPartialCandidateSHA256": {
+      "Inventory/CreateSpells.lua": "2709930258c65f1cafa8b28f4089ec1cb6610ca012dfec7854242604519fe4ff",
+      "Inventory/Index.lua": "b80172fcb6f59d8f78a9352946e1827eecc4e14a8a547b405ecd1de0445f2d9c",
+      "Inventory/SpellReagents.lua": "2265434f0b772c2e0d06bf3a345313ff5af5e36ab48f1a1531989a984f45bf53",
+      "Inventory/Restock/Core/FluxRestockList.lua": "865fa7dd90ccf9fb4dea1d08df2d455d2d833adf3b1523dbd7843cbd2a3ab5d8"
+    },
+    "partialFootprint": {
+      "addedLines": 186,
+      "removedLines": 9,
+      "owners": 4,
+      "extraEventsOnExistingFrame": 2,
+      "newFrames": 0,
+      "newTimers": 0,
+      "applied": false
+    },
+    "independentControls": {
+      "completed": 50,
+      "passed": 45,
+      "failed": 5,
+      "verdict": "REJECTED_UNAPPLIED_STOPPED",
+      "runnerExitMeaning": "zero means collection completed, not validation PASS",
+      "reviewArtifact": "reagent-query-snapshot-r18/independent-review/review.json",
+      "reviewSHA256": "9ea0776fab4c8c6d0d16fef2752c7772faea4e0af918a580ae6d0e0112329859"
+    },
+    "confirmedFailures": [
+      {
+        "case": "Mixed plain -> proxy -> plain data row",
+        "status": "Reproduced on V2preproxy; exact targeted fix passes on current List865fa7dd.",
+        "effect": "Proxy dismissed/targetQuantity callback changes metadata. Baseline retains AfterProxy alias; old shortcut omitted it.",
+        "evidence": "mixed-proxy-before-fix-result.json;baseline/candidate-mixed-proxy-after-fix.txt"
+      },
+      {
+        "case": "Merchant public getter callback",
+        "status": "Unfixed; independent exact whole-query failure.",
+        "effect": "GetMerchantNumItems wrapper mutates controlled metadata oncall3; baseline learns AfterMerchant, current shortcut omits it.",
+        "evidence": "independent-item-count-review/merchant-callback-result.json"
+      },
+      {
+        "case": "Inv.HasWarband public callback",
+        "status": "Unfixed; independent exact whole-query failure.",
+        "effect": "Public HasWarband wrapper mutates controlled metadata oncall3 while returning same bool; baseline learns AfterInventoryCap, shortcut omits it.",
+        "evidence": "independent-item-count-review/inventory-cap-callback-result.json"
+      },
+      {
+        "case": "Late snapshot generation getter",
+        "status": "Unfixed; reproduced on current partial proxy fix.",
+        "effect": "New Validate generation read invokes a foreign __index that reenters actual Spells.OnVisibleItemsChanged; facts revision changes yet Validate returns true. Baseline does not invoke this new getter.",
+        "evidence": "late-guard-controls.json;baseline/candidate-snapshot-meta.txt"
+      }
+    ],
+    "unprovedBoundaries": [
+      "Full nested byBag/slots/record field reads in trusted-ID walker can also invoke foreign metatables; only top snapshots/region ownership was considered, not complete nested callback-free proof.",
+      "Simple opts-proxy replay has exact parity. A concrete opts freshness failure was not quickly reproduced; this remains a conservative/unproved callback boundary, not a confirmed regression.",
+      "Preexisting secure hooks may retain secure provenance; read-only native preflight does not certify observer/callback identity behavior."
+    ],
+    "versionedCosts": {
+      "timedIdentity": "V2BeforeProxyFix",
+      "timedSourceSHA256": {
+        "Inventory/CreateSpells.lua": "2709930258c65f1cafa8b28f4089ec1cb6610ca012dfec7854242604519fe4ff",
+        "Inventory/Index.lua": "b80172fcb6f59d8f78a9352946e1827eecc4e14a8a547b405ecd1de0445f2d9c",
+        "Inventory/SpellReagents.lua": "2265434f0b772c2e0d06bf3a345313ff5af5e36ab48f1a1531989a984f45bf53",
+        "Inventory/Restock/Core/FluxRestockList.lua": "e7045fb31b133f8e4b573fad0113c3c58328a0781529f54a076f12b44b89543f"
+      },
+      "costs": {
+        "False/manual": {
+          "baseline": {
+            "medianMs100": 215.0,
+            "rangeMs100": [
+              212.0,
+              217.0
+            ],
+            "allocationKiBPerQuery": 237.600976562
+          },
+          "candidate": {
+            "medianMs100": 217.0,
+            "rangeMs100": [
+              215.0,
+              219.0
+            ],
+            "allocationKiBPerQuery": 237.613476563
+          },
+          "cpuPercentChange": 0.9302325581395321,
+          "candidateFasterPairs": 0
+        },
+        "False/flag-only": {
+          "baseline": {
+            "medianMs100": 186.0,
+            "rangeMs100": [
+              184.0,
+              187.0
+            ],
+            "allocationKiBPerQuery": 166.3921875
+          },
+          "candidate": {
+            "medianMs100": 27.0,
+            "rangeMs100": [
+              27.0,
+              28.0
+            ],
+            "allocationKiBPerQuery": 27.770703125
+          },
+          "cpuPercentChange": -85.48387096774194,
+          "candidateFasterPairs": 5
+        },
+        "False/already-seen": {
+          "baseline": {
+            "medianMs100": 211.0,
+            "rangeMs100": [
+              209.0,
+              223.0
+            ],
+            "allocationKiBPerQuery": 242.054101562
+          },
+          "candidate": {
+            "medianMs100": 55.0,
+            "rangeMs100": [
+              54.0,
+              56.0
+            ],
+            "allocationKiBPerQuery": 103.536523437
+          },
+          "cpuPercentChange": -73.93364928909952,
+          "candidateFasterPairs": 5
+        },
+        "True/manual": {
+          "baseline": {
+            "medianMs100": 214.0,
+            "rangeMs100": [
+              211.0,
+              217.0
+            ],
+            "allocationKiBPerQuery": 237.600976562
+          },
+          "candidate": {
+            "medianMs100": 215.0,
+            "rangeMs100": [
+              211.0,
+              218.0
+            ],
+            "allocationKiBPerQuery": 237.613476563
+          },
+          "cpuPercentChange": 0.4672897196261738,
+          "candidateFasterPairs": 1
+        },
+        "True/flag-only": {
+          "baseline": {
+            "medianMs100": 186.0,
+            "rangeMs100": [
+              181.0,
+              188.0
+            ],
+            "allocationKiBPerQuery": 166.3921875
+          },
+          "candidate": {
+            "medianMs100": 27.0,
+            "rangeMs100": [
+              27.0,
+              28.0
+            ],
+            "allocationKiBPerQuery": 27.770703125
+          },
+          "cpuPercentChange": -85.48387096774194,
+          "candidateFasterPairs": 5
+        },
+        "True/already-seen": {
+          "baseline": {
+            "medianMs100": 212.0,
+            "rangeMs100": [
+              208.0,
+              215.0
+            ],
+            "allocationKiBPerQuery": 242.054101562
+          },
+          "candidate": {
+            "medianMs100": 56.0,
+            "rangeMs100": [
+              56.0,
+              56.0
+            ],
+            "allocationKiBPerQuery": 103.536523437
+          },
+          "cpuPercentChange": -73.58490566037736,
+          "candidateFasterPairs": 5
+        }
+      },
+      "protocol": {
+        "pairsPerProviderPerShape": 5,
+        "providerModes": 2,
+        "shapes": [
+          "manual",
+          "flag-only",
+          "already-seen"
+        ],
+        "queriesPerTimedSample": 100,
+        "rawSamplesPerVersion": 60,
+        "order": "Matched pairs alternate baseline/candidate then candidate/baseline.",
+        "clock": "Lua5.4.6 os.clock,1ms observed resolution.",
+        "allocation": "GC collected/stopped across5warmed rebuilds; transient whole fixture only, retained module capability closures/tables and persistent event registration cost excluded.",
+        "controls": "Item-name/native-count quantities asserted in every sample. Root full suite was complete before V2 CPU samples.",
+        "limits": "No native C++CPU,actualeventdispatch overhead,FPS,secretVM,taint,pixels,controller or all-client acceptance. No final-source post-proxy CPU rerun."
+      },
+      "currentPartialNotTimed": true,
+      "normalExtraTransientBytesPerQuery": 12.8
+    },
+    "conditionalWork": {
+      "sourceComposite": "Actual AH GetRows,List,Index,CreateSpells,SpellReagents,Core Item/Secrets bodies; same addon namespace. NativeAPI and provider behavior modeled.",
+      "stressShape": "20 manual settings entries,121 visible IDs,warm recipe map.",
+      "ordinaryNewRows": {
+        "harvestsBefore": 21,
+        "harvestsAfter": 21,
+        "itemNameCallsBefore": 2581,
+        "itemNameCallsAfter": 2581,
+        "nativeCountCallsPerQuery": 40
+      },
+      "flagOnlyOrAlreadySeen": {
+        "harvestsBefore": 21,
+        "harvestsAfter": 2,
+        "itemNameCallsBefore": 2581,
+        "itemNameCallsAfter": 244,
+        "itemNameReductionPercent": 90.546299883766
+      },
+      "providerMeaning": "Both provider flags are controlled mocked modes, not native Syndicator/Baganator combinations."
+    },
+    "nativeSettingsSnapshot": {
+      "observedUtc": "2026-11-15T05:41:57Z",
+      "totalEntries": 4,
+      "nonpositiveTargets": 1,
+      "positiveTargets": 3,
+      "scope": "Aggregate read-only snapshot, no itemIDs printed. Does not establish seen/flag eligibility or natural GetRows frequency. Twenty-no-op stress is not this actual native shape.",
+      "candidateLoaded": false,
+      "nativeGainAccepted": false
+    },
+    "decision": "Confirmed merchant/HasWarband/late-snapshot callback gaps;earlier mixed proxy fix addresses only that boundary. Stop guard expansion;no product application. Options-proxy replay is equal/unproved,not a confirmed regression.",
+    "continuationState": {
+      "goal": "ACTIVE",
+      "R21NativeCandidateLoaded": false,
+      "reloadSinceR21Application": false,
+      "R23": "Native casting matcher-attribution plan being prepared;not installed",
+      "pendingDiagnosticRoots": false,
+      "idleFocusPermission": "PENDING",
+      "R2": "Stopped",
+      "R3": "Not deployed",
+      "thisDocumentationDeltaGate": "PENDING root final docs gate;no CPU rerun required"
+    }
+  },
+  "castEntryLookupR19Followup20261115": {
+    "changeId": "LHO-CAST-LOOKUP-R19-20261115",
+    "status": "REJECTED_NOT_APPLIED",
+    "audit": {
+      "artifact": "phase4/cast-entry-lookup-r19/audit.json",
+      "sha256": "84a34f0f576a4c95308ef0c994b8cd957fc9f6ce4d518448ad7faddadef58808"
+    },
+    "ownerSHA256": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+    "candidateSHA256": "64685d229201404c611657cf819808e70b9963f5c5a18ee99cad287f1c61565d",
+    "rejectedControlSHA256": "fac1d9e41d2ec3965689dc6127d794a65a9d57a613f35a4dd594d5ea457ae7b9",
+    "desktopChecks": 194,
+    "contract": {
+      "registry": "one private append site; no unregister/reset; array remains canonical",
+      "map": "first identity registration only; duplicate and nested registration keep earliest entry",
+      "fastGate": "getmetatable(query)==nil; all nonnil values use original == linear scan",
+      "unsafeGate": "visible-table/raw-__eq-nil admits protected table disguise and loses first equivalent registration",
+      "guardOrder": "Register existing getter/write/unit normalization order retained"
+    },
+    "nativeMetadata": {
+      "timeUtc": "2026-11-15T05:09:39Z",
+      "widget": "FluxNonCombatGrid_MainBtn6",
+      "registered": true,
+      "type": "table",
+      "metatableType": "table",
+      "rawEqType": "nil",
+      "scope": "one widget on current Forever only; does not certify all widgets/clients or true unprotected metatable"
+    },
+    "pairs": [
+      {
+        "pair": 1,
+        "entries": 100,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "cpuSeconds": 0.484,
+          "allocatedKiB": 5216.93359375
+        },
+        "candidate": {
+          "cpuSeconds": 0.492,
+          "allocatedKiB": 5216.93359375
+        }
+      },
+      {
+        "pair": 2,
+        "entries": 100,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "cpuSeconds": 0.501,
+          "allocatedKiB": 5216.93359375
+        },
+        "baseline": {
+          "cpuSeconds": 0.503,
+          "allocatedKiB": 5216.93359375
+        }
+      },
+      {
+        "pair": 3,
+        "entries": 100,
+        "order": [
+          "baseline",
+          "candidate"
+        ],
+        "baseline": {
+          "cpuSeconds": 0.488,
+          "allocatedKiB": 5216.93359375
+        },
+        "candidate": {
+          "cpuSeconds": 0.488,
+          "allocatedKiB": 5216.93359375
+        }
+      },
+      {
+        "pair": 4,
+        "entries": 500,
+        "order": [
+          "candidate",
+          "baseline"
+        ],
+        "candidate": {
+          "cpuSeconds": 1.993,
+          "allocatedKiB": 10616.93359375
+        },
+        "baseline": {
+          "cpuSeconds": 1.914,
+          "allocatedKiB": 10616.93359375
+        }
+      }
+    ],
+    "hundredEntryMedian": {
+      "baselineSeconds": 0.488,
+      "candidateSeconds": 0.492,
+      "candidatePercentChange": 0.8196721311475308
+    },
+    "allocationUnchanged": true,
+    "sourcesStable": true,
+    "decision": "No accepted candidate. Safe gate cannot accelerate the single native widget observed; broader gate has a concrete equality regression. This small comparison is not native performance acceptance.",
+    "limits": "Lua5.4.6 desktop; counterexample uses same-handler pair, which also satisfies Lua5.1 source contract; no genuine5.1/native CPU run",
+    "continuationState": {
+      "goal": "ACTIVE",
+      "R21NativeCandidateLoaded": false,
+      "reloadSinceR21Application": false,
+      "R23": "Native casting matcher-attribution plan being prepared;not installed",
+      "pendingDiagnosticRoots": false,
+      "idleFocusPermission": "PENDING",
+      "R2": "Stopped",
+      "R3": "Not deployed",
+      "thisDocumentationDeltaGate": "PENDING root final docs gate;no CPU rerun required"
+    },
+    "frozenInputsUnchanged": 8
+  },
+  "nativeCastMatcherR23Followup20261115": {
+    "changeId": "LHO-CAST-MATCH-R23-20261115",
+    "status": "COMPLETED_CURRENT_SOURCE_ATTRIBUTION_ONLY",
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001
+    },
+    "sourceSHA256": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+    "planSHA256": "c73ac4615986b9165d0d836dd03ae9b63e4a3250910435cd2cab1d8fa0af2a82",
+    "planIndependentReviewSHA256": "0ce154492aad3d12437e91b0bc87a5bb9a780204567bdc16270808ad159b42f7",
+    "observationReviewSHA256": "cb2400827353871e2378c9a7f996f1a6542889b82d3f8086a44994a8ae44ee83",
+    "desktopControls": "53 controls / 374 checks PASS; earlier harmful controls retained; desktop-only observer tests are not native overhead calibration",
+    "attemptA": {
+      "elapsedSeconds": 19.9980324,
+      "rawSpans": 0,
+      "matcherSpans": 0,
+      "scope": "Food commands occurred after expiry; empty samples are inconclusive and establish no casting cost"
+    },
+    "attemptB": {
+      "elapsedSeconds": 20.007930000007153,
+      "raw": {
+        "entered": 17,
+        "finished": 17,
+        "validSpans": 17,
+        "inclusiveSumMs": 24.42019996047,
+        "inclusiveMaximumMs": 6.0662000179291
+      },
+      "matcherInsideRaw": {
+        "entered": 476,
+        "finished": 476,
+        "validSpans": 476,
+        "inclusiveSumMs": 4.9502003788948,
+        "inclusiveMaximumMs": 0.090500026941299
+      },
+      "valid": true,
+      "nestedRaw": 0,
+      "nestedMatcher": 0,
+      "actor": "Authorized rank4 food cast/cancel followed by one completed cast; receipt quantity10 observed inside window",
+      "ordering": "ARM, read-only GetTime and fixed Food sender submitted in one shell sequence; ARM/actor timing accepted posthoc"
+    },
+    "restoration": {
+      "originalMethod": true,
+      "originalScript": true,
+      "namespaceSame": true,
+      "timersGone": true,
+      "rootNil": true,
+      "pendingCleanup": false
+    },
+    "preferences": {
+      "scriptProfile": 0,
+      "nativeProfiler": true,
+      "maxFPS": 120,
+      "maxFPSBk": 30,
+      "changed": false
+    },
+    "addonsLoaded": {
+      "Syndicator": true,
+      "Baganator": true
+    },
+    "transport": {
+      "foregroundUnchanged": true,
+      "activation": false,
+      "systemWideInput": false
+    },
+    "runtimeProductChanges": false,
+    "r21Loaded": false,
+    "limits": [
+      "Single instrumented current-source sample; no matched before/after optimization or FPS result",
+      "Raw spans include matcher wrapper overhead; inclusive spans are not exclusive CPU and must not be subtracted",
+      "Aggregate maxima have no event-specific assignment; registry219 is not a visible-button count",
+      "No native observer calibration, taint, pixel or controller acceptance; other client families remain pending",
+      "Private captures and raw character/chat/cast/inventory identifiers remain external; only aggregates published"
+    ],
+    "next": "R24 mapped action face lookup, interrupt overlay and PickOwners envelopes; R25 temporary attribution plan and R26 slot-pass lifecycle audit remain offline-only until separately validated",
+    "capturePhase": "Before the later fresh reconnect/login;its r21Loaded=false is historical at R23 capture and remains unchanged."
+  },
+  "nativeCastStagesR25Followup20261115": {
+    "changeId": "LHO-CAST-STAGES-R25-20261115",
+    "status": "COMPLETED_CURRENT_SOURCE_ATTRIBUTION_ONLY",
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001
+    },
+    "sourceSHA256": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+    "planSHA256": "6d980860338ea677254c4fbb0a90df3a418718288ab1da95e79fa2b088d1434e",
+    "planIndependentReviewSHA256": "0a96abea3e4587067953adbdcfb9d3b43ed94a922866fe49d7d36bc213b074aa",
+    "observationReviewSHA256": "3841eaaca0b5524a93b4252f368d94bde1459ea64978626bd7e8bfd54d7e3bd1",
+    "desktopControls": "70 cases / 1415 checks PASS;29 payloads independently compiled/max253;R1 negative-window failure retained",
+    "window": {
+      "elapsedSeconds": 20.0107638,
+      "valid": true,
+      "rawDepth": 0,
+      "methodDepth": 0,
+      "bad": false,
+      "clean": true,
+      "nestedRaw": 0,
+      "nestedMethod": 660,
+      "timersGone": true,
+      "originalMethodsAndScriptRestored": true
+    },
+    "raw": {
+      "entered": 17,
+      "finished": 17,
+      "validSpans": 17,
+      "inclusiveSumMs": 24.269199937582,
+      "inclusiveMaximumMs": 5.8176999986172
+    },
+    "methodsInsideRaw": [
+      {
+        "name": "SpellIdFromAction",
+        "entered": 351,
+        "finished": 351,
+        "validSpans": 351,
+        "inclusiveSumMs": 2.3977000713348,
+        "inclusiveMaximumMs": 0.24150002002716,
+        "depthAfter": 0,
+        "originalRestored": true
+      },
+      {
+        "name": "SpellIdFromEBS",
+        "entered": 393,
+        "finished": 393,
+        "validSpans": 393,
+        "inclusiveSumMs": 1.8775001466274,
+        "inclusiveMaximumMs": 0.051800012588501,
+        "depthAfter": 0,
+        "originalRestored": true
+      },
+      {
+        "name": "PlayInterrupt",
+        "entered": 0,
+        "finished": 0,
+        "validSpans": 0,
+        "inclusiveSumMs": 0,
+        "inclusiveMaximumMs": 0,
+        "depthAfter": 0,
+        "originalRestored": true
+      },
+      {
+        "name": "PickOwners",
+        "entered": 10,
+        "finished": 10,
+        "validSpans": 10,
+        "inclusiveSumMs": 16.2417999506,
+        "inclusiveMaximumMs": 2.3553000092506,
+        "depthAfter": 0,
+        "originalRestored": true
+      }
+    ],
+    "actor": "Authorized Food cancel and one completion inside actual window;generic receipt quantity10 observed. Raw actor times, identities and inventory details remain external.",
+    "ordering": "STAGED captured first;ARM,read-only GetTime and exact reviewed Food sender run in one shell without model handoff;native timing accepted posthoc.",
+    "restoration": {
+      "allFourOriginalMethods": true,
+      "originalRawScript": true,
+      "namespacesSame": true,
+      "timersGone": true,
+      "rootNil": true,
+      "pendingCleanup": false
+    },
+    "preferences": {
+      "scriptProfile": 0,
+      "nativeProfiler": true,
+      "maxFPS": 120,
+      "maxFPSBk": 30,
+      "changed": false
+    },
+    "addonsLoaded": {
+      "Syndicator": true,
+      "Baganator": true
+    },
+    "transport": {
+      "foregroundUnchanged": true,
+      "activation": false,
+      "systemWideInput": false,
+      "clipboard": false
+    },
+    "runtimeProductChanges": false,
+    "limits": [
+      "Single current-source instrumented sample;no matched optimization or FPS result.",
+      "Method nesting660 establishes overlapping inclusive spans;do not add method sums or subtract them from raw as exclusiveCPU.",
+      "PlayInterrupt0 means captured boundary not observed,not zero-cost paint or absent feature proof.",
+      "Raw spans include observer clocks/counters;native helper cost and event-specific maxima remain unproved.",
+      "No native taint,pixel,controller or other-client acceptance;private captures/player/chat/cast/inventory identifiers remain external."
+    ],
+    "externalArtifacts": {
+      "nativeResult": {
+        "artifact": "native/cast-r25-result.json",
+        "sha256": "8594adf87e28f3959edea0a0743490d8e04598555138c569b2a5839aa54bb6fd"
+      },
+      "numericReview": {
+        "artifact": "cast-stage-attribution-r25/native-result-review-r1.json",
+        "sha256": "3841eaaca0b5524a93b4252f368d94bde1459ea64978626bd7e8bfd54d7e3bd1"
+      }
+    },
+    "documentationGate": {
+      "status": "PASS",
+      "recordedUtc": "2026-11-15T06:58:33.256509+00:00",
+      "classifiedSources": 1112,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "savedVariables": 24,
+      "localLinks": 17551,
+      "validationArtifact": "cast-stage-attribution-r25/independent-review/docs-gate-r25.log",
+      "validationSHA256": "c94b1a5aeccacb85836f605061328fd9c2172a8d782c67d507d4398a51d471d0",
+      "independentReviewArtifact": "cast-stage-attribution-r25/independent-review/docs-review-r25.json",
+      "independentReviewSHA256": "09cb344942cf7f0a91b7d949e05ac45bd511afd75dcc4e2c7bfeb9a93ce2ec6b",
+      "scope": "Nine-file R25 aggregate/startup documentation delta only;checker wrote no files;no source suite rerun or new native acceptance."
+    }
+  },
+  "latestContinuationCheckpoint": {
+    "changeId": "LHO-NATIVE-FRAME-STARTUP-20261115",
+    "recordedUtc": "2026-11-15T09:47:53.163170+00:00",
+    "goalStatus": "ACTIVE;originalLHO01-13scopeincomplete",
+    "R25": "Completed,independently transcribed,exact originals/timers/root cleanup verified",
+    "R21": "FRESH_STARTUP_SOURCE_INFERRED;VENDOR_WORKFLOW_PENDING",
+    "R21VendorWorkflowAcceptance": "PENDING",
+    "R18": "REJECTED_UNAPPLIED",
+    "R19": "REJECTED_UNAPPLIED",
+    "R26": "APPLIED_ON_DISK;NATIVE_SOURCE_ADOPTION_UNVERIFIED",
+    "activeNativeProbes": false,
+    "pendingCleanup": false,
+    "activeKeepaliveHelper": true,
+    "idleFocusPermission": "APPROVED_IDLE_JUMPS_ONLY;craft/chatdeferrequired",
+    "lastCompletedSourceGate": "395scripts/1083syntax0fail/sourceStable externalc33 beforeR33apply;installed corpusmatches",
+    "lastCompletedDocsGate": {
+      "status": "PASS_BEFORE_THIS_CONTINUITY_DELTA",
+      "recordedUtc": "2026-11-15T09:32:52Z",
+      "classifiedSources": 1116,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "literalDefaults": 583,
+      "savedVariables": 24,
+      "localLinks": 17576,
+      "validationWrites": 0,
+      "buildArtifact": "docs-build-R33final.txt",
+      "buildSHA256": "bdce4193630cfdd39b43e52ef52060b431ac8d2d0db5b1ee335c227971b68891",
+      "validationArtifact": "docs-validate-R33final.txt",
+      "validationSHA256": "17784b028b87a83377d5346607fedb63ab164a5148838502cb953437538bb533",
+      "scope": "R33documentationgate;notnativeperformance/sourceadoptionacceptance;predatesthisnewcontinuitydelta"
+    },
+    "thisDocumentationGate": {
+      "status": "PENDING;rootfinalreadOnlyvalidationafterminimal3recorddelta"
+    },
+    "R27": "APPLIED_ON_DISK;NATIVE_SOURCE_ADOPTION_UNVERIFIED",
+    "nativeInput": "USER_NOW_PERMITS_CHAT;30sidleeligibilitywaitdeferredBEFOREkeys/journal/lease;INPUT_HALTEDandrootheldhelperpreserved",
+    "R28": "REJECTED_UNAPPLIED;200of790recoverychecksfailed",
+    "R29": "REJECTED_GENERAL_APPLY_UNAPPLIED;mixedElapsedLuaOsClock/secretcontractunproved;rankpreservingvariantstopped",
+    "R30": "BASELINE_ALREADY_BATCHES;NO_APPLY",
+    "R31": "APPLIED_ON_DISK;Era/AnniversaryNATIVE_PENDING",
+    "jumpHelper": {
+      "pid": 44368,
+      "sourceSHA256": "c40bb8d24c1a9257f29068fe4ef0d8f194d7c8ef9e92dda26544b595354efdf4",
+      "owner": "Root",
+      "held": true,
+      "token": "craft-input-guard-upgrade-20261115T0836-root",
+      "movementAcknowledged": false,
+      "freshCraftChatObserver": "MISSING"
+    },
+    "postApplicationSourceGuard": {
+      "artifact": "ebs-range-work-r33-source-guard.json",
+      "sha256": "0451ae55ff082dfe0bcdc5f38f94c8a48d5b5cdb77c3d490e50957e574fe989b",
+      "normalizedCorpusFiles": 1083,
+      "otherRawLuaUnchanged": 1082,
+      "newInstalledRawIdentities": 15,
+      "selectedExternalSourceGuards": 5
+    },
+    "authoritativeCurrentPriority": {
+      "source": "Explicit user steering,15November2026",
+      "primaryPaths": [
+        "Inventory/",
+        "related ExtraButtonSystem/"
+      ],
+      "priority": "INVENTORY_PRIMARY_FOR_NOW",
+      "allowedInProgressException": "R33boundedrangecheckcompletedondisk;returnprimaryInventory/EBSframe-spikework",
+      "castingOrOtherUiExpansion": false,
+      "existingGoalReset": false,
+      "remainingAcceptance": "Original requirements remain pending;goalACTIVE",
+      "requiredLagScope": "ANY inventory-triggered FPS/frame-time spike,including expensive individualframes/eventbursts;notonlyaverageFPSorsteadygain",
+      "requiredMeasurements": [
+        "worst-frame latency",
+        "per-event latency",
+        "burst latency",
+        "passive overhead"
+      ],
+      "nativeProofBoundary": "Desktop timing/allocation counts do not establish native spike relief."
+    },
+    "desktopClockInterpretation": {
+      "artifact": "desktop-clock-calibration/result.json",
+      "sha256": "86cb29a35a8f1f78051bc8c30dd4fe377a01059fdc1c3c9b313d76e3f0ec972d",
+      "calibratedUtc": "2026-11-15T08:58:53.923632+00:00",
+      "osClock": "ELAPSED_FOR_EXACT_DESKTOP_BINARY;NOT_ISOLATED_CPU",
+      "R29": "Mixedelapsedtiming;generalapplyrejected;allocationunchanged",
+      "R27": "Historical16-38percent isdesktopelapsed;104→0B/queryallocationunchanged",
+      "historyPreserved": true
+    },
+    "R33": "APPLIED_ON_DISK;NATIVE_SOURCE_ADOPTION_UNVERIFIED",
+    "R32": "LEGACY_USABILITY_OWNER_UNLOADED;NO_OPTIMIZATION",
+    "sourceCheckpoint": {
+      "files": 2838,
+      "settingsMetadataEntries": 126,
+      "artifact": "checkpoint-before-ebs-range-work-r33-20261115T091020Z"
+    },
+    "supervisedChatPreflight": "Nochatopened/noobserverinstalled;frozen5dbootstrapkept;noactualcommands",
+    "vendorColdRetryAudit": "UNMEASURED_PROPOSAL;nofix/nosafecache;200mscadenceretained",
+    "lastNativeFrameTimeAttempt": "PresentMonINCOMPLETEstartup0.031s/exit1/noACK/noCSV/zeroresults;taxi-travelCONTROL",
+    "nativeFrameTimeCaptureAcceptance": "ZERO_RESULTS;noinventory/FPS/causalityacceptance",
+    "startupFailureCause": "UNKNOWN;noinferenceofpermissiondenialorUAC;no retry"
+  },
+  "castPassNameR26R27Followup20261115": {
+    "changeIds": [
+      "LHO-CAST-PASS-R26-20261115",
+      "LHO-CAST-NAME-R27-20261115"
+    ],
+    "status": "APPLIED_ON_DISK;NATIVE_SOURCE_ADOPTION_NOT_VERIFIED;INPUT_HALTED",
+    "appliedUtc": "2026-11-15T07:12:24.871647+00:00",
+    "checkpoint": {
+      "artifact": "checkpoint-before-cast-pass-name-r26r27-20261115T065806Z",
+      "sourceFiles": 2833,
+      "sourceArchiveSHA256": "f1c46fb8c27fa314bf23e3e9a213b4ac3d783c439a0b4dc5890f00734922ff34",
+      "historySHA256": "adc27efd39a8a410bdffd1e8d540f650aa21e2bb74fec973aee5170ab0eb6f54",
+      "settingsMetadataEntries": 126,
+      "privateSettingsCopied": false
+    },
+    "baselineSHA256": {
+      "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+      "Bars/Paint.lua": "7885acc887459081f924384e12baeca79bf5a8722f090cdb70423859274154a1",
+      "Bars/Effects.lua": "7157f719602a74eb3912077c0b63ed6e4e1eb8f8892dc857e214983968bf286e"
+    },
+    "combinedRuntimeSHA256": {
+      "Core/ButtonFX/Cast.lua": "5902f1bc4363e408ec34faf66ace6aefb8b3f7495c2e1f6e164336b39c21586c",
+      "Bars/Paint.lua": "3cddc870d0a98c228b2a12337de9dce0c138c1ea9553bd8c2cc5413dc7a980cd",
+      "Bars/Effects.lua": "8b785f4763eaf31fa3ff773c5c9c91732c4fee652fa0edc6fc1440dc25f2816e"
+    },
+    "durableTestsSHA256": {
+      "tests/cast_slot_pass_lifecycle.lua": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+      "tests/cast_live_name_work.lua": "ae0c580a1870f8935d71e504f5deacc306a6eab7056236042d6f7bd40798311f"
+    },
+    "extractor": {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "before": "734dfe7231354bd73e1aa30b47f0f416e5177c3ab95f495803b88f9463992cdd",
+      "initialTestedAndAppliedSHA256": "90bfb2e391e2a4f525bbe8c57ae696a632bf980e5fda3bf4cc75c8780cbc627f",
+      "finalSHA256": "6d7ecf35fa48ecd681cfaff9dd1521ca1fe1d610e253557ba18741fe03f00baa",
+      "exactOneFunctionalLineReplacement": true,
+      "lineEndings": "Original LF preserved after parent corrected incidental CRLF conversion; normalized tested bytes identical.",
+      "nineOriginalBodyAssertionsUnchanged": true,
+      "formatCorrectionArtifact": "cast-pass-name-r26r27-smoke-newlines.json",
+      "scope": "Desktop source-layout extractor only; body checks now inspect the hoisted body and retain the old-layout fallback."
+    },
+    "compositionReviewSHA256": "264951271d781e23aa309e810ae792d5fd2bc471fb29b731462e934203f1566f",
+    "r26": {
+      "intentionalFix": "GetActionInfo input101. Checked-lane widget:SetChecked or Effects.Glow.Want throws the same opaque error after slot1 was cached. Existing End is skipped and memoActive remains true. Input becomes202. Later ordinary SpellIdFromAction(1),with no new pass, returns101 and performs no current GetActionInfo read. Existing manual EndSlotPass immediately restores202.",
+      "scope": "Staleness lasts until a later Begin clears map or End disables memo, not necessarily forever in active gameplay. No native occurrence/frequency was measured.",
+      "mechanism": {
+        "files": [
+          "Core/ButtonFX/Cast.lua",
+          "Bars/Paint.lua",
+          "Bars/Effects.lua"
+        ],
+        "mechanism": "Increment one private serial in existing Begin. A hoisted protected-call/vararg finisher disables memoActive only if an error body began a newer owned pass,then rethrows the original error object. Wrap existing Paint.Flush and Effects.FlushDirty bodies; success preserves exact tuple.",
+        "sameCallbacks": "Original bodies retain all existing public Begin/End,paint,widget,Glow and Timer.Defer callbacks/order. No extra public End is called on failure,so cleanup cannot replace the primary error through a foreign End hook.",
+        "preBegin": "An error before any newer Begin leaves an unrelated outer pass intact.",
+        "nesting": "Existing Begin-clears/End-disables single-active semantics retained; no nesting stack or longer-lived cache. Inner normalEnd still disables outer memo; innererror cleanup matches that close behavior.",
+        "costMechanisms": "One protected call/hoisted finisher per wrapped invocation,including empty paths; numeric serial increment only at existing Begin. No per-call closure/table literal,new frame,event,timer,polling,defer or settings.",
+        "explicitExclusion": "No RawCast OnEvent/dispatch is put inside BeginSlotPass; raw getter-query purity is not assumed."
+      },
+      "focused": "Baseline41cases265checks with42freshness failures; candidate54cases310checks with0desiredfailures.",
+      "durable": {
+        "path": "durable/tests/cast_slot_pass_lifecycle.lua",
+        "sha256": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+        "defaultNoArgs": "PASS54cases329checks in external candidate cwd; single relative loader, optional source-root arg, no hard-coded external paths or business-body copy.",
+        "baseline": "Nonzero exit with42freshness regressions.",
+        "allocationBound": "10,000warmed no-op guarded calls must stay within2KiB fixed VM envelope; current measured0KiB.",
+        "controls": "All compiled: unconditional-close breaks unrelated outer state; omit-cleanup retains leaks; per-call scratchtable breaks allocation bound."
+      },
+      "independent": {
+        "path": "independent-results-frozen.json",
+        "sha256": "114cf20677768fbf728a1a2632b6d14a6c83318b2d0d29dcc4caf71eb7fe40be",
+        "baseline": "21cases155checks reproduce current error leak",
+        "candidate": "69cases469checks PASS",
+        "negativeControls": "Unconditional close rejected5cases; omitted cleanup rejected32cases",
+        "coverage": "Opaque table/nil/false/number/string errors; return/arg holes; nested actual Effects error caught by Paint; pre-Begin token/Perf/Begin failures; dynamicEnd replacement; no addedEnd onerror; dirty-host barriers/order without assuming pairs traversal order.",
+        "durableReplay": "Requested separately; the frozen review above covers runtime proposal and external controls. Root combined gate owns its copied durable acceptance."
+      },
+      "ordinaryDesktopCosts": {
+        "samples": "bench-samples.json:5matched alternating pairs x6shapes x2sources=60rawsamples",
+        "summary": {
+          "paint-1": {
+            "baseline": {
+              "medianMs": 25.0,
+              "rangeMs": [
+                24.0,
+                27.0
+              ],
+              "allocationBytesPerCall": 802.24
+            },
+            "candidate": {
+              "medianMs": 26.0,
+              "rangeMs": [
+                26.0,
+                28.0
+              ],
+              "allocationBytesPerCall": 802.88
+            },
+            "loops": 10000,
+            "addedMicrosecondsPerCall": 0.1,
+            "cpuPercentChange": 4.0000000000000036,
+            "candidateFasterPairs": 1
+          },
+          "paint-57": {
+            "baseline": {
+              "medianMs": 74.0,
+              "rangeMs": [
+                74.0,
+                77.0
+              ],
+              "allocationBytesPerCall": 802.24
+            },
+            "candidate": {
+              "medianMs": 74.0,
+              "rangeMs": [
+                73.0,
+                75.0
+              ],
+              "allocationBytesPerCall": 802.88
+            },
+            "loops": 1000,
+            "addedMicrosecondsPerCall": 0.0,
+            "cpuPercentChange": 0.0,
+            "candidateFasterPairs": 3
+          },
+          "paint-empty": {
+            "baseline": {
+              "medianMs": 19.0,
+              "rangeMs": [
+                19.0,
+                21.0
+              ],
+              "allocationBytesPerCall": 0.0
+            },
+            "candidate": {
+              "medianMs": 32.0,
+              "rangeMs": [
+                30.0,
+                35.0
+              ],
+              "allocationBytesPerCall": 0.64
+            },
+            "loops": 100000,
+            "addedMicrosecondsPerCall": 0.13,
+            "cpuPercentChange": 68.42105263157893,
+            "candidateFasterPairs": 0
+          },
+          "effects-immediate": {
+            "baseline": {
+              "medianMs": 30.0,
+              "rangeMs": [
+                29.0,
+                30.0
+              ],
+              "allocationBytesPerCall": 2.56
+            },
+            "candidate": {
+              "medianMs": 31.0,
+              "rangeMs": [
+                30.0,
+                33.0
+              ],
+              "allocationBytesPerCall": 18.88
+            },
+            "loops": 10000,
+            "addedMicrosecondsPerCall": 0.1,
+            "cpuPercentChange": 3.3333333333333437,
+            "candidateFasterPairs": 0
+          },
+          "effects-deferred": {
+            "baseline": {
+              "medianMs": 31.0,
+              "rangeMs": [
+                29.0,
+                31.0
+              ],
+              "allocationBytesPerCall": 1.92
+            },
+            "candidate": {
+              "medianMs": 32.0,
+              "rangeMs": [
+                31.0,
+                32.0
+              ],
+              "allocationBytesPerCall": 18.24
+            },
+            "loops": 10000,
+            "addedMicrosecondsPerCall": 0.1,
+            "cpuPercentChange": 3.2258064516129004,
+            "candidateFasterPairs": 0
+          },
+          "effects-empty": {
+            "baseline": {
+              "medianMs": 19.0,
+              "rangeMs": [
+                18.0,
+                19.0
+              ],
+              "allocationBytesPerCall": 1.28
+            },
+            "candidate": {
+              "medianMs": 30.0,
+              "rangeMs": [
+                30.0,
+                31.0
+              ],
+              "allocationBytesPerCall": 1.92
+            },
+            "loops": 100000,
+            "addedMicrosecondsPerCall": 0.11,
+            "cpuPercentChange": 57.89473684210527,
+            "candidateFasterPairs": 0
+          }
+        },
+        "absoluteMedianAddedMicrosecondsPerCall": {
+          "paintChecked1": 0.1,
+          "paintChecked57": 0,
+          "paintEmpty": 0.13,
+          "effectsImmediate": 0.1,
+          "effectsDeferred": 0.1,
+          "effectsEmpty": 0.11
+        },
+        "limits": "Desktop Lua5.4 source fixture only, with GetActionInfo/SpellCurrent/widgets modeled. These are normal cost increases for a correctness fix, not optimization gains or native FPS measurements. No-op relative increases68.4%/57.9% are retained despite tiny absolute baselines.",
+        "work": "Native-action/current query counts and widget writes identical before/after in every timed sample.",
+        "independent": "Independent5pairs/4shapes40samples also find overhead: no-op+.11us,checked1+.20us,57hosts+1us,effects+.10us; absolute models differ.",
+        "allocation": "Raw100-call envelopes include fixed post-GC VM regrowth. Extra64B Paint/empty and1,632B activeEffects totals are not per-call slope. allocation-scale.json shows activeEffects baseline.25KiB/candidate1.84375KiB exactlyconstant at10/100/1000/10000calls. Isolatedguard10k0KiB; independent post-GC warmup finds equal allocations. Native VM/GC costs remain unmeasured."
+      },
+      "nativeFrequency": "UNKNOWN;no native leak occurrence established",
+      "auditSHA256": "c356c869493aa5028e2dcc3ebb625b268abf4be3b831d16c878f16b8ec29f26f"
+    },
+    "r27": {
+      "standaloneSourceSHA256": "dba38f9425da1e6cbf2311353e8d37df82215709f80e448ab2627166841b9224",
+      "intent": "Hoist only the private native-result helper;retain current native/formatter lookup,normalization,pcall/error/result order. No per-query cache.",
+      "durable": "60cases181checks PASS;baseline reaches allocation-bound failure",
+      "independent": "150cases610checks each baseline/standalone/combined;complete semantic traces identical;three compiled harmful controls rejected",
+      "independentReviewSHA256": "394d5e0e7cba25396317efaaef65f4b3014137750f087ca3c05a6b716d7e8201",
+      "helperCpuFiveAlternatingPairs": {
+        "cast-raw": {
+          "baseline": {
+            "medianMsPer250000": 77.0,
+            "minimum": 77.0,
+            "maximum": 81.0,
+            "samples": [
+              77.0,
+              77.0,
+              81.0,
+              77.0,
+              78.0
+            ]
+          },
+          "candidate": {
+            "medianMsPer250000": 53.0,
+            "minimum": 53.0,
+            "maximum": 54.0,
+            "samples": [
+              53.0,
+              54.0,
+              54.0,
+              53.0,
+              53.0
+            ]
+          },
+          "medianDeltaPercent": -31.16883116883117
+        },
+        "cast-token": {
+          "baseline": {
+            "medianMsPer250000": 105.0,
+            "minimum": 105.0,
+            "maximum": 106.0,
+            "samples": [
+              105.0,
+              105.0,
+              106.0,
+              105.0,
+              105.0
+            ]
+          },
+          "candidate": {
+            "medianMsPer250000": 83.0,
+            "minimum": 81.0,
+            "maximum": 85.0,
+            "samples": [
+              85.0,
+              81.0,
+              81.0,
+              83.0,
+              84.0
+            ]
+          },
+          "medianDeltaPercent": -20.952380952380956
+        },
+        "channel-token": {
+          "baseline": {
+            "medianMsPer250000": 143.0,
+            "minimum": 142.0,
+            "maximum": 145.0,
+            "samples": [
+              142.0,
+              145.0,
+              143.0,
+              144.0,
+              143.0
+            ]
+          },
+          "candidate": {
+            "medianMsPer250000": 120.0,
+            "minimum": 119.0,
+            "maximum": 122.0,
+            "samples": [
+              120.0,
+              121.0,
+              120.0,
+              122.0,
+              119.0
+            ]
+          },
+          "medianDeltaPercent": -16.083916083916083
+        },
+        "missing-native": {
+          "baseline": {
+            "medianMsPer250000": 55.0,
+            "minimum": 54.0,
+            "maximum": 55.0,
+            "samples": [
+              55.0,
+              55.0,
+              54.0,
+              55.0,
+              55.0
+            ]
+          },
+          "candidate": {
+            "medianMsPer250000": 34.0,
+            "minimum": 34.0,
+            "maximum": 37.0,
+            "samples": [
+              37.0,
+              34.0,
+              34.0,
+              35.0,
+              34.0
+            ]
+          },
+          "medianDeltaPercent": -38.18181818181819
+        },
+        "none": {
+          "baseline": {
+            "medianMsPer250000": 112.0,
+            "minimum": 110.0,
+            "maximum": 113.0,
+            "samples": [
+              112.0,
+              111.0,
+              113.0,
+              110.0,
+              112.0
+            ]
+          },
+          "candidate": {
+            "medianMsPer250000": 84.0,
+            "minimum": 82.0,
+            "maximum": 87.0,
+            "samples": [
+              87.0,
+              85.0,
+              84.0,
+              84.0,
+              82.0
+            ]
+          },
+          "medianDeltaPercent": -25.0
+        }
+      },
+      "helperAllocation": {
+        "scenario": "5000 warm no-live-name queries; whole Cast private helper; native endpoints modeled",
+        "baselineBytesPerCall": 104,
+        "candidateBytesPerCall": 0
+      },
+      "limits": "Desktop actual-source helper envelope, no native gain or whole-event/FPS inference; R26 cleanup CPU cost remains separate;does not causally explain R25 PickOwners spans or whole-event/native FPS/GC.",
+      "summarySHA256": "55b46ddfe845a61eda6f8804345ba7d8d4ddc52c4796a5c3a3525d1ccd769ea5"
+    },
+    "fullDesktopGate": {
+      "firstRun": {
+        "exit": 1,
+        "sourceStableThroughout": true,
+        "scriptsPass": 342,
+        "scriptsFail": 51,
+        "syntaxFiles": 1081,
+        "syntaxFailures": 0,
+        "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+        "cancellable": true
+      },
+      "firstDisposition": "Retained342pass51fail;50external reference/path environment failures andone source-layout extractor mismatch;not accepted.",
+      "acceptedRun": {
+        "exit": 0,
+        "sourceStableThroughout": true,
+        "scriptsPass": 393,
+        "scriptsFail": 0,
+        "syntaxFiles": 1081,
+        "syntaxFailures": 0,
+        "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+        "cancellable": true
+      },
+      "acceptedRunSHA256": "497261c7abdaa1ab4bd090007c11aa69247bc69023dbc5a1ea583cf457614d6b",
+      "environmentAdapterSHA256": "62d1d3aff7227fc6dde418c2ba29f6e23eeb89c77851ae80a45fb8b7d2b59420",
+      "environmentScope": "Desktop LUA_INIT redirects known canonical exact-case reference reads to original fixtures;recognized write modes rejected. Not universal FS sandbox;no product/globalnativeAPI changes.",
+      "all1081NormalizedCorpusIdentitiesMatch": true,
+      "ignoredUnloadedScratchPreserved": true
+    },
+    "installedCopies": {
+      "identitiesChecked": 30,
+      "fiveClients": [
+        "_retail_",
+        "_forever_",
+        "_classic_",
+        "_classic_era_",
+        "_anniversary_"
+      ],
+      "mismatches": [],
+      "artifactSHA256": "17fec958c732e54966bab076f2997a087cddc1fd61ef77072b33e88686f159b5",
+      "limit": "Disk identity only;does not establish loading or native execution."
+    },
+    "native": {
+      "status": "SOURCE_ADOPTION_UNVERIFIED;INPUT_HALTED",
+      "reloadIncident": "Targeted guarded reload transport returned complete;later capture showed an open editbox with partial Lua. Execution/public-message scope remains uncertain;no code-Say event established. A reload may have occurred,so neither loaded nor definitely-unloaded source is accepted. Parent halted native input;no further chat/profiling actors this continuation.",
+      "allClientExecution": "PENDING",
+      "matchedCpuFps": "PENDING",
+      "taintPixelsController": "PENDING",
+      "ownedProbeCleanup": "R23/R25 exact cleanup already verified;no new diagnostic root installed by this docs/review slice.",
+      "noNativeActionsByDocsReviewer": true,
+      "incidentEvidenceSHA256": "7e1801a434ec958b07837a3c1e579c831895457f9bd648da889be57ca6cd1deb",
+      "uiCleanup": {
+        "targetedEscapeCount": 2,
+        "expectedWorldNoEditboxNoMenuObserved": true,
+        "inputHaltRetained": true,
+        "rawImagesPlayerChatPrivate": true
+      },
+      "castsAfterApplication": false
+    },
+    "preserved": {
+      "cadence": true,
+      "featuresLookSettingsSavedData": true,
+      "newNativeApisFramesTimersEvents": false,
+      "externalSyndicatorBaganatorReadOnly": true,
+      "R21VendorWorkflow": "PENDING",
+      "R23R25HistoricalSourcesAndInclusiveLimits": true,
+      "R18R19": "REJECTED_UNAPPLIED"
+    },
+    "publication": false,
+    "goalStatus": "ACTIVE",
+    "activeKeepaliveHelper": false,
+    "idleFocusPermission": "PENDING",
+    "documentationGate": {
+      "status": "PASS",
+      "buildCompletedUtc": "2026-11-15T07:23:48Z",
+      "recordedUtc": "2026-11-15T07:24:55.923941Z",
+      "classifiedSources": 1114,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "literalDefaults": 583,
+      "savedVariables": 24,
+      "localLinks": 17561,
+      "buildArtifact": "docs-build-R26R27final2.txt",
+      "buildSHA256": "8757e4aa474f605d540b52d1b01fca58987266bab28ebe882e4bc768a9f72a62",
+      "validationArtifact": "docs-validate-R26R27final2.txt",
+      "validationSHA256": "347b3204c36836dcbfcb0308ec8ff0d266fa535db738a215f620534d43038bbf",
+      "independentReviewArtifact": "cast-pass-name-r26r27-integration-review/docs-review-r26r27.json",
+      "independentReviewSHA256": "2a2f9b9e1a13b4eaae729acc63538455ec14614913941c9b18051f4ed8dbbf04",
+      "scope": "Existing R26/R27 continuity/service/4CSV/aggregate delta;generated inventory refreshed. Validator wrote no files;no new native/source-suite acceptance. Final read-only validation covers this gate metadata separately."
+    }
+  },
+  "inventoryEventFanoutR28Followup20261115": {
+    "changeId": "LHO-EVENT-FANOUT-R28-20261115",
+    "status": "REJECTED_UNAPPLIED",
+    "candidateSHA256": "0b8471c8fda7f5802f8799fe82d5ded7eaa6f662154f1cbd2828f4f3f31fb30f",
+    "existingRecoveryChecks": 790,
+    "candidateFailures": 200,
+    "baselineFailures": 0,
+    "reason": "Exact-false location existence doesnot prove safe absence for unreadable/cold-item fallback recovery.",
+    "baselineWorkScope": "Forced builtin fallback model:20metadata events cause480slot-info+440existence calls+20publications. Required unknown recovery makes removal unsafe; primary-ID and provider models0.",
+    "noCpuOrNativeGain": true,
+    "decisionEvidence": {
+      "artifact": "inventory-event-fanout-r28/decision.json",
+      "sha256": "a9d750fcc6212a1937c98b1bca3061efea911a5d5203fab97a3c640902c9ae09"
+    }
+  },
+  "recipeKnowledgeR29Followup20261115": {
+    "changeId": "LHO-RECIPE-KNOWLEDGE-R29-20261115",
+    "status": "REJECTED_FOR_GENERAL_APPLY;UNAPPLIED",
+    "baselineSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+    "candidateR2SHA256": "c21d16241ea2bb811eca1c8c8b98652fdb4b5249293c659dcd2adf389e9acae8",
+    "profiles": {
+      "small": {
+        "refreshesPerTrial": 1000,
+        "pairs": 5,
+        "baselineElapsedLuaOsClockMedianMs": 242.0,
+        "baselineElapsedLuaOsClockRangeMs": [
+          241.0,
+          256.0
+        ],
+        "candidateElapsedLuaOsClockMedianMs": 268.0,
+        "candidateElapsedLuaOsClockRangeMs": [
+          264.0,
+          280.0
+        ],
+        "elapsedLuaOsClockMedianPercentChange": 10.743801652892571,
+        "baselineBytesPerRefresh": 51724.08,
+        "candidateBytesPerRefresh": 50603.4,
+        "allocationReductionPercent": 2.1666504266484754
+      },
+      "catalogue100": {
+        "refreshesPerTrial": 500,
+        "pairs": 5,
+        "baselineElapsedLuaOsClockMedianMs": 404.0,
+        "baselineElapsedLuaOsClockRangeMs": [
+          394.0,
+          405.0
+        ],
+        "candidateElapsedLuaOsClockMedianMs": 459.0,
+        "candidateElapsedLuaOsClockRangeMs": [
+          441.0,
+          471.0
+        ],
+        "elapsedLuaOsClockMedianPercentChange": 13.613861386138604,
+        "baselineBytesPerRefresh": 88427.62,
+        "candidateBytesPerRefresh": 50603.4,
+        "allocationReductionPercent": 42.774214662794265
+      },
+      "shape9": {
+        "refreshesPerTrial": 500,
+        "pairs": 5,
+        "baselineElapsedLuaOsClockMedianMs": 663.0,
+        "baselineElapsedLuaOsClockRangeMs": [
+          654.0,
+          703.0
+        ],
+        "candidateElapsedLuaOsClockMedianMs": 580.0,
+        "candidateElapsedLuaOsClockRangeMs": [
+          557.0,
+          598.0
+        ],
+        "elapsedLuaOsClockMedianPercentChange": -12.518853695324283,
+        "baselineBytesPerRefresh": 186766.72,
+        "candidateBytesPerRefresh": 50603.4,
+        "allocationReductionPercent": 72.90555833501816
+      }
+    },
+    "trials": "5matched alternating fresh-process pairs/profile;30rawsamples;15fullstate trace pairs;warm50 outsideelapsedtiming;elapsedLuaOsClock25-refresh chunks withGC running;allocation50GCstopped refreshes.",
+    "decision": "30samples/15matched whole-state trace pairs. Small and100-recipe elapsedLuaOsClock timing regresses in all5pairs; larger revocation-heavy shape improves conditionally. Allocation decreases, but no general/native gain accepted. Secret/error domain unresolved; no R3 framework or extra trial authorized by this evidence.",
+    "guardWork": "R2still scans/validates all records. At100recipes2aliases/onefeed:catalogue4→0/ranks800→8,plus2436PlainKnowledgeTable/2408KnowledgeScalar calls. Corrected heavy model has9aliases/254records/127IDs/1154alias revocationentries/577unique unrelated IDs;activeTargetOutsideRevocations isMODELED only.",
+    "secretErrorBoundary": "UNPROVED;producer ordinary origins mapped but no native secret/error acceptance.",
+    "rankPreservingFollowOn": {
+      "status": "STOPPED_SOURCE_ONLY;NO_IMPLEMENTATION_OR_TRIAL",
+      "counterexample": "A later nested rank callback may change an earlier unrelated winner into a query match,change learned state andremove it fromsource. Baseline keeps its pointer/encounter position for finalmatching;omitting it cannot preserve behavior withoutretaining allpotentialwinners or broadcallback-free guards.",
+      "noNewCachePoolEpochFramework": true
+    },
+    "timingEvidence": {
+      "artifact": "pending-craft-cost-r29/ordinary-cpu-r2/evidence-final.json",
+      "sha256": "f44d4ca16b3c467df81b8b9ba4e2a9d58bb92247fee4fde346a6143569df91b9"
+    },
+    "producerContractReview": {
+      "artifact": "pending-craft-cost-r29/producer-contracts/review.json",
+      "sha256": "81a1343814fb3ac88f4bc55caa1239f8380dcd538833f8fa2aae9c37d38af537"
+    },
+    "native": "PENDING; ordinary source/provider/native endpoint models do not prove native FPS, secrecy, taint, pixels/controller or live job/catalogue frequency.",
+    "measuredEnvelope": "Whole actual F.Refresh plus controlled nativeendpoint/provider/scheduler/primaryUI boundaries;not a query-only helper or native engine measurement.",
+    "timingInterpretation": "Exact desktopLua5.4.6 os.clock calibrated as elapsed time,not isolatedCPU. Numbers/rawranges retained;no CPU/FPS inference. Original external reports keep historical CPUlabels with this overridingcorrection."
+  },
+  "syndicatorBridgeR30Followup20261115": {
+    "changeId": "LHO-SYNDICATOR-BRIDGE-R30-20261115",
+    "status": "BASELINE_ALREADY_BATCHES;NO_CANDIDATE_OR_APPLY",
+    "checks": 37,
+    "failures": 0,
+    "currentCounts": "500progressive callbacks/onebucket→1rebuild/1publication;100duplicates→1rebuild/0publication;10independent unchanged callbacks→10rebuilds/5000provider-rowvisits/0publication. These are existing behavior counts,not a measured new gain.",
+    "authority": "Ready provider owns delegated reads;provider-only andboth flags retain same bridge batching;neither uses local/builtin authority in scopedreplay. Invalid Baganator-only excluded. External Syndicator/Baganator remain read-only.",
+    "report": {
+      "artifact": "syndicator-bridge-cost-r30/baseline-report-r2.json",
+      "sha256": "200a1d23c382fad5dd52fb6c67f3d9f952585d6ecd10f84d7ba025c60ca01413"
+    },
+    "nativePerformance": "NOT MEASURED"
+  },
+  "combinedBagOwnershipR31Followup20261115": {
+    "changeId": "LHO-COMBINED-BAG-OWNERSHIP-R31-20261115",
+    "status": "APPLIED_ON_DISK;NATIVE_ACCEPTANCE_PENDING",
+    "appliedUtc": "2026-11-15T08:41:06.294399+00:00",
+    "owner": "Inventory/Builtin/FluxClassicCombinedBag.lua",
+    "activeClients": [
+      "Era",
+      "Anniversary"
+    ],
+    "otherClients": "Owner exits on Retail/Forever/MoP; no current Forever speedup or all-client native claim.",
+    "baselineSHA256": "8da75582c1196c7b4c538118b83d15ab39356d08eb4423828f7ba3990908c59b",
+    "installedSHA256": "e089ec5f49667e5451139403618f0d91e8ae7f1c2dd955431c0857318311936c",
+    "intentionalFixes": [
+      "Specialty transition restored items then Repin stole16back into hidden historical hosts.",
+      "ReturnItems stole reused native bank-frame items from their current foreign owner on close, clearing foreign geometry."
+    ],
+    "implementation": "Two same-owner predicates only;Repin visibility gate follows parent inequality;ReturnItems requires currentParent==privatehost. No layout batching/cache/timer/event/nativeAPI or option change.",
+    "baselineOpenWorkUnchanged": {
+      "bags": 5,
+      "slotsPerBag": 16,
+      "freshOpenRefreshLayoutPasses": 12,
+      "freshOpenActualHostForCalls": 640,
+      "preopenedPasses": 2,
+      "preopenedHostFor": 160
+    },
+    "conditionalApiWork": {
+      "unit": "per selected foreign item during ReturnItems",
+      "baseline": {
+        "GetParent": 1,
+        "SetParent": 1,
+        "ClearAllPoints": 1
+      },
+      "candidate": {
+        "GetParent": 1,
+        "SetParent": 0,
+        "ClearAllPoints": 0
+      },
+      "normalRepinExtraIsShownReads": 0,
+      "genuineDisplacedShownHostNewRead": 1,
+      "limits": "No CPU/allocation/nativeFPS benchmark. Required layouts/adoptions remain; this is a correctness/ownership repair with conditional bad writes removed."
+    },
+    "wholeOwnerReplay": {
+      "baselineCases": 36,
+      "baselineChecks": 30272,
+      "candidateCases": 36,
+      "candidateChecks": 30208,
+      "targetedCases": 10,
+      "targetedChecks": 312,
+      "apiWorkChecksPerSource": 40
+    },
+    "targeted": {
+      "cases": 10,
+      "checks": 312
+    },
+    "independent": {
+      "cases": 88,
+      "checks": 796,
+      "artifact": {
+        "artifact": "combined-bag-open-r31/independent-review/review.json",
+        "sha256": "f94b957f76364659aae65544a7ad757c0d72ddb44c4747fca8c649f741780a8a"
+      }
+    },
+    "durable": {
+      "test": "tests/classic_combined_bag_ownership.lua",
+      "sha256": "bd05350d5516f2b708f9de7464e0466ff49242f3d75907e1b9302407e4bcc0c5",
+      "supportSHA256": {
+        "tests/support/classic_combined_bag_model.txt": "6663336c36c3b5c1662ba953a01cb446eacfd8c33d0b6492b123dd03e682101d",
+        "tests/support/classic_combined_bag_objects.txt": "8c5db11f3e263e70078d04dc9d2ffb9efaef43054524e67d3fc5816744ea4813"
+      },
+      "candidate": "18cases584checks0failures",
+      "baselineNegative": "18cases256checks10intentionalfailures",
+      "compiledHarmfulControls": "3controls;each2failures"
+    },
+    "fullGate": {
+      "scriptsPass": 394,
+      "syntaxFiles": 1082,
+      "failures": 0,
+      "sourceStableThroughout": true,
+      "testedBeforeApplication": true,
+      "installedCorpusMatchesPretestedCandidate": true
+    },
+    "checkpoint": {
+      "artifact": "checkpoint-before-combined-bag-ownership-r31-20261115T083359Z",
+      "files": 2835,
+      "archiveSHA256": "95fd82f85cdd48a9fa409372d8758800a5f186f737f522a1636de642d736727f",
+      "historySHA256": "96ad03584467b59ba7ec83f4a71e8e41700375f971a9d8658bd1d8d280d75a62",
+      "settingsMetadataEntries": 126,
+      "privateSettingsCopied": false
+    },
+    "applicationEvidence": {
+      "artifact": "combined-bag-ownership-r31-application.json",
+      "sha256": "48d4fb4890ab5ee5214a66b8272f05eb132c6ee4514ea3a706a864c1c1790c68"
+    },
+    "handoffEvidence": {
+      "artifact": "r28-r31-final-handoff.json",
+      "sha256": "2af67305ca5878c7837641789389dc51d288485e4e0db42b1cadbe0d76cde355"
+    },
+    "native": {
+      "acceptance": "PENDING;Era/Anniversary owner not exercised",
+      "sourceAdoption": "UNVERIFIED;no reload/input verification",
+      "performanceFpsTaintPixelsController": "PENDING",
+      "noForeverGain": true
+    },
+    "preferencesItemsExternalAddonsPublicationChanged": false,
+    "documentationGate": {
+      "status": "PENDING;root owns build/validation after freeze"
+    },
+    "postApplicationSourceGuard": {
+      "artifact": "combined-bag-ownership-r31-source-guard.json",
+      "sha256": "e8cf3d17f23df7f135cc1909e1423b5b9ba5430a0a3d5f2c817a2f176ea81084",
+      "checkedUtc": "2026-11-15T08:43:11.232906+00:00",
+      "normalizedCorpusFiles": 1082,
+      "normalizedCorpusMatchesPretested": true,
+      "otherRawLuaUnchanged": 1081,
+      "newRawIdentitiesAcrossFiveInstalls": 20,
+      "selectedExternalSyndicatorSourceGuardsUnchanged": 5,
+      "nativeReloadOrExecution": false,
+      "scope": "Selected5externalfiles only;not broader41-file or all-addon/native certification."
+    }
+  },
+  "idleJumpCraftChatRequirement20261115": {
+    "status": "USER_APPROVED_IDLE_JUMPS;ROOT_REPORTED_R3_RUNNING_HELD",
+    "permission": "Foreground/background idle jumps only;latest instruction requires postponing/queueing during temporary chat code or crafting andresuming afterward.",
+    "sourceSHA256": "c40bb8d24c1a9257f29068fe4ef0d8f194d7c8ef9e92dda26544b595354efdf4",
+    "pid": 44368,
+    "owner": "Root",
+    "hold": "native/no_jump",
+    "holdToken": "craft-input-guard-upgrade-20261115T0836-root",
+    "movementAcknowledged": false,
+    "freshCraftChatObserver": "UNAVAILABLE;OSidle/foreground,oldcaptures andSavedVariables cannot certify current chat focus or queuedcraft/intercastgaps.",
+    "dispatch": "HELD;do notremovehold/restarthelper/clearINPUT_HALTED. Root owns safe gate andnativeactions.",
+    "nativeChatInput": "HALTED;no automated chat/profiling/reload;source adoptionunverified.",
+    "pause": "CANCEL/JUMP_STOP first;verify exactowned processstop;preservepriorlogs/holds."
+  },
+  "clockCalibrationFollowup20261115": {
+    "capturedUtc": "2026-11-15T08:58:53.923632+00:00",
+    "status": "OBSERVED_DESKTOP_CLOCK_CORRECTION;NOT_NATIVE_PROFILING",
+    "luaVersion": "5.4.6",
+    "binarySHA256": "ed7edea70015f3f9474a29ed3154f9c867f22b44c91fd9b557aadee8c7dc76c7",
+    "evidence": {
+      "artifact": "desktop-clock-calibration/result.json",
+      "sha256": "86cb29a35a8f1f78051bc8c30dd4fe377a01059fdc1c3c9b313d76e3f0ec972d"
+    },
+    "blockedStdinObservations": [
+      {
+        "blockedWallSeconds": 0.5143994999816641,
+        "luaOsClockSeconds": 0.512,
+        "wholeChildKernelSeconds": 0.015625,
+        "wholeChildUserSeconds": 0.0,
+        "exit": 0,
+        "stderr": ""
+      },
+      {
+        "blockedWallSeconds": 1.01258229999803,
+        "luaOsClockSeconds": 1.011,
+        "wholeChildKernelSeconds": 0.0,
+        "wholeChildUserSeconds": 0.0,
+        "exit": 0,
+        "stderr": ""
+      }
+    ],
+    "interpretation": "A clock advancing through blocked stdin is elapsed time for this binary, not isolated child process CPU. Whole-child CPU is independently queried through GetProcessTimes.",
+    "reclassifies": "Earlier measurements fromthis exactdesktopbinary usingos.clock areelapsed;R29+10.74/+13.61/-12.52percent andR27 16-38percent keepvaluesasdesktopelapsed,notisolatedCPU/FPS.",
+    "allocation": "R27helper104→0transientB/query andotherGCcontrolledallocationcounts unaffectedwithinstatedscope.",
+    "history": "Original historicalJSONchildren andrawreports remainunchanged;thissectionoverridesoldCPUlabels. CurrentnewR29profilefieldsrenameclockexplicitly.",
+    "futureProtocol": "Reportmeasured-chunkelapsed andGetProcessTimeswhole-childCPU separately;whole-childCPU includesstartup/warmup/controlscope. No nativegainfromdesktopclock."
+  },
+  "inventorySpikePriorityFollowup20261115": {
+    "recordedUtc": "2026-11-15T09:03:26.852781+00:00",
+    "authority": "Explicit user requirement,repeated15November2026;authoritative saved continuation requirement",
+    "normative": true,
+    "goalStatus": "ACTIVE;existinggoalnotreset",
+    "primaryPaths": [
+      "Inventory/",
+      "related ExtraButtonSystem/ consumers"
+    ],
+    "requiredLagScope": "ANY inventory-triggered FPS/frame-time lag spike,including expensive singleframes andeventbursts,notonlyaverageFPSorsteadygain",
+    "triggers": [
+      "cast/craft completion that triggers inventory/EBS work",
+      "bag updates",
+      "loot",
+      "receipts",
+      "vendor",
+      "auction house",
+      "pending/follow-up work",
+      "bank open/close andupdates",
+      "mail open/close andupdates"
+    ],
+    "metrics": [
+      "worst-frame latency",
+      "per-event latency",
+      "burst latency",
+      "passive overhead"
+    ],
+    "preserve": [
+      "features",
+      "appearance",
+      "cadence",
+      "callbacks/readiness",
+      "dynamic authority andownership"
+    ],
+    "boundedSideCheck": "AlreadyapprovedR33rangecheckmayfinish,thenreturntoinventory;nocastingorotherUIexpansion",
+    "evidenceBoundary": "Desktop timings/allocation counts aremodels,notnativeFPS/frame-time acceptance;attributionandmatchednativeverificationremainpending."
+  },
+  "ebsRangeWorkR33Followup20261115": {
+    "changeId": "LHO-EBS-RANGE-WORK-R33-20261115",
+    "status": "APPLIED_ON_DISK;NATIVE_SOURCE_ADOPTION_UNVERIFIED",
+    "appliedUtc": "2026-11-15T09:17:18.268227+00:00",
+    "owner": "ExtraButtonSystem/Engine/Paint.lua",
+    "baselineSHA256": "011f126ae7963368662651a9502c36c211028821621a4c978286386d33ff7a8a",
+    "appliedSources": {
+      "ExtraButtonSystem/Engine/Paint.lua": "9c96291258b78ddd2e3912047c363ef22953453e394bf682e865565e0034743e",
+      "tests/ebs_range_work.lua": "07d933d2b204796cd0796175156297a9a0266bedb6b799d12d20c945e985d8de",
+      "tests/support/ebs_range_work_model.txt": "5c47ec22d0c5e45b032743a43c79a945aaa2642a4d6d73c2c3fb1d2b32fcebd3"
+    },
+    "intent": "Exactly2private helper hoists;currentbtn/R/unit passed;dynamicpublicmethods/rawerrors/arity/reentry/itemkeepLast writeorder retained.",
+    "cadence": "Existing .18-second range lane and immediate invalidation unchanged; native-model checks/work equal",
+    "sourceCheckpoint": {
+      "artifact": "checkpoint-before-ebs-range-work-r33-20261115T091020Z",
+      "files": 2838,
+      "settingsMetadataEntries": 126,
+      "privateSettingsCopied": false
+    },
+    "fullGate": {
+      "scripts": 395,
+      "syntaxFiles": 1083,
+      "syntaxFailures": 0,
+      "sourceStable": true,
+      "testedBeforeApplication": true,
+      "installedCorpusMatches": true
+    },
+    "functional": {
+      "focusedCases": 165,
+      "focusedChecksPerSource": 1095,
+      "existingStressChecksPerSource": 86872,
+      "independentCases": 80,
+      "independentChecks": 640,
+      "durableCases": 40,
+      "durableChecks": 295,
+      "baselineIntendedAllocationFailures": 10,
+      "compiledHarmfulControlsRejected": 6
+    },
+    "allocation": "Eligible direct baseline232B/probe slope→bounded36–256B total control envelope/no positive per-query slope;mixed2264→1104B/sequence(1160Bremoved);absenttargetunchanged. GCstoppedtransientcounts,notnativeheap/GCpause.",
+    "profiles": {
+      "steadySpell": {
+        "calls": 250000,
+        "pairs": 5,
+        "innerElapsedMs": {
+          "baseline": {
+            "raw": [
+              295,
+              291,
+              298,
+              293,
+              296
+            ],
+            "median": 295,
+            "min": 291,
+            "max": 298
+          },
+          "candidate": {
+            "raw": [
+              230.99999999999997,
+              239,
+              244,
+              237,
+              239
+            ],
+            "median": 239,
+            "min": 230.99999999999997,
+            "max": 244
+          }
+        },
+        "wholeChildCpuMs": {
+          "baseline": {
+            "raw": [
+              328.125,
+              312.5,
+              312.5,
+              328.125,
+              312.5
+            ],
+            "median": 312.5,
+            "min": 312.5,
+            "max": 328.125
+          },
+          "candidate": {
+            "raw": [
+              250.0,
+              265.625,
+              265.625,
+              250.0,
+              218.75
+            ],
+            "median": 250.0,
+            "min": 218.75,
+            "max": 265.625
+          }
+        },
+        "allocationPhases": {
+          "baseline": [
+            {
+              "calls": 100,
+              "transientKiB": 22.71875,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 226.625,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 2265.6875,
+              "checksum": 10000
+            }
+          ],
+          "candidate": [
+            {
+              "calls": 100,
+              "transientKiB": 0.25,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 0.25,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 0.0625,
+              "checksum": 10000
+            }
+          ]
+        },
+        "timedAndAllocationWorkParity": true
+      },
+      "itemKeepLast": {
+        "calls": 250000,
+        "pairs": 5,
+        "innerElapsedMs": {
+          "baseline": {
+            "raw": [
+              236,
+              236,
+              231.99999999999997,
+              231.99999999999997,
+              241
+            ],
+            "median": 236,
+            "min": 231.99999999999997,
+            "max": 241
+          },
+          "candidate": {
+            "raw": [
+              184,
+              183,
+              183,
+              184,
+              183
+            ],
+            "median": 183,
+            "min": 183,
+            "max": 184
+          }
+        },
+        "wholeChildCpuMs": {
+          "baseline": {
+            "raw": [
+              250.0,
+              265.625,
+              250.0,
+              250.0,
+              265.625
+            ],
+            "median": 250.0,
+            "min": 250.0,
+            "max": 265.625
+          },
+          "candidate": {
+            "raw": [
+              203.125,
+              203.125,
+              203.125,
+              203.125,
+              203.125
+            ],
+            "median": 203.125,
+            "min": 203.125,
+            "max": 203.125
+          }
+        },
+        "allocationPhases": {
+          "baseline": [
+            {
+              "calls": 100,
+              "transientKiB": 22.69140625,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 226.59765625,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 2265.66015625,
+              "checksum": 10000
+            }
+          ],
+          "candidate": [
+            {
+              "calls": 100,
+              "transientKiB": 0.22265625,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 0.22265625,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 0.03515625,
+              "checksum": 10000
+            }
+          ]
+        },
+        "timedAndAllocationWorkParity": true
+      },
+      "absentTarget": {
+        "calls": 250000,
+        "pairs": 5,
+        "innerElapsedMs": {
+          "baseline": {
+            "raw": [
+              121,
+              121,
+              120,
+              124,
+              126
+            ],
+            "median": 121,
+            "min": 120,
+            "max": 126
+          },
+          "candidate": {
+            "raw": [
+              123,
+              124,
+              121,
+              131,
+              128
+            ],
+            "median": 124,
+            "min": 121,
+            "max": 131
+          }
+        },
+        "wholeChildCpuMs": {
+          "baseline": {
+            "raw": [
+              140.625,
+              140.625,
+              125.0,
+              140.625,
+              140.625
+            ],
+            "median": 140.625,
+            "min": 125.0,
+            "max": 140.625
+          },
+          "candidate": {
+            "raw": [
+              140.625,
+              140.625,
+              140.625,
+              156.25,
+              140.625
+            ],
+            "median": 140.625,
+            "min": 140.625,
+            "max": 156.25
+          }
+        },
+        "allocationPhases": {
+          "baseline": [
+            {
+              "calls": 100,
+              "transientKiB": 0.22265625,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 0.22265625,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 0.03515625,
+              "checksum": 10000
+            }
+          ],
+          "candidate": [
+            {
+              "calls": 100,
+              "transientKiB": 0.22265625,
+              "checksum": 100
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 0.22265625,
+              "checksum": 1000
+            },
+            {
+              "calls": 10000,
+              "transientKiB": 0.03515625,
+              "checksum": 10000
+            }
+          ]
+        },
+        "timedAndAllocationWorkParity": true
+      },
+      "producerMixed": {
+        "calls": 5000,
+        "pairs": 5,
+        "innerElapsedMs": {
+          "baseline": {
+            "raw": [
+              76.00000000000001,
+              78,
+              78,
+              75.00000000000001,
+              77
+            ],
+            "median": 77,
+            "min": 75.00000000000001,
+            "max": 78
+          },
+          "candidate": {
+            "raw": [
+              66,
+              75.00000000000001,
+              64,
+              71.00000000000001,
+              75.00000000000001
+            ],
+            "median": 71.00000000000001,
+            "min": 64,
+            "max": 75.00000000000001
+          }
+        },
+        "wholeChildCpuMs": {
+          "baseline": {
+            "raw": [
+              109.375,
+              125.0,
+              125.0,
+              125.0,
+              125.0
+            ],
+            "median": 125.0,
+            "min": 109.375,
+            "max": 125.0
+          },
+          "candidate": {
+            "raw": [
+              109.375,
+              109.375,
+              109.375,
+              109.375,
+              125.0
+            ],
+            "median": 109.375,
+            "min": 109.375,
+            "max": 125.0
+          }
+        },
+        "allocationPhases": {
+          "baseline": [
+            {
+              "calls": 10,
+              "transientKiB": 22.5771484375,
+              "checksum": 11012580
+            },
+            {
+              "calls": 100,
+              "transientKiB": 221.5615234375,
+              "checksum": 110125800
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 2211.4052734375,
+              "checksum": 1101258000
+            }
+          ],
+          "candidate": [
+            {
+              "calls": 10,
+              "transientKiB": 11.2490234375,
+              "checksum": 11012580
+            },
+            {
+              "calls": 100,
+              "transientKiB": 108.2802734375,
+              "checksum": 110125800
+            },
+            {
+              "calls": 1000,
+              "transientKiB": 1078.5927734375,
+              "checksum": 1101258000
+            }
+          ]
+        },
+        "timedAndAllocationWorkParity": true
+      }
+    },
+    "elapsedScope": "CalibrateddesktopLuaos.clock measured-chunkelapsed;notisolatedCPU.",
+    "wholeChildCpuScope": "GetProcessTimeskernel+userincludesboot/warmup/timedcalls/allocation/serialization;15.625msquantized. Do not subtract to inferinnerCPU.",
+    "negativeResult": "Absenttargetelapsedmedian121→124ms/250000calls,+.012us/call,0of5pairsfaster;whole-childCPUmedian140.625msunchangedwithoverlappingquantizedranges.",
+    "artifacts": {
+      "application": {
+        "artifact": "ebs-range-work-r33-application.json",
+        "sha256": "cab9a82dc17ccd6dbf64b638cffb03041b209d7e2bb47a8cba700288dd4da0cc"
+      },
+      "finalReview": {
+        "artifact": "range-helper-allocation-r33/final-review.json",
+        "sha256": "e2467cf4232e0c5579b0c6d4d7e26bc199929146a85f931294dcbf7e9da7540e"
+      },
+      "timing": {
+        "artifact": "range-helper-allocation-r33/timing-review.json",
+        "sha256": "ac695ab02eb71fc2a2a10e47ef921eec3d28d351c93bf889a679a03d10e857a7"
+      },
+      "independentNumeric": {
+        "artifact": "range-helper-allocation-r33/independent-source-review/numeric-review-r1.json",
+        "sha256": "93d89f1426b3c98eba1f19ac44e5a4984d07632a25390eb22d0555f72f0ba03c"
+      },
+      "sourceGuard": {
+        "artifact": "ebs-range-work-r33-source-guard.json",
+        "sha256": "0451ae55ff082dfe0bcdc5f38f94c8a48d5b5cdb77c3d490e50957e574fe989b"
+      }
+    },
+    "sourceGuard": {
+      "normalizedCorpus": 1083,
+      "matchesPretested": true,
+      "otherRawLuaUnchanged": 1082,
+      "installedNewRawIdentities": 15,
+      "selectedExternalSyndicatorGuards": 5
+    },
+    "native": "PENDING;nochat/reload/sourceadoptionverification ornativeevent/worst-frame/burst/FPS/taint/pixels/controlleracceptance.",
+    "relatedReadOnlyFindings": {
+      "R32": "LegacyUsabilityownerunloaded;nooptimizationapplied",
+      "vendorColdRetry": "UNMEASURED;proposedsixbuilds/600probes;nofix/safecache;preserve200mscadence"
+    },
+    "goal": "ACTIVE;boundedR33sidecheckcomplete;returnInventory/EBSspikeattribution"
+  },
+  "supervisedChatEligibilityFollowup20261115": {
+    "status": "READ_ONLY_BEGIN_PREFLIGHT_FAILED_ELIGIBILITY_BEFORE_ACTION",
+    "bootstrapArtifact": "supervised-chat-jq4/bootstrap.py",
+    "bootstrapSHA256": "5d48148b4762dcbbeaadc896edc59379ad45c91148607b816ba632e83d30acd6",
+    "mockChecks": 27,
+    "compiledOrHarmfulControls": 3,
+    "keysSent": false,
+    "chatOpened": false,
+    "journalCreated": false,
+    "leaseCreated": false,
+    "observerInstalled": false,
+    "inputHaltPreserved": true,
+    "rootNoJumpAndR3HoldPreserved": true,
+    "backgroundReadOnlyRouteAndInventoryObserver": "PROPOSAL_ONLY;NOT_DEPLOYED",
+    "source": "Rootreportedboundedpreflightoutcome;noexecutionbydocumentationagent"
+  },
+  "presentMonStartupFollowup20261115": {
+    "recordedUtc": "2026-11-15T09:47:53.163170+00:00",
+    "status": "INCOMPLETE_STARTUP;ZERO_NATIVE_FRAME_TIME_RESULTS",
+    "episode": "TAXI_TRAVEL_CONTROL;NOT_INVENTORY_WORKLOAD",
+    "precedingCapture": {
+      "artifact": "native/inventory-presentmon-before-r1.png",
+      "sha256": "1dada01f6cfe87ac922ef89c1cbd2843658e1d126a8f2f5fd72ca3a9a0f2e04a",
+      "interpretation": "Rootobservedtaxi/travel;controlcontextonly"
+    },
+    "tool": {
+      "identity": "InstalledsignedNVIDIAPresentMon_x64.exe",
+      "sha256": "045a5c1465886bd8435ceab20805b119367e2d71ba02a635547c81c91e791b01"
+    },
+    "controllerSHA256": "5c1c082ea8366bc30973803a8161f7407c579a7973a421ecafbc6702adc5cc13",
+    "preflight": {
+      "status": "PASS_READ_ONLY_HOST_AND_NEW_SESSION_ABSENCE",
+      "pid": 40032,
+      "hwnd": 7995860,
+      "foregroundWasTarget": true,
+      "drawable": true,
+      "newUuidSessionAbsent": true
+    },
+    "attempt": {
+      "session": "FluxUI_PM20_58bb0be8b097451f86500eb30f381521",
+      "requestedSeconds": 20,
+      "controllerWallSeconds": 0.031000000017229468,
+      "ownedChildPID": 46520,
+      "exit": 1,
+      "sessionAcknowledged": false,
+      "csvPresent": false,
+      "stdoutBytes": 0,
+      "stderrBytes": 0,
+      "frameTimeResults": 0,
+      "journalArtifact": "native/FluxUI_PM20_58bb0be8b097451f86500eb30f381521/journal.json",
+      "journalSHA256": "4d52cc70b60a2d2d2612c22213b723f89ae340f6769fccaee0593eda369447e3"
+    },
+    "cleanup": {
+      "sessionAbsent": true,
+      "childExited": true,
+      "pendingRestoration": false,
+      "holdsUnchanged": true
+    },
+    "failureCause": "UNKNOWN;sourceinvestigationinprogress;noinferreddeniedpermissionorUAC;no retryexecuted",
+    "noChanges": [
+      "focus",
+      "input",
+      "preferences",
+      "items",
+      "productsource"
+    ],
+    "acceptance": "No nativeframe-time/FPS/eventspike/causality/performancegainacceptance",
+    "priorDocumentationGate": {
+      "status": "PASS_BEFORE_THIS_CONTINUITY_DELTA",
+      "recordedUtc": "2026-11-15T09:32:52Z",
+      "classifiedSources": 1116,
+      "tocXmlReachable": 623,
+      "settingDefinitions": 444,
+      "literalDefaults": 583,
+      "savedVariables": 24,
+      "localLinks": 17576,
+      "validationWrites": 0,
+      "buildArtifact": "docs-build-R33final.txt",
+      "buildSHA256": "bdce4193630cfdd39b43e52ef52060b431ac8d2d0db5b1ee335c227971b68891",
+      "validationArtifact": "docs-validate-R33final.txt",
+      "validationSHA256": "17784b028b87a83377d5346607fedb63ab164a5148838502cb953437538bb533",
+      "scope": "R33documentationgate;notnativeperformance/sourceadoptionacceptance;predatesthisnewcontinuitydelta"
+    }
+  },
+  "chatPermissionAndDeferralFollowup20261115": {
+    "authority": "Explicituser15November2026nowpermitschatcommands",
+    "status": "PERMITTED_BUT_READ_ONLY_ELIGIBILITY_WAIT_DEFERRED_BEFORE_ACTION",
+    "waitSeconds": 30,
+    "lastObservedIdleSeconds": 1.781,
+    "drawable": true,
+    "physicalKeysUp": true,
+    "beforeAnyKeysJournalOrLease": true,
+    "actualChatCommands": 0,
+    "chatOpened": false,
+    "observerInstalled": false,
+    "bootstrapSHA256": "5d48148b4762dcbbeaadc896edc59379ad45c91148607b816ba632e83d30acd6",
+    "INPUT_HALTEDPreserved": true,
+    "rootNoJumpAndR3HoldPreserved": true,
+    "helper": {
+      "pid": 44368,
+      "running": true,
+      "held": true,
+      "hostVerification": "Rootreport09:22UTC;notfreshlyqueriedbydocumentationagent",
+      "movementVerified": false
+    },
+    "source": "Rootreportedboundedwaitoutcome;noexecutionbydocumentationagent"
+  },
+  "inventoryR34BaselineFollowup20261115": {
+    "recordedUtc": "2026-11-15T10:37:02.501301+00:00",
+    "status": "BASELINE_MEASURED_IN_DESKTOP_SOURCE_REPLAY; NO_OPTIMIZATION_CANDIDATE",
+    "priority": "Inventory and related EBS frame/event spikes and passive overhead; goal remains active.",
+    "reviewArtifact": "vendor-query-baseline-r34/baseline-review.json",
+    "reviewSHA256": "69a8d0810920c7fc91546599bcdd9da5daa495bdea00545850e3dae585808803",
+    "manifestSHA256": "3232cba92e5b1730f059f26e9a5e8a89b7f457864931db63aaca71b78667c617",
+    "sourceReplay": {
+      "actualSourceFilesGuarded": 20,
+      "r2Profiles": 11,
+      "r2Checks": 278,
+      "r1Profiles": 22,
+      "r1FreshnessChecks": 313,
+      "stubListNegativeControlRejected": true,
+      "main": {
+        "desiredTargets": 100,
+        "visibleUniqueItemIDs": 100,
+        "distribution": "20 carried and 80 cached-bank IDs in valid-sized modeled containers",
+        "perDeliveredCallback": {
+          "forcedListBuilds": 1,
+          "readinessChecks": 100,
+          "trustedIDHarvests": 101,
+          "nativeModelNameCalls": 10300,
+          "nativeModelCountCalls": 1180
+        },
+        "initialPlusFiveColdRetries": {
+          "callbacks": 6,
+          "forcedListBuilds": 6,
+          "readinessChecks": 600,
+          "trustedIDHarvests": 606,
+          "nativeModelNameCalls": 61800,
+          "nativeModelCountCalls": 7080,
+          "explicitModelLoadCalls": 14
+        }
+      },
+      "cadence": "The existing 200ms cold-metadata retry chain rebuilds the actual default list.",
+      "interpretation": "Conditional N-times-visible-ID repeated name discovery, not a general native quadratic or FPS claim.",
+      "freshness": "Settings/public-alias/reentry/raw-error/metadata and timer-ownership controls remain. Prior R18/R29 rejections still apply.",
+      "limits": [
+        "Native endpoints/widgets/timer delivery/coherent provider snapshots are modeled.",
+        "External Syndicator/Baganator runtime and Inventory.Init event routing are not executed.",
+        "No timing, allocation, CPU, native frame/event or burst-settle benchmark.",
+        "Explicit load calls are not server/network request counts."
+      ]
+    },
+    "candidateOrProductSourceChange": false,
+    "externalSyndicatorOrBaganatorEdited": false,
+    "next": "Observe a native cold-restock episode with real list size/cold duration and callback/frame attribution before proposing cache, retry or cadence changes."
+  },
+  "presentMonOfficialR3Followup20261115": {
+    "recordedUtc": "2026-11-15T10:37:02.501301+00:00",
+    "status": "NATIVE_CSV_CAPTURED_AND_ROOT_NUMERIC_ANALYSIS_COMPLETE; INDEPENDENT_REVIEW_PENDING",
+    "tool": {
+      "identity": "Official signed Intel PresentMon 2.6.0 portable x64",
+      "sha256": "b2a706bc6ad475749e3b7e3409263aa1e6906d45bdcf993f6dbc0f660188f1af",
+      "sourceCommit": "e13fce6acdb55a808fd8318175a56863e532d95f",
+      "controllerSHA256": "e6ce8a56b1a7bd33eeaf52780ad57d1bbc9d948b59b839e620edd8f9365bfead",
+      "manifest": "asInvoker; uiAccess=false; no installer/service/driver/elevation request"
+    },
+    "capture": {
+      "artifactRoot": "native/FluxUI_PM20_bab0d1d827c2477f815c0eda4c6f3fd4",
+      "session": "FluxUI_PM20_bab0d1d827c2477f815c0eda4c6f3fd4",
+      "pid": 40032,
+      "hwnd": 7995860,
+      "requestedSeconds": 20,
+      "controllerWallSeconds": 20.14100000000326,
+      "ownedChildPID": 46860,
+      "exit": 0,
+      "csvSHA256": "c8950576bda11d9970f23acf919b773dd2e0fa05041f62098c82d58581facef2",
+      "validRows": 969,
+      "singleSwapchain": "0x0000019AD36E3FD0",
+      "relativeSpanSeconds": 19.9318445,
+      "presentationIntervalsMs": {
+        "count": 969,
+        "minMs": 12.7551,
+        "medianMs": 16.7194,
+        "meanMs": 20.58941217750258,
+        "p95Ms": 31.187879999999982,
+        "p99Ms": 104.64201999999985,
+        "maxMs": 308.2077,
+        "over33_333ms": 30,
+        "over50ms": 15,
+        "over100ms": 11
+      },
+      "displayChangeIntervalsMs": {
+        "count": 969,
+        "minMs": 12.6477,
+        "medianMs": 16.7958,
+        "meanMs": 20.589351083591332,
+        "p95Ms": 31.151439999999997,
+        "p99Ms": 104.88346799999984,
+        "maxMs": 309.2722,
+        "over33_333ms": 30,
+        "over50ms": 15,
+        "over100ms": 11
+      },
+      "percentileMethod": "Linear interpolation at (N-1)*p",
+      "qpcColumn": "Empirically seconds in v1 output despite requested --qpc_time_ms; adjacent differences times 1000 agree with intervals."
+    },
+    "lossAndCleanup": {
+      "lossCountersAtAcknowledgement": {
+        "EventsLost": 0,
+        "LogBuffersLost": 0,
+        "RealTimeBuffersLost": 0,
+        "BuffersWritten": 0
+      },
+      "finalLoss": "UNVERIFIED: producer removed its session before final query.",
+      "sessionAbsent": true,
+      "childExited": true,
+      "pendingRestoration": false,
+      "holdsUnchanged": true,
+      "genericStderrWarning": "Other-account/short-lived-process metadata warning does not establish failure of this identified target capture."
+    },
+    "context": {
+      "beforeImage": "native/inventory-presentmon-before-r3.png",
+      "afterImage": "native/inventory-presentmon-after-r3.png",
+      "interpretation": "Root observed the user's auction-house sales and Red Mageweave Bag crafting in nearby images. Their approximately 126-second bracket is wider than the 20-second trace and is not synchronized event attribution.",
+      "foreground": "Target foreground at 100ms observations; shorter transitions may be missed."
+    },
+    "acceptanceLimits": [
+      "Single current whole-client presentation sample, not matched source/addon before-after.",
+      "No FluxUI/inventory causal attribution, addon CPU, observer-overhead calibration or optimization/FPS-gain acceptance.",
+      "Installed Lua adoption, taint, pixels, controller and other-client native acceptance remain unverified.",
+      "No game input, focus activation, preference or item action performed by capture."
+    ],
+    "previousNvidiaAttempts": {
+      "r1": "Prior 0.031s/exit1/no-CSV attempt remains an incomplete taxi/travel control.",
+      "r2": {
+        "session": "FluxUI_PM20_73bf2563c97b4418a42513600c40ef4d",
+        "controllerSHA256": "d11a15e308c0312f67e97cb2f691f80b2b6f03ffa562cb413f0ad2e5276ed509",
+        "wallSeconds": 0.03200000000651926,
+        "exit": 1,
+        "csv": false,
+        "sessionAbsent": true,
+        "childExited": true,
+        "pendingRestoration": false
+      },
+      "cause": "UNKNOWN; official R3 success does not prove the private NVIDIA fork's failure cause."
+    }
+  },
+  "chatDualModeAndDraftFollowup20261115": {
+    "recordedUtc": "2026-11-15T10:37:02.501301+00:00",
+    "authority": "Latest explicit user request: probes/chat work automatically with WoW background or foreground, without waiting solely for focus.",
+    "currentRoute": "A separate reviewed dual-mode derivative is in preparation; no native adoption established.",
+    "frozenControllersPreserved": [
+      "supervised-chat-jq4/bootstrap.py: 5d48148b4762dcbbeaadc896edc59379ad45c91148607b816ba632e83d30acd6",
+      "supervised-chat-jq4/bootstrap_background_r2.py: 36e45c8065fa7d2dfcb5d05935b658a0cf894ae6ed613bdd221c394e870d89ed"
+    ],
+    "backgroundAttempts": {
+      "inventorybg20261115c": "Source capture expired before any key.",
+      "inventorybg20261115d": "One targeted Enter pair opened blank chat; foreground change ended the BG-only lease. Typing refused before any character/Lua."
+    },
+    "ready90Attempt": {
+      "run": "inventoryready90a",
+      "journalArtifact": "native/jq4-inventoryready90a-journal.json",
+      "journalSHA256": "a327ff8424e30053cddc6513b14a8f9530a9ca3d7e151f1797515d20fd728e88",
+      "typedPayload": "/run print('JQ4p1',GetTime())",
+      "outcome": "Full harmless command visually verified; submit refused stale source capture BEFORE Enter.",
+      "stage": "aborted-no-retry",
+      "ownLockReleased": true,
+      "newNativeAck": false,
+      "luaExecuted": false,
+      "observerInstalled": false
+    },
+    "freshReadOnlyObservation": {
+      "artifact": "native/inventory-chat-check-r5.png",
+      "sha256": "ab77b5599e5aabb0ebcb300a7238fb2ffb82ea87279f00fe0eada376dfc475f3",
+      "capturedEpoch": 1794738799.3531282,
+      "capturedUtc": "2026-11-15T10:33:19.353128+00:00",
+      "inputSent": false,
+      "interpretation": "Root saw world view with no editbox and no draft. No adopt/submit follows from old typed capture."
+    },
+    "holds": {
+      "INPUT_HALTEDPreserved": true,
+      "rootNoJumpPreserved": true,
+      "r3HelperPID": 44368,
+      "r3Status": "STOPPED_NOT_RESTARTED",
+      "finishedUtc": "2026-11-15T10:19:20.021409Z",
+      "stopReason": "Stale/missing goal heartbeat",
+      "freshRootHeartbeat": "Root refreshed around 10:37 UTC; does not restart stopped helper.",
+      "movementVerified": false,
+      "queueReason": "Jumps wait until commands finish and crafting is clear; guard remains incomplete."
+    },
+    "boundaries": "No activation, blind Enter/Escape, stale-capture restamping, old-journal reset or unsafe sender reuse. Parent owns native/helper controls.",
+    "goal": "ACTIVE; Inventory/EBS frame and event spikes remain primary."
+  },
+  "presentMonIndependentReviewAndR4Followup20261115": {
+    "recordedUtc": "2026-11-15T11:14:58.961871+00:00",
+    "status": "TWO_CURRENT_ONLY_NATIVE_FRAME_SAMPLES_REVIEWED; NO_MATCHED_GAIN_OR_CAUSAL_ATTRIBUTION",
+    "r3": {
+      "reviewArtifact": "presentmon-r3-independent-review/numeric-review.json",
+      "reviewSHA256": "c1e7bd9ed4589799ce0035959d8be0d4550017304be4b235b7ca1b2a757c17a7",
+      "verdict": "PASS_NUMERIC_AND_IDENTITY_CHECKS_WITH_FINAL_ETW_LOSS_UNVERIFIED",
+      "rows": 969,
+      "presentationIntervalsMs": {
+        "count": 969,
+        "minMs": 12.7551,
+        "medianMs": 16.7194,
+        "meanMs": 20.58941217750258,
+        "p95Ms": 31.18788,
+        "p99Ms": 104.64202,
+        "maxMs": 308.2077,
+        "over33_333ms": 30,
+        "over50ms": 15,
+        "over100ms": 11
+      }
+    },
+    "r4": {
+      "artifactRoot": "native/FluxUI_PM20_6a3feef7527244c198b1c1b6fe74c660",
+      "csvSHA256": "15594de434e9d6e95dd072e442fcdfd00e5641cf2c17966e23600822ba10036f",
+      "reviewArtifact": "presentmon-r4-independent-review/numeric-review.json",
+      "reviewSHA256": "de46bce203e02fbfc15a2f563a482b4c8dc6f57f19bc022c371f73336390b81d",
+      "verdict": "PASS_NUMERIC_AND_IDENTITY_CHECKS_WITH_FINAL_ETW_LOSS_UNVERIFIED",
+      "rows": 1113,
+      "controllerWallSeconds": 20.094000000011874,
+      "presentationIntervalsMs": {
+        "count": 1113,
+        "minMs": 12.1066,
+        "medianMs": 15.9503,
+        "meanMs": 17.934642857142858,
+        "p95Ms": 27.4937,
+        "p99Ms": 37.570912,
+        "maxMs": 114.11850000000001,
+        "over33_333ms": 22,
+        "over50ms": 1,
+        "over100ms": 1
+      },
+      "displayChangeIntervalsMs": {
+        "count": 1113,
+        "minMs": 12.0157,
+        "medianMs": 15.9963,
+        "meanMs": 17.93495247079964,
+        "p95Ms": 27.6092,
+        "p99Ms": 37.423824,
+        "maxMs": 114.2172,
+        "over33_333ms": 22,
+        "over50ms": 1,
+        "over100ms": 1
+      },
+      "cleanup": {
+        "exit": 0,
+        "reason": "COMPLETE",
+        "requestedSeconds": 20,
+        "childExited": true,
+        "sessionAbsent": true,
+        "pendingRestoration": false,
+        "holdsUnchanged": true,
+        "inputSent": false,
+        "foregroundActivated": false,
+        "foregroundSampling": "100ms observations;brief intervening changes can be missed"
+      },
+      "context": "Another window was foreground at 100ms samples. Activity and UI state differ from R3; neither is a matched control."
+    },
+    "sourceAddendum": {
+      "artifact": "presentmon-r3-independent-review/source-addendum.json",
+      "sha256": "4455d6a0299be51e2028c0a0cd343a3a76163ea6197747d47ea43772ac246faa",
+      "commit": "e13fce6acdb55a808fd8318175a56863e532d95f",
+      "qpcUnits": "This pinned v1 output uses seconds despite --qpc_time_ms, confirmed by source and numeric deltas.",
+      "finalLoss": "UNVERIFIED: producer final QUERY return is unchecked. No positive loss warning was reported; this does not certify losslessness.",
+      "droppedField": "CSV Dropped=0 is presentation disposition, not ETW EventsLost.",
+      "noConsoleStats": "Removing --no_console_stats does not produce checked final numeric-loss counters."
+    },
+    "limits": [
+      "Whole-client presentation intervals, not addon CPU or inventory-event identities.",
+      "No synchronized event markers, matched source/addon before-after or observer-overhead calibration.",
+      "Different foreground/workloads prohibit deriving a gain from R3 versus R4.",
+      "Native source adoption, taint, pixels, controller and other-client acceptance remain pending."
+    ],
+    "productOrPreferenceChanges": false
+  },
+  "probeChatR6NativeFollowup20261115": {
+    "recordedUtc": "2026-11-15T11:14:58.961871+00:00",
+    "status": "NATIVE_BACKGROUND_FIXED_PRINT_ACK_VISUALLY_ATTESTED",
+    "run": "dualfinal20261115f",
+    "journalArtifact": "native/jq4-dualfinal20261115f-journal.json",
+    "journalSHA256": "c82f932c1e8b2ae0dd433c115c964194d1d91016d01031390894cf413a9ceba3",
+    "controllerArtifact": "supervised-chat-dual-r6/bootstrap.py",
+    "controllerSHA256": "c583330a8164cfb1a456e4d63a16f646bf357dce5d0e487933afac030a91708b",
+    "payload": "/run print('JQ4p1',GetTime())",
+    "characters": 29,
+    "route": "New begin-blank read-only capture, fresh blank certificate, ordered characters, fresh exact-draft certificate, submit Enter pair and NEW local output.",
+    "nativeAck": {
+      "marker": "JQ4p1",
+      "value": 157283.9,
+      "authority": "Root compared pre-submit and post-submit images and visually attested the NEW marker/time line.",
+      "stage": "ack-visually-attested",
+      "chatClosed": true,
+      "ownInputLockReleased": true
+    },
+    "typedImage": {
+      "artifact": "native/jq4-dualfinal20261115f-typed.png",
+      "sha256": "54e4ab524791958cbfdf54c0b70cd2255daaf3a99e9efde139b38e9c221e9675"
+    },
+    "submittedImage": {
+      "artifact": "native/jq4-dualfinal20261115f-submitted.png",
+      "sha256": "6c719eb574bc7e04a24b133c9c9808b08b17bd7146f256052595c0d6d35b80df"
+    },
+    "offlineReviews": {
+      "r3": "2739b1b4: 25 independent checks; image-anchored baseline replaces rejected draft.",
+      "r5": "efd99fe6: 15 independent checks; new blank capture; BG modifiers gate actual input.",
+      "r6": "c583330a: exact one-predicate delta and six independent checks; other applications may switch while WoW stays background.",
+      "r6Artifact": "independent-chat-dual-r6-review/source-and-mocks-review.json",
+      "r6SHA256": "3866f95cf378cba04adcb0958b448d52b960af918a9b05e5f3248c13ac75bcd9"
+    },
+    "guards": "Exact target identity, source/hold hashes, cancellation, owned locks and real 120s capture age remain. Foreground WoW retains image-anchored LastInput/all-key checks; BG modifiers gate actual input.",
+    "journalLabelCaveat": "Inherited policy text says SAME_OTHER_FG; exact R6 code instead compares WoW foreground mode and permits switching other applications. Pinned source/review are authoritative.",
+    "failedPredecessors": [
+      {
+        "run": "dualauto20261115a",
+        "outcome": "R3 BEGIN stopped on LastInput change before keys/capture."
+      },
+      {
+        "run": "dualauto20261115b",
+        "outcome": "R3 BEGIN stopped on physical-key/foreground eligibility before keys/capture."
+      },
+      {
+        "run": "dualmode20261115c",
+        "outcome": "R4 opened blank chat; BG modifier stopped post-input capture. Zero characters, submit or Lua."
+      },
+      {
+        "run": "dualready20261115d",
+        "outcome": "R5 begin-blank image was observed closed; no typing/submit followed."
+      },
+      {
+        "run": "dualready20261115e",
+        "outcome": "R5 opened blank chat; another foreground application changed and type attestation refused before characters. No submit/Lua."
+      }
+    ],
+    "cleanup": {
+      "INPUT_HALTEDPreserved": true,
+      "oldBlindSendersNeverResumed": true,
+      "scopedNoJumpReleasedByRootAfterAck": true,
+      "leaseObserverEndedAfterOwnedLockRelease": true
+    },
+    "limits": [
+      "Native acceptance is only this fixed-print background route on Forever.",
+      "Foreground source/mocks pass but R6 native foreground operation is pending.",
+      "No inventory observer, profiler-setting change, arbitrary-command route, loaded Lua adoption, item action or performance attribution.",
+      "Sampled OS telemetry is not atomic game focus; no partial-input retry or automatic draft clearing."
+    ],
+    "goal": "ACTIVE; Inventory/EBS spike attribution remains primary."
+  },
+  "jumpPermissionAndCurrentHelperFollowup20261115": {
+    "recordedUtc": "2026-11-15T11:14:58.961871+00:00",
+    "authority": "Latest user permits jumps except while chat/scripts are entered; prior idle-only activation exception remains.",
+    "policy": "Root installs scoped no_jump before each complete chat/script batch and releases it after all commands finish. The long-lived craft hold was released by root.",
+    "sourceArtifact": "addon-combo-protocol/goal_real_space_r3_draft_r3.py",
+    "sourceSHA256": "c40bb8d24c1a9257f29068fe4ef0d8f194d7c8ef9e92dda26544b595354efdf4",
+    "snapshot": {
+      "artifact": "native/jump-real-r3-idleapproved20261115r2-state.json",
+      "helperPID": 36188,
+      "label": "idleapproved20261115r2",
+      "startedUtc": "2026-11-15T10:47:49.225250+00:00",
+      "statusAtRead": "stopped",
+      "lastAtRead": {
+        "atUtc": "2026-11-15T11:12:33.740037+00:00",
+        "status": "deferred",
+        "focusMode": true,
+        "systemWideInput": true,
+        "activationRequested": false,
+        "externalRace": false,
+        "pairInjected": false,
+        "holdCompleted": false,
+        "movementAcknowledged": false,
+        "foregroundBefore": 67424,
+        "lastInputBefore": 157857500,
+        "reason": "PC not known idle15s"
+      }
+    },
+    "intervalSeconds": 180,
+    "requiredPCIdleSeconds": 15,
+    "cancellation": "CANCEL/GOAL_DONE/JUMP_STOP and ownership/input locks remain enforced.",
+    "INPUT_HALTEDPreserved": true,
+    "movementVerified": false,
+    "history": "PID44368 stopped at 10:19:20 on stale heartbeat. Root started reviewed PID36188 at 10:47:49; this is not a revival of that process.",
+    "scope": "Documentation worker sends no input, starts no helper and changes no hold."
+  },
+  "inventoryEventsPrototypeV2Followup20261115": {
+    "recordedUtc": "2026-11-15T11:14:58.961871+00:00",
+    "status": "EXTERNAL_ONLY_SEALED; NOT_DEPLOYED",
+    "sealArtifact": "inventory-events-only-probe/seal-v2.json",
+    "sealSHA256": "c5f6f5f0e45a5fa2c6bb01c47f1b30a05b858a5daa4f3e2ed2d2ab51879ab660",
+    "source": {
+      "path": "Core/Engine/Events.lua",
+      "sha256": "7fa3aacf4e40ed32bdf474704b3b2c5e3149c9aafc7b5b655260393d7c91ae53"
+    },
+    "controls": {
+      "cases": 75,
+      "checks": 1168,
+      "compiledHarmfulControlsRejected": 6
+    },
+    "payloads": 11,
+    "setupIncludingArm": 8,
+    "maximumChatChars": 252,
+    "design": "Four fixed tags, one owned Events observer and one 20s timer; no new frame or business getter/wrapper.",
+    "coverageGaps": [
+      "Raw Inventory dispatch, vendor cold retries, metadata handlers, scheduler/timer bodies and external provider callbacks are outside this observer.",
+      "Observer clock reads affect all owned Events callbacks despite only four aggregated tags.",
+      "Inclusive spans are not full-event, full-frame or exclusive causal attribution."
+    ],
+    "next": "Root is investigating built-in whole-addon profiler threshold counts for expensive frames/bursts. No new profiler code or preference change is established.",
+    "nativeResourcesOrProductChanges": false
+  },
+  "instantR8AndPriorFastR7Followup20261115": {
+    "recordedUtc": "2026-11-15T11:42:47.363169+00:00",
+    "authority": "Latest user explicitly requests the entire open/type/Enter chain as rapidly as possible, superseding intermediate blank/full-draft screenshot waits for this fixed harmless payload.",
+    "resumeDefault": "Future separately reviewed fixed payload variants use R8 run by default. Older staged senders are historical. Do not repeat this print merely to convert the journal annotation flag.",
+    "r8": {
+      "run": "instantall20261115a",
+      "controllerSHA256": "c7ffadf88e237a02336f84f1682e9b25c88aa9048d24acd616302ab09911a977",
+      "journalArtifact": "native/jq4-instantall20261115a-journal.json",
+      "journalSHA256": "c91cb386207d0230fcf3a24b3ef3eb78665aec9b0ea07efbfe6d492226bb6b27",
+      "status": "NEW_REPLY_VISUALLY_OBSERVED_BY_ROOT; LATE_CLI_ACK_ANNOTATION_REFUSED_STALE",
+      "route": "Fresh closed-state source certificate, persisted running stage,33 ordered events: opening Enter down/up,29 guarded characters,submit Enter down/up; no intentional waits or intermediate captures.",
+      "runEnqueueElapsedMs": 15.000000013969839,
+      "queuedCharacters": 29,
+      "payload": "/run print('JQ4p1',GetTime())",
+      "sourceImage": {
+        "artifact": "native/jq4-instantall20261115a-source.png",
+        "sha256": "ed4ae1ba23aea964b2ff60d9adaa4e1ec1bd17262f7b11533428e1bf978c4635"
+      },
+      "submittedImage": {
+        "artifact": "native/jq4-instantall20261115a-submitted.png",
+        "sha256": "7decf1af41e1c37f27c38dcf483b633aec08b649dd55619d18142b9d68337cee"
+      },
+      "rootImmediateVisualObservation": {
+        "newMarker": "JQ4p1",
+        "value": 159296.682,
+        "chatClosed": true,
+        "craftingContinued": true,
+        "authority": "Root immediately compared the submitted tool image with the source image and observed a genuinely NEW reply."
+      },
+      "lateCLIAnnotation": {
+        "outcome": "REFUSED after real120s image TTL; no restamping or rerun.",
+        "journalStage": "submitted",
+        "journalCommandAcknowledged": false,
+        "notAckVisuallyAttested": true,
+        "distinction": "Immediate root visual evidence and later refused CLI annotation are separate records; do not fabricate an accepted journal certificate."
+      },
+      "ownLockReleased": true,
+      "sourceAndMocks": "Author9 focused cases plus3 harmful controls; independent6 focused cases pass.",
+      "senderTimingLimits": "15ms is sender enqueue-chain wall time, not end-to-end ACK latency, native CPU, inventory cost or a performance gain."
+    },
+    "r7": {
+      "run": "fastsend20261115b",
+      "controllerSHA256": "fb18ed4ff02659c465b111c3bded006bcef20aa6339781b8efc0d732680ff972",
+      "journalArtifact": "native/jq4-fastsend20261115b-journal.json",
+      "journalSHA256": "9299002b204e52627c3902b3d9a2bb36d7996e496f47fe4c82395c5d2aeddfc5",
+      "newMarkerValue": 158981.621,
+      "journalStage": "ack-visually-attested",
+      "sendElapsedMs": 62.999999994644895,
+      "meaning": "Background fixed29-character send plus Enter from a fresh blank certificate.63ms sender wall includes40ms Enter hold; not ACK latency."
+    },
+    "cleanup": "Root released its exact scoped no_jump after the complete command. INPUT_HALTED remains; no old blind sender resumed.",
+    "limits": [
+      "Native evidence is this fixed print on the current background Forever process, not arbitrary commands or native foreground acceptance.",
+      "No profiler-setting change, observer deployment, item action or loaded product-source adoption follows.",
+      "Root separately observed current BorderType1/ClassColor UI and active Skillet crafting during R7/R8. This does not establish all-source adoption or profiler epoch.",
+      "Sampled OS guards do not establish an atomic game input transaction. No clear, partial-input replay or automatic retry was added."
+    ]
+  },
+  "profilerP36RawSignalFollowup20261115": {
+    "recordedUtc": "2026-11-15T11:42:47.363169+00:00",
+    "status": "NATIVE_READ_ONLY_RAW_THRESHOLD_SIGNAL_AND_AVAILABILITY_ONLY",
+    "run": "p36raw20261115a",
+    "journalArtifact": "native/jq4-p36raw20261115a-journal.json",
+    "journalSHA256": "57ed39275f69a9658098c3ad0a9667d5c15f9d18a7afb958817726603a811cf1",
+    "controllerSHA256": "5bd8673fbd88f81c872682a4b5a27a75cc192a1ae5595281b2f7912085c99e29",
+    "payload": "/run print('P36F',C_AddOnProfiler.GetAddOnMetric('_FluxUI',8))",
+    "characters": 62,
+    "submissionEvidence": "Root viewed all62 characters before the earlier normal staged submit. Journal contains accepted NEW P36F numeric visual acknowledgement.",
+    "rawReply": {
+      "marker": "P36F",
+      "value": 1685
+    },
+    "stage": "ack-visually-attested",
+    "ownLockReleased": true,
+    "query": "C_AddOnProfiler.GetAddOnMetric('_FluxUI',8)",
+    "sameBuildContract": {
+      "family": "Forever",
+      "build": 70938,
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "enum": "AddOnProfilerMetric.CountTimeOver50Ms",
+      "selector": 8,
+      "unit": "Count of ticks exceeding50ms; not milliseconds.",
+      "sourceReviewArtifact": "profiler-threshold-query-plan/review.json",
+      "sourceReviewSHA256": "b559eb3beebe2d8341d603316f90daecb882e17d3bfc912b95b6dde9d9800c3c"
+    },
+    "submittedImage": {
+      "artifact": "native/jq4-p36raw20261115a-submitted.png",
+      "sha256": "57d1311657a40f89d0b4eb8003440a74e74dc73a313e3f935b43706d8d33ba56"
+    },
+    "limits": [
+      "Threshold epoch/window/reset semantics are unknown.",
+      "One raw value is not a controlled interval, bounded CPU, cumulative delta, tick denominator or presented-frame count.",
+      "No inventory event identity, addon-exclusive ownership, causal finding or optimization acceptance follows.",
+      "No profiler setting/reset, observer, item or product-source change was performed."
+    ]
+  },
+  "currentJumpR3AndGridLeadFollowup20261115": {
+    "recordedUtc": "2026-11-15T11:42:47.363169+00:00",
+    "currentHelper": {
+      "label": "idleapproved20261115r3",
+      "pid": 42220,
+      "startedUtc": "2026-11-15T11:26:22.889915+00:00",
+      "statusAtRead": "running",
+      "latestAtRead": {
+        "atUtc": "2026-11-15T11:41:45.310786+00:00",
+        "status": "deferred",
+        "focusMode": true,
+        "systemWideInput": true,
+        "activationRequested": false,
+        "externalRace": false,
+        "pairInjected": false,
+        "holdCompleted": false,
+        "movementAcknowledged": false,
+        "foregroundBefore": 7995860,
+        "lastInputBefore": 159607718,
+        "reason": "PC not known idle15s"
+      },
+      "sourceSHA256": "c40bb8d24c1a9257f29068fe4ef0d8f194d7c8ef9e92dda26544b595354efdf4"
+    },
+    "previousR2": "PID36188 stopped at11:13:33.729583UTC on heartbeat expiry. Root restarted the same reviewed source as PID42220 at11:26:22.",
+    "holdsAtDocumentationRead": {
+      "noJumpPresent": false,
+      "inputLockPresent": false,
+      "INPUT_HALTEDPreserved": true
+    },
+    "policy": "Jumps keep180s cadence and15s PC idle prerequisite; root installs scoped no_jump during complete chat/script batches. Root now refreshes heartbeat before each exec. No movement is verified.",
+    "gridLead": {
+      "artifact": "inventory-grid-count-write-audit/proposal.json",
+      "sha256": "ca8a44620ac0c4c5fd0586b6f0adfcdc2f8f612d18585b4f99c252438e43b83f",
+      "status": "SOURCE_LEAD_ONLY; NO_CANDIDATE_OR_FIXTURE",
+      "owners": [
+        "ExtraButtonSystem/CombatGrid/Grid.lua",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua",
+        "ExtraButtonSystem/Engine/ConsumableBind.lua"
+      ],
+      "finding": "Loaded grid SetCount paths can repeat ordinary Show/SetText writes. Current count/live/forced state, secret handling and repair must remain; extra native getters may cost more than existing writes.",
+      "decision": "No timing, fixture, candidate, source edit or gain established."
+    },
+    "observerOwnershipQualification": {
+      "legacyOwner": "Inventory/FluxInv/FluxInv_Events.lua is UNLOADED and is not a runtime hotspot.",
+      "activeRawOwners": [
+        "Inventory/Init.lua",
+        "Inventory/Containers.lua",
+        "Inventory/Builtin/Watch.lua"
+      ],
+      "gap": "These active raw-frame owners and vendor/timer/provider work remain outside the proposed Events service observer. Earlier gap wording must not treat the unloaded legacy dispatcher as active."
+    },
+    "workerActions": "This documentation worker sends no native input, changes no holds/helper and edits no Lua."
+  },
+  "completePauseAfterReload20261115": {
+    "recordedUtc": "2026-11-15T12:12:06.453128+00:00",
+    "status": "USER_REQUESTED_COMPLETE_PAUSE; CLEANUP_AND_RELOAD_VERIFIED",
+    "goalTransition": "Call update_goal(paused) immediately after this record; goal service is authoritative.",
+    "reload": {
+      "run": "pausefinal20261115r5",
+      "senderSHA256": "7012d0644163db03be936bd7a735939c970415a7b595a0ca37d17b119ed41907",
+      "payload": "/reload",
+      "queuedCharacters": 7,
+      "enqueueElapsedMs": 15.000000013969839,
+      "loadingImage": "native/jq4-pausefinal20261115r5-submitted.png",
+      "loadingSHA256": "fb2b926d62820c6f7f129dc1ca1004b9ace613e7c0836097f586200f0a2e88f9",
+      "worldImage": "native/pausefinal20261115r5-after-reload.png",
+      "worldSHA256": "c9cbaf95e972d149fadfe28092d29a15da2df3f1957468e6afb7c930e20d685d",
+      "worldCapturedEpoch": 1794744514.5448277,
+      "rootVisualVerification": "Loading screen followed by expected Mario-Super world and fresh addon startup messages; chat closed.",
+      "pid": 40032,
+      "hwnd": 7995860,
+      "savedVariablesMetadata": {
+        "accountLength": 408152,
+        "characterLength": 90174,
+        "accountWrittenUtc": "2026-11-15T12:07:56.5533301Z",
+        "characterWrittenUtc": "2026-11-15T12:07:56.5563373Z",
+        "privateValuesCopied": false
+      },
+      "firstAttempt": "pausefinal20261115r4 stopped on modifier before its first Enter; zero input.",
+      "captureFocus": "Post-reload read-only capture observed a foreground change; capture sent no input or activation."
+    },
+    "cleanup": {
+      "hostProcessEnumeration": "No python/lua/PresentMon process with this external goal root in its command line remained.",
+      "jumpPID42220": "Stopped 2026-11-15T12:02:33.944799Z; host PID absent.",
+      "reloadLeasePID27860": "Host PID absent; own input lock released.",
+      "CANCEL": "PRESENT",
+      "JUMP_STOP": "PRESENT",
+      "INPUT_HALTED": "PRESENT",
+      "no_jump": "PRESENT; intentional pause hold",
+      "inputLock": "ABSENT",
+      "agents": "All bounded worker tasks completed; no goal work or native probes continue."
+    },
+    "resume": {
+      "primaryScope": "Inventory and related ExtraButtonSystem frame/event spikes; preserve full original goal and all-client/features/cadence requirements.",
+      "cancelledScope": "User withdrew the border/TrinketMenu request; no border edits were made for it.",
+      "nextAction": "Revalidate client and script/profiler state, then execute the reviewed isolated H37 table-hook probe before designing the Index count allocation candidate.",
+      "temporaryRuntimeCode": "Client has reloaded. Re-add only required diagnostics after explicit continue; never assume prior globals/observers exist.",
+      "profilerEpoch": "P36 raw 1685 predates this reload; never reuse as a same-VM baseline.",
+      "defaultTransport": "Reviewed R8 atomic closed-chat open/type/Enter, with separately reviewed fixed payloads and scoped jump/input locks.",
+      "fastSenderSHA256": "c7ffadf88e237a02336f84f1682e9b25c88aa9048d24acd616302ab09911a977",
+      "H37": {
+        "source": "native-hook-h37-fixed/bootstrap.py",
+        "SHA256": "cef4acd15a2c82513c6c9a3f996bbdc1af97d01f92467f43dd319c715119625a",
+        "nativeExecuted": false,
+        "ownTests": 5,
+        "independentTests": 3,
+        "meaning": "Own local plain Lua table hook only. Expected false/0/1 or true/1/2 decides current-client pointer behavior; no all-client or bare-overload proof."
+      },
+      "indexBaseline": {
+        "sourceSHA256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+        "report": "index-live-count-flags/baseline-existing-test/report.json",
+        "reportSHA256": "3162331d1fbdb89515a22507750115d5984e483c7ddd1aba2098441cfd76b4c0",
+        "semanticChecks": 99232,
+        "traceSamples": 15405,
+        "traceHash": 813581308,
+        "liveQueries": 20000,
+        "normalizedOptionTables": 20000,
+        "targetPerR34Callback": 100,
+        "sixDeliveries": 600,
+        "deeperNativeCallsPerR34CallbackUnchanged": 1180,
+        "candidateBuilt": false,
+        "constraints": "Preserve two tonumber/HasWarband passes, second original charges read, dynamic public getter and fresh override table, late warband mutations, errors and reentry."
+      },
+      "otherLeads": [
+        "R34 repeated cold-vendor name discovery remains measured source work, no approved cache or slower retry.",
+        "Grid SetCount repeated Show/SetText is source-only; extra getter costs unmeasured.",
+        "Events-only prototype is external/not deployed and misses active raw inventory/timer/provider work."
+      ],
+      "stopMarkers": "Do not remove or restart anything until user explicitly says continue; then revalidate ownership before releasing pause markers.",
+      "sourceChanges": "No addon Lua candidate applied in this continuation. Preserve newer unrelated user work and prior applied optimizations.",
+      "lastDocsGate": "Latest validator had 17 unrelated newer source/assets/reference/verification freshness failures; no runtime suite or evidence was falsified."
+    }
+  }
+}

@@ -1,5 +1,27 @@
 # Commands and keybindings
 
+`/fluxborders status` (or `/fluxborders`) reports the border version, registered
+pieces and bounded geometry-work counters. `/fluxborders audit` reports nearby
+unmatched shared edges; `/fluxborders target` lists logical source pieces on the
+target and target-of-target. Sources managed by fragments remain logical pieces;
+the census is not a count of duplicate draws. These are read-only diagnostics
+with no saved settings, action or layout changes. Audit0 alone does not certify
+native pixels. [Requirements and acceptance](CONNECTED_BORDERS.md).
+
+`/fluxbars trace <column>` reports all prepared modifier routes through native
+attribute lookup without casting. `/fluxbars input <column>` observes one actual
+click through the existing push hooks, recording its current main selection,
+input phase and macro-condition context. The optional observer retires after one
+matching event or 12 seconds; it writes no saved settings or action attributes.
+See [current routing acceptance](ACTION_ROUTING_RELIABILITY.md).
+
+15 November: `/fluxbars restore` performs an explicit out-of-combat rebuild of
+all19main-button routes and refreshes existing binding/paint owners;placed actions
+and saved profiles remain. `/fluxbars audit` prints expected/native mouse/key
+slots, action identity and icon data for all19. These commands are operator-only;
+no automatic recovery/polling is added. Native execution is deferred by the user.
+[Scope, requirements and validation](MAIN_ROW_RECOVERY.md).
+
 `/fluxinput` captures a read-only input/taint snapshot immediately and once after three seconds. Hover the affected frame, then reload to flush `FluxPerfCaptureDB.inputDebug`. It never changes click bindings or native input. [Behavior and evidence](51-input-and-native-callbacks.md), [handler](../Other/FluxInputDebug.lua).
 
 `/fluxinput edit` captures native Edit Mode ownership/security metadata immediately,

@@ -1,0 +1,350 @@
+{
+  "changeId": "BORDER-ROLE-ANCESTRY-R149-20261119",
+  "capturedAtUTC": "2026-11-19T22:27:56.515568+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+      "afterRaw": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+      "afterNormalized": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea"
+    },
+    "tests/border_geometry_phase.lua": {
+      "beforeRaw": "5a855765feb92778f35a7c7c32958319e91c600e4c86848e4bd368cab478e4b9",
+      "afterRaw": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "afterNormalized": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\source.zip",
+    "sourceZipSHA256": "bfd42a66dc4968dcc62a44e8843c2a669a2a0c7e1381d6877d89181b214def71",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched pairs with both fixture orders. The real regional renderer replays six action-strip and side-panel changes or roster-related changes in both border types on a populated HUD with nested shared owners. Compare sampled seam pixels, regional cache hits, and preserved distant regions in both builds.",
+    "samples": [
+      {
+        "pair": 1,
+        "order": "archive-first",
+        "processMs": 8080,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "archive-first",
+        "processMs": 8080,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "archive-first",
+        "processMs": 8080,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "archive-first",
+        "processMs": 8080,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "candidate-first",
+        "processMs": 9158,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "candidate-first",
+        "processMs": 9158,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "candidate-first",
+        "processMs": 9158,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 1,
+        "order": "candidate-first",
+        "processMs": 9158,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "candidate-first",
+        "processMs": 8569,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "candidate-first",
+        "processMs": 8569,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "candidate-first",
+        "processMs": 8569,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "candidate-first",
+        "processMs": 8569,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "archive-first",
+        "processMs": 9120,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "archive-first",
+        "processMs": 9120,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "archive-first",
+        "processMs": 9120,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 2,
+        "order": "archive-first",
+        "processMs": 9120,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "archive-first",
+        "processMs": 8999,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "archive-first",
+        "processMs": 8999,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "archive-first",
+        "processMs": 8999,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "archive-first",
+        "processMs": 8999,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "candidate-first",
+        "processMs": 9015,
+        "style": 1,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "candidate-first",
+        "processMs": 9015,
+        "style": 1,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "candidate-first",
+        "processMs": 9015,
+        "style": 2,
+        "scenario": "hover",
+        "oldClassifications": 318,
+        "oldParentReads": 1194,
+        "newClassifications": 318,
+        "newParentReads": 312
+      },
+      {
+        "pair": 3,
+        "order": "candidate-first",
+        "processMs": 9015,
+        "style": 2,
+        "scenario": "roster",
+        "oldClassifications": 318,
+        "oldParentReads": 1218,
+        "newClassifications": 318,
+        "newParentReads": 312
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\compare.lua": "03b3d9c6443bc49498b36dc97601fb4ffbd0d1fd56251cf69a9c7c974d6fd730",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\matched.txt": "b159ef0d98f8585b7bb5c65340e351d62c6b55e492a4f2549718781869050d2a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\negative.txt": "f67fc06e608df4eb18eaa4d9c9bca76da01587f52a47db02955f16965efaebdf",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\upvalues.json": "61db329a016b99310278d469ae8285ecc22a5ac0d38d385fb031265f26472b6e"
+    },
+    "limits": "Counts cover calls in the role-classification walk, not all frame getters. Whole-process durations include both builds and pixel comparisons. Offline samples establish layout parity in modeled scenes, with native latency and rendering still pending."
+  },
+  "preservation": [
+    "Connected and overlay roles retain their original precedence for public inputs. Classification excludes unreadable ancestry from junctions and never caches such a result.",
+    "Only the active read phase owns public results. An observed real change invalidates the memo, including reentrant changes from a frame getter.",
+    "Coordinates, secure layouts, mesh placement and regional retention retain their existing contracts. Each later transaction reads current roles."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-role-ancestry-before-20261119-232222\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "48c84410350099d20f067c156e837268ec9554699125a3493463b59dc7b429ea",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for party and raid membership latency, rapid cursor crossings and drops, border pixels and combat taint. No client or profiler changes."
+}

@@ -1,0 +1,68 @@
+{
+  "task": "WORLD-MAP-BRIDGE-20261116",
+  "date": "2026-11-16",
+  "research_only": true,
+  "trigger": "User confirms uniform map appearance; mounted source becomes transparent when moving and must remain opaque.",
+  "sources": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "blob_sha": "14d7d603b98605e5d22b3522c56e31ea77bd8fae",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "load_path": "Interface/AddOns/Blizzard_FrameXMLBase/Blizzard_FrameXMLBase.toc:14"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "blob_sha": "14d7d603b98605e5d22b3522c56e31ea77bd8fae",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "load_path": "Interface/AddOns/Blizzard_FrameXMLBase/Blizzard_FrameXMLBase.toc:14"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "blob_sha": "14d7d603b98605e5d22b3522c56e31ea77bd8fae",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_FrameXMLBase/PlayerMovementFrameFader.lua",
+      "load_path": "Interface/AddOns/Blizzard_FrameXMLBase/Blizzard_FrameXMLBase_Mists.toc:14"
+    }
+  ],
+  "contracts": [
+    {
+      "lines": "5-10",
+      "finding": "One native driver reads movement and lerps alpha for registered active frames."
+    },
+    {
+      "lines": "13-28",
+      "finding": "Movement-start, movement-stop, gliding and impulse events merge deferred registrations into the active table."
+    },
+    {
+      "lines": "49-55",
+      "finding": "RemoveFrameInternal removes the specified frame from both active and deferred registration tables."
+    },
+    {
+      "lines": "68-76",
+      "finding": "AddDeferredFrame is event-deferred registration, not a C_Timer callback."
+    },
+    {
+      "lines": "78-85",
+      "finding": "RemoveFrame restores maxAlpha only for an active registration, then removes active and deferred registrations. A solely deferred frame does not have alpha restored automatically."
+    }
+  ],
+  "world_map_registration": {
+    "retail": "WorldMap.lua342-389: OnShow adds deferred fade(.5,1,.5) with mapFade/not-IsMouseOver predicate; OnHide removes frame.",
+    "forever": "WorldMap.lua369-416: same behavior.",
+    "classic": "Mists-loaded Cata/WorldMap.lua320-344 does not register native movement fading, but the identical service is loaded."
+  },
+  "recommended_change": [
+    "After native source OnShow during preparation, remove only that source frame from PlayerMovementFrameFader, keeping preparation alpha zero.",
+    "After adoption or embedded source re-show, remove only that source frame again and set its own alpha to1 outside preparation.",
+    "Use table function call PlayerMovementFrameFader.RemoveFrame(world), without a colon.",
+    "Allow normal full-map native OnShow to register its own deferred fade again; preserve mapFade CVar and all unrelated service frames.",
+    "No global function replacement, fader private-table access, new movement listeners, timers or per-frame alpha enforcement is necessary for this native service."
+  ],
+  "performance_scope": "Removes source frame's fade iteration and alpha writes while mounted. The shared native driver itself still exists and unrelated registered frames remain unchanged.",
+  "limits": "Source-level lifecycle proof only; the new opacity implementation still requires native movement/full-map acceptance."
+}

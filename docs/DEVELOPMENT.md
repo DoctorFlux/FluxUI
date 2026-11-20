@@ -1,5 +1,10 @@
 # Development tasks
 
+The [release roadmap](RELEASE_ROADMAP.md) defines the addon-wide finish line and the
+criteria for release blockers. Use [current status](STATUS.md) for the active
+candidate and the next acceptance check. The dated entries below retain their
+original scope and evidence.
+
 14 November `ADDON-PUBLICATION-20261114`: the user requested publication of the
 full current addon snapshot to DoctorFlux/FluxUI on main, including completed
 auction, consumable, UI/options and casting/inventory work. Preserve all newer

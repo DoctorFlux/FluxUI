@@ -723,6 +723,10 @@ function ns.ClassPower.Initialize(parentFrame)
         pcall(eventFrame.RegisterEvent, eventFrame, "UNIT_EXITED_VEHICLE")
 
         eventFrame:SetScript("OnEvent", function(self, event, ...)
+            if event == "PLAYER_SPECIALIZATION_CHANGED" then
+                local events = ns.Flux and ns.Flux.Events
+                if events and events.IsPlayerUnitEvent and not events.IsPlayerUnitEvent(...) then return end
+            end
             local liveParent = ResolveClassPowerParent(nil)
             if not liveParent then
                 return

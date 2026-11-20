@@ -115,10 +115,7 @@ local function ImportLegacySettings(source)
     return result
 end
 
-local function MigrateLegacyStores()
-    local root = _FluxUI_CharSavedVars
-    local checkpoint = root._restockMigrationV1
-    if type(checkpoint) == "table" and checkpoint.version == 1 then return end
+local function MigrateLegacyStores(root)
 
     local current = root.Restock
     local legacy = root.VendorAuto
@@ -130,7 +127,7 @@ local function MigrateLegacyStores()
     end
     -- Prepare rollback data before publishing anything. VendorAuto and all bank
     -- snapshots stay in place, including fields not understood by this version.
-    checkpoint = {
+    local checkpoint = {
         version = 1,
         imported = current == nil and replacement ~= nil,
         hadRestock = current ~= nil,
@@ -210,12 +207,19 @@ end
 --- The per-character Restock settings table (defaults applied). Never cache
 --- the returned table across loading screens; re-fetch per use.
 function S.Get()
-    _FluxUI_CharSavedVars = _FluxUI_CharSavedVars or {}
-    MigrateLegacyStores()
-    local t = _FluxUI_CharSavedVars.Restock
+    local root = _FluxUI_CharSavedVars
+    if not root then
+        root = {}
+        _FluxUI_CharSavedVars = root
+    end
+    local checkpoint = root._restockMigrationV1
+    if type(checkpoint) ~= "table" or checkpoint.version ~= 1 then
+        MigrateLegacyStores(root)
+    end
+    local t = root.Restock
     if not t then
         t = {}
-        _FluxUI_CharSavedVars.Restock = t
+        root.Restock = t
     end
     if not t._defaultsApplied then
         ApplyDefaults(t)

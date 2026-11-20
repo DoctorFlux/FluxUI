@@ -1,0 +1,180 @@
+{
+  "id": "LHO-LADDER-USABILITY-PASS-20261118",
+  "utc": "2026-11-18T01:24:56.305354+00:00",
+  "before": {
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9"
+  },
+  "after": {
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508"
+  },
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ladder-usability-pass-20261118\\checkpoint.json",
+  "syntax": [
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9",
+      "mode": "syntax only; no addon execution"
+    },
+    {
+      "file": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "mode": "syntax only; no addon execution"
+    }
+  ],
+  "mechanism": "Reuse canonical Best usability approval for the exact fresh returned record, matching kind and checker dependencies, within the immediate bridge query only. Live bag/charge checks still run. No cross-call usability cache.",
+  "preserved": [
+    "Public Best.GetLadder remains two-argument/one-result and returns fresh records",
+    "Unknown/replaced Best getter or Score/checker dependencies use original query/check path",
+    "Combo-food kind changes still check the bridge kind separately",
+    "Fallback ladder-cache hits still run all live ownership and usability checks",
+    "No timer/event/cadence/count/metadata-retry/settings/transaction changes"
+  ],
+  "sourceWorkRemoved": "One duplicate canonical IsBlockedForBest call per approved same-kind row in this immediate query. Count-dependent, uninstrumented; tooltip query savings inferred from source.",
+  "sourceLifetime": "Approval map is local to the current Best-to-bridge call; keyed by fresh record identity and original itemID; never persisted or stored in ladderCache. Canonical synchronous userdata is assumed stable within this Lua call; replaced named checkers fall back.",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/Core/FluxRestockList.lua": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36"
+  },
+  "retailForeverPairsMatched": 20,
+  "nativeBefore": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-ladder-usability-pass-20261118\\native-before.json",
+  "nativeAfter": "Scoped Forever PASS: own reload;ready;seven real queries/top picks;errors0/profile0;normal tooltip2 and checker-wrapper fallback4 with exact restoration. Other contexts pending.",
+  "simulationRuns": 0,
+  "newMockTests": 0,
+  "performanceGain": "Native query costs recorded but before/after stock/list lengths differ; no matched CPU/FPS/spike gain",
+  "goal": "ACTIVE",
+  "nativeBeforeScope": {
+    "client": {
+      "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+      "pid": 26544,
+      "hwnd": 460342,
+      "birthFileTime": 134394186555517743,
+      "build": 70938,
+      "interface": 16001,
+      "buildScope": "Prior report in same exact process"
+    },
+    "source": "Before Best123a8f7d/Bridgeb9f20c0f; loaded List1586463f. Current List2178f495 disk edit was not yet reloaded.",
+    "timings": {
+      "food": 4.8050999641418,
+      "water": 3.7480999827385,
+      "bandage": 1.2613000273705,
+      "healPotion": 1.1157999634743,
+      "manaPotion": 1.146399974823,
+      "healthstone": 0.89980000257492,
+      "managem": 0.19749999046326
+    },
+    "lengths": [
+      3,
+      2,
+      1,
+      1,
+      1,
+      0,
+      2
+    ],
+    "scene": "Vendor and bags visibly closed at Helenia Olden; no casting/craft queue visible; no item actions."
+  },
+  "reloadAttempts": [
+    {
+      "firstBegin": "Physical key held before run creation; no game input"
+    },
+    {
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-ladderreload_20261118a-journal.json",
+      "journalSha256": "0b2ca2c9186911393fcce9db64ae2d91b168c469d6ea8c0ab2ffeb038581f964",
+      "stage": "aborted-no-retry",
+      "error": "last changed during foreground phase",
+      "fastFixedCommandAbsent": true,
+      "inputSent": false,
+      "lockReleased": true
+    },
+    {
+      "freshBegin": "ladderreload_20261118b: not drawable/known foreground before run creation; no input"
+    }
+  ],
+  "cleanup": {
+    "watchdogs41900and55556AbsentHostUTC": "2026-11-18T01:27:35.3410829Z",
+    "inputLockAbsent": true,
+    "reloadBRunCreated": false,
+    "jumpHelperRunning": false,
+    "temporaryCodeReset": true,
+    "reloadExecuted": true,
+    "latestWatchdogsAbsentUTC": "2026-11-18T01:52:20.2006796Z"
+  },
+  "hookCompatibilityEvidence": {
+    "record": "docs/validation/inventory-live-count-flags-2026-11-15.json",
+    "scope": "Earlier native local Lua-table named-method hook replaces the method pointer; same publicQuery identity guard detects that hook form. Not fresh all-client hook testing."
+  },
+  "nativeAfterEvidence": "docs/validation/inventory-ladder-usability-native-2026-11-18.json"
+}

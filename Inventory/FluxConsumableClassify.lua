@@ -5,6 +5,8 @@
     Replaces missing FluxNCItemDetection / FluxItemDetection restore hooks.
 ]]
 
+local _, ns = ...
+
 FluxConsumableClassify = FluxConsumableClassify or {}
 local C = FluxConsumableClassify
 
@@ -155,27 +157,54 @@ local function LineLooksLikeMaxHealthBuff(line)
         and line:find("health", 1, true)
 end
 
-local function ParseLinePercentAxis(line, unit, maxResource, axis)
-    line = NormalizeLine(line)
+-- Private literal patterns: shared only by the two internal axis workers.
+local HEALTH_PATTERNS = {
+    "(%d+)%s*%%%s*health[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%%s*health",
+    "(%d+)%s*%%[^%n]*maximum%s+health[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*maximum%s+health[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*maximum%s+health",
+    "(%d+)%s*%%[^%n]*of%s+your%s+health[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*of%s+your%s+health[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*of%s+your%s+health",
+    "restores?%s+([%d,%.]+)%s+health%s+over%s+(%d+)%s*sec",
+    "([%d,%.]+)%s+health%s+over%s+(%d+)%s*sec",
+    "([%d,%.]+)%s+health[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+}
+local MANA_PATTERNS = {
+    "(%d+)%s*%%%s*mana[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%%s*mana",
+    "(%d+)%s*%%[^%n]*maximum%s+mana[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*maximum%s+mana[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*maximum%s+mana",
+    "(%d+)%s*%%[^%n]*of%s+your%s+mana[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*of%s+your%s+mana[^%n]*over%s+(%d+)%s*sec",
+    "(%d+)%s*%%[^%n]*of%s+your%s+mana",
+    "restores?%s+([%d,%.]+)%s+mana%s+over%s+(%d+)%s*sec",
+    "([%d,%.]+)%s+mana%s+over%s+(%d+)%s*sec",
+    "([%d,%.]+)%s+mana[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec",
+}
+
+local function ParseLinePercentAxis(line, patterns, maxResource, axis)
     if maxResource <= 0 then
         return
     end
     if LineLooksLikeMaxHealthBuff(line) then
         return
     end
-    local unitPat = unit
+
     local pct, dur
 
     -- Retail mage-table / conjured food: "Restores 100% health ... over 20 sec"
     -- (no "maximum" / "of your" wording).
-    pct, dur = line:match("(%d+)%s*%%%s*" .. unitPat .. "[^%n]*over%s+(%d+)%s*sec")
+    pct, dur = line:match(patterns[1])
     if pct and dur and not LineHasPercentRatePerSecond(line) then
         local p = tonumber(pct)
         if p then
             MergeAxis(axis, "percent", 0, p, false, tonumber(dur), (p / 100) * maxResource)
         end
     end
-    pct = line:match("(%d+)%s*%%%s*" .. unitPat)
+    pct = line:match(patterns[2])
     if pct and not LineHasPercentRatePerSecond(line) and not line:match("over%s+%d+")
         and not line:find("maximum", 1, true) and not line:find("of your", 1, true) then
         local p = tonumber(pct)
@@ -184,21 +213,21 @@ local function ParseLinePercentAxis(line, unit, maxResource, axis)
         end
     end
 
-    pct, dur = line:match("(%d+)%s*%%[^%n]*maximum%s+" .. unitPat .. "[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec")
+    pct, dur = line:match(patterns[3])
     if pct and dur then
         local p, d = tonumber(pct), tonumber(dur)
         if p and d then
             MergeAxis(axis, "percent_rate", 0, p, true, d, (p / 100) * maxResource * d)
         end
     end
-    pct, dur = line:match("(%d+)%s*%%[^%n]*maximum%s+" .. unitPat .. "[^%n]*over%s+(%d+)%s*sec")
+    pct, dur = line:match(patterns[4])
     if pct and dur and not LineHasPercentRatePerSecond(line) then
         local p = tonumber(pct)
         if p then
             MergeAxis(axis, "percent", 0, p, false, tonumber(dur), (p / 100) * maxResource)
         end
     end
-    pct = line:match("(%d+)%s*%%[^%n]*maximum%s+" .. unitPat)
+    pct = line:match(patterns[5])
     if pct and not LineHasPercentRatePerSecond(line) and not line:match("over%s+%d+") then
         local p = tonumber(pct)
         if p then
@@ -207,21 +236,21 @@ local function ParseLinePercentAxis(line, unit, maxResource, axis)
     end
 
     -- Always try "of your health/mana" percent forms (retail food tooltips).
-    pct, dur = line:match("(%d+)%s*%%[^%n]*of%s+your%s+" .. unitPat .. "[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec")
+    pct, dur = line:match(patterns[6])
     if pct and dur then
         local p, d = tonumber(pct), tonumber(dur)
         if p and d then
             MergeAxis(axis, "percent_rate", 0, p, true, d, (p / 100) * maxResource * d)
         end
     end
-    pct, dur = line:match("(%d+)%s*%%[^%n]*of%s+your%s+" .. unitPat .. "[^%n]*over%s+(%d+)%s*sec")
+    pct, dur = line:match(patterns[7])
     if pct and dur and not LineHasPercentRatePerSecond(line) then
         local p = tonumber(pct)
         if p then
             MergeAxis(axis, "percent", 0, p, false, tonumber(dur), (p / 100) * maxResource)
         end
     end
-    pct = line:match("(%d+)%s*%%[^%n]*of%s+your%s+" .. unitPat)
+    pct = line:match(patterns[8])
     if pct and not LineHasPercentRatePerSecond(line) and not line:match("over%s+%d+") then
         local p = tonumber(pct)
         if p then
@@ -231,7 +260,6 @@ local function ParseLinePercentAxis(line, unit, maxResource, axis)
 end
 
 local function ParseLineComboPercent(line, maxH, maxM, healthAxis, manaAxis)
-    line = NormalizeLine(line)
     -- Retail mage-table food: "Restores 100% health and 100% Mana over 20 sec"
     local hp, mp, dur = line:match("(%d+)%s*%%%s*health%s+and%s+(%d+)%s*%%%s*mana[^%n]*over%s+(%d+)%s*sec")
     if hp and mp and dur and not LineHasPercentRatePerSecond(line) then
@@ -278,23 +306,22 @@ local function ParseLineComboPercent(line, maxH, maxM, healthAxis, manaAxis)
     end
 end
 
-local function ParseLineFlatAxis(line, unit, axis)
-    line = NormalizeLine(line)
-    local amt, dur = line:match("restores?%s+([%d,%.]+)%s+" .. unit .. "%s+over%s+(%d+)%s*sec")
+local function ParseLineFlatAxis(line, patterns, axis)
+    local amt, dur = line:match(patterns[9])
     if amt and dur then
         local n = SanitizeTooltipNumber(amt)
         if n and n > 0 then
             MergeAxis(axis, "flat", n, 0, false, tonumber(dur), n)
         end
     end
-    amt, dur = line:match("([%d,%.]+)%s+" .. unit .. "%s+over%s+(%d+)%s*sec")
+    amt, dur = line:match(patterns[10])
     if amt and dur and not LineHasPercentRatePerSecond(line) then
         local n = SanitizeTooltipNumber(amt)
         if n and n > 0 then
             MergeAxis(axis, "flat", n, 0, false, tonumber(dur), n)
         end
     end
-    amt, dur = line:match("([%d,%.]+)%s+" .. unit .. "[^%n]*every%s+second[^%n]*over%s+(%d+)%s*sec")
+    amt, dur = line:match(patterns[11])
     if amt and dur then
         local n, d = SanitizeTooltipNumber(amt), tonumber(dur)
         if n and n > 0 and d then
@@ -304,6 +331,10 @@ local function ParseLineFlatAxis(line, unit, axis)
 end
 
 local function ParseFlatComboExplicit(text, healthAxis, manaAxis)
+    -- Every combo pattern requires both literal resource names.
+    if not text:find("health", 1, true) or not text:find("mana", 1, true) then
+        return
+    end
     local h, m = text:match("restores?%s+([%d,%.]+)%s+health%s+and%s+([%d,%.]+)%s+mana")
     if not h then
         h, m = text:match("restores?%s+([%d,%.]+)%s+health%s*,%s*([%d,%.]+)%s+mana")
@@ -322,44 +353,74 @@ local function ParseFlatComboExplicit(text, healthAxis, manaAxis)
     end
 end
 
+local GENERIC_FLAT_UNITS = { "health", "mana" }
+local GENERIC_FLAT_PATTERNS = {
+    health = "(%d[%d,%.]*)%s*health%f[%A]",
+    mana = "(%d[%d,%.]*)%s*mana%f[%A]",
+}
+
 local function ParseGenericFlatAmounts(text, healthAxis, manaAxis)
     -- Lua patterns have no alternation. Read each restore axis separately;
     -- the upper end of "N to M health/mana" is the existing tier convention.
     -- This also avoids the broad digit fallback mixing health, mana and level.
-    for _, unit in ipairs({ "health", "mana" }) do
-        local axis = unit == "health" and healthAxis or manaAxis
-        for amount in text:gmatch("(%d[%d,%.]*)%s*" .. unit .. "%f[%A]") do
-            local n = SanitizeTooltipNumber(amount)
-            if n and n > 0 then MergeAxis(axis, "flat", n, 0, false, 0, n) end
+    for _, unit in ipairs(GENERIC_FLAT_UNITS) do
+        if text:find(unit, 1, true) then
+            local axis = unit == "health" and healthAxis or manaAxis
+            for amount in text:gmatch(GENERIC_FLAT_PATTERNS[unit]) do
+                local n = SanitizeTooltipNumber(amount)
+                if n and n > 0 then MergeAxis(axis, "flat", n, 0, false, 0, n) end
+            end
         end
     end
 end
 
 local POTION_RANGE_SEPARATORS = { "%s+to%s+", "%s*%-%s*", "%s*–%s*", "%s*—%s*" }
 local POTION_RANGE_SUFFIXES = { health = { "health", "mana%s+and%s+health" }, mana = { "mana", "health%s+and%s+mana" } }
+-- Fixed patterns only: keep each tooltip's matching and resource math live.
+local POTION_RANGE_PATTERNS = {}
+do
+    local amount = "(%d[%d,%.]*)"
+    for unit, suffixes in pairs(POTION_RANGE_SUFFIXES) do
+        local modes = { flat = {}, percent = {} }
+        for _, mode in ipairs({ "flat", "percent" }) do
+            local rows = modes[mode]
+            for _, suffix in ipairs(suffixes) do
+                local ending = (mode == "percent" and "%s*%%[%a%s']-" or "%s*") .. suffix .. "%f[%A]"
+                local ranges = {}
+                for _, separator in ipairs(POTION_RANGE_SEPARATORS) do
+                    ranges[#ranges + 1] = amount .. separator .. amount .. ending
+                end
+                rows[#rows + 1] = { ranges = ranges, upper = "up%s+to%s+" .. amount .. ending }
+            end
+        end
+        POTION_RANGE_PATTERNS[unit] = modes
+    end
+end
+
 local function PotionMinimum(text, unit, axis, pool)
     local maximum = axis.effective or 0
     if maximum <= 0 then return 0 end
     local percent = axis.mode and axis.mode:find("percent", 1, true)
     local factor = percent and pool / 100 or 1
     if axis.perSecond then factor = factor * (axis.durationSec or 0) end
-    local amount = "(%d[%d,%.]*)"
+    local suffixPatterns = POTION_RANGE_PATTERNS[unit][percent and "percent" or "flat"]
     local minimum = maximum
     -- Match this resource/effect only; level, cooldown and the other resource's
     -- digits cannot supply its floor. Keep the ordinary parser's upper axes.
     for line in text:gmatch("[^\n]+") do
-        for _, suffix in ipairs(POTION_RANGE_SUFFIXES[unit]) do
-            local ending = (percent and "%s*%%[%a%s']-" or "%s*") .. suffix .. "%f[%A]"
-            for _, separator in ipairs(POTION_RANGE_SEPARATORS) do
-                for a, b in line:gmatch(amount .. separator .. amount .. ending) do
-                    local low, high = SanitizeTooltipNumber(a), SanitizeTooltipNumber(b)
-                    if low and high and math.abs(math.max(low, high) * factor - maximum) < 0.001 then
-                        minimum = math.min(minimum, math.min(low, high) * factor)
+        if line:find(unit, 1, true) then
+            for _, patterns in ipairs(suffixPatterns) do
+                for _, pattern in ipairs(patterns.ranges) do
+                    for a, b in line:gmatch(pattern) do
+                        local low, high = SanitizeTooltipNumber(a), SanitizeTooltipNumber(b)
+                        if low and high and math.abs(math.max(low, high) * factor - maximum) < 0.001 then
+                            minimum = math.min(minimum, math.min(low, high) * factor)
+                        end
                     end
                 end
+                local upper = line:match(patterns.upper)
+                if upper and math.abs((SanitizeTooltipNumber(upper) or 0) * factor - maximum) < 0.001 then minimum = 0 end
             end
-            local upper = line:match("up%s+to%s+" .. amount .. ending)
-            if upper and math.abs((SanitizeTooltipNumber(upper) or 0) * factor - maximum) < 0.001 then minimum = 0 end
         end
     end
     return minimum
@@ -513,32 +574,37 @@ local function SafeFind(text, pat)
 end
 
 local function HasRestoreOverTime(text)
-    text = text or ""
-    if SafeFind(text, "over%s+%d+%s*sec") then
+    -- Skip pattern scans when a required literal is absent.
+    if type(text) ~= "string" then return false end
+    if text:find("over", 1, true) and SafeFind(text, "over%s+%d+%s*sec") then
         return true
     end
     -- deDE: "über 30 Sek."
-    if SafeFind(text, "über%s+%d+%s*sek") or SafeFind(text, "Über%s+%d+%s*sek") then
+    if text:find("sek", 1, true)
+        and (SafeFind(text, "über%s+%d+%s*sek") or SafeFind(text, "Über%s+%d+%s*sek")) then
         return true
     end
     -- frFR: "pendant 21 sec" (avoid "en N sec" — matches English "when N sec")
-    if SafeFind(text, "pendant%s+%d+") then
+    if text:find("pendant", 1, true) and SafeFind(text, "pendant%s+%d+") then
         return true
     end
     -- esES / esMX / ptBR
-    if SafeFind(text, "durante%s+%d+") then
+    if text:find("durante", 1, true) and SafeFind(text, "durante%s+%d+") then
         return true
     end
     -- ruRU
-    if SafeFind(text, "в%s+течение") or SafeFind(text, "за%s+%d+%s*сек") then
+    if (text:find("течение", 1, true) and SafeFind(text, "в%s+течение"))
+        or (text:find("сек", 1, true) and SafeFind(text, "за%s+%d+%s*сек")) then
         return true
     end
     -- zhCN
-    if SafeFind(text, "持续%s*%d+%s*秒") or SafeFind(text, "%d+%s*秒内") then
+    if text:find("秒", 1, true)
+        and (SafeFind(text, "持续%s*%d+%s*秒") or SafeFind(text, "%d+%s*秒内")) then
         return true
     end
     -- koKR
-    if SafeFind(text, "%d+%s*초%s*동안") or SafeFind(text, "%d+%s*초에%s*걸쳐") then
+    if text:find("초", 1, true)
+        and (SafeFind(text, "%d+%s*초%s*동안") or SafeFind(text, "%d+%s*초에%s*걸쳐")) then
         return true
     end
     return false
@@ -552,27 +618,16 @@ local function IsFoodWaterTooltip(text, itemName, subclassID)
     if IsNonFoodWaterConsumable(nil, text, itemName) then
         return false
     end
-    local overTime = HasRestoreOverTime(text)
-    local hasEat = text:find("eat", 1, true) or text:find("eating", 1, true)
-    local hasDrink = text:find("drink", 1, true) or text:find("drinking", 1, true)
-    local hasFoodAndDrink = text:find("food and drink", 1, true)
-    local remainSeated = text:find("remain seated", 1, true)
-    local hasHealth = text:find("health", 1, true)
-    local hasMana = text:find("mana", 1, true)
-    -- Retail: "restores X% of your health/mana ... over N sec" without "eat"
-    local pctRestore = text:find("%d+%s*%%", 1)
-        and (hasHealth or hasMana)
-        and overTime
-    -- Timed health/mana restore is sit-and-consume even without English eat/drink
-    -- (Classic fish: "Restores 28 health over 18 sec", often subclass Other).
-    -- Scrolls are rejected above; a 4 sec mana scroll is not a drink.
-    if remainSeated or hasFoodAndDrink or pctRestore
-        or (overTime and (hasEat or hasDrink or hasHealth or hasMana)) then
+    if text:find("remain seated", 1, true) or text:find("food and drink", 1, true) then
         return true
     end
-    -- Non-English vendor food/water: Food & Drink subclass + restore duration.
-    -- Subclass alone is not enough (instant "Use: Restores Mana." is not a drink).
-    return overTime and IsFoodDrinkSubclass(subclassID)
+    if not HasRestoreOverTime(text) then
+        return false
+    end
+    -- Timed restores can describe food or drink without a seated-use line.
+    return text:find("eat", 1, true) ~= nil or text:find("drink", 1, true) ~= nil
+        or text:find("health", 1, true) ~= nil or text:find("mana", 1, true) ~= nil
+        or IsFoodDrinkSubclass(subclassID)
 end
 
 local function ParseFoodWaterFallbackNumbers(text, healthAxis, manaAxis)
@@ -799,7 +854,12 @@ function C.ParseFoodWaterRestore(text, itemLink, itemName)
         isBandage = true
     end
 
-    local maxH, maxM = GetMaxHealth(), GetMaxMana()
+    -- Only percentage axes use resource pools. Flat axes and their potion
+    -- floors are independent of pools; keep percentage reads live and ordered.
+    local maxH, maxM = 0, 0
+    if text:find("%", 1, true) then
+        maxH, maxM = GetMaxHealth(), GetMaxMana()
+    end
     ParseFlatComboExplicit(text, healthAxis, manaAxis)
     ParseGenericFlatAmounts(text, healthAxis, manaAxis)
     -- Absorb "N to N … damage" must not become potion health.
@@ -807,11 +867,28 @@ function C.ParseFoodWaterRestore(text, itemLink, itemName)
         ParseBandageDamage(text, healthAxis)
     end
     for line in text:gmatch("[^\n]+") do
-        ParseLineComboPercent(line, maxH, maxM, healthAxis, manaAxis)
-        ParseLinePercentAxis(line, "health", maxH, healthAxis)
-        ParseLinePercentAxis(line, "mana", maxM, manaAxis)
-        ParseLineFlatAxis(line, "health", healthAxis)
-        ParseLineFlatAxis(line, "mana", manaAxis)
+        line = NormalizeLine(line)
+        -- Every axis pattern requires its literal resource name. Skip only
+        -- impossible matches after locale normalization; retry data stays live.
+        local hasHealth = line:find("health", 1, true)
+        local hasMana = line:find("mana", 1, true)
+        if line:find("%", 1, true) then
+            if hasHealth and hasMana then
+                ParseLineComboPercent(line, maxH, maxM, healthAxis, manaAxis)
+            end
+            if hasHealth then
+                ParseLinePercentAxis(line, HEALTH_PATTERNS, maxH, healthAxis)
+            end
+            if hasMana then
+                ParseLinePercentAxis(line, MANA_PATTERNS, maxM, manaAxis)
+            end
+        end
+        if hasHealth then
+            ParseLineFlatAxis(line, HEALTH_PATTERNS, healthAxis)
+        end
+        if hasMana then
+            ParseLineFlatAxis(line, MANA_PATTERNS, manaAxis)
+        end
     end
 
     -- Combat consumes still need digit fallback when "N health/mana" is split.
@@ -852,9 +929,37 @@ end
 --- Returns { kind, health, mana, effective, isPercent, isConjured, wellFed, bandage } or nil.
 local classifyCache = {} -- [itemID] = result|false|{ _pending = true }
 local pendingRetries = {} -- [itemID] = n
+local invalidationRevision = 0
 local PARSE_BUDGET = 24
 local parseUsed = 0
 local MAX_PENDING_RETRIES = 4
+
+local NON_RESTORING_ITEM_SPELLS = {
+    [2633] = 3592, -- Jungle Remedy: Cure Ailments
+    [3703] = 11008, -- Southshore Stout: Standard Alcohol
+    [5634] = 6615, -- Free Action Potion: Free Action
+    [5997] = 673, -- Elixir of Minor Defense: armor
+    [6051] = 7245, -- Holy Protection Potion: holy damage absorption
+    [6372] = 7840, -- Swim Speed Potion: increased swim speed
+    [247755] = 1245249, -- Elixir of Minor Force: physical damage
+}
+
+local function IsKnownNonRestoringItem(itemID, text)
+    -- A complete read-only tooltip is stronger evidence than its short length.
+    if itemID == 7516 then -- Tabetha's Instructions
+        return text == "soulbound\nunique\n<right click to read>"
+    end
+    local expectedSpell = NON_RESTORING_ITEM_SPELLS[itemID]
+    local item = expectedSpell and _G.Flux and _G.Flux.Item
+    if not item or type(item.GetSpell) ~= "function" then return false end
+    local ok, _, spellID = pcall(item.GetSpell, itemID)
+    return ok and spellID == expectedSpell
+end
+
+-- Explicit invalidation/reset calls invalidate a completed selector scan.
+function C.GetInvalidationRevision()
+    return invalidationRevision
+end
 
 function C.ResetParseBudget(max)
     parseUsed = 0
@@ -867,6 +972,7 @@ end
 
 function C.InvalidateCache(itemID)
     itemID = tonumber(itemID)
+    invalidationRevision = invalidationRevision + 1
     if itemID then
         classifyCache[itemID] = nil
         pendingRetries[itemID] = nil
@@ -895,11 +1001,52 @@ function C.ForceReject(itemID)
     if not itemID then
         return
     end
+    invalidationRevision = invalidationRevision + 1
     local c = classifyCache[itemID]
     if type(c) == "table" and c._pending then
         classifyCache[itemID] = nil
     end
     pendingRetries[itemID] = nil
+end
+
+local function FinishPotion(parsed, isPercent, conjured, kind, health, mana, effective, namedOnly)
+    local upperH, upperM = health, mana
+    if not namedOnly then
+        if parsed.minimumH == nil or parsed.minimumM == nil then return nil end
+        health, mana = parsed.minimumH, parsed.minimumM
+        effective = kind == "manaPotion" and mana or health
+    end
+    local axis = kind == "manaPotion" and parsed.mana or parsed.health
+    local pool = kind == "manaPotion" and GetMaxMana() or GetMaxHealth()
+    local pct = not namedOnly and type(axis) == "table" and axis.mode == "percent" and pool > 0
+        and effective / pool * 100 or nil
+    return {
+        kind = kind, health = health, mana = mana, effective = effective,
+        healthMax = upperH, manaMax = upperM,
+        restoreMin = not namedOnly and effective or nil,
+        restoreMax = not namedOnly and (kind == "manaPotion" and upperM or upperH) or nil,
+        restoreBasis = not namedOnly and "minimum" or nil,
+        restorePct = pct,
+        restoreKnown = not namedOnly,
+        isPercent = (not namedOnly) and isPercent and true or false,
+        isConjured = conjured,
+        wellFed = false,
+    }
+end
+
+local function FinishRestoreKind(healthPct, manaPct, rec)
+    if not rec then
+        return nil
+    end
+    rec.restoreHealthPct = healthPct > 0 and healthPct or nil
+    rec.restoreManaPct = manaPct > 0 and manaPct or nil
+    if rec.kind == "water" or rec.kind == "manaPotion" or rec.kind == "managem" then
+        rec.restorePct = rec.restoreManaPct
+    else
+        rec.restorePct = rec.restoreHealthPct or rec.restoreManaPct
+    end
+    rec.restoreRaw = rec.effective
+    return rec
 end
 
 local function KindFromParsed(itemID, itemName, text, parsed, st)
@@ -977,30 +1124,6 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
         local tooltipHeal = PotionTooltipHeal(text)
         local tooltipMana = PotionTooltipMana(text)
         local conjured = parsed.isConjured == true or parsed.conjured == true
-        local function FinishPot(kind, health, mana, effective, namedOnly)
-            local upperH, upperM = health, mana
-            if not namedOnly then
-                if parsed.minimumH == nil or parsed.minimumM == nil then return nil end
-                health, mana = parsed.minimumH, parsed.minimumM
-                effective = kind == "manaPotion" and mana or health
-            end
-            local axis = kind == "manaPotion" and parsed.mana or parsed.health
-            local pool = kind == "manaPotion" and GetMaxMana() or GetMaxHealth()
-            local pct = not namedOnly and type(axis) == "table" and axis.mode == "percent" and pool > 0
-                and effective / pool * 100 or nil
-            return {
-                kind = kind, health = health, mana = mana, effective = effective,
-                healthMax = upperH, manaMax = upperM,
-                restoreMin = not namedOnly and effective or nil,
-                restoreMax = not namedOnly and (kind == "manaPotion" and upperM or upperH) or nil,
-                restoreBasis = not namedOnly and "minimum" or nil,
-                restorePct = pct,
-                restoreKnown = not namedOnly,
-                isPercent = (not namedOnly) and isPercent and true or false,
-                isConjured = conjured,
-                wellFed = false,
-            }
-        end
         -- Dual restore: Rejuvenation, Wildvine, Cavedweller's Delight.
         -- Buff pots with scraped numbers must not become healPotion.
         if h > 0 and m > 0 then
@@ -1008,30 +1131,30 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
             local manaSignal = manaNamed or tooltipMana
             if healSignal or manaSignal then
                 if h >= m and healSignal then
-                    return FinishPot("healPotion", h, m, h, false)
+                    return FinishPotion(parsed, isPercent, conjured, "healPotion", h, m, h, false)
                 end
                 if manaSignal then
-                    return FinishPot("manaPotion", h, m, m, false)
+                    return FinishPotion(parsed, isPercent, conjured, "manaPotion", h, m, m, false)
                 end
                 if healSignal then
-                    return FinishPot("healPotion", h, m, h, false)
+                    return FinishPotion(parsed, isPercent, conjured, "healPotion", h, m, h, false)
                 end
             end
         end
         if h > 0 and (healNamed or tooltipHeal) then
-            return FinishPot("healPotion", h, m, h, false)
+            return FinishPotion(parsed, isPercent, conjured, "healPotion", h, m, h, false)
         end
         if m > 0 and (manaNamed or tooltipMana) then
-            return FinishPot("manaPotion", h, m, m, false)
+            return FinishPotion(parsed, isPercent, conjured, "manaPotion", h, m, m, false)
         end
         if healNamed and not manaNamed then
-            return FinishPot("healPotion", 1, 0, 1, true)
+            return FinishPotion(parsed, isPercent, conjured, "healPotion", 1, 0, 1, true)
         end
         if manaNamed and not healNamed then
-            return FinishPot("manaPotion", 0, 1, 1, true)
+            return FinishPotion(parsed, isPercent, conjured, "manaPotion", 0, 1, 1, true)
         end
         if healNamed and manaNamed then
-            return FinishPot("healPotion", 1, 0, 1, true)
+            return FinishPotion(parsed, isPercent, conjured, "healPotion", 1, 0, 1, true)
         end
         return nil
     end
@@ -1041,20 +1164,6 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
     local lname = (itemName or ""):lower()
     local healthPct = type(parsed.health) == "table" and (tonumber(parsed.health.percent) or 0) or 0
     local manaPct = type(parsed.mana) == "table" and (tonumber(parsed.mana.percent) or 0) or 0
-    local function FinishKind(rec)
-        if not rec then
-            return nil
-        end
-        rec.restoreHealthPct = healthPct > 0 and healthPct or nil
-        rec.restoreManaPct = manaPct > 0 and manaPct or nil
-        if rec.kind == "water" or rec.kind == "manaPotion" or rec.kind == "managem" then
-            rec.restorePct = rec.restoreManaPct
-        else
-            rec.restorePct = rec.restoreHealthPct or rec.restoreManaPct
-        end
-        rec.restoreRaw = rec.effective
-        return rec
-    end
     local isCombo = (h > 0 and m > 0) or (healthPct > 0 and manaPct > 0)
     -- Mage refreshment names: "Conjured Mana Strudel/Pie/..." are always HP+mana food.
     local looksConjuredManaFood = lname:find("conjured", 1, true)
@@ -1087,7 +1196,7 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
             if h <= 0 and isCombo then
                 h = math.max(1, GetMaxHealth())
             end
-            return FinishKind({
+            return FinishRestoreKind(healthPct, manaPct, {
                 kind = "food", health = h, mana = m, effective = h > 0 and h or m,
                 isPercent = isPercent and true or false,
                 isConjured = parsed.isConjured == true or parsed.conjured == true or lname:find("conjured", 1, true) ~= nil,
@@ -1096,7 +1205,7 @@ local function KindFromParsed(itemID, itemName, text, parsed, st)
             })
         end
         if m > 0 then
-            return FinishKind({
+            return FinishRestoreKind(healthPct, manaPct, {
                 kind = "water", health = 0, mana = m, effective = m,
                 isPercent = isPercent and true or false,
                 isConjured = parsed.isConjured == true or parsed.conjured == true or lname:find("conjured", 1, true) ~= nil,
@@ -1137,7 +1246,9 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
     if (not text or text == "") and IC and IC.GetTooltipText then
         if parseUsed >= PARSE_BUDGET then
             classifyCache[itemID] = { _pending = true }
-            if IC.RequestLoad then
+            -- A spent tooltip budget is not missing item metadata. Keep the
+            -- normal pending retry without re-requesting an already loaded item.
+            if IC.RequestLoad and (not IC.IsLoaded or not IC.IsLoaded(itemID)) then
                 IC.RequestLoad(itemID)
             end
             return nil
@@ -1188,7 +1299,8 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
 
     text = text:lower()
     local ok, parsed = pcall(C.ParseFoodWaterRestore, text, itemLink, itemName)
-    if not ok or type(parsed) ~= "table" then
+    local parsedReady = ok and type(parsed) == "table"
+    if not parsedReady then
         parsed = {
             effectiveH = 0,
             effectiveM = 0,
@@ -1214,6 +1326,11 @@ function C.Classify(itemID, itemLink, tooltipText, itemName)
     -- stuck the food button until /reload. Food & Drink subclass still retries even
     -- when the current snippet is not yet sit-and-drink (restore line loads later).
     local loaded = not IC or not IC.IsLoaded or IC.IsLoaded(itemID)
+    if loaded and parsedReady and IsKnownNonRestoringItem(itemID, text) then
+        classifyCache[itemID] = false
+        pendingRetries[itemID] = nil
+        return nil
+    end
     local subclassID = st and (st.subClassID or st.subclassID)
     local lname = (itemName or ""):lower()
     local looksHS = LooksLikeHealthstone(itemName, text)
@@ -1383,6 +1500,32 @@ end
 FluxItemDetection = FluxItemDetection or {}
 FluxItemDetection.ResolveCombatTierAxes = function(...)
     return C.ResolveCombatTierAxes(...)
+end
+
+-- A cached negative returns before parsing or candidate construction. Vouch for
+-- the defining methods so selector budgeting can recognize that cheap path
+-- without trusting a replaced public classifier or pending-state method.
+if type(ns) == "table" then
+    ns.ConsumableRejectedCacheQuery = {
+        owner = C,
+        classify = C.Classify,
+        pending = C.IsPending,
+        query = function(itemID)
+            return classifyCache[tonumber(itemID)] == false
+        end,
+        settledKind = function(itemID)
+            local entry = classifyCache[itemID]
+            if type(entry) ~= "table" or (issecrettable and issecrettable(entry))
+                or (canaccesstable and not canaccesstable(entry)) or getmetatable(entry) ~= nil
+                or rawget(entry, "_pending") then
+                return nil
+            end
+            local kind = rawget(entry, "kind")
+            if type(kind) == "string" and (not issecretvalue or not issecretvalue(kind)) then
+                return kind
+            end
+        end,
+    }
 end
 
 _G.FluxConsumableClassify = C

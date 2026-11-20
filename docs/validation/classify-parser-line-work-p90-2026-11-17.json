@@ -1,0 +1,217 @@
+{
+  "status": "APPLIED_FUNCTIONAL_AND_PRIVATE_WORK_PARITY_NATIVE_PENDING",
+  "recordedUTC": "2026-11-17T11:34:41.954182+00:00",
+  "goalStatus": "ACTIVE",
+  "changeID": "LHO-CLASSIFY-PARSER-LINE-P90-20261117",
+  "owner": "Inventory/FluxConsumableClassify.lua",
+  "sourceBefore": "ed64be6906af9ffe91363bde303d588dfccd06390300eb94b1104af7a6c92bd1",
+  "sourceAfter": "f441813c3aa8ba40fab7b540b2409fcc6bfac71c83403c98f5d0ee3033efe85c",
+  "durableTest": {
+    "path": "tests/consumable_parser_line_work.lua",
+    "sha256": "6ee9cc329e1cdf4d9f48116f93deaaef58676a7509a1ca68ff0478186d170c9d"
+  },
+  "applicationAuthority": "Hook agent applied under Root authorization/checkpoint GO after baseline-first10 and before candidate-first12; Root reviewed. Exact application instant is not asserted; outcome creation time is not application time.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-line-normalization-p90-checkpoint-20261117T112041Z\\checkpoint.json",
+    "sha256": "2d4c029601d9d4b075dd3605083dc669bfb2befe85d721f848e315647344b713",
+    "beforeSource": "ed64",
+    "knownSettingsPaths": 125,
+    "availableSettingsFiles": 125,
+    "settingsValuesReadOrCopied": false,
+    "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "historyVerifyExit": 0,
+    "freshWholeTreeArchive": false,
+    "authority": "Root-verified checkpoint metadata; this documentation task did not collect settings or run history verification."
+  },
+  "change": {
+    "privateSharedNormalization": "Each immutable tooltip line normalized once before five private workers; workers have no other production callers or public exports.",
+    "percentGuard": "Three percent workers run only when the normalized line contains literal %. Every percent-producing pattern requires that character. Both flat workers always run.",
+    "exactByteInverseToEd64": true,
+    "newQueriesCachesRetriesOrCadenceChanges": false,
+    "publicParserAndFreshAxesRetained": true,
+    "ordinaryPrimitiveContract": "Ordinary WoW Lua string primitives/private helpers. Arbitrary monkey-patched string methods/debug function environments are not certified."
+  },
+  "regressions": {
+    "baseline": {
+      "firstJobs": 10,
+      "assertions": 1346
+    },
+    "candidate": {
+      "firstJobs": 12,
+      "testJobs": 10,
+      "compileJobs": 2,
+      "assertions": 1346
+    },
+    "perVM": {
+      "51": {
+        "checks": {
+          "parser-lines": 56,
+          "potion": 510,
+          "owned": 29,
+          "pending-builtin": 39,
+          "pending-syndicator": 39
+        },
+        "eightReturnedVectorsSHA256": "63fc365606573e0c4f77b75bfb2d770ef69a3a1148a1414b080128bff2378be5",
+        "returnedVectorsByteExact": true,
+        "otherFourFullStdoutsByteExact": true,
+        "modeledWork": {
+          "cases": 8,
+          "lines": 14,
+          "NormalizeLine": [
+            70,
+            14
+          ],
+          "percentWorkers": [
+            42,
+            12
+          ]
+        }
+      },
+      "54": {
+        "checks": {
+          "parser-lines": 56,
+          "potion": 510,
+          "owned": 29,
+          "pending-builtin": 39,
+          "pending-syndicator": 39
+        },
+        "eightReturnedVectorsSHA256": "1563033eb520b53abdec1fe7e114237f85bbfdb7b4c6b4f1753023474aca60c5",
+        "returnedVectorsByteExact": true,
+        "otherFourFullStdoutsByteExact": true,
+        "modeledWork": {
+          "cases": 8,
+          "lines": 14,
+          "NormalizeLine": [
+            70,
+            14
+          ],
+          "percentWorkers": [
+            42,
+            12
+          ]
+        }
+      }
+    },
+    "allChildrenExitZeroAndReaped": true,
+    "allStderrEmpty": true,
+    "allStagePinsStable": true,
+    "rawStdoutStderrFilesIndependentlyRehashed": 44,
+    "parserFullReturnedVectorsSameVMExact": true,
+    "otherFourTestFullStdoutsSameVMExact": true,
+    "notRun": "No extra tests/compiles/models/timing jobs by this review/documentation task."
+  },
+  "modeledPrivateWorkPerVM": {
+    "cases": 8,
+    "lines": 14,
+    "NormalizeLineBefore": 70,
+    "NormalizeLineAfter": 14,
+    "percentWorkersBefore": 42,
+    "percentWorkersAfter": 12,
+    "unit": "Actual private function entries under sacrificial desktop debug call hook",
+    "notMeasured": [
+      "CPU time",
+      "elapsed time",
+      "allocated bytes",
+      "native FPS",
+      "native parser attribution"
+    ]
+  },
+  "native": {
+    "P90ReloadedOrExactLoadedBytesProved": false,
+    "P90NativePerformanceAccepted": false,
+    "P88": "Earlier passive whole-Scan episode preceded f441 application; its recorded disk Classify source was ed64. It is not parser attribution or matched P90 baseline/current gain. Exact all-nine loaded bytes were not proved by P88.",
+    "P88P89Record": "docs/validation/inventory-native-scan-p88-2026-11-17.json",
+    "RootFRelease": "Dated P89 release at11:22:29UTC remains in that record; HALT retained/no host launched as then reported. No liveness inspection by this task.",
+    "priorPlannedStatus": "Prior P88/P89 planned-source wording is historical and superseded by this applied P90 source record."
+  },
+  "preserved": [
+    "tooltip/native/public query order and cadence",
+    "fresh 0.4s pending recovery opportunities",
+    "cache, retry, parse-budget and public parser interfaces",
+    "prior invalidation revision optimization"
+  ],
+  "limitations": [
+    "Work observations are correctness instrumentation, not elapsed-time or allocated-byte measurements.",
+    "Native P88 whole Scan timing is not parser attribution or a baseline/candidate comparison.",
+    "No native FPS/rendering/taint/all-client acceptance; native APIs and provider fixtures are modeled.",
+    "Private factoring assumes ordinary WoW Lua string primitives; arbitrary monkey-patched string methods/debug function-environment changes are not certified."
+  ],
+  "independentSourceReview": {
+    "status": "PASS_SOURCE_AND_FILE_RECEIPTS_ORDINARY_LUA_PRIMITIVES",
+    "findings": [],
+    "exactByteInverseAndAllHelperCallersVerified": true,
+    "reviewSHA256": "1e3f4eb817c6779fe64e07ebd07719254d9222f7a2c852d6365408f74d989fc3"
+  },
+  "documentationTask": {
+    "runtimeEdits": 0,
+    "newTestsOrCompiles": 0,
+    "nativeInputCaptureOrControlWrites": 0,
+    "settingsCollection": 0,
+    "sharedCombatFileWrites": 0
+  },
+  "evidence": {
+    "outcome": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\outcome.json",
+      "sha256": "cc187b462d9352231e7365f6a110205977886733b7489462d650c6271e542345"
+    },
+    "authorSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\seal.json",
+      "sha256": "5ec3dffe3e9e001379f0f5bb6e28f146aa90fb6ad2d630ffdbce312979bb5f24"
+    },
+    "independentReview": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\independent-review-addon-combo-20261117\\review.json",
+      "sha256": "1e3f4eb817c6779fe64e07ebd07719254d9222f7a2c852d6365408f74d989fc3"
+    },
+    "independentSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\independent-review-addon-combo-20261117\\seal.json",
+      "sha256": "2e11efc02b1d8b46a8a70a50f1c201bdc993de4412ca5879a9bd170035ad548d"
+    },
+    "authorRef1": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\baseline-first-jobs\\report.json",
+      "sha256": "552fe87191f3207682a3051d82eb4c6195d51b9b1c17bf12a9f4cc423d958f32"
+    },
+    "authorRef2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\candidate-first-jobs\\report.json",
+      "sha256": "54fbed9119f106d05d6658f6b83b0c1a14b2c0ab7f73bbd71fe0fc6862a7fa86"
+    },
+    "authorRef3": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\candidate-first-jobs\\Classify.diff",
+      "sha256": "b03e9b505a2dbe393de8e852854ccd93012ccac5ba52a73cc72076e607f9e47b"
+    },
+    "authorRef4": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-parser-line-work-20261117\\baseline-first-jobs\\Classify-before.lua",
+      "sha256": "ed64be6906af9ffe91363bde303d588dfccd06390300eb94b1104af7a6c92bd1"
+    },
+    "authorRef5": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-line-normalization-p90-checkpoint-20261117T112041Z\\checkpoint.json",
+      "sha256": "2d4c029601d9d4b075dd3605083dc669bfb2befe85d721f848e315647344b713"
+    },
+    "authorRef6": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableClassify.lua",
+      "sha256": "f441813c3aa8ba40fab7b540b2409fcc6bfac71c83403c98f5d0ee3033efe85c"
+    },
+    "authorRef7": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\consumable_parser_line_work.lua",
+      "sha256": "6ee9cc329e1cdf4d9f48116f93deaaef58676a7509a1ca68ff0478186d170c9d"
+    }
+  },
+  "applicationAttributionCorrection": {
+    "previousWording": "Root applied after baseline-first10 and before candidate-first12; exact application instant not asserted. Outcome creation time is not used as application time.",
+    "correctedAppliedBy": "hook_api_contract under Root authorization/checkpoint GO",
+    "RootRole": "checkpoint authorization and source/result review",
+    "changesSourceTestsResults": false
+  },
+  "diskDistributionRootReport": {
+    "clientFolders": [
+      "_retail_",
+      "_forever_"
+    ],
+    "sourceRelativePath": "Inventory/FluxConsumableClassify.lua",
+    "RootReadOnlyObservedSHA256Both": "f441813c3aa8ba40fab7b540b2409fcc6bfac71c83403c98f5d0ee3033efe85c",
+    "durableTestSHA256Unchanged": "6ee9cc329e1cdf4d9f48116f93deaaef58676a7509a1ca68ff0478186d170c9d",
+    "existingMirrorAsReportedByRoot": true,
+    "RootManualSynchronization": false,
+    "mechanismOrLinkProofByDocumentationAgent": false,
+    "nativeP90LoadedBytesOrReloadProved": false
+  }
+}

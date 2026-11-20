@@ -358,6 +358,18 @@ end
 -- BORDER FRAME CREATION
 -- ============================================================================
 
+local function RefreshBorderArrows()
+    if FluxFlyoutFrame and FluxFlyoutFrame.OnUnifiedBorderFrameShow then
+        FluxFlyoutFrame.OnUnifiedBorderFrameShow()
+    end
+    local Flyout = _G.Flux and (_G.Flux.Flyout or (_G.Flux.EBS and _G.Flux.EBS.Flyout))
+    local refresh = Flyout and Flyout.RefreshArrowLayers
+    if refresh then refresh() end
+    if FluxTrinketMenu and FluxTrinketMenu.RefreshArrowLayersOnBorder then
+        FluxTrinketMenu.RefreshArrowLayersOnBorder(refresh)
+    end
+end
+
 local function CreateBorderFrame()
     if borderFrame then return borderFrame end
     
@@ -377,18 +389,7 @@ local function CreateBorderFrame()
     -- Initial hide
     borderFrame:Hide()
     
-    borderFrame:SetScript("OnShow", function()
-        if FluxFlyoutFrame and FluxFlyoutFrame.OnUnifiedBorderFrameShow then
-            FluxFlyoutFrame.OnUnifiedBorderFrameShow()
-        end
-        local Flyout = _G.Flux and ((_G.Flux.Flyout) or (_G.Flux.EBS and _G.Flux.EBS.Flyout))
-        if Flyout and Flyout.RefreshArrowLayers then
-            Flyout.RefreshArrowLayers()
-        end
-        if FluxTrinketMenu and FluxTrinketMenu.RefreshArrowLayersOnBorder then
-            FluxTrinketMenu.RefreshArrowLayersOnBorder()
-        end
-    end)
+    borderFrame:SetScript("OnShow", RefreshBorderArrows)
     
     return borderFrame
 end
@@ -494,7 +495,7 @@ end
 -- BORDER UPDATE
 -- ============================================================================
 
-local function UpdateActionStripInfoGapBackdrop()
+local function UpdateActionStripInfoGapBackdrop(stripCrossing)
     if InCombatLockdown() then return end
     if not actionStripInfoGapBackdropFrame then
         CreateActionStripInfoGapBackdropFrame()
@@ -507,7 +508,7 @@ local function UpdateActionStripInfoGapBackdrop()
     end
 
     if FluxInfoFrame and FluxInfoFrame.PositionActionStripSlotFrame then
-        if FluxInfoFrame.PositionActionStripSlotFrame(actionStripInfoGapBackdropFrame) then
+        if FluxInfoFrame.PositionActionStripSlotFrame(actionStripInfoGapBackdropFrame, stripCrossing) then
             actionStripInfoGapBackdropFrame:Show()
         else
             actionStripInfoGapBackdropFrame:Hide()
@@ -517,7 +518,23 @@ local function UpdateActionStripInfoGapBackdrop()
     end
 end
 
-local function UpdateGapBackdrop()
+local function GapPointMatches(frame, index, point, anchor, relativePoint, x, y)
+    local p, relative, rp, ox, oy = frame:GetPoint(index)
+    if issecretvalue and (issecretvalue(p) or issecretvalue(relative) or issecretvalue(rp)
+        or issecretvalue(ox) or issecretvalue(oy)) then return false end
+    return p == point and relative == anchor and rp == relativePoint and ox == x and oy == y
+end
+
+local function GapAnchorsMatch(frame, left, window, grid, leftX, insetY)
+    local n = frame:GetNumPoints()
+    if (issecretvalue and issecretvalue(n)) or n ~= 4 then return false end
+    return GapPointMatches(frame, 1, "LEFT", left, "RIGHT", leftX, 0)
+        and GapPointMatches(frame, 2, "RIGHT", window, "LEFT", 0, 0)
+        and GapPointMatches(frame, 3, "TOP", grid, "TOP", 0, insetY)
+        and GapPointMatches(frame, 4, "BOTTOM", grid, "BOTTOM", 0, -insetY)
+end
+
+local function UpdateGapBackdrop(stripCrossing)
     if not gapBackdropFrame or InCombatLockdown() then return end
 
     -- The trinket-to-window fill bridges the old button span. That span is gone.
@@ -557,6 +574,14 @@ local function UpdateGapBackdrop()
 
     -- Extend 4px beyond grid top/bottom to match border extent (FluxBorder ApplyTo uses -4 inset)
     local insetY = 4
+    if stripCrossing == true then
+        local ok, matches = pcall(GapAnchorsMatch, gapBackdropFrame, leftAnchor, windowFrame, nonCombatGrid, leftOffsetX, insetY)
+        if ok and matches then
+            local shown = gapBackdropFrame:IsShown()
+            if (issecretvalue and issecretvalue(shown)) or not shown then gapBackdropFrame:Show() end
+            return
+        end
+    end
     gapBackdropFrame:ClearAllPoints()
     gapBackdropFrame:SetPoint("LEFT", leftAnchor, "RIGHT", leftOffsetX, 0)
     gapBackdropFrame:SetPoint("RIGHT", windowFrame, "LEFT", 0, 0)
@@ -565,51 +590,68 @@ local function UpdateGapBackdrop()
     gapBackdropFrame:Show()
 end
 
-local lastBorderLayoutHash = nil
+local lastBorderLayoutHash, lastBorderAnchors
 
-local function ComputeBorderLayoutHash()
-    local anchors = GetBorderAnchors()
-    if not anchors then return "none" end
-    local parts = {}
-    local function framePart(label, f)
-        if f and f.GetLeft then
-            parts[#parts + 1] = string.format(
-                "%s:%.1f:%.1f:%.1f:%.1f",
-                label,
-                f:GetLeft() or 0,
-                f:GetBottom() or 0,
-                f:GetWidth() or 0,
-                f:GetHeight() or 0
-            )
-        else
-            parts[#parts + 1] = label .. ":nil"
-        end
-    end
-    framePart("L", anchors.leftAnchor)
-    framePart("R", anchors.rightAnchor)
-    framePart("B", anchors.bottomAnchor)
-    framePart("T", anchors.topAnchor)
-    parts[#parts + 1] = "rx:" .. tostring(anchors.rightOffsetX or 0)
-    parts[#parts + 1] = "rp:" .. tostring(anchors.rightPoint or "RIGHT")
-    return table.concat(parts, "|")
+local function BorderAnchorGeometry(frame)
+    if not frame or not frame.GetLeft then return "nil" end
+    return string.format("%.1f:%.1f:%.1f:%.1f", frame:GetLeft() or 0, frame:GetBottom() or 0,
+        frame:GetWidth() or 0, frame:GetHeight() or 0)
 end
 
-local function UpdateBorder()
+local function ComputeBorderLayoutHash(anchors)
+    if not anchors then return "none" end
+    local l, r, b, t = anchors.leftAnchor, anchors.rightAnchor, anchors.bottomAnchor, anchors.topAnchor
+    local left = BorderAnchorGeometry(l)
+    local right = r == l and left or BorderAnchorGeometry(r)
+    local bottom = b == l and left or b == r and right or BorderAnchorGeometry(b)
+    local top = t == l and left or t == r and right or t == b and bottom or BorderAnchorGeometry(t)
+    return "L:" .. left .. "|R:" .. right .. "|B:" .. bottom .. "|T:" .. top
+        .. "|rx:" .. tostring(anchors.rightOffsetX or 0) .. "|rp:" .. tostring(anchors.rightPoint or "RIGHT")
+end
+
+local function SameBorderAnchors(a, b)
+    if not a or not b then return a == b end
+    return a.leftAnchor == b.leftAnchor and a.rightAnchor == b.rightAnchor
+        and a.bottomAnchor == b.bottomAnchor and a.topAnchor == b.topAnchor
+        and a.rightPoint == b.rightPoint and a.rightOffsetX == b.rightOffsetX
+end
+
+local function BorderPointsMatch(frame, anchors)
+    local n = frame:GetNumPoints()
+    if (issecretvalue and issecretvalue(n)) or n ~= 4 then return false end
+    return GapPointMatches(frame, 1, "LEFT", anchors.leftAnchor, "LEFT", 0, 0)
+        and GapPointMatches(frame, 2, "RIGHT", anchors.rightAnchor, anchors.rightPoint or "RIGHT", anchors.rightOffsetX or 0, 0)
+        and GapPointMatches(frame, 3, "BOTTOM", anchors.bottomAnchor, "BOTTOM", 0, 0)
+        and GapPointMatches(frame, 4, "TOP", anchors.topAnchor, "TOP", 0, 0)
+end
+
+local function UpdateBorder(stripCrossing)
     if InCombatLockdown() then return end
 
-    local layoutHash = ComputeBorderLayoutHash()
-    if layoutHash == lastBorderLayoutHash and borderFrame and borderFrame:IsShown() then
+    local anchors = GetBorderAnchors()
+    local layoutHash = ComputeBorderLayoutHash(anchors)
+    local keepPoints
+    if stripCrossing == true and anchors and borderFrame and borderFrame.GetNumPoints and borderFrame.GetPoint then
+        local ok, matches = pcall(BorderPointsMatch, borderFrame, anchors)
+        keepPoints = ok and matches
+    end
+    if layoutHash == lastBorderLayoutHash and SameBorderAnchors(lastBorderAnchors, anchors)
+        and borderFrame and borderFrame:IsShown() and (stripCrossing ~= true or keepPoints) then
+        if stripCrossing == true then
+            -- The Info slot and trinket gap have their own owners. Their
+            -- contacts can move while the outer envelope stays in place.
+            UpdateActionStripInfoGapBackdrop(true)
+            UpdateGapBackdrop(true)
+        end
         return
     end
-    lastBorderLayoutHash = layoutHash
+    lastBorderLayoutHash, lastBorderAnchors = layoutHash, anchors
     if _G.Flux and Flux.Startup then Flux.Startup.Layout("unified_border_layout_passes") end
 
     --- Same themed fill as gap backdrop when FPS/durability strip lives elsewhere (top-left / status stack).
-    UpdateActionStripInfoGapBackdrop()
+    UpdateActionStripInfoGapBackdrop(stripCrossing)
 
     if not borderFrame then return end
-    
-    local anchors = GetBorderAnchors()
     
     -- If we don't have valid anchors, hide the border
     if not anchors then
@@ -620,43 +662,61 @@ local function UpdateBorder()
     end
     
     -- Update gap backdrop (TrinketMenu → WindowFrame) when both shown
-    UpdateGapBackdrop()
+    UpdateGapBackdrop(stripCrossing)
     
-    -- Account for border padding
-    -- Grids have borders that extend 4px outward
-    -- Account for the unified border extending 4px outward on both sides.
-    local gridBorderWidth = 0
-    local unifiedBorderPadding = 0
-    local totalOffset = gridBorderWidth + unifiedBorderPadding
-    
-    -- Position unified border frame using anchor points
-    -- The border extends 4px outward, so we position the frame 4px inward from the anchor points
-    borderFrame:ClearAllPoints()
-    
-    -- Left edge: NonCombatGrid's left border (extend left to cover border)
-    borderFrame:SetPoint("LEFT", anchors.leftAnchor, "LEFT", -totalOffset, 0)
-    
-    -- Right edge: WindowFrame's left (0 gap) or TrinketMenu/CombatGrid right
-    local rightX = totalOffset + (anchors.rightOffsetX or 0)
-    borderFrame:SetPoint("RIGHT", anchors.rightAnchor, anchors.rightPoint or "RIGHT", rightX, 0)
-    
-    -- Bottom edge: Use bottom of grids
-    borderFrame:SetPoint("BOTTOM", anchors.bottomAnchor, "BOTTOM", 0, -totalOffset)
-    
-    -- Top edge: Use top of grids
-    borderFrame:SetPoint("TOP", anchors.topAnchor, "TOP", 0, totalOffset)
+    -- Native anchors already follow moving grids and windows. Rebind only
+    -- when the attachment changed or the current points need repair.
+    if not keepPoints then
+        borderFrame:ClearAllPoints()
+        borderFrame:SetPoint("LEFT", anchors.leftAnchor, "LEFT", 0, 0)
+        borderFrame:SetPoint("RIGHT", anchors.rightAnchor, anchors.rightPoint or "RIGHT", anchors.rightOffsetX or 0, 0)
+        borderFrame:SetPoint("BOTTOM", anchors.bottomAnchor, "BOTTOM", 0, 0)
+        borderFrame:SetPoint("TOP", anchors.topAnchor, "TOP", 0, 0)
+    end
     
     borderFrame:Show()
-    if FluxFlyoutFrame and FluxFlyoutFrame.OnUnifiedBorderFrameShow then
-        FluxFlyoutFrame.OnUnifiedBorderFrameShow()
+    RefreshBorderArrows()
+end
+
+-- Both extra grids can finish in the same action-strip transaction. Info
+-- reads their settled bounds before the envelope selects its final anchors.
+local gridLayoutPending, gridLayoutQueued = false, false
+
+function UnifiedBorder.UpdateAfterGridLayout(stripCrossing)
+    if InCombatLockdown() then
+        local combat = _G.Flux and Flux.Combat
+        if gridLayoutPending and combat and combat.Defer then
+            combat.Defer("layout.grid.envelope", UnifiedBorder.UpdateAfterGridLayout)
+        end
+        return
     end
-    local Flyout = _G.Flux and ((_G.Flux.Flyout) or (_G.Flux.EBS and _G.Flux.EBS.Flyout))
-    if Flyout and Flyout.RefreshArrowLayers then
-        Flyout.RefreshArrowLayers()
+    local infoOK, infoError = true
+    if gridLayoutPending then
+        gridLayoutPending = false
+        local info = FluxInfoFrame
+        local updateInfo = info and ((stripCrossing == true and info.UpdateAfterStripLayout) or info.UpdatePosition)
+        if updateInfo then
+            infoOK, infoError = pcall(updateInfo)
+        end
     end
-    if FluxTrinketMenu and FluxTrinketMenu.RefreshArrowLayersOnBorder then
-        FluxTrinketMenu.RefreshArrowLayersOnBorder()
+    if stripCrossing == true then UnifiedBorder.UpdateBorder(true)
+    else UnifiedBorder.UpdateBorder() end
+    if not infoOK then
+        if geterrorhandler then geterrorhandler()(infoError)
+        else error(infoError, 0) end
     end
+end
+
+local function RunGridLayoutUpdate()
+    gridLayoutQueued = false
+    if gridLayoutPending then UnifiedBorder.UpdateAfterGridLayout() end
+end
+
+function UnifiedBorder.RequestGridLayoutUpdate()
+    gridLayoutPending = true
+    if gridLayoutQueued then return end
+    gridLayoutQueued = true
+    C_Timer.After(0, RunGridLayoutUpdate)
 end
 
 --- Unified micro+status chrome is only meaningful when the micro bar is horizontal above the status stack.
@@ -806,45 +866,40 @@ local function HookUpdateSmartLayout()
     end
 end
 
--- Hook OnEnter/OnLeave on ActionBar frames for instant updates during drag
+local function GetActiveActionStripLayout()
+    local bars = _G.Flux and Flux.Bars
+    local strip = bars and bars.Strip and bars.Strip.frame
+    if bars and bars.started and bars.secureReady and strip and strip:IsShown()
+        and bars.Layout and bars.Layout.OnDragHover then
+        return bars.Layout
+    end
+end
+
+local function ActionStripHoverChanged()
+    local layout = GetActiveActionStripLayout()
+    if layout then
+        -- Expansion/collapse owns the resulting panel geometry. The hover
+        -- signal requests that layout, which finishes the envelope once.
+        layout.OnDragHover()
+    elseif initialized and borderFrame then
+        UpdateBorder()
+    end
+end
+
+-- Native hover scripts can resolve an edge before the drag check sees it.
 local function SetupActionBarHooks()
     local sensingFrame = NamedFrame("FluxActionStripSensing", "FluxActionBarSensing")
     local mainBarFrame = NamedFrame("FluxActionStrip", "FluxMainActionBar")
     
-    -- Track if hooks are already set to avoid duplicate hooks
     if sensingFrame and not sensingFrame._borderHooked then
-        -- Hook OnEnter to detect when mouse enters during drag (triggers minirow expansion)
-        sensingFrame:HookScript("OnEnter", function()
-            if initialized and borderFrame then
-                -- Instant update - minirows expand when mouse enters during drag
-                UpdateBorder()
-            end
-        end)
-        
-        -- Hook OnLeave to detect when mouse leaves during drag (triggers minirow collapse)
-        sensingFrame:HookScript("OnLeave", function()
-            if initialized and borderFrame then
-                -- Instant update - minirows collapse when mouse leaves during drag
-                UpdateBorder()
-            end
-        end)
+        sensingFrame:HookScript("OnEnter", ActionStripHoverChanged)
+        sensingFrame:HookScript("OnLeave", ActionStripHoverChanged)
         sensingFrame._borderHooked = true
     end
     
     if mainBarFrame and not mainBarFrame._borderHooked then
-        -- Also hook main bar frame
-        mainBarFrame:HookScript("OnEnter", function()
-            if initialized and borderFrame then
-                -- Instant update when mouse enters main bar
-                UpdateBorder()
-            end
-        end)
-        mainBarFrame:HookScript("OnLeave", function()
-            if initialized and borderFrame then
-                -- Instant update when mouse leaves main bar
-                UpdateBorder()
-            end
-        end)
+        mainBarFrame:HookScript("OnEnter", ActionStripHoverChanged)
+        mainBarFrame:HookScript("OnLeave", ActionStripHoverChanged)
         mainBarFrame._borderHooked = true
     end
     
@@ -911,7 +966,8 @@ eventFrame:SetScript("OnEvent", function(self, event)
             TryInitialize(false)
         end
     elseif event == "ACTIONBAR_SLOT_CHANGED" or event == "CURSOR_CHANGED" then
-        -- EVENT-BASED: Instant update when actions change or drag starts/stops
+        local activeLayout = GetActiveActionStripLayout()
+        if event == "CURSOR_CHANGED" and activeLayout then return end
         if event == "ACTIONBAR_SLOT_CHANGED"
             and _G.FluxButtonEvents and _G.FluxButtonEvents.IsFormStormActive
             and _G.FluxButtonEvents.IsFormStormActive() then
@@ -919,6 +975,10 @@ eventFrame:SetScript("OnEvent", function(self, event)
             eventFrame._fluxFormBorderPending = true
             return
         end
+        -- Watch batches native slot notifications. Layout settles the strips,
+        -- grids and Info before publishing the envelope for a geometry change.
+        local watch = activeLayout and Flux.Bars.Watch
+        if event == "ACTIONBAR_SLOT_CHANGED" and watch and watch.slotEvents and watch.slotEvents == Flux.Events then return end
         if initialized and borderFrame then
             UpdateBorder()
         end

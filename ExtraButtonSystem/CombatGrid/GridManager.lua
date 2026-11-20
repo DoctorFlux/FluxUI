@@ -60,6 +60,13 @@ local function Initialize()
     return true
 end
 
+local function ApplyAnchor(frame, point, parent, relative, x, y)
+    local keep = FluxUILayoutSqueeze and FluxUILayoutSqueeze.CanKeepGridAnchors
+    if keep and keep(frame, point, parent, relative, x, y) then return end
+    frame:ClearAllPoints()
+    frame:SetPoint(point, parent, relative, x, y)
+end
+
 function Manager:UpdateAnchor()
     if not self.Grid or not self.Grid.Frame then
         return
@@ -69,23 +76,22 @@ function Manager:UpdateAnchor()
         return
     end
     local gridFrame = self.Grid.Frame
-    gridFrame:ClearAllPoints()
     -- Beside the action bar, combat stays on the bar's left. The non-combat
     -- grid is its own column at the screen edge and is not this frame's parent.
     local Cap = _G.Flux and _G.Flux.Cap
     local gamepad = Cap and Cap.GamepadHudActive and Cap.GamepadHudActive()
     local bar = _G.FluxActionStrip or _G.FluxMainActionBar
     if bar and bar:IsShown() and not gamepad then
-        gridFrame:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", ANCHOR_OFFSET_X + 4, 0)
+        ApplyAnchor(gridFrame, "BOTTOMRIGHT", bar, "BOTTOMLEFT", ANCHOR_OFFSET_X + 4, 0)
         return
     end
     -- No 19-column bar (gamepad HUD). Continue the row to the right of non-combat.
     local nc = _G.FluxNonCombatAPI and FluxNonCombatAPI.DefaultGrid and FluxNonCombatAPI.DefaultGrid.Frame
     if nc and nc.IsShown and nc:IsShown() then
-        gridFrame:SetPoint("BOTTOMLEFT", nc, "BOTTOMRIGHT", 8, 0)
+        ApplyAnchor(gridFrame, "BOTTOMLEFT", nc, "BOTTOMRIGHT", 8, 0)
         return
     end
-    gridFrame:SetPoint("BOTTOM", UIParent, "BOTTOM", -196, GetActionStripBottomY())
+    ApplyAnchor(gridFrame, "BOTTOM", UIParent, "BOTTOM", -196, GetActionStripBottomY())
 end
 
 function Manager:FinalizeLayout()

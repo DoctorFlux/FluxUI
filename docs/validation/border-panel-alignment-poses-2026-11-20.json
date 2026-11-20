@@ -1,0 +1,428 @@
+{
+  "changeId": "BORDER-PANEL-ALIGNMENT-POSES-R181-20261120",
+  "borderVersion": "panel-alignment-poses-r181",
+  "capturedAtUTC": "2026-11-20T05:35:25.487086+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "3eedcdbf7ad400fd709bb691546ec41be9a2f5fd81cefda7afd9cc11c7e51c7d",
+      "afterRaw": "031db8d553222816eae3ed4884bf91b3bd91af9c61ffcfe226e76b128c4810fe",
+      "afterNormalized": "031db8d553222816eae3ed4884bf91b3bd91af9c61ffcfe226e76b128c4810fe"
+    },
+    "tests/border_nearby_panels.lua": {
+      "beforeRaw": "308a796c1936a915d34378096f711143de25e4c4a6a9cd1edb5eddb659e2eec5",
+      "afterRaw": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "afterNormalized": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\panel-alignment-poses-before-20261120T063015423\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Production alignment and border paths with seven modeled HUD panels at base scales 0.75 and 1.25, per-panel relative scale and real frame exports. Each pose changes layout dimensions and moves the adjacent panels.",
+    "countScope": "60 warmed crossings per border style and scale",
+    "countColumns": [
+      "baseline alignment solves",
+      "candidate alignment solves",
+      "baseline panel anchor updates",
+      "candidate panel anchor updates"
+    ],
+    "counts": {
+      "1-0.75": [
+        60,
+        0,
+        60,
+        60
+      ],
+      "1-1.25": [
+        60,
+        0,
+        60,
+        60
+      ],
+      "2-0.75": [
+        60,
+        0,
+        60,
+        60
+      ],
+      "2-1.25": [
+        60,
+        0,
+        60,
+        60
+      ]
+    },
+    "renderObjectCounts": {
+      "1-0.75": 389,
+      "1-1.25": 389,
+      "2-0.75": 496,
+      "2-1.25": 496
+    },
+    "clockScope": "5 matched pairs in alternating order, collection suspended during the measured interval. Alignment-only runs have 360 crossings and full transactions have 24.",
+    "elapsedAndAllocation": {
+      "1-0.75-alignment-only": [
+        [
+          28.0,
+          13.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          23.0,
+          13.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          18.0,
+          11.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          21.0,
+          9.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          17.0,
+          9.0,
+          5349.4,
+          1996.9
+        ]
+      ],
+      "1-0.75-strip-transaction": [
+        [
+          169.0,
+          142.0,
+          27522.2,
+          27298.9
+        ],
+        [
+          154.0,
+          151.0,
+          27522.4,
+          27299.1
+        ],
+        [
+          159.0,
+          150.0,
+          27523.2,
+          27299.9
+        ],
+        [
+          187.0,
+          148.0,
+          27522.0,
+          27298.7
+        ],
+        [
+          323.0,
+          289.0,
+          27522.2,
+          27298.9
+        ]
+      ],
+      "1-1.25-alignment-only": [
+        [
+          37.0,
+          18.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          35.0,
+          19.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          34.0,
+          20.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          38.0,
+          20.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          34.0,
+          19.0,
+          5349.4,
+          1996.9
+        ]
+      ],
+      "1-1.25-strip-transaction": [
+        [
+          290.0,
+          279.0,
+          27078.4,
+          26855.0
+        ],
+        [
+          323.0,
+          288.0,
+          27078.6,
+          26855.2
+        ],
+        [
+          326.0,
+          277.0,
+          27079.3,
+          26855.9
+        ],
+        [
+          296.0,
+          268.0,
+          27078.2,
+          26854.8
+        ],
+        [
+          299.0,
+          298.0,
+          27078.4,
+          26855.0
+        ]
+      ],
+      "2-0.75-alignment-only": [
+        [
+          71.0,
+          30.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          47.0,
+          23.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          45.0,
+          26.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          42.0,
+          26.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          49.0,
+          31.0,
+          5349.4,
+          1996.9
+        ]
+      ],
+      "2-0.75-strip-transaction": [
+        [
+          433.0,
+          392.0,
+          30419.6,
+          30195.9
+        ],
+        [
+          361.0,
+          376.0,
+          30419.8,
+          30196.1
+        ],
+        [
+          363.0,
+          348.0,
+          30420.6,
+          30196.9
+        ],
+        [
+          313.0,
+          313.0,
+          30419.5,
+          30195.8
+        ],
+        [
+          329.0,
+          368.0,
+          30419.7,
+          30196.0
+        ]
+      ],
+      "2-1.25-alignment-only": [
+        [
+          34.0,
+          19.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          36.0,
+          18.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          36.0,
+          19.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          35.0,
+          19.0,
+          5349.4,
+          1996.9
+        ],
+        [
+          35.0,
+          19.0,
+          5349.4,
+          1996.9
+        ]
+      ],
+      "2-1.25-strip-transaction": [
+        [
+          333.0,
+          384.0,
+          30343.6,
+          30120.0
+        ],
+        [
+          405.0,
+          429.0,
+          30343.8,
+          30120.2
+        ],
+        [
+          363.0,
+          366.0,
+          30344.6,
+          30121.0
+        ],
+        [
+          287.0,
+          300.0,
+          30343.5,
+          30119.9
+        ],
+        [
+          302.0,
+          300.0,
+          30343.7,
+          30120.1
+        ]
+      ]
+    },
+    "clockColumns": [
+      "baseline Lua ms",
+      "candidate Lua ms",
+      "baseline temporary KiB",
+      "candidate temporary KiB"
+    ],
+    "medians": {
+      "1-0.75-alignment-only": [
+        21.0,
+        11.0,
+        5349.4,
+        1996.9
+      ],
+      "1-0.75-strip-transaction": [
+        169.0,
+        150.0,
+        27522.2,
+        27298.9
+      ],
+      "1-1.25-alignment-only": [
+        35.0,
+        19.0,
+        5349.4,
+        1996.9
+      ],
+      "1-1.25-strip-transaction": [
+        299.0,
+        279.0,
+        27078.4,
+        26855.0
+      ],
+      "2-0.75-alignment-only": [
+        47.0,
+        26.0,
+        5349.4,
+        1996.9
+      ],
+      "2-0.75-strip-transaction": [
+        361.0,
+        368.0,
+        30419.7,
+        30196.0
+      ],
+      "2-1.25-alignment-only": [
+        35.0,
+        19.0,
+        5349.4,
+        1996.9
+      ],
+      "2-1.25-strip-transaction": [
+        333.0,
+        366.0,
+        30343.7,
+        30120.1
+      ]
+    },
+    "artifactSHA256": {
+      "baseline.lua": "3eedcdbf7ad400fd709bb691546ec41be9a2f5fd81cefda7afd9cc11c7e51c7d",
+      "candidate.lua": "031db8d553222816eae3ed4884bf91b3bd91af9c61ffcfe226e76b128c4810fe",
+      "parity.lua": "b8d8c63e95004c16d315a73c714de62e5132a083d36233f406d96193e3f80d90",
+      "parity.txt": "22aa4fe81484b2edb70ad91c23f8fde9571e11fab1084ecaed0be77e95aa49bb",
+      "replay.lua": "d9fece5a4362e7d6879df0b81a9647ddc0a1bb0c97ec007681372aa5ebd219f7",
+      "replay.txt": "e37ee427ea25ac9576081e0a74a9e0d69d40a18d33327f0c4bf13213421c5a06",
+      "legacy-result.txt": "c9773807e7698856972b2079d74338db583f6301f5b927da703da12c99af30f8",
+      "panel-owner.lua": "53d726bb4ef834c4de531f526f787145372d08833a07eb739a952943e5026f6a",
+      "panel-owner.txt": "925a49433346c1c135764e44d812e5b6264199b76ed8ca507f03c389119767ed",
+      "panel-owner-control.txt": "a6e541df045b0c8e4ffda32f6f108d6194a7b58da1e720751b8a8f57c5042eac"
+    }
+  },
+  "parity": "Retains two successful public layouts with exact owner, geometry, scale, priority and policy checks. Changed inputs take the ordinary planner. The writer restores detached border containers and resets both cache slots on a failed write. Matched offsets, sampled geometry/UV/paint and object counts agree on the warmed layouts. The nearby-panel regression exercises mixed scales, attached/detached and hidden panels, replacement of prior layout inputs, replacement border ownership, partial writer failure and combat deferral.",
+  "verification": {
+    "focusedPassed": 55,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\panel-alignment-poses-before-20261120T063015423\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\panel-alignment-poses-before-20261120T063015423\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\panel-alignment-poses-before-20261120T063015423\\upvalues.json",
+    "legacyControl": [
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_nearby_panels.lua:13: both warmed menu poses reuse their alignment graphs",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\ttests/border_nearby_panels.lua:13: in local 'check'",
+      "\ttests/border_nearby_panels.lua:136: in main chunk",
+      "\t[C]: in ?"
+    ],
+    "replacementOwnerControl": [
+      "ALIGN|1|0.75|60|0|60|60",
+      "PARITY|1|0.75|389|389",
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...-poses-before-20261120T063015423/panel-owner-control.lua:119: replacement border must take a fresh alignment pass",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\t...-poses-before-20261120T063015423/panel-owner-control.lua:119: in main chunk",
+      "\t[C]: in ?"
+    ],
+    "otherOwnerSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_CategoryIcons.lua"
+    ]
+  },
+  "nativeAcceptance": "Native held-action and roster hitch timing, pixel parity and combat taint remain pending."
+}

@@ -1,0 +1,456 @@
+{
+  "P69": {
+    "changeId": "LHO-BARS-USABLE-CLOSURE-P69-20261116",
+    "recordedUTC": "2026-11-16T17:34:57.525988+00:00",
+    "status": "APPLIED_EXACT_TESTED_BYTES",
+    "applicationAndPostcheck": {
+      "appliedUTC": "2026-11-16T17:27:37.499072+00:00",
+      "applicationSHA256": "581df1dd2040404524866f515d660997ad6e2528e3a63a902bba33173ab87b0a",
+      "postcheckUTC": "2026-11-16T17:30:46.932482+00:00",
+      "postcheckSHA256": "ee4137b18a3cdab6312e395333c566c8ab0223ca069a2c58b3ab3c9ac43ed83a",
+      "numericReviewSHA256": "1cf7da635d767a7937960567aea574226c85cc5361d642f04db361fd2dd23b55",
+      "costRawSHA256": "7c5e179a55f40785fef88b511cf9f1230711228b8f699771f3c2d1cc6674b1b7"
+    },
+    "beforeSHA256": "1f2c1ffddc2b89bc204dc2d66d3bc823e6a730666dc837bea3368746f781649b",
+    "afterSHA256": "7b6273f75e501f79c5cb287cb5e03b303f6226965b676d1e8a9fec090db34bb0",
+    "validation": "bars-usable-closure-2026-11-16.json",
+    "functional": {
+      "pipelineCasesEachVM": 6,
+      "pipelineChecksEachVM": 642,
+      "pipelineScalarFieldsEachVM": 18036,
+      "pipelineScalarFieldsTotal": 36072,
+      "pipelineRawStdoutByteEquality": true,
+      "distributedFiveClientLabelsAndBothProviders": true,
+      "notNativeOrFullFactorial": true,
+      "focusedCasesEachVM": 16,
+      "focusedChecksEachVM": 361,
+      "focusedStableObjectIDsAndRawOpaqueErrors": true,
+      "existingStressRuntime": "54",
+      "existingStressChecksEachSource": 86872,
+      "existingStressModeledEdgesEachSource": 540672
+    },
+    "modeledLeafCost": {
+      "normalCPUmedianDeltaPercent": [
+        -19.047619047619047,
+        -13.636363636363635
+      ],
+      "emptyOORCPUmedianDeltaPercent": [
+        0,
+        0
+      ],
+      "emptyOORWallMedianDeltaPercent": [
+        10.638297882002167,
+        5.639097749543609
+      ],
+      "emptyPairCPUdeltaMs": [
+        -15.625,
+        0,
+        31.25
+      ],
+      "normalGCSlopeBytesPerCall51": [
+        200,
+        0
+      ],
+      "normalGCSlopeBytesPerCall54": [
+        192,
+        0
+      ],
+      "Lua54FixedWindowInterceptBytes": 128,
+      "normal57BaselineInterceptBytes": 0,
+      "allRawAndR1BeforeWorkFailureRetained": true
+    },
+    "postcheck": "11expected component pins+5read-only installed-file identities match; no native adoption/full-suite claim.",
+    "native": {
+      "P67": "FinalR3/protocol55packet package prepared; never natively staged/armed at Root checkpoint.",
+      "latestRootReport": "stage1c/1d stopped before input; watchers and input.lock absent, owned holds unchanged; no future quiet window assumed.",
+      "scope": "Dated Root report only; no native query or transient-resource inference by this task.",
+      "goalStatus": "ACTIVE"
+    },
+    "limits": "Leaf cost only, not complete event/workflow CPU or nativeFPS/spikes/retainedheap/GCpauses/taint/pixels; all5model labels/providers distributed, not native factorial.",
+    "goalStatus": "ACTIVE",
+    "externalEvidenceDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1"
+  },
+  "WowSimEvaluation": {
+    "recordedUTC": "2026-11-16T16:51:22.457308+00:00",
+    "goalStatus": "ACTIVE",
+    "status": "BOUNDED_STOCK_LOAD_INCOMPLETE; SUPPLEMENTARY_ROUTE",
+    "upstreamCommit": "c85495655605de1f3756cc0824c4c7faa30be2a3",
+    "verifiedUpstreamGitBlobs": 18,
+    "verifiedSourceLicenseSnapshotFiles": 612,
+    "environment": {
+      "Python": "3.10 isolated .venv",
+      "Lupa": "2.8 lua51",
+      "Pillow": "12.3.0",
+      "APIReference": "none: intentional stock readiness case",
+      "realWTFReadOrWritten": false
+    },
+    "stock": {
+      "attempts": 1,
+      "wallSeconds": 30.01600000000326,
+      "stop": "parent30s deadline",
+      "stdoutBytes": 0,
+      "healthAvailable": false,
+      "allOwnedChildrenReaped": true,
+      "executionSHA256": "f587c8b6e623c79e44d3069b9ccd08728edfb0f7392f5100c5584e67f9f25262"
+    },
+    "separateDiagnostic": {
+      "attempts": 1,
+      "instructionBudget": 2000000,
+      "wallSeconds": 2.4369999999762513,
+      "stop": "parent stopped/reaped on atomic budget report",
+      "tracePoint": "createRegion/CreateTexture/template -> Bars.Hosts/CreateSurface -> Bars.Minis -> module enable -> login",
+      "provesOriginalTimeoutCauseOrInfiniteLoop": false,
+      "executionSHA256": "4eb2c33ca9e5e36793807b69509f8e68ceea6a0c6621d21275c79e59cc78917d",
+      "budgetSHA256": "2eba0ef1815dd69dcabd4ceabdd97a19ba4d2af377c788d43cbd6190a4996115"
+    },
+    "limits": [
+      "Loader can count failed Lua and mark addon loaded; Booted/loaded is not acceptance.",
+      "Empty data/default stubs, missing XML frames/templates, security/secret and binding semantics require explicit qualification.",
+      "No native FPS/spike/GC, pixel, taint or all-client acceptance.",
+      "No claim that WowSim can never load FluxUI; this is one bounded stock case plus one distinct diagnostic."
+    ],
+    "P67FinalPrepared": {
+      "state": "PREPARED_NEVER_NATIVELY_STAGED_OR_ARMED_AT_SEALED_CHECKPOINT",
+      "bodyR3SHA256": "d086276be52e536cee7bcdc6624af2b61e0c93dc245db5f01051e47d7119c79a",
+      "bodyR3ExecutionSHA256": "291775b7229e297683fd48b72c98b57be01f748e784fa90301d240acebc0b69d",
+      "bodyR3CasesEachVM": 20,
+      "bodyR3ChecksEachVM": 106,
+      "instantiatedBodySHA256": "5da3f1ee2389fda165476543ae65275953a55bbf3383ef9358a37836387dec6c",
+      "protocolSHA256": "ec6d0ff94a191cd2e3d743f115b271b0aeba3611557aa04e32f64dc3063cf98e",
+      "protocolExecutionSHA256": "b27931fe44d7af5216a6d80ffae614c8e9b6c03822737d4ebb81c02f6ddecc28",
+      "protocolCasesEachVM": 14,
+      "protocolChecksEachVM": 135,
+      "packetCount": 55,
+      "maxPacketBytes": 255,
+      "sourcePeerSHA256": "817757ace6c15107bafb9a057a751f8adb10652cb4e6f01b6eee2ba26d87ab38",
+      "nativeSourceAttempts": "Two blocked before typing; source-stage journals retained; no spent marker or installed observer."
+    },
+    "evidence": {
+      "externalDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\wowsim-eval-20261116",
+      "assessmentSHA256": "ce03052496988798dd064c51f0724358ad0acd83828b85532347cbc3d698c3ab",
+      "manifestSHA256": "aec4794577a4a08f8f816b719e94b20c78e21174d13696e9ab966007ecc90b7e"
+    },
+    "continuation": "Meaningful WowSim use needs explicit fixtures/bootstrap compatibility work covered by the active goal, not another permission gate. This bounded assignment added no more runs. P67 native attribution remains prepared and Root-owned; delegated keepalive results are separate/pending review.",
+    "preservation": "No AddOn/test/CSV/native/settings changes. Earlier P58/P59/P60/P62toP66 and other native history remain unchanged."
+  },
+  "changeId": "LHO-INVENTORY-NATIVE-CURRENT-20261116",
+  "recordedUTC": "2026-11-16T11:15:23.266059+00:00",
+  "goalStatus": "ACTIVE",
+  "scope": "Dated native continuity and future user-pause procedure only; no native action by this editor.",
+  "P54": {
+    "acceptedWindowAndOwnedCleanup": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-fast-success-20261116\\decode.json",
+      "sha256": "4a7b230f0424e83d5b835b04f2e7e7cb1ef6a3e77a84afe9b43a47164786736c"
+    },
+    "privateRootAbsenceActuallyQueried": true,
+    "root": "_P54",
+    "currentKnownRoot": "CLEAN nil at accepted read; no active probes inferred afterward",
+    "consumedNonce": "3960591a",
+    "consumedRun": "p54fast1a",
+    "consumedReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\fast54-3960591a-spent.json",
+      "sha256": "9d00692943248ba342c1dc55b3bca2c09b6f1afebbbbca9a771dd95d42ab30d9"
+    },
+    "consumedFastPackage": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-cast-p54-fast-all-r1\\bootstrap.py",
+      "sha256": "851b20e511ee046bd529b820287f56e34b5a52399c15cab80d0469458e91562e"
+    },
+    "reusePolicy": "CONSUMED; never reuse this nonce/package even after reload. Any new capture needs a fresh reviewed nonce package.",
+    "performanceLimits": "Inclusive instrumented raw/matcher envelopes, overlap and diagnostic overhead. No FPS, before/after or P55/P56 gain or P55 loaded-byte adoption."
+  },
+  "completedForegroundSpacePairs": [
+    {
+      "label": "p54jump1a",
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-root-p54jump1a.json",
+        "sha256": "de44d76293ae5624333f54f989c68a6d825d092f122b3442edbd22e34f9a8da7"
+      },
+      "finishedUTC": "2026-11-16T10:53:24.500810+00:00",
+      "pairInjected": true,
+      "activationRequested": false,
+      "movementAcknowledged": false,
+      "lockReleased": true,
+      "holdsRestored": {
+        "no_jump": "exact original bytes restored",
+        "craft_hold": "exact original bytes restored"
+      },
+      "haltUnchanged": true
+    },
+    {
+      "label": "p54jump2a",
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-root-p54jump2a.json",
+        "sha256": "e3a86c493cca2e75de6f0418f0dabd688a78ae5f9ecc164c5c1bc386a2a23ca3"
+      },
+      "finishedUTC": "2026-11-16T11:00:33.973756+00:00",
+      "pairInjected": true,
+      "activationRequested": false,
+      "movementAcknowledged": false,
+      "lockReleased": true,
+      "holdsRestored": {
+        "no_jump": "exact original bytes restored",
+        "craft_hold": "exact original bytes restored"
+      },
+      "haltUnchanged": true
+    }
+  ],
+  "jumpObservation": {
+    "firstAFKClearedVisually": true,
+    "visualReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-jump-once-result-20261116\\result.json",
+      "sha256": "be60de63c8310a07acafa9cc36f7422048cfd46f8df0db12f6fe19bc12fc1c51"
+    },
+    "movementObserved": false,
+    "backgroundFocusRestorationPerformedOrVerified": false,
+    "scope": "Foreground target pair injection and first AFK status change are separate observations; no movement claim."
+  },
+  "keepalive": {
+    "executableDaemon": false,
+    "delegatedCurrentChatOwner": "addon_combo_protocol",
+    "policy": "Guarded one-shot helpers only; >=180 seconds after last successful pair, fresh same-target Idle proof, PC idle >=15 seconds and no craft/chat. May activate only under the prior idle15 exception; restore the previous window if no external race; actual background restoration remains unverified.",
+    "stateReceipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\keepalive-delegated-p54-state.json",
+      "sha256": "64a7600b40e8d148653ddb3dca8cbbe23bdfbe3132247f18b825ef1736b28078"
+    },
+    "stateSnapshot": {
+      "operator": "addon_combo_protocol",
+      "status": "DEFERRED_PC_ACTIVITY",
+      "lastSuccessfulSpacePairFinishedUTC": "2026-11-16T11:00:33.973756+00:00",
+      "nextEarliestUTC": "2026-11-16T11:03:33.973756+00:00",
+      "lastReadonlySnapshotUTC": "2026-11-16T11:15:06.152847+00:00",
+      "lastSnapshotSummary": {
+        "targetExact": true,
+        "drawable": true,
+        "foregroundWoW": true,
+        "PCidleSeconds": 0.063,
+        "keysHeld": [
+          1,
+          2
+        ]
+      },
+      "nativeInputInFlight": false,
+      "daemon": false,
+      "captureReservation": false,
+      "note": "Fixed helpers only; stop on CANCEL/JUMP_STOP/capture_hold. Root requests reservation and waits for quiescence ACK."
+    },
+    "stateIsMutableAndDatedSnapshot": true,
+    "anyRootNativeInputRequires": "Root sends NATIVE_CAPTURE_RESERVATION to delegated owner and waits for explicit quiescence acknowledgement before any native input.",
+    "quickStops": [
+      "CANCEL",
+      "JUMP_STOP"
+    ]
+  },
+  "futureExplicitUserPause": {
+    "currentlyPaused": false,
+    "sequence": [
+      "Stop all owned native input/jump work first.",
+      "Write CANCEL and native/JUMP_STOP with exact literal content User requested complete pause before reload (no trailing newline).",
+      "Cancel/reap only owned tests/workers; preserve owned no_jump, craft_hold and INPUT_HALTED/HALT records.",
+      "Use reviewed pause-reload-p54 helper only after fresh exact-target closed-chat/image guards; submit /reload once.",
+      "Verify loading and world entry, record new epoch/cleanup evidence, then mark goal paused.",
+      "On continue require all temporary runtime diagnostic code gone in the new epoch; P54 was already CLEAN nil. Never assume probes active or replay old spent packets."
+    ],
+    "exactMarkerContent": "User requested complete pause before reload",
+    "reviewedReloadHelper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pause-reload-p54\\bootstrap.py",
+      "sha256": "8eb845ffb766c1250bdd403e1d152c22906334da253fc441870ba0eb4b1e4737"
+    },
+    "authorization": "This records the existing procedure; it performs no pause/reload/input now."
+  },
+  "P57": {
+    "baseline": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-task-copy-triage\\baseline-report-r1.json",
+      "sha256": "a57939c8a786a0631e1515b2f98c637b472ccdf44e169cf38d73051a5a6d7315"
+    },
+    "baselineStatus": "BASELINE_PROOF_COMPLETE; subsequent R1 is REJECTED_UNAPPLIED",
+    "runtimeContexts": 18,
+    "runtimeChecks": {
+      "Lua51": 373,
+      "Lua54": 372
+    },
+    "nonfirstTaskCopyTables": {
+      "twoOutputsTwoSlots": 10,
+      "tenOutputsTwoSlots": 90,
+      "fiftyOutputsTwoSlots": 490,
+      "tenOutputsEightSlots": 198
+    },
+    "externalExperiment": "R1 rejected after complete functional/GC/CPU proof. Production remains428d. Originalb780 and comment-only36e2 are external; no reruns/newvariant/application authorized.",
+    "contractCaveat": "Public callbacks can introduce cyclic or Lua54 __pairs error behavior; naive copy skipping is not parity-safe.",
+    "externalCandidate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-task-copy-triage\\candidate-r1\\candidate\\Inventory\\Restock\\Auction\\FluxAuctionRestockFollowup.lua",
+      "sha256": "b780c478d3758e1e2e7257e1ac0f436ffa1f13c05d2e9f19a52da674c1d04e59",
+      "status": "REJECTED_UNAPPLIED; history retained"
+    },
+    "recordedUTC": "2026-11-16T12:31:46.527558+00:00",
+    "decision": "REJECTED_UNAPPLIED",
+    "baselineStatusHistorical": "BASELINE_ONLY_COMPLETE; no candidate/cost/native",
+    "finalCommentOnlyCandidate": {
+      "sha256": "36e2ade44e179eb5252492c77ae69ab38795e03937c7ce6e0ebfab2b9a589402",
+      "status": "REJECTED_UNAPPLIED",
+      "sameNameFullDebugBytecodeEquivalent51and54": true
+    },
+    "pairedProof": {
+      "contextsPerVariantPerRuntime": 21,
+      "observationPairs": 66,
+      "combinedChecks": {
+        "Lua51": 853,
+        "Lua54": 850
+      },
+      "sha256": "09aaf52f7a0458757c796b4f87d3fb1cb5643be6c5094c5095f5169f4720382f"
+    },
+    "completedCPU": {
+      "records": 60,
+      "sourcePinsFrozenAndCurrent": 31,
+      "rawSHA256": "0755b2bf8df751bd12c0f209910cf16263e1204ed4ef067dd3e0da7c1f3b013b",
+      "independentNumericSHA256": "58be9c60e187171dcf9258e597eb221e9969414607206627d293eda88914ff2a",
+      "decision": "common/default regressions; all10profiles/pairs retained"
+    },
+    "reusedGC": {
+      "rawWindows": 32,
+      "slopeSavingsBytesPerRefresh": {
+        "one": 0,
+        "two": 2344,
+        "tenTwoSlot": 21928,
+        "tenEightSlot": 44824
+      },
+      "interceptsUnchanged": true,
+      "measurementRepeated": false
+    },
+    "durableSourceDraft": "External only; uncompiled/unexecuted; no repository test added.",
+    "next": "No unchanged reruns, new variants or cost/application; whole Inventory/EBS goal remains ACTIVE.",
+    "validation": "pending-task-copy-candidate-2026-11-16.json"
+  },
+  "P56": "R1 remains REJECTED_UNAPPLIED; no further P56 tests/durable compile/cost rerun.",
+  "evidence": {
+    "acceptedP54": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-fast-success-20261116\\decode.json",
+      "sha256": "4a7b230f0424e83d5b835b04f2e7e7cb1ef6a3e77a84afe9b43a47164786736c"
+    },
+    "consumedPacket": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\fast54-3960591a-spent.json",
+      "sha256": "9d00692943248ba342c1dc55b3bca2c09b6f1afebbbbca9a771dd95d42ab30d9"
+    },
+    "fastPackage": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-cast-p54-fast-all-r1\\bootstrap.py",
+      "sha256": "851b20e511ee046bd529b820287f56e34b5a52399c15cab80d0469458e91562e"
+    },
+    "jump1": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-root-p54jump1a.json",
+      "sha256": "de44d76293ae5624333f54f989c68a6d825d092f122b3442edbd22e34f9a8da7"
+    },
+    "jump2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump-root-p54jump2a.json",
+      "sha256": "e3a86c493cca2e75de6f0418f0dabd688a78ae5f9ecc164c5c1bc386a2a23ca3"
+    },
+    "firstJumpVisualReview": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-jump-once-result-20261116\\result.json",
+      "sha256": "be60de63c8310a07acafa9cc36f7422048cfd46f8df0db12f6fe19bc12fc1c51"
+    },
+    "delegatedState": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\keepalive-delegated-p54-state.json",
+      "sha256": "64a7600b40e8d148653ddb3dca8cbbe23bdfbe3132247f18b825ef1736b28078"
+    },
+    "pauseReloadHelper": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pause-reload-p54\\bootstrap.py",
+      "sha256": "8eb845ffb766c1250bdd403e1d152c22906334da253fc441870ba0eb4b1e4737"
+    },
+    "P57Baseline": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-task-copy-triage\\baseline-report-r1.json",
+      "sha256": "a57939c8a786a0631e1515b2f98c637b472ccdf44e169cf38d73051a5a6d7315"
+    },
+    "P57BaselineSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-task-copy-triage\\baseline-seal-r1.json",
+      "sha256": "40d9080d2dd74d9a626fb8b5d18fed8af22338a03ac48b606107f5ac6196cc75"
+    },
+    "P57ExternalCandidate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\pending-task-copy-triage\\candidate-r1\\candidate\\Inventory\\Restock\\Auction\\FluxAuctionRestockFollowup.lua",
+      "sha256": "b780c478d3758e1e2e7257e1ac0f436ffa1f13c05d2e9f19a52da674c1d04e59",
+      "status": "REJECTED_UNAPPLIED; history retained"
+    },
+    "P57Rejection": {
+      "validation": "pending-task-copy-candidate-2026-11-16.json",
+      "aggregateSHA256": "1b7e2bbe070ee4d64e3edbb1abb7cc9c38149762f1b7c988e6dea7c4ee1b2290",
+      "numericSHA256": "58be9c60e187171dcf9258e597eb221e9969414607206627d293eda88914ff2a"
+    }
+  },
+  "actions": {
+    "nativeInput": false,
+    "LuaOrTestChildren": false,
+    "runtimeOrTestSourceEdits": false,
+    "performanceRowsAdded": false,
+    "manualSyncPublication": false
+  },
+  "P58": {
+    "recordedUTC": "2026-11-16T13:44:43.179673+00:00",
+    "status": "APPLIED_SCOPED_POSTCHECK_PASS",
+    "appliedUTC": "2026-11-16T13:21:00.276150+00:00",
+    "ownedHashes": {
+      "tests/trinket_bag_scan_work.lua": "8a2d11da5381df5ca2742226538bb970d924edab54ab2fc51a11c713e5e7263e",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "7d8f645c180cf49a46db19fdbaba2110e4960684f8abdee0d917635ca3b11313"
+    },
+    "applicationSHA256": "e174b03d2684c614c39c8acc22be1852cda85a7013b8bb458bae832467036b2e",
+    "postApplySHA256": "2b81806d551393a5353cfa3135a104a1347ef9b081e2539b417c856323f7a3c9",
+    "validation": "trinket-bag-scan-allocation-2026-11-16.json",
+    "CPUChildren": 36,
+    "GCWindows": 48,
+    "regressions": "SmallCPU+1.887/wall+2.586%; foreignCPU+4.348/wall-2.488%; retainallraw",
+    "nativeAcceptance": "No P58 reload/sourceadoption/FPS/frame-spike/taint claim.",
+    "nextLeadP59": {
+      "id": "P59",
+      "status": "DEFERRED_NO_CANDIDATE_NO_COST",
+      "baselineSHA256": "1a9cd05e1ae492554c57793cf7fef29690688b091dcdcd3ee831637e2838a323",
+      "coverage": "8contexts/13phases/183checks each51/54",
+      "reason": "Public ReadSlot/Diff rows, extras/metatables and held references make unconditional reuse uncertified. No new ownership protocol/candidate/cost approved."
+    }
+  },
+  "P60": {
+    "recordedUTC": "2026-11-16T14:38:25.966038+00:00",
+    "status": "NATIVE_CURRENT_ONLY_SYNTHETIC_THREE_SCAN_RESULT",
+    "nativeResultRecordedUTC": "2026-11-16T14:03:25.356965+00:00",
+    "observedResult": {
+      "line": "P60SCAN 253693.607 0 0.23160001635551",
+      "nativeGetTimeSeconds": 253693.607,
+      "reportedBaggedTrinkets": 0,
+      "ordinaryScanCalls": 3,
+      "grossElapsedMilliseconds": 0.23160001635551,
+      "newComparedToSource": true,
+      "notSkip": true
+    },
+    "rootResultSHA256": "54202fee8a8d7ba843dc3f9e6f417c9190916cca270508df455c1b4be9e42d55",
+    "independentPeerSHA256": "c3f5f5384a92714293f2a49c5f308c91be97c92bd874a41d3393d20d3b61341f",
+    "validation": "trinket-native-three-scan-2026-11-16.json",
+    "sourceAdoptionAndMatchedGain": "Notproven; no nativebagrows/ready/provider/profiler/sourceidentity query. No actualbag-event lifecycle.",
+    "datedKeepaliveState": {
+      "asOfP60Snapshot": "JumpR2b reviewed external/nativepending/notpromoted; Combo foreground-only keepalive.",
+      "backgroundJumpWorkingClaim": false,
+      "laterPromotionNotInferred": true
+    }
+  },
+  "P62toP66": {
+    "recordedUTC": "2026-11-16T15:25:37.555785+00:00",
+    "status": "CURRENT_CHECKPOINT_UNMATCHED_COUNTER_INTERVAL_FUNCTIONAL_FOOD_PASS",
+    "validation": "inventory-eval-food-current-2026-11-16.json",
+    "externalFinalResultSHA256": "9b871279dce2c54cb25ef4df4a52b4c92919c768b77a620c1bc523bc04b4c1a5",
+    "P64IntervalUsable": false,
+    "P64Deltas": null,
+    "P66FunctionalFoodCreated": 12,
+    "P67": "External preparation/not installed; no models-unrun claim.",
+    "coordination": {
+      "userAnswer": "Ready in another app",
+      "approximateUTC": "2026-11-16T15:16Z",
+      "source": "Root explicitly reported the user reply and successful refreshed-source query.",
+      "answeredAndUsed": true,
+      "earlyModeSwitchThenSourceRefreshed": true,
+      "futureQuietWindowConsentInferred": false,
+      "rootSaidUserCouldReturnWoWAfterEndpoint2": true
+    },
+    "rootReportedHoldsSHA256": {
+      "no_jump": "95aa08f0114a6049b2ad0d2a24da3dd33507a153dd971964325c7e391b51fd73",
+      "craft_hold": "84a0291483b3895b20ad6f5036208dba69223b0f8c0bf4f49843ee7a137b9ac1",
+      "INPUT_HALTED": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3"
+    },
+    "inputLock": "Absent per root",
+    "BGJump": "No native R2b trial executed/promoted; no actual BG movement claim.",
+    "pauseReloadProcedure": "Unchanged"
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "changeId": "LHO-NATIVE-BACKPACK-JUNK-QUALITY-20261119",
+  "status": "FOREVER_NATIVE_COMBINED_BAG_FIX_VERIFIED_LARGER_COLD_HITCH_REMAINS",
+  "client": "Forever 1.60.1 / 70959 / 16001",
+  "target": {
+    "pid": 9012,
+    "hwnd": 3541714
+  },
+  "source": {
+    "path": "Inventory/Restock/Junk/FluxJunk.lua",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-gray-fastpath-20261119T023831Z",
+    "before": "091616c121d880e4ecf3cc230fee0bf32b46ef54ecc270b6e4eeeb4fa70010df",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 40,
+    "settingsContentsCopied": false,
+    "after": "f810822c0d57605f7239bc2bd9ba30c6c74116325709753a71a2145f3fed12d5",
+    "installationsVerified": [
+      "_retail_",
+      "_forever_",
+      "_classic_",
+      "_classic_era_",
+      "_anniversary_"
+    ],
+    "syntax": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ]
+  },
+  "activity": "Two real open/close cycles per sample with scripted timing observers. No simulations or item mutations.",
+  "timingMethod": "debugprofilestop and frame gaps with scriptProfile=0. Observers overlap. Each phase reports one observation. Measured totals across openings include nested work where applicable.",
+  "baselineCold": {
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag169-matrix-result.png",
+      "sha": "969750d6232deee59b768cb064e7d510b6c3d2430684bef9c4e6be5dda20080e"
+    },
+    "submittedPNG": "6f674a719cda8330f88a578acad5710461c30050d72951b62f29d57cd37c6d12",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag169-native-layout-attribution-20261119",
+      "controllerSHA": "0a4a03e8a67f7842a94c68168895acd13febfc844cbe3790d8e6224714c9b1d1",
+      "packetSHA": "59d7b58f145fffd55717e1549ddbca9865cec2d91d7a99de30a61e32b3544bfa",
+      "packets": 31,
+      "luaSHA": "3133ce177f7269b914e1ccbb35934bb3c5a0b46d9d86644e51279535c13cc535"
+    },
+    "openMs": [
+      156.5173,
+      27.6962
+    ],
+    "closeMs": [
+      1.465,
+      1.3302
+    ],
+    "peakFrameGapsMs": [
+      17,
+      164,
+      17,
+      38,
+      19
+    ],
+    "bothOpens": {
+      "nativeUpdateItemsCalls": 2,
+      "nativeUpdateItemsMs": 136.83,
+      "nativeUpdateItemsOutsideExplicitNestedObserversMs": 127.31,
+      "fluxJunkCalls": 224,
+      "fluxJunkMs": 16.69,
+      "nativeLayoutCalls": 5,
+      "nativeLayoutMs": 9.64,
+      "nativeLayoutOutsideExplicitNestedObserversMs": 9.19
+    }
+  },
+  "baselineWarm": {
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag172-matrix-result.png",
+      "sha": "b652650b00b651264cd94b4cf366dbcb0be77490aba1ad4045e1ff606c6d7d43"
+    },
+    "submittedPNG": "b7f06af7a4eb92e762bf70149d2db7b6c8251b120e68822de511743ee41dfadb",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag172-gray-quality-attribution-20261119",
+      "controllerSHA": "8ba278804391ac446dc6b950ce5c721df59c73fd2f57d6bf3c0dec7cef6d6a4b",
+      "packetSHA": "28d063547f7c56afabf281230935d2ba543a65659acc9d68939a831b2132f3ea",
+      "packets": 33,
+      "luaSHA": "b55d2e3d0e0620f23c1069d642a47bec1a7ae9d5923ab66a50842e89d1cc03e1"
+    },
+    "openMs": [
+      24.9308,
+      29.3927
+    ],
+    "closeMs": [
+      1.8802,
+      1.4635
+    ],
+    "knownNonGrayFallbackCalls": 194,
+    "fallbackMs": 1.1866,
+    "settingsReads": 1682,
+    "junkCalls": 224,
+    "junkMs": 6.77,
+    "peakFrameGapsMs": [
+      17,
+      32,
+      21,
+      37,
+      20
+    ],
+    "resultAttestation": "Personally read from the separate result capture. Submitted capture expired before final formal acknowledgment and was not restamped."
+  },
+  "candidateCold": {
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag173-matrix-result.png",
+      "sha": "0b91b045ca5c14e79a62eb1990b1232eea822d71d9d2af0805106d19f9938069"
+    },
+    "submittedPNG": "720d88ff7bb4f4d4e81efc612a3811a6e3ad7c531fa10d1fe2b28e35733b7487",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag173-gray-candidate-20261119",
+      "controllerSHA": "5176aa4b2ab73879ce17614973f7e00c7a16d4f0cf2fbed3e141a8e2c3eb6395",
+      "packetSHA": "15578e96616c7a4352714e96559082a92e1a41d560aab3ff08ca74eaa219d1e2",
+      "packets": 33,
+      "luaSHA": "2ef5849888bdfee09e331832241e77c114687e5b2964f364e886ae98820c6502"
+    },
+    "openMs": [
+      150.9451,
+      25.9511
+    ],
+    "closeMs": [
+      1.8486,
+      1.2693
+    ],
+    "knownNonGrayFallbackCalls": 194,
+    "fallbackMs": 0.2871,
+    "settingsReads": 1370,
+    "junkCalls": 224,
+    "junkMs": 14.84,
+    "peakFrameGapsMs": [
+      16,
+      159,
+      17,
+      35,
+      17
+    ]
+  },
+  "candidateWarm": {
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag174-matrix-result.png",
+      "sha": "e78cc58e06510b70e828637f542bed8ff48b656bba40b35aa7b7b41bddee2a2e"
+    },
+    "submittedPNG": "0cb3aa260b4838fc92bd26115820246fcb48868715af812d22060bdce621ed08",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag174-gray-candidate-20261119",
+      "controllerSHA": "6c1ef3bbf7dff714620eb87f72eed8e62e06037d9f95df9410ef657c847df845",
+      "packetSHA": "59c254be3262829a616f396cd313cde9f393e12565b857ecb1a5424339adc3a2",
+      "packets": 33,
+      "luaSHA": "12485ebcba95a594299ef5b235f4977f19eefc7307d60d8a587dced6fb8f53b9"
+    },
+    "openMs": [
+      23.3413,
+      24.5213
+    ],
+    "closeMs": [
+      1.7075,
+      1.7503
+    ],
+    "knownNonGrayFallbackCalls": 196,
+    "fallbackMs": 0.2709,
+    "settingsReads": 1285,
+    "junkCalls": 224,
+    "junkMs": 3.79,
+    "peakFrameGapsMs": [
+      21,
+      31,
+      18,
+      34,
+      20
+    ]
+  },
+  "parity": {
+    "bagGenerationUnchangedWithinEachCapture": true,
+    "allFourFinalBagStatesRestored": true,
+    "slotOrderGeometrySignatureEachOpen": "76/475838403/430.0/489.0",
+    "knownNonGrayFallbackPositiveVerdicts": 0,
+    "grayFallbackCallsObserved": 0,
+    "unknownQualityFallbackCallsObserved": 0,
+    "captureLuaErrors": 0,
+    "openWork": "Positive gray, unknown quality and native confirmation on other clients and addon combinations."
+  },
+  "restore": {
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag170-restored-flags-20261119",
+      "controllerSHA": "640fa4595d6d95bed8c24497f696da0577a0abaf2876fa0db3fd1ead0c8c7c8b",
+      "packetSHA": "7fc29c9293b911e12b16d1c22607b085e83c39a21375848418eea8bc0c35cb0c",
+      "packets": 9,
+      "luaSHA": "4c75fac7d852cc987c177ef7751aa6296ff326e8c6301ec02abc2e08489a4348"
+    },
+    "verifiedPng": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag170_a-submitted.png",
+    "verifiedPngSHA": "97c226655fff6863ea14cd6346a45166cbd175ad1dcc59a2b0c06d81983e12d5",
+    "activeProvider": "syndicator",
+    "syndicatorLoaded": true,
+    "baganatorLoaded": true,
+    "originalCharacterAndOverallEnableReadings": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "scriptProfile": 0,
+    "luaErrors": 0,
+    "keepalive": {
+      "version": "r25",
+      "workerPID": 37584,
+      "intervalSeconds": 180,
+      "firstSpacePair": "Injected. Movement acknowledgment not observed.",
+      "state": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/keepalive-p83-live20261119e-state.json"
+    }
+  },
+  "finding": "The fast path reduces measured warm fallback cost and settings reads on this character. Opening after reload still consumed about 151 ms with a 159 ms frame gap. The earlier cold trace attributes most time to UpdateItems outside the explicitly nested observers. The remaining cost may include unmeasured Lua descendants, native calls and observer overhead. The samples do not establish an overall FPS gain or full visual parity.",
+  "nextAttribution": {
+    "reference": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.lua#L1189",
+    "gitBlob": "ba15459a26be7b996286a0817b595bd02c4266d0",
+    "boundaries": "UpdateItems walks valid slots and reads both container item and quest metadata before it updates texture, appearance, quality, extended state, quest/new/Junk badges, context, cooldown, tooltip and search. Separate existing button creation and layout from this per-slot loop. Sample only a few disjoint groups per pass to limit observer overhead. Avoid wrapping shared protected methods during combat.",
+    "fluxOverlayCandidate": "FluxJunkOverlay.ApplyCoinAndGlow currently creates a glow on first paint even for a slot with a false Junk verdict or disabled glow. It also creates a fallback coin icon on buttons without a native one even when the coin is hidden. Count actual first-open texture allocations before changing that lifetime and validate the first positive transition, clearing and bank paths. The separate lastPainted record only changes whether that bookkeeping record is written. Both branches apply the same coin, glow and slot decorators. Record direct paint and profile effects before changing either path."
+  }
+}

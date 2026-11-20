@@ -1,0 +1,394 @@
+{
+  "changeId": "BORDER-POSE-REGISTRATION-R138-20261119",
+  "capturedAtUTC": "2026-11-19T20:20:58.102832+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "f1f87960d8a4b52da6d4451db447a48f30dc1937857b77c4c51bd34255cb2e1e",
+      "afterRaw": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "27eb98f62093ec6af96120bc95c176f8d673a28849cfaff297b9dd7f61ac4703",
+      "afterRaw": "997dd6d2cfe8ab2f1aec6101f3afd3f09513e111ec8d9de462a1df1a7303f6f3"
+    },
+    "tests/regional_roster_poses.lua": {
+      "beforeRaw": "c677d9c391ab5fffc5282a841a60c18b9b37b840fb330009393dc438165a55ce",
+      "afterRaw": "68797d679b26ef1786a83f759a525440b1e89dc37f7e8cb63b2b0853dfe0cc66"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\source.zip",
+    "sourceZipSHA256": "859be57ba957e656a143246c42cda49ae0c3907e346e973dcede27e1c874e2cd",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per border type in three modeled HUD scenes. Warm both layouts, then add or forget a canonical run on an unrelated panel in the same transaction as a geometry transition. Replay two subsequent transitions after each mutation. Compare modeled visible drawing and renderer ownership in both styles.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "52.000/18.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "55.000/18.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "56.000/20.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "101.000/31.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "102.000/35.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "97.000/32.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "103.000/36.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "99.000/35.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "109.000/39.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "99.000/34.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "21.000/14.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "17.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "16.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "17.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "17.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "24.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "19.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "17.000/15.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "19.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "17.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "22.000/15.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "20.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "19.000/14.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "21.000/16.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/14.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "plan": "4/0",
+          "solve": "4/0",
+          "ms": "18.000/13.000"
+        }
+      ]
+    },
+    "desktopTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 52.0,
+            "median": 56.0,
+            "max": 102.0
+          },
+          {
+            "min": 18.0,
+            "median": 20.0,
+            "max": 35.0
+          }
+        ],
+        "2": [
+          {
+            "min": 97.0,
+            "median": 99.0,
+            "max": 109.0
+          },
+          {
+            "min": 32.0,
+            "median": 35.0,
+            "max": 39.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 16.0,
+            "median": 17.0,
+            "max": 21.0
+          },
+          {
+            "min": 12.0,
+            "median": 13.0,
+            "max": 14.0
+          }
+        ],
+        "2": [
+          {
+            "min": 17.0,
+            "median": 18.0,
+            "max": 24.0
+          },
+          {
+            "min": 11.0,
+            "median": 13.0,
+            "max": 15.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 17.0,
+            "median": 18.0,
+            "max": 22.0
+          },
+          {
+            "min": 13.0,
+            "median": 13.0,
+            "max": 15.0
+          }
+        ],
+        "2": [
+          {
+            "min": 18.0,
+            "median": 19.0,
+            "max": 21.0
+          },
+          {
+            "min": 12.0,
+            "median": 14.0,
+            "max": 16.0
+          }
+        ]
+      }
+    },
+    "guards": "The counted and timed transitions come after the actual registration transaction. CPU samples include modeled widget calls. They provide no native frame-time evidence.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\compare.lua": "bf9c4176f008014aa14b36817434b289eca104903dbad2aeae031f3231f419d5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\matched.txt": "ea45add2269d7ff0a39ce915abfd7f364df001020dd378774eda294efaa4a503",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\control.lua": "bfc6482c547eff06447e418a316eefdadff164ca491123461f0921b6dcee311d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\keep-all.lua": "73d00de1fce22ace452f267817d3b6939e18e30a214a80d56d6117e475abdfdd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\controls.txt": "e2266aa890953756837b0df04aab4427837db6b195da220f956782ac3d8783a6"
+    }
+  },
+  "preservation": [
+    "Source registration retains the last public decorative owner, including removal after a reparent.",
+    "Registrations discard affected saved layouts and use the guarded regional transaction. Unrelated prepared layouts remain available for subsequent transitions.",
+    "Crossings still validate live topology, materials, levels and paint. Changed strip source and independent roster graphics are covered by focused replays."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected Core-BorderJunctions.lua by distant adoption retains both strip layouts",
+      "Rejected keep-all.lua by registration on a strip source retires its saved layouts"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-registration-before-20261119-211305\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/character_recipe_cache.lua",
+      "tests/profession_alias_event_work.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

@@ -403,6 +403,53 @@ local function fixture(legacy, auctionator, syndicator)
 end
 
 if FLUX_AH_FIXTURE_EXPORT then return fixture end
+local ownedStartupPaints
+for _, mode in ipairs({ "owned", "session override", "renderer override", "pending" }) do
+    local A, st, env = fixture(false, false, false)
+    st.inventory.IsBankOpen = function() return false end
+    st.inventory.IsMerchantOpen = function() return false end
+    st.inventory.GetBagGeneration = function() return 1 end
+    st.inventory.GetSnapshotGeneration = function() return 1 end
+    env.time = function() return st.time end
+    A.Followup = { HasWork = function() return mode == "pending" end }
+    st.emit("AUCTION_HOUSE_SHOW")
+    A.Toggle()
+    local panel = A.frame
+    panel:Hide()
+    local paints = {}
+    local viewport = panel.PaintViewport
+    panel.PaintViewport = function(...)
+        paints[#paints + 1] = A.state .. "/" .. A.status
+        return viewport(...)
+    end
+    local overriddenCalls, show = 0, A.ShowSession
+    if mode == "session override" then
+        A.ShowSession = function(...)
+            check(select("#", ...) == 0, "replacement session keeps its original argument contract")
+            overriddenCalls = overriddenCalls + 1
+            return show(...)
+        end
+    elseif mode == "renderer override" then
+        local update = A.UpdateUI
+        A.UpdateUI = function(...) return update(...) end
+    end
+    A.Toggle()
+    if mode == "owned" then
+        check(#paints >= 2 and paints[1] == "searching/searching",
+            "owned Restock show omits only the transient idle paint: " .. table.concat(paints, " "))
+        ownedStartupPaints = table.concat(paints, " ")
+    else
+        check(paints[1] == "idle/changed" and paints[#paints] == "searching/searching",
+            "fallback retains first and last paint for " .. mode)
+    end
+    if mode == "session override" then
+        check(table.concat(paints, " ", 2) == ownedStartupPaints,
+            "all paints after the initial idle repaint still run")
+    end
+    check(overriddenCalls == (mode == "session override" and 1 or 0), "replacement session runs once")
+    check(A.state == "searching" and A.search.itemID == 100 and not A.transaction,
+        "startup retains the current search without a transaction")
+end
 for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
     local legacy = client == "Era" or client == "Anniversary"
     for _, auctionator in ipairs({ false, true }) do for _, syndicator in ipairs({ false, true }) do

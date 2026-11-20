@@ -233,6 +233,69 @@ for _, client in ipairs({"retail", "forever", "era", "anniversary", "mists"}) do
     check(visits == 0, client .. "/" .. provider .. " absent Baganator stays inert")
  end
 end
+do
+    local e = setmetatable({}, {__index = _G})
+    e._G = e
+    e.C_Timer = nil
+    e.CreateFrame = function()
+        return {RegisterEvent = function() end, SetScript = function() end}
+    end
+    assert(loadfile("Respec/FluxRespec_GearSetLock.lua", "t", e))()
+    assert(loadfile("BaganatorCompat/FluxBaganator_GearSetShield.lua", "t", e))()
+    local lock = e.FluxRespec.GearSetLock
+    local compat = e.FluxBaganatorCompat
+    local merchant, disenchant = false, false
+    local merchantReads, disenchantReads, slotReads = 0, 0, 0
+    lock.IsMerchantSellContext = function()
+        merchantReads = merchantReads + 1
+        return merchant
+    end
+    lock.IsDisenchantContext = function()
+        disenchantReads = disenchantReads + 1
+        return disenchant
+    end
+    lock.IsManualDisenchantTargeting = function() return false end
+    lock.ShouldShowShieldVisual = function(bag, slot)
+        slotReads = slotReads + 1
+        return bag == 0 and slot == 1
+    end
+    local function button(slot)
+        local shield = {SetShown = function(self, shown) self.shown = shown end}
+        return {
+            BGR = {bagID = 0, slotID = slot},
+            cornerPlugins = {flux_gear_set_shield = shield},
+        }, shield
+    end
+    local first, protected = button(1)
+    local second, unprotected = button(2)
+    local function paint()
+        compat.RefreshShieldOnBaganatorButton(first)
+        compat.RefreshShieldOnBaganatorButton(second)
+    end
+
+    lock.WithContextSnapshot(paint)
+    check(merchantReads == 1 and disenchantReads == 1 and slotReads == 0,
+        "idle shield paint shares the sampled context")
+    check(protected.shown == false and unprotected.shown == false,
+        "idle protection still clears both shields")
+
+    merchant = true
+    lock.WithContextSnapshot(function()
+        paint()
+        lock.WithContextSnapshot(paint)
+    end)
+    check(merchantReads == 2 and disenchantReads == 2 and slotReads == 4,
+        "merchant paint shares context but rechecks each slot")
+    check(protected.shown and unprotected.shown == false,
+        "merchant still shows only the protected slot shield")
+
+    merchant, disenchant = false, true
+    paint()
+    check(merchantReads == 2 and disenchantReads == 4 and slotReads == 6,
+        "standalone disenchant paint queries current context with the original short circuit")
+    check(protected.shown and unprotected.shown == false,
+        "standalone disenchant keeps slot-specific shields")
+end
 print(string.format("visible Baganator work: %d checks, %d failures; burst guards=%d shields=%d itemReads=%d",
     checks, failures, totals.guards, totals.shields, totals.itemReads))
 if failures > 0 then os.exit(1) end

@@ -1,0 +1,718 @@
+{
+  "changeId": "BORDER-SOURCE-ALPHA-R179-20261120",
+  "borderVersion": "source-alpha-memo-r179",
+  "capturedAtUTC": "2026-11-20T04:45:04.549293+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "99a5231bfef9875f03c6971eb9b5d2e18d15bcf7285602a1eb3d63d7fee10359",
+      "afterRaw": "495dc363928b82adc2a7e1679e74568434c38be0a99bf963319d62ca186f96c6",
+      "afterNormalized": "495dc363928b82adc2a7e1679e74568434c38be0a99bf963319d62ca186f96c6"
+    },
+    "tests/border_incremental_commit.lua": {
+      "beforeRaw": "236813e05683c50e6c40f77d6bb6c38d7e0e8059a8970dddadd29511b0903d1a",
+      "afterRaw": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+      "afterNormalized": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-source-alpha-before-20261120T053959997\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Sixty warmed action-strip hover crossings in each border style using modeled native texture methods. Current code runs its existing phase and setter counters. Paired elapsed samples run with the cost counters off.",
+    "columns": [
+      "alpha reads",
+      "alpha writes",
+      "field writes",
+      "show writes",
+      "hide writes"
+    ],
+    "counterRows": {
+      "1-1": [
+        27360,
+        600,
+        36780,
+        7230,
+        7230
+      ],
+      "1-2": [
+        29460,
+        630,
+        40200,
+        9090,
+        9090
+      ],
+      "2-1": [
+        23820,
+        600,
+        36780,
+        7230,
+        7230
+      ],
+      "2-2": [
+        25920,
+        630,
+        40200,
+        9090,
+        9090
+      ]
+    },
+    "rosterCounterRows": {
+      "1-1": [
+        33840,
+        1680,
+        79470,
+        4380,
+        4380
+      ],
+      "1-2": [
+        55410,
+        5100,
+        160320,
+        9570,
+        9570
+      ],
+      "2-1": [
+        31140,
+        1680,
+        79470,
+        4380,
+        4380
+      ],
+      "2-2": [
+        52710,
+        5100,
+        160320,
+        9570,
+        9570
+      ]
+    },
+    "clocks": {
+      "samples": {
+        "strip-1": [
+          [
+            50.0,
+            56.0,
+            5560.2,
+            5560.2
+          ],
+          [
+            54.0,
+            54.0,
+            5557.5,
+            5557.4
+          ],
+          [
+            50.0,
+            50.0,
+            5557.7,
+            5557.7
+          ],
+          [
+            51.0,
+            51.0,
+            5557.2,
+            5557.2
+          ],
+          [
+            53.0,
+            52.0,
+            5557.2,
+            5557.2
+          ]
+        ],
+        "roster-1": [
+          [
+            66.0,
+            69.0,
+            7624.1,
+            7623.5
+          ],
+          [
+            64.0,
+            64.0,
+            7624.2,
+            7623.5
+          ],
+          [
+            64.0,
+            65.0,
+            7624.5,
+            7623.8
+          ],
+          [
+            64.0,
+            64.0,
+            7624.0,
+            7623.3
+          ],
+          [
+            66.0,
+            65.0,
+            7624.0,
+            7623.3
+          ]
+        ],
+        "strip-2": [
+          [
+            96.0,
+            91.0,
+            5545.6,
+            5545.6
+          ],
+          [
+            91.0,
+            94.0,
+            5545.8,
+            5545.8
+          ],
+          [
+            96.0,
+            101.0,
+            5546.0,
+            5546.0
+          ],
+          [
+            96.0,
+            98.0,
+            5545.5,
+            5545.5
+          ],
+          [
+            97.0,
+            95.0,
+            5545.5,
+            5545.5
+          ]
+        ],
+        "roster-2": [
+          [
+            185.0,
+            183.0,
+            9795.2,
+            9795.2
+          ],
+          [
+            187.0,
+            178.0,
+            9795.3,
+            9795.2
+          ],
+          [
+            174.0,
+            168.0,
+            9795.5,
+            9795.5
+          ],
+          [
+            205.0,
+            194.0,
+            9795.0,
+            9795.0
+          ],
+          [
+            164.0,
+            188.0,
+            9795.0,
+            9795.0
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          51.0,
+          52.0,
+          5557.5,
+          5557.4
+        ],
+        "roster-1": [
+          64.0,
+          65.0,
+          7624.1,
+          7623.5
+        ],
+        "strip-2": [
+          96.0,
+          95.0,
+          5545.6,
+          5545.6
+        ],
+        "roster-2": [
+          185.0,
+          183.0,
+          9795.2,
+          9795.2
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "clockColumns": [
+      "baseline Lua ms",
+      "candidate Lua ms",
+      "baseline temporary KiB",
+      "candidate temporary KiB"
+    ],
+    "clockSampleSize": 12,
+    "mutationControls": {
+      "alpha": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=97 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=84 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_incremental_commit.lua:6: publication restores source suppression after native alpha or RGBA reentry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_incremental_commit.lua:6: in local 'check'\n\ttests/border_incremental_commit.lua:218: in main chunk\n\t[C]: in ?\n",
+      "color": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=97 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=84 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nC:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_incremental_commit.lua:6: publication restores source suppression after native alpha or RGBA reentry\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_incremental_commit.lua:6: in local 'check'\n\ttests/border_incremental_commit.lua:218: in main chunk\n\t[C]: in ?\n"
+    },
+    "alternateMesh": {
+      "decision": "Capped duplicate geometry reduced some native setter counts but added visibility transitions and up to 126 resident textures. Staging the allocations preserved a high native object cost and produced mixed or slower elapsed times. Keep the experiment external.",
+      "simple": {
+        "samples": {
+          "strip-1": [
+            [
+              52.0,
+              54.0,
+              5548.5,
+              5375.9
+            ],
+            [
+              57.0,
+              56.0,
+              5545.7,
+              5373.1
+            ],
+            [
+              55.0,
+              54.0,
+              5545.9,
+              5373.4
+            ],
+            [
+              54.0,
+              52.0,
+              5545.4,
+              5372.9
+            ],
+            [
+              56.0,
+              83.0,
+              5545.4,
+              5372.9
+            ]
+          ],
+          "roster-1": [
+            [
+              66.0,
+              66.0,
+              7798.8,
+              7802.5
+            ],
+            [
+              67.0,
+              76.0,
+              7798.9,
+              7802.6
+            ],
+            [
+              67.0,
+              66.0,
+              7799.2,
+              7802.8
+            ],
+            [
+              69.0,
+              75.0,
+              7798.7,
+              7802.3
+            ],
+            [
+              65.0,
+              68.0,
+              7798.7,
+              7802.3
+            ]
+          ],
+          "strip-2": [
+            [
+              136.0,
+              114.0,
+              5553.9,
+              5134.7
+            ],
+            [
+              137.0,
+              100.0,
+              5554.1,
+              5134.9
+            ],
+            [
+              108.0,
+              115.0,
+              5554.3,
+              5135.1
+            ],
+            [
+              104.0,
+              102.0,
+              5553.8,
+              5134.6
+            ],
+            [
+              101.0,
+              93.0,
+              5553.8,
+              5134.6
+            ]
+          ],
+          "roster-2": [
+            [
+              234.0,
+              182.0,
+              10154.6,
+              10156.7
+            ],
+            [
+              185.0,
+              244.0,
+              10154.7,
+              10156.7
+            ],
+            [
+              162.0,
+              167.0,
+              10154.9,
+              10157.0
+            ],
+            [
+              173.0,
+              189.0,
+              10154.4,
+              10156.5
+            ],
+            [
+              171.0,
+              206.0,
+              10154.4,
+              10156.5
+            ]
+          ]
+        },
+        "medians": {
+          "strip-1": [
+            55.0,
+            54.0,
+            5545.7,
+            5373.1
+          ],
+          "roster-1": [
+            67.0,
+            68.0,
+            7798.8,
+            7802.5
+          ],
+          "strip-2": [
+            108.0,
+            102.0,
+            5553.9,
+            5134.7
+          ],
+          "roster-2": [
+            173.0,
+            189.0,
+            10154.6,
+            10156.7
+          ]
+        },
+        "objectCounts": {
+          "strip-1": [
+            1277,
+            1395
+          ],
+          "roster-1": [
+            1675,
+            1675
+          ],
+          "strip-2": [
+            1341,
+            1467
+          ],
+          "roster-2": [
+            2203,
+            2203
+          ]
+        }
+      },
+      "staged": {
+        "samples": {
+          "strip-1": [
+            [
+              52.0,
+              56.0,
+              5537.5,
+              5183.0
+            ],
+            [
+              52.0,
+              53.0,
+              5534.8,
+              5090.5
+            ],
+            [
+              52.0,
+              52.0,
+              5534.3,
+              5090.0
+            ],
+            [
+              52.0,
+              53.0,
+              5534.3,
+              5090.0
+            ],
+            [
+              53.0,
+              54.0,
+              5535.3,
+              5091.0
+            ]
+          ],
+          "roster-1": [
+            [
+              62.0,
+              62.0,
+              7857.6,
+              7856.3
+            ],
+            [
+              61.0,
+              65.0,
+              7857.8,
+              7856.5
+            ],
+            [
+              61.0,
+              63.0,
+              7857.3,
+              7856.0
+            ],
+            [
+              65.0,
+              65.0,
+              7857.3,
+              7856.0
+            ],
+            [
+              71.0,
+              74.0,
+              7858.3,
+              7857.0
+            ]
+          ],
+          "strip-2": [
+            [
+              106.0,
+              223.0,
+              5549.8,
+              5395.5
+            ],
+            [
+              117.0,
+              113.0,
+              5550.1,
+              5395.7
+            ],
+            [
+              101.0,
+              107.0,
+              5549.6,
+              5395.2
+            ],
+            [
+              100.0,
+              124.0,
+              5549.6,
+              5395.2
+            ],
+            [
+              98.0,
+              137.0,
+              5550.6,
+              5396.2
+            ]
+          ],
+          "roster-2": [
+            [
+              308.0,
+              243.0,
+              10195.3,
+              10195.9
+            ],
+            [
+              257.0,
+              242.0,
+              10195.5,
+              10196.1
+            ],
+            [
+              237.0,
+              211.0,
+              10195.0,
+              10195.6
+            ],
+            [
+              190.0,
+              195.0,
+              10195.0,
+              10195.6
+            ],
+            [
+              184.0,
+              184.0,
+              10196.0,
+              10196.6
+            ]
+          ]
+        },
+        "medians": {
+          "strip-1": [
+            52.0,
+            53.0,
+            5534.8,
+            5090.5
+          ],
+          "roster-1": [
+            62.0,
+            65.0,
+            7857.6,
+            7856.3
+          ],
+          "strip-2": [
+            101.0,
+            124.0,
+            5549.8,
+            5395.5
+          ],
+          "roster-2": [
+            237.0,
+            211.0,
+            10195.3,
+            10195.9
+          ]
+        },
+        "objectCounts": {
+          "strip-1": [
+            1277,
+            1401
+          ],
+          "roster-1": [
+            1675,
+            1675
+          ],
+          "strip-2": [
+            1341,
+            1427
+          ],
+          "roster-2": [
+            2203,
+            2203
+          ]
+        }
+      },
+      "stagedWithCounters": {
+        "1-1": [
+          27360,
+          600,
+          37860,
+          7230,
+          7230
+        ],
+        "1-2": [
+          29460,
+          630,
+          40320,
+          9090,
+          9090
+        ],
+        "2-1": [
+          24960,
+          360,
+          22080,
+          12090,
+          12090
+        ],
+        "2-2": [
+          28140,
+          630,
+          35340,
+          12450,
+          12450
+        ]
+      },
+      "spareCapacity": [
+        "SPARE_CAPACITY|1|0|0|",
+        "SPARE_CAPACITY|2|0|0|"
+      ],
+      "spareScope": "After reserving enough current textures in each cell and canvas for both tested strip poses, no compatible spare capacity remained."
+    },
+    "artifactSHA256": {
+      "baseline.lua": "99a5231bfef9875f03c6971eb9b5d2e18d15bcf7285602a1eb3d63d7fee10359",
+      "suppression.lua": "19f2492156d1f9923e97a6bfaaeb482c85544859ed1744d5e8e4b994f4899c6b",
+      "measure.lua": "2144839def52204b3ba137dd4654bf94f729631df56875a4483fab0315412c68",
+      "locality-fixture.lua": "d1b68db879c3e02732cdb35d09b8cc6080ec4a274bf3ce901d9daa5c99d48496",
+      "suppression-phases.txt": "cf4cd070451e5f85eff42598a344e4bf021e9cc7c6220348b3713538c69212e7",
+      "suppression-clock.txt": "28bf284116ca3b2fbaf42abce6c56f7a6bd6a44f75a4eafe513efdfefb5c6395",
+      "strip-phases.lua": "00779d87e7b4994f278f7b3718ebb0a3b1789dfbd32e0be07b85fe8cd0a5d9a6",
+      "strip-phases.txt": "255328fe3a01198d9716d42471d7c2d9ee174a545c802a07ff8aa77be6584e4d",
+      "tile-sizes.txt": "ae0fbcab0ec5c1bcbdc1f4fb8775b52aa7f0c8916fdb84439f6e5dc98cb907a8",
+      "spares.txt": "3e2845cba2069b264920348e40607b419389b3c6998a54366d1070d937756701",
+      "spare-caps.txt": "882a0c3ee6face345761cdda706a2033fdc1f84839c70ee2d621f8134ce3352c",
+      "staged-128.lua": "02076d76a14a004ad867aea5e264a758f53340a53fe6386167053395b7cdb468",
+      "staged-128.txt": "f6ee1f9f19f46046d9d4bd2ad0aae7a2618d783aea3cb42210a04db6770132e4",
+      "staged-128-clock.txt": "3dea63667a62ea9b4c521a8cf596d568ca862da051f09b1f1bb067936099438e",
+      "reserve-128.lua": "475da06527dc422eaf447dac0429fd036eb9dd248dc6cb2bfe87ca3a189e585e",
+      "reserve-128.txt": "e4f3a15b3d70abc658a9e31849ca88d8111cdffdf4790f141e7e0bebc5dad095",
+      "reserve-128-clock.txt": "19ece557229ba379b768a8de34c0849053101633c428295c84279ad8f16f845e",
+      "pool-48.txt": "ea7ca6f7714948afdaf2b142de0775f5b9bef3d7ecb7ac4b33e985596f50510c",
+      "pool-96.txt": "f9c188a0595890d299179de579120d8bd635f4e938553a0ac4fe9b9087a4cffe",
+      "pool-128.txt": "6109074e28c1c55de8a5455e8679368f70187f5b13cc06bad5ebf5fd27627a7b",
+      "missing-alpha.lua": "17dfbf9651fed73708051a1f7ba46ff68a28eff67cec270e39ff5f5c01a3a3ed",
+      "missing-color.lua": "111caed0fc172ba64725df2242b67dfb13d2079632dc91b7abc152ec0bbc78f1",
+      "missing-alpha-result.txt": "2f4f56a2b74ded73f4310cdeae3f5d820c953716962b39a6c0a2d435dbce07cf",
+      "missing-color-result.txt": "2f4f56a2b74ded73f4310cdeae3f5d820c953716962b39a6c0a2d435dbce07cf",
+      "baseline-incremental-result.txt": "e000230a27275d8f40c9d37200fc76f38da87c73789ab4e4b9b78addfc766dc1",
+      "roster-counters.lua": "134772deeef77e8563d38c63451d8883e6f5b1858d568059896b220b6d5d427a",
+      "roster-counters.txt": "545c38c1fe225adc4dc703eac6e70b7c96dc9efe58e5e4ccb23c2710c79b99b1"
+    }
+  },
+  "parity": "The source opacity observation is valid only within its regional paint transaction, and only after reading a public zero from a watched texture without a setter. Native color and alpha writes invalidate it. The publisher rereads an unobserved or invalidated source. Tests exercise reentrant opacity and RGBA writes with source hooks and without them. Sampled seams and native field and object counts agree.",
+  "verification": {
+    "focusedPassed": 51,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-source-alpha-before-20261120T053959997\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-source-alpha-before-20261120T053959997\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-source-alpha-before-20261120T053959997\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua"
+    ]
+  },
+  "nativeAcceptance": "Live action-strip and group-change latency, pixel parity and combat taint remain pending."
+}

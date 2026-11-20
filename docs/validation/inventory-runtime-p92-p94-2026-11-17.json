@@ -1,0 +1,283 @@
+{
+  "id": "LHO-RUNTIME-P92-P94-20261117",
+  "recordedUTC": "2026-11-17T12:53:56.819133+00:00",
+  "status": "APPLIED_SOURCE_REVIEW_AND_SIX_SYNTAX_CHECKS_PASS_NATIVE_PENDING",
+  "goalStatus": "ACTIVE",
+  "authority": "Latest user instruction prioritizes direct addon Lua edits and stops simulation/timing preparation. Root authorized these three bounded changes; existing incomplete evidence remains preserved.",
+  "changes": {
+    "P92": {
+      "owner": "Inventory/FluxConsumableClassify.lua",
+      "before": "f441813c3aa8ba40fab7b540b2409fcc6bfac71c83403c98f5d0ee3033efe85c",
+      "after": "ad0cd9a84d9464fcc558ad9b72d6a142b76653ae01551cdff4653254ce491e54",
+      "appliedBy": "public_value_work_r15 under Root authorization",
+      "appliedUTC": "2026-11-17T12:36:24.730292+00:00",
+      "scope": "Prebuild two private 11-pattern health/mana tables; preserve all 22 exact pattern values, match/gmatch order, guards, fresh result axes, public/native queries and retry cadence. No fact cache.",
+      "syntaxOnly": [
+        {
+          "runtime": "Lua5.1",
+          "exitCode": 0,
+          "output": "P92 syntax51 PASS",
+          "operation": "assert(loadfile(owner)); chunk not executed",
+          "toolChunk": "f78d17"
+        },
+        {
+          "runtime": "Lua5.4",
+          "exitCode": 0,
+          "output": "P92 syntax54 PASS",
+          "operation": "assert(loadfile(owner)); chunk not executed",
+          "toolChunk": "750b3d"
+        }
+      ]
+    },
+    "P93": {
+      "owner": "Inventory/Index.lua",
+      "before": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711",
+      "after": "d2a7834344eb8aae785b810a8d7bb10ec3668e85a3541d4759d55536df3efac1",
+      "appliedBy": "hook_api_contract under Root authorization",
+      "appliedUTC": "2026-11-17T12:38:02.054916+00:00",
+      "scope": "Hoist only two GetUniqueItems output-record workers, passing the existing per-call fresh out explicitly. Keep GetUniqueItemIDs, fresh rows, traversal order, public queries and reentry isolation.",
+      "syntaxOnlyJobs": [
+        {
+          "vm": "51",
+          "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+          "compilerSHA256": "c9487493013924e894b2db87b86aab89762ebb6ba3a05a1ee498a5ff41c37296",
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+            "-p",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\Index.lua"
+          ],
+          "pid": 20976,
+          "exitCode": 0,
+          "reaped": true,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrBytes": 0
+        },
+        {
+          "vm": "54",
+          "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "compilerSHA256": "af668f47ca5e6ee3ede34442d28443d472ec34ebe7fcfd71e556ce13d7edaadc",
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\Index.lua"
+          ],
+          "pid": 20220,
+          "exitCode": 0,
+          "reaped": true,
+          "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderrBytes": 0
+        }
+      ],
+      "simulationJobs": 0,
+      "costJobs": 0
+    },
+    "P94": {
+      "owner": "Inventory/Craft.lua",
+      "before": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+      "after": "819e5b69041ce82e18b4a2c2b281ccc3d96452c3dc099af5c5fb3562a2bbb10a",
+      "appliedBy": "Root",
+      "scope": "Move private HasFirstAid to module scope. Captures no per-call state; preserves fresh profession-name arguments and live spell-query order/short-circuit/error behavior.",
+      "allocationQualification": "Old closure was created only after a recognized kind and unsuccessful profession-name lookup; no claim that every public call allocated it.",
+      "sourceReview": "Entire file reconstructed exactly after EOL normalization; original EOL style retained.",
+      "syntaxOnlyJobs": [
+        {
+          "vm": "Lua5.1.5",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeSeconds": 0.5014181
+        },
+        {
+          "vm": "Lua5.4.6",
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "wallTimeSeconds": 0.1755325
+        }
+      ],
+      "functionalJobs": 0
+    }
+  },
+  "validation": {
+    "syntaxChecks": 6,
+    "runtimes": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "allExitZero": true,
+    "addonChunksExecutedBySyntaxChecks": false,
+    "completeNewFunctionalBatchPass": false,
+    "performanceBenchmarksRun": 0,
+    "nativeActionsByThisUpdate": 0,
+    "newTestsAdded": false,
+    "sourceWorkCountsAreNotMeasuredCPUBytesOrFPS": true
+  },
+  "preservedPartialEvidence": {
+    "P92first": {
+      "raw": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first\\raw.json",
+        "sha256": "a37fa3467a2737cd7768fe5d3fafd4c960d5c751829bd8831e817ece1563511e"
+      },
+      "status": "FAIL_HOST_OUTPUT_DECODING_AFTER_SUCCESSFUL_CHILD",
+      "actual51": "8 internal B/C vectors and 1097 ordered events PASS; exit0/reaped. Host cp1252 decoding failed afterward; raw status remains FAIL."
+    },
+    "P92second": {
+      "raw": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first-r2\\raw.json",
+        "sha256": "ec415d9ef5e3f6205df28f1a2fc93b68408168fd5baa341a421181ddb22ce9b8"
+      },
+      "status": "FAIL_INCOMPLETE_FUNCTIONAL_BATCH",
+      "actualTrace": "Both 51 and 54 pattern-trace children report 8 cases/1097 ordered events PASS; successful first51 was retained, not replayed.",
+      "failure": "54 BASELINE parser-lines child exited1: attempt to index nil _ENV in tests/consumable_parser_line_work.lua:3 via external overlay. No repair or completed regression pass is claimed.",
+      "jobsRecorded": 8,
+      "pinsStableAtRun": true,
+      "allRecordedChildrenReaped": true
+    },
+    "P93preparation": "Initial inline Python else0 syntax error stopped before any source/file write or child. All proposed functional/model/allocation/cost jobs remained unrun.",
+    "userStop": "Remaining simulation/fixture/timing work stopped by user instruction; P92 failures are preserved failures, not relabelled cancellations. No CPU cost jobs were run.",
+    "P90": "Earlier 1346-assertion passes apply to the prior f441 Classify bytes only. They are not transferred to current ad0.",
+    "P91": "Stopped at an unfrozen source draft; no model, compile, transport or native execution."
+  },
+  "preservation": {
+    "datedExternalCheckpoints": true,
+    "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "historyVerification": "Root checkpoint records exit0; not a new whole-tree archive.",
+    "knownSettingsMetadataAvailablePerCheckpoint": 125,
+    "settingsValuesReadOrCopied": false,
+    "publicInterfacesFeaturesAppearanceCadencePreservedBySourceReview": true,
+    "SyndicatorBaganatorSourcesEdited": false,
+    "olderReceiptsUnchanged": true
+  },
+  "native": {
+    "status": "PENDING",
+    "rootFileOnlyObservation": "Root reported these three exact hashes on Retail and Forever disk through the existing mirror; no Root manual sync. This reviewer did not inspect a client.",
+    "allClientDiskPropagationProven": false,
+    "loadedExactSourceProven": false,
+    "rootReloadForThisBatch": false,
+    "FPSOrNativeGainClaim": false,
+    "keepalive": "Last dated Root phase: nonce8 cue installed/BG green, Windows foreground request refused; no host or jumps launched. This update makes no new liveness claim.",
+    "P88P89": "Retained as earlier qualified native evidence, not acceptance for these new three source hashes."
+  },
+  "next": "Continue user-directed runtime edits within existing ownership. Native adoption and whole inventory/craft/AH/provider/client workflow acceptance remain open; no new simulation or observer work started by this update.",
+  "currentSourcePins": {
+    "Inventory/FluxConsumableClassify.lua": "ad0cd9a84d9464fcc558ad9b72d6a142b76653ae01551cdff4653254ce491e54",
+    "Inventory/Index.lua": "d2a7834344eb8aae785b810a8d7bb10ec3668e85a3541d4759d55536df3efac1",
+    "Inventory/Craft.lua": "819e5b69041ce82e18b4a2c2b281ccc3d96452c3dc099af5c5fb3562a2bbb10a"
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\application.json",
+      "sha256": "b81a65e583d363a4a1aee17c65cc10b22b8017c316727fd0005b75b74b94fee1"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\source-build.json",
+      "sha256": "f69d93641fd0bf1f0d40da1e95c33c38806011b347af8359fcf938fc4dbf602a"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\candidate.diff",
+      "sha256": "48ace73bd5187dcfee999bf0294be4b7c6c7841fba36de31c84b29f2a713abe7"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first\\raw.json",
+      "sha256": "a37fa3467a2737cd7768fe5d3fafd4c960d5c751829bd8831e817ece1563511e"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first\\51-pattern-trace.stdout.txt",
+      "sha256": "c295b0a11827f6136caa1c240ee4ee81e47508ecf022ab2e847505296e4ed387"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first\\51-pattern-trace.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first-r2\\raw.json",
+      "sha256": "ec415d9ef5e3f6205df28f1a2fc93b68408168fd5baa341a421181ddb22ce9b8"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first-r2\\54-pattern-trace.stdout.txt",
+      "sha256": "624ceeb501a13b8d5cb847107a4091f940412ab79908b88c8cedd796e1ba97a8"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\classify-pattern-prebuild-p92-r1\\functional-first-r2\\54-b-parser-lines.stderr.txt",
+      "sha256": "a6bcea6ba7eacdab14b83111ec796e57c5bc843124fb496709cb65347a1ce9db"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-patterns-p92-checkpoint-20261117T122625Z\\checkpoint.json",
+      "sha256": "155ae4d01bbc3b80b7b3c0bb8749642823769de3c50054995aa17af61b1385a0"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-patterns-p92-checkpoint-20261117T122625Z\\Classify.before.lua",
+      "sha256": "f441813c3aa8ba40fab7b540b2409fcc6bfac71c83403c98f5d0ee3033efe85c"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\application.json",
+      "sha256": "ea714b7ffeb7a0e5ceb230f8a5b064b7a79649ba5b1d109a4978adf92216b216"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\applied.diff",
+      "sha256": "a54fb86b9b9702f896980f2c11b636e9472345e83a515c945f02f0fa9972bbba"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\51.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\51.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\54.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\direct-application\\54.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\independent-source-review-addon-combo\\review.json",
+      "sha256": "5421d1cf5fd1334b61f91e1d7aeebc79484af076dafd4931415cec286d489757"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-unique-workers-p93-r1\\independent-source-review-addon-combo\\seal.json",
+      "sha256": "e060d48ce03eeb59ab8956dc56800704c7da418f74b2544c1a6b5625a1de928a"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-record-workers-p93-checkpoint-20261117T123251Z\\checkpoint.json",
+      "sha256": "a5d112b20dfe7d356d16e0162cb61c72c250e1cfebcfd2eac785d7854221f860"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\index-record-workers-p93-checkpoint-20261117T123251Z\\Index.before.lua",
+      "sha256": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-firstaid-worker-p94-checkpoint-20261117T124036Z\\checkpoint.json",
+      "sha256": "60e4abff0f7d93aae90e1ca67e14ec54a84918b74ada471d32a7c5ffb8c0cb5d"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-firstaid-worker-p94-checkpoint-20261117T124036Z\\Craft.before.lua",
+      "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-firstaid-worker-p94-application\\source-review.json",
+      "sha256": "b7bd0821fe7ecfcd5486022ec65eed8b3e4becc9e4deb6a7fe422be3f11d5610"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-firstaid-worker-p94-application\\applied.diff",
+      "sha256": "1eb3bb234fedfe535af9fa209f30acd027d8365fcd3fb58c85d8f4e08ca999de"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\craft-firstaid-worker-p94-application\\syntax-results.json",
+      "sha256": "a61abc651c88a2e63690bc5cb80a22033d74ab3314b7a2a609318409755f4b34"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\runtime-p92-p94-continuity-20261117\\p94-independent-source-review.json",
+      "sha256": "460fcf8fbaf79194686731f8be8e3707754de1f111fffdd9e5faf7d7b0b3d650"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\best-notify-elapsed-p91-sourceonly\\SOURCE_CHECKPOINT.json",
+      "sha256": "80e95282b377ad69c58a4dfb6b9b8d545f31a02dd33acf65ca8d246291defdec"
+    }
+  ]
+}

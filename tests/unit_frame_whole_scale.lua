@@ -116,6 +116,64 @@ check(stripFloor() == 120, "strip top converts to UIParent anchor units")
 FluxActionStrip = nil
 UIParent.GetEffectiveScale = function() return 1 end
 
+-- Match visible strokes, not frame rectangles: the unit bottom stroke is
+-- inset by 3/4 local pixels, while the action top differs by border style.
+-- Those offsets must cancel across independently scaled owners and UI scales.
+do
+    local rootScale,bodyScale,style = 1,1,1
+    UIParent.GetEffectiveScale = function() return rootScale end
+    local tracks = {{Top=8,Bottom=8},{Top=9,Bottom=7}}
+    ns.Border = {GetJoinTracks=function() return tracks[style] end}
+    FluxActionStrip = {GetTop=function() return 150 end,
+        GetEffectiveScale=function() return rootScale*1.1 end,IsShown=function() return true end}
+    local stripTop = {GetRect=function() return 0,141,100,17 end,
+        GetParent=function() return FluxActionStrip end}
+    FluxActionStrip.FluxBorderFrame = {Top=stripTop}
+    local f={bottom=300,portraitPosition="LEFT"}
+    function f:GetWidth() return 200 end
+    function f:GetHeight() return 60 end
+    function f:GetBottom() return self.bottom end
+    function f:GetEffectiveScale() return rootScale*bodyScale end
+    function f:ClearAllPoints() end
+    function f:SetPoint(point,_,_,x,y) self.point,self.x,self.y,self.bottom=point,x,y,y end
+    local bottom={GetRect=function() return 0,f.bottom-5,100,16 end,GetParent=function() return f end}
+    f.atlasBorderFrame={FluxBorderFrame={Bottom=bottom}}
+    FluxUnitFrames_GetPlayerScreenBottomOffset=stripFloor
+    local oldPlacement,oldSync=FluxUnitFrames_GetPlayerTargetPlacement,FluxUnitFrames_SyncTargetChromeForPlacement
+    FluxUnitFrames_GetPlayerTargetPlacement=function() return 2 end
+    FluxUnitFrames_SyncTargetChromeForPlacement=function() end
+    for _,s in ipairs({1,2}) do
+        style=s
+        for _,root in ipairs({.65,1,1.25}) do
+            rootScale=root
+            for _,body in ipairs({.5,.8,1,1.35,2}) do
+                bodyScale=body;db.frameScalePlayerTarget=body
+                for _,unit in ipairs({"player","target"}) do
+                    f.unit=unit;f.bottom=300
+                    reanchor(f,unit)
+                    local actual=(f.bottom+3)*rootScale*bodyScale
+                    local expected=150*rootScale*1.1
+                    check(math.abs(actual-expected)<1e-8,"both styles keep identical canonical player/target positions at every scale")
+                    local y=f.y
+                    reanchor(f,unit)
+                    check(math.abs(f.y-y)<1e-8,"repeated layout retains the same stroke alignment without position oscillation")
+                end
+            end
+        end
+    end
+    local y=f.y
+    InCombatLockdown=function() return true end
+    reanchor(f,"player")
+    check(f.y==y,"combat never moves the protected unit frame for a decorative join")
+    InCombatLockdown=function() return false end
+    FluxUnitFrames_GetPlayerTargetPlacement=function() return 1 end
+    reanchor(f,"target")
+    check(f.point=="TOP" and f.y==2,"the stacked top-screen target retains its independent placement")
+    FluxUnitFrames_GetPlayerTargetPlacement,FluxUnitFrames_SyncTargetChromeForPlacement=oldPlacement,oldSync
+    FluxActionStrip=nil;ns.Border=nil
+    UIParent.GetEffectiveScale=function() return 1 end
+end
+
 ns.UnitFrames.RegisterInitializer = function() end
 assert(loadfile("UnitFrames/FluxUnitFrames_Focus.lua"))("_FluxUI", ns)
 local focus = { BuffContainer = { GetLeft = function() return 250 / 1.5 end,

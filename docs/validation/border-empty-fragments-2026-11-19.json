@@ -1,0 +1,1144 @@
+{
+  "changeId": "BORDER-EMPTY-FRAGMENTS-R139-20261119",
+  "capturedAtUTC": "2026-11-19T20:32:41.411826+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "d42a4d59ecc8cdf842983ee40d8a34f907431e9d2cd37517eb605b2c25d86c16",
+      "afterRaw": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "997dd6d2cfe8ab2f1aec6101f3afd3f09513e111ec8d9de462a1df1a7303f6f3",
+      "afterRaw": "4313e6879d0aafaa07bac60eb44b4bc26954ec63d8e0aee13484ab11d6b45fe9"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\source.zip",
+    "sourceZipSHA256": "2b7f8976f21daf63f748200d74b04f58035eb9a13cb3773acce3b6f1fe3b5f0d",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per style and case. Warm both layouts and replay four held-action crossings, four party/raid-linked movements or four changes where the group-linked rectangles disappear and return. Compare regional visibility, colors, seam samples and fragment counts.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "564/324",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "17.000/17.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "564/324",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "17.000/17.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "564/324",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "23.000/19.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "564/324",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "18.000/18.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "564/324",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "34.000/34.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "564/328",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "39.000/37.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "564/328",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "43.000/38.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "564/328",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "46.000/44.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "564/328",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "40.000/41.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "564/328",
+          "fallbacks": "564/90",
+          "emptyFallbacks": "474/0",
+          "solves": "0/0",
+          "ms": "37.000/37.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "12.000/14.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/14.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "11.000/14.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/14.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "12.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "12.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "18.000/15.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "196/196",
+          "fallbacks": "196/0",
+          "emptyFallbacks": "196/0",
+          "solves": "0/0",
+          "ms": "14.000/15.000"
+        }
+      ],
+      "partyGeometry": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/10.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "14.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "9.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "12.000/10.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/10.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        }
+      ],
+      "raidGeometry": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/10.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/9.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "9.000/10.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/10.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/9.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "12.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "148/148",
+          "fallbacks": "148/0",
+          "emptyFallbacks": "148/0",
+          "solves": "0/0",
+          "ms": "10.000/10.000"
+        }
+      ]
+    },
+    "uninstrumentedTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "19.000/20.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "21.000/19.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "18.000/18.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "19.000/17.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "17.000/18.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "33.000/31.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "33.000/34.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "34.000/36.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "35.000/32.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "45.000/44.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/13.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "15.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/14.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "18.000/15.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/14.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "13.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "14.000/15.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "13.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        }
+      ],
+      "partyGeometry": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "9.000/9.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/14.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "9.000/10.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "13.000/11.000"
+        }
+      ],
+      "raidGeometry": [
+        {
+          "style": "1",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/12.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/10.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/13.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "10.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/11.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "12.000/10.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "geometry": "0/0",
+          "fallbacks": "0/0",
+          "emptyFallbacks": "0/0",
+          "solves": "0/0",
+          "ms": "11.000/12.000"
+        }
+      ]
+    },
+    "desktopTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 17.0,
+            "median": 19.0,
+            "max": 21.0
+          },
+          {
+            "min": 17.0,
+            "median": 18.0,
+            "max": 20.0
+          }
+        ],
+        "2": [
+          {
+            "min": 33.0,
+            "median": 34.0,
+            "max": 45.0
+          },
+          {
+            "min": 31.0,
+            "median": 34.0,
+            "max": 44.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 11.0,
+            "median": 13.0,
+            "max": 14.0
+          },
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 13.0
+          }
+        ],
+        "2": [
+          {
+            "min": 12.0,
+            "median": 14.0,
+            "max": 18.0
+          },
+          {
+            "min": 12.0,
+            "median": 14.0,
+            "max": 15.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 12.0,
+            "median": 13.0,
+            "max": 14.0
+          },
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 12.0
+          }
+        ],
+        "2": [
+          {
+            "min": 12.0,
+            "median": 12.0,
+            "max": 14.0
+          },
+          {
+            "min": 11.0,
+            "median": 12.0,
+            "max": 15.0
+          }
+        ]
+      },
+      "partyGeometry": {
+        "1": [
+          {
+            "min": 9.0,
+            "median": 11.0,
+            "max": 12.0
+          },
+          {
+            "min": 9.0,
+            "median": 12.0,
+            "max": 14.0
+          }
+        ],
+        "2": [
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 13.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          }
+        ]
+      },
+      "raidGeometry": {
+        "1": [
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          }
+        ],
+        "2": [
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 12.0
+          },
+          {
+            "min": 10.0,
+            "median": 11.0,
+            "max": 13.0
+          }
+        ]
+      }
+    },
+    "guards": "The optional instrumentation used only in the external driver counts normal canvas/basis preparation and calls to the fallback renderer. CPU timings use identical mocked widget workloads with those counters disabled. These results provide no native frame-time evidence.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\compare.lua": "3e043251057da04c40b473592582ee77f23c0356dd6ae3d89923a88fd4314446",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\matched.txt": "03986224ba8322425f9ec3637a567836aff34cab335ba308ed305d4b67e9e31e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\timing.txt": "dd609a5340a1900e812412873705718eba7efcbd93fc1f02c25a39a4130eae1f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\control.lua": "bfc6482c547eff06447e418a316eefdadff164ca491123461f0921b6dcee311d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\missing-retained-fallbacks.lua": "014ba4b5660f651ef28dc1f8a38b215d93a59b4dfb1bdbd48c4f1f5eb5a40fc5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\controls.txt": "06107563fd9300aace830912403694f3f463cb98a84c6d2f4dd31f848fb75ebe"
+    }
+  },
+  "preservation": [
+    "Every source still initializes current paint, ownership and suppression when it contributes only a junction or fallback.",
+    "Regional canvas geometry work runs only for normal fragments. Layers keep their separate reconciliation. The existing full-render path still prepares all layers.",
+    "Fresh and prepared cells keep the same fallback order. Empty entries do no fallback painting."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected missing-retained-fallbacks.lua by keep the original draw order of nonempty fallbacks"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-empty-fragments-before-20261119-212441\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

@@ -1,0 +1,317 @@
+{
+  "changeId": "ROSTER-RESTRICTED-PARSER-R72-20261118",
+  "atUTC": "2026-11-18T22:51:17.276742+00:00",
+  "request": "Fix the reported restricted roster startup error and reduce remaining party and raid join/leave hitches.",
+  "regression": "R71 introduced a local declaration inside a restricted body. The prior plain-Lua fixture accepted that body and missed Blizzard’s substring rejection.",
+  "runtime": {
+    "beforeRaw": {
+      "RaidFrame/FluxRaidSecure.lua": "815ed18af13685546e9bc78ff48da96679eecf2d897039395d2f98620093ed7c",
+      "RaidFrame/FluxRaidUnit.lua": "b5502f70412be607a2dfe28e905cad45d169fa4ce043f7e75794e70bfd37e39b",
+      "RaidFrame/FluxRaidVisuals.lua": "57a01891c19fc28acec41d529428209679420c6a857e186f71f77976c64b256a"
+    },
+    "afterRaw": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75"
+    },
+    "testRaw": {
+      "tests/raid_healer_secure.lua": "44ffde5dfe648160d872bfa408ff83d075066cdb20e84bb7bf98e1f34e5d81bb",
+      "tests/raid_connected_grid.lua": "430d93467448a854bd1f79c777e9db477a9be6947143b20cc667e878f977e1f9",
+      "tests/raid_healer_visuals.lua": "2381c4fac1c419b84c5c84177029624b23a39ed8e6e869faf350bdc4eeda82cd"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r72-before-20261118T224048Z\\source.zip",
+    "archiveSHA256": "b011edb6ad24787feba4065688a08bda703d9164ae27546371e5b92f0d9c80ae",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "baselineHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "installedFilesReadOnlyVerification": {
+    "retail": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidSecure.lua": "4abb16380a7cafad2fd78d6f7847fff5af5ba09ddad241cc8f6eb0332070ba6f",
+      "RaidFrame/FluxRaidUnit.lua": "377494f737e17d4a923e8d9ccc0e962f7ea72d5b1bdfe77752d24c372773c2d8",
+      "RaidFrame/FluxRaidVisuals.lua": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "matchesCandidate": true
+    }
+  },
+  "changes": [
+    "One inline restricted geometry loop handles regular raid headers and MT/MA with the same anchor, width and alpha placement rules.",
+    "Prepared roster observers trigger packing only when a layout-relevant slot becomes occupied or vacant. The native unit change handler always runs.",
+    "Each unordered connected raid-border pair is evaluated once. Stable flags and the same prepared trim and power state skip redundant visibility setters. Explicit style/layout paint retains forced refresh."
+  ],
+  "restrictedParser": {
+    "sources": {
+      "retail": "92651002e47b532a5b6d1ef11e5a5b28aa234af40abf9f950bdb5da4c05d39d8",
+      "forever": "92651002e47b532a5b6d1ef11e5a5b28aa234af40abf9f950bdb5da4c05d39d8",
+      "classic": "32efa7341716bce536941835bd1023e22174a6e36a620b894ae83e06a2540c34",
+      "classic-era": "32efa7341716bce536941835bd1023e22174a6e36a620b894ae83e06a2540c34",
+      "classic-anniversary": "79b0de98ce6b62fe0c797d1c32724f519c2050c54632de0c1b58908236b18213"
+    },
+    "sourcePath": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/RestrictedExecution.lua",
+    "scope": "Runs actual BuildRestrictedClosure bodies from five supplied source snapshots with desktop runtime shims.",
+    "archivedR71": "Rejected across all five with The function keyword is not permitted",
+    "R72": "Accepts exact updated body in all five. The raid combat harness now executes through the same validator.",
+    "rawReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r72-before-20261118T224048Z\\restricted-parser-replay.csv"
+  },
+  "raidBorderReplay": {
+    "description": "Five matched archived R71 vs R72 pair runs across a 40-cell native-trim mocked grid, stable repaint, one cell leave/rejoin and power divider change.",
+    "outputParity": "All visible edge, corner and power visibility flags matched in all 25 samples.",
+    "results": [
+      {
+        "trial": 1,
+        "stage": "cold40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 1120
+      },
+      {
+        "trial": 1,
+        "stage": "same40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 0
+      },
+      {
+        "trial": 1,
+        "stage": "leaveOne",
+        "beforeAbsCalls": 6944,
+        "afterAbsCalls": 2109,
+        "beforeVisibilityWrites": 1092,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 1,
+        "stage": "rejoinOne",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 1,
+        "stage": "powerChange",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 28
+      },
+      {
+        "trial": 2,
+        "stage": "cold40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 1120
+      },
+      {
+        "trial": 2,
+        "stage": "same40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 0
+      },
+      {
+        "trial": 2,
+        "stage": "leaveOne",
+        "beforeAbsCalls": 6944,
+        "afterAbsCalls": 2109,
+        "beforeVisibilityWrites": 1092,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 2,
+        "stage": "rejoinOne",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 2,
+        "stage": "powerChange",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 28
+      },
+      {
+        "trial": 3,
+        "stage": "cold40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 1120
+      },
+      {
+        "trial": 3,
+        "stage": "same40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 0
+      },
+      {
+        "trial": 3,
+        "stage": "leaveOne",
+        "beforeAbsCalls": 6944,
+        "afterAbsCalls": 2109,
+        "beforeVisibilityWrites": 1092,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 3,
+        "stage": "rejoinOne",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 3,
+        "stage": "powerChange",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 28
+      },
+      {
+        "trial": 4,
+        "stage": "cold40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 1120
+      },
+      {
+        "trial": 4,
+        "stage": "same40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 0
+      },
+      {
+        "trial": 4,
+        "stage": "leaveOne",
+        "beforeAbsCalls": 6944,
+        "afterAbsCalls": 2109,
+        "beforeVisibilityWrites": 1092,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 4,
+        "stage": "rejoinOne",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 4,
+        "stage": "powerChange",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 28
+      },
+      {
+        "trial": 5,
+        "stage": "cold40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 1120
+      },
+      {
+        "trial": 5,
+        "stage": "same40",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 0
+      },
+      {
+        "trial": 5,
+        "stage": "leaveOne",
+        "beforeAbsCalls": 6944,
+        "afterAbsCalls": 2109,
+        "beforeVisibilityWrites": 1092,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 5,
+        "stage": "rejoinOne",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 56
+      },
+      {
+        "trial": 5,
+        "stage": "powerChange",
+        "beforeAbsCalls": 7300,
+        "afterAbsCalls": 2220,
+        "beforeVisibilityWrites": 1120,
+        "afterVisibilityWrites": 28
+      }
+    ],
+    "rawReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r72-before-20261118T224048Z\\raid-edges-replay.csv"
+  },
+  "verification": {
+    "focused": 179,
+    "syntax": 1225,
+    "upvalueMax": 11,
+    "upvaluePrototypes": 158,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r72-before-20261118T224048Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r72-before-20261118T224048Z\\syntax.json",
+    "otherOwnerSourcesParsedOnly": [
+      "Inventory/Index.lua",
+      "Inventory/Professions.lua",
+      "Inventory/Restock/FluxRestock_Inv.lua"
+    ],
+    "relevantResults": {
+      "tests/raid_healer_secure.lua": "Raid healer secure: 255798 checks; five native wrap/state/roster/click source implementations; desktop only",
+      "tests/raid_connected_grid.lua": "Raid connected grid: 34 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls",
+      "tests/raid_healer_visuals.lua": "raid healer visuals: 680 checks passed (desktop only)",
+      "tests/raid_combat_roster_transitions.lua": "Combat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending",
+      "tests/raid_group_conversion_conditions.lua": "Universal group conversion conditions: 53615 checks / 2800 combat transitions PASS; native client acceptance separate",
+      "tests/raid_party_frames.lua": "Party player-style frames: 1100 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending",
+      "tests/raid_header_precreation.lua": "raid header precreation: 1760 checks, 0 failures",
+      "tests/raid_roster_layout_work.lua": "Party roster prepared delegation: 5432 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.",
+      "tests/group_roster_performance.lua": "Group roster performance: 165 checks PASS; operation counts only; native performance/taint pending"
+    }
+  },
+  "pending": "No live R72 load, timing, taint or visual acceptance was performed. Desktop output parity and operation counts cannot establish native hitch latency."
+}

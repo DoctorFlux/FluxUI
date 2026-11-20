@@ -1,0 +1,774 @@
+{
+  "changeID": "LHO-P84-P85-NATIVE-WORKFLOW-20261117",
+  "recordedUTC": "2026-11-17T04:55:36.905887+00:00",
+  "status": "P84_PASSIVE_AND_P85_NATIVE_EPISODE_RECORDED_P86_CAUSE_UNPROVED_EXTERNAL_DRAFT",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": false,
+  "repositoryRuntimeEdits": 0,
+  "supersedes": "Earlier P84 prepared-only/P85 native-pending state; historical dated records and unexecuted external continuity draft R1 remain unchanged.",
+  "P84native": {
+    "authority": "Root personal visual transcription of all six complete pages and formal positive setup/cleanup ACKs. This draft rehashes all33 referenced files and checks arithmetic; no independent new native query/capture or full visual retranscription.",
+    "runtime": {
+      "client": "Forever",
+      "version": "1.60.1",
+      "build": "70938",
+      "interface": "16001",
+      "provider": "syndicator",
+      "providerReady": true,
+      "loadedSourceByteIdentity": "not independently established by these captures"
+    },
+    "end": {
+      "ended": true,
+      "active": false,
+      "reason": "expired",
+      "setupFailed": false,
+      "windowValid": true,
+      "episodeValid": false,
+      "invalid": false,
+      "startedMsPrinted": "305872497.9363",
+      "deadlineMsPrinted": "305902497.9363",
+      "endedMsPrinted": "305902507.8695",
+      "actualWindowMsPrinted": "30009.933200061",
+      "postRequested": null,
+      "postActual": null,
+      "earlyPost": false,
+      "latePost": false,
+      "lateStop": true,
+      "cutoffSpans": 0,
+      "clockFaults": 0,
+      "diagnosticFaults": 0,
+      "cleanupFaults": 0,
+      "allErrorStatuses": "none"
+    },
+    "rows": [
+      {
+        "name": "syndicator.RebuildBags",
+        "entered": 0,
+        "completed": 0,
+        "uncompleted": 0,
+        "valid": 0,
+        "sumMsPrinted": "0",
+        "maxMsPrinted": "0",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Inventory.Notify",
+        "entered": 0,
+        "completed": 0,
+        "uncompleted": 0,
+        "valid": 0,
+        "sumMsPrinted": "0",
+        "maxMsPrinted": "0",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Best.Scan.Recompute",
+        "entered": 73,
+        "completed": 73,
+        "uncompleted": 0,
+        "valid": 73,
+        "sumMsPrinted": "561.03780001402",
+        "maxMsPrinted": "21.023099899292",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "EBS.FlushEval",
+        "entered": 19,
+        "completed": 19,
+        "uncompleted": 0,
+        "valid": 19,
+        "sumMsPrinted": "16.993500113487",
+        "maxMsPrinted": "1.2431000471115",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "EBS.FlushCounts",
+        "entered": 0,
+        "completed": 0,
+        "uncompleted": 0,
+        "valid": 0,
+        "sumMsPrinted": "0",
+        "maxMsPrinted": "0",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Bars.Flush",
+        "entered": 2,
+        "completed": 2,
+        "uncompleted": 0,
+        "valid": 2,
+        "sumMsPrinted": "4.5162000656128",
+        "maxMsPrinted": "2.2682000398636",
+        "RFOW": "1z10"
+      }
+    ],
+    "stateSummary": {
+      "bagGenerationBefore": 8,
+      "bagGenerationFinal": 8,
+      "bestGenerationBefore": 53301,
+      "bestGenerationFinal": 53374,
+      "bestGenerationDelta": 73,
+      "FoodDisplayCountBeforeAndFinal": 27,
+      "post": "MISSING",
+      "namespaceAndRootBeforeAndFinal": true
+    },
+    "events": {
+      "successCount": 0,
+      "missingSuccess": true,
+      "multipleSuccess": false,
+      "missingPost": true,
+      "retained": 0,
+      "overflow": 0,
+      "all16Slots": "nil"
+    },
+    "counterProofs": {
+      "beforeAllZero": true,
+      "finalCountersEqualLive": true,
+      "postPresent": false,
+      "postRows": "all six MISSING"
+    },
+    "slow": {
+      "count": 1,
+      "overflow": 0,
+      "slots": [
+        {
+          "physicalSlot": 1,
+          "row": 3,
+          "startRelativeMsPrinted": "15045.382",
+          "finishRelativeMsPrinted": "15066.405",
+          "msPrinted": "21.023099899292"
+        }
+      ],
+      "slots2to8": "MISSING"
+    },
+    "cleanup": {
+      "allSixExactOriginals": true,
+      "allSixWrappersAbsent": true,
+      "ownFramesPendingRegistrations": [
+        0,
+        0
+      ],
+      "bothHandlersReadOK": true,
+      "bothHandlersNil": true,
+      "bothHandlersOurs": false,
+      "bodyAndPostAndStageTimerPending": false,
+      "rootAndNamespaceCurrentBeforeClean": true,
+      "cleanupComplete": true,
+      "newCLEAN": [
+        true,
+        true,
+        true
+      ],
+      "allSixPagesPersonallyViewedAndFormallyACKed": true,
+      "otherDiagnosticRootsPreserved": true
+    },
+    "foodActor": {
+      "attempts": 1,
+      "payload": "/cast Conjure Food",
+      "castStartPersonallySeen": true,
+      "laterCreationChatPersonallySeen": "Conjured Pumpernickel x14",
+      "correctFoodBreadButtonBefore": 27,
+      "laterDisplayedFoodBreadButton": 41,
+      "insideObserverWindow": false,
+      "qualification": "Actor/cast success is OUTSIDE the 30s observer window; no native success/post/cast-to-bag attribution. P85 longer-window successor prepared separately."
+    },
+    "interpretation": "One30.0099332s passive window: Best.Scan.Recompute73 successful completed spans sum561.03780001402ms/max21.023099899292ms, EBS.FlushEval19 sum16.993500113487/max1.2431000471115, Bars.Flush2 sum4.5162000656128/max2.2682000398636. Selected provider/Inventory.Notify/EBS.FlushCounts entered0. Stable bagGeneration8 and no retained cast/bag events distinguish this from a cast-to-bag episode. Inclusive instrumentation overhead/overlap remains; no exclusive CPU, FPS causality, candidate or before/after gain."
+  },
+  "P84protocol": {
+    "firstJobs": 2,
+    "VMs": [
+      "stockLua51",
+      "stockLua54"
+    ],
+    "casesPerVM": 14,
+    "checksPerVM": 1511,
+    "status": "PASS",
+    "sourcePinsStableAfter": true,
+    "allOwnedChildrenReaped": true,
+    "nativeRegistration": "Root positive OWN6/REG5+2 was personally observed on Forever70938; native event delivery not exercised by zero-event passive window."
+  },
+  "P85successor": {
+    "status": "NATIVE_EPISODE_ACCEPTED_FOREVER_SYNDICATOR_CLEANED",
+    "modelRoot": "_P85w1",
+    "captureRoot": "_P85cN",
+    "stageRoot": "_P85sN",
+    "nonce": "8517c0a2",
+    "tag": "P85_8517c0a2",
+    "seconds": 120,
+    "postSeconds": 2,
+    "eventCapacity": 16,
+    "slowCapacity": 8,
+    "modelBodySHA256": "17cd26df8843127549246aaf21cbd9a89495af39625d617575c021c1a0aab9d3",
+    "nativeBodySHA256": "4130de3a120d1150c92264ec79c4ab570ab9788788d537e30e596702bbbac6c9",
+    "delta": "Exact original P84 body inverse after LF normalization, NAME/TAG, two requestedSeconds30to120 fields and one deadline30000to120000; native instance changes NAME/TAG only from P85 model. All registration/wrapper/error/cleanup semantics retained.",
+    "firstJobs": 2,
+    "perVM": {
+      "bodyCases": 31,
+      "bodyChecks": 1272,
+      "protocolCases": 14,
+      "protocolChecks": 1511
+    },
+    "statusOfJobs": "PASS; all reaped; no resample; source stable",
+    "actualOwnerRoute": "The label-only P85 route successor source remains UNRUN; inherited P84 R2 partial-route proof and successful native P85 episode are separately stated evidence.",
+    "next": "No replay of consumed instance. Next evaluate a bounded privacy-safe reason-enum trace plus actual Scan/Classify/ItemClass retry reproduction; private cause is still unproved."
+  },
+  "nativeContinuation": {
+    "authority": "Root dated reports only; writer performed no current client/process/helper/hold inspection.",
+    "cleanup": "Both selected capture roots formally CLEANtrue3 after six live originals/framehandlers/registration bookkeeping/timers; other diagnostics preserved. Root reports P85 own holds archived/released04:46:05UTC.",
+    "jump": "Root reports jump worker resumed with48 recorded pairs at04:49UTC. Not a current liveness or independent per-jump movement proof. INPUT_HALTED and guarded idle/chat/craft/heartbeat/pause policy retained."
+  },
+  "product": {
+    "P83": "REJECTED_UNAPPLIED",
+    "ConsumableBindSHA256": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+    "runtimePins": {
+      "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\API\\Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+      "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableBest\\Scan.lua": "44e1d5a6b61e2a09d9aa1d1c69ed33aeaf18acb9e63795d146b59bef9cf8cd34",
+      "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\FluxConsumableBest\\FluxConsumableBest.lua": "5997d2531f0d51e6aaf4ecf1b736b2156e0108992a7f69286c959afb8f645743",
+      "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\ExtraButtonSystem\\Engine\\ConsumableBind.lua": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4"
+    },
+    "noSettingsOrProfilerWrites": true
+  },
+  "coverage": {
+    "wholeGoal": "ACTIVE; LHO01-13 not complete.",
+    "nextPriority": "Bounded native reason-enum/cadence trace and actual Scan/Classify/ItemClass retry reproduction before any repeated-scan remedy. Preserve current queries/events/cadence; pending-map types alone prove no private retry cause. Continue broader cast/cancel/craft/restock/provider/client/bank/mail coverage.",
+    "staleMail": "USER_MEASURE_FIRST",
+    "commerce": "SIMULATION_ONLY",
+    "guildBankVoid": "OUT_OF_SCOPE"
+  },
+  "limits": [
+    "P84 was one passive30.0099332s capture; its Food27to41 occurred outside. P85 was one different120.0191996s mixed passive/one-Food episode. They are not a matched before/after performance comparison.",
+    "All durations are inclusive instrumented elapsed spans with observer overhead/overlap, not exclusive CPU/frame times/FPS causality or an optimization gain.",
+    "P85 player START/SUCCEEDED/STOP and bag events were observed; FAILED/INTERRUPTED delivery was not exercised. Payloads/IDs not read; event name alone does not identify Food. Root separately observed the fixed Food actor and creation chat.",
+    "The automatic+2s cumulative post snapshot41to55 supports this observed episode, not exact native event quantity or isolated Food cost. Post counter rows include the pre-cast passive portion.",
+    "P86 three non-atomic raw public scalar/type reads prove no pending-map contents/private reason, retry cause, getter feedback or optimization eligibility.",
+    "Other clients/provider combinations, exact loaded-source bytes, broader workflows, combat/taint and FPS acceptance remain open. Stale-mail USER-MEASURE-FIRST; commerce simulation only; guild/void excluded.",
+    "P85 label-only route copy remains unrun; source/mock/protocol evidence is separate from the native capture. P83 stays rejected/unapplied; no product Lua/provider/preferences changes in this native slice.",
+    "Finite600s stage-only topthrow/failedCancel history expiry exception was accepted and not exercised in these native captures.",
+    "Item baseline138 execution-time pins were stable; later author report found only unrelated/unloaded Other auxiliary drift (137/138 current then). No current-all138/all23 claim or restoration of newer other-chat source."
+  ],
+  "evidence": {
+    "nativeP84RootTranscription": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-native-passive-evidence-20261117\\evidence.json",
+      "sha256": "81dbb6579d9c5f018f307d6246391b399335d3917ddae674ae3e628be061be7a"
+    },
+    "P84protocolFirst2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-native-r1\\protocol-proof\\execution-20261117T041510Z\\execution.json",
+      "sha256": "ba1b0b35071469699e3aa3c7a9393b7beaf53deac1f5282124614d582bb72ebf"
+    },
+    "P84sourceSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-native-r1\\source-seal.json",
+      "sha256": "8f0d3b3dd080b1aaa24b3195da547b874761772c2800d13eb9da4abbc567c7ed"
+    },
+    "P84nativeBody": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-native-r1\\observer.lua",
+      "sha256": "3728e81e8de3c9e31fa536567352ca788b903759f0f2375a2b16c92f1ac39b5e"
+    },
+    "P84sourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-native-r1\\independent-source-review-addon-combo\\review.json",
+      "sha256": "5b617f78b135d4b884d6489910fe6d61b1a0e4e9695396ec526e2e0926753b5a"
+    },
+    "P85first2CombinedModels": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-native-r1\\protocol-proof\\execution-20261117T042737Z\\execution.json",
+      "sha256": "f35dc5d4086885ebfcaf5e1b6911f136c44bf34ed9e409d30ee2d6ab20d80069"
+    },
+    "P85sourceSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-native-r1\\source-seal.json",
+      "sha256": "6487e6bd87a5c73f99ba0a72bb75fd386ae0277e69ba360ebb65158bdddde43e"
+    },
+    "P85nativeBody": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-native-r1\\observer.lua",
+      "sha256": "4130de3a120d1150c92264ec79c4ab570ab9788788d537e30e596702bbbac6c9"
+    },
+    "P85modelBody": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-r1\\observer.lua",
+      "sha256": "17cd26df8843127549246aaf21cbd9a89495af39625d617575c021c1a0aab9d3"
+    },
+    "P85sourceInverse": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-r1\\successor-source-proof.json",
+      "sha256": "e384edb595a8140a64697507e769b7c7ee9fa8790e88d91c8c2896cab1dff224"
+    },
+    "P85routeSourceOnly": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-r1\\route-r1\\source-provenance.json",
+      "sha256": "41e8435aaca62f99520223094dd066d18862abdf44b93ce2294da07ef0a42ead"
+    },
+    "P85protocol": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-native-r1\\PROTOCOL.json",
+      "sha256": "059daaa0467f95af4fec9deae15c6f7b3208fd8ad5292d69f38ce3ee97b7ac63"
+    },
+    "P85readSchema": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p85-native-r1\\READ_SCHEMA.md",
+      "sha256": "c4f708b9fdf9f65c4de5c3bc2e35b5a657692a9cf33b67de7b72950b000f8ef5"
+    },
+    "Forever70938EventContract": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-forever-event-contract-sourceonly\\report.json",
+      "sha256": "46386348ace6952b259589c4ed7eaa003b92d30f137d5ae081fdda13162f4648"
+    },
+    "P85RootNativeTranscription": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p85-native-workflow-evidence-20261117\\evidence.json",
+      "sha256": "6944088cf0df6295fa58ee6312f292187acfcffa2e12511ffecb05d640b6f690"
+    },
+    "ItemGetCountFirst2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\baseline-r1\\execution-20261117T044832Z\\execution.json",
+      "sha256": "3e3e8f9692ef5c18172c6e9c763d20dba1a55788926d3d3b0c03d484fb1f332d"
+    },
+    "ItemBaselineSourceManifest": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\baseline-r1\\baseline-manifest.json",
+      "sha256": "848a3c387034e7aa6f328cc8dbacc7e88edc7d072d6e561741eabd9a57889672"
+    },
+    "ItemBaselineIndependentSourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\baseline-r1\\independent-source-review-hook-api-contract\\review.json",
+      "sha256": "0573f43ca8f2a28d8f1dfefd07875570cf46640e68de2d461a5995f6660ff9c5"
+    },
+    "ItemBaselineAuthorReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-item-query-source-brief-20261117\\baseline-r1\\baseline-report.json",
+      "sha256": "9d365ae2a429f76066abaa702369190b93165671e7c5578f2e3f6bed2c875e7b"
+    }
+  },
+  "P85native": {
+    "marker": "LHO-P85-NATIVE-WORKFLOW-20261117",
+    "recordedUTC": "2026-11-17T04:50:29.971208+00:00",
+    "author": "Root personal visual transcription of all six complete pages and positive setup/cleanup; raw screenshots retained",
+    "bodySHA256": "4130de3a120d1150c92264ec79c4ab570ab9788788d537e30e596702bbbac6c9",
+    "protocolSealSHA256": "6487e6bd87a5c73f99ba0a72bb75fd386ae0277e69ba360ebb65158bdddde43e",
+    "arm": {
+      "execOK": true,
+      "topFail": false,
+      "active": true,
+      "ended": false,
+      "setupFailed": false,
+      "allSixSlotsWrappers": true,
+      "frames": 2,
+      "pendingRegistrations": [
+        5,
+        2
+      ]
+    },
+    "end": {
+      "ended": true,
+      "active": false,
+      "reason": "expired",
+      "setupFailed": false,
+      "windowValid": true,
+      "episodeValid": true,
+      "invalid": false,
+      "startedMsPrinted": "306719192.2479",
+      "deadlineMsPrinted": "306839192.2479",
+      "endedMsPrinted": "306839211.4475",
+      "actualWindowMsPrinted": "120019.19960004",
+      "postRequestedMsPrinted": "306774396.2099",
+      "postActualMsPrinted": "306774402.6904",
+      "earlyPost": false,
+      "latePost": false,
+      "lateStop": true,
+      "cutoffSpans": 0,
+      "clockFaults": 0,
+      "diagnosticFaults": 0,
+      "cleanupFaults": 0,
+      "allErrorStatuses": "none"
+    },
+    "rows": [
+      {
+        "name": "syndicator.RebuildBags",
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "0.20879995822906",
+        "maxMsPrinted": "0.12089997529984",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Inventory.Notify",
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "3.2080000638962",
+        "maxMsPrinted": "1.5703999996185",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Best.Scan.Recompute",
+        "entered": 296,
+        "completed": 296,
+        "uncompleted": 0,
+        "valid": 296,
+        "sumMsPrinted": "2292.8930999637",
+        "maxMsPrinted": "21.851599931717",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "EBS.FlushEval",
+        "entered": 173,
+        "completed": 173,
+        "uncompleted": 0,
+        "valid": 173,
+        "sumMsPrinted": "194.37740021944",
+        "maxMsPrinted": "3.3180000185966",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "EBS.FlushCounts",
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "0.75760000944138",
+        "maxMsPrinted": "0.30970001220703",
+        "RFOW": "1z10"
+      },
+      {
+        "name": "Bars.Flush",
+        "entered": 132,
+        "completed": 132,
+        "uncompleted": 0,
+        "valid": 132,
+        "sumMsPrinted": "272.13690006733",
+        "maxMsPrinted": "6.1373000144958",
+        "RFOW": "1z10"
+      }
+    ],
+    "states": {
+      "before": {
+        "atMsPrinted": "306719192.248",
+        "namespaceCurrent": true,
+        "rootCurrent": true,
+        "source": "syndicator",
+        "ready": true,
+        "bagGeneration": 10,
+        "bestGeneration": 55378,
+        "trackedItemID": 1487,
+        "latchItemID": 1487,
+        "latchCount": 41,
+        "ItemId": 1487,
+        "ActionType": "item",
+        "ActionValue": 1487,
+        "forcedCount": 41,
+        "forcedCountLive": true,
+        "liveCountItemId": 1487,
+        "lastCount": 41
+      },
+      "post": {
+        "atMsPrinted": "306774402.690",
+        "namespaceCurrent": true,
+        "rootCurrent": true,
+        "source": "syndicator",
+        "ready": true,
+        "bagGeneration": 13,
+        "bestGeneration": 55514,
+        "trackedItemID": 1487,
+        "latchItemID": 1487,
+        "latchCount": 55,
+        "ItemId": 1487,
+        "ActionType": "item",
+        "ActionValue": 1487,
+        "forcedCount": 55,
+        "forcedCountLive": true,
+        "liveCountItemId": 1487,
+        "lastCount": 55
+      },
+      "final": {
+        "atMsPrinted": "306839211.448",
+        "namespaceCurrent": true,
+        "rootCurrent": true,
+        "source": "syndicator",
+        "ready": true,
+        "bagGeneration": 13,
+        "bestGeneration": 55674,
+        "trackedItemID": 1487,
+        "latchItemID": 1487,
+        "latchCount": 55,
+        "ItemId": 1487,
+        "ActionType": "item",
+        "ActionValue": 1487,
+        "forcedCount": 55,
+        "forcedCountLive": true,
+        "liveCountItemId": 1487,
+        "lastCount": 55
+      }
+    },
+    "counterProofs": {
+      "beforeAllZero": true,
+      "finalCountersEqualLive": true,
+      "postPresent": true
+    },
+    "events": {
+      "successCount": 1,
+      "missingSuccess": false,
+      "multipleSuccess": false,
+      "missingPost": false,
+      "retained": 9,
+      "overflow": 0,
+      "slots": [
+        {
+          "seq": 1,
+          "code": "CS",
+          "relativeMsPrinted": "50662.193"
+        },
+        {
+          "seq": 2,
+          "code": "OK",
+          "relativeMsPrinted": "53203.962"
+        },
+        {
+          "seq": 3,
+          "code": "CE",
+          "relativeMsPrinted": "53205.222"
+        },
+        {
+          "seq": 4,
+          "code": "BU",
+          "relativeMsPrinted": "53262.931"
+        },
+        {
+          "seq": 5,
+          "code": "BD",
+          "relativeMsPrinted": "53273.516"
+        },
+        {
+          "seq": 6,
+          "code": "BU",
+          "relativeMsPrinted": "53468.461"
+        },
+        {
+          "seq": 7,
+          "code": "BD",
+          "relativeMsPrinted": "53472.821"
+        },
+        {
+          "seq": 8,
+          "code": "BU",
+          "relativeMsPrinted": "53832.684"
+        },
+        {
+          "seq": 9,
+          "code": "BD",
+          "relativeMsPrinted": "53840.248"
+        }
+      ],
+      "slots10to16": "nil",
+      "payloadsReadOrRetained": false
+    },
+    "slow": {
+      "count": 8,
+      "overflow": 3,
+      "slots": [
+        {
+          "physicalSlot": 1,
+          "row": 3,
+          "startRelativeMsPrinted": "77741.900",
+          "finishRelativeMsPrinted": "77753.318",
+          "msPrinted": "11.417599976063"
+        },
+        {
+          "physicalSlot": 2,
+          "row": 3,
+          "startRelativeMsPrinted": "101690.973",
+          "finishRelativeMsPrinted": "101703.190",
+          "msPrinted": "12.216700017452"
+        },
+        {
+          "physicalSlot": 3,
+          "row": 3,
+          "startRelativeMsPrinted": "102103.597",
+          "finishRelativeMsPrinted": "102123.842",
+          "msPrinted": "20.244700014591"
+        },
+        {
+          "physicalSlot": 4,
+          "row": 3,
+          "startRelativeMsPrinted": "30062.744",
+          "finishRelativeMsPrinted": "30079.620",
+          "msPrinted": "16.876300036907"
+        },
+        {
+          "physicalSlot": 5,
+          "row": 3,
+          "startRelativeMsPrinted": "31283.751",
+          "finishRelativeMsPrinted": "31294.366",
+          "msPrinted": "10.614199995995"
+        },
+        {
+          "physicalSlot": 6,
+          "row": 3,
+          "startRelativeMsPrinted": "52861.279",
+          "finishRelativeMsPrinted": "52873.242",
+          "msPrinted": "11.963400006294"
+        },
+        {
+          "physicalSlot": 7,
+          "row": 3,
+          "startRelativeMsPrinted": "53772.850",
+          "finishRelativeMsPrinted": "53784.623",
+          "msPrinted": "11.77380001545"
+        },
+        {
+          "physicalSlot": 8,
+          "row": 3,
+          "startRelativeMsPrinted": "77338.983",
+          "finishRelativeMsPrinted": "77350.641",
+          "msPrinted": "11.658200025558"
+        }
+      ],
+      "qualification": "Physical ring order is not chronological; 3 earlier spans overwritten, row max retained separately."
+    },
+    "foodActor": {
+      "attempts": 1,
+      "payload": "/cast Conjure Food",
+      "castStartPersonallySeen": true,
+      "laterCreationChatPersonallySeen": [
+        "Conjured Pumpernickel x6",
+        "Conjured Pumpernickel x8"
+      ],
+      "correctFoodBreadButtonBefore": 41,
+      "postAndFinalFoodBreadButton": 55,
+      "insideObserverWindow": true,
+      "qualification": "Exactly1 native player SUCCEEDED,9 native event stamps, auto+2s snapshot and typed41to55 state transition. Event payloads/IDs not read; event itself not spell identity. Whole capture mixes passive work and one Food episode; not exclusive Food CPU."
+    },
+    "limits": [
+      "Inclusive successfully completed spans may overlap; not exclusive CPU or frame times.",
+      "No FPS gain, no causal FPS-lag assertion, no candidate comparison.",
+      "No retail/classic or provider-combination acceptance from this Forever/Syndicator capture.",
+      "Stage-only topthrow plus failedCancel may lose fault flag at600s expiry; explicitly accepted finite-stage history exception; not exercised here.",
+      "No product Lua/provider edits, purchases, sales, deletions or preferences changed.",
+      "Pending-retry/getter-feedback source hypothesis is NOT established by P85/P86 alone.",
+      "No comparison to P84 as a matched performance test: different30/120s scenarios and passive/one-Food activities."
+    ],
+    "postRows": [
+      {
+        "row": 1,
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "0.20879995822906",
+        "maxMsPrinted": "0.12089997529984"
+      },
+      {
+        "row": 2,
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "3.2080000638962",
+        "maxMsPrinted": "1.5703999996185"
+      },
+      {
+        "row": 3,
+        "entered": 136,
+        "completed": 136,
+        "uncompleted": 0,
+        "valid": 136,
+        "sumMsPrinted": "1074.7779000998",
+        "maxMsPrinted": "21.851599931717"
+      },
+      {
+        "row": 4,
+        "entered": 23,
+        "completed": 23,
+        "uncompleted": 0,
+        "valid": 23,
+        "sumMsPrinted": "28.671500086784",
+        "maxMsPrinted": "3.3180000185966"
+      },
+      {
+        "row": 5,
+        "entered": 3,
+        "completed": 3,
+        "uncompleted": 0,
+        "valid": 3,
+        "sumMsPrinted": "0.75760000944138",
+        "maxMsPrinted": "0.30970001220703"
+      },
+      {
+        "row": 6,
+        "entered": 10,
+        "completed": 10,
+        "uncompleted": 0,
+        "valid": 10,
+        "sumMsPrinted": "35.37600004673",
+        "maxMsPrinted": "6.1373000144958"
+      }
+    ],
+    "rawFollowupP86": {
+      "generation": 57071,
+      "dirty": true,
+      "bagGenAtScan": 13,
+      "loginScanUntil": 0,
+      "classifyResumeTickerType": "nil",
+      "pendingLoadType": "table",
+      "pendingAddedType": "table",
+      "qualification": "Three non-atomic raw public scalar/type-only reads, no getters/maps traversal/nativequeries/wrappers; no private reason/queue/attempt inspection or causal retry proof."
+    },
+    "runtime": {
+      "client": "Forever",
+      "version": "1.60.1",
+      "build": "70938",
+      "interface": "16001",
+      "provider": "syndicator",
+      "providerReady": true,
+      "loadedSourceByteIdentity": "not independently established by these captures"
+    },
+    "cleanup": {
+      "allSixExactOriginals": true,
+      "allSixWrappersAbsent": true,
+      "ownFramesPendingRegistrations": [
+        0,
+        0
+      ],
+      "bothHandlersReadOK": true,
+      "bothHandlersNil": true,
+      "bothHandlersOurs": false,
+      "bodyAndPostAndStageTimerPending": false,
+      "rootAndNamespaceCurrentBeforeClean": true,
+      "cleanupComplete": true,
+      "newCLEAN": [
+        true,
+        true,
+        true
+      ],
+      "allSixPagesPersonallyViewedAndFormallyACKed": true,
+      "otherDiagnosticRootsPreserved": true
+    },
+    "audit": "Root personally transcribed/viewed all native pages; this preparation rehashed36rawrefs and checked counts/times/generation arithmetic. No independent new native query/capture or full image retranscription.",
+    "postRowMeaning": "Post rows are cumulative since ARM and include roughly50s passive work before the cast. They are not an isolated cast/Food CPU interval."
+  },
+  "P86raw": {
+    "generation": 57071,
+    "dirty": true,
+    "bagGenAtScan": 13,
+    "loginScanUntil": 0,
+    "classifyResumeTickerType": "nil",
+    "pendingLoadType": "table",
+    "pendingAddedType": "table",
+    "qualification": "Three non-atomic raw public scalar/type-only reads, no getters/maps traversal/nativequeries/wrappers; no private reason/queue/attempt inspection or causal retry proof."
+  },
+  "itemGetCountBaseline": {
+    "status": "EXACT_TWO_FIRST_ACTUAL_OWNER_BASELINE_JOBS_PASS_NO_CANDIDATE_APPLIED",
+    "runtimeOwnerSHA256": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+    "perVM": "8direct groups + 2actual-route pairs/4contexts;13stdout records; no retry",
+    "coverage": "Full ordered3/4/5native arguments in directcases; dynamic native/converter/Secrets lookups, reentry and opaque raw conversion errors. Same-VM partial route state/order preserved.",
+    "identityQualification": "Strong retained private helper identities/calls under debug hooks are attribution only; VM reuse differs. No heap allocation, CPU or native performance inference.",
+    "executionSHA256": "3e3e8f9692ef5c18172c6e9c763d20dba1a55788926d3d3b0c03d484fb1f332d",
+    "optimization": "Private-helper optimization UNAPPLIED; cost and any external candidate need their separate gates.",
+    "sourceQualification": {
+      "execution": "All138pins matched immediately before/after exact2 first jobs, as recorded; no rerun.",
+      "laterReport": "2026-11-17T04:55:02.141277+00:00",
+      "laterReportMatching": 137,
+      "laterDrift": [
+        {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Other\\FluxPerfCapture.lua",
+          "expectedSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+          "currentSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef"
+        }
+      ],
+      "scope": "Only later auxiliary Other/FluxPerfCapture changed; it is not loaded by the route. Preserve newer other-chat source. Historical P84 readiness checkpoint23 remains dated, not current23 certification. Current application pins are affected Item/Scan/Best/CB only; loaded native byte adoption remains unproved."
+    },
+    "observedEachRouteContextEachVM": {
+      "publicGetCountEntries": 10,
+      "strongRetainedUniquePrivateHelperObjects": 20,
+      "modeledNativeQueries": 10,
+      "meaning": "Observed in bothVMs; not allocator, heap, CPU, FPS or universal unique-per-call proof."
+    }
+  }
+}

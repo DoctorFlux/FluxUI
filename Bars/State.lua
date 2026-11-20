@@ -5,15 +5,14 @@
 --   native page — form / stealth / vehicle / override / bar page. Needs a secure
 --     evaluator, so it stays on RegisterStateDriver + _onstate-native and the
 --     restricted ChildUpdate below.
---   modifier swap — SHIFT / CTRL main-row <-> minirow. Resolved at *press time*
---     from shift-action* / ctrl-action* (and their type / typerelease /
---     macrotext / clickbutton twins), which Blizzard's
---     SecureButton_GetModifiedAttribute reads against the live modifier state.
---     Those attributes are stamped ahead of the press, so the click never waits
---     on the [mod:] state driver, the mod hub, or ChildUpdate — which is what
---     used to leave clicks frozen on the modifier state a fight was entered
---     with while the icon still swapped. The hub/ChildUpdate now only keep the
---     visible face and host.slot in step.
+--   modifier swap - SHIFT / CTRL main/mini selection follows the secure hub.
+--     The main child publishes its current action/program to its keyboard
+--     proxy. Bound click dispatch can consume modifier globals, so keys do not
+--     reconstruct the row at that point. The same live state drives the face.
+--     Mouse clicks retain all eight prepared modified-attribute sets through
+--     SecureButton_GetModifiedAttribute; those do not wait for display updates.
+--     The hub/ChildUpdate also keeps the visible native action synchronized,
+--     with read-only display indexing handling delayed callbacks.
 local addonName, ns = ...
 
 -- Keep the Forever compatibility fallback local to Flux-owned frames.
@@ -28,6 +27,7 @@ local State = {}
 Bars.State = State
 
 local NATIVE = 12
+local CLICK_PREFIXES = { "", "alt-", "ctrl-", "alt-ctrl-", "shift-", "alt-shift-", "ctrl-shift-", "alt-ctrl-shift-" }
 local SlotMath = Bars.SlotMath
 local CAB = C_ActionBar or {}
 local HasVehicleActionBar = CAB.HasVehicleActionBar or _G.HasVehicleActionBar
@@ -263,8 +263,10 @@ end
 -- Clears the applied-slot stamps CHILDUPDATE uses to skip an unchanged surface,
 -- plus its cached minirow occupancy probe.
 local CHILDRESET = [[
-	self:SetAttribute("flux-applied", nil)
-	self:SetAttribute("flux-applied-mods", nil)
+	if message ~= 0 then
+		self:SetAttribute("flux-applied", nil)
+		self:SetAttribute("flux-applied-mods", nil)
+	end
 	self:SetAttribute("flux-live-sec", nil)
 	self:SetAttribute("flux-live-tert", nil)
 ]]
@@ -297,6 +299,10 @@ local CHILDRESET = [[
 local CHILDUPDATE = [[
 	local packed = tonumber(message)
 	if not packed then packed = 1 end
+	-- Only the out-of-combat hover broadcast uses a negative state message.
+	-- Keep the published state identical to the native positive page/swap value.
+	local hover = packed < 0
+	if hover then packed = -packed end
 	local swap = 0
 	local page = packed
 	if packed >= 200 then
@@ -333,16 +339,20 @@ local CHILDUPDATE = [[
 	-- Layout.ApplyMappings cannot stamp occupancy while structural work is
 	-- locked down, so a fight entered before the first stamp left hasSec 0 and
 	-- SHIFT never left the main row for the whole fight. Read it live instead.
-	-- sec/tert do not depend on the page, so the probe is cached until the
-	-- slot-changed flush or a ForceApply clears it: HasAction stays off the
-	-- modifier edge, which ChildUpdates all 57 surfaces.
-	local liveSec = tonumber(self:GetAttribute("flux-live-sec"))
-	local liveTert = tonumber(self:GetAttribute("flux-live-tert"))
-	if not liveSec and HasAction then
-		if HasAction(sec) then liveSec = 1 else liveSec = 0 end
-		if HasAction(tert) then liveTert = 1 else liveTert = 0 end
-		self:SetAttribute("flux-live-sec", liveSec)
-		self:SetAttribute("flux-live-tert", liveTert)
+	-- Normal modifier edges keep the slot-changed cache. A pure hover
+	-- resamples inside this same child update, including an action change
+	-- whose slot event has not arrived yet.
+	local oldSec = self:GetAttribute("flux-live-sec")
+	local oldTert = self:GetAttribute("flux-live-tert")
+	local liveSec, liveTert = tonumber(oldSec), tonumber(oldTert)
+	if hover or (not liveSec and HasAction) then
+		liveSec, liveTert = nil, nil
+		if HasAction then
+			if HasAction(sec) then liveSec = 1 else liveSec = 0 end
+			if HasAction(tert) then liveTert = 1 else liveTert = 0 end
+		end
+		if oldSec ~= liveSec then self:SetAttribute("flux-live-sec", liveSec) end
+		if oldTert ~= liveTert then self:SetAttribute("flux-live-tert", liveTert) end
 	end
 	-- Drag-expand already forces the flags to 1, so this only promotes 0 to 1.
 	if liveSec == 1 then hasSec = 1 end
@@ -419,67 +429,102 @@ local CHILDUPDATE = [[
 		slot = slotCtrl
 	end
 
-	self:SetAttribute("state", packed)
+	local sameState = hover and self:GetAttribute("state") == packed
+	if not sameState then self:SetAttribute("state", packed) end
 
-	-- The three click sets. These are what a press actually resolves, and they
+	-- Three slot choices cover all eight native modifier prefixes. Native
+	-- modified-attribute lookup does not partially match "shift-" when Alt or
+	-- Ctrl is also held, so every combination needs its own prepared selectors.
+	-- These are what a press actually resolves, and they
 	-- only move when the native page, promotion or occupancy moves -- never on a
 	-- modifier edge, where nomod/sec/tert are all already correct. Guarding them
 	-- separately keeps holding SHIFT at the old cost while a form flip still
 	-- repoints all three. flux-applied-mods is cleared by _childupdate-fluxreset
 	-- before a ForceApply and by the slot-changed flush.
 	local mods = slotNomod * 1000000 + slotShift * 1000 + slotCtrl
-	if tonumber(self:GetAttribute("flux-applied-mods")) ~= mods then
+	local oldMods = tonumber(self:GetAttribute("flux-applied-mods"))
+	if oldMods ~= mods then
 		self:SetAttribute("flux-applied-mods", mods)
-		for i = 1, 3 do
-			local pfx, s
-			if i == 1 then
-				pfx = ""
-				s = slotNomod
-			elseif i == 2 then
-				pfx = "shift-"
-				s = slotShift
-			else
-				pfx = "ctrl-"
-				s = slotCtrl
-			end
-			self:SetAttribute(pfx .. "action*", s)
-			local body = self:GetAttribute("flux-p-" .. s)
-			local clicker = self:GetAttribute("flux-click-" .. s)
-			local mode = self:GetAttribute("flux-m-" .. s)
-			if static == 0 and page >= 11 and row == 1 then body, clicker = nil, nil end
-			-- Every branch writes all four. Leaving one nil falls through to the
-			-- bare live attribute, which under SHIFT would fire whatever body
-			-- the main row happens to be showing.
-			if clicker then
-				self:SetAttribute(pfx .. "type*", "click")
-				self:SetAttribute(pfx .. "typerelease*", "click")
-				self:SetAttribute(pfx .. "clickbutton*", clicker)
-				self:SetAttribute(pfx .. "macrotext*", nil)
-			elseif body and body ~= "" and mode ~= "d" then
-				self:SetAttribute(pfx .. "type*", "macro")
-				self:SetAttribute(pfx .. "typerelease*", "macro")
-				self:SetAttribute(pfx .. "clickbutton*", nil)
-				self:SetAttribute(pfx .. "macrotext*", body)
-			else
-				self:SetAttribute(pfx .. "type*", "action")
-				self:SetAttribute(pfx .. "typerelease*", "action")
-				self:SetAttribute(pfx .. "clickbutton*", nil)
-				self:SetAttribute(pfx .. "macrotext*", nil)
-			end
-			-- ButtonFX CLICK_SNIPPET resolves these by modifier so an empowered
-			-- spell on a mini row still gates on down instead of release.
-			if IsPressHoldReleaseSpell then
-				local aType, id, subType = GetActionInfo(s)
-				local spellID = nil
-				if aType == "spell" then
-					spellID = id
-				elseif aType == "macro" and subType == "spell" then
-					spellID = id
-				end
-				if spellID and IsPressHoldReleaseSpell(spellID) then
-					self:SetAttribute(pfx .. "IsEmpowerSpell*", true)
+		local updateNomod, updateShift, updateCtrl = true, true, true
+		if sameState and oldMods then
+			-- Unchanged lanes keep their prepared aliases during a hover.
+			-- A real edit clears oldMods and gets all aliases refreshed.
+			updateCtrl = oldMods % 1000 ~= slotCtrl
+			updateShift = math.floor(oldMods / 1000) % 1000 ~= slotShift
+			updateNomod = math.floor(oldMods / 1000000) ~= slotNomod
+		end
+		local typeNomod, textNomod, clickNomod, empowerNomod
+		local typeShift, textShift, clickShift, empowerShift
+		local typeCtrl, textCtrl, clickCtrl, empowerCtrl
+		-- Resolve programs and spell capability once per slot choice, before
+		-- fanning out aliases. A compound prefix adds no native spell probes.
+		for sw = 0, 2 do
+			if (sw == 0 and updateNomod) or (sw == 1 and updateShift) or (sw == 2 and updateCtrl) then
+				local s = slotNomod
+				if sw == 1 then s = slotShift elseif sw == 2 then s = slotCtrl end
+				local body = self:GetAttribute("flux-p-" .. s)
+				local clicker = self:GetAttribute("flux-click-" .. s)
+				local mode = self:GetAttribute("flux-m-" .. s)
+				if static == 0 and page >= 11 and row == 1 then body, clicker = nil, nil end
+				local typ = "action"
+				if clicker then
+					typ, body = "click", nil
+				elseif body and body ~= "" and mode ~= "d" then
+					typ = "macro"
 				else
-					self:SetAttribute(pfx .. "IsEmpowerSpell*", false)
+					body = nil
+				end
+				local empower = false
+				if IsPressHoldReleaseSpell then
+					local aType, id, subType = GetActionInfo(s)
+					local spellID = nil
+					if aType == "spell" then
+						spellID = id
+					elseif aType == "macro" and subType == "spell" then
+						spellID = id
+					end
+					if spellID and IsPressHoldReleaseSpell(spellID) then
+						empower = true
+					end
+				end
+				if sw == 0 then
+					typeNomod, textNomod, clickNomod, empowerNomod = typ, body, clicker, empower
+				elseif sw == 1 then
+					typeShift, textShift, clickShift, empowerShift = typ, body, clicker, empower
+				else
+					typeCtrl, textCtrl, clickCtrl, empowerCtrl = typ, body, clicker, empower
+				end
+			end
+		end
+		for i = 1, 8 do
+			local pfx, s, typ, body, clicker, empower
+			local update
+			if i <= 2 then
+				update = updateNomod
+				pfx = ""
+				if i == 2 then pfx = "alt-" end
+				s, typ, body, clicker, empower = slotNomod, typeNomod, textNomod, clickNomod, empowerNomod
+			elseif i <= 4 then
+				update = updateCtrl
+				pfx = "ctrl-"
+				if i == 4 then pfx = "alt-ctrl-" end
+				s, typ, body, clicker, empower = slotCtrl, typeCtrl, textCtrl, clickCtrl, empowerCtrl
+			else
+				update = updateShift
+				pfx = "shift-"
+				if i == 6 then pfx = "alt-shift-"
+				elseif i == 7 then pfx = "ctrl-shift-"
+				elseif i == 8 then pfx = "alt-ctrl-shift-" end
+				s, typ, body, clicker, empower = slotShift, typeShift, textShift, clickShift, empowerShift
+			end
+			if update then
+				self:SetAttribute(pfx .. "action*", s)
+				self:SetAttribute(pfx .. "type*", typ)
+				self:SetAttribute(pfx .. "typerelease*", typ)
+				self:SetAttribute(pfx .. "clickbutton*", clicker)
+				self:SetAttribute(pfx .. "macrotext*", body)
+				if IsPressHoldReleaseSpell then
+					self:SetAttribute(pfx .. "IsEmpowerSpell*", empower)
 				end
 			end
 		end
@@ -526,6 +571,22 @@ local CHILDUPDATE = [[
 		self:SetAttribute("clickbutton", nil)
 	end
 
+	-- Bound-click dispatch can consume its chord modifiers before the native
+	-- action handler runs. The main's secure state, already used for its live
+	-- face, owns keyboard execution too. Mini children never publish here.
+	if row == 1 then
+		local keyer = control:GetFrameRef("keyer-" .. col)
+		if keyer then
+			keyer:SetAttribute("type", self:GetAttribute("type"))
+			keyer:SetAttribute("typerelease", self:GetAttribute("typerelease"))
+			keyer:SetAttribute("action", slot)
+			keyer:SetAttribute("macro", nil)
+			keyer:SetAttribute("macrotext", self:GetAttribute("macrotext"))
+			keyer:SetAttribute("clickbutton", self:GetAttribute("clickbutton"))
+			keyer:SetAttribute("unit", nil)
+		end
+	end
+
 	-- Preserve v8 Forever's AnyUp mouse path. A hold flag would suppress the
 	-- release click, even though paging itself now runs in secure snippets.
 	self:SetAttribute("pressAndHoldAction", self:GetAttribute("flux-native-click") ~= 1)
@@ -561,18 +622,19 @@ local function RowId(row)
 	return 1
 end
 
---- Lua twin of the CHILDUPDATE click-set block, for create time and for Forever
---- (where no snippet ever installs). prefix is "" (nomod), "shift-" or "ctrl-".
+--- Lua twin of the CHILDUPDATE click-set block, for create time and fallback
+--- when secure snippets are unavailable. Prefixes cover all eight modifier masks.
 --- The "*" suffix makes one write cover keys, left, right and middle click:
 --- SecureButton_GetButtonSuffix gives "1" for the LeftButton every strip key is
 --- remapped to, so bare "shift-action" would never be looked up.
 --- IsEmpowerSpell is left to CHILDUPDATE -- the wrap that reads it only exists
 --- on clients where snippets work.
-local function StampSwapClick(widget, prefix, slot)
+local function StampSwapClick(widget, prefix, slot, nativeOnly)
 	widget:SetAttribute(prefix .. "action*", slot)
 	local body = slot and widget:GetAttribute("flux-p-" .. slot)
 	local clicker = slot and widget:GetAttribute("flux-click-" .. slot)
 	local mode = slot and widget:GetAttribute("flux-m-" .. slot)
+	if nativeOnly then body, clicker = nil, nil end
 	-- Every branch writes all four. Leaving one nil falls through to the nomod
 	-- attribute, which would fire the nomod macro body under the modifier.
 	if clicker then
@@ -595,25 +657,74 @@ end
 
 State.StampSwapClick = StampSwapClick
 
---- Forever clicks a hidden LeftButton proxy (no KeyBind wrap, no ChildUpdate).
---- Star attributes are not enough: the proxy resolves type1 / macrotext1, then
---- the bare type which Attach left as "action". Write those too.
-local function StampLiveClick(widget, slot)
+--- OOC twin of the main child's keyboard publication. Native input may hide
+--- held modifiers during its bound click, so the proxy executes the secure
+--- main selection rather than repeating modifier resolution in the handler.
+function State.SyncMainKeyer(widget, keyer, slot, nativeOnly)
+	if not widget or not keyer or InLockdown()
+		or tonumber(widget:GetAttribute("flux-row")) ~= 1 then return false end
+	local column = tonumber(widget:GetAttribute("flux-column"))
+	if not column then return false end
+	if not slot then
+		local host = Bars.GetMain and Bars.GetMain(column) or widget._fluxHost
+		if host and host.widget == widget and State.ResolveCurrentSlot then
+			slot = State.ResolveCurrentSlot(host)
+		end
+		slot = slot or tonumber(widget:GetAttribute("action"))
+	end
+	if not slot then return false end
+	if nativeOnly == nil then
+		local header = widget.GetParent and widget:GetParent()
+		local page = header and header.GetAttribute and tonumber(header:GetAttribute("actionpage"))
+		if not page or page < 1 then page = State.GetCurrentPage() end
+		nativeOnly = column <= NATIVE and page >= 11
+	end
+	local body = widget:GetAttribute("flux-p-" .. slot)
+	local clicker = widget:GetAttribute("flux-click-" .. slot)
+	local mode = widget:GetAttribute("flux-m-" .. slot)
+	if nativeOnly then body, clicker = nil, nil end
+	local typ = "action"
+	if clicker then
+		typ, body = "click", nil
+	elseif type(body) == "string" and body ~= "" and mode ~= "d" then
+		typ = "macro"
+	else
+		body = nil
+	end
+	keyer:SetAttribute("type", typ)
+	keyer:SetAttribute("typerelease", typ)
+	keyer:SetAttribute("action", slot)
+	keyer:SetAttribute("macro", nil)
+	keyer:SetAttribute("macrotext", body)
+	keyer:SetAttribute("clickbutton", clicker)
+	-- Preserve the existing live-parent unit/mouseover policy. The proxy owns
+	-- no parked unit token that could suppress a macro for a missing unit.
+	keyer:SetAttribute("unit", nil)
+	return true
+end
+
+--- The fallback keeps the visible host's live display selectors synchronized.
+--- Its main row alone also publishes the current keyboard selection.
+local LIVE_BUTTON_SELECTORS = { "type1", "typerelease1", "clickbutton1", "macrotext1" }
+local function StampLiveClick(widget, slot, nativeOnly)
 	if not widget or not slot then
 		return
 	end
 	local body = widget:GetAttribute("flux-p-" .. slot)
 	local clicker = widget:GetAttribute("flux-click-" .. slot)
 	local mode = widget:GetAttribute("flux-m-" .. slot)
+	if nativeOnly then body, clicker = nil, nil end
 	local function write(prefix, typ, text, button)
 		widget:SetAttribute(prefix .. "type", typ)
-		widget:SetAttribute(prefix .. "type1", typ)
 		widget:SetAttribute(prefix .. "typerelease", typ)
-		widget:SetAttribute(prefix .. "typerelease1", typ)
 		widget:SetAttribute(prefix .. "clickbutton", button)
-		widget:SetAttribute(prefix .. "clickbutton1", button)
 		widget:SetAttribute(prefix .. "macrotext", text)
-		widget:SetAttribute(prefix .. "macrotext1", text)
+	end
+	-- An old live LeftButton selector wins over the nomod '*' click set after
+	-- releasing Shift/Ctrl, before the display driver catches up. Only the
+	-- pre-stamped click sets own button-specific routing.
+	for _, name in ipairs(LIVE_BUTTON_SELECTORS) do
+		if widget:GetAttribute(name) ~= nil then widget:SetAttribute(name, nil) end
 	end
 	if clicker then
 		write("", "click", nil, clicker)
@@ -626,36 +737,8 @@ local function StampLiveClick(widget, slot)
 	end
 	local column = tonumber(widget:GetAttribute("flux-column"))
 	local keyer = column and _G["FluxActionStripKey" .. column]
-	if not keyer then
-		return
-	end
-	if clicker then
-		keyer:SetAttribute("type", "click")
-		keyer:SetAttribute("type1", "click")
-		keyer:SetAttribute("clickbutton", clicker)
-		keyer:SetAttribute("clickbutton1", clicker)
-		keyer:SetAttribute("macrotext", nil)
-		keyer:SetAttribute("macrotext1", nil)
-	elseif type(body) == "string" and body ~= "" and mode ~= "d" then
-		keyer:SetAttribute("type", "macro")
-		keyer:SetAttribute("type1", "macro")
-		keyer:SetAttribute("typerelease", "macro")
-		keyer:SetAttribute("typerelease1", "macro")
-		keyer:SetAttribute("clickbutton", nil)
-		keyer:SetAttribute("macro", nil)
-		keyer:SetAttribute("macrotext", body)
-		keyer:SetAttribute("macrotext1", body)
-		keyer:SetAttribute("unit", nil)
-		keyer:SetAttribute("useOnKeyDown", true)
-		keyer:SetAttribute("pressAndHoldAction", false)
-		if keyer.RegisterForClicks then
-			keyer:RegisterForClicks("AnyDown", "AnyUp")
-		end
-	else
-		keyer:SetAttribute("type", nil)
-		keyer:SetAttribute("type1", nil)
-		keyer:SetAttribute("macrotext", nil)
-		keyer:SetAttribute("macrotext1", nil)
+	if keyer and tonumber(widget:GetAttribute("flux-row")) == 1 then
+		State.SyncMainKeyer(widget, keyer, slot, nativeOnly)
 	end
 end
 
@@ -751,28 +834,25 @@ local RESOLVE_PAGE = [[
 -- No shift-/ctrl-actionpage twins: hosts are SetID(0) + useparent-actionpage
 -- false, so CalculateAction never reaches the page math and those writes were
 -- dead. The modifier axis lives on the hosts' own shift-action* / ctrl-action*.
-local PACK = RESOLVE_PAGE .. [[
+local PACK_HEAD = RESOLVE_PAGE .. [[
 	self:SetAttribute("actionpage", page)
 	local packed = page + swap * 100
 	self:SetAttribute("state", packed)
+]]
+local PACK = PACK_HEAD .. [[
 	control:ChildUpdate("state", packed)
 ]]
+local HOVER_PACK = PACK_HEAD .. [[
+	control:ChildUpdate("state", -packed)
+]]
 
--- SHIFT/CTRL minis must keep the live bonus/override page so a swap uses
--- cat/bear/vehicle 1-12, not noform. Resting minis stay on sec/tert slots,
--- so a native flip must not ChildUpdate (backup skipped LAB state 21/22).
+-- SHIFT/CTRL minis keep the current page in their inverse click sets even
+-- while their resting face stays on sec/tert. The child guards skip unchanged
+-- live-face writes; skipping ChildUpdate here would leave a prepared inverse
+-- route on the previous form/page until the modifier driver caught up.
 local PACK_MINI = RESOLVE_PAGE .. [[
 	self:SetAttribute("actionpage", page)
 	local packed = page + swap * 100
-	if swap == 0 then
-		local prev = tonumber(self:GetAttribute("state"))
-		self:SetAttribute("state", packed)
-		if prev and prev < 11 and page < 11 then
-			return
-		end
-		control:ChildUpdate("state", packed)
-		return
-	end
 	self:SetAttribute("state", packed)
 	control:ChildUpdate("state", packed)
 ]]
@@ -781,18 +861,23 @@ local PACK_MINI = RESOLVE_PAGE .. [[
 local FORCE_RESET = [[
 	control:ChildUpdate("fluxreset", 1)
 ]]
-
-local FORCE_HEAD = FORCE_RESET .. [[
+local REFRESH_HEAD = [[
 	local stateid = "native"
 	local newstate = self:GetAttribute("state-native")
 ]]
+local FORCE_HEAD = FORCE_RESET .. REFRESH_HEAD
 
-local STATIC_PACK = [[
+local STATIC_PACK_HEAD = [[
 	local swap = tonumber(newstate)
 	if not swap then swap = tonumber(self:GetAttribute("state-page")) or 0 end
 	local packed = 1 + swap * 100
 	self:SetAttribute("state", packed)
+]]
+local STATIC_PACK = STATIC_PACK_HEAD .. [[
 	control:ChildUpdate("state", packed)
+]]
+local STATIC_HOVER_PACK = STATIC_PACK_HEAD .. [[
+	control:ChildUpdate("state", -packed)
 ]]
 
 local function MakeHeader(name, parent)
@@ -869,6 +954,7 @@ function State.RegisterDrivers()
 	SetSnippet(headers.main, "_onstate-native", PACK)
 	SetSnippet(headers.main, "_onstate-swap", PACK)
 	SetSnippet(headers.main, "_fluxForceApply", FORCE_HEAD .. PACK)
+	writeSnippet(headers.main, "_fluxHoverApply", REFRESH_HEAD .. HOVER_PACK)
 	Drive(headers.main, "native", native)
 
 	-- Native stance/bonusbar drivers stay per dynamic header (3), same as backup.
@@ -877,6 +963,7 @@ function State.RegisterDrivers()
 	SetSnippet(headers.sec, "_onstate-native", PACK_MINI)
 	SetSnippet(headers.sec, "_onstate-swap", PACK_MINI)
 	SetSnippet(headers.sec, "_fluxForceApply", FORCE_HEAD .. PACK_MINI)
+	writeSnippet(headers.sec, "_fluxHoverApply", REFRESH_HEAD .. HOVER_PACK)
 	Drive(headers.sec, "native", native)
 
 	Drive(headers.tert, "native")
@@ -884,23 +971,29 @@ function State.RegisterDrivers()
 	SetSnippet(headers.tert, "_onstate-native", PACK_MINI)
 	SetSnippet(headers.tert, "_onstate-swap", PACK_MINI)
 	SetSnippet(headers.tert, "_fluxForceApply", FORCE_HEAD .. PACK_MINI)
+	writeSnippet(headers.tert, "_fluxHoverApply", REFRESH_HEAD .. HOVER_PACK)
 	Drive(headers.tert, "native", native)
 
-	local STATIC_FORCE = FORCE_RESET .. [[
+	local STATIC_REFRESH = [[
 		local newstate = self:GetAttribute("state-page") or 0
-	]] .. STATIC_PACK
+	]]
+	local STATIC_FORCE = FORCE_RESET .. STATIC_REFRESH .. STATIC_PACK
+	local STATIC_HOVER = STATIC_REFRESH .. STATIC_HOVER_PACK
 
 	Drive(headers.staticMain, "page")
 	SetSnippet(headers.staticMain, "_onstate-page", STATIC_PACK)
 	SetSnippet(headers.staticMain, "_fluxForceApply", STATIC_FORCE)
+	writeSnippet(headers.staticMain, "_fluxHoverApply", STATIC_HOVER)
 
 	Drive(headers.staticSec, "page")
 	SetSnippet(headers.staticSec, "_onstate-page", STATIC_PACK)
 	SetSnippet(headers.staticSec, "_fluxForceApply", STATIC_FORCE)
+	writeSnippet(headers.staticSec, "_fluxHoverApply", STATIC_HOVER)
 
 	Drive(headers.staticTert, "page")
 	SetSnippet(headers.staticTert, "_onstate-page", STATIC_PACK)
 	SetSnippet(headers.staticTert, "_fluxForceApply", STATIC_FORCE)
+	writeSnippet(headers.staticTert, "_fluxHoverApply", STATIC_HOVER)
 
 	local hub = State.hub
 	if not hub then
@@ -986,6 +1079,23 @@ function State.CurrentSwap()
 	return 0
 end
 
+--- Display identity follows the current page and physical modifiers even if
+--- an older native action-attribute notification arrives after a newer edge.
+--- Optional page/swap let a whole-host pass take one shared input snapshot.
+function State.ResolveCurrentSlot(host, page, swap)
+	local widget = host and host.widget
+	if not widget then return nil end
+	local column = host.column or tonumber(widget:GetAttribute("flux-column"))
+	if not column then return nil end
+	if page == nil then
+		local header = widget.GetParent and widget:GetParent()
+		page = header and header.GetAttribute and tonumber(header:GetAttribute("actionpage"))
+		if not page or page < 1 then page = State.GetCurrentPage() end
+	end
+	if swap == nil then swap = State.CurrentSwap() end
+	return SlotMath.Resolve(column, host.row or "main", page, swap, HostResolveOpts(widget, column))
+end
+
 --- Paint-only: host.slot follows SlotMath without SetAttribute (combat-safe).
 --- Also rehomes corner badges and queues identity VFX so fill/reticle/interrupt
 --- /burst follow the spell that just moved, even when the action attribute is
@@ -1000,21 +1110,23 @@ function State.IndexLiveSlots()
 		return
 	end
 	local BadgeHost = Bars.BadgeHost or _G.FluxBadgeHost
-	local page = State.GetCurrentPage and State.GetCurrentPage() or 1
 	local swap = State.CurrentSwap()
 	Bars.ForEachHost(function(host)
 		local widget = host.widget
 		if not widget then
 			return
 		end
-		local column = host.column or tonumber(widget:GetAttribute("flux-column"))
-		local row = host.row or "main"
-		local slot = SlotMath.Resolve(column, row, page, swap, HostResolveOpts(widget, column))
+		local slot = State.ResolveCurrentSlot(host, nil, swap)
 		local prev = host.slot
 		Hosts.IndexSlot(host, slot)
 		if prev == slot then
 			return
 		end
+		-- Rebind overlay/plain-macro identity before badges and effects read
+		-- the moved host. Context only reparses condition kinds present in
+		-- the macro; a plain program has no [mod] subscription to do this.
+		local PF = Bars.ProgramFace
+		if PF and PF.TranslateHost then PF.TranslateHost(host, true) end
 		if BadgeHost and BadgeHost.NotifyDisplay then
 			BadgeHost.NotifyDisplay(host)
 		end
@@ -1029,7 +1141,7 @@ function State.IndexLiveSlots()
 	end)
 end
 
---- Forever: no ChildUpdate. Stamp all three click sets plus the live face.
+--- Without ChildUpdate, stamp all modifier sets plus the live face.
 ---
 --- OOC only. SetAttribute on a protected frame from insecure Lua is blocked in
 --- combat (ADDON_ACTION_BLOCKED on FluxActionStripButtonN), which also aborts
@@ -1065,10 +1177,12 @@ function State.ApplySlotsInsecure()
 			live = ctrl
 		end
 		widget:SetAttribute("action", live)
-		StampSwapClick(widget, "", nomod)
-		StampSwapClick(widget, "shift-", shift)
-		StampSwapClick(widget, "ctrl-", ctrl)
-		StampLiveClick(widget, live)
+		local nativeOnly = column <= NATIVE and page >= 11 and row == "main"
+		for i, prefix in ipairs(CLICK_PREFIXES) do
+			local slot = i >= 5 and shift or i >= 3 and ctrl or nomod
+			StampSwapClick(widget, prefix, slot, nativeOnly)
+		end
+		StampLiveClick(widget, live, nativeOnly)
 		widget:SetAttribute("flux-applied", live)
 		widget:SetAttribute("flux-applied-mods", nomod * 1000000 + shift * 1000 + ctrl)
 		if Hosts and Hosts.IndexSlot then
@@ -1089,7 +1203,7 @@ function State.OnModFallback()
 	State.ApplySlotsInsecure()
 end
 
-function State.ForceApply()
+function State.ForceApply(hoverOnly)
 	if not State.headers then
 		return false
 	end
@@ -1104,17 +1218,22 @@ function State.ForceApply()
 	end
 	-- Execute from insecure Lua in combat blocks SecureHandlersUpdateFrame:SetAttribute
 	-- and taints later SHIFT/CTRL _onstate-swap ChildUpdate (main stays on Spell-A).
-	local function run(header)
-		if header and header.Execute and header:GetAttribute("_fluxForceApply") then
-			local Restricted = Flux.Restricted
-			if Restricted and Restricted.ExecutePaging then
-				Restricted.ExecutePaging(header, [[ self:RunAttribute("_fluxForceApply") ]])
-			elseif Restricted and Restricted.Execute then
-				Restricted.Execute(header, [[ self:RunAttribute("_fluxForceApply") ]])
-			else
-				header:Execute([[ self:RunAttribute("_fluxForceApply") ]])
-			end
+	local Restricted = Flux.Restricted
+	local function execute(header, body)
+		if Restricted and Restricted.ExecutePaging then
+			return Restricted.ExecutePaging(header, body)
+		elseif Restricted and Restricted.Execute then
+			return Restricted.Execute(header, body)
+		else
+			header:Execute(body)
+			return true
 		end
+	end
+	local function run(header)
+		if not (header and header.Execute and header:GetAttribute("_fluxForceApply")) then return end
+		if hoverOnly == true and header:GetAttribute("_fluxHoverApply")
+			and execute(header, [[ self:RunAttribute("_fluxHoverApply") ]]) then return end
+		execute(header, [[ self:RunAttribute("_fluxForceApply") ]])
 	end
 	local h = State.headers
 	run(h.main)

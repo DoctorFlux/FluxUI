@@ -1,0 +1,777 @@
+{
+  "changeId": "LHO-AUCTION-BASELINES-P70-P72-20261116",
+  "recordedUTC": "2026-11-16T18:48:15.061806+00:00",
+  "status": "P70_P71_BASELINES_PASS_P72_REJECTED_UNAPPLIED",
+  "goalStatus": "ACTIVE",
+  "scope": "P70 natural UI reachability and P71 actual count-options BEFORE baselines; P72 functional proof and fixed cost rejection; P67 zero-input attempt closure.",
+  "repositoryActionsThisSlice": {
+    "productLuaEdits": 0,
+    "testSourceEdits": 0,
+    "nativeInputByThisSlice": 0,
+    "commit": false,
+    "manualSync": false,
+    "publication": false,
+    "recordPreparedExternallyBeforeDocsApplication": true
+  },
+  "P70": {
+    "status": "BASELINE_ONLY_UI_REACHABILITY_PASS",
+    "jobsExactly": 2,
+    "runtimes": [
+      "stock Lua 5.1.5",
+      "stock Lua 5.4"
+    ],
+    "casesEach": 6,
+    "ownChecksEach": 131,
+    "stdoutByteIdentical": true,
+    "stdoutSHA256": "8ab217ee5b954e2824a39e769965dbe72181599783128525546dcea5b04449c0",
+    "tenCurrentAndFrozenPinsStable": true,
+    "allChildrenReaped": true,
+    "modernAndLegacyLimitedZero": {
+      "actualControlPath": "noLimit OnClick -> SetPriceUnlimited(false) -> SetMaxPrice(0), then actual Hide/ShowSession",
+      "forcedBuildsAfterToggle": 6,
+      "additionalForcedBuildsAfterReopen": 6,
+      "eachSixBuildPhase": {
+        "nameEntries": 6,
+        "modeledLiveCountEntries": 18,
+        "SetItemUnitsEntries": 12
+      },
+      "savedExplicitLimitedZeroSurvivesReopen": true,
+      "postToggleModeledAHRequestsOrTransactions": 0,
+      "initialUnlimitedSetup": "One modeled information search per no-recipe case; retained separately."
+    },
+    "freeOwnedCraftGuard": {
+      "status": "craftReady",
+      "cost": 0,
+      "ownedReagent": 1,
+      "operations": 1,
+      "forcedBuildsToggleAndReopen": [
+        5,
+        3
+      ],
+      "manualTargets": 1,
+      "derivedMaterialRows": 1
+    },
+    "publicBoundaryControls": {
+      "lateClearVendorCraftPlanMutation": "Fresh replacement target/name observed; 9+6 forced builds.",
+      "lateNameError": "Same opaque error object after four started forced builds; price/limited setter state already committed."
+    },
+    "limits": [
+      "UI model reachability is not current saved/in-memory settings prevalence or native callback frequency.",
+      "Native APIs, inventory, professions, rendering and input are modeled; Followup absent.",
+      "Function-entry diagnostic overhead: counts are not CPU, GC, FPS or spike attribution.",
+      "FullBuilds counts GetRows(refresh=true); other entry totals can include semantic-verification/cache reads."
+    ]
+  },
+  "P71": {
+    "status": "BASELINE_PASS",
+    "jobsExactly": 2,
+    "casesEach": 6,
+    "checksEach": 251,
+    "runtimes": [
+      "stock Lua 5.1.5",
+      "stock Lua 5.4"
+    ],
+    "stdoutByteIdentical": true,
+    "stdoutSHA256": "da345febd32baef6d32dea583546bde0f39fa91ebfcecb654ba58bebe24cca78",
+    "stdoutBytesEach": 1047,
+    "twelveCurrentAndFrozenPinsStable": true,
+    "allChildrenReaped": true,
+    "cases": [
+      "canonical-fresh-and-units",
+      "foreign-RI-error-secret-false",
+      "foreign-Inv",
+      "foreign-Index-live",
+      "foreign-GetCount-late-warband",
+      "reentry-zero-loading-error"
+    ],
+    "canonicalWitness": {
+      "RIInvIndexEntriesEach": 4,
+      "distinctCarriedTables": 4,
+      "HasWarbandCalls": 8,
+      "IsReliableCalls": 6,
+      "modeledNativeCountCalls": 4
+    },
+    "boundaries": [
+      "Canonical business helper identities remain untouched by diagnostic wrappers.",
+      "Foreign RI/Inv/Index callables retain fresh five-field input; foreign Index.GetCount receives fresh normalized nine-field input with late warband observation.",
+      "Selected getter order, original closed Index, reentry, reliable live zero/loading and opaque raw errors observed."
+    ],
+    "limits": [
+      "Desktop function-entry/options/ordered native-argument witness, not timing or allocation measurement.",
+      "Job CPU/wall metadata are not performance samples; no native/all-client secrecy/taint/FPS certification."
+    ]
+  },
+  "P72": {
+    "status": "REJECTED_UNAPPLIED",
+    "sources": {
+      "Inventory/Index.lua": {
+        "baselineSHA256": "e1cdab75fc6f8589c9714f02efc73790d41659a08e769467a8a38638ab41921d",
+        "candidateSHA256": "2056a870e3fb5b4267c9dc52bac3cc3893e4c5425bf405781f9e80644c8f9d5d",
+        "inverseSourceExact": true,
+        "diffSHA256": "05e8eb81921fc8df1b8d859c151322491d90f52da36e2f186d0767657e4ce235",
+        "rawequalCorrectionInverseExact": true
+      },
+      "Inventory/Restock/FluxRestock_Inv.lua": {
+        "baselineSHA256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+        "candidateSHA256": "41b1274fe336c265722436148888f9cd3e7bb89082bda470276bc4384db3d5ae",
+        "inverseSourceExact": true,
+        "diffSHA256": "dbfcbf81425133648550f35535bc686d9143b6ef905b3d942d42692f93551314",
+        "rawequalCorrectionInverseExact": true
+      },
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+        "baselineSHA256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+        "candidateSHA256": "cf52bd1d64b4830f20bb3d90e5ccdb03c465db8abd9c7027b3fbdf5059838947",
+        "inverseSourceExact": true,
+        "diffSHA256": "57c7827c954e9f7d9b003a8a08ee602be5ada647189f3ab7cb143c1d8c278f80",
+        "rawequalCorrectionInverseExact": true
+      }
+    },
+    "sourceBuildSHA256": "ed82adf0aa88e7df0f0e9a4657716d7353604e46d6144fae1fe6ecaf8ae5e6f1",
+    "sourceSealSHA256": "d29febebcaf6969d65442395314ab4106d9e147752be565ab6fd59e1fd5c49f4",
+    "independentSourceReviewSHA256": "439e0b0dabeab92bd7953570501fa278e2af997d0fac6552c61e82191f0e8d6c",
+    "sourceReviewDecision": "Conditional pass for separately authorized functional proof only; no performance/application approval.",
+    "design": "Three files; exact defining-function/owner authority with raw table equality; two private five-field Index option constants only on the fully canonical chain; fresh public fallback arguments retained.",
+    "preservedBySourceReview": [
+      "Public getter multiplicity and selected-callback/row argument order.",
+      "Current fallback/raw opaque-error/reentry boundaries; original closed Index behavior.",
+      "Logical/native query count and cadence; no result cache, row pruning or coalescing."
+    ],
+    "pending": [],
+    "performanceClaim": "No accepted optimization: conditional transient-byte savings do not overcome owned CPU rejection and startup cost.",
+    "R1BeforeRawequalDrafts": "Preserved externally; final table-owner guards use rawequal to avoid __eq execution/spoofing.",
+    "functionalProof": {
+      "gateSHA256": "0ecae09c15ef265f77dade62a38883ab93a5f225136a60768c37b7a88981ea2c",
+      "executionSHA256": "28528c894f4d34551ef9727daad6ded5131f9fb58308eca6ce6dab4ba6e0de20",
+      "jobsExactly": 2,
+      "scenariosEachVM": 12,
+      "contextsEachVM": 24,
+      "checksEachVM": 546,
+      "sourceGuardsBeforeAfter": true,
+      "allChildrenReaped": true,
+      "logicalNativeTraceParity": true,
+      "opaqueCallbackErrorIdentity": "Exact, without normalization.",
+      "generatedNilBooleanErrors": "Raw strings retained separately; field/local symbol names differ. Explicit failure-class comparison only, not exact generated-error-string parity."
+    },
+    "decision": {
+      "authority": "Root REJECT decision, sealed author report11e8e71a and independent R15 numeric reviewcddae605/final-seal7dfa3346.",
+      "outcome": "REJECT_NO_APPLY",
+      "reason": "Owned CPU median +17.3913% and all three pairs slower violate the predeclared rejection rules regardless of GC savings.",
+      "noMoreVariantsOrResampling": true,
+      "performanceGainClaim": false
+    },
+    "cost": {
+      "scope": "Whole-child stock51 CPU includes setup/boot, fixed warmup, work, normal GC and output; modeled native/provider endpoints. Not EBS/full workflow/native FPS or user frequency.",
+      "declarationSHA256": "50169a513b8cc8a3d08e309caeecb4114202e1d152889b93614a2ff5cbd24e49",
+      "rawSHA256": "c2821b0f8820043b6c73c6e7132172f65515e1de47df1ea85ae3780c79e112db",
+      "jobs": {
+        "CPU": 12,
+        "GC": 4,
+        "total": 16,
+        "GCWindows": 32,
+        "allPass": true,
+        "allReaped": true,
+        "child": null,
+        "resampling": false,
+        "cyclesCPU": 50000,
+        "logicalQueriesPerCPUWork": 100000,
+        "modeledNativeQueriesPerCPUWork": 100000,
+        "warmCycles": 128,
+        "CPUQuantumMs": 15.625
+      },
+      "rejectionRules": {
+        "ownedMedianRegressionAbovePct": 5,
+        "ownedSlowerPairsAtLeast": 2,
+        "foreignMedianRegressionAbovePct": 5,
+        "GCDoesNotOverrideCPURejection": true
+      },
+      "CPU": {
+        "owned": {
+          "processCPUms": {
+            "baselineValues": [
+              359.375,
+              406.25,
+              343.75
+            ],
+            "candidateValues": [
+              421.875,
+              437.5,
+              421.875
+            ],
+            "baselineMedian": 359.375,
+            "candidateMedian": 421.875,
+            "medianPct": 17.391304347826097,
+            "baselineRange": [
+              343.75,
+              406.25
+            ],
+            "candidateRange": [
+              421.875,
+              437.5
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 359.375,
+                "candidate": 421.875,
+                "delta": 62.5,
+                "pct": 17.391304347826097
+              },
+              {
+                "pair": 2,
+                "baseline": 406.25,
+                "candidate": 437.5,
+                "delta": 31.25,
+                "pct": 7.692307692307687
+              },
+              {
+                "pair": 3,
+                "baseline": 343.75,
+                "candidate": 421.875,
+                "delta": 78.125,
+                "pct": 22.72727272727273
+              }
+            ],
+            "slowerPairs": 3,
+            "ties": 0
+          },
+          "wallMs": {
+            "baselineValues": [
+              358.99999999674037,
+              405.9999999590218,
+              391.00000000325963
+            ],
+            "candidateValues": [
+              452.9999999795109,
+              437.00000003445894,
+              438.0000000237487
+            ],
+            "baselineMedian": 391.00000000325963,
+            "candidateMedian": 438.0000000237487,
+            "medianPct": 12.02046036319624,
+            "baselineRange": [
+              358.99999999674037,
+              405.9999999590218
+            ],
+            "candidateRange": [
+              437.00000003445894,
+              452.9999999795109
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 358.99999999674037,
+                "candidate": 452.9999999795109,
+                "delta": 93.99999998277053,
+                "pct": 26.183844006580514
+              },
+              {
+                "pair": 2,
+                "baseline": 405.9999999590218,
+                "candidate": 437.00000003445894,
+                "delta": 31.00000007543713,
+                "pct": 7.635467999646806
+              },
+              {
+                "pair": 3,
+                "baseline": 391.00000000325963,
+                "candidate": 438.0000000237487,
+                "delta": 47.0000000204891,
+                "pct": 12.02046036319624
+              }
+            ],
+            "slowerPairs": 3,
+            "ties": 0
+          }
+        },
+        "foreign": {
+          "processCPUms": {
+            "baselineValues": [
+              375.0,
+              390.625,
+              359.375
+            ],
+            "candidateValues": [
+              390.625,
+              390.625,
+              359.375
+            ],
+            "baselineMedian": 375.0,
+            "candidateMedian": 390.625,
+            "medianPct": 4.166666666666674,
+            "baselineRange": [
+              359.375,
+              390.625
+            ],
+            "candidateRange": [
+              359.375,
+              390.625
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 375.0,
+                "candidate": 390.625,
+                "delta": 15.625,
+                "pct": 4.166666666666674
+              },
+              {
+                "pair": 2,
+                "baseline": 390.625,
+                "candidate": 390.625,
+                "delta": 0.0,
+                "pct": 0.0
+              },
+              {
+                "pair": 3,
+                "baseline": 359.375,
+                "candidate": 359.375,
+                "delta": 0.0,
+                "pct": 0.0
+              }
+            ],
+            "slowerPairs": 1,
+            "ties": 2
+          },
+          "wallMs": {
+            "baselineValues": [
+              389.9999999557622,
+              389.9999999557622,
+              391.00000000325963
+            ],
+            "candidateValues": [
+              422.0000000204891,
+              390.00000001396984,
+              375.0
+            ],
+            "baselineMedian": 389.9999999557622,
+            "candidateMedian": 390.00000001396984,
+            "medianPct": 1.4925038982482874e-08,
+            "baselineRange": [
+              389.9999999557622,
+              391.00000000325963
+            ],
+            "candidateRange": [
+              375.0,
+              422.0000000204891
+            ],
+            "pairs": [
+              {
+                "pair": 1,
+                "baseline": 389.9999999557622,
+                "candidate": 422.0000000204891,
+                "delta": 32.00000006472692,
+                "pct": 8.205128222655556
+              },
+              {
+                "pair": 2,
+                "baseline": 389.9999999557622,
+                "candidate": 390.00000001396984,
+                "delta": 5.820766091346741e-08,
+                "pct": 1.4925038982482874e-08
+              },
+              {
+                "pair": 3,
+                "baseline": 391.00000000325963,
+                "candidate": 375.0,
+                "delta": -16.00000000325963,
+                "pct": -4.0920716120527505
+              }
+            ],
+            "slowerPairs": 2,
+            "ties": 0
+          }
+        }
+      },
+      "transientGC": {
+        "method": "One N4 and N8 cycle window per runtime/profile/variant; two logical Need queries per cycle. These are observed two-point slopes with nonzero/different intercepts, not proof of a universal linear allocation rate, nonlinearity or GC pauses.",
+        "runtimes": {
+          "stock51": {
+            "owned": {
+              "baselineN4N8": [
+                3584,
+                7168
+              ],
+              "candidateN4N8": [
+                512,
+                1024
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                448,
+                64
+              ]
+            },
+            "foreign": {
+              "baselineN4N8": [
+                3584,
+                7168
+              ],
+              "candidateN4N8": [
+                3584,
+                7168
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                448,
+                448
+              ]
+            },
+            "empty": {
+              "baselineN4N8": [
+                3584,
+                7168
+              ],
+              "candidateN4N8": [
+                512,
+                1024
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                448,
+                64
+              ]
+            },
+            "noapi": {
+              "baselineN4N8": [
+                0,
+                0
+              ],
+              "candidateN4N8": [
+                0,
+                0
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                0,
+                0
+              ]
+            }
+          },
+          "stock54": {
+            "owned": {
+              "baselineN4N8": [
+                2752,
+                4864
+              ],
+              "candidateN4N8": [
+                768,
+                1152
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                264,
+                48
+              ]
+            },
+            "foreign": {
+              "baselineN4N8": [
+                2752,
+                5120
+              ],
+              "candidateN4N8": [
+                2752,
+                5120
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                296,
+                296
+              ]
+            },
+            "empty": {
+              "baselineN4N8": [
+                2752,
+                5120
+              ],
+              "candidateN4N8": [
+                768,
+                1152
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                296,
+                48
+              ]
+            },
+            "noapi": {
+              "baselineN4N8": [
+                192,
+                192
+              ],
+              "candidateN4N8": [
+                192,
+                192
+              ],
+              "twoPointBytesPerNeedBaselineCandidate": [
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "limits": "54 owned baseline N8 is4864 versus foreign5120; preserve both raw points and their different fitted intercepts. Two points do not establish linearity or nonlinearity, and universal allocation numbers remain unproved."
+      },
+      "startupRetainedGrowth": {
+        "candidateMinusBaselineBytesPerShape": {
+          "stock51": 5973,
+          "stock54": 4998
+        },
+        "appliesTo": [
+          "owned",
+          "foreign",
+          "empty",
+          "noapi"
+        ],
+        "meaning": "Model startup retained-heap deltas measured separately, not per-query allocation.",
+        "rawByRuntimeAndShape": {
+          "stock51": {
+            "owned": {
+              "baselineBytes": 722062.0,
+              "candidateBytes": 728035.0,
+              "deltaBytes": 5973.0,
+              "coldFreshChild": true
+            },
+            "foreign": {
+              "baselineBytes": 716093.0,
+              "candidateBytes": 722066.0,
+              "deltaBytes": 5973.0,
+              "coldFreshChild": false
+            },
+            "empty": {
+              "baselineBytes": 716005.0,
+              "candidateBytes": 721978.0,
+              "deltaBytes": 5973.0,
+              "coldFreshChild": false
+            },
+            "noapi": {
+              "baselineBytes": 714941.0,
+              "candidateBytes": 720914.0,
+              "deltaBytes": 5973.0,
+              "coldFreshChild": false
+            }
+          },
+          "stock54": {
+            "owned": {
+              "baselineBytes": 617390.0,
+              "candidateBytes": 622388.0,
+              "deltaBytes": 4998.0,
+              "coldFreshChild": true
+            },
+            "foreign": {
+              "baselineBytes": 612350.0,
+              "candidateBytes": 617348.0,
+              "deltaBytes": 4998.0,
+              "coldFreshChild": false
+            },
+            "empty": {
+              "baselineBytes": 612270.0,
+              "candidateBytes": 617268.0,
+              "deltaBytes": 4998.0,
+              "coldFreshChild": false
+            },
+            "noapi": {
+              "baselineBytes": 611526.0,
+              "candidateBytes": 616524.0,
+              "deltaBytes": 4998.0,
+              "coldFreshChild": false
+            }
+          }
+        },
+        "limits": "Only the first owned boot is fresh-child cold; later profile contexts retain warmed-string/interning scope. All paired raw startup observations remain linked."
+      },
+      "history": {
+        "R1": {
+          "status": "SETUP_FAILURE",
+          "rawSHA256": "977046edcd09617344f46da3d8a0642d2a067c24ff0c69c9cb9a24dc744c1a21",
+          "failedBaselineChildren": 1,
+          "validCPUPairs": 0,
+          "GCWindows": 0,
+          "beforeOwnerLoadWarmOrWork": true,
+          "lexicalPathChars": 273,
+          "resolvedPathChars": 223,
+          "allChildrenReaped": true
+        },
+        "R2": {
+          "status": "UNUSED_BYTE_EXACT_SOURCE_COPY",
+          "driverDeclarationPlanByteExactToR1": true,
+          "reason": "Root source-view omission prompted readback; no actual driver defect or cost result."
+        },
+        "R3": {
+          "status": "ONE_AUTHORIZED_PATH_REPAIR_BATCH_PASS",
+          "change": "Only resolved fixture/owner roots and corresponding argv paths; same declaration, work and owners.",
+          "pathRepairSHA256": "4ad172a748f9a6789fe0b4cf3c43b2ebba5fa969fc0537b30efcbc6b45312027",
+          "declarationByteExact": true,
+          "noAdaptiveNsOrResampling": true
+        }
+      },
+      "allRawSamplesPairsAndWallScope": "CPU arrays, ranges, all pair differences and wall values above are adopted verbatim from sealed author analysis, not new timing or an additional independent audit.",
+      "independentNumericReview": {
+        "reviewSHA256": "cddae605ef675a623d6729d5989a5ad82c766c4c9e9a10571db0f5dc29251a8c",
+        "finalSealSHA256": "7dfa33466497af7acc3e72a5e18e13a6441fc5f3e4751aea2751cb067b9678c1",
+        "all16StdoutStderrAndScheduleVerified": true,
+        "all32GCWindowsVerified": true,
+        "sourcePinsStable": 50,
+        "authorNumericCrosschecks": 153,
+        "reviewerActions": "Read-only numerical/source receipt review; no timing rerun or new Lua/native jobs."
+      }
+    }
+  },
+  "nativeP67": {
+    "status": "PREPARED_NEVER_STAGED_ARMED_OR_INSTALLED",
+    "packetsSent": 0,
+    "spentReceiptCreated": false,
+    "attempt1g": {
+      "journalStage": "source preProof only",
+      "leaseEndedInputSent": false,
+      "leaseReason": "Lease expired",
+      "installReceipt": false,
+      "reasonBeforeInput": "Unknown: tool output was lost; no specific guard failure inferred.",
+      "ownedWatchdogAbsentByRootHostCheck": true
+    },
+    "attempt1h": {
+      "result": "Held-key foreground rejection before journal",
+      "inputSent": false
+    },
+    "attempt1i": {
+      "rootVisualObservation": "Logout countdown showing 12 seconds; left untouched.",
+      "sourceImageSHA256": "37e784c37c3163e4a34b34b31d8037f67adbfa8934b1b7810599b7e8c54bbbd4",
+      "explicitReleaseOwnLockRemoved": true,
+      "finalLeaseEndedInputSent": false,
+      "finalLeaseOwnLockRemoved": false,
+      "finalLeaseExplanation": "Own lock already released; absence is not a failed cleanup.",
+      "packetsSent": 0
+    },
+    "rootFinalHostSnapshot": {
+      "scope": "Dated Root read-only host check around 18:25 UTC, not a live process guarantee.",
+      "ownedWatchdogPIDsAbsent": [
+        46292,
+        34688
+      ],
+      "nativePaintHelperPythonCommandAbsent": true,
+      "inputLockSpentCancelJumpStopAbsent": true,
+      "holdsSHA256": {
+        "no_jump": "95aa08f0114a6049b2ad0d2a24da3dd33507a153dd971964325c7e391b51fd73",
+        "craft_hold": "84a0291483b3895b20ad6f5036208dba69223b0f8c0bf4f49843ee7a137b9ac1",
+        "INPUT_HALTED": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3"
+      }
+    },
+    "userLogoutPreserved": true,
+    "cancelReconnectJumpReloadActions": 0,
+    "clientClosedOrLogoutCompleted": "Not inferred.",
+    "nextNativeRequirements": "Fresh exact client/world/closed-chat/ownership and current source/input guards; no prior quiet-window carry.",
+    "goalRemainsActiveNotPaused": true
+  },
+  "currentBaselineSourcePins": {
+    "Inventory/Index.lua": "e1cdab75fc6f8589c9714f02efc73790d41659a08e769467a8a38638ab41921d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+    "tests/auction_restock.lua": "6555f38a5e069424127c79e950616a8e01f6007c943c69b3607c02b6465d1830",
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+    "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "f4384f5e3be6f508320e7a4a2b20e7fe48843758b44753e3cb8a35e2c2667b74",
+    "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+    "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5200566436891b494b5a2db788c4ab9e40b52d6c70527f6a2266f1c32c483262",
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+    "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+  },
+  "externalEvidence": {
+    "rootAlias": "P4 = external lag-hotspots-20261114/resume4-20261114T222014Z evidence tree; raw screenshots, journals, settings contents and private identifiers are not copied into this record.",
+    "artifacts": [
+      {
+        "pathRelativeToExternalP4": "auction-cap-zero-p70-baseline/report.json",
+        "sha256": "3c30b2758e4e38caa2962257ab34d370671a6d38533341d714e9de8dc906ec9e"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-cap-zero-p70-baseline/seal.json",
+        "sha256": "547a79fa54560a16f6850d87ed5ad9cdaf903e45c2b08260720278ad849baa03"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-live-options-p71-baseline/first-baseline-jobs-20261116T181856Z/receipt.json",
+        "sha256": "98d663431789521950a7eb9757babf0fb33bee9bcc542a7775f9209baa18cc2f"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-live-options-p71-baseline/first-baseline-jobs-20261116T181856Z/seal.json",
+        "sha256": "9f114d0710f57995b7aa91ca47e1d3ddf62f06fbb75e2f2c3b2fd7a333658764"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/source-build.json",
+        "sha256": "ed82adf0aa88e7df0f0e9a4657716d7353604e46d6144fae1fe6ecaf8ae5e6f1"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/source-seal.json",
+        "sha256": "d29febebcaf6969d65442395314ab4106d9e147752be565ab6fd59e1fd5c49f4"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/independent-source-review-hook/review.json",
+        "sha256": "439e0b0dabeab92bd7953570501fa278e2af997d0fac6552c61e82191f0e8d6c"
+      },
+      {
+        "pathRelativeToExternalP4": "native/jq4-p67stage1g-journal.json",
+        "sha256": "7b8524ea360ee4d692c464a7e0db9b919c8ad8af5309c315e8add835be9bae0c"
+      },
+      {
+        "pathRelativeToExternalP4": "native/jq4-p67stage1g-lease-ended.json",
+        "sha256": "cdb6edcc29a59ddbd59a43b64dca4e39c5be5e1928fab57de1497930ff5b67a9"
+      },
+      {
+        "pathRelativeToExternalP4": "native/jq4-p67stage1i-journal.json",
+        "sha256": "18a065a3ec25b386cbbd4f7dc70a526d5aaee12fc973d2abf6ab8fc7d83dd7e5"
+      },
+      {
+        "pathRelativeToExternalP4": "native/jq4-p67stage1i-lease-ended.json",
+        "sha256": "f309ff54f14345ba046063edbe83636f1c364aaffd10d61f14be4049a61093b7"
+      },
+      {
+        "pathRelativeToExternalP4": "native/jq4-p67stage1i-source-capture.json",
+        "sha256": "6f7e2d77707f52c81fa6690025b8d1605cf4311c2b72016e344f4e4942bd7089"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/focused-r2/functional-gate.json",
+        "sha256": "0ecae09c15ef265f77dade62a38883ab93a5f225136a60768c37b7a88981ea2c"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/focused-r2/execution-20261116T183844Z/execution.json",
+        "sha256": "28528c894f4d34551ef9727daad6ded5131f9fb58308eca6ce6dab4ba6e0de20"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/declaration.json",
+        "sha256": "50169a513b8cc8a3d08e309caeecb4114202e1d152889b93614a2ff5cbd24e49"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/fixed-first-batch/raw.json",
+        "sha256": "c2821b0f8820043b6c73c6e7132172f65515e1de47df1ea85ae3780c79e112db"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r1/fixed-first-batch/raw.json",
+        "sha256": "977046edcd09617344f46da3d8a0642d2a067c24ff0c69c9cb9a24dc744c1a21"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r2/source-readback.json",
+        "sha256": "cc168a8137ad4b650494216ab0bee00a35e85390da697481005a36227539ab34"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/path-repair.json",
+        "sha256": "4ad172a748f9a6789fe0b4cf3c43b2ebba5fa969fc0537b30efcbc6b45312027"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/report.json",
+        "sha256": "11e8e71acb18c0667705e6425b50f46faeb83183959c66a1f1395ce08d388741"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/analysis.json",
+        "sha256": "7b0ac751477f628f3ebe05c060be0eb84af07fc6aa154ac6f9538f1722a00480"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/result-seal.json",
+        "sha256": "673c6a8ee51fee1a049d73cf5a6bae3387553d425a701ebf164bfab085840c47"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/independent-numeric-review-r15/review.json",
+        "sha256": "cddae605ef675a623d6729d5989a5ad82c766c4c9e9a10571db0f5dc29251a8c"
+      },
+      {
+        "pathRelativeToExternalP4": "auction-carried-options-p72-r1/cost-plan-r3/independent-numeric-review-r15/final-seal.json",
+        "sha256": "7dfa33466497af7acc3e72a5e18e13a6441fc5f3e4751aea2751cb067b9678c1"
+      }
+    ]
+  },
+  "draftApplication": {
+    "readyForApplication": true,
+    "reason": "Root explicitly approved the complete ten-document contents/application; separately staged application copy at 2026-11-16T18:53:01.637747+00:00. No result/data changes; current document hashes freshly rebased for locked CAS.",
+    "fullSuiteOrDocsVerificationRegenerated": false
+  }
+}

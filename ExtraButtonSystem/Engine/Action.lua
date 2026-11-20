@@ -249,7 +249,13 @@ local function ResolveMacroIndex(value)
 	return nil
 end
 
+-- Desired item state can be committed before a secure write fails or defers.
+-- Reuse only a completed public native LEFT bundle on its original widget and
+-- methods; selection, paint, input helpers and secondary bindings still run.
+local appliedLeftItems = setmetatable({}, { __mode = "k" })
+
 local function ClearAttributes(widget)
+	if widget then appliedLeftItems[widget] = nil end
 	if not widget or not widget.SetAttribute then
 		return
 	end
@@ -296,6 +302,110 @@ local function SpellCastAttribute(spellId)
 		return Flux.Spell.FormatCastAttribute(spellId)
 	end
 	return spellId
+end
+
+-- Profession ranks replace their opener spell. Keep the saved assignment, but
+-- resolve its localized name to the player's current spellbook entry. These
+-- are name anchors, not a list/order of ranks (including secondary skills and
+-- the processing actions whose names differ from their parent profession).
+local professionNames, professionSpells
+local PROFESSION_NAMES = {
+	2259, 2018, 7411, 4036, 2108, 3908, 2575, 2656, 2366, 8613,
+	25229, 31252, 45357, 51005, 78670, 7620, 2550, 3273,
+}
+
+local function ProfessionSpellName(id)
+	if C_Spell and C_Spell.GetSpellInfo then
+		local info = C_Spell.GetSpellInfo(id)
+		if info then return info.name end
+		-- Reuse the shared cold-data request/retry policy.
+		return Flux.Spell and Flux.Spell.GetName and Flux.Spell.GetName(id)
+	elseif GetSpellInfo then
+		return GetSpellInfo(id)
+	end
+end
+
+local function EachProfession(visit)
+	if not GetProfessions or not GetProfessionInfo then return end
+	-- Sparse returns: secondary skills can exist without either primary skill.
+	local indices = { GetProfessions() }
+	for i = 1, 6 do
+		if indices[i] then visit(GetProfessionInfo(indices[i])) end
+	end
+end
+
+local function ProfessionNames()
+	if professionNames then return professionNames end
+	professionNames = {}
+	for i = 1, #PROFESSION_NAMES do
+		local name = ProfessionSpellName(PROFESSION_NAMES[i])
+		if name then professionNames[name] = true end
+	end
+	EachProfession(function(name)
+		if name then professionNames[name] = true end
+	end)
+	return professionNames
+end
+
+local function ProfessionSpells()
+	if professionSpells then return professionSpells end
+	professionSpells = {}
+	local names = ProfessionNames()
+	local SB = C_SpellBook
+	local modern = SB and SB.GetSpellBookItemInfo and SB.GetNumSpellBookSkillLines
+		and SB.GetSpellBookSkillLineInfo
+	local bank = modern and Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player or "spell"
+	local function scan(offset, count)
+		for slot = (offset or 0) + 1, (offset or 0) + (count or 0) do
+			local name, id
+			if modern then
+				local item = SB.GetSpellBookItemInfo(slot, bank)
+				local spellType = Enum and Enum.SpellBookItemType and Enum.SpellBookItemType.Spell
+				if item and item.itemType == spellType and not item.isOffSpec
+					and not (SB.IsSpellBookItemLowRank and SB.IsSpellBookItemLowRank(slot, bank)) then
+					name, id = item.name, item.spellID
+				end
+			elseif GetSpellBookItemInfo and GetSpellBookItemName then
+				local kind, sid = GetSpellBookItemInfo(slot, "spell")
+				if kind == "SPELL" then name, id = GetSpellBookItemName(slot, "spell"), sid end
+			end
+			-- Legacy books order learned ranks from low to high. Modern books
+			-- explicitly exclude low ranks; never sort by spell ID or English title.
+			if id and name and names[name] then professionSpells[name] = id end
+		end
+	end
+	if modern then
+		for line = 1, SB.GetNumSpellBookSkillLines() do
+			local info = SB.GetSpellBookSkillLineInfo(line)
+			if info then scan(info.itemIndexOffset, info.numSpellBookItems) end
+		end
+	elseif GetNumSpellTabs and GetSpellTabInfo then
+		for tab = 1, GetNumSpellTabs() do
+			local _, _, offset, count = GetSpellTabInfo(tab)
+			scan(offset, count)
+		end
+	end
+	-- Retail profession entries can sit outside the regular skill-line tabs.
+	EachProfession(function(_, _, _, _, count, offset) scan(offset, count) end)
+	return professionSpells
+end
+
+function Action.ResolveProfessionSpell(spellId)
+	local name = spellId and ProfessionSpellName(spellId)
+	if not name or not ProfessionNames()[name] then return spellId, false end
+	return ProfessionSpells()[name] or spellId, true
+end
+
+function Action.InvalidateProfessionSpells()
+	professionNames, professionSpells = nil, nil
+end
+
+function Action.IsProfessionSpellData(spellId)
+	for i = 1, #PROFESSION_NAMES do
+		if spellId == PROFESSION_NAMES[i] then return true end
+	end
+	local name = professionNames and spellId and ProfessionSpellName(spellId)
+	return name and professionNames[name] or false
 end
 
 local function FlyoutId(value)
@@ -805,6 +915,11 @@ function Action.PaintAssistantButtons()
 end
 
 function Action.RebindAssistant()
+	-- Unsupported clients have no assistant input to recover. Keep an existing
+	-- owner on the normal cleanup path if capability ever changes at runtime.
+	if not assistantBindOwner and not Action.SupportsAssistant() then
+		return
+	end
 	if InLockdown() then
 		Defer("ebs.assistant.bind", Action.RebindAssistant)
 		return
@@ -880,12 +995,57 @@ function Action.ClearEnv(btn)
 	end
 end
 
+local function PublicLeftBundle(widget, getter)
+	getter = getter or (widget and widget.GetAttribute)
+	if type(getter) ~= "function" then return nil end
+	local values = {}
+	for i = 1, #ATTR_KEYS do
+		local ok, value = pcall(getter, widget, ATTR_KEYS[i])
+		if not ok or (issecretvalue and issecretvalue(value)) then return nil end
+		local t = type(value)
+		if t ~= "nil" and t ~= "string" and t ~= "number" and t ~= "boolean" then return nil end
+		values[i] = value
+	end
+	return values
+end
+
+local function ReuseLeftItem(btn, widget)
+	if btn.ActionType ~= "item" then return false end
+	local item = ItemAttribute(btn.ItemId or btn.ActionValue)
+	if (issecretvalue and issecretvalue(item)) or type(item) ~= "string" then return false, item end
+	local record = appliedLeftItems[widget]
+	if not record or widget._fluxUtilityNative or record.item ~= item
+		or widget.GetAttribute ~= record.getter or widget.SetAttribute ~= record.setter then return false, item end
+	for i = 1, #ATTR_KEYS do
+		local ok, value = pcall(record.getter, widget, ATTR_KEYS[i])
+		if not ok or (issecretvalue and issecretvalue(value)) then return false, item end
+		local t = type(value)
+		if t ~= "nil" and t ~= "string" and t ~= "number" and t ~= "boolean" then return false, item end
+		if value ~= record.values[i] then return false, item end
+	end
+	return widget.GetAttribute == record.getter and widget.SetAttribute == record.setter, item
+end
+
+local function RememberLeftItem(btn, widget, item)
+	appliedLeftItems[widget] = nil
+	if InLockdown() or btn.ActionType ~= "item" or widget._fluxUtilityNative
+		or (issecretvalue and issecretvalue(item)) or type(item) ~= "string" then return end
+	local getter, setter = widget.GetAttribute, widget.SetAttribute
+	if type(getter) ~= "function" or type(setter) ~= "function" then return end
+	local values = PublicLeftBundle(widget, getter)
+	if values and values[1] == "item" and values[2] == "item" and values[4] == item
+		and widget.GetAttribute == getter and widget.SetAttribute == setter then
+		appliedLeftItems[widget] = { item = item, values = values, getter = getter, setter = setter }
+	end
+end
+
 local function WriteAttributes(btn)
 	local widget = btn and btn.Widget
 	if not widget then
 		return
 	end
 	if InLockdown() then
+		appliedLeftItems[widget] = nil
 		local key = "ebs.attr." .. (widget.GetName and widget:GetName() or tostring(widget))
 		Defer(key, function()
 			WriteAttributes(btn)
@@ -893,7 +1053,10 @@ local function WriteAttributes(btn)
 		return
 	end
 
-	ClearAttributes(widget)
+	local reuseItem, itemAttribute = ReuseLeftItem(btn, widget)
+	local reusedRecord = reuseItem and appliedLeftItems[widget]
+	appliedLeftItems[widget] = nil
+	if not reuseItem then ClearAttributes(widget) else ParkExtraClicker(widget) end
 	local actionType = btn.ActionType
 	local actionValue = btn.ActionValue
 	if not actionType or actionValue == nil then
@@ -919,9 +1082,11 @@ local function WriteAttributes(btn)
 			end
 		end
 	elseif actionType == "item" then
-		widget:SetAttribute("type", "item")
-		widget:SetAttribute("typerelease", "item")
-		widget:SetAttribute("item", ItemAttribute(btn.ItemId or actionValue))
+		if not reuseItem then
+			widget:SetAttribute("type", "item")
+			widget:SetAttribute("typerelease", "item")
+			widget:SetAttribute("item", itemAttribute)
+		end
 	elseif actionType == "macro" then
 		if btn.MacroIndex then
 			local body = btn.MacroBody
@@ -1022,6 +1187,11 @@ local function WriteAttributes(btn)
 	if MC and MC.ApplyNativeCheck then
 		MC.ApplyNativeCheck(widget)
 	end
+	if reuseItem and not InLockdown() then
+		appliedLeftItems[widget] = reusedRecord
+	elseif not reuseItem then
+		RememberLeftItem(btn, widget, itemAttribute)
+	end
 end
 
 local function FillEnv(btn, actionType, actionValue)
@@ -1050,6 +1220,7 @@ local function FillEnv(btn, actionType, actionValue)
 			and not isOutfitSpell and not Action.IsAssistantSpell(sid) then
 			sid = Flux.Spell.GetBaseSpell(sid) or sid
 		end
+		sid = Action.ResolveProfessionSpell(sid)
 		btn.ActionType = "spell"
 		btn.ActionValue = sid
 		btn.SpellId = SpellID(sid)
@@ -1582,6 +1753,113 @@ function Action.ShownFromBody(body)
 		return nil
 	end
 	return ResolveShownFromRemainder(parsed)
+end
+
+--- First active cast/use command, independently of the macro's display hint.
+--- A macro can execute several actions; this does not predict their success or
+--- follow target-changing commands / delegated clicks. Sequence state is read
+--- from Blizzard when available; unavailable sequence state remains unknown.
+function Action.CastFromBody(body)
+	if type(body) ~= "string" or body == "" then return nil end
+	for line in body:gmatch("[^\r\n]+") do
+		local command = line:match("^%s*(/%a+)")
+		command = command and command:lower()
+		if command == "/stopmacro" then
+			if not SecureCmdOptionParse then return nil end
+			local options = line:match("^%s*/%a+%s*(.-)%s*$") or ""
+			-- Blizzard tests the raw result: an active empty-string result
+			-- stops the macro too, unlike ParseOptions' display filtering.
+			local ok, stop = pcall(SecureCmdOptionParse, options)
+			if not ok or stop then return nil end
+		end
+		if command and (command:match("^/target") or command == "/assist"
+			or command == "/focus" or command == "/clearfocus"
+			or command == "/cleartarget" or command == "/click"
+			or command == "/castrandom" or command == "/userandom") then
+			return nil
+		end
+		if command == "/cast" or command == "/use" or command == "/spell"
+			or command == "/castsequence" then
+			local options, kind = CommandOptions(line)
+			local parsed, unit = ParseOptions(options)
+			if parsed then
+				if kind == "castsequence" then
+					if QueryCastSequence then
+						local ok, _, item, spell = pcall(QueryCastSequence, parsed)
+						if ok then
+							if item and item ~= "" then
+								local itemKind, itemId = ResolveShownFromRemainder(item)
+								return "item", itemKind == "item" and itemId or item, unit or "target"
+							end
+							if not spell or spell == "" then return nil end
+							local spellKind, spellId = ResolveShownFromRemainder(spell)
+							return spellKind, spellId, unit or "target"
+						end
+					end
+					return nil
+				end
+				local castKind, id = ResolveShownFromRemainder(parsed)
+				return castKind, id, unit or "target"
+			end
+		end
+	end
+	return nil
+end
+
+--- Actual range body, not the idle/reverse display currently in MacroBody.
+--- handled=true is authoritative even when no command is active: do not range
+--- the tooltip's pinned spell or a native action underneath an empty macro.
+function Action.CastForRange(btn)
+	if not btn or btn._fluxUtilityGetEntry then return nil, nil, nil, false end
+	local body
+	local want = btn._fluxWant
+	if want then
+		local km = _G.FluxMouseoverKeybindModule or ns.FluxMouseoverKeybind
+		local peek = km and km.IsHovercastPeekMouseContext and km:IsHovercastPeekMouseContext()
+		local clauses = peek and want.rangeHoverClauses or want.rangeClauses
+		if type(clauses) == "table" then
+			local shownKind = btn.MacroMode
+			if shownKind ~= "spell" and shownKind ~= "item" then shownKind = btn.ActionType end
+			local shownId = shownKind == "spell" and btn.SpellId or shownKind == "item" and btn.ItemId
+			local lastToken, tokenKind, tokenId
+			for i = 1, #clauses do
+				local clause = clauses[i]
+				if clause.token ~= lastToken then
+					lastToken = clause.token
+					tokenKind, tokenId = ResolveShownFromRemainder(lastToken)
+				end
+				local matches = shownId and tokenKind == shownKind and tokenId == shownId
+				if not matches and shownId and tokenKind == "spell" and shownKind == "spell"
+					and Flux.Spell and Flux.Spell.IdsMatch then
+					matches = Flux.Spell.IdsMatch(tokenId, shownId)
+				end
+				if matches then
+					local cond = clause.cond
+					local options = cond and #cond > 0 and ("[" .. table.concat(cond, ",") .. "] ") or ""
+					local parsed, unit = ParseOptions(options .. lastToken)
+					if parsed then return tokenKind, tokenId, unit or "target", true end
+				end
+			end
+			-- Reverse display tokens inherit each other's conditions. Only the
+			-- shown action's original active clause can supply its range unit.
+			return nil, nil, nil, true
+		end
+		if peek and type(want.hoverMacrotext) == "string" and want.hoverMacrotext ~= "" then
+			body = want.hoverMacrotext
+		else
+			body = want.rangeMacrotext or want.macrotext
+		end
+	elseif btn.ActionType == "macro" or btn.ActionType == "macrotext" then
+		body = btn.MacroBody
+		if btn.ActionType == "macro" and btn.MacroIndex then
+			local ok, _, _, liveBody = pcall(MacroInfoAt, btn.MacroIndex)
+			if ok and type(liveBody) == "string" then body = liveBody end
+		end
+	else
+		return nil, nil, nil, false
+	end
+	local kind, id, unit = Action.CastFromBody(body)
+	return kind, id, unit, true
 end
 
 local function ApplyParsedRemainder(btn, action)
@@ -2354,6 +2632,46 @@ function Action.MouseoverCastSpell(btn)
 		return nil
 	end
 	return tonumber(btn.SpellId)
+end
+
+function Action.RefreshProfessions()
+	-- Defer the complete action/face update together; never change protected
+	-- attributes in combat or replay a captured action after a slot was reused.
+	if InLockdown() then
+		Defer("ebs.professions", Action.RefreshProfessions)
+		return
+	end
+	Action.InvalidateProfessionSpells()
+	local function refresh(list)
+		for i = 1, #(list or {}) do
+			local btn = list[i]
+			if btn.ActionType == "spell" then
+				local id = Action.ResolveProfessionSpell(btn.SpellId or btn.ActionValue)
+				if id ~= (btn.SpellId or btn.ActionValue) then Action.SetAction(btn, "spell", id) end
+			end
+		end
+	end
+	refresh(EBS.buttons)
+	refresh(EBS.badges)
+	local manager = _G.FluxNCUtilitySlotsManager
+	if manager and manager.RefreshProfessions then manager.RefreshProfessions() end
+	local flyout = EBS.Flyout
+	for widget, rec in pairs(flyout and flyout.attached or {}) do
+		local changed = false
+		for i = 1, #(rec.buttons or {}) do
+			local def = rec.buttons[i]
+			if def.type == "spell" then
+				local id = Action.ResolveProfessionSpell(def.spell)
+				if id ~= def.spell then
+					def._fluxProfessionAssignment = def._fluxProfessionAssignment or def.spell
+					def.spell, changed = id, true
+				end
+			end
+		end
+		if changed and flyout.Popup and flyout.Popup.Layout then
+			flyout.Popup.Layout(widget, rec.buttons, rec.opts)
+		end
+	end
 end
 
 function Action.RefreshMounts()

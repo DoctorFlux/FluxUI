@@ -1,0 +1,195 @@
+{
+  "changeId": "STRIP-MODIFIER-ROUTES-R146-20261119",
+  "capturedAtUTC": "2026-11-19T21:56:43.843382+00:00",
+  "sources": {
+    "Bars/State.lua": {
+      "beforeRaw": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+      "afterRaw": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+      "afterNormalized": "72c86bf6b29e4eb04c45f25b311227034c573c7eea9f3e1e50cc65657388555d"
+    },
+    "Bars/_tmp_forevercontrolsmoke.lua": {
+      "beforeRaw": "9257a4f42ac95d7a9a33bc58657c4c37a26e74dcbe99825555129611083f2a87",
+      "afterRaw": "31ea9701a3081a69494775edea025df92ffdd76c161489ac957d29306e888aea",
+      "afterNormalized": "31ea9701a3081a69494775edea025df92ffdd76c161489ac957d29306e888aea"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\source.zip",
+    "sourceZipSHA256": "33e19b368de58bbbe5f253ac282556e37b166cf7d392e7f0eb23b28daf71c79c",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three alternating archived/candidate trials. In each trial the Forever widget fixture covers held spell, item and macro crossings with sparse static and dynamic mappings on pages one and two. Aliases and mouse/key actions match a full-refresh oracle.",
+    "samples": [
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 6979,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 9192,
+        "crossings": 6
+      },
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 6979,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 9189,
+        "crossings": 6
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 7436,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 7452,
+        "crossings": 6
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 7436,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 7449,
+        "crossings": 6
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 7341,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 7452,
+        "crossings": 6
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 7341,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 7449,
+        "crossings": 6
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 6439,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 9192,
+        "crossings": 6
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 6439,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 9189,
+        "crossings": 6
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 6643,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 9192,
+        "crossings": 6
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 6643,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 9189,
+        "crossings": 6
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 6791,
+        "page": 1,
+        "fullRefreshCalls": 20151,
+        "hoverCalls": 7452,
+        "crossings": 6
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 6791,
+        "page": 2,
+        "fullRefreshCalls": 20142,
+        "hoverCalls": 7449,
+        "crossings": 6
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\compare.lua": "51119afc4308f920c13f26f7a7d9372aeb407f612a7be220c480c60f5618dd71",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\matched.txt": "72d2ac649315773b60021bd0f8d086d25a9c165978374a8154d66ae5b46cfea2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\hover-matched.txt": "c61e5800194571d67989d82370fe8f7ee5dea0610bc5d2b672a2ba9ee89929d8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\negative.txt": "9423180cb2fa5e85603c577f6c59951837721acc8b4fe181e443b52096d44566",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\upvalues.json": "7a9010a30b3145ee24778d4df5361c22f7ac157e96208dac738117558653ad12"
+    },
+    "limits": "Counts are modeled native setter invocations. Whole-fixture durations include startup, different secure states, and parity loops. They do not measure the hover hitch. Native timing and taint remain pending."
+  },
+  "preservation": [
+    "Hover communicates its mode within the existing child-state message. The published page and modifier state keeps the same positive value.",
+    "Unchanged modifier lanes stay prepared only when the previous page and modifier state match. A missing stamp or changed state refreshes all aliases when the route bundle changes.",
+    "Existing state-driver and full slot-edit paths keep the same probe, stamp and active click behavior. Normal combat guards and overlays remain in place."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-modifier-routes-before-20261119-225111\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/State.lua": {
+        "sha256": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/State.lua": {
+        "sha256": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/State.lua": {
+        "sha256": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/State.lua": {
+        "sha256": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/State.lua": {
+        "sha256": "832ffa04124d03d46ae1747d9f948268f3c12dc9e9f80f9d2d957df9feca21a0",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for held-action frame time, drops, party and raid transitions, exact seam pixels and combat taint. No client or profiler changes."
+}

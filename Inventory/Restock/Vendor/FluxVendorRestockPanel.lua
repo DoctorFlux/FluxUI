@@ -17,7 +17,9 @@ local spinner
 local merchantTab
 local bagEventsRegistered = false
 local QueryItems
+local RefreshScrollList -- Count refreshes above the renderer share this local.
 local metadataRetry
+local selectedRefreshPending = false
 
 local function CancelMetadataRetry()
     local operation = metadataRetry
@@ -776,7 +778,7 @@ local function EnsureListButtons(count)
     end
 end
 
-local function RefreshScrollList()
+RefreshScrollList = function()
     if not scrollFrame or not scrollChild then
         return
     end
@@ -838,7 +840,12 @@ local function RefreshScrollList()
                 row.bankCount = entry.bankCount or 0
                 local displayName = name or entry.name or ("Item " .. id)
                 if FVID and FVID.ApplyNameFontString then
-                    FVID.ApplyNameFontString(row.nameText, id, displayName)
+                    if name and link and link ~= "" and quality ~= nil then
+                        -- These fields belong to this repaint, not a persistent cache.
+                        FVID.ApplyNameFontString(row.nameText, id, displayName, link, quality)
+                    else
+                        FVID.ApplyNameFontString(row.nameText, id, displayName)
+                    end
                     if entry.merchantChecked then
                         ApplyItemVendorNameStyle(row.nameText, entry, displayName)
                     end
@@ -939,6 +946,13 @@ QueryItems = function()
     if not ready then ScheduleMetadataRetry() else CancelMetadataRetry() end
 end
 
+local function RefreshSelectedPanel()
+    selectedRefreshPending = false
+    if panelFrame and panelFrame:IsShown() then
+        QueryItems()
+    end
+end
+
 function Panel:OnTabSelected()
     Panel.InvalidateListCache()
     FV = _G.FluxVendorAuto
@@ -951,15 +965,15 @@ function Panel:OnTabSelected()
     if scrollFrame then
         scrollFrame:SetVerticalScroll(0)
     end
-    local function refresh()
-        if panelFrame and panelFrame:IsShown() then
-            QueryItems()
-        end
-    end
     if C_Timer and C_Timer.After then
-        C_Timer.After(0, refresh)
+        -- SecureTabs selects before showing the frame; both paths request this
+        -- refresh. Keep the first next-frame callback and read the latest state.
+        if not selectedRefreshPending then
+            selectedRefreshPending = true
+            C_Timer.After(0, RefreshSelectedPanel)
+        end
     else
-        refresh()
+        RefreshSelectedPanel()
     end
 end
 
@@ -1035,6 +1049,13 @@ local function EnsureStormPanelHook()
     end)
 end
 
+local function RefreshScheduledCounts()
+    refreshDebounceTimer = nil
+    if panelFrame and panelFrame:IsShown() then
+        Panel.RefreshCountsOnly()
+    end
+end
+
 local function ScheduleRefreshList()
     if ShouldDeferHeavyPanelRefresh() then
         pendingRefreshAfterStorm = true
@@ -1052,12 +1073,7 @@ local function ScheduleRefreshList()
     end
     local delay = IsVendorBurstActive() and RESTOCK_REFRESH_DEBOUNCE_BURST or RESTOCK_REFRESH_DEBOUNCE_IDLE
     refreshDebounceTimer = true
-    C_Timer.After(delay, function()
-        refreshDebounceTimer = nil
-        if panelFrame and panelFrame:IsShown() then
-            Panel.RefreshCountsOnly()
-        end
-    end)
+    C_Timer.After(delay, RefreshScheduledCounts)
 end
 
 local function SetupBagEvents()

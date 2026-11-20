@@ -4,6 +4,7 @@ local _, ns = ...
 local UF = ns.UnitFrames
 local states, dirty = {}, {}
 local scheduled = false
+local ROSTER = "roster"
 local keys = {"TL", "TR", "BL", "BR", "Top", "Bottom", "Left", "Right"}
 local knownTypes = {Magic = true, Curse = true, Disease = true, Poison = true, Bleed = true}
 
@@ -15,6 +16,11 @@ local function Accessible(v)
     if Secret(v) then return false end
     if type(v) == "table" and canaccesstable and not canaccesstable(v) then return false end
     return true
+end
+local function PublicGUID(unit)
+    if not UnitGUID then return end
+    local ok, guid = pcall(UnitGUID, unit)
+    if ok and not Secret(guid) and type(guid) == "string" and guid ~= "" then return guid end
 end
 local function Eligible(frame)
     local unit = frame.unit
@@ -98,8 +104,8 @@ local function Parts(frame)
     for _, texture in ipairs(BorderSources(frame.atlasBorderFrame)) do root[#root + 1] = texture end
     local parts = {{parent = frame, sources = root}}
     if frame.PortraitFrame then
-        -- Combat raises the portrait border. Inherit that move so its native
-        -- debuff overlay stays above it without touching a restricted button.
+        -- Inherit the portrait's reserved chrome layer so the native debuff
+        -- overlay stays above combat paint without moving a restricted button.
         parts[#parts + 1] = {parent = frame.PortraitFrame.FluxBorderFrame or frame.PortraitFrame,
             sources = BorderSources(frame.PortraitFrame)}
     end
@@ -148,7 +154,7 @@ local function Suspend(state)
         for _, box in ipairs(part.boxes or {}) do box:Hide(); box:SetUnit("none") end
         if part.host then part.host:Hide() end
     end
-    state.unit = "none"
+    state.unit, state.partyGUID = "none", nil
     PaintText(state, nil)
 end
 local function BuildNative(state)
@@ -229,15 +235,29 @@ local function Update(state, refreshNative)
     local unit = Enabled(frame) and frame.unit or "none"
     local filter = OnlyDispellable(frame) and "HARMFUL|RAID" or "HARMFUL"
     if state.native then
-        for _, part in ipairs(state.parts) do
-            for _, box in ipairs(part.boxes or {}) do
-                if state.filter ~= filter then box:SetAuraSlotFilterString("friendlyTint", filter) end
-                if state.unit ~= unit then box:SetUnit(unit)
-                elseif state.filter == filter and refreshNative and unit ~= "none" then box:UpdateAllAuras() end
-                if unit == "none" then box:Hide() else box:Show() end
+        local unitChanged, filterChanged = state.unit ~= unit, state.filter ~= filter
+        local guid = state.partyGUID
+        if unit == "none" then
+            guid = nil
+        elseif frame._fluxPartyMember and (unitChanged or filterChanged or refreshNative) then
+            guid = PublicGUID(unit)
+        end
+        -- Native owners receive UNIT_AURA themselves. A roster event can put
+        -- someone new behind a party token, but a matching public GUID proves
+        -- the current owners still belong to the same unit.
+        local keepOwners = refreshNative == ROSTER and guid and guid == state.partyGUID
+            and not unitChanged and not filterChanged
+        if not keepOwners then
+            for _, part in ipairs(state.parts) do
+                for _, box in ipairs(part.boxes or {}) do
+                    if filterChanged then box:SetAuraSlotFilterString("friendlyTint", filter) end
+                    if unitChanged then box:SetUnit(unit)
+                    elseif not filterChanged and refreshNative and unit ~= "none" then box:UpdateAllAuras() end
+                    if unit == "none" then box:Hide() else box:Show() end
+                end
             end
         end
-        state.unit, state.filter = unit, filter
+        state.unit, state.filter, state.partyGUID = unit, filter, guid
     end
     for _, part in ipairs(state.parts) do
         if part.alphaSource and part.alphaSource.GetAlpha then
@@ -290,7 +310,10 @@ local function Queue(frame, refreshNative)
         Suspend(states[frame]); dirty[frame] = nil
         return
     end
-    dirty[frame] = dirty[frame] == true or refreshNative == true
+    local pending = dirty[frame]
+    if pending == true or refreshNative == true then dirty[frame] = true
+    elseif pending == ROSTER or refreshNative == ROSTER then dirty[frame] = ROSTER
+    else dirty[frame] = false end
     if scheduled then return end
     scheduled = true
     if C_Timer and C_Timer.After then C_Timer.After(0, Flush) else Flush() end
@@ -330,7 +353,7 @@ events:SetScript("OnEvent", function(_, event, unit)
         elseif event == "PLAYER_FOCUS_CHANGED" then
             if frame.unit == "focus" then Queue(frame, true) end
         elseif event == "GROUP_ROSTER_UPDATE" then
-            if frame._fluxPartyMember then Queue(frame, true)
+            if frame._fluxPartyMember then Queue(frame, ROSTER)
             elseif frame.unit == "target" or frame.unit == "focus" then Queue(frame) end
         elseif event:sub(1, 5) == "UNIT_" then
             if MatchesUnit(frame, unit) then Queue(frame) end

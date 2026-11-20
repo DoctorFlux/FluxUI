@@ -1,5 +1,64 @@
 # Party and raid frames
 
+<!-- COMBAT-CALLBACK-WORK-20261116 -->
+16 November (`COMBAT-CALLBACK-WORK-20261116`): two additional offline fixes are applied.
+Portrait camera/SetUnit/clear/geometry protected callbacks reuse private bodies
+while all current lookups, native calls, errors, recovery and finite timers stay.
+Range discovery reuses two helpers with current globals/pools and fresh250ms
+ticker callbacks. Portrait114scenarios/105609checks perVM/7controls;range175checks
+perVM/5controls/85matching stage traces. Portrait durable gate105623checks perVM
+includes all seven controls; the external105609check gate is retained separately.
+Independent source review passed.
+
+Declared cost gates passed; all raw samples and small regressions remain.
+Portrait48cells:51empty CPU median+3.398% (onepair+9.338%);54 has slower individual
+2D/3D/max pairs. Startup retained increases are recorded separately from GC slope.
+Range96cells retains54native+1.512%/hidden+0.694%;active fallback transient work
+decreases. These standalone results do not establish native speedup.
+
+The external R55 timer-ownership prototype passes328checks perVM/80exact parity
+records/6controls perVM. Apply/rebase guards caught two newer shadow-Core edits;
+the timer change remains UNAPPLIED and the newer renderer work is preserved.
+Duplicate party/pet recovery passes stay. Combined gate: 500standalone PASS/0FAIL;1190syntax/0failures.
+ Source stability and remaining failures are in the evidence; no native acceptance. Game tests/inspection remain HELD until explicit user release;
+goal ACTIVE, no owned native action live or queued. [Sources, checkpoints,
+requirements CW01–04, regressions and pending checks](validation/combat-callback-work-2026-11-16.json).
+<!-- /COMBAT-CALLBACK-WORK-20261116 -->
+
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
+
+14 November `BLIZZARD-TOOLTIP-20261114`: unit/raid/pet tooltips now share
+Blizzard's existing GameTooltip; no separate FluxUnitTooltip is created. Exact
+HUD anchor remains BOTTOMLEFT to FluxWindowFrame TOPLEFT at (0,30); pet happiness
+keeps its adjacent anchor. Flux bookkeeping stays in UF, native scripts/health
+mixins remain untouched, and native owner callbacks retain update cadence.
+Hide/clear/owner handoff retire old callbacks and pet icons; stale leaves cannot
+hide newer item/world/unit tips. Six runtime owners and two existing tests changed.
+
+725 focused checks across all five client models and pinned Blizzard update
+replays PASS; five compiled harmful controls rejected. Final combined desktop
+index: 385 scripts / 1073 syntax PASS. Initial two stale-fixture failures were
+corrected and replayed; complete final Lua manifest verified. Fresh external
+2816-file source/history checkpoint and 130 settings metadata entries verified.
+All other Lua/XML/TOC and settings preserved. Native visual/taint/combat/controller
+acceptance remains NOT RUN. Reload out of combat and test rapid unit/pet/raid to
+item/world hovers. No client input/reload/profiling/publication or manual sync.
+The unrelated profiling goal remains paused.
+[Requirements, exact source pins and acceptance](validation/blizzard-tooltip-2026-11-14.json).
+
+14 November `GROUP-GHOST-HOVER-20261114`: solo empty party slots, missing pets/
+targets, combat join/leave, party↔raid conversion and reused raid units are explicit
+hover-casting acceptance cases. Shared hover setup now requires an effectively
+visible surface with a current existing secure unit; prepared attribute wrappers
+retire the old owner/child override and rearm a valid reassignment under a real
+stationary enter. Existing native group/token visibility drivers remain. Full
+381 scripts/1,069 syntax PASS; actual grouped native combat/taint/input remains
+pending. No resume of the separate paused profiling goal.
+[Source, tests and native acceptance](validation/group-ghost-hover-2026-11-14.json).
+
 13 November SECRET-UI-20261113 supersedes earlier automatic native meter
 selection claims: Blizzard controls own types/window creation/Current; Flux
 keeps saved layout requests with explicit setup feedback. Unit/pet/raid/preview
@@ -1093,3 +1152,47 @@ no foreground control, game/WTF/profiler write, manual sync, branch or push.
 permission-gated vendor checkbox input configuration; old debuff reader absent.
 Native preview stress and cleanup completed; combat roster/merchant acceptance
 remain pending. [Exact scope and evidence](FOREVER_NATIVE_PERFORMANCE.md).
+
+<!-- BORDER-EVENT-REFLOW-R54-20261116 -->
+Current border runtime is `event-reflow-r54`: public direct-opacity reuse, bounded
+commit-phase observer-pair reuse, fresh matching outer-shell guards, and
+roster-only prepared focus-layout reuse. All required paints and notifications
+remain. 129 current focused scripts pass; no native latency/FPS/taint acceptance
+is inferred. Genuine layout changes still require fresh global discovery/solve.
+[Sources, getter tax and native checks](validation/border-event-reflow-2026-11-16.json).
+<!-- /BORDER-EVENT-REFLOW-R54-20261116 -->
+
+<!-- RAID-ROSTER-ATTACHMENT-PAINT-R93-20261119 -->
+MT/MA attachment refreshes examine their dedicated header. The group paint queue and marker batches share a single public loot unit token, while standalone updates read the current loot assignment.
+[Raid roster paint evidence](validation/raid-roster-attachment-paint-2026-11-19.json).
+<!-- /RAID-ROSTER-ATTACHMENT-PAINT-R93-20261119 -->
+
+<!-- RAID-ROSTER-NATIVE-WRITES-R104-20261119 -->
+Roster reconciliation uses the native frame-reference setter when the backing handle is missing, unreadable or changed. Matching legacy header anchors and group label presentation skip redundant setters. The secure roster snippet and drivers still own membership and visibility.
+[Matched validation](validation/raid-roster-native-writes-2026-11-19.json).
+<!-- /RAID-ROSTER-NATIVE-WRITES-R104-20261119 -->
+
+<!-- RAID-PAINT-BATCH-R118-20261119 -->
+During compact raid or party paint, class is shared between the health bar and unit name. Each queued pass samples current settings, and the name painter hides the standalone role icon.
+[Matched validation](validation/raid-paint-batch-2026-11-19.json).
+<!-- /RAID-PAINT-BATCH-R118-20261119 -->
+
+<!-- RAID-REASSIGNMENT-R119-20261119 -->
+Visible compact unit frames refresh their display through the existing queue after a native reassignment. Multiple changes before the next update paint the final binding. The reveal callback paints its current token immediately. Pet and friendly-target roster paint shares the same dispatcher.
+[Matched validation](validation/raid-reassignment-2026-11-19.json).
+<!-- /RAID-REASSIGNMENT-R119-20261119 -->
+
+<!-- RAID-AURA-RETIREMENT-R167-20261120 -->
+Compact party and raid aura owners retain their completed unit bindings through a hide or unbind callback. Repeated cleanup skips writes on owners that already left the unit.
+[Matched validation](validation/raid-aura-owner-retirement-2026-11-20.json).
+<!-- /RAID-AURA-RETIREMENT-R167-20261120 -->
+
+<!-- RAID-UNIT-EVENT-RETIREMENT-R169-20261120 -->
+Compact unit frame hide and unbind reuse a completed event reset. A new registration, including a deferred power layout event, restores normal cleanup on the next departure.
+[Matched validation](validation/raid-unit-event-retirement-2026-11-20.json).
+<!-- /RAID-UNIT-EVENT-RETIREMENT-R169-20261120 -->
+
+<!-- ROSTER-AURA-PAINT-20261120 -->
+The aura painter samples current owned icon textures, stack text and shown state to avoid reapplying matching paint during roster refresh. Readable aura selection and native subscriptions retain their current updates.
+[Matched validation](validation/roster-aura-paint-2026-11-20.json).
+<!-- /ROSTER-AURA-PAINT-20261120 -->

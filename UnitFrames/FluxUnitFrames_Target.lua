@@ -199,6 +199,12 @@ local function InitializeTargetFrame()
 
     -- Placeholder Border (shows when no target, transparent with no color tint)
     local placeholderBorder = CreateFrame("Frame", nil, UIParent)
+    placeholderBorder._FluxBorderOwner = frame
+    -- Alternate no-target paint keeps its native visibility and cannot replace
+    -- the prepared target's source fields in the shared topology.
+    placeholderBorder._FluxBorderJunctionRole = "overlay"
+    placeholderBorder._FluxBorderNatural = false
+    placeholderBorder._FluxBorderUnitColor = {r=.5,g=.5,b=.5}
     placeholderBorder:SetFrameStrata("BACKGROUND")
     placeholderBorder:SetFrameLevel(1) -- Below main frame but above world
     placeholderBorder:SetAllPoints(outerBorder)

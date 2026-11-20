@@ -1215,7 +1215,7 @@ end
 -- vertical seam belongs to the right cell's left. Flags describe exterior edges.
 -- Runtime roster callbacks may call this in combat: only owned texture visibility
 -- changes, never protected dimensions, parenting, anchors or native data.
-function FluxRaidVisuals.SetJoinedEdges(frame, edges)
+function FluxRaidVisuals.SetJoinedEdges(frame, edges, reusePaint)
     if not frame then return false end
     edges = edges or {}
     local function Flag(value, fallback)
@@ -1229,10 +1229,20 @@ function FluxRaidVisuals.SetJoinedEdges(frame, edges)
     if not (issecretvalue and issecretvalue(edges.rightNeighbor)) and edges.rightNeighbor ~= nil then right = not edges.rightNeighbor end
     local exteriorTop = Flag(edges.exteriorTop, Flag(edges.top, true))
     local exteriorLeft = Flag(edges.exteriorLeft, Flag(edges.left, true))
-    frame._fluxJoinedEdges = { exteriorTop = exteriorTop, exteriorLeft = exteriorLeft, bottom = bottom, right = right }
     local lines = frame._fluxJoinedLines
-    if not lines then return false end
     local bronze = frame._fluxNativeBronze
+    local compact = bronze and bronze.compact
+    local powerVisible = bronze and (frame.powerBarUsedHeight or 0) > 0
+    local previous = frame._fluxJoinedEdges
+    if reusePaint and lines and previous and previous.lines == lines and previous.bronze == bronze
+        and previous.compact == compact and previous.powerVisible == powerVisible
+        and previous.exteriorTop == exteriorTop and previous.exteriorLeft == exteriorLeft
+        and previous.bottom == bottom and previous.right == right then
+        return true
+    end
+    local drawn = { exteriorTop = exteriorTop, exteriorLeft = exteriorLeft, bottom = bottom, right = right }
+    frame._fluxJoinedEdges = drawn
+    if not lines then return false end
     if bronze then
         for _, line in ipairs(frame._fluxBronzeEdges) do line:Hide() end
         local tl, tr = not bronze.compact and exteriorTop and exteriorLeft, not bronze.compact and exteriorTop and right
@@ -1256,13 +1266,14 @@ function FluxRaidVisuals.SetJoinedEdges(frame, edges)
         for key, visible in pairs({ tl = tl, tr = tr, bl = bl, br = br }) do
             for _, patch in ipairs(bronze.corners[key]) do patch:SetShown(visible) end
         end
-        bronze.power:SetShown((frame.powerBarUsedHeight or 0) > 0)
+        bronze.power:SetShown(powerVisible)
     else
         lines.top:Show()
         lines.left:Show()
         lines.bottom:SetShown(bottom)
         lines.right:SetShown(right)
     end
+    drawn.lines, drawn.bronze, drawn.compact, drawn.powerVisible = lines, bronze, compact, powerVisible
     return true
 end
 

@@ -17,6 +17,8 @@ E.UnitDisplayName=function()return public(s.name)end
 E.ns={Flux={PlayerName={UsesRegionalUniqueNames=function()return s.regional end,ShouldDisplaySurname=function()return s.showSurname end,GetSurnameSeparator=function()return ' ' end}}}
 E.GetOuterBorderContentWidth=function()return s.width end;E.GetNameStripSideReserve=function()return 12 end;E.FitNameStripMetadata=function()end
 E.UnitIsPlayer=function()return false end;E.UnitReaction=function()return 5 end;E.RAID_CLASS_COLORS={}
+E.IsSecretValue=E.API.IsSecretValue;E.UnitLevel=function()return 0 end
+assert(load(section('local function ClassColorForUnit(unit)','-- Mini chrome uses its public owner class'),'@actual-name-color-helper','t',E))()
 local paint,opaquePaint=assert(load(section('local function UnitFrameResolvedDisplayName','-- Aura system loads automatically')..'\nreturn PaintUnitFrameNameText,PaintOpaqueUnitName','@real-name-paint','t',E))()
 -- The private helper definitions above must remain local to the same chunk as
 -- the fit owners. Load their production blocks together, with geometry stubs.
@@ -88,6 +90,6 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
  check(opaquePaint(f.petNameText,'targettarget','ToT: '),'restricted ToT uses native formatter')
  local before=s.measurements;secondary(f)
  check(rawequal(f.petNameText.text,secret) and s.measurements==before,'restricted ToT text never becomes a fit/cache key')
- check(f.petNameText.format==(s.regional and 'ToT: %s %s' or 'ToT: %s'),'ToT prefix and surname formatting retained')
+ check(f.petNameText.format==(s.regional and '|cffffffffToT: |r%s %s' or '|cffffffffToT: |r%s'),'ToT prefix and surname formatting retained')
 end
 print('Name/ToT fit lifecycle: '..checks..' checks; five client models; native text/taint pending')

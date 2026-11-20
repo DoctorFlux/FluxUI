@@ -1,0 +1,369 @@
+{
+  "changeId": "WATCH-MESH-PHASES-R60-20261117",
+  "recordedAtUTC": "2026-11-17T03:53:32.138165+00:00",
+  "goalStatus": "ACTIVE",
+  "status": "Applied standalone optional watch observability; fresh fullLua54 512scripts/1202syntax PASS with1281pins stable; separate148checks bothVM/compilers PASS. Native R60loaded version/exacthash/combat/group/FPS acceptance pending.",
+  "source": {
+    "version": "watch-mesh-phases-r60",
+    "baselineR58LF": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+    "Core": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+      "rawSHA256": "4fa7c12add20c1caec6202372c8f55fe63711920ff28af3753da8c7069668c39",
+      "lfSHA256": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "bytes": 199061
+    },
+    "OtherUnchanged": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Other\\FluxPerfCapture.lua",
+      "rawSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+      "lfSHA256": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+      "bytes": 37542
+    },
+    "appliedUTC": "2026-11-17T03:31:04.650558+00:00",
+    "priorIndependentProposalLF": "4ec7b4eabd8d67eee897337218713fb86491cb69bb494cebc82135aeb340907d",
+    "onlyDeltaToPrior": "J.version string solver-allocation-work-r58 -> watch-mesh-phases-r60",
+    "noTupleCode": true,
+    "combatCounters": "design only; absent",
+    "OtherPerfCaptureEdits": false
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-before-20261117T032344Z",
+    "files": 3062,
+    "historyVerified": true,
+    "sourceArchiveVerified": true,
+    "metadataEntries": 4,
+    "privateSettingsCopied": false,
+    "scope": "Root-verified3062source/history recovery; Core540 stable, four main-only file metadata, no settings contents copied; no native operation by documentation agent."
+  },
+  "implementation": {
+    "scope": "Standalone optional existing-watch observability only; one extra protected clock while active, nested prepare/draw timings. No tuple specialization, combat counters, events, frames, timers or Other edit. No performance gain claim.",
+    "fields": "Existing cost.meshPhases={prepare=<number>,draw=<number>} nested detail when ordered public midpoint exists. Existing aggregate commitPhases.mesh and five-line output retained.",
+    "defaultOff": "zero added clocks/watch queries/frames/events/scans/tables; only short-circuit/optional private argument",
+    "active": "one extra protected midpoint read plus scalar-only nested detail",
+    "overhead": "midpoint clock is inside mesh; nested-table allocation/comparisons occur after mesh-end and are charged to following retire/overall; no observer-free overhead claim",
+    "badMidpoint": "nested detail omitted only; legacy aggregate retained",
+    "ownership": "existing EndCost-owned report attachment; no report/native object references in child; no Other changes",
+    "notIncluded": "No tuple specialization, combat transition counters, event/frame/timer changes, Other edit or performance fallback from rejected R59."
+  },
+  "evidence": {
+    "scenariosPerVM": 46,
+    "checksPerVM": 442,
+    "compiledControlsPerVM": 7,
+    "compiledControlRunsTotal": 14,
+    "actualBaselineCandidateFixtureRuns": 8,
+    "fixtureOutputsExact": true,
+    "compiler": {
+      "prototypesPerVM": 181,
+      "maxUpvalues51": 55,
+      "maxUpvalues54": 56,
+      "limit": 60
+    },
+    "projection": {
+      "baseline": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+      "candidate": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "priorCandidate": "4ec7b4eabd8d67eee897337218713fb86491cb69bb494cebc82135aeb340907d",
+      "versionDeltaOnlyToPrior": true,
+      "version": "watch-mesh-phases-r60",
+      "exactBodyProjection": true,
+      "scope": "Only private CommitCost optional midpoint/nested scalar table, one cost-gated midpoint call and distinct version string. All native body/loops/query/callback order identical; no tuple code."
+    },
+    "qualification": "Same-object reference omits only new midpoint through appended test seam; exact whole-body source projection and actual baseline/candidate fixture runs provide independent baseline verification.",
+    "independentReview": "PASS, including explicit overhead attribution correction",
+    "reportsAreHistoricalPreparation": "External report/metadata installed=false/ready-for-apply statements predate applied.json; preserve those files unchanged. Current application is established only by applied.json and exact installed source identities.",
+    "priorAttemptRetained": "Guard stopped before writes because external candidate is CRLF; normalized source identity verified and original runtime preserved before this apply.",
+    "previousEvidenceRetained": "R59 directory retains all original results/failures; R60 repeated gates use same functional scope"
+  },
+  "fullR60Validation": {
+    "status": "ACCEPTED fresh full standalone Lua54 gate",
+    "pass": 512,
+    "fail": 0,
+    "syntaxFiles": 1202,
+    "syntaxFailures": 0,
+    "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+    "beganUTC": "2026-11-17T03:43:28.642610+00:00",
+    "endedUTC": "2026-11-17T03:47:43.027195+00:00",
+    "pins": 1281,
+    "pinExtensions": {
+      ".toc": 8,
+      ".lua": 1202,
+      ".xml": 32,
+      ".txt": 6,
+      ".tga": 33
+    },
+    "changedDuringRun": [],
+    "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+    "report": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\validation.json",
+      "rawSHA256": "00f3976a7050a949851f2e6414e04211f6b0ea04ed4b43ceb5f0aba08067a975",
+      "lfSHA256": "dd4949b31388902d7e4a4c4060591cfaf4ef5d3553c44a85f701aaf3efadd5fb",
+      "bytes": 540911
+    },
+    "stability": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\stability.json",
+      "rawSHA256": "c417257db9f10681c3a7649d4ce1eac0860d63f6df12d0dc4f5af55d6e087ead",
+      "lfSHA256": "36b8a103a22911e44e39ff5ea3ab0dd3c679aae236d3a7d0a2df3e5a5fe0a468",
+      "bytes": 286757
+    },
+    "CoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "OtherLF": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+    "durableTestSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+    "scope": "Whole Lua54 only; separate148checks on51/54 and181prototype limits are not wholeLua51/native secure/secret/pixel/taint/FPS acceptance. No native adoption inferred."
+  },
+  "historicalBoundaries": {
+    "R58": "Accepted performance540 and fresh full512/1202 remain historical exact source evidence; no retagging those counts as R60.",
+    "R59": "Tuplee37/combined34ce remain REJECTED/UNAPPLIED; separate preexisting4ec7 observability was not selected from failed timing. No standalone CPU benefit inferred.",
+    "R57Native": "CF57R57family CITY124ms capture remains historical, no combat/group/FPS or A/B acceptance.",
+    "combatWatchCounters": "SOURCE-DESIGN ONLY, UNIMPLEMENTED. Midpoint timings are not transition counters."
+  },
+  "nativeCurrent": {
+    "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+    "basis": "Root-confirmed existing artifact/coordination scope only; no native action by documentation agent",
+    "userReadyAnswered": true,
+    "mainBackgroundStatedByUser": true,
+    "actualWindowUnsafeForBackgroundAdmission": true,
+    "preflightEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+      "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+      "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+      "bytes": 1489
+    },
+    "preflightRecordedUTC": "2026-11-17T03:39:11.715646+00:00",
+    "attempts": [
+      "cf60-mainreload-a1",
+      "cf60-mainreload-a2"
+    ],
+    "status": "Both terminal background timeout;0input/no journal/lease/command",
+    "inputSent": false,
+    "journalsCreated": 0,
+    "leasesCreated": 0,
+    "commandsSent": 0,
+    "pendingHandoffQuestion": "Root asked whether user is on same PC or another device; answer pending. Do not conflate this with already answered Ready.",
+    "retryPolicy": "No further native retry until user handoff; background constraint is not native permission revocation. Root only, main client only, Bank entirely excluded.",
+    "sourceBeforeEvidence": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+      "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+      "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+      "bytes": 1287
+    },
+    "repoGameFilePairsMatching": 5,
+    "manualSync": false,
+    "diskEqualityDoesNotProveLoadedAdoption": true,
+    "readonlyObservation": {
+      "evidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+        "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+        "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+        "bytes": 1021
+      },
+      "scope": "Root passive PrintWindow checked main loaded city/UI, chat closed/no edit/modal/cast shown. No input/focus/Bank. Private image stays outside Git. This observation is independent of unsafe actual foreground admission.",
+      "loadedVersionStillUnknown": true
+    },
+    "nativeR60Acceptance": "Reload/peek/current loaded version/hash and combat/group/FPS acceptance PENDING; zero successful command inferred from preparation/Ready/source equality.",
+    "historicalCF57": "Three main commands/0Bank belong only to the completed R57 CITY watch protocol audit; no CF58watch or new watch."
+  },
+  "reports": {
+    "applied": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\applied.json",
+      "rawSHA256": "2644a318fd8c429291aea9ef124ac9fd3be31562eb37af7d8505e80751e9f159",
+      "lfSHA256": "e9cf305edbae8e317236e1dbbe844a50989afc316fe9f1e3a4f61bb0a61c51c7",
+      "bytes": 1253
+    },
+    "functionalReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\report.json",
+      "rawSHA256": "4d5554d44c4d53120d2949a693238f77c05ec7bae9ed1ccf58e3fb96ca3440ba",
+      "lfSHA256": "f2dc0c8a2b09830be52dc205ecb797995b1685bc74f770e68d24f88a4ca7b606",
+      "bytes": 2541
+    },
+    "gate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\gate.json",
+      "rawSHA256": "ecde65cdc1b85664e25cde8bd32004f960249f251bfc4467e808b08d279d7903",
+      "lfSHA256": "bad1e7c5698d510f94962c97206c7cb04e830c664be8e5702f5ecdc8b7e3687e",
+      "bytes": 24386
+    },
+    "metadata": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\metadata.json",
+      "rawSHA256": "4e0bef5def14053f9641e254d3b6ffed46b282c77d966d77d4f915262281e25f",
+      "lfSHA256": "b4565de27da0b2280f0526a6d90ec47e9e91f9b105fb6960c7dd3aa869e4950f",
+      "bytes": 790
+    },
+    "projection": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\projection.json",
+      "rawSHA256": "1cf52eca831f8018f25c6307ab9f53952d0ff6aad980b17b86ffdc8b7acafd29",
+      "lfSHA256": "f61718dc1694579cbd42592d8d8004b590a33612ba1bb2f739a8b641be595942",
+      "bytes": 571
+    },
+    "upvalues51": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\upvalues51.json",
+      "rawSHA256": "b8396f718c1933816de1f31b660ad692f7d8940a58fcc49078c4517b6cae292b",
+      "lfSHA256": "6f7d72bbfbfea5027883ae51e24b7a0029448efc5fdfe299ddb4a1b501ab5568",
+      "bytes": 40344
+    },
+    "upvalues54": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\upvalues54.json",
+      "rawSHA256": "f789d6ebe38b94e08987c59ce6116d8a55509e77eec5c872abd812ef87cd48aa",
+      "lfSHA256": "cc7b6fda036e83ea4665455ffd7895a0b7af0d1ff1ca57955ba668170bc1d892",
+      "bytes": 40348
+    },
+    "checkpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-before-20261117T032344Z\\manifest.json",
+      "rawSHA256": "c8375de049e3c138f19b63ecf305c865f34b6789d526abd2a6140ea2c632e60b",
+      "lfSHA256": "24da4676283fb3a911754f6f06c22c18980270dbb5102682d0784464ce8ff721",
+      "bytes": 497475
+    },
+    "nativePreflights": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+      "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+      "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+      "bytes": 1489
+    },
+    "nativeSourceBefore": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+      "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+      "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+      "bytes": 1287
+    },
+    "nativeReadonlyObservation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+      "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+      "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+      "bytes": 1021
+    },
+    "fullGate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\validation.json",
+      "rawSHA256": "00f3976a7050a949851f2e6414e04211f6b0ea04ed4b43ceb5f0aba08067a975",
+      "lfSHA256": "dd4949b31388902d7e4a4c4060591cfaf4ef5d3553c44a85f701aaf3efadd5fb",
+      "bytes": 540911
+    },
+    "fullGateStability": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate\\stability.json",
+      "rawSHA256": "c417257db9f10681c3a7649d4ce1eac0860d63f6df12d0dc4f5af55d6e087ead",
+      "lfSHA256": "36b8a103a22911e44e39ff5ea3ab0dd3c679aae236d3a7d0a2df3e5a5fe0a468",
+      "bytes": 286757
+    }
+  },
+  "publication": "main only; no commit/push/manual source sync by this documentation agent",
+  "durableRegression": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-phases-r60\\durable-test.json",
+      "rawSHA256": "8d370f5aa30d6e2dc8218b3bd1a3bda51cc6c1fc6b28167b5de2c79e93fb0cb5",
+      "lfSHA256": "b81c3e5949ad5e767ea66600e2b21ebd50c8592028d3629a64822952fc5e83b1",
+      "bytes": 516
+    },
+    "test": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_reflow_cost.lua",
+      "rawSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+      "lfSHA256": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+      "bytes": 8206
+    },
+    "beforeSHA256": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b",
+    "checksPerVM": 148,
+    "VMs": [
+      "Lua5.1",
+      "Lua5.4"
+    ],
+    "syntax": "PASS both",
+    "jobs": "terminal",
+    "scope": "Existing border_reflow_cost test extended by its owner; only documentation metadata updated here. No new test execution or runtime edit by documentation agent."
+  },
+  "pendingCombatWatchLead": {
+    "status": "READ-ONLY SOURCE DESIGN; UNIMPLEMENTED; no executed repro/benchmark/native action",
+    "OtherLF": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+    "designPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-readiness-20261117\\READ_ONLY_DESIGN.md",
+    "handoffPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-readiness-20261117\\handoff.json",
+    "scope": "Source-reasoned lifecycle questions must be proved before adding counters: setup rollback after watch publication, replacement-report ownership at stop, stale OnUpdate expiry after reads. Not confirmed runtime failures or a shipped change."
+  },
+  "validationHistory": [
+    {
+      "status": "PENDING ROOT RESULT",
+      "counts": null,
+      "scope": "Combat owner is extending existing border_reflow_cost regression; Root will run focused/full validation. No verification fields advanced by this curation.",
+      "session": 32827,
+      "reportDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\watch-mesh-r60-full-gate"
+    }
+  ],
+  "documentationAcceptance": {
+    "recordedAtUTC": "2026-11-17T03:53:32.138165+00:00",
+    "scope": "Fresh desktop validation accepted; no CPU gain or hardware/nativeFPS claim. Source-independent default/active phase proof and historical boundaries retained.",
+    "native": "Ready answered; a1/a2unsafe-foreground timeouts0input/no journal/lease/command; handoff question pending. No further native input by documentation agent."
+  },
+  "combatWatchR61Followup": {
+    "evidence": "docs/validation/combat-watch-r61-2026-11-17.json",
+    "appliedOtherLF": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "unchangedCoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "fullLua54": {
+      "status": "ACCEPTED fresh full standalone Lua54 gate",
+      "pass": 513,
+      "fail": 0,
+      "syntaxFiles": 1203,
+      "syntaxFailures": 0,
+      "runtime": "Lua 5.4.6  Copyright (C) 1994-2023 Lua.org, PUC-Rio",
+      "beganUTC": "2026-11-17T04:53:36.768603+00:00",
+      "endedUTC": "2026-11-17T04:57:55.726522+00:00",
+      "pins": 1282,
+      "pinExtensions": {
+        ".toc": 8,
+        ".lua": 1203,
+        ".xml": 32,
+        ".txt": 6,
+        ".tga": 33
+      },
+      "changedDuringRun": [],
+      "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\validation.json",
+        "rawSHA256": "097904894c421e689bf7819971d7f0478108a7c2b3870537a408554cd5bd6262",
+        "lfSHA256": "4933d46274c9f5421ae959fd84a33d8cf203491f655be0f2f12b142e1f855240",
+        "bytes": 541303
+      },
+      "stability": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-watch-r61-full-gate\\stability.json",
+        "rawSHA256": "782e2b43b9c50f2d4eebea38463c7f202eb3a98d6954cc4aad0c1b3865a75f90",
+        "lfSHA256": "2b9ebcb852a839e2c19c65fdefffeb6fa620453394f6dcc9c6cad746242e4478",
+        "bytes": 286965
+      },
+      "CoreLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+      "OtherLF": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+      "durableTests": {
+        "tests/perf_spike_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+          "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "bytes": 31336
+        },
+        "tests/perf_combat_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+          "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+          "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+          "bytes": 25989
+        }
+      },
+      "scope": "Fresh whole Lua5.4.6 desktop only. Separate695 checks per Lua5.1.5/5.4.6 and4 installed test compilers are scoped evidence, not wholeLua51/native/CPU/FPS/combat/group acceptance."
+    },
+    "durableValidation": {
+      "status": "PASS / INSTALLED TEST SOURCES FROZEN",
+      "tests": {
+        "tests/perf_spike_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_spike_watch.lua",
+          "rawSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "lfSHA256": "1e0beef491773a2003753c8b3263d0eb4a448db11491672820e1b9d40d53d0ce",
+          "bytes": 31336
+        },
+        "tests/perf_combat_watch.lua": {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\perf_combat_watch.lua",
+          "rawSHA256": "169a2c9c161d94590593ad3d4097156da4c869284ded79baccdfded93bd58d57",
+          "lfSHA256": "8d57f2d18d6d6f3391f84081498c65b48ccf905050a033a09e07d9674b72f4f1",
+          "bytes": 25989
+        }
+      },
+      "newScenesPerVM": 89,
+      "newChecksPerVM": 562,
+      "originalChecksPerVM": 133,
+      "VMs": [
+        "Lua5.1.5",
+        "Lua5.4.6"
+      ],
+      "installedCompilersPassed": 4,
+      "jobsTerminal": true
+    },
+    "scope": "Optional finite-watch lifecycle/accounting; not a main-lag resolution or performance gain. Native acceptance pending."
+  }
+}

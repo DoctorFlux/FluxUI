@@ -1,0 +1,357 @@
+{
+  "changeId": "RAID-AURA-PRESENTATION-R110-20261119",
+  "capturedAtUTC": "2026-11-19T14:00:21.022088+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidAuras.lua": {
+      "beforeRaw": "fcb087d4639761605634c253c83b864fbb1adce848c2efe48ba539a89fec416b",
+      "afterRaw": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3"
+    },
+    "tests/raid_healer_auras.lua": {
+      "beforeRaw": "96e12e69d5ddd01eab841fcb63cebba173e7e46b9adfeebeca98382d2bb8fc4f",
+      "afterRaw": "1d13913b3ffb4b0547e6cdef71ef1af37aff03795912eaabf8f185de6bd6a160"
+    },
+    "tests/passive_raid_aura_snapshots.lua": {
+      "beforeRaw": "8a9e639f50627ceb1593878759851d91e3f919bd452fc4f7f21d4696df901aa6",
+      "afterRaw": "8a9e639f50627ceb1593878759851d91e3f919bd452fc4f7f21d4696df901aa6"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\source.zip",
+    "sourceZipSHA256": "a75c372c70c2e03515c6aa21c192c2961a4757be6f5be22e7c0d1f236d4aa07f",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Forty native compact-raid cells with aura tails. Replay an unchanged group, one cell leaving and rejoining, and all frames switching strict aura filters.",
+  "work": {
+    "columns": [
+      "visibility writes before",
+      "visibility writes after",
+      "unit writes before",
+      "unit writes after",
+      "group checks before",
+      "group checks after"
+    ],
+    "twentyPasses": {
+      "forever:stable": [
+        8000,
+        0,
+        0,
+        0,
+        19200,
+        0
+      ],
+      "forever:join": [
+        8000,
+        70,
+        210,
+        210,
+        19200,
+        480
+      ],
+      "forever:filters": [
+        8000,
+        0,
+        0,
+        0,
+        19200,
+        15200
+      ],
+      "live:stable": [
+        8000,
+        0,
+        0,
+        0,
+        19200,
+        0
+      ],
+      "live:join": [
+        8000,
+        70,
+        210,
+        210,
+        19200,
+        480
+      ],
+      "live:filters": [
+        8000,
+        0,
+        0,
+        0,
+        19200,
+        15200
+      ]
+    },
+    "rawSHA256": "25994056c9202547704a888b7e3bfce98d9f74292c0102746dfd26767106de3d"
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6, Forever and Retail native container models. Seven alternating pairs of 160 roster repaints per sample.",
+    "measures": {
+      "forever:stable": {
+        "medians": [
+          59.0,
+          38.0
+        ],
+        "samples": [
+          [
+            62.0,
+            39.0
+          ],
+          [
+            60.0,
+            38.0
+          ],
+          [
+            57.0,
+            38.0
+          ],
+          [
+            58.0,
+            38.0
+          ],
+          [
+            59.0,
+            37.0
+          ],
+          [
+            59.0,
+            40.0
+          ],
+          [
+            95.0,
+            97.0
+          ]
+        ]
+      },
+      "forever:join": {
+        "medians": [
+          143.0,
+          93.0
+        ],
+        "samples": [
+          [
+            137.0,
+            86.0
+          ],
+          [
+            145.0,
+            94.0
+          ],
+          [
+            145.0,
+            111.0
+          ],
+          [
+            124.0,
+            89.0
+          ],
+          [
+            127.0,
+            88.0
+          ],
+          [
+            143.0,
+            111.0
+          ],
+          [
+            161.0,
+            93.0
+          ]
+        ]
+      },
+      "forever:filters": {
+        "medians": [
+          222.0,
+          253.0
+        ],
+        "samples": [
+          [
+            189.0,
+            200.0
+          ],
+          [
+            222.0,
+            193.0
+          ],
+          [
+            190.0,
+            191.0
+          ],
+          [
+            216.0,
+            253.0
+          ],
+          [
+            301.0,
+            282.0
+          ],
+          [
+            403.0,
+            283.0
+          ],
+          [
+            267.0,
+            255.0
+          ]
+        ]
+      },
+      "live:stable": {
+        "medians": [
+          132.0,
+          86.0
+        ],
+        "samples": [
+          [
+            237.0,
+            88.0
+          ],
+          [
+            133.0,
+            87.0
+          ],
+          [
+            127.0,
+            86.0
+          ],
+          [
+            139.0,
+            98.0
+          ],
+          [
+            122.0,
+            73.0
+          ],
+          [
+            124.0,
+            75.0
+          ],
+          [
+            132.0,
+            73.0
+          ]
+        ]
+      },
+      "live:join": {
+        "medians": [
+          136.0,
+          84.0
+        ],
+        "samples": [
+          [
+            126.0,
+            81.0
+          ],
+          [
+            138.0,
+            92.0
+          ],
+          [
+            136.0,
+            199.0
+          ],
+          [
+            133.0,
+            84.0
+          ],
+          [
+            125.0,
+            91.0
+          ],
+          [
+            148.0,
+            82.0
+          ],
+          [
+            140.0,
+            75.0
+          ]
+        ]
+      },
+      "live:filters": {
+        "medians": [
+          182.0,
+          203.0
+        ],
+        "samples": [
+          [
+            155.0,
+            166.0
+          ],
+          [
+            168.0,
+            228.0
+          ],
+          [
+            166.0,
+            169.0
+          ],
+          [
+            236.0,
+            229.0
+          ],
+          [
+            227.0,
+            213.0
+          ],
+          [
+            182.0,
+            203.0
+          ],
+          [
+            190.0,
+            202.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\timing.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\matched-final.txt",
+    "firstCandidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\matched.txt",
+    "limits": "Repeated strict-filter changes show mixed desktop timings. Native client scheduling and actual frame time were not measured."
+  },
+  "rejectedBaseline": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/raid_healer_auras.lua:4: stable roster repaint keeps native aura bindings and visibility\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_healer_auras.lua:4: in local 'check'\n\ttests/raid_healer_auras.lua:387: in main chunk\n\t[C]: in ?\n\n",
+  "preservation": [
+    "native property change and rebind recovery",
+    "same compact aura family and visible flags in matched replays",
+    "glow switches remain based on current friendly state",
+    "opaque or unknown visibility keeps the setter",
+    "readable classic snapshots run as before"
+  ],
+  "verification": {
+    "focusedPassed": 39,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 18,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-presentation-before-20261119-135345\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "matches": true
+    },
+    "forever": {
+      "sha256": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "matches": true
+    },
+    "classic": {
+      "sha256": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "matches": true
+    },
+    "classic-era": {
+      "sha256": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "matches": true
+    },
+    "classic-anniversary": {
+      "sha256": "b88062dd0358fb46b0ba8fbf0f9185ffc2e3d91a3e36079bb0ce0ae1f36a53c3",
+      "matches": true
+    }
+  },
+  "nativeAcceptance": "Pending for actual party/raid membership latency, held-action hitches, seamless pixels, and combat taint. No game input or profiling changes."
+}

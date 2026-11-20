@@ -1,0 +1,1438 @@
+{
+  "task": "WORLD-MAP-SURFACE-20261116",
+  "dateUTC": "2026-11-16T15:41:14.638464+00:00",
+  "scope": "Desktop Lua fixture and syntax only; native pixels/input/controller/taint/CPU/FPS not tested.",
+  "before": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": "e775a03d26fc9b10aabe1e8e36b00f0374c5d86786f46ee9d7592c447d0b8298",
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "540c8adf881d9235148c35ff6777303500e4c87a932e127344f4e122c85d6ef3",
+    "Battlezonemap/FluxBattlefieldMapPinRouter.lua": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+    "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+    "tests/world_map_surface.lua": "192947ed69b75814a74f1aa60cba47795d5327f1ad9781523d48113e9915ec8d",
+    "tests/map_hbd_all_clients.lua": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+    "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+  },
+  "after": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": "e775a03d26fc9b10aabe1e8e36b00f0374c5d86786f46ee9d7592c447d0b8298",
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "540c8adf881d9235148c35ff6777303500e4c87a932e127344f4e122c85d6ef3",
+    "Battlezonemap/FluxBattlefieldMapPinRouter.lua": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+    "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+    "tests/world_map_surface.lua": "192947ed69b75814a74f1aa60cba47795d5327f1ad9781523d48113e9915ec8d",
+    "tests/map_hbd_all_clients.lua": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+    "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+  },
+  "changedDuringRun": [],
+  "checks": [
+    {
+      "args": [
+        "tests/world_map_surface.lua"
+      ],
+      "exit": 0,
+      "output": "Original world-map surface lifecycle PASS: 6530 checks\n",
+      "wallSeconds": 0.04340059999958612
+    },
+    {
+      "args": [
+        "tests/map_hbd_all_clients.lua"
+      ],
+      "exit": 0,
+      "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n",
+      "wallSeconds": 0.09870129998307675
+    },
+    {
+      "args": [
+        "Battlezonemap/_tmp_questiepinsmoke.lua",
+        "--benchmark"
+      ],
+      "exit": 0,
+      "output": "RestedXP standard HBD pins OK: Forever (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nRestedXP standard HBD pins OK: Classic (ownership, styling, tooltip, owner reset, zone, World Map priority, combat, both toggles)\nQuestie/RestedXP battlefield pins smoke OK (all MapCanvas clients, native coexistence, settings/icons, handoff, filters, tooltips, late loading, combat recovery and Map Pins off)\n1000 incremental pins: 9.00 ms mock CPU, 0 pin-list visits, 1000 acquisitions, 0 full refreshes\n2000 incremental pins: 25.00 ms mock CPU, 0 pin-list visits, 2000 acquisitions, 0 full refreshes\n",
+      "wallSeconds": 0.060622300021350384
+    },
+    {
+      "args": [
+        "tests/map_provider_combat.lua"
+      ],
+      "exit": 0,
+      "output": "Map provider combat: 36 checks passed\n",
+      "wallSeconds": 0.06494690000545233
+    },
+    {
+      "args": [
+        "tests/map_provider_detach.lua"
+      ],
+      "exit": 0,
+      "output": "Map provider detach: 31 checks passed\n",
+      "wallSeconds": 0.023466099984943867
+    },
+    {
+      "args": [
+        "tests/map_init_watchers.lua"
+      ],
+      "exit": 0,
+      "output": "map initialization: 8464 checks; five clients plus legacy zoom fallback; 5 mutations rejected; 30 visits modern watcher frames 30 -> 1 (legacy 60 -> 2)\n",
+      "wallSeconds": 0.05423109998810105
+    },
+    {
+      "args": [
+        "tests/idle_map.lua"
+      ],
+      "exit": 0,
+      "output": "idle map after: 30 visits refreshes=30, zone watchers=1, show/hide hooks=1/1\nidle map: 2493 checks across five client paths; 5 behavioral mutations rejected\n",
+      "wallSeconds": 0.5525390999973752
+    },
+    {
+      "args": [
+        "tests/minimap_window_layout.lua"
+      ],
+      "exit": 0,
+      "output": "Minimap window integration: 113 checks; real map/window/tracker/Questie paths and four harmful controls passed\n",
+      "wallSeconds": 0.11534540000138804
+    }
+  ],
+  "syntaxFiles": 1164,
+  "syntaxFailures": [],
+  "lua51ChangedRuntime": [
+    {
+      "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "harmfulControls": [
+    {
+      "name": "wrong-original-parent",
+      "compiled": true,
+      "rejected": true,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail root belongs to owned clipped host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:239: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "lost-restoration-scale",
+      "compiled": true,
+      "rejected": true,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail restores scale and draw order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:217: in method 'CheckRestored'\n\ttests/world_map_surface.lua:259: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "combat-native-mutation",
+      "compiled": true,
+      "rejected": true,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: native root parent never changes in combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:47: in method 'SetParent'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:306: in upvalue 'Sync'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:335: in method 'Sync'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:325: in method 'Activate'\n\ttests/world_map_surface.lua:306: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "panel-slot-corruption",
+      "compiled": true,
+      "rejected": true,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: automatic native World Map OnShow cannot relocate an unrelated occupied panel\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:391: in local 'fn'\n\ttests/world_map_surface.lua:34: in upvalue 'dispatch'\n\ttests/world_map_surface.lua:43: in method 'Show'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:287: in upvalue 'Sync'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:335: in method 'Sync'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:325: in method 'Activate'\n\ttests/world_map_surface.lua:394: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "name": "fallback-retained",
+      "compiled": true,
+      "rejected": true,
+      "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: original source OnShow runs only after both fallback owners detach\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:462: in local 'fn'\n\ttests/world_map_surface.lua:34: in upvalue 'dispatch'\n\ttests/world_map_surface.lua:43: in method 'Show'\n\t...3b7-b5568f701618\\world-map-control-fallback-retained.lua:287: in upvalue 'Sync'\n\t...3b7-b5568f701618\\world-map-control-fallback-retained.lua:27: in local 'fn'\n\ttests/world_map_surface.lua:201: in method 'Flush'\n\ttests/world_map_surface.lua:471: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "operationEvidence": "Original-source child scripts retained; 50 visits stable frames/hooks; 1000 unchanged Sync calls zero map writes/child enumeration; no Flux host OnUpdate. HBD 1000/2000 insertions zero scans/redraws.",
+  "settingsWrites": false,
+  "clientInput": false,
+  "nativeChecks": "Pending all clients",
+  "hbdSlice": {
+    "scope": "Actual production router + tooltip Lua; map/frame APIs modeled; no native taint/pixels/FPS acceptance",
+    "baselineSHA256": "74d9d550fd12f2998be46fcbbaaf68eeecb98421459dd30b8defdb25e7c79d0a",
+    "candidateSHA256": "76241ad1911fd6b0ab6af2e83590e776af3d193c51f897c31e43c038e023bebe",
+    "testSHA256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+    "runs": [
+      {
+        "run": 1,
+        "source": "baseline",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "run": 1,
+        "source": "candidate",
+        "exit": 0,
+        "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+      },
+      {
+        "run": 2,
+        "source": "baseline",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "run": 2,
+        "source": "candidate",
+        "exit": 0,
+        "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+      },
+      {
+        "run": 3,
+        "source": "baseline",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "run": 3,
+        "source": "candidate",
+        "exit": 0,
+        "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+      },
+      {
+        "source": "reject-modern-clients",
+        "script": "tests/map_hbd_all_clients.lua",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "source": "retain-per-visit-removal-hooks",
+        "script": "tests/map_hbd_all_clients.lua",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: removal stays one callback per library across map visits\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:30: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "source": "refresh-inactive-clone",
+        "script": "Battlezonemap/_tmp_questiepinsmoke.lua",
+        "exit": 1,
+        "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: Battlezonemap/_tmp_questiepinsmoke.lua:271: inactive native map refresh stole World Map icons\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:271: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:294: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  "additionalSurfaceControls": {
+    "scope": "Desktop harmful controls, no native operation evidence",
+    "runtimeSha256": "e775a03d26fc9b10aabe1e8e36b00f0374c5d86786f46ee9d7592c447d0b8298",
+    "testSha256": "192947ed69b75814a74f1aa60cba47795d5327f1ad9781523d48113e9915ec8d",
+    "controls": [
+      {
+        "name": "skip-parent-restoration",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail restores native parent\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:216: in method 'CheckRestored'\n\ttests/world_map_surface.lua:259: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "name": "skip-scale-restoration",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail restores scale and draw order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:217: in method 'CheckRestored'\n\ttests/world_map_surface.lua:259: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "name": "skip-source-map-restoration",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail feature-off restores prior source map\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:258: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "name": "skip-source-map-sync",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail original source canvas shows battlefield map identity\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:238: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "name": "ignore-other-panel-occupants",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: automatic native World Map OnShow cannot relocate an unrelated occupied panel\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:391: in local 'fn'\n\ttests/world_map_surface.lua:34: in upvalue 'dispatch'\n\ttests/world_map_surface.lua:43: in method 'Show'\n\t...ld-map-surface-controls\\ignore-other-panel-occupants.lua:287: in upvalue 'Sync'\n\t...ld-map-surface-controls\\ignore-other-panel-occupants.lua:335: in method 'Sync'\n\t...ld-map-surface-controls\\ignore-other-panel-occupants.lua:325: in m"
+      },
+      {
+        "name": "disable-native-full-handoff",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail native map key transfers original map to full window\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:277: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "name": "allow-fallback-over-native-surface",
+        "rejected": true,
+        "exit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: already queued actual kickstart callbacks cannot reinstall fallback over source surface\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:475: in main chunk\n\t[C]: in ?"
+      }
+    ]
+  },
+  "finalOriginalRootReplacementVerification": {
+    "dateUTC": "2026-11-16T15:45:35.710204+00:00",
+    "before": {
+      "Battlezonemap/FluxBattlefieldWorldMap.lua": "727569703de32235d26be93ce82a49ca7f5cb3ca4299202d0ffeca3c34d5c4cb",
+      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "540c8adf881d9235148c35ff6777303500e4c87a932e127344f4e122c85d6ef3",
+      "Battlezonemap/FluxBattlefieldMapPinRouter.lua": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+      "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+      "tests/world_map_surface.lua": "c2d8c2aecffb8b85e8592302621f1561d80fc81914737ed62004771fd692a9cb",
+      "tests/map_hbd_all_clients.lua": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+      "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+    },
+    "after": {
+      "Battlezonemap/FluxBattlefieldWorldMap.lua": "727569703de32235d26be93ce82a49ca7f5cb3ca4299202d0ffeca3c34d5c4cb",
+      "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "540c8adf881d9235148c35ff6777303500e4c87a932e127344f4e122c85d6ef3",
+      "Battlezonemap/FluxBattlefieldMapPinRouter.lua": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+      "Battlezonemap/_tmp_questiepinsmoke.lua": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+      "tests/world_map_surface.lua": "c2d8c2aecffb8b85e8592302621f1561d80fc81914737ed62004771fd692a9cb",
+      "tests/map_hbd_all_clients.lua": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+      "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+    },
+    "changedDuringRun": [],
+    "checks": [
+      {
+        "runtime": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "args": [
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": "Original world-map surface lifecycle PASS: 6616 checks\n"
+      },
+      {
+        "runtime": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\lua51.exe",
+        "args": [
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": "Original world-map surface lifecycle PASS: 6616 checks\n"
+      },
+      {
+        "runtime": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+        "args": [
+          "tests/map_hbd_all_clients.lua"
+        ],
+        "exit": 0,
+        "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+      }
+    ],
+    "syntaxFiles": 1164,
+    "syntaxFailures": [],
+    "lua51ChangedRuntime": [
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "exit": 0,
+        "output": ""
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "exit": 0,
+        "output": ""
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "exit": 0,
+        "output": ""
+      }
+    ],
+    "harmfulControls": [
+      {
+        "name": "wrong-original-parent",
+        "compiled": true,
+        "rejected": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail root belongs to owned clipped host\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in local 'check'\n\ttests/world_map_surface.lua:239: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "lost-restoration-scale",
+        "compiled": true,
+        "rejected": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: retail restores scale and draw order\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:217: in method 'CheckRestored'\n\ttests/world_map_surface.lua:259: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "combat-native-mutation",
+        "compiled": true,
+        "rejected": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: native root parent never changes in combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:47: in method 'SetParent'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:314: in upvalue 'Sync'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:343: in method 'Sync'\n\t...5568f701618\\world-map-control-combat-native-mutation.lua:333: in method 'Activate'\n\ttests/world_map_surface.lua:306: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "panel-slot-corruption",
+        "compiled": true,
+        "rejected": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: automatic native World Map OnShow cannot relocate an unrelated occupied panel\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:391: in local 'fn'\n\ttests/world_map_surface.lua:34: in upvalue 'dispatch'\n\ttests/world_map_surface.lua:43: in method 'Show'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:295: in upvalue 'Sync'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:343: in method 'Sync'\n\t...b5568f701618\\world-map-control-panel-slot-corruption.lua:333: in method 'Activate'\n\ttests/world_map_surface.lua:394: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "name": "fallback-retained",
+        "compiled": true,
+        "rejected": true,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_surface.lua:5: original source OnShow runs only after both fallback owners detach\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_surface.lua:5: in upvalue 'check'\n\ttests/world_map_surface.lua:462: in local 'fn'\n\ttests/world_map_surface.lua:34: in upvalue 'dispatch'\n\ttests/world_map_surface.lua:43: in method 'Show'\n\t...3b7-b5568f701618\\world-map-control-fallback-retained.lua:295: in upvalue 'Sync'\n\t...3b7-b5568f701618\\world-map-control-fallback-retained.lua:28: in local 'fn'\n\ttests/world_map_surface.lua:201: in method 'Flush'\n\ttests/world_map_surface.lua:471: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "native": "Pending all clients;no client input or native profiling"
+  },
+  "finalLua51UpvalueCheck": {
+    "dateUTC": "2026-11-16T15:47:20.601875+00:00",
+    "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+    "files": 3,
+    "functions": 175,
+    "maximum": 14,
+    "failures": [],
+    "prototypes": [
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 0,
+        "end": 0,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 19,
+        "end": 27,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 53,
+        "end": 55,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 57,
+        "end": 60,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 62,
+        "end": 74,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 76,
+        "end": 91,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 93,
+        "end": 98,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 100,
+        "end": 116,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 118,
+        "end": 135,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 137,
+        "end": 139,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 141,
+        "end": 158,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 160,
+        "end": 168,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 170,
+        "end": 186,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 188,
+        "end": 201,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 203,
+        "end": 264,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 225,
+        "end": 250,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 240,
+        "end": 247,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 251,
+        "end": 259,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 266,
+        "end": 271,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 275,
+        "end": 280,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 285,
+        "end": 359,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 319,
+        "end": 345,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 346,
+        "end": 354,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 361,
+        "end": 368,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 370,
+        "end": 380,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 384,
+        "end": 431,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 393,
+        "end": 401,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 433,
+        "end": 451,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 453,
+        "end": 473,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 479,
+        "end": 492,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 494,
+        "end": 513,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 515,
+        "end": 540,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 542,
+        "end": 601,
+        "upvalues": 8
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 567,
+        "end": 574,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 576,
+        "end": 578,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 579,
+        "end": 581,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 593,
+        "end": 598,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 603,
+        "end": 613,
+        "upvalues": 7
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 615,
+        "end": 637,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 639,
+        "end": 663,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 645,
+        "end": 656,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 665,
+        "end": 669,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 671,
+        "end": 685,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 691,
+        "end": 700,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 702,
+        "end": 731,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 733,
+        "end": 743,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 737,
+        "end": 741,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 745,
+        "end": 767,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 754,
+        "end": 765,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 769,
+        "end": 798,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 800,
+        "end": 846,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 853,
+        "end": 921,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 877,
+        "end": 881,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "start": 913,
+        "end": 918,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 0,
+        "end": 0,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 50,
+        "end": 58,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 60,
+        "end": 80,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 82,
+        "end": 89,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 91,
+        "end": 96,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 98,
+        "end": 112,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 135,
+        "end": 159,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 147,
+        "end": 155,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 161,
+        "end": 166,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 168,
+        "end": 192,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 175,
+        "end": 191,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 194,
+        "end": 199,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 207,
+        "end": 216,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 218,
+        "end": 241,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 243,
+        "end": 245,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 247,
+        "end": 258,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 260,
+        "end": 292,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 294,
+        "end": 299,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 301,
+        "end": 306,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 308,
+        "end": 316,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 318,
+        "end": 323,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 325,
+        "end": 341,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 343,
+        "end": 359,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 361,
+        "end": 381,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 383,
+        "end": 388,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 390,
+        "end": 394,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 399,
+        "end": 417,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 440,
+        "end": 445,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 447,
+        "end": 480,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 482,
+        "end": 487,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 494,
+        "end": 502,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 504,
+        "end": 515,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 517,
+        "end": 523,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 527,
+        "end": 529,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 531,
+        "end": 533,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 535,
+        "end": 547,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 549,
+        "end": 553,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 555,
+        "end": 564,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 566,
+        "end": 609,
+        "upvalues": 11
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 611,
+        "end": 622,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 624,
+        "end": 639,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 641,
+        "end": 646,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 648,
+        "end": 692,
+        "upvalues": 7
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 678,
+        "end": 684,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 695,
+        "end": 723,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 710,
+        "end": 716,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 725,
+        "end": 775,
+        "upvalues": 8
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 755,
+        "end": 760,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 777,
+        "end": 798,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 786,
+        "end": 791,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 793,
+        "end": 795,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 800,
+        "end": 802,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 804,
+        "end": 815,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 817,
+        "end": 845,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 847,
+        "end": 864,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 856,
+        "end": 863,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 866,
+        "end": 879,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 870,
+        "end": 875,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 876,
+        "end": 878,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 881,
+        "end": 895,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 888,
+        "end": 894,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 897,
+        "end": 902,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 904,
+        "end": 915,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 917,
+        "end": 923,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 925,
+        "end": 944,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 929,
+        "end": 942,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 946,
+        "end": 1014,
+        "upvalues": 12
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 965,
+        "end": 967,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 968,
+        "end": 970,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 990,
+        "end": 996,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1008,
+        "end": 1012,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1016,
+        "end": 1022,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1024,
+        "end": 1050,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1052,
+        "end": 1068,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1070,
+        "end": 1078,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1080,
+        "end": 1093,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1095,
+        "end": 1103,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1105,
+        "end": 1132,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1134,
+        "end": 1214,
+        "upvalues": 6
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1220,
+        "end": 1271,
+        "upvalues": 6
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1255,
+        "end": 1262,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "start": 1274,
+        "end": 1285,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 0,
+        "end": 0,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 19,
+        "end": 21,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 22,
+        "end": 34,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 26,
+        "end": 29,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 35,
+        "end": 37,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 38,
+        "end": 45,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 46,
+        "end": 48,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 49,
+        "end": 51,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 52,
+        "end": 61,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 62,
+        "end": 65,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 66,
+        "end": 76,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 68,
+        "end": 68,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 77,
+        "end": 93,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 94,
+        "end": 105,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 106,
+        "end": 111,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 112,
+        "end": 143,
+        "upvalues": 4
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 115,
+        "end": 117,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 118,
+        "end": 120,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 121,
+        "end": 123,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 124,
+        "end": 126,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 129,
+        "end": 131,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 132,
+        "end": 137,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 144,
+        "end": 168,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 169,
+        "end": 187,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 188,
+        "end": 198,
+        "upvalues": 0
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 199,
+        "end": 223,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 211,
+        "end": 211,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 224,
+        "end": 239,
+        "upvalues": 5
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 240,
+        "end": 323,
+        "upvalues": 14
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 284,
+        "end": 284,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 324,
+        "end": 335,
+        "upvalues": 3
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 329,
+        "end": 331,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 336,
+        "end": 342,
+        "upvalues": 2
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 343,
+        "end": 343,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 344,
+        "end": 344,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 345,
+        "end": 345,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 346,
+        "end": 346,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 347,
+        "end": 349,
+        "upvalues": 1
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "start": 354,
+        "end": 361,
+        "upvalues": 3
+      }
+    ]
+  },
+  "fullRepositoryValidation": {
+    "pass": 474,
+    "fail": 0,
+    "syntaxFiles": 1164,
+    "syntaxFailures": [],
+    "changedDuringRun": [],
+    "rawReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-full-validation.json",
+    "rawReportSha256": "1fbd845b8e4f4bda510e2eb65f4cb5f306b0698de91eabcc50c0ef03958566f7",
+    "synchronizedVerification": "docs/reference/verification.json",
+    "nativeChecks": "Not run; all-client runtime/input/taint/pixels/CPU/FPS pending"
+  },
+  "documentationValidation": {
+    "exit": 0,
+    "classifiedSources": 1197,
+    "tocXmlReachable": 625,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17994,
+    "result": "Source inventory/evidence current;checker made no edits"
+  },
+  "finalWhitespaceCheck": "git diff --check scoped owned tracked files PASS; main retained"
+}

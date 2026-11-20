@@ -1,7 +1,14 @@
 # Respec: profiles, presets, apply orchestration, and protection
 
+<!-- RESPEC-ACTION-SAFETY-20261116 -->
+16 November (`RESPEC-ACTION-SAFETY-20261116`): explicit native bar slots now save/load on Retail, Forever and Classic after talents. Failed reads, pickup/no-cursor, malformed snapshots, active loads and player drags cannot become destructive empty restores. Stable flyout/macro/mount/set/outfit routes and legacy missing-stance preservation are covered. Auto-rank now verifies the exact spell cursor and destination before advancing saved IDs; binder opening preserves the native account/character set and unsaved keys. Frozen 14 scripts on each Lua5.1/5.4 PASS (28 runs); 18 owned syntax results and 611 compiler prototypes/max25 captures PASS. Native operation/taint/controller/persistence/FPS remain pending. Reload then re-save old Retail/Forever profiles to capture bars; previous snapshots contain stance only. [Requirements, exact sources, checkpoint, regressions and pending checks](validation/respec-action-safety-2026-11-16.json).
+
+Requirements RAB01–RAB07 in the evidence record cover all-client slot capture/restore, explicit-empty-only clearing, non-destructive save failure, stable identities, unchanged/legacy snapshots, automatic rank safety and native binding-scope preservation. No new UI layout or interaction surface was introduced; existing controller paths and the user-driven native testing route remain pending actual-client acceptance.
+<!-- /RESPEC-ACTION-SAFETY-20261116 -->
+
+
 <!-- STRESS-FIXES-20261107 -->
-7 November applied stress fixes: Profile completion awaits synchronous action-slot verification and successful stance saved-state/layout-request acceptance, retaining the recovery checkpoint on failure. Existing deferred UI layout cadence remains; visual completion is not acknowledged here. Queued snapshots detach nested data, support owned cancellation/replacement and ignore stale regen callbacks; one watcher is reused during supersession storms. Native loadout-owned slots remain untouched on Retail/Forever. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
+7 November applied stress fixes: Profile completion awaits synchronous action-slot verification and successful stance saved-state/layout-request acceptance, retaining the recovery checkpoint on failure. Existing deferred UI layout cadence remains; visual completion is not acknowledged here. Queued snapshots detach nested data, support owned cancellation/replacement and ignore stale regen callbacks; one watcher is reused during supersession storms. Historical stage only: native loadout-owned slots were then left untouched on Retail/Forever; superseded by RAB01 above. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->
 
 `FluxRespec` saves and loads a character's gear, talents/loadout, runes where supported, bar/stance configuration, consumable preset link, utility slots, bindings, and Info preferences. It hosts its UI in the Flux Window's **Respec** tab. This is separate from Ace configuration profiles: changing an Ace profile is not the same action as loading a Respec gameplay profile.
@@ -17,7 +24,7 @@ A profile contains timestamps, client tag, icon, section snapshots, linked prese
 | `equipment[slotID]` | `{ itemID, itemLink, itemKey }` or `{ empty = true }`; identity can retain enchant/gem/rune distinctions. |
 | `talents` on Classic path | Character class, talent group, nested point ranks and saved spec icon. |
 | `talents` on loadout path | `kind = loadout`, class/spec identity, loadout name, starter/no-named-loadout/spec-only flags, export string and optional configuration hash. |
-| `bars` | Classic action-slot entries plus stance order/hidden/custom slots; on talent-loadout clients the capture is stance layout only. |
+| `bars` | Native action-slot entries plus stance order/hidden/custom slots on all clients. Older stance-only snapshots remain valid and do not imply empty native slots. |
 | `runes` | Equipped engravings by eligible slot on SoD-capable clients. |
 | `consumables` | Active noncombat consumables preset **name**, not a copied list of that preset's items. |
 | `utilitySlots` | Utility assignment snapshot; `spellBookSlots` remains a supported older alias. |
@@ -52,7 +59,7 @@ flowchart TD
     T --> J[Join successful talent, gear and rune phases]
     G --> J
     R --> J
-    J --> B[Classic action slots or loadout-client stance layout]
+    J --> B[Saved native action slots and stance layout on every client]
     B --> P[Consumable preset reconciliation]
     P --> U[Utility assignments]
     U --> S[Binding snapshot and badges]
@@ -76,8 +83,8 @@ Combat handling is stage-specific. Talents/gear can decline and ask for a new Lo
 | [`FluxRespec_Talents.lua`](../Respec/FluxRespec_Talents.lua) | Capture/compare talent ranks, find a matching group, switch dual spec, compute learn deltas, and learn in a paced/event-aware loop. Class/trainer/reset/combat gates can stop the load. Trainer prompts remember the last observed reset cost and synchronize the queued reset interaction. |
 | [`FluxRespec_TalentsRetail.lua`](../Respec/FluxRespec_TalentsRetail.lua) | Select specialization, named loadout, starter build or export/import route according to the saved snapshot and available APIs. Asynchronous readiness/events, cancellation generation and finite switch waits protect stale callbacks. A short post-apply match grace covers lagging client APIs. |
 | [`FluxRespec_Runes.lua`](../Respec/FluxRespec_Runes.lua) | Capture engraving, diff slots, build/clear the rune queue and cast the next eligible engraving through player interaction. Gear prerequisites can block the queue head; enqueuing is not equivalent to completing every engraving. |
-| [`FluxRespec_ActionBars.lua`](../Respec/FluxRespec_ActionBars.lua) | Collect/capture Classic action slots, compare and restore differing entries, and capture/apply stance order/hidden/custom slots. Macro identity can be resolved by name; mount/pet/equipment-set entries have their own pickup routes. Loadout clients leave ordinary action slots to Blizzard's loadout ownership. |
-| [`FluxRespec_PresetBundle.lua`](../Respec/FluxRespec_PresetBundle.lua) / [`FluxRespec_RunePresets.lua`](../Respec/FluxRespec_RunePresets.lua) | Talent-tagged preset bars/utility bundles, matching-spec quick switches and explicit confirmation when the preset's saved talent tree matches neither spec. Loadout clients skip preset ordinary-bar restoration. |
+| [`FluxRespec_ActionBars.lua`](../Respec/FluxRespec_ActionBars.lua) | Collect/capture persistent native action slots on all clients, restore only differing explicit entries after verified pickup, and preserve uncaptured legacy stance fields. Current spellbook positions are resolved for flyouts; macro name/body and equipment-set names survive numeric reordering; mount and outfit IDs use their native routes. Failed reads never become saved empty slots. |
+| [`FluxRespec_PresetBundle.lua`](../Respec/FluxRespec_PresetBundle.lua) / [`FluxRespec_RunePresets.lua`](../Respec/FluxRespec_RunePresets.lua) | Talent-tagged preset bars/utility bundles, matching-spec quick switches and explicit confirmation when the preset's saved talent tree matches neither spec. Native talent loadouts do not disable these explicit bar bundles; failed captures preserve the prior bundle. |
 | [`FluxRespec_AtieshDualSpecFix.lua`](../Respec/FluxRespec_AtieshDualSpecFix.lua) | Watches actual dual-spec transitions to temporarily unequip/re-equip Atiesh, with interruption/timeout handling. It does not run an Atiesh swap merely on login. |
 
 The UI's **Engrave next** and secure slot clicks are hardware interaction surfaces; timers/events coordinate queue state but do not grant arbitrary protected casting. `Compat.SecureUIPanelsBlockRespecWork` also gates work around client secure panel ownership.

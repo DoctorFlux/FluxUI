@@ -1,0 +1,797 @@
+{
+  "changeId": "BORDER-FALLBACK-CLIP-R164-20261120",
+  "capturedAtUTC": "2026-11-20T01:22:17.465907+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "6f701826325f22477aad35802913bcb8c51d4cedea1dc0bbdb70ade91c079562",
+      "afterRaw": "ecf95ab4c4ab0f5fe5a5c9bb1f237e5061dfc62178b4336dbd9fce0e2a17c832",
+      "afterNormalized": "ecf95ab4c4ab0f5fe5a5c9bb1f237e5061dfc62178b4336dbd9fce0e2a17c832"
+    },
+    "tests/border_fallback_plan_cache.lua": {
+      "beforeRaw": "d220fdd857cdf40d60b4be2b53e747e0e8ca8cf6deeb7acf3b47e6a06d79756d",
+      "afterRaw": "b5d669c7f9dec6c4ab7c350f1b59fcb1a1cc26ed9e80cd6e27da1e82ed31d87a",
+      "afterNormalized": "b5d669c7f9dec6c4ab7c350f1b59fcb1a1cc26ed9e80cd6e27da1e82ed31d87a"
+    },
+    "tests/regional_border_cuts.lua": {
+      "beforeRaw": "8c2db76a06c56abe0c9b115477246dd20e16fec84d4e30f19f35b215bf331d62",
+      "afterRaw": "f143ec2fa33f491b1995ff84a3ca1502b7a9a05afed4bf1e91ee2ce4fc20f429",
+      "afterNormalized": "f143ec2fa33f491b1995ff84a3ca1502b7a9a05afed4bf1e91ee2ce4fc20f429"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\source.zip",
+    "sourceZipSHA256": "2430429ddc53ba034e934a286fad102b62cc3980bf32275d3742009b96b16e99",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched desktop runs across both border styles, including two new hover and roster layouts and dense overlap runs. External instrumented copies count per-triangle fallback guard construction. A separate comparison times each layout and fallback compile with the Lua process clock and GC suspended for each measurement. Pair order is reversed on the second transition.",
+    "regional": [
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "hover",
+        "guardCompilations": [
+          226,
+          127
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "roster",
+        "guardCompilations": [
+          704,
+          540
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "hover",
+        "guardCompilations": [
+          201,
+          121
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "roster",
+        "guardCompilations": [
+          784,
+          512
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          456,
+          456
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          480,
+          462
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "hover",
+        "guardCompilations": [
+          226,
+          127
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "roster",
+        "guardCompilations": [
+          704,
+          540
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "hover",
+        "guardCompilations": [
+          279,
+          117
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "roster",
+        "guardCompilations": [
+          784,
+          512
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          456,
+          456
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          480,
+          462
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "hover",
+        "guardCompilations": [
+          226,
+          151
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "roster",
+        "guardCompilations": [
+          704,
+          540
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "hover",
+        "guardCompilations": [
+          201,
+          105
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "roster",
+        "guardCompilations": [
+          784,
+          512
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          456,
+          456
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "guardCompilations": [
+          480,
+          462
+        ]
+      }
+    ],
+    "dense": [
+      {
+        "trial": 1,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 1,
+        "guardCompilations": [
+          192,
+          192
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "dividers": 24,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 1,
+        "guardCompilations": [
+          448,
+          448
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "dividers": 56,
+        "step": 2,
+        "guardCompilations": [
+          112,
+          112
+        ]
+      }
+    ],
+    "timings": [
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "hover",
+        "processClockSeconds": [
+          0.029,
+          0.034
+        ],
+        "fallbackCompilerSeconds": [
+          0.001,
+          0.003
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "roster",
+        "processClockSeconds": [
+          0.032,
+          0.031
+        ],
+        "fallbackCompilerSeconds": [
+          0.008,
+          0.006
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "hover",
+        "processClockSeconds": [
+          0.031,
+          0.031
+        ],
+        "fallbackCompilerSeconds": [
+          0.004,
+          0.002
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "roster",
+        "processClockSeconds": [
+          0.082,
+          0.05
+        ],
+        "fallbackCompilerSeconds": [
+          0.01,
+          0.009
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.222,
+          0.267
+        ],
+        "fallbackCompilerSeconds": [
+          0.03,
+          0.025
+        ]
+      },
+      {
+        "trial": 1,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.149,
+          0.197
+        ],
+        "fallbackCompilerSeconds": [
+          0.018,
+          0.02
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "hover",
+        "processClockSeconds": [
+          0.031,
+          0.03
+        ],
+        "fallbackCompilerSeconds": [
+          0.002,
+          0.003
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "roster",
+        "processClockSeconds": [
+          0.031,
+          0.031
+        ],
+        "fallbackCompilerSeconds": [
+          0.006,
+          0.008
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "hover",
+        "processClockSeconds": [
+          0.031,
+          0.03
+        ],
+        "fallbackCompilerSeconds": [
+          0.002,
+          0.002
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "roster",
+        "processClockSeconds": [
+          0.054,
+          0.05
+        ],
+        "fallbackCompilerSeconds": [
+          0.009,
+          0.008
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.152,
+          0.129
+        ],
+        "fallbackCompilerSeconds": [
+          0.018,
+          0.014
+        ]
+      },
+      {
+        "trial": 2,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.142,
+          0.136
+        ],
+        "fallbackCompilerSeconds": [
+          0.017,
+          0.015
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "hover",
+        "processClockSeconds": [
+          0.031,
+          0.029
+        ],
+        "fallbackCompilerSeconds": [
+          0.004,
+          0.002
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "roster",
+        "processClockSeconds": [
+          0.029,
+          0.028
+        ],
+        "fallbackCompilerSeconds": [
+          0.006,
+          0.005
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "hover",
+        "processClockSeconds": [
+          0.032,
+          0.03
+        ],
+        "fallbackCompilerSeconds": [
+          0.003,
+          0.002
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "roster",
+        "processClockSeconds": [
+          0.06,
+          0.05
+        ],
+        "fallbackCompilerSeconds": [
+          0.009,
+          0.007
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 1,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.148,
+          0.148
+        ],
+        "fallbackCompilerSeconds": [
+          0.015,
+          0.015
+        ]
+      },
+      {
+        "trial": 3,
+        "borderType": 2,
+        "case": "parallel-edges",
+        "processClockSeconds": [
+          0.154,
+          0.136
+        ],
+        "fallbackCompilerSeconds": [
+          0.015,
+          0.016
+        ]
+      }
+    ],
+    "processClockMedians": {
+      "1-hover": [
+        0.031,
+        0.03
+      ],
+      "1-roster": [
+        0.031,
+        0.031
+      ],
+      "1-parallel-edges": [
+        0.152,
+        0.148
+      ],
+      "2-hover": [
+        0.031,
+        0.03
+      ],
+      "2-roster": [
+        0.06,
+        0.05
+      ],
+      "2-parallel-edges": [
+        0.149,
+        0.136
+      ]
+    },
+    "fallbackCompilerMedians": {
+      "1-hover": [
+        0.002,
+        0.003
+      ],
+      "1-roster": [
+        0.006,
+        0.006
+      ],
+      "1-parallel-edges": [
+        0.018,
+        0.015
+      ],
+      "2-hover": [
+        0.003,
+        0.002
+      ],
+      "2-roster": [
+        0.009,
+        0.008
+      ],
+      "2-parallel-edges": [
+        0.017,
+        0.016
+      ]
+    },
+    "guardMedians": {
+      "1-hover": [
+        226,
+        127
+      ],
+      "1-roster": [
+        704,
+        540
+      ],
+      "1-parallel-edges": [
+        456,
+        456
+      ],
+      "2-hover": [
+        201,
+        117
+      ],
+      "2-roster": [
+        784,
+        512
+      ],
+      "2-parallel-edges": [
+        480,
+        462
+      ]
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\before-instrumented.lua": "cebf2a7654c85f273e2e47610b3dcecaec647bdb8bb4cedffa7129ee5db9acea",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-instrumented.lua": "a6cacad3772fd53b71b85f950c533ec29fef5f9caf9b960ffd4aae585bd289d4",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\bench-isolated.lua": "5c419734f419dce8beae3f0a4f6cc9c1252e418a165b8707658b33f2fd252e6a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\touching.lua": "1de17e47e6fc19b8c952b0fc53ef2efe0eba8d8546c9138e3abe20a43c203e8d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\touching.txt": "ea70658adb53955bb1e9a90c3b446a97423c5752c12541d3186e2984667bde3e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\bench.lua": "7171e0c202e50063ffe990604d3372f3414d7297345ae30967c8acf60c9bb6d5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\bench-1.txt": "2e5ceae68b9634c6a73f86c4187ee5d4db99dc498b6bb502af52a606f676e710",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\bench-2.txt": "381eef7bc9f1eeb3cfb18cef1a9c821e8463149620e46aef6812c064f577b1e3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\bench-3.txt": "9be1dc4c84ec90b1f9c8e54ba599bce080c6bb1d8360111d88c3d969c89ee17b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\upvalues.json": "ecd4c62a4b3d757fd9283f500f73ba939c68979438a34a786c1f9dfebc84097e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-matched-1.txt": "251cce19904f860225fa307bac2ee8caf3d42db9b500c8fca7affb244f7372f2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-dense-1.txt": "339b18b045bad2056b95de30bbb7189057378ffe97821b0d96ccb21cc3234560",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-bench-1.txt": "646a7440a6c45326607b0381bc7931c93d5280d466944ec27eb06086b92d3a6f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-matched-2.txt": "fa836b53cad177afa9aef890470e3b9300ab7781ac3f6570a6116b7e0dfa1b41",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-dense-2.txt": "339b18b045bad2056b95de30bbb7189057378ffe97821b0d96ccb21cc3234560",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-bench-2.txt": "7de192558fd414dcf2364873b55eeb103223aa749650d8ccfd82daa0c0c19f32",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-matched-3.txt": "fd44014aac59f7866ea05aee0f5037567f898f1a24639979db7aef9f8dc7ee1a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-dense-3.txt": "339b18b045bad2056b95de30bbb7189057378ffe97821b0d96ccb21cc3234560",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\final-bench-3.txt": "852021cc8a3ee45ed47ef5ee7448fae5dc4d58f9a9aacc4e1875d0023959a523"
+    },
+    "discardedPrototype": "The early version cached normalized clip tables. Whole-layout desktop medians rose in several cases. The selected source uses local scalars and keeps no clip tables.",
+    "limits": "Desktop operation counts and clock samples are distinct from native frame timing. The roster fixtures exercise layout geometry rather than the real event cascade."
+  },
+  "preservation": [
+    "The compiler only admits the precheck for its own compiled public geometry and the current fallback cell.",
+    "Touching triangles still reach clipping. Strictly disjoint triangles contribute neither geometry nor a per-triangle empty cache entry.",
+    "Standalone geometry guards, real intersections, fresh native material, existing visibility fallbacks and triangle limits keep their existing paths.",
+    "Archived dense cases match all visible fields after geometric movement and again when the keeper hides. Desktop replays cover private material, clip boundaries, rollback and source recovery. Eighteen direct clip checks compare equal, touching and disjoint bounds in both styles."
+  ],
+  "verification": {
+    "focusedPassed": 40,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\focused-r164-stable-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-clip-before-20261120-021123\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_catalogue_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for new and repeated strip layouts, actual drag/drop, native party/raid join and leave timing, seam pixels and combat taint."
+}

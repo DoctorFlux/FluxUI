@@ -1,0 +1,694 @@
+{
+  "changeId": "RAID-ACTIVE-HEADERS-R160-20261120",
+  "capturedAtUTC": "2026-11-20T00:32:16.778912+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "e70e52bd7ae829254f72bc2f15bf3881be38192e15bfd1797eb86c81f1f27c57",
+      "afterRaw": "1eed04c4a5fff66eca0e2360abf242a8a4e4b2dad66b7bfefa13ac8b5c5016b4",
+      "afterNormalized": "1eed04c4a5fff66eca0e2360abf242a8a4e4b2dad66b7bfefa13ac8b5c5016b4"
+    },
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeRaw": "0dd9220ea27cf81e10524fc33472b27a32bb6946483c03e7632cfe6466a5ad3f",
+      "afterRaw": "7da01eea9bfa315020ae1249a0ff54cf9ca5a7c89b16310b72246f74597fd21e",
+      "afterNormalized": "7da01eea9bfa315020ae1249a0ff54cf9ca5a7c89b16310b72246f74597fd21e"
+    },
+    "tests/group_roster_performance.lua": {
+      "beforeRaw": "d51f37a5f61d669af050ced7dea8718a179a18d09af4617d084402fbd98b9c5e",
+      "afterRaw": "129a23d292df517ec11302f8a7eec8e4a4022cb9d7b11c9a0c6bc36ee13dbc29",
+      "afterNormalized": "129a23d292df517ec11302f8a7eec8e4a4022cb9d7b11c9a0c6bc36ee13dbc29"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "71d0f08f34a84a5519aa6b609ade4ef7d78f4ed194ebddc05095efd724d0bff2",
+      "afterRaw": "9ca568316858522f76a7282c7b21d10ea29eefaf7965b828d9819c713c6989a1",
+      "afterNormalized": "9ca568316858522f76a7282c7b21d10ea29eefaf7965b828d9819c713c6989a1"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\source.zip",
+    "sourceZipSHA256": "6fb7d0e36fcbe3e2d3013009b1e579a9da53daeaaae6e3c47612c2ad49610335",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched runs across five modeled client shapes. Each scenario exercises eight unscoped prepared refreshes with a hidden 40-slot tank/assist header. The ordinary steady compact-party route separately retains its existing one-header limit.",
+    "samples": [
+      {
+        "trial": 1,
+        "clientShape": "live",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 1,
+        "clientShape": "live",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 1,
+        "clientShape": "live",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 1,
+        "clientShape": "forever",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 1,
+        "clientShape": "forever",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 1,
+        "clientShape": "forever",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_era",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_era",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_era",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_anniversary",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_anniversary",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic_anniversary",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 2,
+        "clientShape": "live",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 2,
+        "clientShape": "live",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 2,
+        "clientShape": "live",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 2,
+        "clientShape": "forever",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 2,
+        "clientShape": "forever",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 2,
+        "clientShape": "forever",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_era",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_era",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_era",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_anniversary",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_anniversary",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic_anniversary",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 3,
+        "clientShape": "live",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 3,
+        "clientShape": "live",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 3,
+        "clientShape": "live",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 3,
+        "clientShape": "forever",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 3,
+        "clientShape": "forever",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 3,
+        "clientShape": "forever",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_era",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_era",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_era",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_anniversary",
+        "mode": "raid",
+        "childReads": [
+          1024,
+          384
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 320
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_anniversary",
+        "mode": "party",
+        "childReads": [
+          1024,
+          48
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 40
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic_anniversary",
+        "mode": "solo",
+        "childReads": [
+          1024,
+          0
+        ],
+        "tankAssistAttachmentCalls": [
+          320,
+          0
+        ],
+        "visiblePaintsInEachSource": 0
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\matched-1.txt": "0ccbce6e1b88548af0d22e64a7905eebe59b6fc5925eaa00288b16874ed0d32e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\matched-2.txt": "0ccbce6e1b88548af0d22e64a7905eebe59b6fc5925eaa00288b16874ed0d32e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\matched-3.txt": "0ccbce6e1b88548af0d22e64a7905eebe59b6fc5925eaa00288b16874ed0d32e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\upvalues.json": "fdcb976d6f5dc8871fe066b8d91726994f4353da0afc8819e32cfd23c6b4c0ca"
+    },
+    "limits": "Attribute and attachment counts are measured in desktop mocks. Native hitch timing, secure event ordering and taint remain pending."
+  },
+  "preservation": [
+    "Prepared roster reconciliation leaves a publicly hidden header to native unit and reveal callbacks.",
+    "Shown alpha-zero headers and unreadable visibility still enter the scan. Explicit setup, legacy layout, and repair visit the full pool.",
+    "The shared border dispatch runs even when the final roster is empty. Model reveal tests cover hidden unit rebinding and current name, health and auras."
+  ],
+  "verification": {
+    "focusedPassed": 35,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\focused-r160-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-active-headers-before-20261120-012644\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for actual party/raid transitions, rapid held-action crossings and drops, seam pixels and combat taint."
+}

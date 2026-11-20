@@ -1,0 +1,132 @@
+{
+  "task": "WORLD-MAP-BRIDGE-20261116",
+  "date": "2026-11-16",
+  "research_only": true,
+  "scope": "Follow-up to user's universal/no-addon-specific request: reuse original WorldMapFrame rendering surface in the Flux battlefield viewport; prior optional Polestar registration research is historical and not the selected architecture.",
+  "files": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "blob_sha": "6783f8c6e1ecfd21d7b06a604efcfb59cd280593",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml",
+      "blob_sha": "4a18f3b7884b9c35f693f959357d091d53a73c88",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml"
+    },
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_WorldMap/QuestLogOwnerMixin.lua",
+      "blob_sha": "a31271d7be62a1d2290fe4ce8cae92b20653ab3b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_WorldMap/QuestLogOwnerMixin.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "blob_sha": "6b17b93085e6793627885c296a5f79a3a01d2289",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml",
+      "blob_sha": "033c192d6c3decd7c93b0faaead96ba7c319b13a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.xml"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_WorldMap/QuestLogOwnerMixin.lua",
+      "blob_sha": "a31271d7be62a1d2290fe4ce8cae92b20653ab3b",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_WorldMap/QuestLogOwnerMixin.lua"
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "blob_sha": "50964750c2a5739b4baf5c7333a980362afdf6b6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.lua",
+      "blob_sha": "87f1afc6fc3b486318f5f1a59b9fc25712b680ea",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.lua"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.xml",
+      "blob_sha": "af90d7713d61fd9d73c374e728c5505fc959cf19",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.xml"
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_WorldMap/Wrath/QuestLogOwnerMixin.lua",
+      "blob_sha": "22f948754f6ead4cbf103ed9df8ea55f60a45bb5",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_WorldMap/Wrath/QuestLogOwnerMixin.lua"
+    }
+  ],
+  "contracts": [
+    {
+      "target": "retail,forever",
+      "file": "Interface/AddOns/Blizzard_WorldMap/QuestLogOwnerMixin.lua",
+      "lines": "23-50,101-119",
+      "finding": "ToggleSelf branches on actual IsShown state. An embedded shown root is treated as already open, so native ToggleWorldMap closes it or changes display state. OpenSelf calls ShowUIPanel then applies requested map ID."
+    },
+    {
+      "target": "forever",
+      "file": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "lines": "849-861,871-903,905-935",
+      "finding": "Addon ShowUIPanel and HideUIPanel are blocked in combat. ShowUIPanel returns when the root is already shown. UIParent panel operations dispatch through a forbidden native FramePositionDelegate; manager internals are not an addon extension point."
+    },
+    {
+      "target": "forever",
+      "file": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "lines": "152-154,185-195,537-593",
+      "finding": "Shown untracked panel is hidden by native HideUIPanel fallback. Directly hiding a managed frame can leave stale panel occupancy until RepairUIPanelState. A re-shown embedded root would prevent that hidden-state repair."
+    },
+    {
+      "target": "retail",
+      "file": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "lines": "342-391",
+      "finding": "OnShow resets player map and zoom, starts READ emote, plays sound, installs movement fade, checks tutorials and display state. OnHide cancels emote, plays sound, removes fade, closes world-map interaction and updates microbuttons."
+    },
+    {
+      "target": "forever",
+      "file": "Interface/AddOns/Blizzard_WorldMap/Blizzard_WorldMap.lua",
+      "lines": "369-424",
+      "finding": "Same native display side effects; OnHide additionally clears current focus and bindings when native gamepad UI is active."
+    },
+    {
+      "target": "classic",
+      "file": "Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.lua",
+      "lines": "112-124,320-344,423-429",
+      "finding": "Mists-loaded Cata map also uses native MapCanvas and same ToggleSelf/OpenSelf flow. OnShow resets map and zoom, sounds and minimizes/maximizes; OnHide removes map data view and refreshes quest log."
+    },
+    {
+      "target": "classic",
+      "file": "Interface/AddOns/Blizzard_WorldMap/Cata/Blizzard_WorldMap.xml",
+      "lines": "28-38",
+      "finding": "Native root sets ignoreParentScale=true; parent/effective-scale handling must account for this client difference."
+    }
+  ],
+  "implementation_guidance": [
+    "Reusing the original root preserves addon identities, own children, pools, direct textures and event-driven updates without enumerating addon names or duplicating data providers.",
+    "Use Flux-owned clipping viewport and direct C geometry/parent operations outside combat. Keep root native size to avoid OnSizeChanged mutation paths; compute scale/offset from native ScrollContainer bounds.",
+    "Snapshot exact original parent, every anchor tuple, scale, frame strata/level and any other property actually changed; restore only when Flux owns the embedding state.",
+    "Never replace WorldMap globals or modify native map providers, pools, scripts or UIPanelLayout attributes. Posthooks can restore on native user open and reopen once when native Toggle closes an embedded root, outside combat.",
+    "Do not detach native panel manager internals. Direct Show avoids occupying a panel slot but requires native taint validation; ShowUIPanel occupies a native slot and can close/move on other panel operations.",
+    "Guard combat and forbidden frames, defer reparent/geometry/show transitions until PLAYER_REGEN_ENABLED, preserve requested map ID through normal re-open paths.",
+    "While the actual root remains shown all native/addon open-map work runs. This avoids extra mirroring work but is not zero-cost and cannot establish FPS improvement from desktop model counts."
+  ],
+  "native_acceptance": "NOT RUN: taint, protected-operation behavior, gamepad focus, other-panel interactions, global M/L opens, user map links, native map pixels/clipping, CPU/FPS on each client."
+}

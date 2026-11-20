@@ -180,10 +180,17 @@ function Tiers.GetBankRestockEntries()
     end
 
     local out = {}
+    local positiveCounts
     for _, kind in ipairs(P.KINDS) do
         local target = Tiers.GetTarget(kind)
         if target > 0 and Tiers.IsTierEligible(kind) then
-            local have = Tiers.GetTierBagTotalForBankRestock(kind)
+            local have
+            if P.GetBankTierBagTotal then
+                positiveCounts = positiveCounts or {}
+                have = P.GetBankTierBagTotal(kind, positiveCounts)
+            else
+                have = Tiers.GetTierBagTotalForBankRestock(kind)
+            end
             local needed = target - have
             if needed > 0 then
                 local ref = P.GetTierRestockThreshold(kind)

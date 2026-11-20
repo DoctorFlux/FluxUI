@@ -365,7 +365,7 @@ end
 --- Default layout (status pos 3) lifts the action strip off the bottom; sit on that stack.
 --- Status pos 2: sit on the status strip. Always prefer live FluxActionStrip over a stale 96px fallback.
 function _G.FluxUnitFrames_GetPlayerScreenBottomOffset()
-    local y = 96
+    local y, support = 96, nil
     local function RaiseFromFrame(frame)
         if not frame or not frame.GetTop or not UIParent or not UIParent.GetBottom then
             return
@@ -380,8 +380,8 @@ function _G.FluxUnitFrames_GetPlayerScreenBottomOffset()
             local frameScale = frame.GetEffectiveScale and frame:GetEffectiveScale() or 1
             local parentScale = UIParent.GetEffectiveScale and UIParent:GetEffectiveScale() or 1
             local v = parentScale > 0 and (t * frameScale / parentScale - b) or (t - b)
-            if v > y then
-                y = v
+            if v > y or v == y and not support then
+                y, support = v, frame
             end
         end
     end
@@ -389,25 +389,46 @@ function _G.FluxUnitFrames_GetPlayerScreenBottomOffset()
     RaiseFromFrame(_G.FluxUnifiedBorderFrame)
     local loc2 = _G.FluxStatusBar_GetLocation2MinBottomOffset and _G.FluxStatusBar_GetLocation2MinBottomOffset()
     if type(loc2) == "number" and loc2 == loc2 and loc2 > y then
-        y = loc2
+        y, support = loc2, nil
     end
     local Cap = ns.Flux and ns.Flux.Cap
     local floor = Cap and Cap.GetGamepadActionBarFloor and Cap.GetGamepadActionBarFloor()
     if type(floor) == "number" and floor == floor and floor > y then
-        y = floor
+        y, support = floor, nil
     end
-    return y
+    return y, support
 end
 
-function _G.FluxUnitFrames_ApplyPlayerStatusBarLayout()
+-- Canonical decorative stroke coordinates, in physical screen units. Both
+-- styles retain one unit position across independently scaled owners.
+local function PublicLayoutNumber(value)
+    return not (issecretvalue and issecretvalue(value)) and type(value) == "number"
+        and value == value and math.abs(value) < 10000000
+end
+local function ChromeLineY(owner, side)
+    local border = owner and owner.FluxBorderFrame
+    local texture = border and border[side]
+    if not texture or not texture.GetRect then return end
+    local _, y, _, height = texture:GetRect()
+    local parent = texture:GetParent()
+    local scale = parent and parent:GetEffectiveScale()
+    if not (PublicLayoutNumber(y) and PublicLayoutNumber(height) and PublicLayoutNumber(scale))
+        or height <= 0 or scale <= 0 then return end
+    -- Anchor both styles to type 1's canonical tracks. Changing artwork must
+    -- never move player/target; the renderer owns any wider shared-edge fit.
+    local track = 8
+    return (y + height - track / (side == "Top" and 17 or 16) * height) * scale
+end
+
+function _G.FluxUnitFrames_ApplyPlayerStatusBarLayout(anchorsOnly)
     if InCombatLockdown() then
         return
     end
     if ns.PlayerFrame and FluxUnitFrames_ReanchorUnitFrameScreenPosition then
-        FluxUnitFrames_ReanchorUnitFrameScreenPosition(ns.PlayerFrame, "player")
+        FluxUnitFrames_ReanchorUnitFrameScreenPosition(ns.PlayerFrame, "player", anchorsOnly)
     end
     if ns.TargetFrame and FluxUnitFrames_ShouldUseFlux("target") and FluxUnitFrames_ReanchorUnitFrameScreenPosition then
-        FluxUnitFrames_ReanchorUnitFrameScreenPosition(ns.TargetFrame, "target")
+        FluxUnitFrames_ReanchorUnitFrameScreenPosition(ns.TargetFrame, "target", anchorsOnly)
     end
 end
 
@@ -458,8 +479,21 @@ function FluxUnitFrames_RefreshTargetOfTargetAnchor()
     end
 end
 
+local function ScreenAnchorMatches(fr, point, relativePoint, x, y)
+    local count, getPoint = fr.GetNumPoints, fr.GetPoint
+    if issecretvalue and (issecretvalue(count) or issecretvalue(getPoint)) then return false end
+    if type(count) ~= "function" or type(getPoint) ~= "function" then return false end
+    local numPoints = count(fr)
+    if not PublicLayoutNumber(numPoints) or numPoints ~= 1 then return false end
+    local p, parent, relative, currentX, currentY = getPoint(fr, 1)
+    if issecretvalue and (issecretvalue(p) or issecretvalue(parent) or issecretvalue(relative)) then return false end
+    return p == point and parent == UIParent and relative == relativePoint
+        and PublicLayoutNumber(currentX) and PublicLayoutNumber(currentY)
+        and PublicLayoutNumber(x) and PublicLayoutNumber(y) and currentX == x and currentY == y
+end
+
 --- Reposition player/target on screen when portrait toggles (bar-only = centered; with portrait = offset).
-function FluxUnitFrames_ReanchorUnitFrameScreenPosition(fr, unit)
+function FluxUnitFrames_ReanchorUnitFrameScreenPosition(fr, unit, anchorsOnly)
     if not fr or InCombatLockdown() then
         return
     end
@@ -476,7 +510,10 @@ function FluxUnitFrames_ReanchorUnitFrameScreenPosition(fr, unit)
     -- SetPoint offsets are in the scaled frame's local units. The portrait
     -- half-width is already a local dimension; multiplying it again drifts it.
     local cx = FluxUnitFrames_GetScreenAnchorCenterOffsetX(unit, pos, pw, ph)
-    local py = _G.FluxUnitFrames_GetPlayerScreenBottomOffset and _G.FluxUnitFrames_GetPlayerScreenBottomOffset() or 96
+    local py, support = 96, nil
+    if _G.FluxUnitFrames_GetPlayerScreenBottomOffset then
+        py, support = _G.FluxUnitFrames_GetPlayerScreenBottomOffset()
+    end
     local sideBySide = FluxUnitFrames_GetPlayerTargetPlacement() == 2
         and FluxUnitFrames_ShouldUseFlux("player")
         and FluxUnitFrames_ShouldUseFlux("target")
@@ -484,38 +521,49 @@ function FluxUnitFrames_ReanchorUnitFrameScreenPosition(fr, unit)
     -- strip top from UIParent units for both smaller and larger frame scales.
     if unit == "player" or (unit == "target" and sideBySide) then
         local scale = FluxUnitFrames_GetWholeFrameScale("player")
+        local joined = false
+        local topLine = ChromeLineY(support, "Top")
+        local bottomLine = ChromeLineY(fr.atlasBorderFrame or fr.outerBorderFrame, "Bottom")
+        local bottom = fr.GetBottom and fr:GetBottom()
+        local frameScale = fr.GetEffectiveScale and fr:GetEffectiveScale()
+        local parentScale = UIParent.GetEffectiveScale and UIParent:GetEffectiveScale()
+        if PublicLayoutNumber(topLine) and PublicLayoutNumber(bottomLine) and PublicLayoutNumber(bottom)
+            and PublicLayoutNumber(frameScale) and frameScale > 0
+            and PublicLayoutNumber(parentScale) and parentScale > 0 then
+            py = (topLine - bottomLine + bottom * frameScale) / parentScale
+            joined = true
+        end
         if scale ~= 1 then
-            py = (py + 4) / scale
+            py = (py + (joined and 0 or 4)) / scale
         end
     end
 
+    local point, relativePoint, x, y
     if sideBySide and (unit == "player" or unit == "target") then
-        --- Seam between frames at horizontal screen center: BOTTOMRIGHT(player) and BOTTOMLEFT(target) to UIParent BOTTOM with +/- half gap.
+        -- Leave the center seam between the two independent unit frames.
         local halfGap = FLUX_PLAYER_TARGET_SIDE_BY_SIDE_GAP / 2
-        fr:ClearAllPoints()
-        if unit == "player" then
-            fr:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOM", -halfGap, py)
-        else
-            fr:SetPoint("BOTTOMLEFT", UIParent, "BOTTOM", halfGap, py)
-        end
+        point, relativePoint = unit == "player" and "BOTTOMRIGHT" or "BOTTOMLEFT", "BOTTOM"
+        x, y = unit == "player" and -halfGap or halfGap, py
     elseif unit == "player" then
-        fr:ClearAllPoints()
-        if pos == "LEFT" then
-            fr:SetPoint("BOTTOM", UIParent, "BOTTOM", cx, py)
-        else
-            fr:SetPoint("BOTTOM", UIParent, "BOTTOM", -cx, py)
-        end
+        point, relativePoint, x, y = "BOTTOM", "BOTTOM", pos == "LEFT" and cx or -cx, py
     elseif unit == "target" then
-        fr:ClearAllPoints()
-        if pos == "LEFT" then
-            fr:SetPoint("TOP", UIParent, "TOP", cx, 2)
-        else
-            fr:SetPoint("TOP", UIParent, "TOP", -cx, 2)
+        point, relativePoint, x, y = "TOP", "TOP", pos == "LEFT" and cx or -cx, 2
+    end
+    if point then
+        local ok, matches
+        if anchorsOnly == true then
+            ok, matches = pcall(ScreenAnchorMatches, fr, point, relativePoint, x, y)
+        end
+        if not ok or not matches then
+            fr:ClearAllPoints()
+            fr:SetPoint(point, UIParent, relativePoint, x, y)
         end
     end
 
-    --- One sync per layout pass (runs when target screen position is applied; updates cast/aura/name chrome for side-by-side vs classic).
-    if unit == "target" and ns.TargetFrame and FluxUnitFrames_ShouldUseFlux("target") then
+    -- Children follow the translated root. A new placement still needs the
+    -- full target-chrome pass, as do explicit layout and appearance calls.
+    if unit == "target" and ns.TargetFrame and FluxUnitFrames_ShouldUseFlux("target")
+        and (anchorsOnly ~= true or fr.outerBorderAlignment ~= (sideBySide and "BOTTOM" or "TOP")) then
         FluxUnitFrames_SyncTargetChromeForPlacement()
     end
 end

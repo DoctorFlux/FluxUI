@@ -65,6 +65,15 @@ local function CopyBtn(src)
 		currentCount = src.currentCount or src["$currentCount"],
 		targetCount = src.targetCount or src["$targetCount"],
 	}
+	local action = Flux.EBS and Flux.EBS.Action
+	if dst.type == "spell" and action and action.ResolveProfessionSpell then
+		local id, profession = action.ResolveProfessionSpell(dst.spell)
+		if profession then
+			-- Favorites retain the placed identity while execution follows rank.
+			dst._fluxProfessionAssignment = src._fluxProfessionAssignment or dst.spell
+			dst.spell = id
+		end
+	end
 	return dst
 end
 

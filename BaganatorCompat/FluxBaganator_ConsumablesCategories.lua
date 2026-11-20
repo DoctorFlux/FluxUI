@@ -82,6 +82,9 @@ local function DisplayNameForPreset(presetName)
 end
 
 local function RequestCategoryLayoutRefresh()
+    if Compat.RequestBaganatorCategoryDataRefresh and Compat.RequestBaganatorCategoryDataRefresh() then
+        return
+    end
     local api = _G.Baganator and _G.Baganator.API
     if not api then
         return

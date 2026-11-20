@@ -1,0 +1,227 @@
+{
+  "changeId": "BORDER-FRAGMENT-MEMBERSHIP-R156-20261120",
+  "capturedAtUTC": "2026-11-19T23:52:47.797946+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "a873f924200e4db6a00e72786707c632d8fc15b6e5d33dc44d322c8c049ded8a",
+      "afterRaw": "e99b63fe8dba52cedda40a8bdfbc9ea7c4afca417a85759cd331409dbfd42b02",
+      "afterNormalized": "e99b63fe8dba52cedda40a8bdfbc9ea7c4afca417a85759cd331409dbfd42b02"
+    },
+    "tests/regional_fragment_reads.lua": {
+      "beforeRaw": "1d2dacd0a9850b4e12ae402fd7263feb249d81a26a80a5b669a5ba33e9424bc5",
+      "afterRaw": "fcdf2057a3ceb581ffc9516931b647341a69c1c5810f119383e40adaeb6dfc23",
+      "afterNormalized": "fcdf2057a3ceb581ffc9516931b647341a69c1c5810f119383e40adaeb6dfc23"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "4c1a696627cbb96832bd6df5c4609be69b3a04171ac252ea04dae253899a6162",
+      "afterRaw": "6c542f90ec4effd5dca2b16cdf513cc551b010a736a9e76c2cd6479e28688931",
+      "afterNormalized": "6c542f90ec4effd5dca2b16cdf513cc551b010a736a9e76c2cd6479e28688931"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\source.zip",
+    "sourceZipSHA256": "05d569a1ecc78c9c75c789228998c35c328af810b0020791bbc2b2249c8e1d29",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched runs of eight held-action crossings, width changes and local join changes in both styles.",
+    "samples": [
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "strip-width",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "strip-width",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "strip-width",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "strip-width",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "strip-width",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldInsertions": 896,
+        "newInsertions": 3,
+        "oldRemovals": 893,
+        "newRemovals": 0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "strip-width",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldInsertions": 912,
+        "newInsertions": 3,
+        "oldRemovals": 909,
+        "newRemovals": 0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "local-join",
+        "oldInsertions": 288,
+        "newInsertions": 2,
+        "oldRemovals": 288,
+        "newRemovals": 2
+      }
+    ],
+    "metrics": [
+      "Successful fragment insertions into the source pool",
+      "Successful fragment removals from the source pool"
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\matched.txt": "c5cf891ddfaceabeeba8c4b828c6441e36bc8ae73a62a25d83d19304ba1eb2ef",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\matched-2.txt": "717956849df4c6de94b9a8c31868d8cf1a2a2a922adb444da9e90e7f9b715641",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\matched-3.txt": "717956849df4c6de94b9a8c31868d8cf1a2a2a922adb444da9e90e7f9b715641",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\upvalues.json": "bee0ffb5fc043cf2327d468f1c328c27a59d93faf00458c02709a4d879e65166"
+    },
+    "limits": "Counts establish fewer table mutations during synchronous regional commits. Native frame time, rendering and taint remain pending."
+  },
+  "preservation": [
+    "A current fragment keeps its source membership during regional repaint. Added, replaced and retired fragments reconcile within the same commit.",
+    "Retired tiles and a failed warm commit clear retained back-indexes and restore source opacity. The next layout can rebuild normally.",
+    "Sampled seams match in both styles and live layer, color and visibility still propagate."
+  ],
+  "verification": {
+    "focusedPassed": 107,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fragment-membership-before-20261120-003951\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings and drops, party and raid membership hitches, native seam pixels and combat taint."
+}

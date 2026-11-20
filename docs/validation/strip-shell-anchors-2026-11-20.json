@@ -1,0 +1,105 @@
+{
+  "changeId": "STRIP-SHELL-ANCHORS-R165-20261120",
+  "capturedAtUTC": "2026-11-20T01:36:07.784668+00:00",
+  "sources": {
+    "Bars/Strip.lua": {
+      "beforeRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+      "afterRaw": "aace75c3e67537ac5057276d5c0c20772427bee76ed6a760d6daa3b238099309",
+      "afterNormalized": "aace75c3e67537ac5057276d5c0c20772427bee76ed6a760d6daa3b238099309"
+    },
+    "tests/strip_border_commit_work.lua": {
+      "beforeRaw": "2fbd442701f3fb94146711bc6d68e993bd5d97d428b80f993764f1b9e021dbc8",
+      "afterRaw": "a402d791497990bddd68224f58667fe302e17289e2bf9c521ae1d2332e90f89e",
+      "afterNormalized": "a402d791497990bddd68224f58667fe302e17289e2bf9c521ae1d2332e90f89e"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-shell-writes-before-20261120T023043706\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": [
+      {
+        "client": "_retail_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_forever_",
+        "directory": true,
+        "settingsFiles": 3
+      },
+      {
+        "client": "_classic_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_classic_era_",
+        "directory": true,
+        "settingsFiles": 4
+      },
+      {
+        "client": "_anniversary_",
+        "directory": true,
+        "settingsFiles": 10
+      }
+    ]
+  },
+  "scenario": "Six real width-changing strip transactions per case and position. Replays exercise spells, items and macros carried across the strip edge, and occupied slot events that add or remove a packed column.",
+  "beforeAfterPerSix": {
+    "outerAnchorSetters": [
+      24,
+      0
+    ],
+    "innerScaleSetters": [
+      6,
+      0
+    ],
+    "sizeSetters": [
+      18,
+      18
+    ],
+    "innerAnchorSettersHover": [
+      12,
+      12
+    ],
+    "innerAnchorSettersSlotChange": [
+      12,
+      0
+    ],
+    "borderCommits": [
+      6,
+      6
+    ]
+  },
+  "parity": "All 57 button frames, slot identities, and mapping attributes match on every transition. Recovery and explicit full writers stay available through the existing call path.",
+  "verification": {
+    "focusedPassed": 27,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-shell-writes-before-20261120T023043706\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-shell-writes-before-20261120T023043706\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-shell-writes-before-20261120T023043706\\upvalues.json",
+    "matches": [
+      [
+        "STRIP_RESIZE change=hover bottom=false exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=false exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=hover bottom=true exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=true exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18"
+      ],
+      [
+        "STRIP_RESIZE change=hover bottom=false exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=false exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=hover bottom=true exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=true exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18"
+      ],
+      [
+        "STRIP_RESIZE change=hover bottom=false exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=false exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=hover bottom=true exteriorAnchors=24/0 innerAnchors=12/12 innerScale=6/0 sizes=18/18",
+        "STRIP_RESIZE change=slot bottom=true exteriorAnchors=24/0 innerAnchors=12/0 innerScale=6/0 sizes=18/18"
+      ]
+    ]
+  },
+  "nativeAcceptance": "Live action-strip timing, seam pixels, action input and combat taint remain pending. Party and raid transition timing also remains open."
+}

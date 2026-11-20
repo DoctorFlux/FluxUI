@@ -1,0 +1,1055 @@
+{
+  "changeId": "BORDER-SPRITE-REUSE-R128-20261119",
+  "capturedAtUTC": "2026-11-19T18:03:01.634026+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+      "afterRaw": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17"
+    },
+    "tests/border_draw_reuse.lua": {
+      "beforeRaw": "b0ac50ebdbe5c405365c55ef717b1d7fe3ea9f8b1454303a5a95c9ac71049817",
+      "afterRaw": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\source.zip",
+    "sourceZipSHA256": "cf5583b4ceac2fb18f5d4505bb51d62196db0c7fd3a1f0d4ee0543f9845f574b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual regional border renderer and modeled native widgets. Five paired trials of eight warm held-action crossings or scoped unit relocations in each border style. Both builds render sampled joins and source paint after the same transitions.",
+    "samples": {
+      "style1-hover": [
+        {
+          "trial": "1",
+          "passes": "236",
+          "reused": "0/48",
+          "bindingTables": "1556/0",
+          "heapKB": "4097.519/3946.548"
+        },
+        {
+          "trial": "2",
+          "passes": "236",
+          "reused": "0/48",
+          "bindingTables": "1556/0",
+          "heapKB": "4097.607/3946.699"
+        },
+        {
+          "trial": "3",
+          "passes": "236",
+          "reused": "0/48",
+          "bindingTables": "1556/0",
+          "heapKB": "4097.357/3946.449"
+        },
+        {
+          "trial": "4",
+          "passes": "236",
+          "reused": "0/48",
+          "bindingTables": "1556/0",
+          "heapKB": "4097.857/3946.949"
+        },
+        {
+          "trial": "5",
+          "passes": "236",
+          "reused": "0/48",
+          "bindingTables": "1556/0",
+          "heapKB": "4097.357/3946.449"
+        }
+      ],
+      "style1-roster": [
+        {
+          "trial": "1",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1662.337/1662.354"
+        },
+        {
+          "trial": "2",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1662.462/1662.479"
+        },
+        {
+          "trial": "3",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1662.212/1662.229"
+        },
+        {
+          "trial": "4",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1662.712/1662.729"
+        },
+        {
+          "trial": "5",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1662.212/1662.229"
+        }
+      ],
+      "style2-hover": [
+        {
+          "trial": "1",
+          "passes": "240",
+          "reused": "0/48",
+          "bindingTables": "1776/0",
+          "heapKB": "4272.267/4096.302"
+        },
+        {
+          "trial": "2",
+          "passes": "240",
+          "reused": "0/48",
+          "bindingTables": "1776/0",
+          "heapKB": "4272.418/4096.453"
+        },
+        {
+          "trial": "3",
+          "passes": "240",
+          "reused": "0/48",
+          "bindingTables": "1776/0",
+          "heapKB": "4272.168/4096.203"
+        },
+        {
+          "trial": "4",
+          "passes": "240",
+          "reused": "0/48",
+          "bindingTables": "1776/0",
+          "heapKB": "4272.668/4096.703"
+        },
+        {
+          "trial": "5",
+          "passes": "240",
+          "reused": "0/48",
+          "bindingTables": "1776/0",
+          "heapKB": "4272.168/4096.203"
+        }
+      ],
+      "style2-roster": [
+        {
+          "trial": "1",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1766.890/1766.907"
+        },
+        {
+          "trial": "2",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1767.015/1767.032"
+        },
+        {
+          "trial": "3",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1766.765/1766.782"
+        },
+        {
+          "trial": "4",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1767.265/1767.282"
+        },
+        {
+          "trial": "5",
+          "passes": "0",
+          "reused": "0/0",
+          "bindingTables": "0/0",
+          "heapKB": "1766.765/1766.782"
+        }
+      ]
+    },
+    "heapGrowthKiBWithCollectionPausedMedians": {
+      "style1-hover": [
+        4097.519,
+        3946.548
+      ],
+      "style1-roster": [
+        1662.337,
+        1662.354
+      ],
+      "style2-hover": [
+        4272.267,
+        4096.302
+      ],
+      "style2-roster": [
+        1766.89,
+        1766.907
+      ]
+    },
+    "movingPartyDividers": {
+      "scope": "Four independent party frames move with internal dividers over eight warmed reflows. Native roster events are outside this fixture.",
+      "samples": {
+        "style1-roster": [
+          {
+            "trial": "1",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "704/0",
+            "heapKB": "2406.980/2338.373"
+          },
+          {
+            "trial": "2",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "704/0",
+            "heapKB": "2406.605/2338.123"
+          },
+          {
+            "trial": "3",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "704/0",
+            "heapKB": "2407.105/2338.623"
+          },
+          {
+            "trial": "4",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "704/0",
+            "heapKB": "2406.605/2338.123"
+          },
+          {
+            "trial": "5",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "704/0",
+            "heapKB": "2406.605/2338.123"
+          }
+        ],
+        "style2-roster": [
+          {
+            "trial": "1",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "768/0",
+            "heapKB": "2457.443/2382.391"
+          },
+          {
+            "trial": "2",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "768/0",
+            "heapKB": "2457.193/2382.141"
+          },
+          {
+            "trial": "3",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "768/0",
+            "heapKB": "2457.693/2382.641"
+          },
+          {
+            "trial": "4",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "768/0",
+            "heapKB": "2457.193/2382.141"
+          },
+          {
+            "trial": "5",
+            "passes": "32",
+            "reused": "0/0",
+            "bindingTables": "768/0",
+            "heapKB": "2457.193/2382.141"
+          }
+        ]
+      },
+      "heapGrowthKiBWithCollectionPausedMedians": {
+        "style1-roster": [
+          2406.605,
+          2338.123
+        ],
+        "style2-roster": [
+          2457.193,
+          2382.141
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\compare.lua": "87313efb2961a6f9d229855dab81adc771eed27abf25806f7003e58fb6bcaa82",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\work.txt": "c1189430b78c9a33b4d8b2fffa750183eb0214020e4b1dbbd2d88ad9cf6be164",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\compare-roster-dividers.lua": "e8b2ec0bd8858a421be7eabff44223ad1fd2ef7c9babd2446a5638b08e99f4f0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\roster-work.txt": "4c948725c90a147a19c37b8499972dce90ac1dbd7c0ac10a389239cd4425efee",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\cpu.lua": "605f5ce57bc26e8887fcc9a5249efe0d7a12a0fa993bf39fb77468159433197e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\cpu.txt": "ee418b21990c95246616f53fd8f367e89cfa2acabec1c623a2952c40561e1fdd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\cpu-packed.txt": "98a248109a061bd1fe0641b49168c7eb13c4f612e3bda90ed06ecb1906d87e9a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\measure.py": "71f5c25b268cbfa53ec08389b66e6e8b56ecf2bc1c29f492a6e6120943d20363",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\measure-packed.py": "404b4859e5d01c5c4ba874f2beaf178061a473f118b70472bce4a37b13bb8396",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\baseline-rejection.txt": "67a25222746e5376ff91f4671603abbe9034dbbdbefb0fcc1c9b0d710195647b"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Windows process CPU from GetProcessTimes and wall time. Each process replays 120 settled crossings or group relocations after scene setup and eight warm transitions. Results include Lua process setup. Seven order-alternating trials per style and scenario.",
+    "results": {
+      "style1-hover": {
+        "r127": {
+          "samples": [
+            [
+              750.0,
+              797.0
+            ],
+            [
+              750.0,
+              750.0
+            ],
+            [
+              718.75,
+              765.0
+            ],
+            [
+              734.375,
+              766.0
+            ],
+            [
+              718.75,
+              766.0
+            ],
+            [
+              812.5,
+              844.0
+            ],
+            [
+              734.375,
+              797.0
+            ]
+          ],
+          "medianCPUms": 734.375,
+          "medianWallms": 766.0
+        },
+        "packed": {
+          "samples": [
+            [
+              734.375,
+              750.0
+            ],
+            [
+              703.125,
+              750.0
+            ],
+            [
+              734.375,
+              766.0
+            ],
+            [
+              765.625,
+              765.0
+            ],
+            [
+              734.375,
+              765.0
+            ],
+            [
+              750.0,
+              750.0
+            ],
+            [
+              703.125,
+              750.0
+            ]
+          ],
+          "medianCPUms": 734.375,
+          "medianWallms": 750.0
+        }
+      },
+      "style1-roster": {
+        "r127": {
+          "samples": [
+            [
+              296.875,
+              328.0
+            ],
+            [
+              296.875,
+              359.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              312.5,
+              329.0
+            ],
+            [
+              265.625,
+              312.0
+            ]
+          ],
+          "medianCPUms": 312.5,
+          "medianWallms": 328.0
+        },
+        "packed": {
+          "samples": [
+            [
+              343.75,
+              344.0
+            ],
+            [
+              312.5,
+              344.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              296.875,
+              328.0
+            ],
+            [
+              296.875,
+              328.0
+            ]
+          ],
+          "medianCPUms": 312.5,
+          "medianWallms": 328.0
+        }
+      },
+      "style2-hover": {
+        "r127": {
+          "samples": [
+            [
+              812.5,
+              828.0
+            ],
+            [
+              750.0,
+              781.0
+            ],
+            [
+              781.25,
+              797.0
+            ],
+            [
+              781.25,
+              781.0
+            ],
+            [
+              781.25,
+              797.0
+            ],
+            [
+              750.0,
+              797.0
+            ],
+            [
+              843.75,
+              844.0
+            ]
+          ],
+          "medianCPUms": 781.25,
+          "medianWallms": 797.0
+        },
+        "packed": {
+          "samples": [
+            [
+              796.875,
+              813.0
+            ],
+            [
+              750.0,
+              781.0
+            ],
+            [
+              765.625,
+              781.0
+            ],
+            [
+              734.375,
+              782.0
+            ],
+            [
+              781.25,
+              812.0
+            ],
+            [
+              718.75,
+              766.0
+            ],
+            [
+              828.125,
+              843.0
+            ]
+          ],
+          "medianCPUms": 765.625,
+          "medianWallms": 782.0
+        }
+      },
+      "style2-roster": {
+        "r127": {
+          "samples": [
+            [
+              312.5,
+              375.0
+            ],
+            [
+              343.75,
+              391.0
+            ],
+            [
+              328.125,
+              343.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              312.5,
+              312.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              328.125,
+              359.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 344.0
+        },
+        "packed": {
+          "samples": [
+            [
+              312.5,
+              360.0
+            ],
+            [
+              359.375,
+              359.0
+            ],
+            [
+              328.125,
+              329.0
+            ],
+            [
+              328.125,
+              359.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              343.75,
+              360.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 359.0
+        }
+      }
+    },
+    "r126AndR127Recheck": {
+      "style1-hover": {
+        "before": {
+          "samples": [
+            [
+              765.625,
+              844.0
+            ],
+            [
+              781.25,
+              766.0
+            ],
+            [
+              750.0,
+              797.0
+            ],
+            [
+              750.0,
+              765.0
+            ],
+            [
+              765.625,
+              781.0
+            ],
+            [
+              750.0,
+              750.0
+            ],
+            [
+              750.0,
+              766.0
+            ]
+          ],
+          "medianCPUms": 750.0,
+          "medianWallms": 766.0
+        },
+        "batched": {
+          "samples": [
+            [
+              781.25,
+              796.0
+            ],
+            [
+              734.375,
+              750.0
+            ],
+            [
+              796.875,
+              828.0
+            ],
+            [
+              828.125,
+              844.0
+            ],
+            [
+              750.0,
+              782.0
+            ],
+            [
+              750.0,
+              781.0
+            ],
+            [
+              734.375,
+              765.0
+            ]
+          ],
+          "medianCPUms": 750.0,
+          "medianWallms": 782.0
+        },
+        "r127": {
+          "samples": [
+            [
+              781.25,
+              797.0
+            ],
+            [
+              750.0,
+              781.0
+            ],
+            [
+              703.125,
+              750.0
+            ],
+            [
+              828.125,
+              844.0
+            ],
+            [
+              718.75,
+              750.0
+            ],
+            [
+              718.75,
+              750.0
+            ],
+            [
+              781.25,
+              813.0
+            ]
+          ],
+          "medianCPUms": 750.0,
+          "medianWallms": 781.0
+        }
+      },
+      "style1-roster": {
+        "before": {
+          "samples": [
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              359.375,
+              406.0
+            ],
+            [
+              359.375,
+              375.0
+            ],
+            [
+              359.375,
+              390.0
+            ],
+            [
+              328.125,
+              375.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 375.0
+        },
+        "batched": {
+          "samples": [
+            [
+              328.125,
+              344.0
+            ],
+            [
+              359.375,
+              375.0
+            ],
+            [
+              281.25,
+              328.0
+            ],
+            [
+              343.75,
+              360.0
+            ],
+            [
+              375.0,
+              390.0
+            ],
+            [
+              375.0,
+              407.0
+            ],
+            [
+              343.75,
+              359.0
+            ]
+          ],
+          "medianCPUms": 343.75,
+          "medianWallms": 360.0
+        },
+        "r127": {
+          "samples": [
+            [
+              296.875,
+              328.0
+            ],
+            [
+              296.875,
+              344.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              343.75,
+              375.0
+            ],
+            [
+              343.75,
+              360.0
+            ],
+            [
+              375.0,
+              391.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 344.0
+        }
+      },
+      "style2-hover": {
+        "before": {
+          "samples": [
+            [
+              875.0,
+              953.0
+            ],
+            [
+              828.125,
+              843.0
+            ],
+            [
+              781.25,
+              812.0
+            ],
+            [
+              781.25,
+              812.0
+            ],
+            [
+              812.5,
+              844.0
+            ],
+            [
+              843.75,
+              844.0
+            ],
+            [
+              796.875,
+              828.0
+            ]
+          ],
+          "medianCPUms": 812.5,
+          "medianWallms": 843.0
+        },
+        "batched": {
+          "samples": [
+            [
+              906.25,
+              969.0
+            ],
+            [
+              750.0,
+              781.0
+            ],
+            [
+              765.625,
+              797.0
+            ],
+            [
+              812.5,
+              828.0
+            ],
+            [
+              828.125,
+              828.0
+            ],
+            [
+              875.0,
+              906.0
+            ],
+            [
+              828.125,
+              844.0
+            ]
+          ],
+          "medianCPUms": 828.125,
+          "medianWallms": 828.0
+        },
+        "r127": {
+          "samples": [
+            [
+              859.375,
+              875.0
+            ],
+            [
+              765.625,
+              813.0
+            ],
+            [
+              781.25,
+              797.0
+            ],
+            [
+              750.0,
+              782.0
+            ],
+            [
+              812.5,
+              828.0
+            ],
+            [
+              781.25,
+              844.0
+            ],
+            [
+              796.875,
+              828.0
+            ]
+          ],
+          "medianCPUms": 781.25,
+          "medianWallms": 828.0
+        }
+      },
+      "style2-roster": {
+        "before": {
+          "samples": [
+            [
+              312.5,
+              328.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              296.875,
+              328.0
+            ],
+            [
+              312.5,
+              344.0
+            ],
+            [
+              328.125,
+              360.0
+            ]
+          ],
+          "medianCPUms": 312.5,
+          "medianWallms": 328.0
+        },
+        "batched": {
+          "samples": [
+            [
+              328.125,
+              359.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              343.75,
+              359.0
+            ],
+            [
+              312.5,
+              344.0
+            ],
+            [
+              312.5,
+              328.0
+            ],
+            [
+              328.125,
+              343.0
+            ],
+            [
+              375.0,
+              453.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 344.0
+        },
+        "r127": {
+          "samples": [
+            [
+              328.125,
+              344.0
+            ],
+            [
+              296.875,
+              328.0
+            ],
+            [
+              312.5,
+              344.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              328.125,
+              344.0
+            ],
+            [
+              328.125,
+              328.0
+            ],
+            [
+              359.375,
+              406.0
+            ]
+          ],
+          "medianCPUms": 328.125,
+          "medianWallms": 344.0
+        }
+      }
+    },
+    "recheckSourceSHA256": {
+      "Core-BorderJunctions.lua": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+      "r127.lua": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+      "batched.lua": "a80035e927ad3cb89beff68f11f5f47a923c125fa4ebbfa2c2ce83650bf5d0ef",
+      "packed.lua": "85ccb2a3b35df0a03b4b57fc94dbb172a192c48185920929d408272d044b0917"
+    },
+    "decision": "R127 draw-input reuse remains. Its earlier type 1 wall-time result did not recur as a CPU regression. The wide-tuple experiment showed no consistent gain and stayed outside the addon."
+  },
+  "preservation": [
+    "Draw maintains one index per native sprite. A quad uses the leading triangle index.",
+    "A reuse checks current parent, visibility, source, render generation and fallback activation before reserving the existing sprite list.",
+    "A changed or hidden field gets a fresh draw and the old generation stays available for error cleanup.",
+    "Scoped roster relocations exercised the existing renderer as a timing control. The held-action and connected party relocation scenes exercise the junction bindings. Native membership timing and combat taint remain unverified."
+  ],
+  "verification": {
+    "focusedPassed": 96,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-batch-draw-before-20261119-185325\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "b7f7b380884467016ea191d062f7a7cc5744ae36dbac6afe3cabfec531df2d17",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

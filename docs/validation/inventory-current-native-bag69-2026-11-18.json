@@ -1,0 +1,269 @@
+{
+  "change_id": "LHO-NATIVE-CURRENT-BAG69-20261118",
+  "status": "CURRENT_REAL_RELOCATION_AND_REUSE_SCOPED_PASS;FULL_GOAL_ACTIVE",
+  "updatedUTC": "2026-11-18T18:33:33.500551+00:00",
+  "runtimeLuaEditedThisSlice": false,
+  "newSimulations": 0,
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a"
+  },
+  "retailForeverDiskPairs": [
+    "Inventory/Index.lua",
+    "Inventory/Restock/Core/FluxRestockList.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Tooltip.lua",
+    "Inventory/SpellReagents.lua",
+    "Inventory/FluxConsumableClassify.lua",
+    "Inventory/Craft.lua",
+    "Inventory/FluxConsumableBest/Scan.lua",
+    "Inventory/FluxConsumableBest/Init.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+    "Inventory/Syndicator/Adapter.lua",
+    "ExtraButtonSystem/Engine/Watch.lua",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+    "Inventory/Restock/FluxRestock_Inv.lua",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Core/API/Container.lua",
+    "Other/FluxPerfCapture.lua",
+    "Inventory/Init.lua",
+    "Inventory/FluxConsumableBest/Score.lua"
+  ],
+  "manualSync": false,
+  "native": {
+    "version": "1.60.1",
+    "build": "70959",
+    "interface": 16001,
+    "project": 18,
+    "interfaceProjectSource": "native68 retained;watch69 freshly reports version/build",
+    "pid": 42724,
+    "hwnd": 50333792,
+    "source": "syndicator",
+    "SyndicatorLoaded": true,
+    "BaganatorLoaded": true,
+    "ready": true,
+    "itemID": 4599,
+    "quantity": 18,
+    "fromBag": 0,
+    "fromSlot": 8,
+    "toBag": 2,
+    "toSlot": 6,
+    "moveSucceeded": true,
+    "returnSucceeded": true,
+    "returnAttempts": 1,
+    "finalOriginalLocation": {
+      "itemID": 4599,
+      "quantity": 18
+    },
+    "finalDestinationEmpty": true,
+    "cursorClear": true,
+    "bagGenerationBefore": 5,
+    "bagGenerationAfter": 7,
+    "phases": [
+      {
+        "returning": false,
+        "start": 442388.8,
+        "finish": 442388.8,
+        "pcallOK": true,
+        "moved": true,
+        "ms": 4.7003000378609
+      },
+      {
+        "returning": true,
+        "start": 442390.801,
+        "finish": 442390.801,
+        "pcallOK": true,
+        "moved": true,
+        "ms": 3.4735000133514
+      }
+    ],
+    "notify": [
+      {
+        "time": 442388.986,
+        "ms": 0.71040004491806,
+        "ok": true
+      },
+      {
+        "time": 442390.987,
+        "ms": 0.52669996023178,
+        "ok": true
+      }
+    ],
+    "NotifyOriginalRestoredByIdentity": true,
+    "watch": {
+      "seconds": 30.002999999968,
+      "driverFrames": 4289,
+      "peakFrameMs": 34.000001847744,
+      "observedCallbacks": 220,
+      "gapsAtLeast50ms": 0,
+      "observedCallbacksAtLeast10ms": 0,
+      "errorsBefore": 0,
+      "errorsAfter": 0
+    },
+    "diagnosticRootRestored": true,
+    "priorSpikeReportRestoredByIdentity": true,
+    "watchStopped": true,
+    "postMutationReuse": {
+      "generationBefore": 2169,
+      "generationAfter": 2170,
+      "sameRuntimeIdentity": true,
+      "delay": 0.6,
+      "source": "Personally viewed full REUSE69 line in current69-bag-finish.png;REUSE70 and-unpack expression prints only first tuple value"
+    },
+    "currentCountIDs": 54,
+    "currentCountMismatches": 0,
+    "food": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "queue": 4,
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "errors": 0,
+    "ownedRootsRemoved": [
+      "_M69",
+      "_M69r"
+    ],
+    "ownedJumpCuePriorFlagRestored": true,
+    "noBuySellDeleteConsumeMailOrCraftQueue": true,
+    "noExternalAddonEdits": true
+  },
+  "jump": {
+    "revision": "R16",
+    "root": "_J65q",
+    "nonce": "j18n65a7",
+    "hostPID": 37972,
+    "label": "live20261118p",
+    "supervisorPID": 42708,
+    "interval": 180,
+    "pairsAtLastRead": 7,
+    "movementAcknowledged": false,
+    "retainedHaltSHA": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3"
+  },
+  "artifacts": [
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-current69-bag-move-20261118",
+      "controllerSHA": "cc201b9401186f117f490c211b5c66b880b5d20e438ec5db28c68cda749ff41a",
+      "packetSHA": "1bbe9c50fd1fa24c73ba7659c74b6ad2f067900fb674dc096d6de97d8dee4815",
+      "packetCount": 40,
+      "root": "_M69",
+      "nonce": "m69b6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-current70-bag-samples-20261118",
+      "controllerSHA": "8a38bdf59e3f738fdef8e5fa17bd0a746b08d4b819bb4baca746e551dca8e66e",
+      "packetSHA": "e78dfb22eeab04803cc70d3bdcfb6560e2d4f28dd2e6c64675f53b0922f394dd",
+      "packetCount": 4,
+      "root": "_R70",
+      "nonce": "r70b6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-current71-bag-meta-20261118",
+      "controllerSHA": "b1f60e8c125994e0a4e88553a2a8584349cbd4e84d8d37c485c3a574750a1bf4",
+      "packetSHA": "f9b62b4b4742baeeef36f647847a16f0fd96c0b9f6db19ffaf348b53de247e9c",
+      "packetCount": 6,
+      "root": "_R71",
+      "nonce": "r71b6k2",
+      "sourceOnly": true
+    }
+  ],
+  "attestations": [
+    {
+      "run": "current69bag_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-current69bag_a-journal.json",
+      "journalSHA": "ea09c218205ed3e7062d360ec7bea0f2378e4095d47182ec955fca0cb4b73a98",
+      "pngSHA": "9b0d64c68fd4b1b456661b4a9747fe52e3635e72abf4bf40e906277536b6e10b"
+    },
+    {
+      "run": "current70samples_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-current70samples_a-journal.json",
+      "journalSHA": "60b541730ad52d6567935b423e62be28de92aef7e24db96a79b212df0be6567c",
+      "pngSHA": "94b9f2c2058926cf35e8d3ed7bba742c5f66ec218f73d6309ae24bc1f6b05c25"
+    },
+    {
+      "run": "current71meta_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-current71meta_a-journal.json",
+      "journalSHA": "2a3dff51cef484c36caa5494c0bff062909f8ac7abbc692e14120b0a373d398f",
+      "pngSHA": "ee4e2f117261a512eb0d1af4986a9729cc5ce412bc32bc9920c02942ee4f58f1"
+    }
+  ],
+  "finishPNG": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\current69-bag-finish.png",
+  "finishSHA": "dd0c3aca277a85510eee01e13dbf81fb402b04950238bd5f12aa30a26887eee5",
+  "scope": "One actual reversible relocation and return on current sources;all counts and one food selection verified. Post-mutation publication refresh and later same-runtime reuse observed. No >=50ms recorded gap or >=10ms observed service callback in this single watch window.",
+  "limitations": [
+    "No matched before/after whole-workflow/FPS/spike benefit;historical Notify samples differ in source/world/cache/activity and are not a control",
+    "Watch observes specific Flux service seams;does not certify every event handler/GPU/native taint/pixel/controller or allclient behavior",
+    "Full-field/all-kind best-row equality,cold/newloot/quantity depletion/charges,provider-off mutation cases remain open",
+    "Vendor/AH/pending/bank/mail/craft and remaining cast/workflow/client requirements remain open;guildbank/voidcallbacks out of scope"
+  ],
+  "merchantEntryReview": {
+    "path": "Inventory/Restock/Vendor/FluxVendorBuy.lua",
+    "SHA": "3e0b50e0f12b17714a37038501e01340582dc488ac840e2af3b9f9ba9c4343e7",
+    "event": "MERCHANT_SHOW",
+    "skip": "Private merchantAutoBatchShiftSkipped latches native IsShiftKeyDown at open;no public skip-session setter found in inspected Buy/Session modules",
+    "risk": "Otherwise After0 starts fast sell/repair;public pipeline/index queries do not establish transaction suppression",
+    "decision": "Do not open unattended or substitute native modifier API;leave vendor lifecycle test pending and continue independent authorized work"
+  },
+  "pendingReadinessReview72": {
+    "sourcePath": "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+    "sourceSHA": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "sourceFinding": "Private Prepare returns legacy index for execution;public CanCraft discards index while CraftClick consumes it. Any readonly hint must fully revalidate live name/output/yield/reagent map and leave CraftClick full search/order unchanged.",
+    "nativeRun": "pending72state_b",
+    "controllerSHA": "f1c99cf134ff8edd78ddf80a4fadc401593689698d39d5b2776480bbf8e5a179",
+    "packetSHA": "196f5059faacf4541dacfd046a6988bb827f655de5d614ec3106e39e9842bd7a",
+    "submittedSHA": "20fd8249ffa56ed53053b647c028b36bde81d802cfe67a5673ac9868a278bf3f",
+    "GetTradeSkillLineType": "nil",
+    "GetNumTradeSkillsType": "nil",
+    "GetTradeSkillInfoType": "nil",
+    "GetTradeSkillReagentInfoType": "nil",
+    "TradeSkillFrameShown": null,
+    "SkilletFrameShown": false,
+    "errors": 0,
+    "cursorClear": true,
+    "noWindowOpened": true,
+    "noCraft": true,
+    "noCraftQueueAction": true,
+    "productionCandidateApplied": false,
+    "decision": "Legacy index performance candidate not applicable/measurable on this current session;do not apply an unmeasured cache. Inspect modern/native profession path next or test other actual inventory paths. Absence scope is this captured client/session only;not allclient API-removal evidence.",
+    "sourceGateNote": "First preflight supplied an incorrect reviewed hash;guard rejected before native access/input. Correct builder-returned hash used on fresh run label;no spent packets replayed."
+  }
+}

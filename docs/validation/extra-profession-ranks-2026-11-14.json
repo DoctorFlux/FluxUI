@@ -1,0 +1,226 @@
+{
+  "changeId": "EBS-PROFESSION-RANKS-20261114",
+  "date": "2026-11-14",
+  "status": "Applied; desktop validation PASS; native training acceptance pending",
+  "trigger": "Training a profession rank replaces its opener spell while EBS retains the old action ID; the shared spellbook shape signature can remain unchanged.",
+  "requirements": {
+    "EBSP-01": "Profession actions resolve the current learned rank at assignment/reload and after skill/learn signals, independent of combat-spell auto-rank preferences.",
+    "EBSP-02": "All primary/secondary profession openers plus Smelting/Prospecting/Milling; localized names and client-supplied new profession names; no English rank-title parsing or numeric spell-ID ordering.",
+    "EBSP-03": "Extra widgets, minimap/custom category placements, badges, flyout entries and every utility modifier retain working actions; saved assignments/favorites remain unchanged.",
+    "EBSP-04": "Future/off-spec/low modern ranks excluded; passive profession rows included for gathering; ordinary chosen spell ranks, exact names, icons and input policy retained.",
+    "EBSP-05": "One cached spellbook lookup per coalesced skill-event burst; combat work deferred as a whole and inspects current slots after reuse; no recurring driver."
+  },
+  "implementation": {
+    "owners": {
+      "ExtraButtonSystem/Engine/Action.lua": "3f201d20d8a2b403cced8748eab27561392f7f72757669737b3278aa4052bfb6",
+      "ExtraButtonSystem/Engine/Watch.lua": "7503a3d320ea9e8c7cf39773b78e323d6c23044cd3d26fefbc779151f4458c36",
+      "ExtraButtonSystem/FlyoutEngine/Def.lua": "c58aadb558f82dd8cba4f3679e613656827d2cf2ec6a6e2dfa43b75e86af494e",
+      "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "7be2363936c3458ece23aedbe696f69848fd3b2dfd46e529d7481edfd8501c37",
+      "ExtraButtonSystem/FlyoutEngine/Popup.lua": "e0c415078ec4f31b289e36ad3c342353ae0b0fd0135e8698ea2b917384043bf7",
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "456129a49bb81a218449d38a5123e49deadac19748c50a892adf3a05bdf40811"
+    },
+    "beforeOwners": {
+      "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+      "ExtraButtonSystem/Engine/Watch.lua": "6263f646d063926d6bbc564cf333e512a356f5fad02ef8c89e2b5f748d5a59a8",
+      "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+      "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+      "ExtraButtonSystem/FlyoutEngine/Popup.lua": "1b572100649d0a6becc44bb2a432d891bb41e339ae5e437c937198640dba18db",
+      "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "e40179d52f22e5b86d84a3a2848b38aad79d274983d21c54545b7f09cfaaebe7"
+    },
+    "notes": [
+      "Modern C_SpellBook player-bank rows and profession offsets; legacy SPELL rows ordered by book position.",
+      "18 stable starter IDs supply localized name anchors, never rank lists. GetProfessions/GetProfessionInfo supply additional localized names and sparse secondary indices.",
+      "Skill/learn/world-entry signals coalesce for 250ms. Actual SpellBook bus changes also queue refresh; shape-unchanged rank replacements use direct validated skill/learn events.",
+      "SPELL_DATA_LOAD_RESULT retries profession name anchors/current profession data only; shared Spell service owns cold-data requests.",
+      "Direct buttons/badges rewrite only changed ranks. A configured profession utility slot requests its existing 75ms whole-slot debounce on skill refresh, including ordinary skill-point updates; no utility polling is added.",
+      "Flyout runtime rows retain the placed identity separately for favorites while execution/face uses the learned rank.",
+      "No option, saved schema/root, reset, asset, layout, new UI, command, dependency or TOC change. No mock-up needed for this action-identity fix. Existing native/manual retest preference retained."
+    ]
+  },
+  "desktop": {
+    "focused": {
+      "utc": "2026-11-14T17:57:29.197629+00:00",
+      "ownersBefore": {
+        "ExtraButtonSystem/Engine/Action.lua": "05f4db93f2d81ee8cbfaf0aee772218c49a96cdd6b6268b10532db4118b9fffc",
+        "ExtraButtonSystem/Engine/Watch.lua": "6263f646d063926d6bbc564cf333e512a356f5fad02ef8c89e2b5f748d5a59a8",
+        "ExtraButtonSystem/FlyoutEngine/Def.lua": "8e3d1b5594f168db63ff14b48b840a1a79d68a83f5ddabecdb5170eb204d9c24",
+        "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "b0da8901468065abeae2fb203fb65de243af460a17119293435a81dc4646618b",
+        "ExtraButtonSystem/FlyoutEngine/Popup.lua": "1b572100649d0a6becc44bb2a432d891bb41e339ae5e437c937198640dba18db",
+        "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "e40179d52f22e5b86d84a3a2848b38aad79d274983d21c54545b7f09cfaaebe7"
+      },
+      "ownersAfter": {
+        "ExtraButtonSystem/Engine/Action.lua": "3f201d20d8a2b403cced8748eab27561392f7f72757669737b3278aa4052bfb6",
+        "ExtraButtonSystem/Engine/Watch.lua": "7503a3d320ea9e8c7cf39773b78e323d6c23044cd3d26fefbc779151f4458c36",
+        "ExtraButtonSystem/FlyoutEngine/Def.lua": "c58aadb558f82dd8cba4f3679e613656827d2cf2ec6a6e2dfa43b75e86af494e",
+        "ExtraButtonSystem/FlyoutEngine/Favorites.lua": "7be2363936c3458ece23aedbe696f69848fd3b2dfd46e529d7481edfd8501c37",
+        "ExtraButtonSystem/FlyoutEngine/Popup.lua": "e0c415078ec4f31b289e36ad3c342353ae0b0fd0135e8698ea2b917384043bf7",
+        "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": "456129a49bb81a218449d38a5123e49deadac19748c50a892adf3a05bdf40811"
+      },
+      "testSha256": "28e24b14cd08fa881dc7ac053c4b4b618136a74e10314535dfbc2f50b78ba34a",
+      "pairs": [
+        {
+          "before": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: profession resolver exists\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:86: in main chunk\n\t[C]: in ?\n"
+          },
+          "after": {
+            "exit": 0,
+            "output": "Extra profession ranks: 34376 checks; 18 action families / 9 ranks / five client models PASS\n"
+          }
+        },
+        {
+          "before": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: profession resolver exists\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:86: in main chunk\n\t[C]: in ?\n"
+          },
+          "after": {
+            "exit": 0,
+            "output": "Extra profession ranks: 34376 checks; 18 action families / 9 ranks / five client models PASS\n"
+          }
+        },
+        {
+          "before": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: profession resolver exists\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:86: in main chunk\n\t[C]: in ?\n"
+          },
+          "after": {
+            "exit": 0,
+            "output": "Extra profession ranks: 34376 checks; 18 action families / 9 ranks / five client models PASS\n"
+          }
+        }
+      ],
+      "controls": [
+        {
+          "name": "no-rank-resolution",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: Alchemy current spell rank 2\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:130: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "no-badge-refresh",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: Alchemy current spell rank 2\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:130: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "no-skill-event",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:124: attempt to call a nil value (field 'SKILL_LINES_CHANGED')\nstack traceback:\n\ttests/extra_profession_ranks.lua:124: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "unsafe-combat-refresh",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: utility refresh outside combat\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in upvalue 'check'\n\ttests/extra_profession_ranks.lua:100: in field 'UpdateAllSlots'\n\tExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua:1084: in field 'RefreshProfessions'\n\tExtraButtonSystem/Engine/Action.lua:2484: in field 'RefreshProfessions'\n\t[string \"EBS visibility production fixture\"]:650: in field 'fn'\n\tprofession-fixture:136: in method 'advance'\n\ttests/extra_profession_ranks.lua:156: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "allow-low-modern-ranks",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: lowrank excluded\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:175: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "stale-flyout",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: existing flyout rank updates\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:133: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "lost-favorite-identity",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: old-rank favorite still promotes the profession\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:144: in main chunk\n\t[C]: in ?\n"
+          }
+        },
+        {
+          "name": "stale-utility-rank",
+          "compiles": true,
+          "rejected": true,
+          "result": {
+            "exit": 1,
+            "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/extra_profession_ranks.lua:5: base utility rank updates\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/extra_profession_ranks.lua:5: in local 'check'\n\ttests/extra_profession_ranks.lua:139: in main chunk\n\t[C]: in ?\n"
+          }
+        }
+      ],
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-ranks-checkpoint",
+      "settingsMetadataEntries": 130,
+      "otherLuaChangedSinceCheckpoint": [],
+      "native": "NOT RUN: no client input, reload, settings or profiler changes"
+    },
+    "full": {
+      "utc": "2026-11-14T18:01:11.194396+00:00",
+      "exit": 0,
+      "luaCount": 1073,
+      "sourceDrift": [],
+      "pass": 385,
+      "fail": 0,
+      "syntaxFiles": 1073,
+      "syntaxFailures": [],
+      "sha256": "0660059660a349120ad04a9d56001978329b445ba2cf6aa96ff568a1b06296a4"
+    },
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-ranks-final.json",
+    "scope": "Desktop Lua 5.4 metadata/frames/combat models only. 18 action families and 9 modeled ranks across retail/forever/era/anniversary/mists. No native taint/input/FPS/pixel proof."
+  },
+  "sourceEvidence": {
+    "resolvedAtUtc": "2026-11-14T18:01:49.940944+00:00",
+    "pins": {
+      "forever": {
+        "sha": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "version": "1.60.1 (70938)"
+      },
+      "live": {
+        "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "version": "12.1.5 (70783)"
+      },
+      "classic": {
+        "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "version": "5.5.4 (70631)"
+      }
+    },
+    "rawLocalEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-source-evidence.json",
+    "contracts": [
+      "SpellBookDocumentation.lua: GetSpellBookItemInfo, SpellBookItemInfo, GetNumSpellBookSkillLines, GetSpellBookSkillLineInfo; Forever IsSpellBookItemLowRank.",
+      "SkillInfoDocumentation.lua: SKILL_LINES_CHANGED declaration in all three pinned source branches. Declaration is distinct from native event delivery/operation acceptance.",
+      "GetProfessions/GetProfessionInfo and legacy GetNumSpellTabs/GetSpellTabInfo/GetSpellBookItemInfo/GetSpellBookItemName reuse existing addon adapters/call contracts. Legacy native ordering/training remain pending."
+    ]
+  },
+  "preservation": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-ranks-checkpoint",
+    "checkpointFiles": 2816,
+    "historyBundle": "Verified external history.bundle; main unchanged; no publication.",
+    "availableSettingsMetadata": 130,
+    "privateSettingsCopied": false,
+    "otherLuaChangedSinceCheckpoint": []
+  },
+  "native": {
+    "status": "NOT RUN for this change",
+    "clientActions": "None: no foreground/input/clipboard/reload/profiler/settings changes by this task.",
+    "acceptance": [
+      "Reload once outside combat to load the candidate. Place a profession in an extra/category/minimap button, badge, utility base and modifier, and a flyout where configured.",
+      "Train Apprentice to Journeyman and Expert to Artisan (plus later ranks available in that client). Without another reload, click each surface and verify current skill window/action, tooltip/icon and favorite remain correct.",
+      "Repeat with a secondary profession including First Aid on a client that supports it, a gathering profession and a localized client when available.",
+      "Verify existing explicit low combat spell rank and bindings remain unchanged; native combat deferral/taint/controller/visual parity and other-client event delivery are pending."
+    ]
+  }
+}

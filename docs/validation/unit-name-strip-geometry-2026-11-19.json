@@ -1,0 +1,1152 @@
+{
+  "changeId": "UNIT-NAME-STRIP-GEOMETRY-R124-20261119",
+  "capturedAtUTC": "2026-11-19T17:08:14.282456+00:00",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "afterRaw": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe"
+    },
+    "tests/border_prepared_icons.lua": {
+      "beforeRaw": "02e6b6f0ec6e3752bf3b3f03c6d28ffa197176665b0c022ad4b7e3ac216467f6",
+      "afterRaw": "083f89897880cb0484d30f131cd0e102b31a596a9fb9961e677d04edd0bb84c4"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\source.zip",
+    "sourceZipSHA256": "0b289fa8431de33454fdbbf27d46c3a173b112cb8cf5739e60c19826183d0526",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual full UpdateOuterBorder refresh and real junction renderer with mock native widgets and unrelated painters. Both visible icons and their live dividers. Player, target, focus and party, both border types, both alignments and mirror sides, and modern/legacy public geometry shapes. Measurements use scale 1. The functional replay also covers 0.75 and 1.25.",
+    "per30Refreshes": {
+      "before": 360,
+      "after": 0
+    },
+    "measuredCases": 64,
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\compare.py": "ca36804ad5f4919385b9407b1eda63d3906b14bc795b1f7e986380c311bd0b76",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\matched.json": "20b471c830f8b4bc8fe710179b52ab9217716b46ef4871ecd6310a75d9ae24b5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\negative-control.txt": "855caae1d5b4c9c2d97e599d1c3bec71eff065103fc414e1a393b3fec9d6e152",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\before-1.txt": "995cc5c682fdac461596c07facf0f2938b63e475c5d823b2cc6d470a913708e8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\before-2.txt": "8935f6675e71fd3922d13c93d6153729510789da8b67da9ddaa3aff2c9762d0b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\before-3.txt": "866006c80641d8301186a567035f3d620141972ce10b0a0a0d2f67fc9803be8b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\before-4.txt": "df5243e563c0f438e4cd657b460b6369bbfb3c815a869cdc5d1866a4f01b7262",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\before-5.txt": "66eb9a5388346268cb098012ad42148f9f18f1479966fa2710e1b31e0debd621",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\after-1.txt": "2e51843a8492544637d54c2067fe30efcedcc4411b7b421ba21a3b8c168bbbd8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\after-2.txt": "41f42f6681da317f97824896cfcf399c18ff7ceed90e1e1b84724732f1883bad",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\after-3.txt": "b5929bac3021576f6f1926a90a64bfbadbbd3583ea05a3c832566f5bc4c4ebda",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\after-4.txt": "40b544a2e1b43e003d68eed07878c904aeab905789e286e42ea75843f50c9011",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\after-5.txt": "0701d69e21222975d1e0e8d865896a17be456d4f11a47a2ce55e9f2bac119f4b"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6, five alternating pairs. Only the modeled unit chrome pass and any synchronous border work it causes. Individual samples have 1 ms clock resolution. Native wall time remains pending.",
+    "results": {
+      "player:BOTTOM:LEFT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:BOTTOM:RIGHT:1:false": {
+        "before": [
+          2.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "player:TOP:LEFT:1:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "player:TOP:RIGHT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:BOTTOM:LEFT:2:false": {
+        "before": [
+          2.0,
+          3.0,
+          3.0,
+          2.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "player:BOTTOM:RIGHT:2:false": {
+        "before": [
+          2.0,
+          2.0,
+          3.0,
+          2.0,
+          2.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "player:TOP:LEFT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "player:TOP:RIGHT:2:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          5.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:LEFT:1:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:RIGHT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:LEFT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:RIGHT:1:false": {
+        "before": [
+          4.0,
+          3.0,
+          3.0,
+          2.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:LEFT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "target:BOTTOM:RIGHT:2:false": {
+        "before": [
+          2.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:LEFT:2:false": {
+        "before": [
+          3.0,
+          2.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "target:TOP:RIGHT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "focus:BOTTOM:LEFT:1:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "focus:BOTTOM:RIGHT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "focus:TOP:LEFT:1:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:TOP:RIGHT:1:false": {
+        "before": [
+          3.0,
+          4.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:BOTTOM:LEFT:2:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "focus:BOTTOM:RIGHT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "focus:TOP:LEFT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          2.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "focus:TOP:RIGHT:2:false": {
+        "before": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:LEFT:1:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:RIGHT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:LEFT:1:false": {
+        "before": [
+          3.0,
+          2.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:RIGHT:1:false": {
+        "before": [
+          2.0,
+          3.0,
+          2.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:LEFT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:RIGHT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          4.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "party1:TOP:LEFT:2:false": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:RIGHT:2:false": {
+        "before": [
+          4.0,
+          3.0,
+          2.0,
+          2.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "player:BOTTOM:LEFT:1:true": {
+        "before": [
+          4.0,
+          4.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:BOTTOM:RIGHT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "player:TOP:LEFT:1:true": {
+        "before": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:TOP:RIGHT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:BOTTOM:LEFT:2:true": {
+        "before": [
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "player:BOTTOM:RIGHT:2:true": {
+        "before": [
+          3.0,
+          4.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:TOP:LEFT:2:true": {
+        "before": [
+          4.0,
+          3.0,
+          4.0,
+          3.0,
+          4.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "player:TOP:RIGHT:2:true": {
+        "before": [
+          3.0,
+          4.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "target:BOTTOM:LEFT:1:true": {
+        "before": [
+          4.0,
+          4.0,
+          4.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:RIGHT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:LEFT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:RIGHT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:LEFT:2:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:BOTTOM:RIGHT:2:true": {
+        "before": [
+          3.0,
+          3.0,
+          2.0,
+          3.0,
+          5.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "target:TOP:LEFT:2:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "target:TOP:RIGHT:2:true": {
+        "before": [
+          3.0,
+          3.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "focus:BOTTOM:LEFT:1:true": {
+        "before": [
+          5.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "focus:BOTTOM:RIGHT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          2.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:TOP:LEFT:1:true": {
+        "before": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:TOP:RIGHT:1:true": {
+        "before": [
+          4.0,
+          3.0,
+          4.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:BOTTOM:LEFT:2:true": {
+        "before": [
+          3.0,
+          4.0,
+          4.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "focus:BOTTOM:RIGHT:2:true": {
+        "before": [
+          2.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "focus:TOP:LEFT:2:true": {
+        "before": [
+          3.0,
+          4.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "focus:TOP:RIGHT:2:true": {
+        "before": [
+          6.0,
+          3.0,
+          3.0,
+          8.0,
+          6.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:LEFT:1:true": {
+        "before": [
+          6.0,
+          7.0,
+          7.0,
+          10.0,
+          8.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:BOTTOM:RIGHT:1:true": {
+        "before": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:LEFT:1:true": {
+        "before": [
+          6.0,
+          6.0,
+          5.0,
+          7.0,
+          6.0
+        ],
+        "after": [
+          2.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:RIGHT:1:true": {
+        "before": [
+          6.0,
+          6.0,
+          5.0,
+          7.0,
+          6.0
+        ],
+        "after": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "party1:BOTTOM:LEFT:2:true": {
+        "before": [
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          7.0
+        ],
+        "after": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "party1:BOTTOM:RIGHT:2:true": {
+        "before": [
+          6.0,
+          6.0,
+          5.0,
+          6.0,
+          6.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      },
+      "party1:TOP:LEFT:2:true": {
+        "before": [
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          7.0
+        ],
+        "after": [
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "party1:TOP:RIGHT:2:true": {
+        "before": [
+          7.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "after": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ]
+      }
+    },
+    "summedMeasuredCases": {
+      "before": [
+        225.0,
+        213.0,
+        210.0,
+        230.0,
+        222.0
+      ],
+      "after": [
+        41.0,
+        49.0,
+        46.0,
+        48.0,
+        47.0
+      ]
+    },
+    "sumMedians": {
+      "before": 222.0,
+      "after": 47.0
+    }
+  },
+  "preservation": [
+    "Same canonical class and spec icon geometry and visible divider attachments at valid sizes.",
+    "Private, inaccessible, missing or failing geometry reads use the original direct write path.",
+    "ClearAllPoints callback reentry resolves the current owner before setting the new point.",
+    "Real size changes, wrong owners or multiple anchors repair layout. Spec loss and reveal use the expected divider.",
+    "Color, aura, health, icon selection and event delivery continue at their existing cadence.",
+    "The combat deferral and later completion flow stays intact. No game probe or extra runtime scheduling is added."
+  ],
+  "verification": {
+    "focusedPassed": 91,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-name-strip-geometry-before-20261119-175636\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+        "matches": true
+      }
+    },
+    "forever": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+        "matches": true
+      }
+    },
+    "classic": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8a579368fd8e59bef802d9d101cd6eb9b97232085e00b93cbe955b9a4d2b98fe",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

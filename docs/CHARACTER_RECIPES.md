@@ -1,5 +1,23 @@
 # Saved character recipes and crafting restock
 
+15 November21:26:58UTC (`LHO-PROF-ALIAS-REMOVAL-20261115`): Professions now
+records explicit owned removals in the existing unlearned output map during its
+first alias pass, replacing the per-negative-ID membership rescan. No scan/native
+query, public callback, publication, update cadence or saved-data contract is
+removed. Unknown/foreign/closed data remains conservative; legacy facts remain.
+Original748cff40→e096bf70 and durable04f156c4 passed the external420/1,109 gate;
+post-apply actual projection/four focused2,040checks and owned51/54syntax pass.
+StockLua5.1 models show FIRST/REPEAT M1000 whole-child CPU-28.67%/-65.24%; M0
+median unchanged, no-owned+2.27%CPU/+3.34%wall retained (includes owned warm/setup).
+All five allocator-growth slopes match baseline, including59,768B/event when all
+64cached recipes are removed; superseded/unapplied R1's+5,120B stays recorded.
+These are conditional desktop models: Forever defaults unlearned visibility off
+and requires the native frame ownership gate. Native source adoption, FPS/spikes
+and complete workflows remain pending; the full lag goal stays ACTIVE.
+[Evidence, limits and preserved R1 costs](validation/profession-alias-removal-2026-11-15.json).
+
+14 November performance continuation: scans keep every native recipe/reagent/output query and invalidation/publication. Stateless collection and selective current-output alias ranking reduce allocation; partial/closed/legacy/override facts remain. [Comparison and limits](LAG_HOTSPOT_OPTIMIZATION.md#continuation-recipe-scans-output-lookup-and-bulk-capacity).
+
 13 November `AUCTION-FOLLOWUP-BUTTONS-20261113` / AHR-84 addresses the reported
 mail-to-bank/vendor stall that appeared to need an open profession. Trusted
 inventory planning is separate from native AH execution readiness; collecting

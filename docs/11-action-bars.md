@@ -1,5 +1,90 @@
 # Action bars
 
+<!-- RESPEC-ACTION-SAFETY-20261116 -->
+16 November: automatic rank upgrades require an empty player cursor, the exact fourth-field spell cursor ID and a verified resulting slot. Failed pickups/placements preserve actions/recovery cursors and block dependent saved binding/stance ID rewrites; event cadence and opt-in auto-rank policy stay. Binding-mode activation keeps the current account/character binding set and unsaved keys. [Evidence](validation/respec-action-safety-2026-11-16.json).
+<!-- /RESPEC-ACTION-SAFETY-20261116 -->
+
+
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS;
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Native cost PENDING. Adaptive fallback lookup preserves tested meshes,
+small-bucket flat publication and existing action/input mappings. Common24 CPU is
+mixed+1.43%,56−6.20%; dense stress is not native evidence. All coordinates remain
+fresh. Quiet R50 capture only after all owned CPU/docs jobs finish; last quiet R49
+207.94ms leaves208ms hitch/CB36 OPEN. Prior accepted fits/Trinket work retained.
+[Border requirements and acceptance](CONNECTED_BORDERS.md).
+
+15 November: range now follows the selected cast target, independently of idle
+icons, pinned tooltips and reverse badge token swaps. Plain actions apply the
+native friendly/hostile eligibility rule. The reported Frostbolt/friendly-hover
+case is confirmed in game. [Rules and scoped validation](CAST_RANGE_TARGETING.md).
+
+15 November: hotkey text and mouse/scroll/space glyphs turn red only for the
+existing out-of-range result. Original gray text/white art returns in range;
+binding/modifier/size refreshes retain the correct color. No new range probes or
+polling. [Four-surface requirements and validation](HOTKEY_RANGE_GLYPHS.md).
+
+15 November action routing (`ACTION-ROUTING-RELIABILITY-20261115`): native
+PreClick proved Shift globals are consumed while the large main already shows66;
+old inheritance selected action6. Secure main now publishes its LIVE keyboard
+bundle, with independent mouse modifier sets. Native Ctrl-Shift-½ capture selects
+macro66 and macro parser reports both despite rawkeysfalse. User confirms:
+"Fire Ward casts; icons return correctly." This verifies that reported cast and
+release, not all19/pages/clients/taint/controller/FPS. No macro-condition rewrite.
+
+Also corrected mini inverse page updates, temporary fallback overlays, shared-slot
+badge prewarm, OOC and late-callback display indexing, held-modifier page bursts,
+and hover native/free ownership/reconfigure/retry. New native restricted-builder
+regression rejects the intermediate quoted-function error and accepts correction.
+Focused:363885modifier;864nativehandler;21532visual;547hover;510badge;25920control
+checks PASS. Full408/410 before final control-fixture repair; repaired25920PASS;
+one unrelated portrait fixture misses GetUnitClassColor. No settings/action reset,
+agent input/focus/profiler operation or manual installation copy. Nine Forever
+runtime files match. Native broad acceptance and FPS measurement remain pending.
+[Requirements, sources and measured limits](ACTION_ROUTING_RELIABILITY.md).
+
+15 November shared binding modifiers (`SHARED-BINDING-MODIFIERS-20261115`): fixed the
+keyboard proxy selector leak across main/mini rows and obsolete live LeftButton
+selectors. The saved hidden main11/Shift71/native35 pattern reproduces Shift-F
+casting main11 in the linked GitHub version; candidate selects71 and releases
+back to11 before display updates. 2,271 focused checks; exact246; three harmful
+controls and12 focused scripts PASS. Regular key press OFF still disables that
+binding including ALT; profiles/badges/compiler/settings remain unchanged.
+The first full sweep400PASS/2FAIL preceded final test refinement and concurrent
+changes. Final modifier checks and the bar smoke now PASS; fresh1,092-file
+syntax passes. Other full-sweep results remain historical for newer unrelated
+sources. Native casting/taint/controller/render/FPS acceptance remains pending;
+no client input or manual installation copy. [Requirements and evidence](SHARED_BINDING_MODIFIERS.md).
+
+15 November current main-row work: explicit `/fluxbars restore` rebuilds all19
+owned routes, including fixed13-19, and removes shadowing mouse/proxy action
+selectors while preserving placed actions and profiles. `/fluxbars audit` reports
+native calculated slots and key routes. The candidate is installed for later
+Forever testing;the user cannot test in game yet. Offline3,228recovery/700audit
+checks and six harmful controls PASS;native recovery remains unverified.
+[Requirements and acceptance](MAIN_ROW_RECOVERY.md).
+
+15 November action-bar follow-up and rollback: native diagnostics showed main
+page2 (`native=2`, `actionpage=2`, `swap=0`), with correct ID0 hosts and column1
+using13. Dynamic column6 and static column18 therefore both used18. The user
+confirmed page1 restored the expected normal-page actions, then reported fixed
+columns13-19 still wrong. Further dumps show18/19 routing to18/19, keysX/C and
+ID0; expected/actual action contents have not been supplied. Treat remaining
+button recovery as unresolved.
+
+At the user's request, all runtime source is restored to the verified checkpoint
+from before connected borders. Eight action-routing owners and the repo HEAD
+match GitHub main6b444eba4573092b57919ee3e497d86d2ebb3ece. No slot reassignment,
+placed-action reset or automatic page reset was introduced. This source restore
+cannot establish recovered game-stored action contents. Fresh native checking
+after reload remains pending. The temporary connected-startup integration test
+is removed with that feature; the prior714-check startup regression is restored.
+[Reports, source comparison and exact rollback](validation/border-types-2026-11-15.json).
+
 13 November action counts: the existing synchronous Bars inventory listener now admits light bag publications at the instant count tier. Validated SPELL_UPDATE_USES refreshes count/usability through existing scheduler lanes, without macro/layout work. [Requirements, comparison and666 focused checks](ACTION_COUNT_REFRESH.md).
 
 <!-- STRESS-FIXES-20261107 -->
@@ -26,13 +111,13 @@ Initial visual constants are 44px buttons, 0 padding, 4px margin, 1.24 scale and
 | SHIFT mini | Slots 61–72 | Slots 49–55 |
 | CTRL mini | Slots 25–36 | Slots 37–43 |
 
-**Native page** covers ordinary page, forms/stances, stealth variants, vehicle/possess/override and supported skyriding states. Six headers cover main/sec/tert × dynamic/static columns. **Modifier selection** resolves at keypress from pre-stamped SHIFT/CTRL attributes through `SecureButton_GetModifiedAttribute`. It does not wait for the modifier state driver. A modifier hub/child updates keep visible identities and `host.slot` synchronized. This distinction is essential when combat starts with a modifier held.
+**Native page** covers ordinary pages, forms/stances, stealth variants, vehicle/possess/override and supported skyriding states. Six headers cover main/sec/tert across dynamic/static columns. **Modifier selection** uses the secure hub to publish the current large main action and compiled program to its keyboard proxy. Native bound-click dispatch can consume Shift/Ctrl globals; keyboard execution therefore uses that live bundle rather than reconstructing the row from a fresh key-state query. Mouse input retains eight prepared modifier attribute sets. Read-only display indexing keeps identities current, preserves held modifiers across page events and rejects late callback rollback. Each header retains its own page during staggered updates.
 
 [Layout.lua](../Bars/Layout.lua) reserves all twelve native columns, including empty positions, and packs eligible static columns. Promotion can put mini content into an empty ordinary main. One available mini can serve both modifier paths; two minis can use promoted-main/remaining-mini behavior. Hover, drag and binding mode expand the compact view. `ApplyMappings()` changes slot relationships; `ApplyVisual()` changes anchors/visibility. Structural Show/Hide/SetPoint work defers through combat; already-created surfaces have safe reveal/alpha paths.
 
 ## Input and compiled overlays
 
-[Clicks.lua](../Bars/Clicks.lua) routes keys through `KeyBind` clicks on clients using click wraps. Forever retains visible mouse-up clicks and hidden key-down proxies; binding installation targets `FluxActionStripKey<column>` with `LeftButton` when wraps are unavailable. Shared `Flux.ButtonFX.Click` controls mouse/key-down/hold-release behavior, with empower attributes reasserted as required. Binding changes invalidate key caches.
+[Clicks.lua](../Bars/Clicks.lua) preserves the existing click policy: wrapped clients use `KeyBind`; Forever uses hidden `FluxActionStripKey<column>` key-down proxies with `LeftButton`, while visible mouse hosts remain mouse-up. Otherwise-unassigned Shift/Ctrl key variants route explicitly, preserving native exact assignments and Binding-owned ALT/combined free chords. The secure main alone publishes the proxy's live type/action/macro/delegate bundle through its header frame reference. Mini hosts cannot overwrite it, and no-mod wildcard attributes on the mouse host cannot shadow it. Bindings and initial/reused proxies reconcile through the existing key owner; shared `Flux.ButtonFX.Click` retains mouse/hold/empower behavior.
 
 [BindingMode.lua](../Bars/BindingMode.lua) adapts LibKeyBound: hover a main/mini/pet/stance/combat/noncombat/utility/trinket surface and press a key. It registers appropriate commands, forces relevant empty slots visible and dims unrelated columns. Activation is combat-locked. This simple assignment mode is separate from [conditional binding authoring](13-binding-system.md).
 
@@ -159,3 +244,62 @@ combat transitions. Check Lua/taint logs separately and restore diagnostic
 preferences after any user-selected capture.
 
 [Source identities and evidence](validation/mouseover-native-2026-11-07.json).
+
+<!-- ACTION-STRIP-BORDER-R55-20261116 -->
+R55 `strip-updates-r55`: matching occupied-swap layouts skip redundant decorative
+writes/player-layout fanout using fresh native geometry; nearby strip/envelope
+crests align in both types. 144 focused scripts pass. Real packing/expansion and
+all mapping/binding recovery remain. Actual drag prefixes had0cache hits, so no
+extra cut cache was admitted. Native checks are deferred by the user.
+[Requirements](ACTION_STRIP_BORDER_UPDATES.md); [scoped evidence](validation/action-strip-borders-2026-11-16.json).
+<!-- /ACTION-STRIP-BORDER-R55-20261116 -->
+
+<!-- ROSTER-MACRO-BATCH-20261119 -->
+On roster events, the action strip and Extra share one ProgramFace callback. The current solo, party or raid branch is resolved in the existing conditional eval pass. This path refreshes visual macro identities without changing the assigned action.
+[Macro roster batch evidence](validation/roster-macro-batch-2026-11-19.json).
+<!-- /ROSTER-MACRO-BATCH-20261119 -->
+
+<!-- STRIP-CHROME-MINIMAP-ROSTER-20261119 -->
+Held-action strip crossings reuse matching button-ring and backdrop artwork. New visibility, a changed face size and a native restyle return to the regular skin path.
+[Strip and minimap evidence](validation/strip-chrome-minimap-roster-2026-11-19.json).
+<!-- /STRIP-CHROME-MINIMAP-ROSTER-20261119 -->
+
+<!-- FINAL-STRIP-UNIT-ANCHORS-R90-20261119 -->
+Held-action crossings position the player and target once after the side-panel envelope settles, immediately before the border junction pass.
+[Strip unit anchoring evidence](validation/final-strip-unit-anchors-2026-11-19.json).
+<!-- /FINAL-STRIP-UNIT-ANCHORS-R90-20261119 -->
+
+<!-- STRIP-PANEL-SETTLE-R92-20261119 -->
+A held-action crossing moves Info only when it occupies the strip. The unified envelope still reconciles the Info and Trinket Menu gap fills against the final strip layout.
+[Strip panel settlement evidence](validation/strip-panel-settle-2026-11-19.json).
+<!-- /STRIP-PANEL-SETTLE-R92-20261119 -->
+
+<!-- STRIP-VISIBILITY-R117-20261119 -->
+A held action can expand or collapse the strip by crossing its sensing area. Rapid reversals that return to the current pose in the same update skip layout. Settled crossings, action-slot signals and grid signals use the existing layout dispatcher.
+[Matched validation](validation/strip-visibility-2026-11-19.json).
+<!-- /STRIP-VISIBILITY-R117-20261119 -->
+
+<!-- STRIP-CHAT-DOCK-R120-20261119 -->
+A pure drag crossing now passes the settled strip floor to chat before the border commit. Matching native layout avoids chat writes. The raid stack still follows a changing strip floor in the side-column layout.
+[Matched validation](validation/strip-chat-dock-2026-11-19.json).
+<!-- /STRIP-CHAT-DOCK-R120-20261119 -->
+
+<!-- STRIP-HOVER-OCCUPANCY-R151-20261119 -->
+Held-action crossings now resample mini occupancy in the same secure pass that resolves mouse and key routes. Real action edits still force fresh routes. No action-slot storage, packing or modifier convention changed.
+[Matched validation](validation/strip-hover-occupancy-2026-11-19.json).
+<!-- /STRIP-HOVER-OCCUPANCY-R151-20261119 -->
+
+<!-- STRIP-SHELL-ANCHORS-R165-20261120 -->
+Held-action crossings and slot changes keep existing screen anchors while resizing the strip. The button area moves only when its required anchor actually changes.
+[Matched validation](validation/strip-shell-anchors-2026-11-20.json).
+<!-- /STRIP-SHELL-ANCHORS-R165-20261120 -->
+
+<!-- STRIP-EVENT-OWNERSHIP-R183-20261120 -->
+Sixty matched slot changes, each with two native notifications, cut early envelope reads from 120 to zero. The same 60 final layout passes and border commits still run. Six warmed held-cursor replays across both styles and three UI scales use 8 to 16 fewer parent level reads per six crossings. Settled action routes, button geometry, raised layers and sampled border artwork match the archived sources.
+[Matched validation](validation/strip-event-ownership-2026-11-20.json).
+<!-- /STRIP-EVENT-OWNERSHIP-R183-20261120 -->
+
+<!-- STRIP-PARKED-CHROME-20261120 -->
+The strip retains verified button chrome when a face returns from off-screen parking. The first crossing refits 19 versus 5 faces in each desktop client model. Sixty warmed crossings refit 571 faces before and zero after. Button positions, action slots and visible art match. The held-cursor watcher also leaves the sensing frame alone once its live visibility matches. Keep the current verification of texture identities, native normal paint, backdrop visibility and applied button dimensions. New widths, art replacement and unreadable region state take the regular repair. Capture an unlocked native art update for the next verification. The locked native callback retains its original art writer and leaves validation for the next unlocked layout.
+[Matched validation](validation/strip-parked-chrome-2026-11-20.json).
+<!-- /STRIP-PARKED-CHROME-20261120 -->

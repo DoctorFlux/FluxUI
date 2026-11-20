@@ -1,0 +1,186 @@
+{
+  "id": "RESPEC-ACTION-SAFETY-20261116",
+  "date": "2026-11-16",
+  "status": "IMPLEMENTED; FOCUSED OFFLINE PASS; NATIVE ACCEPTANCE PENDING",
+  "requirements": {
+    "RAB01": "Capture/compare/restore explicit native slots on Retail Forever Classic after talents finish",
+    "RAB02": "Only explicit valid saved empties clear; absent/invalid/unreadable/temporary slots preserve live data",
+    "RAB03": "Failed/busy/in-flight capture preserves previous profile and bundle data",
+    "RAB04": "Verify exact cursor payload before placement; stable spell/flyout/mount/macro/set/outfit identities",
+    "RAB05": "Matching snapshots cause no native action mutation; legacy slot-only snapshots retain uncaptured stance state",
+    "RAB06": "Automatic rank pickup failure cannot clear actions or advance binding/stance IDs",
+    "RAB07": "Opening binder preserves current account/character scope and unsaved edits"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-before-20261116T222241Z",
+    "files": 3037,
+    "sourceArchiveVerified": true,
+    "historyBundleVerified": true,
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCount": 66,
+    "settingsContentsCopied": false
+  },
+  "sources": {
+    "Respec/FluxRespec_ActionBars.lua": {
+      "baselineRaw": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162",
+      "candidateRaw": "52bb0ed76fc0473cb7604c63862ee6ab15920f85cfa1dab624c70b899123b252",
+      "candidateLF": "52bb0ed76fc0473cb7604c63862ee6ab15920f85cfa1dab624c70b899123b252"
+    },
+    "Respec/FluxRespec_Core.lua": {
+      "baselineRaw": "6c5b82600ffd097ce3e3e77b7bf47cc67f1aad69c0d601b558f937d789cc6adb",
+      "candidateRaw": "70a8a8eb1ff6e7967d0efb0bf13bd873f1ec0d986eeb1ba1ba7dbf5560b9f32e",
+      "candidateLF": "70a8a8eb1ff6e7967d0efb0bf13bd873f1ec0d986eeb1ba1ba7dbf5560b9f32e"
+    },
+    "Respec/FluxRespec_Apply.lua": {
+      "baselineRaw": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2",
+      "candidateRaw": "6738166f4a94e55f677d4ae9e3f4d36daee99532952107cb67f83dd77aa8d595",
+      "candidateLF": "6738166f4a94e55f677d4ae9e3f4d36daee99532952107cb67f83dd77aa8d595"
+    },
+    "Respec/FluxRespec_PresetBundle.lua": {
+      "baselineRaw": "9e7f4b94f46c56cd76f82e5368dddecffbf1307a14b31b7aac15db6b42d39e13",
+      "candidateRaw": "b989db358a6723adb6a68c8b2a29d1c80cb663ce6dba14b3a08ba6ffddf510c9",
+      "candidateLF": "b989db358a6723adb6a68c8b2a29d1c80cb663ce6dba14b3a08ba6ffddf510c9"
+    },
+    "Respec/FluxRespec_RunePresets.lua": {
+      "baselineRaw": "b41be2d1ed73d03fce5789f086936d6971c03497a364eed2124f992deea6c160",
+      "candidateRaw": "e4303cb6dc77ed05a0ee094ee2f01b43350724536363457a274b6e30e0b25091",
+      "candidateLF": "e4303cb6dc77ed05a0ee094ee2f01b43350724536363457a274b6e30e0b25091"
+    },
+    "Respec/FluxRespec_TalentsRetail.lua": {
+      "baselineRaw": "90709bdbfe2d215de88ccb82c264120734245920e6f21fbb0a0e2a9e57bf67b6",
+      "candidateRaw": "bc05d9c5ce8db7486eb17d13d24533efc22f0f8142466966ba992365fec3bbd9",
+      "candidateLF": "bc05d9c5ce8db7486eb17d13d24533efc22f0f8142466966ba992365fec3bbd9"
+    },
+    "Respec/FluxRespec_UI.lua": {
+      "baselineRaw": "535bffd25b69b8637d3b4d09cd35b29ba06788a2c02b5901f3e387ad8756abe4",
+      "candidateRaw": "ed4261f9369602d470b958e4eb04f0b643410afc967621431c87510bf2f0b00e",
+      "candidateLF": "ed4261f9369602d470b958e4eb04f0b643410afc967621431c87510bf2f0b00e"
+    },
+    "Bars/SpellRank.lua": {
+      "baselineRaw": "01c566f23be68779d8d7ff9eb5630951349c5eb9320ec5f9f1287e6a3ce2927f",
+      "candidateRaw": "7ed2a24dd75bbd8891ea3d30cdc0e6f902e6022f243c9a62f57d4ee15f6fe8a1",
+      "candidateLF": "7ed2a24dd75bbd8891ea3d30cdc0e6f902e6022f243c9a62f57d4ee15f6fe8a1"
+    },
+    "Bars/BindingMode.lua": {
+      "baselineRaw": "022d6db5b7c5ad73605be13da3252e88fe385187d23aef9e813e39306f605ba5",
+      "candidateRaw": "4d5a164dd6c0ebb9b14c7d8591058a31a7827e7fa9aa8fca8ebcbbc88c91f6a7",
+      "candidateLF": "120fd07c513e722f62edf13df8a05dddc2d5151ab3953d1cb6b728762632438c"
+    }
+  },
+  "upstream": {
+    "retail": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783"
+    },
+    "forever": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "forever",
+      "sha": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938"
+    },
+    "classic": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631"
+    }
+  },
+  "sourceEvidence": "respec-client-sources-2026-11-16.json",
+  "changes": [
+    "Explicit native slots no longer skipped because talent loadouts exist",
+    "Read/capture failures do not become saved empty actions; saves blocked during active apply/combat/drag",
+    "Only persistent pages1-10 and13-15 captured; legacy temporary pages ignored; runtime transient pages excluded",
+    "Native spell cursor fourth field is stable ID; second book index is never accepted as ID",
+    "Flyouts resolve current spellbook index; macros match saved name/body despite index reorder; equipment sets resolve names",
+    "Mount/summonmount resolve mountID to spellID; never pass a positive mountID to display-index journal pickup; favorite0 retains explicit native path",
+    "Outfit stable-ID pickup supported when native API exists",
+    "Failed placement preserves a recovery cursor; malformed snapshot preflight cannot partially clear earlier slots",
+    "Auto rank preserves player cursor and skips saved ID rewrites after failed native replacement",
+    "Binder no longer reloads account scope on activation"
+  ],
+  "migration": "Old Retail/Forever stance-only snapshots remain stance-only. Reload then explicitly re-save desired profile to capture native bars. Never fabricate missing slots or reset saved roots.",
+  "preserved": "Existing main folder and newer changes; settings roots/default/reset paths; talent/gear/rune/consumable/utility/binding order; combat queue cancellation and request ownership; appearance/commands/integrations; explicit auto-rank policy and event cadence.",
+  "validation": {
+    "focused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-focused-validation.json",
+    "pass": 28,
+    "fail": 0,
+    "scriptsPerVM": 14,
+    "VMs": [
+      "stock Lua5.1.5 with loader shim only for harness",
+      "Lua5.4.6"
+    ],
+    "syntaxOwnedFiles": 9,
+    "syntaxOwnedVMResults": 18,
+    "upvalues": {
+      "files": 9,
+      "functions": 611,
+      "maximum": 25,
+      "failures": 0
+    },
+    "stableOwnedSources": true,
+    "safetyOutput": "respec action-bar safety: 477 checks / 120 cases passed (live/forever/classic; native pending)\n",
+    "initialRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-focused-validation-initial.json",
+    "initialRunLimit": "27PASS/1FAIL while safety fixture expanded before outfit implementation; test source changed during run. Superseded by frozen28PASS run; retained externally.",
+    "baselineWitness": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-safety-baseline.json",
+    "independentRankBaseline": "Exact checkpoint SpellRank fails pickup_noop retaining destination action",
+    "independentBinderBaseline": "Exact checkpoint BindingMode fails binder opening retains selected native scope/unsaved keys",
+    "wholeSyntax54": {
+      "files": 1199,
+      "failed": [],
+      "changedDuringRun": []
+    },
+    "verificationComposition": "Latest14script results replaced/added; all other functional observations explicitly historical. Fresh Lua54 syntax observations retain any unrelated source drift; only the owned focused set is frozen.",
+    "documentation": {
+      "steps": [
+        {
+          "step": "finalize",
+          "exit": 0,
+          "output": "{\n  \"evidence\": \"docs/validation/respec-action-safety-2026-11-16.json\",\n  \"focusedPass\": 28,\n  \"wholeSyntax54\": 1199,\n  \"compilerPrototypes\": 611,\n  \"maxUpvalues\": 25,\n  \"historicalComposedScriptCount\": 506,\n  \"baselineFailedAsExpected\": true\n}\n"
+        },
+        {
+          "step": "reference",
+          "exit": 0,
+          "output": "Generated documentation inventory: 1231 sources; 625 TOC/XML reachable; 444 setting definitions; 584 literal defaults.\n"
+        },
+        {
+          "step": "documentation",
+          "exit": 1,
+          "output": "Documentation validation FAILED:\n- Stale source inventory: Battlezonemap/FluxBattlefieldWorldMap.lua\n- Stale generated view: reference/interfaces.md\n- Recorded verification predates current source: Battlezonemap/FluxBattlefieldWorldMap.lua\n- Recorded verification predates current source: tests/world_map_surface.lua\n- Broken link UNIT_OVERLAY_ATTACHMENTS.md:33: validation/unit-overlays-active-casts-2026-11-16.json\n5 issue(s); checker made no edits.\n"
+        }
+      ],
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-final-documentation.json",
+      "initialCheck": "Six unrelated concurrent source/link issues: Shared UF; active crafting/portrait overlay tests; pending unit-overlay evidence link. Initial source generation and current owned sources were preserved."
+    },
+    "callbackReview": {
+      "finding": "Native pickup/place callback can change destination/combat/cursor owner",
+      "fix": "Recheck destination/combat before placement; only selected/displaced cursor can be retired; foreign/recovery cursor preserved",
+      "review": "Independent reviewer confirms finding addressed and no further actionable issue",
+      "focusedSafety": "477 checks/120 cases; all three target models",
+      "priorCandidateRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e66c-746a-7c30-bf69-cb2eb46305e8\\respec-focused-before-callback-review.json"
+    },
+    "finalOwnedDrift": []
+  },
+  "native": {
+    "status": "NOT RUN",
+    "route": "Existing user-performed in-game preference retained; no new UI design or controls",
+    "pending": [
+      "Retail/Forever/Classic reload adoption and save/load persistence",
+      "actual specialization/talent swap then bar/binding restore",
+      "all entry pickups including flyout/equipment/mount/pet/outfit and missing actions",
+      "unchanged-profile and no-profile spell/talent events",
+      "binder current account/character scope and unsaved edits",
+      "combat defer/cancel; native taint/controller/visual parity"
+    ],
+    "operations": "No game process/window inspection, focus/input/clipboard, reload, profiling, WTF writes, installation synchronization or publication."
+  },
+  "limits": [
+    "Unavailable/unsupported action identities fail without overwriting saved setup; missing macros/sets/spells are not recreated",
+    "Duplicate macro names resolve by saved body when captured; edited/deleted identities need re-save",
+    "Source declarations and offline mocks do not prove protected native operation, persistence, pixels, controller behavior or FPS",
+    "Source/settings checkpoint cannot reconstruct native bar contents that were never saved by prior versions"
+  ],
+  "completedLocalDate": "2026-11-17",
+  "completedUTC": "2026-11-16T23:07:31.709926+00:00"
+}

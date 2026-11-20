@@ -27,13 +27,23 @@ local function GetUnitClassColor(unit)
     end
 end
 
--- Border + backdrop tint for Flux chrome: player/pet follow General → Appearance; target keeps target class color.
-local function GetCastBarChromeColors(unit)
+-- Player chrome follows Appearance; watched units and pet owners keep their class policy.
+local function GetCastBarChromeColors(unit, frame)
+    if unit == "pet" and UF.GetMiniUnitChromeColor then
+        local color = UF.GetMiniUnitChromeColor(frame, unit)
+        if color then return color.r, color.g, color.b, color.r * .4, color.g * .4, color.b * .4 end
+    end
     if unit == "target" or unit == "focus" then
+        if UF.GetUnitChromeColors then return UF.GetUnitChromeColors(unit) end
         local c = GetUnitClassColor(unit)
         return c.r, c.g, c.b, c.r * 0.4, c.g * 0.4, c.b * 0.4
     end
-    if unit == "player" or unit == "pet" then
+    if frame and frame._fluxPartyMember and frame._fluxPartyClassChrome then
+        if UF.GetUnitChromeColors then return UF.GetUnitChromeColors(unit) end
+        local c = GetUnitClassColor(unit)
+        return c.r, c.g, c.b, c.r * 0.4, c.g * 0.4, c.b * 0.4
+    end
+    if unit == "player" or unit == "pet" or frame and frame._fluxPartyMember then
         if FluxBorder and FluxBorder.GetThemedVertexRGB and FluxBorder.GetThemedBackdropFillRGB then
             local br, bg, bb = FluxBorder:GetThemedVertexRGB()
             local dr, dg, db = FluxBorder:GetThemedBackdropFillRGB()
@@ -68,6 +78,9 @@ local CASTBAR_TEXT_LEFT_PAD = 4
 local CASTBAR_TEXT_RIGHT_PAD = 4
 local CASTBAR_TEXT_TIME_GAP = 6
 local CASTBAR_TEXT_SHIELD_PAD = 10
+-- Hide the rounded leading cap of native fill art beneath the icon divider.
+-- This changes only the prepared fill rectangle, never the header or icon.
+local CASTBAR_ICON_FILL_UNDERLAP = 4
 -- UI-CastingBar-Small-Shield art sits a few px right/up of geometric center.
 local SHIELD_OFFSET_X = -3
 local SHIELD_OFFSET_Y = -2
@@ -76,6 +89,10 @@ local function CastBarSpellTextLeftPad(castBar)
     local pad = CASTBAR_TEXT_LEFT_PAD
     if not castBar then
         return pad
+    end
+    if castBar.unitID ~= "pet" then
+        -- Keep the name at its existing screen position as the fill extends.
+        pad = pad + CASTBAR_ICON_FILL_UNDERLAP - 2
     end
     local shield = castBar.ShieldOverlay
     local iconFrame = castBar.IconFrame
@@ -721,11 +738,14 @@ local CASTING_BAR_TYPES = {
 -- Helper function to check if texture is the placeholder icon
 -- Skip checks when texture is secret (WoW 12+ target cast bar) - can't compare
 local function IsPlaceholderIcon(texture)
-    if texture == nil or IsSecretValue(texture) then
+    if IsSecretValue(texture) then
         return false
     end
     if canaccessvalue and not canaccessvalue(texture) then
         return false  -- Secret value: use texture as-is, don't try profession icon replacement
+    end
+    if texture == nil or texture == false or texture == 0 or texture == "" then
+        return true
     end
 
     -- Check if it's the placeholder ID (136235)
@@ -872,6 +892,29 @@ local function GetProfessionIconForSpell(spellName, spellID)
     return nil
 end
 
+-- Public spell metadata supplies recipe icons even when UnitCastingInfo has no
+-- texture. Restricted identities are never used for an icon/recipe query.
+local function GetCastFallbackIcon(spellName, spellID)
+    if not IsSecretValue(spellID) and type(spellID) == "number" and spellID > 0 then
+        local icon
+        if C_Spell and C_Spell.GetSpellInfo then
+            local ok, info = pcall(C_Spell.GetSpellInfo, spellID)
+            if ok and not IsSecretValue(info) and type(info) == "table" then icon = info.iconID end
+        elseif GetSpellInfo then
+            local ok, _, _, texture = pcall(GetSpellInfo, spellID)
+            if ok then icon = texture end
+        end
+        if not IsPlaceholderIcon(icon) then return icon end
+        icon = GetProfessionIconForSpell(spellName, spellID)
+        if not IsPlaceholderIcon(icon) then return icon end
+    end
+    return "Interface\\Icons\\INV_Misc_QuestionMark"
+end
+
+local function ShowUninterruptibleCast(self)
+    return SafeBooleanTest(self.notInterruptible) and not self._fluxTradeCast
+end
+
 local function UseModernCastBarArt()
     return hasAtlasSupport and not isLegacyClient
 end
@@ -879,7 +922,8 @@ end
 -- Era / Anniversary / progression Classic ship the DF filling atlases (nameplates)
 -- but player bars are classicStyleCastBar: UI-StatusBar + vertex color. Atlas
 -- full/interrupted caps do not stay on the leading edge (no useAtlasSize BarTexture
--- / InterruptSparkAnim). Forever, Camelot, and retail keep modern atlas finish art.
+-- / InterruptSparkAnim). Forever, Camelot, and retail keep modern active-cast
+-- and interrupt art; successful completion uses a quiet plain fill.
 local function UseClassicCastBarColorFinish()
     local api = FLUX_API
     if api and api.isAnyClassic then
@@ -892,7 +936,8 @@ local function UseClassicCastBarColorFinish()
     return not UseModernCastBarArt()
 end
 
--- Classic finish/interrupt: keep Flux UI-StatusBar (not Flash / interrupted atlas).
+-- All successful unit casts use a plain green finish in the compact header.
+-- Classic interruptions keep the same portable fill, tinted red.
 local FLUX_CASTBAR_FINISH_GREEN = { 0.12, 0.86, 0.15 }
 local FLUX_CASTBAR_INTERRUPT_RED = { 1.0, 0.0, 0.0 }
 
@@ -950,6 +995,10 @@ local function ApplyCastBarFillAtlas(castBar, atlasName)
     end
     local tex = timerBar.GetStatusBarTexture and timerBar:GetStatusBarTexture()
     timerBar.statusBarTexture = tex
+    -- Match the border field's sampling at fractional UI scales. The native
+    -- StatusBar still owns progress clipping and the texture's dimensions.
+    if tex and tex.SetSnapToPixelGrid then tex:SetSnapToPixelGrid(false) end
+    if tex and tex.SetTexelSnappingBias then tex:SetTexelSnappingBias(0) end
     if tex and tex.Show then
         tex:Show()
     end
@@ -963,9 +1012,21 @@ local function ApplyModernFillColor(castBar)
     return false
 end
 
-local function UpdateCastBarColor(self, unit)
-    if SafeBooleanTest(self.notInterruptible) then
-        if not ApplyModernFillColor(self) then
+local function PaintCastHeaderCover(castBar, r, g, b)
+    local cover = castBar.HeaderCover
+    if not cover then return end
+    -- This plate covers lower unit text/dividers, independently of the empower
+    -- backdrop. It inherits native cast visibility/fade and never takes input.
+    cover:SetVertexColor(r, g, b, 1)
+end
+
+local function UpdateCastBarColor(self, unit, chromeOnly)
+    local parentFrame = self:GetParent()
+    local u = parentFrame and parentFrame.unit or unit or self.unitID or "player"
+    local br, bg, bb, dr, dg, db = GetCastBarChromeColors(u, parentFrame)
+    PaintCastHeaderCover(self, dr, dg, db)
+    if ShowUninterruptibleCast(self) then
+        if not chromeOnly and not ApplyModernFillColor(self) then
             self:SetStatusBarColor(1.0, 0.0, 0.0) -- Red for uninterruptible
         end
         if self.IconBorder then
@@ -981,22 +1042,16 @@ local function UpdateCastBarColor(self, unit)
     else
         -- Only set standard yellow if NOT empowered. Empowered has its own dynamic colors.
         -- Modern filling atlases are pre-colored; vertex tint blows out the leading-edge glow.
-        if not SafeBooleanTest(self.isEmpowered) then
+        if not chromeOnly and not SafeBooleanTest(self.isEmpowered) then
             if not ApplyModernFillColor(self) then
                 self:SetStatusBarColor(1, 0.95, 0) -- Classic yellow/gold (Legacy Color: 1, 0.95, 0)
             end
         end
 
         if self.IconBorder then
-             local parentFrame = self:GetParent()
-             local u = parentFrame and parentFrame.unit or "player"
-             local br, bg, bb = GetCastBarChromeColors(u)
              Border:SetBorderColor(self.IconBorder, br, bg, bb, 1)
         end
         if self.BorderFrame then
-             local parentFrame = self:GetParent()
-             local u = parentFrame and parentFrame.unit or "player"
-             local br, bg, bb = GetCastBarChromeColors(u)
              Border:SetBorderColor(self.BorderFrame, br, bg, bb, 1)
         end
         -- Hide shield overlay for interruptible casts
@@ -1004,6 +1059,17 @@ local function UpdateCastBarColor(self, unit)
             self.ShieldOverlay:Hide()
         end
     end
+end
+
+local function ClearCastBarInterruptibility(self)
+    local wasProtected = SafeBooleanTest(self.notInterruptible)
+    self.notInterruptible = nil
+    if wasProtected then
+        -- The cast has ended; restore its usual chrome without touching the
+        -- success/interrupt fill or asking the border builder for new geometry.
+        UpdateCastBarColor(self, self.unitID, true)
+    end
+    return wasProtected
 end
 
 -- Match CreateCastBar / UpdateCastBarColor backdrop tint (class * 0.4 @ 0.85 alpha).
@@ -1016,7 +1082,7 @@ local function RestoreCastBarFluxBackdrop(castBar)
     if not u then
         return
     end
-    local _, _, _, dr, dg, db = GetCastBarChromeColors(u)
+    local _, _, _, dr, dg, db = GetCastBarChromeColors(u, parentFrame)
     Border:SetBackdropColor(castBar.BorderFrame, dr, dg, db, 0.85)
 end
 
@@ -1207,6 +1273,7 @@ end
 
 local function HandleInterrupt(self, failed, interruptedBy)
     if CastThemes then CastThemes.Reset(self, true) end
+    ClearCastBarInterruptibility(self)
     self.interrupted = true
     self.beingInterrupted = true
     self.casting = nil
@@ -1332,40 +1399,27 @@ local function CastStop(self, failed)
         return
     end
 
-    -- Completed: forever UpdateBarFillTexture(true) swaps filling → full atlas.
-    -- Modern full atlases are pre-colored; vertex green on top blows out the end glow.
-    -- Classic Style uses classicFullColor (green) on UI-StatusBar; filling/full share a
-    -- sheet so SetStatusBarTexture(full) can no-op and skip the success flash.
-    local classicFinish = UseClassicCastBarColorFinish()
-    local gr, gg, gb = FLUX_CASTBAR_FINISH_GREEN[1], FLUX_CASTBAR_FINISH_GREEN[2], FLUX_CASTBAR_FINISH_GREEN[3]
+    if ClearCastBarInterruptibility(self) and self.Text then
+        -- No shield remains during success feedback, so use the ordinary inset.
+        self.Text:SetPoint("LEFT", self.TimerBar, "LEFT", CastBarSpellTextLeftPad(self), 0)
+    end
     if wasChanneling then
         self:SetValue(0) -- Empty bar for completed channel
-        if classicFinish then
-            ApplyCastBarVertexFill(self, gr, gg, gb)
-        else
-            ApplyCastBarFillAtlas(self, CASTING_BAR_TYPES.channel.full)
-            if not ApplyModernFillColor(self) then
-                self:SetStatusBarColor(gr, gg, gb)
-            end
-        end
     else
         local _, maxValue = self:GetMinMaxValues()
         if IsSecretValue(maxValue) or not maxValue or maxValue <= 0 then
             maxValue = self.maxValue or 1
         end
         -- Detach DurationObject (SetMinMaxValues) so the engine does not clear the
-        -- success flash before the hold/fade.
+        -- completed fill before the hold/fade.
         self:SetMinMaxValues(0, maxValue)
         self:SetValue(math.max(0, maxValue)) -- Full bar for completed cast (ensure valid value)
-        if classicFinish then
-            ApplyCastBarVertexFill(self, gr, gg, gb)
-        else
-            ApplyCastBarFillAtlas(self, CASTING_BAR_TYPES.standard.full)
-            if not ApplyModernFillColor(self) then
-                self:SetStatusBarColor(gr, gg, gb)
-            end
-        end
     end
+    -- Keep the normal hold/fade owner, but avoid the full-bar success atlas.
+    -- Every successful unit cast uses the same green, including school/profession
+    -- themes. Active effects are released below; no new fade owner is needed.
+    local finishColor = FLUX_CASTBAR_FINISH_GREEN
+    ApplyCastBarVertexFill(self, finishColor[1], finishColor[2], finishColor[3])
     if self.Time then self.Time:SetText("") end
 
     if self.Spark then self.Spark:Hide() end
@@ -1375,7 +1429,7 @@ local function CastStop(self, failed)
     if self.IsShown and not self:IsShown() then
         self:Show()
     end
-    if CastThemes then CastThemes.Finish(self) end
+    if CastThemes then CastThemes.Reset(self, true) end
 end
 
 -- Blizzard Mainline CastingBarFrameStageTierTemplate FlashAnim: glow 0 -> 1 -> 0 (~0.5s)
@@ -1742,7 +1796,7 @@ local function ApplyCustomTimerLabel(castBar)
         timeFS:SetText(timeSample)
     end
     local timeWidth = (timeFS and timeFS:GetStringWidth()) or 0
-    local maxTextWidth = barWidth - timeWidth - CASTBAR_TEXT_LEFT_PAD - CASTBAR_TEXT_RIGHT_PAD - CASTBAR_TEXT_TIME_GAP
+    local maxTextWidth = barWidth - timeWidth - CastBarSpellTextLeftPad(castBar) - CASTBAR_TEXT_RIGHT_PAD - CASTBAR_TEXT_TIME_GAP
     if maxTextWidth < 24 then
         maxTextWidth = 24
     end
@@ -1818,6 +1872,7 @@ function CB.StartCustomTimer(castBar, timerOpts)
     castBar.preInterrupt = nil
     castBar.isEmpowered = nil
     castBar.interrupted = nil
+    ClearCastBarInterruptibility(castBar)
     if castBar.fadeTimer then
         castBar.fadeTimer:Cancel()
         castBar.fadeTimer = nil
@@ -1844,7 +1899,7 @@ function CB.StartCustomTimer(castBar, timerOpts)
     if castBar.Icon then
         castBar.Icon:SetTexture(icon)
         if castBar.IconFrame then
-            castBar.IconFrame:Show()
+            castBar.IconFrame:SetShown(castBar.unitID ~= "pet")
         end
     end
 
@@ -1913,7 +1968,19 @@ local function ReadCastStartFields(unit, isChannel)
 end
 
 local function SetCastBarIcon(self, texture)
-    self.Icon:SetTexture(texture)
+    local restricted = IsSecretValue(texture) or (canaccessvalue and not canaccessvalue(texture))
+    if not restricted and IsPlaceholderIcon(texture) then return false end
+    if not restricted and type(texture) == "string" and self.Icon.SetAtlas and C_Texture and C_Texture.GetAtlasInfo then
+        local ok, info = pcall(C_Texture.GetAtlasInfo, texture)
+        if ok and not IsSecretValue(info) and type(info) == "table"
+            and not IsSecretValue(info.width) and type(info.width) == "number" and info.width > 0 then
+            local painted, result = pcall(self.Icon.SetAtlas, self.Icon, texture, false)
+            if painted and (IsSecretValue(result) or result ~= false) then return true end
+        end
+    end
+    local result = self.Icon:SetTexture(texture)
+    self.Icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+    return IsSecretValue(result) or result ~= false
 end
 
 local function PaintCastStartLabel(self, unit, accessibleText, name, text, isChannel)
@@ -2037,9 +2104,10 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     -- SetTimerDuration. Interrupt leaves ui-castingbar-interrupted + pip-red; if the
     -- engine timer starts first, the next cast keeps the red cap glow.
     local barType = "standard"
+    local tradeCast = not IsSecretValue(isTradeSkill) and isTradeSkill == true
     if isChargeSpell then
         barType = "empowered"
-    elseif SafeBooleanTest(notInterruptible) then
+    elseif SafeBooleanTest(notInterruptible) and not tradeCast then
         barType = "uninterruptable"
     elseif isChannel then
         barType = "channel"
@@ -2130,6 +2198,7 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     self._fluxTimeTextAccum = FLUX_CASTBAR_TIME_TEXT_INTERVAL
 
     self.notInterruptible = SafeBooleanTest(notInterruptible)
+    self._fluxTradeCast = tradeCast
     self.castID = castID
     self.castGUID = castGUID or castID
     self.spellID = spellID
@@ -2139,16 +2208,15 @@ local function CastStart(self, unit, isChannel, castGUID, eventSpellID)
     if self.Icon then
         local painted = false
         if not IsPlaceholderIcon(texture) then
-            painted = pcall(SetCastBarIcon, self, texture)
+            local ok, result = pcall(SetCastBarIcon, self, texture)
+            painted = ok and result == true
         end
-        if not painted then
-            local profIcon = GetProfessionIconForSpell(name, spellID)
-            if profIcon then
-                painted = pcall(SetCastBarIcon, self, profIcon)
-            end
+        if not painted and not IsSecretValue(texture) and (not canaccessvalue or canaccessvalue(texture)) then
+            local ok, result = pcall(SetCastBarIcon, self, GetCastFallbackIcon(name, spellID))
+            painted = ok and result == true
         end
         if self.IconFrame then
-            self.IconFrame:SetShown(painted and true or false)
+            self.IconFrame:SetShown(painted and self.unitID ~= "pet" or false)
         end
     end
 
@@ -2694,17 +2762,36 @@ end
 -- FluxBorder.ApplyTo draws atlas corners/edges on FluxBorderFrame at shell:GetFrameLevel()+10
 -- (see FluxBorder.lua). Progress spark must sit above FluxBorderFrame. Stage pips live inside
 -- TimerBar below stage tier frames (+2) so they do not stack on top of tier art as a seam overlay.
+local function CastChromeLevel(object)
+    local value = object:GetFrameLevel()
+    if not IsSecretValue(value) and type(value) == "number" then return value end
+end
+
+local function SetCastChromeLevel(object, value)
+    local current = CastChromeLevel(object)
+    if current ~= nil and current ~= value then object:SetFrameLevel(value) end
+end
+
 local function SyncCastBarChromeFrameLevels(castBar)
     local shell = castBar.BorderFrame
     if not shell then
         return
     end
-    local top = (shell.FluxBorderFrame and shell.FluxBorderFrame:GetFrameLevel()) or (shell:GetFrameLevel() + 10)
+    local top
+    if shell.FluxBorderFrame then top = CastChromeLevel(shell.FluxBorderFrame)
+    else local level = CastChromeLevel(shell); if level then top = level + 10 end end
+    if top == nil then return end
+    local rootLevel = CastChromeLevel(castBar)
+    if rootLevel then
+        if castBar.FillEffectClip then SetCastChromeLevel(castBar.FillEffectClip, rootLevel) end
+        if castBar.FillEffectHost then SetCastChromeLevel(castBar.FillEffectHost, rootLevel) end
+    end
     if castBar.StagePipHolder and castBar.TimerBar then
-        castBar.StagePipHolder:SetFrameLevel(castBar.TimerBar:GetFrameLevel() + 1)
+        local level = CastChromeLevel(castBar.TimerBar)
+        if level then SetCastChromeLevel(castBar.StagePipHolder, level + 1) end
     end
     if castBar.SparkFrame then
-        castBar.SparkFrame:SetFrameLevel(top + 2)
+        SetCastChromeLevel(castBar.SparkFrame, top + 2)
     end
 end
 
@@ -2716,9 +2803,20 @@ function CB.CreateCastBar(frame, unit)
     -- We attach to the unit frame "frame"
     -- Main Container Frame (Holds everything)
     local castBar = CreateFrame("Frame", nil, frame)
+    castBar._FluxBorderOwner = frame
+    castBar._FluxBorderJunctionRole = "connected"
+    castBar._FluxBorderCast = true
     castBar.unitID = unit
     castBar:SetFrameLevel(frame:GetFrameLevel() + 40) -- Ensure above TextOverlay (+30) 
     castBar:Hide()
+
+    local headerCover = castBar:CreateTexture(nil, "BACKGROUND", nil, -8)
+    headerCover:SetTexture("Interface\\Buttons\\WHITE8X8")
+    castBar.HeaderCover = headerCover
+    do
+        local _, _, _, r, g, b = GetCastBarChromeColors(unit, frame)
+        PaintCastHeaderCover(castBar, r, g, b)
+    end
 
     -- Child StatusBar (The actual fill) - Inset by 2px to fit inside border
     local timerBar = CreateFrame("StatusBar", nil, castBar)
@@ -2746,6 +2844,21 @@ function CB.CreateCastBar(frame, unit)
 
     -- Store timerBar before fill apply (engine owns the BarTexture; do not SetSize/SetAtlas).
     castBar.TimerBar = timerBar
+    -- School glow belongs inside the header's border, separately from the
+    -- native fill's cap underlap. UpdateLayout fits this prepared clip.
+    if timerBar.SetClipsChildren then
+        local effectClip = CreateFrame("Frame", nil, castBar)
+        effectClip:SetAllPoints(timerBar)
+        effectClip:SetFrameLevel(castBar:GetFrameLevel())
+        effectClip:SetClipsChildren(true)
+        effectClip:EnableMouse(false)
+        local effectHost = CreateFrame("Frame", nil, effectClip)
+        effectHost:SetAllPoints(effectClip)
+        effectHost:SetFrameLevel(castBar:GetFrameLevel())
+        effectHost:EnableMouse(false)
+        castBar.FillEffectClip = effectClip
+        castBar.FillEffectHost = effectHost
+    end
     ApplyCastBarFillAtlas(castBar, CASTING_BAR_TYPES.standard.filling)
     if not ApplyModernFillColor(castBar) then
         timerBar:SetStatusBarColor(1, 0.95, 0)
@@ -2780,7 +2893,7 @@ function CB.CreateCastBar(frame, unit)
     -- Text (Spell name - match unit frame font styling)
     local spellText = textHolder:CreateFontString(nil, "OVERLAY")
     spellText:SetFont("Fonts\\FRIZQT__.TTF", castFont, "OUTLINE") -- Match unit frame font
-    spellText:SetPoint("LEFT", textHolder, "LEFT", CASTBAR_TEXT_LEFT_PAD, 0)
+    spellText:SetPoint("LEFT", textHolder, "LEFT", CastBarSpellTextLeftPad(castBar), 0)
     spellText:SetJustifyH("LEFT")
     spellText:SetTextColor(1, 1, 1)
     spellText:Hide() -- Hide initially
@@ -2812,11 +2925,17 @@ function CB.CreateCastBar(frame, unit)
     iconBorder:SetFrameLevel(iconFrame:GetFrameLevel() + 1)
     iconBorder:SetAllPoints()
     castBar.IconBorder = iconBorder
+    -- Pet casts are an overlay on the resource row and have no icon shell.
+    -- Its permanently hidden unused outline must not take shared-edge ownership.
+    if unit == "pet" then iconBorder._FluxBorderJunctionRole = "overlay" end
 
     if Border then
         Border:ApplyTo(iconBorder, 2, 2, 2, 2)
+        if iconBorder.FluxBorderFrame and unit ~= "pet" then
+            iconBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Right"
+        end
         do
-            local br, bg, bb, dr, dg, db = GetCastBarChromeColors(unit)
+            local br, bg, bb, dr, dg, db = GetCastBarChromeColors(unit, frame)
             Border:SetBorderColor(iconBorder, br, bg, bb, 1)
             Border:SetBackdropColor(iconBorder, dr, dg, db, 0.85)
         end
@@ -2844,8 +2963,11 @@ function CB.CreateCastBar(frame, unit)
 
     if Border then
         Border:ApplyTo(barBorder, 2, 2, 2, 2)
+        if barBorder.FluxBorderFrame and unit ~= "pet" then
+            barBorder.FluxBorderFrame._FluxBorderCastInternalSide = "Left"
+        end
         do
-            local br, bg, bb, dr, dg, db = GetCastBarChromeColors(unit)
+            local br, bg, bb, dr, dg, db = GetCastBarChromeColors(unit, frame)
             Border:SetBorderColor(barBorder, br, bg, bb, 1)
             Border:SetBackdropColor(barBorder, dr, dg, db, 0.85)
         end
@@ -3144,55 +3266,136 @@ function CB.CreateCastBar(frame, unit)
     castBar:SetScript("OnUpdate", OnUpdate)
     if CastThemes then CastThemes.Attach(castBar) end
 
-    -- Dynamic Layout Update function
+    local function FinishDeferredLayout()
+        castBar._fluxLayoutDeferred = nil
+        if frame.CastBar == castBar then castBar.UpdateLayout() end
+    end
+    -- Geometry changes only for a real size/anchor-mode change. Cast start,
+    -- opacity and parent visibility keep the prepared shell/icon connection.
     castBar.UpdateLayout = function()
-        if not frame.atlasBorderFrame then return end
+        if unit ~= "pet" and not frame.atlasBorderFrame then return end
+        if InCombatLockdown and InCombatLockdown() then
+            if not castBar._fluxLayoutDeferred and UF and UF.DeferProtected then
+                castBar._fluxLayoutDeferred = true
+                UF.DeferProtected("castbar.layout." .. tostring(castBar), FinishDeferredLayout)
+            end
+            return
+        end
+        castBar._fluxLayoutDeferred = nil
         
-        -- Requirement: Match Old Code Logic
-        -- Content Size = frame.outerBorderPadding + 4 (Compensate for 2px inset on both sides)
-        -- Visual Size will be exactly outerBorderPadding (36px)
-        local totalHeight = frame.outerBorderPadding + 4
-        -- No shrinking for innerHeight. Content is full size.
-        
+        -- The cast occupies the actual name/header strip, rather than adding
+        -- four content pixels and relying on overlapping rounded rectangles.
+        local header = unit ~= "pet" and (frame.outerBorderFrame or frame.atlasBorderFrame) or nil
+        local alignment = frame.outerBorderAlignment or "BOTTOM"
+        local power = unit == "pet" and frame.Power or nil
+        local powerWidth, powerHeight, powerLevel
+        local totalWidth, totalHeight
+        if unit == "pet" then
+            -- The actual pet constructor has no name/header strip (padding0).
+            -- Its cast is a body-only overlay on the existing resource row.
+            if not power then return end
+            powerWidth, powerHeight = power:GetSize()
+            powerLevel = power:GetFrameLevel()
+            if IsSecretValue(powerWidth) or IsSecretValue(powerHeight) or IsSecretValue(powerLevel)
+                or type(powerWidth) ~= "number" or type(powerHeight) ~= "number" or type(powerLevel) ~= "number"
+                or powerWidth ~= powerWidth or powerHeight ~= powerHeight or powerLevel ~= powerLevel
+                or powerWidth <= 4 or powerHeight <= 4 then return end
+            totalWidth, totalHeight = powerWidth, powerHeight
+        else
+            totalWidth, totalHeight = header:GetWidth(), frame.outerBorderPadding
+        end
+        if IsSecretValue(totalHeight) or IsSecretValue(totalWidth)
+            or type(totalHeight) ~= "number" or type(totalWidth) ~= "number"
+            or totalHeight ~= totalHeight or totalWidth ~= totalWidth
+            or totalHeight <= 4 or (unit ~= "pet" and totalWidth <= totalHeight + 4) then return end
+        local profile = Border and Border.GetJoinTracks and Border:GetJoinTracks()
+        local topTrack, bottomTrack = profile and profile.Top or 8, profile and profile.Bottom or 8
+        local dividerOffset = Border and Border.GetSideTrackOffset and Border:GetSideTrackOffset("Right", 2) or -2
+        local ownerLevel = frame:GetFrameLevel()
+        if IsSecretValue(topTrack) or IsSecretValue(bottomTrack) or IsSecretValue(dividerOffset) or IsSecretValue(ownerLevel)
+            or type(topTrack) ~= "number" or type(bottomTrack) ~= "number" or type(dividerOffset) ~= "number" or type(ownerLevel) ~= "number" then return end
+        local layout = castBar._fluxPreparedLayout
+        if layout and layout.anchor == frame.atlasBorderFrame and layout.header == header and layout.width == totalWidth and layout.height == totalHeight
+            and layout.alignment == alignment and layout.power == power and layout.ownerLevel == ownerLevel
+            and layout.powerWidth == powerWidth and layout.powerHeight == powerHeight and layout.powerLevel == powerLevel
+            and layout.compact == castBar._fluxCompactOverlay and layout.topTrack == topTrack and layout.bottomTrack == bottomTrack
+            and layout.dividerOffset == dividerOffset then
+            SyncCastBarChromeFrameLevels(castBar)
+            if castBar.customTimer and castBar.customFromName then ApplyCustomTimerLabel(castBar) end
+            return
+        end
         castBar:SetHeight(totalHeight)
         
-        -- Requirement: Icon + Bar length = UF.CreateAtlasBorder(frame) combined width
-        -- The atlasBorderFrame already covers unit frame + portrait + gaps.
-        local totalWidth = frame.atlasBorderFrame:GetWidth()
-        
-        -- Icon is square, same size as Height
-        local iconSize = totalHeight
+        -- Give the icon four additional horizontal pixels while keeping the
+        -- header's height and total width fixed in either border style.
+        local iconHeight = unit == "pet" and 0 or totalHeight
+        local iconSize = unit == "pet" and 0 or totalHeight + 4
         
         -- Bar Width = Total Width - Icon Size
         -- (Content widths. Borders will expand separately and overlap)
         local barWidth = totalWidth - iconSize
         
         castBar:SetWidth(barWidth)
-        iconFrame:SetSize(iconSize, iconSize)
+        iconFrame:SetSize(iconSize, iconHeight)
 
         -- Update shield overlay size to properly fit over the icon
         if castBar.ShieldOverlay then
             local shieldWidth = iconSize + 22 -- Make shield larger than icon like old implementation
-            castBar.ShieldOverlay:SetSize(shieldWidth, shieldWidth * 1.78)
+            castBar.ShieldOverlay:SetSize(shieldWidth, (iconHeight + 22) * 1.78)
             castBar.ShieldOverlay:ClearAllPoints()
             castBar.ShieldOverlay:SetPoint("CENTER", castBar.Icon, "CENTER", SHIELD_OFFSET_X, SHIELD_OFFSET_Y)
         end
 
-        if castBar.BorderFrame then
-             -- No manual point clearing. FluxBorder manages it.
-             -- FluxBorder.ApplyTo sets points relative to the frame.
+        -- Keep the icon and fill fitted inside the measured border core.
+        -- The logical header keeps its size; content follows the selected core.
+        local contentTop, contentBottom = -2, 2
+        local contentLeft = unit == "pet" and 2 or -CASTBAR_ICON_FILL_UNDERLAP
+        local coverTop, coverBottom = -2, 2
+        local chromeTop, chromeBottom = 0, 0
+        if unit ~= "pet" then
+            if alignment == "BOTTOM" then
+                contentTop, contentBottom = 2 - topTrack, 6 - topTrack
+                coverTop, coverBottom = -4, -4
+                chromeBottom = -7 + bottomTrack - topTrack
+            else
+                contentTop, contentBottom = 9 - bottomTrack, 13 - bottomTrack
+                coverTop, coverBottom = 4, 4
+                chromeTop = 7 + topTrack - bottomTrack
+            end
         end
-        
-        if castBar.IconBorder then
-             -- No manual point clearing.
+        timerBar:ClearAllPoints()
+        timerBar:SetPoint("TOPLEFT", castBar, "TOPLEFT", contentLeft, contentTop)
+        timerBar:SetPoint("BOTTOMRIGHT", castBar, "BOTTOMRIGHT", -2, contentBottom)
+        icon:ClearAllPoints()
+        icon:SetPoint("TOPLEFT", iconFrame, "TOPLEFT", 2, contentTop)
+        icon:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", -2, contentBottom)
+        if castBar.FillEffectClip then
+            local clip = castBar.FillEffectClip
+            clip:ClearAllPoints()
+            if unit == "pet" then
+                clip:SetAllPoints(timerBar)
+            else
+                -- Reach the border cores without letting glow cross the icon
+                -- divider or following the native fill's rounded-cap underlap.
+                clip:SetPoint("TOPLEFT", castBar, "TOPLEFT", dividerOffset, contentTop + 2)
+                clip:SetPoint("BOTTOMRIGHT", timerBar, "BOTTOMRIGHT", 0, -2)
+            end
         end
+        -- Same top/bottom source profiles as the unit perimeter: above-name
+        -- rows share atlas.Top; below-name rows share atlas.Bottom.
+        iconBorder:ClearAllPoints()
+        iconBorder:SetPoint("TOPLEFT", iconFrame, "TOPLEFT", 0, chromeTop)
+        iconBorder:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", 0, chromeBottom)
+        barBorder:ClearAllPoints()
+        barBorder:SetPoint("TOPLEFT", castBar, "TOPLEFT", 0, chromeTop)
+        barBorder:SetPoint("BOTTOMRIGHT", castBar, "BOTTOMRIGHT", 0, chromeBottom)
 
         -- Fill texture is StatusBar-owned (forever BarTexture atlas). Do not SetSize —
         -- that pins the filling atlas cap glow to the right end of the bar.
 
         -- Update background texture size
         if castBar.bg then
-            castBar.bg:SetSize(barWidth - 4, totalHeight - 4)
+            castBar.bg:SetSize(barWidth - contentLeft - 2, totalHeight - 4)
         end
 
         if castBar.Spark then
@@ -3206,28 +3409,16 @@ function CB.CreateCastBar(frame, unit)
         end
         SyncCastBarChromeFrameLevels(castBar)
 
-        -- Position logic based on outerBorderAlignment
-        -- If "BOTTOM", Cast Bar ABOVE frame.
-        -- If "TOP", Cast Bar BELOW frame.
+        -- Overlay the name/header portion of the existing outer frame exactly.
         castBar:ClearAllPoints()
         iconFrame:ClearAllPoints()
-        
-        -- Anchor the BORDERS (which represent the outer bounds) to the Atlas Border
-        -- Since we navigate by Inner Frames, we offset by the inset amount (2px)
-        
-        if frame.outerBorderAlignment == "BOTTOM" then
-            -- Cast bar above frame
-            -- Visual Bottom of Icon Border maps to Visual Top of Atlas Border
-            -- Icon Border is at (IconFrame - 2px).
-            -- So IconFrame Bottom is at (Atlas Top + 2px).
-            iconFrame:SetPoint("BOTTOMLEFT", frame.atlasBorderFrame, "TOPLEFT", 0, -4) 
-            castBar:SetPoint("LEFT", iconFrame, "RIGHT", 0, 0) -- Gap of 0 visual, but 2+2 gap between inner frames
-        else
-            -- Cast bar below frame
-            -- Visual Top of Icon Border maps to Visual Bottom of Atlas Border
-            -- IconFrame Top is at (Atlas Bottom - 2px)
-            iconFrame:SetPoint("TOPLEFT", frame.atlasBorderFrame, "BOTTOMLEFT", 0, 4)
-             castBar:SetPoint("LEFT", iconFrame, "RIGHT", 0, 0)
+        if unit ~= "pet" then
+            if alignment == "BOTTOM" then
+                iconFrame:SetPoint("TOPLEFT", header, "TOPLEFT", 0, 0)
+            else
+                iconFrame:SetPoint("BOTTOMLEFT", header, "BOTTOMLEFT", 0, 0)
+            end
+            castBar:SetPoint("LEFT", iconFrame, "RIGHT", 0, 0)
         end
 
         -- SPECIAL CASE: Pet Cast Bar (Layered OVER Resource Bar)
@@ -3239,20 +3430,27 @@ function CB.CreateCastBar(frame, unit)
             if frame.Power then
                 castBar:ClearAllPoints()
                 castBar:SetAllPoints(frame.Power)
-                castBar:SetFrameLevel(frame.Power:GetFrameLevel() + 5)
+                castBar:SetFrameLevel(math.max(ownerLevel + 40, powerLevel + 5))
                 
                 -- Ensure trough matches new size; fill texture stays StatusBar-owned.
-                local pWidth, pHeight = frame.Power:GetSize()
                 if castBar.bg then
-                    castBar.bg:SetSize(pWidth - 4, pHeight - 4)
+                    castBar.bg:SetSize(powerWidth - 4, powerHeight - 4)
                 end
             end
         end
+        headerCover:ClearAllPoints()
+        headerCover:SetPoint("TOPLEFT", unit == "pet" and castBar or iconFrame, "TOPLEFT", 2, coverTop)
+        headerCover:SetPoint("BOTTOMRIGHT", castBar, "BOTTOMRIGHT", -2, coverBottom)
 
         if castBar.customTimer and castBar.customFromName then
             ApplyCustomTimerLabel(castBar)
         end
         if CastThemes then CastThemes.Layout(castBar) end
+        castBar._fluxPreparedLayout = {anchor = frame.atlasBorderFrame, header = header, width = totalWidth, height = totalHeight,
+            barWidth = barWidth, iconSize = iconSize, contentWidth = barWidth - contentLeft - 2, contentHeight = totalHeight + contentTop - contentBottom,
+            alignment = alignment, power = power, powerWidth = powerWidth, powerHeight = powerHeight,
+            powerLevel = powerLevel, ownerLevel = ownerLevel, compact = castBar._fluxCompactOverlay,
+            topTrack = topTrack, bottomTrack = bottomTrack, dividerOffset = dividerOffset}
     end
 
     frame.CastBar = castBar
@@ -3497,14 +3695,36 @@ function CB.SyncBlizzardCastBars()
     SetBlizzardCastBarMuted(_G.FocusFrameSpellBar, muteFocus)
 end
 
---- Reapply player/pet cast bar Flux chrome when General → Appearance accent changes (target bar unchanged).
+--- Reapply chrome without resetting active fill, interrupt hold or empower art.
 function FluxCastBar_ApplyAppearanceAccent()
-    if ns.PlayerFrame and ns.PlayerFrame.CastBar then
-        UpdateCastBarColor(ns.PlayerFrame.CastBar)
+    if not Border then return end
+    local function Refresh(frame)
+        local bar = frame and frame.CastBar
+        if not bar then return end
+        -- Profile changes adjust only decorative fit. Party may wrap UpdateLayout
+        -- with its header anchor, so do not enter that wrapper during lockdown.
+        if bar.UpdateLayout then
+            if InCombatLockdown and InCombatLockdown() then
+                if UF and UF.DeferProtected then
+                    UF.DeferProtected("castbar.appearance." .. tostring(bar), function()
+                        if frame.CastBar == bar then bar:UpdateLayout() end
+                    end)
+                end
+            else bar:UpdateLayout() end
+        end
+        local br, bg, bb, dr, dg, db = GetCastBarChromeColors(frame.unit, frame)
+        if ShowUninterruptibleCast(bar) then br, bg, bb = 1, 0, 0 end
+        if bar.IconBorder then
+            Border:SetBorderColor(bar.IconBorder, br, bg, bb, 1)
+            Border:SetBackdropColor(bar.IconBorder, dr, dg, db, .85)
+        end
+        if bar.BorderFrame then Border:SetBorderColor(bar.BorderFrame, br, bg, bb, 1) end
+        PaintCastHeaderCover(bar, dr, dg, db)
+        SetCastBarEmpoweredBackdrop(bar, SafeBooleanTest(bar.isEmpowered))
     end
-    if ns.PetFrame and ns.PetFrame.CastBar then
-        UpdateCastBarColor(ns.PetFrame.CastBar)
-    end
+    Refresh(ns.PlayerFrame); Refresh(ns.PetFrame); Refresh(ns.TargetFrame); Refresh(ns.FocusFrame)
+    local members = ns.PartyFrames and ns.PartyFrames.members
+    for _, frame in ipairs(members or {}) do Refresh(frame) end
 end
 
 -- Loader

@@ -302,6 +302,7 @@ function FluxButtonUtil:AdjustRingBorderSizeForClient(button)
     button.WNormalTexture:ClearAllPoints()
     button.WNormalTexture:SetPoint("CENTER", widget, "CENTER", 0, 0)
 end
+local defaultRingAdjuster = FluxButtonUtil.AdjustRingBorderSizeForClient
 
 -- Equip border: capture each client's template size once at FluxButton create
 -- (Classic XML 62×62, retail atlas useAtlasSize). ButtonForge never resizes
@@ -1001,10 +1002,15 @@ function FluxButtonUtil:ApplyCooldownCountdownHorizontalScale(cooldownFrame, siz
 end
 
 --- After changing FluxButton.Widget width (horizontal squeeze), resync ring, equip border, and empty-slot art.
-function FluxButtonUtil:SyncFluxButtonLayerSizesToWidget(button)
+function FluxButtonUtil:SyncFluxButtonLayerSizesToWidget(button, sizedRing)
     if not button or not button.Widget then return end
-    -- Ring: AdjustRingBorderSizeForClient delegates to ScaleButtonTextures on DF+ (correct native ring, squeeze).
-    self:AdjustRingBorderSizeForClient(button)
+    -- The built-in adjuster calls the same Style.SizeRing already used by
+    -- RefreshSqueezeChrome. Direct callers and replacement policies keep it.
+    local flux = sizedRing and _G.Flux
+    local style = flux and flux.EBS and flux.EBS.Style
+    if not style or style.SizeRing ~= sizedRing or self.AdjustRingBorderSizeForClient ~= defaultRingAdjuster then
+        self:AdjustRingBorderSizeForClient(button)
+    end
     self:AdjustEquipBorderSizeForClient(button)
     if button.UpdateEmptyBackground then
         button:UpdateEmptyBackground()

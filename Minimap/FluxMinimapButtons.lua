@@ -433,19 +433,33 @@ local function SideGeometry(count)
     local pad = CONFIG.ContainerPadding
     local scale = M:GetSetting("sideScale") * SIDE_SCALE_BASIS / 100
     if count == 0 then return 0, 0, 0, top, height, scale end
-    -- Refit at every grid scale so a completed column can use the full height.
-    local fitHeight = height / scale
-    -- Add columns as needed; dense grids share two standard buttons of width.
-    local columns, _, size = FitGrid(count, NativeSize() * 2, fitHeight - pad * 2, NativeSize())
-    -- Remove fractional-row slack by fitting completed columns exactly between
-    -- their starting edge and the window. Short lists retain standard sizing.
-    local rows = size > 0 and math.max(1, math.floor((fitHeight - pad * 2) / size + 0.00001)) or 1
-    if size > 0 and count * size >= fitHeight - pad * 2 then
-        rows = math.max(1, math.ceil((fitHeight - pad * 2) / size - 0.00001))
-        size = (fitHeight - pad * 2) / rows
+    -- Keep short lists at their existing size. Once a column fills, fit its
+    -- height exactly and shrink within two columns before adding a third.
+    local fitHeight = math.max(0, height / scale - pad * 2)
+    local nativeSize = NativeSize()
+    local columns, rows, size = 1, count, nativeSize
+    if count > math.floor(fitHeight / nativeSize + 0.00001) then
+        rows = math.max(1, math.ceil(fitHeight / nativeSize - 0.00001), math.ceil(count / 2))
+        size = fitHeight / rows
+        -- Beyond half-size, preserve the established column-first order and
+        -- add another column instead of continuing to make tiny controls.
+        if size < nativeSize / 2 then
+            rows = math.max(1, math.floor(fitHeight / (nativeSize / 2) + 0.00001))
+            size = fitHeight / rows
+        end
         columns = math.ceil(count / rows)
     end
-    rows = math.min(count, rows)
+    -- Very short remaining screen areas may not fit the density floor. Keep
+    -- every slot on-screen rather than letting extra columns cross the edge.
+    local fitWidth = math.max(0, UIParent:GetWidth() / scale - pad * 2)
+    if columns * size > fitWidth then
+        columns, rows, size = FitGrid(count, fitWidth, fitHeight, size)
+        if size > 0 then
+            rows = math.min(count, math.max(1, math.ceil(fitHeight / size - 0.00001)))
+            size = math.min(size, fitHeight / rows)
+            columns = math.ceil(count / rows)
+        end
+    end
     return columns, rows, size, top, height, scale
 end
 
@@ -530,6 +544,8 @@ function M:LayoutSlots()
             slot:SetSize(size, size)
             slot:ClearAllPoints()
             slot:SetPoint("TOPLEFT", visibilityFrame, "TOPLEFT", pad + col * size, -pad - row * size)
+            -- Side rings meet directly: the visual and hit rectangle fills the
+            -- existing zero-spacing cell. Outer chrome owns perimeter padding.
             widget:SetScale(size / NativeSize())
             slot:Show()
             widget:Show()
@@ -560,6 +576,7 @@ function M:UpdateSideBorder()
     end
     if not sideBorderHost then
         sideBorderHost = CreateFrame("Frame", "FluxMinimapButtonsSideBorder", visibilityFrame)
+        sideBorderHost._FluxBorderHUD = true -- High-layer HUD chrome may meet the map/window.
         sideBorderHost:SetAllPoints(visibilityFrame)
         sideBorderHost:EnableMouse(false)
         sideBorderHost:SetFrameStrata("HIGH")
@@ -738,6 +755,7 @@ function M:RequestRefresh()
     if not IsEmbedded() and self:GetSetting("sideEnabled") then self:RefreshLayout() end
     if FluxMinimap and FluxMinimap.UpdateQuestTrackerPosition then FluxMinimap:UpdateQuestTrackerPosition() end
     if FluxMinimap and FluxMinimap.NotifyInfoFrameLayoutChanged then FluxMinimap.NotifyInfoFrameLayoutChanged() end
+    if FluxBorder and FluxBorder.Junctions then FluxBorder.Junctions:CommitLayout() end
 end
 
 function M:Initialize()

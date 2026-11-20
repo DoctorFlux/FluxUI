@@ -667,7 +667,8 @@ if Flux and Flux.Events and Flux.Events.Register then
     Flux.Events.Register("PLAYER_LEVEL_UP", function()
         Candidates.Invalidate()
     end)
-    Flux.Events.Register("PLAYER_SPECIALIZATION_CHANGED", function()
+    Flux.Events.Register("PLAYER_SPECIALIZATION_CHANGED", function(_, unit)
+        if Flux.Events.IsPlayerUnitEvent and not Flux.Events.IsPlayerUnitEvent(unit) then return end
         Candidates.Invalidate()
     end)
     Flux.Events.Register("SKILL_LINES_CHANGED", function()

@@ -1,0 +1,204 @@
+{
+  "changeId": "LHO-RESTOCK-SETTINGS-GET-20261119",
+  "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\settings-warm-read-20261119T044340Z",
+    "before": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false
+  },
+  "after": "c2a9e39354205c875e3ad8fd0d6272aa3fdac675dbb602dcac74af92b30397ec",
+  "matchingInstalledClients": [
+    "_retail_",
+    "_forever_",
+    "_classic_",
+    "_classic_era_",
+    "_anniversary_"
+  ],
+  "syntax": [
+    "Lua 5.1 before and after",
+    "Lua 5.4 before and after"
+  ],
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "birthFileTime": "134395136956432074",
+    "scriptProfile": "0",
+    "ghost": true
+  },
+  "r205": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag205-settings-warm-20261119",
+      "controllerSHA": "4d29c9a9205275c26d7f05d0ea298820cd8683beef758c540961eef5157d555e",
+      "packetSHA": "d712351e1da3a68943f4052a5ecd9943442731ab4a00ea9f176fb582eabc69b5",
+      "packets": 30,
+      "luaSHA": "521eb5f702623cdb6f7b93e05f9b9ba783443f0e460348ad19c2d784590e050b",
+      "baseline": "1acf3b02f873288fef2b1cd8664f992ad9ac5be1586a0295f62ad992db1d3336"
+    },
+    "capture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag205_a-submitted.png",
+      "sha": "d3df4d95876cd74a77eac4d34ea697f0690f7742977db2e56d60f45b845b84a0"
+    },
+    "acknowledged": true,
+    "settingsCallsPerVariant": 10000,
+    "realSlots": 44,
+    "verdictPositions": 88,
+    "verdictCallsPerVariant": 264,
+    "exactMatchesPerPair": 88,
+    "originalGetterRestored": true,
+    "bagGenerationStable": true,
+    "settingsAndMigrationRecordIdentityStable": true,
+    "sessionErrors": 1,
+    "newErrors": 0,
+    "priorError": "R202 diagnostic accessor error, previously attributed in R203",
+    "settingsMedianMs": [
+      2.7274,
+      1.9019
+    ],
+    "trials": [
+      {
+        "order": "before then candidate",
+        "settingsMs": [
+          2.7274,
+          1.9019
+        ],
+        "fullJunkMs": [
+          1.4333,
+          1.2863
+        ]
+      },
+      {
+        "order": "candidate then before",
+        "settingsMs": [
+          2.74,
+          1.9894
+        ],
+        "fullJunkMs": [
+          1.3315,
+          3.1985
+        ]
+      },
+      {
+        "order": "before then candidate",
+        "settingsMs": [
+          2.6393,
+          1.881
+        ],
+        "fullJunkMs": [
+          4.1611,
+          1.3092
+        ]
+      }
+    ]
+  },
+  "r206": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag206-direct-provider-matrix-20261119",
+      "controllerSHA": "5a5661048a48b23ad4155c130b2b4fff08e3c726782a2da41190b55cc77ba524",
+      "packetSHA": "4a56fb956bd96ff718ea537c7a781f62282c29f3e39724cd4826cd5a16ccfbdb",
+      "packets": 1
+    },
+    "earlyCapture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag206_a-submitted.png",
+      "sha": "c8ea918b09397f0ae16e00d8a239318c8130b28efab15a13660eebd424838b9e"
+    },
+    "freshStartup": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump31_settings206_a-source.png",
+      "sha": "3dabdd361e1cf3b6ac0fba99b9e4e2c17caddbe1ff05249ea4cd12d4bf71ebb5"
+    },
+    "confirmation": "Fresh startup and closed chat after guarded reload. Early submit screenshot was during chat transition."
+  },
+  "r207": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag207-profiler-cold-open-20261119",
+      "controllerSHA": "3bdfab7ce0d8fdaa04627fd08a0e2a60492b9a0f7e57a70567c6be5d57e39159",
+      "packetSHA": "bdf7d8491fcbf09aa065760ad807509b29cc00b05bf4c0921ffe8daa0be8de18",
+      "packets": 21,
+      "luaSHA": "891938ca01f0e3043cccc1be5db3b23fb18211736f56cd34a2d235ac9f5641e6"
+    },
+    "earlyCapture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag207_a-submitted.png",
+      "sha": "3c89a5d12dbd980478b71db369dcc966291a0e4a700ae914e55408c889fdd802"
+    },
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag207-matrix-result.png",
+      "sha": "36f1b4b13ed38d2e657265ecdb6c402702eff2ff1026b5966fbbe4241b3dd51a"
+    },
+    "firstOpenMs": 149.69,
+    "firstCloseMs": 1.24,
+    "warmOpenMs": 5.23,
+    "warmCloseMs": 0.87,
+    "peakIdleGapMs": 19,
+    "firstPeakGapMs": 161,
+    "warmPeakGapMs": 14,
+    "metricOrder": [
+      "_FluxUI",
+      "Baganator",
+      "Syndicator",
+      "overall addons",
+      "application"
+    ],
+    "firstNearestLastTimeMs": [
+      0.05,
+      5.85,
+      0,
+      5.96,
+      161
+    ],
+    "warmNearestLastTimeMs": [
+      7.38,
+      0,
+      0,
+      7.44,
+      14
+    ],
+    "firstOpenCountTimeOver50MsDelta": [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "opens": 2,
+    "closes": 2,
+    "closedStateRestored": true,
+    "bagGenerationStable": true,
+    "loadedGetterReturnedStore": true,
+    "errors": 0,
+    "profilerSource": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/AddOnProfilerDocumentation.lua#L40",
+    "scope": "LastTime readings are nearest observed samples. They do not identify individual call stacks or establish where every millisecond went. Count deltas cover first open and its settling window. The warm sample shows unrelated FluxUI work may coincide with an open."
+  },
+  "keepalive": {
+    "retired": {
+      "pid": 39308,
+      "status": "stopped",
+      "pairs": 6,
+      "reason": null
+    },
+    "cue": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump31_settings206_a-submitted.png",
+      "sha": "b328f6e5f26cda0e030bfcc84575bff43784d78bbfc3e9d4fd57cafc961ac433"
+    },
+    "current": {
+      "pid": 30624,
+      "status": "running",
+      "pairs": 1,
+      "movement": false,
+      "supervisor": 39596,
+      "last": "2026-11-19T05:48:49.789277+01:00",
+      "leasePresent": false,
+      "r207LockReleased": true
+    },
+    "intervalSeconds": 180
+  },
+  "limitations": [
+    "Scope is an initialized migrated profile. The startup migration and defaults branches are preserved by source inspection. A new legacy store was not created or forced in the live client.",
+    "Repeated direct getter tests are a small local saving. Paired full Junk timings vary and do not establish a render or FPS improvement.",
+    "The residual first-open cost remains unresolved. Compare elapsed and allocations from the native MeasureCall API and narrow engine/widget operations when feasible. Native client testing beyond Forever remains outstanding."
+  ]
+}

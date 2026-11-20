@@ -1,0 +1,1280 @@
+{
+  "changeId": "SOLVER-ALLOCATION-R58-20261117",
+  "recordedAtUTC": "2026-11-17T01:48:56.414118+00:00",
+  "goalStatus": "ACTIVE",
+  "status": "Applied exact R58 after Root accepted declared140cell gate; fresh fullLua54 gate PASS. Native R58 acceptance pending.",
+  "source": {
+    "version": "solver-allocation-work-r58",
+    "baselineRaw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+    "baselineLF": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df",
+    "appliedUTC": "2026-11-17T01:03:35.004265+00:00",
+    "Core": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+      "rawSHA256": "23a864e2af6a77e375e1dd9528438ea3feb6e0d946fcf97a7265c2a67e9f43b7",
+      "lfSHA256": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+      "bytes": 198615
+    },
+    "test": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\border_solver_allocation_work.lua",
+      "rawSHA256": "022c1b9726d5273839dc0d95c33c6b5e00f1c52b277a30adbd3ff672ddf7051e",
+      "lfSHA256": "022c1b9726d5273839dc0d95c33c6b5e00f1c52b277a30adbd3ff672ddf7051e",
+      "bytes": 28721
+    },
+    "support": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\tests\\support\\border_solver_legacy_r57.txt",
+      "rawSHA256": "cfba47c5bc60f4a3c2094bb3a41db9397a842f65c3f5d5074239ec8f567c5b20",
+      "lfSHA256": "cfba47c5bc60f4a3c2094bb3a41db9397a842f65c3f5d5074239ec8f567c5b20",
+      "bytes": 18252
+    }
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-before-20261117T004933Z",
+    "files": 3056,
+    "historyVerified": true,
+    "archiveVerified": true,
+    "editedCoreStableThroughout": true,
+    "metadataEntries": 4,
+    "metadataScope": "Fresh main-account/main-character file metadata only. Live game settings contents not copied or rewritten. Bank character excluded.",
+    "privateSettingsCopied": false,
+    "limitation": "External source/history recovery archive; per-file captured bytes verified; only edited Core is guarded for throughout stability, not an atomic global live-work snapshot."
+  },
+  "implementation": [
+    "Replace private eager {bin.H,bin.V} tuple with H-then-Vprefetched locals and numeric two-iteration loop.",
+    "Skip nil private point bucket empty ipairs; retain all original string keys, nine probes and last matching bucket.",
+    "Skip nil private patch bucket empty ipairs; retain ordering/source/current writes. No new cache/guards/events/native-query removal."
+  ],
+  "functional": {
+    "initial": {
+      "checksPerVM": 294,
+      "controlsPerVM": 7,
+      "nativePermissionPairs": 8,
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\allocation-functional-summary.json",
+        "rawSHA256": "7ae383d2ca45ab31c3635bc014ceb00cd8219b7ddc08d22f679dc8a5d0de7046",
+        "lfSHA256": "4da0823835785c5b74bb6de12b53d31c7876e6d62d7e01da5971e1e80b5250e3",
+        "bytes": 28089
+      }
+    },
+    "durable": {
+      "checksPerVM": 313,
+      "controlsPerVM": 8,
+      "nativePermissionFieldPairs": 8,
+      "jobs": 6,
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\durable-draft\\installed-20261117T011406Z\\installed-report.json",
+        "rawSHA256": "4288360545d0d79adee377a0b429d29a2cdcd35e20ca3ebcf4de6365eb410ab2",
+        "lfSHA256": "6c71f1ef1b7c97509490dff94fba4259621483ee461f9cb6b811b255b1f07b23",
+        "bytes": 13063
+      },
+      "frozenCompleteSolveBodyBytes": 17768,
+      "frozenBodySHA256": "73abb6bdfe4ea4b763f00af491facb862347bf0eb1d5b9ac06ddde679734a884",
+      "oracleScope": "Complete frozen R57Solve parent2444; other current helpers deliberately shared. No reverse-pattern oracle or200kCore copy. Not an independent oracle for future shared-helper changes.",
+      "callbacks": "Legacy14/current14; callback-elision control4 rejected; original seven controls retained plus this additional one."
+    },
+    "focused": {
+      "tests": 12,
+      "coreCompilers": 2,
+      "stablePins": 42,
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-postapply-focused\\report.json",
+        "rawSHA256": "482d8df57cef925d44b57b7d4c0b7c8fda60434426bcb0100730f01b3b0f7bde",
+        "lfSHA256": "dde903ec14d054830a76c7730e00e0ae0e379313c503c8c93a570118786f676b",
+        "bytes": 14294
+      },
+      "scope": "Actual installed source models/compiler only; stock51 external loader shim for existing54-stylefixtures; no client/native input/FPS/taint acceptance"
+    },
+    "fullLua54": {
+      "pass": 512,
+      "fail": 0,
+      "syntaxFiles": 1202,
+      "syntaxFailures": 0,
+      "beganUTC": "2026-11-17T01:19:42.214267+00:00",
+      "endedUTC": "2026-11-17T01:23:52.434641+00:00",
+      "stablePins": 1281,
+      "policy": "Lua/XML/TOC CRLF to LF; supportTXT and canonical borderTGA raw. Legacy _tmp_striplines intentionally excluded.",
+      "changedDuringRun": [],
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\validation.json",
+        "rawSHA256": "01854bdce683017d0655094ebd4c2ab6042ab7abfaae0751c8ade16b003cb3d4",
+        "lfSHA256": "5b90708061dd5ff6e7f1f3ef86779e2698e1275d10eb340287e27bbd0ab46fe9",
+        "bytes": 540889
+      },
+      "stability": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\stability.json",
+        "rawSHA256": "e02712551dcd025be2f2a4d68b012b9a049fd7e45466793ba9eb60b8aa3102b3",
+        "lfSHA256": "0d8e44f5d381c1004db3ccbed680fa5d079aa8dc8cd08d44c6f2f903f9c0a08f",
+        "bytes": 286757
+      },
+      "scope": "Fresh whole standalone Lua54 suite/compiler only; no wholeLua51/native secure/secret VM,pixels,taint,FPS acceptance. Legacy_tmp excluded explicitly."
+    }
+  },
+  "cost": {
+    "decision": "Root ACCEPTED declared gate before runtime apply; all samples/risks retained",
+    "CPUCells": 84,
+    "allocationCells": 56,
+    "totalCells": 140,
+    "pairedShapes": 70,
+    "allPairedShapesMatch": true,
+    "scenarios": {
+      "51": {
+        "empty": {
+          "medianCpuPercent": 4.761904761904767,
+          "medianCpuDeltaMs": 46.875,
+          "medianWallPercent": 5.047532614402184,
+          "cpuWins": 0,
+          "cpuLosses": 3,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 0.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.4824218759999894,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 10000,
+                  "deltaKB": 7187.5,
+                  "readyLiveKB": 678.10546875
+                },
+                {
+                  "iterations": 20000,
+                  "deltaKB": 14375.0,
+                  "readyLiveKB": 678.10546875
+                }
+              ],
+              "slopeBytesPerCall": 736.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 10000,
+                  "deltaKB": 7187.5,
+                  "readyLiveKB": 678.587890625
+                },
+                {
+                  "iterations": 20000,
+                  "deltaKB": 14375.0,
+                  "readyLiveKB": 678.587890625
+                }
+              ],
+              "slopeBytesPerCall": 736.0,
+              "interceptBytes": 0.0
+            }
+          },
+          "cpuPairPercents": [
+            4.761904761904767,
+            1.5873015873015817,
+            6.451612903225801
+          ],
+          "wallPairPercents": [
+            5.047532614402184,
+            -0.1315833607881567,
+            6.263814201523887
+          ]
+        },
+        "minimum_contact": {
+          "medianCpuPercent": -0.8620689655172376,
+          "medianCpuDeltaMs": -15.625,
+          "medianWallPercent": -0.5155326466265264,
+          "cpuWins": 2,
+          "cpuLosses": 1,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 1600.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.482421875,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 665.766601562,
+                  "readyLiveKB": 683.016601562
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1331.000976562,
+                  "readyLiveKB": 683.017578125
+                }
+              ],
+              "slopeBytesPerCall": 13624.0,
+              "interceptBytes": 544.9999994880054
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 587.641601562,
+                  "readyLiveKB": 683.499023438
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1174.750976562,
+                  "readyLiveKB": 683.5
+                }
+              ],
+              "slopeBytesPerCall": 12024.0,
+              "interceptBytes": 544.9999994880054
+            }
+          },
+          "cpuPairPercents": [
+            -4.385964912280704,
+            1.724137931034475,
+            -0.8620689655172376
+          ],
+          "wallPairPercents": [
+            -4.381863113896333,
+            -0.5155326466265264,
+            1.023006328207643
+          ]
+        },
+        "connected_style1": {
+          "medianCpuPercent": -9.595959595959592,
+          "medianCpuDeltaMs": -296.875,
+          "medianWallPercent": -8.899826998005967,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 52192.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 1.265625,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 28911.794921875,
+                  "readyLiveKB": 1232.1171875
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 57790.727539062,
+                  "readyLiveKB": 1232.118164062
+                }
+              ],
+              "slopeBytesPerCall": 591440.5399999897,
+              "interceptBytes": 33651.000000517815
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 26363.357421875,
+                  "readyLiveKB": 1233.3828125
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 52693.852539062,
+                  "readyLiveKB": 1233.383789062
+                }
+              ],
+              "slopeBytesPerCall": 539248.5399999897,
+              "interceptBytes": 33651.000000517815
+            }
+          },
+          "cpuPairPercents": [
+            -5.291005291005291,
+            -9.595959595959592,
+            -10.243902439024389
+          ],
+          "wallPairPercents": [
+            -5.683067432388489,
+            -8.899826998005967,
+            -10.109271271685106
+          ]
+        },
+        "hud1_style2": {
+          "medianCpuPercent": -6.358381502890175,
+          "medianCpuDeltaMs": -171.875,
+          "medianWallPercent": -5.860913794152767,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 17472.00000000003,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.4824218759999894,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 8245.700195312,
+                  "readyLiveKB": 856.377929688
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 16482.782226562,
+                  "readyLiveKB": 856.37890625
+                }
+              ],
+              "slopeBytesPerCall": 168695.44000000003,
+              "interceptBytes": 8824.99999948591
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 7392.575195312,
+                  "readyLiveKB": 856.860351562
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 14776.532226562,
+                  "readyLiveKB": 856.861328125
+                }
+              ],
+              "slopeBytesPerCall": 151223.44,
+              "interceptBytes": 8824.999999487773
+            }
+          },
+          "cpuPairPercents": [
+            -12.903225806451612,
+            -6.358381502890175,
+            -4.651162790697672
+          ],
+          "wallPairPercents": [
+            -12.131849139362206,
+            -5.860913794152767,
+            -4.78796682477034
+          ]
+        },
+        "hud8_style1": {
+          "medianCpuPercent": -5.7291666666666625,
+          "medianCpuDeltaMs": -171.875,
+          "medianWallPercent": -5.278868582826135,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 131808.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.8720703130002221,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 64651.041015625,
+                  "readyLiveKB": 2141.91015625
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 129240.883789062,
+                  "readyLiveKB": 2141.911132812
+                }
+              ],
+              "slopeBytesPerCall": 1322799.97999999,
+              "interceptBytes": 62667.00000049919
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 58215.103515625,
+                  "readyLiveKB": 2142.782226562
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 116369.008789062,
+                  "readyLiveKB": 2142.783203125
+                }
+              ],
+              "slopeBytesPerCall": 1190991.97999999,
+              "interceptBytes": 62667.00000049919
+            }
+          },
+          "cpuPairPercents": [
+            -4.210526315789476,
+            -6.060606060606055,
+            -5.7291666666666625
+          ],
+          "wallPairPercents": [
+            -2.262283986237057,
+            -6.283415158999284,
+            -5.278868582826135
+          ]
+        },
+        "hud20_style2": {
+          "medianCpuPercent": -7.853403141361259,
+          "medianCpuDeltaMs": -234.375,
+          "medianWallPercent": -7.788690687633948,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 339744.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.67578125,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 163645.91015625,
+                  "readyLiveKB": 4282.521484375
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 327130.674804688,
+                  "readyLiveKB": 4282.522460938
+                }
+              ],
+              "slopeBytesPerCall": 3348167.9800000107,
+              "interceptBytes": 165012.99999946356
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 147056.84765625,
+                  "readyLiveKB": 4283.197265625
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 293952.549804688,
+                  "readyLiveKB": 4283.198242188
+                }
+              ],
+              "slopeBytesPerCall": 3008423.9800000107,
+              "interceptBytes": 165012.99999946356
+            }
+          },
+          "cpuPairPercents": [
+            -7.853403141361259,
+            -7.5268817204301115,
+            -8.556149732620321
+          ],
+          "wallPairPercents": [
+            -6.805461405298274,
+            -7.788690687633948,
+            -8.494041930934216
+          ]
+        },
+        "denied_group": {
+          "medianCpuPercent": -6.140350877192979,
+          "medianCpuDeltaMs": -109.375,
+          "medianWallPercent": -7.418899220491115,
+          "cpuWins": 2,
+          "cpuLosses": 1,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 1600.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.482421875,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 665.766601562,
+                  "readyLiveKB": 683.399414062
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1331.000976562,
+                  "readyLiveKB": 683.400390625
+                }
+              ],
+              "slopeBytesPerCall": 13624.0,
+              "interceptBytes": 544.9999994880054
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 587.641601562,
+                  "readyLiveKB": 683.881835938
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1174.750976562,
+                  "readyLiveKB": 683.8828125
+                }
+              ],
+              "slopeBytesPerCall": 12024.0,
+              "interceptBytes": 544.9999994880054
+            }
+          },
+          "cpuPairPercents": [
+            -6.140350877192979,
+            -10.526315789473683,
+            4.854368932038833
+          ],
+          "wallPairPercents": [
+            -7.418899220491115,
+            -8.803614164227547,
+            -1.4120091388663103
+          ]
+        }
+      },
+      "54": {
+        "empty": {
+          "medianCpuPercent": -2.083333333333337,
+          "medianCpuDeltaMs": -15.625,
+          "medianWallPercent": -2.1631149414051865,
+          "cpuWins": 2,
+          "cpuLosses": 1,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 0.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796870000053,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 10000,
+                  "deltaKB": 6328.125,
+                  "readyLiveKB": 621.344726562
+                },
+                {
+                  "iterations": 20000,
+                  "deltaKB": 12656.25,
+                  "readyLiveKB": 621.344726562
+                }
+              ],
+              "slopeBytesPerCall": 648.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 10000,
+                  "deltaKB": 6328.125,
+                  "readyLiveKB": 621.62890625
+                },
+                {
+                  "iterations": 20000,
+                  "deltaKB": 12656.25,
+                  "readyLiveKB": 621.62890625
+                }
+              ],
+              "slopeBytesPerCall": 648.0,
+              "interceptBytes": 0.0
+            }
+          },
+          "cpuPairPercents": [
+            -4.444444444444439,
+            4.347826086956519,
+            -2.083333333333337
+          ],
+          "wallPairPercents": [
+            -5.897448141582973,
+            2.2914707891756425,
+            -2.1631149414051865
+          ]
+        },
+        "minimum_contact": {
+          "medianCpuPercent": -7.86516853932584,
+          "medianCpuDeltaMs": -109.375,
+          "medianWallPercent": -7.291590444187246,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 1432.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796879999947,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 552.094726562,
+                  "readyLiveKB": 624.990234375
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1103.657226562,
+                  "readyLiveKB": 624.991210938
+                }
+              ],
+              "slopeBytesPerCall": 11296.0,
+              "interceptBytes": 544.9999994880054
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 482.172851562,
+                  "readyLiveKB": 625.274414062
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 963.813476562,
+                  "readyLiveKB": 625.275390625
+                }
+              ],
+              "slopeBytesPerCall": 9864.0,
+              "interceptBytes": 544.9999994880054
+            }
+          },
+          "cpuPairPercents": [
+            -7.058823529411762,
+            -9.302325581395355,
+            -7.86516853932584
+          ],
+          "wallPairPercents": [
+            -6.199283487041196,
+            -7.291590444187246,
+            -7.929837840169962
+          ]
+        },
+        "connected_style1": {
+          "medianCpuPercent": -9.523809523809524,
+          "medianCpuDeltaMs": -218.75,
+          "medianWallPercent": -10.428410597347494,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 46568.0,
+          "medianReadyHeapCandidateMinusBaselineKB": -3.4658203129999947,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 23832.498046875,
+                  "readyLiveKB": 1083.313476562
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 47636.821289062,
+                  "readyLiveKB": 1083.314453125
+                }
+              ],
+              "slopeBytesPerCall": 487512.53999998973,
+              "interceptBytes": 28851.00000051409
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 21574.607421875,
+                  "readyLiveKB": 1079.84765625
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 43105.102539062,
+                  "readyLiveKB": 1079.848632812
+                }
+              ],
+              "slopeBytesPerCall": 440944.53999998973,
+              "interceptBytes": 45171.00000051409
+            }
+          },
+          "cpuPairPercents": [
+            -11.258278145695366,
+            -9.150326797385622,
+            -9.523809523809524
+          ],
+          "wallPairPercents": [
+            -10.428410597347494,
+            -10.441607045289725,
+            -8.6381597979443
+          ]
+        },
+        "hud1_style2": {
+          "medianCpuPercent": -5.645161290322576,
+          "medianCpuDeltaMs": -109.375,
+          "medianWallPercent": -6.603580944133625,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 15400.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796870000053,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 6678.512695312,
+                  "readyLiveKB": 767.984375
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 13353.094726562,
+                  "readyLiveKB": 767.985351562
+                }
+              ],
+              "slopeBytesPerCall": 136695.44,
+              "interceptBytes": 4024.9999994877726
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 5926.559570312,
+                  "readyLiveKB": 768.268554688
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 11849.188476562,
+                  "readyLiveKB": 768.26953125
+                }
+              ],
+              "slopeBytesPerCall": 121295.44,
+              "interceptBytes": 4024.9999994877726
+            }
+          },
+          "cpuPairPercents": [
+            -7.936507936507942,
+            -5.645161290322576,
+            -3.90625
+          ],
+          "wallPairPercents": [
+            -6.603580944133625,
+            -7.091113925287907,
+            -4.161536324574222
+          ]
+        },
+        "hud8_style1": {
+          "medianCpuPercent": -3.797468354430378,
+          "medianCpuDeltaMs": -93.75,
+          "medianWallPercent": -2.9772782500216977,
+          "cpuWins": 2,
+          "cpuLosses": 1,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 116096.00000000012,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796879999947,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 52293.228515625,
+                  "readyLiveKB": 1850.639648438
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 104520.571289062,
+                  "readyLiveKB": 1850.640625
+                }
+              ],
+              "slopeBytesPerCall": 1069615.97999999,
+              "interceptBytes": 67467.00000049919
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 46622.134765625,
+                  "readyLiveKB": 1850.923828125
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 93180.727539062,
+                  "readyLiveKB": 1850.924804688
+                }
+              ],
+              "slopeBytesPerCall": 953519.9799999899,
+              "interceptBytes": 65067.00000050664
+            }
+          },
+          "cpuPairPercents": [
+            -3.797468354430378,
+            -4.402515723270439,
+            3.164556962025311
+          ],
+          "wallPairPercents": [
+            -2.9772782500216977,
+            -3.6110223261465735,
+            2.4715617141058743
+          ]
+        },
+        "hud20_style2": {
+          "medianCpuPercent": -11.976047904191612,
+          "medianCpuDeltaMs": -312.5,
+          "medianWallPercent": -10.922711232050053,
+          "cpuWins": 2,
+          "cpuLosses": 1,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 299024.00000000047,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796869997779,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 132307.23828125,
+                  "readyLiveKB": 3633.072265625
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 264436.924804688,
+                  "readyLiveKB": 3633.073242188
+                }
+              ],
+              "slopeBytesPerCall": 2706015.9800000107,
+              "interceptBytes": 181812.99999946356
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 117701.76953125,
+                  "readyLiveKB": 3633.356445312
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 235230.674804688,
+                  "readyLiveKB": 3633.357421875
+                }
+              ],
+              "slopeBytesPerCall": 2406991.98000001,
+              "interceptBytes": 177012.99999949336
+            }
+          },
+          "cpuPairPercents": [
+            -11.976047904191612,
+            -13.636363636363635,
+            1.1299435028248483
+          ],
+          "wallPairPercents": [
+            -10.922711232050053,
+            -14.037261581230743,
+            -0.2129056575300825
+          ]
+        },
+        "denied_group": {
+          "medianCpuPercent": -8.602150537634412,
+          "medianCpuDeltaMs": -125.0,
+          "medianWallPercent": -9.450983441051996,
+          "cpuWins": 3,
+          "cpuLosses": 0,
+          "cpuTies": 0,
+          "slopeSavingsBytesPerCall": 1432.0,
+          "medianReadyHeapCandidateMinusBaselineKB": 0.2841796879999947,
+          "allocation": {
+            "baseline": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 552.094726562,
+                  "readyLiveKB": 625.365234375
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 1103.657226562,
+                  "readyLiveKB": 625.366210938
+                }
+              ],
+              "slopeBytesPerCall": 11296.0,
+              "interceptBytes": 544.9999994880054
+            },
+            "candidate": {
+              "windows": [
+                {
+                  "iterations": 50,
+                  "deltaKB": 482.172851562,
+                  "readyLiveKB": 625.649414062
+                },
+                {
+                  "iterations": 100,
+                  "deltaKB": 963.813476562,
+                  "readyLiveKB": 625.650390625
+                }
+              ],
+              "slopeBytesPerCall": 9864.0,
+              "interceptBytes": 544.9999994880054
+            }
+          },
+          "cpuPairPercents": [
+            -13.541666666666663,
+            -3.2258064516129004,
+            -8.602150537634412
+          ],
+          "wallPairPercents": [
+            -15.173968088050504,
+            -4.709508194259282,
+            -9.450983441051996
+          ]
+        }
+      }
+    },
+    "allPositiveCpuRegressionPairs": [
+      {
+        "vm": "51",
+        "scenario": "empty",
+        "pair": 1,
+        "cpuPercent": 4.761904761904767,
+        "cpuDeltaMs": 46.875,
+        "wallPercent": 5.047532614402184
+      },
+      {
+        "vm": "51",
+        "scenario": "empty",
+        "pair": 2,
+        "cpuPercent": 1.5873015873015817,
+        "cpuDeltaMs": 15.625,
+        "wallPercent": -0.1315833607881567
+      },
+      {
+        "vm": "51",
+        "scenario": "empty",
+        "pair": 3,
+        "cpuPercent": 6.451612903225801,
+        "cpuDeltaMs": 62.5,
+        "wallPercent": 6.263814201523887
+      },
+      {
+        "vm": "51",
+        "scenario": "minimum_contact",
+        "pair": 2,
+        "cpuPercent": 1.724137931034475,
+        "cpuDeltaMs": 31.25,
+        "wallPercent": -0.5155326466265264
+      },
+      {
+        "vm": "51",
+        "scenario": "denied_group",
+        "pair": 3,
+        "cpuPercent": 4.854368932038833,
+        "cpuDeltaMs": 78.125,
+        "wallPercent": -1.4120091388663103
+      },
+      {
+        "vm": "54",
+        "scenario": "empty",
+        "pair": 2,
+        "cpuPercent": 4.347826086956519,
+        "cpuDeltaMs": 31.25,
+        "wallPercent": 2.2914707891756425
+      },
+      {
+        "vm": "54",
+        "scenario": "hud8_style1",
+        "pair": 3,
+        "cpuPercent": 3.164556962025311,
+        "cpuDeltaMs": 78.125,
+        "wallPercent": 2.4715617141058743
+      },
+      {
+        "vm": "54",
+        "scenario": "hud20_style2",
+        "pair": 3,
+        "cpuPercent": 1.1299435028248483,
+        "cpuDeltaMs": 31.25,
+        "wallPercent": -0.2129056575300825
+      }
+    ],
+    "protocolRejectText": "Reject consistent common CPU regression>=5% above clock resolution. Allocation-only acceptance forbidden; preserve every pair/regression. Root may reject lead for inadequate full-consumer gain.",
+    "gateInterpretation": "At least2/3 CPU losses with median relative regression>=5% and median absolute regression above observed15.625ms resolution; all raw triples retained for root interpretation.",
+    "measurement": {
+      "method": "Own-child GetProcessTimes(User+Kernel), held READY/GO to DONE/ACK.100ns units; observed granularity15.625ms. Setup/warmup/fullGC excluded; pipe wake/print overhead included. Lua os.clock never treated as CPU.",
+      "consumer": "Uninstrumented complete actual J:Solve over real ReadLayout producer input for connected/HUD scenes; empty/minimum/denied are bounded public-Solve controls. Clear availabilityCuts between calls as fixture requires. One validation call plus declared warmup, then fullGC twice before READY. Public permission API stubs on both sources. No source counters, native method observers or admission guards during timing.",
+      "iterations": {
+        "empty": 500000,
+        "minimum_contact": 30000,
+        "connected_style1": 1000,
+        "hud1_style2": 3000,
+        "hud8_style1": 400,
+        "hud20_style2": 150,
+        "denied_group": 30000
+      },
+      "warmup": {
+        "empty": 1000,
+        "minimum_contact": 50,
+        "connected_style1": 5,
+        "hud1_style2": 5,
+        "hud8_style1": 5,
+        "hud20_style2": 5,
+        "denied_group": 50
+      },
+      "gc": "Normal GC during CPU; separate fresh processes for stopped-GC allocation,50/100 calls except empty10000/20000. Startup/live heap intercept after setup/warmup/fullGC recorded separately, never counted as interval allocation.",
+      "order": "Per VM/scenario baseline,candidate then candidate,baseline then baseline,candidate; sequential fresh child process per cell. No concurrent owned executable jobs/native watch.",
+      "pairs": 3,
+      "intervalCpuMs": [
+        671.875,
+        3203.125
+      ],
+      "granularityMs": 15.625,
+      "priority": "Runner sets no priority/preferences and leaves inherited environment unchanged; effective priority was not queried/assumed.",
+      "scopeLimit": "Repeated full Solve on captured ReadLayout inputs. Native preflight/discovery/ReadLayout/planning/commit excluded; pipe wake/output and stated fixture-loop overhead included. Not native/whole-workflow/FPS timing."
+    },
+    "risks": [
+      "51empty lost all three CPU pairs:+4.7619/+1.5873/+6.4516%; median+4.7619%CPU/+5.0475%wall; zero allocation saving. Below declared median5%CPU reject; retain as real risk.",
+      "51minimum median gain15.625ms is one observed CPU clock tick; unresolved at that scale.",
+      "Individual54HUD8+3.1646%/HUD20+1.1299% CPU losses remain; every other adverse pair/rawcell preserved.",
+      "Maximum positive median postwarm/live startup heap delta1.265625KiB (<1.3KiB); startup costs remain separate from interval savings and native retained-heap proof.",
+      "GC-stopped two-window HUD20 slopes save339744B/call51 and299024B/call54; transient model allocation, not native retained memory."
+    ],
+    "declarationStatusNote": "Immutable protocol/summary status strings predate benchmark acceptance/application; applied.json plus Root review establish admitted current status.",
+    "raw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-raw.jsonl",
+      "rawSHA256": "ae92e07ef37d0d852cb077c20727170b0c9abba04fecf0bd36a8a7a4a0838480",
+      "lfSHA256": "189304fda96ccee15405e57859620d8cc2c159f25b4fa5963b944abddc20654f",
+      "bytes": 120040
+    },
+    "summary": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-summary.json",
+      "rawSHA256": "7588d3b7ccbb9e3b01313c399aab5f1424b09c415314c3a5114e552064baeb3e",
+      "lfSHA256": "435e7fc8495b943e34e2d9bc31a049534547bd997591e3d04e853db918bed7cb",
+      "bytes": 51099
+    },
+    "protocol": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-protocol.json",
+      "rawSHA256": "81cb057d606376e4d0b37e4d2571078c37019fe606055578187ccdd684648e95",
+      "lfSHA256": "794796d847dc464619dd9c79df40a360d84fa1968fc4ec8c7e0a9c0299f43d12",
+      "bytes": 4898
+    }
+  },
+  "negativeLeads": {
+    "numericIndex": {
+      "status": "REJECTED, not benchmarked/applied",
+      "counterexample": "Actual supported unitOwner.__eq replaces plane with __concat proxy:legacy14/numeric4/final14calls; output-only parity misses callback behavior.",
+      "archive": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\numeric-index-rejected\\REJECTED.json",
+        "rawSHA256": "20ae51537a9b75bdb5339f8a24ee65fe8dfb64b522806bb235edbcf28340b473",
+        "lfSHA256": "aa2bcd2f3237f063eb2c296eb834e80ded7ddb04abce001e39f2d34c3749c546",
+        "bytes": 544
+      }
+    },
+    "canvas": {
+      "status": "Baseline2444 attribution only; no CPU/native or runtime edit",
+      "report": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\canvas-sequence-attribution\\final-report.json",
+        "rawSHA256": "203c839ff275650ea8fa4716ef862274a8652e5fc73bd4250ee4db81d4167c91",
+        "lfSHA256": "05db3ada7bb481a185976a8d4dce6c868efaf80b5095808a53a717c51c85e75a",
+        "bytes": 11471
+      },
+      "checksPerVM": 24,
+      "statesPerVM": 6,
+      "validatedActualOpsReused": 56,
+      "fieldsReused": 1232,
+      "reusePrepareGETS": 5320,
+      "changedPrepareGETS": 5276,
+      "canvasWrites": 0,
+      "churn": 0,
+      "whyNoCache": "Current layer/level/visibility/parent reads repair unsignaled native/private/foreign mutations per operation; RenderBasis is not a layer cache. No getter-cache change.",
+      "traceLimit": "Successful complete traces were compared exactly in memory but only lengths/equality/counts saved. Distinct successful endpoint/method identities cannot be recovered from artifacts. Wrappers forward each original call and all returns/errors; nested model implementation calls excluded. Same-object/closure rewind preserves unchanged table key buckets.",
+      "priorCoverage": "48 observations retained in counts-51/54.json; generic shared56 added inputs but no substantial active joins, NEGATIVE large-mesh coverage only. Positive mixedRanks forced5canvas writes per style in fragments, none mesh.",
+      "initialFailuresRetained": "Snapshot cap and insufficient initial rank-positive model retained. Lua51 key reinsertion changed next order; corrected without weakened comparisons. Validated56 adapter marker and missing objects-return failures retained. Metadata shell quoting failed before file writes; repaired using this file."
+    },
+    "earlier": "Three scalar/helper/tolerance candidates and all360samples remain REJECTED historical evidence; do not relabel as R58 gains."
+  },
+  "native": {
+    "historicalR57CF57": {
+      "evidence": "docs/validation/border-wake-owner-r57-2026-11-17.json",
+      "scope": "R57-family CITY crafting/travel/UI180.009s only; border124.0745ms, no exact loaded hash,combat/group,FPS or A/B acceptance",
+      "mainCommands": 3,
+      "BankCommands": 0,
+      "countAsOf": "CF57protocol audit only; not a current cumulative command count"
+    },
+    "R58Preparation": {
+      "recordedAtUTC": "2026-11-17T03:17:40.001171+00:00",
+      "basis": "Latest Root coordination only; no client/process/window/input/settings operation by documentation agent",
+      "status": "R58native loaded version/exacthash unproved; all cf59-mainreload-a1/a2/a3 BG preflights timed out",
+      "attempts": [
+        "cf59-mainreload-a1",
+        "cf59-mainreload-a2",
+        "cf59-mainreload-a3"
+      ],
+      "inputSent": false,
+      "leasesCreated": 0,
+      "journalsCreated": 0,
+      "commandsSent": 0,
+      "lastA3": "Verified same main birth/path and visible foreground idle108.9held[]; background admission timed out",
+      "ReadyCoordination": "Asynchronous Ready question remains unanswered; no new question/input by this agent",
+      "permission": "Main-only native permission remains; BGconstraint is not permission revocation. Root waits for background coordination before further native actions.",
+      "allMainCommandsAsOfCF57": 3,
+      "BankCommands": 0,
+      "Bank": "ENTIRELY EXCLUDED",
+      "noCF58Watch": true,
+      "sourceBefore": "Existing source-before.json records five repo/game modules matching; on-disk equality does not prove loaded adoption."
+    },
+    "Bank": "ENTIRELY EXCLUDED",
+    "acceptance": "R58 native adoption/latency/FPS/combat/group/taint/pixels remain unproved; conditional reload functional check is separately Root-owned.",
+    "preparationHistory": [
+      {
+        "recordedAtUTC": "2026-11-17T01:48:56.414118+00:00",
+        "basis": "Root coordination snapshot only; no native/client/window/process/input/settings action by documentation agent",
+        "status": "Prepared reload/peek; R58 loaded source/version and performance acceptance unconfirmed",
+        "reloadSHA256Prefix": "50c65",
+        "peekSHA256Prefix": "5ca71",
+        "sourceBefore": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r58-adoption\\source-before.json",
+          "rawSHA256": "b134946f9fbe1eb2cf1826d30e77c7da3460f0da7f9cadada6ca1fe143d334a3",
+          "lfSHA256": "ec74b9b80402df603d0e90ddbbac887e774de9e49a05b524de959ed0c7aa916c",
+          "bytes": 1150
+        },
+        "fiveGameFolderModulesMatchRepo": true,
+        "sameFileRelationshipRecorded": true,
+        "sourceMatchIsNotLoadedAdoption": true,
+        "latestAttempt": "cf59-mainreload-a1 background wait, no input as last Root report",
+        "noCF58Watch": true,
+        "refreshBeforeAdmission": "Root must confirm a fresh attested result; do not infer success from preparation or on-disk equality."
+      }
+    ]
+  },
+  "reports": {
+    "applied": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\applied.json",
+      "rawSHA256": "ede5737942f4fe7c311216c7608509b91763bda626af343b7b7d64dca25cbec9",
+      "lfSHA256": "d6c60b3482871e812665d23ba080c3b43dbf31e012aebcaea8238da2efc7c1e7",
+      "bytes": 961
+    },
+    "costProtocol": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-protocol.json",
+      "rawSHA256": "81cb057d606376e4d0b37e4d2571078c37019fe606055578187ccdd684648e95",
+      "lfSHA256": "794796d847dc464619dd9c79df40a360d84fa1968fc4ec8c7e0a9c0299f43d12",
+      "bytes": 4898
+    },
+    "costSummary": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-summary.json",
+      "rawSHA256": "7588d3b7ccbb9e3b01313c399aab5f1424b09c415314c3a5114e552064baeb3e",
+      "lfSHA256": "435e7fc8495b943e34e2d9bc31a049534547bd997591e3d04e853db918bed7cb",
+      "bytes": 51099
+    },
+    "costRaw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-raw.jsonl",
+      "rawSHA256": "ae92e07ef37d0d852cb077c20727170b0c9abba04fecf0bd36a8a7a4a0838480",
+      "lfSHA256": "189304fda96ccee15405e57859620d8cc2c159f25b4fa5963b944abddc20654f",
+      "bytes": 120040
+    },
+    "costResults": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\cost-results.json",
+      "rawSHA256": "52070348e83e5bddd3721f539446ed58786d5d419af8e37af3c68060cc688c58",
+      "lfSHA256": "beb6efaff8a13d1042f4112e12142eef1db13b30aaf430403535a300253d8006",
+      "bytes": 157545
+    },
+    "initialFunctional": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\allocation-functional-summary.json",
+      "rawSHA256": "7ae383d2ca45ab31c3635bc014ceb00cd8219b7ddc08d22f679dc8a5d0de7046",
+      "lfSHA256": "4da0823835785c5b74bb6de12b53d31c7876e6d62d7e01da5971e1e80b5250e3",
+      "bytes": 28089
+    },
+    "durableInstalled": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\durable-draft\\installed-20261117T011406Z\\installed-report.json",
+      "rawSHA256": "4288360545d0d79adee377a0b429d29a2cdcd35e20ca3ebcf4de6365eb410ab2",
+      "lfSHA256": "6c71f1ef1b7c97509490dff94fba4259621483ee461f9cb6b811b255b1f07b23",
+      "bytes": 13063
+    },
+    "postapplyFocused": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-postapply-focused\\report.json",
+      "rawSHA256": "482d8df57cef925d44b57b7d4c0b7c8fda60434426bcb0100730f01b3b0f7bde",
+      "lfSHA256": "dde903ec14d054830a76c7730e00e0ae0e379313c503c8c93a570118786f676b",
+      "bytes": 14294
+    },
+    "fullGate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\validation.json",
+      "rawSHA256": "01854bdce683017d0655094ebd4c2ab6042ab7abfaae0751c8ade16b003cb3d4",
+      "lfSHA256": "5b90708061dd5ff6e7f1f3ef86779e2698e1275d10eb340287e27bbd0ab46fe9",
+      "bytes": 540889
+    },
+    "fullStability": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-full-gate\\stability.json",
+      "rawSHA256": "e02712551dcd025be2f2a4d68b012b9a049fd7e45466793ba9eb60b8aa3102b3",
+      "lfSHA256": "0d8e44f5d381c1004db3ccbed680fa5d079aa8dc8cd08d44c6f2f903f9c0a08f",
+      "bytes": 286757
+    },
+    "checkpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\solver-allocation-before-20261117T004933Z\\manifest.json",
+      "rawSHA256": "4ae7b8e059c53a714505c1b3ed568e04dbec9404876914bd40f246b7bcca053d",
+      "lfSHA256": "fdd091a2f7e18729e0d651a709f2d9cf2e96e02faca52ceea18d1715f1904c92",
+      "bytes": 496692
+    },
+    "numericRejected": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-point-index-20261117\\numeric-index-rejected\\REJECTED.json",
+      "rawSHA256": "20ae51537a9b75bdb5339f8a24ee65fe8dfb64b522806bb235edbcf28340b473",
+      "lfSHA256": "aa2bcd2f3237f063eb2c296eb834e80ded7ddb04abce001e39f2d34c3749c546",
+      "bytes": 544
+    },
+    "canvas": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\canvas-sequence-attribution\\final-report.json",
+      "rawSHA256": "203c839ff275650ea8fa4716ef862274a8652e5fc73bd4250ee4db81d4167c91",
+      "lfSHA256": "05db3ada7bb481a185976a8d4dce6c868efaf80b5095808a53a717c51c85e75a",
+      "bytes": 11471
+    },
+    "canvasHashes": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\canvas-sequence-attribution\\final-hashes.json",
+      "rawSHA256": "c61a31985112642bffe297257ef674864f79b8924c595f765af929a05040ab75",
+      "lfSHA256": "7773eb78514c847c23e1713c6749da5ed32399341733bd5242bedeccfe915818",
+      "bytes": 835
+    },
+    "earlier-decision.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-builder-scalar-prototype-20261116T192353Z\\decision.json",
+      "rawSHA256": "6b5e1f51af8e2cc5d9c030db9502eca095bff552514646a3bf2da1f82ea57170",
+      "lfSHA256": "1a36fefaf421636879d07474a6e88ede34296b24f81f51d0421fa084e94ab15e",
+      "bytes": 25481
+    },
+    "earlier-tolerance-decision.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\border-builder-scalar-prototype-20261116T192353Z\\tolerance-decision.json",
+      "rawSHA256": "7e9816fca9e35210989b43071739f82266f6d474055b8937a862720bc762110b",
+      "lfSHA256": "b5fd1142cb1d4e7405bb3431bc405b64ce6261576fdf5cb2cc5127eae0cf0838",
+      "bytes": 15909
+    }
+  },
+  "priorErrorsRetained": "Numeric rejection, canvas fixture/cap/order/adapter/quoting failures, earlier Lua51fixture signatures and pre-install parser failure remain in separate exact artifacts; no initial failure relabeled as initial success.",
+  "publication": "main only; no commit/push/manual sync by documentation agent",
+  "rejectedR59Followup": {
+    "recordedAtUTC": "2026-11-17T03:17:40.001171+00:00",
+    "evidence": "docs/validation/fieldset-specialization-r59-rejected-2026-11-17.json",
+    "status": "Tuplee37/combined34ce UNAPPLIED/REJECTED; R58 remains installed",
+    "sourceUnchanged": {
+      "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Core\\BorderJunctions.lua",
+      "rawSHA256": "23a864e2af6a77e375e1dd9528438ea3feb6e0d946fcf97a7265c2a67e9f43b7",
+      "lfSHA256": "540bc7ebf1690b14998452344c4f17ddf939caa1bda9e2da673d24565b47f21f",
+      "bytes": 198615
+    },
+    "nativeFollowup": {
+      "recordedAtUTC": "2026-11-17T03:17:40.001171+00:00",
+      "basis": "Latest Root coordination only; no client/process/window/input/settings operation by documentation agent",
+      "status": "R58native loaded version/exacthash unproved; all cf59-mainreload-a1/a2/a3 BG preflights timed out",
+      "attempts": [
+        "cf59-mainreload-a1",
+        "cf59-mainreload-a2",
+        "cf59-mainreload-a3"
+      ],
+      "inputSent": false,
+      "leasesCreated": 0,
+      "journalsCreated": 0,
+      "commandsSent": 0,
+      "lastA3": "Verified same main birth/path and visible foreground idle108.9held[]; background admission timed out",
+      "ReadyCoordination": "Asynchronous Ready question remains unanswered; no new question/input by this agent",
+      "permission": "Main-only native permission remains; BGconstraint is not permission revocation. Root waits for background coordination before further native actions.",
+      "allMainCommandsAsOfCF57": 3,
+      "BankCommands": 0,
+      "Bank": "ENTIRELY EXCLUDED",
+      "noCF58Watch": true,
+      "sourceBefore": "Existing source-before.json records five repo/game modules matching; on-disk equality does not prove loaded adoption."
+    }
+  },
+  "observabilityR60Followup": {
+    "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+    "evidence": "docs/validation/watch-mesh-phases-r60-2026-11-17.json",
+    "sourceLF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "scope": "Applied standalone optional observability only. Preserve this earlier source/performance/rejection/native record as historical; not a tuple performance fallback.",
+    "currentNativeCoordination": {
+      "recordedAtUTC": "2026-11-17T03:44:09.339758+00:00",
+      "basis": "Root-confirmed existing artifact/coordination scope only; no native action by documentation agent",
+      "userReadyAnswered": true,
+      "mainBackgroundStatedByUser": true,
+      "actualWindowUnsafeForBackgroundAdmission": true,
+      "preflightEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\preflights.json",
+        "rawSHA256": "10b8ae423253ef050680fffa1622fce44c2fc9b10590fac1a8c0438541e359bd",
+        "lfSHA256": "5d33809634090314cc1044f5cf949e99f43a2bbb98387eec12cd51974038372c",
+        "bytes": 1489
+      },
+      "preflightRecordedUTC": "2026-11-17T03:39:11.715646+00:00",
+      "attempts": [
+        "cf60-mainreload-a1",
+        "cf60-mainreload-a2"
+      ],
+      "status": "Both terminal background timeout;0input/no journal/lease/command",
+      "inputSent": false,
+      "journalsCreated": 0,
+      "leasesCreated": 0,
+      "commandsSent": 0,
+      "pendingHandoffQuestion": "Root asked whether user is on same PC or another device; answer pending. Do not conflate this with already answered Ready.",
+      "retryPolicy": "No further native retry until user handoff; background constraint is not native permission revocation. Root only, main client only, Bank entirely excluded.",
+      "sourceBeforeEvidence": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\source-before.json",
+        "rawSHA256": "cc6c91a9a173a129aac4a6371e30c8aaf2f56f2cffb79ff7920a10041ef25a7b",
+        "lfSHA256": "cbc3e605388e8cca801fcc078bef30759c0eaf19797b503db190964e902fb620",
+        "bytes": 1287
+      },
+      "repoGameFilePairsMatching": 5,
+      "manualSync": false,
+      "diskEqualityDoesNotProveLoadedAdoption": true,
+      "readonlyObservation": {
+        "evidence": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\native-r60-adoption\\readonly-observation.json",
+          "rawSHA256": "d6d492c533c9743bd1d17a208d827b2b8cf1762a5067e048d8bc0bc8a459604e",
+          "lfSHA256": "789c91a7452c130b2d33bc9fcb0ec30bb16d949f97a07db601fd8b17cd97021b",
+          "bytes": 1021
+        },
+        "scope": "Root passive PrintWindow checked main loaded city/UI, chat closed/no edit/modal/cast shown. No input/focus/Bank. Private image stays outside Git. This observation is independent of unsafe actual foreground admission.",
+        "loadedVersionStillUnknown": true
+      },
+      "nativeR60Acceptance": "Reload/peek/current loaded version/hash and combat/group/FPS acceptance PENDING; zero successful command inferred from preparation/Ready/source equality.",
+      "historicalCF57": "Three main commands/0Bank belong only to the completed R57 CITY watch protocol audit; no CF58watch or new watch."
+    }
+  }
+}

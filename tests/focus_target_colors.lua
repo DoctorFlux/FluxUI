@@ -4,6 +4,7 @@ local function read(p)local f=assert(io.open(p,'rb'));local s=f:read('*a'):gsub(
 local function section(s,a,b)local i=assert(s:find(a,1,true),a);return s:sub(i,assert(s:find(b,i+#a,true),b)-1)end
 local shared=read(os.getenv('FLUX_COLOR_SHARED') or 'UnitFrames/FluxUnitFrames_Shared.lua')
 local party=read(os.getenv('FLUX_COLOR_PARTY') or 'UnitFrames/FluxUnitFrames_Party.lua')
+local cast=read('UnitFrames/FluxCastBar.lua')
 local checks=0
 local function check(v,m)assert(v,m);checks=checks+1 end
 local function same(a,b,m)check(a and b and #a==#b,m);for i=1,#a do check(math.abs(a[i]-b[i])<1e-9,m)end end
@@ -14,11 +15,18 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
  local Border={}
  local accent={.8,.1,.2,1}
  function Border:GetAccentColor()return table.unpack(accent)end
+ function Border:GetAccentMode()return state.mode end
+ function Border:GetThemedVertexRGB()return accent[1],accent[2],accent[3] end
+ function Border:GetThemedBackdropFillRGB()return accent[1]*.4,accent[2]*.4,accent[3]*.4 end
  function Border:SetClassColor(f)f.color={table.unpack(accent)};f.backdrop={.12,.18,.24,.85}end
  function Border:SetBorderColor(f,...)f.color={...}end
  function Border:SetBackdropColor(f,...)f.backdrop={...}end
+ function Border:SetUntinted(f,v)f.natural=v end
+ function Border:SetUnitColor(f,v)f.unitColor=v end
  function Border:GetForeverClientChromeRGB()if client=='forever'then return 1,.82,0 end end
  function Border:GetForeverClientBackdropRGB()return .5,.41,0 end
+ function Border:GetDefaultAccentRGB()if client=='forever'then return 1,.82,0 end;return 1,1,1 end
+ function Border:GetDefaultBackdropRGB()if client=='forever'then return .5,.41,0 end;return .15,.15,.15 end
  local function secret(v)return type(v)=='table' and v.opaque end
  E.UF,E.Party,E.ns=UF,Party,{UnitFrames=UF,PartyFrames=Party,Border=Border}
  E.Border,E.FluxBorder=Border,Border
@@ -37,6 +45,9 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
  UF.GetFramePublicLevel=function(f)return f and f.level or 40 end
  UF.SetFramePublicLevel=function(f,n)f.level=n end
  assert(load(section(shared,'local function ClassColorForUnit(unit)','-- Separator / chrome tint')
+  ..section(shared,'function UF.GetUnitChromeColors(unit)','local function GetChromeSeparatorRGB(')
+  ..section(cast,'local function GetCastBarChromeColors(unit, frame)','-- Constants & Configuration')
+  ..'\nUF.TestCastChrome=GetCastBarChromeColors\n'
   ..section(party,'function Party.PaintChrome','function Party.RefreshChrome')
   ..section(shared,'local PORTRAIT_COMBAT_BORDER_R','-- Unit name on outer border:'),
   '@actual-focus-target-color-owners','t',E))()
@@ -65,12 +76,21 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
     state.partyClass=partyClass;focus._fluxPartyClassChrome=partyClass
     for _,combat in ipairs({false,true,false})do
      state.combat=combat;UF.UpdateBorderColors(target);Party.PaintChrome(focus)
+     local player=class~='NPC'
+     local c=player and E.RAID_CLASS_COLORS[class]
+     local expected=player and (c and {c.r,c.g,c.b,1} or {1,1,1,1}) or {Border:GetDefaultAccentRGB()};expected[4]=1
+     same(target.color,expected,'target keeps its own class color in every global mode; NPCs remain natural')
+     same({UF.TestCastChrome('target')},{target.color[1],target.color[2],target.color[3],target.outerBorderFrame.backdrop[1],target.outerBorderFrame.backdrop[2],target.outerBorderFrame.backdrop[3]},'target cast shell uses the same PC/NPC chrome policy as its unit frame')
      for _,k in ipairs({'PortraitFrame','outerBorderFrame','atlasBorderFrame','HealthPowerSeparator','PowerAdditionalSeparator','ThreatBar'})do
       same(focus[k].color,target[k].color,client..' '..mode..' focus matches target '..k)
      end
      same(focus.color,target.color,'main border follows focused unit')
      same(focus.outerBorderFrame.backdrop,target.outerBorderFrame.backdrop,'outer backdrop follows target policy')
      same(focus.PortraitFrame.backdrop,target.PortraitFrame.backdrop,'combat portrait restores target policy')
+     local unitBackdrop={expected[1]*.4,expected[2]*.4,expected[3]*.4,.85}
+     if not player then unitBackdrop={Border:GetDefaultBackdropRGB()};unitBackdrop[4]=.85 end
+     same(target.outerBorderFrame.backdrop,unitBackdrop,'target header/backdrop retains its unit class through every global accent; NPC keeps Default chrome regardless of Appearance')
+     if not combat then same(target.PortraitFrame.backdrop,unitBackdrop,'normal target portrait restores its unit class backdrop')end
      same(focus.CastBar.IconBorder.color,target.CastBar.IconBorder.color,'cast icon follows target policy')
      same(focus.CastBar.BorderFrame.color,target.CastBar.BorderFrame.color,'cast shell follows target policy')
      same(focus._fluxPartyDivider.color,target.HealthPowerSeparator.color,'compact divider follows target colors')
@@ -79,8 +99,26 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
    end
   end
  end
+ state.class='WARRIOR';state.combat=false
+ E.UnitIsPlayer=function()return false end
+ UF.UpdateBorderColors(target);Party.PaintChrome(focus)
+ local npcExpected={Border:GetDefaultAccentRGB()};npcExpected[4]=1
+ same(target.color,npcExpected,'NPC keeps Default accent even with a player class token or custom Appearance')
+ same(focus.PortraitFrame.color,npcExpected,'NPC focus portrait follows the same client chrome policy')
+ check(target.natural==true and focus.natural==target.natural and target.CastBar.IconBorder.natural==target.natural,'NPC material selection matches the client policy')
+ E.UnitIsPlayer=function()return true end
+ UF.UpdateBorderColors(target);Party.PaintChrome(focus)
+ check(target.natural==false and focus.natural==false,'player transition restores class-tintable artwork')
  local member=frame('party1');member._fluxCompactFocus=nil;member._fluxPartyMember=true;member._fluxPartyClassChrome=false
  Party.PaintChrome(member);same(member.color,accent,'ordinary party retains configured accent')
+ for _,mode in ipairs({'atlas','custom','class'}) do
+  state.mode=mode;accent=mode=='atlas'and{1,1,1,1}or mode=='custom'and{.8,.1,.2,1}or{.78,.61,.43,1}
+  member._fluxPartyClassChrome=true;state.class='MAGE'
+  Party.PaintChrome(member)
+  same(member.color,{.2,.6,1,1},'enabled party class-chrome option retains unit class through every global accent')
+  check(member.unitColor and member.unitColor.b==1,'party requests neutral class-tint artwork beneath its class color')
+  same(member._fluxPartyDivider.color,member.color,'party divider follows the same selected color policy')
+ end
  for _,case in ipairs({{main=false,alpha=0},{main=true,alpha=100},{alpha={opaque=true}}})do
   focus._fluxHasMainPower=case.main;focus._fluxMainPowerAlpha=case.alpha
   local expected=case.main==false and 0 or 1

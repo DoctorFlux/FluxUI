@@ -1,0 +1,218 @@
+{
+  "changeID": "CAST-UNIT-JUNCTIONS-20261117",
+  "recordedUTC": "2026-11-17T08:47:59.796120+00:00",
+  "status": "APPLIED; scoped offline checks PASS; coordinated native validation pending",
+  "branch": "main",
+  "versionLabel": "watch-mesh-phases-r60",
+  "versionQualification": "Label unchanged; exact loaded source not proven by this label. CF64 predates these changes.",
+  "runtimeSources": {
+    "Core/BorderJunctions.lua": {
+      "LF_SHA256": "d7a9da602fe753a0e7321ae0e9cd8d59293974663da96720ea89ffd38aebf282",
+      "rawSHA256": "f25f1a22085f2ed918a978db746f13a9b8e10eee95ccc864b80d3e1c1f27d25c"
+    },
+    "UnitFrames/FluxCastBar.lua": {
+      "LF_SHA256": "f0e8c405a568733a91b10f22c95124f2f94ab7d1fc0e864ade646f9e3a673ee0",
+      "rawSHA256": "e932ba524459a50e4c245a0187be2288c3b91a7c44332477c8ed0f37361e0576"
+    },
+    "UnitFrames/FluxSwingTimer.lua": {
+      "LF_SHA256": "4e77dd134808979fd5773e497b58e16c28c99336af00f9a9e3ee666b62682eb9",
+      "rawSHA256": "4e77dd134808979fd5773e497b58e16c28c99336af00f9a9e3ee666b62682eb9"
+    }
+  },
+  "testedSourcesLF": {
+    "Core/BorderJunctions.lua": "d7a9da602fe753a0e7321ae0e9cd8d59293974663da96720ea89ffd38aebf282",
+    "UnitFrames/FluxCastBar.lua": "f0e8c405a568733a91b10f22c95124f2f94ab7d1fc0e864ade646f9e3a673ee0",
+    "UnitFrames/FluxSwingTimer.lua": "4e77dd134808979fd5773e497b58e16c28c99336af00f9a9e3ee666b62682eb9",
+    "tests/border_optional_unit_parts.lua": "c185c13015ce786e503f8a8025f932a829a2b741db6899876c0f546ecf8eafc9",
+    "tests/border_cost_reasons.lua": "46472d5a739a0435d3136dbb9e7b6eeb87926094df5acb7d5c7a132bbb6b933d",
+    "tests/border_retained_units.lua": "4ee5cb409ce0af84a5f5f62e2d5a7995966f46155914a9e1a65892f2fa788dd1",
+    "tests/border_static_pieces.lua": "7e22df614e45f72854732fce9e8ee4185d253e1caac01017d472957e78b49f20",
+    "tests/border_native_alpha.lua": "beb8d0f47adaee096756fe90eec641e39541756a33968145352f83ba2a01f86a",
+    "tests/border_render_basis.lua": "bdaa91fa07e582e8d4934df5d94a7ad5eeea6b6a2ea1dd23f4814281a4a3b3df",
+    "tests/border_fallback_opacity.lua": "1b5cfe9f2bdc344e9d46b7f9c89c2ebb4a4df6f0f14c23d0dcb86a6c434fda47",
+    "tests/border_draw_reuse.lua": "e5eeeb02736cb2fc0e6175ffbefe77b4dea8d0fd9719f2a074c9b60cfb43b27b",
+    "tests/timer_header_layout.lua": "5a76c8cbd91f0babff3e6bce069b9f9d1d88da5a98e03923d92f4caefc97d9fa",
+    "tests/castbar_school_themes.lua": "4b3c764d9a4ccfa048d0e48a5afe05f7ef5b19b725fd8daf193b73243958b613"
+  },
+  "baselines": {
+    "Core_before_optional_unit_parts_LF": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "Core_before_cost_fields_LF": "c933e6b841a6c27b6fd9d6f202478c918c6409409d593ca9a4f22f7ca26e2551",
+    "Cast_before_interior_clip_LF": "fae6b089e22729c4f9afaa987a65c88928fb72daa58e5180d1508aae2b93d599",
+    "Swing_before_interior_clip_LF": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb"
+  },
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-junction-followup-checkpoint-20261117.json",
+      "rawSHA256": "fe39dd571e7db03e08ffa5b8ebb9423f5e48fe0fa75e3c7c7ec46a9b7ee3795e"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-branch-fallback-checkpoint-20261117.json",
+      "rawSHA256": "7b4d095c5d50f1b3bc1282510153245bf0f2f0d9028a27315d5aa1660a22c8a0"
+    },
+    {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-cost-reasons-checkpoint-20261117.json",
+      "rawSHA256": "9c96d0d832e77de0376fd59b9be5697ef5bfebd33963427414ca9232146226f7"
+    }
+  ],
+  "requirements": {
+    "CUJ-01": "Use measured header interior for glow clip; preserve CDF fill/name compensation, icon/header positions, pet policy and green finish.",
+    "CUJ-02": "Prepare missing perpendicular unit-edge continuations at four T orientations and X; include same-profile parallel backups without duplicate paint.",
+    "CUJ-03": "Preserve generic/ambiguous/foreign-profile prior policy exactly; per-pass markers and existing limits retained.",
+    "CUJ-04": "Ordinary optional-unit visibility uses prepared native paint; no new unit-state global invalidation, drivers, masks, events or secure input changes.",
+    "CUJ-05": "Attach existing at-most-three read reasons and dirty counts only to active watch cost; no new native getter/traversal/clock/event/cache.",
+    "CUJ-06": "Performance chat owns coordinated Mario reload/capture and CF62/CF64 cleanup; preserve other owners, R63 rejection and native unknowns."
+  },
+  "implementation": {
+    "optionalUnit": "Scoped primary-axis cells and same-profile restoration; eligibility checked before synthetic cells/cropping; raw bitmap fragment guard retained. Per-choice and per-operation planning limits remain bounded.",
+    "castGlow": "Prepared non-pet clip reaches the actual icon-right divider and top/bottom core; pet keeps TimerBar bounds; ranged timer reuses cast clip. No per-cast geometry work added.",
+    "costFields": {
+      "readReasons": "The existing reasons table; maximum three strings. Geometry/material/UV facts, not upstream event cause.",
+      "dirtyState": [
+        "fullInvalidation",
+        "pendingObjects",
+        "paintObjects",
+        "waitingRetire",
+        "waitingAlpha",
+        "waitingColor",
+        "snapshotChanges",
+        "materialChanges",
+        "uvChanges"
+      ],
+      "watchOff": "No cost table fields, getter or additional traversal."
+    }
+  },
+  "validation": {
+    "finalBorderUnitGate": {
+      "scripts": 59,
+      "passed": 59,
+      "failed": 0,
+      "sourceDrift": [],
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-final-gate-20261117.json",
+        "rawSHA256": "3c9982a43282298b4264c4a0ce10da822bf6be24d5c606a691571d2ade8def1b"
+      }
+    },
+    "costReasons": {
+      "checks": 342,
+      "passed": true,
+      "baselineNegativeRejected": true,
+      "getterParity": true,
+      "sourceDrift": [],
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-cost-reasons-checks-initial.json",
+        "rawSHA256": "24fdf62779cf19c4a84c1cdf03cc80943577b61eccde35e7601e5945f0f11cda"
+      }
+    },
+    "optionalParts": {
+      "checks": 357,
+      "sampledSourcePoints": 177498,
+      "priorMissingSamples": 3108,
+      "currentMissingSamples": 0,
+      "RGBAErrorUpperBound": 8e-15,
+      "visibilityGeometryReads": 0,
+      "visibilitySolves": 0,
+      "visibilityAllocations": 0,
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-branch-eligibility-durable-production.json",
+        "rawSHA256": "1b6cb3b7ff8d916668f47577095575629828337f0ceca1ecca1e16152a7c07aa"
+      }
+    },
+    "castClip": {
+      "focusedScripts": 2,
+      "dependentScripts": 11,
+      "receipts": [
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-interior-clip-final-receipt.json",
+          "rawSHA256": "61d98536b1c423a88c5119a76cbc70e3ad6ebae3b2485c084d55d93b0a97c541"
+        },
+        {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-interior-clip-dependents-20261117.json",
+          "rawSHA256": "b4a46ffb15214b4b02489519b6b2427f86d5e665819b502be9f80146c790f9ee"
+        }
+      ],
+      "qualification": "Scoped earlier actual-producer/model checks pin these unchanged Cast/Swing bytes; not a new whole-addon/native sweep."
+    },
+    "syntax": {
+      "files": 13,
+      "passed": 13,
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-syntax-20261117.json",
+        "rawSHA256": "4719af74547c23c7d10dd12e23fae4434d6dfbb8d11dcb326df4ab5e65b6180c"
+      }
+    },
+    "runtimeUpvalues": {
+      "files": 3,
+      "prototypes": 463,
+      "maximum": 56,
+      "limit": 60,
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-upvalues-20261117.json",
+        "rawSHA256": "7b5bc6c4984c5aa8fdd08f11f47b9e5d824f30ffcfffb9528cd3c29abd5978ae"
+      }
+    }
+  },
+  "regressionsRetained": {
+    "initialBroad": {
+      "passed": 52,
+      "failed": 7,
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-broad-gate-20261117.json",
+        "rawSHA256": "40a54cd355a61ed28e995b76f03bc9d1f08b1553bfbf297c5e310cf93169de78"
+      }
+    },
+    "repair": "Synthetic planning cells were incorrectly counted as native bitmap fragments. Corrected accounting without raising limits. Alpha fixtures now distinguish gated prepared backups from active sinks; basis replacement retains logical unit identity.",
+    "foreignProfile": "Early unguarded candidate added duplicate foreign-profile blending; eligibility guard restores complete prior active-field signatures. Unsupported shapes intentionally retain old policy.",
+    "sevenRetests": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-regression-repair-20261117.json",
+      "rawSHA256": "ec0c5455955dfcfbbac19e20c7d610a7c68144ce75d563b8556aa7018cf0146f"
+    }
+  },
+  "rejectedExperiments": [
+    "Three-UI-unit cast crossbar made a larger hard-alpha discontinuity; never applied.",
+    "Fused full cast outline requires additional suppression/layer ownership and did not establish native notch cause; deferred.",
+    "R63 input/append performance trials remain rejected/restored; not reused."
+  ],
+  "native": {
+    "agentInput": false,
+    "agentReload": false,
+    "agentCapture": false,
+    "profileSettingsChanged": false,
+    "pixelParity": "PENDING on current exact source",
+    "combatCPU_FPS_taint": "PENDING; model counts do not certify native safety/performance",
+    "partyRaidBothDisplayModes": "PENDING; no transition captured in CF64",
+    "CF64": "Historical105.5655ms border callback/105.5446ms build; enclosing105.6152ms flush overlaps. Largest815ms application frame-gap cause remains UNKNOWN. Not acceptance of current code.",
+    "captureOwner": "Performance chat 01a1e588-403e-7323-ace6-319b729c71a8; Mario only; Bank excluded.",
+    "coordination": "docs/COMBAT_COLLABORATION_BORDER_REPLY.md"
+  },
+  "coordinationUpdate": {
+    "observed": "17 November08:49UTC owner note",
+    "borderGateScope": "Own59 border/unit scripts and separate cost342 checks only; not a final combined SpellRank gate.",
+    "performanceOwnerPending": "Wait for performance chat FROZEN rank-cache optional-watch instrumentation before combined gate/reload."
+  },
+  "documentationGate": {
+    "generator": "PASS",
+    "validator": "PENDING nine existing other-owner verification hashes; no owned source/link/manifest-count issue",
+    "issues": [
+      "Recorded verification predates current source: Core/API/Item.lua",
+      "Recorded verification predates current source: ExtraButtonSystem/Engine/Events.lua",
+      "Recorded verification predates current source: Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "Recorded verification predates current source: Inventory/FluxConsumableBest/Scan.lua",
+      "Recorded verification predates current source: Inventory/FluxConsumableClassify.lua",
+      "Recorded verification predates current source: Inventory/FluxItemClass.lua",
+      "Recorded verification predates current source: Inventory/Init.lua",
+      "Recorded verification predates current source: Inventory/Professions.lua",
+      "Recorded verification predates current source: Inventory/Restock/FluxRestock_Inv.lua"
+    ],
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-unit-junctions-doc-checks-20261117.json",
+      "rawSHA256": "6b93b11404874b25ca4c75d436664ca7eb323e3bee39edbbeb81566697cbd550"
+    }
+  },
+  "handoff": {
+    "recordedUTC": "2026-11-17T08:53:16.770338+00:00",
+    "borderRuntime": "FROZEN; owner READY for combination",
+    "combinedGateAndReload": "WAIT performance chat FROZEN rank-cache instrumentation; it owns final combined gate and next coordinated input",
+    "ownedTestBenchmarkNativeJobs": "ALL STOPPED; no native operation performed",
+    "unresolved": "Current exact-loaded-source pixels/performance/taint and other-owner verification refresh remain pending"
+  }
+}

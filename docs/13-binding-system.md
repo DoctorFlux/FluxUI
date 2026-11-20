@@ -1,5 +1,87 @@
 # Conditional binding system
 
+<!-- RESPEC-ACTION-SAFETY-20261116 -->
+16 November: opening LibKeyBound no longer reloads account bindings. Its existing scope checkbox remains responsible for explicit account/character switching and save/cancel. Automatic rank failures cannot advance saved binding IDs beyond a failed native bar replacement. [Evidence](validation/respec-action-safety-2026-11-16.json).
+<!-- /RESPEC-ACTION-SAFETY-20261116 -->
+
+
+15 November: range now follows the selected cast target, independently of idle
+icons, pinned tooltips and reverse badge token swaps. Plain actions apply the
+native friendly/hostile eligibility rule. The reported Frostbolt/friendly-hover
+case is confirmed in game. [Rules and scoped validation](CAST_RANGE_TARGETING.md).
+
+15 November action routing (`ACTION-ROUTING-RELIABILITY-20261115`): native
+PreClick proved Shift globals are consumed while the large main already shows66;
+old inheritance selected action6. Secure main now publishes its LIVE keyboard
+bundle, with independent mouse modifier sets. Native Ctrl-Shift-½ capture selects
+macro66 and macro parser reports both despite rawkeysfalse. User confirms:
+"Fire Ward casts; icons return correctly." This verifies that reported cast and
+release, not all19/pages/clients/taint/controller/FPS. No macro-condition rewrite.
+
+Also corrected mini inverse page updates, temporary fallback overlays, shared-slot
+badge prewarm, OOC and late-callback display indexing, held-modifier page bursts,
+and hover native/free ownership/reconfigure/retry. New native restricted-builder
+regression rejects the intermediate quoted-function error and accepts correction.
+Focused:363885modifier;864nativehandler;21532visual;547hover;510badge;25920control
+checks PASS. Full408/410 before final control-fixture repair; repaired25920PASS;
+one unrelated portrait fixture misses GetUnitClassColor. No settings/action reset,
+agent input/focus/profiler operation or manual installation copy. Nine Forever
+runtime files match. Native broad acceptance and FPS measurement remain pending.
+[Requirements, sources and measured limits](ACTION_ROUTING_RELIABILITY.md).
+
+15 November read-only saved-variable follow-up for shared bindings: account/
+character current and backup data audited at user request. Nine valid DB3 rows,
+seven placements, no structural corruption or saved layout/badge conflict.
+Latest SHIFT-½ entry has ShiftCtrl on/ALT off and both regular/hover input off;
+it emits no conditional cast. R remains hover-only. Native F maps11 with no
+explicit Shift-F override; hidden11/71 profiles match the reproduced source bug.
+No settings changes; client action contents/page and loaded state unverified.
+[Audit](SHARED_BINDING_MODIFIERS.md#read-only-saved-variable-follow-up).
+
+15 November shared binding modifiers (`SHARED-BINDING-MODIFIERS-20261115`): fixed the
+keyboard proxy selector leak across main/mini rows and obsolete live LeftButton
+selectors. The saved hidden main11/Shift71/native35 pattern reproduces Shift-F
+casting main11 in the linked GitHub version; candidate selects71 and releases
+back to11 before display updates. 2,271 focused checks; exact246; three harmful
+controls and12 focused scripts PASS. Regular key press OFF still disables that
+binding including ALT; profiles/badges/compiler/settings remain unchanged.
+The first full sweep400PASS/2FAIL preceded final test refinement and concurrent
+changes. Final modifier checks and the bar smoke now PASS; fresh1,092-file
+syntax passes. Other full-sweep results remain historical for newer unrelated
+sources. Native casting/taint/controller/render/FPS acceptance remains pending;
+no client input or manual installation copy. [Requirements and evidence](SHARED_BINDING_MODIFIERS.md).
+
+14 November `GROUP-GHOST-HOVER-20261114`: secure `valid-hover` resolves a current
+unit from the entered surface or its parent handle, requires IsVisible and
+UnitExists, and runs before installing overrides. A real entered handle is
+remembered independently of active bindings, so unit removal/reassignment under
+a stationary cursor can clear/rearm through prepared OnAttributeChanged wrappers
+in combat. Leave/hide retires that remembered handle; unrelated active peers are
+preserved. The existing mouseover-exists callback validates the actual source
+unit instead of keeping stale bindings for hovered geometry. Both visual scans
+reject hidden ancestors. No new roster driver/poll or ordinary combat write.
+381 scripts/1,069 syntax and 120 new group checks PASS; native retest pending.
+[Evidence](validation/group-ghost-hover-2026-11-14.json).
+
+14 November `PLAYER-GHOST-SECURE-FOLLOWUP-20261114`: the previous scan-only
+guard did not remove native PlayerFrame from the actual secure casting registry.
+Suppression now rejects every new registration route, clears an already active
+root/legacy-child override through the Flux-owned header, and unregisters its
+Flux wrappers. Retained legacy hooks are inactive after unregister and their
+entered bookkeeping is balanced. Restore re-registers native casting, preserving
+active peer bindings. The existing combat/Edit Mode boundaries defer protected
+changes. 300 casting checks/five client models/9 controls PASS; native retest
+pending. Literal frame deletion is unsupported and is not claimed.
+[Evidence](validation/player-ghost-secure-followup-2026-11-14.json).
+
+14 November `PLAYER-GHOST-HOVER-20261114`: both mouse-focus and fallback
+geometry scans now honor the existing suppression service's addon-owned policy.
+An alpha-zero native unit frame cannot count as hover context solely because
+Blizzard keeps its root shown. Independently registered pet/Flux frames remain
+eligible, and restoring Blizzard input restores hover eligibility. Existing
+50ms scan cache and secure binding snippets are unchanged. Native retest pending.
+[Evidence](validation/player-ghost-hover-2026-11-14.json).
+
 <!-- STRESS-FIXES-20261107 -->
 7 November applied stress fixes: Pending full Context invalidations survive later narrow mouseover requests. Hover fallback consumes all GetChildren varargs with no per-scan child table allocation. Local driver aliases preserve foreign native API provenance. [Evidence](../Stress%20test%20doc/applied-fixes/README.md). Native taint/pixels/performance acceptance remains pending.
 <!-- /STRESS-FIXES-20261107 -->
@@ -40,7 +122,7 @@ flowchart TD
 
 [ChordMap.lua](../Binding/Core/ChordMap.lua) normalizes uppercase `ALT-CTRL-SHIFT-META-KEY`. If a base key belongs to a Flux column, bare/SHIFT/CTRL route through its current main/mini mapping. ALT, SHIFT+CTRL and keys without a column use pooled free-chord secure buttons. Promotion means effective routing must read current host state.
 
-Column overrides preserve the click engine's input policy. On wrap clients Apply routes to `FluxActionStripButton<column>` with `KeyBind`. When `Click.UsesWrap()` is false and the proxy exists, it routes to `FluxActionStripKey<column>` with `LeftButton`, retaining Forever's hidden key-down path while visible mouse hosts remain mouse-up. It never redirects these chords to Blizzard OverrideActionBarButton frames. During temporary native pages (page 11 or greater), the first twelve main hosts suppress ordinary slot macro/click overlays and use the temporary native action; modifiers and promotion cannot replace that control action. Leaving the page restores ordinary routing. The document, pooled free chords and saved order are unchanged by this runtime exception.
+Column overrides preserve the click engine's input policy: wrapped clients use `FluxActionStripButton<column>` with `KeyBind`; Forever keeps `FluxActionStripKey<column>` with `LeftButton`. The keyboard proxy executes the secure main's current live program, including the forward conditional overlay; the displaced mini is not its target. Native click dispatch can consume raw modifier globals while macro parsing still retains the bound modifier context. Do not replace macro conditions with a raw-key guess. Hover passthrough preserves committed free-chord and exact native owners, and clears old vectors before stationary reconfiguration. Temporary pages 11 or greater suppress ordinary overlays on the first twelve main hosts while static columns retain their mappings. Profiles, order and action contents remain unchanged.
 
 [MacroFactory.lua](../Binding/Core/MacroFactory.lua) builds forward programs by merging ordered binding clauses and a native-action tail, respecting fallback. Reverse programs let a badge preview the opposite shared-condition action. Complex sequences/petattack/multi-cast use hidden slot clickers; simpler programs can live on a visible surface. Native slot, compiled program and displayed macro face remain distinct.
 
@@ -95,3 +177,8 @@ The **Live / Respec profile** picker is a preview. It deep-copies the selected s
 `/fluxbind` opens an editor; `<spellId>` selects a spell; `viz`/`visualizer`/`keyboard` opens the key visualizer; `apply` requests reconciliation; `debug` reports state. Documents are per character; visualizer preferences use separate account settings.
 
 Check clause vs badge order, implicit bar inheritance, promotion, duplicate placements, missing-item recovery, rank sync, form fallback, hover mouse/wheel routing, preview isolation, sticky restore and combat-deferred edits. Generated macros can be inspected locally; protected clicks and taint require [in-game verification](41-verification.md). See [API/events](33-api-and-events.md) for the wider integration surface.
+
+<!-- ROSTER-HOVER-DRIVER-20261120 -->
+Stable mouse-only roster discovery now skips an action-bar binding scan. Thirty modeled bursts across each client profile go from 570 native binding reads to zero. Early registrations still sample each action binding once per scan, including keys after nil or empty results. Forty newly discovered raid cells cut binding reads from 1,179 to 600 in the Forever model and from 419 to 120 in the Era model. Mouse and wheel routes, discovery and protected write counts match. Only spell-hover routes qualify for the native unit-exists driver. When the last spell-hover route is removed under the mouse, the same out-of-combat lifecycle parks that driver. Public routing detection still recognizes ordinary mouse and wheel bindings. Full binding and Edit Mode refreshes, frame registration and combat deferral retain their existing owners.
+[Matched validation](validation/roster-hover-driver-2026-11-20.json).
+<!-- /ROSTER-HOVER-DRIVER-20261120 -->

@@ -1,0 +1,250 @@
+{
+  "changeId": "LHO-EVAL-FOOD-CURRENT-P62-P66-20261116",
+  "recordedUTC": "2026-11-16T15:25:37.554786+00:00",
+  "status": "CURRENT_CHECKPOINT_UNMATCHED_COUNTER_INTERVAL_FUNCTIONAL_FOOD_PASS",
+  "goalStatus": "ACTIVE",
+  "P62SavedDiagnostics": {
+    "kind": "Disk-cached historic native telemetry, not current memory/new nativequery.",
+    "savedCapturedAtLocalText": "2026-11-16 15:18:51",
+    "savedFileMtimeUTC": "2026-11-16T14:26:46.321502+00:00",
+    "sourceFileSHA256": "8fed3a17d18c94860adeceaf7306cb3a34e88c57185d758fee5ec536a8909070",
+    "diagnosticAssignmentSHA256": "29383dc9f926074a3607752d703241284de27b3a24c229b265913432e66d22d9",
+    "seconds": 14.60700000001816,
+    "observedCallbacks": 1665,
+    "slowCallbacks": [
+      {
+        "sequence": 1,
+        "at": 8.408000000024913,
+        "kind": "Scheduler",
+        "key": "eval.listener",
+        "label": "Scheduler:eval.listener:unmapped",
+        "tokens": "ebs,bars.count,bars.dirty,bars.cooldown",
+        "ms": 15.06020000576973,
+        "failed": false
+      },
+      {
+        "sequence": 2,
+        "at": 8.602000000013504,
+        "kind": "Scheduler",
+        "key": "eval.listener",
+        "label": "Scheduler:eval.listener:unmapped",
+        "tokens": "ebs,bars.hotkey,ebs.range,bars.dirty",
+        "ms": 10.32339999079704,
+        "failed": false
+      },
+      {
+        "sequence": 3,
+        "at": 11.98800000001211,
+        "kind": "Scheduler",
+        "key": "eval.listener",
+        "label": "Scheduler:eval.listener:unmapped",
+        "tokens": "bars.icon,bars.usable,ebs.usable,ebs.icon",
+        "ms": 14.04009997844696,
+        "failed": false
+      },
+      {
+        "sequence": 4,
+        "at": 12.22800000000279,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "label": "Scheduler:structural.callback:unmapped",
+        "tokens": "border.junctions",
+        "ms": 404.5298999845982,
+        "failed": false
+      }
+    ],
+    "storedGaps": 12,
+    "causalLimits": "Inclusive/unmapped spans; gaps/background/rendering/GC/concurrent border work not causally assigned. No settings roots/raw saved block copied into repository."
+  },
+  "sourceMap": {
+    "SHA256": "68af9abbe69f6863c3aff25deeb85326f747693ad15cf717b9bba2743be41852",
+    "evalRegistrations": [
+      {
+        "file": "Core/Engine/Perf.lua",
+        "line": 432,
+        "literal": "Flux.Scheduler.Register(\"eval\", count(\"eval\"))"
+      },
+      {
+        "file": "ExtraButtonSystem/Init.lua",
+        "line": 204,
+        "literal": "Flux.Scheduler.Register(\"eval\", function(tokens)"
+      },
+      {
+        "file": "Bars/Init.lua",
+        "line": 199,
+        "literal": "Flux.Scheduler.Register(\"eval\", function(tokens)"
+      }
+    ],
+    "observerLimit": "Scheduler.RunBucket227-235 calls every registered eval listener with identical merged tokens and labels each eval.listener. Tokens/sample do not identify which closure was slow. Cached tokens are bounded unordered samples, not a full ordered trace. Historical saved rows cannot be assigned to either paint owner or Perf by inference.",
+    "runtimeChanged": false
+  },
+  "P63Binding": {
+    "exactRootObservedLine": "P63BIND 257083.843 JUMP JUMP",
+    "default": "JUMP",
+    "effectiveOverrideAware": "JUMP",
+    "actualJumpClaim": false,
+    "continuousBindingProofClaim": false
+  },
+  "P64Endpoints": {
+    "endpoint1": {
+      "run": "p64ka1116T1459b",
+      "rootFormalACK": true,
+      "reviewerIndependentlyViewedSavedPNG": true,
+      "headerExact": "P64 257934.127 table: 000001EDB6602A00 941 941 7",
+      "nativeGetTimeSeconds": 257934.127,
+      "passMsIdentityText": "000001EDB6602A00",
+      "extraListenerEval": 941,
+      "schedulerEvalTierFlushes": 941,
+      "schedulerInventoryTierFlushes": 7,
+      "passes": {
+        "bars.paint.full": {
+          "count": 3,
+          "millisecondsText": "32.06899997592"
+        },
+        "bars.paint.lane": {
+          "count": 462,
+          "millisecondsText": "729.75349986553"
+        },
+        "bars.paint.dirty": {
+          "count": 6,
+          "millisecondsText": "36.326700001955"
+        }
+      },
+      "units": "Existing cumulative completed Begin/Stop grosselapsed ms, not CPU or EBS/P62callback attribution."
+    },
+    "endpoint2": {
+      "run": "p64ep2final1a",
+      "rootFormalACK": true,
+      "reviewerIndependentlyViewedSavedPNG": true,
+      "headerExact": "P64 258966.374 table: 000001ED8A4D7090 993 993 4",
+      "nativeGetTimeSeconds": 258966.374,
+      "passMsIdentityText": "000001ED8A4D7090",
+      "extraListenerEval": 993,
+      "schedulerEvalTierFlushes": 993,
+      "schedulerInventoryTierFlushes": 4,
+      "passes": {
+        "bars.paint.full": {
+          "count": 12,
+          "millisecondsText": "110.52880001068"
+        },
+        "bars.paint.lane": {
+          "count": 416,
+          "millisecondsText": "902.355699718"
+        },
+        "bars.paint.dirty": {
+          "count": 43,
+          "millisecondsText": "150.27870005369"
+        }
+      },
+      "queuedASCIICharacters": 254,
+      "enqueueMilliseconds": 141.00000000325963,
+      "rootVisualACKScope": "root-visual-attestation-only",
+      "lockReleasedRecorded": true
+    },
+    "interval": {
+      "usable": false,
+      "deltas": null,
+      "percentages": null,
+      "gainClaim": false,
+      "reason": "passMs tableidentity changed and lane/inventory countersregressed; allcounterinterval subtraction isinvalid.",
+      "reloadOrReplacementCause": "Unverified; samePID/birthdoesnotprovecontinuouscountergeneration.",
+      "scene": "FirstsavedsceneDunMorogh, secondsavedsceneIronforgewithguide/city/UI differences; unmatchedcontext."
+    },
+    "currentOnlyReadouts": true,
+    "noNumericalDeltaPercentageOrGain": true
+  },
+  "P65Baseline": {
+    "status": "P65_ORIGINAL_BASELINE_SEALED_STOP_BEFORE_CANDIDATE",
+    "scenariosPerVM": 8,
+    "checksPerVM": 54,
+    "actualOwners": "Full production Paint/Watch/Badge/Scheduler/Inventory.Init/EBS.Init plus exact production Widget.OnShow closure loaded via unchanged private boot extraction in tests/passive_ebs_visibility (same existing approach as action_count_refresh). Core.Flux pinned for Safecall contract; kernel Safecall native/errorhandler effects remain modeled.",
+    "candidateOrCostApproved": false,
+    "nativeCausalAttribution": false
+  },
+  "P66Food": {
+    "attempt": {
+      "run": "p66foodcomplete1a",
+      "consumed": true,
+      "payload": "/cast Conjure Food",
+      "queuedASCIICharacters": 18,
+      "enqueueMilliseconds": 16.00000000325963,
+      "formalACKScope": "Only new visible ConjureFood cast bar; visible2.1 is remaining-display text, not measured totalcastduration.",
+      "completionEvidence": "Separate read-only laterimage shows NEW chat You create: [Conjured Pumpernickel]x12. andfoodbutton12; root andreceipt reviewer viewed thissavedimage.",
+      "producedReportedQuantity": 12,
+      "postFoodButtonText": "12",
+      "beforeFoodQuantityNotAssumed": true,
+      "otherAgentItemActions": "None recorded for thisattempt; no cancel/replay/purchase/sale/delete/material action.",
+      "isFunctionalCompletionEvidence": true,
+      "isPerformanceAcceptance": false
+    },
+    "preCastIdle": {
+      "run": "p66foodidle1a",
+      "rootFormalACK": true,
+      "reviewerViewedSavedPNG": true,
+      "line": "P54IDLE 258035.193 nil nil false false 0 nil nil nil",
+      "meaning": "No casting/channeling reported; combat/cursorfalse,speed0,Skillet fieldsnil atthatquery; laterconditionsnotcontinuouslysampled."
+    },
+    "timingAndGuardLimits": {
+      "inheritedSourceImageAGEseconds": 120,
+      "R2b60secondIdleGateUsedForFood": false,
+      "idleImageEndToFoodSourceImageEndSeconds": 43.77298331260681,
+      "idleImageEndToFoodSubmittedImageEndSeconds": 74.58561968803406,
+      "foodSourceImageEndToSubmittedImageStartSeconds": 28.43936324119568,
+      "interpretation": "The~74.6s end-to-end capture gap is not a60sIdle gate or exactcasttrigger timestamp. Fresh closedsourceimage remains within inheritedAGE120; no jump attempted."
+    },
+    "functionalCompletionOnly": true,
+    "maxRankIndependentlyProven": false
+  },
+  "P67Preparation": {
+    "status": "External body/model preparation; native/transport/install not authorized by this record.",
+    "nativeInstalled": false,
+    "modelsUnrunClaim": false
+  },
+  "coordination": {
+    "userAnswer": "Ready in another app",
+    "approximateUTC": "2026-11-16T15:16Z",
+    "source": "Root explicitly reported the user reply and successful refreshed-source query.",
+    "answeredAndUsed": true,
+    "earlyModeSwitchThenSourceRefreshed": true,
+    "futureQuietWindowConsentInferred": false,
+    "rootSaidUserCouldReturnWoWAfterEndpoint2": true
+  },
+  "currentRootReportedState": {
+    "holdsSHA256": {
+      "no_jump": "95aa08f0114a6049b2ad0d2a24da3dd33507a153dd971964325c7e391b51fd73",
+      "craft_hold": "84a0291483b3895b20ad6f5036208dba69223b0f8c0bf4f49843ee7a137b9ac1",
+      "INPUT_HALTED": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3"
+    },
+    "inputLock": "Absent as reported by root; no new live query by docs editor.",
+    "BGJumpR2b": "Reviewed external/native trial not executed or promoted at this checkpoint; queued behind commands/PC-idle15 rule.",
+    "noActualBGJumpClaim": true,
+    "existingPauseAndReloadProcedure": "Unchanged; stop markers/input first under existing instructions."
+  },
+  "resourceScope": "No observer/global/hook/timer installed by P61/P63/P64/P66 fixed queries/cast. Existing Snapshot/cache/count/cast business effects remain; no side-effect-free claim. P67 preparation not installed.",
+  "nativeAcceptanceLimits": [
+    "Two legitimate current readouts have incompatible counter generations; same PID/birth does not prove continuity. Reload versus replacement reason is unverified.",
+    "Changed city/guide/scene and uncontrolled activity confound any food-only attribution. No exclusiveCPU/FPS/frame-spike/taint/controller/fullworkflow gain or P58 in-memory adoption.",
+    "Food cast frame is start evidence; separate later creation chat x12 and food button12 establish functional completion. Display2.1 is remaining text, not a measured total cast duration.",
+    "20s question was explicitly answered and used for this window; no future window or permission is assumed."
+  ],
+  "protectedHistory": "P58 sealed validation and P59/P60, earlier native/pause/keepalive keys and all four ledgers remain unchanged by this update.",
+  "externalEvidenceSHA256": {
+    "p62-saved-eval-attribution-20261116/report.json": "6757094c6f4b4aa08c1df296b05488d219119c70067a0cd7d48003332d1936ce",
+    "native-space-binding-p63-fixed/result.json": "65955195ea368288fe889e3ea8087144f6bf260cd0247837acb4c9c619218034",
+    "p66-food-counter-record-20261116/partial-endpoint1.json": "7cec7b97c099d8cf09a37fa6f65cff6e59e5e829dae40191f50ae36febc1c846",
+    "ebs-reveal-fanout-p65-baseline/report.json": "1a8a60688593b242e7d5907f1fbbb3dff7ec6fae1e0d3d489529c5b136713112",
+    "inventory-ebs-eval-source-map-20261116T144658Z/report.json": "68af9abbe69f6863c3aff25deeb85326f747693ad15cf717b9bba2743be41852",
+    "native-conjure-food-p66-fixed/source-review-count-addendum.json": "4d75b72c6d3af7f1a67a1d4e0f90c59a36cd6cfe4d3783416fb769b6fdc79757",
+    "p66-food-counter-record-20261116/result.json": "9b871279dce2c54cb25ef4df4a52b4c92919c768b77a620c1bc523bc04b4c1a5",
+    "p66-food-counter-record-20261116/result-seal.json": "e7b197e77c71cdde522d341a735469f0da5637ef6c3dfdd7fd6ccf39666d8152",
+    "native/jq4-p64ep2final1a-journal.json": "dd180dc4cf1da6f9904eb53f603e31d73374800f8bfaa14e739ea5f00529bc20"
+  },
+  "actionsByDocsEditor": {
+    "runtimeSourceTests": 0,
+    "native": 0,
+    "modelsCostReruns": 0,
+    "helperHoldSettingsProviderWrites": 0,
+    "CSVRows": 0,
+    "generatorSyncCommitPublication": 0
+  }
+}

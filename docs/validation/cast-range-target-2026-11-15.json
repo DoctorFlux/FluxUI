@@ -1,0 +1,331 @@
+{
+  "changeId": "CAST-RANGE-TARGET-20261115",
+  "capturedAtUTC": "2026-11-15T18:25:08.445722+00:00",
+  "request": "Range follows the unit actually selected by each action/binding/badge; hostile target plus nearby friendly UF hover must not steal native Frostbolt range.",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\range-cast-target-before-20261115T180158Z",
+    "capturedAtUTC": "2026-11-15T18:02:04.902739+00:00",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "sourceFiles": 2902,
+    "sourceCRC": true,
+    "historyVerified": true,
+    "settingsMetadataCount": 5,
+    "privateSettingsCopied": false
+  },
+  "sources": {
+    "Core/Engine/Range.lua": {
+      "baselineRawSHA256": "50c9600e4779fdd8a5fc341b64d447bdbcfe1876762e64139410607946d55dab",
+      "candidateRawSHA256": "edf031b1e838f42d51c2518311217c5e5a6173bb31fc745dba97f11d3a1ea971",
+      "candidateNormalizedSHA256": "edf031b1e838f42d51c2518311217c5e5a6173bb31fc745dba97f11d3a1ea971"
+    },
+    "Core/Engine/MouseoverCast.lua": {
+      "baselineRawSHA256": "47632336a61f354b9c878b01a19d3b2c2375d4b925abacc9d07db38646e93586",
+      "candidateRawSHA256": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306",
+      "candidateNormalizedSHA256": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306"
+    },
+    "Bars/Paint.lua": {
+      "baselineRawSHA256": "d6671e53ddaa392ff313752db71bc53aa4cc83255a221f20306e61771b7e9dfb",
+      "candidateRawSHA256": "1f2c1ffddc2b89bc204dc2d66d3bc823e6a730666dc837bea3368746f781649b",
+      "candidateNormalizedSHA256": "a2f62dd6a6cb07e7eeddbd1bed57b1060a04a9f5360519f080e55303b3e256b7"
+    },
+    "Bars/ProgramFace.lua": {
+      "baselineRawSHA256": "21dce57b78ef287aa0d2ac282efee9dba96570eb480d9a99d9acd7569cdf2451",
+      "candidateRawSHA256": "71b902f1ec247bd6f701f1826eed0073ba9d5f8e57151aa477e6284386eb88de",
+      "candidateNormalizedSHA256": "71b902f1ec247bd6f701f1826eed0073ba9d5f8e57151aa477e6284386eb88de"
+    },
+    "Bars/BadgeHost.lua": {
+      "baselineRawSHA256": "6e7170d067edb85bca080cc11b320f1661994e1b3885c51b1d2df2265c1d0fec",
+      "candidateRawSHA256": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0",
+      "candidateNormalizedSHA256": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0"
+    },
+    "Binding/Core/Apply.lua": {
+      "baselineRawSHA256": "77a6f78df4f7bf042c358c9a3454e671792eb27ccbfa859b738848eccc734b31",
+      "candidateRawSHA256": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3",
+      "candidateNormalizedSHA256": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3"
+    },
+    "ExtraButtonSystem/Engine/Action.lua": {
+      "baselineRawSHA256": "3f201d20d8a2b403cced8748eab27561392f7f72757669737b3278aa4052bfb6",
+      "candidateRawSHA256": "7e7a07a7fff9ab2b1c0b0aba30eaeb6f6d3cc3a9f30eef6e1afec76a743b93af",
+      "candidateNormalizedSHA256": "7e7a07a7fff9ab2b1c0b0aba30eaeb6f6d3cc3a9f30eef6e1afec76a743b93af"
+    },
+    "ExtraButtonSystem/Engine/Paint.lua": {
+      "baselineRawSHA256": "d21720afff1d4aa380e70d7ee9b1796e02ffcc80148d6903cfe1d6c26e11990e",
+      "candidateRawSHA256": "808e15ec333509c2172560f23431d0b3583a160bf5ea47c78665b690096a6b44",
+      "candidateNormalizedSHA256": "808e15ec333509c2172560f23431d0b3583a160bf5ea47c78665b690096a6b44"
+    },
+    "ExtraButtonSystem/Engine/Range.lua": {
+      "baselineRawSHA256": "7d498b3e56616dc4e6189f518d401fdc14bbd4706700abb4504253e8ea3a4e4b",
+      "candidateRawSHA256": "3a7775f4d626adad917b5f5655419d9eea73d16bbf66c4440eb0270de4af2265",
+      "candidateNormalizedSHA256": "3a7775f4d626adad917b5f5655419d9eea73d16bbf66c4440eb0270de4af2265"
+    },
+    "tests/cast_range_plain_target.lua": {
+      "baselineRawSHA256": null,
+      "candidateRawSHA256": "d4f319471a8da50a1a457e960ef90de799867ac23bbadd14d71eab0c945b5510",
+      "candidateNormalizedSHA256": "d4f319471a8da50a1a457e960ef90de799867ac23bbadd14d71eab0c945b5510"
+    },
+    "tests/cast_range_macro.lua": {
+      "baselineRawSHA256": null,
+      "candidateRawSHA256": "32dd1ef27a39b05e15f19046bc52f11f3fcdcbfc2f70d763ad1d9e766de92421",
+      "candidateNormalizedSHA256": "32dd1ef27a39b05e15f19046bc52f11f3fcdcbfc2f70d763ad1d9e766de92421"
+    },
+    "tests/cast_range_target.lua": {
+      "baselineRawSHA256": null,
+      "candidateRawSHA256": "e1a325ad9b1be2eabac10928bcd3a429778bc09c909a0b24ae09b1c47f689e5c",
+      "candidateNormalizedSHA256": "e1a325ad9b1be2eabac10928bcd3a429778bc09c909a0b24ae09b1c47f689e5c"
+    },
+    "tests/range_usability_stress.lua": {
+      "baselineRawSHA256": "0a385b4987d4b407736bd01916c62818905842c0d12f3b239f19a6f698c0e924",
+      "candidateRawSHA256": "e87055078d7cec7926721c9edd7e3b47342a8a77f012ec1f661b24fbda4a308c",
+      "candidateNormalizedSHA256": "e87055078d7cec7926721c9edd7e3b47342a8a77f012ec1f661b24fbda4a308c"
+    },
+    "tests/mouseover_native.lua": {
+      "baselineRawSHA256": "43e81870c4b6d77fb31985eba134eb41eea9d5068259201da4111fd5db4b946f",
+      "candidateRawSHA256": "d8b9b3ba24d6317a860da9e1d83453d446a7eb11a9f18f60610bb603c1128bc3",
+      "candidateNormalizedSHA256": "d8b9b3ba24d6317a860da9e1d83453d446a7eb11a9f18f60610bb603c1128bc3"
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "baselineRawSHA256": "3b2096543234b572f96869bce95a4b70a22795c82a19c9f59a3ff454f70879ed",
+      "candidateRawSHA256": "a748a8915931b20848931cb35aece36a16170e13cc8fec1d2f1b5b6a054f8027",
+      "candidateNormalizedSHA256": "a748a8915931b20848931cb35aece36a16170e13cc8fec1d2f1b5b6a054f8027"
+    }
+  },
+  "implementation": {
+    "plain": "Actual native per-slot helpful/harmful includeNeutral gates, or existing standalone spell/item gate; configured modifier and authorized self/focus flags observed without input writes.",
+    "explicit": "Macro/explicit widget units authoritative; player stays player, cursor has no unit-range result, missing explicit unit never borrows selected target.",
+    "macro": "Separate selected cast/use/sequence target from showtooltip/idle display; active stopmacro blocks later commands; unavailable/delegated/target-mutating paths remain unknown.",
+    "badge": "Derived original regular/hover forward clauses published as read-only range metadata; match currently displayed action identity then evaluate its own eligible clauses. Reverse display token targets are never borrowed. No eligible original clause means unknown/no red.",
+    "paging": "Actual current live slot/full executable body consumed; stable idle icon body is preserved.",
+    "cadence": "Existing 0.25s bars/0.18s extras and bounded 0.5s hop catch-up retained; no added timers/events/hooks; world/UF targeting obeys actual eligibility instead of substituting target during bursts.",
+    "data": "No saved settings, placed actions, secure cast programs, native inputs, layout or glyph artwork changed."
+  },
+  "focused": {
+    "capturedAtUTC": "2026-11-15T18:22:41.065881+00:00",
+    "pass": 14,
+    "fail": 0,
+    "tests": [
+      {
+        "path": "tests/cast_range_plain_target.lua",
+        "exit": 0,
+        "output": "PASS 4288 plain cast range target checks (native C APIs/frame lookup modeled)\n"
+      },
+      {
+        "path": "tests/cast_range_macro.lua",
+        "exit": 0,
+        "output": "Cast range macro: 66 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/cast_range_target.lua",
+        "exit": 0,
+        "output": "Cast range target integration: 380 checks, 0 failures (desktop API/parser/frame boundaries; native pending)\n"
+      },
+      {
+        "path": "tests/range_usability_stress.lua",
+        "exit": 0,
+        "output": "RANGE_USABILITY client=live rapid_edges=135168 hop_sweeps=19 checks=21718 failures=0\nRANGE_USABILITY client=forever rapid_edges=135168 hop_sweeps=19 checks=43436 failures=0\nRANGE_USABILITY client=classic_era rapid_edges=135168 hop_sweeps=19 checks=65154 failures=0\nRANGE_USABILITY client=classic_anniversary rapid_edges=135168 hop_sweeps=19 checks=86872 failures=0\nRANGE_USABILITY SUMMARY checks=86872 failures=0 modeled_edges=540672 native_VM_pixels_FPS=NOT_RUN\n"
+      },
+      {
+        "path": "tests/mouseover_native.lua",
+        "exit": 0,
+        "output": "native mouseover: 4984 checks passed; native taint/visual/input/FPS pending\n"
+      },
+      {
+        "path": "tests/bars_hotkey_range.lua",
+        "exit": 0,
+        "output": "Bar hotkey range: 951 checks PASS; actual range/event/hotkey Lua owners, FontString sink modeled; native glyph pixels pending\n"
+      },
+      {
+        "path": "tests/hotkey_range_glyphs.lua",
+        "exit": 0,
+        "output": "Hotkey range glyphs: 1144 checks PASS; four actual consumers; native GPU tint pending\n"
+      },
+      {
+        "path": "tests/badge_page_owners.lua",
+        "exit": 0,
+        "output": "Badge page ownership: 510 checks PASS; shared slot <=2 columns/6 stacks/18 faces; no new polling\n"
+      },
+      {
+        "path": "tests/bars_native_click_route.lua",
+        "exit": 0,
+        "output": "Native bar click route: 864 checks PASS; full native OnClick/handlers from ../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua; C frame/hardware arbitration and actual casts remain unverified\n"
+      },
+      {
+        "path": "tests/shared_binding_modifiers.lua",
+        "exit": 0,
+        "output": "Shared binding modifier regression: 1651 checks PASS (desktop transport only)\n"
+      },
+      {
+        "path": "tests/bars_modifier_visuals.lua",
+        "exit": 0,
+        "output": "Bar modifier visuals: 21532 checks PASS (actual Lua identity/icon path; native display pending)\n"
+      },
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exit": 0,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 469 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range the cast\n         spell against its own @unit; frame-shared memo; bounded mouseover bursts\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+      },
+      {
+        "path": "tests/ebs_range_work.lua",
+        "exit": 0,
+        "output": "EBS_RANGE_WORK cases=40 checks=295 failures=0 native_FPS_GC_taint=NOT_RUN\n"
+      },
+      {
+        "path": "tests/binding_hover_modifier_routes.lua",
+        "exit": 0,
+        "output": "PASS binding hover modifier routes: 547 checks (native dispatch/taint unverified)\n"
+      }
+    ],
+    "syntaxFiles": 1104,
+    "syntaxFailures": [],
+    "sourceStable": true,
+    "changedDuringRun": []
+  },
+  "fullSweep": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\cast-range-final-full.json",
+    "pass": 413,
+    "fail": 2,
+    "syntaxFiles": 1104,
+    "syntaxFailures": [],
+    "sourceStable": true,
+    "changedDuringRun": [],
+    "failures": [
+      {
+        "path": "tests/mouseover_native.lua",
+        "exit": 1,
+        "wallSeconds": 0.0147,
+        "output": "lua: tests\\mouseover_native.lua:3: live range respects held native modifier\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\mouseover_native.lua:3: in local 'check'\n\ttests\\mouseover_native.lua:265: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "path": "tests/unit_portrait_combat_restore.lua",
+        "exit": 1,
+        "wallSeconds": 0.0133,
+        "output": "lua: actual-portrait-combat-restore:126: attempt to call a nil value (global 'GetUnitClassColor')\nstack traceback:\n\tactual-portrait-combat-restore:126: in upvalue 'ApplyNormalPortraitChrome'\n\tactual-portrait-combat-restore:197: in field 'UpdatePortraitCombatTint'\n\ttests\\unit_portrait_combat_restore.lua:46: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "afterSweep": "Native mouseover fixture now supplies current action identity and passes 4984; final stopmacro correction passes 66. Final 14-script scoped run and 1104 syntax stable. Unrelated portrait mock still lacks GetUnitClassColor. No second full sweep claimed.",
+    "deltasAfterFull": [
+      "ExtraButtonSystem/Engine/Action.lua",
+      "tests/cast_range_macro.lua",
+      "tests/mouseover_native.lua"
+    ]
+  },
+  "native": {
+    "reportedClient": "Forever 1.60.1.70938 from earlier source/client evidence; no fresh build probe",
+    "userTest": "After reload: selected enemy out of Frostbolt range plus nearby friendly UF hover; expected enemy controls red and clears in range.",
+    "userResponse": "Yes\u2014Frostbolt follows the enemy\u2019s range",
+    "result": "PASS for reported native unbound Frostbolt button1 case; broader client/macro/badge/controller/taint/FPS not inferred.",
+    "input": "User performed reproduction. Agent used no foreground/mouse/keyboard/clipboard/native profiling control."
+  },
+  "performance": {
+    "rawDirectory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\cast-range-counter-audit",
+    "baseline": "Friendly-hover Frostbolt probes mouseover and clears red incorrectly",
+    "candidate": "Friendly-hover Frostbolt probes hostile selected target and is red correctly",
+    "sameFrameSharing": "One actual distance probe across 1 or10 same-frame repeated paints; shared memo preserved.",
+    "additionalClassification": "Native action classifiers stay live: 2 per UpdateRange;20 for10 repeats. Legacy standalone classification:2 total for10 repeats from existing private frame cache.",
+    "claim": "Correctness and bounded work only; no native CPU/taint/pixel/controller/FPS improvement certified.",
+    "rawCounters": "baseline/native repeats=1 unit=mouseover red=false actionClass=0 spellClass=0 rangeProbes=1\ncandidate/native repeats=1 unit=target red=true actionClass=2 spellClass=0 rangeProbes=1\nbaseline/native repeats=10 unit=mouseover red=false actionClass=0 spellClass=0 rangeProbes=1\ncandidate/native repeats=10 unit=target red=true actionClass=20 spellClass=0 rangeProbes=1\nbaseline/legacy repeats=1 unit=mouseover red=false actionClass=0 spellClass=0 rangeProbes=1\ncandidate/legacy repeats=1 unit=target red=true actionClass=0 spellClass=2 rangeProbes=1\nbaseline/legacy repeats=10 unit=mouseover red=false actionClass=0 spellClass=0 rangeProbes=1\ncandidate/legacy repeats=10 unit=target red=true actionClass=0 spellClass=2 rangeProbes=1\n"
+  },
+  "primaryEvidence": {
+    "sourcePins": {
+      "Retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "Forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "Classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+    },
+    "nativeUnitSelection": "Installed70938 SecureTemplates:GetModifiedUnit via earlier CASC extraction; native action includeNeutral and friend gates. Local references used by tests are source models, not live C dispatch.",
+    "stopmacro": "Forever Blizzard_ChatFrameBase/Shared/SlashCommands.lua714-717: raw SecureCmdOptionParse truthiness; empty active remainder is truthy.",
+    "sequence": "Source-pinned QueryCastSequence read-only current index/item/spell; no advance/create called. Unknown state yields unknown range.",
+    "olderLocalForeverReference": {
+      "version": "1.60.1.70425",
+      "sourcePathsNormalizedSHA256": {
+        "Blizzard_ChatFrameBase/Shared/CastSequenceManager.lua": "fcfe44fc9a3d35e1117fb905ce21cbe7afa9e395f382ed30292e0136a5de7aa4",
+        "Blizzard_ChatFrameBase/Shared/SlashCommands.lua": "8c59b81deb2d8ccf9cb9687dfacd7ff7e82d1a8a83f8414843a23b8d58819072",
+        "Blizzard_FrameXML/SecureTemplates.lua": "b6e91f1d54f269a8bd66312b368e6fd7706028d366eee0167161ace9004cae23"
+      },
+      "scope": "Read-only source used by desktop model; reported native source70938 audited earlier; do not equate source models with live execution."
+    }
+  },
+  "controller": "Passive range presentation; no focus, action or navigation ownership change. Native controller acceptance pending.",
+  "localization": "No new addon-visible controls, labels or settings. Existing design/direct implementation and user-assisted in-game testing choices retained.",
+  "combinedVerification": {
+    "pass": 414,
+    "fail": 1,
+    "scope": "Combined per-script totals include scoped rerun; unchanged broader rows retain full-sweep identities. Unrelated portrait mock missing GetUnitClassColor remains failed."
+  },
+  "installedComparison": {
+    "checkedAtUTC": "2026-11-15T18:27:03.767029+00:00",
+    "mode": "Read-only hashes; existing watcher; no manual installation copy",
+    "rows": [
+      {
+        "path": "Core/Engine/Range.lua",
+        "candidateNormalizedSHA256": "edf031b1e838f42d51c2518311217c5e5a6173bb31fc745dba97f11d3a1ea971",
+        "foreverNormalizedSHA256": "edf031b1e838f42d51c2518311217c5e5a6173bb31fc745dba97f11d3a1ea971",
+        "matches": true
+      },
+      {
+        "path": "Core/Engine/MouseoverCast.lua",
+        "candidateNormalizedSHA256": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306",
+        "foreverNormalizedSHA256": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306",
+        "matches": true
+      },
+      {
+        "path": "Bars/Paint.lua",
+        "candidateNormalizedSHA256": "a2f62dd6a6cb07e7eeddbd1bed57b1060a04a9f5360519f080e55303b3e256b7",
+        "foreverNormalizedSHA256": "a2f62dd6a6cb07e7eeddbd1bed57b1060a04a9f5360519f080e55303b3e256b7",
+        "matches": true
+      },
+      {
+        "path": "Bars/ProgramFace.lua",
+        "candidateNormalizedSHA256": "71b902f1ec247bd6f701f1826eed0073ba9d5f8e57151aa477e6284386eb88de",
+        "foreverNormalizedSHA256": "71b902f1ec247bd6f701f1826eed0073ba9d5f8e57151aa477e6284386eb88de",
+        "matches": true
+      },
+      {
+        "path": "Bars/BadgeHost.lua",
+        "candidateNormalizedSHA256": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0",
+        "foreverNormalizedSHA256": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0",
+        "matches": true
+      },
+      {
+        "path": "Binding/Core/Apply.lua",
+        "candidateNormalizedSHA256": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3",
+        "foreverNormalizedSHA256": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "candidateNormalizedSHA256": "7e7a07a7fff9ab2b1c0b0aba30eaeb6f6d3cc3a9f30eef6e1afec76a743b93af",
+        "foreverNormalizedSHA256": "7e7a07a7fff9ab2b1c0b0aba30eaeb6f6d3cc3a9f30eef6e1afec76a743b93af",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Paint.lua",
+        "candidateNormalizedSHA256": "808e15ec333509c2172560f23431d0b3583a160bf5ea47c78665b690096a6b44",
+        "foreverNormalizedSHA256": "808e15ec333509c2172560f23431d0b3583a160bf5ea47c78665b690096a6b44",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Range.lua",
+        "candidateNormalizedSHA256": "3a7775f4d626adad917b5f5655419d9eea73d16bbf66c4440eb0270de4af2265",
+        "foreverNormalizedSHA256": "3a7775f4d626adad917b5f5655419d9eea73d16bbf66c4440eb0270de4af2265",
+        "matches": true
+      }
+    ]
+  },
+  "documentationGate": {
+    "referenceBuildExit": 0,
+    "scopedDiffExit": 0,
+    "globalValidationExit": 1,
+    "output": "Documentation validation FAILED:\n- Alias absent from behavioral reference: /fluxborders\n- Recorded verification predates current source: Core/BorderJunctions.lua\n- Recorded verification predates current source: tests/border_junctions.lua\n- Nonportable local link STATUS.md:129: C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/auction-synchronous-skip-audit/seal.json\n- Nonportable local link WORK_LOG.md:137: C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/auction-synchronous-skip-audit/seal.json\n5 issue(s); checker made no edits.\n",
+    "scope": "No task-specific source/link issue; unrelated border source/tests changed again after final scoped capture, /fluxborders docs and inventory absolute audit links belong to concurrent work."
+  },
+  "finalTaskSourceRecheck": {
+    "changed": [],
+    "matchesFinalFocused": true
+  },
+  "independentIntegrationEvidence": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\cast-range-target-regression-evidence.json",
+    "checks": 380,
+    "baselineCounterReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\cast-range-counter-audit\\counters.txt",
+    "additionalMutationControls": "Not completed; not claimed."
+  }
+}

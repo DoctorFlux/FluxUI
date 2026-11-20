@@ -17,7 +17,7 @@ local function source(path)
     return value
 end
 
-local function fixture(mutation, insecure, context, namespaced)
+local function fixture(mutation, insecure, context, namespaced, roster)
     local f = { now = 1, page = 1, form = 0, combat = false, timers = {}, events = {},
         tokens = {}, counts = {}, notifications = {}, layout = 0, applies = 0, swept = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env
@@ -52,6 +52,7 @@ local function fixture(mutation, insecure, context, namespaced)
     flux.Events = { Register = function(event, callback)
         f.events[event] = f.events[event] or {}
         table.insert(f.events[event], callback)
+        return true
     end, IsValid = function() return true end }
     flux.Combat = { InLockdown = function() return f.combat end,
         Defer = function(key, callback) f.pending = f.pending or {}; f.pending[key] = callback end }
@@ -129,7 +130,13 @@ local function fixture(mutation, insecure, context, namespaced)
     B.RequestPaint = function(token) f.tokens[token] = true end
     B.RequestLayout = function() f.layout = f.layout + 1 end
     function f.load(path)
-        local value = source(path)
+        local value
+        if roster and roster.baseline and (path == "Bars/ProgramFace.lua" or path == "Bars/Watch.lua"
+            or path == "ExtraButtonSystem/Engine/Watch.lua") then
+            local file = assert(io.open(roster.baseline .. "/" .. path, "rb"))
+            value = file:read("*a"):gsub("\r\n", "\n")
+            file:close()
+        else value = source(path) end
         if mutation and mutation.path == path then value = mutation.change(value) end
         assert(load(value, "@" .. root .. path, "t", env))("_FluxUI", { Flux = flux })
     end
@@ -176,7 +183,13 @@ local function fixture(mutation, insecure, context, namespaced)
     else
         B.ProgramFace = { Request = function(kind) f.lastKind = kind end }
     end
-    f.load("Bars/Watch.lua"); B.Watch.Start()
+    if roster and (roster.order == "extra-first" or roster.order == "extra-only") then
+        f.load("ExtraButtonSystem/Engine/Watch.lua"); flux.EBS.Watch.Start()
+    end
+    if not roster or roster.order ~= "extra-only" then f.load("Bars/Watch.lua"); B.Watch.Start() end
+    if roster and roster.order == "bars-first" then
+        f.load("ExtraButtonSystem/Engine/Watch.lua"); flux.EBS.Watch.Start()
+    end
     f.load("Bars/Vehicle.lua")
     return f
 end
@@ -409,7 +422,7 @@ local function promotedPages(mutation, insecure, client)
     f.load("Bars/Layout.lua")
     local State, Layout = B.State, B.Layout
     onAction = assert(upvalue(B.Hosts.CreateSurface, "OnActionAttribute"), "real action attribute callback is reachable")
-    local header = { GetAttribute = function(_, name)
+    local header = { GetFrameRef = function() return nil end, GetAttribute = function(_, name)
         if name == "actionpage" then return f.page end
         if name == "state-native" then return tostring(f.page) end
     end }
@@ -442,7 +455,7 @@ local function promotedPages(mutation, insecure, client)
         B.ForEachHost(function(host)
             local body = host.widget:GetAttribute("_childupdate-state")
             check(type(body) == "string", "secure promotion runs the production stored child snippet")
-            env.self, env.message = host.widget, tostring(B.SlotMath.Pack(f.page, f.swap or 0))
+            env.self, env.message, env.control = host.widget, tostring(B.SlotMath.Pack(f.page, f.swap or 0)), header
             f.secureExecuting = true
             assert(load(body, "promoted-child-update", "t", env))()
             f.secureExecuting = false
@@ -519,6 +532,114 @@ for _, client in ipairs({ "live", "classic_era", "classic_anniversary", "classic
     promotedPages(nil, false, client)
 end
 promotedPages(nil, true, "forever")
+
+local function rosterBatch(order, old)
+    local f = fixture(nil, false, "fallback", false, { order = order, baseline = old })
+    local B, env, flux = f.B, f.env, f.flux
+    local pf = B.ProgramFace
+    local host = B.hosts[1].main
+    local sigReads, requests, parses, pending = 0, 0, 0, false
+    local mode = "solo"
+    env.UnitAffectingCombat = function() sigReads = sigReads + 1; return f.combat end
+    env.IsInRaid = function() return mode == "raid" end
+    env.IsInGroup = function() return mode == "party" or mode == "raid" end
+    env.IsResting = function() return f.resting end
+    local parser = assert(loadfile(root .. "tests/support/group_condition_parser.lua"))()({
+        group = function() return mode end,
+        exists = function() return true end,
+        petbattle = function() return false end,
+    })
+    local body = "/cast [group:raid] 103; [group:party] 102; 101"
+    B.SlotProgram = { Get = function(slot) if slot == 1 then return body end end,
+        GetAll = function() return { [1] = body } end }
+    f.extra.MacroBody = body
+    flux.EBS.buttons[#flux.EBS.buttons + 1] = { ActionType = "macrotext", MacroBody = "/cast [mod:shift] 104; 109" }
+    flux.EBS.Action.TranslateMacro = function(button)
+        local options = assert(button.MacroBody:match("/cast%s+(.+)"))
+        button.SpellId = tonumber(parser(options))
+        button.MacroMode = "spell"
+        parses = parses + 1
+    end
+    flux.EBS.Action.TranslateMatching = function(kinds)
+        pf.EachExtraMatching(kinds, flux.EBS.Action.TranslateMacro)
+    end
+    B.Paint.UpdateDisplay = function() end
+    flux.Scheduler = { Request = function(tier, key)
+        if tier == "eval" and key == "flux.cond" then requests = requests + 1; pending = true end
+    end }
+    local function settle()
+        if pending then pending = false; pf.FlushPending({ ["flux.cond"] = true }) end
+    end
+    local function faces(id)
+        check(host.slot == 1 and host._fluxFaceSlot == 1, "group refresh preserves the strip action slot")
+        check(host._fluxFace.SpellId == id and f.extra.SpellId == id, "strip and Extra display the expected macro branch")
+    end
+    pf.SetMinFlushInterval(0.05)
+    pf.InvalidateIndex()
+    pf.Request("combat")
+    settle()
+    faces(101)
+    local handlers = #f.events.GROUP_ROSTER_UPDATE
+    if not old then check(handlers == 1, "both watchers share one registered group callback") end
+
+    for _, scenario in ipairs({
+        { key = "join", states = { "party" }, id = 102 },
+        { key = "convert", states = { "solo", "party", "raid" }, id = 103 },
+        { key = "unchanged", states = { "raid" }, id = 103, skip = true },
+        { key = "return-to-party", states = { "party" }, id = 102 },
+        { key = "leave", states = { "solo" }, id = 101 },
+    }) do
+        f.advance(0.1)
+        f.combat = scenario.key == "leave" -- ordinary protected layout is unavailable
+        sigReads, requests, parses = 0, 0, 0
+        local layout, applies = f.layout, f.applies
+        for _, state in ipairs(scenario.states) do
+            mode = state
+            for _ = 1, 20 do f.emit("GROUP_ROSTER_UPDATE") end
+        end
+        if not old then check(sigReads == 0, "roster burst leaves native conditional sampling to the eval pass") end
+        settle()
+        faces(scenario.id)
+        check(parses == (scenario.skip and 0 or 2), "final group mode parses each indexed surface at most once")
+        check(f.layout == layout and f.applies == applies, "group macro paint uses no layout or secure remapping")
+        if not old then
+            check(sigReads == 1 and requests == 1, "one condition snapshot and eval request for a roster burst")
+        end
+        print(string.format("ROSTER_MACROS order=%s case=%s callbacks=%d snapshots=%d evalRequests=%d parses=%d",
+            order, scenario.key, handlers, sigReads, requests, parses))
+        if scenario.skip then
+            -- A no-change roster should not use up the rate window for a real
+            -- condition change later in the same frame.
+            f.resting = true
+            pf.Request("combat")
+            settle()
+            check(parses == 2, "unchanged roster leaves same-frame combat-family repaint available")
+        end
+    end
+    f.combat = false
+    pf.SetMinFlushInterval(0)
+    flux.Scheduler = nil
+    mode = "party"
+    f.emit("GROUP_ROSTER_UPDATE")
+    faces(102)
+end
+
+local rosterBaseline = os.getenv("FLUX_ROSTER_MACRO_BASELINE")
+for _, order in ipairs({ "bars-first", "extra-first", "extra-only", "bars-only" }) do
+    rosterBatch(order, rosterBaseline)
+end
+do
+    local f = fixture(nil, false, nil, false, { order = "none" })
+    local requests = 0
+    f.B.ProgramFace = nil
+    f.flux.EBS = { buttons = { { ActionType = "macrotext" } }, Action = {
+        RequestMacroDisplay = function() requests = requests + 1 end,
+    } }
+    f.load("ExtraButtonSystem/Engine/Watch.lua"); f.flux.EBS.Watch.Start()
+    f.emit("GROUP_ROSTER_UPDATE")
+    check(requests == 1, "Extra without ProgramFace keeps its own roster refresh")
+end
+
 for _, quiet in ipairs({ true, false }) do
     heldRefresh(nil, "SPELL_UPDATE_ICON", "Icon", quiet)
     heldRefresh(nil, "SPELLS_CHANGED", "Icon", quiet)
@@ -597,8 +718,12 @@ local mutations = {
         end },
     { name = "lost promotion preservation", path = "Bars/Watch.lua", run = promotedPages,
         change = function(src)
-            local n; src, n = src:gsub('if mainHost and %(not mainHost%._fluxPromoted or page >= 11%) then',
-                'if mainHost then', 1)
+            -- Both the existing promotion guard and the shared resolver now
+            -- preserve this invariant. Remove both for the harmful control.
+            local n; src, n = src:gsub('if mainHost and %(not mainHost%._fluxPromoted or page >= 11%) then', 'if mainHost then', 1)
+            assert(n == 1)
+            src, n = src:gsub('State%.ResolveCurrentSlot and State%.ResolveCurrentSlot%(mainHost, nil, swap%)%s+or State%.GetMainSlot%(col, page%)',
+                'State.GetMainSlot(col, page)', 1)
             assert(n == 1); return src
         end },
     { name = "lost secure promotion takeover", path = "Bars/State.lua", run = promotedPages,
@@ -613,8 +738,8 @@ local mutations = {
         end },
     { name = "lost any-state occupancy", path = "Bars/Layout.lua", run = promotedPages,
         change = function(src)
-            local n; src, n = src:gsub('if not expanding and not Layout%.HasContentInAnyState%(column%) then',
-                'if not expanding and not Layout.HasContentOnMain(column) then', 1)
+            local n; src, n = src:gsub('not Layout%.HasContentInAnyState%(column%) then',
+                'not Layout.HasContentOnMain(column) then', 1)
             assert(n == 1); return src
         end },
     { name = "lost fallback promotion", path = "Bars/State.lua", run = function(m) promotedPages(m, true, "forever") end,
@@ -661,4 +786,4 @@ end
 print("bars refresh: " .. checks .. " checks passed; " .. #mutations .. " production mutations rejected")
 return { pagePromotion = true, formBurstLanes = true, formSettleLanes = true, contextBurst = true,
     contextSettle = true, sharedExtraRefresh = true, iconEvents = true, vehicleLanes = true,
-    mixedDirtyLanes = true, emptyMainHotkey = true, mutationChecks = #mutations }
+    mixedDirtyLanes = true, emptyMainHotkey = true, rosterMacroBatch = true, mutationChecks = #mutations }

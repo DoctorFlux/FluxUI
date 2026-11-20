@@ -1,5 +1,247 @@
 # Baseline protocol and currency evidence
 
+15 November 01:56 CET R6 follow-up (`LHO-CAST-NATIVE-R6-20261115`):
+current Forever raw Cast callback attribution and highest-Food6129 cancel/completion
+observations PASS. One30.003s window recorded17 valid callbacks,24.890500ms total
+and6.407100ms max; three INTERRUPTED callbacks account for17.5991ms. Aggregate
+bag quantity164->174 is a snapshot delta, with no item-ID attribution. R5 used a
+different observer/UI and one cancel; its10.0534ms maximum cannot establish a
+native gain against R6. Matched desktop improvement remains separate.
+Exact handler/owner restoration, C5nil and unchanged0/true/120/30 preferences
+confirmed; no_jump released and the external jump helper remains active. Current
+390scripts/1078syntax source identities still match. LHO-01–13 stays ACTIVE;
+matched native CPU/FPS, channels/pet, all-client taint/pixels/controller and full
+workflow acceptance remain pending. No agent commerce or queue action.
+[Dated native evidence and comparison limits](validation/casting-equality-work-2026-11-15.json).
+
+15 November 01:13:03 CET (00:13:03 UTC),
+`LHO-BANK-EFFECTIVE-VISIBILITY-20261115`: native BankPanel fallback now requires
+IsVisible rather than its own IsShown bit. This intentionally fixes false bank
+access from a shown but invisible panel. Only those two tokens in Init changed
+69ee82e1->02fcf9ee; durable bank regressionff3d3e8f added. Native PIM/BankFrame,
+event latches, cached/live Baganator priority, warm data, true live zero, error
+behavior and original throttle/refresh cadence remain.
+
+Three exact-source pairs each pass 3,285 checks/340 gate scenarios, including
+430 actual restock-consumer checks across five family models and two providers;
+baseline fails 625 checks. Six compiled harmful controls and 11 focused fixtures
+are retained; independent review PASS. Twenty spaced hidden-panel modeled queries
+reduce capacity probes20->0, item-info probes1,920->0 and item-ID probes2,560->0.
+This is conditional query/callback work, with no unconditional polling or native
+CPU/FPS claim. Full **390 scripts / 1,078 syntax checks PASS**, all Lua stable.
+
+Guarded idle bundle reload began 00:22:04 UTC / 01:22:04 CET. Loading then world
+was observed in the same Forever70938/16001 PID40032/window7995860; foreground
+unchanged. The specific native bug now PASSES: IsBankOpen=false/IsBankLive=false
+with the same BankPanel shown=true/visible=false, sourceSyndicator/readytrue.
+The runtime parent chain was not queried; pinned XML supports the source model.
+C5 global absent; Cast OnEvent function and public same-ID matcher ready. Actual
+after-Cast casts/performance remain pending. Profilertrue/scriptProfile0/caps120/30
+unchanged. Earlier pre-candidate raw cast10.0534ms maximum remains separate.
+
+A modern provider cached row has item1101 quantity1; canonical snapshot count=nil
+at generation739, and successful native C_Item3/4/5-argument calls return carried0/
+includeBank0 through the same global/C backend. This does not establish physical
+absence, aggregate bank totals or native cold-zero authority. After reload the
+count is nil/generation1; this is no data fix. Syndicator cold-close/stale-mail
+races remain. Closed-mailbox cached0/0 proves neither emptiness nor freshness;
+the user-populated100-mail measure-first gate stays open.
+
+Fresh 2,830-file external source/history checkpoint and 126 settings metadata
+preceded edit; 1,077 other Lua/1,840 other non-doc files and 41 Syndicator files
+unchanged. Twenty identities across four owners/five installs match read-only;
+no manual sync. Full LHO-01–13 remains ACTIVE: count/provider authority, native
+whole workflows/after-Cast completion/channels/pet, all clients, taint/pixels/
+controller and matched FPS remain pending. Preserve the first NEXT_SESSION jump
+helper paragraph; external helper still runs under its existing stop/lock rules.
+No item, mail, purchase/sale/delete, queue or preference action by this slice.
+[Exact sources, native scope and remaining acceptance](validation/bank-effective-visibility-2026-11-15.json).
+
+15 November 00:54:09 CET (14 November 23:54:09 UTC),
+`LHO-CAST-EQUALITY-20261115`: ButtonFX spell matching reuses private protected
+comparison helpers. Public/getter/native/paint calls, repeated interrupt/reticle
+handling, progress/fades and event/update cadence remain. Cast98458939 becomes
+773cd852; durable equality regression180c5b16 added. Exact-source tests and two
+independent reviews preceded application; **389 scripts / 1,077 syntax checks
+PASS**, with all normalized Lua identities stable.
+
+Five fresh-process unwrapped desktop pairs over 200 modeled sequences reduce
+median CPU 377->306 ms and transient GC-stopped allocation 50,961.934->3,919.746 KiB;
+independent three pairs reproduce 377->305 ms. The 60-entry/57-added-face fixture
+is synthetic. Protected equality callback identities per interrupt 509->1 while
+all 509 comparisons and other measured work remain. Existing 10,075 plus new
+1,043 checks pass across five models; exact baseline and two compiled harmful
+controls are rejected. Initial failed fixture and preliminary wrapped samples
+are retained. These measurements establish no native CPU, memory, taint or FPS gain.
+
+Before-candidate Forever70938/16001 confirmed highest Food6129 active then
+canceled before completion. Raw 30.009 s observation: 11 callbacks, 24.654100 ms
+total, 10.053400 ms max; START1/STOP1/FAILED0/INTERRUPTED3/SUCCEEDED0 plus six
+other callbacks. Per-event/unit CPU is unproven. Exact script/global cleanup and
+unchanged profiler preferences confirmed. Candidate773 native NOT RUN; no agent
+reload since C1. No native success/completion or old/new gain is inferred.
+
+Fresh 2,828-file external source/history checkpoint and 126 settings metadata
+preceded application; 1,076 other Lua/1,839 other non-doc files and 41 Syndicator
+files unchanged. Fifteen source copies match read-only across five installs;
+no manual sync. New bank context shows hidden BankPanel shown=true/visible=false
+while native banker flags=false; modern bank tabs are active. External regression
+is underway; no bank fix yet. Closed-mailbox cached0/0 proves no freshness or
+emptiness; the user-populated100-mail measure-first gate remains. City crafting
+is incidental context.
+
+Full LHO-01–13 goal stays ACTIVE: native after-candidate cast completion/channels/
+pet, provider-off/all-client whole workflows, bank/mail authority/readiness,
+taint/pixels/controller and matched FPS remain. The 35-command cost-breakdown
+probe is external only, not installed. Preserve the NEXT_SESSION jump-helper
+opening and stop owned helpers on CANCEL/JUMP_STOP before pause/done. No item,
+queue, profiler preference, publication or manual sync action by this slice.
+[Exact sources, raw samples and remaining acceptance](validation/casting-equality-work-2026-11-15.json).
+
+15 November `LHO-REAGENT-NAME-LOWER-20261115`: primitive-string reagent-name
+normalization computes one lowercase key per RememberItemName call. All harvests/
+native-name reads, blacklist/history/aliases, non-string side effects, features,
+look, grids/bridge integration and update cadence remain. Intrinsic lower calls
+7663->2581 per20-row/121-ID desktop rebuild. Three matched pairs give30-rebuild
+CPU medians77->62ms provider-off and82->64ms simulated-on; allocation unchanged.
+These are desktop measurements, with no native FPS claim.
+
+One runtime owner plus durable name-work test changed. Initial full gate387PASS/
+1FAIL/1076syntax exposed an old extracted fixture's missing private blacklist
+table; two local dependencies were added without changing its authority oracle
+or work bounds. Current/prior-C1 fixture passes and C0 remains rejected.
+Final388scripts/1076syntax PASS with exact stable manifest. Durable146checks/
+32owner-cases/5work-cases and3controls plus independent1121checks/15scenarios/
+89arbitrary names pass. Final fixture SHAde6b7759 is recorded in the report.
+
+Fresh2826-file source/history checkpoint+126settings metadata preceded edit;
+external Syndicator41files and all assets/options/defaults/licenses remain.
+Earlier C1 native51-ID22464->10800byte query result is distinct retained evidence.
+Native after-lower NOT RUN; latest reload predates this change. Actual casting
+and whole restock/pending/auction/crafting/vendor/bank/mail/loot/receive/bag/grid
+before-after, provider-off and all-client native acceptance stay pending.
+City crafting is incidental; no item-specific test or forced action.
+
+External user-requested180second jump helper stays separate from passive
+evidence; preserve its NEXT_SESSION top instructions. Stop helper/owned workers
+on resume4/CANCEL or native/JUMP_STOP before pause/done; native/no_jump excludes
+cast captures. No raw cast probe installed. No purchase/sale/delete or queue
+action, profiler preference change, publication or manual sync by this change.
+[Exact sources, measurements, fixture correction and remaining work](validation/reagent-name-lower-work-2026-11-15.json).
+
+14 November `LHO-FRESH-IDS-20261114`: full lag goal resumed and ACTIVE.
+C1 is APPLIED after correcting C0's getter-count and foreign-owner regressions.
+Index fresh ID maps avoid unused item records in SpellReagents harvesting; public
+queries, native-name reads, history, predicates and all refresh cadence remain.
+Only two runtime owners and one durable test changed. Exact-source pairs and two
+independent reviews PASS; full387scripts/1075syntax PASS with stable identities.
+20rows/121IDs desktop allocation494.914->207.477KiB/query (58.1% less);30-call
+CPU medians79->70ms off and76->71ms simulated-on. Empty query adds181bytes;
+all N+1 traversals remain. This does not remove the native40-59ms callback.
+
+Safe conditional idle reload completed; new API readiness confirmed in Forever
+70938/16001. Three same-VM query pairs over51IDs allocate22464->10800bytes
+(51.9% less); exact key sets match. CPU medians0.0608->0.0577ms are close and uncontrolled, so no
+FPS claim. SourceSyndicator; profilertrue/scriptProfile0/caps120/30 unchanged.
+Queries used locals only; no diagnostic global/frame/wrapper/timer remains.
+Fresh2824-file source/history checkpoint+126settings metadata preceded edit;
+other1073Lua and newer tooltip/EBS/unitframe work preserved; Syndicator41files
+unchanged. No publication/manual sync or item/mail/queue actions by agent.
+
+Native whole workflows/provider-off/other clients/actual cast edges and bank/mail
+readiness/populated timing remain. Quick pause uses resume4-20261114T222014Z/CANCEL
+first, then stop owned workers/children; save small delta. Reload only if requested
+on pause. Historical pause3/C0 records below are superseded by this resumption.
+[Exact sources, samples, native scope and next steps](validation/passive-inventory-item-ids-2026-11-14.json).
+
+14 November second RESUMPTION verified: full LHO goal remains ACTIVE.
+Current 384scripts/1072syntax PASS; all Lua stable. Professions748cff40
+now removes private catalogue seen-record allocations with lazy rank/key arrays;
+public rows/references, alias/revocation/rank order, errors, reads and cadence kept.
+New durable e34a52c2:3pairs/3063checks/145scenarios;8compiled bad controls;static
+peer PASS.121-entry desktop allocation23.96→10.11KiB/query;CPU190→183us median,
+overlapping ranges and slower individual samples retained. No native FPS claim.
+Fresh2815-file/history checkpoint+126settingsmetadata precedes edit. Other1071Lua,
+257assets/85options/7defaults/5licenses unchanged;90copiesmatch;Syndicator41unchanged.
+Earlier Craft615d4be and Init69ee82e retained; newer user/group-hover work preserved.
+Native27local-only queries after14:44CET reload measured full-list3.54–4.20ms and
+121-row catalogue0.90–1.08ms/110672bytes;normal cache hits0.001–0.0068ms/0bytes.
+Passive46.593s counters had2Flux ticks>100ms; not callback/FPS attribution.
+Unrelated native bag fallback rebuilds all3kinds in actual-source replay, but is
+needed for immediate pre-provider live zero/refill. No invalidation suppression.
+No watcher installed; saved diagnostic root preservation/coverage gap recorded.
+No reload this pass and no temporary global/frame/hook/watch to clean up. Native
+after-candidate/all-client/input/taint/pixel checks plus bank/mail races/readiness
+and populated-mail latency decision remain. Foreground/background read-only input
+permission retained. Quick pause: resume3-20261114T160712Z/CANCEL +activejob/CANCEL,
+stop owned child first; no automatic reload unless requested. No publication/sync.
+[Current native measurements, source comparisons and remaining work](validation/profession-catalogue-allocation-2026-11-14.json).
+
+14 November COMPLETE PAUSE AGAIN — requested /reload submitted 2026-11-14T14:44:27.872850+01:00.
+Forever40032/window7995860 verified; reload/settings rewrite observed; no focus
+change. No further tests/chat probes after reload. Treat old diagnostics/counters
+as cleared. Resume only on explicit "continue"; original broad goal remains.
+Current Craft615d4be and Init69ee82e are applied;383scripts/1071syntax PASS,
+normalized Lua still matches; final pre-pause docs validation PASS. Preserve newer
+group-hover/input work. All settings/assets/features/cadence remain as recorded.
+Latest explicit user permission allows automatic read-only profiling chat input
+with WoW foreground OR background. Keep focus unchanged and no item/mail/queue or
+profiler-setting actions. Two preflight queries succeeded before this reload:
+70938/interface16001, scriptProfile0, native profiler true, Syndicator; recipes
+5heal/2mana/8bandage. No timing batch/before-after comparison ran yet.
+Both account variants and lazy/memo Craft variants stay external/rejected.
+Bank/mail producer races/native readiness/latency decision remain pending.
+Root/job CANCEL flags set; workers stopped, no active owned child. On continue,
+read exact pause record, inspect current source, intentionally clear owned flags,
+verify fresh client context and re-add diagnostics only if needed. Next native
+slice is short recipe timing plus passive natural cast/item event attribution.
+[Exact pause state, new permission, reload boundary and resume order](validation/lag-hotspots-pause-final-2026-11-14.json).
+
+14 November LHO RESUMED by explicit user instruction; full original scope active.
+Previous client reload13:27CET is retained; old temporary diagnostics are cleared.
+Fresh2,806-file source/history checkpoint +125settings metadata precedes edits.
+Current baseline380scripts/1068syntax PASS. Craft615d4be now removes private
+recipe/effective tuple allocation and hoists the stateless comparator; every live
+query, count/metadata order, fresh output row and existing cache/cadence remains.
+Three source pairs/4020checks/90scenarios,3380 independent mixed-filter assertions,
+8controls and two peer reviews PASS.500recipes/10selections allocate428–508KiB
+less in desktop samples; CPU mixed, no native FPS/retained heap claim.
+Earlier Init69ee82e notification copy fix is included in current full validation.
+Both account shortcuts remain external/rejected:100-character miss query67us
+became123us with guards; no per-bag account rescan existed.
+
+Current whole383scripts/1071syntax PASS, all Lua stable; includes the newer
+group-hover owner's changes, preserved against its own identities. Source guard:
+1065 other Lua/257assets/84other options/7defaults/5licenses unchanged; one binding
+file belongs to that concurrent owner.90 performance-owner copies match read-only;
+external Syndicator41 files unchanged. No publication/manual sync/settings writes.
+User explicitly permits background read-only profiling chat input for this goal.
+Approval issue resolved; foreground/desktop guard still sent0commands. No new
+temporary probe is installed; native timing is pending, not inferred from mocks.
+Quick pause: cancel active child first via recorded CANCEL paths; all long suites
+are cancellable, direct focused tests<=5s. Save delta/interrupt workers; no automatic
+reload on a future pause unless requested. Bank/mail authority and native gaps remain.
+[Current resume state, permission and pause controls](validation/lag-hotspots-resumed-2026-11-14.json).
+
+14 November LHO continuation sealed: five additional runtime owners reduce
+profession scan/output-lookup allocations, warm bulk capacity reads and large AH
+grid repaint work. Fresh2,792-file checkpoint precedes edits. Three paired source
+comparisons/slice;770 profession/capacity checks and13 controls; AH206,520 new
+checks/11,404 geometry checks/17 controls/44 existing scripts; independent reviews
+PASS. Current combined379 scripts/1,067 syntax PASS with every Lua hash stable.
+Original maxN AH native slot pool retained; eager regions paint only on viewport
+visits. Small7/20-row desktop cases add10–40us/refresh and20-row warm allocations
+add44KB/10 refreshes; no extra passive tooltip queries/callbacks or cadence change.
+Source guard:1,057 other Lua/257 assets/85 options/7 defaults/5 licenses unchanged;
+80 cumulative runtime copies match across five installations read-only; external
+Syndicator41 files unchanged. New files need a later reload; disk identity does
+not prove loaded code. Empty-mailbox native observation is separate and unpaired.
+Actual-source closed-bank/stale-mail counterexamples remain unresolved; no bank
+or mail remedy was applied. User requires populated native timing before accepting
+the exceptional mail delay. Broad goal remains active; native whole-workflow FPS,
+other clients, provider-off, pixels/controller/secure-VM acceptance remain pending.
+[Current identities, results and remaining work](validation/lag-hotspots-continuation-2026-11-14.json).
+
 14 November casting/inventory lag (LAG-HOTSPOTS-20261114; LHO-01–13):
 pre-edit 367 scripts/1,055 syntax PASS with unchanged source; external 2,781-file
 source/history checkpoint and 125 settings metadata entries, no private copy.

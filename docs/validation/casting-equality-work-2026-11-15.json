@@ -1,0 +1,1839 @@
+{
+  "changeId": "LHO-CAST-EQUALITY-20261115",
+  "recordedUtc": "2026-11-15T00:07:07.423261+00:00",
+  "status": "APPLIED; exact-source desktop integration 389scripts/1077syntax PASS; native after-candidate NOT RUN; full LHO-01 through LHO-13 goal ACTIVE.",
+  "application": {
+    "appliedUtc": "2026-11-14T23:54:09.948563+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-cast-equality-20261114T234943Z",
+    "files": [
+      {
+        "path": "Core/ButtonFX/Cast.lua",
+        "before": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+        "after": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+      },
+      {
+        "path": "tests/cast_equality_work.lua",
+        "before": null,
+        "after": "180c5b163a86e76c7165462c8e5bf15bb6a8694eba31e42f6ce83592e64ae1b0"
+      }
+    ],
+    "preEditGate": "388scripts/1076currentidentities;5unwrappedmatchedpairs+independent3pairs;10075existing+1043newchecks;compiledbadcontrols+2independentreviews beforeedit",
+    "scope": "Reuse pure protected comparison helpers; allpublic/getter/native/paint calls and eventcadence retained",
+    "nativeBefore": "C5 raw11callbacks/24.6541ms total/max10.0534ms; exactrestore/clear confirmed",
+    "nativeAfter": "Not loaded/certified; no agentreload bythisapply",
+    "complete": true
+  },
+  "sourceBeforeEdit": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-cast-equality-20261114T234943Z",
+    "capturedUtc": "2026-11-14T23:49:50.042144+00:00",
+    "files": 2828,
+    "sourceArchiveSHA256": "2d5963323b4f6642cec2e5e43b4f68cb5fcbd5a20f18bfca961e26ca979d1b51",
+    "historyBundleSHA256": "49d3c072e655e078154cf6c42d1b79cd7699ce3b0bb02d48600c91fb30a064c0",
+    "sourceAndHistoryHashesReverifiedForRecord": true,
+    "historyVerifiedAtCheckpoint": true,
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "settingsMetadataEntries": 126,
+    "privateSettingsCopied": false,
+    "sourceStableThroughout": true,
+    "preEditGate": "388scripts/1076currentidentities;5unwrappedmatchedpairs+independent3pairs;10075existing+1043newchecks;compiledbadcontrols+2independentreviews beforeedit"
+  },
+  "implementation": {
+    "scope": "One runtime owner Core/ButtonFX/Cast.lua; one new durable regression tests/cast_equality_work.lua.",
+    "change": "Reuse parameterized local protected equality and same-number helpers in ButtonFX.SpellIdsMatch. No public matcher removal, lookup caching, event filtering change or scheduling change.",
+    "contract": "EqualSpellValues and SameSpellNumber are stateless private parameterized helpers; pcall protection and existing matcher fallback order remain.",
+    "preserved": "Public matcher/getter/native/paint calls and ordering; error objects and reentry; repeated interruption and reticle clearing; live progress, terminal delay/fades, event/update cadence; features/options/commands/integrations/saved data.",
+    "noNewRuntimeMachinery": "No new events/timers/frames/hooks/polling/persistent cache/settings schema.",
+    "existingOptimizationsRetained": [
+      {
+        "path": "Core/ButtonFX/Cast.lua",
+        "priorEvidence": "lag-hotspots-20261114/casting/dispatch/comparison.json",
+        "priorBeforeSHA256": "5e8a085c46c23e5ac297095188ad816fac5052118e392f5cab5add4ad51319e2",
+        "currentSHA256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+        "scope": "Reusable protected cast event router already avoids per-event router closure."
+      },
+      {
+        "path": "UnitFrames/FluxCastBar.lua",
+        "priorEvidence": "lag-hotspots-20261114/casting/comparison.json",
+        "scope": "Protected castbar helper optimization retained; separate owner and evidence."
+      }
+    ],
+    "rejectedAlternatives": [
+      "Do not remove the second PickSmart call solely because current values match: public PickOwners overrides and dynamic getSpellId callbacks can change between invocations; current test does not prove elimination safe.",
+      "Do not deduplicate INTERRUPTED edges or skip OnReticleClear: repeated real events may deliberately refresh hold/chrome/state. Preserve cadence.",
+      "Do not cache native spell names/ranks/overrides or mutable face snapshots across events; current evidence preserves all reads.",
+      "Do not rewrite EntryOf into new framework/cache without separately proving registration/adoption/foreign ownership and lifetime."
+    ]
+  },
+  "beforeApplicationProof": {
+    "auditStatusAtCapture": "EXTERNAL_CANDIDATE_ONLY_NOT_APPLIED",
+    "auditStatusMeaning": "Audit and two independent reviews were sealed while candidate remained external; application occurred later. Their historical external-only status remains.",
+    "workFixture": {
+      "registryEntries": 60,
+      "addedStripFaces": 57,
+      "columns": 19,
+      "originalFixtureEntries": [
+        "EBS utility101",
+        "other player999",
+        "pet101"
+      ],
+      "familyModels": [
+        "live",
+        "forever",
+        "classic",
+        "classic_era",
+        "classic_anniversary"
+      ],
+      "newEventChecksPerSource": 55,
+      "newPublicErrorChecksPerSource": 13,
+      "durableDispatchChecksPerSource": 10075,
+      "workCountsIdenticalExcept": "Distinct equality callback identities: START180->1, INTERRUPTED509->1;protected equality invocation counts remain180/509.",
+      "getterMetric": "Counts added strip-getter invocations only. Other counters include all matcher/fixture wrappers.",
+      "counterSamples": {
+        "target-start": {
+          "equalityIdentities": 0
+        },
+        "current-no-target": {
+          "equalityIdentities": 0,
+          "protected": 2,
+          "targeting": 1
+        },
+        "start": {
+          "alpha": 60,
+          "base": 116,
+          "equalityIdentities": 180,
+          "equalityProtected": 180,
+          "format": 57,
+          "getter": 62,
+          "host": 1,
+          "match": 64,
+          "name": 172,
+          "nativeCast": 2,
+          "nativeChannel": 1,
+          "override": 117,
+          "paint_ClearReticle": 1,
+          "paint_ForceClear": 1,
+          "paint_PlayCast": 2,
+          "protected": 774,
+          "rank": 56,
+          "shown": 60,
+          "targeting": 1
+        },
+        "stop-active": {
+          "equalityIdentities": 0,
+          "protected": 1
+        },
+        "interrupted-1": {
+          "alpha": 171,
+          "base": 334,
+          "equalityIdentities": 509,
+          "equalityProtected": 509,
+          "getter": 172,
+          "host": 19,
+          "match": 175,
+          "name": 334,
+          "nativeCast": 2,
+          "nativeChannel": 2,
+          "override": 338,
+          "paint_ClearReticle": 59,
+          "paint_PlayInterrupt": 2,
+          "protected": 1706,
+          "shown": 171,
+          "targeting": 1
+        },
+        "interrupted-2": {
+          "alpha": 171,
+          "base": 334,
+          "equalityIdentities": 509,
+          "equalityProtected": 509,
+          "getter": 172,
+          "host": 19,
+          "match": 175,
+          "name": 334,
+          "nativeCast": 2,
+          "nativeChannel": 2,
+          "override": 338,
+          "paint_ClearReticle": 59,
+          "paint_PlayInterrupt": 2,
+          "protected": 1706,
+          "shown": 171,
+          "targeting": 1
+        },
+        "interrupted-3": {
+          "alpha": 171,
+          "base": 334,
+          "equalityIdentities": 509,
+          "equalityProtected": 509,
+          "getter": 172,
+          "host": 19,
+          "match": 175,
+          "name": 334,
+          "nativeCast": 2,
+          "nativeChannel": 2,
+          "override": 338,
+          "paint_ClearReticle": 59,
+          "paint_PlayInterrupt": 2,
+          "protected": 1706,
+          "shown": 171,
+          "targeting": 1
+        },
+        "current-target-empty": {
+          "equalityIdentities": 0,
+          "nativeCast": 1,
+          "nativeChannel": 2,
+          "protected": 5,
+          "targeting": 1
+        },
+        "current-target-owned": {
+          "equalityIdentities": 0,
+          "nativeCast": 1,
+          "nativeChannel": 2,
+          "paint_ClearReticle": 2,
+          "protected": 5,
+          "targeting": 1
+        },
+        "reticle-clear": {
+          "equalityIdentities": 0,
+          "nativeChannel": 1,
+          "override": 1,
+          "paint_ClearReticle": 59,
+          "protected": 4,
+          "targeting": 2
+        },
+        "unit-pet": {
+          "equalityIdentities": 0,
+          "paint_ForceClear": 1
+        }
+      }
+    },
+    "establishedDispatchChecks": 10075,
+    "newDurableChecks": 1043,
+    "clientModels": 5,
+    "durableRuns": {
+      "default-candidate": {
+        "returncode": 0,
+        "terminal": "Cast equality work: 1043 checks PASS; five desktop models; native FPS/taint/pixels NOT RUN",
+        "stdoutSHA256": "8bedfde1fe26e84ed6d4e856636ab3441d7bea91f6fe010782e1800cf87461ed"
+      },
+      "explicit-candidate": {
+        "returncode": 0,
+        "terminal": "Cast equality work: 1043 checks PASS; five desktop models; native FPS/taint/pixels NOT RUN",
+        "stdoutSHA256": "8bedfde1fe26e84ed6d4e856636ab3441d7bea91f6fe010782e1800cf87461ed"
+      },
+      "established-dispatch": {
+        "returncode": 0,
+        "terminal": "Cast dispatch hotspot: 10075 checks PASS; five client models; native FPS/taint/pixels NOT RUN",
+        "stdoutSHA256": "811fbddfd965ea4c3e702d4884530bf1f4a4ef42e9a8d7019cb0b3e92856c11a"
+      }
+    },
+    "controls": {
+      "unchanged-baseline": {
+        "returncode": 1,
+        "stdoutSHA256": "1eeec3f25bbbeb9a2e25137d919837e40e4685ca07e3e0ae74341f0f52f99206"
+      },
+      "extra-anonymous-wrapper": {
+        "returncode": 1,
+        "stdoutSHA256": "1eeec3f25bbbeb9a2e25137d919837e40e4685ca07e3e0ae74341f0f52f99206"
+      },
+      "unprotected-equality": {
+        "returncode": 1,
+        "stdoutSHA256": "1eeec3f25bbbeb9a2e25137d919837e40e4685ca07e3e0ae74341f0f52f99206"
+      }
+    },
+    "controlMeaning": "Exact baseline and extra anonymous wrapper rejected by protected equality callback identity bound; unprotected equality rejected by unchanged protected invocation count. Controls compiled before execution.",
+    "independent": {
+      "status": "PASS",
+      "runtime": "PUC-Rio Lua 5.4.6, desktop only",
+      "returncode": 0,
+      "stdout": "INDEPENDENT|2400 cases|7200 checks|PASS|Lua Lua 5.4\n",
+      "sourceSHA256": {
+        "baseline-Cast.lua": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+        "candidate-equality-Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+      },
+      "review": "No actionable semantic defect found in the scoped equality-helper hoist. Callback bodies now receive private arguments instead of captured locals; no shared call state, new memoization, public matcher replacement, event, timer, or cadence change.",
+      "limitations": [
+        "Measurement uses PUC-Rio Lua 5.4.6, not the WoW runtime. Native allocation sizes, timing and GC behavior can differ.",
+        "57 synthetic strip faces plus established EBS and pet fixtures are not a readout of native registered owner count.",
+        "92.3% allocation reduction applies only to the retained modeled cast sequence with GC stopped; it is not total-addon memory, native CPU or FPS.",
+        "Counters model native calls and overlays; actual metadata lookup cost, secure input, taint, pixels and secret-value argument behavior remain untested.",
+        "Public oracle models secret flags and throwing equality; it cannot manufacture actual WoW secret values.",
+        "Current timing removes pcall, public matcher, native-query and overlay counting wrappers. Pure model leaf getters retain identical inert count calls and are not native APIs."
+      ],
+      "measurementReproductionNoCounterWrappers": {
+        "pairs": [
+          {
+            "baseline": {
+              "stdout": "COST|200-sequences|0.359000000|50961.933593750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.359,
+              "KiB": 50961.93359375
+            },
+            "candidate": {
+              "stdout": "COST|200-sequences|0.302000000|3919.746093750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.302,
+              "KiB": 3919.74609375
+            }
+          },
+          {
+            "candidate": {
+              "stdout": "COST|200-sequences|0.305000000|3919.746093750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.305,
+              "KiB": 3919.74609375
+            },
+            "baseline": {
+              "stdout": "COST|200-sequences|0.386000000|50961.933593750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.386,
+              "KiB": 50961.93359375
+            }
+          },
+          {
+            "baseline": {
+              "stdout": "COST|200-sequences|0.377000000|50961.933593750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.377,
+              "KiB": 50961.93359375
+            },
+            "candidate": {
+              "stdout": "COST|200-sequences|0.312000000|3919.746093750\nCHECKS|1|PASS|desktop only; native CPU/FPS/taint/pixels NOT RUN\n",
+              "seconds": 0.312,
+              "KiB": 3919.74609375
+            }
+          }
+        ],
+        "medians": {
+          "baseline": {
+            "seconds": 0.377,
+            "KiB": 50961.93359375
+          },
+          "candidate": {
+            "seconds": 0.305,
+            "KiB": 3919.74609375
+          }
+        }
+      },
+      "timingWrapperReview": "Inspected work.lua measure make() teardown before warmup: e.pcall=pcallReal; ButtonFX.SpellIdsMatch=originalMatch; UnitCastingInfo/UnitChannelInfo/SpellIsTargeting and all instrumented overlay methods restored. metrics and identities remain nil. Leaf native/metadata model stubs still include inert count calls; no actual native cost is modeled.",
+      "measurementHarness": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\work.lua",
+        "sha256": "6a45cf55df46e7af06ff9714bd186fd1c2e91b3f4898fd8afe0767d95991d31b"
+      }
+    },
+    "durableIndependent": {
+      "status": "PASS",
+      "runtime": "PUC-Rio Lua 5.4.6; desktop only",
+      "review": "No actionable defect found. Whole-source loading with the established utility fixture drives real dispatcher and ownership paths. Callsite-based protected callback identity bounds reject the old and anonymous-wrapper implementations; exact invocation/work counts reject removing protection or cadence. The 55 lifecycle plus 13 public checks remain. No external absolute paths, cancellation checks, timers for diagnostics, or timing benchmark are embedded in the durable test.",
+      "limits": [
+        "Fixed 57-face model work counts preserve this candidate's cadence; future intentional reductions require explicit oracle review.",
+        "Five models are desktop stubs, not native client certification. The source parser uses explicit comparison-owner boundary markers.",
+        "Opaque/error tests model Lua values; actual WoW secrets, taint, pixels and FPS remain pending.",
+        "The broader independent 2400-case/7200-check oracle remains external and is separate evidence."
+      ]
+    },
+    "fixtureAndPreliminaryCorrection": "Initial external CURRENT-target assertion expected an owner without a spell payload or prior reticle; real source correctly did not fabricate one. Revised fixture asserts this then establishes NoteTargeting before testing owned CURRENT targeting. Exact initialfixtureSHA c4601afe was reconstructed/hashverified and failure reproduced in initial-fixture-failed-reproduction.txt. Initial five timing pairs used inactive pcall/matcher/read/paint wrappers (no metrics or identity retention),then were superseded by five fresh pairs after removing those wrappers entirely at root request;preliminary raw files retained under preliminary-*names. No product change."
+  },
+  "desktopBenchmarks": {
+    "runtime": "PUC-Rio Lua 5.4.6, desktop only",
+    "methodAndRawPairs": {
+      "pairs": 5,
+      "freshProcessPerMember": true,
+      "warmupSequences": 8,
+      "sequencesPerSample": 200,
+      "sequence": [
+        "START",
+        "STOP active",
+        "native model kind=nil",
+        "INTERRUPTED three times",
+        "drain pending STOP",
+        "CURRENT with no targeting"
+      ],
+      "counterIdentityRetention": "No equality identity set,pcall count wrapper,matcher count wrapper,native read count wrapper,paint count wrapper or debughook during timing/allocation. Pure synthetic spell/getter stubs still contain inactive counter calls,identical for both sources.",
+      "garbageCollection": "Full collect then GC stopped; allocated bytes represent transient allocation without reclamation, not real retained heap.",
+      "baselineMedianMilliseconds": 377.0,
+      "candidateMedianMilliseconds": 306.0,
+      "baselineMedianKiB": 50961.93359375,
+      "candidateMedianKiB": 3919.74609375,
+      "CPUPercentReduction": 18.832891246684348,
+      "allocationPercentReduction": 92.30848239590595,
+      "rawPairs": [
+        {
+          "baseline": {
+            "seconds": 0.386,
+            "KiB": 50961.93359375,
+            "sequences": 200
+          },
+          "candidate": {
+            "seconds": 0.352,
+            "KiB": 3919.74609375,
+            "sequences": 200
+          }
+        },
+        {
+          "candidate": {
+            "seconds": 0.306,
+            "KiB": 3919.74609375,
+            "sequences": 200
+          },
+          "baseline": {
+            "seconds": 0.369,
+            "KiB": 50961.93359375,
+            "sequences": 200
+          }
+        },
+        {
+          "baseline": {
+            "seconds": 0.371,
+            "KiB": 50961.93359375,
+            "sequences": 200
+          },
+          "candidate": {
+            "seconds": 0.318,
+            "KiB": 3919.74609375,
+            "sequences": 200
+          }
+        },
+        {
+          "candidate": {
+            "seconds": 0.302,
+            "KiB": 3919.74609375,
+            "sequences": 200
+          },
+          "baseline": {
+            "seconds": 0.377,
+            "KiB": 50961.93359375,
+            "sequences": 200
+          }
+        },
+        {
+          "baseline": {
+            "seconds": 0.406,
+            "KiB": 50961.93359375,
+            "sequences": 200
+          },
+          "candidate": {
+            "seconds": 0.305,
+            "KiB": 3919.74609375,
+            "sequences": 200
+          }
+        }
+      ]
+    },
+    "headline": "Five fresh-process unwrapped alternating pairs:200 modeled sequences median377->306ms; transient GC-stopped allocation50961.93359375->3919.74609375KiB. Independent three pairs reproduce377->305ms.",
+    "protectedEqualityIdentityWork": "START180->1; each modeled INTERRUPTED509->1. Protected equality invocation counts180/509 remain, as do all other measured public/getter/native/paint work counts.",
+    "modelSize": "60registry entries including57added synthetic strip faces across19columns; not an observed native owner count.",
+    "limitations": [
+      "Measurement uses PUC-Rio Lua 5.4.6, not the WoW runtime. Native allocation sizes, timing and GC behavior can differ.",
+      "57 synthetic strip faces plus established EBS and pet fixtures are not a readout of native registered owner count.",
+      "92.3% allocation reduction applies only to the retained modeled cast sequence with GC stopped; it is not total-addon memory, native CPU or FPS.",
+      "Counters model native calls and overlays; actual metadata lookup cost, secure input, taint, pixels and secret-value argument behavior remain untested.",
+      "Public oracle models secret flags and throwing equality; it cannot manufacture actual WoW secret values.",
+      "Current timing removes pcall, public matcher, native-query and overlay counting wrappers. Pure model leaf getters retain identical inert count calls and are not native APIs."
+    ],
+    "preliminaryResults": "Initial external CURRENT-target fixture failure reproduced and retained. Earlier inactive-wrapper timing pairs remain preliminary-*; final headline uses later unwrapped pairs only."
+  },
+  "integration": {
+    "final": {
+      "exit": 0,
+      "sourceStableThroughout": true,
+      "scriptsPass": 389,
+      "scriptsFail": 0,
+      "syntaxFiles": 1077,
+      "syntaxFailures": 0,
+      "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+      "cancellable": true
+    },
+    "all1077CurrentNormalizedLuaManifestPathsMatchAtRecord": true,
+    "rawAppliedSourceAndTestHashesMatchAtRecord": true,
+    "newTestNormalizedManifestSHA256": "95716d0cf6d9d30b62a31ce87423ce5293de273434d8632a14a12d3ac0533491",
+    "sourceGuard": {
+      "otherNonDocumentationCheckpointFilesUnchanged": 1839,
+      "capturedUtc": "2026-11-14T23:59:16.622280+00:00",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-cast-equality-20261114T234943Z",
+      "changedRuntime": [
+        "Core/ButtonFX/Cast.lua"
+      ],
+      "updatedFixture": null,
+      "newTests": [
+        "tests/cast_equality_work.lua"
+      ],
+      "otherCheckpointLuaUnchanged": 1076,
+      "exactCurrentFiles": {
+        "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+        "tests/cast_equality_work.lua": "180c5b163a86e76c7165462c8e5bf15bb6a8694eba31e42f6ce83592e64ae1b0"
+      },
+      "preserved": {
+        "assetsXMLTOC": {
+          "files": 252,
+          "allRawHashesMatch": true
+        },
+        "optionsBindings": {
+          "files": 79,
+          "allRawHashesMatch": true
+        },
+        "defaults": {
+          "files": 8,
+          "allRawHashesMatch": true
+        },
+        "licenses": {
+          "files": 3,
+          "allRawHashesMatch": true
+        }
+      },
+      "all1077IntegrationManifestPathsMatch": true,
+      "fullSuite": {
+        "pass": 389,
+        "fail": 0,
+        "syntax": 1077,
+        "syntaxFailures": 0
+      },
+      "externalSyndicator": {
+        "files": 41,
+        "allRawHashesMatch": true,
+        "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\checkpoint-20261114T092731Z",
+        "readOnly": true
+      },
+      "installedCopies": {
+        "_retail_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+        },
+        "_forever_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+        },
+        "_classic_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+        },
+        "_classic_era_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+        },
+        "_anniversary_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9"
+        }
+      },
+      "manualSync": false,
+      "scope": "Disk identities only; no native after-cast-candidate/FPS/taint/pixel claim."
+    }
+  },
+  "nativeBeforeCandidate": {
+    "capturedUtc": "2026-11-15T00:01:03.087356+00:00",
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001,
+      "pid": 40032,
+      "hwnd": 7995860
+    },
+    "sourceBeforeCastOptimization": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+    "scope": "Existing ButtonFX.Cast raw OnEvent only; includes callbackclock/wrapper overhead; excludes delayed50ms andOnUpdate work. No per-eventCPU or unit attribution.",
+    "preflight": "unprotected/nonforbidden Frame; originalfunction; no ownedglobal; stationary/OOC/noactivecast; preferredConjureFood6129",
+    "action": {
+      "spellID": 6129,
+      "rank": 4,
+      "activeReadoutGetTime": 115996.012,
+      "castStartMs": 115995321,
+      "castPlannedEndMs": 115997930,
+      "afterCancelGetTime": 115997.554,
+      "afterCast": null,
+      "visibleResult": "Interrupted",
+      "successObserved": false,
+      "itemDeltaMeasured": false,
+      "noPurchaseSaleDeletion": true
+    },
+    "observation": {
+      "elapsedSeconds": 30.009000000005,
+      "callbacks": 11,
+      "validCallbacks": 11,
+      "totalMilliseconds": 24.654100015759,
+      "maxMilliseconds": 10.053400009871,
+      "fiveEventHistogram": {
+        "START": 1,
+        "STOP": 1,
+        "FAILED": 0,
+        "INTERRUPTED": 3,
+        "SUCCEEDED": 0
+      },
+      "otherCallbacks": 6,
+      "badClock": false
+    },
+    "cleanup": {
+      "exactOwnedCallbackRestored": true,
+      "publicOwnerChainSame": true,
+      "ownedGlobalAbsent": true,
+      "timerEnded": true,
+      "C5FREE": true,
+      "jumpHoldReleased": true
+    },
+    "preferences": {
+      "scriptProfile": "0",
+      "nativeProfilerEnabled": true,
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "source": "syndicator",
+      "agentPreferenceWrites": false
+    },
+    "transcription": "Own profiler labels read from retained private captures; no unrelated chat/GUID/name data copied.",
+    "limits": [
+      "Onecontrolledcast/cancel, notmatchedold/new native andnotanFPSresult.",
+      "Frame mayreceive other registered events/units; histogram does not attribute10.05ms span tooneevent.",
+      "Loaded bytecode nothashed; actualhandler pointer/ownerchecks anddisk hash establishstatedscope.",
+      "No agentreload sinceC1; after-Cast773 native remainsunverified."
+    ],
+    "artifacts": {
+      "cast-r5-preflight-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-preflight-result.png",
+        "sha256": "4bda56a74cee7e4f9b31e778ea3e5507358333b0cbb846636096bbe3c4bd6fdc"
+      },
+      "cast-r5-food-preflight-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-food-preflight-result.png",
+        "sha256": "ee0083fe5a0c46059fd5ea9fd0283d481999deb1a8457d55b1359f210424818a"
+      },
+      "cast-r5-arm-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-arm-result.png",
+        "sha256": "f4b8661d508dcc07edff266cc66245d49ee1b3e1d663bfffe4274035a7c3a24b"
+      },
+      "cast-r5-food-action-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-food-action-result.png",
+        "sha256": "b1dee1663b7a61cfac7e415469323b4bb41809de1505d90f757fdeed3ad6052c"
+      },
+      "cast-r5-summary.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-summary.png",
+        "sha256": "96bec64714fbc4389810c4f46b7207085399bb6e6241b5d026a3f5fc4fa792d2"
+      },
+      "cast-r5-free-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-free-result.png",
+        "sha256": "2814c6e265e5360b23653085aa1710124afe6f2a039afb7ade734cd82784ec9a"
+      },
+      "cast-r5-food-action-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-food-action-submission.json",
+        "sha256": "d3e44df96fe36109c285745acf61f4be7b0d047deaf24cd990640f6a36585301"
+      }
+    }
+  },
+  "nativeAfterCandidate": {
+    "status": "NOT RUN",
+    "candidateSHA256": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+    "reloadBoundary": "No agent reload since C1; changed disk hashes and matching installed copies do not establish loaded candidate bytecode.",
+    "acceptancePending": "Native matched event/unit attribution and before/after CPU/frame time; completion/success, channels, pet and restricted/secure contexts; all-client input/controller, taint, pixels and whole-workflow FPS."
+  },
+  "nativeInventoryContext": {
+    "capturedUtc": "2026-11-15T00:01:03.111970+00:00",
+    "source": "syndicator",
+    "bank": {
+      "InvIsBankOpen": true,
+      "InvIsBankLive": true,
+      "InvIsBaganatorBankLive": false,
+      "baganatorViewShown": false,
+      "baganatorLiveShown": false,
+      "builtinBankOpen": false,
+      "BankFrame": {
+        "IsShown": false,
+        "IsVisible": false
+      },
+      "BankPanel": {
+        "IsShown": true,
+        "IsVisible": false
+      },
+      "nativePIM": {
+        "Banker": false,
+        "CharacterBanker": false,
+        "AccountBanker": false,
+        "Auctioneer": true
+      },
+      "CharacterBankTabsActive": true,
+      "legacyBankType": "table",
+      "modernBankTabsType": "table",
+      "legacyFirstID": "none; notamoderncacheenumeration",
+      "nativeCountAPIsSameFunction": true,
+      "countQueryPerformed": false,
+      "hypothesis": "Hiddenparent BankPanel default shown child reaches canonicalbankfallback; currentphysicalsignalsfalse. Externalwhole-source regression underway, notfixedyet."
+    },
+    "mail": {
+      "nativeFrameShown": false,
+      "cachedSnapshotGeneration": 5,
+      "snapshotByIndexType": "table",
+      "snapshotCountsType": "table",
+      "GetInboxNumItems": [
+        0,
+        0
+      ],
+      "nativeCommandPending": false,
+      "providerReady": true,
+      "providerMailType": "table",
+      "jobGroup": null,
+      "followupKind": "waiting",
+      "limits": "Closedmailboxvalues only; notserverfreshness/actualemptyinbox/100populatedmaillatency. Usermeasure-first gate retained."
+    },
+    "allReadsLocalOnly": true,
+    "noItemsOrSettingsTouched": true,
+    "artifacts": {
+      "bank-r5-readiness-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-readiness-result.png",
+        "sha256": "87a25dfb8fde1519d6d022502d3db23d030e9bc20d75fa42a46553f0f31a0c13"
+      },
+      "bank-r5-gates1-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-gates1-result.png",
+        "sha256": "b4df37bf966eedfa5f499b46b787ba4775286ce66b2ab0458490a36b7229892a"
+      },
+      "bank-r5-gates2-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-gates2-result.png",
+        "sha256": "b341c952f92b19514df681f724215f4163a1c51a5bdacebe3149f101cf177a5e"
+      },
+      "mail-r5-readiness-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r5-readiness-result.png",
+        "sha256": "88c731b963ab59915dadc4167d64eeb69f34318d488238feb5659b5c40bcd051"
+      }
+    }
+  },
+  "inventoryContextLimits": [
+    "Hidden BankPanel IsShown=true/IsVisible=false was observed while native banker flags were false and Auctioneer true. Canonical fallback external regression underway; no inventory fix applied by this slice.",
+    "Modern CharacterBankTabs is active. No first legacy B.CID entry does not enumerate modern bank cache or prove no items; no count query performed.",
+    "Mailbox closed:cached0/0 is not server freshness or proof of an empty inbox. User-populated100-mail measure-first gate and fallback-delay decision remain.",
+    "City crafting is incidental; no item-specific crafting test or material-consuming action by this slice."
+  ],
+  "optionalCostBreakdownProbe": {
+    "status": "EXTERNAL TESTED PLAN ONLY; NOT INSTALLED",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-probe-cost-breakdown\\sealed-plan.json",
+      "sha256": "a259dd48650b6c69a3e55bd69ac41b77f574510f4f8b083439f3647ad7310342"
+    },
+    "setupCommands": 35,
+    "checks": 1119,
+    "cases": 271,
+    "compiledControlsRejected": 12,
+    "scope": "Potential separate event/public-unit aggregates after original callback; existing pre-candidate aggregate supports no per-event/unit attribution. Plan establishes no native measurement."
+  },
+  "goalContinuity": {
+    "status": "ACTIVE; original LHO-01 through LHO-13 retained",
+    "jumpHelper": "NEXT_SESSION opening preserved verbatim:external goal_jump.py process42416/session21056;180-second user request;CANCEL/JUMP_STOP before pause/done;600-second heartbeat;input.lock/no_jump guards;no passive-evidence credit.",
+    "remaining": "Inventory provider readiness/provenance, bank visibility/cold-close and stale-mail authority;populated-mail measurement;pending/restock/crafting/vendor/AH/bag/loot/receive/grid whole workflows;native cast completion/channels/pet;provider-off/all-client secure VM,taint,pixels,controller and matched whole-workflow FPS.",
+    "restrictions": "No purchase/sale/delete or queue action;external Syndicator untouched;guild-bank/void-storage callbacks excluded;no manual sync/publication/commit."
+  },
+  "externalArtifacts": {
+    "cast-event-cost-audit/audit.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\audit.json",
+      "sha256": "cb410f4d9d6610748d18f9ed4ca8436ba68aeb779b0f981920fc548b9721009f"
+    },
+    "cast-event-cost-audit/independent-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\independent-review.json",
+      "sha256": "af368f385192209b9195b4ee350e0eafb3e80cd288a83af5545dea7a2c9432b3"
+    },
+    "cast-event-cost-audit/durable-proof.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\durable-proof.json",
+      "sha256": "3e14d37663422aaa046ef7b88e6427394781cb085ff36464f08fd64ece5b14fb"
+    },
+    "cast-event-cost-audit/durable-independent-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\durable-independent-review.json",
+      "sha256": "de1adbdcbdadf5e5a61169a669d043c95888745a9e16fdea39edfa8acfd50245"
+    },
+    "cast-equality-applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-equality-applied.json",
+      "sha256": "459d7682731d6bc9d02a1f2fe42f4cc25ea3eee86b0f5085a70d6f9286a9b141"
+    },
+    "cast-source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-source-guard.json",
+      "sha256": "9ebf953591e6c6cc40431b8293cb04b301c2ea3da4d7587ad8e879cf0daa98d7"
+    },
+    "cast-integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-integration-full.json",
+      "sha256": "7412350496546b076f12705b8f1a4ad0cb15599668f07db8088bee2f58934f73"
+    },
+    "cast-integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-integration-stability.json",
+      "sha256": "7ae7fde9de636434b5f601ee5fd52bc001de77900f5555980401dc3fede007a4"
+    },
+    "cast-event-cost-audit/comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\comparison.json",
+      "sha256": "12196b60fa10514ae990c14c869b36054b25a835ad94008c3e4326e4bcade18b"
+    },
+    "cast-event-cost-audit/preliminary-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\preliminary-comparison.json",
+      "sha256": "87a39d7905eb8e6051dfa9d64dbc947e93c74ba7e239efc76b18b87079155bc9"
+    },
+    "cast-event-cost-audit/initial-fixture-failed-reproduction.txt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-event-cost-audit\\initial-fixture-failed-reproduction.txt",
+      "sha256": "1ec368abcea816727f68a47ff4e10c57b479508c52eb13b4b0de470dfb4a33c5"
+    },
+    "native/cast-r5-result.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r5-result.json",
+      "sha256": "fa193514ae272eb7e1cb8d60ad70686b44dcb8c5c744621fa4db73ad949489cc"
+    },
+    "native/bank-mail-r5-context.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-mail-r5-context.json",
+      "sha256": "96cbd7f322885e0081696ebe78321627a0a1dc193aafae04883ee91a80d2f68d"
+    },
+    "cast-probe-cost-breakdown/sealed-plan.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-probe-cost-breakdown\\sealed-plan.json",
+      "sha256": "a259dd48650b6c69a3e55bd69ac41b77f574510f4f8b083439f3647ad7310342"
+    }
+  },
+  "recordScope": "Documentation only; copies own structured diagnostic summaries and metrics, never unrelated private chat, account settings or screenshot contents.",
+  "bundleReloadFollowup": {
+    "recordedUtc": "2026-11-15T00:29:53.576098+00:00",
+    "bankEvidence": "docs/validation/bank-effective-visibility-2026-11-15.json",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-context-result.json",
+      "sha256": "543292175302010548a769a75d6889cca64d26bfcc239800682c873a421941c5"
+    },
+    "reloadStartedUtc": "2026-11-15T00:22:04.933001+00:00",
+    "diskCastSHA256": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+    "reloadObserved": "Loading screen thenworld/startup in samePID40032/HWND7995860;foregroundunchanged",
+    "readiness": {
+      "OnEvent": "function",
+      "publicMatcherCallSucceeded": true,
+      "publicMatcherSameIDResult": true
+    },
+    "ownedC5GlobalAbsent": true,
+    "scope": "This supersedes the initial no-agent-reload boundary for bundle readiness only. Actual after-Cast event capture/completion/CPU/FPS/taint/pixels remain NOT RUN; earlier native11callback/10.0534ms maximum is pre-candidate evidence. Initial report source gates and no-reload statements remain historical at their recorded time."
+  },
+  "nativeR6Followup": {
+    "recordedUtc": "2026-11-15T00:56:25.322732+00:00",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\cast-r6-result.json",
+      "sha256": "777168edcf284cf2caa86c4b241cd562d08e4dd3bc3f7a8122e5d90fa0d01204"
+    },
+    "acceptance": "PASS for current raw OnEvent event/unit callback attribution and authorized Food6129 cancel/completion functional observations only.",
+    "supersedesPendingScope": "Earlier nativeAfterCandidate NOT RUN and bundleReloadFollowup pending statements are historical. R6 supplies a current after-load cast/cancel/completion and callback-attribution observation, without a matched native old/new comparison.",
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001,
+      "pid": 40032,
+      "hwnd": 7995860
+    },
+    "source": {
+      "Cast": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+      "InventoryInit": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "reloadStartedUtc": "2026-11-15T00:22:04.933001+00:00",
+      "loadedScope": "Same verified client loading/world/readiness observed, no bytecode hash available"
+    },
+    "scope": "Existing ButtonFX.Cast raw OnEvent inclusive time only; instrumentation clock and wrapper overhead included; delayed50ms work/OnUpdate excluded. Native current cost attribution and functional observations, not matched old/new gain.",
+    "action": {
+      "spellID": 6129,
+      "rank": 4,
+      "castsStarted": 2,
+      "cancelCommand": 1,
+      "completionObserved": 1,
+      "itemSnapshot": {
+        "beforeGeneration": 5,
+        "beforeTotalQuantity": 164,
+        "afterGeneration": 6,
+        "afterTotalQuantity": 174,
+        "afterGetTime": 120270.76,
+        "totalDelta": 10,
+        "scope": "Aggregate snapshot delta following authorized conjure completion; no item-specific attribution or 8-item claim"
+      },
+      "noPurchaseSaleDeletion": true,
+      "craftQueueActions": false
+    },
+    "observation": {
+      "elapsedSeconds": 30.002999999997,
+      "callbacks": 17,
+      "validCallbacks": 17,
+      "totalMilliseconds": 24.890499964356,
+      "maxMilliseconds": 6.4070999920368,
+      "badClock": false,
+      "eventRows": [
+        {
+          "event": "UNIT_SPELLCAST_START",
+          "n": 2,
+          "valid": 2,
+          "sumMilliseconds": 7.1796,
+          "maxMilliseconds": 4.1449
+        },
+        {
+          "event": "UNIT_SPELLCAST_STOP",
+          "n": 2,
+          "valid": 2,
+          "sumMilliseconds": 0.03,
+          "maxMilliseconds": 0.0199
+        },
+        {
+          "event": "UNIT_SPELLCAST_INTERRUPTED",
+          "n": 3,
+          "valid": 3,
+          "sumMilliseconds": 17.5991,
+          "maxMilliseconds": 6.4071
+        },
+        {
+          "event": "UNIT_SPELLCAST_SUCCEEDED",
+          "n": 1,
+          "valid": 1,
+          "sumMilliseconds": 0.0196,
+          "maxMilliseconds": 0.0196
+        },
+        {
+          "event": "CURRENT_SPELL_CAST_CHANGED",
+          "n": 9,
+          "valid": 9,
+          "sumMilliseconds": 0.0622,
+          "maxMilliseconds": 0.0101
+        }
+      ],
+      "unitRows": [
+        {
+          "unit": "player",
+          "n": 8,
+          "valid": 8,
+          "sumMilliseconds": 24.8283,
+          "maxMilliseconds": 6.4071
+        },
+        {
+          "unit": "unknown",
+          "n": 9,
+          "valid": 9,
+          "sumMilliseconds": 0.0622,
+          "maxMilliseconds": 0.0101
+        }
+      ],
+      "failedCount": 0,
+      "detailRounding": "Event and unit rows printed to four decimal places; aggregate recovered independently from own C5 line"
+    },
+    "cleanup": {
+      "exactOwnedCallbackRestored": true,
+      "publicOwnerChainSame": true,
+      "ownerQuerySucceeded": true,
+      "ownerQueryResult": true,
+      "ownedGlobalAbsent": true,
+      "globalAbsentGetTime": 120774.583,
+      "originalHandlerType": "function",
+      "timerEnded": true,
+      "jumpHoldReleased": true
+    },
+    "preferences": {
+      "scriptProfile": "0",
+      "nativeProfilerEnabled": true,
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "agentWrites": false
+    },
+    "comparisonLimits": [
+      "BeforeR5 used a different observer and one cast/cancel, R6 two casts including completion; UI conditions differed after reload. Native max10.0534ms to6.4071ms is NOT a causal improvement result.",
+      "Matched unwrapped desktop allocation/CPU improvement remains separately established; native FPS, taint, pixel parity, channels, pet and other clients remain pending.",
+      "Own C5 summary recovered using bounded read-only history filter; first prefix-only query missed color-formatted message; second plain own-label filter recovered it. No unrelated chat copied into this report.",
+      "Later captures show incidental user crafting/AH activity; no agent purchase, sale, post, queue or deletion action."
+    ],
+    "currentExactSourceGate": {
+      "scriptsPass": 390,
+      "syntaxFiles": 1078,
+      "all1078NormalizedLuaHashesMatchAtFollowup": true
+    },
+    "remaining": "Matched native old/new CPU and frame time/FPS; delayed50ms/OnUpdate work;channels/pet/real restricted contexts;all-client secure VM,taint,pixels,controller and full inventory/commerce/crafting/mail workflows.",
+    "goalStatus": "ACTIVE;LHO-01 through LHO-13 remain. no_jump released and external180second jump helper active under preserved NEXT_SESSION stop/lock/heartbeat rules. Later user crafting/AH captures are incidental; no agent commerce/queue action."
+  },
+  "currentStatusFollowup": {
+    "recordedUtc": "2026-11-15T00:56:25.322732+00:00",
+    "status": "R6 current native callback attribution and Food cancel/completion PASS; matched desktop gain stands separately. Native old/new gain/FPS and remaining full-goal acceptance unverified;goal ACTIVE."
+  },
+  "postNativeDocumentationGate": {
+    "recordedUtc": "2026-11-15T01:01:39.603177+00:00",
+    "status": "PASS",
+    "classifiedSources": 1111,
+    "tocXmlReachable": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17515,
+    "sourceGate": {
+      "files": 1078,
+      "mismatches": 0,
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bankcast-postdocs-source-guard.json",
+      "sha256": "7c68580067c40ac376527ea732946446d34f5883d516da1a42079eeba5c6cf71"
+    },
+    "logs": {
+      "docs-build-bankcastfinal.txt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-build-bankcastfinal.txt",
+        "sha256": "2b18416825ea8c1107b4a0d3e603344e90223ba4690cd90ea03d971cf401b82d"
+      },
+      "docs-validate-bankcastfinal.txt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-bankcastfinal.txt",
+        "sha256": "f091b5bd1610551fc38578c7b51c48cfbf4076a301f11e8af5fdd98a95a86c87"
+      }
+    },
+    "scope": "Documentation and current source identities only; no native compatibility/FPS certification"
+  },
+  "laterCandidateAudit": {
+    "recordedUtc": "2026-11-15T01:05:36.671864+00:00",
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-remaining-work\\audit.json",
+    "sha256": "e484365461d686fd0cadd577e7016001862a0e3952d2e1fd8e64e51ab964892e",
+    "status": "READ ONLY; no further product edit",
+    "scope": "Cast LiveCastName hoist rejected:728bytes/sequence with noisyCPU; base spell cache unsafe because specialization affects resolution"
+  },
+  "nativeCancelSameFrameTargetReset": {
+    "id": "LHO-CAST-INTERRUPT-TARGET-RESET-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": {
+      "Core/ButtonFX/Cast.lua": "5902f1bc4363e408ec34faf66ace6aefb8b3f7495c2e1f6e164336b39c21586c",
+      "Core/ButtonFX/Overlay.lua": "f202fe1179311fc998f81dd9d2c7c7775bb210564894dbe4e681fe91c9ecb30d"
+    },
+    "runtimeChanged": false,
+    "setup": "Two actual Conjure Food starts followed immediately by /stopcasting. Both inventory integrations loaded. No interaction panels or other casts were active at setup.",
+    "runs": {
+      "r565": {
+        "samples": [
+          {
+            "event": "start",
+            "ms": 3.28,
+            "ownerPasses": 2,
+            "ownerMs": 3.242,
+            "resets": 0,
+            "resetMs": 0,
+            "interruptPaints": 0
+          },
+          {
+            "event": "stop",
+            "ms": 0.011,
+            "ownerPasses": 0,
+            "ownerMs": 0,
+            "resets": 0,
+            "resetMs": 0,
+            "interruptPaints": 0
+          },
+          {
+            "event": "interrupted",
+            "ms": 6.063,
+            "ownerPasses": 2,
+            "ownerMs": 2.982,
+            "resetMs": 1.945,
+            "resets": 200,
+            "interruptPaints": 0
+          },
+          {
+            "event": "interrupted",
+            "ms": 5.299,
+            "ownerPasses": 2,
+            "ownerMs": 2.601,
+            "resetMs": 1.629,
+            "resets": 200,
+            "interruptPaints": 0
+          },
+          {
+            "event": "interrupted",
+            "ms": 5.419,
+            "ownerPasses": 2,
+            "ownerMs": 2.512,
+            "resetMs": 1.631,
+            "resets": 200,
+            "interruptPaints": 0
+          }
+        ],
+        "wholeWindowPeakFrameMs": 33,
+        "registeredWidgets": 210
+      },
+      "r566": {
+        "samples": [
+          {
+            "event": "interrupted",
+            "ms": 5.478,
+            "ownerPasses": 2,
+            "ownerMs": 2.63,
+            "resetMs": 1.364,
+            "resets": 200,
+            "interruptPaints": 0,
+            "frameTime": 102811.311,
+            "buttonCensus": {
+              "nonNormalReadable": 0,
+              "fluxReticleFlags": 0,
+              "reticleFrames": 200,
+              "shownReticleOrPlayingHighlight": 0,
+              "shownSpellHighlight": 0,
+              "clearReticleMethod": 200,
+              "nativeStopReticleMethod": 200,
+              "failedInspection": 0
+            }
+          },
+          {
+            "event": "interrupted",
+            "ms": 5.257,
+            "ownerPasses": 2,
+            "ownerMs": 2.459,
+            "resetMs": 1.342,
+            "resets": 200,
+            "interruptPaints": 0,
+            "frameTime": 102811.311,
+            "buttonCensus": {
+              "nonNormalReadable": 0,
+              "fluxReticleFlags": 0,
+              "reticleFrames": 200,
+              "shownReticleOrPlayingHighlight": 0,
+              "shownSpellHighlight": 0,
+              "clearReticleMethod": 200,
+              "nativeStopReticleMethod": 200,
+              "failedInspection": 0
+            }
+          },
+          {
+            "event": "interrupted",
+            "ms": 5.17,
+            "ownerPasses": 2,
+            "ownerMs": 2.422,
+            "resetMs": 1.331,
+            "resets": 200,
+            "interruptPaints": 0,
+            "frameTime": 102811.311,
+            "buttonCensus": {
+              "nonNormalReadable": 0,
+              "fluxReticleFlags": 0,
+              "reticleFrames": 200,
+              "shownReticleOrPlayingHighlight": 0,
+              "shownSpellHighlight": 0,
+              "clearReticleMethod": 200,
+              "nativeStopReticleMethod": 200,
+              "failedInspection": 0
+            }
+          }
+        ],
+        "interruptedTotalMs": 15.905,
+        "pickTotalMs": 7.511,
+        "chromeResetTotalMs": 4.037,
+        "wholeWindowPeakFrameMs": 31,
+        "registeredWidgets": 210
+      }
+    },
+    "checks": {
+      "observerRestored": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "leftCasting": false
+    },
+    "limits": "Warm sampled source. Measured spans are inclusive, with wrapper overhead. R566 performs a widget census before each timed reset. The whole-window frame gap includes unrelated work. The test did not begin active target reticles or show a matching interrupt animation. GetTime frame timestamp matched across the three interrupts in R566. Payload identity and native cleanup side effects remain to check before deduplicating.",
+    "next": "Read the exact live stop method and verify a dirty reticle or push case before reducing idle cleanup. Trace exact event payloads before deciding whether duplicate deliveries can share any per-cast work. Retain fresh owner discovery for changing button faces and addon overrides.",
+    "captures": {
+      "r565": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume565_cast_cancel_owner_budget_results.png",
+        "sha256": "5cd335004c3b7b0b8c5084a974681ca15f0b1f1bf4ec6641e1cde8d50887d77d"
+      },
+      "r566": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume566_cast_reticle_shape_results.png",
+        "sha256": "fdef1312ff0f661099a328c7edc57bc2bcdd71e764d8e40fa2c70be5f1ea96aa"
+      },
+      "r565Probe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/565-cast-cancel-owner-budget.lua",
+        "sha256": "0ab33a5e8eba0e99b122049cfaff021bb9bde689a5cb9763d2ed2e9db400f32d"
+      },
+      "r566Probe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/566-reticle-reset-native-shape.lua",
+        "sha256": "62819806a7d3e0145233481fa9dccbd7aa32d465d54ea8998c6c33ab6caec408"
+      }
+    },
+    "jump": {
+      "pid": 32412,
+      "intervalSeconds": 180,
+      "loggedPairsAtLastRead": 6,
+      "movementAcknowledged": false
+    }
+  },
+  "ownedIdleReticleCleanup": {
+    "id": "LHO-OWNED-IDLE-RETICLE-CLEANUP-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": {
+      "path": "Core/ButtonFX/Overlay.lua",
+      "beforeSHA256": "f202fe1179311fc998f81dd9d2c7c7775bb210564894dbe4e681fe91c9ecb30d",
+      "firstLoadedSHA256": "a7daa0d77185ca9dc04701f85bf5d36cf24e114baa2736c6e7ae55cefad23c9b",
+      "afterSHA256": "f7892b3afba11a21ec1f6652e41e97b3da1b8253150070d374d17fcb00417e07",
+      "allFiveInstallHashesMatched": true,
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\reticle-cleanup-20261120T014125Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "f202fe1179311fc998f81dd9d2c7c7775bb210564894dbe4e681fe91c9ecb30d",
+        "bundle": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+        "settings": {
+          "_retail_": 2,
+          "_forever_": 3,
+          "_classic_": 2,
+          "_classic_era_": 4,
+          "_anniversary_": 32
+        }
+      }
+    },
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "note": "Source inspection corrected the earlier attribution. Both per-button stop methods are FluxUI's installed stubs in this context. They each call the same native animation Stop and reticle Hide methods.",
+    "comparison": {
+      "r567": {
+        "baseMs": [
+          1.296,
+          1.16,
+          1.141,
+          1.198,
+          1.151,
+          1.172
+        ],
+        "candidateMs": [
+          1.454,
+          1.366,
+          1.298,
+          1.34,
+          1.385,
+          1.329
+        ],
+        "fastHits": 0,
+        "decision": "Rejected IsDone as an idle requirement. None of the already-stopped groups qualified."
+      },
+      "r568": {
+        "baseMs": [
+          1.078,
+          0.987,
+          0.961,
+          0.941,
+          0.948,
+          0.944
+        ],
+        "candidateMs": [
+          0.425,
+          0.388,
+          0.378,
+          0.362,
+          0.366,
+          0.357
+        ],
+        "fastHitsPerPass": 200,
+        "scope": "Prototype used explicit native playing, paused and pending-finish state. This version did not include the local override guards."
+      },
+      "r569": {
+        "baseMs": [
+          1.112,
+          0.977,
+          0.986,
+          0.972,
+          0.97,
+          0.952
+        ],
+        "candidateMs": [
+          0.573,
+          0.521,
+          0.522,
+          0.507,
+          0.513,
+          0.513
+        ],
+        "matchingCandidatesPerPass": 200,
+        "playingAndPausedNativeControls": 2
+      },
+      "r571": {
+        "startAndStopObserved": true,
+        "interrupts": 3,
+        "resets": [
+          200,
+          200,
+          200
+        ],
+        "ownerPasses": [
+          2,
+          2,
+          2
+        ],
+        "interruptMs": [
+          5.978,
+          4.992,
+          5.211
+        ],
+        "resetMs": [
+          1.932,
+          1.604,
+          1.665
+        ],
+        "noLuaErrors": true,
+        "scope": "The first loaded implementation had nearly flat end-to-end reset spans in one cancel compared with R565."
+      },
+      "r572": {
+        "baseMs": [
+          1.089,
+          0.947,
+          0.944,
+          0.98,
+          0.962,
+          0.969
+        ],
+        "loadedMs": [
+          1.01,
+          0.936,
+          0.925,
+          0.927,
+          0.978,
+          0.936
+        ],
+        "baseMedianMs": 0.9655,
+        "loadedMedianMs": 0.936,
+        "sameOwnedStopMethods": 200,
+        "idleReticles": 200
+      },
+      "r573": {
+        "sameCallbackPerButton": 200,
+        "eligible": 200,
+        "successfulStopAndHideAcrossFourPasses": 800,
+        "matchingRawFrameAndAnimationIdentitiesAcrossFourPasses": 800,
+        "scope": "External native guard probe was faster than the first loaded routine. The reason for the initial candidate-to-loaded difference was not established."
+      },
+      "r574": {
+        "enumerated": 210,
+        "sameStopAcrossAll": 210,
+        "confirmedIdle": 210,
+        "successfulInitialStops": 210,
+        "unchangedReticleIdentitiesAndFlags": 210,
+        "stayedIdle": 210
+      },
+      "r576": {
+        "baseMs": [
+          1.076,
+          0.988,
+          0.979,
+          0.943,
+          0.945,
+          0.941
+        ],
+        "loadedMs": [
+          0.977,
+          0.962,
+          0.886,
+          0.88,
+          0.882,
+          0.887
+        ],
+        "baseMedianMs": 0.962,
+        "loadedMedianMs": 0.8865,
+        "pairs": 6,
+        "widgetsPerPair": 200,
+        "fasterPairs": 6,
+        "sharedStopMethods": 200,
+        "idleBeforeReset": 200,
+        "activeFlagsBeforeReset": 0,
+        "newLuaErrors": 0,
+        "bagGenerationStable": true,
+        "observerRestored": true
+      },
+      "r577": {
+        "nativeCases": [
+          "action bar playing",
+          "action bar paused",
+          "Extra Button playing",
+          "Extra Button paused"
+        ],
+        "allCleared": true,
+        "restoredHidden": true,
+        "newLuaErrors": 0,
+        "bagGenerationStable": true
+      }
+    },
+    "limits": "The main paired comparison profiled only the reticle cleanup function on actual live buttons. The baseline invokes the former stop sequence on the same current data. A repeatable whole-cancel or FPS improvement has not been demonstrated. Owner selection remains the larger measured cost. Active combat, protected Retail rendering, other client profiles and pet reticles still need native verification.",
+    "sourceReference": "https://raw.githubusercontent.com/Gethe/wow-ui-source/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleAnimGroupAPIDocumentation.lua",
+    "regressions": {
+      "lua54Scripts": 8,
+      "sourceSyntaxLua51": 5,
+      "sourceSyntaxLua54": 5,
+      "existingTests": [
+        "bars_contract_regression",
+        "passive_core_optimization",
+        "buttonfx_paint_recovery",
+        "cast_dispatch_hotspot_work",
+        "cast_hotspot_work",
+        "cast_equality_work",
+        "utility_modifier_vfx",
+        "cast_slot_pass_lifecycle"
+      ]
+    },
+    "captures": {
+      "r567": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume567_reticle_stop_pairs_native_results.png",
+        "sha256": "d58dd92c360a12134fb57afd56f3ab0f02ac54e54ed35a492dcdfb4c03ab32c2"
+      },
+      "r568": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume568_reticle_stopped_pairs_native_results.png",
+        "sha256": "ecee1dd606f76f7d3bcff5293bd49bfb8ca9739bc6aa51958ab7269de78e4af1"
+      },
+      "r569": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume569_reticle_ownership_native_results.png",
+        "sha256": "e100f5f6146968b0e0d939178defab9b6e2ea2c5e8f5a6ec2ff5c22e8ff8afb5"
+      },
+      "r571": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume571_loaded_reticle_cancel_results.png",
+        "sha256": "782ac802cdf734c176d5b3124c6157a1f68347b1ddb650cf34f2a9c5da48ba1f"
+      },
+      "r572": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume572_loaded_reticle_direct_pairs_results.png",
+        "sha256": "f7fd867ceeb662b0803e397574776bae56a96cdeee1c762df9ccc2c4c9ddd163"
+      },
+      "r573": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume573_loaded_reticle_gates_results.png",
+        "sha256": "e434eb0e3e35c924e940b29decf50e69bc2030b5acff216109a66ad8da1f9b93"
+      },
+      "r574": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag574_a-submitted.png",
+        "sha256": "2ee0f011a2705c2100b8107e8cedc35ddef9300749e2f11643ae3ec40626adea"
+      },
+      "r575": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag575_a-submitted.png",
+        "sha256": "26dd2a2ed0788fbb4bfc1782e806df9f3476f1b0bf05f9e85b62d64473869b3a"
+      },
+      "r576": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume576_final_reticle_pairs_results.png",
+        "sha256": "fd3d167dc6c2301b406a2c83f235d66582def2a82f28b537ddc422b635510d9c"
+      },
+      "r577": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag577_a-submitted.png",
+        "sha256": "7ee8f1a42d5d077edc2721fae2358101c7caf130d9aa69a664050f0125815b4b"
+      }
+    },
+    "jump": {
+      "cue": "R80",
+      "supervisorPid": 36176,
+      "pid": 12576,
+      "intervalSeconds": 180,
+      "movementAcknowledged": false
+    }
+  },
+  "positionalCastPayloadAndNativeReceipt": {
+    "id": "LHO-CAST-POSITIONAL-PAYLOAD-20261120",
+    "date": "2026-11-20",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "source": {
+      "path": "Core/ButtonFX/Cast.lua",
+      "beforeSHA256": "5902f1bc4363e408ec34faf66ace6aefb8b3f7495c2e1f6e164336b39c21586c",
+      "afterSHA256": "9e4df7a0b51b90eb490838f893aee5eca7a563357a33e733298f46d5a3f7130b",
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-payload-20261120T022307Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "5902f1bc4363e408ec34faf66ace6aefb8b3f7495c2e1f6e164336b39c21586c",
+        "bundle": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+        "settings": {
+          "_retail_": 2,
+          "_forever_": 3,
+          "_classic_": 2,
+          "_classic_era_": 4,
+          "_anniversary_": 32
+        }
+      },
+      "allFiveInstalledHashesMatched": true
+    },
+    "contract": {
+      "reference": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua#L4741",
+      "generatedDeclares": [
+        "unitTarget",
+        "castGUID",
+        "spellID",
+        "interruptedBy",
+        "castBarID"
+      ],
+      "declarationsChecked": [
+        "Retail",
+        "Forever",
+        "Classic progression"
+      ],
+      "scope": "Readable Cast-prefixed GUID and positive numerical spell ID use the positional payload. Legacy spell-name and rank cases retain the previous decoder. Trailing cast-bar fields and interrupter actor IDs are not spell identity. Boolean scanning is only needed for empowerment completion."
+    },
+    "regression": {
+      "before": "Fails when a different positive number trails spell 101 in a recognized modern payload",
+      "after": "10,095 dispatch checks pass, including 20 new assertions for the numeric trailing field, interruption actor, finish and legacy spell rank across five families",
+      "lua54Scripts": 9,
+      "lua51InstalledSyntax": 5,
+      "lua54InstalledSyntax": 5
+    },
+    "baseline": {
+      "run": "R578",
+      "firstTwoLeasesStoppedBeforeInput": true,
+      "delivered": {
+        "start": [
+          "guid1",
+          6129,
+          "str2"
+        ],
+        "stop": [
+          "guid1",
+          6129,
+          "str2"
+        ],
+        "interruptPayload": [
+          "guid1",
+          6129,
+          null,
+          null
+        ],
+        "interruptRepeats": 3,
+        "interruptFrame": 105893.193
+      },
+      "interruptHandlerMs": [
+        5.877,
+        4.877,
+        4.559
+      ],
+      "spellIDComparisonsPerInterrupt": 117,
+      "overrideGetterCallsPerInterrupt": 250,
+      "baseGetterCallsPerInterrupt": 234,
+      "nameGetterCallsPerInterrupt": 234,
+      "emptyOwnerPassesPerInterrupt": 2,
+      "bagGenerationStable": true,
+      "allObserversRestored": true,
+      "newLuaErrors": 0
+    },
+    "loadedCancel": {
+      "run": "R580 following reload R579",
+      "deliveries": 5,
+      "sameCastAndSpellForAllInterrupts": true,
+      "spellID": 6129,
+      "interruptFrame": 106433.845,
+      "interrupts": 3,
+      "interruptHandlerMs": [
+        5.39,
+        4.927,
+        4.688
+      ],
+      "spellIDComparisonsPerInterrupt": 117,
+      "overrideGetterCallsPerInterrupt": 250,
+      "baseGetterCallsPerInterrupt": 234,
+      "nameGetterCallsPerInterrupt": 234,
+      "emptyOwnerPassesPerInterrupt": 2,
+      "newLuaErrors": 0,
+      "bagGenerationStable": true,
+      "allObserversRestored": true
+    },
+    "loadedCompletion": {
+      "run": "R581",
+      "events": [
+        {
+          "event": "start",
+          "spellID": 6129,
+          "ms": 3.006
+        },
+        {
+          "event": "success",
+          "spellID": 6129,
+          "ms": 0.015
+        },
+        {
+          "event": "stop",
+          "spellID": 6129,
+          "ms": 0.007
+        }
+      ],
+      "beforeNativeCount": 42,
+      "afterNativeCount": 56,
+      "beforeFluxCount": 42,
+      "afterFluxCount": 56,
+      "itemID": 1487,
+      "itemsRetained": 14,
+      "delayedBagUpdates": 1,
+      "bagGenerationBefore": 5,
+      "bagGenerationAfter": 6,
+      "wholeWindowPeakFrameMs": 23,
+      "observerRestored": true,
+      "newLuaErrors": 0
+    },
+    "remaining": "Native cancel samples used nil trailing interrupt fields. Numeric cast-bar ID handling is directly covered by the regression and source contract. User-facing gains cannot be inferred from these unpaired runs with temporary match wrappers. Preserve dynamic owner lookup. The repeated override and base queries remain the larger opportunity. Native checks on restricted Retail and the remaining client/provider matrix remain open.",
+    "captures": {
+      "before": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume578_cast_exact_payload_current_matcher.png",
+        "sha256": "196ab726b983e12bedf66506cd0eb8464aade63a2ea32d8c7325c7c4fb386634"
+      },
+      "afterCancel": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume580_loaded_cast_payload_matcher.png",
+        "sha256": "b725031cc9f8a9eca681cfceda1abe48f84970b3074b9d06b3ff7cabd8057326"
+      },
+      "afterSuccess": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume581_loaded_cast_success_bags.png",
+        "sha256": "f492d3463a7733d2d604bfc2b6929debe86989aa5c84c4055c61f120312f2ad3"
+      },
+      "reload": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag579_a-submitted.png",
+        "sha256": "98fe5817944192cc0b9cee322e4427ca1f8bb943ad0e492ce5d97b10f327d0ff"
+      },
+      "observer": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/578-cast-cancel-payload-matcher.lua",
+        "sha256": "665efec4dc82d563d869753256e08ea1e0d218c4e64fd14f5c5fe1ec441f564d"
+      },
+      "receiptObserver": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/581-loaded-cast-receipt.lua",
+        "sha256": "e17043c5a9671251867a0d5267afb03267ce7043a71571f919d47f2c913518e3"
+      }
+    },
+    "jump": {
+      "cue": "R81",
+      "supervisorPid": 33292,
+      "pid": 20864,
+      "intervalSeconds": 180,
+      "movementAcknowledged": false
+    }
+  },
+  "castMatcherNumericNormalization": {
+    "id": "LHO-CAST-MATCHER-NUMERIC-20261120",
+    "client": {
+      "name": "Forever",
+      "version": "1.60.1",
+      "build": 70959,
+      "interface": 16001,
+      "providers": [
+        "Syndicator",
+        "Baganator"
+      ],
+      "diagnostics": "BugTabs; scoped debugprofilestop, no profiler settings changes"
+    },
+    "source": {
+      "file": "Core/ButtonFX/Cast.lua",
+      "before": "9e4df7a0b51b90eb490838f893aee5eca7a563357a33e733298f46d5a3f7130b",
+      "after": "2babe5a717f244603ef7f94c5b26f989c26f2942c501cd3c3615c0898b4da56b",
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-spell-normalization-20261120T023926Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "9e4df7a0b51b90eb490838f893aee5eca7a563357a33e733298f46d5a3f7130b",
+        "bundle": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+        "settings": {
+          "_retail_": 2,
+          "_forever_": 3,
+          "_classic_": 2,
+          "_classic_era_": 4,
+          "_anniversary_": 32
+        }
+      },
+      "installedCopies": 5,
+      "syntaxPasses": 10
+    },
+    "nativeBefore": {
+      "run": 582,
+      "phase": "real interrupt inputs; candidate helpers before source edit",
+      "comparisons": 117,
+      "positiveMatches": 0,
+      "baselineMs": [
+        1.143,
+        1.076,
+        1.069,
+        1.101,
+        1.071,
+        1.06,
+        1.061,
+        1.056
+      ],
+      "candidateMs": [
+        0.648,
+        0.646,
+        0.648,
+        0.657,
+        0.646,
+        0.636,
+        0.638,
+        0.634
+      ],
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume582_native_matcher_normalization_results.png",
+      "pngSha256": "93c941cc3f26e4f60410d69ed39201d89c9e01ad0bfd370add1738658f6c5692",
+      "probeSha256": "01430ec109ddca3fff091978153cf519fa8aa00fe476a8a15bb2e5424e83395f"
+    },
+    "reload": {
+      "run": 583,
+      "submissionPng": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag583_a-submitted.png",
+      "submissionSha256": "6c640dd152664ce2f12818dd151e2cdd4387793b18e464074fd35ed5fa793c53",
+      "freshStartupPng": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump82_a-source.png",
+      "freshStartupSha256": "5167e59ef8ceb919aef1ae286a402cb6b5ebdf73cc955109e637dd5ca04306a0",
+      "oldHelperPid": 20864,
+      "newHelperPid": 30156,
+      "intervalSeconds": 180
+    },
+    "loaded": {
+      "run": 584,
+      "pairs": 8,
+      "comparisons": 117,
+      "positiveMatches": 0,
+      "observedInterrupts": 1,
+      "baselineMs": [
+        1.155,
+        1.136,
+        1.133,
+        1.111,
+        1.1,
+        1.137,
+        1.094,
+        1.094
+      ],
+      "loadedMs": [
+        0.651,
+        0.758,
+        0.644,
+        0.64,
+        0.652,
+        0.667,
+        0.632,
+        0.636
+      ],
+      "medianBaselineMs": 1.122,
+      "medianLoadedMs": 0.6475,
+      "parity": true,
+      "observersRestored": true,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume584_loaded_cast_normalization_results.png",
+      "pngSha256": "498e939dd71016dc199beb8a02d10fa9b677994b76c37a1d5bf17e36646a1d61",
+      "probeSha256": "cf93030c92d18a9e78e874add5062f11aa5330409f36e75c14d8ede3c0993038"
+    },
+    "regressions": {
+      "cast_equality_work": 1045,
+      "cast_dispatch_hotspot_work": 10095,
+      "utility_modifier_vfx": 1473,
+      "bars_contract_regression": 469,
+      "buttonfx_paint_recovery": 1032,
+      "cast_slot_pass_lifecycle": 329,
+      "cast_live_name_work": 181,
+      "teleport_cast_work": 527,
+      "castbar_active_crafting": 826
+    },
+    "pending": [
+      "Matched whole-interrupt frame spikes and multi-delivery work",
+      "Native positive spell matches and other supported clients"
+    ]
+  },
+  "indexedCastWidgetEntry": {
+    "id": "LHO-CAST-WIDGET-ENTRY-INDEX-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "sourcePath": "Core/ButtonFX/Cast.lua",
+    "beforeSHA256": "2babe5a717f244603ef7f94c5b26f989c26f2942c501cd3c3615c0898b4da56b",
+    "afterSHA256": "5188485bfff696be3d7078568b89f52f78054b9837a1c26b68bed7d0ba6c2ae8",
+    "checkpoint": {
+      "utc": "20261120T050448Z",
+      "sourceSHA256": "2babe5a717f244603ef7f94c5b26f989c26f2942c501cd3c3615c0898b4da56b",
+      "backup": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-widget-entry-index-20261120T050448Z\\Cast.lua.before",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "implementation": "Index the original first entry by exact widget identity on registration. Keep ordered lookup for misses and when a registered widget reports custom or opaque equality. Keep ordered full owner sweeps, events and paints.",
+    "before": {
+      "run": 623,
+      "registered": 195,
+      "observed": 195,
+      "idleEligible": 195,
+      "customEquality": 0,
+      "followExtraCallsPerBatch": 780,
+      "batchMs": [
+        8.69,
+        7.922,
+        7.946,
+        7.972,
+        8.024,
+        7.893
+      ],
+      "medianBatchMs": 7.959,
+      "interruptCallbacks": 3,
+      "interruptMs": [
+        4.726,
+        3.96,
+        3.915
+      ],
+      "targetResetCounts": [
+        185,
+        185,
+        185
+      ],
+      "interruptPlayCalls": 0,
+      "inventoryGenerationStable": true,
+      "observersRestored": true,
+      "newErrors": 0,
+      "castingStopped": true,
+      "proof": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume623_cast_registry_before.png",
+        "sha256": "8de272e727a8982ff53c213994cef96a25a15a75987553d89c8317ed7b55de5a",
+        "probeSHA256": "84d9a3e10a874c487a25b674426e84009c545230d42c04b2386a53e7eb08c12b"
+      }
+    },
+    "after": {
+      "run": 625,
+      "registered": 195,
+      "observed": 195,
+      "idleEligible": 195,
+      "customEquality": 0,
+      "followExtraCallsPerBatch": 780,
+      "batchMs": [
+        5.543,
+        5.175,
+        5.135,
+        5.131,
+        5.126,
+        5.071
+      ],
+      "medianBatchMs": 5.133,
+      "interruptCallbacks": 3,
+      "interruptMs": [
+        4.775,
+        4.009,
+        3.712
+      ],
+      "targetResetCounts": [
+        185,
+        185,
+        185
+      ],
+      "interruptPlayCalls": 0,
+      "inventoryGenerationStable": true,
+      "observersRestored": true,
+      "newErrors": 0,
+      "castingStopped": true,
+      "proof": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume625_cast_registry_after.png",
+        "sha256": "fae9919ba843cd1aa8586991b6dd5b18f53fa52798b4811dc910a12b9a4ecd03",
+        "probeSHA256": "1b16c009d129c81c50b15dd7d5df0971c6284db3130995b6bb3e176d6a09cd3b"
+      }
+    },
+    "reload": {
+      "run": 624,
+      "nonactivatingRestore": {
+        "time": 1795151218.5913265,
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "foregroundBefore": 22742608,
+        "initialIconic": true,
+        "inputSent": false,
+        "focusAPIUsed": false,
+        "cursorOrClipboardUsed": false,
+        "requests": [
+          "SetWindowPos HWND_BOTTOM NOSIZE NOMOVE NOACTIVATE ASYNCWINDOWPOS",
+          "ShowWindowAsync SW_SHOWNOACTIVATE",
+          "SetWindowPos final HWND_BOTTOM NOACTIVATE"
+        ],
+        "status": "restored-background",
+        "finalIconic": false,
+        "finalVisible": true,
+        "foregroundAfter": 22742608,
+        "foregroundUnchanged": true,
+        "finished": 1795151218.7393682
+      },
+      "submittedSHA": "2b823808ee20af668dd3be2311f7d08578f4d8355391c38973ea3d549a488054",
+      "visibleStateSHA": "dc768870944f04d0a7e15f6d4c602aef5df5d4ab519a737c9d733da3c97bc38e"
+    },
+    "keepalive": {
+      "cue": "R90",
+      "pid": 39216,
+      "intervalSeconds": 180,
+      "spacePairsAtMeasurement": 1,
+      "movementAcknowledged": false
+    },
+    "tests": {
+      "existingScripts": 23,
+      "matchingSourceCopies": 5,
+      "lua51And54SyntaxChecks": 10
+    },
+    "remaining": "Visible interrupt owners were absent for Conjure Food on this profile. Both owner selection sweeps remain. Whole cancel speed, frame-time impact, active reticles and other native clients still require evidence."
+  }
+}

@@ -40,10 +40,15 @@ local function query(P, id, character)
     return got
 end
 local file = assert(io.open(source, "rb")); local text = file:read("*a"); file:close()
-local collectLine, mergeLine, rankLine, line = nil, nil, nil, 0
+local collectLines = {}
+local mergeLine, rankLine, line = nil, nil, 0
 for contents in (text .. "\n"):gmatch("(.-)\n") do
     line = line + 1
-    if contents:find("local function collect(basicOnly)", 1, true) or contents:find("local function CollectModernReagentRows(", 1, true) then collectLine = line end
+    if contents:find("local function collect(basicOnly)", 1, true)
+        or contents:find("local function CollectModernReagentRows(", 1, true)
+        or contents:find("local function ExtractModernRecipeData(", 1, true) then
+        collectLines[line] = true
+    end
     if contents:find("local merged = {}; for field, value in pairs(prior)", 1, true) then mergeLine = line end
     if contents:find("local function Rank(", 1, true) or contents:find("local function RecipeCatalogueRank(", 1, true) then rankLine = line end
 end
@@ -54,7 +59,7 @@ local function sample(fn)
         local info = debug.getinfo(2, "fS")
         if not info or info.source:gsub("\\", "/") ~= normalizedSource then return end
         if event == "call" then
-            if info.linedefined == collectLine then calls = calls + 1; identities[info.func] = true end
+            if collectLines[info.linedefined] then calls = calls + 1; identities[info.func] = true end
             if info.linedefined == rankLine then ranks = ranks + 1 end
         elseif currentLine == mergeLine then
             for i = 1, 40 do
@@ -93,7 +98,7 @@ for _, client in ipairs({ "Retail", "Forever", "MoP", "Era", "Anniversary" }) do
         check(equal(before, e.FluxInvDB), "unchanged native facts retain complete persisted data")
         check(invalidates == (legacy and 6 or 9) and notifies == 3, "all live craft invalidation/publication pulses retain cadence")
         if not baseline then
-            check(identities == (legacy and 0 or 1), "one stateless collector replaces per-recipe closures")
+            check(identities == (legacy and 0 or 1), "complete modern recipes use one stateless collector")
             check(merges == 0, "complete fresh facts do not allocate redundant prior merge records")
         end
         local _, _, _, ranks = sample(function()

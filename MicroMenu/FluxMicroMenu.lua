@@ -1290,6 +1290,49 @@ local function SyncFluxMicroMenuBorderPadding(isBesideChat)
     FluxMicroMenu._fluxBorderMode = want
 end
 
+-- Beside-chat uses negative border padding, while its content stays two units
+-- from the screen. Fit the decorative stroke and fill, not the button layout.
+function FluxMicroMenu:FitScreenBorder()
+    if InCombatLockdown() then self.needsUpdate=true;return false end
+    local bf=self.FluxBorderFrame
+    local bg=bf and bf.BackgroundFrame
+    local insets=bf and bf._fluxBorderInsets
+    if not bg or not insets or not FluxBorder or not FluxBorder.GetJoinTracks then return false end
+    local function number(v)
+        return not (issecretvalue and issecretvalue(v)) and type(v)=="number" and v==v and math.abs(v)<10000000
+    end
+    local x,y,w,h=self:GetRect()
+    local sx,sy,sw,sh=UIParent:GetRect()
+    local scale,screenScale=self:GetEffectiveScale(),UIParent:GetEffectiveScale()
+    local px,py=insets[1],insets[2]
+    local tracks=FluxBorder:GetJoinTracks()
+    if not (number(x) and number(y) and number(w) and number(h) and number(sx) and number(sy) and number(sw) and number(sh)
+        and number(scale) and number(screenScale) and number(px) and number(py)
+        and number(tracks.Left) and number(tracks.Right) and number(tracks.Top) and number(tracks.Bottom))
+        or w<=0 or h<=0 or scale<=0 or screenScale<=0 then return false end
+    local left=math.max(0,sx*screenScale/scale-(x+px-11+tracks.Left))
+    local right=math.min(0,(sx+sw)*screenScale/scale-(x+w-px-9+tracks.Right))
+    local top=math.min(0,(sy+sh)*screenScale/scale-(y+h-py+6-tracks.Top))
+    local bottom=math.max(0,sy*screenScale/scale-(y+py+9-tracks.Bottom))
+    local bl,br=left+px-11+tracks.Left,right-px-9+tracks.Right
+    local bt,bb=top-py+6-tracks.Top,bottom+py+9-tracks.Bottom
+    local previous=self._fluxScreenBorderFit
+    if previous and previous.border==bf and previous.left==left and previous.right==right and previous.top==top and previous.bottom==bottom
+        and previous.bl==bl and previous.br==br and previous.bt==bt and previous.bb==bb then return false end
+    bf:ClearAllPoints()
+    bf:SetPoint("TOPLEFT",self,"TOPLEFT",left,top)
+    bf:SetPoint("BOTTOMRIGHT",self,"BOTTOMRIGHT",right,bottom)
+    bg:ClearAllPoints()
+    bg:SetPoint("TOPLEFT",self,"TOPLEFT",bl,bt)
+    bg:SetPoint("BOTTOMRIGHT",self,"BOTTOMRIGHT",br,bb)
+    self._fluxScreenBorderFit={border=bf,left=left,right=right,top=top,bottom=bottom,bl=bl,br=br,bt=bt,bb=bb}
+    return true
+end
+
+if FluxBorder and FluxBorder.RefreshAllBorderTypes and hooksecurefunc then
+    hooksecurefunc(FluxBorder,"RefreshAllBorderTypes",function() FluxMicroMenu:FitScreenBorder() end)
+end
+
 local BESIDE_CHAT_ABOVE_GRID_GAP = 3 -- vertical gap: micromenu bottom sits above FluxUnifiedBorderFrame top
 local BESIDE_CHAT_LEFT_INSET = 2
 local BESIDE_CHAT_MIN_COLUMN_H = 48
@@ -2603,6 +2646,7 @@ local function UpdateLayout()
     else
         UpdateLayoutHorizontal(rowInfo, padding, spacing, btnSizeScale, layoutTopGap, legacyHeightPad, scaledStdHeight)
     end
+    FluxMicroMenu:FitScreenBorder()
 
     if _G.FluxChatFrame_ApplyPrimaryPosition then
         _G.FluxChatFrame_ApplyPrimaryPosition()

@@ -25,6 +25,10 @@ local function IsVendorOrDisenchantContext(lock)
     if not lock then
         return false
     end
+    -- Bulk protection paints already sample both contexts for the click guards.
+    if lock.IsShieldContextActive then
+        return lock.IsShieldContextActive()
+    end
     if lock.IsDisenchantContext and lock.IsDisenchantContext() then
         return true
     end

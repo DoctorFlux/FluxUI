@@ -1,0 +1,273 @@
+{
+  "changeId": "LHO-PAUSED-AGAIN-20261114",
+  "savedUtc": "2026-11-14T13:46:14.954362+00:00",
+  "status": "paused by explicit user request after requested reload",
+  "fullGoal": "Original broad casting/all inventory/vendor/AH/pending/craft/loot/bank/mail/providers/extra-grid optimization remains incomplete; preserve features/look/cadence and all five existing clients. External Syndicator is read-only; no buys/sales/deletes; item moves allowed.",
+  "reload": {
+    "requestedUtc": "2026-11-14T13:44:27.558456+00:00",
+    "pid": 40032,
+    "hwnd": 7995860,
+    "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "command": "/reload",
+    "authorization": "User explicitly requested /reload before completely pausing; no other chat code requested or sent.",
+    "foregroundActivation": false,
+    "systemWideInput": false,
+    "clipboard": false,
+    "temporaryLuaProbesInstalled": false,
+    "settingsOrProfilerPreferencesChangedByHelper": false,
+    "itemOrMailOperations": false,
+    "settingsMetadataBefore": {
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\93\\Bank-Flux\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 4517,
+        "mtimeNs": 1794663511501843700
+      },
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\93\\Mario-Super\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 64493,
+        "mtimeNs": 1794663482842411600
+      },
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 364820,
+        "mtimeNs": 1794663511499840300
+      }
+    },
+    "submittedUtc": "2026-11-14T13:44:27.872850+00:00",
+    "submitted": true,
+    "settingsMetadataAfter": {
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\93\\Bank-Flux\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 4517,
+        "mtimeNs": 1794663511501843700
+      },
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\93\\Mario-Super\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 64493,
+        "mtimeNs": 1794663868102426900
+      },
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\SavedVariables\\_FluxUI.lua": {
+        "bytes": 371432,
+        "mtimeNs": 1794663868099426300
+      }
+    },
+    "savedVariablesFilesRewritten": [
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\93\\Mario-Super\\SavedVariables\\_FluxUI.lua",
+      "F:\\World of Warcraft\\_forever_\\WTF\\Account\\TOGPER\\SavedVariables\\_FluxUI.lua"
+    ],
+    "savedVariablesWriteObserved": true,
+    "sameClientStillRunning": true,
+    "finishedUtc": "2026-11-14T13:44:31.102198+00:00",
+    "foregroundUnchanged": true
+  },
+  "reloadCopenhagen": "2026-11-14T14:44:27.872850+01:00",
+  "returnToWorldCapture": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\native\\pause2-reload-completed.png",
+  "probes": "Only two read-only /run queries were submitted after foreground/background permission. Both used local variables; no temporary persistent global/frame/hook/watcher was installed. Reload now clears any earlier diagnostics. Send no more test code until explicit continue.",
+  "nativePermission": {
+    "userQuote": "it should not matter if wow is in the foreground or background just do so it work on both automatic",
+    "scope": "Explicit override of earlier background-only chat guard for this goal: automatically target verified WoW profiling in foreground or background; do not activate/change focus, use system-wide input/clipboard, change profiler preferences or touch item/mail/craft queues.",
+    "helper": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\native\\native_commands.py",
+    "implemented": "--profiling-any-focus accepts only the two exact reviewed preflight commands currently; extend narrowly for future reviewed read-only timing commands. Revalidate PID/path/window; no need to ask the same permission again."
+  },
+  "nativePreReload": {
+    "commandsSent": 2,
+    "foregroundUnchanged": true,
+    "build": "1.60.1 /70938 /Nov12 2026 /interface16001",
+    "scriptProfile": 0,
+    "nativeProfilerEnabled": true,
+    "provider": "syndicator",
+    "recipeCounts": {
+      "healPotion": 5,
+      "manaPotion": 2,
+      "bandage": 8
+    },
+    "getTime": 80463.872,
+    "observation": "Captured ongoing user Sulfuric Acid craft and create-item messages with AH and Skillet open. No craft/item action was initiated or interrupted by us; screenshot is context only, not timed attribution.",
+    "notRun": "No recipe timing batch, matched native before/after or natural-event profiler counter window ran before pause. Do not compare pre-reload counters across the new reload boundary."
+  },
+  "source": {
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\checkpoint-20261114T124621Z",
+    "appliedThisResume": [
+      "Inventory/Craft.lua plus tests/craft_selector_allocation_work.lua and tests/craft_mixed_first_aid.lua"
+    ],
+    "craftSHA256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+    "initSHA256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+    "preservedConcurrentOwner": "Group ghost/native mouse/input changes remain intact. Never revert them to a performance baseline.",
+    "fullIntegration": {
+      "scriptsPass": 383,
+      "syntaxFiles": 1071,
+      "allNormalizedManifestPathsStillMatch": true,
+      "delta": []
+    },
+    "documentation": "Final pre-pause doc validation PASS1104 classified/623reachable/444settings/24roots/17401links. No full validation rerun after pause request; only continuity/state saved.",
+    "existingExternalCheckpointAndSettings": "Fresh resumed2806-file/history checkpoint and125settings metadata retained; no redundant archive or private settings backup created during quick pause."
+  },
+  "acceptedCraft": "615d4be uses private per-occurrence parallel arrays and a stateless comparator. All native reads/order/public row lifetime preserved. Three pairs4020checks/90scenarios; mixed3380assertions/90pairedcases;8controls/reviewsPASS. Desktop allocations lower428-508KiB per10x500recipe selections; CPU mixed, no FPS claim.",
+  "acceptedNotification": "Init69ee82e copy/merge optimization retained and included in383/1071 whole integration. Original callbacks, cadence, ownership and native reads preserved.",
+  "rejected": "Lazy/memo Craft variants and both Store/Summaries/Sync account shortcuts remain external/rejected. Account shortcut67us\u2192123us; do not apply. Residual live cast/vendor/grid audit found no further proved safe high-value target; apparent unused Engine files are not active FPS findings.",
+  "remainingBankMail": "Actual installed producer cold-close bank5\u21920 and stale mail index races remain unresolved; native populated/cold mailbox measurement is required before exceptional fallback latency decision. Empty mail result does not decide it. Need bank readiness, provenance, future-delta and provider-off restore proof; count-only/header-only fixes are insufficient.",
+  "resumeOrder": [
+    "Wait for explicit continue. Read newest pause/resume records, NEXT_SESSION, STATUS, DECISIONS, WORK_LOG and repository rules.",
+    "Inspect newer source/worktree/HEAD and manifests; retain all newer user changes. Current383/1071 integration passed before pause with stable source.",
+    "Remove only current phase/owned-job CANCEL flags when intentionally resuming. Workers stay stopped until assigned. No outstanding child job remains.",
+    "Client HAS reloaded at the recorded new timestamp; old temporary code and counter epoch are gone. Query exact client/window/build/preferences again; install temporary diagnostics only if needed, preserving existing roots/preferences.",
+    "Foreground/background read-only profiling input is already explicitly authorized; preserve focus and all transaction/queue restrictions. Narrow helper allowlist currently permits only two preflight queries.",
+    "Next native work: short recipe timing samples and passive profiler readings around natural casting/receipt activity. Avoid reloading active queues without request. Native before/after source identity and context must be established; do not infer FPS from simulation.",
+    "Bank/mail native prerequisites and exceptional-delay user decision remain pending. Do not apply rejected prototypes or alter external Syndicator.",
+    "On future pause, cancel owned child/flags first; save small delta, reload only if requested, then mark goal paused."
+  ],
+  "jobs": {
+    "baseline-job": {
+      "status": "complete",
+      "pid": 11928,
+      "mode": "baseline",
+      "cancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\baseline-job\\CANCEL",
+      "startedUtc": "2026-11-14T12:47:51.608440+00:00",
+      "childPid": null,
+      "command": [
+        "lua",
+        "-v"
+      ],
+      "exit": 0,
+      "result": {
+        "exit": 0,
+        "sourceStableThroughout": true,
+        "scriptsPass": 380,
+        "scriptsFail": 0,
+        "syntaxFiles": 1068,
+        "syntaxFailures": 0,
+        "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+        "cancellable": true
+      },
+      "finishedUtc": "2026-11-14T12:50:08.106317+00:00"
+    },
+    "docs-build-job": {
+      "status": "complete",
+      "parentPid": 7212,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/build_reference.py"
+      ],
+      "startedUtc": "2026-11-14T13:30:26.763147+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T13:30:44.011515+00:00"
+    },
+    "docs-validate-final-job": {
+      "status": "complete",
+      "parentPid": 4164,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T13:40:18.117108+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T13:40:44.114877+00:00"
+    },
+    "docs-validate-job": {
+      "status": "complete",
+      "parentPid": 39796,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T13:34:33.546071+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T13:34:59.303980+00:00"
+    },
+    "integration-job": {
+      "status": "complete",
+      "pid": 36624,
+      "mode": "integration",
+      "cancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-job\\CANCEL",
+      "startedUtc": "2026-11-14T13:15:02.630000+00:00",
+      "childPid": null,
+      "command": [
+        "lua",
+        "-v"
+      ],
+      "exit": 0,
+      "result": {
+        "exit": 0,
+        "sourceStableThroughout": true,
+        "scriptsPass": 383,
+        "scriptsFail": 0,
+        "syntaxFiles": 1071,
+        "syntaxFailures": 0,
+        "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+        "cancellable": true
+      },
+      "finishedUtc": "2026-11-14T13:17:16.657922+00:00"
+    }
+  },
+  "cancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\CANCEL",
+  "artifacts": {
+    "final-documentation-check.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\final-documentation-check.json",
+      "sha256": "53e3464449e27cc287d2ecba2264417dd0b0e8ef510c062c6559dc80e34f35c3"
+    },
+    "source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\source-guard.json",
+      "sha256": "ad07c54af62bcd828c432e8515f8c78f6fe44498d53b1eca19b956217352b879"
+    },
+    "crafting/requirements.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\requirements.json",
+      "sha256": "cf2eb7d42ac6faf2e218824358ed99fe700e1ce06804baf84ac4c845490b87d1"
+    },
+    "crafting/applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\applied.json",
+      "sha256": "62b7867a8242a58552e3b684afadfa2cc8c3aaeee1980c9e883e9635286526cd"
+    },
+    "crafting/timing-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\timing-summary.json",
+      "sha256": "37ab91e4a2fa9d08b13e4300c67994289be723800f8c39f92487093610b2d0a4"
+    },
+    "providers/craft-allocation-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-allocation-peer-review.json",
+      "sha256": "1de6e06d228482061928a17d01e0aced1b85ba37da8820b6f6ea1e7e193d5dfb"
+    },
+    "providers/craft-mixed-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-mixed-peer-review.json",
+      "sha256": "4e2638bc6a71e549d38fb21d8d52a7900171ba58e8f0c51cd2b9cd99509f3d93"
+    },
+    "commerce/craft-allocation-static-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\craft-allocation-static-peer-review.json",
+      "sha256": "386b56dbe3b0d418d6c8fbb39a419ae6da9e41c8d2fe940f8481308729d1458f"
+    },
+    "commerce/account-audit-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\account-audit-seal.json",
+      "sha256": "d85602694199b337eb45dff51e2be3a3fb5da2f3be76564df9e5a54254d51451"
+    },
+    "providers/residual/residual-audit.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\residual\\residual-audit.json",
+      "sha256": "e1033222c523f31cd496e0b2f849e62b63b585ba678f5cd3b061ba8a2819d962"
+    },
+    "commerce/residual/inspection.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\residual\\inspection.json",
+      "sha256": "6fe27172632d901cdaa05dfdf628519a01246e53b4dc7c99db4c19ec661bffa5"
+    },
+    "native/native-recipe-preflight.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\native\\native-recipe-preflight.json",
+      "sha256": "42318c375481336a643365851bf45b09975bbe089a96dcf092747a76712886fa"
+    },
+    "native/native-recipe-preflight-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\native\\native-recipe-preflight-submission.json",
+      "sha256": "57713f4b85ab925345f8d7313c03eedd960e9ed31e09fbb4b05906d586bbb756"
+    },
+    "native/native-recipe-preflight.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\native\\native-recipe-preflight.png",
+      "sha256": "e621fe8f4eaf73033410bdf0917b0b28fa724c39d9ce58aa20f21cab666257da"
+    }
+  },
+  "actions": {
+    "testsStartedAfterPause": false,
+    "addonLuaEditedDuringPause": false,
+    "newTemporaryCodeAfterReload": false,
+    "publication": false,
+    "manualSync": false,
+    "itemOrMailActionsByHelper": false
+  },
+  "reloadReturnedToWorldVerified": true,
+  "returnVerification": "Read-only exact-window screenshot observed14Nov13:46UTC; same client in world with normal UI and ongoing user crafting. Screenshot does not establish timing or protected-context acceptance.",
+  "returnCaptureSHA256": "f3deddd12b4d849457a8e714dec61f4b2a3c27d354a851732f25b8c47081391d",
+  "documentationAfterPause": "Only continuity/evidence/ledger state saved. Generated performance reference views may need refresh on continue after these pause ledger rows; no validation rerun while paused."
+}

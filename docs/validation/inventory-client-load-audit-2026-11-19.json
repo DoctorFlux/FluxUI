@@ -1,0 +1,66 @@
+{
+  "changeId": "LHO-CLIENT-LOAD-AUDIT-20261119",
+  "receipt": {
+    "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\scope-load-audit-20261119T110800Z\\scope-load-audit.json",
+    "sha256": "a9540711805331ccdbc517ad790bc1d58f57d1efe506e5d61083d5cea63615b2"
+  },
+  "installedExecutableVersions": {
+    "_retail_": "12.1.5.70783",
+    "_forever_": "1.60.1.70959",
+    "_classic_": "5.5.4.70631",
+    "_classic_era_": "1.15.9.70576",
+    "_anniversary_": "2.5.6.70577"
+  },
+  "tocSha256Normalized": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5",
+  "expectedInterfaceLine": "## Interface: 120105, 120100, 16001, 11509, 20506, 50504",
+  "scopedManifestEntries": 181,
+  "installComparisons": 905,
+  "editions": {
+    "_retail_": {
+      "tocMatches": true,
+      "present": 181,
+      "missing": [],
+      "hashDiffs": []
+    },
+    "_forever_": {
+      "tocMatches": true,
+      "present": 181,
+      "missing": [],
+      "hashDiffs": []
+    },
+    "_classic_": {
+      "tocMatches": true,
+      "present": 181,
+      "missing": [],
+      "hashDiffs": []
+    },
+    "_classic_era_": {
+      "tocMatches": true,
+      "present": 181,
+      "missing": [],
+      "hashDiffs": []
+    },
+    "_anniversary_": {
+      "tocMatches": true,
+      "present": 181,
+      "missing": [],
+      "hashDiffs": []
+    }
+  },
+  "syntax": {
+    "luaFiles": 180,
+    "directPasses": 350,
+    "bomNormalizedLua51Passes": 10,
+    "xmlParsed": [
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.xml"
+    ]
+  },
+  "targetSelectors": {
+    "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": "AllowLoadGameType mainline",
+    "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": "AllowLoadGameType vanilla, tbc, wrath, cata, mists, classic"
+  },
+  "vendorDetectorNote": "The two bundled AlreadyKnown detector rows select mainline and Classic game types. The shared vendor options facade loads on all editions; its detector coverage on Forever needs native confirmation. Do not add the Classic file blindly because it also hooks auction and guild-bank UI.",
+  "partyCombatInviteNote": "Existing fix retained and present on disk in five editions. See POWER_PARTITION_COMBAT_JOIN.md for simulated assertions and native evidence limits.",
+  "reloadSent": false,
+  "scope": "Disk install parity and syntax only. Native provider, timing, controller and taint verification separately pending."
+}

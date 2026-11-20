@@ -1,0 +1,187 @@
+{
+  "changeId": "GRID-ENVELOPE-R80-20261119",
+  "capturedAtUTC": "2026-11-19T07:17:32.444294+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce party and raid join/leave hitches and keep action-strip border changes smooth. The user specified the cursor entering and leaving while still holding the same action as the drag trigger.",
+  "historicalNativeAttribution": {
+    "client": "Forever",
+    "borderVersion": "party-paint-r68",
+    "source": "docs/validation/roster-region-routing-2026-11-19.json",
+    "borderCallbackMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "currentBuildMeasured": false
+  },
+  "changes": {
+    "gridCompletion": "Coalesce combat/noncombat grid and Info hook notifications in UnifiedBorder. Strip layout consumes the request before the final local border commit. Standalone requests get one next-frame completion. A wake crossing into lockdown resumes with the existing Combat.Defer service.",
+    "petBorder": "Strip-owned squeeze defers the nested pet junction commit. Standalone pet layout retains its current commit.",
+    "dragHover": "Ready strip hover signals request expansion/collapse through the existing layout. Raw cursor and hover callbacks leave envelope geometry to the finished transaction. Existing drag polling and legacy behavior remain.",
+    "nativeHoverCleanup": "Group roster hovercast cleanup classifies current registered candidates. The original candidate enumeration and unregister order remain."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Layout/UnifiedBorder.lua": "c3fa85b68bb03fae488ab2d29d2447bb60cac9ee8c1efa7e8abc2ce887f85f1e",
+      "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+      "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+      "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+      "Bars/Pet/Layout.lua": "3533c21a0e9bb1f9a56316c19bfe47b26b92b0e3469915cd4ab3e5557f9a8342",
+      "FluxDefaultSettings.lua": "08ef869d2bca3c03f50b86f8eda9f4e8697ebfd18323b1f7460c9dd8987e771c",
+      "StatusBars/FluxInfoFrame.lua": "a48788c81e801ee1771f3d4597591885f33b56166a06fdb91c2300c5ed923477",
+      "Binding/Input/FluxMouseoverKeybind.lua": "45e7e617e9a2fd59ca6dbf8ad6d291516f9bd3159129c99eda0951f077ec2418"
+    },
+    "afterRaw": {
+      "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+      "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+      "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+      "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+      "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+      "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+      "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+      "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+    },
+    "fixturesRaw": {
+      "tests/grid_envelope_work.lua": "9ac32143f46892cb6a6b1f7c15e3b96cf0a12965e51ad791cbdd8723747c04d5",
+      "tests/roster_native_hover_cleanup.lua": "a31b1647526937682a66ea01ab3b59006832f7a8ed2098e95ca09b59e1589a25",
+      "tests/strip_drag_hover_edges.lua": "61d3de5f17d885d1c5e1aac110287097483edec20b36fec4d70842d46a247d86"
+    }
+  },
+  "checkpoint": {
+    "archives": [
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\source.zip",
+        "sha256": "96ec88b421a87400483d71c0333304ccb03fd9c69f65807ad03bf221de48f3c5"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\info-source.zip",
+        "sha256": "ca145e10a13f4bcb2651d83f78f55a035c67cec23917794d2af8de16584a55b6"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\pet-source.zip",
+        "sha256": "8239cdfd2b64f6abd20988d002550ac270d14fba1c590eb652ebf764558a2ee6"
+      }
+    ],
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "pairedChecks": {
+    "gridCompletion": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\grid-paired.txt",
+      "rows": [
+        "GRID_ENVELOPE drag timers=2/1 info=4/1 envelope=3/1 commitRequests=2/1",
+        "Grid envelope work: 59 checks; actual grid, Info hook, envelope and strip paths. Native latency and pixels pending."
+      ],
+      "outcome": "Actual grid, Info hooks, envelope, squeeze, pet and strip Lua with modeled native widgets. Settlement sees final modeled dimensions and placement. Tests cover hide/reveal, crossing into combat after scheduling, reentrant requests, Info failure and standalone fallbacks."
+    },
+    "heldAction": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\drag-hover-paired.txt",
+      "rows": [
+        "DRAG_HOVER immediateEnvelopeReads=8/0",
+        "Strip drag hover edges: 47 checks; enter/leave while holding the same action. Native timing and seams pending."
+      ],
+      "outcome": "Use actual hover hooks and cursor/strip dispatch. The archived hover owner runs against the same current strip pose model. Four enter/leave edges with no slot changes eliminate eight pre-layout reads, keep one completed envelope per edge and restore visible slot geometry."
+    },
+    "rosterHover": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\hover-paired.txt",
+      "rows": [
+        "Roster native hover cleanup: name reads 99 -> 6; identical unregister order and protected guards."
+      ],
+      "outcome": "Identical native-registration filter result, unregister order, no-header and combat cases. Modeled name reads 99 to 6."
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+        "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+        "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+        "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+        "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+        "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+        "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+        "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+        "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+        "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+        "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+        "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+        "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+        "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+        "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+        "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+        "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+        "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+        "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+        "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+        "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+        "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+        "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+        "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+        "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Layout/UnifiedBorder.lua": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+        "ExtraButtonSystem/CombatGrid/Grid.lua": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+        "Bars/Layout.lua": "4d47ce4315d969c33b40944c7c53338dcd61b94d954c104d34582d23c491cb6d",
+        "Bars/Pet/Layout.lua": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+        "FluxDefaultSettings.lua": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+        "StatusBars/FluxInfoFrame.lua": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+        "Binding/Input/FluxMouseoverKeybind.lua": "ed402bc145401a4aac6990883b19e580169824c2d85f2ec8534d6b5f86bf5e7a"
+      }
+    }
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "upvaluesLua51Maximum": 27,
+    "prototypes": 796,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\grid-layout-owner-r80-before-20261119T070015Z\\upvalues.json",
+    "selected": {
+      "tests/grid_envelope_work.lua": "Grid envelope work: 46 checks; actual grid, Info hook, envelope and strip paths. Native latency and pixels pending.",
+      "tests/roster_native_hover_cleanup.lua": "Roster native hover cleanup: name reads 99 -> 6; identical unregister order and protected guards.",
+      "tests/strip_drag_hover_edges.lua": "Strip drag hover edges: 27 checks; enter/leave while holding the same action. Native timing and seams pending.",
+      "tests/border_locality.lua": "Actual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.",
+      "tests/border_dynamic_layout.lua": "Dynamic border layouts: 404 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending",
+      "tests/group_roster_performance.lua": "Group roster performance: 211 checks PASS; operation counts only; native performance/taint pending",
+      "tests/raid_combat_roster_transitions.lua": "Combat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_ItemViews.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for live party/raid and held-cursor enter/leave latency, both strip seams and combat taint. No game input or profiler changes."
+}

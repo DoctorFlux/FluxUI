@@ -1,0 +1,168 @@
+{
+  "changeId": "REGIONAL-CLIPPING-R79-20261119",
+  "capturedAtUTC": "2026-11-19T06:55:29.076881+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce remaining party and raid join/leave hitches and action-bar drag/drop reflow. Keep both side connections accurate for the action strip, combat grid, Info frame and Trinket Menu.",
+  "scopeTracking": "The active goal text cannot be amended through the available goal API. The expanded work is recorded in NEXT_SESSION.md.",
+  "historicalNativeAttribution": {
+    "client": "Forever",
+    "borderVersion": "party-paint-r68",
+    "source": "docs/validation/roster-region-routing-2026-11-19.json",
+    "borderCallbackMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "currentBuildMeasured": false
+  },
+  "changes": {
+    "regionalClipping": "Keep vertex conversion and the clipping sequence from the first intersected plane onward. Skip containing prefix planes and avoid allocating empty paths for operations fully within a tile.",
+    "rosterThreat": "On roster-driven refreshes, verify current public target/focus shell and fill anchor pairs before writing. Group gate, enemy choice, glow, threat painting and options layout retain their former authority.",
+    "actionStrip": "Keep matching native shell geometry on a changed interior pack. Repairing the shell also refreshes adjacent layout. Update envelope after the dependent panel layouts and finish with the existing local border commit."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "2f8099dc6caa8412346d2539850ad73bbe34be9cedf99fa03537d1fa761ad44f",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "786fbeeededbe686290410dc9ef2e25c195c3c0d1543703ffb86144a1f8ae80e",
+      "Bars/Layout.lua": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2",
+      "Bars/Strip.lua": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+      "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+      "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+    },
+    "fixturesRaw": {
+      "tests/border_region_routing.lua": "685e1203d450753b8f74d47dd48258dc47a7d5601d12f4558cfbbe4e1a7b080e",
+      "tests/unit_threat_roster_anchors.lua": "d653f42082b118a9f4a8dfdbf6e19b7a95e6b9ad0cd0ee1b9f8502b39f0b82db",
+      "tests/bars_strip_layout_work.lua": "9a1ec0ad3355e63058fae38cd5959b6a21ea2693d1d3b0b76671be0a4660112a",
+      "tests/border_dynamic_layout.lua": "614e061c5bbf9343a98fde57c1d6b54b011f53b599c824b36328cf5dac4cdf6b",
+      "Bars/_tmp_barsmoke.lua": "22494092d5edb4d455aaa85c01d4fdb5690eeee53af769cdd1f96f85c1dd9705"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\source.zip",
+    "archiveSHA256": "5075cc255105498c0394f970c932c3e357a5f9ef9ae5a5e488f5b31c15c7e35b",
+    "actionStripArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\action-strip-source.zip",
+    "actionStripArchiveSHA256": "3eed9486c6f95b46b46557a2fe88b8ecb61fddc82729641a5d38b01dfb2eed4d",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "pairedChecks": {
+    "tileClipping": {
+      "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\tile-clip-paired.lua",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\tile-clip-paired.txt",
+      "rows": [
+        "TILE_CLIP 8192 triangle/tile cases; 5976 output fields match exactly; planes 32768 -> 17544"
+      ],
+      "outcome": "Coordinates and UVs stay exact across containment, touching, fractional and crossing tests. Native rendering and timing were not measured."
+    },
+    "regionRouting": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\border-routing-paired.txt",
+      "rows": [
+        "REGION_ROUTE after query=0 rect=144 owners=2 outputFields=144",
+        "REGION_ROUTE retainedGroupMetadataReads=0/0",
+        "REGION_ROUTE tileClipPlanes=64/40",
+        "REGION_ROUTE before query=0 rect=144 owners=2 outputFields=144",
+        "REGION_ROUTE sample=1 before=0.810ms after=0.740ms",
+        "REGION_ROUTE sample=2 before=0.790ms after=0.800ms",
+        "REGION_ROUTE sample=3 before=0.780ms after=0.730ms",
+        "REGION_ROUTE sample=4 before=0.740ms after=0.770ms",
+        "REGION_ROUTE sample=5 before=0.760ms after=0.760ms",
+        "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS"
+      ],
+      "limitation": "A dense mixed-source replay was inconclusive. The archived R78 source varied on a repeated pose in its own same-source control. The isolated exact-coordinate replay and repository output regressions are the evidence for the revised clipping function."
+    },
+    "threat": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\threat-roster-paired.txt",
+      "rows": [
+        "Threat roster anchors: 560 checks, repeated points cleared/set 960 -> 0. Native latency/taint pending."
+      ],
+      "outcome": "Repeated model restores exact visible state across all four positions. Actual roster path, replacements, changing eligibility, malformed points and private/denied reads are exercised."
+    },
+    "slotDrop": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\action-strip-paired.txt",
+      "rows": [
+        "STRIP_INTERNAL clears 68 -> 65; points 68 -> 65; player layout 1 -> 0",
+        "Bars same-occupancy decorative controls: 154 PASS; exact geometry/slots/mappings; real growth and expansion; current public/private/denied reads; forced direct calls; combat deferral"
+      ],
+      "outcome": "Same-occupancy swaps, actual host callback, growth, mini repack, cursor expansion, geometry repair and combat deferral use production Lua. Staged panels precede the final envelope and single completion call in the border dynamic fixture."
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+        "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+        "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+        "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+        "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+        "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+        "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+        "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+        "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9f9c100479c060ba1c7e543f8a547c20ce91d76d346f13855fd99a4e62b921c2",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+        "Bars/Layout.lua": "060ded33d6313b435124a5fb81f02ada8fa2428d6724be128d4a7c0364492e05",
+        "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf"
+      }
+    }
+  },
+  "verification": {
+    "focused": 189,
+    "syntax": 1227,
+    "upvaluesLua51Maximum": 50,
+    "prototypes": 685,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-layout-work-r79-before-20261119T063920Z\\upvalues.json",
+    "selected": {
+      "tests/border_region_routing.lua": "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS",
+      "tests/unit_threat_roster_anchors.lua": "Threat roster anchors: 560 checks, repeated points cleared/set 960 -> 0. Native latency/taint pending.",
+      "tests/bars_strip_layout_work.lua": "Bars same-occupancy decorative controls: 154 PASS; exact geometry/slots/mappings; real growth and expansion; current public/private/denied reads; forced direct calls; combat deferral",
+      "tests/border_dynamic_layout.lua": "Dynamic border layouts: 404 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending",
+      "Bars/_tmp_barsmoke.lua": "          VFX continues or appears/clears with the visible face",
+      "tests/border_locality.lua": "Actual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.",
+      "tests/border_solver_allocation_work.lua": "Border solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim",
+      "tests/raid_combat_roster_transitions.lua": "Combat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_BankRestock.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for live party/raid and slot drag/drop latency, side seams and combat taint. No in-game test or profiler changes for this update."
+}

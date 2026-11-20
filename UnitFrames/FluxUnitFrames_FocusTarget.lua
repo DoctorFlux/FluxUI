@@ -207,7 +207,7 @@ local function InitializeFocusTargetFrame()
         if self.mouseoverHighlight then
             self.mouseoverHighlight:Hide()
         end
-        UF.HideUnitTooltip()
+        UF.HideUnitTooltip(self)
     end)
 
     if FluxUnitFrames_SuppressBlizzardUnitFrame and FluxUnitFrames_ShouldUseFlux("focustarget") then

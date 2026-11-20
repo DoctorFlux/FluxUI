@@ -6,6 +6,20 @@ A.Followup = A.Followup or {}
 local F, Inv = A.Followup, ns.Flux.Inventory
 local Number = A.Number
 
+-- Same defining-function contract as auction rows; keep foreign getters live.
+local carriedRestockRecord = rawget(ns, "RestockCarriedLiveQuery")
+local carriedRestockFlux = rawget(ns, "Flux")
+local carriedRestockGetter, carriedRestockQuery
+if type(carriedRestockRecord) == "table" and type(carriedRestockFlux) == "table"
+    and rawequal(rawget(carriedRestockRecord, "namespace"), ns)
+    and rawequal(rawget(carriedRestockRecord, "flux"), carriedRestockFlux) then
+    local getter = rawget(carriedRestockRecord, "getter")
+    local query = rawget(carriedRestockRecord, "query")
+    if type(getter) == "function" and type(query) == "function" then
+        carriedRestockGetter, carriedRestockQuery = getter, query
+    end
+end
+
 local function Integer(value)
     return Number(value) and value > 0 and value % 1 == 0
 end
@@ -52,9 +66,16 @@ local function BagOperations(task)
     for id, required in pairs(task.required) do
         local have
         if A.GetCraftBagAvailable then have = Number(A.GetCraftBagAvailable(id))
-        else have = Number(inv.GetLiveCount(id, {
-            bags = true, bank = false, warband = false, equipped = false, charges = false,
-        })) end
+        else
+            local getLiveCount = inv.GetLiveCount
+            if carriedRestockQuery and getLiveCount == carriedRestockGetter then
+                have = Number(carriedRestockQuery(id, false))
+            else
+                have = Number(getLiveCount(id, {
+                    bags = true, bank = false, warband = false, equipped = false, charges = false,
+                }))
+            end
+        end
         if not have then return 0 end
         count = math.min(count, math.floor(have / required))
     end

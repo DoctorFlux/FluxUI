@@ -1,0 +1,461 @@
+{
+  "change_id": "LHO-INVENTORY-QUEUE-MINIMUM-20261118",
+  "status": "FINAL36A_NATIVE38_SCOPED_PASS;FULL_GOAL_ACTIVE",
+  "utc": "2026-11-18T15:21:33.037259+00:00",
+  "path": "Inventory/Init.lua",
+  "beforeSHA": "e42893e496f0caec36d7a49f52ae6de888fb217120a4a3a2f82c75fb072e936f",
+  "afterSHA": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-inventory-queue-deadline-20261118",
+  "historyVerified": true,
+  "settingsMetadataRows": 12,
+  "newSimulations": 0,
+  "syntax": "Before/after Lua5.1/5.4 PASS",
+  "sourceRestorationProof": "Remove private minimum/version metadata,mutator version increments,append hint arguments and restore original min-scan prefix:whole preceding file exact after newline normalization. Entire timer/frame/deadline/budget/callback/context/public body suffix identical.",
+  "invariant": "Cached min(job.at or0) atv may serve freshappend only if oldminimum>0 and exactly one mutation(v+1) occurred. Positive minimum proves all old ordered entries have complete positive deadlines and cannot refer to a missing newly appended map key. All mutations bumpversion before fallible work;uncertain paths fullscan.",
+  "work": "For n fresh consecutively appended jobs from empty without reentry:old1+...+n queue visits;new1visit+n-1 scalar minimum comparisons. This is a source-derived conditional count,not a simulation/native actualqueue-size or FPS gain. Existing-job updates still use full scan.",
+  "preserved": "Queue order,context copy/merge,inline count listeners,listener identities/replacement/cancel,quiet/maxwait deadlines,2jobs/frame,1.5ms budget,stale-wake epoch,optional idle OnUpdate attachment,all native/public callback/query counts and readiness cadence unchanged.",
+  "currentInventoryEBSAndHelperSourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744"
+  },
+  "pairsMatch": 27,
+  "manualSync": false,
+  "nativeBefore": {
+    "preflight": "queue35pre_a",
+    "run": "queue35before_b",
+    "readAndCleanup": "queue35read_a",
+    "formallyAcknowledged": true,
+    "listenerCounts": {
+      "total": 33,
+      "scan": 15,
+      "light": 12,
+      "instant": 6,
+      "heavy": 0
+    },
+    "notifyRows": [
+      {
+        "time": 431419.003,
+        "ms": 0.57100003957748,
+        "success": true
+      },
+      {
+        "time": 431420.962,
+        "ms": 0.57129997014999,
+        "success": true
+      }
+    ],
+    "phases": [
+      {
+        "reverse": false,
+        "time": 431418.832,
+        "ms": 5.130999982357,
+        "success": true
+      },
+      {
+        "reverse": true,
+        "time": 431420.838,
+        "ms": 3.1815999746323,
+        "success": true
+      }
+    ],
+    "watch": {
+      "version": "1.60.1",
+      "build": "70959",
+      "seconds": 30.001999999979,
+      "frames": 4674,
+      "observedCallbacks": 231,
+      "peakFrameMs": 40.000002831221,
+      "spikes": 0,
+      "slowCallbacks": 0,
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "errorsBefore": 0,
+      "errorsAfter": 0
+    },
+    "food4599": 18,
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "bagGenerationBefore": 5,
+    "bagGenerationAfter": 7,
+    "carriedIDs": 54,
+    "mismatches": 0,
+    "sourceRestored": "0:8 item4599x18;2:6empty;cursorclear",
+    "NotifyRestoredByIdentity": true,
+    "priorDiagnosticRootAndReportRestoredByIdentity": true,
+    "ownRootsRemoved": true,
+    "jumpCuePriorFlagRestored": true,
+    "limits": "One real relocation window;Notify wrapper includes pcall/pack/log bookkeeping;33registered is not15actuallyqueued;no causal FPS/hitch gain",
+    "sourceSHA": "e42893e496f0caec36d7a49f52ae6de888fb217120a4a3a2f82c75fb072e936f"
+  },
+  "limits": [
+    "Native35before e42893e4;native36intermediate3c3ba2e5;native38final36a7b896 are retained separately. No source identities relabeled.",
+    "No new models/simulated events;syntax/source-invariant checks and real native moves only.",
+    "Current native acceptance is one both-addon relocation/count/selection/restoration window onForever70959;no native forced ghost-key/cancel/reentry/cold/provider-off/all-client/taint/pixel/controller proof.",
+    "Mean0.57115before to0.49220ms final is a small-sample observation;different231vs136callbacks,not causal CPU/FPS/hitch gain.",
+    "Existing-job updates still use original full scan;only proven fresh-positive-min append skips it.",
+    "Full LHO01-13 ACTIVE;merchant/AH/pending/bank/mail/crafting/other casting workflows and matched spike gains remain OPEN.",
+    "No purchases/sales/deletions/consumption/mail/craftqueue/external-addon edits."
+  ],
+  "updatedUTC": "2026-11-18T16:11:44.785343+00:00",
+  "screenshots": {
+    "jq4-queue35pre_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue35pre_a-submitted.png",
+      "sha256": "a5e5360354637b32534bce595eceba935e0a617c110f10a3e12310163b4ace89"
+    },
+    "jq4-queue35before_b-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue35before_b-submitted.png",
+      "sha256": "131df2bf1bdc510bed8a4fb7e7b62fca56a48de707d8d60a5bd38b01bb8b5c33"
+    },
+    "queue35-before-result.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\queue35-before-result.png",
+      "sha256": "7b0516fc009220c64991cdb0827e8794c73ce8e9ac73ceb0258268fe2eb70ef8"
+    },
+    "jq4-queue35read_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue35read_a-submitted.png",
+      "sha256": "eacd8d1407b0c55bb1e48dc69653e5227851c377a034a1277c8c804dca932505"
+    },
+    "queue35-reload-startup.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\queue35-reload-startup.png",
+      "sha256": "df237ec3ee98e471acf01b5dfaa5e7a56a6257f8fdbab7687400637a3e2bc894"
+    },
+    "jq4-jump36install_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump36install_a-submitted.png",
+      "sha256": "67c89a4b66d5732fcb8350b8f8423b88d5a084c61d6969b5864857a6a1c5d1bc"
+    },
+    "jq4-queue36after_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue36after_a-submitted.png",
+      "sha256": "f946bf7dbd3f5444c3bd00457cbaaaff96e502393f6ec17e41c253af9bb58778"
+    },
+    "queue36-after-result.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\queue36-after-result.png",
+      "sha256": "04c8be55a747fb1b9ee958a8fa80ba8d0a7ca2c5af5a9e820a277b10c366390d"
+    },
+    "jq4-queue36read_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue36read_a-submitted.png",
+      "sha256": "c40612a6b23fe3b66a8178e5e41bb2f0bbfc193589811fdd0a114075e99475bf"
+    },
+    "jq4-queue37reload_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue37reload_a-submitted.png",
+      "sha256": "e02fb9fba5ecfbda6f4063c24a521bdbd2639a791e06d631f9b8c62743f77380"
+    },
+    "queue37-reload-startup.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\queue37-reload-startup.png",
+      "sha256": "873a8f3224c0d2e34ef8cc6fab8e659608b89cbb954a7578f2bac027096fa81c"
+    },
+    "jq4-jump38install_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump38install_a-submitted.png",
+      "sha256": "f1f242a11324e9fb56de33413cac940a7602b6371f9dda524aca07f01cc5d17b"
+    },
+    "jq4-queue38after_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue38after_a-submitted.png",
+      "sha256": "cf6e2be61201f491ff0ae0a5f215e3689f884ee8fbbedb793cd194e77e7cbfb4"
+    },
+    "jq4-queue38samples_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue38samples_a-submitted.png",
+      "sha256": "f1e757c9035d06f23c2f8874289b7a6d499e61e9ab4d8af8fd301fcb94773a31"
+    },
+    "jq4-queue38read_b-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-queue38read_b-submitted.png",
+      "sha256": "808dd304eb38f830c61b168307d76df11bacacdd1740376f3f263d99b771698e"
+    }
+  },
+  "intermediateNativeSourceSHA": "3c3ba2e5addcb379e76424cbf8476d3d1bb33ec4521bce98a17b75fefd4af0fe",
+  "latestGuardReview": {
+    "utc": "2026-11-18T15:48:30.577995+00:00",
+    "onlyAdditionalChange": "Two comments plus heavyMinimum>0 eligibility;all other v1 source exact after newline normalization",
+    "counterexample": "Failed CopyContext may leave ordered key without job. After full scan publishes zero minimum,re-enqueueing same key changes old unknown entry AND appends new entry;version-only singleton mutation is insufficient.",
+    "correction": "Positive old minimum excludes unknown/ghost ordered entries,whose fallbackdeadline is0. Missing newly appended map key cannot then replace any previous ordered deadline. Nonpositive/unknown minima use original full scan.",
+    "syntax": "Lua5.1/5.4 PASS",
+    "newSimulations": 0,
+    "nativeCurrent": "Own reload37/fresh startup followed by actual native38 relocation/count/selection/cleanup PASS on36a7b896;forced ghost-key/error path remains source-review only."
+  },
+  "nativeIntermediateAfter": {
+    "run": "queue36after_a",
+    "readAndCleanup": "queue36read_a",
+    "personallyViewedAndFormallyAcknowledged": true,
+    "notifyRows": [
+      {
+        "time": 432456.513,
+        "ms": 0.55460000038147,
+        "success": true
+      },
+      {
+        "time": 432458.379,
+        "ms": 0.48699998855591,
+        "success": true
+      }
+    ],
+    "phases": [
+      {
+        "reverse": false,
+        "time": 432456.297,
+        "ms": 4.1614000201225,
+        "success": true
+      },
+      {
+        "reverse": true,
+        "time": 432458.3,
+        "ms": 3.0019999742508,
+        "success": true
+      }
+    ],
+    "watch": {
+      "version": "1.60.1",
+      "build": "70959",
+      "seconds": 30.005000000005,
+      "frames": 5141,
+      "observedCallbacks": 127,
+      "peakFrameMs": 36.00000217557,
+      "spikes": 0,
+      "slowCallbacks": 0,
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "errorsBefore": 0,
+      "errorsAfter": 0
+    },
+    "food4599": 18,
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "bagGenerationBefore": 5,
+    "bagGenerationAfter": 7,
+    "carriedIDs": 54,
+    "mismatches": 0,
+    "sourceRestored": "0:8 item4599x18;2:6empty;cursorclear",
+    "NotifyRestoredByIdentity": true,
+    "priorDiagnosticRootAndReportRestoredByIdentity": true,
+    "ownCodeAndDataRootsRemoved": true,
+    "ownWatchInactive": true,
+    "jumpCuePriorFlagRestored": true,
+    "sourceSHA": "3c3ba2e5addcb379e76424cbf8476d3d1bb33ec4521bce98a17b75fefd4af0fe",
+    "acceptanceForCurrentDiskSource": false
+  },
+  "intermediateComparison": {
+    "beforeMeanMs": 0.571150004863735,
+    "afterMeanMs": 0.52079999446869,
+    "observedMeanReductionPercent": 8.81554932439466,
+    "scope": "Two actual bag updates per source;one sequential before/after window across reload. Same guarded moves/timing-wrapper bodies except unique identity tags. Observed local envelopes only;not repeated matched causal CPU/FPS/spike proof.",
+    "confounds": [
+      "One sequence,no repeated matched spread",
+      "Reload resets queue/cache/generation state",
+      "World/rendering/system/guild activity differs",
+      "Observed Flux callbacks231before vs127after;overall activity not matched",
+      "Native diagnostic wrapper includes pcall/pack/log-seam overhead",
+      "33registered/15scan is not a measured actual deferred-job count"
+    ],
+    "fpsGainClaim": false,
+    "frameGapGainClaim": false
+  },
+  "intermediateReload": {
+    "run": "queue35reload_a",
+    "readinessRowPersonallyViewedAndAcked": true,
+    "immediateCaptureOnlyProvesReadiness": true,
+    "actualStartupPersonallyViewed": "native/queue35-reload-startup.png",
+    "actualStartupSHA": "df237ec3ee98e471acf01b5dfaa5e7a56a6257f8fdbab7687400637a3e2bc894",
+    "association": "Own fixed ReloadUI batch followed by fresh startup in same verified process;disk source pairs match;no separate loaded-byte hash"
+  },
+  "intermediateJumpAfterReload": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r11-20261118",
+    "root": "_J36q",
+    "nonce": "j18n36a7",
+    "label": "live20261118k",
+    "oldHostPID": 50368,
+    "oldHostStoppedAndVerifiedAbsent": true,
+    "supervisorPID": 5416,
+    "hostPID": 47908,
+    "hostLiveVerified": true,
+    "pairsAtVerification": 1,
+    "lastSpaceUpUTC": "2026-11-18T15:27:19.830865Z",
+    "movementVisuallyVerified": false,
+    "installRun": "jump36install_a",
+    "installPersonallyViewedAndAcked": true,
+    "installerSHA": "4ddff9d6ff11ac747e70998b819bae11f551839b7ddbcb33dc490e533cfef66c",
+    "supervisorSHA": "fad916fade48430af08dc1ddd666c8b0030eb0983d3da20dd8909797e512b59c",
+    "ownSetupHoldReleased": true,
+    "retainedHaltSHA": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+    "stop": "CANCEL/GOAL_DONE/native JUMP_STOP",
+    "pause": "All35/36 code/watch/data roots now removed;only intentional jump cue remains. Stop helper before requested guardedreload;reload resets cue,install fresh nonce on resume.",
+    "noQuestionsWhileUserAway": true
+  },
+  "nativeAfter": {
+    "sourceSHA": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "acceptanceForCurrentDiskSource": true,
+    "run": "queue38after_a",
+    "samplesRead": "queue38samples_a",
+    "readAndCleanup": "queue38read_b",
+    "personallyViewedAndFormallyAcknowledged": true,
+    "notifyRows": [
+      {
+        "time": 434225.967,
+        "ms": 0.50919997692108,
+        "success": true
+      },
+      {
+        "time": 434227.956,
+        "ms": 0.47519999742508,
+        "success": true
+      }
+    ],
+    "phases": [
+      {
+        "reverse": false,
+        "time": 434225.804,
+        "ms": 4.4210000038147,
+        "success": true
+      },
+      {
+        "reverse": true,
+        "time": 434227.808,
+        "ms": 2.8023999929428,
+        "success": true
+      }
+    ],
+    "watch": {
+      "version": "1.60.1",
+      "build": "70959",
+      "seconds": 30.000999999989,
+      "frames": 5254,
+      "observedCallbacks": 136,
+      "peakFrameMs": 30.000001192093,
+      "spikes": 0,
+      "slowCallbacks": 0,
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "errorsBefore": 0,
+      "errorsAfter": 0
+    },
+    "food4599": 18,
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "bagGenerationBefore": 5,
+    "bagGenerationAfter": 7,
+    "carriedIDs": 54,
+    "mismatches": 0,
+    "sourceRestored": "0:8 item4599x18;2:6empty;cursorclear",
+    "NotifyRestoredByIdentity": true,
+    "priorDiagnosticRootAndReportRestoredByIdentity": true,
+    "ownCodeAndDataRootsRemoved": true,
+    "ownWatchInactive": true,
+    "jumpCuePriorFlagRestored": true,
+    "addons": {
+      "Syndicator": true,
+      "Baganator": true,
+      "source": "syndicator",
+      "ready": true,
+      "classifyQueue": 4
+    },
+    "evidenceMethod": "Personally viewed fixed-batch captures. Faded initial result capture did not display results; later read retained nlog/report and original MF38/MC38/DB38/WC38 from ChatFrame1 history before deleting only own raw table. No replay.",
+    "scope": "One actual move/return with both addons after own guarded reload. Not native forced/reentry/cold/provider-off/all-client/visual/taint acceptance."
+  },
+  "comparison": {
+    "beforeSource": "e42893e496f0caec36d7a49f52ae6de888fb217120a4a3a2f82c75fb072e936f",
+    "afterSource": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "beforeMeanMs": 0.571150004863735,
+    "afterMeanMs": 0.49219998717308,
+    "observedMeanReductionPercent": 13.822991686656977,
+    "scope": "One baseline and one final-source native relocation window; two Notify envelopes per window. Smaller observed samples only.",
+    "confounds": [
+      "No repeated matched trials or spread",
+      "Reload/cache/world/rendering/system activity differs",
+      "Observed Flux callbacks231before versus136final;activity not matched",
+      "Inclusive wrapper includes pcall/pack/log overhead",
+      "Registered15scan listeners is not actual queued-job count"
+    ],
+    "fpsGainClaim": false,
+    "frameGapGainClaim": false
+  },
+  "reload": {
+    "run": "queue37reload_a",
+    "readinessRowPersonallyViewedAndAcked": true,
+    "immediateCaptureOnlyProvesReadiness": true,
+    "actualStartupPersonallyViewed": "native/queue37-reload-startup.png",
+    "actualStartupSHA": "873a8f3224c0d2e34ef8cc6fab8e659608b89cbb954a7578f2bac027096fa81c",
+    "association": "Own fixed ReloadUI batch followed by personally viewed fresh startup in same verified process;27disk pairs match. No independent loaded-byte hash."
+  },
+  "jumpAfterReload": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r12-20261118",
+    "root": "_J38q",
+    "nonce": "j18n38a7",
+    "label": "live20261118l",
+    "oldHostPID": 47908,
+    "oldHostStoppedAndVerifiedAbsent": true,
+    "supervisorPID": 57048,
+    "hostPID": 48628,
+    "hostLiveVerified": true,
+    "hostLiveVerificationUTC": "2026-11-18T16:11:44.785343+00:00",
+    "pairsAtVerification": 5,
+    "lastSpaceUpUTC": "2026-11-18T16:09:44.893047+00:00",
+    "movementVisuallyVerified": false,
+    "installRun": "jump38install_a",
+    "installPersonallyViewedAndAcked": true,
+    "installerSHA": "a677e6679a635d8ba103f0c34939e16e0e7de5315bdb5b75561b223bbd239be0",
+    "supervisorSHA": "95956e9515e80eb215bb66114a4b60e713b25224e0f293421b9752fba56efd12",
+    "ownSetupHoldReleased": true,
+    "retainedHaltSHA": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+    "stop": "CANCEL/GOAL_DONE/native JUMP_STOP",
+    "pause": "Native38 owned code/watch/data removed;only intentional jump cue remains. Stop helper promptly before requested guarded reload;fresh cue nonce on resume.",
+    "noQuestionsWhileUserAway": true
+  },
+  "finalTransportPackages": {
+    "native-queue37-reload-20261118": {
+      "bootstrap.py": "4d31f35bdd91a05f9b16797ff53fcf3906d4fa1d6d5091a300321f80a3ffa7de",
+      "packets.json": "65dceee1cd24306deca23af86db9841b991b5a751c2ece3e4f8c578b984b9d2e",
+      "reviewed-native-script.lua": "dcee2a82932e5c0376736b88cacdfd661f97db47b07a61ef6a199129378cff24"
+    },
+    "native-queue38-after-20261118": {
+      "bootstrap.py": "28e758434c0fe2265497b43725671d65f8786c8c3f39e4bd552192c23772995d",
+      "packets.json": "ed9c8c2b07711b1b663504664a1ecf7fc7afb07e03046c9efc1490a486ea802c",
+      "reviewed-native-script.lua": "93e7c42bf0f27c9a516171ff868cc445fa6d5b6aa82dfe09ff96372f9818a71f"
+    },
+    "native-queue38-read-samples-20261118": {
+      "bootstrap.py": "13a1959c76e16a958d5c6ed4bdaa09c4e07be6de13bc936c8a0fe16dc2fa5bb0",
+      "packets.json": "7f3be93572fd8d26eb4c7b944d657f1c517be7bdc0b5bec8362edafae36a10db",
+      "reviewed-native-script.lua": "7a9739ef21be4853c3bc1dd8a0b6d2c72ffc42609bbbc8c9dded12396288b0f0"
+    },
+    "native-queue38-read-meta-20261118": {
+      "bootstrap.py": "9bb991d87eb8fb3a3f2710325d5a2e191ca56211fd12fb20b98169acf9695125",
+      "packets.json": "d051656d9fcda2b19d05c73712d58d37a07ebb7f8de0a189d3420f02853155c0",
+      "reviewed-native-script.lua": "2ef92e4614e356d773deb50e0dfaca0c4716453d1282b26c74bc0b5b46b13de5"
+    }
+  },
+  "unexecutedReads": [
+    "queue38read_a source-only lease released;no packets sent",
+    "native-queue38-read-20261118 older5packet source-only package never executed"
+  ]
+}

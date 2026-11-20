@@ -350,6 +350,21 @@ local function FaceBody(slot)
 	return ProgramBody(slot) or condBodies[slot] or SlotMacro(slot)
 end
 
+-- Range follows the executable body. The display body deliberately removes
+-- automatic mouseover tails to keep icons stable during world cursor hops.
+function ProgramFace.CastBodyForSlot(slot)
+	local SP = Bars.SlotProgram
+	if SP then
+		if PeekContext() and SP.GetHover then
+			local hover = SP.GetHover(slot)
+			if type(hover) == "string" and hover ~= "" then return hover end
+		end
+		local body = SP.Get and SP.Get(slot)
+		if type(body) == "string" and body ~= "" then return body end
+	end
+	return SlotMacro(slot)
+end
+
 function ProgramFace.InvalidateIndex()
 	indexDirty = true
 	lastKindSig.mod = nil
@@ -847,6 +862,27 @@ local function ScheduleCond(kind)
 	ProgramFace.FlushPending(nil)
 end
 
+local rosterRefreshRegistered = false
+
+function ProgramFace.RequestRosterRefresh()
+	if pendingKinds.roster or pendingKinds.all or pendingKinds.combat or not ProgramFace.Needs("combat") then
+		return
+	end
+	-- Roster notifications can arrive in a burst. Sample the final native
+	-- conditions once in the same eval pass that would repaint the faces.
+	ScheduleCond("roster")
+end
+
+function ProgramFace.RegisterRosterRefresh()
+	if not rosterRefreshRegistered then
+		local events = Flux.Events
+		if events and events.Register then
+			rosterRefreshRegistered = events.Register("GROUP_ROSTER_UPDATE", ProgramFace.RequestRosterRefresh) ~= false
+		end
+	end
+	return rosterRefreshRegistered
+end
+
 function ProgramFace.RequestTarget()
 	ProgramFace.Request("target")
 end
@@ -993,6 +1029,16 @@ function ProgramFace.SetMinFlushInterval(sec)
 end
 
 function ProgramFace.FlushPending(tokens)
+	if pendingKinds.roster then
+		pendingKinds.roster = nil
+		if not pendingKinds.all and not pendingKinds.combat and ProgramFace.Needs("combat") and not SameKind("combat") then
+			pendingKinds.combat = true
+		elseif not next(pendingKinds) then
+			-- An unchanged roster must not use the paint throttle or enqueue
+			-- a follow-up timer for other condition changes.
+			return
+		end
+	end
 	if minFlushInterval and minFlushInterval > 0 then
 		local now = GetTime and GetTime() or 0
 		if lastFlushAt > 0 and (now - lastFlushAt) < minFlushInterval then

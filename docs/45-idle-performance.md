@@ -1,5 +1,16 @@
 # Idle performance investigation — 23 October 2026
 
+16 November combat-transition continuation: quiet native R49/R50 border reflows
+measured207.94/218.36ms and remain unresolved. R51 `prepared-guards-r51` adds
+scoped public-layout/native-state guards and finite callback attribution, with
+combined aggregate474 PASS/0FAIL and1165 syntax PASS after an initial473/474
+sweep and corrected extractor/four bounded replays. Eight owned runtime files
+stayed stable; this is not one globally frozen sweep. Global690 files/24916
+prototypes max57/0fail and31944 border guard checks PASS; native R51 remains
+pending. These combat-edge phase readings and
+desktop setter counts are separate from the historical idle FPS results below.
+[Whole-addon requirements and evidence](COMBAT_TRANSITION_PERFORMANCE.md).
+
 Latest follow-up: [background comparison and additional idle fixes](46-idle-followup.md).
 
 This follow-up targets passive work, prompted by the reported Forever idle difference of roughly 200 FPS with FluxUI and 240 FPS without it. Those rates correspond to approximately 5.00 versus 4.17 ms per frame. The approximately 0.83 ms difference is an investigation target, not measured Flux Lua time or a guaranteed recoverable gain.
@@ -109,3 +120,29 @@ The [previous validation](validation/before-idle-optimization-2026-10-23.json) p
 A controlled FPS comparison still needs the same scene, camera, mouse position, target/group state and HUD tabs. The completed native captures verify that `flux.cond.mo` sleeps with no mouseover and the stat resolver uses less CPU in the observed scenes. Automated fixtures cover timer dispatch and feature behavior; native mouseover arrival/leave/death, health/power/ToT changes, combat threat, portrait loads, scrolling zone names and hidden/shown minimap HUD still need acceptance.
 
 Restore `/console scriptProfile 0` and reload before comparing final FPS with and without FluxUI under otherwise matching conditions. This report does not claim that the entire 200/240 FPS difference has been recovered. The five-client combat/startup/transition scenarios in [the startup report](43-startup-optimization.md#client-source-checks-and-required-game-acceptance) still require native acceptance.
+
+<!-- BORDER-BUILDER-R53-20261116 -->
+R53 border-builder reflow: unchanged immutable fallback plans and complete public
+owner identities inside the readonly commit phase now reuse prepared work; pair
+keys are per-pass object identities. Source/privacy/native field checks and paint
+remain current.95 focused scripts pass. Native R52 toggle232.41ms is unresolved;
+R53 native timing remains pending. See [exact evidence](validation/border-builder-2026-11-16.json).
+<!-- /BORDER-BUILDER-R53-20261116 -->
+
+<!-- BORDER-EVENT-REFLOW-R54-20261116 -->
+Current border runtime is `event-reflow-r54`: public direct-opacity reuse, bounded
+commit-phase observer-pair reuse, fresh matching outer-shell guards, and
+roster-only prepared focus-layout reuse. All required paints and notifications
+remain. 129 current focused scripts pass; no native latency/FPS/taint acceptance
+is inferred. Genuine layout changes still require fresh global discovery/solve.
+[Sources, getter tax and native checks](validation/border-event-reflow-2026-11-16.json).
+<!-- /BORDER-EVENT-REFLOW-R54-20261116 -->
+
+<!-- ACTION-STRIP-BORDER-R55-20261116 -->
+R55 `strip-updates-r55`: matching occupied-swap layouts skip redundant decorative
+writes/player-layout fanout using fresh native geometry; nearby strip/envelope
+crests align in both types. 144 focused scripts pass. Real packing/expansion and
+all mapping/binding recovery remain. Actual drag prefixes had0cache hits, so no
+extra cut cache was admitted. Native checks are deferred by the user.
+[Requirements](ACTION_STRIP_BORDER_UPDATES.md); [scoped evidence](validation/action-strip-borders-2026-11-16.json).
+<!-- /ACTION-STRIP-BORDER-R55-20261116 -->

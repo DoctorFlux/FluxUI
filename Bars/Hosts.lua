@@ -171,6 +171,13 @@ local function OnActionAttribute(widget, name, value)
 		return
 	end
 	local slot = tonumber(value)
+	local State = Bars.State
+	if host.column and host.row and State and State.ResolveCurrentSlot then
+		-- Click attributes already resolve the current modifier. A late native
+		-- display callback must not roll the shown slot back to a released key.
+		-- Retain the raw value during bootstrap before the state owner is ready.
+		slot = State.ResolveCurrentSlot(host) or slot
+	end
 	-- SyncNativeHostSlots can IndexSlot before this fires. Still rebind the
 	-- face: skipping ApplyLiveType left noform Identity on the bonus slot.
 	if slot ~= host.slot then
@@ -648,21 +655,28 @@ function Hosts.CreateSurface(column, row, name, parent)
 		end
 	end)
 
-	local function AfterCursorChange(self)
+	local function AfterCursorChange(self, slot)
 		local host = self._fluxHost
 		if host and Bars.Paint and Bars.Paint.Dirty then
 			Bars.Paint.Dirty(host)
 		end
 		if Bars.Layout and Bars.Layout.InvalidateMappings then
-			Bars.Layout.InvalidateMappings()
+			local column = host and host.column
+			Bars.Layout.InvalidateMappings(column)
+			-- The current page can share a slot with a button in another column.
+			-- Refresh all its live users, including occupied-to-occupied swaps.
+			local owners = column and slot and Hosts.ForSlot(slot)
+			for i = 1, owners and #owners or 0 do
+				local other = owners[i].column
+				if other and other ~= column then Bars.Layout.InvalidateMappings(other) end
+			end
 		end
 		if Bars.Layout and Bars.Layout.Request then
-			Bars.Layout.Request("cursor")
+			Bars.Layout.Request("slot")
 		end
 		-- Extra peeks ACTIONBAR_SLOT_CHANGED before Watch Flush, then After(0)
 		-- used to wipe the occupancy wave. Binding overlays must not wait on
 		-- that race — notify from the pickup/place itself.
-		local slot = CurrentSlot(self)
 		if slot then
 			local peek = _G.FluxActionBarPeekSlotOccupancyChanged
 			if peek then
@@ -688,7 +702,7 @@ function Hosts.CreateSurface(column, row, name, parent)
 		local slot = CurrentSlot(self)
 		if slot then
 			PickupAction(slot)
-			AfterCursorChange(self)
+			AfterCursorChange(self, slot)
 		end
 	end)
 	widget:SetScript("OnReceiveDrag", function(self)
@@ -704,7 +718,7 @@ function Hosts.CreateSurface(column, row, name, parent)
 		local slot = CurrentSlot(self)
 		if slot then
 			PlaceAction(slot)
-			AfterCursorChange(self)
+			AfterCursorChange(self, slot)
 		end
 	end)
 	-- ButtonForge guard: keys and the down pass must not touch type, or the up
@@ -747,7 +761,7 @@ function Hosts.CreateSurface(column, row, name, parent)
 				local slot = CurrentSlot(w)
 				if slot then
 					PlaceAction(slot)
-					AfterCursorChange(w)
+					AfterCursorChange(w, slot)
 				end
 			end
 		end
@@ -824,13 +838,13 @@ function Hosts.CreateSurface(column, row, name, parent)
 	return widget
 end
 
-function Hosts.Skin(host)
+function Hosts.Skin(host, reuseLayoutChrome)
 	local widget = host and host.widget
 	if not widget then
 		return
 	end
 	if Bars.Blizzard and Bars.Blizzard.SkinButton then
-		Bars.Blizzard.SkinButton(widget)
+		Bars.Blizzard.SkinButton(widget, reuseLayoutChrome)
 	end
 end
 
@@ -928,9 +942,9 @@ function Hosts.Build()
 	return true
 end
 
-function Hosts.ApplyChrome()
+function Hosts.ApplyChrome(reuseLayoutChrome)
 	Bars.ForEachHost(function(host)
-		Hosts.Skin(host)
+		Hosts.Skin(host, reuseLayoutChrome)
 	end)
 end
 
@@ -940,9 +954,9 @@ function Hosts.InvalidateKeys()
 	end
 end
 
-function Hosts.RefreshKeys()
+function Hosts.RefreshKeys(hoverOnly)
 	if Bars.Clicks and Bars.Clicks.RefreshKeys then
-		return Bars.Clicks.RefreshKeys()
+		return Bars.Clicks.RefreshKeys(hoverOnly)
 	end
 end
 

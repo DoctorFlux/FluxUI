@@ -1,5 +1,12 @@
 # Status bars, gold, currencies and Info Frame
 
+15 November rollback: independent border rendering and shared piece registrations
+are restored to the pre-connection checkpoint. Connected topology hooks, masks
+and overlay-role edits are removed; prior status/HP/resource/class/aura geometry
+and tint/input ownership remain. [Exact restore and native limits](04-visual-system.md).
+
+
+
 XP and reputation left-clicks toggle the native Reputation panel outside combat,
 including Forever after the user-confirmed native API probe. Right click does
 not select a panel. [Fix evidence](FOREVER_REPUTATION_CLICK.md).
@@ -91,3 +98,8 @@ The modern gold-strip path stops on invalid or repeated public currency IDs.
 Valid rows retain their order, formatting and layout without an arbitrary count
 cap; the legacy branch is unchanged. The repeated-reply defect is reproduced in
 a desktop fixture, not in a native capture. [Evidence](GOLD_CURRENCY_ITERATION.md).
+
+<!-- STRIP-INFO-MEASURE-20261120 -->
+Info now reuses the width just measured when its hybrid labels match, and adjusts the current render list in place. In 60 modeled width changes, the usual FPS and ping row uses 120 width queries instead of 240. The dense row uses 2,010 instead of 2,220. The item-level and GearScore case keeps all 960 queries because the labels change. The decorative slot skips 120 grid-height reads over 60 crossings. Text, fonts, anchors, tooltip contents and slot visibility match. The horizontal layout owns its render list for one synchronous pass. It reuses the measured width only with the same glyph text, FontStrings and font size. Changed labels, including compact-to-full and restricted values, keep measurement. The real Info frame keeps its height writes and stat refreshes. A decorative gap follows its top and bottom anchors directly without sampling unused grid heights.
+[Matched validation](validation/strip-info-measure-2026-11-20.json).
+<!-- /STRIP-INFO-MEASURE-20261120 -->

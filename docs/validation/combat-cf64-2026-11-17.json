@@ -1,0 +1,268 @@
+{
+  "changeId": "COMBAT-CF64-20261117",
+  "status": "Native user-reproduced combat-lag observation retained; attribution and broader acceptance remain OPEN",
+  "publicSummaryOnly": true,
+  "scope": {
+    "client": "Forever",
+    "version": "1.60.1",
+    "build": "70938",
+    "mainOnly": true,
+    "bankActions": 0,
+    "nativeCommandsOwnedBy": "Root performance chat",
+    "userReproducedLag": true,
+    "matchedBeforeAfterStudy": false,
+    "partyRaidJoinLeaveCaptured": false,
+    "rawSettingsOrDiagnosticsIncludedInRepository": false
+  },
+  "sourceIdentity": {
+    "observedBorderVersion": "watch-mesh-phases-r60",
+    "observedDiagnosticVersion": 3,
+    "exactLoadedCoreSHA256": null,
+    "nativeAdoptionOfNewerCore": "NOT ESTABLISHED; the shared version label is insufficient",
+    "reviewedR60CoreRawSHA256": "4fa7c12add20c1caec6202372c8f55fe63711920ff28af3753da8c7069668c39",
+    "reviewedR60CoreLFSHA256": "110827b68fcad2b54a0bfb74c146abfd60ce7d9c8978b9b341f0628bd1233989",
+    "reviewedR61OtherRawAndLFSHA256": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "qualification": "Reviewed disk identities are reference identities, not proof of exact native loaded bytes. Preserve the other border chat's newer source and active mini-frame work."
+  },
+  "watch": {
+    "capturedAtClientLocal": "2026-11-17 08:34:09",
+    "status": "expired",
+    "durationLimitSeconds": 120,
+    "actualSeconds": 120.0009999999893,
+    "thresholdMs": 50,
+    "frameCount": 12465,
+    "frameGaps": 31,
+    "slowCallbacks": 3,
+    "observedCallbacks": 16759,
+    "diagnosticMs": 146.7231006026268,
+    "diagnosticPeakMs": 0.3018999695777893,
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "profilerPreferenceWritesByCaptureAgent": 0,
+    "errorsBefore": 0,
+    "errorsAfter": 0,
+    "heapBeforeKB": 847426.54296875,
+    "heapAfterKB": 850803.2509765625,
+    "periodicHeapSamples": 105,
+    "coverage": {
+      "Scheduler": true,
+      "Ticker": true,
+      "Combat": true,
+      "Events": true
+    }
+  },
+  "combatTransitions": {
+    "schemaVersion": 1,
+    "initialState": "unknown",
+    "enters": 16,
+    "exits": 16,
+    "enterSampledEvents": 16,
+    "enterSampledFrames": 16,
+    "exitSampledEvents": 16,
+    "exitSampledFrames": 16,
+    "enterFirstUnmeasured": 0,
+    "enterInvalidUnmeasured": 0,
+    "enterStoppedUnmeasured": 0,
+    "exitFirstUnmeasured": 0,
+    "exitInvalidUnmeasured": 0,
+    "exitStoppedUnmeasured": 0,
+    "enterWorst": {
+      "atSeconds": 14.38899999996647,
+      "gapMs": 25.00000037252903
+    },
+    "exitWorst": {
+      "atSeconds": 13.26499999995576,
+      "gapMs": 17.00000092387199
+    },
+    "interpretation": "Delivered regen events correlated with the next eligible watch-driver frame interval. These are not event-handler CPU or reaction-time measurements and do not exclude deferred combat lag. Raw signed zero remains in external evidence."
+  },
+  "slowCallbacks": [
+    {
+      "atSeconds": 8.778999999980442,
+      "kind": "Scheduler",
+      "key": "structural.callback",
+      "label": "Scheduler:structural.callback:unmapped",
+      "tokens": "border.junctions",
+      "ms": 105.5654999613762,
+      "failed": false
+    },
+    {
+      "atSeconds": 8.778999999980442,
+      "kind": "Combat",
+      "key": "scheduler.structural.flush",
+      "label": "Combat:scheduler.structural.flush:unmapped",
+      "ms": 105.61519998312,
+      "failed": false
+    },
+    {
+      "atSeconds": 25.86599999997998,
+      "kind": "Scheduler",
+      "key": "eval.listener",
+      "label": "[Interface/AddOns/_FluxUI/Bars/Init.lua]:199: in function <Interface/AddOns/_FluxUI/Bars/Init.lua:195>",
+      "tokens": "ebs.usable,bars.usable",
+      "ms": 14.69010001420975,
+      "failed": false
+    }
+  ],
+  "callbackInterpretation": "The border callback and enclosing Combat structural flush are inclusive overlapping spans; do not sum them. The token identifies the deferred border owner, not the original invalidation requester. The Bars listener is usability work; no layout attribution is established by its token alone.",
+  "borderPeak": {
+    "kind": "build",
+    "totalMs": 105.5446000099182,
+    "phasesMs": {
+      "preflight": 0.203499972820282,
+      "geometry": 13.84570002555847,
+      "align": 0.2127000093460083,
+      "solve": 17.35639995336533,
+      "plan": 32.6114000082016,
+      "commit": 41.31490004062653
+    },
+    "planPhasesMs": {
+      "fallbackMesh": 15.66640001535416,
+      "branches": 6.793199956417084,
+      "cuts": 6.364900052547455,
+      "owners": 2.086100041866303,
+      "fallbackCells": 1.521999955177307,
+      "rest": 0.176800012588501
+    },
+    "commitPhasesMs": {
+      "mesh": 24.07110005617142,
+      "fragments": 7.025600016117096,
+      "fallbacks": 8.223599970340729,
+      "retire": 0.651199996471405
+    },
+    "nestedMeshPhasesMs": {
+      "prepare": 8.870700001716614,
+      "draw": 15.2004000544548
+    },
+    "timingQualification": "Nested mesh phases partition the legacy mesh span, not additional costs. The optional midpoint clock is inside mesh; publishing nested detail after mesh-end is charged to following retire/overall work. This is not observer-free timing.",
+    "operations": 177,
+    "fragments": 279,
+    "triangles": 2880,
+    "baseHits": 73,
+    "baseMisses": 2,
+    "fallbackHits": 2021,
+    "fallbackMisses": 21,
+    "fallbackPlanHits": 60,
+    "fallbackPlanMisses": 15,
+    "fallbackProbes": 1139,
+    "sourceReads": 291,
+    "sourceHits": 346,
+    "work": {
+      "fieldCalls": 7479,
+      "fieldHits": 4775,
+      "fieldWrites": 2704,
+      "drawReuses": 56,
+      "drawMisses": 19,
+      "drawFields": 1194,
+      "basisReads": 56,
+      "alphaReads": 1208,
+      "alphaWrites": 157,
+      "showReads": 924,
+      "showWrites": 0,
+      "hideReads": 10,
+      "hideWrites": 0
+    },
+    "requesterAttribution": "UNKNOWN: this capture has no dirty/read-reason/request/owner-context or before/after owner-signature fields. The 8.779s ring row has been overwritten. Newer source instrumentation is not retrospectively present.",
+    "borderLast": {
+      "kind": "unchanged",
+      "totalMs": 0.0396999716758728
+    }
+  },
+  "retainedRing": {
+    "retainedRows": 20,
+    "totalFrameGaps": 31,
+    "firstSequence": 12,
+    "lastSequence": 31,
+    "earliestAtSecondsApprox": 27.945,
+    "borderPeakRowRetained": false,
+    "combatTaggedRows": 5,
+    "combatTaggedGapMsApprox": [50, 67, 56, 57, 55],
+    "qualification": "Combat context tags are not event-exclusive attribution. Eleven earlier rows, including context near the border peak, are no longer retained."
+  },
+  "worstRetainedGap": {
+    "atSeconds": 40.99499999999534,
+    "sequence": 19,
+    "gapMs": 815.000057220459,
+    "cause": "UNATTRIBUTED",
+    "nearestProfilerTick": {
+      "applicationMs": 815,
+      "allAddonsMs": 19.1767,
+      "fluxUIMs": 18.5329
+    },
+    "observedSharedCallbacks": 12,
+    "largestObservedCallback": {
+      "key": "CURSOR_CHANGED",
+      "label": "Events:CURSOR_CHANGED:unmapped",
+      "ms": 0.02770000696182251
+    },
+    "busyKeys": {
+      "SPELL_ACTIVATION_OVERLAY_HIDE": 4,
+      "CURSOR_CHANGED": 3,
+      "UPDATE_MOUSEOVER_UNIT": 3,
+      "SPELL_UPDATE_USABLE": 2
+    },
+    "heapKB": 886971.6728515625,
+    "heapDeltaSinceContextKB": 24971.0732421875,
+    "shortHeapDeltaKB": 11005.35546875,
+    "preHeapSampleAgeSeconds": 1.507000000041444,
+    "errors": 0,
+    "errorDelta": 0,
+    "uiContext": {
+      "combat": false,
+      "auction": "missing",
+      "mail": "shown=false/visible=false",
+      "worldMap": "shown=false/visible=false",
+      "lastFluxTab": "Respec"
+    },
+    "qualification": "Nearest profiler ticks and coarse heap/context samples do not establish exclusive CPU, garbage collection or UI causation. The last-tab label does not prove panel visibility. The 815ms cause remains UNKNOWN."
+  },
+  "diagnosticPreservation": {
+    "CF64resultDeepEqualsCF64holdNew": true,
+    "currentSpikeWatchDeepEqualsCF64holdOld": true,
+    "CF64holdOldDeepEqualsCF62holdNew": true,
+    "CF62holdPresent": true,
+    "CF62resultPresent": false,
+    "currentSpikeWatchDeepEqualsCF62holdOld": false,
+    "CF62old": {
+      "status": "stopped",
+      "capturedAtClientLocal": "2026-11-17 00:23:06",
+      "frameGaps": 7,
+      "slowCallbacks": 2
+    },
+    "CF62new": {
+      "status": "expired",
+      "capturedAtClientLocal": "2026-11-17 08:26:24",
+      "frameGaps": 29,
+      "slowCallbacks": 0
+    },
+    "originalRestoration": "PENDING: original report remains retained in CF62hold.old; prepared owned restoration controller has not executed because the main client foreground guard declined admission",
+    "preparedRestoreControllerSHA256Prefix": "1418",
+    "currentOwnedCaptureOrInputLeases": "none, as reported by Root at this handoff",
+    "CF62waitInterpretation": "All captured value checks pass, but SavedVariables deep equality after reload does not prove Lua table identity. Identity loss across reload is an explanation, not a native pointer observation. CF62hold is present, so erased-hold speculation is not supported by this data."
+  },
+  "evidence": {
+    "externalArtifactDirectory": "native-cf64-combat-20261117",
+    "files": [
+      "summary.json",
+      "attribution-details.json",
+      "ownership.json",
+      "retained-gaps.json",
+      "protocol-audit.json",
+      "diagnostics.json"
+    ],
+    "extractionManifestSHA256": "d0571c647115523123c8a964a8f97dc0a71815dc22d5b2ec710534a080094f47",
+    "diagnosticLiteralSHA256": "d401eef4c7a2c413ef119341c514da765661660e429e91ca7f551d9c4556ca1b",
+    "extraction": "Root authorized the post-flush main-account read. A strict data-only literal parser decoded only FluxPerfCaptureDB, with no Lua/Python evaluation or other roots retained. Eighteen pure-literal positive/negative controls passed. The newer stable on-disk read was recorded explicitly; no Bank or backup SavedVariables was read.",
+    "manifestQualification": "External extraction manifest is a dated identity; Root-owned protocol audit may receive later records. Raw settings and diagnostics remain external."
+  },
+  "remainingAcceptance": [
+    "Original diagnostic restoration under the owned main-background guard",
+    "Exact loaded-source adoption and matched native improvement for newer Core/rank changes",
+    "Original requester of the 105.5446ms whole border build",
+    "Cause of the 815ms general frame gap",
+    "Combat enter/exit deferred-lag acceptance",
+    "Party/raid join/leave in both display modes",
+    "Controller and client compatibility, secure/taint, pixel parity and FPS"
+  ]
+}

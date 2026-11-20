@@ -1,0 +1,72 @@
+{
+  "changeId": "LHO-NATIVE-TRINKET-SCAN-P60-20261116",
+  "recordedUTC": "2026-11-16T14:38:25.965039+00:00",
+  "status": "NATIVE_CURRENT_ONLY_SYNTHETIC_THREE_SCAN_RESULT",
+  "goalStatus": "ACTIVE",
+  "nativeResultRecordedUTC": "2026-11-16T14:03:25.356965+00:00",
+  "exactObservedResult": {
+    "line": "P60SCAN 253693.607 0 0.23160001635551",
+    "nativeGetTimeSeconds": 253693.607,
+    "reportedBaggedTrinkets": 0,
+    "ordinaryScanCalls": 3,
+    "grossElapsedMilliseconds": 0.23160001635551,
+    "newComparedToSource": true,
+    "notSkip": true
+  },
+  "identity": {
+    "pid": 46260,
+    "hwnd": 600248958,
+    "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+    "created": 134392816726299937
+  },
+  "mode": "background; otherforeground3278732 unchanged; no activation/globalinput/clipboard",
+  "guards": "FreshRootclosedchat worldimage/MarioSuper37; entrycombat/cast/channel false by completedSCAN branch; no heldkeys; sourceandpostsameidentity/LastInput/otherforeground",
+  "helperSHA256": "9a8e3e4d17e323670542a58495481e6352e477e029f3d8c62cf7c0253c570954",
+  "payload": "/run if InCombatLockdown()or UnitCastingInfo'player'or UnitChannelInfo'player'then print'P60SKIP'else local a,t=FluxTrinketMenu,debugprofilestop()for i=1,3 do a.ScanBagsForTrinkets()end print('P60SCAN',GetTime(),a.NumberOfTrinkets,debugprofilestop()-t)end",
+  "transport": {
+    "ASCIICharacters": 255,
+    "commandEnqueueMilliseconds": 157.00000000651926,
+    "acknowledgment": "root-visual-attestation-only; exactnewP60SCAN comparedwithbeforePNG; not an automaticgame-sideACK",
+    "ownInputLockAutoReleased": true,
+    "leaseEnded": true,
+    "otherForegroundUnchanged": true
+  },
+  "resourcesAndNormalEffects": "Onlylocals/existingScan calls; no installedglobals/hooks/timers; ordinaryscancache/metadata andpossiblefallbackUIsync remain normal effects.",
+  "limits": [
+    "One command/single summed3callgrosselapsed sample, not exclusiveCPU orindividualcall timings.",
+    "Native bagrows/uniqueIDs/readiness/providerflags/profilerpreferences were notqueried inthissample.",
+    "Currentdiskowner7d8f verifiedseparately, butloadedin-memorysourceidentity/P58adoption notproven; startupmessagesvisible do notproveareload.",
+    "No actualbag-event/loot/receive/crafting/vendor/AH/bank/mail lifecycle, matchednativebeforeafter,FPS,pixels,taint/controller orotherclientsaccepted.",
+    "VisibleFPS95/160 orscene/startup differences are contextualscreenshots, not gain evidence.",
+    "No actorcast/purchase/sale/delete/move/reload/provider/preferences action bythiscommand."
+  ],
+  "datedKeepaliveState": {
+    "asOfP60Snapshot": "JumpR2b reviewed external/nativepending/notpromoted; Combo foreground-only keepalive.",
+    "backgroundJumpWorkingClaim": false,
+    "laterPromotionNotInferred": true
+  },
+  "relationshipToP58P59": "Separate current-only native observation. Does not establish loadedP58 source identity/adoption, matched gain, bag-event lifecycle or P59 eligibility. Existing P58/P59 records remain unchanged.",
+  "evidence": {
+    "externalRelativeBase": "p60-native-current-20261116",
+    "rootResultSHA256": "54202fee8a8d7ba843dc3f9e6f417c9190916cca270508df455c1b4be9e42d55",
+    "rootSealSHA256": "1821906d325da5fed96a75079cd3a24fc46119430c34e5a8a10710d54cf2e3a4",
+    "independentPeerSHA256": "c3f5f5384a92714293f2a49c5f308c91be97c92bd874a41d3393d20d3b61341f",
+    "helperSourcePeerSHA256": "1db38344351300a982876c136f4fcba3c84edda1b0700e2e63f71094a1fba62e",
+    "artifactHashes": {
+      "source.png": "99510b54be26e5068bf2a63327bd80bd41e18fbc82fea0c271641b09f01dde88",
+      "source-capture.json": "2d789636655edf6a1b091cfbfa5aa216dfbb958247948d820305fc9b9e839cc4",
+      "submitted.png": "daa2e1a1e97901c317ab7b2c45b1c4188a60e6ff731adafddbdd73cc2a07ed00",
+      "submitted-capture.json": "f54b4ae7200fab8587ba8a0a6d753b1c2229f1c69f093f7fb27b1bec19d09480",
+      "journal.json": "8a79dd174a93e5e3f2181dc5274c966a27243762b3711a64acff15edd39cf684",
+      "lease-ready.json": "c82d52c0312353e72d7e10b608b76d55135c7f452e742e2f8e7df5e0dc21e399",
+      "lease-ended.json": "892e0f940c632534405cae768ed088add8c4b2b1a67385e29d212030f9d847a8"
+    }
+  },
+  "actionsByDocsEditor": {
+    "native": 0,
+    "runtimeSourceOrTests": 0,
+    "modelsOrCost": 0,
+    "settingsProviderProfiler": 0,
+    "generatorSyncCommitPublication": 0
+  }
+}

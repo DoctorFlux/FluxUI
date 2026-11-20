@@ -1,0 +1,138 @@
+{
+  "task": "WORLD-MAP-BRIDGE-20261116",
+  "date": "2026-11-16",
+  "repository": "https://github.com/Photronix2020/WowSim",
+  "branch": "main",
+  "commit": "c85495655605de1f3756cc0824c4c7faa30be2a3",
+  "commit_date": "2026-10-19T18:51:11Z",
+  "license": {
+    "github_detected": null,
+    "license_files_in_recursive_tree": [],
+    "treatment": "Read-only evaluation; no simulator code vendored into FluxUI."
+  },
+  "assessment": "Potential secondary Lua/widget layout preview. Current source does not simulate the native original-WorldMap-in-BattlefieldMap path sufficiently to accept or reproduce the reported live map problem, nor certify all-client compatibility.",
+  "files": [
+    {
+      "path": "README.md",
+      "blob_sha": "05c25bed5ab927e1003da89ec638dd533bbe13d5",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/README.md"
+    },
+    {
+      "path": "requirements.txt",
+      "blob_sha": "fc1eb1db352dc4eeec0ed51bc3ae9aee0e80a112",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/requirements.txt"
+    },
+    {
+      "path": "WowSim.bat",
+      "blob_sha": "71088265629b35374978133fb5278cdd102186e9",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/WowSim.bat"
+    },
+    {
+      "path": "server.py",
+      "blob_sha": "c4c42b1cc529cddf3336d69c55b2c6c00090622e",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/server.py"
+    },
+    {
+      "path": "lua/runtime.lua",
+      "blob_sha": "10b1525084b9b0fde1d4ef26fda743c637cbed98",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/runtime.lua"
+    },
+    {
+      "path": "lua/widgets.lua",
+      "blob_sha": "16a6174f91b9bf3a5bb5a2ee23338a493af01424",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/widgets.lua"
+    },
+    {
+      "path": "lua/templates.lua",
+      "blob_sha": "2da4d44584a2e2ab6ba591670717f05731f56ca8",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/templates.lua"
+    },
+    {
+      "path": "lua/api.lua",
+      "blob_sha": "509839f5545d1e44a0d02557090f586a2200043c",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/api.lua"
+    },
+    {
+      "path": "lua/blizzard.lua",
+      "blob_sha": "cfdffd546beaa707c88b0d7a53b15b3b1b2c3e00",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/blizzard.lua"
+    },
+    {
+      "path": "lua/scene.lua",
+      "blob_sha": "0067dc66d5341926510d2276cdc2b3b011813876",
+      "url": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/lua/scene.lua"
+    }
+  ],
+  "capabilities": [
+    {
+      "capability": "Windows and headless launch",
+      "evidence": "server.py1028-1044 accepts --addon, --port and --no-browser; binds127.0.0.1. WowSim.bat uses miniconda; direct Python works with dependencies.",
+      "status": "source-declared"
+    },
+    {
+      "capability": "Lua runtime",
+      "evidence": "server.py23 imports lupa.lua51; requirements lupa>=2.0 and Pillow>=9.0.",
+      "status": "source-declared"
+    },
+    {
+      "capability": "Client targets",
+      "evidence": "server.py85-87 hardcodes camelot/forever game types; lua/api.lua213 returns1.60.1.70009/interface16001, while939 sets WOW_PROJECT_ID=WOW_PROJECT_MAINLINE. No Retail/Classic runtime selector.",
+      "status": "Forever-oriented only; not all-client evidence"
+    },
+    {
+      "capability": "XML",
+      "evidence": "server.py578-590 loads Script/Include references but explicitly does not build XML Frame/Button/Texture definitions.",
+      "status": "insufficient for native WorldMap/MapCanvas templates"
+    },
+    {
+      "capability": "MapCanvas and native map lifecycle",
+      "evidence": "lua/blizzard.lua235-249 creates a permissive WorldMap stand-in, fixed1002x668 canvas, fixedGetMapID1429, no-op providers; ToggleWorldMap322 toggles visibility. ShowUIPanel/HideUIPanel in api.lua965-966 only show/hide, with no native panel manager.",
+      "status": "not native map behavior"
+    },
+    {
+      "capability": "FrameBuffer and flattening",
+      "evidence": "lua/widgets.lua1175-1177 implements SetFlattensRenderLayers, SetFrameBuffer and SetIsFrameBuffer as no-ops.",
+      "status": "unmodeled"
+    },
+    {
+      "capability": "Anchors, scale, ScrollFrame and clipping",
+      "evidence": "widgets.lua250-357 stores anchors and calculates rectangles;491-534 computes scale and anchors synchronously from cached tree;1511-1553 models scroll offsets;2040-2067 clips to parent ScrollFrames/clip flags.",
+      "status": "useful basic model; no C-native deferred geometry/framebuffer equivalence"
+    },
+    {
+      "capability": "Strata",
+      "evidence": "widgets.lua1039-1068 models inherited strata and levels but fixed-strata/level controls are no-ops;2023-2037 sorts visible frames by strata/level/creation ID. scene.lua exports a flat draw list.",
+      "status": "basic painter ordering only"
+    },
+    {
+      "capability": "Native restrictions",
+      "evidence": "widgets.lua1182-1184 always permits protected changes and returns IsProtected=false;163 returns IsForbidden=false;api.lua571-582 supplies permissive securecalls/secrets. README explicitly excludes secret-value modeling.",
+      "status": "taint/combat/security/controller acceptance unavailable"
+    }
+  ],
+  "environment_check": {
+    "python": "C:/Program Files/Python310/python.exe",
+    "modules": {
+      "lupa": false,
+      "PIL": false,
+      "playwright": false
+    },
+    "miniconda_at_readme_default": false,
+    "simulator_started": false,
+    "dependencies_installed": false,
+    "reason": "No installation performed because the required native map/framebuffer and panel lifecycle are missing; parent is continuing the actual-client reproduction."
+  },
+  "suggested_isolated_setup": {
+    "destination": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e4ee-f735-7420-b3b7-b5568f701618/WowSim",
+    "steps": [
+      "Fetch/checkout exact commitc85495655605de1f3756cc0824c4c7faa30be2a3 outside AddOns.",
+      "Create a venv inside that simulator folder and install its requirements only there.",
+      "Write simulator config.json with blizzardData=false for bounded offline API/layout evaluation; use simulated SavedVariables, never copy live WTF.",
+      "Run venv Python server.py --no-browser --port8642 --addon F:/World of Warcraft/_retail_/Interface/AddOns/_FluxUI.",
+      "Read GET/api/state and POST/api/exec for automated Lua/scene inspection, recording errors and all reported stubs; full FluxUI may need substantial missing native scaffolding.",
+      "Use a deliberately isolated addon/fixture for source-layer order and coordinate experiments. Keep the native client as the acceptance authority for original map embedding, guide rendering, taint, controller and performance."
+    ],
+    "no_browser_focus": true
+  },
+  "native_acceptance": "No native acceptance established by this evaluation. The live user-reported map rendering problem remains assigned to the parent agent."
+}

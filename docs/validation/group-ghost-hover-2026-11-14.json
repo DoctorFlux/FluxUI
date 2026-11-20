@@ -1,0 +1,375 @@
+{
+  "changeId": "GROUP-GHOST-HOVER-20261114",
+  "date": "2026-11-14",
+  "requirements": [
+    "No hover casting over absent or invisible party/pet/target/raid slots",
+    "Handle party join/leave, party-to-raid and raid-to-party, unit reassignment and disappearance during combat",
+    "Hide the detached separator/atlas when the owner or group ancestor is hidden; preserve appearance and responsive active casting",
+    "Keep protected operations on prepared native secure handlers; no ordinary combat registration or frame mutation"
+  ],
+  "userEvidence": {
+    "screenshot": "codex-clipboard-23779297-506b-4953-9e8d-7826a593784d.png",
+    "source": "UnitFrames/FluxUnitFrames_Shared.lua:9452 before this change",
+    "selectedFrame": "Anonymous UIParent decoration anchored TOPLEFT/BOTTOMRIGHT to FluxUnitFrame_party4",
+    "report": "Party slot interaction remains while solo; requests combat joins/leaves/conversions/reassignment handling"
+  },
+  "causes": [
+    "Detached separator initialized from local IsShown although its group ancestor was hidden; Build Hide then produced no effective OnHide transition",
+    "Secure setup-bindings accepted nonexistent/invisible unit surfaces; visual scan also admitted locally shown frames below hidden ancestors",
+    "Secure unit assignment could change without OnLeave; prior mouseover-exists cleanup retained missing sources based solely on hovered geometry"
+  ],
+  "implementation": [
+    "Detached separator and atlas initialization/OnShow use effective IsVisible; separator explicitly disables mouse input",
+    "Shared secure valid-hover snippet resolves the current unit on the surface or its parent chain and verifies effective visibility/UnitExists",
+    "Preinstalled secure OnAttributeChanged wrappers clear or rearm owner/child bindings on unit changes, including a remembered real enter under a stationary cursor",
+    "Mouseover-exists cleanup checks the actual source unit; leave/hide retires remembered enter ownership",
+    "Mouse-focus attribution and geometric scans reject frames below hidden ancestors"
+  ],
+  "combatMechanism": "Prepared secure wrappers/RunFor run from native dispatch in combat. Existing roster visibility drivers remain unchanged. No new driver/ticker/roster poll or ordinary protected write is added.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\group-ghost-hover\\checkpoint.json",
+    "sha256": "84e2aa5eb465adc517c6c9377a41146d81fe84236a489d2e7b892ec03278e928",
+    "files": 2801,
+    "settingsMetadata": 113,
+    "archivesVerified": true,
+    "privateSettingsCopied": false
+  },
+  "sources": {
+    "pins": {
+      "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+    },
+    "contracts": [
+      "RestrictedEnvironment exposes UnitExists; UnitExists declares a plain bool with no secret return annotation in inspected sources",
+      "RestrictedFrames.RunFor returns the restricted closure result; GetAttribute/GetParent resolve handles rather than ordinary native fields",
+      "SecureHandlers permits OnAttributeChanged wrapping; our unit-change wrapper does not return false or suppress the original native callback"
+    ],
+    "capturedFiles": [
+      {
+        "file": "classic-Interface_AddOns_Blizzard_APIDocumentationGenerated_UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5"
+      },
+      {
+        "file": "classic-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      },
+      {
+        "file": "classic-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354"
+      },
+      {
+        "file": "classic-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_APIDocumentationGenerated_UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedEnvironment.lua",
+        "sha256": "1ce2bdb7397d53c3507c8e2a1502d59d024b5f5b8a06b4bf99007d212fd8c81d"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "b8ea7dbc62a279d612b0ab50bf0998e9a016d5d3cb613adbd00cae34f5cc6d77"
+      },
+      {
+        "file": "classic_anniversary-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c34baf4b5bb6c8cc62ff086bbcb68185e026a31161c73b25faa847d7452a0ddb"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_APIDocumentationGenerated_UnitDocumentation.lua",
+        "sha256": "b9e8124179606c58b5b701fafd28f5f968afe0dc893a915ccc52c57e57c287b5"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354"
+      },
+      {
+        "file": "classic_era-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_APIDocumentationGenerated_UnitDocumentation.lua",
+        "sha256": "93004ac1b260127741471b7861360cdf7536afcb18d4c1db73b7259faa43e61c"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3"
+      },
+      {
+        "file": "forever-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_APIDocumentationGenerated_UnitDocumentation.lua",
+        "sha256": "1ac4048d3d8acb63cd624c7be3c40e3149b6761b73a7d6bb271e3ace6af34c94"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedEnvironment.lua",
+        "sha256": "5e42ec4807156002470d957a140d107619b068c941e182af4c4a4b62e1fcd895"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_RestrictedFrames.lua",
+        "sha256": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3"
+      },
+      {
+        "file": "live-Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+        "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548"
+      }
+    ]
+  },
+  "userLinkedRepository": {
+    "url": "https://github.com/TheMizeGuy/wow-addon-dev",
+    "commit": "f928572a9428d29327a96c2549b0068101961c4e",
+    "license": "MIT",
+    "use": "Read-only supplemental combat-lockdown/debugging guidance; not installed or copied into addon runtime",
+    "limits": "Broad Retail/Classic guidance is not Forever operation evidence. Do not adopt the SKILL.md tonumber-as-secret-scrubber claim; actual client/pinned contracts remain authoritative.",
+    "files": [
+      {
+        "file": "mize-LICENSE",
+        "sha256": "7758d02a8dda0f7a3db8179e2b6897e443f6903d377a963f768b996ad140db56"
+      },
+      {
+        "file": "mize-references_debugging-and-taint.md",
+        "sha256": "71a27254758596a63003d11d55a73d7bb16e913d8e8872101d73cc16dfdbc7c0"
+      },
+      {
+        "file": "mize-references_ui-and-secure-templates.md",
+        "sha256": "97a9227d27b5864038446cac0c8f4ccd5c7eed1cf1aaed7fde8314b908da1a91"
+      },
+      {
+        "file": "mize-SKILL.md",
+        "sha256": "187ac2072e2518f3b378c5ed0062cbc8422ab3b68631b6d9d37dd5789bdb6823"
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "label": "binding-before-0",
+      "exit": 1,
+      "expectedFailure": "nonexistent party slot cannot arm secure hover overrides",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: nonexistent party slot cannot arm secure hover overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:28: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "chrome-before-0",
+      "exit": 1,
+      "expectedFailure": "separator is never exposed for a party member created under a hidden dock",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: separator is never exposed for a party member created under a hidden dock\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:116: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "candidate-0",
+      "exit": 0,
+      "expectedFailure": null,
+      "output": "Group ghost hover: 120 checks; five client policies; combat group/attribute/hide/child transitions and screenshot chrome source; native VM pending\n"
+    },
+    {
+      "label": "binding-before-1",
+      "exit": 1,
+      "expectedFailure": "nonexistent party slot cannot arm secure hover overrides",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: nonexistent party slot cannot arm secure hover overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:28: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "chrome-before-1",
+      "exit": 1,
+      "expectedFailure": "separator is never exposed for a party member created under a hidden dock",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: separator is never exposed for a party member created under a hidden dock\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:116: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "candidate-1",
+      "exit": 0,
+      "expectedFailure": null,
+      "output": "Group ghost hover: 120 checks; five client policies; combat group/attribute/hide/child transitions and screenshot chrome source; native VM pending\n"
+    },
+    {
+      "label": "binding-before-2",
+      "exit": 1,
+      "expectedFailure": "nonexistent party slot cannot arm secure hover overrides",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: nonexistent party slot cannot arm secure hover overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:28: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "chrome-before-2",
+      "exit": 1,
+      "expectedFailure": "separator is never exposed for a party member created under a hidden dock",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: separator is never exposed for a party member created under a hidden dock\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:116: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "candidate-2",
+      "exit": 0,
+      "expectedFailure": null,
+      "output": "Group ghost hover: 120 checks; five client policies; combat group/attribute/hide/child transitions and screenshot chrome source; native VM pending\n"
+    }
+  ],
+  "compiledHarmfulControls": [
+    {
+      "label": "control-unit-exists",
+      "exit": 1,
+      "expectedFailure": "nonexistent party slot",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: nonexistent party slot cannot arm secure hover overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:28: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-effective-visibility",
+      "exit": 1,
+      "expectedFailure": "hidden party frame cannot rearm",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: hidden party frame cannot rearm after raid conversion\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:49: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-attribute-wrapper",
+      "exit": 1,
+      "expectedFailure": "removed unit clears an active child override",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: removed unit clears an active child override immediately\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:39: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-attribute-cleanup",
+      "exit": 1,
+      "expectedFailure": "removed unit clears an active child override",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: removed unit clears an active child override immediately\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:39: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-missing-unit-geometric-keep",
+      "exit": 1,
+      "expectedFailure": "vanished source cannot keep bindings",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: vanished source cannot keep bindings merely because its rect is hovered\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:45: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-stationary-cursor",
+      "exit": 1,
+      "expectedFailure": "valid reassignment under the cursor can resume",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: valid reassignment under the cursor can resume securely\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:41: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-context-visibility",
+      "exit": 1,
+      "expectedFailure": "hidden group ancestor excludes stale mouse-focus",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: hidden group ancestor excludes stale mouse-focus attribution\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:74: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-separator-initial-state",
+      "exit": 1,
+      "expectedFailure": "separator is never exposed",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: separator is never exposed for a party member created under a hidden dock\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:116: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "label": "control-atlas-initial-state",
+      "exit": 1,
+      "expectedFailure": "atlas uses effective visibility",
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/group_ghost_hover.lua:13: live: atlas uses effective visibility under a hidden ancestor\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/group_ghost_hover.lua:13: in local 'check'\n\ttests/group_ghost_hover.lua:120: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "focusedChecksPerRun": 120,
+  "fullValidation": {
+    "scripts": 381,
+    "failures": 0,
+    "syntaxFiles": 1069,
+    "syntaxFailures": 0,
+    "allCurrentLuaHashesVerified": true,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\group-ghost-hover\\validation.json"
+  },
+  "preservation": {
+    "runtimeOwners": [
+      "Binding/Input/FluxMouseoverKeybind.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua"
+    ],
+    "modifiedHarness": "tests/raid_binding_cast.lua",
+    "newHarness": "tests/group_ghost_hover.lua",
+    "otherCheckpointLuaUnchanged": true,
+    "savedDataOptionsAssetsLicenses": "Unchanged",
+    "sourceRetained": "All prior player fixes and unrelated inventory/pause records retained",
+    "newRuntimeResources": "One additional secure unit-change wrapper per existing hover surface; one existing-header validation snippet; zero new frames/events/timers/state drivers"
+  },
+  "runtimeIdentities": [
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655"
+    }
+  ],
+  "installedCopiesReadOnly": [
+    {
+      "client": "_retail_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+      "matches": true
+    },
+    {
+      "client": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+      "matches": true
+    },
+    {
+      "client": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+      "matches": true
+    },
+    {
+      "client": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+      "matches": true
+    },
+    {
+      "client": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+      "matches": true
+    },
+    {
+      "client": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "sha256": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+      "matches": true
+    }
+  ],
+  "native": {
+    "candidate": "NOT RUN",
+    "testPreference": "Existing background-only/user reproduction; broad paused diagnostic goal remains paused",
+    "pending": [
+      "Native solo empty-slot hover",
+      "Join/leave/conversions/reassignments while already in combat",
+      "Real cast targeting and native blocked-action/taint errors",
+      "All-client pixels/controller"
+    ],
+    "limits": "Desktop native-dispatch models do not certify the game security VM, real cast delivery, FPS or pixel parity. Retained hidden objects can still be inspected with show-hidden filters."
+  },
+  "clientAndPublicationWrites": "None: no activation/input/reload, profiler/settings edits, manual installation sync, commit or push"
+}

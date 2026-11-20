@@ -3,15 +3,17 @@
 local function read(path)
     local file = assert(io.open(path, "rb")); local value = file:read("*a"):gsub("\r\n", "\n"); file:close(); return value
 end
-local source = read("Binding/Input/FluxMouseoverKeybind.lua")
+local source = read(arg[1] or "Binding/Input/FluxMouseoverKeybind.lua")
 local checks = 0
 local function check(ok, why) checks = checks + 1; assert(ok, why) end
 local function fixture(client, body)
     local e = setmetatable({}, { __index = _G }); e._G = e
     local ns = { Flux = {} }
+    e.ns = ns
     e.FLUX_API = { hasEditMode = client ~= "classic_era", hasSecretValueAPI = client == "live" or client == "forever" }
     e.combat, e.secureDepth, e.writes, e.driver = false, 0, 0, false
     e.InCombatLockdown = function() return e.combat end
+    e.FluxEditModeBusy = function() return e.editing end
     e.secret = {}
     e.issecretvalue = function(value) return value == e.secret end
     e.wipe = function(t) for key in pairs(t) do t[key] = nil end end
@@ -27,13 +29,15 @@ local function fixture(client, body)
     function methods:GetName() return self.name end
     function methods:IsForbidden() return false end
     function methods:IsShown() return self.shown end
-    function methods:IsVisible() return self.shown end
+    function methods:IsVisible() return self.shown and (not self.parent or self.parent:IsVisible()) end
     function methods:IsUnderMouse() return self.hovered end
     function methods:IsMouseEnabled() return self.mouse ~= false end
     function methods:IsObjectType(kind) return self.kind == kind end
     function methods:GetChildren() return table.unpack(self.children) end
     function methods:GetParent() return self.parent end
     function methods:GetAttribute(key) return self.attrs[key] end
+    function methods:SetFrameRef(key, frame) legal(); self.refs = self.refs or {}; self.refs[key] = frame end
+    function methods:GetFrameRef(key) return self.refs and self.refs[key] end
     function methods:SetAttribute(key, value) legal(); self.attrs[key] = value end
     function methods:RegisterForClicks(...) legal(); self.edges = {}; for _, edge in ipairs({ ... }) do self.edges[edge] = true end end
     function methods:EnableMouseWheel(value) legal(); self.wheel = value end
@@ -43,23 +47,28 @@ local function fixture(client, body)
     function methods:RegisterEvent(event) self.events[event] = true end
     function methods:SetBindingClick(_, key, name, button) assert(e.secureDepth > 0); self.binds[key] = { name, button } end
     function methods:ClearBinding(key) assert(e.secureDepth > 0); self.binds[key] = nil end
-    local function execute(header, frame, code)
+    local function execute(header, frame, code, name, value)
         local secure = header.secure
         local previousSelf, previousControl = secure.self, secure.control
+        local previousName, previousValue = secure.name, secure.value
         secure.self, secure.control = frame, header
+        secure.name, secure.value = name, value
         e.secureDepth = e.secureDepth + 1
-        assert(load(code, "@secure-cast-fixture", "t", secure))()
+        local result = table.pack(assert(load(code, "@secure-cast-fixture", "t", secure))())
         e.secureDepth = e.secureDepth - 1
         secure.self, secure.control = previousSelf, previousControl
+        secure.name, secure.value = previousName, previousValue
+        return table.unpack(result, 1, result.n)
     end
-    function methods:Execute(code) execute(self, self, code) end
-    function methods:RunFor(frame, code) execute(self, frame, code) end
+    function methods:Execute(code) return execute(self, self, code) end
+    function methods:RunFor(frame, code) return execute(self, frame, code) end
     function methods:WrapScript(frame, event, code) legal(); frame.wraps[event] = { header = self, code = code } end
     function methods:UnwrapScript(frame, event) legal(); frame.wraps[event] = nil end
     e.CreateFrame = function(kind, name, parent)
         local frame = setmetatable({ kind = kind, name = name, parent = parent, attrs = {}, scripts = {}, hooks = {},
             events = {}, children = {}, wraps = {}, binds = {}, shown = true }, { __index = methods })
-        frame.secure = { newtable = function(...) return { ... } end,
+        frame.secure = { newtable = function(...) return { ... } end, type = type,
+            UnitExists = function(unit) return not e.units or e.units[unit] ~= false end,
             table = setmetatable({ maxn = function(t) return #t end }, { __index = table }) }
         table.insert(frames, frame)
         if name then e[name] = frame end
@@ -79,6 +88,12 @@ local function fixture(client, body)
     local function event(name) eventFrame.scripts.OnEvent(eventFrame, name) end
     event("PLAYER_LOGIN")
     local module = ns.FluxMouseoverKeybind
+    function e.NativeAttribute(frame, name, value)
+        frame.attrs[name] = value
+        local wrap = frame.wraps.OnAttributeChanged
+        if wrap then execute(wrap.header, frame, wrap.code, name, value)
+        elseif frame.attrs._onattributechanged then execute(frame, frame, frame.attrs._onattributechanged, name, value) end
+    end
     local function cell(name, raid, parent)
         local f = e.CreateFrame("Button", name, parent)
         f._fluxRaidUnit = raid
@@ -150,7 +165,7 @@ local function exercise(client, body)
     module:RegisterFrame(native)
     if client ~= "classic_era" then
         check(not native.edges and not native.passthrough and not next(native.hooks), client .. ": native frames remain wrap-only")
-        check(e.writes == nativeWrites + 3, client .. ": native registration installs only secure enter/leave/hide wrappers")
+        check(e.writes == nativeWrites + 4, client .. ": native registration installs only secure enter/leave/hide/unit-change wrappers")
     end
     local heal, cleanse = "/cast [@mouseover,help,nodead] Heal", "/cast [@mouseover,help,nodead] Cleanse"
     check(route({ "BUTTON1", "SHIFT-CTRL-BUTTON2", "Q", "BUTTON3", "MOUSEWHEELUP" }, { heal, cleanse, heal, heal, heal }), client .. ": routing pushes OOC")
@@ -239,7 +254,174 @@ local function exercise(client, body)
     check(peer.attrs.type1 == "external" and not peer.wraps.OnHide, client .. ": unregister restores primary clicks and removes secure cleanup wrapper")
 end
 
-for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_anniversary" }) do exercise(client) end
+local function ghostPlayer(client, body)
+    local e, module, cell, fire, route, event = fixture(client, body)
+    local player = cell("PlayerFrame", false)
+    local nativeChild = cell("NativePlayerChild", false, player)
+    local fluxPlayer = cell("FluxUnitFrameOuter_player", false)
+    local peekWakes, peekParks = 0, 0
+    e.FluxBindingPushPress = {
+        WakeUfHoverFromUnitFrame = function() peekWakes = peekWakes + 1 end,
+        ParkUfHoverFromUnitFrame = function() peekParks = peekParks + 1 end,
+    }
+    local suppressed = false
+    e.ns.Flux.Blizz = { IsMouseSuppressed = function(frame) return frame == player and suppressed end }
+    module:RegisterFrame(player); module:RegisterFrame(fluxPlayer)
+    route({ "Q" }, { "/cast Heal" })
+    fire(player, "OnEnter")
+    check(player.binds.Q, client .. ": native player control arms before replacement")
+    local castingSurface = player
+    if nativeChild.wraps.OnEnter then
+        fire(nativeChild, "OnEnter")
+        castingSurface = nativeChild
+        check(nativeChild.binds.Q, client .. ": legacy player child can own the active override")
+    end
+    suppressed = true
+    e.combat = true
+    local writes = e.writes
+    if module.SyncNativePlayerSuppression then module:SyncNativePlayerSuppression() end
+    check(castingSurface.binds.Q and e.writes == writes, client .. ": an active native override is left to secure cleanup until combat ends")
+    e.combat = false
+    if module.SyncNativePlayerSuppression then module:SyncNativePlayerSuppression() end
+    check(not next(player.binds), client .. ": replacing a hovered native player clears already armed secure overrides")
+    check(not next(nativeChild.binds) and not nativeChild.wraps.OnEnter, client .. ": legacy native child overrides and wrappers are also removed")
+    check(not player.wraps.OnEnter and not player.wraps.OnHide, client .. ": suppressed native player loses Flux secure hover registration")
+    check(not e.driver and peekWakes == peekParks, client .. ": native removal balances legacy hover bookkeeping")
+    e.combat = true
+    writes = e.writes
+    local wakes = peekWakes
+    fire(player, "OnEnter")
+    module:RegisterFrame(player)
+    if module.SyncNativePlayerSuppression then module:SyncNativePlayerSuppression() end
+    check(not next(player.binds) and e.writes == writes, client .. ": native ghost cannot rearm or mutate protected state in combat")
+    check(peekWakes == wakes, client .. ": retained legacy hooks cannot wake an unregistered native frame")
+    fire(fluxPlayer, "OnEnter")
+    check(fluxPlayer.binds.Q, client .. ": real Flux player still casts in combat")
+    fire(fluxPlayer, "OnLeave")
+    e.combat = false; event("PLAYER_REGEN_ENABLED")
+    module:RefreshKeybinds(); module:RegisterFrame(player)
+    check(not player.wraps.OnEnter, client .. ": discovery and binding refresh cannot reregister the suppressed native player")
+    suppressed = false
+    if module.SyncNativePlayerSuppression then module:SyncNativePlayerSuppression() end
+    fire(player, "OnEnter")
+    check(player.binds.Q and player.wraps.OnHide, client .. ": native selection restores hover registration")
+    fire(player, "OnLeave")
+    fire(fluxPlayer, "OnEnter")
+    suppressed = true
+    module:SyncNativePlayerSuppression()
+    check(fluxPlayer.binds.Q, client .. ": removing native player registration preserves a peer's active override")
+    fire(fluxPlayer, "OnLeave")
+    suppressed = false; module:SyncNativePlayerSuppression()
+    fire(player, "OnEnter")
+    suppressed = true; e.editing = true
+    writes = e.writes
+    module:SyncNativePlayerSuppression()
+    check(player.binds.Q and e.writes == writes, client .. ": native Edit Mode reset stack defers secure registration changes")
+    e.editing = false; module:SyncNativePlayerSuppression()
+    check(not next(player.binds) and not player.wraps.OnEnter, client .. ": post-Edit Mode reconciliation removes the ghost override")
+    suppressed = false; e.combat = true
+    writes = e.writes
+    module:SyncNativePlayerSuppression()
+    check(not player.wraps.OnEnter and e.writes == writes, client .. ": native registration restoration waits through combat")
+    e.combat = false; module:SyncNativePlayerSuppression()
+    e.ClickCastFrames[player] = false
+    suppressed = true
+    module:RegisterFrame(player)
+    check(not player.wraps.OnEnter, client .. ": late initial registration also respects native player suppression")
+end
+
+local function rosterDiscovery(client, body, passes, newCells)
+    local e, module, cell, fire, route, event = fixture(client, body)
+    local timer, reads = {}, 0
+    e.C_Timer.After = function(_, callback) timer[#timer + 1] = callback end
+    e.FluxActionStripButton2, e.FluxActionStripButton3 = {}, {}
+    e.GetBindingKey = function(binding)
+        reads = reads + 1
+        if binding == "ACTIONBUTTON1" then return "BUTTON4", nil, "SHIFT-BUTTON5", "ALT-MOUSEWHEELUP" end
+        if binding == "ACTIONBUTTON2" then return "", "MOUSEWHEELDOWN" end
+        if binding == "ACTIONBUTTON3" then return "Q" end
+    end
+    check(route({}, {}), "mouse and wheel routes are prepared")
+    local frames, discoveries = {}, 0
+    for i = 1, (newCells or 5) do
+        frames[i] = cell("FluxRosterMember" .. i, true)
+        if not newCells then module:RegisterFrame(frames[i]) end
+    end
+    e.ns.FluxRaidRegisterAllMouseoverKeybindFrames = function()
+        discoveries = discoveries + 1
+        for _, frame in ipairs(frames) do
+            if not module:IsFrameRegistered(frame) then module:RegisterFrame(frame) end
+        end
+    end
+    reads = 0
+    local writes = e.writes
+    local elapsed = os.clock()
+    for _ = 1, passes do
+        for _ = 1, 20 do event("GROUP_ROSTER_UPDATE") end
+        check(#timer == 1, "a roster burst queues one discovery")
+        local callback = timer[1]; timer[1] = nil; callback()
+    end
+    elapsed = (os.clock() - elapsed) * 1000
+    local samples = { reads = reads, discoveries = discoveries, writes = e.writes - writes, elapsed = elapsed }
+    check(discoveries == passes, "each roster burst discovers its settled frames")
+    check(not e.driver, "mouse-only routing never arms the spell-hover driver")
+    local fingerprint = {}
+    local function record(tab)
+        for key, value in pairs(tab or {}) do
+            if type(value) ~= "table" then fingerprint[#fingerprint+1] = key .. "=" .. tostring(value) end
+        end
+    end
+    for _, frame in ipairs(frames) do
+        check(module:IsFrameRegistered(frame), "settled roster admits all current members")
+        record(frame.attrs)
+        record(frame.edges)
+        record(frame.passthrough)
+    end
+    fire(frames[1], "OnEnter")
+    for key, binding in pairs(frames[1].binds) do
+        fingerprint[#fingerprint+1] = key .. "=" .. binding[1] .. ":" .. binding[2]
+    end
+    if e.FLUX_API.hasEditMode then
+        check(frames[1].binds["ALT-MOUSEWHEELUP"] and frames[1].binds["MOUSEWHEELDOWN"],
+            "both wheel chords, including a chord after a nil binding result, are retained")
+    end
+    fire(frames[1], "OnLeave")
+    table.sort(fingerprint)
+    samples.signature = table.concat(fingerprint, ";")
+    return samples
+end
+
+local rosterBefore = os.getenv("FLUX_HOVER_ROSTER_CHECKPOINT")
+local archived = rosterBefore and read(rosterBefore .. "/Binding-Input-FluxMouseoverKeybind.lua")
+local bench = os.getenv("FLUX_HOVER_ROSTER_TIMING") == "1"
+for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_anniversary" }) do
+    exercise(client)
+    ghostPlayer(client)
+    local e, _, cell, fire, route = fixture(client)
+    local frame = cell("FluxUnitFrameOuter_player")
+    check(route({"Q"},{"/cast [@mouseover] Heal"}), "spell hover route is available")
+    fire(frame, "OnEnter")
+    if client ~= "forever" then check(e.driver, "spell hover arms the exists driver") end
+    check(route({},{}), "clearing spell routes retains ordinary mouse bindings")
+    check(not e.driver, "mouse-only routes release the spell-hover driver even while hovered")
+    fire(frame, "OnLeave")
+    for _, case in ipairs({{"settled",bench and 180 or 30},{"party",1,5},{"raid",1,40}}) do
+        for trial=1,bench and 5 or 1 do
+            local old, current
+            if archived and trial%2==1 then old = rosterDiscovery(client, archived, case[2], case[3]) end
+            current = rosterDiscovery(client, source, case[2], case[3])
+            if archived and trial%2==0 then old = rosterDiscovery(client, archived, case[2], case[3]) end
+            if old then
+                check(old.signature == current.signature and old.writes == current.writes,
+                    "matched roster keeps click and wheel routes, admission and protected writes")
+                check(old.reads > current.reads, "matched roster reads fewer native binding keys")
+                print(("HOVER_ROSTER client=%s case=%s trial=%d bursts=%d keyReads=%d/%d writes=%d/%d ms=%.3f/%.3f"):
+                    format(client,case[1],trial,case[2],old.reads,current.reads,old.writes,current.writes,old.elapsed,current.elapsed))
+            end
+            if case[1]=="settled" then check(current.reads==0 and current.writes==0,"settled roster avoids key reads and protected writes") end
+        end
+    end
+end
 local noHide = source:gsub('local hideOk = R.WrapScript%(header, frame, "OnHide", LEAVE_SNIPPET%)', 'local hideOk = true')
 check(not pcall(exercise, "live", noHide), "negative control rejects missing secure hide cleanup")
 local noPrimary = source:gsub('if not frame%._fluxRaidUnit then return end', 'if true then return end')
@@ -248,4 +430,15 @@ local opaqueWrap = source:gsub('if OpaqueMouseValue%(enabled%) then return false
 check(not pcall(exercise, "live", opaqueWrap), "negative control rejects the reported native secret-mouse path")
 local nativeWalk = source:gsub('or NativeAuraChild%(child, owner%)', '')
 check(not pcall(exercise, "live", nativeWalk), "negative control rejects inspecting native aura objects")
-print("Raid binding casting: " .. checks .. " checks; five native source handlers; four rejected negative controls")
+local ghostControls = {
+    source:gsub('if NativePlayerHoverSuppressed%(frame%) then return end', 'if false then return end', 1),
+    source:gsub('if currentButton == frame then', 'if false then', 1),
+    source:gsub('            UnregisterFrame%(frame%)', '', 1),
+    source:gsub('or %(FluxEditModeBusy and FluxEditModeBusy%(%)%)', '', 1),
+    (source:gsub('if not header or InCombatLockdown%(%) or', 'if not header or false or', 1)),
+}
+for i, mutant in ipairs(ghostControls) do
+    assert(load(mutant, "@ghost-player-control-" .. i))
+    check(not pcall(ghostPlayer, "forever", mutant), "native ghost control " .. i .. " rejected")
+end
+print("Raid binding casting: " .. checks .. " checks; five native source handlers; nine rejected negative controls")

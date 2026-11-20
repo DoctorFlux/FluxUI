@@ -1,0 +1,203 @@
+{
+  "changeId": "STRIP-GRID-PACKING-R91-20261119",
+  "capturedAtUTC": "2026-11-19T10:29:41.304931+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Remove repeated combat and non-combat grid packing during held-action strip motion and preserve the final adjacent border contacts.",
+  "changes": [
+    "Remember per-grid packing inputs and requested public geometry after a successful regular layout.",
+    "Verify the current shared squeeze, native slot/frame geometry and button ownership before retaining a grid on a held-action crossing.",
+    "Keep layout on slot changes, binding mode, deferred/batched work and explicit calls. Always request Info/envelope completion so translations are visible before junction commit."
+  ],
+  "sources": {
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+      "afterRaw": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a"
+    },
+    "ExtraButtonSystem/CombatGrid/Grid.lua": {
+      "beforeRaw": "6e23c243a7c6ee6690d9e310154a909cd5f5277cc802084e8cbc84f28412ece3",
+      "afterRaw": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5"
+    },
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+      "beforeRaw": "2dd20dfe04c35e12976d0abd5c4c4876bc3a63f11d72f14c91185a80d1e36a21",
+      "afterRaw": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803"
+    },
+    "tests/strip_grid_packing.lua": {
+      "beforeRaw": null,
+      "afterRaw": "0d8ec10b59b45cc1cf6713edff1d6c277ea5a68463d15aec98a9ff4a9de5f11a"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-packing-r91-before-20261119T102127Z\\source.zip",
+    "archiveSHA256": "68903f0229f714b5bacfe68cbb10091e693c17643c252a43a48fd2167e12b053",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Actual Lua packers, strip-dependent dispatch and Info/envelope completion using modeled widgets, root translations, and face paint. Work counts exclude other HUD owners and do not establish FPS, taint or live pixels.",
+    "matched": 20,
+    "clientShapes": [
+      "post-DF",
+      "Classic"
+    ],
+    "buttons": {
+      "combat": 5,
+      "nonCombat": 11
+    },
+    "steadyCounts": {
+      "gridNativeWrites": [
+        116,
+        0
+      ],
+      "faceRefreshes": [
+        16,
+        0
+      ],
+      "fullPackers": [
+        2,
+        0
+      ],
+      "infoAndEnvelopeEach": [
+        1,
+        1
+      ]
+    },
+    "guards": [
+      "changed squeeze, grouped order, spacing, visibility and occupancy",
+      "changed frame level, native size, point and button widget repair",
+      "private or unavailable values restore original writer",
+      "reentrant order mutation invalidates packing cache",
+      "binding override and explicit layout keep full pass",
+      "batched or combat work released by existing guard paths"
+    ],
+    "matchedRows": [
+      "STRIP_PACKING classic=false crossing=1 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=2 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=3 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=4 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=5 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=6 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=7 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=8 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=9 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=false crossing=10 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=1 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=2 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=3 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=4 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=5 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=6 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=7 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=8 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=9 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "STRIP_PACKING classic=true crossing=10 writes=116/0 faceRefresh=16/0 packing=2/0",
+      "Strip grid packing passes both client shapes, changed squeeze and occupancy, repair, binding, batch and lockdown."
+    ],
+    "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-packing-r91-before-20261119T102127Z\\matched.txt",
+    "sha256": "f97c7f63f3a9f30e762944231cd64cd3505d9af6f86dcdebe9d426f3496eb0fd"
+  },
+  "verification": {
+    "focused": 202,
+    "syntax": 1236,
+    "compilerMaximumUpvalues": 12,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-packing-r91-before-20261119T102127Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-packing-r91-before-20261119T102127Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-packing-r91-before-20261119T102127Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/CombatGrid/Grid.lua": {
+          "sha256": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+          "sha256": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/CombatGrid/Grid.lua": {
+          "sha256": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+          "sha256": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/CombatGrid/Grid.lua": {
+          "sha256": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+          "sha256": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/CombatGrid/Grid.lua": {
+          "sha256": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+          "sha256": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/CombatGrid/Grid.lua": {
+          "sha256": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+          "sha256": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Held-action cursor latency and neighboring seams, independent party/raid join/leave timing and combat taint pending. No native input or profiling changes."
+}

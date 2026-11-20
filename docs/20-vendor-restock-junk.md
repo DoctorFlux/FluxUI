@@ -1,5 +1,16 @@
 # Vendor, junk, tier targets, and bank restock
 
+<!-- LHO-VENDOR-FIELDS-ONCE-20261119 -->
+19 November. The shared item name, link, quality and icon reader reuses a complete tuple when the two item metadata APIs are aliases. Distinct providers and incomplete records continue through their existing lookups. The direct Forever comparison matched all 42 sampled items. [Evidence](validation/vendor-fields-once-2026-11-19.json).
+
+<!-- LHO-BAGANATOR-COLD-OPEN-JUNK-20261119 -->
+19 November. With Syndicator and Baganator loaded in Forever, the first category backpack open took 155.4001 ms and coincided with a 168 ms frame gap. Reload 146 reproduced it at 159.3961 ms with a 172 ms gap. Baganator's inclusive category layout took 158.35 ms across the two opens. That timing includes callbacks. The measured FluxUI Junk display callback totaled 4.89 ms over 102 calls. Warm opens took 5.47–7.83 ms and did not invoke the Junk callback in the warm trace. Both opens and closes restored the original closed state and retained the bag generation.
+
+FluxUI now reuses the same per-call junk-list mark for protection and explicit decisions, including the native gray fallback's own check. Per-slot protection, the legacy string key, gray quality and value checks, and the freshness of separate fallback calls are preserved. Lua 5.1 and 5.4 passed and the five installed source copies match.
+
+Reload 150 loaded the change. A warm read over 44 occupied slots cut Restock settings reads from 252 to 170. Both slot-order outputs were entirely false and all observers restored with zero Lua errors. The two unwrapped warm follow-ups took 0.3190/0.3319 ms before and 0.2652/0.2601 ms after. The instrumented read was slower after reload. The result proves fewer settings reads in this workload. The post-change first category backpack open still took 149.1494 ms with a 161 ms frame gap. Junk verdicts were already warm and the measured timing is an unmatched observation. The frame hitch persists. Positive junk marks, other addon combinations and other clients still need native checks. [Evidence](validation/baganator-cold-open-junk-2026-11-19.json).
+<!-- /LHO-BAGANATOR-COLD-OPEN-JUNK-20261119 -->
+
 14 November casting/inventory lag: Potion needs calculate after final merge; bulk buying retires on merchant close/error; verified hidden merchants skip metadata/tint work. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
 
 14 November AHR-105/106: AH Restock opens with one shortage-only preparation.

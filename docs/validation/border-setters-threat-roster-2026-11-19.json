@@ -1,0 +1,359 @@
+{
+  "changeId": "BORDER-SETTERS-THREAT-ROSTER-R89-20261119",
+  "capturedAtUTC": "2026-11-19T10:07:56.026504+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce cache hit overhead for border draw in all regional updates, and collapse repeated optional Details threat scans on group transitions.",
+  "changes": [
+    "Compare scalar setter arguments directly and compare immutable UV arrays before unpacking for a native texture write.",
+    "Coalesce legacy Details threat scans once per next-update burst. Immediate display updates consume pending work and combat stop, cancel and disable clear it."
+  ],
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "75748b53ad92d50835f02a8df4d43984c72c17375f5bcf1fbe59a88946acf40e",
+      "afterRaw": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2"
+    },
+    "Battlezonemap/FluxThreat.lua": {
+      "beforeRaw": "bd49859c1bec0fb8c6ac49082e25b9383d5ec5d2a8ceb898d32def51f69b436c",
+      "afterRaw": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961"
+    },
+    "tests/details_threat_roster_work.lua": {
+      "beforeRaw": null,
+      "afterRaw": "dc6fce771daa790baaceea248dfc66fc66fa2ad354e0124958631b9fccfdd39b"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\source.zip",
+    "archiveSHA256": "96f21642062dd6005fc9c29442b8d212e303e95542ecaa7987b4352725ad3533",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Desktop models. Neither the hotspot microbenchmark nor the optional Details threat replay measures full in-game callback or frame time.",
+    "setters": {
+      "trialsPerMode": 12,
+      "innerLoops": 200000,
+      "methodsPerLoop": {
+        "uv": 1,
+        "paint": 4
+      },
+      "samples": [
+        {
+          "mode": "uv",
+          "sample": 1,
+          "beforeMs": 85.0,
+          "afterMs": 17.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 2,
+          "beforeMs": 89.0,
+          "afterMs": 17.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 3,
+          "beforeMs": 87.0,
+          "afterMs": 18.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 4,
+          "beforeMs": 92.0,
+          "afterMs": 18.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 5,
+          "beforeMs": 86.0,
+          "afterMs": 17.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 6,
+          "beforeMs": 95.0,
+          "afterMs": 19.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 7,
+          "beforeMs": 93.0,
+          "afterMs": 18.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 8,
+          "beforeMs": 87.0,
+          "afterMs": 18.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 9,
+          "beforeMs": 93.0,
+          "afterMs": 18.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 10,
+          "beforeMs": 85.0,
+          "afterMs": 17.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 11,
+          "beforeMs": 90.0,
+          "afterMs": 17.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "uv",
+          "sample": 12,
+          "beforeMs": 90.0,
+          "afterMs": 22.0,
+          "nativeWritesEach": 1
+        },
+        {
+          "mode": "paint",
+          "sample": 1,
+          "beforeMs": 202.0,
+          "afterMs": 95.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 2,
+          "beforeMs": 182.0,
+          "afterMs": 91.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 3,
+          "beforeMs": 181.0,
+          "afterMs": 93.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 4,
+          "beforeMs": 186.0,
+          "afterMs": 104.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 5,
+          "beforeMs": 181.0,
+          "afterMs": 102.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 6,
+          "beforeMs": 183.0,
+          "afterMs": 92.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 7,
+          "beforeMs": 190.0,
+          "afterMs": 93.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 8,
+          "beforeMs": 195.0,
+          "afterMs": 108.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 9,
+          "beforeMs": 198.0,
+          "afterMs": 95.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 10,
+          "beforeMs": 199.0,
+          "afterMs": 94.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 11,
+          "beforeMs": 219.0,
+          "afterMs": 101.0,
+          "nativeWritesEach": 5
+        },
+        {
+          "mode": "paint",
+          "sample": 12,
+          "beforeMs": 179.0,
+          "afterMs": 100.0,
+          "nativeWritesEach": 5
+        }
+      ],
+      "summariesMilliseconds": {
+        "uv": {
+          "beforeMs": {
+            "median": 89.5,
+            "range": [
+              85.0,
+              95.0
+            ]
+          },
+          "afterMs": {
+            "median": 18.0,
+            "range": [
+              17.0,
+              22.0
+            ]
+          }
+        },
+        "paint": {
+          "beforeMs": {
+            "median": 188.0,
+            "range": [
+              179.0,
+              219.0
+            ]
+          },
+          "afterMs": {
+            "median": 95.0,
+            "range": [
+              91.0,
+              108.0
+            ]
+          }
+        }
+      },
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\setter-paired.txt",
+      "sha256": "b2ba4485a23fec3b0b5a6416a41b512acb174f2c9baa1330ba1cbd9bdcd2dcb0"
+    },
+    "exactVisibleFields": {
+      "matches": 24,
+      "styles": [
+        1,
+        2
+      ],
+      "coverage": [
+        "artwork path",
+        "rectangle",
+        "UV coordinates",
+        "vertex offsets",
+        "opacity",
+        "frame level",
+        "vertex color"
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\exact.txt",
+      "sha256": "1d41624f46ae2776e83da93974f4c0f5631437155f55bf32bbbcecdc9ba91b2b"
+    },
+    "detailsThreatRoster": {
+      "rows": [
+        "DETAILS_THREAT_ROSTER party join scans=20/1 visits=100/5 final=5",
+        "DETAILS_THREAT_ROSTER party leave scans=20/1 visits=96/1 final=1",
+        "DETAILS_THREAT_ROSTER raid join scans=20/1 visits=800/40 final=40",
+        "DETAILS_THREAT_ROSTER raid leave scans=20/1 visits=761/1 final=1",
+        "Details threat roster timer, direct updates, polling, cancellation and re-entry pass."
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\threat-paired.txt",
+      "sha256": "30680aead58407e2fe220101c442478eb157f3f5a8a5a0f1af18ec5ba4e1ff1e"
+    }
+  },
+  "verification": {
+    "focused": 199,
+    "syntax": 1234,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-setter-threat-roster-r89-before-20261119T100223Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sources": {
+        "Core/BorderJunctions.lua": {
+          "sha256": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+          "matchesCandidate": true
+        },
+        "Battlezonemap/FluxThreat.lua": {
+          "sha256": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sources": {
+        "Core/BorderJunctions.lua": {
+          "sha256": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+          "matchesCandidate": true
+        },
+        "Battlezonemap/FluxThreat.lua": {
+          "sha256": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sources": {
+        "Core/BorderJunctions.lua": {
+          "sha256": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+          "matchesCandidate": true
+        },
+        "Battlezonemap/FluxThreat.lua": {
+          "sha256": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sources": {
+        "Core/BorderJunctions.lua": {
+          "sha256": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+          "matchesCandidate": true
+        },
+        "Battlezonemap/FluxThreat.lua": {
+          "sha256": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sources": {
+        "Core/BorderJunctions.lua": {
+          "sha256": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+          "matchesCandidate": true
+        },
+        "Battlezonemap/FluxThreat.lua": {
+          "sha256": "546f7745fe6c29c4a24f112b0fc2f04e4ed16e460a77e7b6d040f5e71eb99961",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Held-action cursor hitch, party and raid timing, live seams and combat taint pending. No native input or profiling changes."
+}

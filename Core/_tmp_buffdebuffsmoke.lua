@@ -29,10 +29,18 @@ local function forbidden()
     error("Flux touched native aura/player state", 2)
 end
 local nativeState = { unit = "player" }
+local hitRect = { 6, 0, 4, 9 }
 local nativePlayer = setmetatable({}, {
     __index = function(_, key)
         if key == "SetAlpha" then
             return function(_, value) alpha = value end
+        end
+        if key == "GetHitRectInsets" then return function() return table.unpack(hitRect) end end
+        if key == "SetHitRectInsets" then
+            return function(_, ...)
+                assert(not combat, "native player hit rectangle changed during combat")
+                hitRect = { ... }
+            end
         end
         if key == "unit" then return nativeState.unit end
         if key == "PlayerFrameContent" then return content end
@@ -135,6 +143,7 @@ for _, unit in ipairs({ "player", "vehicle", "player" }) do
     env.FluxUnitFrames_ApplyFluxVsBlizzardRuntime()
     flush()
     assert(alpha == 0, "Flux player frame did not suppress native artwork")
+    assert(table.concat(hitRect, ",") == "10000,10000,10000,10000", "native player hit rectangle remains active")
     assert(not contentShown, "alpha alone leaves health/mana OnUpdate running")
     tickNativeBars()
     assert(healthUpdates == 0 and manaUpdates == 0, "hidden native bars still ran their secret comparisons")
@@ -151,6 +160,7 @@ for _, unit in ipairs({ "player", "vehicle", "player" }) do
     env.FluxUnitFrames_ApplyFluxVsBlizzardRuntime()
     flush()
     assert(alpha == 1, "native player artwork was not restored")
+    assert(table.concat(hitRect, ",") == "6,0,4,9", "native player hit rectangle was not restored")
     assert(contentShown, "native player content was not restored")
     assert(nativeScripts.health == healthUpdate and nativeScripts.mana == manaUpdate, "original native scripts did not survive the toggle")
     assert(nativeEvents.UNIT_SPELLCAST_START[1] == "player", "cast filter was not restored")

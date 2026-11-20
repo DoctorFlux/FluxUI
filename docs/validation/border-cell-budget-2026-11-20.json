@@ -1,0 +1,176 @@
+{
+  "changeId": "BORDER-CELL-BUDGET-R187-20261120",
+  "roadmapTracks": [
+    "HUD-1",
+    "HUD-3"
+  ],
+  "capturedAtUTC": "2026-11-20T09:25:01.731212+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "7e5b7248ed54ca8036e8683f79572cec8ec593f76b69889bab93d1b1a01f873a",
+      "afterRaw": "6621f1d3fc590e81807161a14279cbd6a2a099f7d47c55f3aac21fbc009c768c",
+      "afterNormalized": "6621f1d3fc590e81807161a14279cbd6a2a099f7d47c55f3aac21fbc009c768c"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "afterRaw": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "afterNormalized": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "afterRaw": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "afterNormalized": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d"
+    }
+  },
+  "evidence": {
+    "crossings": [
+      {
+        "style": 1,
+        "crossings": 60,
+        "residentContextsAtEnd": 50,
+        "retainedCapacityVisitsBefore": 7560,
+        "changedCapacityVisitsAfter": 2340,
+        "artSamples": 5070
+      },
+      {
+        "style": 2,
+        "crossings": 60,
+        "residentContextsAtEnd": 50,
+        "retainedCapacityVisitsBefore": 7560,
+        "changedCapacityVisitsAfter": 2340,
+        "artSamples": 5070
+      }
+    ],
+    "output": "CELL_BUDGET|style=1|crossings=60|cells=50|before=7560|after=2340|pixelSamples=5070\nCELL_BUDGET|style=2|crossings=60|cells=50|before=7560|after=2340|pixelSamples=5070\nR187 modeled retained work, sampled artwork, limit admission and reset PASS\n",
+    "scope": "Actual Lua renderer with modeled widgets. Includes eight detached panels. Visits count the capacity passes only. Checks compare active cell membership, planned and rendered field counts, per-cell draw admission, and sampled RGBA at six join areas. Checks also cover planned-field and free-context limits and full release followed by a cold build."
+  },
+  "parity": "R187 reduces capacity checks from 7,560 region visits to 2,340 across 60 warmed action-strip crossings per border style. The modeled fields, sampled colors and opacity, and admitted draw records match.",
+  "rules": "Keep aggregate planned-field and draw-cache usage with the committed regional layout. Admission inspects the replacement keys, subtracts their existing claims and keeps unchanged claims in the totals. Commit publishes the counts with the new layout. Full release and recovery clear them. The existing resource limits remain in force.",
+  "checkpoint": {
+    "createdUTC": "2026-11-20T09:19:45.8430281Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "installedSettingsFileCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Core/BorderJunctions.lua": "7e5b7248ed54ca8036e8683f79572cec8ec593f76b69889bab93d1b1a01f873a",
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "docs/BORDER_BUILDER_LOCALITY.md": "27509291dcb75dc88cbce30f2961c28b68a15978fc133fee8831ceb4ad378b90",
+      "docs/ACTION_STRIP_BORDER_UPDATES.md": "958e81b2ecb4713ec6a26c1bc91a06a44f144221021b6b3c472060e5093d4384",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "fe82a7921a140a976be79af9794cbd28202e78d23e625abe21eedb70d65402b3",
+      "docs/STATUS.md": "8ee192ded60576353984d1018e7f9ddf7500bb3b69cb0b78d5c49c06e3ce4ce3",
+      "docs/DECISIONS.md": "7b89f8fc1c7c3d580f638af5dd4ad8f036360da60908a014927e23126609176d",
+      "docs/WORK_LOG.md": "e28a453b7d40c7bbc676ca2d12c2fd70e8b28552f037475172674fbe2b349a06",
+      "NEXT_SESSION.md": "d6ddbe36545950830c95a7bee92272d70bf2d60a5eb01ad87e2b7d4ab556c717",
+      "docs/CLIENT_VALIDATION.md": "c6704c273b3617adf85f4082c16eb78d14f2b7d9760142e4a59f1685b06ba40a",
+      "docs/CLIENT_MATRIX.csv": "dde5b1a6ee3445e3f0f2f6e6df46b4c8dddea2510266664cb80636d6fe5b11e2",
+      "docs/FEATURE_PARITY.csv": "8bec78d1663d43292caa453ff84ca8d7a77627e86e242c17cf70cfd29831d179",
+      "docs/PERFORMANCE_RESULTS.csv": "e19d4edf10ec8778a2b5b680c2fb1c6b45b0bbe98fcdd679470d1ca39e875629",
+      "docs/reference/verification.json": "caf69b1029e624bef016ba1bd2d0ccafbf577594ce59b2ece28c5a08a42d3a10"
+    }
+  },
+  "verification": {
+    "focusedPassed": 70,
+    "baselineEquivalentFixtureFailures": [
+      {
+        "path": "tests/border_render_basis.lua",
+        "exit": 1,
+        "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_render_basis.lua:9: local values={...}\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_render_basis.lua:9: in local 'replace'\n\ttests/border_render_basis.lua:14: in main chunk\n\t[C]: in ?"
+      },
+      {
+        "path": "tests/border_shadow_material.lua",
+        "exit": 1,
+        "output": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_shadow_material.lua:11: actual-shadow-support:72: 'end' expected (to close 'do' at line 19) near <eof>\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_shadow_material.lua:11: in main chunk\n\t[C]: in ?"
+      }
+    ],
+    "syntaxPassed": 1252,
+    "maximumUpvalues": 52,
+    "focusedSources": {
+      "tests/border_aura_crest.lua": "2b6dc7d6f7ee1d69ddb5d855df90d918760a7a8782e3bb1b08281c285bfbd57a",
+      "tests/border_aura_sampling.lua": "d2e579a5068e7947bad88026cf5b1900433027d35ec4358e8416691c836863f2",
+      "tests/border_authored_unit_layout.lua": "446505d0ad32eee73859dd7faf96bc04a3f0e8815689e5389db9f3de5db385b7",
+      "tests/border_branch_compile_cache.lua": "19f6c71b4570b25091c2250cdd9b5168a48c816600438776ff68f2454200ffc5",
+      "tests/border_branch_coverage.lua": "6050d7fc004de5944cedd2b8485ee26f76db1fac431fd003fdf8fde13395c9f5",
+      "tests/border_canvas_layers.lua": "8f6e81231672355e389bdf33b56ed102154fe86d073068ac6f1c5ddd24d6259a",
+      "tests/border_cap_junctions.lua": "7f472a860c104cc73c37b1494a7e707e401b1331c5d8bd8cb8c2bcdc9dd3bbb5",
+      "tests/border_clip_work.lua": "51ee866995ebfed50281d7359a8396e4c3052a617a8f8dcb0a1afb8317c6a18b",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_cost_reasons.lua": "46472d5a739a0435d3136dbb9e7b6eeb87926094df5acb7d5c7a132bbb6b933d",
+      "tests/border_draw_reuse.lua": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3",
+      "tests/border_dropdown.lua": "777525c6c2306bf618b62e6f13ea988cf296b63c58ac8a2f0a407771dc78e8ff",
+      "tests/border_dynamic_layout.lua": "614e061c5bbf9343a98fde57c1d6b54b011f53b599c824b36328cf5dac4cdf6b",
+      "tests/border_fallback_array_guards.lua": "47838160198ac6dce03c642e72db2f1c9b690fdce0b7fc08d3bcb0bfe2f75c7b",
+      "tests/border_fallback_compile_cache.lua": "1612f103b7ac893bb1d6eb0edb1bedf8412f84e4e7380cabc9fb228e126a2366",
+      "tests/border_fallback_opacity.lua": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79",
+      "tests/border_fallback_plan_cache.lua": "b5d669c7f9dec6c4ab7c350f1b59fcb1a1cc26ed9e80cd6e27da1e82ed31d87a",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_hidden_anchors.lua": "7492cd77ec2be14be711ef82d9155346f5dcaef27349d6456ea38488f419935f",
+      "tests/border_idle_trace.lua": "aa41f663927dcd85969e2184cdd2e0a050bed974e960918b446693263dde6bf9",
+      "tests/border_incremental_commit.lua": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+      "tests/border_junction_shadows.lua": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055",
+      "tests/border_junctions.lua": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "tests/border_lua_upvalues.lua": "8fab8d288b2e8b70c2261a84412e2e80273c89225fc6ffd78994310b99bc1fab",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+      "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+      "tests/border_observer_refresh.lua": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+      "tests/border_optional_unit_parts.lua": "c5790e52549d32ca9bd45386be31b310d73fad37a027df5debab8407f6d967db",
+      "tests/border_owner_phase.lua": "9a2d47851aea4732ace58614918ce533d15648d9d4ea557ff1a05714d2bfb5e6",
+      "tests/border_owner_visibility.lua": "92b4da65a30feedbb3f0a6c8a7e27196e380f1f82db56c466b190efaf6635cee",
+      "tests/border_paint_order.lua": "da662e8788fe96389ad45f6942538c00657aef2bf9d897b75d304d66a177be48",
+      "tests/border_paint_ownership.lua": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16",
+      "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/border_prepared_icons.lua": "083f89897880cb0484d30f131cd0e102b31a596a9fb9961e677d04edd0bb84c4",
+      "tests/border_private_paint.lua": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+      "tests/border_reflow_cost.lua": "94bca1c50e0e98b2c684cce9c137708993a4ee68dcc8ca258ca59277f65051ae",
+      "tests/border_region_routing.lua": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30",
+      "tests/border_regional_draw_work.lua": "7b0fd4802ea8c5efeb7facc17e828a17e0c5892cbc7f465836a8c1264984dc55",
+      "tests/border_regional_plan_work.lua": "702b6053fd5d77dd0788c42c50c1afc375d0eb82284ee7145d3ecb13374d7018",
+      "tests/border_registration_pairs.lua": "8c225833c4ea7834d2f21ca1344c5fbce0fb00e42c202010d79227266f46b682",
+      "tests/border_render_basis.lua": "bdaa91fa07e582e8d4934df5d94a7ad5eeea6b6a2ea1dd23f4814281a4a3b3df",
+      "tests/border_render_pool_work.lua": "51ca0472729a08e735f512758b29834b52e19f8f6b85575ff6b02d30521e4ef4",
+      "tests/border_resource_hold.lua": "1c78b0e52b73282124ef04ce03b32bf4cd45c570d407a852018392789fc71df9",
+      "tests/border_retained_units.lua": "4ee5cb409ce0af84a5f5f62e2d5a7995966f46155914a9e1a65892f2fa788dd1",
+      "tests/border_shadow_material.lua": "d86a051ad0ab32f544205ff48c0078ef453aa314414d2c0403a16a58cdd3f177",
+      "tests/border_solve_pair_identity.lua": "da1a155db8191fac0c4da469fd05c0422c9937632f6164d7090c6318f78d36fe",
+      "tests/border_solver_allocation_work.lua": "6cd0e1a68002cd6f0353a888a89fce4f427eb8f846020b06c38413a7a186a26f",
+      "tests/border_source_phase.lua": "a51dadf072a23c03dc76b2107db111bad3e016959ff8cafa26bc2381f0cce7d4",
+      "tests/border_static_geometry.lua": "dd72a1a01d874b43df7803165c20730f010ae88c003601d4f51c16c4b35c633f",
+      "tests/border_static_pieces.lua": "7e22df614e45f72854732fce9e8ee4185d253e1caac01017d472957e78b49f20",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/border_types.lua": "14facbdc23c9bc6e5f708c70c20648b0808725203f4865aa494c75fe2e350c66",
+      "tests/border_unit_contours.lua": "ba120fe76b41bbcbf61bcbc0ef1b43c3528136583965508d129dae7687761d04",
+      "tests/border_unit_paint_idempotence.lua": "31b2816b35035c6a6c115b2a3f6d3fe4b8751fe3a2d41552f244a15f8bae982a",
+      "tests/border_wake_ownership.lua": "74e96fdac2c8f67c2eaebea1f05c7a43530ab0bb0c2785255714fc94fed7c0d7",
+      "tests/border_window_bounds.lua": "0e752e6709b3646a834dd3f2c6af94312143d9fffcbf13c5ca097434ba2b008b",
+      "tests/independent_border_regions.lua": "b58d81db0005234f1bd5d017cc581a27f1ba21c233323a436345a2741e7d9609",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_border_spacing.lua": "1df578aa2ac1d4f73117ceefa00dcb3f87ad5abfeaa4e88b69758631fd42f9f5",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/strip_panel_settle.lua": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_unit_anchor_transaction.lua": "b77216e7ed092c23209698862eef804e6efedf2b013db17ad0ecb45674545001"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-border-cell-budget-2026-11-20-101945\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-border-cell-budget-2026-11-20-101945\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-border-cell-budget-2026-11-20-101945\\syntax.json"
+  },
+  "nativeAcceptance": "Native action-strip latency, party and raid transitions, seam pixels and combat taint remain pending. The desktop replay counts capacity work and does not measure client frame time."
+}

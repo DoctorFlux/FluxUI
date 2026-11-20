@@ -1,0 +1,752 @@
+{
+  "changeId": "LHO-BAGANATOR-BANK-VIEW-INDEX-20261119",
+  "file": "BaganatorCompat/FluxBaganator_BankRestock.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-frame-index-20261119T064951Z",
+    "before": "2b5489ee2615dd61d7cd3347373e7ca2e2cd3269b962c4e28e63250afb113dca",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false
+  },
+  "after": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+  "installed": {
+    "_retail_": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+    "_forever_": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+    "_classic_": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+    "_classic_era_": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+    "_anniversary_": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286"
+  },
+  "syntax": "Lua 5.1 and 5.4 passed before and after",
+  "sourcePins": [
+    "Main.lua b951feb00109a544ad52d13e96d6abb3c6c6236ddf9face8dcea61a6c1010fe0",
+    "Initialize.lua b0bb3981b44b475a2158b9360c8d2b6c2ed8056a576c7060fe125f1339662b10",
+    "FluxRestockList.lua a277da099817780a93da19627b8c27cf874f5d6042cbe65fba2ff9ed8ccb1e5f",
+    "FluxRestockTiers_Match.lua 7dec5f534686f7558d950cbca4031ef3ee1cbec9f56e477651b54c54f3fadc47"
+  ],
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "baganatorVersion": "862",
+    "provider": "Syndicator"
+  },
+  "r238": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag238-target-builder-branch-attribution-20261119",
+      "controllerSHA": "981a9124ab7ee18a0e83862753951d4b7a57668132bd89dc1bffe9e17de3fa88",
+      "packetSHA": "787338fac438e9e3f46c7c2072a771aad69e8add7020264380b08f345e3fd42a",
+      "packets": 15,
+      "luaSHA": "0601e649ae6e3a56084265c7d3ff86593a4bcd3a3da19d2614743ad5d02e29d4"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag238_a-submitted.png",
+      "pngSha": "adeeebf59f2808770304cbca7ee53b2db6ce44fcaf365e41f047e9d41619e29d",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag238_a-submitted-capture.json",
+      "metaSha": "ac80fcc2334f05a96212d8f7485bebf3fdf8c099c202baa8d14414360e68fc56",
+      "started": 1795070040.8920772,
+      "time": 1795070043.2467318,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 34502187,
+        "idle": 170.438,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "rows": 9,
+    "elapsedMs": 20.809,
+    "bankMs": 16.281,
+    "bagMs": 0.085,
+    "limitation": "Wrapping IsTierItemUsable disabled the existing classification-ownership fast path. Use R239 for production-like attribution."
+  },
+  "r239": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag239-target-builder-original-classifiers-20261119",
+      "controllerSHA": "bf0d15bc6befa06ec32de120d6626af33f2fbc533a23b1b8a73bd3b6d995c081",
+      "packetSHA": "c4c9b95f355f77e926af89e723ddf4685509275826b1a94a0ac5e9e72281cef9",
+      "packets": 19,
+      "luaSHA": "74633bae0734db17714b052320a76e986d3100efec2d6c7df79fb150c0bf9227"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag239_a-submitted.png",
+      "pngSha": "8af7970327be58ff40a3160d13fa6d47f8aab0b432ad949898549adb55d305f5",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag239_a-submitted-capture.json",
+      "metaSha": "995bef27cf6500e3e7f26ff811efb2064c06f5af41b1689f572c8b4546eff594",
+      "started": 1795070170.1021435,
+      "time": 1795070172.4755473,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 34684703,
+        "idle": 117.125,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "rows": 9,
+    "elapsedMs": 17.441,
+    "bankMs": 12.676,
+    "bagMs": 0.076,
+    "thresholdMs": 0.096,
+    "bankPopulation": 21,
+    "positiveMemoIDs": 4,
+    "rejectedIDs": 17,
+    "independentPositiveCountReads": 21,
+    "independentPositiveCountMs": 5.699,
+    "allTierBankTotalsZero": true,
+    "restored": true,
+    "stableGeneration": true,
+    "errors": 0
+  },
+  "r240": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag240-classify-cost-inside-closed-bank-sort-20261119",
+      "controllerSHA": "97e41b6fc256c959ac1b23b455593cddd4c6bd1d7d09ac2651685d67787c458f",
+      "packetSHA": "bdd4b826b9b2075730c3c0320a1333b304f9966e6cf92845caebdcbf3db822eb",
+      "packets": 17,
+      "luaSHA": "fe33115f47bbfcaf812331d94c789db148b82dd68aff00527f50c2b24d67c075"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag240_a-submitted.png",
+      "pngSha": "12d8fa0f8e27e0b28ca77c88efe00f951578edefbb4821348014ccdf09aeb3ac",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag240_a-submitted-capture.json",
+      "metaSha": "c2beab9a0f63fcb1967980f61ba391cba3081f99592d8db6c2abd692ae0baed2",
+      "started": 1795070320.3762434,
+      "time": 1795070322.2610488,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 34866781,
+        "idle": 85.328,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "rows": 9,
+    "elapsedMs": 13.117,
+    "bankMs": 9.508,
+    "tooltipReads": 4,
+    "tooltipMs": 0.469,
+    "tooltipItemID": 3703,
+    "restores": 0,
+    "parseCalls": 4,
+    "parseMs": 0.182,
+    "restored": true,
+    "errors": 0
+  },
+  "r241": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag241-baganator-frame-registry-closed-bank-cost-20261119",
+      "controllerSHA": "b1eaddf2878bf118cd043a098af877435eb9f92da6dbe9a39e1f7b74eb9e6771",
+      "packetSHA": "03dde639a404ad97ddf66f3c92b0682c52923a1230677f1fda71ec537db7e6ac",
+      "packets": 8,
+      "luaSHA": "950615233f56eec25567065de9d11dc4b78e292881b54250bd382ad33c55b6fa"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag241_a-submitted.png",
+      "pngSha": "04c013e97dac23d5581bc1864ea3aaf5d67ad3b763ae99f570590fdeba0bad1f",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag241_a-submitted-capture.json",
+      "metaSha": "65e3bb17dc991f5961e7cc2208644cf2a6fcdc4d9c1a14b288a4f36e306634b1",
+      "started": 1795070707.2457767,
+      "time": 1795070709.2117612,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 35230921,
+        "idle": 108.047,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "registeredRegions": 5696,
+    "bankViews": 2,
+    "bankClosed": true,
+    "callsPerBatch": 12,
+    "iteratorMs": 2.597,
+    "visibilityMs": 2.604,
+    "inventoryBankLiveMs": 3.02,
+    "sharedBankLiveMs": 2.898,
+    "sharedBankOpenMs": 9.827,
+    "bankReadableMs": 2.431,
+    "errors": 0
+  },
+  "r242": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag242-bank-frame-index-paired-restock-20261119",
+      "controllerSHA": "ec05073fe9f3414faf98370333a5579a028b9933fac048c5012cda1bd72fe39b",
+      "packetSHA": "3d69d81f5c3ee04474c373274aa9a330e04c248bf5890fe1ec9425c8a04659d3",
+      "packets": 29,
+      "luaSHA": "565418eae159b2f0e82abbc9dd33f1ef7c2bfae28e5cfd7afb50e71e7636a441"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag242_a-submitted.png",
+      "pngSha": "8ae4da637db76b7d2f0524ef9ce8c228b325b426091ba35cff49bfe950cf7b10",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag242_a-submitted-capture.json",
+      "metaSha": "e14c2c75f98f9a485cdc082df10c508ea3ce601c2bbc221263ef79a7a43bd32c",
+      "started": 1795070896.9881718,
+      "time": 1795070898.997072,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 35475718,
+        "idle": 53,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "scope": "Same-session comparison before the edit. Exact candidate iterator compiled as a temporary function. It replaced only FluxUIâ€™s defining visitor during each candidate rebuild. Every target field and view identity/order was compared; views were closed and no active Pending job or commerce window was involved.",
+    "trials": [
+      [
+        13.565,
+        2.865
+      ],
+      [
+        17.412,
+        2.712
+      ],
+      [
+        11.887,
+        2.817
+      ]
+    ],
+    "medianBeforeMs": 13.565,
+    "medianCandidateMs": 2.817,
+    "matchingRowsPerTrial": 9,
+    "originalBankViews": 2,
+    "newBankViews": 2,
+    "orderMatched": true,
+    "bagAndBankGenerationsStable": true,
+    "restored": true,
+    "errors": 0
+  },
+  "sourceContract": "The public skin registry returns the appended detail array. The candidate indexes new append entries on demand, rebuilds on registry/getter replacement or shrink, keeps evaluating each indexed entry and visibility live, and retains full traversal for providers missing the registration API. Current-skin and numeric/name fallback paths remain.",
+  "testsPending": "Bank-open and alternate character view behavior, large/new skin batches, installations without Baganator, full frame metrics and actual Pending automation.",
+  "productionAdoption": {
+    "R244": "Bank visitor line 65 observed in the running addon. The prior source visited at line 40.",
+    "R246": "Production closed-target median 3.330 ms versus 14.899 ms with the archived visitor. Nine full rows and both views matched in each pair.",
+    "pending": "Open bank, active Pending, and other native client and provider settings remain pending.",
+    "evidence": "docs/validation/baganator-item-registration-index-2026-11-19.json"
+  },
+  "fallbackFrameNames": {
+    "id": "LHO-BANK-VIEW-FALLBACK-NAMES-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-view-fallback-names-20261120T072142Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+      "bundleSHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "settingsMetadata": {
+        "_retail_": {
+          "files": 2,
+          "bytes": 18783
+        },
+        "_forever_": {
+          "files": 3,
+          "bytes": 713372
+        },
+        "_classic_": {
+          "files": 2,
+          "bytes": 7961
+        },
+        "_classic_era_": {
+          "files": 4,
+          "bytes": 250426
+        },
+        "_anniversary_": {
+          "files": 10,
+          "bytes": 830927
+        }
+      },
+      "sources": {
+        "Inventory/Init.lua": {
+          "sha256": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-view-fallback-names-20261120T072142Z\\Init.lua.before"
+        },
+        "BaganatorCompat/FluxBaganator_BankRestock.lua": {
+          "sha256": "d10005f70110df85c5143b910cfea94cdff746ecdc2a5982545470cfd9270286",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-view-fallback-names-20261120T072142Z\\FluxBaganator_BankRestock.lua.before"
+        }
+      }
+    },
+    "sourceAfter": {
+      "Inventory/Init.lua": "6f4bf0899ac8769a28f34125b4526d7bb0d4c588057931ae74755fac95c9ee01",
+      "BaganatorCompat/FluxBaganator_BankRestock.lua": "f5445233159adeef8058648bc0c6f94d8ad3e4a0427c1a081675b56906ce1ecf"
+    },
+    "r659": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank659-tier-cost-20261120",
+        "controllerSHA": "4d70768aae4bdb253f1c0fdde90939594891e296caf9afdba51ab0059a82f826",
+        "packets": 19,
+        "luaSHA": "1276892a1bb63e42bb9c7999d5817cce2fcaab3da1d2c3b7c311b5a6b9f54950"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank659_a-submitted.png",
+        "pngSha": "ba5dd036e8cff23149a6e04db5fd58851808109e15cbd64497d3099bce359618",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank659_a-submitted-capture.json",
+        "metaSha": "aca7d8a3d2d09942584f3b8535fa52d65186b6bce50da1967e3112c80d76d001",
+        "started": 1795159029.4837332,
+        "time": 1795159031.7306066,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 123661203,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "knownExcludedIds": 17,
+      "positiveCounts": 4,
+      "unresolvedIds": 0,
+      "counts": [
+        0,
+        0,
+        0
+      ],
+      "positiveClassificationsWithoutTier": 4,
+      "firstThreePaidTierQueriesMs": [
+        0.55,
+        0.556,
+        0.525,
+        0.504
+      ],
+      "repeatSameScratchMs": [
+        0.342,
+        0.343,
+        0.328,
+        0.317
+      ],
+      "threeDirectMapQueriesMs": [
+        0.099,
+        0.101,
+        0.097,
+        0.105
+      ],
+      "fourDirectBankCountsMs": [
+        0.155,
+        0.165,
+        0.152,
+        0.148
+      ],
+      "positiveTierClassificationMs": [
+        0.013,
+        0.013,
+        0.013,
+        0.012
+      ],
+      "bugsDelta": 0
+    },
+    "r660": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank660-view-names-20261120",
+        "controllerSHA": "ab29b4925e445ccb740f3d6fde48f159ae3789f5db0fa2621cc55a0c7490fd04",
+        "packets": 34,
+        "luaSHA": "391bd25f4beaaa175fa5e7409cf54e4296d89af89e1273dea447f95bf276a601"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank660_a-submitted.png",
+        "pngSha": "7a7a73fc9a69fa218ca3430a8c6bd07be8047dbab833d4672f38bed3c9bdb53b",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank660_a-submitted-capture.json",
+        "metaSha": "df541e0840c01c552649278ca20d6129d6f20df7228d336f232d35615d41e7d3",
+        "started": 1795159217.5164201,
+        "time": 1795159219.3874314,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 123846187,
+          "idle": 3.063,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "resultPNG": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume660_bank_visibility_paired.png",
+      "resultSHA256": "d016a5d189da9583de8ef6d57f2616a2d273582623f9288dc6005c15daaec72a",
+      "queriesPerBatch": 48,
+      "pairs": 6,
+      "views": 2,
+      "sameOrder": true,
+      "visibility": false,
+      "bugsDelta": 0,
+      "visibilityBeforeMs": [
+        0.504,
+        0.485,
+        0.541,
+        0.491,
+        0.496,
+        0.522
+      ],
+      "visibilityCandidateMs": [
+        0.402,
+        0.415,
+        0.399,
+        0.4,
+        0.419,
+        0.402
+      ],
+      "visibilityMediansMs": [
+        0.5,
+        0.402
+      ],
+      "enumerationBeforeMs": [
+        0.268,
+        0.259,
+        0.265,
+        0.257,
+        0.259,
+        0.262
+      ],
+      "enumerationCandidateMs": [
+        0.208,
+        0.22,
+        0.21,
+        0.21,
+        0.212,
+        0.214
+      ],
+      "enumerationMediansMs": [
+        0.2605,
+        0.211
+      ],
+      "method": "Alternating actual installed functions versus local exact candidate fragments using the same existing Baganator skin APIs and frames. No temporary global method replacement. Tests were performed with the bank closed."
+    },
+    "runtime": "Two FluxUI paths precompute constant frame-name lists at load. Dynamic skin lookup, registry refresh, visibility, fallback ordering and duplicate removal retain their existing reads.",
+    "test": {
+      "name": "tests/bank_visibility_work.lua",
+      "before": "ff3d3e8fb4d051fb830d8f5f210d07d1b652ad59058d0ea94552181ca5ce7dd6",
+      "after": "d7c200063e9da4135076f011de96ba6c66f3e06cf0dff1e7f470b52e06743787",
+      "checks": 3342,
+      "scenarios": 340,
+      "regressionScripts": [
+        "bank_visibility_work",
+        "visible_baganator_work",
+        "bank_restock_icon",
+        "bank_snapshot_work",
+        "bank_restock_find_stacks",
+        "tier_count_work",
+        "idle_tiers",
+        "vendor_tier_work",
+        "auction_restock"
+      ],
+      "syntax": 11,
+      "matchingRuntimeInstalls": 5
+    },
+    "r661": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank661-reload-names-20261120",
+        "controllerSHA": "918aaedffbce87a74760d32866d5b6fa04562c9b3f85ebfcf74d74853a197597",
+        "packetSHA": "4defcd8a81d68cfeb4358cde84b624e26c0aba6410ac6fcf6af72894ef90cd3b",
+        "packets": 1
+      },
+      "source": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank661_a-source.png",
+        "pngSha": "80d22915ec42c5fa068ade4c3123d6987550362cb761cd2bbef0b29d650413d8",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank661_a-source-capture.json",
+        "metaSha": "65d1d5bb92fcace97919c02db31c433e7032d09f6536db8d62197a6d88aa7014",
+        "started": 1795159451.3024507,
+        "time": 1795159453.5528955,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124082500,
+          "idle": 0.531,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "reloaded": false,
+      "reservationReleased": true,
+      "reason": "Player opened the live bank; use it for actual stack validation and preserve the open bank."
+    },
+    "keepalive": {
+      "pid": 32196,
+      "processVerified": true,
+      "reportedPairs": 5,
+      "lastAttemptSentPair": true,
+      "movementAcknowledged": false
+    },
+    "scope": "The isolated improvement was measured with candidate closures. Recheck the installed revision and compare the full Restock rebuild after reload. Cold bank and other clients remain separate."
+  },
+  "loadedFallbackFrameNames": {
+    "id": "LHO-BANK-VIEW-LOADED-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "inventory": "6f4bf0899ac8769a28f34125b4526d7bb0d4c588057931ae74755fac95c9ee01",
+      "compat": "f5445233159adeef8058648bc0c6f94d8ad3e4a0427c1a081675b56906ce1ecf"
+    },
+    "r661b": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank661-reload-names-20261120",
+        "controllerSHA": "918aaedffbce87a74760d32866d5b6fa04562c9b3f85ebfcf74d74853a197597",
+        "packetSHA": "4defcd8a81d68cfeb4358cde84b624e26c0aba6410ac6fcf6af72894ef90cd3b",
+        "packets": 1
+      },
+      "source": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank661_b-source.png",
+        "pngSha": "cf17a598be400c9795b8df62d6a0c07f1569dda2c6e53f1179a48608b6427fa5",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank661_b-source-capture.json",
+        "metaSha": "09e6024f5183f72899b5f545dcf92fb0ddf13b10440e420e5a5ac8165a838381",
+        "started": 1795159997.7089977,
+        "time": 1795159999.5191615,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124629093,
+          "idle": 0.344,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "queued": true,
+      "afterQueueGuard": "A key changed after both Enter messages were already queued, so the watcher aborted before acknowledgement.",
+      "reloadObserved": true,
+      "postReloadPNG": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume661b_guard_state.png",
+      "postReloadSHA256": "09474cda3d760ddff3f5006252527b41230842c44008c23e2496274e16a13c6a",
+      "postReloadObservation": "Fresh BugTabs startup, no old cue and closed chat. No duplicate reload."
+    },
+    "r665": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank665-loaded-restock-20261120",
+        "controllerSHA": "ca286c7b4239e3f7bf30a52a724b0a0b9a04a05a4f11e3a981f45f5c4bc3045e",
+        "packets": 44,
+        "luaSHA": "fa1b8aac891e668709dd0c868243129596ac52f0e21952cf97f59940f038606c"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank665_b-submitted.png",
+        "pngSha": "3797c7a6655714b397f880d20b81d9bb15851a4354913f5b5eb4025df70cd899",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank665_b-submitted-capture.json",
+        "metaSha": "23d7529e179020d813222d9f70c6f2ed9a01fd934ebf28e97518b1718a1d9515",
+        "started": 1795160420.0816412,
+        "time": 1795160421.909837,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 125031453,
+          "idle": 20.359,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "png": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume665_loaded_bank_visibility.png",
+      "sha256": "7b523215bca1970ce9fdb822129aca12ec7235c599d31438e6ff792d6b281c1d",
+      "restoredEscape": {
+        "escapeOnly": true,
+        "time": 1795160373.6770597,
+        "foregroundBefore": 22742608,
+        "foregroundAfter": 22742608,
+        "captureSHA256": "204f75b38c38f9c986553bc8d87dab7b62ec47fdf38cb330f8f65de36aa9c0fa"
+      },
+      "identicalFrames": 2,
+      "targets": 9,
+      "visibleAuction": 6,
+      "hiddenAuction": 1,
+      "pairs": 6,
+      "scriptProfile": 0,
+      "bugsDelta": 0,
+      "moneyBagAndBankGenerationStable": true,
+      "visibilityBefore": [
+        0.502,
+        0.503,
+        0.525,
+        0.513,
+        0.513,
+        0.515
+      ],
+      "visibilityLoaded": [
+        0.405,
+        0.454,
+        0.407,
+        0.45,
+        0.419,
+        0.43
+      ],
+      "visibilityMedians": [
+        0.513,
+        0.4245
+      ],
+      "closedBankBefore": [
+        0.649,
+        0.676,
+        0.706,
+        0.657,
+        0.718,
+        0.679
+      ],
+      "closedBankLoaded": [
+        0.58,
+        0.651,
+        0.588,
+        0.643,
+        0.603,
+        0.673
+      ],
+      "closedBankMedians": [
+        0.6775,
+        0.623
+      ],
+      "targetsBefore": [
+        2.301,
+        2.33,
+        2.648,
+        2.252,
+        2.596,
+        2.421
+      ],
+      "targetsLoaded": [
+        2.108,
+        2.428,
+        2.16,
+        2.379,
+        2.412,
+        2.569
+      ],
+      "targetsMedians": [
+        2.3755,
+        2.3955
+      ],
+      "auctionBefore": [
+        3.501,
+        3.557,
+        3.622,
+        3.82,
+        3.845,
+        3.628
+      ],
+      "auctionLoaded": [
+        3.399,
+        3.608,
+        3.38,
+        3.476,
+        3.577,
+        3.653
+      ],
+      "auctionMedians": [
+        3.625,
+        3.5265
+      ],
+      "method": "Same client and same stock. Each alternate read briefly substitutes both exact archived named-frame implementations, synchronously compares all tier, shared, auction and potion fields, restores both method identities and prior Auction rows.",
+      "limits": "Visibility and closed-bank tiers improved in all six pairs. Full shared list and Auction totals overlap. No actual Auction open, Pending, or FPS conclusion."
+    },
+    "keepalive": {
+      "old": {
+        "pid": 32196,
+        "status": "stopped",
+        "pairs": 7,
+        "movementAcknowledged": false
+      },
+      "installed": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump97_bank_names-submitted.png",
+        "pngSha": "0be1b8c2e438a8b36d7a94f0d124c66b7d09565c4e7a15a625dda96895974c95",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump97_bank_names-submitted-capture.json",
+        "metaSha": "13c2e43429763af8828222626951f6b863ef4de863e6308c64147017ec732a1d",
+        "started": 1795160155.2669716,
+        "time": 1795160157.0392115,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124786906,
+          "idle": 0.094,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "supervisorPID": 18360,
+      "workerPID": 24080,
+      "workerVerified": true,
+      "interval": 180,
+      "pairsAtLastCheck": 0,
+      "blockedReasons": [
+        "Interrupted heartbeat opened empty chat; dismissed verified blank with targeted Escape.",
+        "Windows refused multiple background activation requests.",
+        "Session input guard deferred some attempts."
+      ],
+      "movementAcknowledged": false
+    }
+  }
+}

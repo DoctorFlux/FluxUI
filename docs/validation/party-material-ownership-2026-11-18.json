@@ -1,0 +1,700 @@
+{
+  "changeId": "PARTY-MATERIAL-OWNERSHIP-R68-20261118",
+  "atUTC": "2026-11-18T11:54:37.228714+00:00",
+  "status": "Implemented directly; party join/leave native acceptance pending",
+  "userCorrection": "R67 improved general hitches, but party join/leave still hitches; user asks all roster consumers checked and combat taint safety preserved",
+  "before": {
+    "Core/BorderJunctions.lua": "ec17fc10294fc35578fb24a59a54281d90a64e4f878d4c62d201a8c58c57b843",
+    "FluxBorder.lua": "a1c597c9e96d48602b62dbdfa7f2ba5d38dd803f2a4769254f89596dd55317f0",
+    "tests/raid_party_frames.lua": "a4a1142498920bb0b07c812520bb31775be5d41fb2e67e83797635536c9ccd4a"
+  },
+  "after": {
+    "Core/BorderJunctions.lua": {
+      "raw": "f21c062ed154c277deb84568df418f7d82fbfb46979c98041faaaa5b66163ff0",
+      "lf": "f21c062ed154c277deb84568df418f7d82fbfb46979c98041faaaa5b66163ff0"
+    },
+    "FluxBorder.lua": {
+      "raw": "014e919f41e03a7279bfa49a5a52beae5c27759fa463ec476d5d8f1213afb24e",
+      "lf": "014e919f41e03a7279bfa49a5a52beae5c27759fa463ec476d5d8f1213afb24e"
+    },
+    "tests/border_paint_ownership.lua": {
+      "raw": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16",
+      "lf": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16"
+    },
+    "tests/raid_party_frames.lua": {
+      "raw": "4c1606670b7366aea5c72c497b6231781234ef24ee9d0cdb1531b8f77b91c90d",
+      "lf": "4c1606670b7366aea5c72c497b6231781234ef24ee9d0cdb1531b8f77b91c90d"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-hitch-before-20261118T112829Z\\source.zip",
+    "archiveSHA256": "10d42040ec528f1890f0a7958486adb322147ca9fb570a70b56f624028194f83",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "headCovered": true,
+    "settingsScope": "Metadata only; current Forever saved partyAsRaid false; no private settings copied or changed"
+  },
+  "implementation": "Weak texture/record buckets indexed by actual ancestor and existing detached _FluxBorderOwner; refreshed on registration/re-adoption and through existing observed SetParent; unregistered pieces removed; standalone/unobserved Border retains live-parent fallback",
+  "scopeBoundaries": "Index stores public object references only; no GUID/name/unit/secret colour cache; existing native material/RGB/alpha sinks and full live refreshes retained; no new event/timer/hook owner; no protected layout/input writes in repaint",
+  "rosterAudit": [
+    {
+      "consumer": "normal party/member/pet/target",
+      "source": "UnitFrames/FluxUnitFrames_Party.lua",
+      "finding": "on-show/roster paint already coalesces; full unit data/cast/model refresh retained; same token may identify a new member"
+    },
+    {
+      "consumer": "raid secure headers and layout",
+      "source": "RaidFrame/FluxRaidLayout.lua;RaidFrame/FluxRaidSecure.lua",
+      "finding": "prepared roster reconciliation and combat deferral retained; no protected driver/attribute/position elision"
+    },
+    {
+      "consumer": "raid joined borders",
+      "source": "RaidFrame/FluxRaidUnit.lua;RaidFrame/FluxRaidVisuals.lua",
+      "finding": "fresh visibility/geometry and adjacency paints retained; earlier adjacency-cache changed-layout regressions remain rejected"
+    },
+    {
+      "consumer": "unit material classification",
+      "source": "FluxBorder.lua",
+      "finding": "FIXED: SetUnitColor and SetUntinted scanned all registered textures per surface; index actual ancestor and detached-owner references and repaint only indexed pieces"
+    },
+    {
+      "consumer": "unit shared group icons/threat",
+      "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "finding": "live group/name/icon/threat refresh retained; no GUID/private identity cache"
+    },
+    {
+      "consumer": "auras and friendly dispels",
+      "source": "UnitFrames/FluxUnitFrames_DebuffTint.lua;RaidFrame/FluxRaidHealerExtras.lua",
+      "finding": "party identity refresh and coalesced prepared extras retained; no native/secret aura data inspected by new code"
+    },
+    {
+      "consumer": "hover binding discovery",
+      "source": "Binding/Input/FluxMouseoverKeybind.lua",
+      "finding": "existing0.3s coalesced discovery and OOC routing guards retained"
+    },
+    {
+      "consumer": "bars and EBS conditionals",
+      "source": "Bars/Watch.lua;ExtraButtonSystem/Engine/Watch.lua;Core/Engine/Restricted.lua",
+      "finding": "group-dependent condition refresh and restricted-state fallback retained; no action ID/routing change"
+    },
+    {
+      "consumer": "food/water grouping",
+      "source": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua;ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+      "finding": "existing group-aware binding/event handlers retained; inventory-owned sources not edited"
+    },
+    {
+      "consumer": "minimap/LFG/nameplates/character stats/threat",
+      "source": "Minimap/FluxMinimap.lua;MicroMenu/FluxLFGMicroButton.lua;NamePlates/Core.lua;Other/FluxCharacterStats/CharacterStatsProgression.lua;Battlezonemap/FluxThreat.lua;Battlezonemap/FluxThreatMeter.lua",
+      "finding": "reviewed relevant roster callbacks; active/visibility gates and existing queued refreshes retained; no native attribution claimed"
+    },
+    {
+      "consumer": "third-party cast adapter and native target fallback",
+      "source": "libs/LibClassicCasterino/LibClassicCasterino.lua;UnitFrames/FluxUnitFrames_Target.lua",
+      "finding": "preserved native/third-party handlers and licenses; no API/global overrides"
+    }
+  ],
+  "focused": {
+    "before": {
+      "Core/BorderJunctions.lua": "f21c062ed154c277deb84568df418f7d82fbfb46979c98041faaaa5b66163ff0",
+      "FluxBorder.lua": "014e919f41e03a7279bfa49a5a52beae5c27759fa463ec476d5d8f1213afb24e"
+    },
+    "after": {
+      "Core/BorderJunctions.lua": "f21c062ed154c277deb84568df418f7d82fbfb46979c98041faaaa5b66163ff0",
+      "FluxBorder.lua": "014e919f41e03a7279bfa49a5a52beae5c27759fa463ec476d5d8f1213afb24e"
+    },
+    "stable": true,
+    "count": 77,
+    "failed": [],
+    "results": [
+      {
+        "path": "tests/border_aura_crest.lua",
+        "exitCode": 0,
+        "seconds": 0.155,
+        "output": "Aura crest: 1216 checks PASS; exact native rectangles; both styles/four scales/registration orders; continuous crest; one source per sample; bounded stem; static reuse; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_aura_sampling.lua",
+        "exitCode": 0,
+        "seconds": 0.125,
+        "output": "Aura UV sampling: 880 checks PASS; real canonical UVs/native rectangles; paths and negative client IDs; both styles/scales; nonsingular endpoint fields; static reuse; native GPU acceptance pending\n"
+      },
+      {
+        "path": "tests/border_branch_compile_cache.lua",
+        "exitCode": 0,
+        "seconds": 1.065,
+        "output": "BRANCH_COMPILE_WORK|1|56|54|2|56|0\nBRANCH_COMPILE_WORK|2|56|54|2|56|0\nBorder branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_branch_coverage.lua",
+        "exitCode": 0,
+        "seconds": 0.308,
+        "output": "Branch coverage: 504 checks PASS; short/long shared owners; T/X; both axes/styles/scales; no missing or doubled source fields; static recolor; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_canvas_layers.lua",
+        "exitCode": 0,
+        "seconds": 0.166,
+        "output": "Border canvas layers: 780 checks PASS; shared source with multiple peer strata/levels/orders; retained source visibility; no later canvas demotion; both styles/scales; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_cap_junctions.lua",
+        "exitCode": 0,
+        "seconds": 0.748,
+        "output": "Cap-safe junctions: 18804 checks PASS; real compact outline/divider rendering; both styles and fractional scales; preserved outer shapes; no stacked cap/mesh area; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_clip_work.lua",
+        "exitCode": 0,
+        "seconds": 0.032,
+        "output": "Border clip work: 441 checks PASS; distantCapCalls=0 distantCapBuilds=0 geometry=2111483736\n"
+      },
+      {
+        "path": "tests/border_combat_transitions.lua",
+        "exitCode": 0,
+        "seconds": 0.037,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim\n"
+      },
+      {
+        "path": "tests/border_cost_reasons.lua",
+        "exitCode": 0,
+        "seconds": 0.072,
+        "output": "Border cost reasons: 342 checks PASS; actual watched preflight reasons/counts, unchanged rows, native getter parity, private retirement/recovery and bounded output; native timings unmeasured\n"
+      },
+      {
+        "path": "tests/border_draw_reuse.lua",
+        "exitCode": 0,
+        "seconds": 1.768,
+        "output": "DRAW_REUSE_WORK style=1 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=334513276 beforeMesh=215315591\nDRAW_REUSE_WORK style=2 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=822842411 beforeMesh=997882298\nborder draw reuse: 14568 checks passed\n"
+      },
+      {
+        "path": "tests/border_dropdown.lua",
+        "exitCode": 0,
+        "seconds": 0.014,
+        "output": "Border dropdown: 6 checks PASS; native font/render/controller acceptance pending\n"
+      },
+      {
+        "path": "tests/border_dynamic_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.502,
+        "output": "Dynamic border layouts: 402 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending\n"
+      },
+      {
+        "path": "tests/border_fallback_array_guards.lua",
+        "exitCode": 0,
+        "seconds": 1.367,
+        "output": "FALLBACK_ARRAY_WORK style=1 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=1 junctions=56 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=56 calls=0 validations=0 warmFingerprints=0\nBorder fallback array guards: 42508 checks PASS; public-only immutable snapshots; plan-only positive/negative pairs; direct mutations; private/current recovery; exact legacy fingerprints\n"
+      },
+      {
+        "path": "tests/border_fallback_compile_cache.lua",
+        "exitCode": 0,
+        "seconds": 0.393,
+        "output": "FALLBACK_COMPILE_WORK|1|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nFALLBACK_COMPILE_WORK|2|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nBorder fallback compile cache: 1226 checks PASS; numeric parity/current paint/blockers; source validity; merge isolation; committed-only bounded generations; native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_fallback_opacity.lua",
+        "exitCode": 0,
+        "seconds": 0.321,
+        "output": "FALLBACK_OPACITY_WORK style=1 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=419162723\nFALLBACK_OPACITY_WORK style=2 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=361236605\nborder fallback opacity: 4634 checks passed\n"
+      },
+      {
+        "path": "tests/border_fallback_plan_cache.lua",
+        "exitCode": 0,
+        "seconds": 8.045,
+        "output": "ndidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=material fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=73/73 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=priority fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=492/492 hits=49 misses=7\nLOCAL_PLAN style=2 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=17/17 subtracts=23/24 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=17/17 subtracts=23/24 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nBorder fallback plan cache: 5992 checks PASS; current native geometry/source validation; immutable public plan metadata; current paint/priority/opaque alpha; release/rollback/budgets; native latency pending\n"
+      },
+      {
+        "path": "tests/border_geometry_phase.lua",
+        "exitCode": 0,
+        "seconds": 1.336,
+        "output": "PHASE_WORK|1|7374|485|160|640|4480\nPHASE_WORK|2|7374|485|160|640|4480\nBorder geometry phase: 38 checks PASS; exact native/hidden/private/missing/depth/budget/cycle contracts; alignment/exception/future-phase freshness; actual mesh parity and shared-anchor API work. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_hidden_anchors.lua",
+        "exitCode": 0,
+        "seconds": 0.354,
+        "output": "Hidden unit anchors: 6154 checks PASS; delayed native root/corner/edge rectangles AND origins; exact public anchor geometry; intrinsic sizes; both styles/five units/three scales; first/repeated visibility0reads/solves/resources; actual moves; private/cycle/budget guards; native acceptance pending\n"
+      },
+      {
+        "path": "tests/border_idle_trace.lua",
+        "exitCode": 0,
+        "seconds": 0.02,
+        "output": "Border idle trace: 11 checks PASS; finite same-interval producer/read evidence; registration/removal/settings/event causes; bounded records; no stale quiet-capture reasons or persistent timer\n"
+      },
+      {
+        "path": "tests/border_incremental_commit.lua",
+        "exitCode": 0,
+        "seconds": 0.57,
+        "output": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=114 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=101 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nborder incremental commit: 1894 checks passed\n"
+      },
+      {
+        "path": "tests/border_junction_shadows.lua",
+        "exitCode": 0,
+        "seconds": 14.75,
+        "output": "border junction shadows: 486929 checks PASS; 56 scenes, 240576 source-footprint samples; actual factory/Core/TGA; native testing deferred\n"
+      },
+      {
+        "path": "tests/border_junctions.lua",
+        "exitCode": 0,
+        "seconds": 0.711,
+        "output": "Border junctions: 4841 checks PASS; bounded interval/bucket solver, mask-free disjoint fragments, live tint/alpha, two styles, shared panels and overlay/combat lifecycle. Native GPU/FPS/taint pending.\n"
+      },
+      {
+        "path": "tests/border_locality.lua",
+        "exitCode": 0,
+        "seconds": 7.772,
+        "output": "Regional render style=1 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=1 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=1 scale=1.25 retained=60 updated=4 rectReads=2/26\nRegional render style=2 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=2 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=2 scale=1.25 retained=60 updated=4 rectReads=2/26\nActual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.\n"
+      },
+      {
+        "path": "tests/border_lua_upvalues.lua",
+        "exitCode": 0,
+        "seconds": 0.016,
+        "output": "Border Lua upvalues: 128 functions PASS; maximum=51, conservative desktop limit60 including_ENV; native reload still required\n"
+      },
+      {
+        "path": "tests/border_native_alpha.lua",
+        "exitCode": 0,
+        "seconds": 0.099,
+        "output": "Native unit alpha: 640 checks PASS; initial private alpha; public recolor/opaque alpha; zero topology work/resources; native SetAlpha sink only; public RGB; combat paint; actual native taint/performance pending\n"
+      },
+      {
+        "path": "tests/border_native_unit_rgb.lua",
+        "exitCode": 0,
+        "seconds": 0.098,
+        "output": "Native unit RGB: 600 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim\n"
+      },
+      {
+        "path": "tests/border_nearby_panels.lua",
+        "exitCode": 0,
+        "seconds": 1.405,
+        "output": "Nearby panel borders: 1452 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending\n"
+      },
+      {
+        "path": "tests/border_observer_refresh.lua",
+        "exitCode": 0,
+        "seconds": 1.495,
+        "output": "OBSERVER_WORK|1|parents=360->4|sources=360->360\nOBSERVER_WORK|2|parents=360->4|sources=360->360\nBorder observer refresh: 63 checks PASS; complete mesh parity, localized observer API work, native source privacy/missing freshness, anchor replacement/parent/scale/cycle/budget guards. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_optional_unit_parts.lua",
+        "exitCode": 0,
+        "seconds": 11.347,
+        "output": "UNIT_FALLBACK checks=272 samples=177498 baselineMissing=3108 candidateMissing=0 worstMissingAlpha=1\nCACHE_GUARDS style1 PASS; warm/current/moved/static/profile/unknown/cap guard\nCACHE_GUARDS style2 PASS; warm/current/moved/static/profile/unknown/cap guard\nUnit fallback cache/profile guards: 334 checks PASS; actual source producer/factory/Core, no native acceptance claim\nFOREIGN_PROFILE style1 samples138 doubled86 overdraw67 regions14 inactive10 unchanged\nFOREIGN_PROFILE style2 samples60 doubled54 overdraw54 regions20 inactive10 unchanged\nOptional unit parts: 357 checks PASS; actual factory/Core/TGA, four Ts+X, exact hidden RGBA, active mesh parity, partial/own parallel backups, eligibility, current generation, budgets; native validation pending\n"
+      },
+      {
+        "path": "tests/border_owner_phase.lua",
+        "exitCode": 0,
+        "seconds": 0.027,
+        "output": "Render owner phase: 246 checks PASS; complete-public negatives only; private/missing/cycle/budget recovery; live hierarchy freshness; query guards; actual commit/release cleanup; both styles\n"
+      },
+      {
+        "path": "tests/border_owner_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.215,
+        "output": "Border owner visibility: 2641 checks PASS; own source/host hide and public alpha-zero; whole/partial overlap; both styles/scales; one source per interval; zero solves/reads/allocations including combat; native pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_paint_order.lua",
+        "exitCode": 0,
+        "seconds": 0.036,
+        "output": "Border paint order: 128 checks PASS; sibling aura/background frames; both registration orders/styles; retained stratum/visibility/scale; static reuse; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_paint_ownership.lua",
+        "exitCode": 0,
+        "seconds": 0.386,
+        "output": "PARTY_PAINT_WORK style=1 scopedParentReads=548 legacyParentReads=31844\nPARTY_PAINT_WORK style=2 scopedParentReads=548 legacyParentReads=31844\nBorder paint ownership: 16 checks PASS; actual scoped/legacy parity; detached shells; reparent; combat presentation only; native acceptance pending.\n"
+      },
+      {
+        "path": "tests/border_party_container.lua",
+        "exitCode": 0,
+        "seconds": 1.111,
+        "output": "CONTAINER|style=1|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=1|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nParty container borders: 164 checks; 2026-11-18T11:44:33Z; actual Core/Border/init prefix; no native latency claim\n"
+      },
+      {
+        "path": "tests/border_party_isolation.lua",
+        "exitCode": 0,
+        "seconds": 0.105,
+        "output": "Party border isolation: 72 checks PASS; member/preview identity; neutral HUD bridge; detached logical hosts; internal joins; both styles/scales; static reuse; native group pixels pending\n"
+      },
+      {
+        "path": "tests/border_prepared_icons.lua",
+        "exitCode": 0,
+        "seconds": 1.151,
+        "output": "Prepared class borders: 576 checks PASS; actual shared slot producer and divider paint; first/repeated player target/focus; modern/legacy API shapes; both styles/alignments/mirrors/scales; zero transition reads/solves/resources; no hidden spec duplicate; combat guard; real settings update\n"
+      },
+      {
+        "path": "tests/border_private_paint.lua",
+        "exitCode": 0,
+        "seconds": 0.132,
+        "output": "Private border paint: 2428 checks PASS; alpha/RGBA retirement once; repeated focus-style sinks0reads/solves/full requests; original opaque source preserved; no opaque value copied; combat deferral; native taint/FPS pending\n"
+      },
+      {
+        "path": "tests/border_reflow_cost.lua",
+        "exitCode": 0,
+        "seconds": 0.075,
+        "output": "Border reflow cost: 148 checks PASS; existing finite-watch epochs; legacy aggregate/nested mesh algebra; retained peak; zero default clocks; opaque/faulty midpoint and draw recovery; native timings pending\n"
+      },
+      {
+        "path": "tests/border_registration_pairs.lua",
+        "exitCode": 0,
+        "seconds": 0.288,
+        "output": "Register pair controls: 185 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback\n"
+      },
+      {
+        "path": "tests/border_render_basis.lua",
+        "exitCode": 0,
+        "seconds": 0.31,
+        "output": "RENDER_BASIS_WORK style=1 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=797656323\nFIELD_ARGS_WORK style=1 calls=1000 native=1 tables=1\nRENDER_BASIS_WORK style=2 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=894356635\nFIELD_ARGS_WORK style=2 calls=1000 native=1 tables=1\nborder render basis: 40 checks passed\n"
+      },
+      {
+        "path": "tests/border_render_pool_work.lua",
+        "exitCode": 0,
+        "seconds": 0.089,
+        "output": "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045\nRENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962\nRENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497\nborder render pool work: 1034 checks passed\n"
+      },
+      {
+        "path": "tests/border_resource_hold.lua",
+        "exitCode": 0,
+        "seconds": 0.098,
+        "output": "Resource border hold: 230 checks PASS; real power producer and solver; clear-return target/focus/party/pet/ToT; zero reads/solves; actual no-resource state preserved; native counters pending\n"
+      },
+      {
+        "path": "tests/border_retained_units.lua",
+        "exitCode": 0,
+        "seconds": 0.277,
+        "output": "Retained unit borders: 15894 checks PASS; initial hidden prebuild; target/focus/party/pet/ToT show/hide/fade; zero reads/solves/allocations; combat native inheritance; immediate material; real layout invalidation; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_shadow_material.lua",
+        "exitCode": 0,
+        "seconds": 0.213,
+        "output": "Shadow material support: 111147 PASS; exact TGA alpha/half-texel margins; natural/tint parity; trusted handles; live support-change/recovery rebuilds; static tint/RGB; private/recolor/cropped UV recovery; offline only\n"
+      },
+      {
+        "path": "tests/border_solve_pair_identity.lua",
+        "exitCode": 0,
+        "seconds": 4.973,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nBorder pair identity: 182 checks PASS; exact complete operations/source mutations; per-pass ownership/caps/budgets; stale-miss controls; native performance/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_solver_allocation_work.lua",
+        "exitCode": 0,
+        "seconds": 9.886,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nMETACALLBACK|legacy=14|current=14|elision-control=4\nCONTROL|plane-concat-elision|REJECTED\nCONTROL|first-match|REJECTED\nCONTROL|persistent-point-index|REJECTED\nBorder solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim\n"
+      },
+      {
+        "path": "tests/border_source_phase.lua",
+        "exitCode": 0,
+        "seconds": 0.306,
+        "output": "SOURCE_PHASE_WORK style=1 sources=25 coldCalls=25 changedCalls=25 mesh=1929517577 changedMesh=1543180358 fields=409\nSOURCE_PHASE_WORK style=2 sources=25 coldCalls=25 changedCalls=25 mesh=1391507343 changedMesh=791779424 fields=409\nBorder source phase: 916 checks PASS; current native source validation; pure-plan reuse; fresh material and opaque alpha; failure/budget cleanup; exact reflow meshes. Native latency pending\n"
+      },
+      {
+        "path": "tests/border_static_geometry.lua",
+        "exitCode": 0,
+        "seconds": 0.423,
+        "output": "Static border geometry: 22 checks PASS; native float precision;100 no-op layout rounds with500 unrelated pieces; real pixel moves and immediate paint; no native FPS claim\n"
+      },
+      {
+        "path": "tests/border_static_pieces.lua",
+        "exitCode": 0,
+        "seconds": 0.842,
+        "output": "Static unit pieces: 63660 checks PASS; R34 own Hide/Show and opacity-zero trace; hidden prebuild; logical/global ownership; zero probes/solves/resources; combat paint; real moves rebuild; native acceptance pending\n"
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exitCode": 0,
+        "seconds": 4.354,
+        "output": "Strip/envelope border: 5798 checks PASS; 144 actual factory/Strip/Unified/Core scenes; 1080 one-source crest samples; unchanged roots/static warm checks; native pixels/FPS/taint pending\n"
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exitCode": 0,
+        "seconds": 0.12,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n"
+      },
+      {
+        "path": "tests/border_unit_contours.lua",
+        "exitCode": 0,
+        "seconds": 1.137,
+        "output": "Unit contour borders: 930 checks PASS; both styles/scales; rounded source caps; filled aura turns; top-middle T; target/focus/party/pet/ToT hide/fade/show; static recolor; native combat/pixels pending\n"
+      },
+      {
+        "path": "tests/border_unit_paint_idempotence.lua",
+        "exitCode": 0,
+        "seconds": 0.042,
+        "output": "DIRECT_ALPHA_WORK\t1\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t1\ttrue\t0\t0\nDIRECT_ALPHA_WORK\t2\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t2\ttrue\t0\t0\nUnitPaint public idempotence: 166 checks PASS; native source suppression; changed RGB/alpha; source visibility; private scalar native sinks/recovery; private RGB retirement; rebuilt fields; both styles. Native taint/FPS pending.\n"
+      },
+      {
+        "path": "tests/border_wake_ownership.lua",
+        "exitCode": 0,
+        "seconds": 0.374,
+        "output": "Border wake ownership: 328 checks PASS; 40 lifecycle/render scenarios; useful early-return/error recovery, same deadlines, stale callbacks, native privacy/reentry, combat and fallbacks; no native/CPU claim\n"
+      },
+      {
+        "path": "tests/border_window_bounds.lua",
+        "exitCode": 0,
+        "seconds": 0.775,
+        "output": "Flux Window bounds: 972 checks PASS; fixed decorative/content geometry; HIGH side/map/header moves and embed-like visibility; window paint owner; detach/reconnect; static reuse; both styles/scales/module exports; conflicting fixed references; native pixels pending\n"
+      },
+      {
+        "path": "tests/group_roster_performance.lua",
+        "exitCode": 0,
+        "seconds": 0.139,
+        "output": "ROSTER|live|party|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=3|attributes=0\nROSTER|live|raid|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=4|attributes=0\nROSTER|live|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|live|extras|allocations=0|rebinds=0|protectedWrites=0|paints=46|timers=1\nROSTER|forever|party|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=3|attributes=0\nROSTER|forever|raid|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=4|attributes=0\nROSTER|forever|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|forever|extras|allocations=0|rebinds=0|protectedWrites=0|paints=46|timers=1\nROSTER|classic|party|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=3|attributes=0\nROSTER|classic|raid|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=4|attributes=0\nROSTER|classic|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic|extras|allocations=0|rebinds=0|protectedWrites=0|paints=46|timers=1\nROSTER|classic_era|party|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=3|attributes=0\nROSTER|classic_era|raid|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=4|attributes=0\nROSTER|classic_era|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic_era|extras|allocations=0|rebinds=0|protectedWrites=0|paints=46|timers=1\nROSTER|classic_anniversary|party|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=3|attributes=0\nROSTER|classic_anniversary|raid|partyLayouts=0|headerShows=0|unitSyncs=1|allocations=0|extraLayouts=0|timers=4|attributes=0\nROSTER|classic_anniversary|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic_anniversary|extras|allocations=0|rebinds=0|protectedWrites=0|paints=46|timers=1\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|partyPaint|castRefreshes=4|paints=8|timers=1|castResets=4|rangeChecks=1\nGroup roster performance: 163 checks PASS; operation counts only; native performance/taint pending\n"
+      },
+      {
+        "path": "tests/raid_roster_layout_work.lua",
+        "exitCode": 0,
+        "seconds": 0.215,
+        "output": "Paint=1/1 bind=0/0\nWORK live party transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=1/1\nWORK live party transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live party transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live party transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live party transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live party mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live party mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live raid unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=0/0\nWORK live raid transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live raid transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live raid transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live raid mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live raid mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nParty roster prepared delegation: 5428 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.\n"
+      },
+      {
+        "path": "tests/raid_combat_roster_transitions.lua",
+        "exitCode": 0,
+        "seconds": 6.757,
+        "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+      },
+      {
+        "path": "tests/raid_party_frames.lua",
+        "exitCode": 0,
+        "seconds": 0.067,
+        "output": "Party player-style frames: 1095 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n",
+        "scope": "Corrected existing preview-painter stub; runtime sources unchanged"
+      },
+      {
+        "path": "tests/raid_party_binding_cast.lua",
+        "exitCode": 0,
+        "seconds": 0.038,
+        "output": "Party Flux hover casting: 310 checks; twelve party/pet/target tokens on five binding/secure models; native input/taint pending\n"
+      },
+      {
+        "path": "tests/raid_group_conversion_conditions.lua",
+        "exitCode": 0,
+        "seconds": 1.896,
+        "output": "Universal group conversion conditions: 53615 checks / 2800 combat transitions PASS; native client acceptance separate\n"
+      },
+      {
+        "path": "tests/party_native_contracts.lua",
+        "exitCode": 0,
+        "seconds": 0.078,
+        "output": "Party native contracts: 78 checks across five pinned restricted implementations; native rendering/taint pending\n"
+      },
+      {
+        "path": "tests/party_steady_performance.lua",
+        "exitCode": 0,
+        "seconds": 0.236,
+        "output": "PARTY_STEADY|live|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|forever|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_era|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_anniversary|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nParty steady performance: 305 checks PASS; modeled operation counts, native performance pending\n"
+      },
+      {
+        "path": "tests/party_cast_lifecycle.lua",
+        "exitCode": 0,
+        "seconds": 0.373,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast lifecycle: 215 checks; five client models; native events/taint pending\n"
+      },
+      {
+        "path": "tests/party_cast_border_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.118,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 835 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/party_divider_boundary.lua",
+        "exitCode": 0,
+        "seconds": 0.02,
+        "output": "Party divider boundary: 396 checks; fitted party HP, prediction geometry, resource transitions and unchanged target/focus; native pixels/combat pending\n"
+      },
+      {
+        "path": "tests/party_blizzard_dispels.lua",
+        "exitCode": 0,
+        "seconds": 0.294,
+        "output": "Party Blizzard dispellable-only setting: 418 checks PASS; five client models; native filtering/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/party_debuff_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.092,
+        "output": "Party debuff visibility: 408 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending\n"
+      },
+      {
+        "path": "tests/unit_debuff_group_overlap.lua",
+        "exitCode": 0,
+        "seconds": 0.046,
+        "output": "Unit debuff group overlap: 100 checks passed; simulated filter overlap; native acceptance pending\n"
+      },
+      {
+        "path": "tests/unit_aura_group_layout_work.lua",
+        "exitCode": 0,
+        "seconds": 0.065,
+        "output": "AURA_GROUP_LAYOUT_WORK|forever|unchangedNativeDirty=60->0|fullAuraRefreshes=40|groupCountReads=60|groupFrameReads=480|buttonSizeWrites=480\nAURA_GROUP_LAYOUT_WORK|live|unchangedNativeDirty=60->0|fullAuraRefreshes=40|groupCountReads=60|groupFrameReads=480|buttonSizeWrites=480\nUnit aura group layout: 1702 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending\n"
+      },
+      {
+        "path": "tests/unit_portrait_callback_work.lua",
+        "exitCode": 0,
+        "seconds": 0.95,
+        "output": "CALLBACK_IDENTITIES baseline=129 candidate=13 fullCalls=20; not bytes or native CPU\nPortrait protected callbacks: 114 scenarios/105969 checks PASS; actual production bodies, modeled native endpoints; no CPU timing/native tests\n"
+      },
+      {
+        "path": "tests/unit_outer_party_geometry.lua",
+        "exitCode": 0,
+        "seconds": 0.239,
+        "output": "PARTY_OUTER|live|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|live|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|live|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|live|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|live|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|forever|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|forever|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|forever|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|forever|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|forever|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic_era|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic_era|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic_era|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic_era|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic_era|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic_anniversary|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic_anniversary|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic_anniversary|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic_anniversary|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic_anniversary|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPASS actual Party dispatcher/queue -> Shared geometry-stage 60 checks; other Shared painter bodies modeled; no native performance claim\n"
+      },
+      {
+        "path": "tests/roster_focus_dock.lua",
+        "exitCode": 0,
+        "seconds": 0.078,
+        "output": "Roster focus dock: 188 checks PASS; first/settings/default/unknown/drift recovery; body/scale/parent/context; combat+reentrant native-header policy; notification retention. Native latency/taint/pixels pending.\n"
+      },
+      {
+        "path": "tests/binding_hover_modifier_routes.lua",
+        "exitCode": 0,
+        "seconds": 0.067,
+        "output": "PASS binding hover modifier routes: 547 checks (native dispatch/taint unverified)\n"
+      },
+      {
+        "path": "tests/group_ghost_hover.lua",
+        "exitCode": 0,
+        "seconds": 0.038,
+        "output": "Group ghost hover: 120 checks; five client policies; combat group/attribute/hide/child transitions and screenshot chrome source; native VM pending\n"
+      },
+      {
+        "path": "tests/castbar_border_junctions.lua",
+        "exitCode": 0,
+        "seconds": 3.194,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13522 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/mini_unit_colors.lua",
+        "exitCode": 0,
+        "seconds": 0.139,
+        "output": "Mini unit colors: 11148 checks PASS; 12 real Border/shared/party color scenes; both styles/all accents; owner availability; independent ToT PC/NPC; party setting and appearance; existing combat/dispel priorities. Native pixels/taint/FPS pending\n"
+      }
+    ],
+    "evidenceScope": "COMPOSED current76 first-pass observations plus corrected party fixture replay; frozen2 runtime identities throughout",
+    "fixtureCorrection": "Unchanged Party.RefreshPreview requires UF.UpdateBorderColors for preview pets; stale stub missing that method; added stub and explicit preview assertion, no runtime skip"
+  },
+  "syntax": {
+    "files": 1219,
+    "failures": []
+  },
+  "upvalues": {
+    "files": 2,
+    "prototypes": 292,
+    "maximum": 51,
+    "failures": []
+  },
+  "work": {
+    "utc": "2026-11-18T11:50:29.302104+00:00",
+    "raw": "PARTY_PAINT_WORK style=1 scopedParentReads=548 legacyParentReads=31844\nPARTY_PAINT_TIME style=1 trial=1 scopedMs=3.000 legacyMs=60.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=1 trial=2 scopedMs=2.000 legacyMs=61.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=1 trial=3 scopedMs=3.000 legacyMs=58.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=1 trial=4 scopedMs=3.000 legacyMs=61.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=1 trial=5 scopedMs=2.000 legacyMs=61.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_WORK style=2 scopedParentReads=548 legacyParentReads=31844\nPARTY_PAINT_TIME style=2 trial=1 scopedMs=2.000 legacyMs=57.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=2 trial=2 scopedMs=2.000 legacyMs=59.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=2 trial=3 scopedMs=3.000 legacyMs=65.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=2 trial=4 scopedMs=2.000 legacyMs=65.000 scopedReads=10880 legacyReads=636800\nPARTY_PAINT_TIME style=2 trial=5 scopedMs=2.000 legacyMs=60.000 scopedReads=10880 legacyReads=636800\nBorder paint ownership: 16 checks PASS; actual scoped/legacy parity; detached shells; reparent; combat presentation only; native acceptance pending.\n",
+    "trials": [
+      {
+        "style": 1.0,
+        "trial": 1.0,
+        "scopedMs": 3.0,
+        "legacyMs": 60.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 1.0,
+        "trial": 2.0,
+        "scopedMs": 2.0,
+        "legacyMs": 61.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 1.0,
+        "trial": 3.0,
+        "scopedMs": 3.0,
+        "legacyMs": 58.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 1.0,
+        "trial": 4.0,
+        "scopedMs": 3.0,
+        "legacyMs": 61.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 1.0,
+        "trial": 5.0,
+        "scopedMs": 2.0,
+        "legacyMs": 61.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 2.0,
+        "trial": 1.0,
+        "scopedMs": 2.0,
+        "legacyMs": 57.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 2.0,
+        "trial": 2.0,
+        "scopedMs": 2.0,
+        "legacyMs": 59.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 2.0,
+        "trial": 3.0,
+        "scopedMs": 3.0,
+        "legacyMs": 65.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 2.0,
+        "trial": 4.0,
+        "scopedMs": 2.0,
+        "legacyMs": 65.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      },
+      {
+        "style": 2.0,
+        "trial": 5.0,
+        "scopedMs": 2.0,
+        "legacyMs": 60.0,
+        "scopedReads": 10880.0,
+        "legacyReads": 636800.0
+      }
+    ],
+    "scope": "Desktop actual-source native-method model; no native CPU/GPU/FPS/taint claim; same source fallback dispatch control;5alternating pairs/style;20material transitions/trial",
+    "medians": [
+      {
+        "style": 1,
+        "scopedMs": 3.0,
+        "legacyMs": 61.0
+      },
+      {
+        "style": 2,
+        "scopedMs": 2.0,
+        "legacyMs": 60.0
+      }
+    ]
+  },
+  "firstPartyRepaintQueries": {
+    "before": 31844,
+    "after": 548,
+    "unrelatedFrames": 96,
+    "members": 4,
+    "styles": [
+      1,
+      2
+    ]
+  },
+  "native": "Not run by agent; no fresh native build/hash/CPU/FPS/taint/GPU capture; all tests/benchmarks ended before user acceptance",
+  "limits": [
+    "Same-source fallback dispatch is a desktop control, not a native before capture",
+    "No claim that every retained roster handler is cheap in-game; numeric attribution requires native evidence",
+    "Existing direct owner annotations are assigned before registration in inspected runtime constructors; external owner annotation changes should use RefreshPaintOwners"
+  ]
+}

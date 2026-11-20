@@ -76,11 +76,11 @@ local function Slice()
             if not sender and not subject then Retry(); return end
             work.attachments, work.known = tonumber(attachments) or 0, 0
             work.row = nil
-            if work.attachments > 0 and not gm and (tonumber(cod) or 0) == 0 then
-                work.row = { index = work.index, items = {}, header = {
-                    sender = sender or "", subject = subject or "", money = tonumber(money) or 0,
-                    cod = tonumber(cod) or 0, items = work.attachments, gm = gm == true,
-                } }
+            local codAmount = work.attachments > 0 and not gm and (tonumber(cod) or 0)
+            work.eligible = codAmount == 0
+            if work.eligible then
+                work.sender, work.subject = sender or "", subject or ""
+                work.money, work.cod = tonumber(money) or 0, codAmount
             end
             if work.attachments == 0 then work.index = work.index + 1 else work.slot = 1 end
         else
@@ -89,15 +89,24 @@ local function Slice()
             elseif name and type(id) == "number" and id > 0 and type(quantity) == "number" and quantity > 0 then
                 work.known = work.known + 1
                 work.counts[id] = (work.counts[id] or 0) + quantity
-                if work.row and quantity <= (work.targets[id] or 0) then
-                    work.row.matches = true
-                    work.row.items[id] = math.min(work.row.items[id] or quantity, quantity)
+                if work.eligible and quantity <= (work.targets[id] or 0) then
+                    local row = work.row
+                    if not row then
+                        -- All attachments contribute to counts. Only messages
+                        -- with a restock match need a row in the action queue.
+                        row = { index = work.index, items = {}, matches = true, header = {
+                            sender = work.sender, subject = work.subject, money = work.money,
+                            cod = work.cod, items = work.attachments, gm = false,
+                        } }
+                        work.row = row
+                    end
+                    row.items[id] = math.min(row.items[id] or quantity, quantity)
                 end
             end
             work.slot = work.slot + 1
             if work.slot > work.slots then
                 if work.known ~= work.attachments then Retry(); return end
-                if work.row and work.row.matches then work.list[#work.list + 1] = work.row end
+                if work.row then work.list[#work.list + 1] = work.row end
                 work.index, work.slot = work.index + 1, nil
             end
         end

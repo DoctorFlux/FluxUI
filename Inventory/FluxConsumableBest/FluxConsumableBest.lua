@@ -4,6 +4,7 @@
     Public API + FluxInv listener registration.
 ]]
 
+local _, ns = ...
 FluxConsumableBest = FluxConsumableBest or {}
 local Best = FluxConsumableBest
 
@@ -14,6 +15,19 @@ local inventoryQueued = false
 local inventoryOpts
 local inventoryLastPulse = 0
 local inventoryStarted = 0
+
+local function RunInventoryScan()
+    local time = GetTime and GetTime() or 0
+    local remaining = inventoryLastPulse + 0.10 - time
+    if remaining > 0.001 and time - inventoryStarted < 0.30 and C_Timer and C_Timer.After then
+        C_Timer.After(math.min(remaining, 0.30 - (time - inventoryStarted)), RunInventoryScan)
+        return
+    end
+    inventoryQueued = false
+    local opts = inventoryOpts
+    inventoryOpts = nil
+    Best.RequestRecompute(opts)
+end
 
 -- Counts paint on the inventory pulse. Selection gets one scan after the burst,
 -- with a bounded wait so continuous looting still promotes new consumables.
@@ -36,28 +50,17 @@ local function QueueInventoryScan(regions, addedItemIDs)
     end
     inventoryQueued = true
     inventoryStarted = now
-    local function Run()
-        local time = GetTime and GetTime() or 0
-        local remaining = inventoryLastPulse + 0.10 - time
-        if remaining > 0.001 and time - inventoryStarted < 0.30 and C_Timer and C_Timer.After then
-            C_Timer.After(math.min(remaining, 0.30 - (time - inventoryStarted)), Run)
-            return
-        end
-        inventoryQueued = false
-        local opts = inventoryOpts
-        inventoryOpts = nil
-        Best.RequestRecompute(opts)
-    end
     if C_Timer and C_Timer.After then
-        C_Timer.After(0.10, Run)
+        C_Timer.After(0.10, RunInventoryScan)
     else
-        Run()
+        RunInventoryScan()
     end
 end
 
 -- Must stay aligned with Scan.PENDING_ONLY_REASONS. Pending-only pulses skip the
 -- unique bag walk; a login GET_ITEM_INFO storm must not rename an inv scan.
 local PENDING_ONLY_REASONS = {
+    classifyPendingRead = true,
     classifyPendingOnly = true,
     classifyPending = true,
     classifyResume = true,
@@ -97,6 +100,19 @@ local function MergeRecomputeOpts(into, incoming)
         return into
     end
     local oldReason = into.reason
+    -- A UI read is demand for the pending result, not a new inventory epoch.
+    -- Retain that demand so late tooltip readiness is still checked promptly.
+    local read = newReason == "getBest" or newReason == "getLadder" or newReason == "getAllBest"
+    if read and ReasonIsPendingOnly(oldReason) then
+        into.reason = "classifyPendingRead"
+        return into
+    end
+    if read and oldReason and not (oldReason == "getBest" or oldReason == "getLadder" or oldReason == "getAllBest") then
+        return into
+    end
+    if oldReason == "classifyPendingRead" and ReasonIsPendingOnly(newReason) then
+        return into
+    end
     if ReasonIsPendingOnly(newReason) and oldReason and not ReasonIsPendingOnly(oldReason) then
         return into
     end
@@ -207,6 +223,20 @@ function Best.GetBestRef(kind)
     return out
 end
 
+local ladderScore = Best.Score
+local ladderBlocked = ladderScore and ladderScore.IsBlockedForBest
+local ladderKnownUnusable = ladderScore and ladderScore.IsKnownUnusable
+local ladderBelowLevel = ladderScore and ladderScore.IsBelowRequiredLevel
+local ladderExcluded = ladderScore and ladderScore.IsExcludedFromBest
+
+local function SameLadderUsability(score)
+    return score == ladderScore and score and getmetatable(score) == nil
+        and type(ladderBlocked) == "function" and score.IsBlockedForBest == ladderBlocked
+        and score.IsKnownUnusable == ladderKnownUnusable
+        and score.IsBelowRequiredLevel == ladderBelowLevel
+        and score.IsExcludedFromBest == ladderExcluded
+end
+
 local function CopyRec(rec)
     if type(rec) ~= "table" then
         return nil
@@ -220,7 +250,7 @@ end
 
 --- Ranked owned list for kind (bags). No vendor stubs.
 --- opts.allowComboDrinks: water ladder also includes combo food scored on mana.
-function Best.GetLadder(kind, opts)
+local function BuildOwnedLadder(kind, opts, approved)
     opts = opts or {}
     if not Best.IsValidKind(kind) then
         return {}
@@ -269,11 +299,32 @@ function Best.GetLadder(kind, opts)
                     local copy = CopyRec(rec)
                     copy.count = n
                     out[#out + 1] = copy
+                    if approved and SameLadderUsability(Score) then
+                        approved[copy] = rec.itemID
+                    end
                 end
             end
         end
     end
     return out
+end
+
+function Best.GetLadder(kind, opts)
+    return BuildOwnedLadder(kind, opts)
+end
+
+-- The binding bridge consumes these approvals on this stack only. Public
+-- callers still receive the same fresh records and ordinary usability checks.
+if type(ns) == "table" then
+    ns.InventoryLadderUsabilityQuery = {
+        owner = Best,
+        publicQuery = Best.GetLadder,
+        matches = SameLadderUsability,
+        query = function(kind, opts)
+            local approved = {}
+            return BuildOwnedLadder(kind, opts, approved), approved
+        end,
+    }
 end
 
 --- Best currently owned bag item for kind (no vendor stubs).
@@ -432,6 +483,71 @@ local function OnPlayerLevelUp()
     Best.RequestRecompute({ reason = "level", delay = 0.5, force = true })
 end
 
+-- Successful-cast matching keeps its event-local spell service explicit.
+local function ConjureBaseName(s)
+    return s:lower():gsub("%s*%(.-%)%s*$", "")
+end
+
+local function ConjureKind(Spells, spellID, spellName)
+    local kind
+    spellID = tonumber(spellID)
+    if spellID and Spells and Spells.GetKindForSpell then
+        kind = Spells.GetKindForSpell(spellID)
+    end
+    if (not kind or kind == "") and type(spellName) == "string" and Spells and Spells.GetKindForSpell then
+        local id = spellName:match("^(%d+)$")
+        if id then
+            kind = Spells.GetKindForSpell(tonumber(id))
+        end
+    end
+    if kind == "food" or kind == "water" or kind == "refreshment" then
+        return kind
+    end
+    if type(spellName) ~= "string" or spellName == "" then
+        return nil
+    end
+    local lower = ConjureBaseName(spellName)
+    if lower:find("conjure food", 1, true) or lower:find("conjure refreshment", 1, true) then
+        return "food"
+    end
+    if lower:find("conjure water", 1, true) then
+        return "water"
+    end
+    if lower:find("ritual of refreshment", 1, true) then
+        return nil
+    end
+    if Spells and Spells.GetPreferredFoodConjureSpell then
+        local foodName = Spells.GetPreferredFoodConjureSpell()
+        if type(foodName) == "string" and ConjureBaseName(foodName) == lower then
+            return "food"
+        end
+    end
+    if Spells and Spells.GetPreferredWaterConjureSpell then
+        local waterName = Spells.GetPreferredWaterConjureSpell()
+        if type(waterName) == "string" and ConjureBaseName(waterName) == lower then
+            return "water"
+        end
+    end
+    return nil
+end
+
+local function ConjureSpellName(spellID)
+    spellID = tonumber(spellID)
+    if not spellID then
+        return nil
+    end
+    if C_Spell and C_Spell.GetSpellInfo then
+        local info = C_Spell.GetSpellInfo(spellID)
+        if type(info) == "table" and info.name then
+            return info.name
+        end
+    end
+    if GetSpellInfo then
+        return GetSpellInfo(spellID)
+    end
+    return nil
+end
+
 function Best.Init()
     if Best._initialized then
         return
@@ -478,6 +594,10 @@ function Best.Init()
     f:RegisterEvent("UNIT_MAXHEALTH")
     f:RegisterEvent("UNIT_MAXPOWER")
     f:SetScript("OnEvent", function(_, event, arg1, arg2)
+        if event == "PLAYER_SPECIALIZATION_CHANGED" then
+            local sharedEvents = _G.Flux and _G.Flux.Events
+            if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(arg1) then return end
+        end
         if event == "PLAYER_LEVEL_UP" or event == "PLAYER_SPECIALIZATION_CHANGED"
             or event == "SKILL_LINES_CHANGED" then
             OnPlayerLevelUp()
@@ -528,78 +648,17 @@ function Best.Init()
             end
         end
         local Spells = api and api.CreateSpells
-        local function kindOf(spellID, spellName)
-            local kind
-            spellID = tonumber(spellID)
-            if spellID and Spells and Spells.GetKindForSpell then
-                kind = Spells.GetKindForSpell(spellID)
-            end
-            if (not kind or kind == "") and type(spellName) == "string" and Spells and Spells.GetKindForSpell then
-                local id = spellName:match("^(%d+)$")
-                if id then
-                    kind = Spells.GetKindForSpell(tonumber(id))
-                end
-            end
-            if kind == "food" or kind == "water" or kind == "refreshment" then
-                return kind
-            end
-            if type(spellName) ~= "string" or spellName == "" then
-                return nil
-            end
-            local function base(s)
-                return s:lower():gsub("%s*%(.-%)%s*$", "")
-            end
-            local lower = base(spellName)
-            if lower:find("conjure food", 1, true) or lower:find("conjure refreshment", 1, true) then
-                return "food"
-            end
-            if lower:find("conjure water", 1, true) then
-                return "water"
-            end
-            if lower:find("ritual of refreshment", 1, true) then
-                return nil
-            end
-            if Spells and Spells.GetPreferredFoodConjureSpell then
-                local foodName = Spells.GetPreferredFoodConjureSpell()
-                if type(foodName) == "string" and base(foodName) == lower then
-                    return "food"
-                end
-            end
-            if Spells and Spells.GetPreferredWaterConjureSpell then
-                local waterName = Spells.GetPreferredWaterConjureSpell()
-                if type(waterName) == "string" and base(waterName) == lower then
-                    return "water"
-                end
-            end
-            return nil
-        end
-        local function spellNameFromID(spellID)
-            spellID = tonumber(spellID)
-            if not spellID then
-                return nil
-            end
-            if C_Spell and C_Spell.GetSpellInfo then
-                local info = C_Spell.GetSpellInfo(spellID)
-                if type(info) == "table" and info.name then
-                    return info.name
-                end
-            end
-            if GetSpellInfo then
-                return GetSpellInfo(spellID)
-            end
-            return nil
-        end
         local kind
         local args = { a, b, c, d }
         for i = 1, #args do
             local v = args[i]
             if type(v) == "number" then
-                kind = kindOf(v, spellNameFromID(v))
+                kind = ConjureKind(Spells, v, ConjureSpellName(v))
             elseif type(v) == "string" then
-                kind = kindOf(tonumber(v), v)
+                kind = ConjureKind(Spells, tonumber(v), v)
             end
             if kind == "refreshment" then
-                local name = type(v) == "string" and v or spellNameFromID(v)
+                local name = type(v) == "string" and v or ConjureSpellName(v)
                 if type(name) == "string" and name:lower():find("ritual", 1, true) then
                     kind = nil
                 else

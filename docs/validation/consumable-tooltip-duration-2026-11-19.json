@@ -1,0 +1,152 @@
+{
+  "changeId": "LHO-CONSUMABLE-TOOLTIP-DURATION-20261119",
+  "status": "Applied on main; Forever predicate comparison and parser adoption verified",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "source": "Inventory/FluxConsumableClassify.lua",
+  "before": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+  "after": "37606d4fd7b8ca672363c1e3a0cc40f663f5ea1662b30cebc0dc83f7be7fe63b",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\food-duration-20261119T040544Z",
+    "before": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 40,
+    "settingsContentsCopied": false
+  },
+  "priorLivingRetryTrace": "docs/validation/passive-tooltip-attribution-2026-11-18.json",
+  "syntax": [
+    "Lua 5.1",
+    "Lua 5.4"
+  ],
+  "matchingInstalledSource": [
+    "Retail",
+    "Forever",
+    "Classic",
+    "Classic Era",
+    "Anniversary"
+  ],
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "birthFileTime": "134395136956432074",
+    "scriptProfile": "0",
+    "ghost": true
+  },
+  "r195": {
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag195_a-submitted.png",
+      "sha": "66672ca33926e5e0005cdeae72bbead463a5f2b6124dd2a890143884cd85c92a"
+    },
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag195-food-duration-20261119",
+      "controllerSHA": "6b4837a3c917f6639ad0205192db4733900174aa4e9ca0227d5f3220432fd43a",
+      "packetSHA": "f42b899a037c8d610dcae0dfd96aa5a14c9c19cffaa28e8526304a548782a448",
+      "packets": 42,
+      "luaSHA": "06a35b7221059aa354ad4ac629823511e1d19492c7a0f0ecbb24218c27f92fb0"
+    },
+    "acknowledged": true,
+    "inputs": 9,
+    "fromPriorPendingIDs": 3,
+    "verdictsMatched": 9,
+    "trueVerdicts": 3,
+    "bagGenerationStable": true,
+    "errors": 0,
+    "repetitionsPerInput": 32,
+    "callsPerVariantPerTrial": 288,
+    "trials": [
+      {
+        "order": "before then candidate",
+        "beforeMs": 3.1007,
+        "candidateMs": 2.4437,
+        "truePerVariant": 96
+      },
+      {
+        "order": "candidate then before",
+        "beforeMs": 2.8363,
+        "candidateMs": 2.4852,
+        "truePerVariant": 96
+      },
+      {
+        "order": "before then candidate",
+        "beforeMs": 2.8293,
+        "candidateMs": 2.5013,
+        "truePerVariant": 96
+      }
+    ],
+    "medianBeforeMs": 2.8363,
+    "medianCandidateMs": 2.4852
+  },
+  "r196": {
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag196_a-submitted.png",
+      "sha": "1c5de0c7f2f6dbf2822b5b56b1fb0ed5974a36fbeea8f7c037a57e97560204c6"
+    },
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag196-food-signature-20261119",
+      "controllerSHA": "743cd6d87c53e044f4690d82207e90de1242d6a04599db1be008f2ca45b411c5",
+      "packetSHA": "5e6c8b02be164038e112899553640005c2784238a4040d2dfe8f1c65ce9899b4",
+      "packets": 9,
+      "luaSHA": "9fff64f54586f609d925aa85f6116c7a3a259699635c5c1f8de764ecd403a67e"
+    },
+    "digest": 1662007855,
+    "inputs": 9,
+    "bagGenerationStable": true,
+    "errors": 0,
+    "acknowledged": true
+  },
+  "r197": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag197-direct-provider-matrix-20261119",
+      "controllerSHA": "2f19438ba152b4ac708629430a4c3811f9c00a10f420b8184f306f1a47de1e50",
+      "packetSHA": "dc95a459560b1d18d4eb3e1741ff9ab9b8c8d059b63e0bf94f4bce709036171e",
+      "packets": 1
+    },
+    "earlyCapture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag197_a-submitted.png",
+      "sha": "74a9aa1d9538e751ed3a40e03f4be5571eb227a08a8ac614bad5d8194e7ff90d"
+    },
+    "worldReturn": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/food197-world-confirm.png",
+      "sha": "0ffd92821227545bced5376a9d89df07c9c79ba72eb6f40f715a2f172d383782"
+    },
+    "confirmation": "Independent fresh startup screenshot; early submit image only showed an empty chat edit box."
+  },
+  "r198": {
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag198_a-submitted.png",
+      "sha": "341aa77dd016b9cd16f799ab1a8ce6c6e5d84e3248e44f83a7f5b46de881e576"
+    },
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag198-food-signature-20261119",
+      "controllerSHA": "d4a9585e48833a03bd3a97d6715fe8f0239f19a557d7ccd01b8cef88034136f7",
+      "packetSHA": "1dcf59baf7832d76103388625b3e3f0cd1e4be3e8978ca67ac8ad7f5d3b08aca",
+      "packets": 9,
+      "luaSHA": "2254b62fe374a770d3a1a3cc9c894ff3caa78cfc7415029ea88fc53071192059"
+    },
+    "digest": 1662007855,
+    "inputs": 9,
+    "bagGenerationStable": true,
+    "errors": 0,
+    "acknowledged": true,
+    "loadedProviders": [
+      "Syndicator",
+      "Baganator"
+    ],
+    "inventorySource": "syndicator"
+  },
+  "jump": {
+    "intervalSeconds": 180,
+    "retiredPid": 37280,
+    "supervisorPid": 2892,
+    "currentPid": 40076,
+    "receipt": "One confirmed Space down/up pair, movement unverified",
+    "reinstallArtifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump29_food197_a-submitted.png",
+      "sha": "c0ea6189597a2f5f770015872fce78fa25e9006eeaad3e0c2a1a854581721b62"
+    }
+  },
+  "qualification": "Comparison times the predicate alone on real, pre-read tooltips in one background session. The full parser digest checks sampled behavior across reload. Living background retry cost, new or unloaded tooltips, other locales, overall FPS, frame gaps, and native clients beyond Forever remain unmeasured in this change."
+}

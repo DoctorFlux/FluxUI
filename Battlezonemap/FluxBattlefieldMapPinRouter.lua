@@ -3,8 +3,8 @@
 -- BattlefieldMapFrame when the Battlezone map is active and the world map is closed.
 -- World map takes priority while open. Also mirrors third-party WorldMapFrame pin pools
 -- onto the battlefield map so AcquirePin does not fail on missing XML templates.
--- Forever has native quest providers too; Questie's and standard HBD providers
--- (including RestedXP) keep their original world-map icons, filters and styling.
+-- Questie and standard HBD providers (including RestedXP) keep their original
+-- world-map icons, filters and styling on every MapCanvas client.
 
 local addonName, addonTable = ...
 
@@ -29,8 +29,11 @@ end
 local state = {
     installed = false,
     hbdAvailable = false,
-    -- [worldProvider] = { HBDPins, template, libName, battlefieldProvider, origHandlePin, origRefreshAllData, removeIconHooked }
+    -- [worldProvider] = { HBDPins, template, libName, battlefieldProvider, origHandlePin, origRefreshAllData }
     hbdRoutes = {},
+    -- Secure hooks cannot be removed. Keep one library hook across map visits;
+    -- the callback resolves the current route instead of retaining an old clone.
+    hbdRemovalHooked = setmetatable({}, { __mode = "k" }),
     worldMapShowHooked = false,
     worldMapHideHooked = false,
     worldMapOnHideHooked = false,
@@ -51,23 +54,13 @@ local function BlizzardHasQuestPins()
     return type(QuestDataProviderMixin) == "table"
 end
 
-local function IsForeverClient()
-    local client = addonTable and addonTable.Flux and addonTable.Flux.Client
-    return (addonTable and addonTable._isCamelotGameType)
-        or (client and (client.isForever or client.isCamelot))
-        or (FLUX_API and (FLUX_API.isForever or FLUX_API.isCamelot))
-end
-
 function FluxBattlefieldMapPinRouter:IsLibrarySupported(name)
-    if not BlizzardHasQuestPins() then return true end
-    return IsForeverClient() and (name == "HereBeDragonsQuestie-Pins-2.0"
-        or name == "HereBeDragons-Pins-2.0")
+    return name == "HereBeDragonsQuestie-Pins-2.0"
+        or name == "HereBeDragons-Pins-2.0"
 end
 
 local function IsPinRouterWanted()
-    if BlizzardHasQuestPins() and not IsForeverClient() then
-        return false
-    end
+    if FluxBattlefieldWorldMap and FluxBattlefieldWorldMap:IsActive() then return false end
     if not FluxBattlefieldMapWorldFeatures or not FluxBattlefieldMapWorldFeatures.IsEnabled then
         return false
     end
@@ -565,7 +558,6 @@ local function InstallOneHBDProvider(mapFrame, libEntry)
             battlefieldProvider = CloneHBDProvider(worldProvider),
             origHandlePin = worldProvider.HandlePin,
             origRefreshAllData = worldProvider.RefreshAllData,
-            removeIconHooked = false,
         }
         state.hbdRoutes[worldProvider] = route
 
@@ -597,11 +589,14 @@ local function InstallOneHBDProvider(mapFrame, libEntry)
         pcall(mapFrame.AddDataProvider, mapFrame, route.battlefieldProvider)
     end
 
-    if hooksecurefunc and not route.removeIconHooked then
-        hooksecurefunc(HBDPins, "RemoveWorldMapIcon", function(_, ref, icon)
-            ClearProviderFromIcon(route.battlefieldProvider, icon, GetBattlefieldMap())
+    if hooksecurefunc and not state.hbdRemovalHooked[HBDPins] then
+        hooksecurefunc(HBDPins, "RemoveWorldMapIcon", function(pins, ref, icon)
+            local current = state.installed and state.hbdRoutes[pins.worldmapProvider]
+            if current then
+                ClearProviderFromIcon(current.battlefieldProvider, icon, GetBattlefieldMap())
+            end
         end)
-        route.removeIconHooked = true
+        state.hbdRemovalHooked[HBDPins] = true
     end
 end
 

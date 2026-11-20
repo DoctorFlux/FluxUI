@@ -1,0 +1,244 @@
+{
+  "id": "LHO-NATIVE-DIRECT-SMOKE-20261117",
+  "utc": "2026-11-17T21:35:15.536541+00:00",
+  "status": "SCOPED_NATIVE_SMOKE_OBSERVED; full goal ACTIVE; no measured performance acceptance",
+  "userDirection": "Continue actual addon optimization; no simulations. Existing foreground/background chat and necessary reload testing authorization reused.",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "d7037d850f06cadf4018f662df13b4fc111d6e72a78e18398f11705a4d494ddc",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "43f9a81edea184244bce4cea8c2ccb5ddde1140d0dee75b4fd49b1c72b31330b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492"
+  },
+  "diskParity": "15/15 Retail-Forever pairs match before guarded reload and at final record; no manual sync; runtime byte hashes not queried",
+  "combinedGate": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-direct-reload-20261117\\combined-syntax-gate.json",
+    "sha256": "360f113a7af2f1b5696cdb177d45bf362c459d9c23a950bbd4383d11e76eb87c",
+    "files": 15,
+    "syntaxPasses": 30,
+    "mode": "Lua5.1.5/5.4.6 -p only; addon chunks not executed by compilers"
+  },
+  "nativeContext": {
+    "client": "Forever",
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 26544,
+    "hwnd": 460342,
+    "processBirth": 134394186555517743,
+    "character": "Mario",
+    "displayName": "Mario Super",
+    "build": "70938",
+    "interface": "16001",
+    "source": "syndicator",
+    "inventoryReady": true,
+    "SyndicatorLoaded": true,
+    "BaganatorLoaded": true,
+    "scriptProfile": "0 before and after reload",
+    "foregroundMode": "Background throughout recorded commands; foregroundUnchanged images; native foreground-mode test not run"
+  },
+  "observations": {
+    "preStatus": "LHO_STATE_R1 syndicator true function 0",
+    "postStatus": "LHO_POST_R2 syndicator true 70938 16001 0 true true",
+    "bugTabs": "LHO_BUGTABS_R3 0",
+    "ids": "LHO_IDS_R2 50 0",
+    "bugGrabberAttempt": "No expected output; unconfirmed. Not counted as zero errors."
+  },
+  "reload": {
+    "result": "Observed guarded submission/loading and later returned-world image, corroborated by two settings metadata timestamps at21:16:03UTC",
+    "guard": "Combat/casting/channeling/active watch/CF62hold blocks reload; no report/profiler roots cleared",
+    "settingsWriteUtc": [
+      "2026-11-17T21:16:03.115392+00:00",
+      "2026-11-17T21:16:03.112394+00:00"
+    ],
+    "initialProtocol": "Submitted image was a loading screen; commandAcknowledged remains false in that journal. Delayed world/settings confirmation is separate.",
+    "temporaryGlobals": "Prior temporary helpers cleared by reload. This slice installed no persistent in-game probe globals; readonly commands used locals."
+  },
+  "results": {
+    "BugTabsCurrentSessionOccurrences": 0,
+    "BagQueryItemIDs": 50,
+    "BagQuerySymmetricKeyMismatches": 0,
+    "passScope": "Live startup/readiness, current captured error record count and actual full-record/ID-only bag key agreement for current provider combination",
+    "notCovered": [
+      "All15files' branches or exact loaded-byte identity",
+      "Counts/links/locations/record-retention parity",
+      "Conjure/interrupt/success and crafting/receive/loot transitions",
+      "Vendor/AH/pending/bank/mail workflows",
+      "Other2legal addon combinations and other clients",
+      "Pixel parity/security/taint; CPU/FPS/GC/frame-spike improvement"
+    ]
+  },
+  "protocol": {
+    "runs": [
+      {
+        "run": "directstatus20261117a",
+        "stage": "ack-visually-attested",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directstatus20261117a-journal.json",
+        "journalSha256": "11602c31facc18b35c738f189d885ea6bd75f370ca1abe1f9b2fb10847b184fd",
+        "lockReleased": true,
+        "characters": 208,
+        "enqueueMs": 63.000000023748726,
+        "commitCharsAndSubmitMs": 0.46930002281442285,
+        "watchdogPid": 42536,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directstatus20261117a-lease-ended.json",
+        "foreground": 692126702
+      },
+      {
+        "run": "directreload20261117a",
+        "stage": "submitted",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directreload20261117a-journal.json",
+        "journalSha256": "d72735f5f9002a944c34e0376ce943979a65fa4b574478d3933bbd6ddd4b6890",
+        "lockReleased": true,
+        "characters": 237,
+        "enqueueMs": 77.9999999795109,
+        "commitCharsAndSubmitMs": 0.4800999886356294,
+        "watchdogPid": 35232,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directreload20261117a-lease-ended.json",
+        "foreground": 692126702
+      },
+      {
+        "run": "directpost20261117a",
+        "stage": "ack-visually-attested",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directpost20261117a-journal.json",
+        "journalSha256": "e4801968773c417d5abe0ed6c21f6a6a3a75c05d62ca67e9d746e35afc386e08",
+        "lockReleased": true,
+        "characters": 231,
+        "enqueueMs": 63.000000023748726,
+        "commitCharsAndSubmitMs": 0.451600004453212,
+        "watchdogPid": 56192,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directpost20261117a-lease-ended.json",
+        "foreground": 692126702
+      },
+      {
+        "run": "directerrors20261117a",
+        "stage": "submitted",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directerrors20261117a-journal.json",
+        "journalSha256": "34512d4f93bfe51a4d5c3cbba3de843587f2a694a43d816459ff79dbb3ef3fe4",
+        "lockReleased": true,
+        "characters": 216,
+        "enqueueMs": 63.000000023748726,
+        "commitCharsAndSubmitMs": 0.6203000084497035,
+        "watchdogPid": 55228,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directerrors20261117a-lease-ended.json",
+        "foreground": 692126702
+      },
+      {
+        "run": "directbugtabs20261117a",
+        "stage": "ack-visually-attested",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directbugtabs20261117a-journal.json",
+        "journalSha256": "35bccb43bcc6ac065c55453cf9448661b8777ec0728fd698e3d503ba7dae7e2e",
+        "lockReleased": true,
+        "characters": 228,
+        "enqueueMs": 78.00000003771856,
+        "commitCharsAndSubmitMs": 0.47779997112229466,
+        "watchdogPid": 44852,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directbugtabs20261117a-lease-ended.json",
+        "foreground": 692126702
+      },
+      {
+        "run": "directkeys20261117a",
+        "stage": "submitted",
+        "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directkeys20261117a-journal.json",
+        "journalSha256": "a58784be62fbff77691612a05f80c3eb48bba2964d062c818bafd9859e25236f",
+        "lockReleased": true,
+        "characters": 221,
+        "enqueueMs": 61.999999976251274,
+        "commitCharsAndSubmitMs": 0.46359997941181064,
+        "watchdogPid": 52148,
+        "endedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directkeys20261117a-lease-ended.json",
+        "foreground": 692126702
+      }
+    ],
+    "caveat": {
+      "keyFormalAck": "Later explicit ACK refused stale capture (>120s). Source/submitted PNG was personally viewed immediately after submission and showed LHO_IDS_R2 50 0. No guard relaxed, capture restamped, result replayed or ACK PASS claimed.",
+      "keysJournalStage": "submitted",
+      "reloadJournal": "submitted with loading image; world-return and settings timestamp confirmations separate",
+      "bugGrabber": "submitted with no expected output; unconfirmed; not zero errors",
+      "confirmedBoundedAcks": [
+        "directstatus20261117a",
+        "directpost20261117a",
+        "directbugtabs20261117a"
+      ]
+    },
+    "interpretation": "Initial status, post status and BugTabs have explicit bounded visual ACKs. Keys were personally viewed immediately; later formal ACK refused the120s age guard and remains NOT ACKED by that protocol. No guard relaxed/restamp/replay.",
+    "inputLockAbsent": true,
+    "watchdogs": "All6specific host PIDs absent; no actors left running",
+    "foreignInputHaltedRetained": true,
+    "jumpHost": "Not running; no movement proof"
+  },
+  "externalSummary": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-status-read-20261117\\native-smoke-summary.json",
+    "sha256": "8edea7c5f60512ac84fd8a5639bd7ed9768c4667a26a26078ef7a44597887d65"
+  },
+  "captures": {
+    "preStatus": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directstatus20261117a-submitted.png",
+      "sha256": "ec2d3ac37c52d5769746db6f5a7b701e9b66d0e8f968b10d1d650d066011333e",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directstatus20261117a-submitted-capture.json",
+      "metadataSha256": "3453bb7aa5c6d8bfd47772aedee8301aadcaacd541262b54264a610206a683b9"
+    },
+    "reloadLoading": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directreload20261117a-submitted.png",
+      "sha256": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directreload20261117a-submitted-capture.json",
+      "metadataSha256": "1ceaf5ee4f8de0d54b173f90b5824eb50a9d54cab10b06e57e3da0094b5b6ff4"
+    },
+    "reloadWorld": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\inventory-direct-reload-world-20261117-a.png",
+      "sha256": "c9db99aedbfa320389b3f9d30e8c66069a0405c153ad9e200fdd6d1ea4679f54",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\inventory-direct-reload-world-20261117-a-capture.json",
+      "metadataSha256": "99e0dea998043df3aa0cc46519f9f20591aab311fd36ac8b4201a8dabbc2678d"
+    },
+    "postStatus": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directpost20261117a-submitted.png",
+      "sha256": "bed7bc862d86697cae6ef1ecf3e19947b1611fe278c214f3b7bd5b7f477fd783",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directpost20261117a-submitted-capture.json",
+      "metadataSha256": "faa1a0b8ae248550835c8719eda03a5d98f2a7b1195b3475f9c43cc8ab855552"
+    },
+    "bugGrabberUnconfirmed": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directerrors20261117a-submitted.png",
+      "sha256": "ba46269475aa61df03479702afcb3a8e6c498f269c3ad4ebbbf2c2fbe0ad0b55",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directerrors20261117a-submitted-capture.json",
+      "metadataSha256": "3f1585fcba3ae486f9af8d7d6e7a6ad4078e7a1cb310f78f4f993fb15576bb5e"
+    },
+    "bugTabs": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directbugtabs20261117a-submitted.png",
+      "sha256": "2abb2a9b35874e6ef67f7903a37b8b40b7d4f49d76a15afb20ce8bd6b595ed71",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directbugtabs20261117a-submitted-capture.json",
+      "metadataSha256": "d6bf46fbe03917e45f3990dd4d6b2ea728c8e16ab8ce1266ab1e5bb267526ce4"
+    },
+    "bagKeys": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directkeys20261117a-submitted.png",
+      "sha256": "93d2c9518ea0dd3fa10c9bc08c442872abcd53aff01392ef1fe898eebf4287c1",
+      "metadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-directkeys20261117a-submitted-capture.json",
+      "metadataSha256": "81737c0ec84a7f6a23bcb4431d53323262119755c53d7c383330d2e74a2c6d58"
+    }
+  },
+  "worktree": "No addon runtime Lua edits in this slice; prior15source hashes preserved",
+  "actions": {
+    "readonlyCommands": 5,
+    "guardedReload": 1,
+    "simulations": 0,
+    "benchmarks": 0,
+    "itemActions": 0,
+    "castActions": 0,
+    "jumps": 0,
+    "preferencesChangedByAgent": false
+  },
+  "remaining": [
+    "Real cast/cancel/success and bag/receive/loot/crafting checks",
+    "Vendor/restock/AH/pending/bank/mail native workflows",
+    "All supported clients; builtin-only and Syndicator-only combinations",
+    "Stale-mail measure-first condition; guild-bank/void callbacks remain excluded",
+    "Actual before/after lag-spike/performance validation",
+    "Authorized3minute jump helper remains stopped; do not claim it is active"
+  ]
+}

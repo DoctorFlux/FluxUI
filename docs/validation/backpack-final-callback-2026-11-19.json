@@ -1,0 +1,4025 @@
+{
+  "changeId": "LHO-BACKPACK-FINAL-CALLBACK-20261119",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "client": "Forever 1.60.1/70959/16001, Syndicator and Baganator 862, PID 9012 HWND 3541714",
+  "productLuaChanged": false,
+  "sourcePins": {
+    "installedItemViews": "6833655beee31dea891f96d4c2a7dd9938643625e4bb50bc390c05612f7a7fa1",
+    "previousItemViews": "0bf0e29bbb867207a5cf3d4569b81f8932271bfecd2cd366af239e8a7c6360b6",
+    "baganatorItemButton": "53f5408660ab9002dccf20a339edd62058c963fa32406bdae46e9b7899ed225b",
+    "baganatorViewHooks": "19599963a2185de0b7b1e45fc0a62a164ddd5dbab5b7449d9b71815c0f56f642"
+  },
+  "openBagBeforeReload": {
+    "run249": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag249-live-open-button-index-owner-and-parity-20261119",
+        "controllerSHA": "0b2eaba39051008691d1c5527a2f2bd758390a25657e549b522b4e1c02765b15",
+        "packetSHA": "09b78aa9c7aa3c0001495be2f11f70a7caef0ecb8c41034dec8571badc0e3bd1",
+        "packets": 37,
+        "luaSHA": "435f3000c2ae7287c65c2e8b5e13ba2f302a135bd70643c2fcca6c699765135f"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag249_a-submitted.png",
+        "pngSha": "e2d7d76df65d371b0c01da5a2c202aa3f51f361ef5297962a19c6fddfd7813e3",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag249_a-submitted-capture.json",
+        "metaSha": "a70af56867985f1a06aafbba00a9553a317194466d3689cdd421d7f6e89a2396",
+        "started": 1795072661.4760115,
+        "time": 1795072664.1447427,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 37281515,
+          "idle": 11.688,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795072703.9016623,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag249-open-backpack-result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "ecf540ca1ebf262d9289f4a0eea2487194f05dce181fc2ee4463f4efd744fa2f"
+      },
+      "oldCallbackLine": 161,
+      "visibleButtonCount": 55,
+      "orderedReferenceParity": [
+        true,
+        true,
+        true
+      ],
+      "twoTraversalsPairedMs": [
+        [
+          1.849,
+          0.96
+        ],
+        [
+          1.78,
+          0.881
+        ],
+        [
+          1.446,
+          1.17
+        ]
+      ],
+      "medianMs": [
+        1.78,
+        0.96
+      ],
+      "bagGenerationStable": true,
+      "openMs": 53.211,
+      "errorsDelta": 0,
+      "sameFrameCloseRestored": false
+    },
+    "run250": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag250-restore-backpack-view-20261119",
+        "controllerSHA": "5ee0e6f46d75f6c890048185029f4615d61a0787da5926b6bffd10ddd0191085",
+        "packetSHA": "d805429b08e156a29ce9e58f28bab6fb610bfe9a4312e34084687957c7129fa0",
+        "packets": 7,
+        "luaSHA": "70693d3c01afce8e595b2e921ba9b7be8b35a443f71a82ba041cd92c1c5e3bad"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag250_a-submitted.png",
+        "pngSha": "68aaa515dff2fa143dfc7f9c9b8b9b884ceb07c11b9b635f871ecb185e262126",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag250_a-submitted-capture.json",
+        "metaSha": "ffdef3e4791ef492d997d7918c3f313ead32d99dca4d0a830d1bcbdd28810eb2",
+        "started": 1795072786.3235366,
+        "time": 1795072788.8440695,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 37417765,
+          "idle": 0.281,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "verifiedClosed": true
+    },
+    "restorationCause": "Baganator prevents a second direct backpack toggle at the same GetTime() value. R250 closed the same visible backpack on a later frame."
+  },
+  "reload": {
+    "r251": "Guarded preflights stopped before chat input twice because the window was not idle in the background. The later reload was outside this test.",
+    "r255": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag255-live-item-index-and-jump-cue-20261119",
+        "controllerSHA": "165912048a1e15f524f5b30ff704826d82cecf0d34ab4fd7b93b29377533217d",
+        "packetSHA": "2047a7029e02f8a6afdd99901dd387d6e07f6de39244ea6551d30c7782bba275",
+        "packets": 5,
+        "luaSHA": "47e679767434d62dc247b06f18fb908c78125569e4191c91d7a7ad4f4303d71e"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag255_a-submitted.png",
+        "pngSha": "6728dae51f316383e76cca17bc3b59ef65284b7b894989f3649c2a4727f3c92c",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag255_a-submitted-capture.json",
+        "metaSha": "b87c5a78c40b03acfebae60b242a7f347c646332c9aec624ab60e2b32af0fd99",
+        "started": 1795073400.4429872,
+        "time": 1795073402.2881956,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 3541714,
+          "last": 37951421,
+          "idle": 80.75,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "installedCallbackLine": 184,
+      "registeredButtons": 550,
+      "oldTemporaryCuePresent": false,
+      "restrictedSkillTooltipEnumPresent": false
+    }
+  },
+  "nativeItemWarm": {
+    "run254": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag254-live-item6172-api-sample-background-20261119",
+        "controllerSHA": "37228be978e8265f9aa5a6b66e4c6eca547ff7304e60941447acd9513915da6e",
+        "packetSHA": "2cd1ad38fa9c0277d8ddf8fee49a2e85a28f101ede61c47130ec558b6b03ccc8",
+        "packets": 13,
+        "luaSHA": "342967c7539c17e102c4f9aef1274bccbaf92bc35689b5848afe6c79821dc3ea"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag254_a-submitted.png",
+        "pngSha": "a9c4c9804e53f28c16800cb42f07fbf6974024ba5ec14165bb77538533d26a14",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag254_a-submitted-capture.json",
+        "metaSha": "87f3e9185997c5d2c44203f36bd3c5891c1559427d62082ae4078049d46a8dd5",
+        "started": 1795073236.943522,
+        "time": 1795073239.0162826,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 37863953,
+          "idle": 4.718,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795073278.6122463,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag254-native-item-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "4e38d4503cf0b61ebde7165eb93c07b37a182edd60cbe49b9a2c38ff5e66e2f1"
+      },
+      "itemID": 6172,
+      "bag": 3,
+      "slot": 3,
+      "firstAndSubsequentMeanMs": {
+        "cosmetic": [
+          0.08,
+          0.002
+        ],
+        "spell": [
+          0.07,
+          0.04
+        ],
+        "dataCached": [
+          0.002,
+          0.001
+        ],
+        "guid": [
+          0.12,
+          0.001
+        ],
+        "bagTooltip": [
+          0.171,
+          0.099
+        ],
+        "idTooltip": [
+          0.058,
+          0.05
+        ]
+      },
+      "engravingAPIAvailable": false,
+      "surfaceArgsAvailable": false,
+      "sessionErrors": 0
+    },
+    "run253": "Foreground input guard blocked this earlier attempt before chat input.",
+    "limitation": "The APIs were read after the R249 backpack open in the earlier UI session. A native C_TooltipInfo read differs from the hidden GameTooltip setter used by classic Baganator."
+  },
+  "firstOpenAfterAdoption": {
+    "r256": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag256-post-reload-backpack-final-callback-markers-20261119",
+        "controllerSHA": "14363dfc5cea42a2ef1f6ab3e0da8f4fcf367ec90e1d36d8c645e2d28322f77e",
+        "packetSHA": "d76576a594c5e7a2c18784adad07c406fdacc076185677faefa7f80a725a9aec",
+        "packets": 45,
+        "luaSHA": "671f588e598d19607ead437cc35c1c7cc2c8e6aaa6708afbd294a7f4a35feb12"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag256_a-submitted.png",
+        "pngSha": "e87e8dff8022c4079ecc6ec3c504b095cb49104885f58782bbeb83e29836745a",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag256_a-submitted-capture.json",
+        "metaSha": "b2cd9f1d1763b9b9d3d1f5ea58b5eb616fca746402e3702e06ffe0aaf8ef1ec0",
+        "started": 1795073542.9513855,
+        "time": 1795073544.8304985,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 38172375,
+          "idle": 2.296,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "followup": {
+        "time": 1795073622.8459594,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag256-final-markers-result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "12d667f2c2b15e52798c99e29d95192c29878aba365d60b0e64a0c81d2647f95"
+      }
+    },
+    "r257": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag257-read-buffered-first-open-markers-20261119",
+        "controllerSHA": "43d3312206bdb358de4ffb667c3755da118972a667d32eac376cc596ebe94bb1",
+        "packetSHA": "112a95cf20a979c496d5186002d07d0b3035bd92f418d8d89aa34690c0b6905a",
+        "packets": 4,
+        "luaSHA": "6fb9cec149ff0dddd42b6227c488099c5b2aae9057cdb639958bdc4ee27a0ac3"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag257_a-submitted.png",
+        "pngSha": "1dbd8eba674672d515845f03a9ac4b6a88fcb37ef0ef1a82c7c79829ea3a3d4e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag257_a-submitted-capture.json",
+        "metaSha": "59d443ccea29b48d781e47d5a9623fa63abc048cee399e0edf15be5e2ad369b4",
+        "started": 1795073683.6422353,
+        "time": 1795073685.9525373,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 38315375,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      }
+    },
+    "nativeMeasureCallFirstOpenMs": 150.0734,
+    "firstObservedOpenMs": 150.08,
+    "warmOpenMs": 3.02,
+    "firstFrameGapMs": 169,
+    "warmFrameGapMs": 29,
+    "coldDetailCalls": 50,
+    "filledDetailCalls": 47,
+    "coldDetailsTotalMs": 114.58,
+    "detailsAtLeastOneMs": 2,
+    "slowest": {
+      "index": 18,
+      "itemID": 6172,
+      "elapsedMs": 99,
+      "gapFrom": "BGRUpdateQuests return",
+      "gapTo": "finalCallback entry",
+      "gapMs": 98.63,
+      "observedLuaHeapDeltaKiB": 8779.7
+    },
+    "otherInclusiveCalls": {
+      "Paint": [
+        147,
+        2.56
+      ],
+      "Junk": [
+        50,
+        0.29
+      ],
+      "Quest": [
+        97,
+        0.71
+      ],
+      "Cooldown": [
+        47,
+        0.4
+      ],
+      "Context": [
+        100,
+        2.25
+      ],
+      "Icon": [
+        50,
+        0.36
+      ],
+      "Overlay": [
+        389,
+        0.5
+      ]
+    },
+    "bagGenerationStable": true,
+    "opens": 2,
+    "closes": 2,
+    "returnedToClosed": true,
+    "wrapperRestoreFailures": 0,
+    "sessionErrors": 0,
+    "scope": "First observed test open after the reload. User activity before the probe was not continuously observed. The frame gap is not a matched baseline versus candidate measurement.",
+    "conclusion": "The repeatable interval ends before C_Item.GetItemSpell. The timed Baganator widget methods took only a small share; the Junk method marker did not include calls to the registered FluxUI junk plugin. R258 reads mark-unusable off, upgrade plugin none and the FluxUI Junk provider active. No named Syndicator classic scan tooltip existed. The marked interval still includes the registered Junk and gear-lock callbacks, equipment-set lookups, cosmetic lookup and corner plugins."
+  },
+  "next": "On the next natural or guarded idle reload, measure the registered Flux Junk provider through IsSlotProtectedFromSell and IsJunkForDisplay alongside the previous final-callback markers. If those calls are small, continue to equipment-set and corner plugin attribution. Do not wrap icon SetVertexColor during the first open because Baganator may install its own hook on that method.",
+  "keepalive": {
+    "retiredPID": 12080,
+    "retiredPairs": 6,
+    "newWorkerPID": 21428,
+    "newSupervisorPID": 40712,
+    "intervalSeconds": 180,
+    "verifiedRunning": true,
+    "movementVerified": false,
+    "nextPairDeferredAtReceipt": "PC not known idle15",
+    "source": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/jump-keepalive-p83/r39-20261119/source-adaptation.json",
+    "cue": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump39_live255_a-submitted.png",
+      "pngSha": "7df47e4b56fcf4328fc14d842983e7a87a3b8311ac83b7177c38f50b915c53cd",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump39_live255_a-submitted-capture.json",
+      "metaSha": "3f356fc232ca304b027dcb8596a27b55f7b7937c42abd29950bc5a6ce6574dd5",
+      "started": 1795073794.867184,
+      "time": 1795073796.8605397,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 38426281,
+        "idle": 0.312,
+        "held": [],
+        "drawable": true
+      }
+    }
+  },
+  "effectiveBranchSettingsR258": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag258-read-baganator-tooltip-branch-settings-20261119",
+      "controllerSHA": "5bc67f5f2fd9b4a37a75f0aaa8d238f21b6675429549a7472c669c0a7322a1c1",
+      "packetSHA": "3107ae3917d924bae5df3c301e5dabf5bb7cd7410aa3d12fd56023477e472abb",
+      "packets": 5,
+      "luaSHA": "7564022c768d3bf2b8c61bf2db8825ffc75b746e331ebd744a2b711c39268bee"
+    },
+    "submitted": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag258_a-submitted.png",
+      "pngSha": "2afb9d67c5c93a9637775a0505abc5f35ce68e95a817e5626bc1dd8bdb4cea5a",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag258_a-submitted-capture.json",
+      "metaSha": "e77909cc35c950bffa8261e1ab3dafd5d441e7c8b7e3d43303477179c4c7dfe5",
+      "started": 1795074104.9594102,
+      "time": 1795074106.813959,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 38681203,
+        "idle": 55.484,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "itemID": 6172,
+    "itemName": "Lost Supplies",
+    "itemClass": 12,
+    "itemSubclass": 0,
+    "markUnusable": false,
+    "junkPlugin": "fluxui",
+    "upgradePlugin": "none",
+    "scanTooltipPresent": false,
+    "iconContextFading": true
+  },
+  "coldFollowupPreparedR259": {
+    "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag259-cold-flux-junk-plugin-and-native-tooltip-boundaries-20261119",
+    "controllerSHA": "d6c6015bd98990ad15efe1a5d6e38a29cf20f9aa8626ac70357d75c3bc4bbe81",
+    "packetSHA": "b22a40c079cc9c9aa3f8a29ba4cdd8af591d9d41367a59dc72778492542ddb69",
+    "packets": 48,
+    "luaSHA": "91942d90c5a285a664acf4938f799e4ab6099a437ca5c5d114194786dccac7d6",
+    "superseded": "User requested the current four-addon configuration and excluded the earlier external lead. R260 used the earlier profile. See docs/validation/auction-final-sku-2026-11-19.json"
+  },
+  "warmCallbackFollowUp": {
+    "r309": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag309-backpack-native-slots-component-time-20261119",
+        "controllerSHA": "e92dcf80495a3ae11ab9cbc7b148a9aa11a3580c926b89e8fc8aaed2be2e96d6",
+        "packetSHA": "0d8f3bf536def8107b829302a7e11696351eaa81dd4723bb4a6821194d34994c",
+        "packets": 10,
+        "luaSHA": "daf6ce166e18e8b1f7678a384c3bb71c9ffb6f90f440964ed353e3d534a54661"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag309_a-submitted.png",
+        "pngSha": "4143c265253c56469fee4b1481b80dc5c827826b35e07987b7f941e905f407b1",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag309_a-submitted-capture.json",
+        "metaSha": "c571f0188eec26362309f04fc79bda3b7cc128463dacfc9a55656fa70030311d",
+        "started": 1795087793.5969553,
+        "time": 1795087795.521743,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 52273640,
+          "idle": 151.688,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "leaseReleased": true,
+      "addonSet": [
+        "FluxUI",
+        "BugTabs",
+        "Syndicator",
+        "Baganator"
+      ],
+      "visible": "Open Baganator backpack, Auction Buy and Tailoring on Forever",
+      "occupiedSlots": 48,
+      "includesItem6172": true,
+      "unchangedBagGeneration": true,
+      "errorDelta": 0,
+      "metricsMs": {
+        "columns": [
+          "sum",
+          "max"
+        ],
+        "C_Item.DoesItemExist": [
+          0.139,
+          0.106
+        ],
+        "C_Item.GetItemGUID": [
+          0.092,
+          0.052
+        ],
+        "C_Item.IsCosmeticItem": [
+          0.232,
+          0.154
+        ],
+        "FluxJunk.IsSlotProtectedFromSell": [
+          0.115,
+          0.013
+        ],
+        "FluxJunk.IsJunkForDisplay": [
+          0.403,
+          0.035
+        ]
+      },
+      "scope": "Read-only component timings on the already open backpack. The 0.518 ms sum covers only the two FluxUI calls across 48 occupied slots. The test did not open the backpack, issue a bag event, or measure frame time."
+    },
+    "foreverSource": {
+      "sourceSHA256": {
+        "Baganator/Core/Constants.lua": "087ed73506fa4f7dd1622a5a4f94d094f0ee94562b6c6dbe72ba803618ea34c9",
+        "Baganator/ItemViewCommon/Pools.lua": "a14f0b77a9a84568ffdec62e04fdd58c6b9d49901748b214bc04f0e73a76c0e2",
+        "Baganator/ItemViewCommon/ItemButton.xml": "355dbbca7cc9f019f37ab6da7b9a0898a77d6175af580c2596f1f641d0cef71f",
+        "Baganator/ItemViewCommon/ItemButton.lua": "53f5408660ab9002dccf20a339edd62058c963fa32406bdae46e9b7899ed225b",
+        "Syndicator/Core/Constants.lua": "ca692b676c2e06aca81021c2d89502100e18641c482b923d61f4988cd9ddf83b"
+      },
+      "selected": "Baganator excludes Forever from IsClassic and uses the Retail-style live item button pool. Syndicator also excludes Forever from its Classic scanner path.",
+      "beforeGap": "Retail-style SetItemDetails sets tooltipGetter and reads item existence, GUID and equipment-set info before the first BGRUpdateQuests call. This source ordering corrects the earlier suggestion that those reads fall within the 98.63 ms interval.",
+      "inGap": "ApplyNewItemAnimation, widget hiding, item-data cache check or load handling, cosmetic check and registered item and corner callbacks precede the final callback. That callback immediately reads the item spell. Cold timing of the individual steps remains pending."
+    },
+    "nativeFollowUp": {
+      "r310": "Count-neutral move program stopped at preflight for recent input; no items moved.",
+      "r311": {
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag311_a-source.png",
+          "pngSha": "bc44cf603961f14d270e9b0dbaa444987a1bd851882e194ac1158c96603e7139",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag311_a-source-capture.json",
+          "metaSha": "54606256e13d964bd3cb08d982d41e784b6fb6157c80e332cf841d95b50f6b91",
+          "started": 1795088218.4202533,
+          "time": 1795088220.4176717,
+          "stage": "source",
+          "baseline": {
+            "identity": {
+              "pid": 9012,
+              "hwnd": 3541714,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134395136956432080
+            },
+            "fg": 196862,
+            "last": 52850109,
+            "idle": 0.031,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "inputAttempted": false,
+        "observation": "All prior panels closed and fresh addon initialization messages appeared in the same process. An intervening UI reload is inferred. The host lease was released; no command completed."
+      },
+      "r312": {
+        "program": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag312-backpack-cold-flux-and-tooltip-trace-20261119",
+          "controllerSHA": "71a6b35a141746d8c06354cc4d1d1532e402a3b6a0f06b246d101b6dbff8f781",
+          "packetSHA": "5fce0a59acc20be351435993d4bd9f0ff8b2cba4a94fdf72f5044125e11d6ba7",
+          "packets": 48,
+          "luaSHA": "22a69372a9e9cc80012bc53bf89d8b79fce75679f314997a6ebee4e5285ad8a6"
+        },
+        "submitted": false,
+        "scope": "Prepared cold open trace of FluxUI and corner tooltip callbacks."
+      },
+      "r313": {
+        "capture": {
+          "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag313_a-source.png",
+          "pngSha": "32acb3a63d68e5ea064fcc2a5ae56d5128f753ce7d13f5a00f4b003fca3c1359",
+          "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag313_a-source-capture.json",
+          "metaSha": "223d78060e7e26fde3a8954462ed71fc21abac48068629b22929073499f8acc0",
+          "started": 1795088434.166118,
+          "time": 1795088435.981934,
+          "stage": "source",
+          "baseline": {
+            "identity": {
+              "pid": 9012,
+              "hwnd": 3541714,
+              "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+              "created": 134395136956432080
+            },
+            "fg": 196750,
+            "last": 53065890,
+            "idle": 0,
+            "held": [],
+            "drawable": true
+          }
+        },
+        "inputAttempted": false,
+        "observation": "Short state/cue probe did not get a valid lease for submission."
+      }
+    },
+    "jump": {
+      "workerPid": 10224,
+      "completedHostSpacePairsUTC": [
+        "11:18:13.823378",
+        "11:21:16.371100",
+        "11:24:18.757149",
+        "11:27:21.867",
+        "11:30:24.423"
+      ],
+      "movementAcknowledged": false,
+      "latestKnown": "Calibration pixels confirmed the prior cue was missing. The replacement readiness cue was installed and the three-minute worker started.",
+      "restored": {
+        "package": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r49-20261119",
+          "pins": {
+            "calibration-proposal.json": "c5732102a04be517f7c7f866a0e7a5cbe36a2272011544e8887774dc60869ccf",
+            "cue_capture.py": "1b0c379d30b2aca07755ba142cda91397490e7242096c149d3ebd82a2c7dcb89",
+            "native_bank_transport_r4.py": "0a29f56cdde887d3aa4f1ef0c53ca7fa255db69f0136f0e4add33a2fe95557d1",
+            "packets.json": "9dba7ef2da590f16f30821537b5d73e60ebd58e3aaec5427a26d3e0c2cce7f62",
+            "installer\\bootstrap.py": "bfa79ffe45da3a3305efb627e19e77a1915aba01a2ae06a6779829dd0fda4477",
+            "jump_core.py": "f129ad32e9023202afc998b0c9f58699d66fba97122905b49d66df19e82d29bd",
+            "keepalive.py": "cba1fc0433f97ed0ca4992f73ef3a4f2e8baaa415b6b704625232163f0f0f6ad",
+            "calibrate.py": "ed9656f5a68a42c86c411f7363ff44a507d9096efb621f9ca82a660ab5f8db7a",
+            "supervisor.py": "4a4aabe15cf0ec02c79b148853bc4df3447da8f0f9ff2ef013d27ea399b574fa"
+          },
+          "packets": 25,
+          "holdSha": "4de42c4e1a056d33d2088f857d75751a848cc13efaa49a6890fa85c8a35af46d"
+        },
+        "priorCueRead": {
+          "clientSize": [
+            1890,
+            993
+          ],
+          "colors": [
+            6575391,
+            6575391,
+            6575391,
+            6575391
+          ],
+          "dpi": "PMv2",
+          "identity": {
+            "created": 134395136956432080,
+            "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+            "hwnd": 3541714,
+            "pid": 9012
+          },
+          "inputSent": false,
+          "nonce": "j18nbfa7",
+          "pixelReads": 4,
+          "printWindowFlag": 2,
+          "requestId": "c00bee3d1e6b4e038614d1519ffd39d9",
+          "roi": null,
+          "sampleCenters": [
+            [
+              11,
+              982
+            ],
+            [
+              17,
+              982
+            ],
+            [
+              24,
+              982
+            ],
+            [
+              30,
+              982
+            ]
+          ],
+          "status": "PASS",
+          "colorsRGB": [
+            [
+              31,
+              85,
+              100
+            ],
+            [
+              31,
+              85,
+              100
+            ],
+            [
+              31,
+              85,
+              100
+            ],
+            [
+              31,
+              85,
+              100
+            ]
+          ]
+        },
+        "receipt": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-jump49_live314_a-submitted.png",
+        "receiptSHA256": "82fbf37408170949a3104dbe7f3ea062f7fa846ea27e86da16b2dbcac9d89a49",
+        "previousWorkerPid": 10224,
+        "supervisorPid": 21052,
+        "workerPid": 40400,
+        "intervalSeconds": 180,
+        "calibrationMode": "bg",
+        "calibrationProofSHA256": "5e5f6d0210b856a88b6228af31cfd10c7ba514a2b254765326463cf2fa52f6cb",
+        "firstAttempt": "Windows refused foreground activation. No key sent. Jump stayed queued.",
+        "lastObservedState": {
+          "pid": 40400,
+          "status": "running",
+          "pairs": 0,
+          "movementAcknowledged": false,
+          "last": {
+            "atUTC": "2026-11-19T11:51:47.942410+00:00",
+            "status": "deferred",
+            "movementAcknowledged": false,
+            "reason": "PC not known idle15"
+          },
+          "nextDueInSeconds": 0
+        }
+      }
+    }
+  },
+  "firstObservedOpenFollowUp": {
+    "r315": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag315-backpack-item6172-native-boundary-20261119",
+        "controllerSHA": "3e986515d33976e3e0b43cf49f94611f81757c1d87a87a61ba7177d7e0c33846",
+        "packetSHA": "0d5ae919800fcd41e30ec1306c5e419a5d66c20342726b6a0937b5afb0d4f19e",
+        "packets": 26,
+        "luaSHA": "c3885a5ae8a363f9fa815a070173af9f2f2250baad5dca1f8565b39ac92714a6"
+      },
+      "postcheck": {
+        "time": 1795089254.1348243,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag315-guard-postcheck.png",
+        "foregroundBefore": 263434,
+        "foregroundAfter": 263434,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      "outcome": "Physical modifier guard stopped in the command phase. No complete packet recorded. Visual postcheck showed original closed chat and inventory. Lease released."
+    },
+    "r316": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag316-backpack-item6172-idle-boundary-20261119",
+        "controllerSHA": "35fe018762fb988b8b94b8ff2ae0b27582fcf9cfc34862c2f89ac6b8f3e69a9a",
+        "packetSHA": "0a475e062ad64396df253c22d9d39f2fe0d7a94749efbfb647a659a8e369e53d",
+        "packets": 26,
+        "luaSHA": "c3885a5ae8a363f9fa815a070173af9f2f2250baad5dca1f8565b39ac92714a6"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag316_a-submitted.png",
+        "pngSha": "7684a85c0d8914205f8a11d54f7daa4e20ec6664078ecc459d9d7ca0c549825c",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag316_a-submitted-capture.json",
+        "metaSha": "d1eb34c9b240f6e6315f80f8b66d2d9c1f57c16b103f6b2c3e57d4ad27ef5725",
+        "started": 1795089324.6928136,
+        "time": 1795089326.6097918,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 263434,
+          "last": 53956375,
+          "idle": 0.046,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795089349.472557,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag316-native-first-reopen-result.png",
+        "foregroundBefore": 263434,
+        "foregroundAfter": 263434,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "750f133ecac468978549a16d123c22cdbd92b3c775e1647557c7ba38a2527478"
+      },
+      "openMs": 103.61,
+      "item6172DetailMs": 0.95,
+      "markersMs": {
+        "detailEnter": 0,
+        "firstQuestEnter": 0.36,
+        "firstQuestExit": 0.41,
+        "fluxSlotEnter": 0.52,
+        "fluxSlotExit": 0.54,
+        "fluxJunkEnter": 0.59,
+        "fluxJunkExit": 0.62,
+        "finalEnter": 0.67,
+        "secondQuestEnter": 0.9,
+        "secondQuestExit": 0.95,
+        "finalExit": 0.95,
+        "detailExit": 0.95
+      },
+      "bagGenerationStable": true,
+      "wrapperRestoreConflicts": 0,
+      "bugTabsCurrentSessionErrors": 0,
+      "pairedWarmPass": false,
+      "causeOfMissingWarmPass": "The first probe tried to close in the same frame. Baganator suppresses a second ToggleBackpackView action when its GetTime value has not changed.",
+      "scope": "Only item 6172 item details and its callbacks were timed inside the open. The rest of the 103.61 ms remains unassigned. This is not an application before-after comparison."
+    },
+    "r317": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag317-restore-backpack-after-316-20261119",
+        "controllerSHA": "5d88d6a5ecff3cb972fcd594ec11570401bd7f54baa219044e91673892caaeb6",
+        "packetSHA": "b63c3886828a1262200a8184a6e4a87681fc0577c7d5157590117cbb3cbb233f",
+        "packets": 7,
+        "luaSHA": "c35e096158545c85628d9d081ce569e40017e6c3ebc406ea5ac2be411fde9ff3"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag317_a-submitted.png",
+        "pngSha": "3426e07c5aeacaf6e7825f3503a56adf8e9952823cacee28bcbefa6ece55b328",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag317_a-submitted-capture.json",
+        "metaSha": "5d5d9618208dc7da8be2805913086e84ba4c810231a5ed9c1749b1177a901bb5",
+        "started": 1795089429.8929832,
+        "time": 1795089431.9281876,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 263434,
+          "last": 54059000,
+          "idle": 2.625,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "backpackClosed": true,
+      "leaseReleased": true
+    },
+    "r318": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag318-backpack-live-warm-layout-envelopes-20261119",
+        "controllerSHA": "1822c9a0c552967363788b7f6ead21a84edb0f4ce9c852d5a93ce9f7aded79ac",
+        "packetSHA": "006396594d3e95a7b03ec38455b83b7cf55c0a5cf9c1fc0bf0767a9d97388083",
+        "packets": 23,
+        "luaSHA": "8f4f2c98d2101407b03c85a679e6f3da8e598c69bc12f3075920f33f3f179fbc"
+      },
+      "submitted": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag318_a-submitted.png",
+        "pngSha": "4c68ce9aa685bc89bd9c71f6d94b40d82a98c53fc417c30c784ab896090c9d2d",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag318_a-submitted-capture.json",
+        "metaSha": "b0af51f953ec1d827595d7b25e950b60fc1d5d60289d6c2060c1f2f89edb4d6e",
+        "started": 1795089577.9428413,
+        "time": 1795089580.2133179,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 54199015,
+          "idle": 10.656,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795089604.917734,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag318-native-open-envelopes.png",
+        "foregroundBefore": 3541714,
+        "foregroundAfter": 3541714,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "57f6bda649ff742a2fab06b3d1a8386c1c7f78c4dc06eda94590a28705a1ef2b"
+      },
+      "rows": [
+        {
+          "openMs": 4.18,
+          "updateForCharacterMs": 0.39,
+          "layoutMs": 0.18,
+          "onFinishedMs": 0.11
+        },
+        {
+          "openMs": 3.88,
+          "updateForCharacterMs": 0.52,
+          "layoutMs": 0.28,
+          "onFinishedMs": 0.18
+        }
+      ],
+      "displayCalls": 0,
+      "itemAcquireCalls": 0,
+      "itemDetailsCalls": 0,
+      "bagGenerationStableBoth": true,
+      "returnedToClosedBoth": true,
+      "wrapperRestoreConflicts": 0,
+      "bugTabsCurrentSessionErrors": 0,
+      "scope": "Warm opens with no repaint of item buttons. OnFinished is inclusive within Layout, which is inclusive within UpdateForCharacter. The screenshot later showed a player-created item after the timing lines. No spell or item mutator is in these probes. The next capture needs the cold or bag-invalidated display path."
+    }
+  },
+  "firstOpenFullLayout": {
+    "r330": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag330-backpack-first-open-layout-after-classifier-20261119",
+        "controllerSHA": "0239367627f20cde36e2904350dec466d1660df78d33e495ddfbdaad86e7afcb",
+        "packetSHA": "74cd3c96c637889af8c53848f8593cd3e94818b2f154fdd45f7522e33840b32a",
+        "packets": 22,
+        "luaSHA": "344502a302c6529176a847fda1da05a6f1ed98509dd89adece2a39f14d45b637"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag330_a-submitted.png",
+        "pngSha": "c46d045f668de1d5054ee83a0fc3091c1e5a104c503aa3ed5219f9102696d4fd",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag330_a-submitted-capture.json",
+        "metaSha": "e171c1899b18a80a042fb1a8c011eeb94e9e196338aa90138ec0c826172185c8",
+        "started": 1795092217.2084715,
+        "time": 1795092219.0507581,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 56731328,
+          "idle": 117.609,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795092246.425763,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bag330-first-open-layout-result.png",
+        "foregroundBefore": 196862,
+        "foregroundAfter": 196862,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "78791b558025ac062c21f17f9ff117e99993d831af83587b09c31021d19d1fca"
+      },
+      "synchronousOpenMs": 44.86,
+      "slowestDetailsMs": 0.6,
+      "slowestItemID": 4197,
+      "byComponent": {
+        "update": [
+          1,
+          43.68
+        ],
+        "layout": [
+          1,
+          41.45
+        ],
+        "display": [
+          1,
+          21.6
+        ],
+        "poolAcquire": [
+          53,
+          0.25
+        ],
+        "itemDetails": [
+          52,
+          9.8
+        ],
+        "onFinished": [
+          2,
+          0.79
+        ],
+        "applySearch": [
+          1,
+          0.5
+        ]
+      },
+      "returnedToPreReloadOpen": true,
+      "bagGenerationStable": true,
+      "wrapperRestoreConflicts": 0,
+      "bugTabsCurrentSessionErrors": 0,
+      "scope": "First observed backpack open after successful R329 normal reload. Times are nested and cannot be added. Baganator layout dominated this sample. Neither the prior 98.63 ms single-item interval nor the prior 103.61 ms opening was reproduced here. This is not a matched before/after comparison."
+    }
+  },
+  "actualOpenBagUpdate": {
+    "trial": "R339",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "initialState": "Backpack open beside idle Auction Buy before the reload",
+    "bagRoute": {
+      "itemId": 4599,
+      "stackCount": 18,
+      "from": [
+        0,
+        8
+      ],
+      "temporary": [
+        3,
+        1
+      ]
+    },
+    "bagUpdateDelayedEvents": 1,
+    "bagGenerationDelta": 1,
+    "peakFrameGapMsUnattributed": 42.0,
+    "callbacksCountTotalMsPeakMs": {
+      "consumableBestFullScan": [
+        0,
+        0,
+        0
+      ],
+      "bagDiff": [
+        3,
+        0.022,
+        0.017
+      ],
+      "baganatorDisplay": [
+        1,
+        2.252,
+        2.252
+      ],
+      "fluxButtonFaces": [
+        1,
+        0.161,
+        0.161
+      ],
+      "baganatorLayout": [
+        1,
+        6.202,
+        6.202
+      ],
+      "baganatorView": [
+        1,
+        6.398,
+        6.398
+      ]
+    },
+    "gridIdsAndTotalCountUnchanged": true,
+    "classifyPending": 0,
+    "newErrors": 0,
+    "wrapperRestoreConflicts": 0,
+    "submittedCaptureSHA256": "75a0074fff9518983f0a2b8f9c0160ec8cb2f2c106c29ded9b54e8b8a6c396f2",
+    "restore": {
+      "initialRestore": "Skipped when native drop still reported a temporary lock",
+      "externalReloadObservedBeforeRetry": true,
+      "trial": "R344",
+      "originalExactStack": true,
+      "temporarySlotEmpty": true,
+      "cursorEmpty": true,
+      "gameResult": "SK344 true true true",
+      "independentCaptureSHA256": "db17449a23ed0d349794268fda148a5e4145501ecbfad636d6b1d805aae57275"
+    },
+    "scope": "One real open-backpack callback sample. Timings nest. It does not establish that the broader frame gap originated in FluxUI."
+  },
+  "revealedShieldContext": {
+    "id": "LHO-BAGANATOR-SHIELD-CONTEXT-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\baganator-shield-context-20261119T205835Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "history": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "copies": [
+        {
+          "client": "_retail_",
+          "availableSettings": 2,
+          "source": [
+            "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+            "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c"
+          ]
+        },
+        {
+          "client": "_forever_",
+          "availableSettings": 3,
+          "source": [
+            "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+            "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c"
+          ]
+        },
+        {
+          "client": "_classic_",
+          "availableSettings": 2,
+          "source": [
+            "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+            "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c"
+          ]
+        },
+        {
+          "client": "_classic_era_",
+          "availableSettings": 4,
+          "source": [
+            "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+            "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c"
+          ]
+        },
+        {
+          "client": "_anniversary_",
+          "availableSettings": 10,
+          "source": [
+            "1f6ce762250c57d004f11c5b58da20ef943da50b4118ef89a4ec05ef321f0b2b",
+            "5f61e086194f364d0e56c7a41ce50142423340610557b8bd8ff0666a04cf579c"
+          ]
+        }
+      ]
+    },
+    "sourceAfter": {
+      "Respec/FluxRespec_GearSetLock.lua": "3a13b69160beffe82d3e09dc4d7b9ea2cacb297bc7e2dc5a8c2c5729da72577a",
+      "BaganatorCompat/FluxBaganator_GearSetShield.lua": "689065a74725f5910fc5b4d7335fdc51a3aa1a2e1a5df457c153405c636d6a19"
+    },
+    "layout": {
+      "probe": "R473",
+      "probeSha256": "a3842b7feefd6c672561efaec18da1be724d895041f15a3a0844978a9bd73234",
+      "captureSha256": "8eecc381b00953cf15a7126879644972569931b3935ef26af1e2d1d0354bbb4c",
+      "toggleMs": [
+        54.8,
+        2.94,
+        2.95
+      ],
+      "peakFrameGapMs": [
+        72,
+        20,
+        17
+      ],
+      "firstToggleByOwner": {
+        "categoryLayoutInclusiveMs": 48.41,
+        "displayMs": 26.84,
+        "categoryFilterOwnMs": 9.2,
+        "FluxRevealProtectionMs": 1.94
+      },
+      "wrapperConflicts": 0,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "scope": "One first observed toggle in the current loaded session and two warm reopens. The frame gap was near the first toggle. These component times are nested unless explicitly stated."
+    },
+    "beforeEdit": {
+      "probe": "R474",
+      "probeSha256": "4a6181b55979d0836e236b36ff2f7c546451f40c0cba98e49f2ea76e4ca8e6ae",
+      "captureSha256": "851b2765998ef5775f3a0d6017224602876b9d6916451e1fae5404ef6540fd5d",
+      "repeatedMs": [
+        1.275,
+        0.928,
+        0.851,
+        0.845
+      ],
+      "sampledMs": [
+        0.951,
+        0.795,
+        0.755,
+        0.723
+      ],
+      "medianMs": {
+        "repeated": 0.8895,
+        "sampled": 0.775
+      },
+      "contextReads": {
+        "before": [
+          53,
+          53
+        ],
+        "after": [
+          1,
+          1
+        ]
+      },
+      "widgetCount": 52,
+      "matches": 4
+    },
+    "installed": {
+      "probe": "R477 after R476 normal reload",
+      "mode": "Alternating original shield fallback and installed shield snapshot reader on the same bag view after opening. Timed RefreshBaganatorGearSetProtection.",
+      "probeSha256": "eb5891984c53166a886e172a462c8601ad1f1598de2508c41f073fac12dfa3a7",
+      "captureSha256": "7b89937f09839cd1e343788408c38e95d7c124ca6a7aa1e46e77cd6dac64ea7a",
+      "fallbackMs": [
+        1.116,
+        0.902,
+        0.821,
+        0.862
+      ],
+      "installedMs": [
+        0.956,
+        0.807,
+        0.774,
+        0.761
+      ],
+      "medianMs": {
+        "fallback": 0.882,
+        "installed": 0.7905
+      },
+      "contextReads": {
+        "before": [
+          53,
+          53
+        ],
+        "after": [
+          1,
+          1
+        ]
+      },
+      "matchedWidgets": 52,
+      "matchedComparisons": 4,
+      "bagGenerationStable": true,
+      "newLuaErrors": 0,
+      "observersRestored": true,
+      "panelsClosed": true
+    },
+    "validation": {
+      "installedClientCopies": 5,
+      "syntaxChecks": 20,
+      "passedRegressions": {
+        "visible_baganator_work": 266,
+        "baganator_junk_detector": 403,
+        "classic_combined_bank": 33
+      },
+      "behavior": "Reuse the existing synchronous merchant and disenchant context for shields during protection refresh only. Slot-specific eligibility, standalone live context reads and older fallback implementations stay active."
+    },
+    "reload": {
+      "first": "R475 guard rejected the pre-created jump hold. The expired input lease was allowed to clear and sent no command.",
+      "successful": "R476",
+      "startupObserved": true,
+      "jumpSupervisorPID": 34204,
+      "jumpPID": 33828,
+      "jumpPeriodSeconds": 180,
+      "pcIdleRequired": false,
+      "pairsReported": 1,
+      "movementAcknowledged": false,
+      "installedSetupSha256": "f690efcce687049e9eb2135d68271c03362081e9608d791795dc54846e0bb8eb"
+    },
+    "remaining": "Native protected gear in merchant and disenchant contexts, alternative clients and providers, and the larger Baganator first-open layout hitch remain to be verified."
+  },
+  "singleCategoryDataRefresh": {
+    "id": "LHO-BAGANATOR-SINGLE-CATEGORY-REFRESH-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "baganatorVersion": 862,
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "checkpoint": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\baganator-category-request-20261119T212317Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "history": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "copies": [
+        {
+          "client": "_retail_",
+          "availableSettings": 2,
+          "source": [
+            "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+            "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+            "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5"
+          ]
+        },
+        {
+          "client": "_forever_",
+          "availableSettings": 3,
+          "source": [
+            "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+            "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+            "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5"
+          ]
+        },
+        {
+          "client": "_classic_",
+          "availableSettings": 2,
+          "source": [
+            "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+            "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+            "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5"
+          ]
+        },
+        {
+          "client": "_classic_era_",
+          "availableSettings": 4,
+          "source": [
+            "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+            "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+            "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5"
+          ]
+        },
+        {
+          "client": "_anniversary_",
+          "availableSettings": 10,
+          "source": [
+            "377ff605edf44152f1ece42a268dc5466c643105f355e39b9c2df343c46cd990",
+            "054c95507fcbb5899d2c0369ce49ec76a991ed3e07cd3e0a924e0bdf5f1ac209",
+            "0ea9430222e0369420befcc47c0ca75926b5a12cdfab7070396e88f7a62aa4d5"
+          ]
+        }
+      ]
+    },
+    "equipmentSectionBeforeSha256": "6c4ff734d7e075cd1c57fa1b2a8daf51d11d900be90e9662baa89722e75abbaa",
+    "sourceAfter": {
+      "BaganatorCompat/FluxBaganator_Junk.lua": "b7f585ffd9fd4165874088eafafd828f358a774cfc7f8a8ec6441c0723668e8e",
+      "BaganatorCompat/FluxBaganator_GearSets.lua": "c97a63f720d25fffd9438bf6f666a7cd614f1f48199283da6250cd76d9a6110a",
+      "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua": "1467af9fccc82df1fc8c5adba12ac3d49b3b2f6ef7cb141f050cc95025ac746c",
+      "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua": "7283ecc861617bbf62c33473762625578995b7f47036a851cf6f9d88ca535ffb"
+    },
+    "upstreamReadOnly": {
+      "paths": [
+        "Baganator/API/Main.lua",
+        "Baganator/Core/Constants.lua",
+        "Baganator/CategoryViews/BagLayout.lua",
+        "Baganator/ItemViewCommon/BackpackView.lua"
+      ],
+      "notes": "The installed public enum exposes ItemWidgets and Searches. The category layout sets Layout when Searches is dirty. Each requested API timer delivers its own RefreshStateChange."
+    },
+    "attribution": {
+      "probe": "R479",
+      "probeSha256": "c741da8586aaf0eddc79c04000b96e53f3db5d3452dde9eac43f6512c21066ac",
+      "captureSha256": "9a2237ff39384bddffa5843634d983f3031855cb7c7e42db3ed8a17e3f8cde22",
+      "secondRedraw": {
+        "updateMs": 22.665,
+        "displayMs": 8.153,
+        "searchInclusiveMs": 20.148,
+        "junkDisplayReads": 98,
+        "junkDisplayMs": 0.764,
+        "slotProtectionMs": 0.295,
+        "gearFadeInclusiveMs": 0.393
+      },
+      "scope": "One category redraw request after opening the settled backpack. Nested timings do not sum."
+    },
+    "preEdit": {
+      "probe": "R483",
+      "probeSha256": "4aa208d82402efb21c13b81adea527e57cde1468fe4f5bdbd9ce365d137ac595",
+      "captureSha256": "0abffa1179bf7e29d6bf8ee7dcfa9d47bb513a343d55c36f9f2c29b3925a03be",
+      "doubleMs": [
+        25.726,
+        22.953,
+        23.47,
+        24.312
+      ],
+      "singleMs": [
+        20.45,
+        20.037,
+        19.262,
+        19.855
+      ],
+      "medianMs": {
+        "double": 23.891,
+        "single": 19.946
+      },
+      "updateCalls": [
+        2,
+        1
+      ],
+      "matches": 4,
+      "zeroLuaErrors": true,
+      "bagGenerationStable": true,
+      "restored": true
+    },
+    "installed": {
+      "probe": "R487 after R484 normal reload",
+      "probeSha256": "9262cfc9e678da339c74224f9a6f7e7cd4306fd0016196f86f3e18318dc11e47",
+      "captureSha256": "219d7c2e8300a26bac396deeb36ea7bd20fdcac87eadcd8f0fb9fce8727c628d",
+      "doubleMs": [
+        35.827,
+        32.758,
+        30.205,
+        27.452
+      ],
+      "singleMs": [
+        33.151,
+        28.857,
+        25.238,
+        25.349
+      ],
+      "medianMs": {
+        "double": 31.4815,
+        "single": 27.103
+      },
+      "updateCalls": [
+        2,
+        1
+      ],
+      "matches": 4,
+      "newLuaErrors": 0,
+      "bagGenerationStable": true,
+      "methodRestored": true,
+      "backpackRestoredClosed": true,
+      "scope": "Alternating requests with the live post-reload helper and original two-API control, on settled category backpack data in the new scene. All matched category source order, carried item IDs, counts, slot coordinates available in the render records, and view dimensions. No preset or gear selection changes and no world frame-time capture."
+    },
+    "validation": {
+      "syntaxChecks": 40,
+      "identicalInstallations": 5,
+      "desktopChecks": {
+        "baganator_junk_detector": 410,
+        "data_integrity": 43,
+        "visible_baganator_work": 266,
+        "classic_combined_bank": 33
+      }
+    },
+    "interruptions": [
+      "R478 held-key guard stopped the first attempt. R480 detected that Layout is private in the installed Baganator API. R481 stopped after opening before samples. R482 rejected active background modifier input. R483 returned the backpack to closed. R487 removed the incomplete r67 jump cue. The r68 capture lost its input attestation after packet 25 when window focus changed. An independent capture showed both native readiness markers. Its calibration supervisor launched with ordinary jump guards intact."
+    ],
+    "jump": {
+      "supervisorPID": 28744,
+      "periodSeconds": 180,
+      "pcIdleRequired": false,
+      "independentCueCaptureSha256": "e7f15aa0a4357f43d51b7a521d4122a2933b56d7fa9a870bf307fdeef491b922",
+      "stateAtEarlyCheck": "waiting-readiness-calibration"
+    },
+    "remaining": "Cold first-open attribution and frame time, native changing gear and preset membership, bank view variants, active casting/crafting, real Pending, vendor, mail and loot cases, and remaining client/provider modes."
+  },
+  "categoryRedrawFrameGap": {
+    "id": "LHO-BAGANATOR-REDRAW-FRAME-GAP-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator 862",
+      "Syndicator"
+    ],
+    "source": "syndicator",
+    "installedSourceMatchesRetail": true,
+    "scope": "Already-open category backpack with the item-text window open. No item operations. The comparison invokes the former two public requests and the installed single request in the same loaded session. Trial windows were 0.38 seconds, with the order alternated by pair. The frame metric is the largest OnUpdate elapsed sample in the window from the sample preceding each marked redraw to the next two samples. These gaps include client rendering and other work. No FPS or cold-open improvement is established.",
+    "preferences": {
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "scriptProfile": "0"
+    },
+    "priorAttempts": {
+      "r490": {
+        "outcome": "Expired while on taxi. No redraw timings.",
+        "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume490_frame_result.png",
+        "sha256": "5cde782f4673dfb4d1b9f4bab3330f540681e9da091a964e51a81311c2351639"
+      },
+      "r489": "Focus changed before the first command.",
+      "r491": "Focus changed after four packets queued. Final execution packet did not run, the temporary staging table expires automatically, and the chat was verified closed."
+    },
+    "run": {
+      "tag": "bag492_a",
+      "displayPrefix": "FPT491",
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag492-baganator-redraw-frame-gaps-20261119",
+        "controllerSHA": "e347ca1d2b7c823a7fc015cd38c9ee81b3b73a2fe87f94cebb4971965d830eda",
+        "packetSHA": "fbed0929e315749a0834dff0526c86bb16a3430b8a5a84e667ec080c230378e3",
+        "packets": 17,
+        "luaSHA": "7b40f1ff67806c2228e5a7face3d071c516906c8da2ece4864cc52bc02d90ca4"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag492_a-submitted.png",
+        "pngSha": "e5a2f2104385a887cae042159ba95b6759531bc3d630592d73122bd807503a29",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag492_a-submitted-capture.json",
+        "metaSha": "ba55317f9ce991ba8226caa02d91a7a517429502d146eb6df9aa760bf1515f44",
+        "started": 1795125472.8810153,
+        "time": 1795125474.8091211,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 90096953,
+          "idle": 7.656,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795125483.9501371,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume492_result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 3541714,
+        "foregroundUnchanged": false,
+        "inputSent": false,
+        "sha256": "4e305f8211a1a5392bb8a0d47a299c63858f27a5bda0017d26567d8954e3bc9a"
+      },
+      "screenshotCheck": "Submission and the opening of the trailing read-only capture were background. Focus switched during that trailing capture. No per-trial focus poll. The normal chat log displayed all four pairs and the cleanup receipt."
+    },
+    "pairs": [
+      {
+        "pair": 1,
+        "order": [
+          "former",
+          "installed"
+        ],
+        "redrawTotalMs": {
+          "former": 40.82,
+          "installed": 27.09
+        },
+        "nearbyMaxFrameMs": {
+          "former": 52,
+          "installed": 37
+        },
+        "windowMaxFrameMs": {
+          "former": 52,
+          "installed": 37
+        },
+        "redrawCalls": {
+          "former": 2,
+          "installed": 1
+        }
+      },
+      {
+        "pair": 2,
+        "order": [
+          "installed",
+          "former"
+        ],
+        "redrawTotalMs": {
+          "former": 28.51,
+          "installed": 25.45
+        },
+        "nearbyMaxFrameMs": {
+          "former": 37,
+          "installed": 34
+        },
+        "windowMaxFrameMs": {
+          "former": 37,
+          "installed": 34
+        },
+        "redrawCalls": {
+          "former": 2,
+          "installed": 1
+        }
+      },
+      {
+        "pair": 3,
+        "order": [
+          "former",
+          "installed"
+        ],
+        "redrawTotalMs": {
+          "former": 27.99,
+          "installed": 24.11
+        },
+        "nearbyMaxFrameMs": {
+          "former": 36,
+          "installed": 33
+        },
+        "windowMaxFrameMs": {
+          "former": 36,
+          "installed": 33
+        },
+        "redrawCalls": {
+          "former": 2,
+          "installed": 1
+        }
+      },
+      {
+        "pair": 4,
+        "order": [
+          "installed",
+          "former"
+        ],
+        "redrawTotalMs": {
+          "former": 25.13,
+          "installed": 23.36
+        },
+        "nearbyMaxFrameMs": {
+          "former": 33,
+          "installed": 31
+        },
+        "windowMaxFrameMs": {
+          "former": 33,
+          "installed": 31
+        },
+        "redrawCalls": {
+          "former": 2,
+          "installed": 1
+        }
+      }
+    ],
+    "median": {
+      "redrawTotalMs": {
+        "former": 28.25,
+        "installed": 24.78
+      },
+      "nearbyMaxFrameMs": {
+        "former": 36.5,
+        "installed": 33.5
+      }
+    },
+    "cleanup": {
+      "leftAlreadyOpenBackpackOpen": true,
+      "bagGenerationStable": true,
+      "nativeSessionLuaErrorDelta": 0,
+      "redrawFunctionRestored": true,
+      "jumpProcess": 12028
+    },
+    "next": "Trace the distinct first-open path and exercise native bag changes, crafting, auction Pending, and the other provider/client profiles."
+  },
+  "liveConjureFoodReceipt": {
+    "id": "LHO-BAGANATOR-NATIVE-FOOD-RECEIPT-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "syndicator",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator 862",
+      "Syndicator"
+    ],
+    "setup": {
+      "observer": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag495-cast-receive-open-bag-20261119",
+        "controllerSHA": "93205e4b44a6f1bfd850cbcb4a45970243e39da488c135f799ef0f4bdf96774c",
+        "packetSHA": "72db3df4ca0e42e50af8a90b3414bee86c8c3ff434924408e41f9324c0e23040",
+        "packets": 22,
+        "luaSHA": "5861fc7ed9c784cf07117eb444bedffaf66f35fab9e60bfd465e2ea5a39207bc"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag495_a-submitted.png",
+        "pngSha": "8689ee05e655e6d09527070770a085702d14957ac94c40b739ef6454f4aa5090",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag495_a-submitted-capture.json",
+        "metaSha": "8ca85269cbc5e8c58a4dd6bab9dc53b2a09020687ebf0069168d2af8c34b3c3a",
+        "started": 1795125966.3657532,
+        "time": 1795125968.34981,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 90481421,
+          "idle": 116.672,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "armedProof": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag494_a-source.png",
+        "pngSha": "e910466ed2609acd382becbefcf356c0a04443baf2eafee364141a09f9b5556e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag494_a-source-capture.json",
+        "metaSha": "ec53d4dd00bb422827aaad39b5be6b55f023097e18d29930e47e132bce781b4a",
+        "started": 1795126012.211402,
+        "time": 1795126014.2216496,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 90481421,
+          "idle": 162.516,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "inventoryGeneration": 15,
+      "clientItemCount": 0,
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "scriptProfile": "0",
+      "backpackAndItemTextWindowAlreadyOpen": true,
+      "commerceClosed": true
+    },
+    "setupCorrections": [
+      "R493 checked readiness during the executing chat command and printed BUSY. R495 checks 0.65 seconds after chat submission and confirmed armed.",
+      "The first R494 preflight rejected a reused actor with yesterday's process identity. No keyboard input was sent. The actor was retargeted to the independently verified current window before the attempt.",
+      "R494's extra READY print ran inside chat and therefore reported false despite prior successful R495 arming and the visible stationary source capture. It was a supplemental read and did not gate the fixed macro sequence. Use a delayed readiness read before the next cast batch."
+    ],
+    "actor": {
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag494-controlled-conjure-20261119",
+        "controllerSHA": "141beee594cce785b18287707a40e109e7272520272048fc4da14e8ec2655855",
+        "packetSHA": "99ac0cbb7502445a2d3f61b1304b461e108da70b8a6e2d9f2cb8f405238aab90",
+        "packets": 5
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag494_a-submitted.png",
+        "pngSha": "9ac36b4dcbfea0d87b8066714c69e6c899916db2d08f3dd51eddbb90ccab4144",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag494_a-submitted-capture.json",
+        "metaSha": "3af02704212479e8eef3427b1ba157c0658e9b95955c3fb43b44a48c58a733b4",
+        "started": 1795126027.3094969,
+        "time": 1795126029.3444786,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 90481421,
+          "idle": 177.61,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "queuedAllFive": true,
+      "leaseReleased": true,
+      "plannedActions": [
+        "Start highest-known Conjure Food",
+        "Stop the first cast",
+        "After 1.65 seconds allow highest-known Conjure Food to finish"
+      ],
+      "result": {
+        "time": 1795126038.1813338,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume494_food_result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "e47b7d0429a2cc2dc36106c6b789911cf782b4cff56cc15bc53dc34c4af03a60"
+      }
+    },
+    "sourcePins": {
+      "FluxUI/Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+      "FluxUI/Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+      "FluxUI/Core/ButtonFX/Cast.lua": "5902f1bc4363e408ec34faf66ace6aefb8b3f7495c2e1f6e164336b39c21586c",
+      "FluxUI/BaganatorCompat/FluxBaganator_ItemViews.lua": "6833655beee31dea891f96d4c2a7dd9938643625e4bb50bc390c05612f7a7fa1",
+      "Baganator/ItemViewCommon/BackpackView.lua": "65eb7720763f679d267b5d27f33dc1fafa01cb064fe389920a7ae38aa1d04e74",
+      "Baganator/CategoryViews/BackpackView.lua": "51af2ad77f27ff10e82cfe1044056b0fc34a975899cb840caf2c20a3fbf301a3"
+    },
+    "instrumented": {
+      "nativeSignals": [
+        {
+          "event": "UNIT_SPELLCAST_START",
+          "spellID": 6129,
+          "count": 2,
+          "nearbyMaxFrameMs": 20
+        },
+        {
+          "event": "UNIT_SPELLCAST_STOP",
+          "spellID": 6129,
+          "count": 2,
+          "nearbyMaxFrameMs": 17
+        },
+        {
+          "event": "UNIT_SPELLCAST_INTERRUPTED",
+          "spellID": 6129,
+          "count": 3,
+          "nearbyMaxFrameMs": 33
+        },
+        {
+          "event": "UNIT_SPELLCAST_SUCCEEDED",
+          "spellID": 6129,
+          "count": 1,
+          "nearbyMaxFrameMs": 17
+        },
+        {
+          "event": "BAG_UPDATE_DELAYED",
+          "count": 2,
+          "nearbyMaxFrameMs": 28
+        }
+      ],
+      "timed": [
+        {
+          "callback": "FluxUI Inventory.Notify",
+          "count": 2,
+          "inclusiveTotalMs": 1.432,
+          "slowestMs": 0.873,
+          "nearbyMaxFrameMs": 28
+        },
+        {
+          "callback": "Baganator UpdateForCharacter",
+          "count": 2,
+          "inclusiveTotalMs": 16.988,
+          "slowestMs": 10.992,
+          "nearbyMaxFrameMs": 28
+        },
+        {
+          "callback": "Baganator Layout",
+          "count": 2,
+          "inclusiveTotalMs": 16.551,
+          "slowestMs": 10.789,
+          "nearbyMaxFrameMs": 28
+        },
+        {
+          "callback": "Baganator Display",
+          "count": 2,
+          "inclusiveTotalMs": 6.558,
+          "slowestMs": 4.706,
+          "nearbyMaxFrameMs": 28
+        }
+      ],
+      "wrappedRevealProtectionInvocations": 0,
+      "durationSeconds": 65.3,
+      "frames": 9089,
+      "maxFrameMs": 33,
+      "wrapperRestoreConflicts": 0,
+      "errors": 0
+    },
+    "inventory": {
+      "generationAfter": 17,
+      "createdItemID": 1487,
+      "createdQuantity": 14,
+      "clientCountAfter": 14,
+      "fluxCountAfter": 14,
+      "bagAndItemTextWindowLeftOpen": true
+    },
+    "limits": [
+      "One real sequence on the existing loaded client. This has no matched prior-source or idle control.",
+      "Nearby frames include unrelated rendering and game work. Nested callbacks overlap. Notify timing excludes deferred subscribers. The helper ran after the input lease was released, during the observer window.",
+      "Only the recorded view and notification callbacks were timed. R494 did not record each redraw's trigger or the time of each event relative to the other events. The number of interrupted event deliveries does not count canceled casts.",
+      "The case covers an already-open category backpack. A first open, a real profession craft, looting, and the rest of the client and provider matrix remain pending.",
+      "No runtime source changes or new simulation."
+    ],
+    "next": "Capture each real redraw owner and snapshot transition during an ordinary item change. Keep the existing redraw cadence until the trace shows redundant FluxUI work. Capture a genuinely cold open separately when the client is in a suitable state."
+  },
+  "nativeBagRedrawOwners": {
+    "id": "LHO-NATIVE-BAG-REDRAW-OWNERS-20261119",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "syndicator",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator 862",
+      "Syndicator"
+    ],
+    "observer": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag496-bag-source-trace-20261119",
+      "controllerSHA": "604c665273008186cf70c2eb98a5b1610160600f7018928a21a1c704bf569668",
+      "packetSHA": "c2f573ae4e5788ed74be34a5d6800249936eb91a57c59d32c28a449af763fb39",
+      "packets": 27,
+      "luaSHA": "6eb97784b2ee022ad8abbfe6d181052ee612bd97ed0ed89be2db91af90ed936c"
+    },
+    "observerSubmission": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag496_a-submitted.png",
+      "pngSha": "50683dfab9b460ec52e6f1b32c83a45643da17584391b8636a05027728368c11",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag496_a-submitted-capture.json",
+      "metaSha": "fb7621f6475aca4fbd3ce7c564224262d33ad2d5ce4df823cd678cd6607124d4",
+      "started": 1795126404.2087321,
+      "time": 1795126406.8215342,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 90845921,
+        "idle": 190,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "cast": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag497-trace-conjure-stack-20261119",
+      "controllerSHA": "fe957e0eaad5f5dd43a42eec72eb08a960730defdd2d01a6ff1854ae8895b0ed",
+      "packetSHA": "0957a1cbe924b88a589bed4c93d0e3a0cfdeaabfbaa212295c0e9b4588ba78aa",
+      "packets": 2
+    },
+    "armedProof": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag497_a-source.png",
+      "pngSha": "19d4d95f0726229043110d55a8272120615ad2998f641cc242de9ec691c2e68d",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag497_a-source-capture.json",
+      "metaSha": "d524686cacfcf0184d66a16a62c4964ca121de9e9b7f59bf6ae9e27fc4c0aec4",
+      "started": 1795126421.3866234,
+      "time": 1795126423.1827288,
+      "stage": "source",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 91041437,
+        "idle": 11.672,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "castSubmission": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag497_a-submitted.png",
+      "pngSha": "159c353c780ab313b7423984ad801e98b37c472f439f7e3ba5ec7ee8d42910c9",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag497_a-submitted-capture.json",
+      "metaSha": "3db6167fda4b16057063048ce860df9b65bc46e75c6c67a2dcecfd111b4ef973",
+      "started": 1795126433.7608736,
+      "time": 1795126435.7287464,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 91041437,
+        "idle": 24.047,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "result": {
+      "time": 1795126444.5648525,
+      "pid": 9012,
+      "hwnd": 3541714,
+      "size": [
+        1906,
+        1032
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume497_trace_result.png",
+      "foregroundBefore": 196750,
+      "foregroundAfter": 196750,
+      "foregroundUnchanged": true,
+      "inputSent": false,
+      "sha256": "d8c00d3848c86cce8e32b8420d4d8a1006f254bf4e05ed30de73cea9916d4388"
+    },
+    "sourcePins": [
+      {
+        "sha256": "c34a06b0d3a5d87c9ae319fd9212c4efb0603709ba2b5114bb7b9988195a9d8a",
+        "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Syndicator/Tracking/BagCache.lua"
+      },
+      {
+        "sha256": "65eb7720763f679d267b5d27f33dc1fafa01cb064fe389920a7ae38aa1d04e74",
+        "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Baganator/ItemViewCommon/BackpackView.lua"
+      },
+      {
+        "sha256": "464ee82e192038ed3797e6dcd49e9bf1dc73e139fe7fbe2e83ed0b8052b2e34f",
+        "path": "F:/World of Warcraft/_forever_/Interface/AddOns/Baganator/ItemViewCommon/NewItemsTracking.lua"
+      },
+      {
+        "sha256": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+        "path": "F:/World of Warcraft/_forever_/Interface/AddOns/_FluxUI/Inventory/Syndicator/Adapter.lua"
+      },
+      {
+        "sha256": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+        "path": "F:/World of Warcraft/_forever_/Interface/AddOns/_FluxUI/Inventory/Init.lua"
+      }
+    ],
+    "profile": {
+      "scriptProfile": "0",
+      "priorReadMaxFPS": "120",
+      "priorReadMaxFPSBk": "30",
+      "foregroundAtArmingAndResult": false,
+      "visibleCategoryBackpackAndItemTextWindow": true
+    },
+    "inventory": {
+      "spellID": 6129,
+      "itemID": 1487,
+      "genAtArming": 17,
+      "nativeAndFluxCountAtArming": 14,
+      "nativeAndFluxCountAtFinish": 28,
+      "genAtFinish": 20,
+      "unitsCreated": 14,
+      "newlyOccupiedSlots": 1
+    },
+    "trace": [
+      {
+        "event": "UNIT_SPELLCAST_SUCCEEDED",
+        "relativeSec": 31.37,
+        "generation": 17,
+        "foodCount": 14,
+        "nearbyMaxMs": 35
+      },
+      {
+        "event": "BAG_UPDATE_DELAYED",
+        "eventSec": 31.37,
+        "notifySec": 31.4,
+        "nearbyMaxMs": 35,
+        "generationAtEvent": 17,
+        "generationAfterAdapter": 18,
+        "foodCountAtEvent": 14,
+        "foodCountAfterAdapter": 14,
+        "adapterDirtyBagCount": 1,
+        "baganatorRefreshMask": 2,
+        "baganatorCaller": "ItemViewCommon/BackpackView.lua:74",
+        "viewMs": 5.7821,
+        "rebuildMs": 0.0314,
+        "notifyMs": 0.5894
+      },
+      {
+        "event": "BAG_UPDATE_DELAYED",
+        "eventSec": 31.69,
+        "notifySec": 31.71,
+        "nearbyMaxMs": 21,
+        "generationAtEvent": 18,
+        "generationAfterAdapter": 19,
+        "foodCountAtEvent": 14,
+        "foodCountAfterAdapter": 20,
+        "adapterDirtyBagCount": 1,
+        "baganatorRefreshMask": 2,
+        "baganatorCaller": "ItemViewCommon/BackpackView.lua:74",
+        "viewMs": 5.4001,
+        "rebuildMs": 0.03,
+        "notifyMs": 0.8609
+      },
+      {
+        "event": "BAG_UPDATE_DELAYED",
+        "eventSec": 31.79,
+        "notifySec": 31.81,
+        "nearbyMaxMs": 19,
+        "generationAtEvent": 19,
+        "generationAfterAdapter": 20,
+        "foodCountAtEvent": 20,
+        "foodCountAfterAdapter": 28,
+        "adapterDirtyBagCount": 1,
+        "baganatorRefreshMask": 2,
+        "baganatorCaller": "ItemViewCommon/BackpackView.lua:74",
+        "viewMs": 5.8581,
+        "rebuildMs": 0.0319,
+        "notifyMs": 0.9637
+      }
+    ],
+    "scanSubscribers": {
+      "inline": {
+        "calls": 42,
+        "totalMs": 1.675,
+        "slowestMs": 0.303
+      },
+      "outsideNotify": {
+        "calls": 30,
+        "totalMs": 3.955,
+        "slowestMs": 1.713
+      }
+    },
+    "cleanup": {
+      "wrappersRestored": 4,
+      "wrapperRestoreConflicts": 0,
+      "newLuaErrors": 0,
+      "leftExistingPanelsAsFound": true,
+      "heldInputLease": false,
+      "keepalivePid": 12028
+    },
+    "scope": [
+      "The same loaded session as the earlier capture. Current stock filled part of an existing stack and generated another. No source edits or simulation.",
+      "All three redraws came from Baganator bag-cache delivery. Refresh mask 2 is ItemData. The view callback ran before the FluxUI adapter's independent subscriber, so its reported FluxUI generation and count refer to the prior snapshot.",
+      "The first transition's Conjured Pumpernickel count stayed at fourteen. This probe did not fingerprint every slot, item link, lock or other metadata. An unchanged total alone cannot establish a no-op.",
+      "The second and third snapshots had genuinely different counts. Preserving the stock cadence requires retaining those transitions.",
+      "Only the synchronous Notify span and matching Safecall listeners were measured on FluxUI. Inline subscriber spans overlap Notify. Deferred timers started by a subscriber can execute outside these recorded spans.",
+      "Nearby frames are the maximum of the preceding and next two elapsed samples. They may include cast, renderer and unrelated work, and never prove exclusive attribution. The trace records a single observation."
+    ],
+    "next": "Compare complete slot facts plus live grid count/usable state on any count-stable pulse before narrowing work. Cold opening and changes on other providers still need native validation."
+  },
+  "reconnectFirstObservedOpen": {
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "syndicator",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator 862",
+      "Syndicator"
+    ],
+    "scriptProfile": 0,
+    "id": "LHO-BACKPACK-RECONNECT-FIRST-OPEN-20261119",
+    "reconnect": {
+      "disconnectScreen": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag498_a-source.png",
+        "pngSha": "5c7b4b132d9db1d0b4f596f0076d4c4baef36dc4bec2cac4d7c61acaf32a46c8",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag498_a-source-capture.json",
+        "metaSha": "7094a6a6c9eed1add57428de4984c92ba6c35195fe61e8053ab7b6e40f3b9a24",
+        "started": 1795126720.7163312,
+        "time": 1795126722.3369231,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 91041437,
+          "idle": 311,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "reconnectScreen": {
+        "time": 1795126790.657497,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume498_reconnect_button.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      "confirmedCharacter": {
+        "time": 1795126813.3262582,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume498_character_select.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      },
+      "loadScreen": {
+        "time": 1795126841.644516,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume498_world_reentry.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false
+      }
+    },
+    "timing": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag500-backpack-first-open-reconnect-20261119",
+        "controllerSHA": "06e461cebf31f6c4b1b3bbc7a183ba6b859ce01c4d60bd517ab95cb3cebddfad",
+        "packetSHA": "cef698d59c3cfc4d49da24b10118cdd15dcd473a67327aaa06604fdba2653c93",
+        "packets": 27,
+        "luaSHA": "b62f97147e7a415b9e2eace6cfa24f925e7abf8e92a286ed757b6e5c8121f611"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag500_a-submitted.png",
+        "pngSha": "da067846d6c45b6b0f790251452b7d65dba400dd0651d72b0cff0533d2895a76",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag500_a-submitted-capture.json",
+        "metaSha": "af359a3c6aac522b30d2cccf1275e300547b9a7bc232c041260b2de9781a4747",
+        "started": 1795126903.5915534,
+        "time": 1795126905.4233751,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 91430703,
+          "idle": 104.609,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795126925.0783634,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume500_cold_result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "71fa82355431ecb75155ef13178781da98d6758c862e879c128db7cdc474a11e"
+      },
+      "first": {
+        "toggleMs": 49.8,
+        "windowPeakMs": 62,
+        "updateMs": 48.81,
+        "layoutMs": 47.42,
+        "displayMs": 26.19,
+        "displayOutsideMeasuredChildrenMs": 13.12,
+        "layoutGroups": [
+          0,
+          9
+        ],
+        "registeredSkinFrames": [
+          2831,
+          2905
+        ],
+        "itemDetailsCalls": 53,
+        "itemDetailsInclusiveMs": 12.578,
+        "poolAcquires": 54,
+        "poolAcquireInclusiveMs": 0.512,
+        "revealRefreshMs": 1.39
+      },
+      "warm": {
+        "toggleMs": 2.88,
+        "windowPeakMs": 17,
+        "updateMs": 0.3,
+        "layoutMs": 0.17,
+        "layoutGroups": [
+          9,
+          9
+        ],
+        "itemDetailsCalls": 0,
+        "revealRefreshMs": 1.32
+      },
+      "bagGenerationStable": true,
+      "restoredClosedAfterBoth": true,
+      "wrapperConflicts": 0,
+      "luaErrors": 0
+    },
+    "laterReceipt": {
+      "observer": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag501-closed-backpack-slot-diff-20261119",
+        "controllerSHA": "c1042fcda6375f4bc0d5023ee6c16ab1c19fd3caeb7a7a325f6bf263412b2e16",
+        "packetSHA": "1f0655c03970ae9e38a50eca0d4c4dbb6d0d4606b14baf3ae5d3ad15c17041be",
+        "packets": 33,
+        "luaSHA": "6be49112ab70757627464009a12b9ec327c78473659fabbcffec7df0502189f6"
+      },
+      "actor": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag502-closed-bag-slot-diff-cast-20261119",
+        "controllerSHA": "1e557e292c7c855a456017783ddf9ea5858535e1468712e8418d155a92897dba",
+        "packetSHA": "14d1d8b29f5b3c78eb18d77474dd6e7922b52a20cf8c23381b67bc7ef2bc964d",
+        "packets": 2
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag502_a-submitted.png",
+        "pngSha": "90a6085f9bda62552b101e260b5d736040b85be25e5966459addb421eb107d7e",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag502_a-submitted-capture.json",
+        "metaSha": "71c585cd513f6feeb9965d3acabac9ecb4e8fc0aa59ed94c5057aca4d3f47d8c",
+        "started": 1795127224.3618255,
+        "time": 1795127226.191519,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 91750250,
+          "idle": 105.843,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795127240.334856,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume502_slot_result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "df945cfce44102e391a52632f671cae10c5f37cb24c512e50c3a67399245c2e7"
+      },
+      "durationLimit": "The 24-row buffer filled with passive scan rows before the receipt, so slot attribution remains pending.",
+      "beforeFood": 28,
+      "afterNativeAndFluxFood": 42,
+      "backpackClosed": true,
+      "luaErrors": 0
+    },
+    "scope": "First observed category open after a verified server reconnect. Nested Lua timings overlap. Baganator registered nine layout groups and 74 additional skin regions. This was a measurement of the existing source."
+  },
+  "postClassifierMoveProviderPairs": {
+    "id": "LHO-COUNT-NEUTRAL-MOVE-PROVIDERS-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "characterScope": "Same live client and character, native background tests. Closed bag and commerce panels.",
+    "gameplay": {
+      "itemID": 4599,
+      "stackCount": 18,
+      "original": [
+        0,
+        8
+      ],
+      "temporary": [
+        3,
+        5
+      ],
+      "returnedOnFirstAttempt": true,
+      "originalExactLinkRestored": true,
+      "originalQuantityRestored": true,
+      "temporarySlotEmpty": true,
+      "cursorClear": true
+    },
+    "blockedAttempts": [
+      {
+        "r": 511,
+        "result": {
+          "time": 1795128799.7304726,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume511_move_result.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "048030c3432de18e94adf259b643d3304b230890fa7c1ccee69a78043e7c95a4"
+        },
+        "reason": "The formerly empty bag 2 slot 4 was occupied. No item operation."
+      },
+      {
+        "r": 512,
+        "result": {
+          "time": 1795128894.935814,
+          "pid": 9012,
+          "hwnd": 3541714,
+          "size": [
+            1906,
+            1032
+          ],
+          "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume512_move_result.png",
+          "foregroundBefore": 196750,
+          "foregroundAfter": 196750,
+          "foregroundUnchanged": true,
+          "inputSent": false,
+          "sha256": "866018f3d310e1c277af5dd778005cd552ea2065428ffba2784b254abfecba48"
+        },
+        "reason": "Bag 2 had no empty slot. No item operation."
+      }
+    ],
+    "both": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag513-real-bag-move-slot-and-grid-20261119",
+        "controllerSHA": "b16f39b342196d474b54fa1d7486d7a61ffe099c4c01d5ea3467391d20017024",
+        "packetSHA": "8dbcc65fa8a6d5ac351a9b89a759531fa228d7683f63f3c0b4bfca51f7cef291",
+        "packets": 34,
+        "luaSHA": "2e43eeee2c730256e566051bb066198050bf8c91e4ab830ff46ab530b8a0db99"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag513_a-submitted.png",
+        "pngSha": "518e095c13b2cd4ba692982cbc63a5d03e3ab79f9d1bd2a1e3e7571b10a0cf25",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag513_a-submitted-capture.json",
+        "metaSha": "fff11e2b462ed46510ef09a58d392bfaadf756fabe248ec127fa601edc612873",
+        "started": 1795128965.794255,
+        "time": 1795128967.838806,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 93461671,
+          "idle": 135.844,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795128994.3122692,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume513_move_result.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "ab6b679ac69cb60c6695bb0496d8abf6ddd1199069824096a2a7fd3d7e8eccce"
+      },
+      "notifyMs": [
+        0.611,
+        0.644
+      ],
+      "gridCountMs": [
+        0.186,
+        0.178
+      ],
+      "windowFramePeaksMs": [
+        19,
+        20
+      ]
+    },
+    "syndicatorOnly": {
+      "switchProgram": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag514-provider-scope-20261119",
+        "controllerSHA": "d39594ff3ebf6c672fb6192d5304057367cc74c52eba13866469902116f37215",
+        "packetSHA": "3b9f83cd9b1daa0976bdd10057fe7028d6292878c0fa64eff09f26bde9adb951",
+        "packets": 8,
+        "luaSHA": "cc0f27589efbe94ffb6f7255f4bf92a57352342c8dccdf12205ff0e721ead6df"
+      },
+      "flagEvidence": {
+        "time": 1795129239.2303226,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume514_flags.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "06c45c9d81d0d3875cba3e8f54d88e547eb0d6ec3de8f3cc966be784f9de2c30"
+      },
+      "temporaryCurrentCharacterFlags": [
+        2,
+        0
+      ],
+      "temporaryOverallFlags": [
+        2,
+        1
+      ],
+      "reload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag518_a-submitted.png",
+        "pngSha": "30d573e1c5272195a2e889ef1fecf8d743e58278c5c71efc2b871beac281da33",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag518_a-submitted-capture.json",
+        "metaSha": "0d97bb79f818245b73c151b019a751fdfce06c00708e69d9a028bc00c089af7e",
+        "started": 1795129279.2034628,
+        "time": 1795129281.1424146,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 93852859,
+          "idle": 58.078,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag515-syndicator-only-move-20261119",
+        "controllerSHA": "8842096fde754db44ad1072f38fa7e9be8927a393f155402aa8061a174b49cac",
+        "packetSHA": "47e74238cf0421e986d706abe4cc0f2b4e1a93df8a6cf1ce8e497148588cfbf4",
+        "packets": 35,
+        "luaSHA": "6abf71178299ae1ffecd4d9c9288085b40292f106a6ffa5a2d1ad355aded1d1f"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag515_a-submitted.png",
+        "pngSha": "618c832707cbafb09f6ae2bcdcde8bb4e6c75fd72d7dbcc1218bf4d585d36731",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag515_a-submitted-capture.json",
+        "metaSha": "dffc968d037abf3b2d78798c31f47afeed45f7ff28cde12741e52aca0066d7b4",
+        "started": 1795129338.082784,
+        "time": 1795129340.1144762,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 93964703,
+          "idle": 5.109,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795129366.2518861,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume515_syndicator_move.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "9905147e712b75b2835df96c4f7d1ab6fcc8a5e85a664810eb50b30568a561c6"
+      },
+      "notifyMs": [
+        0.741,
+        0.588
+      ],
+      "gridCountMs": [
+        0.201,
+        0.183
+      ],
+      "windowFramePeaksMs": [
+        17,
+        16
+      ]
+    },
+    "each": {
+      "generation": [
+        5,
+        6,
+        7
+      ],
+      "bagUpdateDelayed": [
+        1,
+        1
+      ],
+      "adapterSlotPairsOut": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "adapterSlotPairsBack": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "slotPairNotation": "Changed old slots and changed new slots in order across the adapter's DiffSlots calls.",
+      "touchedIDs": [
+        1,
+        1
+      ],
+      "changedIDs": [
+        0,
+        0
+      ],
+      "stock": {
+        "before": 18,
+        "nativeAfter": 18,
+        "fluxAfter": 18
+      },
+      "gridSignatureMatchesWithinProfile": true,
+      "passiveScans": 0,
+      "queue": [
+        0,
+        0
+      ],
+      "observerRestored": true,
+      "errorDelta": 0
+    },
+    "restoration": {
+      "enableProgram": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag516-provider-scope-20261119",
+        "controllerSHA": "b6432ee8773508051644c3f973ee3bcdb1cf0f67b2516e886b427997777c4f6c",
+        "packetSHA": "922eae55fd734acdac8f9937dfc15e9ebd17b7a0c79af32a622dada30a729b1f",
+        "packets": 8,
+        "luaSHA": "729b46f1f35dfd5dbf8620ecfa80f324c1cf811bdfb26c8cbb323c4646da4acb"
+      },
+      "preReload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag519_a-source.png",
+        "pngSha": "344fc16bd3029e3554c502883cbaf2a472ced6e133a9302594704bcdd240d078",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag519_a-source-capture.json",
+        "metaSha": "14fc5d23c8e05090939e8f1be1dd739dc0e96dd11d1a2ac50c5a71b26e18e070",
+        "started": 1795129433.7925096,
+        "time": 1795129435.8773155,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94060953,
+          "idle": 4.562,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "reload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag519_a-submitted.png",
+        "pngSha": "edc75862a842db314d51bc04103b1169e42aa56321e745f5ac16f69bb90228ad",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag519_a-submitted-capture.json",
+        "metaSha": "7362343ccd335d979942a582214bf403c2be3f46d967dbc4d62ce07ae6902875",
+        "started": 1795129456.9049034,
+        "time": 1795129458.832607,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94060953,
+          "idle": 27.672,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "verificationProgram": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag517-provider-scope-20261119",
+        "controllerSHA": "2b9de7cb8cddf631f30ae0cb31a0d91d15d8ec2669a27b6418473c0cd6452b54",
+        "packetSHA": "bbd6d7b01c9cc036adc6f877690e16e0b6d247e627a6ea8b9f150c52a7e4d9f5",
+        "packets": 7,
+        "luaSHA": "c4c53cd0baab93d26cdb4bf21fc70dfcf4b7fe6ce500f9a15354c5ca3210f500"
+      },
+      "readback": {
+        "time": 1795129534.0912125,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume517_restored_flags.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "7200be492dc52e69e5265c68fa3577b38c2b38660d7b66d0355ed893928bdb17"
+      },
+      "bothLoaded": true,
+      "characterFlags": [
+        2,
+        2
+      ],
+      "overallFlags": [
+        2,
+        2
+      ],
+      "source": "syndicator",
+      "jumpCue": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump72_a-submitted.png",
+        "pngSha": "ab6e6cc99f60d8e3b5dd9f1d81a256ea480eddf23313d17c8334c326f86c563b",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump72_a-submitted-capture.json",
+        "metaSha": "48d0fa7faa43c80d58a2628381d654d3d626b47475add8c9e86e970f898f25b4",
+        "started": 1795129594.6077964,
+        "time": 1795129596.4413948,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94195343,
+          "idle": 30.985,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "jumpSupervisor": {
+        "pid": 11224,
+        "status": "host-launched",
+        "hostPid": 6572,
+        "calibrationMode": "bg"
+      },
+      "jumpHost": {
+        "pid": 6572,
+        "status": "running",
+        "pairs": 1,
+        "movementAcknowledged": false
+      }
+    },
+    "limits": [
+      "Two live round trips, one per loaded provider profile. Timings are individual measurements, with no provider-wide FPS conclusion.",
+      "The moved item was an alternate food stack. The five tracked Extra Button assignments stayed the same. Depletion and changed selection require a different event.",
+      "Per-bag unchanged DiffSlots results accompanied real changes in other bags. The first-pulse slot attribution from the earlier Conjure Food capture remains unresolved.",
+      "Built-in alone remains due for this exact real move. No addon Lua changes in this pass."
+    ]
+  },
+  "postClassifierMoveBuiltin": {
+    "id": "LHO-COUNT-NEUTRAL-MOVE-BUILTIN-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "source": "builtin",
+    "addonsLoaded": {
+      "Syndicator": false,
+      "Baganator": false
+    },
+    "disable": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag520-builtin-provider-scope-20261120",
+        "controllerSHA": "534665b68ca15eb6a6fcb8c714ac9dcce376ef1e4bf45cb69e176f6e305fcf74",
+        "packetSHA": "d44c49e1674a2a74255b620198b662518dc0353d46a088a5f9ba6223617797ab",
+        "packets": 8,
+        "luaSHA": "fe9ff75cdcc3d74f34e626eca0303e0dbeddbd7f86d978f5229859fac30073ed"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag520_a-submitted.png",
+        "pngSha": "f938c003fca2c5e4b2bb7b91838eabb3a4fcbff30c77169ccfe70eb0a0ef395c",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag520_a-submitted-capture.json",
+        "metaSha": "6a538b869e9b7a6109bfd43dbef037261fca8bc8870df7eb3a1200d17e3ecdbd",
+        "started": 1795129906.301053,
+        "time": 1795129908.2847867,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94538031,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "flagReadback": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag523_a-source.png",
+        "pngSha": "62760cd18799d9b8542cf48ecdcf2ab7ebe6201db86808e2bab5ec92dfb18c83",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag523_a-source-capture.json",
+        "metaSha": "f76d8e6ce8710fd6d1588196cd83c71ae546941a8a40dc0b6349b24673ec2c8e",
+        "started": 1795129930.987721,
+        "time": 1795129932.8826182,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94562703,
+          "idle": 0.015,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "characterBefore": [
+        2,
+        2
+      ],
+      "characterAfter": [
+        0,
+        0
+      ],
+      "overallAfter": [
+        1,
+        1
+      ],
+      "reload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag523_a-submitted.png",
+        "pngSha": "0a1f6d2cd20d22f378621a01a2f1c365808868334566975274a9d8587297b514",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag523_a-submitted-capture.json",
+        "metaSha": "fa049c8a07163ef610cec75adaaef5ea85ec41c5d07a6b5c0e0742a2bab784bb",
+        "started": 1795129953.0819893,
+        "time": 1795129954.9054306,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94584796,
+          "idle": 0.016,
+          "held": [],
+          "drawable": true
+        }
+      }
+    },
+    "move": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag521-builtin-provider-scope-20261120",
+        "controllerSHA": "9406def33017cbc5f6ac40d6f9831079e14513fd2c4f32a02c0cff61fb2278ae",
+        "packetSHA": "b363834f7c79f4368041436aa2e4216b11c98bde93a08173581b2bf72be6fcd7",
+        "packets": 35,
+        "luaSHA": "b7b317d22147015a1a2f274cc0ad21936c1eebe90329dacf6d9b6b0c61087336"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag521_a-submitted.png",
+        "pngSha": "f2ffa02aacfc3ffe30b628ac5b2b7c32e6caf5e9172efdab1a361a939a7d7773",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag521_a-submitted-capture.json",
+        "metaSha": "78820253e957a908ef9994fdca1d2d8554aa42bdd84d24a048eba96ce08a9469",
+        "started": 1795130010.7230017,
+        "time": 1795130012.761008,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94642437,
+          "idle": 0.016,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "time": 1795130047.7693036,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume521_builtin_move.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "ee592e2e678702df2a0d7f4dbc825ac3a5335d7282a010dfa9658f7c18f6eaae"
+      },
+      "itemID": 4599,
+      "from": [
+        0,
+        8
+      ],
+      "temporary": [
+        3,
+        5
+      ],
+      "count": 18,
+      "returnedOnFirstAttempt": true,
+      "originalExactLinkRestored": true,
+      "originalQuantityRestored": true,
+      "temporarySlotEmpty": true,
+      "cursorClear": true,
+      "generations": [
+        5,
+        6,
+        7
+      ],
+      "bagUpdateDelayed": [
+        1,
+        1
+      ],
+      "slotPairsOut": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "slotPairsBack": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "touchedIDs": [
+        1,
+        1
+      ],
+      "changedIDs": [
+        0,
+        0
+      ],
+      "nativeAndFluxStock": [
+        18,
+        18
+      ],
+      "checkedGridAssignmentsUnchanged": true,
+      "queue": [
+        0,
+        0
+      ],
+      "scanCalls": 0,
+      "notifyMs": [
+        0.793,
+        0.732
+      ],
+      "gridCountMs": [
+        0.177,
+        0.178
+      ],
+      "windowPeaksMs": [
+        17,
+        16
+      ],
+      "observerRestored": true,
+      "errors": 0
+    },
+    "restore": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag522-builtin-provider-scope-20261120",
+        "controllerSHA": "4a1c368ca568cb95d931cf797d39458740cad5a96bf9486847dd62e426a7114f",
+        "packetSHA": "2fc198b46b7e865ed2b870a9e992fba8ea42245bbf40c2f55c75eba158cd5bb0",
+        "packets": 8,
+        "luaSHA": "2c1074d8f6fb8a5927e9cc38d010b23b1272966d87a8de705e0724bd6cce52a0"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag522_a-submitted.png",
+        "pngSha": "e4cfb8fe98728752065934b6d7848ad0a725d72b03433223ff73149548b7cff1",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag522_a-submitted-capture.json",
+        "metaSha": "afdd1eba0b7e9d2255f3fd3dcfe13960877402cbdf5af7303ff7f17f29bd9427",
+        "started": 1795130087.8002455,
+        "time": 1795130089.810892,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94719531,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "flagsBeforeReload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag524_a-source.png",
+        "pngSha": "bb6169829b28dce1e9891c3d63f17a97e456e99e7d0d8ed6b87b0e00e83df610",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag524_a-source-capture.json",
+        "metaSha": "4e52d2ce5377ab7a97fb061365965d23d265b3fafe53cedfae096da37d2d2612",
+        "started": 1795130116.198345,
+        "time": 1795130118.4623554,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94724859,
+          "idle": 23.062,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "reload": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag524_a-submitted.png",
+        "pngSha": "1a20d0490f8ba7d08c017c1515441c0c2c5f8a84c7cbcbfd73676e5d23f805a5",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag524_a-submitted-capture.json",
+        "metaSha": "ce1b32701df6478770d4d6bd06f64d61c7042d203b8283cfcba4d8b29df17a4a",
+        "started": 1795130137.1929686,
+        "time": 1795130139.1289668,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94768890,
+          "idle": 0.031,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "verification": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag525-builtin-provider-scope-20261120",
+        "controllerSHA": "8e4c3d86b1ade2fec544d3b61133c2123499565bb1de394ca5fc69f728581780",
+        "packetSHA": "fec398e98582e644b7de4951217faf3b152a68e905a31c95cf6ec3b6a339ae14",
+        "packets": 7,
+        "luaSHA": "c6e2ed00a8075daf2a57d043dc8c4437a3d4dfdd3ec254a2c8077988efa2bbf9"
+      },
+      "result": {
+        "time": 1795130214.739623,
+        "pid": 9012,
+        "hwnd": 3541714,
+        "size": [
+          1906,
+          1032
+        ],
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume525_builtin_restored.png",
+        "foregroundBefore": 196750,
+        "foregroundAfter": 196750,
+        "foregroundUnchanged": true,
+        "inputSent": false,
+        "sha256": "530ef4e2340802c7b497e6be435224a25f2782d818f3ba6450b33f625444b091"
+      },
+      "activeSource": "syndicator",
+      "loadedBoth": true,
+      "characterFlags": [
+        2,
+        2
+      ],
+      "overallFlags": [
+        2,
+        2
+      ],
+      "timerCue": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump73_a-submitted.png",
+        "pngSha": "17e64a003562749603989c52597ac0dfb68d5a324a7b81aa4047fa13b30cfd1a",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump73_a-submitted-capture.json",
+        "metaSha": "e55547815527d30b68575be377e51611e87ff36022cc3a68956c2ef66e2c3802",
+        "started": 1795130282.7855794,
+        "time": 1795130284.674301,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196750,
+          "last": 94848531,
+          "idle": 65.984,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "timerSupervisor": {
+        "pid": 32480,
+        "status": "host-launched",
+        "hostPid": 10920,
+        "calibrationMode": "bg"
+      },
+      "timerHost": {
+        "pid": 10920,
+        "status": "running",
+        "pairs": 1,
+        "movementAcknowledged": false
+      }
+    },
+    "scope": [
+      "Same stack and slots as R513 and R515, with the backpack and interaction panels closed. Completes this exact live move scenario across all three provider profiles on Forever.",
+      "Frames describe peak samples during individual short windows. Notify and grid timing overlap. This is scoped behavior verification. Client-wide timing and native checks on other WoW editions remain open.",
+      "The moved stack is an alternate consumable. The case exercises a real location change and the five previously selected grid items. A change in selection or depletion requires a different event.",
+      "No runtime Lua edited in this pass."
+    ]
+  },
+  "firstOpenAndJunkReadableSettings": {
+    "id": "LHO-BAGANATOR-JUNK-SETTINGS-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "setup": "FluxUI, BugTabs, Syndicator and Baganator, same character and 59 occupied slots; no commerce window",
+    "source": {
+      "path": "Inventory/Restock/Junk/FluxJunk.lua",
+      "beforeSHA256": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+      "afterSHA256": "d5091d33b295c24af3c6522e01c7f2b544ebbb9816f48267cbb8095a586fb4b2",
+      "allFiveInstallHashesMatched": true,
+      "checkpoint": {
+        "root": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\junk-display-settings-20261120T005203Z",
+        "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+        "source": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+        "bundle": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+        "settings": {
+          "_retail_": 2,
+          "_forever_": 3,
+          "_classic_": 2,
+          "_classic_era_": 4,
+          "_anniversary_": 10
+        }
+      }
+    },
+    "samples": {
+      "before": {
+        "firstOpenMs": 57.08,
+        "nearbyFirstFrameGapMs": 69,
+        "warmReopenMs": 3.09,
+        "nearbyWarmFrameGapMs": 12,
+        "coldItemPoolAcquires": 54,
+        "coldNewItemButtons": 0,
+        "coldNewLiveLayouts": 9,
+        "coldDisplayMs": 29.39,
+        "coldJunkMs": 3.38,
+        "coldJunkCalls": 100,
+        "settingsLookups": 120,
+        "warmDirectMs": 0.393
+      },
+      "after": {
+        "firstOpenMs": 47.32,
+        "nearbyFirstFrameGapMs": 56,
+        "warmReopenMs": 2.74,
+        "nearbyWarmFrameGapMs": 12,
+        "coldItemPoolAcquires": 54,
+        "coldNewItemButtons": 0,
+        "coldNewLiveLayouts": 9,
+        "coldJunkMs": 3.22,
+        "coldJunkCalls": 100,
+        "settingsLookups": 65,
+        "warmDirectMs": 0.314
+      },
+      "warmDirectCommon": {
+        "occupiedSlots": 59,
+        "uniqueIDs": 50,
+        "junkVerdicts": 0,
+        "filterReads": 0,
+        "grayFallbackCalls": 48,
+        "stableGeneration": true,
+        "restoredHooks": true,
+        "newLuaErrors": 0
+      }
+    },
+    "regressions": {
+      "lua51SyntaxChecks": 5,
+      "lua54SyntaxChecks": 5,
+      "lua54Scripts": {
+        "baganator_junk_detector": 410,
+        "combat_consumable_junk": 1230,
+        "vendor_junk_tab_work": 85,
+        "vendor_open_work": 265,
+        "auction_restock_potions": 580,
+        "visible_native_bag_work": 65
+      }
+    },
+    "conclusion": "Settings work fell by 55 lookups on the same warm pass. One sample per revision for direct timing and first/warm open. Frame gaps also include other client work. No repeatable whole-frame reduction established.",
+    "runtime": "R558 reloaded. R559 queued all 37 packets then the capture guard reported a last-input change. Independent read-only capture verified both open/close loops finished, hooks restored without conflict, stable bag generation, no errors, and closed backpack. No item movement, transaction or external addon change.",
+    "jump": "R77 controller PID 28812 verified live. Space pairs recorded after reload, movement unverified.",
+    "captures": {
+      "beforeOpen": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume556_backpack_cost_tree.png",
+        "sha256": "2f109ccc32269155433180364cbbe20fcdc416fac2fbbd061bb25b5d213ec9c0"
+      },
+      "beforeJunk": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume557_backpack_result.png",
+        "sha256": "eb79452d2a530b2329ed1cfc033b59b52f84c3d28ffa30c1b51be04b6c504dcd"
+      },
+      "after": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume559_native_loaded_junk.png",
+        "sha256": "eb2cf85ee237fce9679c4bb79c7db9f5dd761413b0007d618cec16b4ecd02f2a"
+      },
+      "afterProbe": {
+        "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/559-junk-and-open-loaded.lua",
+        "sha256": "d65d9015b8f493c489264414f88a5c2c46fa3172df8eeeffc0fa42d7f88a7aa2"
+      }
+    }
+  },
+  "openBackpackMoveAndCraftCatalogue": {
+    "id": "LHO-BAG-MOVE-CRAFT-CATALOGUE-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addonProfile": [
+      "FluxUI",
+      "BugTabs",
+      "Syndicator",
+      "Baganator"
+    ],
+    "sources": {
+      "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+      "Inventory/Professions.lua": "30dd26404e9e853114be537c58f9042258736b7196a70fe11624a4d6a9990004",
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508"
+    },
+    "openBackpack": {
+      "scope": "Actual count-neutral move and return with category backpack open, commerce closed. Synchronous Notify and grid spans overlap. Frame gaps are contextual.",
+      "itemID": 4599,
+      "quantity": 18,
+      "originalSlot": [
+        0,
+        8
+      ],
+      "temporarySlot": [
+        3,
+        5
+      ],
+      "bagGenerations": [
+        5,
+        6,
+        7
+      ],
+      "openMs": 47.15,
+      "out": {
+        "viewMs": 4.908,
+        "layoutMs": 4.778,
+        "displayMs": 1.846,
+        "notifyMs": 0.603,
+        "gridMs": 0.179,
+        "peakFrameMs": 21
+      },
+      "back": {
+        "viewMs": 4.315,
+        "layoutMs": 4.192,
+        "displayMs": 1.395,
+        "notifyMs": 0.573,
+        "gridMs": 0.17,
+        "peakFrameMs": 17
+      },
+      "viewsPerDirection": 1,
+      "junkCalls": 0,
+      "gearGroupCalls": 0,
+      "bagEventsPerDirection": 1,
+      "classifierScans": 0,
+      "selectionMatched": true,
+      "nativeAndFluxCounts": [
+        18,
+        18
+      ],
+      "stackAndCursorRestored": true,
+      "observersRestored": true,
+      "backpackClosed": true,
+      "newLuaErrors": 0,
+      "evidence": {
+        "run": 602,
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume602_open_backpack_move_result.png",
+        "sha256": "90274f1a90eb1c1b0c42e872af5425d05ecb0f3c704967667b78291e2ac05174",
+        "probeSha256": "a79860e3c3e34462fdf3d7798c2434eb1fad84b8bb9a5a907ceede93ff54af2f"
+      }
+    },
+    "closedBackpackCraft": {
+      "scope": "Same actual move and return with the backpack closed. Timings include the two overlapping levels of the isolated craft functions. No frame-time attribution.",
+      "bagGenerations": [
+        7,
+        8,
+        9
+      ],
+      "invalidations": [
+        1,
+        1
+      ],
+      "edgeCalls": [
+        3,
+        3
+      ],
+      "edgeMs": [
+        0.039,
+        0.031
+      ],
+      "bestCalls": [
+        3,
+        3
+      ],
+      "bestMs": [
+        4.644,
+        4.41
+      ],
+      "recipeListCalls": [
+        3,
+        3
+      ],
+      "recipeListMs": [
+        4.592,
+        4.362
+      ],
+      "nativeAndFluxCounts": [
+        18,
+        18
+      ],
+      "selectionMatched": true,
+      "bagEventsPerDirection": 1,
+      "stackAndCursorRestored": true,
+      "observersRestored": true,
+      "newLuaErrors": 0,
+      "evidence": {
+        "run": 603,
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume603_live_bag_craft_refresh.png",
+        "sha256": "8fa19c1760687301111b091171a07f7c6a414eb802dbc6f8594846aa5262830f",
+        "probeSha256": "b03d5622c5e7963d5f14e82497275d3c7c9e0e7a3a198b54f4b4999b6048881b"
+      }
+    },
+    "workers": {
+      "scope": "One sequential direct ListRecipesForKind call per kind, using real saved catalogue/current stock with panels closed. Scoped timing wrappers add overhead; inclusive/exclusive measurements nest. Does not replace the event timings.",
+      "columns": [
+        "kind",
+        "listed",
+        "wholeMs",
+        "catalogueMs",
+        "classifyCalls",
+        "classifyMs",
+        "metadataCalls",
+        "metadataMs",
+        "materialsCalls",
+        "materialsMs"
+      ],
+      "results": [
+        [
+          "healPotion",
+          5,
+          2.045,
+          1.213,
+          149,
+          0.076,
+          131,
+          0.058,
+          5,
+          0.102
+        ],
+        [
+          "manaPotion",
+          2,
+          1.384,
+          0.911,
+          149,
+          0.07,
+          131,
+          0.056,
+          2,
+          0.045
+        ],
+        [
+          "bandage",
+          9,
+          1.454,
+          0.841,
+          149,
+          0.068,
+          131,
+          0.054,
+          9,
+          0.159
+        ]
+      ],
+      "totalCatalogueMs": 2.965,
+      "totalListMs": 4.883,
+      "stableBagGeneration": true,
+      "observersRestored": true,
+      "newLuaErrors": 0,
+      "evidence": {
+        "run": 605,
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume605_live_craft_worker_results.png",
+        "sha256": "0d6e0cd202cd3a5768fefd3bd6edc510159080dcb9fe43fed9dad52b9434dd7e",
+        "probeSha256": "7006bb3fbf012e078be7637beee11be78ecd9c13293870c65be92600373a4595"
+      }
+    },
+    "interruptedDiagnostic": {
+      "run": 604,
+      "reason": "Physical modifier held in foreground app during background chat setup; the guard aborted before the execution packet. A blank chat box was left open.",
+      "openedDraftClosedWith": "One targeted Escape, verified visually before new commands, foreground unchanged.",
+      "partialRootClearedBy": 605
+    },
+    "runtimeChanged": false,
+    "next": "The dominant repeated owned worker is selecting the full saved profession catalogue. Prefer an exact current-data catalogue improvement or safe shared acquisition among same-due craft refreshes. Preserve live material and classification queries, technical fallbacks, and per-kind timing. Do not disable fresh Syndicator fallback using an empty count delta alone."
+  },
+  "loadedNumericCatalogueOpenBackpack": {
+    "id": "LHO-NUMERIC-CATALOGUE-OPEN-BAG-20261120",
+    "run": 612,
+    "beforeRun": 602,
+    "afterSHA256": "091ba439122373fa843ed1fd794930b88d56638e17a44b626a4129f958a10fb1",
+    "scope": "Observed first open after R610; sequential samples while in-world conditions differed",
+    "move": {
+      "source": [
+        0,
+        8
+      ],
+      "destination": [
+        3,
+        5
+      ],
+      "itemID": 4599,
+      "quantity": 18,
+      "bagGenerations": [
+        7,
+        8,
+        9
+      ],
+      "bagEvents": [
+        1,
+        1
+      ],
+      "gridMatched": true,
+      "cursorClear": true,
+      "stackRestored": true,
+      "backpackClosed": true,
+      "observersRestored": true,
+      "newLuaErrors": 0,
+      "scans": 0
+    },
+    "before": {
+      "openMs": 47.15,
+      "viewMs": [
+        4.908,
+        4.315
+      ],
+      "nearbyFrameGapMs": [
+        21,
+        17
+      ]
+    },
+    "after": {
+      "openMs": 52.76,
+      "viewsPerDirection": 1,
+      "viewMs": [
+        5.374,
+        4.916
+      ],
+      "layoutMs": [
+        5.201,
+        4.781
+      ],
+      "displayMs": [
+        1.691,
+        1.653
+      ],
+      "notifyMs": [
+        0.847,
+        0.576
+      ],
+      "gridMs": [
+        0.227,
+        0.168
+      ],
+      "nearbyFrameGapMs": [
+        35,
+        29
+      ]
+    },
+    "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume612_open_bag_after.png",
+    "sha256": "6b96bea6ffcb9908bdefee546e7c821cfc86ee8538d5abc3c7583fdbd0517fb3",
+    "probeSHA256": "737a272a43ff3bd5c2774b2e22122212fbf5b97d2a90fe9fc63d42ca2ee7baac",
+    "keepalive": {
+      "hostPid": 18360,
+      "spacePairsAtRead": 2,
+      "movementVerified": false
+    }
+  },
+  "emptyBagSlotProtection": {
+    "id": "LHO-PROTECTION-EMPTY-SLOT-LOOKUP-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "provider": "Baganator and Syndicator",
+    "beforeSHA256": "3a13b69160beffe82d3e09dc4d7b9ea2cacb297bc7e2dc5a8c2c5729da72577a",
+    "afterSHA256": "cdcfe749747cc151c95d668850820070adaa22738d43acb3d95a77e5d893fcdb",
+    "checkpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\protected-bag-slot-loop-20261120T042304Z\\GearSetLock.lua.before",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "samples": {
+      "occupiedSlots": 52,
+      "protectedSlots": 0,
+      "callsPerBatch": 416,
+      "before": [
+        0.622,
+        0.606,
+        0.6,
+        0.593,
+        0.599,
+        0.583
+      ],
+      "candidate": [
+        0.381,
+        0.385,
+        0.38,
+        0.388,
+        0.382,
+        0.38
+      ],
+      "installed": [
+        0.392,
+        0.377,
+        0.372,
+        0.373,
+        0.371,
+        0.39
+      ],
+      "medianBefore": 0.5995,
+      "medianCandidate": 0.3815,
+      "medianInstalled": 0.375,
+      "exactVerdictParity": true,
+      "bagGenerationStable": true,
+      "errorDelta": 0
+    },
+    "backpack": {
+      "bothOpensClosed": true,
+      "wrapperConflicts": 0,
+      "errorDelta": 0,
+      "firstLayoutGroupsBefore": 0,
+      "groupsAtWarmOpen": 9,
+      "warmOpenMs": 3.55,
+      "warmNearbyFrameGapMs": 26,
+      "firstOpenComponents": {
+        "displayJunk": [
+          100,
+          3.38
+        ],
+        "slotProtection": [
+          100,
+          0.23
+        ],
+        "vendorFade": [
+          318,
+          0.73
+        ],
+        "labelAcquire": [
+          9,
+          0.82
+        ],
+        "dividerAcquire": [
+          10,
+          0.46
+        ],
+        "sectionButtonAcquire": [
+          2,
+          0.35
+        ]
+      },
+      "units": "call count and inclusive ms, parent and child can overlap",
+      "firstOpenSummary": "The first reservation stopped before input. The second retrieved the original diagnostic lines.",
+      "firstOpenReadback": {
+        "readbackRun": "R616 second reservation",
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag616_b-submitted.png",
+        "pngSHA256": "723bd28494b967149b1874df57185e09a3c17991a455e491f9f224c199a07de9",
+        "firstOpenMs": 44.32,
+        "firstNearbyFrameGapMs": 63,
+        "groups": [
+          0,
+          9
+        ],
+        "registeredRegions": [
+          2831,
+          2905
+        ],
+        "itemDetails": [
+          53,
+          10.364
+        ],
+        "itemPool": [
+          54,
+          0.393
+        ],
+        "components": {
+          "update": [
+            1,
+            43.58,
+            1.16
+          ],
+          "layout": [
+            1,
+            42.41,
+            0.97
+          ],
+          "display": [
+            1,
+            21.65,
+            8.96
+          ],
+          "splitting": [
+            1,
+            41.44,
+            4.23
+          ],
+          "itemPreparation": [
+            1,
+            37.21,
+            0.75
+          ],
+          "categorySearches": [
+            1,
+            33.48,
+            8.95
+          ],
+          "grouping": [
+            1,
+            24.53,
+            0.02
+          ],
+          "sorting": [
+            1,
+            24.51,
+            1.98
+          ],
+          "onFinished": [
+            2,
+            0.79,
+            0.79
+          ],
+          "protectionReveal": [
+            1,
+            1.24,
+            1.24
+          ]
+        },
+        "units": "Count, inclusive ms, ms outside explicitly timed nested calls. The category pipeline nests the later callbacks."
+      }
+    },
+    "evidence": {
+      "before": {
+        "run": 613,
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag613_a-submitted.png",
+        "sha256": "bb7dfba8164d59153b5eda0779c362f5169c4509c0375b938864bc8bcb368446"
+      },
+      "reload": {
+        "run": 614,
+        "visibleStartup": true
+      },
+      "after": {
+        "run": 615,
+        "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume615_layout_after_lock.png",
+        "sha256": "fd0fca87b636537c50adf7f402ae0f8cf4535a5489c90493fac21f46457ff13f",
+        "probeSHA256": "5207e72b62be4c7cc414a4e1c1840e8cf2b14403e19ae244183d2f56de45b8b1"
+      }
+    },
+    "validation": {
+      "scripts": 6,
+      "checks": 3779,
+      "syntaxChecks": 10,
+      "matchingPathCount": 5
+    },
+    "keepalive": {
+      "revision": "R87",
+      "pid": 9740,
+      "intervalSeconds": 180,
+      "cueConfirmed": true
+    }
+  },
+  "lazyCategoryIconTextures": {
+    "id": "LHO-BAGANATOR-LAZY-CATEGORY-ICON-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": "Syndicator and Baganator 862 loaded",
+    "sourceBefore": "813be7c24cb7df5b1dd82aee1cf17f8472de2939162c1540d6434a0580424570",
+    "sourceAfter": "aff900d0a5f8b197679a2861283a2e88dc05cabe1c7770f7170b664a1c71a87d",
+    "checkpoint": {
+      "utc": "20261120T053334Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundleSHA256": "7913e854248428402c4917a9d0b3e072769ef1bd028af3b1d36966fec3bc68d2",
+      "source": "813be7c24cb7df5b1dd82aee1cf17f8472de2939162c1540d6434a0580424570",
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\baganator-lazy-label-texture-20261120T053334Z\\FluxBaganator_CategoryIcons.lua.before",
+      "settingsFileCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "scope": "One cold native backpack open per revision with the live character inventory. Counts of unique ordinary labels that already own a hidden icon texture when observed, rather than allocation timings.",
+    "before": {
+      "run": 629,
+      "iconApplications": 19,
+      "ownedOrdinaryApplications": 19,
+      "equipmentApplications": 0,
+      "ordinaryLabelsWithIconTexture": 9,
+      "applicationsWithNoAnchorChange": 10,
+      "ordinaryApplyMs": 0.142,
+      "openMs": 45.385,
+      "stableBagGeneration": true,
+      "closed": true,
+      "observerRestored": true,
+      "errorDelta": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jq4-bag629_a-submitted.png",
+      "pngSHA256": "047d93fcf8950b0d69ffd445b4ac0f31de25adb3734688fb121ba6573467c4c5",
+      "probeSHA256": "32bc41b79e98f459299f21d6b8d702baa0be4df8251282553e7dd1b92030b063"
+    },
+    "reload": {
+      "run": 630,
+      "confirmedByFreshStartup": true,
+      "submissionSHA256": "31403219f23ed6f25a8512d57b24ab63f1a73d5b114bb56704baad31f081a22d",
+      "startupSHA256": "488757259e8b3b5140ea1adea2e1a49aea89146375e788792d035a381deb35e7",
+      "nonactivatingRestore": "restored-background"
+    },
+    "after": {
+      "run": 631,
+      "groupsBeforeOpen": 0,
+      "iconApplications": 19,
+      "ownedOrdinaryApplications": 19,
+      "equipmentApplications": 0,
+      "ordinaryLabelsWithIconTexture": 0,
+      "applicationsWithNoAnchorChange": 10,
+      "ordinaryApplyMs": 0.131,
+      "openMs": 37.403,
+      "stableBagGeneration": true,
+      "closed": true,
+      "observerRestored": true,
+      "errorDelta": 0,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-label631_a-submitted.png",
+      "pngSHA256": "cbf01e5270d3d2ed0fbb8e5a2c822b68198ee1de22e83cc9d847f46402ba3125",
+      "probeSHA256": "821e005336501f50ffefd5150a6776d32698d4d85726e98a24a838b73e72f049"
+    },
+    "validation": {
+      "matchingInstalledPaths": 5,
+      "lua54SyntaxChecks": 5,
+      "adjacentRegressionScripts": 2,
+      "adjacentRegressionChecks": 676,
+      "nativeManagedIconAndReuse": "pending",
+      "frameTimeImprovement": "unverified"
+    },
+    "keepalive": {
+      "revision": "R92",
+      "pid": 40108,
+      "intervalSeconds": 180,
+      "CueInstalledAndCalibrated": true,
+      "firstObservedStatus": "AssertionError('Activation request refused; no input')",
+      "movementAcknowledged": false
+    }
+  },
+  "settledConjuredMetadataReads": {
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": [
+      "Syndicator",
+      "Baganator"
+    ],
+    "sourceBefore": "d5091d33b295c24af3c6522e01c7f2b544ebbb9816f48267cbb8095a586fb4b2",
+    "sourceAfter": "12e0adc1ef872e9394007d4f600211601b9cc4eb88d4b4abf921258c725363d3",
+    "regressionAfter": "ec12df3c3ea1365e4b854e4f0e1763bec12d2af2ef364b05e620685ba9f99600",
+    "checkpoint": {
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "sources": [
+        {
+          "source": "Inventory/Restock/Junk/FluxJunk.lua",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\junk-conjured-cache-source-20261120T085108Z\\FluxJunk.lua.before",
+          "sha": "d5091d33b295c24af3c6522e01c7f2b544ebbb9816f48267cbb8095a586fb4b2"
+        },
+        {
+          "source": "tests/combat_consumable_junk.lua",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\junk-conjured-cache-source-20261120T085108Z\\combat_consumable_junk.lua.before",
+          "sha": "e74538cf9150577ba1c87bc9b5cdefbc1ed45ad7a98a9ea2dafd8c27979c75c4"
+        }
+      ],
+      "savedVariableFileCounts": {
+        "Retail": 2,
+        "Forever": 3,
+        "Classic": 2,
+        "Era": 4,
+        "Anniversary": 32
+      },
+      "scope": "File metadata only. Saved settings were not copied while the game was running."
+    },
+    "coldOpen": {
+      "run": 678,
+      "layouts": [
+        0,
+        9
+      ],
+      "coldOpenMs": 48.55,
+      "peakFrameIntervalMs": 67,
+      "filter": {
+        "calls": 1,
+        "ms": 34.367
+      },
+      "junk": {
+        "calls": 98,
+        "ms": 3.684
+      },
+      "protection": {
+        "calls": 1,
+        "ms": 1.784
+      },
+      "visibleViews": {
+        "calls": 2,
+        "ms": 0.615
+      },
+      "onFinished": {
+        "calls": 2,
+        "ms": 0.918
+      },
+      "otherTracedCallbackCalls": {
+        "sync": 0,
+        "sets": 0,
+        "junkConfig": 0,
+        "queue": 0,
+        "hooks": 0
+      },
+      "closedRestored": true,
+      "wrappersRestored": true,
+      "bagGenerationUnchanged": true,
+      "newLuaErrors": 0,
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag678_owner_result.png",
+      "imageSHA256": "d652f74d133e5d82f33fdb8b06c678f6d8fcd5c798275eedf03fb7660c0b2a08",
+      "probeSHA256": "9f79ed7aada05b1c385befbaec1f4e70ce2701637796cca9b1a6494b906b52f2"
+    },
+    "metadataAttribution": {
+      "run": 679,
+      "actualItemIDs": 41,
+      "passes": 8,
+      "junkVerdicts": 0,
+      "conjuredItems": 0,
+      "insideExemptionGetInfoCalls": 608,
+      "outsideExemptionGetInfoCalls": 584,
+      "metadataMissesInsideExemption": 0,
+      "insideExemptionWrappedMs": 0.577,
+      "verdictParity": true,
+      "bagGenerationUnchanged": true,
+      "newLuaErrors": 0,
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag679_metadata_result.png",
+      "imageSHA256": "3fd8ddb884e8f9c3a41f154cb90bc68dceefadb8f5590a9c0f4cd4d78b1bf54a",
+      "probeSHA256": "967efe7d91efc01d2ec54f11625c98250803a9fe61ccbec0bc1d588d9ebca2bf"
+    },
+    "validation": {
+      "matchingInstalledClients": 5,
+      "syntaxChecks": 6,
+      "scripts": {
+        "combat_consumable_junk": 1237,
+        "baganator_junk_detector": 410,
+        "visible_baganator_work": 266,
+        "vendor_junk_tab_work": 85
+      },
+      "baselineFocusedFailures": 3,
+      "preExistingSmokeFailure": "Inventory/Restock/Junk/_tmp_junksmoke.lua:314 fails identically with both source versions.",
+      "nativeAfter": "Forever R680/R681 loaded check passed for the sampled items."
+    },
+    "nativeLoaded": {
+      "reload": {
+        "run": 682,
+        "capture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-bag680_a-source.png",
+        "sha256": "a7284f0c990599666d07255864e33a24cd6d090dcd48a2ac81cbe29506b9619e",
+        "verifiedBy": "BugTabs fresh startup after the submitted /reload. The General.log preview did not contain a fresh reload entry."
+      },
+      "coldOpen": {
+        "run": 680,
+        "layouts": [
+          0,
+          9
+        ],
+        "coldOpenMs": 39.26,
+        "peakFrameIntervalMs": 57,
+        "filter": {
+          "calls": 1,
+          "ms": 29.883
+        },
+        "junk": {
+          "calls": 98,
+          "ms": 3.015
+        },
+        "protection": {
+          "calls": 1,
+          "ms": 1.318
+        },
+        "visibleViews": {
+          "calls": 2,
+          "ms": 0.519
+        },
+        "onFinished": {
+          "calls": 2,
+          "ms": 0.939
+        },
+        "closedRestored": true,
+        "wrappersRestored": true,
+        "bagGenerationUnchanged": true,
+        "newLuaErrors": 0,
+        "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-bag681_a-source.png",
+        "imageSHA256": "5c958309e1af9ca7e4a11363b7547d61f8ffd388f6cf73538e1b9dfaa673fd4d",
+        "probeSHA256": "9d16053ff0ea08fa0273716deadb2a5cc6f196556a8791b04fd27da06ab3886f"
+      },
+      "metadataReadback": {
+        "run": 681,
+        "actualItemIDs": 41,
+        "passes": 8,
+        "junkVerdicts": 0,
+        "conjuredItems": 0,
+        "insideExemptionGetInfoCalls": 0,
+        "outsideExemptionGetInfoCalls": 584,
+        "metadataMissesInsideExemption": 0,
+        "insideExemptionWrappedMs": 0.216,
+        "verdictParity": true,
+        "bagGenerationUnchanged": true,
+        "newLuaErrors": 0,
+        "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-jump99_junk_a-source.png",
+        "imageSHA256": "f2467619567df066be454fa8c631bf1d37aa781622ff0a943b94e465c604ab69",
+        "probeSHA256": "be8375a9b9e8de7387af821407f0962450a27448f94126e027258241a3c93d57"
+      },
+      "protectionAttribution": {
+        "run": 683,
+        "backpack": "warm category",
+        "measuredProtectedSlots": 0,
+        "buttonCount": 57,
+        "extraSlotResolutions": 9,
+        "refresh": {
+          "calls": 1,
+          "ms": 1.387
+        },
+        "visibleTraversalInclusive": {
+          "calls": 1,
+          "ms": 1.346
+        },
+        "slotResolution": {
+          "calls": 66,
+          "ms": 0.083
+        },
+        "shield": {
+          "calls": 57,
+          "ms": 0.098
+        },
+        "guard": {
+          "calls": 9,
+          "ms": 0.043
+        },
+        "hide": {
+          "calls": 57,
+          "ms": 0.024
+        },
+        "closedRestored": true,
+        "wrappersRestored": true,
+        "bagGenerationUnchanged": true,
+        "newLuaErrors": 0,
+        "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag683_protection_result.png",
+        "imageSHA256": "2f0954fb6559e12d8e027d6d560fa0cf5ea74ed29d009d69f0f08c8accf52e97",
+        "probeSHA256": "43a26d80ca7c326eb68f8d774131af946eb59e5520f42f2a69b5e46a991b4693",
+        "sourceSHA256": {
+          "protection": "dc98d6ee1648d974bacd06e9b4e84d2a0afc15f6310b7c5aa7b7089a59efcf37",
+          "views": "6833655beee31dea891f96d4c2a7dd9938643625e4bb50bc390c05612f7a7fa1"
+        }
+      },
+      "scope": "One cold sample per source. The category pipeline and frame interval include unrelated work and varied between runs. The before-and-after observers used matching probe structures and verdict counts. A positive junk or conjured verdict was unavailable in the actual carried sample. The protected-slot count was zero, so protection results describe the empty-lock profile only."
+    },
+    "scope": "Filter is inclusive of downstream work. Wrapped exemption timings include probe overhead. The metadata observer substituted the public exemption callback temporarily, so the inlined shared-settings fast path did not run in that arm. This establishes repeated reads in the real exemption callback, with verdict parity, and does not establish a frame-time or FPS gain."
+  },
+  "nativeFirstFoodCopyGridRoute": {
+    "run": "R684/R685",
+    "client": "Forever 1.60.1/70959/16001",
+    "providers": [
+      "Syndicator",
+      "Baganator"
+    ],
+    "spellID": 6129,
+    "itemID": 1487,
+    "itemName": "Conjured Pumpernickel",
+    "castStarts": 1,
+    "castSuccesses": 1,
+    "carriedFlux": [
+      0,
+      14
+    ],
+    "carriedNative": [
+      0,
+      14
+    ],
+    "moneyUnchanged": true,
+    "bagGenerationAdvanced": true,
+    "nativeBagUpdates": 2,
+    "nativeDelayedUpdates": 2,
+    "nonCombatFoodWaterBefore": "1645:20/4599:18",
+    "nonCombatFoodWaterAfter": "1487:14/1645:20",
+    "combatConsumableFacesUnchanged": true,
+    "flushChangedItemIDs": [
+      "receipt present",
+      "receipt absent"
+    ],
+    "timingsMs": {
+      "inventoryNotify": [
+        2,
+        1.135
+      ],
+      "diffSlots": [
+        2,
+        0.025
+      ],
+      "invalidateCraftCache": [
+        2,
+        0.005
+      ],
+      "consumableRecompute": [
+        3,
+        10.324
+      ],
+      "recipeCatalogue": [
+        6,
+        5.033
+      ],
+      "gridFlush": [
+        2,
+        0.369
+      ],
+      "nonCombatFoodWaterCount": [
+        2,
+        0.061
+      ],
+      "combatConsumableUsability": [
+        39,
+        3.72
+      ]
+    },
+    "largestObservedFrameIntervalMs": 35,
+    "newLuaErrors": 0,
+    "wrappersRestored": true,
+    "sourceSHA256": {
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "Inventory/Craft.lua": "60559e25f69fdbb5039733af772f486d00d0ca8b4a36158034fed121ac3b6a49",
+      "Inventory/Professions.lua": "358014c828dd2b9a046ac17e05ec7f2c8a75430b503da894b01dc6a28bed962f",
+      "Inventory/FluxConsumableBest/Scan.lua": "d422a9071df715f4c3fcae7f7403269b0b5c04203c8ac14a729a71c72c2f5196"
+    },
+    "probeSHA256": "aaa39b7bf31161c7f44e7a35ad5c38a0b67ea2954fcc1836a1bb47c79e562fb6",
+    "sourceCapture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-food685_a-source.png",
+    "sourceCaptureSHA256": "31f047b2d3826248af0183a7d0bd76159a30caa8de893b0815611afffedc73bb",
+    "resultCapture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/food685_receipt_result.png",
+    "resultCaptureSHA256": "5772a7df4e10e981fcb4bacd4d1d136e2bb215fecc8f6922b6579a76a77f5f60",
+    "scope": "Actual first-copy receipt from the authorized cast. Measurements cover the interval from the cast-start event through the receipt and two seconds of callbacks. Timings in different owners can overlap. The two grid flushes saw one matching and one unrelated changed-ID set; actual combat was outside this test. Unfiltered combat usability includes work triggered by cast edges as well as bag work. The nearby frame interval is not a direct FluxUI time.",
+    "next": "Attribute recipe reads to the native delayed-bag craft fallback versus the inventory publisher and Best. Preserve native live reagent recovery where Syndicator publishes late or omits the delta."
+  }
+}

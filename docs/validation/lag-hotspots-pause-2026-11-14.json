@@ -1,0 +1,116 @@
+{
+  "changeId": "LHO-PAUSE-20261114",
+  "capturedUtc": "2026-11-14T12:30:24.663734+00:00",
+  "state": "PAUSED AT USER REQUEST AFTER CONFIRMED RELOAD; no automatic continuation",
+  "userInstruction": "Pause completely, /reload before pausing, remember the reload and full exact work state; install temporary chat diagnostics only after the user says continue.",
+  "goalScope": "Keep the full casting/restock/AH/pending/crafting/vendor/bags/loot/receive/bank/mail/builtin/external-bridge/combat-and-noncombat-grid/all-five-client objective. This pause is not completion or scope reduction.",
+  "branch": "main",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "hooksPath": ".githooks",
+  "pauseCheckpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\pause-20261114T1226Z\\checkpoint-20261114T122748Z",
+    "sourceFiles": 2804,
+    "sourceArchiveAndAllRefHistoryVerified": true,
+    "settingsMetadataEntries": 125,
+    "privateSettingsCopied": false
+  },
+  "reload": {
+    "completed": true,
+    "submittedUtc": "2026-11-14T12:27:03.924119+00:00",
+    "returnedToWorldObservedUtc": "2026-11-14T12:27:20Z",
+    "pid": 40032,
+    "hwnd": 7995860,
+    "client": "Forever 1.60.1.70938; exact executable verified",
+    "proof": "Loading-screen capture, SavedVariables rewrite, then world and normal addon startup messages in same process/window.",
+    "commandOnly": "/reload",
+    "temporaryCodeAfterReload": false,
+    "resumeRule": "All prior temporary Lua globals/hooks/probes must be treated as cleared. Re-verify current window and profiler preferences and establish fresh baselines after continue; never compare old profiler counters across this reload boundary.",
+    "nativeInitDiskSHA256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+    "nativeSourceBytecodeCertified": false,
+    "screenshotsExternalOnly": {
+      "pause-reload-preflight.png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\native\\pause-reload-preflight.png",
+      "pause-reload-transition.png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\native\\pause-reload-transition.png",
+      "pause-reload-completed.png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\native\\pause-reload-completed.png"
+    }
+  },
+  "workers": "Commerce/provider workers are interrupted. Pending AH input-review child remains listed pending_init, not running; interrupt requested twice and explicit no-work-until-continue instruction queued. Host enumeration found no goal fanout-pass Python/Lua process. No test/profiling loop is left running by this goal.",
+  "appliedSinceLastWholeSuite": {
+    "Inventory/Init.lua": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+    "tests/notification_context_work.lua": "b1daa747f05fef9b00aea1f6a9c9473030a186a7c03be99a6d41e52f082a696d"
+  },
+  "appliedInitMeaning": "Skip only metadata sets immediately rebuilt by a merge; promote the already owned queued context. Callback contents/timing/native reads/cadence/force/recovery/nil ownership and frame budgets retained.",
+  "appliedInitEvidence": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\fanout-pass\\providers\\handoff.json",
+    "sha256": "f6eb85ac483bb1ab78332f56035fe328651bcef2c743685ef3797d7ad3547225",
+    "matchedPairs": 3,
+    "producerReplayChecksPerPair": 1001,
+    "contextChecks": 42,
+    "harmfulControlsRejected": 8,
+    "installedFocusedScriptsPass": 7,
+    "metadataCopiesControlled": [
+      1888,
+      640
+    ],
+    "metadataKeyVisitsControlled": [
+      76464,
+      25920
+    ],
+    "nativeFPSClaim": false
+  },
+  "currentValidationBoundary": {
+    "lastWholeSuite": "379 scripts/1067 syntax PASS from previous continuation; historical for the current tree.",
+    "currentNormalizedLuaFiles": 1068,
+    "deltaFromWholeSuite": {
+      "changed": [
+        "Binding/Input/FluxMouseoverKeybind.lua",
+        "Blizzard/Hide.lua",
+        "Core/_tmp_buffdebuffsmoke.lua",
+        "Inventory/Init.lua",
+        "tests/native_mouse_suppression.lua",
+        "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua"
+      ],
+      "added": [
+        "tests/notification_context_work.lua"
+      ],
+      "deleted": []
+    },
+    "concurrentChanges": "Five other changed Lua paths in the delta belong to newer native mouse/ghost-hover work. Preserve them; do not attribute them to this optimization or roll them back.",
+    "next": "Current whole-suite integration, generated references, docs validation and final client/source guards must run after resumption and when current owners are stable. No extra tests were started after pause."
+  },
+  "crafting": {
+    "mainUntouched": true,
+    "mainSHA256": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+    "baseline": "3960 checks/90 scenarios; baseline and both prototypes have the same ordinary full scalar trace366699bytes SHA42e818ccbf4bf1536101bc9558b7f4c8c93b91264da0ada1e5092d819325d5c8. Ordinary trace parity did not establish public-seam correctness.",
+    "lazyPrototype": "External prototype/Inventory/Craft.lua SHA70344d46... REJECTED: cold GetRecipeLive and warm Score.GetMaxStack can install a public count helper mid-call; sorting affordability after metadata changes selection/interleaving.",
+    "memoPrototype": "External memo-prototype/Inventory/Craft.lua SHAfb2c8b6d... UNACCEPTABLE CURRENTLY: only outer Inv helpers are guarded. Actual delegated Index.GetLiveCount, Index.GetCount and Flux.Item.GetCount overrides produce wrong selection; inspect Index.GetSnapshotGeneration and Inv.HasWarband too.",
+    "latestNextIdeaNotImplemented": "Consider eliminating private raw recipe/effective wrapper allocations while preserving every original query, count/metadata order and public seam, or prove complete memo reader/metadata ownership first. No new variant was written or approved before pause.",
+    "doNotApply": "Do not copy either external Craft prototype into addon Lua; no Craft or Score runtime edit is authorized from current evidence."
+  },
+  "accountSummary": {
+    "mainUntouched": true,
+    "baseline": "3 repeated account baselines; demand-only summaries, not full-account work on each bag event. Missing/current-only50 tooltip queries over100 chars make5000 GetCharacter/5200 EnsureDB/Restore calls with0 slot scans.",
+    "v1": "External Store/Summaries selective-miss prototype rejected for non-plain character record.details and nested Sync.Restore override provenance gaps. No main source edits.",
+    "v2": "Agent was preparing (not sealed) raw mapped-record shape proof plus owned Sync.Restore predicate. Proposed owners Store.lua/Summaries.lua/Sync.lua; inspect actual external files before continuing; no v2 apply approval."
+  },
+  "pendingBankMail": "Actual-source cold closed-bank loss and stale-mail producer races remain unresolved. Native empty mailbox does not settle populated/cold mail latency. User requested in-game measurement before exceptional delay. Native bank readiness/count-only provenance and provider-off persistence proof still required.",
+  "resumeOrder": [
+    "Resume only after the user explicitly says continue. Read this record, NEXT_SESSION, STATUS, DECISIONS, WORK_LOG, requirements and current repository rules.",
+    "Inspect current HEAD/worktree and compare pause manifests before relying on any prototype; preserve newer user/publication/ghost-hover changes. Work on main only.",
+    "Retain applied Init69ee82e... and its new focused test. Current whole-suite/reference/ledger integration is still pending after this slice.",
+    "Reopen account v2 and crafting rejected-prototype reviews from their external exact artifacts; complete causal baseline/proof/independent review before any further runtime edit.",
+    "For optional native work, first verify exact current client/window and preferences. The client WAS reloaded12:27UTC14Nov. Install temporary chat diagnostic code only now, if needed, preserving prior diagnostic roots/preferences. Do not assume old probes exist.",
+    "Keep normal native testing background-only; prior foreground exceptions covered only the specific food cast test and this requested reload. No buys/sales/deletion. Moving items allowed. External Syndicator41 files remain read-only.",
+    "Complete current integration/full checks and continuity/client/parity/performance records after source owners freeze; distinguish native observations from synthetic counts."
+  ],
+  "artifactManifestExternal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\pause-20261114T1226Z\\unfinished-artifacts.json",
+  "actions": {
+    "pauseRequestedByUser": true,
+    "newRuntimeEditsDuringPausePreparation": false,
+    "publication": false,
+    "manualSync": false,
+    "temporaryChatCodeInstalled": false,
+    "nativeItemsOrMailChangedByReloadHelper": false,
+    "foregroundActivation": false,
+    "profilerPreferenceWrites": false
+  }
+}

@@ -1,0 +1,2002 @@
+{
+  "changeId": "INDEXED-NEIGHBORS-R82-20261119",
+  "borderVersion": "indexed-neighbors-r82",
+  "capturedAtUTC": "2026-11-19T07:37:48.443798+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Keep regional border work confined to affected HUD contacts, including transitions while an action is held, and review group join or leave hitches.",
+  "changes": [
+    "Reuse the dirty tile index during selection of neighboring source groups before solve.",
+    "Use the original strict, padded overlap at candidate tiles and include complete selected groups in input order.",
+    "Keep cast scopes independent of HUD tiles and preserve the deferred combat layout path."
+  ],
+  "source": {
+    "path": "Core/BorderJunctions.lua",
+    "beforeRawSHA256": "fe5a9565b89a9636b0038df7c87ad0f4ba3e5686cbc50807aee6ff17c4b36889",
+    "afterRawSHA256": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+    "testRawSHA256": "fb34e0d1afe0d2eedf2dc17a5555d8c87d6a070464009364d039b5d1a24e0817"
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\indexed-neighbors-r82-before-20261119T073153Z\\source.zip",
+    "archiveSHA256": "d4df5ab7bf3a5a41455dcd617902bb68a29a14c6994bbaa99945fda3a490c34c",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "oracle": {
+    "rows": [
+      "REGION_ROUTE after query=272 rect=144 owners=4 outputFields=144",
+      "REGION_ROUTE retainedGroupMetadataReads=0/0",
+      "REGION_ROUTE tileClipPlanes=40/40",
+      "REGION_SCOPE intersectionChecks=272/272",
+      "REGION_NEIGHBORS sourceSegments=692 overlapChecks=44374/128",
+      "REGION_ROUTE before query=272 rect=144 owners=4 outputFields=144",
+      "REGION_ROUTE sample=1 before=1.110ms after=1.080ms",
+      "REGION_ROUTE sample=2 before=0.850ms after=1.090ms",
+      "REGION_ROUTE sample=3 before=0.900ms after=0.950ms",
+      "REGION_ROUTE sample=4 before=0.910ms after=0.860ms",
+      "REGION_ROUTE sample=5 before=0.900ms after=0.920ms",
+      "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS"
+    ],
+    "sourceSegments": 692,
+    "overlapChecks": [
+      44374,
+      128
+    ],
+    "scope": "Mixed long, negative-coordinate, fractional-scale and exact boundary sources, with separate cast planes."
+  },
+  "rendererReplay": {
+    "workSamples": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "haloChecks": 296.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "haloChecks": 9.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "haloChecks": 36.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "haloChecks": 8.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      }
+    ],
+    "timingSamples": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 24.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 27.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 20.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 19.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 28.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 19.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 37.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 30.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 34.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 27.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 19.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 19.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 20.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 29.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 21.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 22.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 22.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 21.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 44.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 24.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 20.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 17.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 35.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 15.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 18.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 20.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 16.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 21.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 37.0,
+          "regions": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 37.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 19.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 9.0000000000001,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 9.0000000000001,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 20.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 9.9999999999998,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 15.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 23.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 18.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 25.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 19.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 10.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 20.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 8.9999999999999,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 15.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 24.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 9.9999999999998,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 13.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 12.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 11.0,
+          "regions": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 14.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 16.0,
+          "regions": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      }
+    ],
+    "wholeRebuildMs": {
+      "strip": {
+        "1": {
+          "before": {
+            "median": 16.5,
+            "min": 13.0,
+            "max": 30.0
+          },
+          "after": {
+            "median": 16.5,
+            "min": 12.0,
+            "max": 37.0
+          }
+        },
+        "2": {
+          "before": {
+            "median": 17.5,
+            "min": 13.0,
+            "max": 44.0
+          },
+          "after": {
+            "median": 18.0,
+            "min": 13.0,
+            "max": 37.0
+          }
+        }
+      },
+      "dock": {
+        "1": {
+          "before": {
+            "median": 11.0,
+            "min": 8.0,
+            "max": 23.0
+          },
+          "after": {
+            "median": 12.0,
+            "min": 8.0,
+            "max": 37.0
+          }
+        },
+        "2": {
+          "before": {
+            "median": 12.0,
+            "min": 8.0,
+            "max": 25.0
+          },
+          "after": {
+            "median": 11.0,
+            "min": 8.0,
+            "max": 19.0
+          }
+        }
+      }
+    },
+    "scope": "Actual source with modeled native widgets in both styles. Strip and synthetic dock geometry. Work and sampled output parity passed. Whole rebuild timing varied."
+  },
+  "isolatedNeighborSearch": {
+    "queryMs": {
+      "before": {
+        "median": 1.9125,
+        "min": 1.78333,
+        "max": 4.09167
+      },
+      "after": {
+        "median": 0.820835,
+        "min": 0.75,
+        "max": 1.65833
+      }
+    },
+    "rows": [
+      [
+        1.0,
+        1.78333,
+        0.75833,
+        23640.0
+      ],
+      [
+        2.0,
+        1.86667,
+        0.75,
+        23640.0
+      ],
+      [
+        3.0,
+        1.84167,
+        0.81667,
+        23640.0
+      ],
+      [
+        4.0,
+        1.84167,
+        0.78333,
+        23640.0
+      ],
+      [
+        5.0,
+        1.91667,
+        0.825,
+        23640.0
+      ],
+      [
+        6.0,
+        1.93333,
+        0.81667,
+        23640.0
+      ],
+      [
+        7.0,
+        2.125,
+        0.84167,
+        23640.0
+      ],
+      [
+        8.0,
+        1.90833,
+        0.85,
+        23640.0
+      ],
+      [
+        9.0,
+        1.84167,
+        0.79167,
+        23640.0
+      ],
+      [
+        10.0,
+        3.88333,
+        1.06667,
+        23640.0
+      ],
+      [
+        11.0,
+        3.98333,
+        1.64167,
+        23640.0
+      ],
+      [
+        12.0,
+        4.09167,
+        1.65833,
+        23640.0
+      ]
+    ],
+    "scope": "12 alternating pairs of 120 Lua calls per sample including copied output, without instrumentation. No native widget or frame latency claim."
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "maxUpvaluesConservative": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\indexed-neighbors-r82-before-20261119T073153Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\indexed-neighbors-r82-before-20261119T073153Z\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\indexed-neighbors-r82-before-20261119T073153Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "raw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "raw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "raw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "raw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "raw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending. No gameplay, protected state or profiler changes performed."
+}

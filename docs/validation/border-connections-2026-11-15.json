@@ -1,0 +1,2241 @@
+{
+  "changeId": "CONNECTED-BORDERS-V2-20261115",
+  "dateUTC": "2026-11-16T16:18:27.435198+00:00",
+  "requirements": "docs/CONNECTED_BORDERS.md CB01-36",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-resume-before-20261115T144516Z",
+  "sourceHistoryVerified": true,
+  "availableSettingsMetadata": 10,
+  "privateSettingsCopied": true,
+  "sourcePins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "sourceAPI": {
+    "SimpleTextureBase": "GetTexCoord eight corner coordinates; SetVertexOffset declared at all five pins; public arguments only; forbidden/private visual values retain native rendering",
+    "vertexConstants": "1 UL /2 LL /3 UR /4 LR in Retail/Forever FrameXMLBase/Constants; capability declarations on Classic/Era/Anniversary; native GPU checks remain pending",
+    "coordinates": "Pinned SimpleScriptRegion GetRect UI units; subtract screen origin before effective-scale conversion.",
+    "sampling": "Pinned Forever NineSliceUtil.DisableSharpening: bias0 and pixel snappingfalse; guarded capabilities; no protected rounding settings touched.",
+    "nativeAlpha": "User Forever probe: hidden texture SetAlpha(0), SetVertexColor(1,1,1,1), GetAlpha() returned1. Pinned SimpleRegion declarations associate SetVertexColor/GetVertexColor with Alpha aspect. Client operational evidence supersedes incorrect independent-alpha mock.",
+    "anchors": "Pinned SimpleScriptRegionResizing GetNumPoints/GetPoint; public count capped32 and public ScriptRegion references only; object/named/set-all-point arguments observed; private references skipped; initial/cyclic graph guards. Node18 query runner blocked by host access; exact local pinned generated declarations read instead.",
+    "approvedNativeAlpha": "Pinned Forever bebcb6bf SimpleRegionAPIDocumentation SetAlpha: SecretArguments AllowedWhenTainted; SecretArgumentsAddAspect Alpha. Verified raw commit source. SetVertexColor also allows secret arguments, but new path keeps RGB public and passes opaque scalar only to SetAlpha. No Lua comparison, arithmetic, formatting, boolean test or data-dependent geometry on opaque alpha; no broad native taint certification.",
+    "approvedNativeAlphaURL": "https://raw.githubusercontent.com/Gethe/wow-ui-source/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleRegionAPIDocumentation.lua",
+    "hiddenBounds": "Pinned SimpleScriptRegion getters plus SimpleScriptRegionResizing GetPoint/GetNumPoints. GetPoint may return nothing or restricted anchoring values; every value guarded before indexing/arithmetic. Getter permissions are separate from protected SetPoint/SetSize. Resolve existing public anchors only; never reconstruct restricted geometry. GetSize(ignoreRect=true) supplies intrinsic dimensions; documented SecretWhenAnchoringSecret values are guarded. No setters are used by the fallback.",
+    "hiddenBoundsURL": "https://raw.githubusercontent.com/Gethe/wow-ui-source/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionResizingAPIDocumentation.lua",
+    "intrinsicSizeEvidence": "GetSize(ignoreRect bool=false) verified in pinned Retail, Forever, Classic progression, Era and Anniversary generated SimpleScriptRegion declarations. Initial web Classic fetch unavailable; Github connector fetched actual pinned content successfully; no unsupported-client conclusion from web cache miss.",
+    "intrinsicSizeSourceFiles": {
+      "classic": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-api-classic-e5d9b3a22c3f0f6f41ebac0e454f4969594261cf-SimpleScriptRegion.lua",
+      "era": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-api-era-4192ac60067fc55566182291bc67c85dd9b6794d-SimpleScriptRegion.lua",
+      "anniversary": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-api-anniversary-68e0a2ec559d9761dfc4e7f864c3944f9d758a49-SimpleScriptRegion.lua"
+    },
+    "castClipAndCombatLayers": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-frame-contracts-pinned.json",
+      "finding": "SimpleFrame.SetClipsChildren and protected SetFrameLevel verified at all five exact existing source pins. Fill clip and child artwork host configured outside combat with capability guards. Portrait combat tint no longer calls a layer setter; native operation/taint acceptance remains separate."
+    },
+    "regenCallbackOrigins": "Guarded bounded debugstack once per callback registration for both combat events and Scheduler listeners; weak-key source strings only, no gameplay dispatch stacks or event payload inspection. Optional named/light/heavy Combat observer joins existing finite watch with token cleanup; no clock reads while unobserved."
+  },
+  "fixedWeights": {
+    "1": 100,
+    "2": 150
+  },
+  "type1Canonical": "Battlefield100 preserves every RGBA pixel inside the eight original cells; only filtering gutters added. Removes runtime atlas-copy ambiguity.",
+  "junctionWindow": {
+    "pixels": 32,
+    "atlas": [
+      512,
+      256
+    ],
+    "cell": 64,
+    "newFilenamesAvoidStaleCaches": true,
+    "incomingBranchAlignment": "No UV shearing; perpendicular clipping; longitudinal endpoint partition/clamp",
+    "weld": "Overlapping border bands; priority paint owner; deterministic node center",
+    "runtimeArt": "Original registered source texture/affine UV fields; wide atlases historical and not loaded",
+    "sharedOwnership": "Local spatial all-neighbour comparison; interval ownership boundary splitting; acyclic deterministic paint priority",
+    "actionStripAuthority": "Top edge of actual FluxActionStrip beats overlapping unit bottoms; seam pieces parent to strip",
+    "castScope": "Own icon/shell connection plane; no lower unit/class separators imported"
+  },
+  "runtimeSourceNormalizedSHA256": {
+    "FluxBorder.lua": "09cb22e920e594960a9cb34cabfb3432c7039d6469639ed51c0292101a252f9e",
+    "Core/BorderJunctions.lua": "4510d727e0645fd6e6b2b3a394318b567cc182405bedcb0c2ea06a36df657e94",
+    "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5",
+    "AddonOptions/FluxOptionsAppearance.lua": "4e94cec6c1abf9723a876f97651a91051a11bafd852a390510850f363bfb3398",
+    "AddonOptions/FluxOptionsGeneral.lua": "d8c03c039b5ec209e978ef496d013d305bf22c998c6ef2cafee86ed4a24837eb",
+    "AddonOptions/FluxOptionsDefaults.lua": "6d7894bca8239c109b67ae400d49e6c8be6e93f2536a2d95d8f9330a0998ff15",
+    "AddonOptions/FluxOptionsWidgets.lua": "3aa27fd77435cf632d1849cef195d970e56721065101d3a2fb361e06aeaee7dc",
+    "ExtraButtonSystem/Engine/Style.lua": "12bbd86dfdffcd6c112bc6a6a114bd5c79e08edf1ea90465e6ac08311e0a71ab",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "e96128c748e4a18f2d01d892d652177de0671dc5bf181eaebbaa9c85481e4af7",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "0e97f78bcf3758e7f3adb3e1ee50004066d22a082e7cec313feeec9713ace6f2",
+    "UnitFrames/FluxCastBar.lua": "70e05f014fe0eb973289bb75455956d7a43441974c69ab0a1bf2621f78f73d40",
+    "StatusBars/FluxStatusBar.lua": "27dc9858dfef98c21f273b38b6b3f910c3bd267dc5fe7c135bf210582957225b",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "d5d411e4676c9db3bf785de296c3b7e59cf5e5a7a432db2669641103e1941c2a",
+    "Core/FluxAPI/UI.lua": "56d9c6b6fe5c28f18970c8dd6e5b7413962785af9b909a0c41903f83cf970345",
+    "Bars/Strip.lua": "fb761a41a0eab6f3aa4cfd5df669b9b7415f19d105e12152f26ab646c20c3dc2",
+    "Bars/Stance/Init.lua": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+    "Bars/Pet/Layout.lua": "3533c21a0e9bb1f9a56316c19bfe47b26b92b0e3469915cd4ab3e5557f9a8342",
+    "MicroMenu/FluxMicroMenu.lua": "5fc29b46a6ff64bfef85bf22a7f3d967e1034be325e22090541ddabb682f83f9",
+    "Minimap/FluxMinimapButtons.lua": "e331285db772169b2fd984990c02f54f2029d807b7e92ea1e36ca3db2675066c",
+    "UnitFrames/FluxUnitFrames_Party.lua": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558",
+    "UnitFrames/FluxUnitFrames_Target.lua": "af87b4caf7e60e751da2e0921ce514ca384ddbf13588c95122043610725a4ed3",
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": "bfcf22542b4234f8721bb52a0166716e6c70f8992275d34f75cc777b9c2cdf2f",
+    "Minimap/FluxMinimap.lua": "7d792e6a9b1d6c1a5e85c9e3cf3a805268fcdaca150dbf3c4b3f2427aeeefeae",
+    "Battlezonemap/FluxWindowFrame.lua": "20339070ad0a324d6937e6b83daf65af555778c5fa5e7a7c4bd0c64f39ffce15",
+    "StatusBars/FluxInfoFrame.lua": "a48788c81e801ee1771f3d4597591885f33b56166a06fdb91c2300c5ed923477",
+    "ExtraButtonSystem/CombatGrid/Grid.lua": "5b06b4f65545f08c455f2a828d5d85509a7c73b707c6596d9a532274b89510bd",
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": "c77a19abbe02794c95b644c0ab83dfc8906f77910c59e50a39700fe2cc385676",
+    "Bars/Layout.lua": "e37c02284013186ddb5318cae4ad3e0186d92f1fbbbd99da8a6563ec9e175aca",
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4",
+    "Bars/Stance/Layout.lua": "26f77bb689bca4753afe0583abd484112f24a2e1bd7112d619a51c3d94b52379",
+    "UnitFrames/FluxSwingTimer.lua": "ada9a8e87a084e23d508e1dbf84076e3362e7c318a6407ac52c5ec7b4155d46c",
+    "UnitFrames/FluxCastBarThemes.lua": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": "4f48ab1346008a65be60b7819f2d59525b2d12ca8330affff7681d3b2727c571",
+    "Core/Engine/Events.lua": "7e153fb502f826e5811fec0d4eefee6aa569a2a6289cb322b04e974e2d11faa2",
+    "Other/FluxPerfCapture.lua": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+    "Core/Engine/Combat.lua": "315bc0a990aaf8206b162124970724bdc4ab048351d24bff06ec335e679d36e3",
+    "Core/Engine/Scheduler.lua": "e63870668c8bbf95c27b8cf0d2d8399c6ce1f4b556fa09a6b2dd9937f779a095",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "21ec16d37097dc24ae2108f1d6570770ec6182c76724c5ca98f67f8a54ea5e56",
+    "ExtraButtonSystem/Engine/Action.lua": "93606dc5d296813842daf1b2a9a1e30370461cd3be9141d59bc7886319e7f1b2"
+  },
+  "nativeExistingSyncMatches": {
+    "FluxBorder.lua": true,
+    "Core/BorderJunctions.lua": true,
+    "_FluxUI.toc": true,
+    "AddonOptions/FluxOptionsAppearance.lua": true,
+    "AddonOptions/FluxOptionsGeneral.lua": true,
+    "AddonOptions/FluxOptionsDefaults.lua": true,
+    "AddonOptions/FluxOptionsWidgets.lua": true,
+    "ExtraButtonSystem/Engine/Style.lua": true,
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": true,
+    "UnitFrames/FluxUnitFrames_Shared.lua": true,
+    "UnitFrames/FluxCastBar.lua": true,
+    "StatusBars/FluxStatusBar.lua": true,
+    "UnitFrames/FluxUnitFrames_Auras.lua": true,
+    "Core/FluxAPI/UI.lua": true,
+    "Bars/Strip.lua": true,
+    "Bars/Stance/Init.lua": true,
+    "Bars/Pet/Layout.lua": true,
+    "MicroMenu/FluxMicroMenu.lua": true,
+    "Minimap/FluxMinimapButtons.lua": true,
+    "UnitFrames/FluxUnitFrames_Party.lua": true,
+    "UnitFrames/FluxUnitFrames_Target.lua": true,
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": true,
+    "Minimap/FluxMinimap.lua": true,
+    "Battlezonemap/FluxWindowFrame.lua": true,
+    "StatusBars/FluxInfoFrame.lua": true,
+    "ExtraButtonSystem/CombatGrid/Grid.lua": true,
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": true,
+    "Bars/Layout.lua": true,
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": true,
+    "Bars/Stance/Layout.lua": true,
+    "UnitFrames/FluxSwingTimer.lua": true,
+    "UnitFrames/FluxCastBarThemes.lua": true,
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": true,
+    "Core/Engine/Events.lua": true,
+    "Other/FluxPerfCapture.lua": true,
+    "Texture/borders/Battlefield100.tga": true,
+    "Texture/borders/ForeverMetal150.tga": true,
+    "Texture/borders/ForeverMetal150Tint.tga": true,
+    "Texture/borders/Preview1.tga": true,
+    "Texture/borders/Preview2.tga": true,
+    "Texture/borders/Preview2Tint.tga": true,
+    "Texture/borders/JunctionWide1.tga": true,
+    "Texture/borders/JunctionWide2.tga": true,
+    "Texture/borders/JunctionWide2Tint.tga": true
+  },
+  "manualInstallationCopies": false,
+  "barsCheckpointFiles": 34,
+  "barsChangesSinceCheckpoint": [
+    "Bars/BadgeHost.lua",
+    "Bars/Clicks.lua",
+    "Bars/Init.lua",
+    "Bars/State.lua",
+    "Bars/_tmp_barsmoke.lua"
+  ],
+  "nativeFeedback": [
+    {
+      "finding": "frequent flicker",
+      "acceptance": "FAIL initial candidate; no-op/atomic/startup regression added; latest native retest pending"
+    },
+    {
+      "finding": "type1 corruption and T/X fit off; three user screenshots",
+      "acceptance": "FAIL prior candidate; canonical100 and wide/per-branch profiles implemented; latest native retest pending"
+    },
+    {
+      "version": "canonical-wide32-r1",
+      "finding": "433pieces/nativeAtlas0; passes22/solves4/unchanged18; still detached/misplaced",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "canonical-wide32-r2",
+      "finding": "Placement correct; seams wrong",
+      "acceptance": "Placement PASS; visual seam FAIL"
+    },
+    {
+      "version": "source-profile-r3/r4",
+      "finding": "Improved but bent near T/X and flickered",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "static-profile-r5",
+      "finding": "Straight and stable now per user",
+      "acceptance": "PASS only reported straightness/stability"
+    },
+    {
+      "version": "shared-edges-r6/independent-units-r7",
+      "finding": "Remaining overlaps/attachments; mainly no-target; separate units must not join",
+      "acceptance": "FAIL shared-edge appearance"
+    },
+    {
+      "version": "placeholder-cast-r8",
+      "finding": "type2 edges95 unmatched16; grid/menu80.89/82.54 gap1.66; exact unit outer/base duplicate rows; delayed hue/performance complaint",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "neighbor-match-r9",
+      "finding": "type2 pieces821/nativeAtlas0; passes37 solves4 unchanged33; operations116 fragments93 triangles676 geometryReads11 fastSkips26; fallbacknil dirtyfalse queuedfalse; edges73 unmatched0 limitedfalse",
+      "acceptance": "Audit PASS; user says performance normal; target/unit-bottom and cast pixels still FAIL"
+    },
+    {
+      "version": "strip-owner-r10",
+      "finding": "User says all looks right except target; later reports 3D portrait over seam and residual strip edges",
+      "acceptance": "Reported strip/cast improvement PASS; target and remaining seam appearance FAIL"
+    },
+    {
+      "version": "target-shell-r11",
+      "finding": "Target still wrong; logical census baseRight/atlasTop/outer8/portrait8; ToT base8/atlas8/outer8; threat/castnone. Hidden native texture alpha probe returned1 after SetAlpha0 then RGBA1.",
+      "acceptance": "Target appearance FAIL; native unified-alpha semantics CONFIRMED"
+    },
+    {
+      "version": "native-alpha-r12",
+      "finding": "Suppression after every recolor; cached author RGBA for rebuilds; normal portrait visibility gate; isolated mini-unit cleanup.",
+      "acceptance": "Native rendering PENDING"
+    },
+    {
+      "version": "native-alpha-r12",
+      "finding": "User says target still has extra outlines",
+      "acceptance": "FAIL target appearance"
+    },
+    {
+      "version": "dynamic-anchors-r13",
+      "finding": "829pieces;60passes/5solves/55unchanged;81ops/76fragments/520triangles;19reads/41fastSkips;fallbacknil/dirtyfalse/queuedfalse. Portrait now hidden; logical ToT3full sets.",
+      "acceptance": "Loaded/census confirmed; target appearance FAIL"
+    },
+    {
+      "version": "dynamic-shell-r14",
+      "finding": "Some borders stay stale; user identifies action strip. Unwanted main-target outlines; screenshot shows teal cover over bars/portrait.",
+      "acceptance": "FAIL dynamic strip and main target"
+    },
+    {
+      "version": "layout-paint-r15",
+      "finding": "User says closer but still wrong; latest screenshot contents visible with residual line stubs.",
+      "acceptance": "Improved; main-target appearance still FAIL"
+    },
+    {
+      "version": "bounded-dividers-r16",
+      "finding": "User says target-of-target and outer outlines still wrong",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "shared-target-r17",
+      "finding": "Target/ToT use original shared geometry/owners; target-only host/masks removed. Coincident corners deduplicate with edges.",
+      "acceptance": "FAIL: user says target/ToT completely wrong; wants fully same as player/focus"
+    },
+    {
+      "version": "shared-material-r18",
+      "finding": "Shared material implemented; user says nothing at all changed",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "panel-contact-r19",
+      "finding": "User: some nearby joins still look wrong; some self-target/ToT shapes still differ",
+      "acceptance": "FAIL"
+    },
+    {
+      "version": "cap-safe-r20",
+      "finding": "Reproduced unrelated cap erasure and straight branch overpainting fixed; alpha-hidden nearby panel excluded",
+      "acceptance": "Native comparison PENDING"
+    },
+    {
+      "version": "cap-safe-r20",
+      "dateUserLocal": "2026-11-16",
+      "timezone": "Europe/Copenhagen",
+      "finding": "User answered Shapes now match after requested reload/self-target comparison of target/ToT outer corners and nearby T/X with player/focus in both border types",
+      "acceptance": "PASS only that reported native visual scope; nearby strip/TrinketMenu/FluxWindow attachment/detachment remains pending"
+    },
+    {
+      "version": "hud-contact-r21",
+      "dateUserLocal": "2026-11-16",
+      "finding": "User confirms nearby right-hand T and both sides of strip/grids/Info look right in both styles",
+      "acceptance": "Scoped native PASS"
+    },
+    {
+      "version": "bounded-arms-r22",
+      "finding": "About10s unchanged HUD: passes1242→1400;solves320→365;unchanged922→1035;reads320→365;fastSkips922→1035;alignments963→1098; no fallback/dirty/queue",
+      "acceptance": "FAIL native static work; no FPS measurement"
+    },
+    {
+      "version": "static-hud-r23",
+      "finding": "First66passes/6solves/18reads/48fastSkips/6alignments; later400passes/9solves/70reads/330fastSkips/6alignments; interval unspecified. NPC backdrop and aura gaps still wrong per user",
+      "acceptance": "Alignment growth stopped in supplied samples; overall visuals/static/FPS NOT accepted"
+    },
+    {
+      "version": "static-transitions-r24",
+      "finding": "Fix delayed global invalidation; NPC UI fill; aura box/tracks; high-side HUD contacts; immediate transitions; strip/content-2UIunits",
+      "acceptance": "Native PENDING"
+    },
+    {
+      "version": "static-transitions-r24",
+      "finding": "10s idle delta solves0/alignments0/geometryReads0/checks60/fullRequests0; remaining top-middle aura T gap",
+      "acceptance": "Scoped static idle PASS; visual gap FAIL; no FPS measurement"
+    },
+    {
+      "version": "unit-contours-r25",
+      "finding": "10s idle delta solves0/alignments0/geometryReads0/checks62/fullRequests0; top-middle aura T remains",
+      "acceptance": "Scoped static idle PASS; aura top-middle FAIL; rounded-corner acceptance not separately confirmed"
+    },
+    {
+      "version": "aura-layer-r26",
+      "finding": "Selected target top tracks226.380; middle tracks853.724/855.599; bits11/triangles19/level1/alpha0.40000003576279; top gap remains",
+      "acceptance": "FAIL native gap; layer hypothesis unconfirmed"
+    },
+    {
+      "version": "aura-crest-r27",
+      "finding": "User specifies horizontal top-line gap. No-target cached runs empty; repeats selected with top tracks226.380 and middle853.724/855.599; bits11/triangles28/level1/alpha0.40000003576279",
+      "acceptance": "FAIL native horizontal gap; exact model crest passes; current close-up needed"
+    },
+    {
+      "version": "interval-hud-r28",
+      "finding": "User: works now mostly; only remaining named issue Aura top-middle T. New target and focus screenshots show short missing horizontal span right of center.",
+      "acceptance": "Scoped improvement; aura gap FAIL; no exhaustive group/combat/FPS acceptance"
+    },
+    {
+      "version": "finite-sampling-r29",
+      "finding": "User: gap fixed for very short when target, then gap again shortly after; wants static after load, including target/clear and focus/clear.",
+      "acceptance": "FAIL settled aura gap; renewed static unit-visibility requirement"
+    },
+    {
+      "version": "retained-units-r30",
+      "finding": "Rectangular aura source fields render as native quads; retained hidden-unit footprints and source-parent visibility; UV restored on material forwarding. User confirms It stays complete;10s unit transitions give solves4/alignments0/reads4/checks49/fullRequests0.",
+      "acceptance": "PASS aura stays complete after settling and target/focus clear-return; static transition counter FAIL:4solves/4reads"
+    },
+    {
+      "version": "resource-hold-r31",
+      "finding": "Real UpdatePower formerly zeroed separator alpha and changed the layout fact when a watched unit disappeared. Hold prior alpha/public fact for a publicly absent unit; present resource-less and opaque native sinks preserved.",
+      "acceptance": "Native transition counters PENDING; pixel fix retained"
+    },
+    {
+      "version": "resource-hold-r31",
+      "finding": "Target/clear10s solves0/alignments0/reads1/checks90/fullRequests0. Focus/clear10s solves10/alignments0/reads78/checks96/fullRequests506 and lots of lag.",
+      "acceptance": "Target solve count PASS scoped; focus static/performance FAIL"
+    },
+    {
+      "version": "private-paint-r32",
+      "finding": "Focus10s solves20/alignments0/reads21/checks95/fullRequests0/privateAlpha574/privateColor0; lots of lag.",
+      "acceptance": "FAIL focus; confirms frequent native private alpha; no private RGB writes in sample"
+    },
+    {
+      "version": "native-alpha-r33",
+      "finding": "Focus10s solves17/alignments0/reads17/checks88/fullRequests0/privateAlpha782/privateColor0; user says class-colored player units also lag with target/clear.",
+      "acceptance": "FAIL native performance; native Alpha sink accepted by pinned API but remaining geometry/material trigger unknown"
+    },
+    {
+      "version": "dirty-trace-r34",
+      "finding": "Exact cached read reasons identify unit edge own opacity/shown plus initial geometry availability changes; see nativeDirtyTraceR34",
+      "acceptance": "Diagnosis obtained; R35 native acceptance pending"
+    },
+    {
+      "version": "static-pieces-r35",
+      "finding": "Focus1solve/1read/114checks/901privateAlpha; target0solves/0reads/110checks. Both0alignments/fullRequests. Focus lag not stated; cached why requested.",
+      "acceptance": "Target transition counters PASS; focus one rebuild still open"
+    },
+    {
+      "version": "static-pieces-r35",
+      "finding": "Second native sample0solves/reads/alignments/fullRequests,110checks. User says both focus/target need attention but looks much better. Why cache: read4 target outer.Left availability,read5 focus outer.Left availability; read6/7 full invalidation and unnamed parent changes.",
+      "acceptance": "Latest zero-work sample scoped PASS; initial hidden geometry availability still open. No separate focus lag answer."
+    },
+    {
+      "version": "hidden-anchors-r36",
+      "finding": "Rapid target/clear1solve/1read/90checks; rapid focus/clear1solve/1read/84checks/847privateAlpha. Both0alignments/fullRequests. Separate lag answer not supplied.",
+      "acceptance": "Not fully static; R37 completed origin/intrinsic-size path pending native delta and why if needed"
+    },
+    {
+      "version": "hidden-origins-r37",
+      "finding": "Target0solves/reads/107checks/80privateAlpha; focus3solves/reads/106checks/16fullRequests/1837privateAlpha. Both0alignments. Posted why caches identical read1..read6 for both samples; exact focus interval producer cannot be inferred.",
+      "acceptance": "Target transition work PASS; focus FAIL. R38 finite same-interval provenance added; no speculative functional producer change."
+    },
+    {
+      "version": "refresh-trace-r38",
+      "finding": "Same-interval automatic reasons identify only target/focus outer.Left geometry availability;2solves/reads,0full requests.",
+      "acceptance": "Native repeated full-request theory not reproduced; first-unit geometry availability remains."
+    },
+    {
+      "version": "prepared-icons-r39",
+      "finding": "After clearing units before reload: focus0solves/reads/alignments/fullRequests,119checks; target0solves/reads/alignments/fullRequests,116checks/994privateAlpha. No automatic dirty reason lines. Separate subjective lag statement not supplied.",
+      "acceptance": "PASS requested zero geometry work through first and repeated player target/focus set-clear in these samples; no measured FPS/CPU or native combat taint claim."
+    },
+    {
+      "version": "connected-panels-r40",
+      "finding": "User confirms Flux Window dimensions and zero-gap count/scale side packing both look right; cast fit still wrong. New closeup shows red at cast start and broken unit border after combat red portrait tint; user reports huge exit-combat lag. Swing/ranged Shoot explicitly added to shared header fit scope.",
+      "acceptance": "Window/side scoped native PASS. Cast/post-combat border FAIL. Lag is user-reported, not measured timing; R41 remediation pending."
+    },
+    {
+      "version": "combat-overlay-r41",
+      "finding": "3native10scombatentry/exit captures each0solves/reads/alignments/fullrequests. User still reports slight lag mainly firstcombat exit. Cast fit further clarified: icon needswider.",
+      "acceptance": "Zero border geometry work PASS in supplied combat intervals. Iconfit remainsFAIL; overall first-exit lag not solved. Portrait outline restoration not explicitly accepted."
+    },
+    {
+      "version": "wider-timer-icons-r42",
+      "finding": "User confirms width looks right. New tinycastcloseupshows fillstart misalignment; redrighttargetportrait edge differs from player/focus. Finitewatchfirstexitrecords410.7ms Events PLAYER_REGEN_ENABLED callback,12.8ms Scheduler eval.listener,4gaps peak524ms, diagnosticsections14.88ms/.29mspeak; labelunmapped.",
+      "acceptance": "Iconwidth scopednativePASS. Fillorigin/targetrightedge FAIL; first-exitlagnativeconfirmed, exactcallbackownerunknown. R43correctsmeasuredfill/portraitgeometry and labelsregenregistrationorigin plus failedflag for finitewatch."
+    },
+    {
+      "version": "timer-fill-origin-r43",
+      "finding": "User reports Bothlookright forcastfillatdivider andtargetrightredportraitalignment. Firstexitfinitewatch: successful305.4msSchedulerstructural.callbackfailed=false,13.2mseval.listenerfailed=false;3framegapspeak371ms.",
+      "acceptance": "Requestedfill/rightedge scopednativePASS;first-exithitchremains;slowstructuralcallbackownerunknown;cachedqueuetokenreportrequested."
+    }
+  ],
+  "desktop": {
+    "junctionChecks": 4349,
+    "borderTypeChecks": 634,
+    "rasterChecks": 7143,
+    "dropdownChecks": 6,
+    "trinketChecks": 33,
+    "focusTargetColorChecks": 29560,
+    "fullGate": "R51 combined474desktop scripts/1165Lua syntax PASS; full sweep plus4 bounded replays; owned runtime stable; not globally frozen",
+    "nativeGPUorFPSClaim": false,
+    "unitAnchorChecks": 169,
+    "friendlyDispelChecks": 418,
+    "rasterScope": "5901 original/style/preview/historical-wide checks; current source fields tested by actual Lua renderer/model and offline draw-list review",
+    "targetShellChecks": 2420,
+    "currentSelectedScripts": 474,
+    "currentSyntaxFiles": 1165,
+    "currentSyntaxFailures": 0,
+    "currentReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-r51-full-validation.json",
+    "negativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r27-negative-controls.json",
+    "portraitCombatRestoreChecks": 88,
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-r51-full-validation.json",
+    "fullScriptPass": 474,
+    "fullScriptFail": 0,
+    "sourceStableDuringFull": false,
+    "documentationValidation": {
+      "result": "PASS",
+      "sources": 1189,
+      "reachable": 624,
+      "settings": 444,
+      "savedVariableRoots": 24,
+      "localLinks": 17929,
+      "writes": false
+    },
+    "gitDiffCheck": "PASS",
+    "finalSourceManifestDeltas": [],
+    "dynamicLayoutChecks": 402,
+    "r14FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r14-full-validation.json",
+    "r15ScopedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r15-scoped-validation.json",
+    "dynamicNegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r14-negative-controls.json",
+    "targetScope": "Actual target/ToT initializers with real border factory; private-shell fixture replaced after removal",
+    "r16FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r16-full-validation.json",
+    "finalRefinement": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r17-final-refinement.json",
+    "capJunctionChecks": 14205,
+    "nearbyPanelChecks": 1452,
+    "r19FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r19-full-validation.json",
+    "r19NegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r19-negative-controls.json",
+    "staticGeometryChecks": 22,
+    "auraGeometryChecks": 1067,
+    "stripSpacingChecks": 60,
+    "r23NegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r23-negative-controls.json",
+    "r21FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r21-full-validation.json",
+    "r23FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r23-full-validation.json",
+    "unitContourChecks": 930,
+    "paintOrderChecks": 140,
+    "auraCrestChecks": 1120,
+    "r24FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r24-full-validation.json",
+    "softwareRasterReplay": {
+      "scope": "Exact native source rectangles, real canonical TGA pixels and actual production-generated triangle/fragment draw lists; CPU compositor only",
+      "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\aura-native-middle-r26-2.png",
+      "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\aura-native-middle-through-2.png",
+      "finding": "Modeled diagonal crest notch removed; native R27 still FAIL; no native raster/FPS claim"
+    },
+    "partialArmChecks": 504,
+    "partyIsolationChecks": 72,
+    "sideInsetChecks": 14121,
+    "auraSamplingChecks": 768,
+    "retainedUnitChecks": 3204,
+    "r28FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r28-full-validation.json",
+    "r29FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r29-full-validation.json",
+    "r28NegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r28-negative-controls.json",
+    "r29NegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r29-negative-controls.json",
+    "r30NegativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r30-negative-controls.json",
+    "resourceHoldChecks": 230,
+    "r30FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r30-full-validation.json",
+    "r31NegativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r31-negative-control.json",
+    "resourceHoldWorkReplay": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r31-resource-work.json",
+    "resourceHoldWorkScope": "3 matched repeats;20cycles x5unit families x2styles;400solves/400reads/400partitionRequests before vs0/0/0 after each; allocations0 in both; desktop API work only",
+    "staticPieceChecks": 26220,
+    "nativeAlphaChecks": 136,
+    "privatePaintChecks": 684,
+    "r33FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r33-full-validation.json",
+    "r35NegativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r35-negative-control.json",
+    "r31FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r31-full-validation.json",
+    "r32FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r32-full-validation.json",
+    "r35FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r35-full-validation.json",
+    "hiddenAnchorChecks": 7594,
+    "r36NegativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r36-negative-control.json",
+    "r36FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r36-full-validation.json",
+    "r37NegativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r37-negative-control.json",
+    "r37FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r37-full-validation.json",
+    "idleTraceChecks": 11,
+    "preparedIconChecks": 576,
+    "r38SyntaxReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r38-syntax.json",
+    "r39NegativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r39-negative-control.json",
+    "r39FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r39-full-validation.json",
+    "documentationReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r39-docs-validation.json",
+    "r40FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r40-full-validation.json",
+    "ownerVisibilityChecks": 2641,
+    "windowBoundsChecks": 972,
+    "sourceCanvasChecks": 780,
+    "sidePackingChecks": 32026,
+    "microScreenFitChecks": 6480,
+    "classDividerCanvasChecks": 24,
+    "castJunctionSourceFieldChecks": 13422,
+    "castLayoutChecks": 1820,
+    "partyCastLayoutChecks": 775,
+    "timerHeaderChecks": 1110,
+    "castSchoolThemeChecks": 14401,
+    "combatTransitionChecks": 20,
+    "r41FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-full-validation.json",
+    "r41CombatFocused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-combat-focused.json",
+    "r41CombatWork": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-combat-transitions-work.json",
+    "r41CombatControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-combat-transitions-negative-control.json",
+    "r41PortraitControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-portrait-layer-control.json",
+    "r41TimerFocused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-timer-final-focused.json",
+    "r41TimerControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-timer-negative-controls.json",
+    "r41TimerWork": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-timer-static-work.json",
+    "previousDocumentationValidation": {
+      "result": "PASS",
+      "classifiedSources": 1161,
+      "tocXmlReachable": 624,
+      "settingDefinitions": 444,
+      "savedVariableRoots": 24,
+      "localLinks": 17838,
+      "noFilesWrittenByValidator": true,
+      "capturedAtUTC": "2026-11-16T10:06:20.133682+00:00"
+    },
+    "r43FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r43-full-validation.json",
+    "targetPortraitFitChecks": 30240,
+    "squeezeRegenChecks": 190,
+    "regenOriginChecks": 290,
+    "spikeWatchChecks": 124,
+    "callbackObserverChecks": 1066,
+    "r43TimerReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r43-fill-final-focused.json",
+    "r43TimerControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r43-fill-origin-controls.json",
+    "r43FillAssetEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-fill-origin-r43-evidence\\native-fill-alpha.json",
+    "r43TargetFitControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-target-portrait-fit-work.json",
+    "r43SqueezeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-squeeze-combat-negative-control.json",
+    "r43SqueezeWork": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-squeeze-combat-work.json",
+    "r43OriginFocused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r43-origin-focused.json",
+    "r41InitialFull": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-initial-validation.json",
+    "r41PolicyFixtureControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r41-fixture-migration-controls.json",
+    "r42ScopedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r42-icon-final-focused.json",
+    "r42SyntaxReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r42-syntax-final.json",
+    "r46FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r46-full-validation.json",
+    "r47FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r47-full-validation.json",
+    "r49FullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r49-full-validation.json",
+    "runtimeUpvalueGate": {
+      "files": 689,
+      "prototypes": 24857,
+      "maximum": 57,
+      "failures": 0,
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-runtime-upvalues.json"
+    },
+    "ownedRuntimeStableDuringFull": true,
+    "initialSourceManifestDeltas": [
+      "Battlezonemap/FluxBattlefieldWorldMap.lua",
+      "Core/_tmp_minimaplayoutsmoke.lua"
+    ],
+    "finalReplaySourceManifestDeltas": [],
+    "r51CombinedGateHistorical": "474 combined scripts/1165 syntax; full sweep plus4 replays;8 owned runtime stable; not globally frozen; before R52 unit paint fix",
+    "currentFocusedGateR52": {
+      "scripts": 20,
+      "failures": 0,
+      "changedFileSyntax": 5,
+      "unitPaintChecks": 98,
+      "producerChecks": 3560,
+      "scope": "Current3changed unit runtime files and2new tests; R51 full sweep historical for this newer source."
+    }
+  },
+  "runtimePolicy": {
+    "nativeMaskAllocations": 0,
+    "textureScriptHooks": 0,
+    "idleDriver": false,
+    "maxLayoutPassHzDuringBurst": 20,
+    "startupGate": "PLAYER_ENTERING_WORLD; active border sheets preloaded",
+    "unchangedLayout": "Retain committed art; no solve/graphics allocation",
+    "paintCommit": "Prepare global topology once for an actual change; retain old rendered fields until exact replacement is ready, write changed owned descriptors only, retire unclaimed paint atomically; rollback both generations on failure.",
+    "inputsAndSavedActions": "No changes by this task",
+    "maxJunctionTriangles": 8192,
+    "transientVisibility": "Committed mesh retained; atomic replacement only for changed final geometry",
+    "preflight": "Weak dirty-object snapshots; unchanged callbacks skip whole-registry reads",
+    "instantClassMaterial": "Known canonical path forwards to active fragments/branch meshes in the same Lua call",
+    "independentUnits": "Different unit owners never join; facing shadows may partition",
+    "unitPositions": "Canonical type1 reference for BOTH styles; no style-dependent movement",
+    "unitColors": "PC own class across all accents; enabled party class option respected; Forever NPC families follow UI; others natural; friendly dispels unchanged",
+    "temporaryCombatLevels": "Stable paint priority; portrait red paint-only",
+    "nativeAlpha": "Single native Alpha aspect. Cache public author RGB from setter arguments; opaque scalar goes only to source-owned approved native SetAlpha sinks. No opaque comparisons/arithmetic/formatting/boolean tests or topology decisions. Source suppression restored synchronously after every paint. Restricted RGB still uses one-time conservative retirement/recovery.",
+    "miniUnitScope": "Pet/target-of-target/member-target internal parts connect only to their own logical root",
+    "normalTargetPortrait": "Shared factory; PC unit-class/NPC UI material; combat red restores through same policy",
+    "raisedStripSeam": "Strip child canvas above participants; native input disabled; inherits strip visibility/alpha/scale",
+    "dynamicAnchors": "Initial/new/named/all-point references; public count cap32; private/cycle guards; no idle polling",
+    "stripCompletion": "Existing Layout.Apply moved branch emits one J.Invalidate after dependent layouts; unchanged early return retained",
+    "targetFillOwnership": "Original factory/outer owner; no target-only persistent host",
+    "compactTargetOfTarget": "Original shared base/atlas/outer geometry; isolated internal scope and shared corner/edge ownership",
+    "dividerPaint": "Original UV field cropped to logical endpoints even without T/X",
+    "coincidentCorners": "Same key and compatible shared-edge owners; source corner rects within1physical pixel; remove losing cap as a whole; restore on hide/show; no frame movement",
+    "targetFamilyBackdrop": "PC own class fill; NPC configured UI fill on every client; independent party/dispel/combat policy retained",
+    "nearbyPanels": "Bounded existing HUD contact pass; Flux Window and strip Top fixed references; neighboring decorative chrome aligns without changing window content or box.",
+    "capProtection": "Unrelated L caps survive a nearby T/X window; subtract protected rectangles from branch meshes;64caps/256intermediate fields per triangle; existing8192triangle budget/fallback; actual cap junctions and coincident dedup retained",
+    "auraCaps": "Top16x17/bottom16x16; edges Top17/Bottom16/Left16/Right16 on every fallback",
+    "staticPreflight": "Physical snapshot tolerance1/64pixel; retain baseline to observe accumulated movement; render coordinates and UVs stay unrounded",
+    "delayedWake": "Flush existing dirty objects; never mark fullDirty merely because burst delay elapsed",
+    "layoutCommit": "After bar/side/embed transaction settles; immediate dirty preflight/commit; unchanged skips; combat defers",
+    "stripSpacing": "Root-2UIunits relative to existing configured floor; inner buttons-2UIunits; no dimension/input/routing/settings changes",
+    "idleDiagnostic": "User-invoked /fluxborders idle; one finite10s C_Timer callback; counter deltas only; no profiler changes",
+    "unitRoundedCaps": "Opt-in native full unit caps retained above bounded aura stem underfill; same source tint/UVs; other protected caps unchanged",
+    "junctionPaintLayer": "Source-parent canvases retain highest participating stratum/level across all nodes. Native source visibility/opacity ownership retained; strip-owned seam stays with persistent HUD.",
+    "auraTopCrest": "Continuous top crossbar and butt-ended stem; finite endpoint UVs and source-owned quads. R30 native settled/repeated transition visual PASS retained; R40/R41 changes require scoped new acceptance.",
+    "auraDiagnostic": "Short cached /fluxborders aura; selected target panels required; no solve/full-layout read",
+    "branchOwnership": "Per actual arm/run and inherited parallel interval boundaries;128cut limit; immutable affine profiles",
+    "partyIsolation": "Per-instance logical connection scope for members/pets/targets/previews; outer logical-owner metadata",
+    "sideInset": "No added widget gap; cell pitch equals widget extent. Count and side scale choose density; up to two columns shrink to half-native size before adding more columns. Bounded tiny-screen fallback; no saved scale/order/action rewrite.",
+    "staticUnits": "Retain shared-unit roots AND individual registered/anchored source pieces through own shown and opacity-zero changes. Initial hidden/alpha-zero public rectangles are prepared. Source own Hide/Show masks/restores existing native followers; ancestor visibility/fade inherits naturally. Public real geometry/settings changes invalidate; source color/material forwards immediately.",
+    "auraQuad": "Merge rectangular source fields only if union area and all affine UV samples agree; plain texture quad without displaced vertices; exact reported crest location tested",
+    "finiteSampling": "Half duplicated-source texel; exact core RGBA; two type1 filter corners <=.25/255alpha difference; no asset rewrite",
+    "materialUV": "Forward canonical paths/native numeric IDs in same call, restore cached UVs; no geometry solve",
+    "absentResourceHold": "Public zero maximum plus publicly absent unit retains prior main-power alpha and public layout fact. Opaque alpha is passed to native sink without comparison. No extra UnitExists query; reuse existing absence query. Present zero-capacity units retain original behavior.",
+    "privatePaint": "Pinned Forever SimpleRegion.SetAlpha AllowedWhenTainted argument contract is verified separately from protected geometry permission. Geometry allocation/anchors/parents stay behind Locked checks. No secure attributes, click routes or bindings changed; native combat taint acceptance pending.",
+    "hiddenUnitBounds": "If native GetRect lacks valid public geometry on retained unit chrome, resolve existing public anchors and intrinsic size. Maximum8levels/64regions/32points, per-read memo and cycle guard. Restricted rectangle/size/anchor values fail closed. No native Show/Move/SetPoint, no idle cache/driver. Exact native rectangles win once available; same physical snapshot avoids availability rebuild. R37 also resolves missing container origins consistently in group assembly, source fragments and branch canvases; uses intrinsic GetSize(true) per pinned getter contract. Native valid origins remain the first choice.",
+    "finiteTrace": "User-invoked10s idle audit only. At most12 distinct full-request producers plus overflow count and3 most recent interval geometry reasons. No debugstack, global monitor or profiler setting. Metadata collection stops after finite timer. Quiet captures cannot repeat old reasons.",
+    "classSlotPreparation": "Shared constructor and configured outer-layout path prepare fixed class icon/spec slot dimensions and single-class divider before a unit exists. No Show/color/secure input changes. Cache by public padding/alignment/mirror; preserve last spec geometry while absent. Unused spec-only duplicate stays unpositioned; real new spec feature or settings geometry still invalidates once. Guarded out of combat.",
+    "visibilityFallbacks": "Lost duplicate intervals and T/X fields get bounded source-owned fallback paint compiled at structural commit. Own/public host availability updates local listeners only; stop before retained native unit root. No transition solves, geometry reads or graphics allocation.",
+    "microMenuScreenFit": "Cache screen-clamped left stroke and apply identical bounds to sibling backdrop. Button/content roots unchanged; protected layout deferred.",
+    "castHeaderFit": "Actual header dimensions; icon/body content and decorative hosts fit canonical profile; opaque HeaderCover covers old names/class/spec. Facing internal caps join through normal T/X; pet padding0 overlays actual Power row; real party wrapper guarded/cached.",
+    "castFillEffects": "Preallocated clipping frame with actual child artwork frame at TimerBar bounds contains school halo/backdrop art; existing particles/spark and nameplate paths retain owners. Native clipping behavior awaits user visual acceptance.",
+    "swingShootFit": "Existing melee/offhand/ranged Shoot visuals reuse prepared cast-row anchors, own chrome/header cover and bounded effect host. Cached actual source layout; prepared mode frames change visibility; protected cold setup deferred. Timer calculation/cadence/input unchanged.",
+    "portraitCombatLayer": "Constructor reserves unit-root+17 after pet parent setup; both combat red and normal restoration change paint only. No combat parent-level mutation or source-canvas movement.",
+    "combatExit": "Clean PLAYER_REGEN_ENABLED does nothing. Existing dirty work resumes without upgrading pending object/material scope to fullDirty. Actual queued geometry/UV/settings still commits once.",
+    "castFillOrigin": "Non-pet TimerBar left=-2,right=-2 fits under the actual merged icon divider. Existing native fill has opaque first-column middle rows; issue was3.5/4UI units of anchor offset, not leading atlas transparency. Trough/preparedwidth follow actual fill; pet2px insets retained.",
+    "castIconWidth": "Non-pet icon width=headerheight+4; height and totalheader unchanged; body4narrower; shieldheight unchanged. Swing/Shoot follow source anchors. NativeR42widthPASS.",
+    "targetPortraitExterior": "Cached constructor/normal partition fit expands only portrait.FluxBorderFrame right container bound2UI units for RIGHT, restores0LEFT. Canonical factory piece padding, portrait/model/body/backdrop owners unchanged. Combat/private guards; no tint-time setters.",
+    "regenSqueeze": "Actual raw regen handler passes changedOnly=true. Public planned width within1/1024UI of actual readable width skips width and nestedpartition/atlas/outer updates. Unknown width conservatively applies. Other global/direct/options/loading/scale paths retain forced refresh; dependent notifications retained. Existing Regen.Time now covers actual uf.Squeeze route.",
+    "finiteCallbackOrigin": "Existing optional spike watch resolves anonymous regen callbacks from cached registration provenance and prints failed=true/false. No native/global API replacement, new monitor, gameplay stacks or profiler preference changes.",
+    "rectangleMemo": "Pure read phase only after decorative alignment; native public tuples and guarded hidden anchors shared until watched snapshots complete, then discarded including exceptions; original traversal limits retained.",
+    "diagnosticClock": "Existing optional finite spike-watch only. Finite nonnegative debugprofilestop values independent of geometry coordinate bounds; no idle/default phase clock.",
+    "renderBasisMemo": "Only configured renderer parents during one commit; public effective scale/local origin validated once per parent, retained through own child-field drawing, discarded on success/error/release.",
+    "finiteWatchCost": "Default work has no added clocks or monitor. Existing finite watch stores phase/subphase and bounded numeric helper counters; /fluxborders cost reads cached five-line peak only.",
+    "preparedGeometry": "One previous committed base-junction generation reused only for identical current numeric compilation inputs; local layout changes recompile changed joins and retain unchanged draw fields. Fresh current paint/validity is mandatory.",
+    "fallbackPaint": "One final opacity assignment; commit-local public availability/ancestry memo after source setup, discarded before retirement/error/release; live callbacks remain uncached and paint-only.",
+    "prebuildScope": "R51 pure-plan validated-array/chunk reuse; discarded before paint, no persistent native positions. Static combat/dispel paint policy unchanged. New Combat queue timing optional; broader raw callbacks remain native timing gaps."
+  },
+  "concurrentWork": "Other bar/binding/inventory chats changed source; preserved. No routing edits by border task. Historical binding failure resolved in later full408/0 and scoped checks.",
+  "testingChoice": "Direct implementation; native user feedback accepted. No foreground/mouse/keyboard/clipboard control, profiler writes or in-client tools used.",
+  "nativeAcceptance": "Earlier visual fits retain original source/scope. R52 native unit exit latency, taint, current pixel parity and full event-edge geometry pending; zero solves in paint replay does not establish every native exit callback.",
+  "version": "static-unit-paint-r52",
+  "desktopWorkReplay": {
+    "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-native-audit-before-20261115T173747Z",
+    "candidate": "static-transitions-r24",
+    "scenario": "Actual production module; 100 unchanged setters coalesced over 1000 unrelated border pieces; modeled widgets",
+    "GetRectBefore": 1002,
+    "GetRectAfter": 1,
+    "solvesBefore": 0,
+    "solvesAfter": 0,
+    "immediateMaterialMismatchesBefore": 8,
+    "immediateMaterialMismatchesAfter": 0,
+    "materialSamples": 8,
+    "raw": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r24-work-replay.log",
+    "nativeFPSClaim": false,
+    "originalAlphaAfter100IdenticalRecolorsBefore": 1,
+    "originalAlphaAfter100IdenticalRecolorsAfter": 0
+  },
+  "latestCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fill-squeeze-before-20261116T115459Z",
+  "runtimeAssetSHA256": {
+    "Texture/borders/Battlefield100.tga": "d24ade5a6c859a7f6c8b6a32bb1d7b04d22522897d03451fab434cea755969f7",
+    "Texture/borders/ForeverMetal150.tga": "d8db6d7338d4040e3413599614ccf17229c286bc431340dc85d5a8c340f9eb59",
+    "Texture/borders/ForeverMetal150Tint.tga": "a567a02d161e202d58b3a36362f318295e3f636a4c5fffd2b59c02f1ef397455",
+    "Texture/borders/Preview1.tga": "dc62fda46daf45e8ecf31213e291984a98eda2189bb005c75fd5bc68b5937e56",
+    "Texture/borders/Preview2.tga": "470cee34b221b5596b44cdd82260bf8143434129e29c0eccedb0359ffa5b09dd",
+    "Texture/borders/Preview2Tint.tga": "a1b6c41904ec6b900ca40772321551ec81a688d527ad2cc8c718c2fe47150149",
+    "Texture/borders/JunctionWide1.tga": "8cbc9291fc597c2d0e3fa50b0e31108a7782a865e40fd7ae3e9b4d1421c47132",
+    "Texture/borders/JunctionWide2.tga": "dcb518ad3638062da9ffbcc02ab4f891e8a56872e467713392672f0deda8f173",
+    "Texture/borders/JunctionWide2Tint.tga": "968ff6330b7740aa0cd7bce21bf929fbed22824e6cc6410084e487fba9f96588"
+  },
+  "sourceHashNormalization": "Lua/text SHA256 uses CRLF->LF; TGA asset hashes now use exact binary bytes in runtimeAssetSHA256.",
+  "dividerCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-divider-before-20261115T193045Z",
+  "targetCommonSourceRestoredFrom": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-target-rework-before-20261115T182657Z\\UnitFrames\\FluxUnitFrames_Target.lua",
+  "targetCommonSourceExactMatch": false,
+  "nativeGeometryComparison": {
+    "playerBody": [
+      733.67803955078,
+      106.83999633789,
+      237.59352111816,
+      88
+    ],
+    "playerOuter": [
+      647.67797851562,
+      106.83999633789,
+      325.59344482422,
+      124
+    ],
+    "playerAtlas": [
+      647.67797851562,
+      106.83999633789,
+      325.59344482422,
+      88
+    ],
+    "targetBody": [
+      977.27154541016,
+      106.83999633789,
+      237.59356689453,
+      88
+    ],
+    "targetOuter": [
+      977.27154541016,
+      106.83999633789,
+      325.59359741211,
+      124
+    ],
+    "targetAtlas": [
+      977.27154541016,
+      106.83999633789,
+      325.59359741211,
+      88
+    ],
+    "targettargetBodyOuterAtlas": [
+      1127.0155029297,
+      130.33999633789,
+      87.849670410156,
+      45.000003814697
+    ],
+    "petBody": [
+      733.67803955078,
+      130.33999633789,
+      87.849670410156,
+      45.000003814697
+    ],
+    "petOuterAtlas": [
+      733.67803955078,
+      130.33999633789,
+      132.84971618652,
+      45.000003814697
+    ]
+  },
+  "nextRequiredEvidence": "With all owned jobs held: reload static-unit-paint-r52 and reproduce first/repeated combat exits with red portrait tint enabled. Existing finite spike watch and border costs/reasons distinguish remaining geometry. No profiler preference changes.",
+  "auraContactCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-contact-aura-before-20261115T202323Z",
+  "nativeTextureComparison": {
+    "uvAllEqual": [
+      0.82421875,
+      0.00390625,
+      0.82421875,
+      0.0703125,
+      0.88671875,
+      0.00390625,
+      0.88671875,
+      0.0703125
+    ],
+    "textureIds": {
+      "player": -9619,
+      "target": -9619,
+      "focus": -9620,
+      "targettarget": -9619
+    },
+    "cloneResult": [
+      -9619,
+      true,
+      -9619
+    ],
+    "dimensionsUI": "all approximately16x17 for TL",
+    "style": 2,
+    "recordArt": {
+      "player": "ForeverMetal150.tga",
+      "target": "ForeverMetal150.tga",
+      "focus": "ForeverMetal150Tint.tga",
+      "targettarget": "ForeverMetal150.tga"
+    },
+    "repaintProbe": {
+      "unit": "target",
+      "UnitIsPlayer": false,
+      "naturalFlag": null,
+      "unitColorFlag": null,
+      "after": "ForeverMetal150.tga"
+    },
+    "goldVsTintDifferingAlphaPixels": 0,
+    "interpretation": "Negative IDs clone correctly; canonical sizes/UVs match; NPC repaint natural expected. Probe unit state differs from self-target screenshot; stale PC paint not established."
+  },
+  "referenceScreenshots": [
+    {
+      "role": "nearby HUD panels",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-b1b0da30-5e4a-4ee5-854f-b9489e7ac94f.png"
+    },
+    {
+      "role": "target",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-811100c4-13ff-4001-a80c-b78182152003.png"
+    },
+    {
+      "role": "focus",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-c092602f-40b4-400a-851c-f54e262fd917.png"
+    },
+    {
+      "role": "player",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-6cb824c8-8a20-4b0c-ae2a-16d6257e9267.png"
+    },
+    {
+      "role": "target short arm and NPC/class fills",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-616edc5b-9f7e-4aaf-907a-601134ab33f9.png"
+    },
+    {
+      "role": "Trinket/window close-up",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-b1bc560c-9c0a-46a0-aa79-60aec39b0d1d.png"
+    },
+    {
+      "role": "player/spec gap",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-39b4703b-4738-422b-a18f-066bd87941c2.png"
+    },
+    {
+      "role": "strip gap",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-57b16019-476d-4606-b11c-438a294399cb.png"
+    },
+    {
+      "role": "screen-side buttons",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-8f5e7bf4-58ec-4682-95bb-51c9c71eeb48.png"
+    },
+    {
+      "role": "strip/row spacing",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-cb561848-0a0b-44fd-8303-5a286ad978e5.png"
+    },
+    {
+      "role": "Requested rounded unit caps and filled aura turns",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-5d907f29-55c7-4ee2-80d4-fe4e71b94888.png"
+    },
+    {
+      "role": "r28-hud",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-78ad40d4-c803-47d5-af1b-3401a66571b2.png"
+    },
+    {
+      "role": "r28-strip",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-dc873b21-e08d-4339-ab86-36f988e2da82.png"
+    },
+    {
+      "role": "r28-window",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-5e25654f-6fa1-4390-aacb-a80c4e31985f.png"
+    },
+    {
+      "role": "r28-side",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-f664b43a-3214-42b1-87c9-018fec5cad1e.png"
+    },
+    {
+      "role": "r28-upper-strip",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-52986d8b-6152-47af-a60d-eda3d72c4110.png"
+    },
+    {
+      "role": "r28-target-aura",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-cb0ff68e-583a-4ccd-a678-c1ee5c392309.png"
+    },
+    {
+      "role": "r28-focus-aura",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-de57e4b2-8188-4a16-8eaf-956977fb54a1.png"
+    },
+    {
+      "role": "R40 embedded minimap/window size",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-10f6f029-cc5e-4136-967f-f781985d81fc.png"
+    },
+    {
+      "role": "R40 normal map/window size",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-f408396f-e5b5-4b6a-b553-0b64d0a3b685.png"
+    },
+    {
+      "role": "R40 side packing",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-aa437aeb-5627-4a00-9f8c-cf3693d6c773.png"
+    },
+    {
+      "role": "R40 player class/header gap",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-5a2a7fea-e0a2-4125-b7ec-e5a601e06a1c.png"
+    },
+    {
+      "role": "R40 lost unit border",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-325ea329-1300-4e18-bc24-103f2cef34f0.png"
+    },
+    {
+      "role": "R40 cast icon/fill mismatch",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-e7b7873c-9342-4109-8bf8-7d20ad68d9eb.png"
+    },
+    {
+      "role": "R40 cast fire fringe",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-ba275641-ff1b-4c1d-afa1-ccaac4869e04.png"
+    },
+    {
+      "role": "R40 post-combat broken outline",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-0f92c650-c796-4fb6-b47b-8c7cec486b0f.png"
+    },
+    {
+      "role": "R42 cast fill origin",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-bef4924d-a1ef-40d5-aad2-0519c61ee2c7.png"
+    },
+    {
+      "role": "R42 target-right red mismatch",
+      "path": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-2b55b6a1-5b50-47d2-9846-a6bda239d383.png"
+    }
+  ],
+  "latestUserFeedbackDate": "2026-11-16",
+  "nativeIdleSamples": {
+    "r22": {
+      "intervalApproxSeconds": 10,
+      "solvesBefore": 320,
+      "solvesAfter": 365,
+      "alignmentsBefore": 963,
+      "alignmentsAfter": 1098,
+      "accepted": false
+    },
+    "r23": {
+      "intervalSeconds": null,
+      "solvesBefore": 6,
+      "solvesAfter": 9,
+      "alignmentsBefore": 6,
+      "alignmentsAfter": 6,
+      "accepted": "Alignment count only stable; full static/performance not established"
+    },
+    "r24": {
+      "intervalSeconds": 10,
+      "solves": 0,
+      "panelAlignments": 0,
+      "geometryReads": 0,
+      "checks": 60,
+      "fullRequests": 0,
+      "accepted": "PASS static idle counter scope; no native CPU/GPU/FPS claim"
+    },
+    "r25": {
+      "intervalSeconds": 10,
+      "solves": 0,
+      "panelAlignments": 0,
+      "geometryReads": 0,
+      "checks": 62,
+      "fullRequests": 0,
+      "accepted": "PASS static idle counter scope; no native CPU/GPU/FPS claim"
+    },
+    "r30": {
+      "intervalSeconds": 10,
+      "scenario": "Target/clear and focus/clear same unit",
+      "solves": 4,
+      "geometryReads": 4,
+      "panelAlignments": 0,
+      "checks": 49,
+      "fullRequests": 0,
+      "accepted": false
+    },
+    "r31target": {
+      "intervalSeconds": 10,
+      "solves": 0,
+      "geometryReads": 1,
+      "panelAlignments": 0,
+      "checks": 90,
+      "fullRequests": 0
+    },
+    "r31focus": {
+      "intervalSeconds": 10,
+      "solves": 10,
+      "geometryReads": 78,
+      "panelAlignments": 0,
+      "checks": 96,
+      "fullRequests": 506,
+      "lag": true
+    },
+    "r32focus": {
+      "intervalSeconds": 10,
+      "solves": 20,
+      "geometryReads": 21,
+      "panelAlignments": 0,
+      "checks": 95,
+      "fullRequests": 0,
+      "privateAlpha": 574,
+      "privateColor": 0,
+      "lag": true
+    },
+    "r33focus": {
+      "intervalSeconds": 10,
+      "solves": 17,
+      "geometryReads": 17,
+      "panelAlignments": 0,
+      "checks": 88,
+      "fullRequests": 0,
+      "privateAlpha": 782,
+      "privateColor": 0,
+      "lag": true
+    },
+    "r35focus": {
+      "intervalSeconds": 10,
+      "solves": 1,
+      "panelAlignments": 0,
+      "geometryReads": 1,
+      "checks": 114,
+      "fullRequests": 0,
+      "privateAlpha": 901,
+      "privateColor": 0,
+      "lag": null,
+      "accepted": "Improved native work counts; remaining solve needs trace; no measured FPS claim"
+    },
+    "r35target": {
+      "intervalSeconds": 10,
+      "solves": 0,
+      "panelAlignments": 0,
+      "geometryReads": 0,
+      "checks": 110,
+      "fullRequests": 0,
+      "privateAlpha": 0,
+      "privateColor": null,
+      "accepted": "PASS zero transition geometry work in this target sample; privateColor field truncated in user reply"
+    },
+    "r35repeat": {
+      "intervalSeconds": 10,
+      "solves": 0,
+      "geometryReads": 0,
+      "panelAlignments": 0,
+      "checks": 110,
+      "fullRequests": 0,
+      "privateAlpha": 0,
+      "privateColor": 0,
+      "scenario": "User reply after request for focus why; exact target/focus mix not specified",
+      "accepted": "PASS zero-work scope of this sample only"
+    },
+    "r36target": {
+      "intervalSeconds": 10,
+      "scenario": "Rapid set/clear player target",
+      "solves": 1,
+      "panelAlignments": 0,
+      "geometryReads": 1,
+      "checks": 90,
+      "fullRequests": 0,
+      "privateAlpha": 0,
+      "privateColor": 0,
+      "accepted": "One remaining read/solve; incomplete static transition acceptance",
+      "lag": null
+    },
+    "r36focus": {
+      "intervalSeconds": 10,
+      "scenario": "Rapid set/clear player focus",
+      "solves": 1,
+      "panelAlignments": 0,
+      "geometryReads": 1,
+      "checks": 84,
+      "fullRequests": 0,
+      "privateAlpha": 847,
+      "privateColor": 0,
+      "accepted": "One remaining read/solve; incomplete static transition acceptance",
+      "lag": null
+    },
+    "r37target": {
+      "intervalSeconds": 10,
+      "scenario": "Rapid player target set/clear",
+      "solves": 0,
+      "geometryReads": 0,
+      "panelAlignments": 0,
+      "checks": 107,
+      "fullRequests": 0,
+      "privateAlpha": 80,
+      "privateColor": 0,
+      "lag": null,
+      "accepted": "Target zero topology work PASS; focus repeated full requests FAIL"
+    },
+    "r37focus": {
+      "intervalSeconds": 10,
+      "scenario": "Rapid player focus set/clear",
+      "solves": 3,
+      "geometryReads": 3,
+      "panelAlignments": 0,
+      "checks": 106,
+      "fullRequests": 16,
+      "privateAlpha": 1837,
+      "privateColor": 0,
+      "lag": null,
+      "accepted": "Not static:3solves/3reads/16full requests"
+    },
+    "r38focus": {
+      "intervalSeconds": 10,
+      "scenario": "Rapid player focus set/clear",
+      "solves": 2,
+      "geometryReads": 2,
+      "panelAlignments": 0,
+      "checks": 112,
+      "fullRequests": 0,
+      "privateAlpha": 1331,
+      "privateColor": 0,
+      "intervalReasons": [
+        "read4 FluxUnitFrameOuter_target.Left:geometry availability changed",
+        "read5 FluxUnitFrameOuter_focus.Left:geometry availability changed"
+      ],
+      "accepted": false
+    },
+    "r39focus": {
+      "intervalSeconds": 10,
+      "scenario": "Clear target/focus before reload; rapid player focus set/clear after loading",
+      "solves": 0,
+      "geometryReads": 0,
+      "panelAlignments": 0,
+      "checks": 119,
+      "fullRequests": 0,
+      "privateAlpha": 0,
+      "privateColor": 0,
+      "accepted": "PASS native zero transition border geometry work",
+      "lag": null
+    },
+    "r39target": {
+      "intervalSeconds": 10,
+      "scenario": "Clear target/focus before reload; rapid player target set/clear after loading",
+      "solves": 0,
+      "geometryReads": 0,
+      "panelAlignments": 0,
+      "checks": 116,
+      "fullRequests": 0,
+      "privateAlpha": 994,
+      "privateColor": 0,
+      "accepted": "PASS native zero transition border geometry work",
+      "lag": null
+    },
+    "r41combat": [
+      {
+        "intervalSeconds": 10,
+        "solves": 0,
+        "panelAlignments": 0,
+        "geometryReads": 0,
+        "checks": 54,
+        "fullRequests": 0,
+        "privateAlpha": 38,
+        "privateColor": 0
+      },
+      {
+        "intervalSeconds": 10,
+        "solves": 0,
+        "panelAlignments": 0,
+        "geometryReads": 0,
+        "checks": 13,
+        "fullRequests": 0,
+        "privateAlpha": 15,
+        "privateColor": 0
+      },
+      {
+        "intervalSeconds": 10,
+        "solves": 0,
+        "panelAlignments": 0,
+        "geometryReads": 0,
+        "checks": 39,
+        "fullRequests": 0,
+        "privateAlpha": 20,
+        "privateColor": 0
+      }
+    ]
+  },
+  "contourCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-contours-before-20261116T070615Z",
+  "paintOrderCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-paint-order-before-20261116T071920Z",
+  "nativeAuraGeometry": {
+    "scope": "User-provided r25 selected-target source rectangles; UI coordinates;0.75effective scale",
+    "rows": [
+      [
+        "BuffContainer",
+        "Top",
+        0.75,
+        984.50158691406,
+        293.84005737305,
+        144.79716491699,
+        17.000007629395
+      ],
+      [
+        "BuffContainer",
+        "Left",
+        0.75,
+        968.50158691406,
+        230.84004211426,
+        15.999988555908,
+        63.000011444092
+      ],
+      [
+        "BuffContainer",
+        "Right",
+        0.75,
+        1129.2987060547,
+        230.84004211426,
+        16.000053405762,
+        63.000011444092
+      ],
+      [
+        "DebuffContainer",
+        "Top",
+        0.75,
+        1147.298828125,
+        293.84005737305,
+        144.79716491699,
+        17.000007629395
+      ],
+      [
+        "DebuffContainer",
+        "Left",
+        0.75,
+        1131.2987060547,
+        230.84004211426,
+        16.000053405762,
+        63.000011444092
+      ],
+      [
+        "DebuffContainer",
+        "Right",
+        0.75,
+        1292.0959472656,
+        230.84004211426,
+        16.000053405762,
+        63.000011444092
+      ]
+    ],
+    "nativeLayerProbe": "Both /run snippets exceeded chat limit; no native layer readback obtained. Short /fluxborders aura added."
+  },
+  "r28Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-hud-fit-before-20261116T074357Z",
+  "r29Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-aura-sampling-before-20261116T080104Z",
+  "targetCommonSourceRefinement": "Shared initializer retained; R30 adds only placeholder alternate-paint overlay metadata to keep hidden prepared target geometry out of placeholder deduplication.",
+  "nativeDirtyTraceR34": {
+    "scenario": "Reload; set focus on a player and clear it once",
+    "lines": [
+      "read1 load/settings/global invalidation; FluxUnitFrame_target:geometry availability changed; FluxUnitFrame_party1.BR:geometry availability changed",
+      "read2 FluxWindowFrame:y 0.000->13.500",
+      "read3 load/settings/global invalidation",
+      "read4 FluxUnitFrame_targettarget.Top:opacity-zero true->false; FluxUnitFrame_target.Top:opacity-zero true->false; FluxUnitFrameOuter_target.Left:geometry availability changed",
+      "read5 FluxUnitFrameOuter_focus.Left:geometry availability changed; FluxUnitFrameOuter_focus.Top:opacity-zero true->false",
+      "read6 FluxUnitFrameOuter_focus:shown true->false; FluxUnitFrameOuter_focus.Left:shown true->false"
+    ],
+    "interpretation": "Diagnostic climbs ancestors; unnamed Outer_focus entry can be an unregistered anchored texture, not necessarily root frame. Prior StaticUnitFrame excluded textures; Geometry also filtered individual own shown/opacity-zero. R35 retains source-piece topology and forwards source own visibility as native opacity."
+  },
+  "r30Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-static-units-before-20261116T081140Z",
+  "r31Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-resource-hold-before-20261116T083007Z",
+  "r32Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-private-paint-before-20261116T083925Z",
+  "r33Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-native-alpha-before-20261116T085247Z",
+  "r34Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-dirty-trace-before-20261116T090247Z",
+  "r35Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-piece-visibility-before-20261116T091025Z",
+  "nativeSyncVerificationUTC": "2026-11-16T14:53:32.891610+00:00",
+  "r36Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-hidden-anchors-before-20261116T092256Z",
+  "nativeDirtyTraceR35": {
+    "lines": [
+      "read2 FluxWindowFrame:y 0.000->13.500",
+      "read3 load/settings/global invalidation",
+      "read4 FluxUnitFrameOuter_target.Left:geometry availability changed",
+      "read5 FluxUnitFrameOuter_focus.Left:geometry availability changed",
+      "read6 load/settings/global invalidation; unnamed region:parent changed",
+      "read7 load/settings/global invalidation; unnamed region:parent changed"
+    ],
+    "interpretation": "First target/focus edge can gain native rectangle after showing. Other cached rows include load/global and real parent changes; their exact trigger was not observed. R36 bounded public anchor fallback addresses missing hidden bounds without showing or moving native frames."
+  },
+  "r37Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-hidden-origins-before-20261116T093007Z",
+  "r38Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-refresh-trace-before-20261116T094324Z",
+  "allClientScope": {
+    "requested": "User16Nov explicitly all clients; Forever native testing only. Preserve existing Retail/Forever/Classic progression/Era/Anniversary support.",
+    "source": "https://github.com/Gethe/wow-ui-source",
+    "intrinsicSizeVerified": [
+      "retail",
+      "forever",
+      "classic",
+      "era",
+      "anniversary"
+    ],
+    "nativeOperation": "Forever user-assisted samples only; no native operation acceptance inferred for other clients."
+  },
+  "r39Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-icons-before-20261116T095509Z",
+  "deliveryStatus": "Unit-frame OOC/combat-exit priority: R52 paint-only dedup and final-portrait producer frozen;20focusedPASS. Native first/repeated exit and whole unlocked border geometry pending. Actionstrip/seam and local-plan runtime work held.",
+  "r40Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-panels-cast-before-20261116T101013Z",
+  "r41Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-combat-timers-before-20261116T112114Z",
+  "r41ChangeSummary": [
+    "Fixed Window bounds and count/scale zero-gap side packing retain R40 scoped native acceptance.",
+    "Prepared duplicate-source visibility fallback; source-owned layered junction fields; MicroMenu edge/backdrop fitting and canonical divider16.",
+    "Cast icon/fill/header fit and party/pet protected layout paths; fire halo/backdrops bounded inside dedicated native child clip.",
+    "Swing, offhand and ranged Shoot adopt actual prepared cast-row anchors with cached deferred layout.",
+    "Portrait reserves stable chrome layer before mesh; combat red/normal restoration are paint-only.",
+    "Clean combat exits no longer force global reads. Genuine pending layout/material/settings work resumes once."
+  ],
+  "nativeRegenR41": {
+    "sameTickMs": {
+      "combat.Relayout": 0.37,
+      "scheduler.structural.flush": 0.99,
+      "unitframes.partition.1": 3.43,
+      "unitframes.partition.2": 0.72,
+      "unitframes.classpower.position": 0.13,
+      "unitframes.castbar.layout": 0.02,
+      "nc.Relayout": 0.56,
+      "namedTotal": 6.23,
+      "wall": 98.86
+    },
+    "nextFrameMs": {
+      "regen.deferDrain": 0.02,
+      "uf.SuppressBlizzard": 0.75,
+      "unified.UpdateBorder": 0.07,
+      "namedTotal": 0.85,
+      "wall": 43.57
+    },
+    "scope": "Existing read-only Regen report. Wall spans frame/timer boundary and includes unmeasured engine/other addon work; difference cannot be assigned to Flux or to borders. 3.43ms partition is largest measured job, not proven source of whole hitch."
+  },
+  "nativeSpikeR42": {
+    "durationSeconds": 60,
+    "thresholdMs": 50,
+    "gaps": [
+      {
+        "at": 4.1,
+        "ms": 61,
+        "peakCallbackMs": 0,
+        "key": "Ticker:flux.range"
+      },
+      {
+        "at": 8.2,
+        "ms": 524,
+        "peakCallbackMs": 2.3,
+        "key": "Scheduler:eval.listener"
+      },
+      {
+        "at": 8.2,
+        "ms": 59,
+        "peakCallbackMs": 4.7,
+        "key": "Scheduler:display.callback"
+      },
+      {
+        "at": 10.9,
+        "ms": 99,
+        "peakCallbackMs": 0,
+        "key": "Events:SPELL_UPDATE_USABLE"
+      }
+    ],
+    "slowCallbacks": [
+      {
+        "at": 5.8,
+        "ms": 12.8,
+        "kind": "Scheduler",
+        "key": "eval.listener",
+        "label": "unmapped"
+      },
+      {
+        "at": 7.7,
+        "ms": 410.7,
+        "kind": "Events",
+        "key": "PLAYER_REGEN_ENABLED",
+        "label": "unmapped",
+        "failed": "notprintedbyR42"
+      }
+    ],
+    "diagnosticMs": 14.88,
+    "diagnosticPeakMs": 0.29,
+    "scope": "Measured owned callback span includes any error handling inEvents dispatcher. Framegap isnot summedCPU attribution; profileprefsunchanged, previousondiskroots preserved beforewatch."
+  },
+  "diagnosticPreservationCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-regen-diagnostics-before-20261116T115155Z",
+  "privateSettingsCopyScope": "Two on-disk account saved-data files copied only to external checkpoint to preserve prior diagnostic roots/preferences before finite watch; no contents printed, no installed settings edited.",
+  "r43Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fill-squeeze-before-20261116T115459Z",
+  "targetRedFitCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-target-red-fit-before-20261116T120246Z",
+  "r42Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-icon-width-before-20261116T114829Z",
+  "r43ChangeSummary": [
+    "Measured native fill-origin anchor correction, preserved wider icon and pet layout; swing/Shoot follow source bounds.",
+    "Cached decoration-only right portrait fit against actual outer rectangle, both border styles.",
+    "Unchanged public regen squeeze skips redundant writes, retains forced callers and adds existing raw-route timing.",
+    "One-time guarded regen registration provenance plus existing failed flag in optional finite spike reports; no new idle work."
+  ],
+  "r42SpikeDataCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r42-spike-data-20261116T121230Z",
+  "nativeSpikeR43": {
+    "durationSeconds": 60,
+    "thresholdMs": 50,
+    "spikeCount": 3,
+    "peakFrameMs": 371,
+    "callbackCount": 2,
+    "diagnosticMs": 16.35,
+    "diagnosticPeakMs": 0.13,
+    "slowCallbacks": [
+      {
+        "at": 3.1,
+        "ms": 13.2,
+        "kind": "Scheduler",
+        "key": "eval.listener",
+        "label": "unmapped",
+        "failed": false
+      },
+      {
+        "at": 10.7,
+        "ms": 305.4,
+        "kind": "Scheduler",
+        "key": "structural.callback",
+        "label": "unmapped",
+        "failed": false
+      }
+    ],
+    "scope": "Usercachedslowcallbacktokenssoleborder.junctionsidentifiesownJ.Flush305.4msbuildspan;failed=false. RealInfo/noncombatgridexpansionchangeslayout. Framegap371msnotexactCPUtotal.",
+    "queuedTokens": "border.junctions"
+  },
+  "nativeWhyR43": {
+    "type": 2,
+    "pieces": 821,
+    "passes": 1022,
+    "solves": 3,
+    "unchanged": 1019,
+    "operations": 309,
+    "fragments": 504,
+    "triangles": 3550,
+    "geometryReads": 4,
+    "fastSkips": 1018,
+    "panelAlignments": 15,
+    "lastRead": "FluxInfoFrame:x101.656->134.146;FluxNonCombatGrid_Main:width95.788->128.278",
+    "interpretation": "OnelegitimatereflowexpandsgridandmovesInfo;notidlesolveorunitopacitychange. Renderercommitteardown/nativewritesandpoolsearchesidentifiedforboundedoptimization;R44nativephasecostmeasurementpending."
+  },
+  "r46Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-incremental-reflow-before-20261116T125123Z",
+  "r46DiagnosticPreservationCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r46-prior-diagnostics-20261116T130201Z",
+  "nativePeakR45": {
+    "version": "long-clock-r45",
+    "kind": "build",
+    "totalMS": 279.73,
+    "phasesMS": {
+      "preflight": 0.19,
+      "align": 0.23,
+      "geometry": 24.84,
+      "solve": 32.36,
+      "plan": 85.48,
+      "commit": 136.62
+    },
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "scope": "User-supplied Forever first-exit/real-reflow finite-watch capture. Phase values rounded independently; not an FPS/other-client result."
+  },
+  "nativeSpikeR44": {
+    "version": "reflow-work-r44",
+    "structuralCallbackMS": 281.3,
+    "evalListenerMS": 11.3,
+    "frameGapPeakMS": 350,
+    "phaseCostUnavailableReason": "CostClock incorrectly reused geometry coordinate guard; timestamps above 10,000,000 rejected. R45 validates finite nonnegative clock values independently."
+  },
+  "r46ChangeSummary": [
+    "Keep old mesh alive through a render epoch; compile the same global plan, reuse exact public owned setter arguments and retire only unclaimed fields after replacement is complete.",
+    "Every renderer-owned live RGB writer maintains/invalidate the public descriptor cache; source reassignment and SetTexture invalidate dependent color/path/UV state. Opaque alpha always passes directly to the approved native sink without comparison.",
+    "Retain old and new operations until successful commit; native allocation failure restores original sources and hides both generations; already-hidden retired fields receive no repeated public Hide.",
+    "Memoize validated native rectangles and bounded public hidden-anchor results only after alignment through pure layout+watched-snapshot reads. Original depth8/node64/cycle/private guards retained, cleanup on exceptions and no cache across passes.",
+    "Reuse immutable fully included clipped fields, skip strictly separated horizontal cap cuts and reject strictly disjoint fallback triangles; preserve tangencies and exact field geometry.",
+    "No timers, masks, global native wrappers, settings/action routing edits, or protected unit-frame setters added."
+  ],
+  "desktopWorkR46": {
+    "scope": "Desktop actual-source work counts and exact render-field signatures only; not native milliseconds, GPU/FPS, combat-taint or cross-client rendering acceptance.",
+    "incrementalCommit": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-incremental-commit-work.json",
+      "negativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-incremental-commit-negative-control.json",
+      "repeats": 3,
+      "styles": [
+        1,
+        2
+      ],
+      "preparedPanels": 8,
+      "renderFields": 801,
+      "beforeNativeMutations": 10025,
+      "candidateNativeMutations": {
+        "1": 146,
+        "2": 143
+      },
+      "beforeUnrelatedMutations": 8764,
+      "candidateUnrelatedMutations": 0,
+      "newTexturesBeforeAndAfter": 1,
+      "exactInitialAndChangedMeshParity": true,
+      "checks": 1670
+    },
+    "geometryPhase": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r46-geometry-phase-controls.json",
+      "focused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r46-geometry-phase-focused.json",
+      "pieces": 320,
+      "hiddenHosts": 160,
+      "beforeGetRect": 7374,
+      "candidateGetRect": 485,
+      "operationsBeforeAndAfter": 160,
+      "fragmentsBeforeAndAfter": 640,
+      "trianglesBeforeAndAfter": 1920,
+      "checks": 38
+    },
+    "clipFields": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r46-clip-work.json",
+      "repeats": 3,
+      "scenario": "50 repeats with 300 distant cap rectangles",
+      "beforeClipBuilds": 90000,
+      "candidateClipBuilds": 0,
+      "exactGeometryDigest": 2111483736,
+      "checks": 441
+    }
+  },
+  "nativePeakR46": {
+    "version": "incremental-reflow-r46",
+    "kind": "build",
+    "totalMS": 305.49,
+    "phasesMS": {
+      "preflight": 0.73,
+      "align": 0.25,
+      "geometry": 26.77,
+      "solve": 32.42,
+      "plan": 85.69,
+      "commit": 159.63
+    },
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "finding": "Native optimization failed to improve R45. Matched desktop work-count reductions did not transfer to this real HUD; hitch unresolved."
+  },
+  "r47Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-render-basis-before-20261116T130942Z",
+  "r47DiagnosticPreservationCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r47-prior-diagnostics-20261116T131606Z",
+  "r47ChangeSummary": [
+    "Read configured rendering-parent effective scale and local origin once per commit; shared source-owned fragment/triangle/fallback fields reuse only validated public basis values. Discard memo after success/error and ReleaseAll; no cross-pass geometry or private values retained.",
+    "Compare exact owned setter descriptors before allocating vararg tables; create a counted descriptor only on actual miss. Preserve argument count including nil values and source/material invalidation.",
+    "Existing optional finite watch records cached commit fragments/fallbacks/mesh/retirement and planning cuts/branches/owners/cells/fallbackMesh subphases. Helper counts partition setter hits/writes and public alpha reads/native writes; no default clocks, monitor, settings or native-global wrappers.",
+    "No visual geometry changes, timer cadence changes, action routing changes, settings writes, masks or protected unit geometry setters."
+  ],
+  "desktopWorkR47": {
+    "scope": "Three matched desktop actual-source pairs, one connected hidden render parent with12intersectingruns. Exact mesh/local-coordinate parity; no native latency/FPS conclusion.",
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-render-basis-work.json",
+    "negativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-render-basis-negative-control.json",
+    "focused": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-render-basis-focused.json",
+    "checks": 40,
+    "styles": {
+      "1": {
+        "fields": 135,
+        "beforeEachLeftBottomRect": 147,
+        "candidateEachLeftBottomRect": 1,
+        "beforeScale": 294,
+        "candidateScale": 2
+      },
+      "2": {
+        "fields": 146,
+        "beforeEachLeftBottomRect": 158,
+        "candidateEachLeftBottomRect": 1,
+        "beforeScale": 316,
+        "candidateScale": 2
+      }
+    },
+    "setterArgumentTables": {
+      "calls": 1000,
+      "beforeTables": 1000,
+      "candidateTables": 1,
+      "beforeAndCandidateNativeCalls": 1
+    }
+  },
+  "nativePeakR47": {
+    "version": "render-basis-r47",
+    "kind": "build",
+    "totalMS": 286.82,
+    "phasesMS": {
+      "preflight": 0.67,
+      "align": 0.22,
+      "geometry": 26.48,
+      "solve": 32.01,
+      "plan": 83.15,
+      "commit": 144.3
+    },
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "commitMS": {
+      "fragments": 10.36,
+      "fallbacks": 20.34,
+      "mesh": 112.53,
+      "retire": 0.95
+    },
+    "work": {
+      "setters": 31758,
+      "hits": 31259,
+      "writes": 499,
+      "alphaReads": 5791,
+      "alphaWrites": 3165,
+      "basisReads": 96
+    },
+    "planMS": {
+      "cuts": 10.59,
+      "branches": 43.13,
+      "owners": 3.27,
+      "cells": 3.17,
+      "fallbackMesh": 22.74
+    },
+    "finding": "Descriptor reuse is working but native cost remains near original R45 baseline279.73ms. No accepted native hitch fix."
+  },
+  "latestUserPrebuildRequirement": "Prepare as much border geometry/paint resource as possible during loading, then rebuild only actually changed parts across all UI elements. Combat/friendly dispel colors must repaint prepared paint without topology work.",
+  "r48Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-final-opacity-before-20261116T132231Z",
+  "r48DiagnosticPreservationCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r48-prior-diagnostics-20261116T133423Z",
+  "r48ChangeSummary": [
+    "Apply only final fallback opacity after RGB; never briefly restore a disabled alias to source alpha before hiding it again.",
+    "Cache public owner chains and boolean availability only after all original source entries are finalized and through fallback/mesh drawing; discard before source retirement, on error and release. Live visibility/tint callbacks read fresh state.",
+    "Keep one bounded successful generation of compiled numeric base junction geometry. Exact current topology/grouping, selected ArmSlices/remote owner source identity, bounds/UV/gutter, protected and rounded caps are validated. Current material/color/alpha is rebound on reuse; no old paint, group, root, operation or sprite state retained.",
+    "Publish only successfully committed unblocked operations; existing operation/triangle/value limits bound retained data. Failed/private/masked sources cannot reuse geometry; release/rollback clears it.",
+    "Same shared service covers all adopted border consumers. Normal colors/visibility use prepared pieces; genuine local layout changes reuse unchanged junctions and update changed field descriptors only. No enumeration of every hypothetical layout or new idle driver.",
+    "Combat portrait and friendly-dispel resources already initialize from constructors/OOC setup; audit found no demonstrated cold-live-transition allocation hole and made no unit-frame runtime changes."
+  ],
+  "desktopWorkR48": {
+    "scope": "Actual producer/renderer desktop work and exact output parity, not native timing/FPS/combat-taint acceptance.",
+    "fallbacks": {
+      "checks": 3482,
+      "focusedScripts": 36,
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-opacity-work.json",
+      "negativeControl": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-opacity-negative-control.json",
+      "repeats": 3,
+      "styles": [
+        1,
+        2
+      ],
+      "disabledAliases": 144,
+      "beforeWarmAliasAlphaWrites": 288,
+      "candidateWarmAliasAlphaWrites": 0,
+      "beforeWarmRevivals": 144,
+      "candidateWarmRevivals": 0,
+      "beforeRegistrationParentReads": 28392,
+      "candidateRegistrationParentReads": 112,
+      "beforeStaticOwnerCalls": 3042,
+      "candidateStaticOwnerCalls": 14,
+      "exact17DigitMeshParity": true,
+      "independentReview": "No actionable defect in final opacity, boolean memo, alpha/privacy, ancestry/listener refresh or memo cleanup/rollback."
+    },
+    "baseCompile": {
+      "checks": 486,
+      "focusedScripts": 28,
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r48-branch-cache-focused.json",
+      "negativeControls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r48-branch-cache-controls.json",
+      "connectedJunctions": 56,
+      "coldMisses": 56,
+      "localChangeHits": 54,
+      "localChangeMisses": 2,
+      "warmHits": 56,
+      "warmMisses": 0,
+      "exactCurrentPaintAndGeometryParity": true,
+      "guardControls": "Cache-disabled fails warm reuse; omitted UV guard fails fresh-compile equality. Remote owners, caps, gutter, subpixel geometry, aura topology, committed-only publication and real rollback covered."
+    },
+    "preparedTintAudit": {
+      "friendlyDebuffChecks": 18618,
+      "portraitFitChecks": 30240,
+      "unitFrameRuntimeEdits": false,
+      "finding": "Constructor/OOC setup creates native/readable paint owners; tint transitions reuse resources; observed desktop transitions allocate no new paint resources. Native whole-load timing and broader-client/taint acceptance remain pending."
+    }
+  },
+  "concurrentR48Scope": {
+    "paths": [
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+      "tests/trinket_bag_scan_work.lua"
+    ],
+    "finding": "Concurrent unrelated change present before the R48 frozen full gate; preserved, included in full462/1152 verification, not border-authored."
+  },
+  "nativePeakR48": {
+    "version": "prebuilt-joins-r48",
+    "kind": "build",
+    "totalMS": 216.31,
+    "phasesMS": {
+      "preflight": 0.69,
+      "align": 0.22,
+      "geometry": 26.99,
+      "solve": 34.61,
+      "plan": 65.48,
+      "commit": 88.34
+    },
+    "operations": 313,
+    "fragments": 511,
+    "triangles": 3602,
+    "baseHits": 115,
+    "baseMisses": 2,
+    "commitMS": {
+      "fragments": 10.97,
+      "fallbacks": 15.5,
+      "mesh": 60.62,
+      "retire": 1.0
+    },
+    "work": {
+      "setters": 31758,
+      "hits": 31241,
+      "writes": 517,
+      "alphaReads": 4219,
+      "alphaWrites": 151,
+      "basisReads": 96
+    },
+    "planMS": {
+      "cuts": 11.52,
+      "branches": 23.25,
+      "owners": 3.6,
+      "cells": 3.53,
+      "fallbackMesh": 23.31
+    },
+    "finding": "Single user-assisted capture improved recorded border build by24.6% versusR47286.82ms; still216.31ms and hitch unresolved. Not paired FPS/native-taint acceptance."
+  },
+  "r49Checkpoint": "C:/Users/mario/.codex/visualizations/2026/11/15/01a1ded4-a51f-7e41-8c99-dfbc0d58153b/border-localized-work-before-20261116T134411Z",
+  "nativeR49LoadRegression": {
+    "error": "Core/BorderJunctions.lua function at2648 has more than60upvalues",
+    "finding": "Desktop Lua5.4 syntax accepted63 captures; WoW Lua5.1 rejected. Renderer bookkeeping split into two helpers; Flush now57 including desktop_ENV. Native user reload confirmed error gone; lag unresolved.",
+    "gate": {
+      "runtimeFiles": 689,
+      "compilerPrototypes": 24857,
+      "maximumCaptures": 57,
+      "failures": 0,
+      "report": "C:/Users/mario/.codex/visualizations/2026/11/15/01a1ded4-a51f-7e41-8c99-dfbc0d58153b/border-r49-runtime-upvalues.json"
+    },
+    "regressionControl": "C:/Users/mario/.codex/visualizations/2026/11/15/01a1ded4-a51f-7e41-8c99-dfbc0d58153b/border-r49-upvalue-control.json"
+  },
+  "nativePeakR49Busy": {
+    "totalMS": 404.49,
+    "phasesMS": {
+      "preflight": 1.34,
+      "align": 0.45,
+      "geometry": 49.23,
+      "solve": 66.04,
+      "plan": 171.18,
+      "commit": 116.26
+    },
+    "finding": "Owned desktop full-suite/documentation CPU jobs were active during this user capture. Confounded; not a paired performance comparison or exclusive CPU attribution."
+  },
+  "nativePeakR49Quiet": {
+    "version": "localized-parts-r49",
+    "totalMS": 207.94,
+    "phasesMS": {
+      "preflight": 0.69,
+      "align": 0.2,
+      "geometry": 23.74,
+      "solve": 30.86,
+      "plan": 87.87,
+      "commit": 64.59
+    },
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "baseHits": 115,
+    "baseMisses": 2,
+    "sourceReads": 527,
+    "sourceHits": 516,
+    "fallbackHits": 2037,
+    "fallbackMisses": 10,
+    "commitMS": {
+      "fragments": 10.71,
+      "fallbacks": 14.13,
+      "mesh": 37.12,
+      "retire": 1.2
+    },
+    "work": {
+      "setters": 10014,
+      "hits": 8911,
+      "writes": 1103,
+      "alphaReads": 1803,
+      "alphaWrites": 58,
+      "basisReads": 96,
+      "drawReuse": 91
+    },
+    "planMS": {
+      "cuts": 11.1,
+      "branches": 13.86,
+      "owners": 3.4,
+      "cells": 2.87,
+      "fallbackMesh": 56.37
+    },
+    "finding": "User repeated first exit after owned background checks finished and all owned test/benchmark processes held.207.94ms stillunresolved. Unpaired native scope only; fallback lookup now dominant."
+  },
+  "r50Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-indexed-fallback-before-20261116T142859Z",
+  "r50DiagnosticPreservationCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-prior-diagnostics-20261116T145029Z",
+  "r49ChangeSummary": [
+    "Reverse public parent/anchor dependencies restrict observed snapshot refresh. Geometry still freshly validates every source coordinate; no public position/scale tuple persists across passes. Phase owner walks preserve original32-hop guard.",
+    "Pure planning Source memo validates each native source once per pass, then clears before paint, on budget exits and after errors. Planning error restores original art and propagates exact native failure.",
+    "Immutable numeric fallback recipes and public source handles reuse one committed generation; current source paint/blockers/aliases are recreated. Unchanged complete drawing operations preclaim their old fields before any changed allocation, then rebind current operation/epoch/listeners without geometry setters.",
+    "Core Flush exceeded WoW Lua5.1 capture limit63 during development; renderer bookkeeping helpers reduce it57. Native user confirmed error gone. A runtime compiler-prototype gate and actual service helper regression now cover the missed desktop-Lua5.4 limit."
+  ],
+  "r50ChangeSummary": [
+    "Unconditional nested fallback index was rejected: dense stress gains did not justify measured common-case publication cost/memory regressions.",
+    "Keep original flat fallback publication and small buckets. Only larger public geometry buckets build an adaptive lookup index; full current numeric guards, native alpha policy, committed-only publication and resource limits remain.",
+    "Cached numeric probe counts identify actual search work in the existing finite watch. No new periodic work, profiler preference changes or secret-value inference.",
+    "All owned desktop validation/benchmark jobs must finish before another native timing capture."
+  ],
+  "desktopWorkR49": {
+    "observer": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r49-observer-focused.json",
+      "controls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r49-observer-controls.json",
+      "checks": 63,
+      "parentReadsBefore": 360,
+      "parentReadsCandidate": 4,
+      "sourceReadsBeforeAndCandidate": 360,
+      "scope": "Exact source coordinates remain fresh including unrelated unsignaled private/missing transitions."
+    },
+    "sourcePlan": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r49-source-phase-work.json",
+      "checks": 820,
+      "nativeSourceQueriesBefore": 73,
+      "candidate": 25,
+      "sourceTextures": 25,
+      "scope": "Three external frozen-source pairs; exact cold/local meshes and failure/budget/native-opaque-alpha recovery."
+    },
+    "drawReuse": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-reuse-work.json",
+      "checks": 9620,
+      "warmHelperCallsBefore": 6774,
+      "candidate": 726,
+      "localChangeHelperCallsBefore": 6780,
+      "candidateLocal": 948,
+      "reusedOperations": 54,
+      "changedOperations": 2,
+      "preclaimedFields": 648,
+      "scope": "Three paired actual connected meshes, live paint, private alpha, parent/layer/material/mask changes and allocator rollback after preclaims."
+    },
+    "fallbackNumeric": {
+      "checks": 854,
+      "scope": "Numeric recipes preserve current paint wrappers, full guards and rollback; R49 native lookup cost identified as remaining bottleneck."
+    }
+  },
+  "desktopWorkR50": {
+    "scope": "Desktop probe/CPU/heap/correctness evidence only; does not establish native FPS/latency or taint acceptance.",
+    "unconditionalIndexRejected": {
+      "reports": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-fallback-index-results.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-fallback-index-realistic-results.json"
+      ],
+      "finding": "Common24/56 full-generation median regressions2.75%/3.23%, publication/memory increased; stress-only improvement was not accepted as production evidence."
+    },
+    "adaptiveReports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-fallback-adaptive-results.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r50-fallback-adaptive-realistic-results.json"
+    ]
+  },
+  "nativePeakR50Quiet": {
+    "version": "adaptive-fallback-r50",
+    "source": "User quiet native Forever first-combat-exit capture after all owned CPU/test/docs processes held",
+    "totalMs": 218.36,
+    "preflightMs": 0.78,
+    "alignMs": 0.22,
+    "geometryMs": 26.03,
+    "solveMs": 31.48,
+    "planMs": 93.71,
+    "commitMs": 66.15,
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "baseHits": 115,
+    "baseMisses": 2,
+    "sourceReads": 527,
+    "sourceHits": 516,
+    "fallbackHits": 2037,
+    "fallbackMisses": 10,
+    "fallbackProbes": 3292,
+    "commitFragmentsMs": 10.65,
+    "commitFallbacksMs": 14.78,
+    "commitMeshMs": 38.06,
+    "commitRetireMs": 1.03,
+    "setters": 9609,
+    "hits": 9117,
+    "writes": 492,
+    "alphaReads": 1758,
+    "alphaWrites": 58,
+    "basisReads": 96,
+    "drawReuse": 95,
+    "planCutsMs": 10.66,
+    "planBranchesMs": 16.91,
+    "planOwnersMs": 3.4,
+    "planCellsMs": 3.34,
+    "planFallbackMeshMs": 59.16,
+    "acceptance": "Hitch unresolved; not a performance improvement over quiet R49 207.94ms. Probe count is low; repeated numeric guard/copy work remains a candidate. Native FPS/taint not established."
+  },
+  "r51Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-whole-addon-before-20261116T150228Z",
+  "desktopWorkR51": {
+    "production": "Core/BorderJunctions.lua",
+    "version": "prepared-guards-r51",
+    "checks": 31944,
+    "focusedScriptsBeforeBudgetCorrection": 43,
+    "focusedScriptsAfterBudgetCorrection": 7,
+    "policy": "Current numeric arrays validated once only in synchronous pure source-read planning; immutable copied numeric chunks and comparison results reused within that phase. Standalone calls always fresh. Phase state discarded on success/error/budget before paint. Numeric cache budget conservatively charges copied chunks+arm. No persistent native positions or new solver cache.",
+    "work24": {
+      "publicNumberBefore": 4752,
+      "publicNumberAfter": 1216,
+      "flatStoresBefore": 5760,
+      "flatStoresAfter": 0,
+      "comparisonsBefore": 6936,
+      "comparisonsAfter": 1240
+    },
+    "work56": {
+      "publicNumberBefore": 11088,
+      "publicNumberAfter": 2928,
+      "flatStoresBefore": 13440,
+      "flatStoresAfter": 0,
+      "comparisonsBefore": 16184,
+      "comparisonsAfter": 2984
+    },
+    "desktopAlternatingBlockCapture": {
+      "scope": "Desktop Windows Lua os.clock alternating5-pass blocks, full GC before each measured block; timing is not native FPS/latency evidence",
+      "hashes": {
+        "border-r51-baseline-r50.lua": "2830a7095afed7eeaf935028ae039dec01188d76a0871a87e726cd002bf1cdea",
+        "border-r51-array-guard-candidate.lua": "1d628a8057cbb3ee060d0c78f0fe654e979467bca8371b389ff9ba20f1d3a6c0"
+      },
+      "rows": [
+        {
+          "mode": "compileWarm",
+          "junctions": 24,
+          "samples": {
+            "baseline": [
+              0.099,
+              0.099,
+              0.099
+            ],
+            "candidate": [
+              0.067,
+              0.07,
+              0.073
+            ]
+          },
+          "medianBaseline": 0.099,
+          "medianCandidate": 0.07,
+          "deltaPercent": -29.292929292929294,
+          "raw": [
+            {
+              "mode": "compileWarm",
+              "junctions": "24",
+              "pair": "1",
+              "baseline": "0.099000000",
+              "candidate": "0.067000000",
+              "signature": "231309411/144/144/0"
+            },
+            {
+              "mode": "compileWarm",
+              "junctions": "24",
+              "pair": "2",
+              "baseline": "0.099000000",
+              "candidate": "0.070000000",
+              "signature": "231309411/144/144/0"
+            },
+            {
+              "mode": "compileWarm",
+              "junctions": "24",
+              "pair": "3",
+              "baseline": "0.099000000",
+              "candidate": "0.073000000",
+              "signature": "231309411/144/144/0"
+            }
+          ]
+        },
+        {
+          "mode": "compileWarm",
+          "junctions": 56,
+          "samples": {
+            "baseline": [
+              0.227,
+              0.254,
+              0.263
+            ],
+            "candidate": [
+              0.168,
+              0.197,
+              0.2
+            ]
+          },
+          "medianBaseline": 0.254,
+          "medianCandidate": 0.197,
+          "deltaPercent": -22.440944881889756,
+          "raw": [
+            {
+              "mode": "compileWarm",
+              "junctions": "56",
+              "pair": "1",
+              "baseline": "0.227000000",
+              "candidate": "0.168000000",
+              "signature": "1618011774/336/336/0"
+            },
+            {
+              "mode": "compileWarm",
+              "junctions": "56",
+              "pair": "2",
+              "baseline": "0.254000000",
+              "candidate": "0.197000000",
+              "signature": "1618011774/336/336/0"
+            },
+            {
+              "mode": "compileWarm",
+              "junctions": "56",
+              "pair": "3",
+              "baseline": "0.263000000",
+              "candidate": "0.200000000",
+              "signature": "1618011774/336/336/0"
+            }
+          ]
+        },
+        {
+          "mode": "fullWarm",
+          "junctions": 24,
+          "samples": {
+            "baseline": [
+              0.431,
+              0.395,
+              0.419
+            ],
+            "candidate": [
+              0.394,
+              0.395,
+              0.378
+            ]
+          },
+          "medianBaseline": 0.419,
+          "medianCandidate": 0.394,
+          "deltaPercent": -5.966587112171828,
+          "raw": [
+            {
+              "mode": "fullWarm",
+              "junctions": "24",
+              "pair": "1",
+              "baseline": "0.431000000",
+              "candidate": "0.394000000",
+              "signature": "231309411/144/144/0"
+            },
+            {
+              "mode": "fullWarm",
+              "junctions": "24",
+              "pair": "2",
+              "baseline": "0.395000000",
+              "candidate": "0.395000000",
+              "signature": "231309411/144/144/0"
+            },
+            {
+              "mode": "fullWarm",
+              "junctions": "24",
+              "pair": "3",
+              "baseline": "0.419000000",
+              "candidate": "0.378000000",
+              "signature": "231309411/144/144/0"
+            }
+          ]
+        },
+        {
+          "mode": "fullWarm",
+          "junctions": 56,
+          "samples": {
+            "baseline": [
+              1.206,
+              1.101,
+              1.066
+            ],
+            "candidate": [
+              1.208,
+              1.041,
+              1.033
+            ]
+          },
+          "medianBaseline": 1.101,
+          "medianCandidate": 1.041,
+          "deltaPercent": -5.449591280653953,
+          "raw": [
+            {
+              "mode": "fullWarm",
+              "junctions": "56",
+              "pair": "1",
+              "baseline": "1.206000000",
+              "candidate": "1.208000000",
+              "signature": "1618011774/336/336/0"
+            },
+            {
+              "mode": "fullWarm",
+              "junctions": "56",
+              "pair": "2",
+              "baseline": "1.101000000",
+              "candidate": "1.041000000",
+              "signature": "1618011774/336/336/0"
+            },
+            {
+              "mode": "fullWarm",
+              "junctions": "56",
+              "pair": "3",
+              "baseline": "1.066000000",
+              "candidate": "1.033000000",
+              "signature": "1618011774/336/336/0"
+            }
+          ]
+        },
+        {
+          "mode": "fullMove",
+          "junctions": 24,
+          "samples": {
+            "baseline": [
+              0.387,
+              0.385,
+              0.375
+            ],
+            "candidate": [
+              0.368,
+              0.359,
+              0.356
+            ]
+          },
+          "medianBaseline": 0.385,
+          "medianCandidate": 0.359,
+          "deltaPercent": -6.7532467532467555,
+          "raw": [
+            {
+              "mode": "fullMove",
+              "junctions": "24",
+              "pair": "1",
+              "baseline": "0.387000000",
+              "candidate": "0.368000000",
+              "signature": "1177880808/144/138/6"
+            },
+            {
+              "mode": "fullMove",
+              "junctions": "24",
+              "pair": "2",
+              "baseline": "0.385000000",
+              "candidate": "0.359000000",
+              "signature": "1177880808/144/138/6"
+            },
+            {
+              "mode": "fullMove",
+              "junctions": "24",
+              "pair": "3",
+              "baseline": "0.375000000",
+              "candidate": "0.356000000",
+              "signature": "1177880808/144/138/6"
+            }
+          ]
+        },
+        {
+          "mode": "fullMove",
+          "junctions": 56,
+          "samples": {
+            "baseline": [
+              0.912,
+              1.092,
+              1.173
+            ],
+            "candidate": [
+              0.878,
+              1.033,
+              1.096
+            ]
+          },
+          "medianBaseline": 1.092,
+          "medianCandidate": 1.033,
+          "deltaPercent": -5.4029304029304175,
+          "raw": [
+            {
+              "mode": "fullMove",
+              "junctions": "56",
+              "pair": "1",
+              "baseline": "0.912000000",
+              "candidate": "0.878000000",
+              "signature": "1207022710/336/330/6"
+            },
+            {
+              "mode": "fullMove",
+              "junctions": "56",
+              "pair": "2",
+              "baseline": "1.092000000",
+              "candidate": "1.033000000",
+              "signature": "1207022710/336/330/6"
+            },
+            {
+              "mode": "fullMove",
+              "junctions": "56",
+              "pair": "3",
+              "baseline": "1.173000000",
+              "candidate": "1.096000000",
+              "signature": "1207022710/336/330/6"
+            }
+          ]
+        }
+      ]
+    },
+    "finalBudgetNote": "Prototype timing precedes additional conservative scalar-budget accounting. Final runtime exact-state/work proofs rerun; native performance not established.",
+    "reports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r51-array-guard-focused.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r51-budget-focused.json"
+    ],
+    "nativeTiming": "pending"
+  },
+  "r52Checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-local-plan-before-20261116T155526Z",
+  "desktopWorkR52": {
+    "version": "static-unit-paint-r52",
+    "changedId": "COMBAT-TRANSITIONS-20261116",
+    "dateUTC": "2026-11-16T16:18:27.435198+00:00",
+    "sourceHashes": {
+      "Core/BorderJunctions.lua": {
+        "raw": "71e880f48eaef054d1c3805b1b7876e1b6572eaadbafb496836845aa0933d6bf",
+        "normalized": "4510d727e0645fd6e6b2b3a394318b567cc182405bedcb0c2ea06a36df657e94"
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "raw": "6e0e787fc08ee6ca14226a0b5c025d117b3fdeb1f6132508d3355af6837d8813",
+        "normalized": "0e97f78bcf3758e7f3adb3e1ee50004066d22a082e7cec313feeec9713ace6f2"
+      },
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "raw": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558",
+        "normalized": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558"
+      },
+      "tests/border_unit_paint_idempotence.lua": {
+        "raw": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada",
+        "normalized": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada"
+      },
+      "tests/unit_portrait_final_paint.lua": {
+        "raw": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb",
+        "normalized": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb"
+      }
+    },
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-local-plan-before-20261116T155526Z",
+    "changes": [
+      "Skip derived paint only for identical public authored unit RGBA; native source suppression/fallback visibility still run; opaque opacity always forwards",
+      "Choose final normal/combat portrait color once per shared refresh; preserve party unit material classification while red and all direct party consumers"
+    ],
+    "dedicatedUnitPaintChecks": 98,
+    "dedicatedProducerChecks": 3560,
+    "producerStages": 100,
+    "focusedScripts": 20,
+    "syntaxChangedFiles": 5,
+    "upvalues": {
+      "CoreFunctions": 111,
+      "CoreMaximum": 57,
+      "SharedPartyFunctions": 433,
+      "SharedPartyMaximum": 20
+    },
+    "nativeWorkProof": {
+      "type2RepeatedExitDerivedAlphaReadsBefore": 2037,
+      "after": 0,
+      "sourceSuppressionRetained": true,
+      "freshVisibilityAndPrivateNativeSinksRetained": true,
+      "geometryInPaintReplay": 0,
+      "solvesInPaintReplay": 0,
+      "allocationsInPaintReplay": 0
+    },
+    "reports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-unit-paint-focused.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-producer-focused.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-final-paint-work.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-material-work.json"
+    ],
+    "controls": [
+      "Original repeated unit paint fails work-count assertion",
+      "Unsafe private dedup fails opaque sink forwarding",
+      "Restored normal-first portrait block fails churn assertion",
+      "Skipping party portrait classification fails material assertion"
+    ],
+    "nativeAcceptance": "Pending: first/repeated unit exit lag; full unlocked UpdateOuterBorder geometry/whole callback cost; combat/dispel/class output, taint and other native clients. Paint-only replay zero solves is not proof of all event-edge geometry.",
+    "otherWork": "Actionstrip/seam and local-fallback-plan runtime edits held per user priority; external designs only",
+    "existingForeverDiskMatches": {
+      "Core/BorderJunctions.lua": true,
+      "UnitFrames/FluxUnitFrames_Shared.lua": true,
+      "UnitFrames/FluxUnitFrames_Party.lua": true
+    },
+    "manualInstallationCopies": false
+  },
+  "builderR53": {
+    "evidence": "docs/validation/border-builder-2026-11-16.json",
+    "nativeR52MinimapToggleMs": 232.41,
+    "nativeR53": "Pending",
+    "status": "R53 plan reuse/pair identity/readonly owner phase applied;95focused PASS/1170 current composed syntax; Core and owned sources stable; no new whole-corpus functional run"
+  },
+  "eventReflowR54": {
+    "version": "event-reflow-r54",
+    "evidence": "docs/validation/border-event-reflow-2026-11-16.json",
+    "focusedScripts": 129,
+    "native": "Pending",
+    "priority": "Combat exit first; severe party/raid join-and-leave hitch added as a related event path. Actual builder changed-layout cost remains a native acceptance requirement."
+  },
+  "nativeTestHold": {
+    "requestedDate": "2026-11-16",
+    "status": "Deferred by user until explicit renewed availability",
+    "offlineWorkAllowed": true,
+    "previousCaptureRequestsOnHold": true
+  },
+  "actionStripR55": {
+    "version": "strip-updates-r55",
+    "evidence": "docs/validation/action-strip-borders-2026-11-16.json",
+    "scripts": 144,
+    "native": "Deferred by explicit user instruction"
+  },
+  "junctionShadowsR56": {
+    "version": "shadow-support-r56",
+    "evidence": "docs/validation/junction-shadows-2026-11-16.json",
+    "nativeTesting": "DEFERRED BY USER",
+    "historicalSourceResultsRetained": true
+  }
+}

@@ -1,0 +1,3106 @@
+{
+  "id": "CAST-DIVIDER-FLARE-20261117",
+  "dateLocal": "2026-11-17",
+  "timezone": "Europe/Copenhagen",
+  "status": "IMPLEMENTED; focused offline checks PASS; new screenshot-specific native comparison pending",
+  "request": "Mooncloth crafting and gap beside first name letter; shared fit for all unit cast bars",
+  "inputImage": "C:/Users/mario/AppData/Local/Temp/codex-clipboard-06aeddbd-e7fd-446a-bd38-42d5f77526f1.png",
+  "checkpoint": {
+    "verified": true,
+    "startedUTC": "2026-11-17T00:27:58.189102+00:00",
+    "completedUTC": "2026-11-17T00:27:58.871829+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-20261117T002758Z",
+    "scope": "Selected current cast/border runtime and cast tests. Prior full source/history qualified; private settings metadata only. No runtime/docs/Git mutations, client operations, profiling or benchmarks.",
+    "priorFullCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z",
+    "priorFullArchiveVerifiedByHash": true,
+    "priorTargetArchiveMatches": {
+      "UnitFrames/FluxCastBar.lua": true,
+      "UnitFrames/FluxCastBarTradeskills.lua": true,
+      "UnitFrames/FluxCastBarThemes.lua": true,
+      "FluxBorder.lua": true,
+      "Core/BorderJunctions.lua": true
+    },
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historyBundleSha256": "afef14eb74063e0d6e478725f10b6d22236d07510fc6c6eac35dcf85a15a49a3",
+    "historyVerified": true,
+    "historyVerifyOutput": "The bundle contains these 38 refs:\na67a6e2e9b323ae26045ee03872b9ee1070d9961 refs/codex/turn-diffs/captures/1794753588221/85253a50-819a-4d7c-b86a-b9b4ed499bb4/base\na67a6e2e9b323ae26045ee03872b9ee1070d9961 refs/codex/turn-diffs/captures/1794753773545/59b8340b-c648-4685-aae1-2033ef78396a/base\n95072acf06ffb94d7b2d12bf5d4d710cae7fceb0 refs/codex/turn-diffs/captures/1794757297036/e7db44f4-d46f-4cc8-9137-4637f3b2d785/base\n384a205622f66eacf49f2a21a91829637a195e10 refs/codex/turn-diffs/checkpoints/01834fe43bc594bf7df9e4f2f5b60ee4/1eba07058977f19d969c1b19bc1fc53e/1794331065686/fd692ba3-4d6c-45d3-b0e0-e7dfbdf9118e\naa2a98eaa2f7b4a23c3af090d1c6186eea718d6e refs/codex/turn-diffs/checkpoints/0a410a8a2d5ac1e6fa68f7f3e7c1a42f/28a929ef696ac3b56ec92f7a8b625d1a/1794248906332/1109af3e-7ce2-419a-a77b-83ee825adb78\n4b90c484b7b9f727f56c69f8f8814fb176987285 refs/codex/turn-diffs/checkpoints/16832dd091a5628fad28d9b1893ce854/f62082f9bcfd90872e080824e6571731/1794661835615/86e1ee24-7294-4415-a64e-2fadb92520b0\n7d36ea7053368531cdd2ab9093b438a06a532727 refs/codex/turn-diffs/checkpoints/2a12b0f7de56d5c5b957f2d61a96c1ad/c75f6f359d0381b0f60fbd3e1b3712d0/1794216828853/b32b9d9a-f811-4c7b-803e-f71f90b6f815\n3780f660d6219763edb2502082f6780a055d622b refs/codex/turn-diffs/checkpoints/3046f265c62fd8c3e7aababb15efe073/40e9d67cbd1b5b00ec537bb111cab266/1794341245392/8e71432c-ab82-48f6-b352-8d0fafc0a29d\n6950469f88c4c77c7625c21c2ecca7bb03a495c4 refs/codex/turn-diffs/checkpoints/34b4864999a22f76c162ee0ba54c9fe7/e2cf714fe66402c7f2d4c3618d4f7df8/1794178863189/a718f2f2-f6ac-40dd-b4c6-ccb8b6c8bfb5\na89e59580d660149e36f5f1685e127293c3f11b5 refs/codex/turn-diffs/checkpoints/3654bf6fcaa2483df56e56a9e19ed263/520e09e566af89c7039aca2701cee3bc/1794228724883/1682cca5-1494-4539-aed9-5d4cbd9bf938\n9458961cffe5f8613dccccf663c153d5273062b1 refs/codex/turn-diffs/checkpoints/38db459cead8f3f29c9f4688e2e761ee/5b62618e5bb038971b7c09184ea6c33a/1794307875489/89b0b7c3-d0a6-44d1-b303-0f6c23abb2b8\n75fd44bc398a0b46157624fc9ef1b575757dd92e refs/codex/turn-diffs/checkpoints/4229643d5d789edffc024c96e74eb405/fa7c84d18fe95cac76c54c059a4db854/1794338874872/2376bbe0-d75c-4ba7-86d6-12e288cdd0c4\n02cde5fd29a98a65aabe86a74df1b6aa562ec87a refs/codex/turn-diffs/checkpoints/499acc29693771fc813dd1e2b04efbd3/ea63fe6ada885e2056e01f2d1dd5108d/1794263852043/4de92352-0822-495c-88c7-1c12e16c0ddc\n5645433e491d69f733755672cb55fe8679ea041f refs/codex/turn-diffs/checkpoints/4b11a67b3bc747f51c29b9a2e56f8142/6e70e854750f26dcd8e97dd5b29d1deb/1794599266258/5a58ae44-271b-4cc1-8e6c-074e8666c820\n826d6a8a485f251c65190064fd534879638e26c9 refs/codex/turn-diffs/checkpoints/52f14f441a5e6301ae0adf4f6e5547d8/2a1f1f118365e307ed925952a1bf5da6/1794657387327/e41bcbdf-e360-4fd9-9bef-3afcba8b5b3e\n24c6f76393d140e72cdf6bd7b997382aa5758cb2 refs/codex/turn-diffs/checkpoints/5852321aba0022a13676dd1bb18e6da7/fd7d30b8c1be42c8b895baab15c58c9d/1794679356484/a47c0f26-9773-44b0-bf1c-b41c8bfd98bf\ne68196b9d02bccb535a980e698b2a5ebc971e2df refs/codex/turn-diffs/checkpoints/5ca797b8cd8a94af0f8982de4c9ffcdd/42c6ae9c074de296098669cf2b1ff293/1794581810841/90443a9a-58fe-4772-9151-7ec0bf906d98\nf1600e0c950ef927c20ead9eb35343ac532c8303 refs/codex/turn-diffs/checkpoints/5d398f0e05c247cb8dd7b303ed5e21ed/dbbecc31951f22e77d2a948e92f1ee76/1794330713841/abb8a34a-e235-4750-8291-5a686fad66e2\na67a6e2e9b323ae26045ee03872b9ee1070d9961 refs/codex/turn-diffs/checkpoints/6b9b856d8d156fa37c2e128f7c034746/e6bc197d1da95f98aa91a30d6997fe26/1794752952650/6d032cb5-bfa8-430b-a4f9-404ef2a18a06\n130405495c08b793847c6c50b574933774fd075f refs/codex/turn-diffs/checkpoints/79a50fc8f4cb698cba0fdd093da1c11d/627f31e657500ee008465446675bfa45/1794687160015/a515379d-fd2f-4e3d-b1bd-f01ac4a6c354\n051a0cd27c39f20a85a5afeb380853a2ae7cdf07 refs/codex/turn-diffs/checkpoints/89e00701adabed473903dfa210b52026/0881f2adb9b32ca5c11fa34b18705446/1794219974187/9a3a9ce0-1099-4a34-ae2b-2d66fd2a5267\n77d0ce67ea8382bfc46a3e92f3f862a8145340c0 refs/codex/turn-diffs/checkpoints/9838e0d4e193aac808964edb068766ab/8a2fde9f0c3ac543f4f2cc7b3a186262/1794744754163/bf7d6ad1-0c30-4caa-a191-276021c053a1\n03261eb6bddf18506d80248e16f22728b897806c refs/codex/turn-diffs/checkpoints/9d2ea188226a0d889b8fe7f0d1637265/06bef764e9981fe17e4ab75bdc0de874/1794222175793/462f2b0c-4ce9-417a-8ac6-c1c7a548cbee\nc372cb7576b7ac55cd64901940ef5d4e01bef7db refs/codex/turn-diffs/checkpoints/9f3738a102c4f7329b80628b6805f5a9/5f26d73b6d27cafffec6d7372dd2e104/1794555508531/02c5573b-4068-461b-af98-6030131264c5\nb5628bb2e0d2653677ec5c45223829c9c52f5318 refs/codex/turn-diffs/checkpoints/a2d5b78631c85a9e5f29e8653f570972/b8d33f193b9b22076bc82cc7511984a6/1794608352524/1399e342-3f48-4aed-9e4f-d13c388224d2\n6a12fb183efac162af38a1b7e4a3eb82fe25c979 refs/codex/turn-diffs/checkpoints/a6160a36681612b20c7fb71dc163b38e/05098a18fb28e290d3513b161f10591f/1794575392107/983983a7-1e5e-44e1-b1e2-2e52e58ba68a\n5d696d822bbb63d564548d04d4ea7cae51fc828d refs/codex/turn-diffs/checkpoints/ab263878ca8c62ed648ae51cbf1f2866/6f98b75b42cb34a73d6c192bdd74c192/1794225765408/22bce42f-804d-4221-9b52-f84a25c75418\n8d772a1d4fc718413cb56a5c943190f309212377 refs/codex/turn-diffs/checkpoints/b3169c63d2ae42bead5999bff7da65a3/9d932c7f978810a1f55da956ddbcf579/1794237407656/e095db73-c24e-4573-8c94-95f249ff6c51\n79ac796b3dadabb589509d64fd26981ce3b247ba refs/codex/turn-diffs/checkpoints/b3ae5cd95557c7a196b9c713300a1674/7c7bede607bf785941609bd544a45524/1794423898085/5ef0dae0-7b6d-4f60-906e-3ad5bc33742c\na5f6145d01be4245beeb94ff4ae441f21ed5491c refs/codex/turn-diffs/checkpoints/b8fa8dc242e428d81c0976c954e904a3/112700b8dc0abd254f86d52fea92f0c1/1794553345241/f4b952bb-7e30-4a7d-9a1b-f5fcac133db7\n1621f1db3db55c6d07ae4019a2fa0f3807437d0d refs/codex/turn-diffs/checkpoints/bb4dc4221ef5943c93eacc6427d6b357/85bfce3f53f38d683742c7ac9e7e6748/1794309752083/66a92232-dc86-4d16-8e21-74046e97780e\n28b495aa869564ddb56053725c6b7f5c36b8f84a refs/codex/turn-diffs/checkpoints/d5eea9b0355afae8418227d2dbad3339/a85c6e5a817013885206cafba5f78e81/1794226424492/28629c61-2fd8-4365-a3ac-ea8719343169\na4c3acabf71cda5e7193de7093b9c6a519574228 refs/codex/turn-diffs/checkpoints/ee9feb7d8d656a2766c102521a9fa375/820a72a89e4b040af8b771785a9102d8/1794225118085/0f761fc1-7d3a-4d38-846c-84014258246f\n2afe8fb8da7c62dee15e37da9be3f5613cd3c8ac refs/codex/turn-diffs/checkpoints/f5ce9b1afea54c82b70b7445aede71eb/c3605f661c86b3f1e67cbe9c6d4837cd/1794222777399/d4a89243-8811-4c5d-8190-01b07114ae96\n0b7513cffadfccc6996f294dbdc7c8d7d7637de7 refs/codex/turn-diffs/checkpoints/f5fbf880a26eb4aa6b3c56db5a49bd9a/3ada74e7e9c500750985c8d1996a4a15/1794234286216/584c9133-8312-44a3-b2de-a0d73709d5be\n6b444eba4573092b57919ee3e497d86d2ebb3ece refs/heads/main\n6b444eba4573092b57919ee3e497d86d2ebb3ece refs/remotes/origin/main\n6b444eba4573092b57919ee3e497d86d2ebb3ece HEAD\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\nC:/Users/mario/.codex/visualizations/2026/11/15/01a1ded4-a51f-7e41-8c99-dfbc0d58153b/party-roster-before-20261116T233337Z/history.bundle is okay\n",
+    "currentMainHeadCovered": true,
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "statusEntries": 438,
+    "statusStable": true,
+    "sourceArchiveSha256": "54fcf4d0ad77fc2d4498397fb82b5f23bfffa7524bbf05eb1c3ec271df26937a",
+    "archiveVerified": true,
+    "selectedFileCount": 28,
+    "selectedHashes": {
+      "Core/BorderJunctions.lua": {
+        "rawSha256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "lfSha256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+      },
+      "FluxBorder.lua": {
+        "rawSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+        "lfSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+      },
+      "UnitFrames/FluxCastBar.lua": {
+        "rawSha256": "06eb83e4801acb48539211622acd5c91eb9f8898824c943428ba36c2abaf1951",
+        "lfSha256": "67fc6ee3b204db3ee4dcf7f53e84ecf1a79911fb9c334f0a2be201fc6a2f1044"
+      },
+      "UnitFrames/FluxCastBarThemes.lua": {
+        "rawSha256": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+        "lfSha256": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+      },
+      "UnitFrames/FluxCastBarTradeskills.lua": {
+        "rawSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1",
+        "lfSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1"
+      },
+      "tests/cast_dispatch_hotspot_work.lua": {
+        "rawSha256": "d2f876acca6e8fca37b760787b4cb8a1e16310fb93904c3fa5ad8779408d87c5",
+        "lfSha256": "d2f876acca6e8fca37b760787b4cb8a1e16310fb93904c3fa5ad8779408d87c5"
+      },
+      "tests/cast_equality_work.lua": {
+        "rawSha256": "180c5b163a86e76c7165462c8e5bf15bb6a8694eba31e42f6ce83592e64ae1b0",
+        "lfSha256": "95716d0cf6d9d30b62a31ce87423ce5293de273434d8632a14a12d3ac0533491"
+      },
+      "tests/cast_hotspot_work.lua": {
+        "rawSha256": "1cd68906da171fc89df826ca12be1ba5144138e3614d9cb113743e85b2eab2ac",
+        "lfSha256": "1cd68906da171fc89df826ca12be1ba5144138e3614d9cb113743e85b2eab2ac"
+      },
+      "tests/cast_live_name_work.lua": {
+        "rawSha256": "ae0c580a1870f8935d71e504f5deacc306a6eab7056236042d6f7bd40798311f",
+        "lfSha256": "de88682234a612a0fe72d77cf2520dc8b14b2549b612192551d6be5d1b8ddab6"
+      },
+      "tests/cast_range_macro.lua": {
+        "rawSha256": "32dd1ef27a39b05e15f19046bc52f11f3fcdcbfc2f70d763ad1d9e766de92421",
+        "lfSha256": "32dd1ef27a39b05e15f19046bc52f11f3fcdcbfc2f70d763ad1d9e766de92421"
+      },
+      "tests/cast_range_plain_target.lua": {
+        "rawSha256": "d4f319471a8da50a1a457e960ef90de799867ac23bbadd14d71eab0c945b5510",
+        "lfSha256": "d4f319471a8da50a1a457e960ef90de799867ac23bbadd14d71eab0c945b5510"
+      },
+      "tests/cast_range_target.lua": {
+        "rawSha256": "e1a325ad9b1be2eabac10928bcd3a429778bc09c909a0b24ae09b1c47f689e5c",
+        "lfSha256": "e1a325ad9b1be2eabac10928bcd3a429778bc09c909a0b24ae09b1c47f689e5c"
+      },
+      "tests/cast_slot_pass_lifecycle.lua": {
+        "rawSha256": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+        "lfSha256": "494329e3c974553daad555643e40eb69441bf33f3e84ff2d73fa58da74f8677b"
+      },
+      "tests/castbar_active_crafting.lua": {
+        "rawSha256": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6",
+        "lfSha256": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6"
+      },
+      "tests/castbar_border_junctions.lua": {
+        "rawSha256": "770ac1e4e4c0bb7f00e9e9402329c0230d0a96c42ea9b818542f303da2dcc8d5",
+        "lfSha256": "8b81ea119a4d8ef4b61f96a0225048f69ed40ab35cb01b59e3357fb35d4f82cf"
+      },
+      "tests/castbar_border_layout.lua": {
+        "rawSha256": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46",
+        "lfSha256": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46"
+      },
+      "tests/castbar_completion_visual.lua": {
+        "rawSha256": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+        "lfSha256": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+      },
+      "tests/castbar_rejected_cast.lua": {
+        "rawSha256": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+        "lfSha256": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4"
+      },
+      "tests/castbar_school_themes.lua": {
+        "rawSha256": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45",
+        "lfSha256": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45"
+      },
+      "tests/castbar_terminal_styles.lua": {
+        "rawSha256": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+        "lfSha256": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+      },
+      "tests/castbar_timer_sync.lua": {
+        "rawSha256": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff",
+        "lfSha256": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff"
+      },
+      "tests/nameplate_castbar_schools.lua": {
+        "rawSha256": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10",
+        "lfSha256": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10"
+      },
+      "tests/party_cast_border_layout.lua": {
+        "rawSha256": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+        "lfSha256": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba"
+      },
+      "tests/party_cast_lifecycle.lua": {
+        "rawSha256": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+        "lfSha256": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955"
+      },
+      "tests/raid_binding_cast.lua": {
+        "rawSha256": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be",
+        "lfSha256": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be"
+      },
+      "tests/raid_party_binding_cast.lua": {
+        "rawSha256": "9978e68057f35e25761ddf5554ce7b64fe3bfb7e00ad7fd17e60ab942a0b408b",
+        "lfSha256": "9978e68057f35e25761ddf5554ce7b64fe3bfb7e00ad7fd17e60ab942a0b408b"
+      },
+      "tests/teleport_cast_work.lua": {
+        "rawSha256": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e",
+        "lfSha256": "7842024ac5441f7f3298f77d8dc32c6820b45c074946ff30147a0248f5c02e8e"
+      },
+      "tests/timer_header_layout.lua": {
+        "rawSha256": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8",
+        "lfSha256": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8"
+      }
+    },
+    "targetRuntimeHashes": {
+      "UnitFrames/FluxCastBar.lua": {
+        "rawSha256": "06eb83e4801acb48539211622acd5c91eb9f8898824c943428ba36c2abaf1951",
+        "lfSha256": "67fc6ee3b204db3ee4dcf7f53e84ecf1a79911fb9c334f0a2be201fc6a2f1044"
+      },
+      "UnitFrames/FluxCastBarTradeskills.lua": {
+        "rawSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1",
+        "lfSha256": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1"
+      },
+      "UnitFrames/FluxCastBarThemes.lua": {
+        "rawSha256": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+        "lfSha256": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+      },
+      "FluxBorder.lua": {
+        "rawSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+        "lfSha256": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+      },
+      "Core/BorderJunctions.lua": {
+        "rawSha256": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+        "lfSha256": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+      }
+    },
+    "sourceChangedDuringArchive": [],
+    "settingsMetadataOnly": true,
+    "settingsAvailable": 39,
+    "settingsMetadata": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-20261117T002758Z\\settings-metadata.json",
+    "swingSourceQualification": {
+      "verifiedUTC": "2026-11-17T00:43:20.207693+00:00",
+      "fullArchiveExactMatch": true,
+      "raw": "ada9a8e87a084e23d508e1dbf84076e3362e7c318a6407ac52c5ec7b4155d46c",
+      "normalized": "ada9a8e87a084e23d508e1dbf84076e3362e7c318a6407ac52c5ec7b4155d46c",
+      "freshCopy": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-FluxSwingTimer.lua"
+    }
+  },
+  "requirements": {
+    "CDF01": "Extend shared non-pet fill/trough two UI units under divider; same header/icon/body positions and width, name/time origins and right inset",
+    "CDF02": "Reuse existing native profession progress mask for fill and flare; preserve animated art/settings, normal Spark fallback and plain green finish",
+    "CDF03": "No new frame/mask/driver/event/hook/query or geometry work on cast paint; retain prepared caching, combat deferral, restricted native paint and pet no-icon layout"
+  },
+  "runtimeFilesChanged": [
+    "UnitFrames/FluxCastBar.lua",
+    "UnitFrames/FluxCastBarTradeskills.lua",
+    "UnitFrames/FluxSwingTimer.lua"
+  ],
+  "finalSources": {
+    "UnitFrames/FluxCastBar.lua": {
+      "raw": "a1fc9aa510f160192a26e2bb568577b4943b74cb03b655a1414c21dd97ab2836",
+      "normalized": "fae6b089e22729c4f9afaa987a65c88928fb72daa58e5180d1508aae2b93d599"
+    },
+    "UnitFrames/FluxCastBarTradeskills.lua": {
+      "raw": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+      "normalized": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72"
+    },
+    "UnitFrames/FluxSwingTimer.lua": {
+      "raw": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb",
+      "normalized": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb"
+    },
+    "tests/castbar_border_layout.lua": {
+      "raw": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db",
+      "normalized": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db"
+    },
+    "tests/castbar_border_junctions.lua": {
+      "raw": "7b9260331817edecf128773ca216e6df1aefea961fc1af08036b171f15c2f53c",
+      "normalized": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4"
+    },
+    "tests/castbar_active_crafting.lua": {
+      "raw": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36",
+      "normalized": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36"
+    },
+    "tests/timer_header_layout.lua": {
+      "raw": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54",
+      "normalized": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54"
+    }
+  },
+  "diagnosis": {
+    "shared": "Pinned native fill has rounded transparent leading alpha; old middle-row-only check missed the upper-left notch",
+    "crafting": "Wide profession flare previously had no progress mask and could extend back across divider at early progress",
+    "notInferred": "Screenshot does not establish incorrect Mooncloth recipe classification; no recipe lookup/classification change"
+  },
+  "proof": {
+    "flareAndSchool": {
+      "startedUtc": "2026-11-17T00:39:42.626774+00:00",
+      "completedUtc": "2026-11-17T00:39:46.156510+00:00",
+      "rows": [
+        {
+          "name": "active",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 826 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending\n"
+        },
+        {
+          "name": "school",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14401 checks across five client families (native rendering/taint unverified)\n"
+        },
+        {
+          "name": "baseline-negative",
+          "code": 1,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nC:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/castbar_active_crafting.lua:12: profession flare and animated fill share the exact existing native progress mask\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_active_crafting.lua:12: in local 'check'\n\ttests/castbar_active_crafting.lua:105: in main chunk\n\t[C]: in ?\n"
+        }
+      ],
+      "beforeLF": {
+        "UnitFrames/FluxCastBar.lua": "f71dd9d01e4792f4f0bdbbf4574aef507af28bb2bc248d6b709f7bf89afa7b37",
+        "UnitFrames/FluxCastBarTradeskills.lua": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+        "tests/castbar_active_crafting.lua": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36"
+      },
+      "afterLF": {
+        "UnitFrames/FluxCastBar.lua": "f71dd9d01e4792f4f0bdbbf4574aef507af28bb2bc248d6b709f7bf89afa7b37",
+        "UnitFrames/FluxCastBarTradeskills.lua": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+        "tests/castbar_active_crafting.lua": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36"
+      },
+      "changedDuringChecks": [],
+      "scope": "Offline actual production lifecycle/mask-binding proof only. Native clipping/appearance/taint/FPS remain unverified. No native or benchmark operation."
+    },
+    "uniqueFocusedScripts": 14,
+    "syntax": [
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "UnitFrames/FluxCastBar.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "UnitFrames/FluxCastBar.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "UnitFrames/FluxCastBarTradeskills.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "UnitFrames/FluxCastBarTradeskills.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "UnitFrames/FluxSwingTimer.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "UnitFrames/FluxSwingTimer.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "tests/castbar_border_layout.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "tests/castbar_border_layout.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "tests/castbar_border_junctions.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "tests/castbar_border_junctions.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "tests/castbar_active_crafting.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "tests/castbar_active_crafting.lua"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "tests/timer_header_layout.lua"
+        ],
+        "exitCode": 0,
+        "stdout": "",
+        "stderr": "",
+        "path": "tests/timer_header_layout.lua"
+      }
+    ],
+    "upvalues": {
+      "dateUTC": "2026-11-17T00:47:34.303913+00:00",
+      "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+      "files": 3,
+      "functions": 286,
+      "maximum": 52,
+      "failures": [],
+      "prototypes": [
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 11,
+          "end": 28,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 20,
+          "end": 22,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 31,
+          "end": 53,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 84,
+          "end": 101,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 110,
+          "end": 112,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 116,
+          "end": 131,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 133,
+          "end": 139,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 141,
+          "end": 153,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 143,
+          "end": 151,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 155,
+          "end": 160,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 165,
+          "end": 176,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 178,
+          "end": 190,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 192,
+          "end": 194,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 196,
+          "end": 208,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 210,
+          "end": 215,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 218,
+          "end": 246,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 230,
+          "end": 237,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 248,
+          "end": 262,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 264,
+          "end": 275,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 279,
+          "end": 299,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 303,
+          "end": 312,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 314,
+          "end": 343,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 347,
+          "end": 350,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 352,
+          "end": 369,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 371,
+          "end": 425,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 427,
+          "end": 436,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 438,
+          "end": 445,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 447,
+          "end": 453,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 469,
+          "end": 541,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 546,
+          "end": 563,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 566,
+          "end": 575,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 577,
+          "end": 588,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 590,
+          "end": 617,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 619,
+          "end": 624,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 626,
+          "end": 634,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 649,
+          "end": 674,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 659,
+          "end": 661,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 665,
+          "end": 672,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 676,
+          "end": 686,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 736,
+          "end": 760,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 764,
+          "end": 770,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 772,
+          "end": 809,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 811,
+          "end": 824,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 827,
+          "end": 889,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 834,
+          "end": 852,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 836,
+          "end": 850,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 855,
+          "end": 874,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 857,
+          "end": 872,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 893,
+          "end": 908,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 910,
+          "end": 912,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 914,
+          "end": 916,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 923,
+          "end": 933,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 940,
+          "end": 962,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 969,
+          "end": 1001,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1003,
+          "end": 1009,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1011,
+          "end": 1017,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1019,
+          "end": 1058,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1060,
+          "end": 1069,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1072,
+          "end": 1083,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1085,
+          "end": 1094,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1098,
+          "end": 1106,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1108,
+          "end": 1129,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1132,
+          "end": 1152,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1154,
+          "end": 1195,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1197,
+          "end": 1219,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1224,
+          "end": 1268,
+          "upvalues": 12
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1270,
+          "end": 1287,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1291,
+          "end": 1300,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1302,
+          "end": 1334,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1336,
+          "end": 1353,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1355,
+          "end": 1379,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1374,
+          "end": 1378,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1381,
+          "end": 1429,
+          "upvalues": 11
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1432,
+          "end": 1452,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1448,
+          "end": 1450,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1454,
+          "end": 1482,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1484,
+          "end": 1538,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1540,
+          "end": 1707,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1557,
+          "end": 1573,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1709,
+          "end": 1736,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1738,
+          "end": 1743,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1745,
+          "end": 1752,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1754,
+          "end": 1776,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1762,
+          "end": 1768,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1778,
+          "end": 1819,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1821,
+          "end": 1841,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1843,
+          "end": 1847,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1849,
+          "end": 1947,
+          "upvalues": 15
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1949,
+          "end": 1964,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1966,
+          "end": 1980,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 1982,
+          "end": 2034,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2036,
+          "end": 2274,
+          "upvalues": 31
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2276,
+          "end": 2288,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2290,
+          "end": 2331,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2297,
+          "end": 2301,
+          "upvalues": 11
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2303,
+          "end": 2307,
+          "upvalues": 10
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2335,
+          "end": 2343,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2345,
+          "end": 2358,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2360,
+          "end": 2751,
+          "upvalues": 18
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2761,
+          "end": 2764,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2766,
+          "end": 2769,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2771,
+          "end": 2792,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2794,
+          "end": 3469,
+          "upvalues": 34
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2829,
+          "end": 2829,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2830,
+          "end": 2830,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2832,
+          "end": 2835,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2836,
+          "end": 2836,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2837,
+          "end": 2837,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2838,
+          "end": 2838,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2839,
+          "end": 2839,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2866,
+          "end": 2869,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 2872,
+          "end": 2872,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3010,
+          "end": 3013,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3011,
+          "end": 3011,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3015,
+          "end": 3046,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3044,
+          "end": 3044,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3049,
+          "end": 3056,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3062,
+          "end": 3234,
+          "upvalues": 15
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3217,
+          "end": 3219,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3236,
+          "end": 3261,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3244,
+          "end": 3249,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3251,
+          "end": 3256,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3266,
+          "end": 3269,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3272,
+          "end": 3437,
+          "upvalues": 23
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3445,
+          "end": 3449,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3459,
+          "end": 3461,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3477,
+          "end": 3482,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3486,
+          "end": 3502,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3487,
+          "end": 3491,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3504,
+          "end": 3523,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3510,
+          "end": 3512,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3525,
+          "end": 3539,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3530,
+          "end": 3538,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3541,
+          "end": 3579,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3553,
+          "end": 3557,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3565,
+          "end": 3569,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3581,
+          "end": 3597,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3599,
+          "end": 3612,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3607,
+          "end": 3611,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3617,
+          "end": 3647,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3622,
+          "end": 3626,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3634,
+          "end": 3638,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3641,
+          "end": 3645,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3651,
+          "end": 3679,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3682,
+          "end": 3711,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3684,
+          "end": 3707,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3692,
+          "end": 3694,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBar.lua",
+          "start": 3718,
+          "end": 3727,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 9,
+          "end": 13,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 15,
+          "end": 21,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 23,
+          "end": 48,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 50,
+          "end": 59,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 61,
+          "end": 69,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 71,
+          "end": 89,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 91,
+          "end": 130,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 132,
+          "end": 176,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxCastBarTradeskills.lua",
+          "start": 178,
+          "end": 184,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 9,
+          "end": 11,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 13,
+          "end": 22,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 24,
+          "end": 33,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 36,
+          "end": 45,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 47,
+          "end": 56,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 58,
+          "end": 68,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 70,
+          "end": 73,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 75,
+          "end": 95,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 97,
+          "end": 102,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 104,
+          "end": 112,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 159,
+          "end": 162,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 163,
+          "end": 169,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 190,
+          "end": 209,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 211,
+          "end": 222,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 265,
+          "end": 276,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 283,
+          "end": 297,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 299,
+          "end": 307,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 319,
+          "end": 335,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 344,
+          "end": 376,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 378,
+          "end": 392,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 394,
+          "end": 433,
+          "upvalues": 7
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 435,
+          "end": 474,
+          "upvalues": 7
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 478,
+          "end": 488,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 491,
+          "end": 516,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 518,
+          "end": 529,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 532,
+          "end": 558,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 561,
+          "end": 570,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 572,
+          "end": 575,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 583,
+          "end": 585,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 587,
+          "end": 590,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 592,
+          "end": 613,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 615,
+          "end": 621,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 623,
+          "end": 664,
+          "upvalues": 11
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 669,
+          "end": 674,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 677,
+          "end": 684,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 687,
+          "end": 711,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 714,
+          "end": 720,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 728,
+          "end": 741,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 746,
+          "end": 761,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 763,
+          "end": 785,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 789,
+          "end": 802,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 805,
+          "end": 829,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 831,
+          "end": 834,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 840,
+          "end": 867,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 872,
+          "end": 884,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 886,
+          "end": 898,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 901,
+          "end": 916,
+          "upvalues": 7
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 918,
+          "end": 929,
+          "upvalues": 10
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 952,
+          "end": 960,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 968,
+          "end": 976,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 978,
+          "end": 986,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 989,
+          "end": 1005,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1007,
+          "end": 1023,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1025,
+          "end": 1027,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1031,
+          "end": 1054,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1056,
+          "end": 1058,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1062,
+          "end": 1076,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1078,
+          "end": 1085,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1087,
+          "end": 1089,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1091,
+          "end": 1100,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1102,
+          "end": 1107,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1109,
+          "end": 1122,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1124,
+          "end": 1139,
+          "upvalues": 11
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1141,
+          "end": 1144,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1146,
+          "end": 1155,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1157,
+          "end": 1170,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1172,
+          "end": 1182,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1184,
+          "end": 1198,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1210,
+          "end": 1221,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1223,
+          "end": 1236,
+          "upvalues": 9
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1238,
+          "end": 1262,
+          "upvalues": 11
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1257,
+          "end": 1261,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1264,
+          "end": 1276,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1279,
+          "end": 1285,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1288,
+          "end": 1302,
+          "upvalues": 10
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1305,
+          "end": 1307,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1310,
+          "end": 1317,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1322,
+          "end": 1335,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1337,
+          "end": 1423,
+          "upvalues": 23
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1425,
+          "end": 1433,
+          "upvalues": 7
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1435,
+          "end": 1448,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1451,
+          "end": 1470,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1472,
+          "end": 1510,
+          "upvalues": 15
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1514,
+          "end": 1516,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1518,
+          "end": 1520,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1532,
+          "end": 1543,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1548,
+          "end": 1562,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1564,
+          "end": 1589,
+          "upvalues": 12
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1594,
+          "end": 1851,
+          "upvalues": 52
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1856,
+          "end": 1933,
+          "upvalues": 16
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1942,
+          "end": 1951,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1947,
+          "end": 1950,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1953,
+          "end": 1959,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1955,
+          "end": 1958,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1961,
+          "end": 1963,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1968,
+          "end": 1977,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1985,
+          "end": 2014,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1993,
+          "end": 1997,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 1998,
+          "end": 2000,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2002,
+          "end": 2006,
+          "upvalues": 0
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2009,
+          "end": 2011,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2016,
+          "end": 2050,
+          "upvalues": 12
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2052,
+          "end": 2258,
+          "upvalues": 50
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2263,
+          "end": 2307,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2266,
+          "end": 2268,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2269,
+          "end": 2271,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2278,
+          "end": 2280,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2281,
+          "end": 2283,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2285,
+          "end": 2287,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2288,
+          "end": 2290,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2291,
+          "end": 2293,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2294,
+          "end": 2296,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2297,
+          "end": 2299,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2309,
+          "end": 2326,
+          "upvalues": 4
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2315,
+          "end": 2321,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2328,
+          "end": 2338,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2344,
+          "end": 2384,
+          "upvalues": 5
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2388,
+          "end": 2468,
+          "upvalues": 8
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2473,
+          "end": 2491,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2494,
+          "end": 2517,
+          "upvalues": 3
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2519,
+          "end": 2538,
+          "upvalues": 6
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2543,
+          "end": 2547,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2548,
+          "end": 2683,
+          "upvalues": 35
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2590,
+          "end": 2592,
+          "upvalues": 1
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2669,
+          "end": 2672,
+          "upvalues": 2
+        },
+        {
+          "path": "UnitFrames/FluxSwingTimer.lua",
+          "start": 2686,
+          "end": 2716,
+          "upvalues": 11
+        }
+      ]
+    },
+    "boundedAlphaProbe": {
+      "scope": "One synthetic actual-Core source-field scene style2/header36/scale.75/above; canonical actual border RGBA + pinned native standard PNG alpha; not native compositing/factory GPU proof",
+      "fill": [
+        38,
+        61,
+        260,
+        32
+      ],
+      "samples": 4257,
+      "benefitCountGT02": 420,
+      "topBenefit": [
+        [
+          0.3124709602860648,
+          40.25,
+          61.75,
+          0.278431372549017,
+          0.29770739064856716,
+          0.7307513845232748,
+          0.49324768580131717,
+          0.805718646087382
+        ],
+        [
+          0.3124709602860647,
+          40.25,
+          62.25,
+          0.27843137254901706,
+          0.29770739064856716,
+          0.7307513845232749,
+          0.4932476858013173,
+          0.805718646087382
+        ],
+        [
+          0.3124709602860647,
+          40.25,
+          62.0,
+          0.27843137254901706,
+          0.29770739064856716,
+          0.7307513845232749,
+          0.4932476858013173,
+          0.805718646087382
+        ],
+        [
+          0.3124709602860636,
+          40.25,
+          61.5,
+          0.27843137254901956,
+          0.29770739064856716,
+          0.7307513845232749,
+          0.49324768580131906,
+          0.8057186460873826
+        ],
+        [
+          0.3098199936736694,
+          40.25,
+          62.5,
+          0.2784313725490196,
+          0.3055882942119156,
+          0.7349583941400988,
+          0.49893429856859794,
+          0.8087542922422674
+        ],
+        [
+          0.29664069851629093,
+          40.0,
+          62.0,
+          0.45882352941176213,
+          0.17791855203619916,
+          0.7260589732076037,
+          0.5551088634548821,
+          0.851749561971173
+        ],
+        [
+          0.2966406985162908,
+          40.0,
+          61.75,
+          0.4588235294117622,
+          0.17791855203619916,
+          0.7260589732076036,
+          0.5551088634548822,
+          0.851749561971173
+        ],
+        [
+          0.2966406985162896,
+          40.0,
+          61.25,
+          0.45882352941176474,
+          0.1779185520361991,
+          0.7260589732076037,
+          0.5551088634548842,
+          0.8517495619711738
+        ],
+        [
+          0.2966406985162895,
+          40.0,
+          62.25,
+          0.4588235294117647,
+          0.17791855203619913,
+          0.7260589732076036,
+          0.5551088634548842,
+          0.8517495619711737
+        ],
+        [
+          0.2966406985162895,
+          40.0,
+          61.5,
+          0.4588235294117647,
+          0.17791855203619913,
+          0.7260589732076035,
+          0.5551088634548842,
+          0.8517495619711737
+        ],
+        [
+          0.29523967730550116,
+          40.25,
+          62.75,
+          0.2784313725490196,
+          0.34893326381033185,
+          0.7580969470326298,
+          0.5302106687886317,
+          0.8254503460941328
+        ],
+        [
+          0.2941657000232306,
+          40.0,
+          62.5,
+          0.4588235294117647,
+          0.1867722473604827,
+          0.7303393017512348,
+          0.5599002750421436,
+          0.8540659750653742
+        ]
+      ],
+      "darkExcessCountGT05Interior": 33,
+      "topDarkExcess": [
+        [
+          0.24185387865259284,
+          40.0,
+          75.0,
+          0.7071280276816609,
+          0.45686274509803926
+        ],
+        [
+          0.24003819043957447,
+          40.0,
+          66.0,
+          0.7071280276816609,
+          0.45686274509803926
+        ],
+        [
+          0.2386701232935164,
+          40.0,
+          79.0,
+          0.7090450210582744,
+          0.45686274509803926
+        ],
+        [
+          0.23495426344317044,
+          40.0,
+          87.0,
+          0.7071280276816609,
+          0.45686274509803926
+        ],
+        [
+          0.22229894126050298,
+          39.75,
+          75.0,
+          0.869834678969627,
+          0.6372549019607843
+        ],
+        [
+          0.21894873766500056,
+          39.75,
+          66.0,
+          0.869834678969627,
+          0.6372549019607843
+        ],
+        [
+          0.215421014050042,
+          39.75,
+          79.0,
+          0.8723822775294068,
+          0.6372549019607843
+        ],
+        [
+          0.20956816759768104,
+          39.75,
+          87.0,
+          0.869834678969627,
+          0.6372549019607843
+        ]
+      ],
+      "witnesses": [
+        {
+          "x": 40,
+          "y": 91,
+          "borderAlpha": 0.4588235294117647,
+          "borderRGBPremul": [
+            0.03688581314878893,
+            0.02519031141868512,
+            0.008996539792387542
+          ],
+          "nativeAminus2": 0.7924509803921569,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 0.8876793540945791,
+          "combinedAminus4": 1.0
+        },
+        {
+          "x": 40,
+          "y": 92,
+          "borderAlpha": 0.45882352941176474,
+          "borderRGBPremul": [
+            0.036885813148788936,
+            0.02519031141868512,
+            0.008996539792387544
+          ],
+          "nativeAminus2": 0.744555052790347,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 0.8617592050394819,
+          "combinedAminus4": 1.0
+        },
+        {
+          "x": 40.5,
+          "y": 91,
+          "borderAlpha": 0.09803921568627451,
+          "borderRGBPremul": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nativeAminus2": 0.8859375,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 0.8971200980392158,
+          "combinedAminus4": 1.0
+        },
+        {
+          "x": 41,
+          "y": 92,
+          "borderAlpha": 0.12549019607843137,
+          "borderRGBPremul": [
+            0.001968473663975394,
+            0.000984236831987697,
+            0.000984236831987697
+          ],
+          "nativeAminus2": 0.9746757164404224,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 0.9778536657498595,
+          "combinedAminus4": 1.0
+        },
+        {
+          "x": 42,
+          "y": 92,
+          "borderAlpha": 0.1254901960784318,
+          "borderRGBPremul": [
+            0.0019684736639754073,
+            0.0009842368319877037,
+            0.0009842368319877037
+          ],
+          "nativeAminus2": 1.0,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 1.0,
+          "combinedAminus4": 1.0
+        },
+        {
+          "x": 40,
+          "y": 62,
+          "borderAlpha": 0.45882352941176213,
+          "borderRGBPremul": [
+            0.031487889273356,
+            0.02159169550172983,
+            0.008096885813148685
+          ],
+          "nativeAminus2": 0.17791855203619916,
+          "nativeAminus4": 0.7260589732076037,
+          "combinedAminus2": 0.5551088634548821,
+          "combinedAminus4": 0.851749561971173
+        },
+        {
+          "x": 41,
+          "y": 62,
+          "borderAlpha": 0.35109573241061126,
+          "borderRGBPremul": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nativeAminus2": 0.6570739064856714,
+          "nativeAminus4": 0.7333333333333332,
+          "combinedAminus2": 0.7774737944507945,
+          "combinedAminus4": 0.826958861976163
+        },
+        {
+          "x": 42,
+          "y": 62,
+          "borderAlpha": 0.31764705882352945,
+          "borderRGBPremul": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nativeAminus2": 0.7266365007541478,
+          "nativeAminus4": 0.7333333333333333,
+          "combinedAminus2": 0.8134696122793008,
+          "combinedAminus4": 0.8180392156862746
+        },
+        {
+          "x": 41,
+          "y": 80,
+          "borderAlpha": 0.04901960784313726,
+          "borderRGBPremul": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "nativeAminus2": 1.0,
+          "nativeAminus4": 1.0,
+          "combinedAminus2": 1.0,
+          "combinedAminus4": 1.0
+        }
+      ]
+    },
+    "qualification": "Source-field alpha/model work is not native GPU pixel equality, CPU/FPS or taint certification; lower fringe keeps source antialiasing",
+    "firstFocused12": {
+      "startedUTC": "2026-11-17T00:39:02.449264+00:00",
+      "sourceBefore": {
+        "UnitFrames/FluxCastBar.lua": {
+          "raw": "1ffd1efaaa517330f26c34db0ab21bb6565f69543a94db945fa16695da999291",
+          "normalized": "f71dd9d01e4792f4f0bdbbf4574aef507af28bb2bc248d6b709f7bf89afa7b37"
+        },
+        "UnitFrames/FluxCastBarTradeskills.lua": {
+          "raw": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+          "normalized": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72"
+        },
+        "UnitFrames/FluxCastBarThemes.lua": {
+          "raw": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+          "normalized": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+        },
+        "FluxBorder.lua": {
+          "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+          "normalized": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+        },
+        "Core/BorderJunctions.lua": {
+          "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+          "normalized": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+        },
+        "RaidFrame/FluxRaidLayout.lua": {
+          "raw": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+          "normalized": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff"
+        },
+        "tests/castbar_border_layout.lua": {
+          "raw": "2c54dd99a27d95ae1b099332cdc88f93cb97e67264e3826f5da40d4476f7a99c",
+          "normalized": "2c54dd99a27d95ae1b099332cdc88f93cb97e67264e3826f5da40d4476f7a99c"
+        },
+        "tests/castbar_border_junctions.lua": {
+          "raw": "7b9260331817edecf128773ca216e6df1aefea961fc1af08036b171f15c2f53c",
+          "normalized": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4"
+        },
+        "tests/castbar_completion_visual.lua": {
+          "raw": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+          "normalized": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+        },
+        "tests/castbar_terminal_styles.lua": {
+          "raw": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+          "normalized": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+        },
+        "tests/castbar_timer_sync.lua": {
+          "raw": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff",
+          "normalized": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff"
+        },
+        "tests/castbar_rejected_cast.lua": {
+          "raw": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+          "normalized": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4"
+        },
+        "tests/timer_header_layout.lua": {
+          "raw": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8",
+          "normalized": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8"
+        },
+        "tests/party_cast_border_layout.lua": {
+          "raw": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+          "normalized": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba"
+        },
+        "tests/party_cast_lifecycle.lua": {
+          "raw": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+          "normalized": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955"
+        },
+        "tests/cast_slot_pass_lifecycle.lua": {
+          "raw": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+          "normalized": "494329e3c974553daad555643e40eb69441bf33f3e84ff2d73fa58da74f8677b"
+        },
+        "tests/native_timer_ownership.lua": {
+          "raw": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+          "normalized": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+        },
+        "tests/nameplate_castbar_schools.lua": {
+          "raw": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10",
+          "normalized": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10"
+        }
+      },
+      "results": [
+        {
+          "path": "tests/castbar_border_layout.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 1870 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/castbar_border_junctions.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13522 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/castbar_completion_visual.lua",
+          "exitCode": 0,
+          "stdout": "Cast completion visual: 12571 checks; actual producer in five client models; native appearance/performance deferred\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/castbar_terminal_styles.lua",
+          "exitCode": 0,
+          "stdout": "Cast terminal styles: 9973 checks; actual producer in five client models; native appearance/performance deferred\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/castbar_timer_sync.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/castbar_rejected_cast.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nRejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/timer_header_layout.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nTimer header layout: 1110 checks PASS; actual cast/Fire/swing/Shoot; fitted native clip bounds; both styles/alignments; shared source geometry; static unchanged hooks; cold/combat defer. Native pixels/taint/FPS pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/party_cast_border_layout.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 775 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/party_cast_lifecycle.lua",
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast lifecycle: 215 checks; five client models; native events/taint pending\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/cast_slot_pass_lifecycle.lua",
+          "exitCode": 0,
+          "stdout": "NORMAL Retail/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Forever/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL MoP/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Era/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Anniversary/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nGUARD_ALLOCATION_KiB_10000 0.0\nSlot-pass lifecycle: 54 cases/329 checks, 0 freshness regressions\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/native_timer_ownership.lua",
+          "exitCode": 0,
+          "stdout": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+          "stderr": ""
+        },
+        {
+          "path": "tests/nameplate_castbar_schools.lua",
+          "exitCode": 0,
+          "stdout": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending\n",
+          "stderr": ""
+        }
+      ],
+      "negativeControl": {
+        "archivedCast": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-FluxCastBar.lua",
+        "exitCode": 1,
+        "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\n",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/castbar_border_junctions.lua:10: production live fill covers its rounded upper leading cap beside the spell name: style1 below=false\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_border_junctions.lua:10: in local 'check'\n\ttests/castbar_border_junctions.lua:142: in main chunk\n\t[C]: in ?\n"
+      },
+      "sourceAfter": {
+        "UnitFrames/FluxCastBar.lua": {
+          "raw": "1ffd1efaaa517330f26c34db0ab21bb6565f69543a94db945fa16695da999291",
+          "normalized": "f71dd9d01e4792f4f0bdbbf4574aef507af28bb2bc248d6b709f7bf89afa7b37"
+        },
+        "UnitFrames/FluxCastBarTradeskills.lua": {
+          "raw": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+          "normalized": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72"
+        },
+        "UnitFrames/FluxCastBarThemes.lua": {
+          "raw": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+          "normalized": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+        },
+        "FluxBorder.lua": {
+          "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+          "normalized": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+        },
+        "Core/BorderJunctions.lua": {
+          "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+          "normalized": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+        },
+        "RaidFrame/FluxRaidLayout.lua": {
+          "raw": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+          "normalized": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff"
+        },
+        "tests/castbar_border_layout.lua": {
+          "raw": "2c54dd99a27d95ae1b099332cdc88f93cb97e67264e3826f5da40d4476f7a99c",
+          "normalized": "2c54dd99a27d95ae1b099332cdc88f93cb97e67264e3826f5da40d4476f7a99c"
+        },
+        "tests/castbar_border_junctions.lua": {
+          "raw": "7b9260331817edecf128773ca216e6df1aefea961fc1af08036b171f15c2f53c",
+          "normalized": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4"
+        },
+        "tests/castbar_completion_visual.lua": {
+          "raw": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+          "normalized": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+        },
+        "tests/castbar_terminal_styles.lua": {
+          "raw": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+          "normalized": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+        },
+        "tests/castbar_timer_sync.lua": {
+          "raw": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff",
+          "normalized": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff"
+        },
+        "tests/castbar_rejected_cast.lua": {
+          "raw": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+          "normalized": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4"
+        },
+        "tests/timer_header_layout.lua": {
+          "raw": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8",
+          "normalized": "4433cec3124bbb0116c3ab8c648262b7c93f6654f56cfe98948bd5291be69fc8"
+        },
+        "tests/party_cast_border_layout.lua": {
+          "raw": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+          "normalized": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba"
+        },
+        "tests/party_cast_lifecycle.lua": {
+          "raw": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+          "normalized": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955"
+        },
+        "tests/cast_slot_pass_lifecycle.lua": {
+          "raw": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+          "normalized": "494329e3c974553daad555643e40eb69441bf33f3e84ff2d73fa58da74f8677b"
+        },
+        "tests/native_timer_ownership.lua": {
+          "raw": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+          "normalized": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+        },
+        "tests/nameplate_castbar_schools.lua": {
+          "raw": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10",
+          "normalized": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10"
+        }
+      },
+      "changedDuringRun": [],
+      "endedUTC": "2026-11-17T00:39:11.191679+00:00"
+    },
+    "finalFocused14": {
+      "startedUTC": "2026-11-17T00:48:27.267842+00:00",
+      "sourceBefore": {
+        "Core/BorderJunctions.lua": {
+          "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+          "normalized": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+        },
+        "FluxBorder.lua": {
+          "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+          "normalized": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+        },
+        "RaidFrame/FluxRaidLayout.lua": {
+          "raw": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+          "normalized": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff"
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "raw": "a1fc9aa510f160192a26e2bb568577b4943b74cb03b655a1414c21dd97ab2836",
+          "normalized": "fae6b089e22729c4f9afaa987a65c88928fb72daa58e5180d1508aae2b93d599"
+        },
+        "UnitFrames/FluxCastBarThemes.lua": {
+          "raw": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+          "normalized": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+        },
+        "UnitFrames/FluxCastBarTradeskills.lua": {
+          "raw": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+          "normalized": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72"
+        },
+        "UnitFrames/FluxSwingTimer.lua": {
+          "raw": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb",
+          "normalized": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb"
+        },
+        "tests/cast_slot_pass_lifecycle.lua": {
+          "raw": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+          "normalized": "494329e3c974553daad555643e40eb69441bf33f3e84ff2d73fa58da74f8677b"
+        },
+        "tests/castbar_active_crafting.lua": {
+          "raw": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36",
+          "normalized": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36"
+        },
+        "tests/castbar_border_junctions.lua": {
+          "raw": "7b9260331817edecf128773ca216e6df1aefea961fc1af08036b171f15c2f53c",
+          "normalized": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4"
+        },
+        "tests/castbar_border_layout.lua": {
+          "raw": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db",
+          "normalized": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db"
+        },
+        "tests/castbar_completion_visual.lua": {
+          "raw": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+          "normalized": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+        },
+        "tests/castbar_rejected_cast.lua": {
+          "raw": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+          "normalized": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4"
+        },
+        "tests/castbar_school_themes.lua": {
+          "raw": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45",
+          "normalized": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45"
+        },
+        "tests/castbar_terminal_styles.lua": {
+          "raw": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+          "normalized": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+        },
+        "tests/castbar_timer_sync.lua": {
+          "raw": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff",
+          "normalized": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff"
+        },
+        "tests/nameplate_castbar_schools.lua": {
+          "raw": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10",
+          "normalized": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10"
+        },
+        "tests/native_timer_ownership.lua": {
+          "raw": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+          "normalized": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+        },
+        "tests/party_cast_border_layout.lua": {
+          "raw": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+          "normalized": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba"
+        },
+        "tests/party_cast_lifecycle.lua": {
+          "raw": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+          "normalized": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955"
+        },
+        "tests/timer_header_layout.lua": {
+          "raw": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54",
+          "normalized": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54"
+        }
+      },
+      "results": [
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_active_crafting.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 826 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending\n",
+          "stderr": "",
+          "path": "tests/castbar_active_crafting.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_school_themes.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14401 checks across five client families (native rendering/taint unverified)\n",
+          "stderr": "",
+          "path": "tests/castbar_school_themes.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_border_layout.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 2020 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n",
+          "stderr": "",
+          "path": "tests/castbar_border_layout.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_border_junctions.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13522 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n",
+          "stderr": "",
+          "path": "tests/castbar_border_junctions.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_completion_visual.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Cast completion visual: 12571 checks; actual producer in five client models; native appearance/performance deferred\n",
+          "stderr": "",
+          "path": "tests/castbar_completion_visual.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_terminal_styles.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Cast terminal styles: 9973 checks; actual producer in five client models; native appearance/performance deferred\n",
+          "stderr": "",
+          "path": "tests/castbar_terminal_styles.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_timer_sync.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n",
+          "stderr": "",
+          "path": "tests/castbar_timer_sync.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_rejected_cast.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nRejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n",
+          "stderr": "",
+          "path": "tests/castbar_rejected_cast.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/timer_header_layout.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nTimer header layout: 1150 checks PASS; actual cast/Fire/swing/Shoot; fitted native clip bounds; both styles/alignments; shared source geometry; static unchanged hooks; cold/combat defer. Native pixels/taint/FPS pending\n",
+          "stderr": "",
+          "path": "tests/timer_header_layout.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/party_cast_border_layout.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 775 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n",
+          "stderr": "",
+          "path": "tests/party_cast_border_layout.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/party_cast_lifecycle.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast lifecycle: 215 checks; five client models; native events/taint pending\n",
+          "stderr": "",
+          "path": "tests/party_cast_lifecycle.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/cast_slot_pass_lifecycle.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "NORMAL Retail/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Retail/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Forever/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Forever/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL MoP/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL MoP/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Era/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Era/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nNORMAL Anniversary/lane callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/dirty callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/effects-immediate callbacks=begin,end nativeReads=1 widgetWrites=1 defers=0\nNORMAL Anniversary/effects-deferred callbacks=begin,end nativeReads=1 widgetWrites=1 defers=1\nGUARD_ALLOCATION_KiB_10000 0.0\nSlot-pass lifecycle: 54 cases/329 checks, 0 freshness regressions\n",
+          "stderr": "",
+          "path": "tests/cast_slot_pass_lifecycle.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/native_timer_ownership.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "Native timer ownership: 54 checks; After/NewTimer cancel/replace, exact cadence, resize/embed/hover/current-list/hide reuse\n",
+          "stderr": "",
+          "path": "tests/native_timer_ownership.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/nameplate_castbar_schools.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending\n",
+          "stderr": "",
+          "path": "tests/nameplate_castbar_schools.lua"
+        }
+      ],
+      "negativeControls": [
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_border_junctions.lua",
+            "Core/BorderJunctions.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-FluxCastBar.lua"
+          ],
+          "exitCode": 1,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\n",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/castbar_border_junctions.lua:10: production live fill covers its rounded upper leading cap beside the spell name: style1 below=false\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_border_junctions.lua:10: in local 'check'\n\ttests/castbar_border_junctions.lua:142: in main chunk\n\t[C]: in ?\n",
+          "name": "archived rounded-cap source"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/timer_header_layout.lua",
+            "UnitFrames/FluxCastBar.lua",
+            "UnitFrames/FluxCastBarThemes.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-before-FluxSwingTimer.lua"
+          ],
+          "exitCode": 1,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\n",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/timer_header_layout.lua:11: swing/Shoot label origin and width remain unchanged when the fill underlaps its icon divider\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/timer_header_layout.lua:11: in upvalue 'check'\n\ttests/timer_header_layout.lua:105: in local 'fit'\n\ttests/timer_header_layout.lua:109: in main chunk\n\t[C]: in ?\n",
+          "name": "archived swing label source"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_border_layout.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-control-completion-text-origin.lua"
+          ],
+          "exitCode": 1,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\n",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/castbar_border_layout.lua:13: successful protected casts return to the same ordinary name origin: live player\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_border_layout.lua:13: in local 'check'\n\ttests/castbar_border_layout.lua:116: in main chunk\n\t[C]: in ?\n",
+          "name": "completion text origin"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+            "tests/castbar_border_layout.lua",
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-divider-control-custom-timer-text-gap.lua"
+          ],
+          "exitCode": 1,
+          "stdout": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\n",
+          "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/castbar_border_layout.lua:13: custom timer names retain their reserved time gap after fill underlap\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_border_layout.lua:13: in local 'check'\n\ttests/castbar_border_layout.lua:120: in main chunk\n\t[C]: in ?\n",
+          "name": "custom timer text gap"
+        }
+      ],
+      "qualification": "Prior runner passed14scripts but stopped on a control-selector assertion before serializing; this is the complete replacement gate. Native not run.",
+      "syntax": [
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "UnitFrames/FluxCastBar.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "UnitFrames/FluxCastBar.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "UnitFrames/FluxCastBarTradeskills.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "UnitFrames/FluxCastBarTradeskills.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "UnitFrames/FluxSwingTimer.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "UnitFrames/FluxSwingTimer.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "tests/castbar_border_layout.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "tests/castbar_border_layout.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "tests/castbar_border_junctions.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "tests/castbar_border_junctions.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "tests/castbar_active_crafting.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "tests/castbar_active_crafting.lua"
+        },
+        {
+          "command": [
+            "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+            "-p",
+            "tests/timer_header_layout.lua"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "path": "tests/timer_header_layout.lua"
+        }
+      ],
+      "sourceAfter": {
+        "Core/BorderJunctions.lua": {
+          "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+          "normalized": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+        },
+        "FluxBorder.lua": {
+          "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+          "normalized": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+        },
+        "RaidFrame/FluxRaidLayout.lua": {
+          "raw": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+          "normalized": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff"
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "raw": "a1fc9aa510f160192a26e2bb568577b4943b74cb03b655a1414c21dd97ab2836",
+          "normalized": "fae6b089e22729c4f9afaa987a65c88928fb72daa58e5180d1508aae2b93d599"
+        },
+        "UnitFrames/FluxCastBarThemes.lua": {
+          "raw": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+          "normalized": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+        },
+        "UnitFrames/FluxCastBarTradeskills.lua": {
+          "raw": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72",
+          "normalized": "8b92ca2840ca22002aa6af8b3ea06565bec1bccbafe31ecf48602f268c0e1c72"
+        },
+        "UnitFrames/FluxSwingTimer.lua": {
+          "raw": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb",
+          "normalized": "14d5d3df52cdc32662a01b8f8aa961daf0fb46863ec3ae2efd761e57fc0759eb"
+        },
+        "tests/cast_slot_pass_lifecycle.lua": {
+          "raw": "5a75d3a0329a0e8d86da6f70dab829784fa8d525328dde79c11d1bcc8bb44d22",
+          "normalized": "494329e3c974553daad555643e40eb69441bf33f3e84ff2d73fa58da74f8677b"
+        },
+        "tests/castbar_active_crafting.lua": {
+          "raw": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36",
+          "normalized": "5550d10146b3368b1526bb87777e7be5ccf60bd81d006eaccd500e3b66a7fb36"
+        },
+        "tests/castbar_border_junctions.lua": {
+          "raw": "7b9260331817edecf128773ca216e6df1aefea961fc1af08036b171f15c2f53c",
+          "normalized": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4"
+        },
+        "tests/castbar_border_layout.lua": {
+          "raw": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db",
+          "normalized": "a72c2b514cf960e2a090ff9fc08b7c83b1097964b2f54827a387c6b1d5cf21db"
+        },
+        "tests/castbar_completion_visual.lua": {
+          "raw": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+          "normalized": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+        },
+        "tests/castbar_rejected_cast.lua": {
+          "raw": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4",
+          "normalized": "5abac35a68effb8a0dbe1ec587ff4b0e0647ac4e134f3c56d4d4811bb5df8ab4"
+        },
+        "tests/castbar_school_themes.lua": {
+          "raw": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45",
+          "normalized": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45"
+        },
+        "tests/castbar_terminal_styles.lua": {
+          "raw": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+          "normalized": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+        },
+        "tests/castbar_timer_sync.lua": {
+          "raw": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff",
+          "normalized": "9d6753c39fc9b05ba320b5818ecd69d621ae8dad3ea298a800aef98108c220ff"
+        },
+        "tests/nameplate_castbar_schools.lua": {
+          "raw": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10",
+          "normalized": "6be5f8a513cce8f252f106a9e40a299fcfb1cf5e82710c69cb9443e9a6b69e10"
+        },
+        "tests/native_timer_ownership.lua": {
+          "raw": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd",
+          "normalized": "867548ed615d7ddac089fa121eafa0185a3aca5dad61700e01bc2cd44bfff7fd"
+        },
+        "tests/party_cast_border_layout.lua": {
+          "raw": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+          "normalized": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba"
+        },
+        "tests/party_cast_lifecycle.lua": {
+          "raw": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955",
+          "normalized": "ba5bdf80d39ea80a48ebfb567dd43d86cb649e083e8b26b5ce5b78fc807be955"
+        },
+        "tests/timer_header_layout.lua": {
+          "raw": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54",
+          "normalized": "c80d7b3fe7caf830382a00de3f19214151f6f57c8b9012f1e3ca1bcd02948d54"
+        }
+      },
+      "changedDuringRun": [],
+      "endedUTC": "2026-11-17T00:48:40.372452+00:00"
+    },
+    "reviewCorrections": "Compensate terminal protected-cast reset and flight-label width; swing/Shoot text holder retains its old bounds while fill extends. Final tests cover all three. Initial new test mistakenly read the first logged LEFT point; corrected to native replacement semantics (latest LEFT). Prior runner control-selector assertion is qualified in the complete gate.",
+    "documentation": [
+      {
+        "script": "docs/tools/build_reference.py",
+        "startedUTC": "2026-11-17T00:50:21.280307+00:00",
+        "endedUTC": "2026-11-17T00:50:41.018776+00:00",
+        "exitCode": 0,
+        "stdout": "Generated documentation inventory: 1234 sources; 625 TOC/XML reachable; 444 setting definitions; 584 literal defaults.\n",
+        "stderr": ""
+      },
+      {
+        "script": "docs/tools/validate_docs.py",
+        "startedUTC": "2026-11-17T00:50:41.018776+00:00",
+        "endedUTC": "2026-11-17T00:51:06.185051+00:00",
+        "exitCode": 0,
+        "stdout": "PASS: 1234 classified sources; 625 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 18231 local links. Source inventory/evidence current. No files written.\n",
+        "stderr": ""
+      }
+    ],
+    "finalSourceDrift": [],
+    "finalGuardUTC": "2026-11-17T00:51:06.195573+00:00"
+  },
+  "sourceEvidence": {
+    "retainedTargets": "Retail, Forever, Classic progression plus existing Era/Anniversary adapters retained",
+    "newNativeAPIs": false,
+    "foreverProfessionOwner": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ProfessionsTemplates/Blizzard_ProfessionsRankBar.xml",
+    "nativeFillAtlas": "Existing local Forever FileData4505182 SHA25696c4779261efb57e93294498680b95ed98549977855f3ac31707182270856423; ui-castingbar-filling-standard209x11"
+  },
+  "controller": "Decorative textures/layout only; no focus stops/input handlers; existing interaction owners retained, native controller test not run",
+  "native": {
+    "route": "Existing user-operated in-game reproduction; no agent gameplay/input/profiling performed",
+    "screenshotComparison": "Pending after reload, including Mooncloth and normal casts in both border styles",
+    "priorVisualReply": "Earlier crafting/fit user acceptance remains historical; this new scenario is not claimed accepted"
+  },
+  "preserved": "Core solver/FluxBorder, unit attachments, party fix and cast lifecycle/timer ownership retained",
+  "openWork": "Native screenshot comparison and broader combat/group reflow performance remain separate open work"
+}

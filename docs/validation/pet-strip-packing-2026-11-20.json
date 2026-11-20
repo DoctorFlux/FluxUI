@@ -1,0 +1,241 @@
+{
+  "changeId": "PET-STRIP-PACKING-R157-20261120",
+  "capturedAtUTC": "2026-11-20T00:03:18.247583+00:00",
+  "sources": {
+    "Bars/Pet/Layout.lua": {
+      "beforeRaw": "8bf033eba0a94181e406e38a47064aab4a5d677aaac3e58629f6a2795b621d8e",
+      "afterRaw": "ad57bae818c46996ba006ab73f5df9fffd35c35fb0897c4951d24f2c8291feb7",
+      "afterNormalized": "ad57bae818c46996ba006ab73f5df9fffd35c35fb0897c4951d24f2c8291feb7"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "2f737424396a5ac6da87bf775b713f0c84d271e69a726747566ab0dfd5c23cb6",
+      "afterRaw": "2ccea7dc6a0e2801d9d792d0c3cfecf4237bf6cf984c8802b5a0e3763d7b93cc",
+      "afterNormalized": "2ccea7dc6a0e2801d9d792d0c3cfecf4237bf6cf984c8802b5a0e3763d7b93cc"
+    },
+    "tests/pet_strip_packing.lua": {
+      "beforeRaw": null,
+      "afterRaw": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "afterNormalized": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\source.zip",
+    "sourceZipSHA256": "3924f1082372632250fe0aaddb2c5db3c67c880892344f46d852ac5dac786566",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched runs of eight action-strip crossings with ten settled pet buttons in modeled post-DF and Classic widget shapes.",
+    "samples": [
+      {
+        "trial": 1,
+        "clientShape": "post-DF",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      },
+      {
+        "trial": 2,
+        "clientShape": "post-DF",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      },
+      {
+        "trial": 3,
+        "clientShape": "post-DF",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic",
+        "beforeAfter": {
+          "size": [
+            168,
+            0
+          ],
+          "point": [
+            160,
+            0
+          ],
+          "parent": [
+            160,
+            0
+          ],
+          "clip": [
+            80,
+            0
+          ],
+          "chrome": [
+            80,
+            0
+          ],
+          "autocast": [
+            80,
+            0
+          ]
+        }
+      }
+    ],
+    "metric": "Successful setter or paint calls made by the pet layout",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\matched-1.txt": "662183c3024e9e4c33ba80c45b141a26b894c6800306852a886b92c03e7a40aa",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\matched-2.txt": "662183c3024e9e4c33ba80c45b141a26b894c6800306852a886b92c03e7a40aa",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\matched-3.txt": "662183c3024e9e4c33ba80c45b141a26b894c6800306852a886b92c03e7a40aa",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\upvalues.json": "8cd7653d5a419e4109db2178739cb53592de4c25054e0c3aeef8ffeee8e95e76"
+    },
+    "limits": "Call counts establish eliminated setter and paint work in the modeled handler. Native build API availability, frame time, rendering and combat taint remain pending."
+  },
+  "preservation": [
+    "The strip keeps the pet root position update and border adoption before the final border commit.",
+    "A changed widget, size, parent, clip, paint input or squeeze factor takes the full pet writer.",
+    "Unsupported or private widget reads also take the full path. Combat defers protected changes through the existing owner.",
+    "Standalone pet layout and broad notifications retain their existing completion behavior."
+  ],
+  "verification": {
+    "focusedPassed": 28,
+    "syntaxPassed": 1251,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\focused-verified.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\pet-strip-packing-before-20261120-005613\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings and drops, pet and side seams, party and raid membership hitches, and combat taint."
+}

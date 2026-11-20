@@ -1,0 +1,171 @@
+{
+  "changeId": "STRIP-JOIN-SOURCES-R101-20261119",
+  "capturedAtUTC": "2026-11-19T12:14:33.203105+00:00",
+  "scope": "Shared junction source preparation for held-action crossings and localized HUD reflow",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "afterRaw": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614"
+    },
+    "tests/regional_fragment_reads.lua": {
+      "beforeRaw": "8ede1dd596ad922b70ccf8cf987a29d3d70cdfc0ab7b36edab113aeaabcb39ac",
+      "afterRaw": "82fcf15ca13c10b92bf998c4d458fd0afd4719b49ba31513a1a05f88beb75114"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08",
+      "afterRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+      "afterRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+      "afterRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-join-sources-r101-before-20261119T120645Z\\source.zip",
+    "archiveSHA256": "8acdd70d455ac9e058fdca8c48a3a8bd78b5ed3f94e5164a432aa00de44312f6",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 8,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 strip width",
+      "type 1 held crossing",
+      "type 1 local join",
+      "type 2 strip width",
+      "type 2 held crossing",
+      "type 2 local join"
+    ],
+    "counts": [
+      [
+        2448,
+        1232,
+        488,
+        488,
+        976,
+        976
+      ],
+      [
+        2448,
+        1232,
+        488,
+        488,
+        976,
+        976
+      ],
+      [
+        672,
+        192,
+        64,
+        64,
+        128,
+        128
+      ],
+      [
+        2280,
+        1216,
+        488,
+        488,
+        976,
+        976
+      ],
+      [
+        2280,
+        1216,
+        488,
+        488,
+        976,
+        976
+      ],
+      [
+        672,
+        192,
+        64,
+        64,
+        128,
+        128
+      ]
+    ],
+    "countColumns": [
+      "before parent reads",
+      "after parent reads",
+      "before layer reads",
+      "after layer reads",
+      "before opacity reads",
+      "after opacity reads"
+    ],
+    "checks": [
+      "eight alternating crossings and width changes per type with six prepared hits per strip scenario",
+      "all sampled join fields and ownership agree",
+      "live layer and color changes get current inputs",
+      "hide events still update visibility",
+      "reflow does not retain transient ancestry or suppression data"
+    ],
+    "rows": [
+      "FRAGMENT_READS style=1 scene=strip-width commits=8 parents=2448/1232 layers=488/488 alpha=976/976",
+      "FRAGMENT_READS style=1 scene=held-crossing commits=8 parents=2448/1232 layers=488/488 alpha=976/976",
+      "FRAGMENT_READS style=1 scene=local-join commits=8 parents=672/192 layers=64/64 alpha=128/128",
+      "FRAGMENT_READS style=2 scene=strip-width commits=8 parents=2280/1216 layers=488/488 alpha=976/976",
+      "FRAGMENT_READS style=2 scene=held-crossing commits=8 parents=2280/1216 layers=488/488 alpha=976/976",
+      "FRAGMENT_READS style=2 scene=local-join commits=8 parents=672/192 layers=64/64 alpha=128/128",
+      "Regional fragment reads preserve sampled joins, live layer and paint, and tile listener ownership."
+    ],
+    "captureSHA256": "8bb638880a608144923c6f909bc244a12a1ae50a5b201904d9119e461dd298c9"
+  },
+  "verification": {
+    "focused": 18,
+    "focusedPassed": 17,
+    "syntax": 1244,
+    "compilerMaximumUpvalues": 51,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-join-sources-r101-before-20261119T120645Z\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-join-sources-r101-before-20261119T120645Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

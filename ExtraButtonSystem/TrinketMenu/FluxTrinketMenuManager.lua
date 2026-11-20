@@ -121,6 +121,28 @@ function Manager:UpdateAnchor()
     end
 end
 
+local function StripAnchorMatches(host, strip)
+    local n = host:GetNumPoints()
+    if (issecretvalue and issecretvalue(n)) or n ~= 1 then return false end
+    local point, relative, relativePoint, x, y = host:GetPoint(1)
+    if issecretvalue and (issecretvalue(point) or issecretvalue(relative)
+        or issecretvalue(relativePoint) or issecretvalue(x) or issecretvalue(y)) then return false end
+    return point == "BOTTOMLEFT" and relative == strip and relativePoint == "BOTTOMRIGHT"
+        and x == ANCHOR_OFFSET_X - 6 and y == 0
+end
+
+function Manager:UpdateStripAnchor()
+    if InCombatLockdown() or not TM.Frame then return self:UpdateAnchor() end
+    local strip = ActionStripFrame()
+    if not strip then return self:UpdateAnchor() end
+    local ok, matches = pcall(StripAnchorMatches, TM.ScaleHost or TM.Frame, strip)
+    if not ok or not matches then return self:UpdateAnchor() end
+    -- The native point follows the strip. Apply the current squeeze once,
+    -- after the surrounding grids and the strip have settled.
+    self._pendingAnchor = nil
+    if TM.ApplyHorizontalSqueeze then TM.ApplyHorizontalSqueeze() end
+end
+
 -- ============================================================================
 -- EVENT HANDLING
 -- ============================================================================
@@ -151,6 +173,13 @@ end
 -- anchor available. Layout notifications re-anchor it when the action strip moves.
 local function TryInitialize()
     return Initialize()
+end
+
+local function RefreshVisibility()
+    TM.UpdateTrinketVisibility()
+    if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
+        FluxUnifiedBorder.UpdateBorder()
+    end
 end
 
 if managedStartup then
@@ -206,23 +235,48 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, ...)
         if Manager._pendingAnchor then Manager:UpdateAnchor() end
         TM.ProcessCombatQueue()
 
+        local consumedShow, retryShow = false, nil
         if TM._pendingVisibilityUpdate then
             TM._pendingVisibilityUpdate = nil
-            TM.UpdateTrinketVisibility()
-            if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
-                FluxUnifiedBorder.UpdateBorder()
+            if TM._pendingShow then
+                -- Hidden-policy updates do not call Show(). Consume the old
+                -- show intent once, preserving a newly rearmed request. The
+                -- old show also remains a retry if visibility/border fails.
+                local pendingShow = TM._pendingShow
+                TM._pendingShow = nil
+                local ok, err = pcall(RefreshVisibility)
+                if not ok then
+                    if TM._pendingShow ~= false then
+                        TM._pendingShow = TM._pendingShow or pendingShow
+                    end
+                    error(err, 0)
+                end
+                consumedShow = pendingShow
+                -- Show() explicitly writes false when it already consumed
+                -- this intent. Hidden-policy paths retain their old retry
+                -- through the following explicit keybinding recovery too.
+                if TM._pendingShow ~= false then retryShow = pendingShow end
+            else
+                RefreshVisibility()
             end
         end
         if TM._pendingKeybindUpdate then
             TM._pendingKeybindUpdate = nil
-            TM.UpdateKeybindings()
-        end
-        if TM._pendingShow then
-            TM._pendingShow = nil
-            TM.UpdateTrinketVisibility()
-            if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then
-                FluxUnifiedBorder.UpdateBorder()
+            if retryShow then
+                local ok, err = pcall(TM.UpdateKeybindings)
+                if not ok then
+                    if TM._pendingShow ~= false then
+                        TM._pendingShow = TM._pendingShow or retryShow
+                    end
+                    error(err, 0)
+                end
+            else
+                TM.UpdateKeybindings()
             end
+        end
+        if TM._pendingShow and not consumedShow then
+            TM._pendingShow = nil
+            RefreshVisibility()
         end
         
     elseif event == "PLAYER_REGEN_DISABLED" then

@@ -18,6 +18,16 @@ local function RangeableType(t)
 end
 
 local function RangeUnit(btn)
+	local Action = EBS.Action
+	if Action and Action.CastForRange then
+		local kind, id, unit, handled = Action.CastForRange(btn)
+		if handled then
+			if not kind or not id or not unit then return nil, true end
+			local R = Flux.Range
+			if R and R.ResolveUnit then return R.ResolveUnit(nil, unit), true end
+			return unit, true
+		end
+	end
 	local macroUnit
 	local widget
 	if btn._fluxUtilityGetEntry then
@@ -29,7 +39,11 @@ local function RangeUnit(btn)
 	end
 	local R = Flux.Range
 	if R and R.ResolveUnit then
-		return R.ResolveUnit(widget, macroUnit)
+		local kind, id = btn.ActionType, btn.ActionValue
+		if kind == "macro" or kind == "macrotext" then kind = btn.MacroMode end
+		if kind == "spell" then id = btn.SpellId or id
+		elseif kind == "item" then id = btn.ItemId or id end
+		return R.ResolveUnit(widget, macroUnit, kind, id)
 	end
 	return macroUnit or "target"
 end
@@ -38,13 +52,15 @@ local function NeedsRange(btn)
 	if not btn or not RangeableType(btn.ActionType) then
 		return false
 	end
-	if btn.ActionType == "macro" or btn.ActionType == "macrotext" then
+	local unit, handled = RangeUnit(btn)
+	if not unit then return false end
+	if not handled and (btn.ActionType == "macro" or btn.ActionType == "macrotext") then
 		if btn.MacroMode ~= "spell" and btn.MacroMode ~= "item" then
 			return false
 		end
 	end
 	if UnitExists then
-		local ok, exists = pcall(UnitExists, RangeUnit(btn))
+		local ok, exists = pcall(UnitExists, unit)
 		if not ok or not exists then
 			return false
 		end

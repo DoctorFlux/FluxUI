@@ -375,6 +375,7 @@ function W.CreateDropdown(parent)
     local value
     local getItems
     local onChange
+    local markupMeasure
 
     local function CurrentText()
         local text = ""
@@ -406,7 +407,18 @@ function W.CreateDropdown(parent)
             end
         end
         if textWidth < 8 then
-            textWidth = 8 * #text
+            if text:find("|A:", 1, true) or text:find("|T", 1, true) then
+                -- Classic dropdowns may expose no Text parentKey. Measure rendered
+                -- swatches rather than treating their markup bytes as visible text.
+                if not markupMeasure then
+                    markupMeasure = row:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+                    markupMeasure:Hide()
+                end
+                markupMeasure:SetText(text)
+                textWidth = markupMeasure:GetStringWidth() or 0
+            else
+                textWidth = 8 * #text
+            end
         end
         if modern then
             local rowWidth = row:GetWidth() or 0
@@ -483,10 +495,19 @@ function W.CreateDropdown(parent)
     elseif UIDropDownMenu_Initialize and UIDropDownMenu_CreateInfo and UIDropDownMenu_AddButton then
         UIDropDownMenu_Initialize(dropdown, function(_, level)
             local items = getItems and getItems() or {}
+            -- Classic's native menu rows are 16px. Full border previews need
+            -- consistent extra spacing so their top/bottom corners do not overlap.
+            local previewHeight = 16
+            for _, item in ipairs(items) do
+                for height in (item.text or ""):gmatch("|T[^:]+:(%d+):") do
+                    previewHeight = math.max(previewHeight, math.min(48, tonumber(height) or 16))
+                end
+            end
             for i = 1, #items do
                 local item = items[i]
                 local info = UIDropDownMenu_CreateInfo()
                 info.text = item.text or tostring(item.value or "")
+                if previewHeight > 16 then info.topPadding = previewHeight - 16 + 2 end
                 info.checked = value == item.value
                 info.func = function()
                     value = item.value

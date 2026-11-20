@@ -1,0 +1,413 @@
+{
+  "changeId": "RAID-CELL-NEIGHBORS-20261119",
+  "objective": "Reduce one known roster-triggered border path for party and raid. The wider goal includes other roster consumers and action-strip hover while holding an action.",
+  "capturedAtUTC": "2026-11-19T07:46:46.284494+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "runtime": "RaidFrame/FluxRaidUnit.lua",
+    "baselineRaw": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef",
+    "candidateRaw": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+    "fixture": "tests/raid_connected_grid.lua",
+    "fixtureRaw": "784bf6e15bb724335d9d0451ba5948b914af4f7b854d962ec8f1108c929aafe7"
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-edges-before-20261119T074042Z\\source.zip",
+    "archiveSHA256": "30e130124de93f9ff54b86a9d2b43ecbc67f54edcef735d32fd603b0e99ba728",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "behavior": [
+    "Sort visible cells by public column and row coordinates and reject distant candidates before perpendicular seam comparisons.",
+    "Preserve exact tolerance, overlap and shared-edge ownership. Keep prepared paint input for unchanged geometry.",
+    "Skip unavailable, private and non-finite coordinates. Continue the existing visual sink validity check, roster dispatch and secure layout."
+  ],
+  "matchedWork": {
+    "regular40CellExpensiveAbsChecks": [
+      2220,
+      660
+    ],
+    "stable20Updates": [
+      0,
+      0
+    ],
+    "exactEdgeOracle": "Both one- and four-pixel overlap models. Joins/leaves, warm token changes, partial layouts, mixed heights, negative coordinates, offsets bracketing both seam tolerances and isolated minis. 1338 runtime fixture checks.",
+    "logs": {
+      "before": [
+        "RAID_CONNECTED_WORK|legacy|2220|0",
+        "RAID_CONNECTED_WORK|native|2220|0",
+        "Raid connected grid: 1330 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls"
+      ],
+      "after": [
+        "RAID_CONNECTED_WORK|legacy|660|0",
+        "RAID_CONNECTED_WORK|native|660|0",
+        "Raid connected grid: 1338 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls"
+      ]
+    }
+  },
+  "matchedDesktopTime": {
+    "samples": [
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 1,
+        "beforeMs": 0.13,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 2,
+        "beforeMs": 0.12,
+        "afterMs": 0.081667
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 3,
+        "beforeMs": 0.118333,
+        "afterMs": 0.08
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 4,
+        "beforeMs": 0.116667,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 5,
+        "beforeMs": 0.115,
+        "afterMs": 0.081667
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 6,
+        "beforeMs": 0.115,
+        "afterMs": 0.08
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 7,
+        "beforeMs": 0.115,
+        "afterMs": 0.08
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 8,
+        "beforeMs": 0.113333,
+        "afterMs": 0.081667
+      },
+      {
+        "styleModel": 1,
+        "mode": "membership",
+        "sample": 9,
+        "beforeMs": 0.115,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 1,
+        "beforeMs": 0.031667,
+        "afterMs": 0.025
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 2,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 3,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 4,
+        "beforeMs": 0.03,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 5,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 6,
+        "beforeMs": 0.031667,
+        "afterMs": 0.025
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 7,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 8,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 1,
+        "mode": "stable",
+        "sample": 9,
+        "beforeMs": 0.03,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 1,
+        "beforeMs": 0.115,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 2,
+        "beforeMs": 0.115,
+        "afterMs": 0.083333
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 3,
+        "beforeMs": 0.115,
+        "afterMs": 0.081667
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 4,
+        "beforeMs": 0.113333,
+        "afterMs": 0.08
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 5,
+        "beforeMs": 0.115,
+        "afterMs": 0.076667
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 6,
+        "beforeMs": 0.123333,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 7,
+        "beforeMs": 0.115,
+        "afterMs": 0.081667
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 8,
+        "beforeMs": 0.118333,
+        "afterMs": 0.08
+      },
+      {
+        "styleModel": 2,
+        "mode": "membership",
+        "sample": 9,
+        "beforeMs": 0.116667,
+        "afterMs": 0.078333
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 1,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 2,
+        "beforeMs": 0.031667,
+        "afterMs": 0.028333
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 3,
+        "beforeMs": 0.031667,
+        "afterMs": 0.025
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 4,
+        "beforeMs": 0.033333,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 5,
+        "beforeMs": 0.03,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 6,
+        "beforeMs": 0.033333,
+        "afterMs": 0.028333
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 7,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 8,
+        "beforeMs": 0.031667,
+        "afterMs": 0.026667
+      },
+      {
+        "styleModel": 2,
+        "mode": "stable",
+        "sample": 9,
+        "beforeMs": 0.031667,
+        "afterMs": 0.025
+      }
+    ],
+    "summaryMsPerRefresh": {
+      "1": {
+        "membership": {
+          "before": {
+            "median": 0.115,
+            "range": [
+              0.113333,
+              0.13
+            ]
+          },
+          "after": {
+            "median": 0.08,
+            "range": [
+              0.078333,
+              0.081667
+            ]
+          }
+        },
+        "stable": {
+          "before": {
+            "median": 0.031667,
+            "range": [
+              0.03,
+              0.031667
+            ]
+          },
+          "after": {
+            "median": 0.026667,
+            "range": [
+              0.025,
+              0.026667
+            ]
+          }
+        }
+      },
+      "2": {
+        "membership": {
+          "before": {
+            "median": 0.115,
+            "range": [
+              0.113333,
+              0.123333
+            ]
+          },
+          "after": {
+            "median": 0.08,
+            "range": [
+              0.076667,
+              0.083333
+            ]
+          }
+        },
+        "stable": {
+          "before": {
+            "median": 0.031667,
+            "range": [
+              0.03,
+              0.033333
+            ]
+          },
+          "after": {
+            "median": 0.026667,
+            "range": [
+              0.025,
+              0.028333
+            ]
+          }
+        }
+      }
+    },
+    "script": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-edges-before-20261119T074042Z\\replay.lua",
+    "sampling": "36 alternating pairs, 600 refreshes per half. Actual Lua joined-edge function with modeled native reads and paint sink. Unit events, native cost and FPS excluded."
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "maxUpvaluesConservative": 11,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-edges-before-20261119T074042Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-edges-before-20261119T074042Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-joined-edges-before-20261119T074042Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedCopiesReadOnly": {
+    "retail": {
+      "sha256": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "7054849d104360a955036adfab7dc9788adc6d0965545531e57923f12671840a",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending for group join/leave latency, actual pixels and combat taint. No gameplay or profiler changes."
+}

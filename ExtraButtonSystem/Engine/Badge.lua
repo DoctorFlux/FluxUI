@@ -136,7 +136,17 @@ function Badge.SyncCountFont(badge)
 	pcall(fs.SetFont, fs, font, size, flags or "OUTLINE")
 end
 
-function Badge.SyncFrameLevel(badge, stackIndex)
+local function PublicMatch(value, expected)
+	return not (issecretvalue and issecretvalue(value)) and value == expected
+end
+
+local function LevelMatches(frame, level)
+	if not frame.GetFrameLevel then return false end
+	local ok, current = pcall(frame.GetFrameLevel, frame)
+	return ok and PublicMatch(current, level)
+end
+
+function Badge.SyncFrameLevel(badge, stackIndex, keepPlacement)
 	if not badge or not badge.Widget then
 		return
 	end
@@ -161,10 +171,12 @@ function Badge.SyncFrameLevel(badge, stackIndex)
 	local host = badge._fluxBadgeHost
 	local level = HostVfxCeiling(host) + idx
 	local slot = badge.SlotFrame
-	if slot and slot.SetFrameLevel then
+	if slot and slot.SetFrameLevel and not (keepPlacement and LevelMatches(slot, level)) then
 		pcall(slot.SetFrameLevel, slot, level)
 	end
-	pcall(badge.Widget.SetFrameLevel, badge.Widget, level + 1)
+	if not keepPlacement or not LevelMatches(badge.Widget, level + 1) then
+		pcall(badge.Widget.SetFrameLevel, badge.Widget, level + 1)
+	end
 end
 
 local function NativeSize()
@@ -222,7 +234,30 @@ local function SuppressBadgeChrome(badge)
 	end
 end
 
-function Badge.Layout(badge, host, stackIndex)
+local function DimensionMatches(value, expected)
+	-- Native widget geometry rounds fractional badge sizes.
+	return not (issecretvalue and issecretvalue(value))
+		and type(value) == "number" and math.abs(value - expected) <= 0.0001
+end
+
+local function PointMatches(frame, point, relative, y)
+	if not PublicMatch(frame:GetNumPoints(), 1) then return false end
+	local p, parent, rp, x, offset = frame:GetPoint(1)
+	return PublicMatch(p, point) and PublicMatch(parent, relative) and PublicMatch(rp, point)
+		and DimensionMatches(x, 0) and DimensionMatches(offset, y)
+end
+
+local function PlacementMatches(widget, slot, host, visualW, visualH, faceW, native, scale, y, clip)
+	return PublicMatch(slot:GetParent(), host) and PublicMatch(widget:GetParent(), slot)
+		and PublicMatch(slot:IsShown(), true)
+		and DimensionMatches(slot:GetWidth(), visualW) and DimensionMatches(slot:GetHeight(), visualH)
+		and DimensionMatches(widget:GetWidth(), faceW) and DimensionMatches(widget:GetHeight(), native)
+		and DimensionMatches(widget:GetScale(), scale)
+		and PointMatches(slot, "TOPLEFT", host, y) and PointMatches(widget, "CENTER", slot, 0)
+		and (not slot.SetClipsChildren or (slot.DoesClipChildren and PublicMatch(slot:DoesClipChildren(), clip)))
+end
+
+function Badge.Layout(badge, host, stackIndex, reusePlacement)
 	if not badge or not badge.Widget or not host then
 		return
 	end
@@ -263,32 +298,42 @@ function Badge.Layout(badge, host, stackIndex)
 	if visualH > 0 then
 		faceW = native * (visualW / visualH)
 	end
-	widget:SetSize(faceW, native)
 	local scale = visualH / native
-	if widget.SetScale then
-		widget:SetScale(scale)
+	local y = -((badge._fluxBadgeIndex - 1) * (visualH + gapY))
+	local slot, keepPlacement = badge.SlotFrame, false
+	if reusePlacement == true and slot then
+		local ok, matches = pcall(PlacementMatches, widget, slot, host, visualW, visualH, faceW, native, scale, y,
+			not widget._fluxSecureMissileGlow)
+		keepPlacement = ok and matches
+	end
+	if not keepPlacement then
+		widget:SetSize(faceW, native)
+		if widget.SetScale then
+			widget:SetScale(scale)
+		end
 	end
 	badge.ButtonScale = scale
-	local y = -((badge._fluxBadgeIndex - 1) * (visualH + gapY))
-	local slot = EnsureSlot(badge, host)
-	if slot then
-		slot:SetSize(visualW, visualH)
-		slot:ClearAllPoints()
-		slot:SetPoint("TOPLEFT", host, "TOPLEFT", 0, y)
-		widget:SetParent(slot)
-		widget:ClearAllPoints()
-		widget:SetPoint("CENTER", slot, "CENTER", 0, 0)
-		slot:Show()
-	else
-		widget:SetParent(host)
-		widget:ClearAllPoints()
-		widget:SetPoint("TOPLEFT", host, "TOPLEFT", 0, y)
+	if not keepPlacement then
+		slot = EnsureSlot(badge, host)
+		if slot then
+			slot:SetSize(visualW, visualH)
+			slot:ClearAllPoints()
+			slot:SetPoint("TOPLEFT", host, "TOPLEFT", 0, y)
+			widget:SetParent(slot)
+			widget:ClearAllPoints()
+			widget:SetPoint("CENTER", slot, "CENTER", 0, 0)
+			slot:Show()
+		else
+			widget:SetParent(host)
+			widget:ClearAllPoints()
+			widget:SetPoint("TOPLEFT", host, "TOPLEFT", 0, y)
+		end
 	end
 	SuppressBadgeChrome(badge)
-	if slot and slot.SetClipsChildren then
+	if not keepPlacement and slot and slot.SetClipsChildren then
 		pcall(slot.SetClipsChildren, slot, not widget._fluxSecureMissileGlow)
 	end
-	Badge.SyncFrameLevel(badge, badge._fluxBadgeIndex)
+	Badge.SyncFrameLevel(badge, badge._fluxBadgeIndex, keepPlacement)
 	Badge.SyncCountFont(badge)
 end
 

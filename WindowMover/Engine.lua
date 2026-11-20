@@ -174,8 +174,13 @@ local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
 end
 
+local function SurfaceOwnsLayout(frame)
+	local surface = _G.FluxBattlefieldWorldMap
+	return surface and surface.OwnsLayout and surface:OwnsLayout(frame) or false
+end
+
 local function CanLayout(frame)
-	if not WindowMover.IsFrame(frame) then
+	if not WindowMover.IsFrame(frame) or SurfaceOwnsLayout(frame) then
 		return false
 	end
 	if InLockdown() then
@@ -297,7 +302,7 @@ function WindowMover.Apply(name, frame)
 		return
 	end
 	frame = frame or WindowMover.Resolve(name)
-	if not WindowMover.IsFrame(frame) then
+	if not WindowMover.IsFrame(frame) or SurfaceOwnsLayout(frame) then
 		return
 	end
 	local db = WindowMover.Settings()
@@ -477,7 +482,7 @@ function WindowMover._OnProxyUpdate()
 	end
 	local db = WindowMover.Settings()
 	local frame = job.frame
-	if not WindowMover.IsFrame(frame) or (frame.IsShown and not frame:IsShown()) then
+	if not WindowMover.IsFrame(frame) or SurfaceOwnsLayout(frame) or (frame.IsShown and not frame:IsShown()) then
 		StopActive()
 		return
 	end
@@ -656,7 +661,7 @@ function WindowMover.IsLocked()
 end
 
 local function OnMouseDown(name, frame, btn)
-	if suppressed[name] or ForeverGamepadBag(name) then
+	if suppressed[name] or ForeverGamepadBag(name) or SurfaceOwnsLayout(frame) then
 		return
 	end
 	local db = WindowMover.Settings()
@@ -704,7 +709,7 @@ local function IsEditModeSystem(frame)
 end
 
 local function ShouldReapplyAfterLayout(name, sel, method)
-	if applying[name] or suppressed[name] then
+	if applying[name] or suppressed[name] or SurfaceOwnsLayout(sel) then
 		return false
 	end
 	if NameIsDynamicSize(name) then

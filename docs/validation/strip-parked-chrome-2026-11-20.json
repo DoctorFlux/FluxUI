@@ -1,0 +1,336 @@
+{
+  "changeId": "STRIP-PARKED-CHROME-20261120",
+  "capturedAtUTC": "2026-11-20T07:50:57.264678+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Bars/Blizzard.lua": {
+      "beforeRaw": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+      "afterRaw": "45bee6e7d545c8c19a27bac17edf3fa4a46aaa5c327f777e16f323239b6da0ff",
+      "afterNormalized": "45bee6e7d545c8c19a27bac17edf3fa4a46aaa5c327f777e16f323239b6da0ff"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "9d72dddf57767f9f15b9488f6b6e2a479ae232d4bd47e2a5111e76d6d00dea68",
+      "afterRaw": "888aa6d273d2feada3f7ea071b8fb37c25b81124cf5f82aa8d60c442b4bbf2a0",
+      "afterNormalized": "888aa6d273d2feada3f7ea071b8fb37c25b81124cf5f82aa8d60c442b4bbf2a0"
+    },
+    "tests/strip_drag_button_chrome.lua": {
+      "beforeRaw": "06912db9c6c27bc87991530e3c73f7601e04ab18b0dfaf397da0059ec09d5978",
+      "afterRaw": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "afterNormalized": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "644c758e5ef1304f2d14a1c9da8f1dd46d91f12c8a64c3477eb67edad4038e7f",
+      "afterRaw": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "afterNormalized": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd"
+    }
+  },
+  "evidence": {
+    "firstAndRepeatCounts": {
+      "retail": {
+        "firstRefits": [
+          19,
+          5
+        ],
+        "repeatRefits": [
+          571,
+          0
+        ],
+        "repeatMockWrites": [
+          31405,
+          0
+        ]
+      },
+      "forever": {
+        "firstRefits": [
+          19,
+          5
+        ],
+        "repeatRefits": [
+          571,
+          0
+        ],
+        "repeatMockWrites": [
+          31405,
+          0
+        ]
+      },
+      "classic": {
+        "firstRefits": [
+          19,
+          5
+        ],
+        "repeatRefits": [
+          571,
+          0
+        ],
+        "repeatMockWrites": [
+          31976,
+          0
+        ]
+      }
+    },
+    "rawReplay": "STRIP_PARKED_CHROME retail first=19/5 steps=60 sizes=571/0 writes=31405/0\nSTRIP_PARKED_CHROME forever first=19/5 steps=60 sizes=571/0 writes=31405/0\nSTRIP_PARKED_CHROME classic first=19/5 steps=60 sizes=571/0 writes=31976/0\n",
+    "sensingControls": "60 steady ticks, drag stop, hidden repair, gamepad transition, unavailable visibility fallback",
+    "desktopTimingSamples": {
+      "retail": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            38.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3631.889,
+            1260.133
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            39.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            38.0,
+            27.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            41.0,
+            30.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            39.0,
+            30.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            38.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            41.0,
+            32.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            38.0,
+            31.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            39.0,
+            27.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            39.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3629.326,
+            1260.133
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            39.0,
+            29.0
+          ],
+          "allocatedKiB": [
+            3415.576,
+            1260.133
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            40.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3415.576,
+            1260.133
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            37.0,
+            29.0
+          ],
+          "allocatedKiB": [
+            3415.576,
+            1260.133
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            37.0,
+            28.0
+          ],
+          "allocatedKiB": [
+            3415.576,
+            1260.133
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            37.0,
+            27.0
+          ],
+          "allocatedKiB": [
+            3415.576,
+            1260.133
+          ]
+        }
+      ]
+    },
+    "desktopTimingMediansMs": {
+      "retail": [
+        39.0,
+        28.0
+      ],
+      "forever": [
+        39.0,
+        28.0
+      ],
+      "classic": [
+        37.0,
+        28.0
+      ]
+    },
+    "timingScope": "Five alternating Lua 5.4.6 process CPU pairs of 120 warmed strip crossings per client-style model. Border commit is a counted sink in this chrome timing fixture. Timing includes mocked widget work.",
+    "timingHarnessSHA256": "66042a550f4214d3b327e65cbd12b67b97050ae60af3a5252644a016f65e59cd"
+  },
+  "parity": "The strip retains verified button chrome when a face returns from off-screen parking. The first crossing refits 19 versus 5 faces in each desktop client model. Sixty warmed crossings refit 571 faces before and zero after. Button positions, action slots and visible art match. The held-cursor watcher also leaves the sensing frame alone once its live visibility matches.",
+  "rules": "Keep the current verification of texture identities, native normal paint, backdrop visibility and applied button dimensions. New widths, art replacement and unreadable region state take the regular repair. Capture an unlocked native art update for the next verification. The locked native callback retains its original art writer and leaves validation for the next unlocked layout.",
+  "checkpoint": {
+    "createdAt": "2026-11-20T07:45:30.9601496Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settings": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Bars/Blizzard.lua": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+      "Bars/Hosts.lua": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+      "Bars/Layout.lua": "9d72dddf57767f9f15b9488f6b6e2a479ae232d4bd47e2a5111e76d6d00dea68",
+      "Bars/Strip.lua": "aace75c3e67537ac5057276d5c0c20772427bee76ed6a760d6daa3b238099309",
+      "Bars/Init.lua": "b37e1a381706a7eb43dc3ccda943a974baf92b45758187d43431c7b88d979ccb",
+      "Core/BorderJunctions.lua": "022848d062f5d3bdef0c253469f861798b5a6af5047e7a967e70e04834a5a159",
+      "tests/strip_drag_button_chrome.lua": "06912db9c6c27bc87991530e3c73f7601e04ab18b0dfaf397da0059ec09d5978",
+      "tests/strip_drag_hover_edges.lua": "644c758e5ef1304f2d14a1c9da8f1dd46d91f12c8a64c3477eb67edad4038e7f",
+      "docs/STATUS.md": "c4d5547b3780f7e7c7ad2b3df0eb8b7f5fd19fbf09995d565e5ebcc469d914d9",
+      "docs/DECISIONS.md": "d0773da809e8fffa08683e44c9271836eece490c20f834de87c5e79019442aab",
+      "docs/WORK_LOG.md": "0971bfe4bf40ebccdb1fe66a6a8b1284de7e1d5b15ac6f448f2c5ea4b16bd524",
+      "NEXT_SESSION.md": "23960acec935b92e85c4cf1f299315496c2f0ab607e976ee6664930494959d6e",
+      "docs/11-action-bars.md": "f7b17c53df0a6185d9514072be126a19e6a5f9ebc5563a2d374b6f4cb21a000c",
+      "docs/ACTION_STRIP_BORDER_UPDATES.md": "97f15aa0df06989bc04e237bdcaaddda2793f2c843d13ec12962988492711ad8",
+      "docs/CLIENT_VALIDATION.md": "0bb855ba7a848ada0c0908ec5c993153be84ecff201b5d1cdad7c1278cc7783a",
+      "docs/CLIENT_MATRIX.csv": "cd7728d31dbec12ec2122804ccfc98444a1f9147fd68bd68d52bb4252a40db0a",
+      "docs/FEATURE_PARITY.csv": "a6e3f1133de6b0183b41e50530b38fcd1e16920b6c940848c9dcb9bd13cb5fb9",
+      "docs/PERFORMANCE_RESULTS.csv": "133adfe597056fceedf92b63311455b1b062bac77ef5f55734ed60351e0804df",
+      "docs/reference/verification.json": "727f3964b0cb11b24c53abba6c98b28ad7adca4e8a7694d84d67ca608e32bca9"
+    }
+  },
+  "verification": {
+    "focusedPassed": 25,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/bars_strip_layout_work.lua": "3648763f4200e3fa3b4ef624f75e4533c90d3680b24c5a3a18280013d48170e2",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_panel_settle.lua": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "tests/strip_grid_packing.lua": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/border_nearby_panels.lua": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "tests/bars_modifier_matrix.lua": "6b7c082bd84f8d450777c622521833066dfe75fa3b32cb94659421fe95f4f69c",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/main_row_audit.lua": "564da22e84010b371cec18edfb1a9683b4ca6b948784e38e0bf3d67c65ea97e9",
+      "tests/main_row_recovery.lua": "78705e3c264143ad09155b2436d8059e6af09e8602cb28a804c7dbc967bc603a",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/respec_actionbar_completion.lua": "30d7944d9d3d5490949e52fdc96d21bc3cfcd300b85365ba69612e0e1f45bd82",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-parked-chrome-before-20261120T074530625\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-parked-chrome-before-20261120T074530625\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-parked-chrome-before-20261120T074530625\\syntax.json"
+  },
+  "nativeAcceptance": "Live rapid cursor crossings and drops, including changing side-panel contacts, remain pending for frame time, seams and combat taint. Party and raid join and leave, embedded minimap toggles and combat exit remain open for the broader goal."
+}

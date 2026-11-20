@@ -9,7 +9,8 @@ local function Slice(first, last)
     local finish = assert(source:find(last, start + #first, true))
     return source:sub(start, finish - 1)
 end
-local code = Slice("function FluxMinimap:EnforcePosition()", "function FluxMinimap:PositionIndicators()")
+local code = Slice("local function MinimapNativeValue", "function FluxMinimap:CleanupBlizzardFrames()")
+    .. Slice("function FluxMinimap:EnforcePosition()", "function FluxMinimap:PositionIndicators()")
     .. Slice("function FluxMinimap:EmbedInFrame(parentFrame)", "function FluxMinimap:IsEmbedded()")
 local combat, writes = false, 0
 local function NoNativeWrite() writes = writes + 1; error("native action-bar method or minimap cluster geometry changed", 2) end

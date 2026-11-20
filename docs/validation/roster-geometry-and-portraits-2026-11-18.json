@@ -1,0 +1,198 @@
+{
+  "changeId": "ROSTER-GEOMETRY-PORTRAITS-R71-20261118",
+  "atUTC": "2026-11-18T22:35:58.772776+00:00",
+  "request": "R70 feels better; joining and leaving groups still hitches. Continue source work offline without asking questions.",
+  "scope": "Normal party and prepared compact party/raid layout. R70 local border builder remains in use.",
+  "checkpoint": {
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r71-before-20261118T222038Z\\checkpoint.json",
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r71-before-20261118T222038Z\\source.zip",
+    "archiveSha256": "439bcbe35881ff81d95efd5c308cfa71d8de1c86de4da79a167c72a82ec01f83",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "baselineHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataRecords": 3
+  },
+  "runtimeSources": {
+    "beforeNormalized": {
+      "RaidFrame/FluxRaidLayout.lua": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+      "RaidFrame/FluxRaidSecure.lua": "f0b7f21ba212ffbe9cf071e91abc433023cfa4e52b2812fd385e5c3d31b5e1fb",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "784c5f2c89532168c51160690f9d377a5005a011b494b497606e709e3bc198de",
+      "UnitFrames/FluxUnitFrames_Party.lua": "d86494d86b3ce2a4a7b996440c18dd43890bd0dbde188492ac7886fc3b5558c4",
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550"
+    },
+    "afterNormalized": {
+      "RaidFrame/FluxRaidLayout.lua": "944ce38dbc0e1aae48691b586516bf3c8acc5819aee1be6ed7bd472a8be97a68",
+      "RaidFrame/FluxRaidSecure.lua": "815ed18af13685546e9bc78ff48da96679eecf2d897039395d2f98620093ed7c",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "c29de60e8a12599796291982c6e5754333fabeeacfbb742d3dcea46d3487908c",
+      "UnitFrames/FluxUnitFrames_Party.lua": "3bee5b50b5b974dcd9e0a8511e2893ba88be450d6c7f2d9c4307072476ca8e36",
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550"
+    },
+    "afterRaw": {
+      "RaidFrame/FluxRaidLayout.lua": "944ce38dbc0e1aae48691b586516bf3c8acc5819aee1be6ed7bd472a8be97a68",
+      "RaidFrame/FluxRaidSecure.lua": "815ed18af13685546e9bc78ff48da96679eecf2d897039395d2f98620093ed7c",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "786fbeeededbe686290410dc9ef2e25c195c3c0d1543703ffb86144a1f8ae80e",
+      "UnitFrames/FluxUnitFrames_Party.lua": "3bee5b50b5b974dcd9e0a8511e2893ba88be450d6c7f2d9c4307072476ca8e36",
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550"
+    },
+    "beforeRaw": {
+      "RaidFrame/FluxRaidLayout.lua": "dd4366b8b222646beffbed134953ab9ad592eecc48da7c87ccac585a441e39ff",
+      "RaidFrame/FluxRaidSecure.lua": "f0b7f21ba212ffbe9cf071e91abc433023cfa4e52b2812fd385e5c3d31b5e1fb",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "1f15485b580da40b2c3fbe11c0f13999bd9d6d18cac6828f3f6ccaa9d84f6ced",
+      "UnitFrames/FluxUnitFrames_Party.lua": "d86494d86b3ce2a4a7b996440c18dd43890bd0dbde188492ac7886fc3b5558c4",
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550"
+    }
+  },
+  "testAndFixturePins": {
+    "tests/group_roster_performance.lua": "ca81eb4af8f8f117c087aa89e3fb32571cb35ae8e9c69b18a14614e503eef61a",
+    "tests/raid_combat_roster_transitions.lua": "58c418d32d7713245e7240dd4c1927b1549855400b4f4409bd732fcc97548cd9",
+    "tests/raid_header_precreation.lua": "628ef50ec51941b8ea53ab0c2ae73067dd9379cb323b95156ef125373a897a0d",
+    "tests/raid_healer_secure.lua": "abc7811b25d1fe36c03aef28642de23b6ad164092451a90325300731dbf593ba",
+    "tests/raid_manager_ghost.lua": "5ddaecc5ba05eead41b4fb281eaa29835a20934ad15f67fddb3adba8f48c1464",
+    "tests/raid_party_frames.lua": "5550df47bb9be6eb32599fd6ccc6a77e2288ebb1a0f8503e53efcdabed09d274",
+    "tests/raid_roster_layout_work.lua": "028296999b69b71d29de0f7598b12aa050b32c0b729e21b495b91b8af32f39b4",
+    "tests/roster_focus_dock.lua": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38",
+    "tests/unit_portrait_callback_work.lua": "2a7a6574b261394bc52f7017b97a636cd38de24ef55269f53c3f00489e9ac72d",
+    "tests/support/unit_portrait_callback_model.txt": "39856b7f75cbffa93594f24a1976d930dca7fba66fc875d5efde8ead63e596ee"
+  },
+  "restrictedFramesReferences": {
+    "live": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3",
+    "forever": "d934a9ff9bcad70b754047498eb0a130a210ac7d4eacec67f321f04dcdfd7bb3",
+    "classic": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354",
+    "classic_era": "24c120d1a2367491ced7794fead3966539fcc6e9c265db3802177fa37890d354",
+    "classic_anniversary": "b8ea7dbc62a279d612b0ab50bf0998e9a016d5d3cb613adbd00cae34f5cc6d77"
+  },
+  "changes": [
+    "Ordered regular groups observe the occupied first slot for layout. All MT/MA slots still contribute to packed width. Capacity is 80 prepared cells.",
+    "Compare observed secure anchors and width before updating them. Reanchor on changed, foreign, or inaccessible anchors on the existing secure path.",
+    "Skip matching manager scale/dock geometry after allowing for native coordinate rounding. The existing lockdown guards and native visibility ownership remain.",
+    "Coalesced normal party paints reuse a visible loaded model only for the same public GUID, unit token, region and model ID. Hidden, replaced, changed and unavailable data use the usual native paint.",
+    "An already queued roster paint absorbs duplicate leader/loot paints. Standalone leadership, loot and ready-check events still paint immediately."
+  ],
+  "matchedLayoutReplay": {
+    "scope": "Exact archived R70 vs R71 restricted layout source, same six modeled solo/party/raid/MTMA scenes, four calls per scene, 100 repetitions per trial. End anchor/width/alpha snapshots equal.",
+    "rawReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r71-before-20261118T222038Z\\layout-replay-results.json",
+    "samples": [
+      {
+        "pair": 1,
+        "before": {
+          "setPoint": 21600,
+          "clearAllPoints": 21600,
+          "setWidth": 2400,
+          "ms": 33.0
+        },
+        "after": {
+          "setPoint": 2500,
+          "clearAllPoints": 2500,
+          "setWidth": 200,
+          "ms": 31.0
+        }
+      },
+      {
+        "pair": 2,
+        "before": {
+          "setPoint": 21600,
+          "clearAllPoints": 21600,
+          "setWidth": 2400,
+          "ms": 33.0
+        },
+        "after": {
+          "setPoint": 2500,
+          "clearAllPoints": 2500,
+          "setWidth": 200,
+          "ms": 32.0
+        }
+      },
+      {
+        "pair": 3,
+        "before": {
+          "setPoint": 21600,
+          "clearAllPoints": 21600,
+          "setWidth": 2400,
+          "ms": 34.0
+        },
+        "after": {
+          "setPoint": 2500,
+          "clearAllPoints": 2500,
+          "setWidth": 200,
+          "ms": 34.0
+        }
+      },
+      {
+        "pair": 4,
+        "before": {
+          "setPoint": 21600,
+          "clearAllPoints": 21600,
+          "setWidth": 2400,
+          "ms": 32.0
+        },
+        "after": {
+          "setPoint": 2500,
+          "clearAllPoints": 2500,
+          "setWidth": 200,
+          "ms": 32.0
+        }
+      },
+      {
+        "pair": 5,
+        "before": {
+          "setPoint": 21600,
+          "clearAllPoints": 21600,
+          "setWidth": 2400,
+          "ms": 32.0
+        },
+        "after": {
+          "setPoint": 2500,
+          "clearAllPoints": 2500,
+          "setWidth": 200,
+          "ms": 32.0
+        }
+      }
+    ],
+    "limits": "Desktop native-method counts only. Coarse desktop timings overlap and cannot establish in-game frame time or taint."
+  },
+  "portraitReplay": {
+    "scope": "Same public member visible for 20 roster paints, three client policies; same first pose and stable model.",
+    "clearAndRebindBefore": 20,
+    "clearAndRebindAfter": 1,
+    "regressions": [
+      "slot replacement",
+      "nil or private identity",
+      "model ID drift",
+      "hidden member",
+      "explicit refresh",
+      "ordinary legacy callbacks"
+    ]
+  },
+  "checks": {
+    "focused": 179,
+    "syntax": 1225,
+    "upvaluePrototypes": 785,
+    "maximumUpvalues": 51,
+    "details": {
+      "tests/group_roster_performance.lua": "Group roster performance: 165 checks PASS; operation counts only; native performance/taint pending",
+      "tests/raid_combat_roster_transitions.lua": "Combat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending",
+      "tests/raid_header_precreation.lua": "raid header precreation: 1760 checks, 0 failures",
+      "tests/raid_healer_secure.lua": "Raid healer secure: 255773 checks; five native wrap/state/roster/click source implementations; desktop only",
+      "tests/raid_manager_ghost.lua": "Raid manager/ghost: 9180 checks; five actual native handlers; four rejected negative controls; reference source trees",
+      "tests/raid_party_frames.lua": "Party player-style frames: 1100 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending",
+      "tests/raid_roster_layout_work.lua": "Party roster prepared delegation: 5432 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.",
+      "tests/roster_focus_dock.lua": "Roster focus dock: 188 checks PASS; first/settings/default/unknown/drift recovery; body/scale/parent/context; combat+reentrant native-header policy; notification retention. Native latency/taint/pixels pending.",
+      "tests/unit_portrait_callback_work.lua": "Portrait protected callbacks: 114 scenarios/106005 checks PASS; actual production bodies, modeled native endpoints; no CPU timing/native tests"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r71-before-20261118T222038Z\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r71-before-20261118T222038Z\\syntax-final.json",
+    "unrelatedChangedSourcesParsedOnly": [
+      "Inventory/Craft.lua",
+      "Inventory/FluxConsumableBest/Persist.lua",
+      "Inventory/FluxConsumableBest/Scan.lua",
+      "Inventory/FluxConsumableBest/Score.lua",
+      "Inventory/FluxConsumableClassify.lua",
+      "Inventory/Index.lua",
+      "Inventory/Init.lua",
+      "Inventory/Professions.lua"
+    ]
+  },
+  "nativeAcceptance": {
+    "status": "Pending",
+    "scope": "Retail, Forever and Classic live join/leave, combat taint, frame latency and rendering were not tested. Prior user R70 feedback is qualitative."
+  }
+}

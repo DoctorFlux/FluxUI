@@ -1,0 +1,149 @@
+{
+  "changeId": "LHO-VENDOR-FIELDS-ONCE-20261119",
+  "file": "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+  "checkpoint": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\vendor-fields-once-20261119T053435Z",
+    "before": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsStatRows": 21,
+    "settingsContentsCopied": false
+  },
+  "after": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3",
+  "installed": {
+    "_retail_": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3",
+    "_forever_": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3",
+    "_classic_": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3",
+    "_classic_era_": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3",
+    "_anniversary_": "a481a7ec6b6236252899caf7a4c1174baec36912753ef2b227d754c1b911f1d3"
+  },
+  "syntax": "Both source revisions passed Lua 5.1 and 5.4",
+  "client": {
+    "name": "Forever",
+    "build": "1.60.1/70959/16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "birthFileTime": "134395136956432074",
+    "baganator": true,
+    "syndicator": true
+  },
+  "r216": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag216-vendor-fields-20261119",
+      "controllerSHA": "c79f14a71f4afae8628d09ce1068d891de06d9a8bd6eb84b71ecebb511ca9a45",
+      "packetSHA": "2090cbcf8e7f0bd8a39b9c824832eb8c360853440af49410932742b3aa2fba96",
+      "packets": 35,
+      "luaSHA": "ad8fac5f7bd6ef9b2308d6d949cc6e49244f2a9067964afd87f919ef9d976245"
+    },
+    "result": "Focus changed during upload, so no benchmark ran. The input reservation was released. The temporary script buffer had a 45-second expiry."
+  },
+  "r217": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag217-vendor-fields-short-20261119",
+      "controllerSHA": "c83044dda00abc079d1a0895024bab1679eec6dee113a866ffc1363bc9099fd6",
+      "packetSHA": "919df0e74eb7d3f036157d5d413535690a17910caa84fd7eb696e61e5089ffcc",
+      "packets": 9,
+      "luaSHA": "a5a84bb382acaad35ffb1330c75f50256d24f6c5a257c68bcde4a1e0d175b582"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag217_a-submitted.png",
+      "pngSha": "af47d2d4df0893276be1255d39017d9e99cb9ad4318aa4133e2a2ed74be554ce",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag217_a-submitted-capture.json",
+      "metaSha": "819df84133cb4ed3b376867b0631d9509f4006a55337d463af95c9c68b0dd6c9",
+      "started": 1795066437.0143445,
+      "time": 1795066439.4539144,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196862,
+        "last": 31067859,
+        "idle": 0.875,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "scope": "Before disk edit, short candidate complete-tuple path versus loaded baseline",
+    "apiAlias": true,
+    "ids": 42,
+    "tupleIds": 42,
+    "inconsistentRows": 0,
+    "batchSize": 336,
+    "trials": [
+      [
+        4.3298,
+        2.0884
+      ],
+      [
+        4.0981,
+        2.0616
+      ],
+      [
+        4.3114,
+        2.0373
+      ]
+    ]
+  },
+  "r218": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag218-vendor-fields-exact-20261119",
+      "controllerSHA": "7fa4242de024086a181c39342ef1dba325b8d38de7043e78742e139eb47e17cb",
+      "packetSHA": "89d522232d620ca2c45ac785168a1c4edccfd5015ded5f0531f98a1eaf2069d2",
+      "packets": 18,
+      "luaSHA": "c6c0c7c7a94f2f61eccd16859beb57e59e4caf6f3908322d6dd8aa89d151bd1f"
+    },
+    "capture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag218_a-submitted.png",
+      "pngSha": "b47951eadbc837a7ba29a29d1f3821554d1cd9c5f0b5b780f84a7d81fbc2ea9d",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag218_a-submitted-capture.json",
+      "metaSha": "1b1a08e23187d5184973cde2d49d8ad773227e3681982d129e2b23c33831e904",
+      "started": 1795066558.347574,
+      "time": 1795066560.9263635,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 196750,
+        "last": 31189546,
+        "idle": 0.532,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "acknowledged": true,
+    "scope": "Exact on-disk revision body compiled in a temporary local function, versus the baseline still running in the existing session. Each 336-call batch uses warmed metadata from 42 actual carried items. Order was reversed in the second trial.",
+    "apiAlias": true,
+    "ids": 42,
+    "inconsistentRows": 0,
+    "bagGenerationStable": true,
+    "batchSize": 336,
+    "trials": [
+      [
+        4.1405,
+        2.6632
+      ],
+      [
+        4.3753,
+        2.1724
+      ],
+      [
+        4.3233,
+        2.1802
+      ]
+    ],
+    "medianBeforeMs": 4.3233,
+    "medianCandidateMs": 2.1802
+  },
+  "limits": "No reload while the user was playing. Merchant rendering, cold and distinct-provider fallback branches, other native clients and overall frame latency remain unverified. The exact-candidate comparison used native data and did not replace an API or set profiler preferences.",
+  "liveAdoptionEvidence": "docs/validation/parser-vendor-live-2026-11-19.json"
+}

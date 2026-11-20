@@ -1171,7 +1171,7 @@ end
 if threatSrc:find("return true  -- abort", 1, true) or threatSrc:find("abort entire rank", 1, true) then
 	failures[#failures + 1] = "GetPlayerRank must not abort the whole list on secret threat"
 end
-local rankStart = threatSrc:find("function Threat.GetPlayerRank", 1, true)
+local rankStart = threatSrc:find("local function RankPlayerAgainstGroup", 1, true)
 local rankStop = threatSrc:find("function Threat.GetMeterRow", 1, true)
 if rankStart and rankStop then
 	local body = threatSrc:sub(rankStart, rankStop)

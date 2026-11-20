@@ -1,0 +1,312 @@
+{
+  "id": "LHO-NATIVE-VENDOR-REFRESH-20261118",
+  "utc": "2026-11-18T01:02:59.578813+00:00",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/Core/FluxRestockList.lua": "1586463f82a78c37b3d6f7f5513a18d451b0e9beadc4367834403d1a25ab1eb7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36"
+  },
+  "retailForeverPairsMatched": 20,
+  "client": {
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 26544,
+    "hwnd": 460342,
+    "birthFileTime": 134394186555517743,
+    "build": 70938,
+    "interface": 16001,
+    "buildEvidence": "Prior native report from same exact process; not re-queried in these slices"
+  },
+  "addons": "Original Syndicator+Baganator restored before merchant check; no further toggles/reload",
+  "scenario": "User opens Helenia Olden with Shift, automation skipped, Restock tab; actual real panel count-only refresh",
+  "nativeResults": {
+    "emptySoldOnlyRefreshMs": 0.10749995708466,
+    "populatedUnsoldRefreshMs": 3.0051000118256,
+    "errorCounts": [
+      0,
+      0
+    ],
+    "visibleRows": 7,
+    "visibleTierRows": 5,
+    "visibleItemRows": 2,
+    "renderedCountsBeforeAndAfter": {
+      "bandage": "20/20",
+      "food": "19/20",
+      "healPotion": "5/5",
+      "manaPotion": "5/5",
+      "water": "19/20",
+      "Light Feather": "20/20",
+      "Rune of Teleportation": "7/10"
+    },
+    "paintObserved": true
+  },
+  "interpretation": "Two different scenario single candidate timings; NOT a before/after pair or performance gain. Real current-source populated renderer/count updater completes without a recorded Lua error. Stable quantities do not prove change propagation.",
+  "viewRestore": {
+    "originalShowNotSold": false,
+    "restoreNeeded": false,
+    "actors": [
+      {
+        "tag": "show",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-vendor-show-20261118\\bootstrap.py",
+        "sha": "d8a503f40fa4e425c11e87b0fc4f3de336f28d252cf86bffa24bf52bf2e8791e",
+        "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()then for _,c in ipairs({p:GetChildren()})do if c:IsObjectType('CheckButton')and not c:GetChecked()then c:Click();print('V20SHOW',c:GetChecked())end end end",
+        "length": 218
+      },
+      {
+        "tag": "restore",
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-vendor-restore-20261118\\bootstrap.py",
+        "sha": "883543d8d9508838e4317e31f1c1c8dd4172e409ca2394cd83f515e76977c95b",
+        "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()then for _,c in ipairs({p:GetChildren()})do if c:IsObjectType('CheckButton')and c:GetChecked()then c:Click();print('V20RESTORE',c:GetChecked())end end end",
+        "length": 217
+      }
+    ],
+    "reason": "Prepared before first show input; restore unchecked after populated panel check",
+    "restorationProof": "v20restore_20261118a: V20RESTORE false; checkbox visually unchecked; original empty sold-only view restored"
+  },
+  "settingsScope": "Only Show items not sold here toggled briefly then effective original false restored. Original raw nil-versus-false representation was not read; no byte-identical SavedVariables claim. No targets changed.",
+  "runs": [
+    {
+      "run": "v20refresh_20261118a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20refresh_20261118a-journal.json",
+      "journalSha256": "064a8818bcd7582106dc0ee83d5b18d008aeda06ee815cf7f431e9947091410f",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20refresh_20261118a-submitted.png",
+        "pngSha": "7381ed30c3e64caba4812e5837bff38b83dee9798da22b4a0142ef7a9d94dc51",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20refresh_20261118a-submitted-capture.json",
+        "metaSha": "331e91b24dde3e86a4b85258019a76c64b6ee5d25f274d1b716643af7428c327",
+        "started": 1794963119.9150286,
+        "time": 1794963121.9261916,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 379822250,
+          "idle": 1.421,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "beforeCapture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20refresh_20261118a-source.png",
+        "pngSha": "12c3160602ecb0887124e2d3b223190df6532ebf208823e8f12a3641c1dd7a64",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20refresh_20261118a-source-capture.json",
+        "metaSha": "583317defcb24c028ec5cdd60808276fa4669d41e48978eea2bc637d048d6124",
+        "started": 1794963099.5517125,
+        "time": 1794963101.476334,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 379800203,
+          "idle": 3.109,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested",
+      "watchdogPid": 18904,
+      "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()and not InCombatLockdown()then local t=debugprofilestop();FluxVendorRestockPanel.RefreshCountsOnly();print('V20R',debugprofilestop()-t,(BugTabs.GetSessionCounts()))end"
+    },
+    {
+      "run": "v20show_20261118a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20show_20261118a-journal.json",
+      "journalSha256": "241609735ea553ecfa60faa1d6ee15f16a7f62c179fa7576b1c3a60da5170a04",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20show_20261118a-submitted.png",
+        "pngSha": "1f6dc0d83a4eaa13d4d63e2857ffdff1cb29f8806325ed747694c47d0f9f4082",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20show_20261118a-submitted-capture.json",
+        "metaSha": "c4fc88a8970b9e3c9ba19cdfa5691d9c61897a665fa4eb7e1ce805ca0bd7ee32",
+        "started": 1794963331.721664,
+        "time": 1794963333.547738,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380028859,
+          "idle": 6.625,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "beforeCapture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20show_20261118a-source.png",
+        "pngSha": "e5e6362e2ce7dba867104fe353a75a7df5d6bf18fb98a2932f2c9c9c80ccb8f7",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20show_20261118a-source-capture.json",
+        "metaSha": "b51a6600e1156d25e55bc680e8e8647524b5858c8e2896e75482b7ee3c0090cd",
+        "started": 1794963307.2094634,
+        "time": 1794963309.277909,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380009734,
+          "idle": 1.234,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested",
+      "watchdogPid": 44464,
+      "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()then for _,c in ipairs({p:GetChildren()})do if c:IsObjectType('CheckButton')and not c:GetChecked()then c:Click();print('V20SHOW',c:GetChecked())end end end"
+    },
+    {
+      "run": "v20populated_20261118a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20populated_20261118a-journal.json",
+      "journalSha256": "50be428a1e880b687bc65d60f60ef3f52bbca504c2bdce164cae0ae4a3daa414",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20populated_20261118a-submitted.png",
+        "pngSha": "5dc3ca2a136535b068e3b58b510cfd7934c5350fcc503f37f2bd0ddccae985be",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20populated_20261118a-submitted-capture.json",
+        "metaSha": "789ff22de8c851561c32fd8a772d783849e67250122e42c81c1cfff929f3b027",
+        "started": 1794963375.4788573,
+        "time": 1794963377.7172732,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380028859,
+          "idle": 50.375,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "beforeCapture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20populated_20261118a-source.png",
+        "pngSha": "e069da4e71aa0d02a0d9ab32b95c5eaa246cda672afec4f3509397dd57e730e3",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20populated_20261118a-source-capture.json",
+        "metaSha": "09401313be402f692cd22d689ec44062c4ab73bf4522ea5710f3dbb442f2bae7",
+        "started": 1794963355.9566402,
+        "time": 1794963357.8755622,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380028859,
+          "idle": 30.859,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested",
+      "watchdogPid": 45364,
+      "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()and not InCombatLockdown()then local t=debugprofilestop();FluxVendorRestockPanel.RefreshCountsOnly();print('V20R',debugprofilestop()-t,(BugTabs.GetSessionCounts()))end"
+    },
+    {
+      "run": "v20restore_20261118a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20restore_20261118a-journal.json",
+      "journalSha256": "8f73b2ac965be58f78a52ca0b256702b047da4ab5fb2ef1fc14b9efceb02600e",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20restore_20261118a-submitted.png",
+        "pngSha": "efb56b5d0dea6ec105d598c906cff9aa834e8a5592b69f5bdc73e27ecc3f81d2",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20restore_20261118a-submitted-capture.json",
+        "metaSha": "dac5563d9da4c6ba79713bb40d0f2636917a79fcd164b1ab05dc00fae392f086",
+        "started": 1794963422.6909585,
+        "time": 1794963424.7471457,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380125671,
+          "idle": 0.782,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "beforeCapture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20restore_20261118a-source.png",
+        "pngSha": "68791e2927b29f939f858016cc64e921162a12e8a2be10bbaaaf0e0baed458e9",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-v20restore_20261118a-source-capture.json",
+        "metaSha": "17d1be633e6a601f12e8d716905cba912b105bee1944f4f0f466d22dd0e90d77",
+        "started": 1794963401.6250432,
+        "time": 1794963403.5696476,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 26544,
+            "hwnd": 460342,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394186555517743
+          },
+          "fg": 692126702,
+          "last": 380105312,
+          "idle": 0.078,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "stage": "ack-visually-attested",
+      "watchdogPid": 26144,
+      "payload": "/run local p=FluxVendorRestockPanelFrame;if p and p:IsVisible()then for _,c in ipairs({p:GetChildren()})do if c:IsObjectType('CheckButton')and c:GetChecked()then c:Click();print('V20RESTORE',c:GetChecked())end end end"
+    }
+  ],
+  "cleanup": {
+    "watchdogsAbsentHostUTC": "2026-11-18T01:01:39.7890566Z",
+    "all16FinishedWatchdogsAbsent": true,
+    "inputLockAbsent": true,
+    "foreignInputHaltRetained": true,
+    "jumpHelperRunning": false
+  },
+  "profilerSettingsChanged": false,
+  "profilerMode": "Prior same-process profile0; debugprofilestop read only; no reset/hooks",
+  "simulationRuns": 0,
+  "runtimeEditsThisSlice": 0,
+  "itemActions": 0,
+  "limitations": [
+    "No actual bag quantity change, depletion or included-bank count check",
+    "Unsold-only rows: no sold-row purchase validation or transactions",
+    "Same-build baseline absent; no distribution/FPS/spike reduction claim",
+    "Only Forever native; remaining clients and workflows pending"
+  ],
+  "goal": "ACTIVE"
+}

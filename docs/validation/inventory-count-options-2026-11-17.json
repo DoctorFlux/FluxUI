@@ -1,0 +1,324 @@
+{
+  "changeID": "LHO-EBS-COUNT-OPTIONS-P82-P83-20261117",
+  "recordedUTC": "2026-11-17T00:57:54.802770+00:00",
+  "status": "FUNCTIONAL_PASS_EXTERNAL_CANDIDATE_COST_PENDING",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": false,
+  "repoRuntimeEditsThisSlice": 0,
+  "owner": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+  "baselineSHA256": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+  "candidateSHA256": "5c4d453c83d1171ce070ae67b15997200aa604862329ee2e24e2162a0f549526",
+  "scope": "PrivateApplyCount opts/freeze becomes scalar;3private literalcallers change;9nilcallers/publicescapingtableconstructors/cadence unchanged.",
+  "baseline": {
+    "jobs": 2,
+    "runtimes": [
+      "stockLua5.1.5",
+      "Lua5.4.6"
+    ],
+    "contextsEachVM": 8,
+    "checksEachVM": 216,
+    "privateDefaultConstructors": 10,
+    "distinctHarnessProvidedPrivateTables": 8,
+    "helperEntries": 19,
+    "actualPublicRefreshAndInventoryNotifyLightDelivery": true,
+    "staticR1TailObserverCorrection": "R1neverexecuted;R2exactSoftHoldOwnedancestor scan corrects tailcall attribution, notowner/oracles."
+  },
+  "candidateFunctional": {
+    "firstJobs": 2,
+    "pairsEachVM": 8,
+    "contextsEachVM": 16,
+    "checksEachVM": 440,
+    "completeSameVMPublicStateErrorFlagBoundaryTraceEqual": true,
+    "rawObservationsCrossVMByteEqual": true,
+    "unchangedRegressionJobs": 12,
+    "sameVMCompleteStdoutPairs": 6,
+    "allPairsByteEqual": true,
+    "regressionChecksPerVariantPerVM": 5059,
+    "allRegressionJobChecks": 20236,
+    "tests": {
+      "allButtonsRecovery": 2580,
+      "holdReconciliation": 2104,
+      "zeroReset": 375
+    },
+    "currentPins": 109,
+    "allChildrenReaped": true,
+    "allStderrEmpty": true,
+    "privateDefaultTablesBeforeAfter": [
+      10,
+      0
+    ],
+    "providedPrivateHarnessTableInputsBeforeAfter": [
+      8,
+      0
+    ],
+    "freshDirectPublicOptionsEachVariantEachVM": 27,
+    "constructorsNotHeapOrFPS": true
+  },
+  "cost": {
+    "status": "PROPOSAL_ACCEPTED_SOURCE_PREPARATION_ONLY",
+    "proposal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\cost-proposal-r1\\PLAN.md",
+      "sha256": "448d5bb3b8b9e97056af81db85ed6f207dc3d4b63e54350e5fd5ef9d4d10962e"
+    },
+    "proposedCPUChildren51": 18,
+    "proposedGCChildren51And54": 4,
+    "measurementsExecuted": 0,
+    "acceptance": "Rejectsemantic/workfailure,>5%medianCPUor2of3slowerCPU pairs perprofile;GCcannotoverrideCPUreject.",
+    "nativeFPSOrAdoptionAcceptance": false
+  },
+  "nativeChronology": {
+    "provenance": "Rootpersonallyobserved/reported;thisdraftwriterperformsno gameinspection/input.",
+    "priorNoInputAttempts": "Earlierresume81/resume82capture/eligibilityfailuresremainhistorical;theyarenotcurrentclient-exitproof.",
+    "readinessRun": "resume83ready20261116a",
+    "marker": "F81A",
+    "version": "1.60.1",
+    "build": "70938",
+    "loadedBooleansInOrder": [
+      "_FluxUI=true",
+      "Syndicator=true",
+      "Baganator=true"
+    ],
+    "loadedFactsProvenance": "RootmessageexplicitthreeLoadedtrue/build70938;formalACKjournalplusPINNEDsubmittedimage.",
+    "observedClientGetTime": 290349.252,
+    "rootObservedExactLine": "F81A 290349.252 1.60.1 70938 true true true 0 false nil",
+    "speed": 0,
+    "combat": false,
+    "casting": "nil",
+    "CVarsQueried": false,
+    "captureUTC": "2026-11-17T00:00:49.080072+00:00",
+    "queuedCharacters": 230,
+    "enqueueMillisecondsAdministrative": 187.99999996554106,
+    "rootVisualACK": true,
+    "lockReleased": true,
+    "scope": "Readinessonly;addonloadstatusdoesnotproveexactsourcebytes/refreshadoption/FPS/taint/fullworkflow.",
+    "jumpDetails": "Rootownsseparatein-progressreceipt;thisdraftmakesno currentjump/helperstateclaim.",
+    "P67": "Prepareddesktop-testedobserver,notinstalledbythisslice."
+  },
+  "wholeGoalCoverage": {
+    "matrix": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lho01-13-coverage-20261117-sourceonly\\matrix.md",
+      "sha256": "82fbfc176b632377203f3826d7cf5a1139d53f2672b074c415f4397c8a0b051d"
+    },
+    "audit": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lho01-13-coverage-20261117-sourceonly\\audit.json",
+      "sha256": "e63d3ac58e2b9308bc131e1989d5f15d0e8eddf0057e4942ae8044cbe380351c"
+    },
+    "remaining": [
+      {
+        "id": "LHO-01",
+        "workflow": "Casting start/delay/channel/cancel/reject/finish across consumers",
+        "remainingScope": "Channels/pets/delayed/restricted cases, combat consumers and other native clients; preserve live progress/fades.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-02",
+        "workflow": "Loot/receive/bag bursts, live zero/charges/loading and grids",
+        "remainingScope": "Representative occupied bags, receive/deplete/refill/charges/cold recovery through complete visible consumers.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-03",
+        "workflow": "Builtin versus Syndicator/Baganator integrations",
+        "remainingScope": "Loaded-source provider on/off whole workflows and public publication/persistence boundaries; no provider edits or blind caching.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-04",
+        "workflow": "Bank open/close, banks/moves/partial/final-copy/persistence",
+        "remainingScope": "Current-source cold/open/close/move/final-copy/account-bank native workflow and event-spike cost beyond count equality.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-05",
+        "workflow": "Mail show/close/inbox/receive/take/attach/send/OpenAll/pending",
+        "remainingScope": "USER-MEASURE-FIRST: populated inbox/end-to-end freshness+latency before proposing stale-mail fix. Agent mail actions remain forbidden.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-06",
+        "workflow": "Vendor open/close/restock/buy-sell-Junk/limits/prices/ACK",
+        "remainingScope": "User-driven actual merchant lifecycle/metadata/readiness/rendering while retaining simulation-only buy/sell.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-07",
+        "workflow": "AH open/close/search/refresh/modern+legacy/shortage/prices/receipts",
+        "remainingScope": "Representative current needed-positive/configured workflow; test model noOffer/limitedzero is not native frequency. No automatic purchase.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-08",
+        "workflow": "Pending/followup readiness/stages/count/tint/disabled/idle-stop",
+        "remainingScope": "Current active-job event and UI readiness/idle-stop timing across inventory/vendor/mail/craft, without skipping fresh public calls.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-09",
+        "workflow": "Craft open/close/modern+legacy/saved recipes/start-cancel-finish/output",
+        "remainingScope": "Recipe open/closed knowledge, reagent/output arrival and all terminal states with current loaded source/consumer attribution.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-10",
+        "workflow": "All five families/features/appearance/cadence/input/settings/commands",
+        "remainingScope": "Cross-cutting expansion over Retail/Forever/Classic progression/Era/Anniversary; source hashes/model labels are not live adoption.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-11",
+        "workflow": "Test before Lua edits/checkpoint/history/settings discipline",
+        "remainingScope": "Renew scoped source/history/settings checkpoint for any future runtime edit; preserve main/newer work/private data. Not a remaining native-performance proof.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-12",
+        "workflow": "Before/after simulations and honest regressions; preserve work",
+        "remainingScope": "Carry remaining direct workflow measurements through same-source/config/scene controls; no query/cadence/integration pruning to meet costs.",
+        "completionClaim": false
+      },
+      {
+        "id": "LHO-13",
+        "workflow": "Authorized guarded Forever profiling and prohibited actions",
+        "remainingScope": "Root alone re-verifies current ownership/scene/input guards. Old lock file is not live wait proof; no commerce/mail actions or uncontrolled input.",
+        "completionClaim": false
+      }
+    ],
+    "fullGoalComplete": false,
+    "workflowsAndCrossClientNativeGapsRemain": true
+  },
+  "limits": [
+    "Selectedfive-familydesktopmodelsarenotanativefactorial;no fullworkflowFPS/adoption/taintsafetyclaim.",
+    "Providedprivateprotocoltablesareharnessinputs,not8claimedproductionallocations;constructorcountdoesnotmeasureheap.",
+    "All27escapingBagCount/DisplayItemCount/SetCount options remainfresh;rawopaqueerrors andgetter/methodrelookup remain.",
+    "No timers, caches, query skips, cadence or public signature changes in candidate. No product edit or cost/native performance measurement; native readiness commands establish only the recorded facts."
+  ],
+  "evidence": {
+    "p82Baseline": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-options-p82-baseline\\functional-report.json",
+      "sha256": "8abfb31a8bafe8f93cb3a1456e3946fc2bbc90dbfd5b11d64d8d88053f44b3f4"
+    },
+    "p82Seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-options-p82-baseline\\functional-result-seal.json",
+      "sha256": "a4f25165982120bbeb71ba75b91e8c6c84fc10ab1edeeed0410daec0d6903c45"
+    },
+    "p83Functional": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\functional-report.json",
+      "sha256": "bc6368f5badfdd33d8b90ce2283a7deaf2cea77ec16966c62900d3d585b5b876"
+    },
+    "p83Seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\functional-result-seal.json",
+      "sha256": "000fb2527b185dc39bf8e1a289312e12d82b1c24671053c02860ac3860f2a8ac"
+    },
+    "p83First2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\execution-20261117T004201Z\\execution.json",
+      "sha256": "35270c8e085b3ab23317f4edff7fb7f4b61d15ee14681c0c2f7beab5afcd53fe"
+    },
+    "p83Regressions12": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\execution-20261117T004537Z\\execution.json",
+      "sha256": "16f50aa49a7b66101e1080af7a2aa6689f3fa24e83dd3b23f94d51903902cafa"
+    },
+    "candidate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\candidate\\ExtraButtonSystem\\Engine\\ConsumableBind.lua",
+      "sha256": "5c4d453c83d1171ce070ae67b15997200aa604862329ee2e24e2162a0f549526"
+    },
+    "sourceBuild": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\source-build.json",
+      "sha256": "cc396c7763122132e49c5c237cdf105a653f69cb390ca868347382d4d036780f"
+    },
+    "sourceSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\source-seal.json",
+      "sha256": "1fc0f1608726f3a8deab338e15b6fc108db6917a7cebdefc7c411b717ec546ad"
+    },
+    "costProposalOnly": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\ebs-count-flag-p83-r1\\cost-proposal-r1\\PLAN.md",
+      "sha256": "448d5bb3b8b9e97056af81db85ed6f207dc3d4b63e54350e5fd5ef9d4d10962e"
+    },
+    "wholeGoalCoverageAudit": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lho01-13-coverage-20261117-sourceonly\\audit.json",
+      "sha256": "e63d3ac58e2b9308bc131e1989d5f15d0e8eddf0057e4942ae8044cbe380351c"
+    },
+    "wholeGoalCoverageMatrix": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lho01-13-coverage-20261117-sourceonly\\matrix.md",
+      "sha256": "82fbfc176b632377203f3826d7cf5a1139d53f2672b074c415f4397c8a0b051d"
+    },
+    "nativeReadinessJournal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-resume83ready20261116a-journal.json",
+      "sha256": "99cc885bf9c2e01e0f97a7efa76813470d850b907a3692fde42538b5ee552710"
+    },
+    "nativeReadinessSubmittedPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-resume83ready20261116a-submitted.png",
+      "sha256": "aa9c07e9df0ce56c0298899f99ab55f302ea935a3c9dbe5b55f7be8811dcce5a"
+    },
+    "nativeReadinessSubmittedMeta": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-resume83ready20261116a-submitted-capture.json",
+      "sha256": "4845496c7eb9a69033513ac013f320fc067d62a74022e1de7c7054850815af41"
+    }
+  },
+  "rootJumpKeepalive": {
+    "changeID": "LHO-JUMP-KEEPALIVE-R2-20261117",
+    "lastRecordedUTC": "2026-11-17T01:09:07.710874+00:00",
+    "pid": 50140,
+    "lastObservedState": {
+      "pid": 50140,
+      "startedUTC": "2026-11-17T01:05:39.822726+00:00",
+      "status": "running",
+      "pairs": 2,
+      "movementAcknowledged": false,
+      "automaticSetup": false,
+      "firstDueUnix": 1794877539.6812358,
+      "last": {
+        "atUtc": "2026-11-17T01:08:43.021216+00:00",
+        "status": "injected-movement-unverified",
+        "focusMode": true,
+        "systemWideInput": true,
+        "activationRequested": false,
+        "externalRace": false,
+        "pairInjected": true,
+        "holdCompleted": true,
+        "movementAcknowledged": false,
+        "foregroundBefore": 600248958,
+        "lastInputBefore": 294246125,
+        "heartbeatStarted": "2026-11-17T01:08:43.846813+00:00",
+        "enterPairs": 2,
+        "heartbeatCharacters": 82,
+        "heartbeatSubmitted": true,
+        "heartbeatAfterCueAccepted": true,
+        "spaceDownUtc": "2026-11-17T01:08:45.014413+00:00",
+        "spaceUpUtc": "2026-11-17T01:08:45.071096+00:00",
+        "ownInputStamps": [
+          294428765,
+          294428828
+        ],
+        "lastInputAfter": 294428828,
+        "foregroundAfterKey": 600248958,
+        "foregroundFinal": 600248958,
+        "lockReleased": true
+      },
+      "nextDueInSeconds": 180.0
+    },
+    "hostSHA256": "ee5e3312c395d09bc021c844d96f17bf7aeee9aa2038ab15d12414d49179fd84",
+    "childSHA256": "f41fe32baf70a4c45bd34f5b38fa86c1763d61069320415590df3ee75a3a6f2e",
+    "nativeCalibration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\calibration-observation-p83calboth2a.json",
+      "sha256": "fd33ff1bb26d7a448eb1e6e6769fa01fdc067e3d7868c8f083214d2c28499a9b"
+    },
+    "launch": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r2\\active-20261117a\\launch.json",
+      "sha256": "e9d997f79cbf0cac4841525db49b11768cb4bb75f341d6f65e558b194033309d"
+    },
+    "holds": "Only exact old no_jump/craft_hold/JUMP_STOP hashes archived and released; INPUT_HALTED retained. New scripts must take no_jump/input.lock; never overlap.",
+    "stop": "On user pause set P4/CANCEL and native/JUMP_STOP before stopping owned PID50140. Requested reload removes temporary code. Reinstall a fresh epoch after reload.",
+    "heartbeat": "Root refreshes native/agent-heartbeat while working. Host stops when older than600s; does not keep itself authorized.",
+    "cadence": "180s after completed Space pair; one overdue jump; defer active chat/foreign focus/casting/channel/Skillet queue/combat/targeting/movement/PC idle<15s/locks.",
+    "cue": "Temporary _J83q nonce k83n6p5, 86400s renewable lease, no saved variables; dispose at goal completion or reload on requested pause.",
+    "restoration": "Calibration original restore and one later guarded restore were denied by Windows; WoW remained foreground as last observed. Both modes authorized by user.",
+    "historical": "R1 WM_PRINT dispatched but black. R1 300s cue expired; renewal source captured then released with zero command input. New nonce R2 installed after new offline controls.",
+    "supervisedSpaceUTC": [
+      "2026-11-17T00:40:18Z",
+      "2026-11-17T00:43:30Z",
+      "2026-11-17T00:49:23Z",
+      "2026-11-17T00:55:12Z"
+    ],
+    "limits": "Input pairing and cue observations do not independently verify character movement or native FPS. No commerce, mail, items, craft queues, profiler preferences, or addon Lua changed."
+  }
+}

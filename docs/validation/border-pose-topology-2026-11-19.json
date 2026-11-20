@@ -1,0 +1,1072 @@
+{
+  "changeId": "BORDER-POSE-TOPOLOGY-R133-20261119",
+  "capturedAtUTC": "2026-11-19T19:12:37.293371+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "cb8a014b105aa51f58c2b251c1fc1d103b3780616263339874af2ae40af3358b",
+      "afterRaw": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "aad334311b0ab6634130a350aa14bab19742dec507e1bb6a274157e0063cfd86",
+      "afterRaw": "8aa034d22edf07ead59e3a5d245acfff6a362426384b8adeba717ed7127dc5e9"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\source.zip",
+    "sourceZipSHA256": "6a583f699277cf26aee3c510b49c3c9772f1e55f044b4ffca9d0791fcc3f2106",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per style on the same populated HUD. Six crossings with a held action or roster position changes per measured pair. Counts track scalar field comparisons and rectangle comparison calls during prepared layout validation. Sampled seams and ownership match at every transition in pair one, and the first and last transition of later pairs.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "143.000/121.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "199.000/305.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "98.000/114.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "182.000/192.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "148.000/113.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "225.000/272.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "102.000/136.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "213.000/187.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "121.000/115.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "attempts": "6",
+          "matches": "4",
+          "field": "4816/3016",
+          "rect": "1020/620",
+          "ms": "202.000/199.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "81.000/83.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "219.000/90.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "67.000/86.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "107.000/112.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "98.000/91.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "103.000/102.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "84.000/100.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "102.000/101.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "77.000/79.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "attempts": "11",
+          "matches": "4",
+          "field": "7553/2693",
+          "rect": "1536/456",
+          "ms": "115.000/105.000"
+        }
+      ]
+    },
+    "countSummaryAcrossStyles": {
+      "hover": {
+        "field": [
+          {
+            "min": 4816,
+            "median": 4816.0,
+            "max": 4816
+          },
+          {
+            "min": 3016,
+            "median": 3016.0,
+            "max": 3016
+          }
+        ],
+        "rect": [
+          {
+            "min": 1020,
+            "median": 1020.0,
+            "max": 1020
+          },
+          {
+            "min": 620,
+            "median": 620.0,
+            "max": 620
+          }
+        ]
+      },
+      "roster": {
+        "field": [
+          {
+            "min": 7553,
+            "median": 7553.0,
+            "max": 7553
+          },
+          {
+            "min": 2693,
+            "median": 2693.0,
+            "max": 2693
+          }
+        ],
+        "rect": [
+          {
+            "min": 1536,
+            "median": 1536.0,
+            "max": 1536
+          },
+          {
+            "min": 456,
+            "median": 456.0,
+            "max": 456
+          }
+        ]
+      }
+    },
+    "timingScope": "Five uninstrumented alternating desktop Lua pairs per style covering ten warm transitions after two poses are prepared, starting after a collection. Each transition preserves operation, fragment, triangle, region and solve counts. Both sides of the control run use the archived source. Initial whole-reflow trials ran while other desktop checks were active and include the first two transitions. The isolated pairs measure 512 repeated calls to the original or updated matcher on a real retained pose. None measures native latency.",
+    "uninstrumentedWarmTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "99.000/100.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "206.000/252.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "84.000/86.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "168.000/189.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "84.000/86.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "180.000/180.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "83.000/88.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "182.000/176.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "90.000/89.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "186.000/180.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "54.000/49.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "112.000/106.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "49.000/47.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "100.000/103.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "50.000/48.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "109.000/106.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "58.000/58.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "115.000/99.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "52.000/53.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "119.000/109.000"
+        }
+      ]
+    },
+    "uninstrumentedWarmTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 83.0,
+            "median": 84.0,
+            "max": 99.0
+          },
+          {
+            "min": 86.0,
+            "median": 88.0,
+            "max": 100.0
+          }
+        ],
+        "2": [
+          {
+            "min": 168.0,
+            "median": 182.0,
+            "max": 206.0
+          },
+          {
+            "min": 176.0,
+            "median": 180.0,
+            "max": 252.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 49.0,
+            "median": 52.0,
+            "max": 58.0
+          },
+          {
+            "min": 47.0,
+            "median": 49.0,
+            "max": 58.0
+          }
+        ],
+        "2": [
+          {
+            "min": 100.0,
+            "median": 112.0,
+            "max": 119.0
+          },
+          {
+            "min": 99.0,
+            "median": 106.0,
+            "max": 109.0
+          }
+        ]
+      }
+    },
+    "baselineControlSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "85.000/87.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "187.000/181.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "87.000/87.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "170.000/164.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "83.000/87.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "161.000/177.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "88.000/83.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "178.000/179.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "88.000/85.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "186.000/199.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "51.000/49.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "112.000/104.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "48.000/51.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "114.000/105.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "49.000/51.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "107.000/103.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "49.000/49.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "114.000/102.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "56.000/51.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "129.000/119.000"
+        }
+      ]
+    },
+    "baselineControlSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 83.0,
+            "median": 87.0,
+            "max": 88.0
+          },
+          {
+            "min": 83.0,
+            "median": 87.0,
+            "max": 87.0
+          }
+        ],
+        "2": [
+          {
+            "min": 161.0,
+            "median": 178.0,
+            "max": 187.0
+          },
+          {
+            "min": 164.0,
+            "median": 179.0,
+            "max": 199.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 48.0,
+            "median": 49.0,
+            "max": 56.0
+          },
+          {
+            "min": 49.0,
+            "median": 51.0,
+            "max": 51.0
+          }
+        ],
+        "2": [
+          {
+            "min": 107.0,
+            "median": 114.0,
+            "max": 129.0
+          },
+          {
+            "min": 102.0,
+            "median": 104.0,
+            "max": 119.0
+          }
+        ]
+      }
+    },
+    "initialWholeReflowSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "186.000/132.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "335.000/283.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "173.000/124.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "257.000/267.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "147.000/161.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "268.000/319.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "203.000/168.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "346.000/419.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "171.000/125.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "297.000/254.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "10",
+          "ms": "72.000/130.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "10",
+          "ms": "146.000/240.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "10",
+          "ms": "66.000/132.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "10",
+          "ms": "129.000/215.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "10",
+          "ms": "75.000/131.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "10",
+          "ms": "161.000/142.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "10",
+          "ms": "70.000/85.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "10",
+          "ms": "266.000/170.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "10",
+          "ms": "68.000/117.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "10",
+          "ms": "227.000/128.000"
+        }
+      ]
+    },
+    "initialWholeReflowSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 147.0,
+            "median": 173.0,
+            "max": 203.0
+          },
+          {
+            "min": 124.0,
+            "median": 132.0,
+            "max": 168.0
+          }
+        ],
+        "2": [
+          {
+            "min": 257.0,
+            "median": 297.0,
+            "max": 346.0
+          },
+          {
+            "min": 254.0,
+            "median": 283.0,
+            "max": 419.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 66.0,
+            "median": 70.0,
+            "max": 75.0
+          },
+          {
+            "min": 85.0,
+            "median": 130.0,
+            "max": 132.0
+          }
+        ],
+        "2": [
+          {
+            "min": 129.0,
+            "median": 161.0,
+            "max": 266.0
+          },
+          {
+            "min": 128.0,
+            "median": 170.0,
+            "max": 240.0
+          }
+        ]
+      }
+    },
+    "isolatedMatcherSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "checks": "512",
+          "segments": "48",
+          "ms": "48.000/30.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "checks": "512",
+          "segments": "48",
+          "ms": "41.000/40.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "checks": "512",
+          "segments": "48",
+          "ms": "42.000/39.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "checks": "512",
+          "segments": "48",
+          "ms": "43.000/27.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "checks": "512",
+          "segments": "48",
+          "ms": "40.000/29.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "checks": "512",
+          "segments": "48",
+          "ms": "40.000/29.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "checks": "512",
+          "segments": "48",
+          "ms": "39.000/31.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "checks": "512",
+          "segments": "48",
+          "ms": "39.000/30.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "checks": "512",
+          "segments": "48",
+          "ms": "43.000/29.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "checks": "512",
+          "segments": "48",
+          "ms": "39.000/32.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "checks": "512",
+          "segments": "48",
+          "ms": "47.000/27.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "checks": "512",
+          "segments": "48",
+          "ms": "40.000/27.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "checks": "512",
+          "segments": "48",
+          "ms": "41.000/28.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "checks": "512",
+          "segments": "48",
+          "ms": "41.000/27.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "checks": "512",
+          "segments": "48",
+          "ms": "43.000/28.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "checks": "512",
+          "segments": "48",
+          "ms": "101.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "checks": "512",
+          "segments": "48",
+          "ms": "110.000/86.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "checks": "512",
+          "segments": "48",
+          "ms": "95.000/70.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "checks": "512",
+          "segments": "48",
+          "ms": "113.000/87.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "checks": "512",
+          "segments": "48",
+          "ms": "109.000/74.000"
+        }
+      ]
+    },
+    "isolatedMatcherSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 40.0,
+            "median": 42.0,
+            "max": 48.0
+          },
+          {
+            "min": 27.0,
+            "median": 30.0,
+            "max": 40.0
+          }
+        ],
+        "2": [
+          {
+            "min": 39.0,
+            "median": 39.0,
+            "max": 43.0
+          },
+          {
+            "min": 29.0,
+            "median": 30.0,
+            "max": 32.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 40.0,
+            "median": 41.0,
+            "max": 47.0
+          },
+          {
+            "min": 27.0,
+            "median": 27.0,
+            "max": 28.0
+          }
+        ],
+        "2": [
+          {
+            "min": 95.0,
+            "median": 109.0,
+            "max": 113.0
+          },
+          {
+            "min": 70.0,
+            "median": 74.0,
+            "max": 87.0
+          }
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\compare.lua": "4d033e7919fe6d2eb20468e6573b807eb87ad8e327f2c2db1b42bbaeeaf2b1ed",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\matched.txt": "77418a87341e720bca182178d057ab3c1aea9c1d674beb04cc833e1391295105",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\timing.txt": "81e0495d73dc27cc357f69dc67925d0187b363b24a408064da7a511f1bd2078f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\quiet.lua": "c29889cd958d30830d4c9defe56ac1ac7a637011fe4dcc786884848dab532eb1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\quiet.txt": "f0a277458322fc08e9ca936a43953d29e2df5e8b8106b6a3b3a3c59c86b5b8b3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\control.txt": "b929c26fb3f1311ab6254cfd9bfa9e7d7bffc34b78569c69fab36408d75e66a9",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\isolated.lua": "029574138cb9527d8d046f1de0e3f2cf9d1c4a3f2adfd51e85edb7a7f7a2d5b2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\isolated.txt": "7a25386edf157705445dad2ae4c14dc9ab9fac7566bf9a214aad525803aaec53",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\harmful-controls.lua": "e67dcecc4e328f7aa3eea77ce2168b8e9f75a6f175b8bb0c7b9621d7a04bb7b2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\harmful-controls.txt": "cf5913c49f0bd4b677b3bb91d9b8435c6dcbb5b841bb36fe4d61a2acb35a434c"
+    }
+  },
+  "preservation": [
+    "Raw and prepared copies share the private identity of a verified public geometry snapshot. A group resampled for a new layout goes through normal field comparisons.",
+    "The matcher still checks live parent topology flags and each texture’s registered role on both paths. Prepared plans still validate materials, layers, tint and alpha.",
+    "The same prepared layouts match in both styles. Sampled edges and existing combat guards remain consistent."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected corner_flags: a shared geometry sample still validates current corner flags",
+      "Rejected registration_key: a shared geometry sample still validates registration metadata"
+    ],
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-pose-topology-before-20261119-200426\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, border seam pixels, and combat taint. No client input, settings or profiling changes."
+}

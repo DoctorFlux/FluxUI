@@ -131,38 +131,57 @@ local function GetContainerBottomY()
     return GetBorderTop() + GetEditBoxHeight() + GetChatHeight()
 end
 
-local function GetRaidRosterOccupiedSubgroup(i)
-    local name, _, subgroup, level, _, classFileName = GetRaidRosterInfo(i)
-    if not subgroup or subgroup < 1 or subgroup > GROUP_COUNT then return nil end
-    if name and name ~= "" then return subgroup end
-    if classFileName and classFileName ~= "" then return subgroup end
-    if level and level > 0 then return subgroup end
-    if UnitInRaid and UnitInRaid("player") == i then return subgroup end
-    return nil
+local function IsOccupiedRosterRow(subgroup, name, classFileName, level, isPlayer)
+    if Secret(subgroup) or type(subgroup) ~= "number" or subgroup < 1 or subgroup > GROUP_COUNT then
+        return false
+    end
+    return isPlayer
+        or (not Secret(name) and name and name ~= "")
+        or (not Secret(classFileName) and classFileName and classFileName ~= "")
+        or (not Secret(level) and level and level > 0)
 end
 
-local function UnitIsMTMA(i)
-    local unit = "raid" .. i
+local function IsTankOrAssistRole(role)
+    return type(role) == "string" and not Secret(role) and (role == "MAINTANK" or role == "MAINASSIST")
+end
+
+local function UnitIsMTMA(unit, role, assignedRole)
     if GetPartyAssignment then
         local ok1, isMT = pcall(GetPartyAssignment, "MAINTANK", unit)
         local ok2, isMA = pcall(GetPartyAssignment, "MAINASSIST", unit)
-        if (ok1 and isMT) or (ok2 and isMA) then return true end
+        if (ok1 and not Secret(isMT) and isMT) or (ok2 and not Secret(isMA) and isMA) then return true end
     end
-    local _, _, _, _, _, _, _, _, _, role, _, assignedRole = GetRaidRosterInfo(i)
-    return role == "MAINTANK" or role == "MAINASSIST" or assignedRole == "MAINTANK" or assignedRole == "MAINASSIST"
+    return IsTankOrAssistRole(role) or IsTankOrAssistRole(assignedRole)
+end
+
+local function ReadLegacyRaidRoster(groupCounts, countMTMA)
+    local playerIndex = UnitInRaid and UnitInRaid("player")
+    if Secret(playerIndex) then playerIndex = nil end
+    local mtCount = countMTMA and 0 or nil
+    for i = 1, MAX_RAID_ROSTER_SLOTS do
+        local name, _, subgroup, level, _, classFileName, _, _, _, role, _, assignedRole = GetRaidRosterInfo(i)
+        local isPlayer = playerIndex == i
+        if IsOccupiedRosterRow(subgroup, name, classFileName, level, isPlayer) then
+            local unit = "raid" .. i
+            local visible = isPlayer or UnitExists(unit)
+            local exists = not Secret(visible) and visible
+            -- Group columns accept the existing compatibility token check.
+            -- MT/MA still requires a known existing unit or the player slot.
+            if groupCounts and (exists or (Compat.UnitTokenValid and Compat.UnitTokenValid(unit))) then
+                groupCounts[subgroup] = (groupCounts[subgroup] or 0) + 1
+            end
+            if countMTMA and exists and UnitIsMTMA(unit, role, assignedRole) then
+                mtCount = mtCount + 1
+            end
+        end
+    end
+    return mtCount
 end
 
 function FluxRaid_GetMTMARosterCount()
-    if not IsInRaid() then return 0 end
-    local count = 0
-    for i = 1, MAX_RAID_ROSTER_SLOTS do
-        local unit = "raid" .. i
-        local unitOk = (UnitInRaid and UnitInRaid("player") == i) or UnitExists(unit)
-        if GetRaidRosterOccupiedSubgroup(i) and unitOk and UnitIsMTMA(i) then
-            count = count + 1
-        end
-    end
-    return count
+    local inRaid = IsInRaid()
+    if Secret(inRaid) or not inRaid then return 0 end
+    return ReadLegacyRaidRoster(nil, true)
 end
 
 local PositionBlizzardRaidManager
@@ -178,6 +197,27 @@ local function PetBattleBlocksReadiness()
     local driver = State.petBattleDriver
     return State.petBattleDriverReady and driver and driver.GetAttribute
         and driver:GetAttribute("state-groupupdate") == "hide"
+end
+
+local function RosterDockNative(frame, method, ...)
+    local getter=frame and frame[method]
+    if Secret(getter) or type(getter)~="function" then return false end
+    local ok,a,b,c,d,e=pcall(getter,frame,...)
+    if not ok or Secret(a) or Secret(b) or Secret(c) or Secret(d) or Secret(e) then return false end
+    return true,a,b,c,d,e
+end
+
+local function SameRosterDockValue(frame, method, wanted)
+    local ok,current=RosterDockNative(frame,method)
+    return ok and current==wanted
+end
+
+local function SameRosterDockPoint(frame, point, relative, x, y)
+    local ok,count=RosterDockNative(frame,"GetNumPoints")
+    if not ok or count~=1 then return false end
+    local public,p,parent,rp,oldX,oldY=RosterDockNative(frame,"GetPoint",1)
+    return public and p==point and parent==relative and rp==point
+        and oldX==x and type(oldY)=="number" and math.abs(oldY-y)<0.0001
 end
 
 PositionBlizzardRaidManager = function()
@@ -219,7 +259,8 @@ PositionBlizzardRaidManager = function()
         managerOriginal[mgr]={scale=ReadNumber(mgr,"GetScale")}
     end
     local scale = (FluxRaidVisuals and FluxRaidVisuals.BLIZZARD_RAID_MANAGER_SCALE) or 0.7
-    mgr:SetScale(scale)
+    local currentScale = ReadNumber(mgr,"GetScale")
+    if not currentScale or math.abs(currentScale-scale)>0.000001 then mgr:SetScale(scale) end
     local collapsed=mgr.collapsed
     if Secret(collapsed) then return end
     local effective=ReadNumber(mgr,"GetEffectiveScale") or scale
@@ -232,10 +273,11 @@ PositionBlizzardRaidManager = function()
     local fa=FLUX_API
     local classic=fa and (fa.isAnyClassic or fa.isClassicEra or fa.isTBC or fa.isWrath or fa.isCata)
     local x=collapsed and (classic and -182 or -200) or (classic and -7 or 0)
-    mgr:ClearAllPoints()
-    mgr:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",
-        x,
-        (top+clearance*uiScale)/effective)
+    local y = (top+clearance*uiScale)/effective
+    if not SameRosterDockPoint(mgr,"BOTTOMLEFT",UIParent,x,y) then
+        mgr:ClearAllPoints()
+        mgr:SetPoint("BOTTOMLEFT",UIParent,"BOTTOMLEFT",x,y)
+    end
 end
 
 local function ScheduleBlizzardRaidManagerReposition()
@@ -248,7 +290,11 @@ local function ScheduleBlizzardRaidManagerReposition()
     end)
 end
 
-PositionContainer = function()
+local function PositionFocusAfterRoster()
+    if _G.FluxUIPositionFocusFrameDefault then _G.FluxUIPositionFocusFrameDefault(true) end
+end
+
+PositionContainer = function(rosterOnly)
     if not FluxRaid_IsFluxRaidEnabled() then return end
     if InCombatLockdown() then
         Queue(PositionContainer)
@@ -258,18 +304,21 @@ PositionContainer = function()
     if not containerFrame then return end
     local yBottom = GetContainerBottomY()
     yBottom = yBottom + (Compat.GetChatTabLift and Compat.GetChatTabLift() or 28)
-    containerFrame:SetFrameStrata("MEDIUM")
-    containerFrame:SetFrameLevel(20)
-    containerFrame:SetHeight(ColumnHeight() + GROUP_LABEL_EXTRA)
-    containerFrame:ClearAllPoints()
-    containerFrame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", FLUX_RAID_STACK_LEFT_OFFSET, yBottom)
+    if not SameRosterDockValue(containerFrame,"GetFrameStrata","MEDIUM") then containerFrame:SetFrameStrata("MEDIUM") end
+    if not SameRosterDockValue(containerFrame,"GetFrameLevel",20) then containerFrame:SetFrameLevel(20) end
+    local wantedHeight=ColumnHeight()+GROUP_LABEL_EXTRA
+    if not SameRosterDockValue(containerFrame,"GetHeight",wantedHeight) then containerFrame:SetHeight(wantedHeight) end
+    if not SameRosterDockPoint(containerFrame,"BOTTOMLEFT",UIParent,FLUX_RAID_STACK_LEFT_OFFSET,yBottom) then
+        containerFrame:ClearAllPoints()
+        containerFrame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", FLUX_RAID_STACK_LEFT_OFFSET, yBottom)
+    end
     PositionBlizzardRaidManager()
     if _G.FluxUnitFrames_UpdateFocusAuraLayoutForRaidStack then
         _G.FluxUnitFrames_UpdateFocusAuraLayoutForRaidStack()
     end
     if _G.FluxUIPositionFocusFrameDefault and _G.FluxUnitFrames_GetPlayerTargetPlacement
         and _G.FluxUnitFrames_GetPlayerTargetPlacement() == 2 then
-        C_Timer.After(0, _G.FluxUIPositionFocusFrameDefault)
+        C_Timer.After(0, not Secret(rosterOnly) and rosterOnly==true and PositionFocusAfterRoster or _G.FluxUIPositionFocusFrameDefault)
     end
 end
 
@@ -382,25 +431,23 @@ local function RaidGroupLabelsEnabled()
     return db.showGroupLabels and true or false
 end
 
+local function ApplyGroupColumnLabel(label, show, text)
+    if text and not SameRosterDockValue(label, "GetText", text) then label:SetText(text) end
+    if not SameRosterDockValue(label, "IsShown", show) then
+        if show then label:Show() else label:Hide() end
+    end
+end
+
 local function UpdateGroupColumnLabels()
     local enabled = RaidGroupLabelsEnabled()
     local mtmaHeader = State.mtmaHeader
     if mtmaHeader and mtmaHeader._fluxGroupLabel then
-        if enabled then
-            mtmaHeader._fluxGroupLabel:Show()
-        else
-            mtmaHeader._fluxGroupLabel:Hide()
-        end
+        ApplyGroupColumnLabel(mtmaHeader._fluxGroupLabel, enabled)
     end
     for i = 1, GROUP_COUNT do
         local h = State.raidHeaders[i]
         if h and h._fluxGroupLabel then
-            if not enabled then
-                h._fluxGroupLabel:Hide()
-            else
-                h._fluxGroupLabel:SetText(GetGroupColumnLabelText(i))
-                h._fluxGroupLabel:Show()
-            end
+            ApplyGroupColumnLabel(h._fluxGroupLabel, enabled, enabled and GetGroupColumnLabelText(i))
         end
     end
 end
@@ -425,36 +472,20 @@ local function ApplyMTMAChatOverlapLift()
     PositionBlizzardRaidManager()
 end
 
-LayoutHeaders = function()
-    if InCombatLockdown() then
-        Queue(LayoutHeaders)
-        return
-    end
-    local containerFrame = State.containerFrame
-    if not containerFrame then return end
-    local gc = { 0, 0, 0, 0, 0, 0, 0, 0 }
-    if IsInRaid() then
-        for ri = 1, MAX_RAID_ROSTER_SLOTS do
-            local sg = GetRaidRosterOccupiedSubgroup(ri)
-            local unit = "raid" .. ri
-            local unitOk = (UnitInRaid and UnitInRaid("player") == ri)
-                or (Compat.UnitTokenValid and Compat.UnitTokenValid(unit))
-                or UnitExists(unit)
-            if sg and unitOk then
-                gc[sg] = (gc[sg] or 0) + 1
-            end
+local function ReadLegacyHeaderLayout(colStep, mtShown, gc, mtCount)
+    if not gc then
+        gc = {}
+        if IsInRaid() then
+            mtCount = ReadLegacyRaidRoster(gc, mtShown)
+        elseif IsInGroup() then
+            gc[1] = 1
         end
-    elseif IsInGroup() then
-        gc[1] = 1
     end
 
-    local colStep = FluxRaidVisuals.FRAME_WIDTH + GRP_SPACING
     local visible = Compat.BuildVisibleGroupsReverse(function(g)
         return (gc[g] or 0) > 0 and State.raidHeaders[g] ~= nil
     end)
-    local mtmaHeader = State.mtmaHeader
-    local mtShown = mtmaHeader and mtmaHeader:IsShown()
-    local mtCount = (mtShown and IsInRaid()) and FluxRaid_GetMTMARosterCount() or 0
+    mtCount = mtShown and mtCount or 0
     local mtStackHeight = 0
     if mtShown then
         if mtCount >= 1 then
@@ -471,37 +502,74 @@ LayoutHeaders = function()
         groupCount = GROUP_COUNT,
         mtUnitsPerColumn = MTMA_UNITS_PER_COLUMN,
     })
-    if mtmaHeader then
-        mtmaHeader:ClearAllPoints()
+    return gc, layout, yAlignMT
+end
+
+local function PlaceRosterHeader(header, container, x, y)
+    if SameRosterDockPoint(header, "TOPLEFT", container, x, y) then return end
+    header:ClearAllPoints()
+    header:SetPoint("TOPLEFT", container, "TOPLEFT", x, y)
+end
+
+LayoutHeaders = function(labelsFollow, rosterCounts, rosterMTCount)
+    if InCombatLockdown() then
+        Queue(LayoutHeaders)
+        return
+    end
+    local containerFrame = State.containerFrame
+    if not containerFrame then return end
+    local colStep = FluxRaidVisuals.FRAME_WIDTH + GRP_SPACING
+    local mtmaHeader = State.mtmaHeader
+    local mtShown = mtmaHeader and mtmaHeader:IsShown()
+    local prepared = State.secureRosterPrepared and FluxRaidSecure
+    local nativeMTMA = prepared and FluxRaid_DisplayMainTankAndAssistCVarEnabled() and mtmaHeader or nil
+    -- The secure layout reads current child occupancy. A caller that refreshes
+    -- the labels afterward needs Lua geometry only for a still-shown legacy MT column.
+    local gc, layout, yAlignMT
+    if not prepared or not labelsFollow or (mtShown and not nativeMTMA) then
+        gc, layout, yAlignMT = ReadLegacyHeaderLayout(colStep, mtShown, rosterCounts, rosterMTCount)
+    end
+    local ready
+    if prepared then
+        ready=FluxRaidSecure.RefreshRosterLayout(containerFrame,State.raidHeaders,
+            nativeMTMA,
+            {colStep=colStep,columnHeight=ColumnHeight(),mtChildStep=MTMAChildStep(),mtExtraY=MTMA_EXTRA_Y_FOR_FOUR_PLUS})
+    end
+    if not ready and not layout then
+        gc, layout, yAlignMT = ReadLegacyHeaderLayout(colStep, mtShown, rosterCounts, rosterMTCount)
+    end
+    -- Prepared native layout owns canonical header positions, including empty
+    -- placeholders and MT/MA offsets. Do not temporarily move them elsewhere.
+    if mtmaHeader and (not nativeMTMA or not ready) then
         if mtShown and layout.x_lo and layout.k >= 1 then
-            mtmaHeader:SetPoint("TOPLEFT", containerFrame, "TOPLEFT", layout.xMT, yAlignMT)
+            PlaceRosterHeader(mtmaHeader, containerFrame, layout.xMT, yAlignMT)
         else
-            mtmaHeader:SetPoint("TOPLEFT", containerFrame, "TOPLEFT", 0, 0)
+            PlaceRosterHeader(mtmaHeader, containerFrame, 0, 0)
         end
     end
-    for g = 1, GROUP_COUNT do
-        local header = State.raidHeaders[g]
-        if header then
-            header:ClearAllPoints()
-            local gx = layout.groupX and layout.groupX[g]
-            if (gc[g] or 0) > 0 and gx then
-                header:SetPoint("TOPLEFT", containerFrame, "TOPLEFT", gx, 0)
-                if header._fluxGroupLabel then header._fluxGroupLabel:Show() end
-            else
-                header:SetPoint("TOPLEFT", containerFrame, "TOPLEFT", -10000, 0)
-                if header._fluxGroupLabel then header._fluxGroupLabel:Hide() end
+    if not prepared or not ready then
+        for g = 1, GROUP_COUNT do
+            local header = State.raidHeaders[g]
+            if header then
+                local gx = (gc[g] or 0) > 0 and layout.groupX and layout.groupX[g]
+                PlaceRosterHeader(header, containerFrame, gx or -10000, 0)
+            end
+        end
+        local width = layout.totalSlots * colStep
+        if not SameRosterDockValue(containerFrame, "GetWidth", width) then containerFrame:SetWidth(width) end
+    end
+    if not labelsFollow or not ready then
+        for g = 1, GROUP_COUNT do
+            local header = State.raidHeaders[g]
+            if header and header._fluxGroupLabel then
+                local show = (gc[g] or 0) > 0 and layout.groupX and layout.groupX[g]
+                ApplyGroupColumnLabel(header._fluxGroupLabel, show and true or false)
             end
         end
     end
-    containerFrame:SetWidth(layout.totalSlots * colStep)
-    if State.secureRosterPrepared and FluxRaidSecure then
-        local ready=FluxRaidSecure.RefreshRosterLayout(containerFrame,State.raidHeaders,
-            FluxRaid_DisplayMainTankAndAssistCVarEnabled() and State.mtmaHeader or nil,
-            {colStep=colStep,columnHeight=ColumnHeight(),mtChildStep=MTMAChildStep(),mtExtraY=MTMA_EXTRA_Y_FOR_FOUR_PLUS})
-        if not ready then
-            State.secureRosterError="Secure roster layout is unavailable"
-            return false
-        end
+    if prepared and not ready then
+        State.secureRosterError="Secure roster layout is unavailable"
+        return false
     end
     if mtShown and mtmaHeader then
         C_Timer.After(0, ApplyMTMAChatOverlapLift)
@@ -601,10 +669,9 @@ ConfigureRaidMode = function()
         for i=1,GROUP_COUNT do
             local header=State.raidHeaders[i]
             ready=FluxRaidSecure.ConfigureHeader(header,i,false) and ready
-            for childIndex=1,UNITS_PER_COLUMN do
-                local child=header:GetAttribute("child"..childIndex)
-                ready=FluxRaidSecure.AttachHeaderChild(child) and ready
-            end
+            -- ROSTER_LAYOUT reads only child1 to decide if this group takes a
+            -- column. Other children keep Blizzard's roster binding and paint.
+            ready=FluxRaidSecure.AttachHeaderChild(header:GetAttribute("child1")) and ready
         end
         for childIndex=1,MTMA_UNITS_PER_COLUMN*MTMA_MAX_COLUMNS do
             local child=mt:GetAttribute("child"..childIndex)
@@ -651,6 +718,19 @@ ConfigureRaidMode = function()
     return ready
 end
 
+local settledPartyMode
+local function PreparedPartyMode(inGroup, inRaid)
+    if Secret(inRaid) or inRaid ~= false or Secret(inGroup) or type(inGroup) ~= "boolean" then return end
+    local normalParty = ns.PartyFrames and ns.PartyFrames.ready
+    if not SameRosterDockValue(State.raidHeaders[1], "IsShown", not normalParty and inGroup) then return end
+    for group = 2, GROUP_COUNT do
+        local header = State.raidHeaders[group]
+        if not SameRosterDockValue(header, "IsShown", false) then return end
+    end
+    if not SameRosterDockValue(State.mtmaHeader, "IsShown", false) then return end
+    return normalParty and "normal" or "compact"
+end
+
 RefreshGroupVisibility = function(rosterOnly)
     if InCombatLockdown() then
         Queue(RefreshGroupVisibility)
@@ -660,37 +740,50 @@ RefreshGroupVisibility = function(rosterOnly)
     local inRaid = IsInRaid()
     local inGroup = IsInGroup()
     if State.secureRosterPrepared then
+        local mode = PreparedPartyMode(inGroup, inRaid)
+        local settled = rosterOnly and mode and mode == settledPartyMode and SameRosterDockValue(containerFrame, "IsShown", true)
+        if settled and mode == "normal" then
+            -- Normal party buttons have independent native drivers. The
+            -- hidden compact pool has no roster geometry or units to repaint.
+            UpdateGroupColumnLabels()
+            return
+        end
+        settledPartyMode = nil
         containerFrame:Show()
         EnsureGroupColumnLabels()
-        if LayoutHeaders()==false then return false end
+        if LayoutHeaders(true)==false then return false end
         UpdateGroupColumnLabels()
-        if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
-        if FluxRaid_RefreshMTMATargetAttachments then FluxRaid_RefreshMTMATargetAttachments() end
+        -- Prepared children already bind and paint through native unit and
+        -- show callbacks. Only a prepared roster refresh can leave a hidden
+        -- header to those callbacks. Setup and recovery visit the whole pool.
+        if FluxRaid_SyncHeaderChildUnits then
+            FluxRaid_SyncHeaderChildUnits(settled and State.raidHeaders[1] or nil, rosterOnly == true)
+        end
+        if not settled and FluxRaid_RefreshMTMATargetAttachments then
+            FluxRaid_RefreshMTMATargetAttachments(rosterOnly == true)
+        end
         if not rosterOnly and FluxRaidHealerExtras then FluxRaidHealerExtras.RefreshLayout() end
+        settledPartyMode = mode
         return
     end
+    settledPartyMode = nil
     if not inRaid and not inGroup then
         if containerFrame then containerFrame:Hide() end
         return
     end
+    local rosterCounts, rosterMTCount
     if inRaid then
-        local hasMTMA = false
-        for i = 1, MAX_RAID_ROSTER_SLOTS do
-            local sg = GetRaidRosterOccupiedSubgroup(i)
-            local unit = "raid" .. i
-            local unitOk = (UnitInRaid and UnitInRaid("player") == i) or UnitExists(unit)
-            if sg and unitOk and UnitIsMTMA(i) then
-                hasMTMA = true
-                break
-            end
-        end
+        -- Use the same roster sample for MT visibility and column placement.
+        local mtmaHeader = State.mtmaHeader
+        local showMTMA = mtmaHeader and FluxRaid_DisplayMainTankAndAssistCVarEnabled()
+        rosterCounts = {}
+        rosterMTCount = ReadLegacyRaidRoster(rosterCounts, showMTMA)
         for i = 1, GROUP_COUNT do
             if State.raidHeaders[i] and not State.raidHeaders[i]:IsShown() then
                 State.raidHeaders[i]:Show()
             end
         end
-        local mtmaHeader = State.mtmaHeader
-        if hasMTMA and FluxRaid_DisplayMainTankAndAssistCVarEnabled() then
+        if rosterMTCount and rosterMTCount > 0 then
             if mtmaHeader and not mtmaHeader:IsShown() then
                 mtmaHeader:Show()
             end
@@ -713,7 +806,7 @@ RefreshGroupVisibility = function(rosterOnly)
     end
     containerFrame:Show()
     EnsureGroupColumnLabels()
-    LayoutHeaders()
+    LayoutHeaders(nil, rosterCounts, rosterMTCount)
     UpdateGroupColumnLabels()
     if FluxRaid_SyncHeaderChildUnits then FluxRaid_SyncHeaderChildUnits() end
     if FluxRaid_RefreshMTMATargetAttachments then FluxRaid_RefreshMTMATargetAttachments() end
@@ -873,29 +966,34 @@ local BLIZZARD_GRID_FRAME_NAMES = {
     "PartyFrame",
 }
 
+local function PartyPoolContains(pool, frame)
+    for memberFrame in pool:EnumerateActive() do
+        if memberFrame == frame then return true end
+    end
+    return false
+end
+
 local function IsBlizzardPartyRaidChrome(frame)
     if not frame then return false end
     if frame._fluxRaidUnit then return false end
     if frame.GetParent then
         local parent=frame:GetParent()
-        if parent and (parent==_G.CompactRaidFrameContainer or parent==_G.CompactPartyFrame) then return true end
+        if not Secret(parent) and parent and (parent==_G.CompactRaidFrameContainer or parent==_G.CompactPartyFrame) then return true end
+    end
+    -- Named raid cells under a group header are not direct grid children.
+    -- Recognize them before walking the separate native party pool.
+    if frame.GetName then
+        local ok, name = pcall(frame.GetName, frame)
+        if ok and not Secret(name) and type(name)=="string" then
+            if name=="PartyFrame" or name:match("^PartyMemberFrame") or name:match("^CompactPartyFrame")
+                or name:match("^CompactRaidFrame") or name:match("^CompactRaidGroup") then return true end
+        end
     end
     local partyFrame = _G.PartyFrame
-    if partyFrame and partyFrame.PartyMemberFramePool and partyFrame.PartyMemberFramePool.EnumerateActive then
-        local ok, inPool = pcall(function()
-            for memberFrame in partyFrame.PartyMemberFramePool:EnumerateActive() do
-                if memberFrame == frame then return true end
-            end
-            return false
-        end)
+    local pool = partyFrame and partyFrame.PartyMemberFramePool
+    if pool and pool.EnumerateActive then
+        local ok, inPool = pcall(PartyPoolContains, pool, frame)
         if ok and inPool then return true end
-    end
-    if not frame.GetName then return false end
-    local name = frame:GetName()
-    if Secret(name) then return false end
-    if name == "PartyFrame" or name == "CompactPartyFrame" then return true end
-    if name and (name:match("^PartyMemberFrame") or name:match("^CompactPartyFrame") or name:match("^CompactRaidFrame") or name:match("^CompactRaidGroup")) then
-        return true
     end
     return false
 end
@@ -926,20 +1024,22 @@ local function SuppressNativeOverlay(region)
     -- These flags are static presentation metadata. Restore them on disable;
     -- inheriting the hidden grid's alpha also handles opaque native alpha.
     if region.IsIgnoringParentAlpha and region.SetIgnoreParentAlpha then
-        if nativeOverlayParentAlphas[region]==nil then
-            local ignore=region:IsIgnoringParentAlpha()
-            if not Secret(ignore) and type(ignore)=="boolean" then nativeOverlayParentAlphas[region]=ignore end
+        local ignore=region:IsIgnoringParentAlpha()
+        local private=Secret(ignore)
+        if nativeOverlayParentAlphas[region]==nil and not private and type(ignore)=="boolean" then
+            nativeOverlayParentAlphas[region]=ignore
         end
-        if nativeOverlayParentAlphas[region]~=nil then region:SetIgnoreParentAlpha(false) end
+        if nativeOverlayParentAlphas[region]~=nil and (private or ignore~=false) then region:SetIgnoreParentAlpha(false) end
     end
+    local alpha=region:GetAlpha()
+    local private=Secret(alpha)
     if nativeOverlayAlphas[region]==nil then
-        local alpha=region:GetAlpha()
-        if Secret(alpha) or type(alpha)~="number" then return end
+        if private or type(alpha)~="number" then return end
         nativeOverlayAlphas[region]=alpha
     end
     -- Native selection and ready-check handlers only Show/Hide these objects;
     -- alpha zero survives their updates without replacing native handlers.
-    region:SetAlpha(0)
+    if private or alpha~=0 then region:SetAlpha(0) end
 end
 
 local function SuppressNativeSelection(frame)
@@ -958,23 +1058,29 @@ local function SuppressNativeSelection(frame)
 end
 
 local function SuppressNativeSelections()
+    local seen={}
+    local function SuppressOnce(frame)
+        if Secret(frame) or not frame or seen[frame] then return end
+        seen[frame]=true
+        SuppressNativeSelection(frame)
+    end
     local container=_G.CompactRaidFrameContainer
     if container and type(container.ApplyToFrames)=="function" then
-        container:ApplyToFrames("all",SuppressNativeSelection)
+        container:ApplyToFrames("all",SuppressOnce)
     end
     local party=_G.CompactPartyFrame
     for _,key in ipairs({"memberUnitFrames","petUnitFrames"}) do
-        for _,frame in ipairs(party and party[key] or {}) do SuppressNativeSelection(frame) end
+        for _,frame in ipairs(party and party[key] or {}) do SuppressOnce(frame) end
     end
     for i=1,40 do
-        SuppressNativeSelection(_G["CompactRaidFrame"..i])
+        SuppressOnce(_G["CompactRaidFrame"..i])
         if i<=5 then
-            SuppressNativeSelection(_G["CompactPartyFrameMember"..i])
-            SuppressNativeSelection(_G["CompactPartyFramePet"..i])
+            SuppressOnce(_G["CompactPartyFrameMember"..i])
+            SuppressOnce(_G["CompactPartyFramePet"..i])
         end
     end
     for group=1,8 do for member=1,5 do
-        SuppressNativeSelection(_G["CompactRaidGroup"..group.."Member"..member])
+        SuppressOnce(_G["CompactRaidGroup"..group.."Member"..member])
     end end
 end
 
@@ -1183,10 +1289,14 @@ local function RefreshPreparedRoster()
         return
     end
     if RefreshGroupVisibility(true)==false then RetainNativeFallback(); return end
-    PositionContainer()
+    PositionContainer(true)
 end
 
 function FluxRaid_OnRosterOrPartyChanged()
+    if settledPartyMode then
+        local inRaid = IsInRaid()
+        if Secret(inRaid) or inRaid ~= false then settledPartyMode = nil end
+    end
     if State.rosterDirty then return end
     State.rosterDirty = true
     C_Timer.After(0, function()
@@ -1196,6 +1306,7 @@ function FluxRaid_OnRosterOrPartyChanged()
             -- in the prepared native drivers until this OOC reconciliation.
             if InCombatLockdown() then UpdateGroupColumnLabels() end
             RefreshPreparedRoster()
+            if FluxRaidHealerExtras then FluxRaidHealerExtras.RefreshRoster() end
             ScheduleBlizzardRaidManagerReposition()
             FluxRaid_ScheduleBlizzardGridHideCheck()
             local kb = ns and ns.FluxMouseoverKeybind
@@ -1210,6 +1321,9 @@ function FluxRaid_InitLayoutFrames()
     if InCombatLockdown() then Queue(FluxRaid_InitLayoutFrames); return false end
     State.containerFrame = _G["FluxRaidContainer"]
     local container = State.containerFrame
+    -- This bare secure host contains prepared unit frames only. Visibility is
+    -- native paint; point/size/scale changes still use normal geometry hooks.
+    if container then container._FluxBorderStatic = true end
     if container and container.HookScript and not container._fluxRaidReadinessHooked then
         container._fluxRaidReadinessHooked = true
         container:HookScript("OnShow", function()

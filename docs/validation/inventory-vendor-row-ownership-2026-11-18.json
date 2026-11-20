@@ -1,0 +1,200 @@
+{
+  "id": "LHO-VENDOR-ROW-OWNERSHIP-20261118",
+  "utc": "2026-11-18T09:20:24.059606+00:00",
+  "before": {
+    "Inventory/Restock/Core/FluxRestockList.lua": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587"
+  },
+  "after": {
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-vendor-row-ownership-20261118\\checkpoint.json",
+  "syntax": [
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16"
+    },
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "2178f4953cda770141fb3d6acf7d6196f70cc577482429fc8c6ea9c4167f3a16"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "vm": "Lua5.1.5",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "vm": "Lua5.4.6",
+      "phase": "before",
+      "exit": 0,
+      "sha256": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587"
+    },
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81"
+    },
+    {
+      "file": "Inventory/Restock/Core/FluxRestockList.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "vm": "Lua5.1.5",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+    },
+    {
+      "file": "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+      "vm": "Lua5.4.6",
+      "phase": "after",
+      "exit": 0,
+      "sha256": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+    }
+  ],
+  "sourceConservation": "Craft whole file restored exactly by removing only new contract block; GetVendorCraftTargets and every existing body unchanged. List change is lazy owner check plus restored shallow copies for fallback/metatable rows; full entry iteration and getter invocation remain.",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "retailForeverPairsMatched": 24,
+  "native": "PENDING own normal reload and actual vendor route check; current23 native verification saved separately and not transferred",
+  "simulationRuns": 0,
+  "mockTests": 0,
+  "nativeInputForThisEdit": 0,
+  "performanceGain": "UNMEASURED; default row-copy savings retained, overrides deliberately restore original copying",
+  "goal": "ACTIVE",
+  "sourceCounterexample": "RefreshRestockCacheEntries currently places an ordinary retained entry directly into bases and then calls the public GetVendorCraftTargets. A replacement can write bases[i].target/name and thereby mutate the input item instead of its former fresh shallow copy. No hypothetical item transaction is needed to establish this reference alias.",
+  "dependentRowEscape": "Canonical GetVendorCraftTargets builds row.tiers={source} for a selected tier; replaced Need/MailUnits/Pending/PredictedMailUnits can access that source. Keep full row copies for those replacements too.",
+  "settingsMetadata": {
+    "paths": 125,
+    "mode": "Fresh stat only; no values copied"
+  },
+  "preserved": [
+    "Default canonical ordinary plain rows retain earlier copy avoidance",
+    "Craft base target rows always copied/rebased including zero",
+    "Replacement/missing contract/metatable rows regain original full shallow copies",
+    "Full array membership/order, every per-entry count refresh and actual craft getter invocation remain",
+    "Saved-plan validation/mail facts/invalid-plan cleanup, queries, events, timers, rendering, transactions and settings unchanged"
+  ],
+  "definingDependencies": [
+    "GetVendorCraftTargets",
+    "SetItemUnits",
+    "Need",
+    "MailUnits",
+    "Pending",
+    "PredictedMailUnits"
+  ],
+  "loadOrder": "List540 before AuctionCraft546, so contract resolved lazily during count refresh; no TOC changes",
+  "scope": "Compatibility correction to prior row-copy optimization; no additional default row-copy savings claimed",
+  "nativeFollowupPreceding23": "docs/validation/inventory-tier-bag-native-followup-2026-11-18.json",
+  "nativeAcceptance": "Own current24 reload and world return observed; count/panel query still pending because held-key guard stopped before input. Await visible Restock panel; prepared guarded VR24 actor. No acceptance of full vendor lifecycle/craft/override/isolation/spikes.",
+  "newNativeBuildObservation": {
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 42724,
+    "hwnd": 50333792,
+    "birthFileTime": 134394624880288175,
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "WOW_PROJECT_ID": 18
+  },
+  "nativeInputsThisEdit": 0,
+  "externalAddonEdits": false,
+  "manualSync": false,
+  "newMockTests": 0,
+  "nativeReload24": {
+    "utc": "2026-11-18T09:31:23.475438+00:00",
+    "run": "vendorowner_reload_20261118a",
+    "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorowner_reload_20261118a-journal.json",
+    "loadingCapture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorowner_reload_20261118a-submitted.png",
+      "pngSha": "8c3d1801800e6783510164533c37ff839ef866883bfc29037e9f88d4018aec7a",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorowner_reload_20261118a-submitted-capture.json",
+      "metaSha": "2185dd3e39494c088168f04e45db058ca5102eef7dfeadb67d918c10a3a6027c",
+      "started": 1794993968.403532,
+      "time": 1794993970.8885593,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 42724,
+          "hwnd": 50333792,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134394624880288175
+        },
+        "fg": 50333792,
+        "last": 409473343,
+        "idle": 1200.172,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "worldReturnCapture": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorowner_count_20261118a-source.png",
+      "pngSha": "b35388f9318f9fcd121a5b0413f7239948f8f500341aa43f6127bbc820c8ca54",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorowner_count_20261118a-source-capture.json",
+      "metaSha": "ad248fa5de2e276e757f890a46d09b8d57429b08b8e8b34752c076e6f886f893",
+      "started": 1794994032.7334116,
+      "time": 1794994034.870936,
+      "stage": "source",
+      "baseline": {
+        "identity": {
+          "pid": 42724,
+          "hwnd": 50333792,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134394624880288175
+        },
+        "fg": 50333792,
+        "last": 410710109,
+        "idle": 27.734,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "sourceSet": "Current24 pinned disk source set; no runtime byte-hash read",
+    "countQuery": "NOT ENTERED: source-only attest guard found a physical foreground key held; original preflight explicitly released without any input",
+    "unusedRun": "vendorowner_count_20261118a; retired, do not replay",
+    "inputLockAbsent": true,
+    "vendorContext": "User says can open vendor now; latest passive image at09:30UTC shows standing before Edna Mullby with merchant not yet open. Leave native input alone during user movement/opening. No new reload needed.",
+    "latestPassiveContext": "vendor-current-context-20261118b.png at09:31:48UTC: Edna Mullby visible, merchant/Restock closed; no input sent"
+  },
+  "sourcePairsVerifiedFinal": 24
+}

@@ -466,7 +466,7 @@ end
 local function build(bar)
     local v = {bar = bar, pool = {}, liveParticles = 0, luaParticles=0, clock = 0, carry = 0, scale = 1,emitterIndex=0}
     local timer = bar.TimerBar
-    local backdropParent = bar
+    local backdropParent = bar.FillEffectHost or bar
     if bar._fluxSchoolNameplate then
         -- A BACKGROUND texture on the higher-level Flux proxy still covers
         -- Blizzard's cast bar. Give artwork its own lower-level plate host.
@@ -485,7 +485,8 @@ local function build(bar)
     v.fill:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
     v.fill:Hide()
     v.layers={v.fill}
-    v.halo = bar:CreateTexture(nil, "BACKGROUND", nil, -6)
+    local haloParent = bar.FillEffectHost or bar
+    v.halo = haloParent:CreateTexture(nil, "BACKGROUND", nil, -6)
     v.halo:SetTexture(MEDIA .. "cast_dot")
     if C_Texture and C_Texture.GetAtlasInfo and v.halo.SetAtlas then
         local info = C_Texture.GetAtlasInfo("cast_interrupt_outerglow")
@@ -951,6 +952,10 @@ function FX.SyncEvents()
     if not events then
         events = CreateFrame("Frame")
         events:SetScript("OnEvent", function(_, event, spellID)
+            if event == "PLAYER_SPECIALIZATION_CHANGED" then
+                local sharedEvents = ns.Flux and ns.Flux.Events
+                if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(spellID) then return end
+            end
             if event == "COMBAT_LOG_EVENT_UNFILTERED" then
                 if not combatLogAvailable() or not wantsCombatLog() then return end
                 local _, subevent, _, sourceGUID, _, _, _, _, _, _, _, id, _, mask = CombatLogGetCurrentEventInfo()

@@ -195,7 +195,8 @@ local function WrapCategoryLabel(self)
     end
     self._fluxCategoryIconWrapped = true
 
-    EnsureCategoryIconTexture(self)
+    -- Pooled labels can become equipment-set labels later. Create the texture
+    -- in ApplyCategoryLabelIcon only when there is an icon to display.
     WrapFontStringWidth(self)
     WrapCategoryLabelWidth(self)
 

@@ -1,0 +1,577 @@
+{
+  "changeId": "BORDER-FALLBACK-PARTITION-R173-20261120",
+  "borderVersion": "fallback-partitions-r173",
+  "capturedAtUTC": "2026-11-20T02:55:28.669317+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "28148468f10a1b97728e46acd11e18871ea0648b95f4184c35181dd1f42c60b9",
+      "afterRaw": "d33793d14fd7648677c52e914d28cafca1eda03227662d33841a67f58479f207",
+      "afterNormalized": "d33793d14fd7648677c52e914d28cafca1eda03227662d33841a67f58479f207"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Two cold held-action or roster geometry changes in populated HUD fixtures and a dense overlap fixture. Both border types use the actual planner and regional renderer.",
+    "order": [
+      "before",
+      "after"
+    ],
+    "counts": {
+      "hover-1": {
+        "calls": [
+          280,
+          261
+        ],
+        "returnedArrays": [
+          242,
+          223
+        ],
+        "removedTemporaryArrays": 38
+      },
+      "roster-1": {
+        "calls": [
+          136,
+          104
+        ],
+        "returnedArrays": [
+          128,
+          96
+        ],
+        "removedTemporaryArrays": 64
+      },
+      "hover-2": {
+        "calls": [
+          273,
+          254
+        ],
+        "returnedArrays": [
+          237,
+          218
+        ],
+        "removedTemporaryArrays": 38
+      },
+      "roster-2": {
+        "calls": [
+          152,
+          120
+        ],
+        "returnedArrays": [
+          144,
+          112
+        ],
+        "removedTemporaryArrays": 64
+      },
+      "parallel-edges-1": {
+        "calls": [
+          690,
+          604
+        ],
+        "returnedArrays": [
+          578,
+          492
+        ],
+        "removedTemporaryArrays": 172
+      },
+      "parallel-edges-2": {
+        "calls": [
+          691,
+          605
+        ],
+        "returnedArrays": [
+          579,
+          493
+        ],
+        "removedTemporaryArrays": 172
+      }
+    },
+    "countDerivation": "Every skipped one-cell subtraction allocated a one-element input table and a separate return table. The result fields now enter the output list directly.",
+    "matchedOutput": [
+      "BORDER_CUTS style=1 case=hover passes=2 calls=280/261 arrays=242/223",
+      "BORDER_CUTS style=1 case=roster passes=2 calls=136/104 arrays=128/96",
+      "BORDER_CUTS style=2 case=hover passes=2 calls=273/254 arrays=237/218",
+      "BORDER_CUTS style=2 case=roster passes=2 calls=152/120 arrays=144/112",
+      "BORDER_CUTS style=1 case=parallel-edges passes=2 calls=690/604 arrays=578/492",
+      "BORDER_CUTS style=2 case=parallel-edges passes=2 calls=691/605 arrays=579/493",
+      "Cold border cuts preserve fragment order, sampled seams, and visibility backups."
+    ],
+    "isolated": {
+      "columns": [
+        "plans per pass",
+        "passes per timing sample",
+        "before Lua ms",
+        "after Lua ms",
+        "before heap KiB for 250 passes with GC suspended",
+        "after heap KiB for 250 passes with GC suspended"
+      ],
+      "scope": "Alternate exact original/candidate partition functions over identical plans captured from the original strip and roster fixtures. All ordered output rects and blocker identities were compared separately.",
+      "samples": {
+        "hover-1": [
+          [
+            19,
+            1200,
+            77.0,
+            48.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            71.0,
+            49.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            59.0,
+            49.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            57.0,
+            51.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            64.0,
+            47.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            57.0,
+            45.0,
+            4267.578,
+            3673.828
+          ],
+          [
+            19,
+            1200,
+            58.0,
+            46.0,
+            4267.578,
+            3673.828
+          ]
+        ],
+        "roster-1": [
+          [
+            8,
+            1200,
+            35.0,
+            28.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            35.0,
+            28.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            35.0,
+            31.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            34.0,
+            28.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            34.0,
+            30.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            32.0,
+            30.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            36.0,
+            33.0,
+            2828.125,
+            2515.625
+          ]
+        ],
+        "hover-2": [
+          [
+            19,
+            1200,
+            58.0,
+            48.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            54.0,
+            47.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            77.0,
+            89.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            101.0,
+            87.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            113.0,
+            84.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            106.0,
+            85.0,
+            4330.078,
+            3732.422
+          ],
+          [
+            19,
+            1200,
+            99.0,
+            90.0,
+            4330.078,
+            3732.422
+          ]
+        ],
+        "roster-2": [
+          [
+            8,
+            1200,
+            67.0,
+            54.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            67.0,
+            55.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            64.0,
+            48.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            65.0,
+            50.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            64.0,
+            50.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            64.0,
+            48.0,
+            2828.125,
+            2515.625
+          ],
+          [
+            8,
+            1200,
+            65.0,
+            49.0,
+            2828.125,
+            2515.625
+          ]
+        ]
+      },
+      "medians": {
+        "hover-1": [
+          19,
+          1200,
+          59.0,
+          48.0,
+          4267.578,
+          3673.828
+        ],
+        "roster-1": [
+          8,
+          1200,
+          35.0,
+          30.0,
+          2828.125,
+          2515.625
+        ],
+        "hover-2": [
+          19,
+          1200,
+          99.0,
+          85.0,
+          4330.078,
+          3732.422
+        ],
+        "roster-2": [
+          8,
+          1200,
+          65.0,
+          50.0,
+          2828.125,
+          2515.625
+        ]
+      }
+    },
+    "fullReplay": {
+      "columns": [
+        "before Lua seconds",
+        "after Lua seconds",
+        "before heap KiB with GC suspended",
+        "after heap KiB with GC suspended"
+      ],
+      "scope": "A populated HUD fixture using the entire layout, solve, plan and commit path. The roster clock uses existing raid frames without added internal divider stress.",
+      "samples": {
+        "hover-1": [
+          [
+            0.031,
+            0.032,
+            6117.0,
+            6114.2
+          ],
+          [
+            0.028,
+            0.032,
+            6098.6,
+            6095.8
+          ],
+          [
+            0.029,
+            0.03,
+            6095.8,
+            5907.0
+          ],
+          [
+            0.029,
+            0.028,
+            5891.5,
+            5888.7
+          ],
+          [
+            0.03,
+            0.028,
+            6102.5,
+            5888.3
+          ]
+        ],
+        "roster-1": [
+          [
+            0.006,
+            0.005,
+            839.9,
+            839.9
+          ],
+          [
+            0.006,
+            0.006,
+            839.9,
+            839.9
+          ],
+          [
+            0.006,
+            0.006,
+            839.9,
+            839.8
+          ],
+          [
+            0.005,
+            0.006,
+            839.9,
+            839.9
+          ],
+          [
+            0.004,
+            0.006,
+            839.9,
+            839.9
+          ]
+        ],
+        "hover-2": [
+          [
+            0.029,
+            0.028,
+            5821.1,
+            6013.0
+          ],
+          [
+            0.026,
+            0.025,
+            5987.6,
+            5790.1
+          ],
+          [
+            0.027,
+            0.028,
+            5791.8,
+            5789.1
+          ],
+          [
+            0.029,
+            0.028,
+            5990.1,
+            5986.5
+          ],
+          [
+            0.026,
+            0.027,
+            5990.1,
+            5810.1
+          ]
+        ],
+        "roster-2": [
+          [
+            0.005,
+            0.005,
+            826.6,
+            826.6
+          ],
+          [
+            0.007,
+            0.006,
+            826.6,
+            826.5
+          ],
+          [
+            0.004,
+            0.006,
+            826.6,
+            826.5
+          ],
+          [
+            0.004,
+            0.006,
+            826.6,
+            826.5
+          ],
+          [
+            0.006,
+            0.004,
+            826.6,
+            826.6
+          ]
+        ]
+      },
+      "medians": {
+        "hover-1": [
+          0.029,
+          0.03,
+          6098.6,
+          5907.0
+        ],
+        "roster-1": [
+          0.006,
+          0.006,
+          839.9,
+          839.9
+        ],
+        "hover-2": [
+          0.027,
+          0.028,
+          5987.6,
+          5810.1
+        ],
+        "roster-2": [
+          0.005,
+          0.006,
+          826.6,
+          826.5
+        ]
+      }
+    },
+    "artifactSHA256": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\clock-1.txt": "7464fd61dc4b9c658ec95bf6a4c5757caa8aa2efd916790f4d3e0aa8ea0a9d57",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\clock-2.txt": "a9984d571f8742e7f6709b35c7ffb17665dd5b4b07ca375ff2fc8003bb955e2c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\clock-3.txt": "6239a23d7b6bfc0ad2f547b4f03961ad3ab32406fe61561f460b196281e3bb68",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\clock-4.txt": "d239fc2a4dc41335dc10310d7865e243d0e255d6f4d6bd8ed614ec28f22579ac",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\clock-5.txt": "add0b035cfa768522073462a7e5001db38675e54928aa1c0156c0d8cc2af5db3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\isolated.txt": "ad4b6ea863153d6c9d50898c9d0091ecdba7606c77545d5eb1c2242dc1d21ed6",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\bench-isolated-r173.lua": "cc422ee3be73ce35037b56db678cbcb966d169e63d16a46b3014ade2094a8405",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\bench-full-r173.lua": "25989c371d003bfd7ad18149ed3cbb7eb43e5e1d525b438e1e3b859858af2b37"
+    }
+  },
+  "parity": "Partition bounds and ordered blocker identities agree. Full fields, sampled joins, solve/fragment counts and hidden-keeper restoration agree in both styles. Geometry limits and rollback are exercised by the focused suite.",
+  "verification": {
+    "focusedPassed": 44,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-partition-before-20261120T034929050\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_alias_event_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Native strip/roster hitch timing, seam pixels, and combat taint remain pending."
+}

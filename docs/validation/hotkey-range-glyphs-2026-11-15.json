@@ -1,0 +1,348 @@
+{
+  "changeId": "HOTKEY-RANGE-GLYPHS-20261115",
+  "capturedAtUTC": "2026-11-15T17:46:16.138002+00:00",
+  "request": "Red only when the action is out of range; text and white mouse glyph artwork across action bars, combat/noncombat grids and TrinketMenu.",
+  "checkpoint": {
+    "directory": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-before-20261115T173145Z",
+    "capturedAtUTC": "2026-11-15T17:31:55.517881+00:00",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "files": 2898,
+    "sourceCRC": true,
+    "historyVerified": true,
+    "settingsMetadataCount": 5,
+    "privateSettingsCopied": false
+  },
+  "sourceHashNormalization": "CRLF to LF; all other bytes preserved",
+  "sources": {
+    "Core/Hotkey.lua": {
+      "baselineSHA256": "b248d68a60d707b3fc996eeafa7b5593a251e99cff6f606111f748ec96cdd116",
+      "candidateSHA256": "855d1714c4f965ea1878dfab526b05dcdd2c8dd02b785da0616b260ec1bb8843"
+    },
+    "Bars/Paint.lua": {
+      "baselineSHA256": "3cddc870d0a98c228b2a12337de9dce0c138c1ea9553bd8c2cc5413dc7a980cd",
+      "candidateSHA256": "a2ab821bca1800c6347e873c85e2e4176c7743cd7e55ecc46152b9d72673bfd4"
+    },
+    "ExtraButtonSystem/Shared/HotkeyUtil.lua": {
+      "baselineSHA256": "cd00b19b51c9411fa27f2e06805c45d5dae28e2d2b614b88a2e374c1237e210c",
+      "candidateSHA256": "8dc319ff2039bae2f6ce850c9da20ecc412e788d823b4e784b7be1d58496c4bb"
+    },
+    "ExtraButtonSystem/Engine/Paint.lua": {
+      "baselineSHA256": "9c96291258b78ddd2e3912047c363ef22953453e394bf682e865565e0034743e",
+      "candidateSHA256": "d21720afff1d4aa380e70d7ee9b1796e02ffcc80148d6903cfe1d6c26e11990e"
+    },
+    "ExtraButtonSystem/Engine/Button.lua": {
+      "baselineSHA256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+      "candidateSHA256": "0362fadbafd7fbfd50136bac0a4387bfa46ae0bad19afb10a43af9a704bf6d4f"
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": {
+      "baselineSHA256": "32383c589ec65b1b00ab9fb323734b47fba3477f0aab762b3871fe33baf43ad8",
+      "candidateSHA256": "760448ab32a82ca04ce9e4835351eee8353e46ffbc99b3084e29a2e1d999ba7d"
+    },
+    "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua": {
+      "baselineSHA256": "456129a49bb81a218449d38a5123e49deadac19748c50a892adf3a05bdf40811",
+      "candidateSHA256": "78fd42e338b27491b7d8f39a2b5ec4b1ec415e00507797698219d8c88f4e36e6"
+    },
+    "tests/bars_hotkey_range.lua": {
+      "baselineSHA256": null,
+      "candidateSHA256": "725d5986bc8b2dc744017370125883d9612938f3eac201d0c219861d244f9cf7"
+    },
+    "tests/hotkey_range_glyphs.lua": {
+      "baselineSHA256": null,
+      "candidateSHA256": "bff6ccd7d284c06839022d26140271a7369873ef7a6d8f439a074c61e6a65c31"
+    }
+  },
+  "implementation": {
+    "rangeOwner": "Existing public out-of-range flags and existing native range events/probes; no new probes or schedules",
+    "textRGB": [
+      1,
+      0.1,
+      0.1
+    ],
+    "glyphRGBBytes": [
+      255,
+      26,
+      26
+    ],
+    "normal": "Existing gray text and byte-identical white glyph markup",
+    "textureSizes": {
+      "MouseButton3/4/5": [
+        32,
+        80
+      ],
+      "MouseScrollUp/Down": [
+        8,
+        20
+      ],
+      "SpaceBarButton": [
+        48,
+        48
+      ]
+    },
+    "cache": "FontString-owned logical/base and rendered strings; no repeated SetText/texture rewrite on unchanged range; force color after font preparation",
+    "emptyPolicy": "Empty/placeholder/IgnoreUsabilityVisual labels clear range tint even when underlying action range cache intentionally remains",
+    "input": "No binding, secure attribute, targeting or focus changes"
+  },
+  "primaryEvidence": {
+    "foreverPinned": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L143",
+    "retailPinned": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L143",
+    "contract": "GetMobileEmbeddedTexture appends integer 0..255 RGB after full source/crop coordinates; original Blizzard implementation is research evidence, no copied source needed.",
+    "olderLocalForever": {
+      "absolutePath": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_ChatFrameBase\\Shared\\ChatFrameUtil.lua",
+      "normalizedSHA256": "a9e93c4577d71d76f64de2ecaccfce17c51e52fa492864ed394543a1086396cf",
+      "rawSHA256": "a9e93c4577d71d76f64de2ecaccfce17c51e52fa492864ed394543a1086396cf",
+      "functionNormalizedSHA256": "95d6ccd8f1917829e72bb2f17776cd759ec227134aa6c88caf614f738cd89a5e",
+      "startLine": 154,
+      "function": "ChatFrameUtil.GetMobileEmbeddedTexture",
+      "snapshotVersion": "1.60.1.70425"
+    },
+    "olderClassicSnapshot": {
+      "version": "5.5.4.69155",
+      "path": "__AddonsForRef/wow-ui-source-classic/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua",
+      "sha256": "98ce6744cf79a6596952e358403e01d5d0cb7c5c62e89e6fafdf8a9ce8d8c530",
+      "line": 87,
+      "status": "Same RGB contract; current pinned Classic web fetch unavailable, native rendering remains pending"
+    }
+  },
+  "focused": {
+    "barsChecks": 951,
+    "fourSurfaceChecks": 1144,
+    "fourSurfaceCases": 48,
+    "unchangedRangeProbesPerCase": 30,
+    "harmfulControlsRejected": 5,
+    "baseline": "Exact archived Bars consumer fails first red-text assertion against candidate shared APIs; scoped comparison only.",
+    "externalReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-glyph-regression-evidence.json",
+    "records": [
+      {
+        "label": "final-candidate",
+        "script": "tests/hotkey_range_glyphs.lua",
+        "exit": 0,
+        "stdout": "Hotkey range glyphs: 1144 checks PASS; four actual consumers; native GPU tint pending",
+        "observation": "Fresh standalone execution after final fallback test additions, recorded in tool output."
+      },
+      {
+        "label": "checkpoint-bars-consumer-against-candidate-shared-api",
+        "args": [
+          "--bars",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-checkpoint-bars.lua"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: bars existing range owner publishes OOR\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in local 'check'\n\ttests/hotkey_range_glyphs.lua:156: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "text-red-but-inline-glyph-white",
+        "args": [
+          "--hotkey",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-mutant-text-red-but-inline-glyph-white.lua"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: bars/BUTTON3: inline glyph has explicit RGB fields\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in upvalue 'check'\n\ttests/hotkey_range_glyphs.lua:105: in local 'redGlyph'\n\ttests/hotkey_range_glyphs.lua:158: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "unbind-retains-logical-glyph",
+        "args": [
+          "--hotkey",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-mutant-unbind-retains-logical-glyph.lua"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: unbound EBS FullRefresh retires old logical glyph across later range changes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in local 'check'\n\ttests/hotkey_range_glyphs.lua:272: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "empty-refresh-revives-red",
+        "args": [
+          "--util",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-mutant-empty-refresh-revives-red.lua"
+        ],
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: empty subsequent binding repaint: original markup/text returns byte for byte\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in upvalue 'check'\n\ttests/hotkey_range_glyphs.lua:115: in local 'normal'\n\ttests/hotkey_range_glyphs.lua:255: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "trinket-fallback-revives-empty-red",
+        "args": [
+          "--trinket",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-mutant-trinket-fallback-revives-empty-red.lua"
+        ],
+        "syntaxExit": 0,
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: trinket/empty fallback does not revive stale red\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in local 'check'\n\ttests/hotkey_range_glyphs.lua:312: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "label": "utility-fallback-revives-empty-red",
+        "args": [
+          "--utility",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-mutant-utility-fallback-revives-empty-red.lua"
+        ],
+        "syntaxExit": 0,
+        "exit": 1,
+        "stdout": "",
+        "stderr": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/hotkey_range_glyphs.lua:4: utility/empty fallback does not revive stale red\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/hotkey_range_glyphs.lua:4: in local 'check'\n\ttests/hotkey_range_glyphs.lua:312: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "absenceCapabilityCases": 10
+  },
+  "fullSweep": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-final-full.json",
+    "pass": 411,
+    "fail": 1,
+    "syntaxFiles": 1101,
+    "syntaxFailures": [],
+    "sourceStable": false,
+    "changedDuringRun": [
+      "Core/BorderJunctions.lua"
+    ],
+    "failures": [
+      {
+        "path": "tests/unit_portrait_combat_restore.lua",
+        "exit": 1,
+        "wallSeconds": 0.0109,
+        "output": "lua: actual-portrait-combat-restore:126: attempt to call a nil value (global 'GetUnitClassColor')\nstack traceback:\n\tactual-portrait-combat-restore:126: in upvalue 'ApplyNormalPortraitChrome'\n\tactual-portrait-combat-restore:197: in field 'UpdatePortraitCombatTint'\n\ttests\\unit_portrait_combat_restore.lua:46: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "scope": "Hotkey and routing source stable; concurrent unrelated border edit prevents whole-corpus frozen acceptance. Existing portrait mock lacks GetUnitClassColor; unchanged by this work.",
+    "taskSourcesUnchangedDuringSweep": true,
+    "afterSweepChange": "Final TM/Utility fallback presentation guards plus their focused regression; final focused evidence will supersede these files only. Earlier full sweep retains its exact manifest."
+  },
+  "native": {
+    "rendering": "Pending user check after reload; desktop checks establish exact markup and state transitions only.",
+    "input": "Earlier user confirmed Fire Ward cast and modifier release for live-main routing; that confirmation does not certify new glyph rendering.",
+    "fps": "Not measured; no FPS/performance improvement claim.",
+    "controller": "Cosmetic FontString changes only; no new navigation/input owners; native operation pending."
+  },
+  "settings": "No saved data/default/preference writes; five available settings metadata entries verified externally.",
+  "installedComparison": {
+    "checkedAtUTC": "2026-11-15T17:54:01.767208+00:00",
+    "mode": "Read-only hashes; existing external watcher; no manual synchronization",
+    "rows": [
+      {
+        "path": "Core/Hotkey.lua",
+        "sha256": "855d1714c4f965ea1878dfab526b05dcdd2c8dd02b785da0616b260ec1bb8843",
+        "foreverSHA256": "855d1714c4f965ea1878dfab526b05dcdd2c8dd02b785da0616b260ec1bb8843",
+        "matches": true
+      },
+      {
+        "path": "Bars/Paint.lua",
+        "sha256": "a2ab821bca1800c6347e873c85e2e4176c7743cd7e55ecc46152b9d72673bfd4",
+        "foreverSHA256": "a2ab821bca1800c6347e873c85e2e4176c7743cd7e55ecc46152b9d72673bfd4",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+        "sha256": "8dc319ff2039bae2f6ce850c9da20ecc412e788d823b4e784b7be1d58496c4bb",
+        "foreverSHA256": "8dc319ff2039bae2f6ce850c9da20ecc412e788d823b4e784b7be1d58496c4bb",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Paint.lua",
+        "sha256": "d21720afff1d4aa380e70d7ee9b1796e02ffcc80148d6903cfe1d6c26e11990e",
+        "foreverSHA256": "d21720afff1d4aa380e70d7ee9b1796e02ffcc80148d6903cfe1d6c26e11990e",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Button.lua",
+        "sha256": "0362fadbafd7fbfd50136bac0a4387bfa46ae0bad19afb10a43af9a704bf6d4f",
+        "foreverSHA256": "0362fadbafd7fbfd50136bac0a4387bfa46ae0bad19afb10a43af9a704bf6d4f",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+        "sha256": "760448ab32a82ca04ce9e4835351eee8353e46ffbc99b3084e29a2e1d999ba7d",
+        "foreverSHA256": "760448ab32a82ca04ce9e4835351eee8353e46ffbc99b3084e29a2e1d999ba7d",
+        "matches": true
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "sha256": "78fd42e338b27491b7d8f39a2b5ec4b1ec415e00507797698219d8c88f4e36e6",
+        "foreverSHA256": "78fd42e338b27491b7d8f39a2b5ec4b1ec415e00507797698219d8c88f4e36e6",
+        "matches": true
+      }
+    ]
+  },
+  "documentationGate": {
+    "result": "Global gate open for unrelated concurrent border/inventory records",
+    "issues": [
+      "Alias /fluxborders absent from behavioral reference",
+      "Later BorderJunctions.lua and border_junctions.lua verification hashes",
+      "Two concurrent inventory audit absolute links in STATUS/WORK_LOG are nonportable"
+    ],
+    "taskLinks": "No task-specific link, inventory or source-evidence error reported. Generated reference views refreshed.",
+    "scope": "Do not rewrite unrelated border evidence as current without its owner rerunning checks.",
+    "finalOutput": "Documentation validation FAILED:\n- Alias absent from behavioral reference: /fluxborders\n- Recorded verification predates current source: Core/BorderJunctions.lua\n- Recorded verification predates current source: tests/border_junctions.lua\n- Nonportable local link STATUS.md:113: C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/auction-synchronous-skip-audit/seal.json\n- Nonportable local link WORK_LOG.md:121: C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/auction-synchronous-skip-audit/seal.json\n5 issue(s); checker made no edits.\n",
+    "referenceBuildExit": 0,
+    "scopedDiffExit": 0
+  },
+  "review": {
+    "BarsAndShared": "Independent read-only review found no actionable issue in base/render cache, forced color, modifier/squeeze geometry, native range and clear paths.",
+    "EBS": "Primary Core/Util/EBS path clear. Review caught two absence-capability TM/Utility fallback guards; corrected to use the same empty/placeholder/Ignore presentation rule. Normal TOC loads Util first."
+  },
+  "finalFocused": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hotkey-range-final-focused.json",
+    "capturedAtUTC": "2026-11-15T17:53:00.475075+00:00",
+    "pass": 10,
+    "fail": 0,
+    "tests": [
+      {
+        "path": "tests/hotkey_range_glyphs.lua",
+        "exit": 0,
+        "output": "Hotkey range glyphs: 1144 checks PASS; four actual consumers; native GPU tint pending\n"
+      },
+      {
+        "path": "tests/bars_hotkey_range.lua",
+        "exit": 0,
+        "output": "Bar hotkey range: 951 checks PASS; actual range/event/hotkey Lua owners, FontString sink modeled; native glyph pixels pending\n"
+      },
+      {
+        "path": "tests/grid_hotkey_refresh.lua",
+        "exit": 0,
+        "output": "grid hotkey refresh: 7 checks passed\n"
+      },
+      {
+        "path": "tests/trinket_equipped_usability.lua",
+        "exit": 0,
+        "output": "trinket equipped usability: 10 checks\n"
+      },
+      {
+        "path": "tests/trinket_visual_recovery.lua",
+        "exit": 0,
+        "output": "trinket visual recovery: 245 checks; 0 failures; five desktop client models\n"
+      },
+      {
+        "path": "tests/ebs_range_work.lua",
+        "exit": 0,
+        "output": "EBS_RANGE_WORK cases=40 checks=295 failures=0 native_FPS_GC_taint=NOT_RUN\n"
+      },
+      {
+        "path": "tests/utility_secure_input.lua",
+        "exit": 0,
+        "output": "Utility secure input: 41469 checks; five Blizzard dispatchers; mouse + both keys; all chords; combat; both CVar edges PASS\n"
+      },
+      {
+        "path": "tests/default_flux_grid_bindings.lua",
+        "exit": 0,
+        "output": "full Flux binding persistence: 507 checks passed\n"
+      },
+      {
+        "path": "tests/bars_native_click_route.lua",
+        "exit": 0,
+        "output": "Native bar click route: 864 checks PASS; full native OnClick/handlers from ../__AddonsForRef/wow-ui-source-forever/Interface/AddOns/Blizzard_FrameXML/SecureTemplates.lua; C frame/hardware arbitration and actual casts remain unverified\n"
+      },
+      {
+        "path": "tests/bars_modifier_visuals.lua",
+        "exit": 0,
+        "output": "Bar modifier visuals: 21532 checks PASS (actual Lua identity/icon path; native display pending)\n"
+      }
+    ],
+    "syntaxFiles": 1101,
+    "syntaxFailures": [],
+    "sourceStable": true,
+    "changedDuringRun": []
+  },
+  "finalTaskSourceRecheck": {
+    "changed": [],
+    "matchesFinalFocused": true
+  }
+}

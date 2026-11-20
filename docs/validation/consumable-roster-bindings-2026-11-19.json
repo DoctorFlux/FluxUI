@@ -1,0 +1,204 @@
+{
+  "changeId": "CONSUMABLE-ROSTER-BINDINGS-R97-20261119",
+  "capturedAtUTC": "2026-11-19T11:30:03.257625+00:00",
+  "scope": "Food and Water on party joins, party-to-raid conversions and leaves",
+  "sources": {
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+      "beforeRaw": "842edde076d64f5a96f73ebfa48327ac614d91695d98ca550fc5070489c4872b",
+      "afterRaw": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a"
+    },
+    "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+      "beforeRaw": "36537724d48a94b2c14543087937d9985d240b2a45537fcd37675eb6f84bfa9b",
+      "afterRaw": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98"
+    },
+    "tests/consumable_roster_bindings.lua": {
+      "beforeRaw": null,
+      "afterRaw": "c7a658fe200c1fd2dc6e739ffd11fa856cfd2af1e979523aa64d0161428091fc"
+    },
+    "Inventory/CreateSpells.lua": {
+      "beforeRaw": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a",
+      "afterRaw": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a"
+    },
+    "Core/Engine/SpellBook.lua": {
+      "beforeRaw": "93e30fb9bcaa94dfdc1e6b502b5ccc051787c13bdd98938e249d04c983923c1f",
+      "afterRaw": "93e30fb9bcaa94dfdc1e6b502b5ccc051787c13bdd98938e249d04c983923c1f"
+    },
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": {
+      "beforeRaw": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "afterRaw": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508"
+    },
+    "ExtraButtonSystem/Shared/FluxEBSConsumableBridge.lua": {
+      "beforeRaw": "49280b9085e86efc4e16b11bf9ff143d9abd3af5205a41b99cc437d56f97438c",
+      "afterRaw": "49280b9085e86efc4e16b11bf9ff143d9abd3af5205a41b99cc437d56f97438c"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\source.zip",
+    "archiveSHA256": "8082a1cbad8485be03da33b64ec1f6112cd856563beb14e2d9e4700047a37044",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Food/Water Lua with production inventory, conjure lookup, spellbook event bus, secure-route Lua and modeled client widgets",
+    "clientModels": [
+      "retail",
+      "forever",
+      "mists",
+      "era",
+      "anniversary"
+    ],
+    "spellbookModes": [
+      "sharedBus",
+      "frameFallback"
+    ],
+    "matchedBursts": 30,
+    "eventsPerBurst": 20,
+    "rightClickSpellCalls": [
+      21,
+      0
+    ],
+    "bindingRefreshCalls": [
+      21,
+      0
+    ],
+    "foodRefreshCalls": [
+      20,
+      0
+    ],
+    "checks": [
+      "final food and water item IDs and counts",
+      "use, conjure, ritual and restock routes",
+      "Food middle-click suppression survives group events",
+      "current key routes update after combat",
+      "learned higher ranks reapply conjure actions and bag events update counts"
+    ],
+    "rows": [
+      "CONSUMABLE_ROSTER retail bus=true group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER retail bus=true group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER retail bus=true group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER retail bus=false group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER retail bus=false group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER retail bus=false group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=true group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=true group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=true group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=false group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=false group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER forever bus=false group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=true group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=true group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=true group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=false group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=false group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER mists bus=false group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=true group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=true group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=true group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=false group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=false group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER era bus=false group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=true group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=true group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=true group=solo rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=false group=party rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=false group=raid rc=21/0 binds=21/0 food=20/0",
+      "CONSUMABLE_ROSTER anniversary bus=false group=solo rc=21/0 binds=21/0 food=20/0",
+      "Food and Water roster replay passes 30 join/convert/leave bursts and all binding, combat, spellbook and bag controls."
+    ],
+    "captureSHA256": "8299a09bb477feae2ebcee161f78bd939e38b4b8e03efa09369f23f3b0886ae4"
+  },
+  "verification": {
+    "focused": 211,
+    "focusedPassed": 210,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "sameResultWithArchivedFoodAndWater": true,
+      "controls": {
+        "pending-baseline.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\pending-baseline.txt",
+          "sha256": "a85060c5885564da402e2d261009189c969894e708a1baa5dd6209e337512f90"
+        },
+        "pending-candidate.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\pending-candidate.txt",
+          "sha256": "42c91f389f56000449e69f2e7f083179d37d3b9cabc4aff9bb7ffe6405dd1fc9"
+        },
+        "pending-baseline-syndicator.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\pending-baseline-syndicator.txt",
+          "sha256": "a85060c5885564da402e2d261009189c969894e708a1baa5dd6209e337512f90"
+        },
+        "pending-candidate-syndicator.txt": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\pending-candidate-syndicator.txt",
+          "sha256": "42c91f389f56000449e69f2e7f083179d37d3b9cabc4aff9bb7ffe6405dd1fc9"
+        }
+      }
+    },
+    "syntax": 1241,
+    "compilerMaximumUpvalues": 9,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\consumable-roster-bindings-r97-before-20261119T112206Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/FluxItemClass.lua",
+      "Inventory/Restock/Junk/FluxJunk.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "sha256": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "sha256": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98",
+        "matchesCandidate": true
+      }
+    },
+    "forever": {
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "sha256": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "sha256": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98",
+        "matchesCandidate": true
+      }
+    },
+    "classic": {
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "sha256": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "sha256": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98",
+        "matchesCandidate": true
+      }
+    },
+    "classic-era": {
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "sha256": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "sha256": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98",
+        "matchesCandidate": true
+      }
+    },
+    "classic-anniversary": {
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "sha256": "e6995efdfcc4a137ff34ddcdc3bfa86e4a22039572746805bda141346d26289a",
+        "matchesCandidate": true
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "sha256": "37a1c4195b7cc1b25d23d15d56b9e7af48e1527b8857b6b363cc24d67bb36d98",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "nativeAcceptance": "Native party or raid hitch, drag boundary latency, client pixels and combat taint remain open. No game input or profiler changes."
+}

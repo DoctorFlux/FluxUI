@@ -46,6 +46,7 @@ local UNIT_PLAYER = "player"
 local UNIT_PET = "pet"
 
 local entries = {}
+local entriesByWidget = {}
 local started = false
 local activeCasts = {}
 local activeReticle
@@ -238,8 +239,10 @@ end
 -- pass there is no memo, and a stale answer is impossible.
 local slotSpellMemo = {}
 local memoActive = false
+local slotPassSerial = 0
 
 function ButtonFX.BeginSlotPass()
+	slotPassSerial = slotPassSerial + 1
 	memoActive = true
 	for slot in pairs(slotSpellMemo) do
 		slotSpellMemo[slot] = nil
@@ -248,6 +251,21 @@ end
 
 function ButtonFX.EndSlotPass()
 	memoActive = false
+end
+
+-- Only close an owned pass that this synchronous paint body actually began.
+-- Hoisted vararg finish preserves zero/multiple returns and opaque errors.
+local function FinishSlotPassBody(serial, ok, ...)
+	if not ok then
+		if slotPassSerial ~= serial then memoActive = false end
+		error((...), 0)
+	end
+	return ...
+end
+
+function ButtonFX.WithSlotPassCleanup(fn, ...)
+	local serial = slotPassSerial
+	return FinishSlotPassBody(serial, pcall(fn, ...))
 end
 
 local function ItemSpellId(itemId)
@@ -449,13 +467,15 @@ end
 
 -- Override morphs (form, talent swap) only. Rank 5 and Rank 6 must stay distinct.
 local function Normalize(spellId)
-	spellId = SafeNum(spellId) or tonumber(spellId)
+	spellId = tonumber(spellId)
 	if not spellId then
 		return nil
 	end
 	if Flux.Spell and Flux.Spell.GetOverrideSpell then
 		local ov = Flux.Spell.GetOverrideSpell(spellId)
-		ov = SafeNum(ov) or ov
+		if type(ov) == "string" then
+			ov = SafeNum(ov) or ov
+		end
 		if ov then
 			spellId = ov
 		end
@@ -659,14 +679,16 @@ local function RanksCompatible(a, b)
 end
 
 local function BaseId(spellId)
-	spellId = SafeNum(spellId) or tonumber(spellId)
+	spellId = tonumber(spellId)
 	if not spellId then
 		return nil
 	end
 	if Flux.Spell and Flux.Spell.GetBaseSpell then
 		local ok, base = pcall(Flux.Spell.GetBaseSpell, spellId)
 		if ok then
-			base = SafeNum(base) or base
+			if type(base) == "string" then
+				base = SafeNum(base) or base
+			end
 			if base and base ~= 0 then
 				return base
 			end
@@ -675,7 +697,9 @@ local function BaseId(spellId)
 	if FindBaseSpellByID then
 		local ok, base = pcall(FindBaseSpellByID, spellId)
 		if ok then
-			base = SafeNum(base) or base
+			if type(base) == "string" then
+				base = SafeNum(base) or base
+			end
 			if base and base ~= 0 then
 				return base
 			end
@@ -684,31 +708,32 @@ local function BaseId(spellId)
 	return spellId
 end
 
+local function EqualSpellValues(a, b)
+	return a == b
+end
+
+local function SameSpellNumber(x, y)
+	if not x or not y then
+		return false
+	end
+	local ok, match = pcall(EqualSpellValues, x, y)
+	return ok and match
+end
+
 function ButtonFX.SpellIdsMatch(a, b)
 	if not a or not b then
 		return false
 	end
-	local okEq, same = pcall(function()
-		return a == b
-	end)
+	local okEq, same = pcall(EqualSpellValues, a, b)
 	if okEq and same then
 		return true
 	end
-	local function sameNum(x, y)
-		if not x or not y then
-			return false
-		end
-		local ok, match = pcall(function()
-			return x == y
-		end)
-		return ok and match
-	end
 	local na, nb = Normalize(a), Normalize(b)
-	if sameNum(na, nb) and RanksCompatible(a, b) then
+	if SameSpellNumber(na, nb) and RanksCompatible(a, b) then
 		return true
 	end
 	local ba, bb = BaseId(a), BaseId(b)
-	if sameNum(ba, bb) and RanksCompatible(a, b) then
+	if SameSpellNumber(ba, bb) and RanksCompatible(a, b) then
 		return true
 	end
 	local nameA, nameB = SpellName(a), SpellName(b)
@@ -818,29 +843,30 @@ function Cast.PickOwnerByName(name)
 	return list[1]
 end
 
-local function LiveCastName(unit)
-	unit = NormUnit(unit)
-	local function fromUnit(fn)
-		if type(fn) ~= "function" then
-			return nil
-		end
-		local ok, name, _, _, _, _, _, _, _, spellId = pcall(fn, unit)
-		if not ok then
-			return nil
-		end
-		local id = SafeNum(spellId)
-		if id and Flux.Spell and Flux.Spell.FormatCastAttribute then
-			local okT, token = pcall(Flux.Spell.FormatCastAttribute, id)
-			if okT and type(token) == "string" and token ~= "" then
-				return token
-			end
-		end
-		if type(name) == "string" and name ~= "" then
-			return name
-		end
+local function CastNameFromUnit(fn, unit)
+	if type(fn) ~= "function" then
 		return nil
 	end
-	return fromUnit(UnitCastingInfo) or fromUnit(UnitChannelInfo)
+	local ok, name, _, _, _, _, _, _, _, spellId = pcall(fn, unit)
+	if not ok then
+		return nil
+	end
+	local id = SafeNum(spellId)
+	if id and Flux.Spell and Flux.Spell.FormatCastAttribute then
+		local okT, token = pcall(Flux.Spell.FormatCastAttribute, id)
+		if okT and type(token) == "string" and token ~= "" then
+			return token
+		end
+	end
+	if type(name) == "string" and name ~= "" then
+		return name
+	end
+	return nil
+end
+
+local function LiveCastName(unit)
+	unit = NormUnit(unit)
+	return CastNameFromUnit(UnitCastingInfo, unit) or CastNameFromUnit(UnitChannelInfo, unit)
 end
 
 local function IsCastGuid(value)
@@ -969,7 +995,18 @@ local function PickStartOwners(spellId, spellName, unit)
 end
 
 local function SpellFromPayload(...)
-	-- Retail: castGUID, spellID. Classic: spellName, rank, lineID, spellID.
+	-- A cast GUID identifies the positional payload. Trailing cast-bar IDs
+	-- and interrupter GUIDs do not identify the spell or its name.
+	local castGUID, spellID = ...
+	if type(castGUID) == "string" and type(spellID) == "number" then
+		local secrets = Flux.Secrets
+		local secret = (secrets and secrets.IsSecretValue) or issecretvalue
+		if (not secret or (not secret(castGUID) and not secret(spellID)))
+			and IsCastGuid(castGUID) and spellID > 0 then
+			return spellID
+		end
+	end
+	-- Older payloads can provide spell name, rank, line ID and spell ID.
 	local n = select("#", ...)
 	local lastNum, firstString, secondString, lastOther
 	for i = 1, n do
@@ -1146,6 +1183,10 @@ local function ColumnWidgets(column)
 end
 
 local function EntryOf(widget)
+	local entry = entriesByWidget and entriesByWidget[widget]
+	if entry then
+		return entry
+	end
 	for i = 1, #entries do
 		if entries[i].widget == widget then
 			return entries[i]
@@ -2420,7 +2461,7 @@ local function EnsureDispatcher()
 		end
 		lastEvent = event
 		local spellId, spellName = SpellFromPayload(...)
-		local empowerComplete = PayloadBoolean(...)
+		local empowerComplete = event == "UNIT_SPELLCAST_EMPOWER_STOP" and PayloadBoolean(...)
 		if unit == "pet" then
 			petBag.lastSpell = spellId or spellName or petBag.lastSpell
 		else
@@ -2570,12 +2611,22 @@ function Cast.Register(widget, getSpellId, rank, unit)
 	widget._fluxCastRegistered = true
 	unit = NormUnit(unit)
 	widget._fluxVfxUnit = unit
-	entries[#entries + 1] = {
+	local entry = {
 		widget = widget,
 		getSpellId = getSpellId,
 		rank = rank or Cast.RANK_EBS,
 		unit = unit,
 	}
+	entries[#entries + 1] = entry
+	if entriesByWidget then
+		local meta = getmetatable(widget)
+		if meta ~= nil and (type(meta) ~= "table" or rawget(meta, "__eq") ~= nil) then
+			-- Custom equality may match an earlier, distinct registration.
+			entriesByWidget = nil
+		elseif not entriesByWidget[widget] then
+			entriesByWidget[widget] = entry
+		end
+	end
 	EnsureDispatcher()
 end
 

@@ -12,6 +12,20 @@ function A.Number(value)
 end
 local Number = A.Number
 
+-- Validate the addon-private defining-function/query pair once at load.
+local carriedRestockRecord = rawget(ns, "RestockCarriedLiveQuery")
+local carriedRestockFlux = rawget(ns, "Flux")
+local carriedRestockGetter, carriedRestockQuery
+if type(carriedRestockRecord) == "table" and type(carriedRestockFlux) == "table"
+    and rawequal(rawget(carriedRestockRecord, "namespace"), ns)
+    and rawequal(rawget(carriedRestockRecord, "flux"), carriedRestockFlux) then
+    local getter = rawget(carriedRestockRecord, "getter")
+    local query = rawget(carriedRestockRecord, "query")
+    if type(getter) == "function" and type(query) == "function" then
+        carriedRestockGetter, carriedRestockQuery = getter, query
+    end
+end
+
 function A.Settings()
     local s = FluxRestockSettings.Get()
     if type(s.auctionRestock) ~= "table" then s.auctionRestock = {} end
@@ -242,6 +256,32 @@ function A.SetItemUnits(row)
     row.unitsPerItem = not row.isCharge and 1 or (capacity and capacity >= 1 and capacity % 1 == 0 and capacity or nil)
     return row
 end
+
+local setItemUnits, ordinaryCharge = A.SetItemUnits, rawget(ns, "RestockOrdinaryCharge")
+local chargeInventory = ns.Flux.Inventory
+local getBagGeneration = chargeInventory and chargeInventory.GetBagGeneration
+local getSnapshotGeneration = chargeInventory and chargeInventory.GetSnapshotGeneration
+local isReliable = chargeInventory and chargeInventory.IsReliable
+local isBankOpen = chargeInventory and chargeInventory.IsBankOpen
+
+local function ChargeGenerations()
+    if ordinaryCharge and ordinaryCharge.CanReuse() and A.SetItemUnits == setItemUnits
+        and A.ApplyPotionReplacements and A.ApplyPotionReplacements == ns.AuctionRestockApplyPotionReplacements
+        and chargeInventory and ns.Flux.Inventory == chargeInventory and getBagGeneration
+        and chargeInventory.GetBagGeneration == getBagGeneration and getSnapshotGeneration
+        and chargeInventory.GetSnapshotGeneration == getSnapshotGeneration and isReliable
+        and chargeInventory.IsReliable == isReliable and isBankOpen
+        and chargeInventory.IsBankOpen == isBankOpen and isReliable() and not isBankOpen() then
+        return getBagGeneration(), getSnapshotGeneration("bank"), getSnapshotGeneration("warband")
+    end
+end
+
+local function RememberOrdinaryCharge(rows, row)
+    if rows and row.isCharge == false and row.unitsPerItem == 1 and ordinaryCharge.IsResolved(row.itemID) then
+        rows[row] = row.itemID
+    end
+end
+
 -- Excess applies only to indivisible legacy listings of ordinary items.
 -- Use the SKU's canonical charge fact even when a recipe row counts copies.
 function A.AllowExcessStacks(item)
@@ -312,9 +352,21 @@ end
 
 local function Carried(row, physical)
     local inv = Inventory()
-    local value = inv and inv.GetLiveCount and inv.GetLiveCount(row.itemID, {
-        bags = true, bank = false, warband = false, equipped = false, charges = row.isCharge == true and not physical,
-    })
+    -- Preserve the original nil/false chain without evaluating row fields.
+    local value = inv and inv.GetLiveCount
+    if value then
+        -- Select the second getter before either row field can call outward.
+        local getLiveCount = inv.GetLiveCount
+        local itemID = row.itemID
+        local charges = row.isCharge == true and not physical
+        if carriedRestockQuery and getLiveCount == carriedRestockGetter then
+            value = carriedRestockQuery(itemID, charges)
+        else
+            value = getLiveCount(itemID, {
+                bags = true, bank = false, warband = false, equipped = false, charges = charges,
+            })
+        end
+    end
     return Number(value)
 end
 
@@ -435,9 +487,12 @@ local function RowOrder(row)
     local order = presetOrder[row.tierKind]
     -- A manual target can share its item with a preset. Keep that merged row
     -- in the preset group, including after an accepted tier replacement.
-    for _, tier in ipairs(row.tiers or {}) do
-        local rank = presetOrder[tier.tierKind]
-        if rank and (not order or rank < order) then order = rank end
+    local tiers = row.tiers
+    if tiers then
+        for _, tier in ipairs(tiers) do
+            local rank = presetOrder[tier.tierKind]
+            if rank and (not order or rank < order) then order = rank end
+        end
     end
     return order or (row.restockSource == "spellReagent" and 4)
         or (row.restockSource == "consumable" and 5) or 6
@@ -450,24 +505,14 @@ function A.RowLess(a, b)
     return an < bn
 end
 
-function A.GetRows(refresh)
-    if not refresh then return A.rows end
-    A.RefreshMailFacts()
-    local list = {}
-    for _, entry in ipairs(FluxVendorAuto.GetRestockTargetItems({ forOptionsPanel = true }) or {}) do
-        if entry.craftTarget ~= nil then
-            local base = Number(entry.craftBaseTarget) or 0
-            -- The shared list includes temporary vendor-plan ingredients.
-            -- AH ingredients come exclusively from the chosen AH material plan.
-            if entry.restockSource ~= "craftMaterial" or base > 0 then
-                local copy = {}; for key, value in pairs(entry) do copy[key] = value end
-                copy.target = base
-                list[#list + 1] = copy
-            end
-        else list[#list + 1] = entry end
-    end
+local vendorTargetList = FluxVendorAuto and FluxVendorAuto.GetRestockTargetItems
+local isFoodWater, auctionSettings = A.IsFoodWater, A.Settings
+
+local function BuildRows(list)
     if A.CapturePotionTargets then A.CapturePotionTargets(list) end
     local rows, seen = {}, {}
+    local bags, bank, warband = ChargeGenerations()
+    local ordinaryRows = bags ~= nil and {}
     for _, entry in ipairs(list) do
         local id = Number(entry.itemID)
         if id and id > 0 and not entry.isTierRestock and not seen[id] and not A.IsFoodWater(entry) then
@@ -475,6 +520,7 @@ function A.GetRows(refresh)
             local row = {}
             for k, v in pairs(entry) do row[k] = v end
             A.SetItemUnits(row)
+            RememberOrdinaryCharge(ordinaryRows, row)
             row.maxPrice = A.GetMaxPrice(id)
             rows[#rows + 1] = row
             seen[id] = row
@@ -494,6 +540,7 @@ function A.GetRows(refresh)
                     for k, v in pairs(entry) do row[k] = v end
                     row.itemID = id
                     A.SetItemUnits(row)
+                    RememberOrdinaryCharge(ordinaryRows, row)
                     row.name = FluxItemClass and FluxItemClass.GetName(id) or entry.name
                     row.texture = FluxItemClass and FluxItemClass.GetIcon and FluxItemClass.GetIcon(id) or entry.texture
                     row.maxPrice = A.GetMaxPrice(id)
@@ -505,11 +552,52 @@ function A.GetRows(refresh)
         end
     end
     if A.ApplyPotionReplacements then rows = A.ApplyPotionReplacements(rows, true) end
+    if ordinaryRows then
+        local finalBags, finalBank, finalWarband = ChargeGenerations()
+        if finalBags ~= bags or finalBank ~= bank or finalWarband ~= warband then ordinaryRows = nil end
+    end
+    return rows, ordinaryRows
+end
+
+function A.GetRows(refresh)
+    if not refresh then return A.rows end
+    A.RefreshMailFacts()
+    local getTargets = FluxVendorAuto.GetRestockTargetItems
+    local options = { forOptionsPanel = true }
+    local vendorCraft = ns.VendorCraftBaseRows
+    if getTargets == vendorTargetList and A.IsFoodWater == isFoodWater and A.Settings == auctionSettings
+        and A.CapturePotionTargets and A.CapturePotionTargets == ns.AuctionRestockCapturePotionTargets
+        and vendorCraft and vendorCraft.owner == A and vendorCraft.canBorrow()
+        and A.HasCraftPlans and not A.HasCraftPlans() and not A.transaction then
+        -- Food and water tiers are discarded below. Saved vendor plans can still read their counts.
+        local saved = auctionSettings().vendorCraftPlans
+        if not saved or (type(saved) == "table" and not next(saved)) then options.skipAuctionFoodWaterBank = true end
+    end
+    local list = {}
+    for _, entry in ipairs(getTargets(options) or {}) do
+        if entry.craftTarget ~= nil then
+            local base = Number(entry.craftBaseTarget) or 0
+            -- The shared list includes temporary vendor-plan ingredients.
+            -- AH ingredients come exclusively from the chosen AH material plan.
+            if entry.restockSource ~= "craftMaterial" or base > 0 then
+                local copy = {}; for key, value in pairs(entry) do copy[key] = value end
+                copy.target = base
+                list[#list + 1] = copy
+            end
+        else list[#list + 1] = entry end
+    end
+    local rows, ordinaryRows
+    local withBagTooltips = ns.WithAuctionRestockBagTooltips
+    if withBagTooltips then rows, ordinaryRows = withBagTooltips(BuildRows, list)
+    else rows, ordinaryRows = BuildRows(list) end
     -- Compute stock after all tier sources/replacements are assembled. Earlier
     -- counts would be discarded here and could reconcile the same receipt twice.
-    -- Refresh units rather than carrying the previous SKU's charge capacity.
+    -- Only reuse resolved ordinary units on the same row and item. Replacement
+    -- SKUs, charge capacity and unsettled inventory still get the fresh read.
     for _, row in ipairs(rows) do
-        A.SetItemUnits(row)
+        if not ordinaryRows or ordinaryRows[row] ~= row.itemID or row.isCharge ~= false or row.unitsPerItem ~= 1 then
+            A.SetItemUnits(row)
+        end
         row.need = A.Need(row)
     end
     -- Keep hidden vendor targets available to the native price-only probe.
@@ -558,10 +646,14 @@ function A.SelectStack(offers, need, cap, excess)
     return best
 end
 
+local function CommodityUnitPriceLess(a, b)
+    return (Number(a.unitPrice) or math.huge) < (Number(b.unitPrice) or math.huge)
+end
+
 function A.CommodityOffer(offers, need, cap)
     local sorted = {}
     for _, offer in ipairs(offers) do sorted[#sorted + 1] = offer end
-    table.sort(sorted, function(a, b) return (Number(a.unitPrice) or math.huge) < (Number(b.unitPrice) or math.huge) end)
+    table.sort(sorted, CommodityUnitPriceLess)
     local quantity, total, highest = 0, 0, 0
     for _, offer in ipairs(sorted) do
         local price, available = Number(offer.unitPrice), Number(offer.quantity)

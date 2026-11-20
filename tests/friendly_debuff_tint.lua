@@ -7,6 +7,7 @@ local checks = 0
 local function check(value, message) assert(value, message); checks = checks + 1 end
 local source = read(os.getenv("FLUX_DEBUFF_TINT_SOURCE") or "UnitFrames/FluxUnitFrames_DebuffTint.lua")
 local combatTextOnly = os.getenv("FLUX_DEBUFF_TINT_CASE") == "combat-text"
+local measureRoster = os.getenv("FLUX_DEBUFF_TINT_ROSTER_MEASURE") == "1"
 for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_anniversary"}) do
  for _, provider in ipairs({"current", "legacy"}) do
     local E = setmetatable({}, {__index = _G}); E._G = E
@@ -18,6 +19,8 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
     local pending, deferred, objects, boxes, reads = {}, {}, {}, {}, 0
     local dispel, ordinary = "Magic", "Poison"
     local unitAuras, aliases, readUnits, unitFriendly = {}, {}, {}, {}
+    local guids = {party1="Player-1-1", party2="Player-1-2", party3="Player-1-3", party4="Player-1-4"}
+    E.UnitGUID = function(unit) return guids[unit] end
     local function auraKind(unit, filter, index)
         index = index or 1
         local entry = unitAuras[aliases[unit] or unit]
@@ -388,6 +391,8 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
         end
         events.OnEvent(events,event,unit); flush()
     end
+    local fourth = unitFrame("party4")
+    UF.SetupDebuffTint(fourth); flush()
     local allocated = #objects
     unitAuras.player.dispel = "Bleed"; start = #readUnits
     emit("UNIT_AURA","player")
@@ -404,6 +409,7 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
     paintMatches(separate.target,"Disease"); nativeMatches(separate.target,"Disease"); nativeMatches(separate.player,"Bleed")
     unitAuras.focus = {dispel="Curse"}; emit("PLAYER_FOCUS_CHANGED")
     paintMatches(separate.focus,"Curse"); nativeMatches(separate.focus,"Curse"); nativeMatches(separate.target,"Disease")
+    guids.party3 = "Player-1-5"
     unitAuras.party3 = {ordinary="Poison"}; emit("GROUP_ROSTER_UPDATE")
     restored(separate.party3); nativeMatches(separate.party3,nil); nativeMatches(separate.target,"Disease")
     unitFriendly.target = false; emit("UNIT_FACTION","target")
@@ -434,6 +440,69 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
     restored(separate.target); nativeMatches(separate.target,nil); paintMatches(separate.player,"Poison")
     raidDB.displayOnlyDispellableDebuffs = false; refresh()
     paintMatches(separate.party3,"Poison"); nativeMatches(separate.party3,"Poison")
+    if native then
+        local member = separate.party3
+        local party = {frame,late,member,fourth}
+        local function refreshes(frames)
+            local total = 0
+            for _, box in ipairs(boxes) do
+                for _, f in ipairs(frames) do
+                    if box.parent == f or box.parent == f.PortraitFrame.FluxBorderFrame then total = total + box.refreshes end
+                end
+            end
+            return total
+        end
+        local function roster(burst)
+            for _ = 1, burst or 1 do events.OnEvent(events,"GROUP_ROSTER_UPDATE") end
+            flush()
+        end
+        for _, locked in ipairs({false,true}) do
+            combat, restricted = locked, locked
+            refresh()
+            local before = refreshes(party)
+            local batches = measureRoster and 240 or 8
+            local begin = os.clock()
+            for _ = 1, batches do roster(8) end
+            local elapsed = (os.clock()-begin)*1000
+            local work = refreshes(party)-before
+            if not measureRoster then check(work == 0,"stable public roster keeps every native debuff owner") end
+            print(("PARTY_DISPEL client=%s provider=%s combat=%s updates=%d ms=%.3f"):format(client,provider,tostring(locked),work,elapsed))
+            nativeMatches(member,"Poison")
+            if locked then restored(member) else paintMatches(member,"Poison") end
+        end
+        combat, restricted = true, false
+        local function refreshedMember(fn, kind)
+            local before = refreshes({member})
+            fn()
+            check(refreshes({member}) - before == 3,"all current native owners refresh on a changed or unresolved identity")
+            nativeMatches(member,kind); paintMatches(member,kind)
+        end
+        guids.party3 = "Player-1-6"; unitAuras.party3.dispel = "Disease"
+        local before = refreshes(party)
+        refreshedMember(function() roster(4) end,"Disease")
+        local replaced = refreshes(party) - before
+        if not measureRoster then check(replaced == 3,"a replacement only refreshes that party member's native owners") end
+        print(("PARTY_REPLACED client=%s provider=%s updates=%d"):format(client,provider,replaced))
+        guids.party3 = secret; unitAuras.party3.dispel = "Curse"
+        refreshedMember(roster,"Curse")
+        guids.party3 = nil; unitAuras.party3.dispel = "Magic"
+        refreshedMember(roster,"Magic")
+        guids.party3 = "Player-1-7"
+        refreshedMember(roster,"Magic")
+        refreshedMember(function() events.OnEvent(events,"GROUP_ROSTER_UPDATE"); UF.RefreshDebuffTint(); flush() end,"Magic")
+        refreshedMember(function() UF.RefreshDebuffTint(); roster() end,"Magic")
+        unitAuras.party3.dispel = "Poison"; emit("UNIT_AURA","party3")
+        nativeMatches(member,"Poison"); paintMatches(member,"Poison")
+        member.shown = false; member.hooks.OnHide(); roster()
+        nativeMatches(member,nil); restored(member)
+        member.shown = true; member.hooks.OnShow(); roster()
+        nativeMatches(member,"Poison"); paintMatches(member,"Poison")
+        unitAuras.party3 = {ordinary="Poison"}
+        member.optionTable.displayOnlyDispellableDebuffs = true; roster()
+        nativeMatches(member,nil); restored(member)
+        member.optionTable.displayOnlyDispellableDebuffs = nil; roster()
+        nativeMatches(member,"Poison"); paintMatches(member,"Poison")
+    end
     unitAuras.focus = {all={"untyped","UnexpectedFutureType","None","Disease"}}
     emit("PLAYER_FOCUS_CHANGED"); paintMatches(separate.focus,"Disease"); nativeMatches(separate.focus,"Disease")
     raidDB.displayOnlyDispellableDebuffs = true; refresh(); restored(separate.focus); nativeMatches(separate.focus,nil)

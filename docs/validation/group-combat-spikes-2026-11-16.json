@@ -1,0 +1,2961 @@
+{
+  "changeId": "GROUP-COMBAT-SPIKES-20261116",
+  "capturedAtUTC": "2026-11-16T18:57:48.269591+00:00",
+  "priority": "User renewed party/raid and combat lag goal, then steered mainly to combat entry/exit.",
+  "status": "Verified redundant-work fixes applied; whole native hitch goal remains active.",
+  "branch": "main",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-before-20261116T180722Z",
+  "sourceFilesInCheckpoint": 3002,
+  "historyBundleVerified": true,
+  "availableSettingsMetadataEntries": 8,
+  "privateSettingsCopied": false,
+  "noClientInputOrForegroundControl": true,
+  "profilerPreferencesChanged": false,
+  "manualInstallationCopies": false,
+  "preserved": "Saved roots/settings/defaults, action IDs/input, appearance, integrations, aura refreshes, queue order/budget,250ms range painting, native recovery and existing combat deferral. Only duplicate0.1s LFG callbacks coalesced at their original first-event deadline.",
+  "identities": {
+    "Bars/Stance/Layout.lua": {
+      "before": {
+        "raw": "26f77bb689bca4753afe0583abd484112f24a2e1bd7112d619a51c3d94b52379",
+        "normalized": "26f77bb689bca4753afe0583abd484112f24a2e1bd7112d619a51c3d94b52379"
+      },
+      "after": {
+        "raw": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd",
+        "normalized": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd"
+      }
+    },
+    "ExtraButtonSystem/Engine/Action.lua": {
+      "before": {
+        "raw": "93606dc5d296813842daf1b2a9a1e30370461cd3be9141d59bc7886319e7f1b2",
+        "normalized": "93606dc5d296813842daf1b2a9a1e30370461cd3be9141d59bc7886319e7f1b2"
+      },
+      "after": {
+        "raw": "88a7a0391fa5667ad5ac670fef1483d07c44060ecbfca00969459058a846eb3d",
+        "normalized": "88a7a0391fa5667ad5ac670fef1483d07c44060ecbfca00969459058a846eb3d"
+      }
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+      "before": {
+        "raw": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+        "normalized": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0"
+      },
+      "after": {
+        "raw": "913d1c4c3a4b8721abbb311f36fe8fdf03ada6ed033033441dd421f6e51c60a0",
+        "normalized": "913d1c4c3a4b8721abbb311f36fe8fdf03ada6ed033033441dd421f6e51c60a0"
+      }
+    },
+    "NamePlates/Core.lua": {
+      "before": {
+        "raw": "ab83681c85a8fccf9fa16a4df27101f6ff6a88f4ddda99095dae84becd4c659d",
+        "normalized": "229d1877d2331e382837c602c1de674d50341b02f3b6efa799bcf7d620fad1dc"
+      },
+      "after": {
+        "raw": "1e9eeeb9dda67e1c116a7deb0135340d41af323d40d3224c713dded385f5b644",
+        "normalized": "ded21143b3d07ffa5c37d90440579b000b0e9cbf045aa3ba8e08bcf5bde3f4ae"
+      }
+    },
+    "Minimap/FluxMinimap.lua": {
+      "before": {
+        "raw": "7d792e6a9b1d6c1a5e85c9e3cf3a805268fcdaca150dbf3c4b3f2427aeeefeae",
+        "normalized": "7d792e6a9b1d6c1a5e85c9e3cf3a805268fcdaca150dbf3c4b3f2427aeeefeae"
+      },
+      "after": {
+        "raw": "3864733e565243f4fbec7510691524d93484dc04d2ead84231624e67a0e1efa3",
+        "normalized": "3864733e565243f4fbec7510691524d93484dc04d2ead84231624e67a0e1efa3"
+      }
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "before": {
+        "raw": "bb584206279a1e0e5f52f72c3cb41c03c422cbf5cc60b03a96780fbf18572ac3",
+        "normalized": "bb584206279a1e0e5f52f72c3cb41c03c422cbf5cc60b03a96780fbf18572ac3"
+      },
+      "after": {
+        "raw": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f",
+        "normalized": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f"
+      }
+    },
+    "MicroMenu/FluxLFGMicroButton.lua": {
+      "before": {
+        "raw": "cd21005dbdf95e59abae41d75eed111c0cfd01dff6db5a66e6310b65fd65065a",
+        "normalized": "cd21005dbdf95e59abae41d75eed111c0cfd01dff6db5a66e6310b65fd65065a"
+      },
+      "after": {
+        "raw": "d126b72f12fe6525e2cf7978275e43191c35d7da9fd1564657471f920ab39e82",
+        "normalized": "d126b72f12fe6525e2cf7978275e43191c35d7da9fd1564657471f920ab39e82"
+      }
+    },
+    "tests/stance_regen_geometry_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "718c8f814f34e68b782ef221171456ea7591c8f5ec60f26ea3e90ff315f1364a",
+        "normalized": "718c8f814f34e68b782ef221171456ea7591c8f5ec60f26ea3e90ff315f1364a"
+      }
+    },
+    "tests/assistant_binding_lifecycle.lua": {
+      "before": null,
+      "after": {
+        "raw": "907180451219bd066c5438cb15184b1af9b1221a4a15f5aace9c05e27ddec08c",
+        "normalized": "907180451219bd066c5438cb15184b1af9b1221a4a15f5aace9c05e27ddec08c"
+      }
+    },
+    "tests/trinket_regen_refresh.lua": {
+      "before": null,
+      "after": {
+        "raw": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+        "normalized": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694"
+      }
+    },
+    "tests/nameplate_refresh_batch.lua": {
+      "before": null,
+      "after": {
+        "raw": "1780c673263d76ed545df818e96e8e7515622521d164ceb261fa605d311803a4",
+        "normalized": "1780c673263d76ed545df818e96e8e7515622521d164ceb261fa605d311803a4"
+      }
+    },
+    "tests/minimap_indicator_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "8584841ae581e3f38b889d514170f307bf8a3aa07af17f7fe511b290eeb39e14",
+        "normalized": "8584841ae581e3f38b889d514170f307bf8a3aa07af17f7fe511b290eeb39e14"
+      }
+    },
+    "tests/raid_range_discovery_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "c6894c36451f0c9b8c9fc107b03b236a63f7fadd0b20c25ffd7bb4e400a890cc",
+        "normalized": "c6894c36451f0c9b8c9fc107b03b236a63f7fadd0b20c25ffd7bb4e400a890cc"
+      }
+    },
+    "tests/lfg_status_work.lua": {
+      "before": null,
+      "after": {
+        "raw": "c2fd94454c41945984769b94b7a3f661d166d1eb8fee966390da3f2ffa300b58",
+        "normalized": "c2fd94454c41945984769b94b7a3f661d166d1eb8fee966390da3f2ffa300b58"
+      }
+    },
+    "tests/bars_contract_regression.lua": {
+      "before": {
+        "raw": "24376d796e30375e1898ef2bdf8b9f824e7594fce44da29e4e48bade10431710",
+        "normalized": "24376d796e30375e1898ef2bdf8b9f824e7594fce44da29e4e48bade10431710"
+      },
+      "after": {
+        "raw": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+        "normalized": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf"
+      }
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "before": {
+        "raw": "a748a8915931b20848931cb35aece36a16170e13cc8fec1d2f1b5b6a054f8027",
+        "normalized": "a748a8915931b20848931cb35aece36a16170e13cc8fec1d2f1b5b6a054f8027"
+      },
+      "after": {
+        "raw": "839116beaffffdebdbe82a7db18bd62c7af972d40abadf7ae6da185609bcde51",
+        "normalized": "839116beaffffdebdbe82a7db18bd62c7af972d40abadf7ae6da185609bcde51"
+      }
+    },
+    "Core/BorderJunctions.lua": {
+      "before": {
+        "raw": "a72891828522fde82e2e9acfe23cdd37bef85f8a2468cab1815b9527e876142e",
+        "normalized": "e45902817207a50b408c4290ae594f07c15f5c4dfc7c4118f2b366b17dfbb85c"
+      },
+      "after": {
+        "raw": "1a4fcc323f6c48573dda28cad4126bf59186115fb762d2344557ecdc5a10b171",
+        "normalized": "3dbf2c76cb5cf56d12b6eebaa3e4d05d5a1100bc1cca8dc1bc08a14c5f7bc092"
+      }
+    },
+    "RaidFrame/FluxRaidLayout.lua": {
+      "before": {
+        "raw": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+        "normalized": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e"
+      },
+      "after": {
+        "raw": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+        "normalized": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b"
+      }
+    },
+    "UnitFrames/FluxUnitFrames_Focus.lua": {
+      "before": {
+        "raw": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+        "normalized": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+      },
+      "after": {
+        "raw": "516b5917ba3f62835f056ed22208eb4d4425c7b72f7de658747bfb3caf0d2367",
+        "normalized": "516b5917ba3f62835f056ed22208eb4d4425c7b72f7de658747bfb3caf0d2367"
+      }
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "before": {
+        "raw": "6e0e787fc08ee6ca14226a0b5c025d117b3fdeb1f6132508d3355af6837d8813",
+        "normalized": "0e97f78bcf3758e7f3adb3e1ee50004066d22a082e7cec313feeec9713ace6f2"
+      },
+      "after": {
+        "raw": "d7ea0d5d5c883f0ad5958c2d1aa55842fe2a21f3727c894d7139bd5ec3beaced",
+        "normalized": "db650736772025656b42db1f538e412e1499165d6d4e4becc29b9cd63d6e9fd0"
+      }
+    },
+    "tests/unit_outer_geometry.lua": {
+      "before": null,
+      "after": {
+        "raw": "bdc8d2c8da0bfd161e7f779e4b2257ca30ad81a1f94fc0f897db4c93d22a3214",
+        "normalized": "319977ee63e5c0426a3001f0f09b22f133a808c5188e9b9665de86c97b395a62"
+      }
+    },
+    "tests/unit_outer_lifecycle.lua": {
+      "before": null,
+      "after": {
+        "raw": "f0bebb1406bde4fdf4205b1da1e493a23126309dfac536c3e01564adcde396c6",
+        "normalized": "d89c01df28b5705e8ff72f90725675bdb7cea84bc51bab92806ddf7d0113eb64"
+      }
+    },
+    "tests/unit_outer_party_geometry.lua": {
+      "before": null,
+      "after": {
+        "raw": "e90646c975284bfa8e0034019bf03e1320ff79f1c3008642110e61eb9c20b9c9",
+        "normalized": "916dbee6e2211a18d5860d23656a19bb6cd693e7ca583ed9722de14fd3effa2e"
+      }
+    },
+    "tests/unit_portrait_border_fit.lua": {
+      "before": {
+        "raw": "458921fd669234084d599f9d7180355c8dac0d08890ea60f8f1636e797c15069",
+        "normalized": "458921fd669234084d599f9d7180355c8dac0d08890ea60f8f1636e797c15069"
+      },
+      "after": {
+        "raw": "9854ae52d8a88836bb4c6379f82af81a605ba3760d886d6546df55962e5ac574",
+        "normalized": "9854ae52d8a88836bb4c6379f82af81a605ba3760d886d6546df55962e5ac574"
+      }
+    },
+    "tests/border_reflow_cost.lua": {
+      "before": {
+        "raw": "dd16d110e56e994a80ca538912e3211ff34f7ea5cfa65b88cea1bd37b573b912",
+        "normalized": "dd16d110e56e994a80ca538912e3211ff34f7ea5cfa65b88cea1bd37b573b912"
+      },
+      "after": {
+        "raw": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b",
+        "normalized": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b"
+      }
+    },
+    "tests/border_unit_paint_idempotence.lua": {
+      "before": {
+        "raw": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada",
+        "normalized": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada"
+      },
+      "after": {
+        "raw": "e95581fee89267622ad9cc3d618f6e1126676dc1372ee30b86259a6f5b3cf79a",
+        "normalized": "e95581fee89267622ad9cc3d618f6e1126676dc1372ee30b86259a6f5b3cf79a"
+      }
+    }
+  },
+  "changes": [
+    {
+      "owner": "Bars/Stance/Layout.lua",
+      "trigger": "Combat exit invokes full stance layout through action-strip HUD reconciliation.",
+      "fix": "Fresh public current size/scale/parent/single-anchor checks skip identical native geometry writes. Full current catalog, visibility, metrics, paint, clipping, root Anchor, pet position, override-binding repair and border commit remain.",
+      "proof": "468 actual Strip/Watch/Combat/Stance lifecycle checks; exact baseline and harmful controls rejected. Modeled50 exits:1350 child geometry writes and50 root size writes become0, with1400 added fresh getter calls;150 paints/50 binding repairs/50 border commits remain. Current drift, pending lockdown work, explicit/gamepad calls and original setter error policies retained."
+    },
+    {
+      "owner": "ExtraButtonSystem/Engine/Action.lua",
+      "trigger": "Unsupported assistant clients queue binding recovery and create/clear an empty binding owner on regen.",
+      "fix": "Return only when capability is currently unsupported and there is no existing owner. Supported paths and capability-loss cleanup remain.",
+      "proof": "19 checks on Lua5.1 and5.4; 100 modeled cycles: owners1to0 and binding clears200to0."
+    },
+    {
+      "owner": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+      "trigger": "Both visibility and Show intents accumulate while combat-locked; hidden policy leaves Show pending and repeats refresh.",
+      "fix": "Consume only the original duplicate intent. Preserve visibility/keybinding/show-only order, new reentrant intents, exact errors and the original Show retry when the first refresh fails.",
+      "proof": "45 actual-core/manager checks on Lua5.1 and5.4; combined hidden refresh scans4to2, border refreshes2to1; each real refresh retains its two scans. First visibility/border and middle-key errors retain original raw retry intent; a visible Show false-consumption marker does not invent an old retry."
+    },
+    {
+      "owner": "NamePlates/Core.lua",
+      "trigger": "Group and both regen edges run a full nameplate refresh; same-NPC objective lookups repeat per visible plate.",
+      "fix": "Share successful lookup data only within the synchronous refresh. Publish completed rows only. Choose NPC cache identity only with an actual Questie tooltip provider; native fallback remains keyed by unit.",
+      "proof": "1421 integrated checks; two same-NPC plates: objective updates4to2, native same-quest lookups2to1 with both unit-tooltip queries retained. Dirty polling, all three retries, provider arrival/loss, errors and privacy remain."
+    },
+    {
+      "owner": "Minimap/FluxMinimap.lua",
+      "trigger": "Roster changes repeatedly reset tracking/mail/difficulty/landing indicator geometry.",
+      "fix": "Reuse existing fresh-state helpers for matching parent/anchor/frame level. Preserve clear-before-parent callback state, reentrant correction and every native update.",
+      "proof": "168 new checks plus dependent replays; four populated native-shape models:2100to0 geometry writes per100 unchanged passes while500 native update calls remain. Not a native CPU/FPS measurement."
+    },
+    {
+      "owner": "RaidFrame/FluxRaidUnit.lua",
+      "trigger": "Roster/reveal range-owner discovery keeps scanning after the first eligible fallback frame.",
+      "fix": "Discovery stops at its first eligible owner; the existing250ms painter continues visiting every eligible raid and party frame.",
+      "proof": "24 checks; modeled discovery visibility reads40to1; full painting, hidden/native-supported owners and ticker retirement retained."
+    },
+    {
+      "owner": "MicroMenu/FluxLFGMicroButton.lua",
+      "trigger": "Every event in a group/LFG burst schedules another identical0.1s status query.",
+      "fix": "Coalesce pending status callbacks at the original first-event deadline; read current state and release pending before querying.",
+      "proof": "15 checks on Lua5.1 and5.4;120-event burst timers120to1; query failure/reentry, fallback and animation cadence retained."
+    }
+  ],
+  "concurrentPreserved": {
+    "paths": [
+      "Core/BorderJunctions.lua",
+      "RaidFrame/FluxRaidLayout.lua",
+      "UnitFrames/FluxUnitFrames_Focus.lua",
+      "UnitFrames/FluxUnitFrames_Shared.lua",
+      "tests/unit_outer_geometry.lua",
+      "tests/unit_outer_lifecycle.lua",
+      "tests/unit_outer_party_geometry.lua",
+      "tests/unit_portrait_border_fit.lua",
+      "tests/border_reflow_cost.lua",
+      "tests/border_unit_paint_idempotence.lua"
+    ],
+    "borderVersion": "event-reflow-r54",
+    "scope": "Changed by concurrent work after checkpoint. Preserved unchanged by this slice; current composed corpus tested. No ownership or native acceptance claim for their changes."
+  },
+  "sourceCoverage": {
+    "reachablePaths": 625,
+    "reachableLua": 602,
+    "transitionReferenceFiles": 104,
+    "groupReferenceFiles": 19,
+    "scope": "Official TOC/XML union lexical sites, including comments/conditional references. Retains the earlier101/36/8 indirect audits. Not a live callback registration census.",
+    "missingGraphPaths": [],
+    "rows": [
+      {
+        "path": "AddonOptions/FluxOptionsShell.lua",
+        "sites": [
+          {
+            "line": 858,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 867,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 877,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "sites": [
+          {
+            "line": 363,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 364,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 694,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Effects.lua",
+        "sites": [
+          {
+            "line": 759,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 760,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Pet/Watch.lua",
+        "sites": [
+          {
+            "line": 128,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Stance/Watch.lua",
+        "sites": [
+          {
+            "line": 136,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 137,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Vehicle.lua",
+        "sites": [
+          {
+            "line": 12,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 229,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 235,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "sites": [
+          {
+            "line": 495,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 964,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 969,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMap.lua",
+        "sites": [
+          {
+            "line": 906,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 907,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 909,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 912,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "sites": [
+          {
+            "line": 852,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 854,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "sites": [
+          {
+            "line": 886,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 887,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1225,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1236,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "sites": [
+          {
+            "line": 666,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 670,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxBlizzardMeter.lua",
+        "sites": [
+          {
+            "line": 1647,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1648,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1654,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1657,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxThreat.lua",
+        "sites": [
+          {
+            "line": 199,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 200,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 202,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 210,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 211,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 839,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 910,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 913,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 924,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 931,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 943,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 989,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 990,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxThreatMeter.lua",
+        "sites": [
+          {
+            "line": 332,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 333,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 359,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 364,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Battlezonemap/FluxWindowFrame.lua",
+        "sites": [
+          {
+            "line": 1671,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1673,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/Boot.lua",
+        "sites": [
+          {
+            "line": 41,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/Core/Apply.lua",
+        "sites": [
+          {
+            "line": 10,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2434,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/Core/PushPress.lua",
+        "sites": [
+          {
+            "line": 873,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/Input/FluxMouseoverKeybind.lua",
+        "sites": [
+          {
+            "line": 2243,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2244,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 2328,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2354,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/Respec.lua",
+        "sites": [
+          {
+            "line": 338,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 360,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 364,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Binding/UI/SpellbookBindingHooks.lua",
+        "sites": [
+          {
+            "line": 216,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Blizzard/Hide.lua",
+        "sites": [
+          {
+            "line": 46,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 117,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 206,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "BlizzardSettings/Write.lua",
+        "sites": [
+          {
+            "line": 5,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 251,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 269,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "CharacterInfo/PaperDollEquipFlyout.lua",
+        "sites": [
+          {
+            "line": 368,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "CharacterInfo/StatsProgression.lua",
+        "sites": [
+          {
+            "line": 938,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 965,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ConsoleportCompat/Loader.lua",
+        "sites": [
+          {
+            "line": 50,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 64,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/BorderJunctions.lua",
+        "sites": [
+          {
+            "line": 3344,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3350,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/ButtonFX/Glow.lua",
+        "sites": [
+          {
+            "line": 2001,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/Combat.lua",
+        "sites": [
+          {
+            "line": 1,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 213,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 215,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/Context.lua",
+        "sites": [
+          {
+            "line": 530,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 531,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 539,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 540,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 578,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 579,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/Events.lua",
+        "sites": [
+          {
+            "line": 80,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/MouseoverCast.lua",
+        "sites": [
+          {
+            "line": 1351,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/Perf.lua",
+        "sites": [
+          {
+            "line": 217,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 348,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Engine/Restricted.lua",
+        "sites": [
+          {
+            "line": 272,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 339,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 342,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/Flux.lua",
+        "sites": [
+          {
+            "line": 183,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 203,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 234,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Core/SecureClickProxy.lua",
+        "sites": [
+          {
+            "line": 209,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
+        "sites": [
+          {
+            "line": 338,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 339,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 350,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 386,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+        "sites": [
+          {
+            "line": 337,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 338,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 341,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 345,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "sites": [
+          {
+            "line": 2660,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2661,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3518,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Watch.lua",
+        "sites": [
+          {
+            "line": 801,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 888,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 889,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+        "sites": [
+          {
+            "line": 579,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 581,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+        "sites": [
+          {
+            "line": 6333,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 6334,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 6447,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 6463,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
+        "sites": [
+          {
+            "line": 1140,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1146,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+        "sites": [
+          {
+            "line": 538,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
+        "sites": [
+          {
+            "line": 2130,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2131,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2831,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2837,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+        "sites": [
+          {
+            "line": 3130,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3131,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 3435,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 3441,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3655,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+        "sites": [
+          {
+            "line": 2890,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2909,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+        "sites": [
+          {
+            "line": 176,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+        "sites": [
+          {
+            "line": 140,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 142,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "sites": [
+          {
+            "line": 1185,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1250,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua",
+        "sites": [
+          {
+            "line": 626,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+        "sites": [
+          {
+            "line": 444,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 446,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+        "sites": [
+          {
+            "line": 138,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 139,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 209,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 260,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "FluxDefaultSettings.lua",
+        "sites": [
+          {
+            "line": 1150,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1163,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1180,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2890,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3208,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "sites": [
+          {
+            "line": 474,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 486,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Inventory/Professions.lua",
+        "sites": [
+          {
+            "line": 1798,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1815,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+        "sites": [
+          {
+            "line": 358,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 359,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+        "sites": [
+          {
+            "line": 109,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 242,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 356,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Mail/Restock.lua",
+        "sites": [
+          {
+            "line": 208,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 229,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 236,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "MicroMenu/FluxLFGMicroButton.lua",
+        "sites": [
+          {
+            "line": 427,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "MicroMenu/FluxMicroMenu.lua",
+        "sites": [
+          {
+            "line": 3112,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 3196,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "MicroMenu/FluxTradeSkillMicro.lua",
+        "sites": [
+          {
+            "line": 1079,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1087,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Minimap/FluxBuffDebuffFrames.lua",
+        "sites": [
+          {
+            "line": 95,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Minimap/FluxMinimap.lua",
+        "sites": [
+          {
+            "line": 77,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 82,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 227,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 297,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 1261,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2346,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2585,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Minimap/FluxMinimapButtons.lua",
+        "sites": [
+          {
+            "line": 770,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 771,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 778,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 780,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+        "sites": [
+          {
+            "line": 248,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1089,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Minimap/FluxQuestie.lua",
+        "sites": [
+          {
+            "line": 12,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 75,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "NamePlates/Core.lua",
+        "sites": [
+          {
+            "line": 588,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 589,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 590,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxArenaFramePosition.lua",
+        "sites": [
+          {
+            "line": 135,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 140,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxBossFramePosition.lua",
+        "sites": [
+          {
+            "line": 134,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 136,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxChatColumnMicros.lua",
+        "sites": [
+          {
+            "line": 1061,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1187,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxChatCopyPaste.lua",
+        "sites": [
+          {
+            "line": 606,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 611,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1118,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1120,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxChatFrame.lua",
+        "sites": [
+          {
+            "line": 1405,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1406,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1480,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1488,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxExtraAbilityHUD.lua",
+        "sites": [
+          {
+            "line": 209,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 228,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxLootRollPosition.lua",
+        "sites": [
+          {
+            "line": 30,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 40,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxPerfDebug.lua",
+        "sites": [
+          {
+            "line": 843,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxVehicleExitButton.lua",
+        "sites": [
+          {
+            "line": 161,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 170,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxVehicleSeats.lua",
+        "sites": [
+          {
+            "line": 385,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 400,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "RaidFrame/FluxRaidFrame.lua",
+        "sites": [
+          {
+            "line": 198,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 204,
+            "tokens": [
+              "PARTY_MEMBERS_CHANGED"
+            ]
+          },
+          {
+            "line": 221,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 232,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 316,
+            "tokens": [
+              "PARTY_LEADER_CHANGED"
+            ]
+          },
+          {
+            "line": 323,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 324,
+            "tokens": [
+              "PARTY_MEMBERS_CHANGED"
+            ]
+          },
+          {
+            "line": 326,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 327,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 338,
+            "tokens": [
+              "PARTY_LEADER_CHANGED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "RaidFrame/FluxRaidHealerExtras.lua",
+        "sites": [
+          {
+            "line": 277,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 281,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 335,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 344,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 355,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "RaidFrame/FluxRaidHoTs.lua",
+        "sites": [
+          {
+            "line": 300,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 318,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "sites": [
+          {
+            "line": 940,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 942,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 944,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 962,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "sites": [
+          {
+            "line": 113,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 552,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 606,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 607,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Respec/FluxRespec_ActionBars.lua",
+        "sites": [
+          {
+            "line": 622,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Respec/FluxRespec_Equipment.lua",
+        "sites": [
+          {
+            "line": 1811,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "Salvage/FluxSalvage_Overlay.lua",
+        "sites": [
+          {
+            "line": 72,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 90,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "StatusBars/FluxInfoFrame.lua",
+        "sites": [
+          {
+            "line": 4912,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 4913,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 4927,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "StatusBars/FluxStatusBar.lua",
+        "sites": [
+          {
+            "line": 2571,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2937,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2989,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxForeverComboPoints.lua",
+        "sites": [
+          {
+            "line": 120,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 131,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxLegacyComboPoints.lua",
+        "sites": [
+          {
+            "line": 169,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxSwingTimer.lua",
+        "sites": [
+          {
+            "line": 2099,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2125,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2261,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2262,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Auras.lua",
+        "sites": [
+          {
+            "line": 2329,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2337,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2351,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2352,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 2365,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 2366,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+        "sites": [
+          {
+            "line": 322,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 323,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 332,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "sites": [
+          {
+            "line": 675,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Party.lua",
+        "sites": [
+          {
+            "line": 6,
+            "tokens": [
+              "PARTY_LEADER_CHANGED"
+            ]
+          },
+          {
+            "line": 548,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 550,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 645,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 689,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 728,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+        "sites": [
+          {
+            "line": 201,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 257,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+        "sites": [
+          {
+            "line": 601,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 608,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+        "sites": [
+          {
+            "line": 103,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 104,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 183,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 186,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
+        "sites": [
+          {
+            "line": 1182,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 1183,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+        "sites": [
+          {
+            "line": 418,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 423,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 783,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 784,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+        "sites": [
+          {
+            "line": 217,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 218,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 221,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 223,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1359,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1411,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 1425,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 6907,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 6908,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 8773,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 8774,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9053,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9059,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9067,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED",
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9068,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9281,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE",
+              "RAID_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 9282,
+            "tokens": [
+              "PARTY_LEADER_CHANGED"
+            ]
+          },
+          {
+            "line": 9413,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9421,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9508,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9521,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9537,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9552,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9567,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 9568,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 9574,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 9575,
+            "tokens": [
+              "RAID_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 9576,
+            "tokens": [
+              "PARTY_LEADER_CHANGED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Target.lua",
+        "sites": [
+          {
+            "line": 31,
+            "tokens": [
+              "GROUP_ROSTER_UPDATE"
+            ]
+          },
+          {
+            "line": 320,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+        "sites": [
+          {
+            "line": 128,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "libs/LibKeyBound-1.0/LibKeyBound-1.0.lua",
+        "sites": [
+          {
+            "line": 115,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 125,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 144,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 230,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 237,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 665,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 666,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          },
+          {
+            "line": 667,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 668,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 680,
+            "tokens": [
+              "PLAYER_REGEN_ENABLED"
+            ]
+          },
+          {
+            "line": 681,
+            "tokens": [
+              "PLAYER_REGEN_DISABLED"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "fullScripts": 491,
+    "fullFailures": 0,
+    "syntaxFiles": 1181,
+    "syntaxFailures": 0,
+    "changedDuringFinalRun": [],
+    "fullReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-current.json",
+    "fullStability": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-current-stability.json",
+    "initialMixedRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-full.json",
+    "initialScope": "Initial run had485PASS/2 stale source-extractorFAIL. Stance test and concurrent RaidLayout/Focus/border tests changed during that run; fixture repairs and final frozen sweep supersede it. Concurrent user changes were preserved.",
+    "secondMixedRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-final.json",
+    "secondScope": "Second run had487PASS/1 stale portrait extractorFAIL while concurrent Shared/outer lifecycle tests changed. Concurrent owner repaired its fixture (30240 checks PASS); final sealed sweep supersedes it. No portrait runtime/test edit from this slice.",
+    "priorStableSweep": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-sealed.json",
+    "priorStableScope": "491PASS/1181syntax with no source changes, before the final targeted TrinketMenu middle-key error/visible-consumption correction. Current frozen sweep supersedes it.",
+    "lua51": {
+      "scope": "679 files compiled directly; 11 unchanged third-party UTF-8 BOM files compiled from byte-identical external inputs minus initial BOM. No installed source changed. Stock Lua5.1 rejects these existing BOMs; byte-adjusted compiler results are supplementary, not native-loader certification. Fresh10 changed-source compilation supersedes prior prototypes for owned7 and concurrent3 files; source hashes stable during replay.",
+      "files": 690,
+      "directPass": 679,
+      "BOMAccommodations": [
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.deDE.lua",
+          "sourceSHA256": "15d4f22f3619173144fc0d1f15a4d99e9a1431aa9a76e8c12c33f160c4eacf26",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.enUS.lua",
+          "sourceSHA256": "f4661ca1399316723f9526c33a33c5b95d17a3cf85a204fb6bb75f5a59eb6f79",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.esES.lua",
+          "sourceSHA256": "67de12ffac32620a1420b9cb4ab93d4b294717a414687457816190c120554e72",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.frFR.lua",
+          "sourceSHA256": "6ec5f4d2c8ebf29d58c67d5a00af0baf07c9b476fa6ac9073822080b6e6c34a0",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.koKR.lua",
+          "sourceSHA256": "a22541bab28cdfcfd7c534db0408114f90ec1c5799e46e8986b26a72c8cf2ad3",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ptBR.lua",
+          "sourceSHA256": "9f31d8a523113d2cb1b75eef6e2f576d77c0d302f48b1468ebc5620d66a7ba3a",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.Alternate.lua",
+          "sourceSHA256": "0979e4f99948c5dbb9ca8858ff6299af77ee012a8726ac93fd7277cadaad26e8",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.ruRU.lua",
+          "sourceSHA256": "188a1da3c70b9ff4e3360c08da7b73f53a7f15ca7e0b21da20110dedba54e5c4",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhCN.lua",
+          "sourceSHA256": "de75fafbc3915f46b1bc98fc5e63929322596c6f5aa4255f16513d985f58ef86",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "Inventory/Restock/Vendor/BuyEmAll/Localization/Localization.zhTW.lua",
+          "sourceSHA256": "a47904d9ff77ffd3a969402242c980258efd75ecd2d452f037a5eae087dc5e02",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 0,
+          "error": ""
+        },
+        {
+          "path": "libs/LibWindow-1.1/LibWindow-1.1.lua",
+          "sourceSHA256": "306e722c2799d8edbb5d3165d3d8b414e88a5cb544fcbd24b2a2b1a15a893dd4",
+          "adjustment": "strip initial UTF-8 BOM only for stock Lua5.1 compiler input; installed file untouched",
+          "exit": 0,
+          "maximum": 4,
+          "error": ""
+        }
+      ],
+      "maximum": 53,
+      "failures": [],
+      "freshChangedSourceCompilation": {
+        "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-final-runtime-lua51.json",
+        "sourceHashes": {
+          "Bars/Stance/Layout.lua": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd",
+          "Core/BorderJunctions.lua": "3dbf2c76cb5cf56d12b6eebaa3e4d05d5a1100bc1cca8dc1bc08a14c5f7bc092",
+          "ExtraButtonSystem/Engine/Action.lua": "88a7a0391fa5667ad5ac670fef1483d07c44060ecbfca00969459058a846eb3d",
+          "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "913d1c4c3a4b8721abbb311f36fe8fdf03ada6ed033033441dd421f6e51c60a0",
+          "NamePlates/Core.lua": "ded21143b3d07ffa5c37d90440579b000b0e9cbf045aa3ba8e08bcf5bde3f4ae",
+          "Minimap/FluxMinimap.lua": "3864733e565243f4fbec7510691524d93484dc04d2ead84231624e67a0e1efa3",
+          "RaidFrame/FluxRaidLayout.lua": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+          "RaidFrame/FluxRaidUnit.lua": "7bbfea26c9e8d09026ab4791822840eea6325bf660d6008967d2e5b0d34c0c0f",
+          "MicroMenu/FluxLFGMicroButton.lua": "d126b72f12fe6525e2cf7978275e43191c35d7da9fd1564657471f920ab39e82",
+          "UnitFrames/FluxUnitFrames_Focus.lua": "516b5917ba3f62835f056ed22208eb4d4425c7b72f7de658747bfb3caf0d2367"
+        },
+        "exit": 0,
+        "includesConcurrentUnownedFiles": [
+          "Core/BorderJunctions.lua",
+          "RaidFrame/FluxRaidLayout.lua",
+          "UnitFrames/FluxUnitFrames_Focus.lua"
+        ],
+        "supersededSourceHashes": {
+          "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "372eb045af9e43e6de35d22153f073a4092f161dc9cba318958ff592b0780921"
+        },
+        "overrideReports": {
+          "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-trinket-final-lua51.json"
+        }
+      },
+      "freshConcurrentSharedCompilation": {
+        "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+        "sourceHash": "db650736772025656b42db1f538e412e1499165d6d4e4becc29b9cd63d6e9fd0",
+        "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-concurrent-shared-lua51.json",
+        "exit": 0
+      }
+    },
+    "rawLua51CompilerReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-combat-all-runtime-lua51.json",
+    "focusedReports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\minimap-transition-final-focused.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-range-discovery-checks.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\group-range-discovery-benchmark.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\nameplate-refresh-batch\\report-v2.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-work\\report.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-work\\controls-final.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-work\\work-counts.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e588-403e-7323-ace6-319b729c71a8\\combat-callback-lua51-final.json"
+    ],
+    "documentation": {
+      "result": "PASS",
+      "classifiedSources": 1214,
+      "tocXmlReachable": 625,
+      "settingDefinitions": 444,
+      "savedVariables": 24,
+      "localLinks": 18083
+    },
+    "gitDiffCheck": "PASS using repository line-ending policy; an autocrlf=false exploratory check produced CR-at-EOL noise, not source whitespace changes",
+    "postDocumentationLuaDrift": []
+  },
+  "remaining": [
+    "Native current first/repeated combat entry/exit timings and attribution, input/taint/rendering and other-client acceptance remain pending. No connected native execution tool was available; no closed-client claim.",
+    "Existing R52 native border232.41ms toggle and R50combat-exit218.36ms remain historical unresolved hitch evidence. Current composed border/these candidates have no new matched native acceptance in this slice.",
+    "Player entry still runs broad class/spec/level/name visual refresh; removing it requires preserving combat-name reserve and native recovery. Both combat-icon layout calls retained because name fitting reads the first icon width.",
+    "Squeeze regen still notifies broad layout dependents even when local widths are unchanged. Secure grids and pending dependent geometry can change independently; no notification was dropped without proof.",
+    "Optional raid HoT learning, native aura full refreshes and dispel SetUnit recovery were not cached or suppressed speculatively. This slice admits no observer-pair prototype; concurrent event-reflow-r54 border work is owned separately.",
+    "Guild-bank and void-storage callbacks remain out of scope. Action-strip seam/artwork changes remain held."
+  ],
+  "measurementLimits": "Desktop counts and synthetic leaf CPU samples establish only their stated scope. No native CPU, FPS, GC, taint or pixel improvement is certified. Raid native-supported CPU pair regression retained in its raw report.",
+  "sourceContracts": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "foreverHandwrittenRetained": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "foreverGeneratedWidgetSchema": "9dc84f0d3bbae1768ac3405b3716000bd93eda06",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "scope": "Existing target/adapter and pinned-source contracts retained. Package-local source declarations checked for frame-level secrecy and group event; no new TOC/API client contract or native build probe."
+  },
+  "finalPostcheckUTC": "2026-11-16T18:59:34.751820+00:00",
+  "ownedJobs": "All root and assigned-agent test/reference/validation jobs finished; no native diagnostic armed; preferences untouched."
+}

@@ -1,5 +1,65 @@
 # Auction house restock
 
+## Saved recipes and row hover
+
+20 November. After FluxUI captures a complete learned recipe, Auction Restock
+can use it for planning after the profession closes and after a reload. If the
+profession book omits a skill that the player's skill pane reports with a
+positive rank, the cached recipe remains eligible. An unlearned recipe, a
+mismatched output, or an uncertain quality result still fails the existing
+verification. Clicking Pending when it is time to craft opens the appropriate
+profession as needed and verifies the live recipe before crafting.
+[Forever skill-pane API declaration](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SkillInfoDocumentation.lua).
+
+The item tooltip now handles both native hover arguments and still shows its
+configured copper cap, including zero or no limit. A retired cell callback
+cannot take ownership of the current tooltip.
+
+The desktop replay used the local Forever SavedVariables with a modeled
+profession book and skill pane. All 19 saved First Aid outputs were available
+after the change, up from zero when the modeled book omitted First Aid.
+The profession knowledge regression passed 584 checks, the viewport regression
+passed 88,660, and the closed-profession follow-up regression passed 1,220.
+Native Auction House hover and Pending execution are pending after reload.
+
+<!-- LHO-AUCTION-SEARCH-PREPAINT-LIVE-20261120 -->
+20 November. Loaded Forever warm Restock with aged prices made three startup paints versus four before, one synchronous row build and three later paints. It showed the same six visible rows and one hidden row. The loaded startup took 8.131 ms, compared with 6.180 and 7.713 ms in earlier runs. Full startup and frame-time gains remain unverified. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-AUCTION-SEARCH-PREPAINT-20261120 -->
+20 November. The native Forever opening path did one synchronous row build, while two warm opens each rebuilt the panel model four times during the initial call. Owned search setup now paints the complete state once after invalidating the old query. Replaced callbacks and live transaction or quote paths retain the existing behavior. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-RESTOCK-REAGENT-NAME-READS-20261119 -->
+19 November. The shared Restock builder now shares available native inventory names within a single rebuild. Three real-item comparisons matched all names and cut native requests from 207 to 69 per sample pair. Full Restock and frame-spike timing remain open. [Evidence](validation/restock-reagent-name-reads-2026-11-19.json).
+
+<!-- LHO-AUCTION-USE-FINAL-SKU-20261119 -->
+19 November. The row assembler initializes charge units before handing rows to ApplyPotionReplacements and resolves units on each final item before computing need. The replacement path sets the substitute item’s units before its bank read. A charged-row compatibility audit identified two affected extension cases when preliminary calls were removed. The original calls have been restored. [Evidence](validation/auction-final-sku-2026-11-19.json).
+
+<!-- LHO-RESTOCK-BANK-NONCONSUMABLE-20261119 -->
+19 November. A current Forever Auction Restock rebuild took 19.1985 ms, with 13.2688 ms attributable to five bank-tier totals. The closed bank supplied 17 known non-consumable IDs and four consumable IDs. All 17 excluded classes had positive counts whose reads took 3.9094 ms. The follow-up found 105 classifications and zero matching usability checks.
+
+The shared tier matcher now skips the quantity read only when the original classifiers and matching rules rule a known non-consumable out of all tiers. This exclusion lives within one reliable closed-bank list build. Unknown metadata, open banks and replacement providers retain the original path. Native zero counts are never memoized. No new timers or refresh events were added. Both Lua syntax versions pass and the Retail and Forever source hashes match.
+
+After reload 142, two live paired rebuilds in opposite order improved from 31.0528 to 15.4413 ms and from 21.6121 to 17.6776 ms. The paired reads matched every field across nine shared, six visible and one hidden row. Each candidate skipped 17 quantity reads and retained four positive bank quantities. Both generations held, temporary observers restored, and the error count was zero. Commerce windows were closed and there was no active Pending job. Overall FPS spikes and the other client families still need direct verification. [Evidence](validation/restock-bank-nonconsumable-2026-11-19.json).
+<!-- /LHO-RESTOCK-BANK-NONCONSUMABLE-20261119 -->
+
+<!-- LHO-RESTOCK-CLOSED-BANK-COUNTS-20261119 -->
+19 November. The idle Pending getter took 0.0146 ms and returned no bank targets. The shared Restock list was the larger cost. The five tier bank totals accounted for 28.115 ms of one 31.8841 ms rebuild. The next native read found 105 positive bank quantities for 21 distinct IDs, with all 84 repeated results agreeing.
+
+Restock now shares positive closed-bank quantities within one list rebuild for the original count owners. Bag and bank generations guard reuse, and open or unsettled inventory retains the original queries. Both Lua files pass Lua 5.1 and 5.4 syntax and match the Forever files. Reload 138 returned to the world. In two opposite-order live Auction House data comparisons with commerce windows closed, the full rebuild took 46.4809/34.6308 ms before and 18.2090/19.5612 ms after. All fields matched across nine shared, six visible, and one hidden vendor row. Each candidate rebuilt its own 21 positive quantities. Both generations held, the observers restored, and zero errors were reported. Active Pending jobs, open commerce windows, other clients and overall frame spikes remain unverified. [Evidence](validation/restock-closed-bank-counts-2026-11-19.json).
+<!-- /LHO-RESTOCK-CLOSED-BANK-COUNTS-20261119 -->
+
+<!-- LHO-FOLLOWUP-COUNT-WORKERS-20261117 -->
+17 November direct optimization: pending follow-up and exact-craft fallback
+counts reuse the existing private carried-live query only for the authenticated
+defining getter. Foreign getters still receive fresh options; normal live
+material reads, physical/charge policy, per-refresh memo, action authorization,
+stage selection and refresh timing remain.6syntax checks/3files (including bank
+snapshot comparator) pass; native behavior/performance is unverified.
+[Evidence](validation/inventory-followup-count-workers-2026-11-17.json).
+<!-- /LHO-FOLLOWUP-COUNT-WORKERS-20261117 -->
+
+14 November performance continuation: the original native row-slot pool and all r27 actions/geometry/cadence remain. Decorations initialize on viewport visits and passive paints cover visible rows. Full physical viewport pooling was not adopted; small-list desktop overhead and native acceptance are recorded in [current performance evidence](LAG_HOTSPOT_OPTIMIZATION.md#current-continuation-integration).
+
 ## Shortage-only opening and stable passive refresh
 
 14 November **AHR-105:** opening the Restock tab starts one preparation for

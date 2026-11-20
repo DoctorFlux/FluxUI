@@ -1,0 +1,431 @@
+{
+  "changeId": "GROUP-RENDER-R74-20261119",
+  "capturedAtUTC": "2026-11-18T23:36:59.838969+00:00",
+  "baselineHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "userReport": "A hitch remains when joining or leaving both parties and raids. Direct Lua fixes requested. No questions or new native diagnostics requested.",
+  "scopeAudit": {
+    "TOCReachableLuaFilesSearched": 602,
+    "literalRosterEventOwners": {
+      "Core/Engine/Restricted.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Retain stock-condition evaluation on the compatibility fallback. Group predicates can change."
+      },
+      "ExtraButtonSystem/Engine/Watch.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Existing conditional evaluation queue. Preserve group-sensitive macros and buttons."
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Preserve consumable and secure binding reconciliation. The legacy provider can change its conjure choice by group state. Bindings already memoize native overrides."
+      },
+      "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Existing debounce, combat deferral and binding reconciliation for current and legacy consumable providers."
+      },
+      "Bars/Watch.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Keep queued evaluation of actual group-dependent macro state."
+      },
+      "Binding/Input/FluxMouseoverKeybind.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Keep delayed frame discovery for native and third-party unit buttons that may be created or repooled."
+      },
+      "RaidFrame/FluxRaidHealerExtras.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Existing roster coalescing. Known secure routes retain their binding, unknown routes retain rebind recovery."
+      },
+      "RaidFrame/FluxRaidFrame.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2,
+          "PARTY_MEMBERS_CHANGED": 2,
+          "PLAYER_ROLES_ASSIGNED": 2,
+          "PARTY_LEADER_CHANGED": 2,
+          "PARTY_LOOT_METHOD_CHANGED": 2
+        },
+        "review": "Existing lifecycle/roster coalescing, secure layout, visibility scope and native suppression. Hidden native paint writes and repeated pool memberships are now skipped in the layout owner."
+      },
+      "RaidFrame/FluxRaidPreview.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Rosters can invalidate an active preview. Retain preview-only path."
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2,
+          "RAID_ROSTER_UPDATE": 2,
+          "PARTY_LEADER_CHANGED": 2,
+          "PARTY_LOOT_METHOD_CHANGED": 3
+        },
+        "review": "Retain group text, leader and loot indicators in the shared unit event handler."
+      },
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Retain actual aura state refresh for changed unit owners."
+      },
+      "UnitFrames/FluxUnitFrames_Target.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Keep shared group-label and target ownership event routing."
+      },
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "eventReferences": {
+          "PARTY_LEADER_CHANGED": 2,
+          "PARTY_LOOT_METHOD_CHANGED": 2,
+          "PLAYER_ROLES_ASSIGNED": 1,
+          "GROUP_ROSTER_UPDATE": 3
+        },
+        "review": "Batch roster paint and range discovery across member, pet and target slots. Keep direct unit-target delivery and immediate retirement."
+      },
+      "MicroMenu/FluxLFGMicroButton.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Existing coalesced queue status refresh."
+      },
+      "Minimap/FluxMinimap.lua": {
+        "eventReferences": {
+          "INSTANCE_GROUP_SIZE_CHANGED": 2,
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Group and instance size events now refresh difficulty and queues without processing unrelated indicators."
+      },
+      "Battlezonemap/FluxThreatMeter.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 1
+        },
+        "review": "Keep scheduled threat refresh and active-host checks."
+      },
+      "Battlezonemap/FluxThreat.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 5
+        },
+        "review": "Keep combat/group-specific reset and subscribed threat delivery."
+      },
+      "CharacterInfo/StatsProgression.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "The player or explicit-stat gate skips payload-less roster updates."
+      },
+      "NamePlates/Core.lua": {
+        "eventReferences": {
+          "GROUP_ROSTER_UPDATE": 2
+        },
+        "review": "Batch the roster paint sweep at the next UI tick. Keep explicit refresh and timerless fallback."
+      }
+    },
+    "indirectOwners": {
+      "Blizzard/Hide.lua": "Retain mouse-policy discovery for repooled buttons and its lockdown guard.",
+      "RaidFrame/FluxRaidLayout.lua": "Skip duplicate hidden native overlays in the same suppression sweep and compare current paint before writing.",
+      "Core/BorderJunctions.lua": "Reuse completed observer branches within one flush, invalidate on graph rewiring, and skip panel alignment for unchanged current geometry."
+    }
+  },
+  "source": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550",
+      "RaidFrame/FluxRaidLayout.lua": "f9913a8e4b0e93a64a09f1fca914e1310d7a7724bcaaad1f466283d8045f62a3",
+      "UnitFrames/FluxUnitFrames_Party.lua": "29b2af88efbb4d55c985d0cb314ef42c123c1a6084e815f3556e2299c64634da",
+      "NamePlates/Core.lua": "1e9eeeb9dda67e1c116a7deb0135340d41af323d40d3224c713dded385f5b644",
+      "Minimap/FluxMinimap.lua": "3864733e565243f4fbec7510691524d93484dc04d2ead84231624e67a0e1efa3"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+      "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+      "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+      "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+      "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+    },
+    "fixtureRaw": {
+      "tests/border_observer_refresh.lua": "cedd73588c273b86c830d72eb04896090949fb05a8ea217cb856124c020de19c",
+      "tests/border_nearby_panels.lua": "308a796c1936a915d34378096f711143de25e4c4a6a9cd1edb5eddb659e2eec5",
+      "tests/raid_manager_ghost.lua": "c3678060ebce7bd0ed483ef9336314de835629fcdf18854975a927d8f2852249",
+      "tests/raid_party_frames.lua": "a7d208bd8f74d099c9c1dfd3c1adc93fec49947ce82faddd11613bddd9c81477",
+      "tests/nameplate_refresh_batch.lua": "1edde5dea90ef5329eac96c079b804f893936d82e9817da742388fd89a3026b8",
+      "tests/minimap_indicator_work.lua": "837321949553a48766fd3d5795d243c0a29c33c94b2a1327b38c03110d99e7ec"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\source.zip",
+    "archiveSha256": "73f287fd8197ef3bae19db9f57c39e875b25c059d08ace7756ea0635ab567c53",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "observedRaw": {
+        "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+        "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+        "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+        "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+        "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "observedRaw": {
+        "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+        "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+        "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+        "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+        "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "observedRaw": {
+        "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+        "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+        "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+        "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+        "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "observedRaw": {
+        "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+        "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+        "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+        "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+        "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "observedRaw": {
+        "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+        "RaidFrame/FluxRaidLayout.lua": "acb31a475c382758b26ea58d183afd57f7217b59ff84ff3e1bf021a8db713355",
+        "UnitFrames/FluxUnitFrames_Party.lua": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+        "NamePlates/Core.lua": "4d367c7e77d1d9fa6bb3008c181d52d458df48235d6a2fe221ed329eda93c173",
+        "Minimap/FluxMinimap.lua": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a"
+      },
+      "matchesCandidate": true
+    }
+  },
+  "pairedWork": {
+    "method": "Exact archived baseline and candidate Lua slices, with matched mocked native state. Five paired trials alternated version order. This measures operation counts.",
+    "columns": "trial,scenario,before,after",
+    "units": {
+      "party-target": "identity resets:target paints",
+      "observer": "reverse dependency visits",
+      "panels": "scale reads:anchor writes",
+      "native-overlays": "alpha/ignore-parent setter calls for already-hidden overlays",
+      "nameplates": "per-unit refreshes:zero-delay timers"
+    },
+    "rows": [
+      [
+        "1",
+        "party-target",
+        "20:21",
+        "1:1"
+      ],
+      [
+        "1",
+        "observer",
+        "3260",
+        "80"
+      ],
+      [
+        "1",
+        "panels",
+        "280:0",
+        "140:0"
+      ],
+      [
+        "1",
+        "native-overlays",
+        "3000",
+        "0"
+      ],
+      [
+        "1",
+        "nameplates",
+        "640:0",
+        "32:1"
+      ],
+      [
+        "2",
+        "party-target",
+        "20:21",
+        "1:1"
+      ],
+      [
+        "2",
+        "observer",
+        "3260",
+        "80"
+      ],
+      [
+        "2",
+        "panels",
+        "280:0",
+        "140:0"
+      ],
+      [
+        "2",
+        "native-overlays",
+        "3000",
+        "0"
+      ],
+      [
+        "2",
+        "nameplates",
+        "640:0",
+        "32:1"
+      ],
+      [
+        "3",
+        "party-target",
+        "20:21",
+        "1:1"
+      ],
+      [
+        "3",
+        "observer",
+        "3260",
+        "80"
+      ],
+      [
+        "3",
+        "panels",
+        "280:0",
+        "140:0"
+      ],
+      [
+        "3",
+        "native-overlays",
+        "3000",
+        "0"
+      ],
+      [
+        "3",
+        "nameplates",
+        "640:0",
+        "32:1"
+      ],
+      [
+        "4",
+        "party-target",
+        "20:21",
+        "1:1"
+      ],
+      [
+        "4",
+        "observer",
+        "3260",
+        "80"
+      ],
+      [
+        "4",
+        "panels",
+        "280:0",
+        "140:0"
+      ],
+      [
+        "4",
+        "native-overlays",
+        "3000",
+        "0"
+      ],
+      [
+        "4",
+        "nameplates",
+        "640:0",
+        "32:1"
+      ],
+      [
+        "5",
+        "party-target",
+        "20:21",
+        "1:1"
+      ],
+      [
+        "5",
+        "observer",
+        "3260",
+        "80"
+      ],
+      [
+        "5",
+        "panels",
+        "280:0",
+        "140:0"
+      ],
+      [
+        "5",
+        "native-overlays",
+        "3000",
+        "0"
+      ],
+      [
+        "5",
+        "nameplates",
+        "640:0",
+        "32:1"
+      ]
+    ],
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\group-replay.csv",
+    "minimap": {
+      "method": "Actual event handler with the same warmed native mock for four indicator providers. Twenty mixed roster/instance-size notifications per provider and version.",
+      "before": [
+        "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=20|landing=20|mail=0|anchors=120",
+        "MINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=20|landing=20|mail=0|anchors=120",
+        "MINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=20|landing=20|mail=0|anchors=120",
+        "MINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=20|landing=20|mail=0|anchors=120"
+      ],
+      "after": [
+        "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60",
+        "MINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60",
+        "MINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60",
+        "MINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60"
+      ],
+      "parity": "Every notification still runs modern difficulty, legacy difficulty, native minimap layout and queue refresh. Tracking events still take the full indicator path."
+    }
+  },
+  "verification": {
+    "focusedScripts": 184,
+    "syntaxFiles": 1225,
+    "maxUpvalues": 51,
+    "prototypes": 603,
+    "lua51MaxUpvalues": 50,
+    "lua51CompilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\upvalues-lua51.json",
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\syntax.json",
+    "upvalueReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-render-r74-before-20261118T231416Z\\upvalues.json",
+    "selected": {
+      "tests/border_observer_refresh.lua": "Border observer refresh: 65 checks PASS; complete mesh parity, localized observer API work, native source privacy/missing freshness, anchor replacement/parent/scale/cycle/budget guards. Native FPS/pixels/taint pending",
+      "tests/border_nearby_panels.lua": "Nearby panel borders: 1524 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending",
+      "tests/raid_manager_ghost.lua": "Raid manager/ghost: 4022 checks; five actual native handlers; four rejected negative controls; reference source trees",
+      "tests/raid_party_frames.lua": "Party player-style frames: 1155 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending",
+      "tests/nameplate_refresh_batch.lua": "QUEST_PROGRESS checks=1456 failures=0 native_pixels_taint_performance=NOT_RUN",
+      "tests/minimap_indicator_work.lua": "Minimap indicator work: 188 checks PASS; actual controller, fresh state and native updates retained; native timing pending"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/Containers.lua",
+      "Mail/Restock.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending. No native CPU/FPS, combat-lockdown taint or pixel-parity result was collected in this batch."
+}

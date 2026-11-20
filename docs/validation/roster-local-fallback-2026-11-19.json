@@ -1,0 +1,2150 @@
+{
+  "changeId": "ROSTER-LOCAL-FALLBACK-R77-20261119",
+  "capturedAtUTC": "2026-11-19T06:21:44.410633+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "The user reports hitches entering or leaving party and raid. Continue attribution and fixes across the addon. Native latency acceptance remains active.",
+  "historicalAttribution": {
+    "source": "docs/validation/roster-region-routing-2026-11-19.json",
+    "client": "Forever",
+    "version": "party-paint-r68",
+    "callbacksMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "planningMs": 105.40190005302,
+    "fallbackMeshMs": 52.205099999905
+  },
+  "changes": {
+    "junctionOwnership": "Parallel backups stay indexed by shared source. Each junction keeps its own prepared perpendicular continuations for this planning pass. Consume the lists in the same order and preserve root, overlap, paint and budget checks.",
+    "fallbackSnapshot": "Keep one immutable public numeric snapshot and the existing conservative charge. The discarded flat copy was consumed only for its size. One-triangle fields skip rectangle merging.",
+    "raidGrid": "Always re-read membership and public geometry. Reuse the neighbor relationships for the same frames, rectangles and configured overlap. The renderer still receives every current edge assignment, including style, power and appearance changes."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+      "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+      "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+    },
+    "fixturesRaw": {
+      "tests/border_optional_unit_parts.lua": "c5790e52549d32ca9bd45386be31b310d73fad37a027df5debab8407f6d967db",
+      "tests/border_fallback_compile_cache.lua": "1612f103b7ac893bb1d6eb0edb1bedf8412f84e4e7380cabc9fb228e126a2366",
+      "tests/border_fallback_array_guards.lua": "47838160198ac6dce03c642e72db2f1c9b690fdce0b7fc08d3bcb0bfe2f75c7b",
+      "tests/raid_connected_grid.lua": "6c468b6c7e25262b4ebeddadd6222a89d575ba7e339c7db1e81a951f91b1d9b4"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\source.zip",
+    "archiveSHA256": "36cdc0862dba256a991f0e320e6acb64bb3b6da83d15f20e6fc7e07e85ee7b72",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "replays": {
+    "coldAndRepeatedBorder": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\fallback-snapshot-replay.csv",
+      "scene": "Canonical production Lua regional renderer, two styles, 16 contacts moved three units and restored. Ten switches in each of three ordered pairs per style.",
+      "parity": "Both rendered poses match exact field fingerprints. Current masks and budget recovery are covered separately. The first switch still compiles the geometry.",
+      "counts": "A first switch visits 867 to 345 candidates and copies 33,408 to 0 duplicate scalar entries. All 928 first-switch fallback calculations still complete.",
+      "firstByStyle": {
+        "1": {
+          "before": {
+            "flushMs": {
+              "median": 95.000000000001,
+              "range": [
+                86.0,
+                113.0
+              ]
+            },
+            "fallbackCompileMs": {
+              "median": 21.0,
+              "range": [
+                15.000000000001,
+                52.0
+              ]
+            },
+            "uvSamples": {
+              "median": 2720.0,
+              "range": [
+                2720.0,
+                2720.0
+              ]
+            },
+            "fallbackCellVisits": {
+              "median": 867.0,
+              "range": [
+                867.0,
+                867.0
+              ]
+            },
+            "duplicateScalars": {
+              "median": 33408.0,
+              "range": [
+                33408.0,
+                33408.0
+              ]
+            }
+          },
+          "after": {
+            "flushMs": {
+              "median": 75.0,
+              "range": [
+                70.0,
+                81.0
+              ]
+            },
+            "fallbackCompileMs": {
+              "median": 14.0,
+              "range": [
+                12.0,
+                35.0
+              ]
+            },
+            "uvSamples": {
+              "median": 2720.0,
+              "range": [
+                2720.0,
+                2720.0
+              ]
+            },
+            "fallbackCellVisits": {
+              "median": 345.0,
+              "range": [
+                345.0,
+                345.0
+              ]
+            },
+            "duplicateScalars": {
+              "median": 0.0,
+              "range": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "2": {
+          "before": {
+            "flushMs": {
+              "median": 105.0,
+              "range": [
+                80.0,
+                194.0
+              ]
+            },
+            "fallbackCompileMs": {
+              "median": 15.000000000001,
+              "range": [
+                13.999999999999,
+                29.999999999998
+              ]
+            },
+            "uvSamples": {
+              "median": 2176.0,
+              "range": [
+                2176.0,
+                2176.0
+              ]
+            },
+            "fallbackCellVisits": {
+              "median": 867.0,
+              "range": [
+                867.0,
+                867.0
+              ]
+            },
+            "duplicateScalars": {
+              "median": 33408.0,
+              "range": [
+                33408.0,
+                33408.0
+              ]
+            }
+          },
+          "after": {
+            "flushMs": {
+              "median": 93.0,
+              "range": [
+                90.999999999999,
+                93.000000000004
+              ]
+            },
+            "fallbackCompileMs": {
+              "median": 13.0,
+              "range": [
+                11.000000000001,
+                13.000000000002
+              ]
+            },
+            "uvSamples": {
+              "median": 2176.0,
+              "range": [
+                2176.0,
+                2176.0
+              ]
+            },
+            "fallbackCellVisits": {
+              "median": 345.0,
+              "range": [
+                345.0,
+                345.0
+              ]
+            },
+            "duplicateScalars": {
+              "median": 0.0,
+              "range": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        }
+      },
+      "samples": [
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 86.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 21.0,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 81.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 14.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 109.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 6048.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 56.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 42.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 45.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 51.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 5.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 50.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999997,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 43.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 6.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 64.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 51.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 107.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 5.0000000000003,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 49.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 52.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 54.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.9999999999999,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 52.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999997,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 59.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.9999999999999,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 53.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 55.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 49.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 113.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 52.0,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 75.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 35.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 43.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 6048.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 36.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 42.000000000001,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.9999999999999,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 82.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 43.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 41.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.0000000000002,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 48.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 46.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0000000000004,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 55.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 40.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 50.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.9999999999999,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 48.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 44.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 50.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 39.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0000000000004,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 52.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 40.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999992,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 43.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999992,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 95.000000000001,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 15.000000000001,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "flushMs": 70.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 3424.0,
+            "uvSamples": 2720.0,
+            "fallbackCompileMs": 12.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 42.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 6048.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 3.0,
+            "fallbackGeometryMisses": 168.0,
+            "renderedFields": 3179.0,
+            "flushMs": 52.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 618.0,
+            "uvSamples": 492.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 41.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.9999999999999,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 48.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 9.0000000000003,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 99.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 38.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 45.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 40.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 49.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 45.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 37.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 49.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 50.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 4.0000000000004,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 39.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 53.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999992,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3143.0,
+            "flushMs": 39.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 51.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 3179.0,
+            "flushMs": 61.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 412.0,
+            "uvSamples": 328.0,
+            "fallbackCompileMs": 2.9999999999983,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 80.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 13.999999999999,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 93.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 11.000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 60.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 58.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 125.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 68.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 77.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 9.0000000000003,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 80.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 20.999999999999,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 100.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 58.000000000002,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 81.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 118.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 65.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 63.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 65.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 69.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 84.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 75.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 97.000000000001,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.9999999999996,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 66.999999999998,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 105.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 29.999999999998,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 90.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 13.0,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 77.000000000002,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 61.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 2.0000000000007,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 141.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 78.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 65.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 79.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 68.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 4.0000000000013,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 68.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 152.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 4.999999999999,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 67.999999999998,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 68.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 77.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 89.000000000002,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 2.0000000000024,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 82.999999999998,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 78.000000000003,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 80.000000000002,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 77.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 18.999999999998,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 73.999999999998,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 194.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 15.000000000001,
+            "duplicateScalars": 33408.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "flushMs": 93.000000000004,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 2688.0,
+            "uvSamples": 2176.0,
+            "fallbackCompileMs": 13.000000000002,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 2,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 79.000000000001,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 3.9999999999978,
+            "duplicateScalars": 4032.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 2.0,
+            "fallbackGeometryMisses": 112.0,
+            "renderedFields": 6778.0,
+            "flushMs": 68.000000000001,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 320.0,
+            "uvSamples": 260.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 3,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 76.999999999998,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 73.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 4,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 56.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 71.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 5,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 56.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 74.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 6,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 85.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 63.000000000002,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 7,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 85.000000000001,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 58.0,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 8,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 139.0,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 55.000000000003,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 9,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 85.999999999999,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "flushMs": 71.999999999999,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 10,
+          "before": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 80.000000000002,
+            "fallbackCellVisits": 867.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 3.0000000000001,
+            "duplicateScalars": 2016.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "flushMs": 76.999999999998,
+            "fallbackCellVisits": 345.0,
+            "clipCalls": 160.0,
+            "uvSamples": 130.0,
+            "fallbackCompileMs": 1.9999999999989,
+            "duplicateScalars": 0.0
+          }
+        }
+      ],
+      "timingQualifier": "Desktop fixture timestamps include observer instrumentation. Reported runtime is noisy and no native FPS or hitch reduction is inferred."
+    },
+    "raidTopology": {
+      "before": [
+        "RAID_CONNECTED_WORK|legacy|2220|44400",
+        "RAID_CONNECTED_WORK|native|2220|44400"
+      ],
+      "after": [
+        "RAID_CONNECTED_WORK|legacy|2220|0",
+        "RAID_CONNECTED_WORK|native|2220|0"
+      ],
+      "cases": "20 same-geometry rebindings per 40-cell grid. Public geometry, occupancy, overlap and opaque ownership regressions included."
+    }
+  },
+  "rejectedExperiment": {
+    "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\fallback-uv-candidate.lua",
+    "sha256": "bdc2b4d683fd8bf044d0b5b7c627a397f03e74117daad81463288db72e2e3643",
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\fallback-uv-phase.csv",
+    "result": "Per-operation memoization reduced fallback texture-coordinate evaluations. Timed work did not consistently improve, so the candidate remains external.",
+    "firstSwitchSummary": {
+      "1": {
+        "before": {
+          "flushMs": {
+            "median": 56.0,
+            "range": [
+              55.0,
+              67.0
+            ]
+          },
+          "fallbackCompileMs": {
+            "median": 13.0,
+            "range": [
+              12.0,
+              17.0
+            ]
+          },
+          "uvSamples": {
+            "median": 2720.0,
+            "range": [
+              2720.0,
+              2720.0
+            ]
+          },
+          "fallbackCellVisits": {
+            "median": 0.0,
+            "range": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "after": {
+          "flushMs": {
+            "median": 81.0,
+            "range": [
+              80.0,
+              110.0
+            ]
+          },
+          "fallbackCompileMs": {
+            "median": 17.0,
+            "range": [
+              14.0,
+              73.0
+            ]
+          },
+          "uvSamples": {
+            "median": 476.0,
+            "range": [
+              476.0,
+              476.0
+            ]
+          },
+          "fallbackCellVisits": {
+            "median": 0.0,
+            "range": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "2": {
+        "before": {
+          "flushMs": {
+            "median": 105.0,
+            "range": [
+              81.999999999999,
+              209.0
+            ]
+          },
+          "fallbackCompileMs": {
+            "median": 16.000000000002,
+            "range": [
+              13.999999999999,
+              16.999999999999
+            ]
+          },
+          "uvSamples": {
+            "median": 2176.0,
+            "range": [
+              2176.0,
+              2176.0
+            ]
+          },
+          "fallbackCellVisits": {
+            "median": 0.0,
+            "range": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "after": {
+          "flushMs": {
+            "median": 84.0,
+            "range": [
+              77.999999999999,
+              172.0
+            ]
+          },
+          "fallbackCompileMs": {
+            "median": 13.999999999999,
+            "range": [
+              13.0,
+              15.999999999998
+            ]
+          },
+          "uvSamples": {
+            "median": 892.0,
+            "range": [
+              892.0,
+              892.0
+            ]
+          },
+          "fallbackCellVisits": {
+            "median": 0.0,
+            "range": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+        "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+        "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+        "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+        "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "9a43128a5ed3c76880bd28db9cdb8fb5fe7e7f1775a95f59d40502a87e5134c2",
+        "RaidFrame/FluxRaidUnit.lua": "7907b0aa6c8e79ee941e5ec0a466cb566b5bb00e54c3d3683d97f16733f716ef"
+      }
+    }
+  },
+  "verification": {
+    "focused": 186,
+    "syntax": 1226,
+    "upvaluesLua51Maximum": 50,
+    "prototypes": 301,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-local-fallback-r77-before-20261119T060806Z\\upvalues.json",
+    "selected": {
+      "tests/border_optional_unit_parts.lua": "Optional unit parts: 357 checks PASS; actual factory/Core/TGA, four Ts+X, exact hidden RGBA, active mesh parity, partial/own parallel backups, eligibility, current generation, budgets; native validation pending",
+      "tests/border_fallback_compile_cache.lua": "Border fallback compile cache: 1212 checks PASS; numeric parity/current paint/blockers; source validity; merge isolation; committed-only bounded generations; native FPS/pixels/taint pending",
+      "tests/border_fallback_array_guards.lua": "Border fallback array guards: 42508 checks PASS; public-only immutable snapshots; plan-only positive/negative pairs; direct mutations; private/current recovery; exact legacy fingerprints",
+      "tests/raid_connected_grid.lua": "Raid connected grid: 44 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending. Current live join/leave latency, combat taint and rendered pixels remain unverified."
+}

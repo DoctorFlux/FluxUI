@@ -1,5 +1,93 @@
 # Extra buttons, consumables, travel and flyouts
 
+<!-- LHO-EBS-BAG-COUNT-PULSE-20261119 -->
+19 November. On Forever 1.60.1/70959, reload 120 returned to the world and loaded the current Containers.lua and Mail/Restock.lua revisions. Probe 122 moved and returned Roast Quail ×18. All six slot diffs matched both outputs. Bag generation advanced 5→7, the original slot and count were restored, the destination and cursor were empty, and BugTabs reported zero errors. Both EBS pulses touched the moved item with no total count change. Slot-diff totals were 0.0702/0.0562 ms with asymmetric instrumentation, and EBS baseline paint totaled 0.3059 ms. This is one live event pair. Native frame spikes and the populated mail path remain open.
+
+EBS Paint.lua `808e15ec` → `7bcb33ab` now iterates the same faces in the count pass without allocating a closure or calling it per face. The button and badge order, per-face checks and synchronous delivery are preserved. Before/after Lua 5.1 and 5.4 syntax passed, and Retail and Forever disk hashes match. Reload 123 loaded the edited painter in Forever. Probe 124 repeated the exact item move and return with two matching bag paints and zero reported errors. EBS totaled 0.3059 ms before and 0.3577 ms after. Both slot-diff totals also rose in the second capture. Timing varies across the two reload-separated samples, so the measured benefit remains unverified. The jump helper remains stopped. [Evidence](validation/ebs-bag-count-pulse-2026-11-19.json).
+<!-- /LHO-EBS-BAG-COUNT-PULSE-20261119 -->
+
+<!-- LHO-SCAN-PRIVATE-WORKERS-20261118 -->
+18 November: private Best.Scan helper/constant reuse is applied at 0f73c69e.
+Two syntax checks pass. Post-reload Forever smoke with both addons retains
+42/42 food and all seven lengths/top selections, BugTabs 0 and profile 0.
+No simulations or measured lag-spike gain; worker/ticker-specific, other-client
+and complete workflow validation remain open.
+[Evidence](validation/inventory-scan-private-workers-2026-11-18.json).
+<!-- /LHO-SCAN-PRIVATE-WORKERS-20261118 -->
+
+<!-- LHO-PROVIDER-COMBOS-20261118 -->
+18 November: the current 18-file source set passed scoped Forever 70938/16001
+readiness, food-count and seven-kind top-selection checks with Syndicator only,
+neither external addon, and restored Syndicator+Baganator. All returned food
+42/42, the same seven lengths/top IDs/counts, profile 0 and BugTabs 0.
+Both original GUID/account enable states 2/2 and loaded=true were restored.
+An initial name-key toggle did not unload Baganator; excluded from C1 coverage.
+Pinned Blizzard AddonList identifies UnitGUID as the in-game character key.
+All 12 successful runs were personally viewed and promptly acknowledged;
+watchdogs exited, input lock absent. External Syndicator 37 and Baganator 157
+source files remained byte-identical. No new simulations or timing trials.
+This covers warm state and top selections, not full ladders, bag mutations in
+each combo, FPS/spike improvement, other clients or commerce/bank/mail workflows.
+No jump helper runs. Goal ACTIVE. This evidence precedes Scan private-worker edit.
+[Evidence](validation/inventory-provider-combos-2026-11-18.json).
+<!-- /LHO-PROVIDER-COMBOS-20261118 -->
+
+<!-- COMBAT-FANOUT-20261116 -->
+16 November `COMBAT-FANOUT-20261116`: full combat refreshes/recovery retained with fresh-native icon/trinket geometry guards and protected callback-body reuse. 496 offline scripts PASS/1 new shadow assertion FAIL; 1187 syntax PASS; composed current-source observations; owned runtime stable. Native tests/inspection HELD until explicit user release. [Exact work, native getter tax, CPU regressions/rejected prototypes and scope](validation/combat-fanout-2026-11-16.json).
+<!-- /COMBAT-FANOUT-20261116 -->
+
+
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
+16 November `COMBAT-TRANSITIONS-20261116`: the loaded Bars/EBS audit covers36
+consumer files; unlisted legacy EBS files are excluded from native owner claims.
+R51 `prepared-guards-r51` has a conservative consumable applied-bundle recovery
+guard:525 checks/20 focused scripts PASS; item-attribute writes1190→140 with840
+added fresh reads, while all140 binding clears/rebinds remain. Blindly removing
+the forced refresh is rejected because native
+item attributes must recover after setter failure. Existing actions, modifier
+routes, usage/checked/range paint, queue ordering and callback cadence remain.
+Combined R51 aggregate474 PASS/0FAIL and1165 syntax PASS follows the corrected
+legacy extractor/four bounded replays; all eight owned runtime files stayed stable,
+not one globally frozen sweep. Global690 files/24916 prototypes max57/0fail PASS.
+Native R51 remains pending. [Requirements and evidence](COMBAT_TRANSITION_PERFORMANCE.md).
+
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS;
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Quiet native R50 now measured218.36ms versus R49's207.94ms; hitch/CB36 OPEN.
+R49 flat publication/buckets≤4 stay unchanged;
+only queried larger buckets build a guarded lazy index. Connected proofs keep
+exact meshes/49/113 tables/0 index builds. Common CPU remains mixed; dense−78.12%
+is stress-only. Further native captures require all owned CPU/docs jobs finished.
+Prior concurrent Trinket work is preserved.
+[Border requirements and acceptance](CONNECTED_BORDERS.md).
+
+15 November: range now follows the selected cast target, independently of idle
+icons, pinned tooltips and reverse badge token swaps. Plain actions apply the
+native friendly/hostile eligibility rule. The reported Frostbolt/friendly-hover
+case is confirmed in game. [Rules and scoped validation](CAST_RANGE_TARGETING.md).
+
+15 November: hotkey text and mouse/scroll/space glyphs turn red only for the
+existing out-of-range result. Original gray text/white art returns in range;
+binding/modifier/size refreshes retain the correct color. No new range probes or
+polling. [Four-surface requirements and validation](HOTKEY_RANGE_GLYPHS.md).
+
+15 November exact rollback: the later live ring/backplate accent helper and
+Trinket changes are restored to the pre-connection checkpoint at the user's
+request. Earlier native/runtime data remain untouched; any remaining accent
+request needs a new bounded follow-up. [Restore record](04-visual-system.md).
+
+14 November `EBS-PROFESSION-RANKS-20261114`: training any profession rank automatically
+updates its assigned action across extra buttons, badges, utility modifiers and
+flyouts. Localized spellbook identity replaces the outdated rank; saved placements,
+favorites and chosen combat spell ranks remain. Rank events refresh even when book
+counts stay fixed; protected updates wait until combat ends. Passive gathering and
+secondary-only professions are included. 385 scripts/1073 syntax and
+34,376 focused checks PASS; native training acceptance pending.
+[Requirements and validation](validation/extra-profession-ranks-2026-11-14.json).
+
 14 November casting/inventory lag: Macros reuse warm spell/item metadata only within one invocation; next invocation and cold-link retries stay live. [Comparisons and limits](LAG_HOTSPOT_OPTIMIZATION.md).
 
 14 November AHR-104: minimum restore now determines healing/mana potion tiers
@@ -94,7 +182,7 @@ Portal/login snapshots can briefly collapse. `ShouldHoldItemIdentity()` and `Kee
 | [Hearthstone](../ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua) | Configured hearth/toy, item 6948 fallback, owned teleport items and modifier favorites. Simple mode right-click opens Toy Box when available; multi-item mode uses right-click flyout and middle-click Toy Box. Equipment teleports can require equipping; cast/equip locks retain selected identity. |
 | [Mount](../ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua) | Smart ground/flying selection and optional vendor mode. Middle-click toggles smart/vendor when relevant. Collection clients use journal/companion helpers and configured selections; bag clients use `MountItems.lua`, zone eligibility and favorites. Right-click follows the collection/bag path. |
 | [TeleportPortal](../ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua) | Known class teleports/portals, modifier favorites, reagent counts/restock links and flyout. Left-click casts; right-click opens the flyout or edits the reagent preset target for a single destination; middle-click toggles teleport/portal. Selection stays locked through its cast. |
-| [Food](../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua) / [Water](../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua) | Best owned food/water, learned conjure/ritual alternatives, group-aware creation and counts. Food has a per-character Recuperate preference on clients supplying that spell; default remains food. |
+| [Food](../ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua) / [Water](../ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua) | Best owned food/water and live inventory counts. Learned conjure and ritual spells determine the creation actions in solo, party, and raid play. Food has a per-character Recuperate preference on clients supplying that spell, with food as the default. |
 
 [SmartMount config](../ExtraButtonSystem/NonCombatGrid/FluxSmartMountConfig.lua) supports account/character ground/flying/multi/utility selections and vendor discovery. [SmartHearth config](../ExtraButtonSystem/NonCombatGrid/FluxSmartHearthConfig.lua) only loads when Toy Box capability exists; the basic hearth fallback remains usable without that editor. Their current character/account selection shares `_FluxUI_CharSavedVars.useCharacterSpecific`; the config tables themselves are separate. This scope flag is independent of Ace Action Bars scope.
 
@@ -110,6 +198,22 @@ limits](HEARTH_CONFIG_TOY_COLLECTION.md).
 The selector tooltip reads item names through the shared `Flux.Item` service
 and falls back to Toy Box metadata when item data is uncached. This keeps the
 hover help available on clients without the deprecated `GetItemInfo` global.
+
+### Smallest food and water stacks
+
+The Food and Water buttons keep their existing conjured, combo, and restore
+priorities. Within the winning tier and restore amount they choose the smallest
+usable physical stack in carried bags. With 20 of A and 30 of equal-tier B in
+stacks of 20 and 10, the button uses B from the 10-item stack. The button count
+continues to show total carried copies of the selected item ID. Restock targets
+continue to use their existing stock calculations.
+
+The existing bag snapshot chooses the button face and rechecks it when an
+eligible stack changes, including count-neutral splits. A mouse or use-key
+press resolves the live bag address for the native secure action and restores
+the item-ID action afterward. The optional potion swap uses the same selection
+on the out-of-combat food or water face. During inventory holds and combat
+lockdown the established action stays in place. [Client evidence](CLIENT_VALIDATION.md).
 
 ## Buff-consumables presets
 
@@ -183,6 +287,13 @@ The loaded [FlyoutEngine](../ExtraButtonSystem/FlyoutEngine/Init.lua) supports u
 
 [TrinketMenu](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua) presents equipped trinkets, scans bag alternatives, builds shared-engine flyouts and maintains the runtime `TM.CombatQueue` for swaps. The three older TrinketMenu SavedVariables remain declared but are not consumed by these active files. [Manager](../ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua) anchors it and reacts to equipment, cooldown, keys, pet battles, scale and combat. Binding mode and trinket commands route to live widgets.
 
+16 November (`LHO-TRINKET-BAG-SCAN-P58-20261116`): private bag location maps now avoid per-slot
+wrapper tables. Original scans, metadata/getter order, duplicate choice, cache
+outputs, flyouts, bindings and combat recovery remain. Dense modeled CPU/growth
+improve; small/foreign CPU regressions remain recorded. Five actual behavior
+jobs and10 disk identities pass; native rendering/taint/FPS and loaded-byte
+adoption remain pending. [Sources and all controls](validation/trinket-bag-scan-allocation-2026-11-16.json).
+
 Equipped `/use 13` and `/use 14` faces retain the owned-item usability fallback even though the equipped item is absent from bag counts. A genuinely unusable use spell can still darken; empty slots remain desaturated. [The trinket tint correction](TRINKET_EQUIPPED_USABILITY.md) records the focused check and native limits.
 
 1 November clarification: an equipped trinket without an on-use spell is dim; a ready on-use trinket remains bright.
@@ -210,3 +321,38 @@ reagent snapshots. Existing craft coalescing also reevaluates Auto visibility;
 Forever healing-potion First Aid routing is retained and regression checked.
 Pending item classification survives metadata invalidation. Stored items do
 not count as carried outputs/materials. [Scope and native checks](CONSUMABLE_BAG_VISIBILITY.md).
+
+<!-- STRIP-GRID-PACKING-R91-20261119 -->
+On strip movement, stable combat and non-combat slots keep their local positions, frame levels and face sizes. The panel anchors and Info still update for the current strip bounds. Slot and squeeze changes and explicit relayout requests use the complete packing path.
+[Strip grid packing evidence](validation/strip-grid-packing-2026-11-19.json).
+<!-- /STRIP-GRID-PACKING-R91-20261119 -->
+
+<!-- STRIP-PANEL-SETTLE-R92-20261119 -->
+The Trinket Menu uses one squeeze after neighboring grids have laid out on strip crossings. Its verified native point follows the strip. Changed or unavailable geometry restores the original anchor path.
+[Strip panel settlement evidence](validation/strip-panel-settle-2026-11-19.json).
+<!-- /STRIP-PANEL-SETTLE-R92-20261119 -->
+
+<!-- CONSUMABLE-ROSTER-BINDINGS-R97-20261119 -->
+Food and Water update with learned spells, inventory and keybinding changes. Their regular use, conjure, ritual and restock routes carry across party and raid transitions.
+[Matched validation](validation/consumable-roster-bindings-2026-11-19.json).
+<!-- /CONSUMABLE-ROSTER-BINDINGS-R97-20261119 -->
+
+<!-- STRIP-GRID-ROOT-ANCHORS-R168-20261120 -->
+The combat and noncombat grids keep their matching relative anchors. Real anchor changes still settle before publishing the strip envelope.
+[Matched validation](validation/strip-grid-root-anchors-2026-11-20.json).
+<!-- /STRIP-GRID-ROOT-ANCHORS-R168-20261120 -->
+
+<!-- STRIP-GRID-WIDTH-20261120 -->
+Combat and Non-combat grids retain their verified column order when an action-strip crossing changes the horizontal squeeze. Across 60 modeled crossings, geometry setters fell from 6,844 to 4,484 and column sorts from 1,239 to zero in each client fixture. Both grid shapes, icon refreshes, clipping and Info/envelope notification order match. Five alternating desktop pairs per profile measured 20 to 12 ms median for 320 crossings of this layout path.
+[Matched validation](validation/strip-grid-width-2026-11-20.json).
+<!-- /STRIP-GRID-WIDTH-20261120 -->
+
+<!-- STRIP-GRID-RING-20261120 -->
+Width changes in Combat and Non-Combat Grid now size each button ring once. Sixty modeled crossings cut ring fits from 1,920 to 960. Cosmetic setter calls fall from 102,720 to 62,400 in the Retail and Forever models and from 108,480 to 66,240 in the Classic model. Grid positions, ring art, checked and pressed textures, equipped glow and cooldown layout match. The shared squeeze path passes the sizing function already used to the existing button utility. Skip the duplicate ring call only while the built-in adjuster would call that same built-in sizing function. Keep equipment-border size, countdown and empty-state work in their original order. Direct callers and replaced sizing methods keep their prior behavior.
+[Matched validation](validation/strip-grid-ring-2026-11-20.json).
+<!-- /STRIP-GRID-RING-20261120 -->
+
+<!-- STRIP-ARROW-OWNER-20261120 -->
+The action-strip envelope now shares its completed flyout refresh with the Trinket Menu. Across 60 modeled crossings with 20 attached arrows, explicit shared scans fell from 180 to 120 and all visible arrow updates from 4,800 to 3,600. Trinket layer setters fell from 720 to zero with matching slot anchors, size, scale and atlas layering. Both explicit updates and the native show handler pass the completed refresh function to Trinket. A separate or replaced function still runs. Trinket keeps the two local arrow placements, including arrows outside the engine scan. Matching readable points and layer values keep their placement. Unreadable or changed points and layers retain the original repair path.
+[Matched validation](validation/strip-arrow-owner-2026-11-20.json).
+<!-- /STRIP-ARROW-OWNER-20261120 -->

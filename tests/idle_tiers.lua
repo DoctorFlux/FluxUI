@@ -11,7 +11,7 @@ local before = source:sub(1, first - 1) .. old .. source:sub(last)
 local checks = 0
 local function check(ok, message) assert(ok, message); checks = checks + 1 end
 local kinds = { "food", "water", "bandage", "healPotion", "manaPotion" }
-local function fixture(body, branch)
+local function fixture(body, branch, configure)
     local env = setmetatable({}, { __index = _G }); env._G = env
     local s = { unique = {}, live = {}, cls = {}, blocked = {}, calls = 0, saved = {} }
     local inv = {}
@@ -41,8 +41,9 @@ local function fixture(body, branch)
     p.Best = function() return { Score = score } end
     local tiers = { _Private = p, IsTierEligible = function() return true end }
     env.FluxRestockTiers = tiers
-    assert(load(body, "@tier-match-" .. branch, "t", env))()
     s.tiers, s.inv = tiers, inv
+    local ns = configure and configure(s, env)
+    assert(load(body, "@tier-match-" .. branch, "t", env))("_FluxUI", ns)
     for id = 1, 120 do s.unique[id] = { count = 1 } end -- most are unrelated items
     local function consumable(id, kind, amount, flags)
         local c = { kind = kind, health = (kind == "water" or kind == "manaPotion") and 0 or amount,

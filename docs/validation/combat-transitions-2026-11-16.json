@@ -1,0 +1,4249 @@
+{
+  "changeId": "COMBAT-TRANSITIONS-20261116",
+  "dateUTC": "2026-11-16T16:18:27.435198+00:00",
+  "requirements": "docs/COMBAT_TRANSITION_PERFORMANCE.md CT01-15",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-whole-addon-before-20261116T150228Z",
+  "sourceHistoryVerified": true,
+  "privateSettingsOutsideAddOns": true,
+  "branch": "main",
+  "scope": "Whole-addon source/counter audit; only verified redundant work changed. Native timing/taint/input/visual acceptance pending. Guild-bank/void callbacks unchanged. No agent foreground/input/clipboard/profiler changes.",
+  "sourcePins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "remainingConsumerAudit": {
+    "scannedLuaFiles": 440,
+    "reachableLuaFiles": 601,
+    "consumers": 101,
+    "rows": [
+      {
+        "path": "AddonOptions/FluxOptionsShell.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Escape-binding waiter is armed for a requested protected open/close change and unregisters at flush; no ordinary exit rebuild.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          858,
+          867,
+          877
+        ],
+        "auditedNormalizedSHA256": "b8c3f6010f72ae91d5041cbd0307eb026b45d71ee8a0377100dc8381ab0ecec8"
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMap.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+pending",
+        "assessment": "Enter clears refresh flag and updates combat mouse blocker; exit hides blocker then drains pending embed/position/provider work. No unconditional provider full refresh.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          906,
+          907,
+          909,
+          912
+        ],
+        "auditedNormalizedSHA256": "d27d9188e328f21492e179a23cfc6b5cc307c3f8b5ee687688945b01cecb8438"
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit installs only if refreshPending and pin router wanted.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          857,
+          859
+        ],
+        "auditedNormalizedSHA256": "74d9d550fd12f2998be46fcbbaaf68eeecb98421459dd30b8defdb25e7c79d0a"
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapProviders.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Pending provider set coalesces protected acquisition under battlefield.providers, retains per-provider requested work.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          54
+        ],
+        "auditedNormalizedSHA256": "3aac4df59ece5b96dde666c2a6f03fa34b211c44eea97ecdbda948ea2bf63578"
+      },
+      {
+        "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+pending",
+        "assessment": "Hover/toggle visibility updates on both edges; exit handles pending activate/deactivate/canvas refresh in mutually exclusive branches.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          890,
+          891,
+          1205,
+          1216
+        ],
+        "auditedNormalizedSHA256": "00eaf0863563fcf826b5b32cb8adec764f1397f82e89e4e5f9acab1cbc6ebe43"
+      },
+      {
+        "path": "Battlezonemap/FluxBlizzardMeter.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit drains cleanup/enable/embed/startup/geometry flags. RefreshHeaderControls loops windows but mutates only headerControlsPending rows.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1647,
+          1648,
+          1654,
+          1657
+        ],
+        "auditedNormalizedSHA256": "f4de68f10f63071ff3924bca01916bbd5341a56833073b5215b1c1686d204f0d"
+      },
+      {
+        "path": "Battlezonemap/FluxDetails.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested protected embed/layout work uses generation-checked details.embed/details.layout; no ordinary combat listener.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1429,
+          1537
+        ],
+        "auditedNormalizedSHA256": "6c1f1db3b470f70e34a3c72ab42b0b2b707b431c806a860a9fe8a360aea809fc"
+      },
+      {
+        "path": "Battlezonemap/FluxDetailsForever.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "One-time Details compatibility applies only when not yet applied and backend exists; combat defers once by key.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          127
+        ],
+        "auditedNormalizedSHA256": "0b8c4f071b9ac8476c9c41ca74da7ae53ebadef68132ce49813af210197834d0"
+      },
+      {
+        "path": "Battlezonemap/FluxMeterLayout.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested Meter-tab library/settings reembed is deferred only while locked and active tab remains Meter.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1247
+        ],
+        "auditedNormalizedSHA256": "1db37f8911d5f29f15ed891b69196774351425d8033d0cf231af21c1dd5ca020"
+      },
+      {
+        "path": "Battlezonemap/FluxThreat.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state",
+        "assessment": "Enter arms threat events/polling, starts/reset-target state; exit stops polling and unregisters combat list events. Needed combat semantics, fresh target/native data.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          199,
+          200,
+          210,
+          211,
+          924,
+          931,
+          989,
+          990
+        ],
+        "auditedNormalizedSHA256": "bd49859c1bec0fb8c6ac49082e25b9383d5ec5d2a8ceb898d32def51f69b436c"
+      },
+      {
+        "path": "Battlezonemap/FluxThreatMeter.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state",
+        "assessment": "Enter starts fight clock/requests refresh; exit clears rows, clock and OnUpdate. Work scoped to existing pane.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          332,
+          359,
+          364
+        ],
+        "auditedNormalizedSHA256": "59ab268c114db5be4026f9c498d9e5217990d5b320945ced81785af5db9734af"
+      },
+      {
+        "path": "Battlezonemap/FluxWindowFrame.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit applies pending tabs/initial tab and active tab combatWork; generation and active-tab guards prevent stale backend callbacks.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1671,
+          1673
+        ],
+        "auditedNormalizedSHA256": "20339070ad0a324d6937e6b83daf65af555778c5fa5e7a7c4bd0c64f39ffce15"
+      },
+      {
+        "path": "Blizzard/Hide.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Waiter armed by protected hide/mouse requests, unregisters then drains keyed pending frame/mouse sets.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          46,
+          117,
+          206
+        ],
+        "auditedNormalizedSHA256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b"
+      },
+      {
+        "path": "BlizzardSettings/Write.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "CVar/settings flusher registered only for queued writes; actual writes retain native settings-panel policy.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          251,
+          269
+        ],
+        "auditedNormalizedSHA256": "de7e3a953bca81abefe7f439a350f69153a2e15b70c76f271896244400e951ad"
+      },
+      {
+        "path": "CharacterInfo/Init.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "One-time protected character overlay install deferred by characterinfo.install.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          21
+        ],
+        "auditedNormalizedSHA256": "3555cf97545871e2ef562ba22861b1b9a58a5270ab04686c8f4a8c23a8f1828a"
+      },
+      {
+        "path": "CharacterInfo/PaperDollEquipFlyout.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+keyed-defer",
+        "assessment": "Hide open owned equipment flyout on combat enter; installation only when requested, deferred by key.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          327,
+          368
+        ],
+        "auditedNormalizedSHA256": "00e321401b1f0fc214884ee787d4c06dfaed2348f9034d1f797bf8ae0bbc6760"
+      },
+      {
+        "path": "ConsoleportCompat/Loader.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit applies only pendingApply or HasDeferredWork; otherwise no compatibility remount.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          50,
+          64
+        ],
+        "auditedNormalizedSHA256": "b23e94a02ae7144b7d595d38dfe419d85641d25d29214dfc6ed0c2af5e0f7736"
+      },
+      {
+        "path": "Core/API/Threat.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-current-data",
+        "assessment": "Current combat getters use InCombatLockdown/UnitAffectingCombat with safe public booleans; pure threat API, no direct transition callback. Consumed by threat/nameplate painters.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "8aefd47231d66b8acb906ea9405b6cdaaeae4a9c9a5ad56d9521d50df3d74055"
+      },
+      {
+        "path": "Core/Flux.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "startup-only",
+        "assessment": "Boot regen registration removed after saved configuration bootstrap; completed modules do not rebuild each exit.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          183,
+          203,
+          234
+        ],
+        "auditedNormalizedSHA256": "6181f8d55f4d2193558df860f1ac212cdd21341705f0f650fbb8c8a691d67fa9"
+      },
+      {
+        "path": "Core/FluxAPI/Auras.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "not-transition",
+        "assessment": "CombatEvent text is aura-log helper naming; no direct regen or combat defer registration in this file.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "c6f641e0dc52c979d755be746c3417bd9d919d786bd4981c856f212503aa29d6"
+      },
+      {
+        "path": "Core/Module.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Protected module enable queued only while a requested module cannot run; one module.name key.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          102
+        ],
+        "auditedNormalizedSHA256": "3a4112552a09b756178a136b1aaae45fc47d040ad2eedd9f79a2898cd203f239"
+      },
+      {
+        "path": "Core/SecureClickProxy.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending+bounded-sweep",
+        "assessment": "Exit builds pending proxies then checks existing proxy mouseover/hides inactive ones. No full module layout; direct raw frame.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          209
+        ],
+        "auditedNormalizedSHA256": "33c60c871c04eebe54ef0bc26291a232022b0640d1f0822ad14d1ffaa924f59f"
+      },
+      {
+        "path": "FluxDefaultSettings.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Settings regen event is armed only while deferred sticky/soft target/bindings/UI scale/squeeze work exists; keyed squeeze dependents may cascade layout only when requested.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          897,
+          1010,
+          1163,
+          1180,
+          3208
+        ],
+        "auditedNormalizedSHA256": "fc824353f1ad1e415d6dcbb9fbf4b400d70a4ce32ab63d2f92bb195e6c672844"
+      },
+      {
+        "path": "Inventory/Builtin/Guild.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "no-direct-transition",
+        "assessment": "No regen/combat callback registration; guild events request shared inventory scheduler only while vault open. No feature changes proposed.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "eae35c0b9e184fe9c097afc2bb306b46d33ae28ecf26c2b0f7f62f1510bf9a33"
+      },
+      {
+        "path": "Inventory/Builtin/Void.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "no-direct-transition",
+        "assessment": "No regen/combat callback registration; transfer/open events request shared inventory scheduler only while vault open. No feature changes proposed.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "f9d007e70ac17e6365fbc075d589a6869ae866e3b78139817c94badd25cfd2c7"
+      },
+      {
+        "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "delayed-semantic-refresh",
+        "assessment": "Every exit invalidates cached IsUsableItem results and requests force recompute after50ms, to recover food/water usability. Preserve this correctness; expensive work candidate needs inventory-domain evidence.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          474,
+          486
+        ],
+        "auditedNormalizedSHA256": "78a747fb81ceffc4dd1bc97ce3b4ba6f180242f2d58902063366d40b47ae9c20"
+      },
+      {
+        "path": "Inventory/FluxInv/FluxInv_Compat.lua",
+        "loadedByTOCOrXML": false,
+        "classification": "unused-source",
+        "assessment": "Legacy FluxInv compatibility getter includes UnitAffectingCombat; old FluxInv scanner explicitly not loaded by current TOC.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "7e9e9295b7206103f02df7b3bb1914115cc0bcbe4b7af97535fa014331d925e7"
+      },
+      {
+        "path": "Inventory/FluxInv/FluxInv_Events.lua",
+        "loadedByTOCOrXML": false,
+        "classification": "unused-source",
+        "assessment": "Legacy FluxInv scanner explicitly unused by TOC75/519; its combat profession abort listener is not a loaded duplicate. Active profession owner is Inventory/Professions.lua.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          881,
+          941
+        ],
+        "auditedNormalizedSHA256": "7cdf04fe37d5c5fc226aab408ba52048bb0dfa2246108f19d7f13dc4177ac83c"
+      },
+      {
+        "path": "Inventory/Professions.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-cancel",
+        "assessment": "Enter aborts an outstanding login profession scan; does not rescan on exit.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          1798,
+          1815
+        ],
+        "auditedNormalizedSHA256": "e096bf70136140f59b67c7d92fb23d849a8d37fa8c2a7034f76758997e08991b"
+      },
+      {
+        "path": "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state",
+        "assessment": "Enter hides follow-up UI; exit installs placement hooks idempotently and F.Refresh. Existing displayed-state/content/layout caches bound work; no auction search restart on idle exit.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          358,
+          359
+        ],
+        "auditedNormalizedSHA256": "24d8918cc20e6e4d86d0c5b24e13b82d4abcc116d8ca816dd217a63a5b38cf89"
+      },
+      {
+        "path": "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "active-job-cancel",
+        "assessment": "Combat enter subscription exists only while potion-upgrade discovery/proposals active; callback cancels owned job and UI safely.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          109,
+          242,
+          331,
+          356,
+          381,
+          384
+        ],
+        "auditedNormalizedSHA256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc"
+      },
+      {
+        "path": "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "initialization-keyed-defer",
+        "assessment": "Protected merchant auto-toggle input config queues only while creation happened locked and permission probe failed. Key per toggle; fluxInputConfigured prevents repeated ready setup.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          800
+        ],
+        "auditedNormalizedSHA256": "69bed000cc42717614e22abab5ccc394990605a32b55a6b3039a78c68ca4740c"
+      },
+      {
+        "path": "Mail/Restock.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state",
+        "assessment": "Enter cancels requested take, invalidates snapshot and stops job; exit Update(true) returns when context closed, can rebuild bounded inbox snapshot only while mailbox active.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          208,
+          229,
+          236
+        ],
+        "auditedNormalizedSHA256": "09f764dcccfb9e8df31fb583cd8dd960336d4dae7686f94541e7f8d94a128d7d"
+      },
+      {
+        "path": "MicroMenu/FluxMicroMenu.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit initializes if startup incomplete and HijackButtons only if needsUpdate; steady state does not rediscover/rebuild menu.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          3112,
+          3196
+        ],
+        "auditedNormalizedSHA256": "5fc29b46a6ff64bfef85bf22a7f3d967e1034be325e22090541ddabb682f83f9"
+      },
+      {
+        "path": "MicroMenu/FluxTradeSkillMicro.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit calls Refresh only when _needsCombatSync; normal skills events retain independent cadence.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1079,
+          1087
+        ],
+        "auditedNormalizedSHA256": "ffbb245801e69b9d6a9ae991dc3c68afaa69ac6caae4bfb0f9cf319d98742aa2"
+      },
+      {
+        "path": "Minimap/FluxBuffDebuffFrames.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "delayed-layout",
+        "assessment": "Every exit schedules coalesced next-frame RefreshBlizzardAuraFrames/PositionBuffFrames. Place clears/reanchors both native system frames unconditionally; no native aura enumeration.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          95
+        ],
+        "auditedNormalizedSHA256": "ceb65d5458f378a7a45a87af3a3cffa3ddd06d68f783f13eca6be7c1927a8191"
+      },
+      {
+        "path": "Minimap/FluxMinimap.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-layout-candidate",
+        "assessment": "Nonembedded exit always EnforcePosition+CleanupBlizzardFrames; position rewrites movable/points/scale/parent and indicators. Cleanup repeats Hide+SetParent across17named native decorations+zoom children. Separate queue-eye listener also schedules placement each exit. Pending embeds/queue operations are real changes and must remain.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": true,
+        "sourceLines": [
+          77,
+          96,
+          227,
+          1220,
+          2305,
+          2467,
+          2544
+        ],
+        "auditedNormalizedSHA256": "0bf64554105128fbe7443a82d62f033bc37e1e7da44f50dcd01f9aed46b26678"
+      },
+      {
+        "path": "Minimap/FluxMinimapButtons.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending+visibility",
+        "assessment": "Enter stops hover ticker; exit RequestRefresh only if pending, otherwise ApplyVisibility on existing container. Border/layout work tied to real requested changes. Secure visibilityFrame [combat] hide/show affects prebuilt button descendants; separate root hover gate avoids ticking/rebuilding layouts on ordinary combat state. Existing border owner/fallback source visibility paint may be invoked by the native hide/show cascade.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          743,
+          770,
+          771,
+          778,
+          780
+        ],
+        "auditedNormalizedSHA256": "e331285db772169b2fd984990c02f54f2029d807b7e92ea1e36ca3db2675066c"
+      },
+      {
+        "path": "Minimap/FluxObjectiveTrackerScroll.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Dock reassert uses _dockReassertPending; dirty tracker map drains next tick on exit, preserving protected layout ordering.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          248,
+          1089
+        ],
+        "auditedNormalizedSHA256": "c51d44a98d071666dbcb71dfe8d2dc17a1f4d249ce8b45e31883ae70e09e15ee"
+      },
+      {
+        "path": "Minimap/FluxQuestie.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit RequestLayout only when _layoutPending; normal login/addon readiness remains independent.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          12,
+          75
+        ],
+        "auditedNormalizedSHA256": "683e39e1597542d3c32e02f37e74efd579ea300857688a1f27e5266c6abba96c"
+      },
+      {
+        "path": "NamePlates/CastBarSchools.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-paint",
+        "assessment": "Refresh binds missing existing native cast hooks and synchronizes or resets current cast proxy; no timer-cadence change proposed.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "2c5839f551f08e2340d1dfc3e094b48aa267085c78d4eed858f0f14657899a10"
+      },
+      {
+        "path": "NamePlates/ComboPoints.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-paint",
+        "assessment": "Global refresh invokes combo paint; native points/private policy must remain fresh.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "e0ab99bf4b0d8f165f436d373baec5251474303a521ce31af12bcd35c01a3a76"
+      },
+      {
+        "path": "NamePlates/Core.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "global-edge-refresh-candidate",
+        "assessment": "Both edges call NP.RefreshAll, clear activePlates cache, call all module RefreshAll then Refresh per active unit. Quest.RefreshAll marks dirty; per-unit Quest.Refresh creates fresh cache and updates. Preserve combat data policy; optimize geometry/setter redundancy only with proof.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": true,
+        "sourceLines": [
+          586,
+          587
+        ],
+        "auditedNormalizedSHA256": "229d1877d2331e382837c602c1de674d50341b02f3b6efa799bcf7d620fad1dc"
+      },
+      {
+        "path": "NamePlates/Countdown.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-scan",
+        "assessment": "Per-unit refresh scans native aura pools/lists to update duration hosts; native membership can change across private-policy transitions.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "e6960d8a229312547ea57d13ec83d8124fd7ae1e80e8e421fbd87a340487332d"
+      },
+      {
+        "path": "NamePlates/Level.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-paint",
+        "assessment": "Per-active-unit UpdateUnit only on supported client; normal polling retained.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "d051df80b887b3ec77d17ff5b1d6aebe15d6c9cf9550016813c346ef9fa5be66"
+      },
+      {
+        "path": "NamePlates/Threat.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-paint",
+        "assessment": "NP.RefreshAll/Refresh routes each active unit to UpdateUnit; required current threat/host paint, periodic module poll remains.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "90eb6e4a0a93c9d3b47bce87b512a622f6551694b000b3fe56fa5864e336328d"
+      },
+      {
+        "path": "Other/FluxArenaFramePosition.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit schedules ApplyNext only when pendingCombat.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          135,
+          140
+        ],
+        "auditedNormalizedSHA256": "fbe069ed348e2d1e0413ce404e86d70d2ac796be1f0c1a5b6180a88bc94efbe6"
+      },
+      {
+        "path": "Other/FluxBossFramePosition.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit schedules ApplyNext only when pendingCombat.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          134,
+          136
+        ],
+        "auditedNormalizedSHA256": "63590dfabca4a5e8f3525bde49b8e15e74c10dca0b8b765350e939f358f55a0a"
+      },
+      {
+        "path": "Other/FluxCharacterStats/CharacterStatsPaperDollEquipFlyout.lua",
+        "loadedByTOCOrXML": false,
+        "classification": "unused-source",
+        "assessment": "Legacy Other/FluxCharacterStats dump is explicitly unlisted by current TOC; same enter-flyout-close code is active in CharacterInfo replacement.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          345
+        ],
+        "auditedNormalizedSHA256": "b2c889ae2cf82c46abb0710e55cc5ab2727b5430ee5d6c6dbd2db99efcb9cc07"
+      },
+      {
+        "path": "Other/FluxChatColumnMicros.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "initialization-only",
+        "assessment": "Temporary protected direct-click opener waiters unregister after successful arm; no ordinary rebuild after readiness.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1061,
+          1187
+        ],
+        "auditedNormalizedSHA256": "daa47b18396b6a293e610f0e9a78bd38c57ef77b48fc644f5b58a767f875a2f0"
+      },
+      {
+        "path": "Other/FluxChatCopyPaste.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit installs column buttons only if pending; separate placement waiter unregisters before draining requested placement.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          606,
+          611,
+          1118,
+          1120
+        ],
+        "auditedNormalizedSHA256": "11a619bb94789b6a224c73437fb68f7524f0d895ed051493b57c9b548f285a2c"
+      },
+      {
+        "path": "Other/FluxChatFrame.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+pending",
+        "assessment": "Enter restores last known chat pin without rediscovery; exit InitializeChat/position retries only pending configuration/placement.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1405,
+          1406,
+          1480,
+          1488
+        ],
+        "auditedNormalizedSHA256": "3ba1e90d9f756a8815b434065b8915f0d3afe0e91687f6b93b3bb3ddaa324c22"
+      },
+      {
+        "path": "Other/FluxCooldownDefaults.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "No unconditional regen event; existing coalesced defaults Request defers protected writes under its queue key.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": true,
+        "sourceLines": [
+          301,
+          352
+        ],
+        "auditedNormalizedSHA256": "d2c449ddde42935b169eb87670801664758f2161ca8e60b1d20f20fb3b9841cd"
+      },
+      {
+        "path": "Other/FluxExtraAbilityHUD.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit schedules layout only if state.pendingLayout; independent spec changes use actual token changes.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          209,
+          228
+        ],
+        "auditedNormalizedSHA256": "e01d4b0c24a00018732b9e83148966299cdcfdfcd685ac4c4dd35df62bf16279"
+      },
+      {
+        "path": "Other/FluxHUDTooltip.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested protected default tooltip container anchoring coalesces under hud.tooltip.position; no unconditional regen listener or native tooltip readout scan.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          68
+        ],
+        "auditedNormalizedSHA256": "b0f9655f4aed68b66a896986f4570418b6162561aec0330e037808880d3f798f"
+      },
+      {
+        "path": "Other/FluxInputDebug.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "diagnostic-only",
+        "assessment": "OnAttributeChanged match belongs to optional user-armed input diagnostic list; no always-on combat module work.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "6047dc6f42a18bab1c6062dcbc483a0073b2022ede0c87d1e796a1ce039ce3fa"
+      },
+      {
+        "path": "Other/FluxLootRollPosition.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Temporary waiter unregisters then reanchors only the loot frame whose position flag is set.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          30,
+          40
+        ],
+        "auditedNormalizedSHA256": "291ba22a149ec0f1d8ea6a1e05aa61009643ead9f3966a88736a294767257b3c"
+      },
+      {
+        "path": "Other/FluxPerfDebug.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "diagnostic-only",
+        "assessment": "Match is command/help text for existing optional finite regen timing, not an ordinary combat consumer callback.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          843
+        ],
+        "auditedNormalizedSHA256": "436193f2ee58ebc5c000e4216dd212c21839568b7e94d7a49ff7fe089dfb81ee"
+      },
+      {
+        "path": "Other/FluxVehicleExitButton.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-layout-candidate",
+        "assessment": "Every exit UpdatePosition clears/reanchors existing vehicle-exit button plus immediate Update and coalesced10ms Update. Native taxi/vehicle state updates are required; identical anchor writes could be guarded with fresh state.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          161,
+          170,
+          341
+        ],
+        "auditedNormalizedSHA256": "1718bb3f1991cadacec3ea9f6de5d87098015f46d5d1af111a48475b3310e1c4"
+      },
+      {
+        "path": "Other/FluxVehicleSeats.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit updates seat anchor only if indicator._fluxNeedsAnchor.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          385,
+          400
+        ],
+        "auditedNormalizedSHA256": "12bbd63adfdffc520a646be83ea9a36a888cf36d3029ce9bde3892270149c06d"
+      },
+      {
+        "path": "RaidFrame/FluxRaidAuras.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "transitive-native-or-scan",
+        "assessment": "A.Update calls setup then current native update or readable per-filter snapshots; Refresh changes rows only for requested settings/layout. Called by RaidFrame and Party combat owners.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "829ec2b975eabbb13693b34520aab4f45c58f34a816a8826cf763d98414f3f52"
+      },
+      {
+        "path": "RaidFrame/FluxRaidFrame.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-aura-refresh",
+        "assessment": "Raw frame invokes pending combat work on exit and A.Update for each nonmini header child on BOTH edges; native filter/privacy transitions must remain, not assumed redundant.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          221,
+          232,
+          326,
+          327
+        ],
+        "auditedNormalizedSHA256": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532"
+      },
+      {
+        "path": "RaidFrame/FluxRaidHealerExtras.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-paint+pending",
+        "assessment": "Enter clears watched overlays; exit RefreshLayout only if pendingLayout, otherwise UpdateAll+PaintExtraUnits. Secure pet/target cell construction occurs OOC layout, not routine combat frame creation.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          277,
+          281,
+          335,
+          355
+        ],
+        "auditedNormalizedSHA256": "526f84c798ee7d4e0ae1a54f76ee220d9791f3a990edfa8e7ea275d130d7cb96"
+      },
+      {
+        "path": "RaidFrame/FluxRaidHoTs.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "optional-learn-candidate",
+        "assessment": "Only enabled Forever English optional estimates: every exit H.Learn reads/parses41 supported rank descriptions, then paints frame set/refreshes timer. Exact actual fixture410 reads/10 exits. No cache change proposed without complete stat/modifier/readiness invalidation.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          300,
+          318
+        ],
+        "auditedNormalizedSHA256": "b37435ac2520fa0bfeb67a2883e0d913ee667528fd293af31aa4402d7677da6d"
+      },
+      {
+        "path": "RaidFrame/FluxRaidLayout.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-layout",
+        "assessment": "Function-keyed pendingCombatWork set coalesces actual roster/options layout requests; RunPendingCombatWork invoked by RaidFrame exit owner.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e"
+      },
+      {
+        "path": "RaidFrame/FluxRaidPreview.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-hide",
+        "assessment": "Enter hides preview session/containers. Target/group preview interactions remain separate and bounded visible pools.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          940,
+          944
+        ],
+        "auditedNormalizedSHA256": "719281553d6c8e35ecea62324798f8c8f13c2208ef73da3397435b6ff9366f55"
+      },
+      {
+        "path": "RaidFrame/FluxRaidSecure.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "secure-unit-state",
+        "assessment": "Secure OnAttributeChanged wrappers handle native header/mini target unit assignment and native show/hide; ordinary Lua unit-bind callback ignores non-unit and unchanged token. No new combat binding/layout registration.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "9dc1fdb075b8a77f27f597d3d3356257ee6379027f8247fd72c610832720dad7"
+      },
+      {
+        "path": "RaidFrame/FluxRaidUnit.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Each cell registers regen only for pending power/chrome layout; first exit unregisters and applies only those flags. OnAttributeChanged ignores unchanged unit; real unit replacement unregisters/rebinds events and paints. OnShow paints unit/auras, OnHide clears aura/prediction/extra overlays; secure group/companion drivers can cause these cascades.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          113,
+          552,
+          606,
+          607
+        ],
+        "auditedNormalizedSHA256": "bb584206279a1e0e5f52f72c3cb41c03c422cbf5cc60b03a96780fbf18572ac3"
+      },
+      {
+        "path": "Respec/FluxRespec_ActionBars.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "active-request-only",
+        "assessment": "Watcher armed only for requested combat-deferred profile application, cancels superseded generations and unregisters before applying.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          622
+        ],
+        "auditedNormalizedSHA256": "7a91d7944f9710ab51ce150ab44fb5414c62f3269de84d3119aae54a10506162"
+      },
+      {
+        "path": "Respec/FluxRespec_Apply.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "active-request-keyed-defer",
+        "assessment": "Current profile state utility-slot step queues only after IN_COMBAT failure; state identity prevents cancelled/superseded snapshot from applying.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          814
+        ],
+        "auditedNormalizedSHA256": "3e983fd91063aa14f9bdf1d85c86efd8853e0bfd083e9b536265d20087b236b2"
+      },
+      {
+        "path": "Respec/FluxRespec_Equipment.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "active-request-only",
+        "assessment": "Combat gear-swap snapshot applies only for still-current request; clears watcher and pending payload before application.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1811
+        ],
+        "auditedNormalizedSHA256": "a23ff25de69275db2895b72453f763ff9705bf8bb00d2f92ff2a42dbf7cd4d45"
+      },
+      {
+        "path": "Salvage/FluxSalvage_Overlay.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Local deferred call/method array flushes at exit; no queued work on ordinary idle transition. Unkeyed user-triggered queue could grow with requests but no evidence of recurring idle work.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          72,
+          90,
+          95,
+          408,
+          410,
+          412,
+          515
+        ],
+        "auditedNormalizedSHA256": "467978adfa81aecfb6e14e5f1edf7c4fdd55a8e8c57b07ae62a42ea5ff8ba9b6"
+      },
+      {
+        "path": "StatusBars/FluxInfoFrame.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-stats+pending",
+        "assessment": "Supported clients request coalesced stat refresh on both edges; ForceRebuild only _rebuildAfterCombat. Dynamic unit-aura paints already gated on visibility/pinned dependencies.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          4912,
+          4913,
+          4927
+        ],
+        "auditedNormalizedSHA256": "a48788c81e801ee1771f3d4597591885f33b56166a06fdb91c2300c5ed923477"
+      },
+      {
+        "path": "StatusBars/FluxStatusBar.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit initializes incomplete HUD, UpdateLayout only pendingStatusLayout, hides native bars only pending. Separate layout-notify listener drains only notifyLayoutSkippedCombat.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          2571,
+          2937,
+          2989
+        ],
+        "auditedNormalizedSHA256": "27dc9858dfef98c21f273b38b6b3f910c3bd267dc5fe7c135bf210582957225b"
+      },
+      {
+        "path": "UnitFrames/FluxCastBar.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "No direct regen callback: shared protected queue resumes only pending cast layout/appearance; actual completed header layout is cached. Cast timers/effects keep original events/cadence.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          3225,
+          3640
+        ],
+        "auditedNormalizedSHA256": "70e05f014fe0eb973289bb75455956d7a43441974c69ab0a1bf2621f78f73d40"
+      },
+      {
+        "path": "UnitFrames/FluxClassPower.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Latest-parent position and one visibility request coalesce while locked, each resumed once. Native class/vehicle power semantics retained.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          478,
+          495
+        ],
+        "auditedNormalizedSHA256": "dfd00625eea83257b4d8cf43df01768bae4940636d2cfa9ece004d4b5acdb60c"
+      },
+      {
+        "path": "UnitFrames/FluxForeverComboPoints.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-paint+pending",
+        "assessment": "Exit initializes pending rows then RefreshAll; current combo state must remain fresh, no recurring frame allocation after readiness.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          120,
+          131
+        ],
+        "auditedNormalizedSHA256": "3b9b7e4f262c95822b31f2fd5ffdf5c29d500e60654d0f5a64613c6a24ee289a"
+      },
+      {
+        "path": "UnitFrames/FluxLegacyComboPoints.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-paint",
+        "assessment": "Supported older clients RefreshAll on exit; no geometry-change claim without current native point/state evidence.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          169
+        ],
+        "auditedNormalizedSHA256": "22ac622d8347fa945853e482a66ac8a1b02e37b0c4e81ac6d3f7eff9a3dae0a7"
+      },
+      {
+        "path": "UnitFrames/FluxPortraitCombatFeedback.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "not-transition",
+        "assessment": "OnCombatEvent is UNIT_COMBAT feedback painting, not a regen subscription; animations are event-driven, retain cadence.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "3f9e255f90f02655947236d01b3539275b876c1f80c66fc06a0cc30cc14ad274"
+      },
+      {
+        "path": "UnitFrames/FluxPowerCostOverlay.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Only unprepared bar infrastructure queued, keyed perbar with sequence cancellation; normal combat paint reuses prepared resources.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          700
+        ],
+        "auditedNormalizedSHA256": "0588e5562bc4a20f46af746e2b3bccb2e3f4c93a7ee5502d03e5b0e304eaf727"
+      },
+      {
+        "path": "UnitFrames/FluxSwingTimer.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+keyed-defer",
+        "assessment": "Enter starts appropriate melee/CLEU state; exit unregisters CLEU, zeros timers/auto flags, hides immediately. Header fit/attach work uses coalesced pending protected keys, cached unchanged layout.",
+        "directEvents": [
+          "PLAYER_ENTER_COMBAT",
+          "PLAYER_LEAVE_COMBAT",
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          167,
+          2099,
+          2125,
+          2133,
+          2136,
+          2261,
+          2262,
+          2264,
+          2267,
+          2555
+        ],
+        "auditedNormalizedSHA256": "ada9a8e87a084e23d508e1dbf84076e3362e7c318a6407ac52c5ec7b4155d46c"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Auras.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-delayed-layout-candidate",
+        "assessment": "Each target/focus aura owner schedules50ms enter/500ms exit RefreshFrameAuras; refresh always resizes panel before engine sync or readable scan. Delay and all aura scans/native refreshes retained; dimensions/public geometry setters are potential redundant work.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          2329,
+          2337,
+          2351,
+          2352,
+          2365,
+          2366,
+          2424
+        ],
+        "auditedNormalizedSHA256": "d5d411e4676c9db3bf785de296c3b7e59cf5e5a7a432db2669641103e1941c2a"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_AurasEngine.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "optimized-public-layout",
+        "assessment": "Approved isolated change caches only successful owned engine/group public layout descriptor; native full aura refreshes and fresh group/frame queries/SetSize remain. Native group MarkDirty60â†’0 in four-panel10refresh fixture; same engine re-add/absence/method/private/failure recovery tested.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [],
+        "auditedNormalizedSHA256": "21ec16d37097dc24ae2108f1d6570770ec6182c76724c5ca98f67f8a54ea5e56"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_BigDebuffs.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "initialization-only",
+        "assessment": "One-time integration install defers BigDebuffs.Refresh if loaded/blocked, not unconditional every exit.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          202
+        ],
+        "auditedNormalizedSHA256": "918640a42184cbb644644c7fcd28b366543e2ac33304d5b711cf34d1e3f45c48"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-native-refresh",
+        "assessment": "Raw both-edge owner queues each eligible state with refreshNative=true; unchanged native unit/filter triggers UpdateAllAuras and current alpha/text/scan paint. This preserves restricted-policy transitions; no callback removal proposed.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          301,
+          323
+        ],
+        "auditedNormalizedSHA256": "4f48ab1346008a65be60b7819f2d59525b2d12ca8330affff7681d3b2727c571"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "delayed-remute",
+        "assessment": "Every exit queues suppression of six Blizzard unit roots and native cast bars next tick. Runtime replacement enable changes use protected pending keys; muting must resist native reapply, candidate should guard existing actual state only.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          444,
+          632,
+          675
+        ],
+        "auditedNormalizedSHA256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Focus.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested protected runtime focus enable/disable only; standard regen owned by shared constructor.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          253
+        ],
+        "auditedNormalizedSHA256": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested focus-target metrics/partition/runtime changes coalesce perkey; standard regen uses shared constructor.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          38,
+          109,
+          249
+        ],
+        "auditedNormalizedSHA256": "4355514d19ed071fcea01c9a8eaead52e909403be96ad6fb37e730724cd38ce4"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Lifecycle.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "startup+keyed-defer",
+        "assessment": "Protected unit constructors and infrastructure deferred by unitframes.* keys; initialized entries complete once.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          28,
+          29,
+          42
+        ],
+        "auditedNormalizedSHA256": "11aa29be10068eacfe8efa54a270e897ef731916dd18ad22d4be4ab786d0b075"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_OptionsBridge.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "settings-keyed-defer",
+        "assessment": "Actual settings changes queue threat/portrait/render-mode/aura/full-layout/size callbacks under distinct stable keys; no ordinary combat event listener.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          562,
+          608,
+          678,
+          791,
+          1181,
+          1270
+        ],
+        "auditedNormalizedSHA256": "bfcf22542b4234f8721bb52a0166716e6c70f8992275d34f75cc777b9c2cdf2f"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Party.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-paint+pending",
+        "assessment": "Party/pet wrappers keep shared combat visibility/indicator paint; normal party adds text modes/cast cover. Cast layout and options protected requests coalesce; no per-edge full Party.ApplyOptions.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          170,
+          637,
+          720,
+          901
+        ],
+        "auditedNormalizedSHA256": "6c2e57487f26b74b5a4eabc39497dc073f9eac1b39900c4d7aef201aa234b4b7"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Pet.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-anchor",
+        "assessment": "Player pet raw wrapper calls UpdatePosition every exit, then shared unit regen handler; position uses current public parent/unit dimensions. Runtime enable requests defer by key.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          201,
+          257,
+          281
+        ],
+        "auditedNormalizedSHA256": "e2aa8d8f5bd716b0408ad76456d8ec57351e963c8b0e996d28a4f075b8f5306f"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit constructs tooltip host only if pendingCreate; optional visible pet tooltip paint follows.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          601,
+          608
+        ],
+        "auditedNormalizedSHA256": "3cb66a9d99daf46bbb9e06f0e77d58e9302189d421505f5da157d80f4dd7b026"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PetTarget.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending+visibility",
+        "assessment": "Exit reanchors only needsPositionUpdate and synchronizes current watched visibility; runtime enable changes defer by key.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          103,
+          104,
+          183,
+          186,
+          230
+        ],
+        "auditedNormalizedSHA256": "b820766c275b596f129fcb6a6b87f3f64831309dbdaa4e4aac63fe359279674a"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Player.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested runtime player enable/disable only; normal regen visual paint owned by shared handler.",
+        "directEvents": [],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          214
+        ],
+        "auditedNormalizedSHA256": "d127ea9a0fdf10e13282f2023c954b3c175a77ca93c7577aba360dd3f359662f"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-interaction-layout",
+        "assessment": "Both edges update interaction enable/close flyout, overlay geometry and pending-profile glow; required enabled-state paint can be separated from identical owned icon/overlay anchors only with proof.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          1182,
+          1183
+        ],
+        "auditedNormalizedSHA256": "e0ddf47835df81ef2cce6791175cc977080cc25a7c06365d44891bed2436b6a9"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_PlayerTransmogClick.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-interaction",
+        "assessment": "Secure combat hider state drivers and raw both-edge interaction updates; closes owned flyout/hit states, native visibility preserved. One-time initialization defers by key. Two secure [combat] hide/show drivers close popup/portrait hit surfaces; they do not rebuild character/transmog UI in response to combat.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": false,
+        "sharedEvents": false,
+        "sourceLines": [
+          378,
+          418,
+          423,
+          606,
+          783,
+          784,
+          847
+        ],
+        "auditedNormalizedSHA256": "efca0fa1d3366c313d331fb116b1cedb2305ed394c4fe576e562c0b3ac7248e6"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-state+layout-candidates",
+        "assessment": "Threat poll armed/unarmed, resource pulse fade, pending partitions, watched-unit visibility and player portrait/visuals. Player UpdateFrameVisualElements rewrites class/spec size/points on both edges. Emulated squeeze uses changedOnly native width guard but always notifies dependents afterward. Indirect PLAYER_FLAGS_CHANGED for the frame unit calls full UpdateOuterBorder, player visual layout, health/power/additional paints; UNIT_FLAGS separately paints combat portrait. Constructor show/hide hooks update owned separators only; portrait model show callbacks can restore native model state. These are raw frame timing-coverage consumers.",
+        "directEvents": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          16,
+          37,
+          217,
+          218,
+          221,
+          223,
+          400,
+          1359,
+          1411,
+          1419,
+          1421,
+          1425,
+          3102,
+          6882,
+          6883,
+          8737,
+          8742,
+          8743,
+          9022,
+          9028,
+          9036,
+          9037,
+          9382,
+          9390,
+          9477,
+          9490,
+          9506,
+          9521,
+          9536,
+          9537
+        ],
+        "auditedNormalizedSHA256": "bc168bf914c77d1a2319ec006dd2c99e3b285211ea18d39f140add9b9ddb5725"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_Target.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "edge-placeholder+keyed-defer",
+        "assessment": "Exit checks actual target placeholder visibility; requested runtime enable changes deferred by key.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          320,
+          415
+        ],
+        "auditedNormalizedSHA256": "af87b4caf7e60e751da2e0921ce514ca384ddbf13588c95122043610725a4ed3"
+      },
+      {
+        "path": "UnitFrames/FluxUnitFrames_TargetOfTarget.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "pending-only",
+        "assessment": "Exit anchors only needsTotAnchorUpdate; shared visibility/paint independent. Runtime enable requests deferred by key.",
+        "directEvents": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          128,
+          299
+        ],
+        "auditedNormalizedSHA256": "55a6d5d8b388b284f20ab711207937710a849bf07cb1dd503bd0eabf498547b4"
+      },
+      {
+        "path": "WindowMover/Engine.lua",
+        "loadedByTOCOrXML": true,
+        "classification": "keyed-defer",
+        "assessment": "Requested per-window Apply coalesces under windowmover.apply.name; no unconditional global exit layout sweep.",
+        "directEvents": [],
+        "rawFrame": true,
+        "sharedEvents": false,
+        "sourceLines": [
+          289
+        ],
+        "auditedNormalizedSHA256": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c"
+      }
+    ],
+    "externalReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-transition-consumers-ledger.json"
+  },
+  "barsEBSBindingAudit": {
+    "capturedUTC": "2026-11-16T15:20:19.379809+00:00",
+    "scope": "Read-only source/TOC and bounded external work fixture. TOC selection proves reachable source, not that every feature callback is currently registered in the native VM. No runtime/docs/tests/settings/client changes; no CPU benchmarks or native FPS/taint attribution.",
+    "checkpoint": "combat-whole-addon-before-20261116T150228Z",
+    "tocSha256": "6d13900b36c73da1173085d3dec929b445dc912f2b575fd00f1c536224e8e316",
+    "ledger": [
+      {
+        "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "line": 3518,
+        "dispatch": "raw per-Attach Frame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Refresh.Attach.leave â†’ Module.Update(true) â†’ BindItem â†’ EBS.Action.SetAction",
+        "work": "Up to7 registered consumable kinds each invalidate Best usable cache then force selection+secure item/RC/keybind/drag repaint even same item. External actual Module/Action fixture five modeled families,7 kinds x10 clean exits:70 SetAction/1190 SetAttribute/140 ClearOverrideBindings/140 bindings per family.",
+        "guard": "No dirty guard for leave; force intentionally restores failed/deferred native state. Blind force removal fails actual native restore after injected setter failure.",
+        "deferredOwners": [],
+        "priority": 1,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "line": 969,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "OnAssistantRegen + Strip.ApplyGamepadHud",
+        "work": "RequestCond combat; strip SetAlpha/Show; ApplyGamepadHud unconditionally Stance.ApplyLayout; assistant ticker+full PaintAssistedHosts/Highlights passes.",
+        "guard": "Conditional ProgramFace signature gate; floor/shown guard limits RefreshClearance but does not limit Stance.ApplyLayout.",
+        "deferredOwners": [
+          "ProgramFace.Request(combat)",
+          "Stance.ApplyLayout",
+          "bars.assistant"
+        ],
+        "priority": 2,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Stance/Layout.lua",
+        "line": 214,
+        "dispatch": "called synchronously from regen via Strip",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Stance.ApplyLayout",
+        "work": "Catalog/shouldShow/permutation/visible/shown/bindWidgets tables; frame/slot/widget size/scale/anchor/show; EBS.Paint.Update; Anchor/ReassignBindings then border CommitLayout.",
+        "guard": "Only missing frame/lockdown guard, no dirty early return.",
+        "deferredOwners": [
+          "bars.stance.layout",
+          "bars.stance.anchor",
+          "bars.stance.keys"
+        ],
+        "priority": 2,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Effects.lua",
+        "line": 760,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "InvalidateSecureAuraCandidates â†’ RefreshAll â†’ FlushDirty â†’ PrepareSecureColumn",
+        "work": "Each exit increments candidate epoch+all19 columns. Eligible Forever secure SAO path checks2 mini+18 page candidates/column up to380 MayShowSecureAuraSlot calls, then face VFX.",
+        "guard": "Candidate scan capability/SAO-gated; RefreshAll occurs even if Context owns display; Timer.Defer coalesces duplicates.",
+        "deferredOwners": [
+          "Timer.Defer(FlushDirty)"
+        ],
+        "priority": 3,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Effects.lua",
+        "line": 759,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "owner": "OnContextedHop",
+        "work": "RefreshAll VFX if display bus absent.",
+        "guard": "Returns when Context.HasSubscribers true.",
+        "deferredOwners": [
+          "Timer.Defer(FlushDirty)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Core/ButtonFX/Glow.lua",
+        "line": 2001,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "TryBind + Notify",
+        "work": "Notify always fans to Effects.RefreshAll and EBS Watch ebs.glow. If capture absent TryBind may inspect SAO script upvalues or invoke community SAO synthetic SPELLS_CHANGED/PLAYER_LOGIN.",
+        "guard": "TryBind only not captured; external community initialization not proven native hitch owner.",
+        "deferredOwners": [
+          "Timer.Defer(FlushDirty)",
+          "Scheduler eval ebs.glow"
+        ],
+        "priority": 3,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "line": 911,
+        "dispatch": "called by EBS Watch and every SyncAssistant",
+        "events": [
+          "both regen edges"
+        ],
+        "owner": "Action.RebindAssistant",
+        "work": "Entry queues ebs.assistant.bind even unsupported; exit creates owner if absent and ClearOverrideBindings before SupportsAssistant check. Additional calls during every forced consumable SetAction.",
+        "guard": "SupportsAssistant checked after clear; must retain cleanup when actual owned binding was installed, not blind capability return.",
+        "deferredOwners": [
+          "ebs.assistant.bind"
+        ],
+        "priority": 4,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Watch.lua",
+        "line": 872,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "OnRegenEdge",
+        "work": "RequestChecked; conditional combat if no Context; RefreshAssistantChrome/PaintAssistantButtons each sweep EBS.buttons; ticker demand+RebindAssistant.",
+        "guard": "Paints only assistant matches but list walks unconditional; ticker capability gate.",
+        "deferredOwners": [
+          "Scheduler eval ebs.checked",
+          "ProgramFace.Request(combat)",
+          "ebs.assistant",
+          "ebs.assistant.bind"
+        ],
+        "priority": 4,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "line": 957,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "OnAssistantRegen",
+        "work": "Collector sweep; SyncAssistantTicker then PaintAssistNow. Unsupported-assistant ticker removal path still PaintAssistedHighlights; PaintAssistNow does two more host passes.",
+        "guard": "Core/API/Action LeaveBlizzardCollector returns immediately Forever/Camelot; collector loops only other clients. Paint setters have local guards.",
+        "deferredOwners": [
+          "bars.assistant"
+        ],
+        "priority": 5,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "line": 2660,
+        "dispatch": "raw Frame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "PaintSwapFaces",
+        "work": "Twice per edge: immediate and After(0), walks EBS.buttons and translates/recounts only _fluxCombatSwapBody entries.",
+        "guard": "Per-button swap-body guard; delayed pass retains native combat-condition settle.",
+        "deferredOwners": [
+          "C_Timer.After(0,PaintSwapFaces)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "line": 710,
+        "dispatch": "raw leftoverWatch Frame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "QueueLeftoverMouse â†’ ApplyLeftoverNow",
+        "work": "One deferred stock-grid suppression; main/multibar SetAlpha0; stock stance/possess suppression; OOC KillLeftoverMouse.",
+        "guard": "Coalesced leftoverQueued, secureReady/EditMode/lockdown guards; preserve protection/taint reasons.",
+        "deferredOwners": [
+          "Timer.Defer(ApplyLeftoverNow)",
+          "bars.leftover",
+          "bars.stance.hide",
+          "bars.possess.hide"
+        ],
+        "priority": 6,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Vehicle.lua",
+        "line": 229,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "HoldCollectorEvents; pending Vehicle.QueueApply",
+        "work": "Bounded collector unregister checks each edge; only pending vehicle state restamps deferred apply.",
+        "guard": "pendingCombatApply + lastApplySig suppress unchanged vehicle work.",
+        "deferredOwners": [
+          "Timer.Defer(run Vehicle.Apply)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Stance/Watch.lua",
+        "line": 136,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "ArmorVisual",
+        "work": "Sets extras/forms visual dirties and queues two functions; visual paint only.",
+        "guard": "Dirty flags skip duplicate visual body and when layout pending.",
+        "deferredOwners": [
+          "Timer.Defer(extrasVisual)",
+          "Timer.Defer(formsVisual)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Bars/Pet/Watch.lua",
+        "line": 128,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Pet.FlushBindingModePending",
+        "work": "Only pending frame visibility override/state driver flush.",
+        "guard": "bindingModePending==nil returns immediately.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+        "line": 202,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "TryInitialize/pending anchor/ProcessCombatQueue/pending flags",
+        "work": "Queue tests two equipment slots then UpdateQueueVisuals even empty; pending visibility/key/show can rescan/reanchor.",
+        "guard": "Startup/pending flags guard heavy paths; PLAYER_REGEN_DISABLED handler is no-op. Two pending visibility branches can both call UpdateTrinketVisibility.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+        "line": 340,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Start/StopCombatRefreshTicker + pending module/layout flush",
+        "work": "Entry arms one0.5s ticker only if registered refreshers; exit cancels; pending ScheduleAllUpdates/FinalizeLayout.",
+        "guard": "No clean-exit full module update; _moduleUpdateOnRegen/_pendingRegenRelayout guards.",
+        "deferredOwners": [
+          "C_Timer.NewTicker(.5)",
+          "ScheduleAllUpdates run"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
+        "line": 350,
+        "dispatch": "raw per Ammo eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Ammo start/stop ticker/pending Update or StripSecureItemUse",
+        "work": "Entry starts registered Ammo refresher only display item exists; exit cancels and queues only pending update/strip.",
+        "guard": "Pending flags; Manager shares ticker when present.",
+        "deferredOwners": [
+          "FluxCombatRegenDeferQueue(Update/Strip)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+        "line": 140,
+        "dispatch": "raw Frame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Initialize or pending full Relayout",
+        "work": "Pending layout ApplyLeftAnchor+Relayout; clean only increments skipped counter.",
+        "guard": "_startupReady and _pendingRegenRelayout guards.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+        "line": 3434,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "icon lock/unlock; runHeavyIcon/runLight",
+        "work": "Entry sets iconManaged true; registered button therefore usually queues icon refresh each exit. Legacy UpdateBagMountIcon is cached modifierâ†’favorite lookup, not full bag scan; MountUI route resolves texture. Pending update/key/unlock separate.",
+        "guard": "Registered/button/placeholder/lock guards; preserve one-frame icon restoration.",
+        "deferredOwners": [
+          "FluxRegenDeferHeavyQueue(runHeavyIcon)",
+          "FluxCombatRegenDeferQueue(runLight)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
+        "line": 2829,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "icon lock/pending Unlock/Update/keybind",
+        "work": "Entry icon flag; exit resets flag and flushes only pending mutations.",
+        "guard": "_pendingUnlock/_pendingUpdate/_pendingKeybindUpdate.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+        "line": 2909,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "runRegen pending update/keybind/unlock",
+        "work": "Registered pending work only; guard re-combat restores pending flags.",
+        "guard": "No dirty flags returns immediately.",
+        "deferredOwners": [
+          "FluxCombatRegenDeferQueue(runRegen)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+        "line": 6446,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED",
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "combat flag/ApplyPendingChanges/pending UpdateButtonState(true)",
+        "work": "Entry flag only; exit item/wisp pending changes then key/update only when pending. UpdateButtonState pending path can enumerate aura/options and Relayout.",
+        "guard": "ApplyPendingChanges tests item/wisp flags; heavy _pendingUpdate guard.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
+        "line": 1140,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_DISABLED"
+        ],
+        "owner": "Config.Hide",
+        "work": "Close currently shown settings window.",
+        "guard": "Only frame exists and IsShown; intentional combat behavior.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "line": 1250,
+        "dispatch": "raw watch.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "pending UpdateAllSlots/UpdateBindings",
+        "work": "No unconditional full slot sweep.",
+        "guard": "_pendingUpdate else _pendingBindings guards.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua",
+        "line": 626,
+        "dispatch": "raw lazily-created regen watcher",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "FlushPendingSlotShown",
+        "work": "Swaps pendingSlotShown to new empty table each exit once watcher exists; applies queued slot visibilityâ†’layout if state changed.",
+        "guard": "ApplySlotShownNow compares prior shown; no queued items gives one empty allocation only.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+        "line": 444,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "FlushAfterBulkBindings or light RefreshAfterBindingChange",
+        "work": "Broad key/helper refresh only pending bulk or light flags.",
+        "guard": "_deferredFlush/_deferredLightRefresh guards.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+        "line": 579,
+        "dispatch": "raw on-demand combatFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "queued window attach positions",
+        "work": "Replays queued attach ClearAllPoints/SetPoint, wipes queue, unregisters event.",
+        "guard": "Created on UI.Attach during combat only; not ordinary clean combat owner. Potential repeated-attach watcher lifecycle needs separate feature proof.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/Boot.lua",
+        "line": 41,
+        "dispatch": "raw boot frame",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "Boot",
+        "work": "DB/engraving/migration/availability seed/full apply only startup or retry.",
+        "guard": "booted guard + unregister all after success; not recurring normal-exit owner.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/Core/Apply.lua",
+        "line": 2434,
+        "dispatch": "raw regen frame",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "ScheduleApply â†’ RunApply",
+        "work": "Only resumes previously blocked full binding plan, occupancy/badge/key/click programs then paint.",
+        "guard": "combatPending guard; coalesced applyScheduled.",
+        "deferredOwners": [
+          "C_Timer.After(0,RunApply)",
+          "existing Regen.Time(binding.RunApply)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/Respec.lua",
+        "line": 349,
+        "dispatch": "raw temporary watcher",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "ApplySnapshotInternal â†’ FinishRequest",
+        "work": "Pending requested profile restore only, unregister after completed/cancelled.",
+        "guard": "_pendingRequest and not lockdown; no normal clean combat work.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/Input/FluxMouseoverKeybind.lua",
+        "line": 2328,
+        "dispatch": "raw eventFrame.OnEvent",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "ProcessPendingFrames + pending refresh/routing/roster/drivers",
+        "work": "Always swaps pendingFrames to empty table; discovery/full attributes only pending; hover driver operations guarded by actual registered state.",
+        "guard": "__pendingRefresh/pendingHoverRoutingFlush/pendingRosterRegistration; unitExistsDriverRegistered guard.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/Core/PushPress.lua",
+        "line": 873,
+        "dispatch": "raw boot frame",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "EnsureBarButtonPushHooks",
+        "work": "19-column name concatenations/hash checks every exit; already-hooked path returns without new HookScript/native writes.",
+        "guard": "Per-button _barButtonPushHooked guard; bounded small work, low priority.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Binding/UI/SpellbookBindingHooks.lua",
+        "line": 216,
+        "dispatch": "raw one-shot frame",
+        "events": [
+          "PLAYER_REGEN_ENABLED"
+        ],
+        "owner": "HookSpellbookButtons",
+        "work": "Retry only when prior catcher refresh blocked by combat; unregister before hook pass.",
+        "guard": "catcherCombatRetry prevents duplicate watcher.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Core/ButtonFX/Flash.lua",
+        "line": 395,
+        "dispatch": "Flux.Events",
+        "events": [
+          "PLAYER_ENTER_COMBAT",
+          "PLAYER_LEAVE_COMBAT"
+        ],
+        "owner": "Flash.Notify â†’ Bars/EBS flash paint",
+        "work": "Melee/autoattack flash notification, distinct from PLAYER_REGEN lock/unlock.",
+        "guard": "Preserve flash cadence; other ButtonFX Cast/Charges/Overlay/ThreatGlow have no regen subscriber.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Core/Engine/Range.lua",
+        "line": 480,
+        "dispatch": "no regen subscriber",
+        "events": [],
+        "owner": "Range.Start / shared0.2s sweep",
+        "work": "No direct combat-edge scan or cache reset. Target/focus/mouseover/action-range/spell/form events own invalidation. EBS Action.SetAction can Sync demand repeatedly.",
+        "guard": "Do not attribute continuous shared range ticker to direct regen callback.",
+        "deferredOwners": [],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      },
+      {
+        "path": "Other/FluxCooldownDefaults.lua",
+        "line": 297,
+        "dispatch": "no direct regen subscriber; Combat.Defer when request blocked",
+        "events": [],
+        "owner": "Run â†’ cooldown.defaults defer",
+        "work": "Conditional explicit layout/default request can resume after combat; existing profile path only follows player.",
+        "guard": "pending/applying/loggedIn/availability/EditMode/state guards.",
+        "deferredOwners": [
+          "cooldown.defaults â†’ Defaults.Request â†’ Timer.Defer(Run)"
+        ],
+        "priority": null,
+        "nativeAttribution": "not measured; source/work proof only"
+      }
+    ],
+    "literalSourceRefs": [
+      {
+        "path": "Bars/BadgeHost.lua",
+        "tocSelected": true,
+        "sha256": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0",
+        "refs": [
+          {
+            "line": 570,
+            "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+          },
+          {
+            "line": 765,
+            "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+          },
+          {
+            "line": 997,
+            "text": "T.Defer(RunTrailingFaces)"
+          },
+          {
+            "line": 1092,
+            "text": "T.Defer(RunNotifyDisplays)"
+          },
+          {
+            "line": 1255,
+            "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "tocSelected": true,
+        "sha256": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+        "refs": [
+          {
+            "line": 117,
+            "text": "Flux.Combat.Defer(\"bars.stockgrid\", SuppressStockGridEvents)"
+          },
+          {
+            "line": 363,
+            "text": "\"PLAYER_REGEN_ENABLED\","
+          },
+          {
+            "line": 364,
+            "text": "\"PLAYER_REGEN_DISABLED\","
+          },
+          {
+            "line": 589,
+            "text": "Flux.Combat.Defer(\"bars.stance.hide\", HideStockStanceBars)"
+          },
+          {
+            "line": 597,
+            "text": "Flux.Combat.Defer(\"bars.possess.hide\", HideStockPossessBars)"
+          },
+          {
+            "line": 667,
+            "text": "Flux.Combat.Defer(\"bars.leftover\", Blizzard.KillLeftoverMouse)"
+          },
+          {
+            "line": 680,
+            "text": "Flux.Timer.Defer(ApplyLeftoverNow)"
+          },
+          {
+            "line": 694,
+            "text": "\"PLAYER_REGEN_ENABLED\","
+          }
+        ]
+      },
+      {
+        "path": "Bars/BlizzardOptions.lua",
+        "tocSelected": true,
+        "sha256": "61b8a34ef514dedd10a3f74fd74ed0ac8f3634703a0ddb1438e773bc03297c5c",
+        "refs": [
+          {
+            "line": 344,
+            "text": "Flux.Combat.Defer(\"bars.blizzardoptions.toggles\", ForceExtraActionBarsOff)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Clicks.lua",
+        "tocSelected": true,
+        "sha256": "b7a8003e7a95913533579ab6270091ae270ddc78ebe657e9d4e1e5654b519901",
+        "refs": [
+          {
+            "line": 70,
+            "text": "Flux.Combat.Defer(\"bars.clicks\", Clicks.ApplyRegistration)"
+          },
+          {
+            "line": 192,
+            "text": "Flux.Combat.Defer(\"bars.empower\", Clicks.ReassertEmpower)"
+          },
+          {
+            "line": 242,
+            "text": "Flux.Combat.Defer(\"bars.keys\", Clicks.RefreshKeys)"
+          },
+          {
+            "line": 337,
+            "text": "Flux.Combat.Defer(\"bars.clickcvar\", Flux.ButtonFX.Click.SyncCVars)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Effects.lua",
+        "tocSelected": true,
+        "sha256": "8b785f4763eaf31fa3ff773c5c9c91732c4fee652fa0edc6fc1440dc25f2816e",
+        "refs": [
+          {
+            "line": 630,
+            "text": "Flux.Timer.Defer(FlushDirty)"
+          },
+          {
+            "line": 735,
+            "text": "Flux.Timer.Defer(function()"
+          },
+          {
+            "line": 759,
+            "text": "Ev.Register(\"PLAYER_REGEN_DISABLED\", OnContextedHop)"
+          },
+          {
+            "line": 760,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Init.lua",
+        "tocSelected": true,
+        "sha256": "54b3d637be80130594e4c6783bf72ff4f1273d8dbee29381672077cb3e45b296",
+        "refs": [
+          {
+            "line": 112,
+            "text": "Flux.Combat.Defer(\"bars.layout\", function()"
+          },
+          {
+            "line": 153,
+            "text": "Flux.Combat.Defer(\"bars.stock\", Bars.RequestStockSweep)"
+          },
+          {
+            "line": 264,
+            "text": "Flux.Combat.Defer(\"bars.start\", Bars.Start)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/SlotProgram.lua",
+        "tocSelected": true,
+        "sha256": "10d60916231ca661c671c855eb03a67b2c737bcdb21eb6e4b34cb84713a3ed2a",
+        "refs": [
+          {
+            "line": 308,
+            "text": "Flux.Timer.Defer(flush)"
+          },
+          {
+            "line": 331,
+            "text": "Flux.Combat.Defer(\"bars.slotprogram\", FlushPendingPrograms)"
+          },
+          {
+            "line": 505,
+            "text": "Flux.Combat.Defer(\"bars.slotprogram.hover\", run)"
+          },
+          {
+            "line": 608,
+            "text": "Flux.Combat.Defer(\"bars.slotprogram\", SlotProgram.ReassertAll)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Strip.lua",
+        "tocSelected": true,
+        "sha256": "fb761a41a0eab6f3aa4cfd5df669b9b7415f19d105e12152f26ab646c20c3dc2",
+        "refs": [
+          {
+            "line": 285,
+            "text": "Flux.Combat.Defer(\"bars.strip.gamepad\", Strip.ApplyGamepadHud)"
+          },
+          {
+            "line": 299,
+            "text": "Flux.Combat.Defer(\"bars.strip.gamepad\", Strip.ApplyGamepadHud)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Vehicle.lua",
+        "tocSelected": true,
+        "sha256": "f44778392115319eed121a22e18db79f91a27eb438a40a331dc144af4d1e0595",
+        "refs": [
+          {
+            "line": 12,
+            "text": "-- PLAYER_REGEN_DISABLED loses the race with SLOT_CHANGED on the same frame,"
+          },
+          {
+            "line": 182,
+            "text": "Flux.Timer.Defer(run)"
+          },
+          {
+            "line": 229,
+            "text": "Ev.Register(\"PLAYER_REGEN_DISABLED\", HoldCollectorEvents)"
+          },
+          {
+            "line": 235,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "tocSelected": true,
+        "sha256": "9b1f97b2c105231d90a35007c9c1e395012600a4edf175aadcfe59ec35bd8fb3",
+        "refs": [
+          {
+            "line": 436,
+            "text": "Ev.Register(\"PLAYER_ENTER_COMBAT\", OnCheckedEvent)"
+          },
+          {
+            "line": 437,
+            "text": "Ev.Register(\"PLAYER_LEAVE_COMBAT\", OnCheckedEvent)"
+          },
+          {
+            "line": 854,
+            "text": "Flux.Timer.Defer(FlushSlotChanged)"
+          },
+          {
+            "line": 901,
+            "text": "Flux.Combat.Defer(\"bars.keys\", function()"
+          },
+          {
+            "line": 926,
+            "text": "Flux.Combat.Defer(\"bars.state\", Bars.State.ForceApply)"
+          },
+          {
+            "line": 933,
+            "text": "Flux.Combat.Defer(\"bars.empower\", Bars.Clicks.ReassertEmpower)"
+          },
+          {
+            "line": 964,
+            "text": "Ev.Register(\"PLAYER_REGEN_DISABLED\", function()"
+          },
+          {
+            "line": 969,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Pet/Init.lua",
+        "tocSelected": true,
+        "sha256": "b4cf96cdc52d01ea44576650d138cf38903314c52bf9f411aac1912c4f5d0296",
+        "refs": [
+          {
+            "line": 47,
+            "text": "local function Defer(key, fn)"
+          },
+          {
+            "line": 49,
+            "text": "Flux.Combat.Defer(key, fn)"
+          },
+          {
+            "line": 123,
+            "text": "Defer(\"bars.pet.pos\", Pet.UpdatePosition)"
+          },
+          {
+            "line": 289,
+            "text": "Defer(\"bars.pet.start\", Pet.Start)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Pet/Keys.lua",
+        "tocSelected": true,
+        "sha256": "5731af690b942a3c86f2e4cb1720136c4808c071dbfdc71ebf6780e8891cedee",
+        "refs": [
+          {
+            "line": 16,
+            "text": "Flux.Combat.Defer(\"bars.pet.keys\", Pet.SetupKeybindings)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Pet/Layout.lua",
+        "tocSelected": true,
+        "sha256": "3533c21a0e9bb1f9a56316c19bfe47b26b92b0e3469915cd4ab3e5557f9a8342",
+        "refs": [
+          {
+            "line": 12,
+            "text": "local function Defer(fn)"
+          },
+          {
+            "line": 14,
+            "text": "Flux.Combat.Defer(\"bars.pet.layout\", fn)"
+          },
+          {
+            "line": 57,
+            "text": "Defer(Pet.LayoutButtons)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Pet/Watch.lua",
+        "tocSelected": true,
+        "sha256": "0156c62c013b53d8e0934d6bbc27771ead6a82ac615fbd48377a4f4ad17d958a",
+        "refs": [
+          {
+            "line": 18,
+            "text": "Flux.Timer.Defer(fn)"
+          },
+          {
+            "line": 128,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Stance/Init.lua",
+        "tocSelected": true,
+        "sha256": "489a552c6334f838f4cd3b209103f20ab1babd0e6b42c9f1010e15b0703f3dd7",
+        "refs": [
+          {
+            "line": 46,
+            "text": "local function Defer(key, fn)"
+          },
+          {
+            "line": 48,
+            "text": "Flux.Combat.Defer(key, fn)"
+          },
+          {
+            "line": 207,
+            "text": "Flux.Combat.Defer(\"bars.stance.keys\", Stance.ReassignBindings)"
+          },
+          {
+            "line": 329,
+            "text": "Defer(\"bars.stance.start\", Stance.Start)"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Stance/Layout.lua",
+        "tocSelected": true,
+        "sha256": "26f77bb689bca4753afe0583abd484112f24a2e1bd7112d619a51c3d94b52379",
+        "refs": [
+          {
+            "line": 21,
+            "text": "local function Defer(key, fn)"
+          },
+          {
+            "line": 23,
+            "text": "Flux.Combat.Defer(key, fn)"
+          },
+          {
+            "line": 139,
+            "text": "Defer(\"bars.stance.anchor\", Stance.Anchor)"
+          },
+          {
+            "line": 220,
+            "text": "Defer(\"bars.stance.layout\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Bars/Stance/Watch.lua",
+        "tocSelected": true,
+        "sha256": "dd6405f6475ce5a0f9591a3737596fbc3696c9b553925bbbcd91fa85aad1eeec",
+        "refs": [
+          {
+            "line": 136,
+            "text": "Ev.Register(\"PLAYER_REGEN_DISABLED\", ArmorVisual)"
+          },
+          {
+            "line": 137,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", ArmorVisual)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Layout.lua",
+        "tocSelected": false,
+        "sha256": "06ea068ba997a81cef3bf68cdda51b498dfb45f7b7b527a88b301926d0524f9d",
+        "refs": [
+          {
+            "line": 110,
+            "text": "Flux.Combat.Defer(\"ebs.pack.\" .. (host.name or \"host\"), function()"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/GridManager.lua",
+        "tocSelected": true,
+        "sha256": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+        "refs": [
+          {
+            "line": 337,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 338,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 341,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          },
+          {
+            "line": 345,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua",
+        "tocSelected": true,
+        "sha256": "287ca33a6a04730891aa01409714abf03d17e4fe0d8f5129c50b5fef6202c3be",
+        "refs": [
+          {
+            "line": 338,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 339,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 350,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 386,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "tocSelected": true,
+        "sha256": "7e7a07a7fff9ab2b1c0b0aba30eaeb6f6d3cc3a9f30eef6e1afec76a743b93af",
+        "refs": [
+          {
+            "line": 19,
+            "text": "local function Defer(key, fn)"
+          },
+          {
+            "line": 21,
+            "text": "Flux.Combat.Defer(key, fn)"
+          },
+          {
+            "line": 913,
+            "text": "Defer(\"ebs.assistant.bind\", Action.RebindAssistant)"
+          },
+          {
+            "line": 994,
+            "text": "Defer(key, function()"
+          },
+          {
+            "line": 2369,
+            "text": "Defer(\"ebs.macros.bind\", function()"
+          },
+          {
+            "line": 2481,
+            "text": "Defer(\"ebs.outfit.\" .. tostring(btn), refresh)"
+          },
+          {
+            "line": 2575,
+            "text": "Defer(\"ebs.professions\", Action.RefreshProfessions)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Badge.lua",
+        "tocSelected": true,
+        "sha256": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+        "refs": [
+          {
+            "line": 150,
+            "text": "Flux.Combat.Defer(\"ebs.badge.level\", function()"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Button.lua",
+        "tocSelected": false,
+        "sha256": "0362fadbafd7fbfd50136bac0a4387bfa46ae0bad19afb10a43af9a704bf6d4f",
+        "refs": [
+          {
+            "line": 4260,
+            "text": "f:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 4261,
+            "text": "f:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 4272,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 4277,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+        "tocSelected": true,
+        "sha256": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+        "refs": [
+          {
+            "line": 2660,
+            "text": "watch:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 2661,
+            "text": "watch:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 3518,
+            "text": "leave:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Events.lua",
+        "tocSelected": false,
+        "sha256": "f8b962b310a0bb2eefc693ab85af1d720049bb1040b3f2660067496733905d9d",
+        "refs": [
+          {
+            "line": 287,
+            "text": "or evt == \"PLAYER_ENTER_COMBAT\" or evt == \"PLAYER_LEAVE_COMBAT\""
+          },
+          {
+            "line": 303,
+            "text": "or evt == \"PLAYER_REGEN_ENABLED\" or evt == \"PLAYER_REGEN_DISABLED\" then"
+          },
+          {
+            "line": 392,
+            "text": "\"CURRENT_SPELL_CAST_CHANGED\",\"ACTIONBAR_UPDATE_STATE\",\"PLAYER_ENTER_COMBAT\",\"PLAYER_LEAVE_COMBAT\","
+          },
+          {
+            "line": 398,
+            "text": "\"UPDATE_BONUS_ACTIONBAR\",\"UPDATE_SHAPESHIFT_FORM\",\"PLAYER_REGEN_ENABLED\",\"PLAYER_REGEN_DISABLED\","
+          },
+          {
+            "line": 487,
+            "text": "if event == \"PLAYER_LEAVE_COMBAT\" or event == \"STOP_AUTOREPEAT_SPELL\" then"
+          },
+          {
+            "line": 508,
+            "text": "SafeRegisterEvent(Flash, \"PLAYER_ENTER_COMBAT\")"
+          },
+          {
+            "line": 509,
+            "text": "SafeRegisterEvent(Flash, \"PLAYER_LEAVE_COMBAT\")"
+          },
+          {
+            "line": 1229,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" and FluxAPICompat and FluxAPICompat.FLUX_API and FluxAPICompat.FLUX_API.hasCanAccessValue then"
+          },
+          {
+            "line": 1441,
+            "text": "or event == \"PLAYER_REGEN_ENABLED\" or event == \"PLAYER_REGEN_DISABLED\""
+          },
+          {
+            "line": 1469,
+            "text": "SafeRegisterEvent(Checked, \"PLAYER_ENTER_COMBAT\")"
+          },
+          {
+            "line": 1470,
+            "text": "SafeRegisterEvent(Checked, \"PLAYER_LEAVE_COMBAT\")"
+          },
+          {
+            "line": 1488,
+            "text": "SafeRegisterEvent(Usable, \"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 1489,
+            "text": "SafeRegisterEvent(Usable, \"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 1517,
+            "text": "SafeRegisterEvent(Conditional, \"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 1518,
+            "text": "SafeRegisterEvent(Conditional, \"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 1893,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 1902,
+            "text": "SafeRegisterEvent(MacroEvents, \"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Watch.lua",
+        "tocSelected": true,
+        "sha256": "7503a3d320ea9e8c7cf39773b78e323d6c23044cd3d26fefbc779151f4458c36",
+        "refs": [
+          {
+            "line": 55,
+            "text": "Flux.Combat.Defer(\"ebs.cvar\", EBS.Widget.SyncCVars)"
+          },
+          {
+            "line": 376,
+            "text": "\"PLAYER_ENTER_COMBAT\","
+          },
+          {
+            "line": 377,
+            "text": "\"PLAYER_LEAVE_COMBAT\","
+          },
+          {
+            "line": 633,
+            "text": "Flux.Timer.Defer(run)"
+          },
+          {
+            "line": 888,
+            "text": "Ev.Register(\"PLAYER_REGEN_DISABLED\", OnRegenEdge)"
+          },
+          {
+            "line": 889,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", OnRegenEdge)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/ExtraButtons/UI.lua",
+        "tocSelected": true,
+        "sha256": "839e769dfec007dcb0594637a9c3614134345bd6d8df1d127d0ed067781b5073",
+        "refs": [
+          {
+            "line": 579,
+            "text": "combatFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 581,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua",
+        "tocSelected": false,
+        "sha256": "97872fd6a2980c49bcf1427dbe7f236a6ebe32858e7433b608fe601a2178ced4",
+        "refs": [
+          {
+            "line": 989,
+            "text": "elseif event == \"PLAYER_REGEN_DISABLED\" then"
+          },
+          {
+            "line": 993,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 1033,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 1034,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+        "tocSelected": true,
+        "sha256": "1a2a5e2624aed31dba590e486fe1d6a46bb105f0c3567dd202a497ccf8e7ccf9",
+        "refs": [
+          {
+            "line": 235,
+            "text": "Flyout.Defer(\"flyout.arrow.vis.\" .. tostring(widget), function()"
+          },
+          {
+            "line": 257,
+            "text": "Flyout.Defer(\"flyout.arrow.vis.\" .. tostring(widget), function()"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Attach.lua",
+        "tocSelected": true,
+        "sha256": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+        "refs": [
+          {
+            "line": 117,
+            "text": "Flyout.Defer(\"flyout.setbuttons.\" .. tostring(widget), apply)"
+          },
+          {
+            "line": 144,
+            "text": "Flyout.Defer(\"flyout.clear.\" .. tostring(widget), apply)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Init.lua",
+        "tocSelected": true,
+        "sha256": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+        "refs": [
+          {
+            "line": 41,
+            "text": "function Flyout.Defer(key, fn)"
+          },
+          {
+            "line": 47,
+            "text": "Flux.Combat.Defer(key, fn)"
+          },
+          {
+            "line": 147,
+            "text": "Flyout.Defer(\"flyout.squeeze\", Flyout.OnDependentsLayoutChanged)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/GridInit.lua",
+        "tocSelected": true,
+        "sha256": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+        "refs": [
+          {
+            "line": 140,
+            "text": "f:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 142,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Consumables.lua",
+        "tocSelected": true,
+        "sha256": "a4cc7223bf109ffe29bda67ba330a98066eada17370bcc24297a82d2f559d0a9",
+        "refs": [
+          {
+            "line": 6333,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 6334,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 6447,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 6463,
+            "text": "elseif event == \"PLAYER_REGEN_DISABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/ConsumablesConfig.lua",
+        "tocSelected": true,
+        "sha256": "694a0badbb554bc637f2eea3fb752f1e76965a99e8f4644adef49112134d160b",
+        "refs": [
+          {
+            "line": 1140,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 1146,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Hearthstone.lua",
+        "tocSelected": true,
+        "sha256": "f57aaecade0460a9f3ce9ac5889035d217e2375fefbd0ff9f01eaed72925bd22",
+        "refs": [
+          {
+            "line": 2130,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 2131,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 2831,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          },
+          {
+            "line": 2837,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Mount.lua",
+        "tocSelected": true,
+        "sha256": "3baccb916f2ef49330508d3715a8777cd1a3792613747ebabd2c14be44f61f46",
+        "refs": [
+          {
+            "line": 3130,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 3131,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 3435,
+            "text": "if event == \"PLAYER_REGEN_DISABLED\" then"
+          },
+          {
+            "line": 3441,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 3655,
+            "text": "-- Will unlock when combat ends (handled in PLAYER_REGEN_ENABLED)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/Buttons/TeleportPortal.lua",
+        "tocSelected": true,
+        "sha256": "0b05706c352a4b608b80e6cfb8376d1e600f78259e999e84ac4a6defb83e73a1",
+        "refs": [
+          {
+            "line": 2890,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 2909,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "tocSelected": true,
+        "sha256": "78fd42e338b27491b7d8f39a2b5ec4b1ec415e00507797698219d8c88f4e36e6",
+        "refs": [
+          {
+            "line": 1185,
+            "text": "watch:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 1250,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua",
+        "tocSelected": false,
+        "sha256": "249dc002e3e8850c4084f34536da09c44307191f99525e1928ca910c6e1106dd",
+        "refs": [
+          {
+            "line": 497,
+            "text": "leave:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxExtraButtonVisibility.lua",
+        "tocSelected": true,
+        "sha256": "3d8ce758fa7567db7780c74b1a2210ac080de1dde95ae3ccdfde8a09ab8926dc",
+        "refs": [
+          {
+            "line": 626,
+            "text": "slotShownRegenFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/HotkeyUtil.lua",
+        "tocSelected": true,
+        "sha256": "8dc319ff2039bae2f6ce850c9da20ecc412e788d823b4e784b7be1d58496c4bb",
+        "refs": [
+          {
+            "line": 444,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 446,
+            "text": "if event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+        "tocSelected": true,
+        "sha256": "7d8f645c180cf49a46db19fdbaba2110e4960684f8abdee0d917635ca3b11313",
+        "refs": [
+          {
+            "line": 331,
+            "text": "Flux.Combat.Defer(\"trinket.squeeze\", TM.ApplyHorizontalSqueeze)"
+          },
+          {
+            "line": 1266,
+            "text": "Flyout.Defer(\"trinket.arrow.vis\", TM.UpdateArrowVisibility)"
+          }
+        ]
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua",
+        "tocSelected": true,
+        "sha256": "61bf359abbf0cdd9ae4bca9389344e903466adf47d09753a82c8f1f1833cf7f0",
+        "refs": [
+          {
+            "line": 138,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 139,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")"
+          },
+          {
+            "line": 202,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          },
+          {
+            "line": 228,
+            "text": "elseif event == \"PLAYER_REGEN_DISABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "Binding/Boot.lua",
+        "tocSelected": true,
+        "sha256": "678f747ccc3017b3059d982a82e5411ae94e79e42d7623104923ae22fa49f71d",
+        "refs": [
+          {
+            "line": 41,
+            "text": "ev:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "Binding/Respec.lua",
+        "tocSelected": true,
+        "sha256": "a16b88e9f0a6dd1ec59cbc75abd956935c188783c95d9139f14a573079d23033",
+        "refs": [
+          {
+            "line": 338,
+            "text": "_combatWatcher:UnregisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 360,
+            "text": "self:UnregisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 364,
+            "text": "_combatWatcher:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "Binding/Core/Apply.lua",
+        "tocSelected": true,
+        "sha256": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3",
+        "refs": [
+          {
+            "line": 10,
+            "text": "-- runs on PLAYER_REGEN_ENABLED."
+          },
+          {
+            "line": 2434,
+            "text": "regen:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "Binding/Core/PushPress.lua",
+        "tocSelected": true,
+        "sha256": "3a44b4aa463282849efe4cc3306929a6f98135ec35a2296c3794cbdb1922c627",
+        "refs": [
+          {
+            "line": 873,
+            "text": "boot:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "Binding/Input/FluxMouseoverKeybind.lua",
+        "tocSelected": true,
+        "sha256": "45e7e617e9a2fd59ca6dbf8ad6d291516f9bd3159129c99eda0951f077ec2418",
+        "refs": [
+          {
+            "line": 2243,
+            "text": "eventFrame:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          },
+          {
+            "line": 2328,
+            "text": "elseif event == \"PLAYER_REGEN_ENABLED\" then"
+          }
+        ]
+      },
+      {
+        "path": "Binding/UI/SpellbookBindingHooks.lua",
+        "tocSelected": true,
+        "sha256": "7e53b1cfe28b7b7490207d42f3f0ffc2f0e4f527cf2031d49a3b4a6226ae596b",
+        "refs": [
+          {
+            "line": 216,
+            "text": "f:RegisterEvent(\"PLAYER_REGEN_ENABLED\")"
+          }
+        ]
+      },
+      {
+        "path": "Core/ButtonFX/Flash.lua",
+        "tocSelected": true,
+        "sha256": "6f8a64cddc732c0b7a4459744c8ee507dcf0b2b15c6b4ad7bf8624abe9c277a4",
+        "refs": [
+          {
+            "line": 4,
+            "text": "-- Melee flash follows PLAYER_ENTER_COMBAT / PLAYER_LEAVE_COMBAT, not"
+          },
+          {
+            "line": 395,
+            "text": "Ev.Register(\"PLAYER_ENTER_COMBAT\", function()"
+          },
+          {
+            "line": 399,
+            "text": "Ev.Register(\"PLAYER_LEAVE_COMBAT\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Core/ButtonFX/Glow.lua",
+        "tocSelected": true,
+        "sha256": "d4be8ec4e8fc1ae26236dc58dfa4a53b87599e1ffbb4fbb77c145b7e7c5b4a57",
+        "refs": [
+          {
+            "line": 2001,
+            "text": "Ev.Register(\"PLAYER_REGEN_ENABLED\", function()"
+          }
+        ]
+      },
+      {
+        "path": "Other/FluxCooldownDefaults.lua",
+        "tocSelected": true,
+        "sha256": "d2c449ddde42935b169eb87670801664758f2161ca8e60b1d20f20fb3b9841cd",
+        "refs": [
+          {
+            "line": 301,
+            "text": "Flux.Combat.Defer(\"cooldown.defaults\", Defaults.Request)"
+          },
+          {
+            "line": 352,
+            "text": "Flux.Timer.Defer(Run)"
+          }
+        ]
+      }
+    ],
+    "namedDeferKeysOrPrefixes": [
+      {
+        "path": "Bars/BadgeHost.lua",
+        "line": 570,
+        "keyOrPrefix": "bars.badgehost",
+        "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+      },
+      {
+        "path": "Bars/BadgeHost.lua",
+        "line": 765,
+        "keyOrPrefix": "bars.badgehost",
+        "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+      },
+      {
+        "path": "Bars/BadgeHost.lua",
+        "line": 1255,
+        "keyOrPrefix": "bars.badgehost",
+        "text": "Flux.Combat.Defer(\"bars.badgehost\", BadgeHost.FlushCombatQueue)"
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "line": 117,
+        "keyOrPrefix": "bars.stockgrid",
+        "text": "Flux.Combat.Defer(\"bars.stockgrid\", SuppressStockGridEvents)"
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "line": 589,
+        "keyOrPrefix": "bars.stance.hide",
+        "text": "Flux.Combat.Defer(\"bars.stance.hide\", HideStockStanceBars)"
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "line": 597,
+        "keyOrPrefix": "bars.possess.hide",
+        "text": "Flux.Combat.Defer(\"bars.possess.hide\", HideStockPossessBars)"
+      },
+      {
+        "path": "Bars/Blizzard.lua",
+        "line": 667,
+        "keyOrPrefix": "bars.leftover",
+        "text": "Flux.Combat.Defer(\"bars.leftover\", Blizzard.KillLeftoverMouse)"
+      },
+      {
+        "path": "Bars/BlizzardOptions.lua",
+        "line": 344,
+        "keyOrPrefix": "bars.blizzardoptions.toggles",
+        "text": "Flux.Combat.Defer(\"bars.blizzardoptions.toggles\", ForceExtraActionBarsOff)"
+      },
+      {
+        "path": "Bars/Clicks.lua",
+        "line": 70,
+        "keyOrPrefix": "bars.clicks",
+        "text": "Flux.Combat.Defer(\"bars.clicks\", Clicks.ApplyRegistration)"
+      },
+      {
+        "path": "Bars/Clicks.lua",
+        "line": 192,
+        "keyOrPrefix": "bars.empower",
+        "text": "Flux.Combat.Defer(\"bars.empower\", Clicks.ReassertEmpower)"
+      },
+      {
+        "path": "Bars/Clicks.lua",
+        "line": 242,
+        "keyOrPrefix": "bars.keys",
+        "text": "Flux.Combat.Defer(\"bars.keys\", Clicks.RefreshKeys)"
+      },
+      {
+        "path": "Bars/Clicks.lua",
+        "line": 337,
+        "keyOrPrefix": "bars.clickcvar",
+        "text": "Flux.Combat.Defer(\"bars.clickcvar\", Flux.ButtonFX.Click.SyncCVars)"
+      },
+      {
+        "path": "Bars/Init.lua",
+        "line": 112,
+        "keyOrPrefix": "bars.layout",
+        "text": "Flux.Combat.Defer(\"bars.layout\", function()"
+      },
+      {
+        "path": "Bars/Init.lua",
+        "line": 153,
+        "keyOrPrefix": "bars.stock",
+        "text": "Flux.Combat.Defer(\"bars.stock\", Bars.RequestStockSweep)"
+      },
+      {
+        "path": "Bars/Init.lua",
+        "line": 264,
+        "keyOrPrefix": "bars.start",
+        "text": "Flux.Combat.Defer(\"bars.start\", Bars.Start)"
+      },
+      {
+        "path": "Bars/SlotProgram.lua",
+        "line": 331,
+        "keyOrPrefix": "bars.slotprogram",
+        "text": "Flux.Combat.Defer(\"bars.slotprogram\", FlushPendingPrograms)"
+      },
+      {
+        "path": "Bars/SlotProgram.lua",
+        "line": 505,
+        "keyOrPrefix": "bars.slotprogram.hover",
+        "text": "Flux.Combat.Defer(\"bars.slotprogram.hover\", run)"
+      },
+      {
+        "path": "Bars/SlotProgram.lua",
+        "line": 608,
+        "keyOrPrefix": "bars.slotprogram",
+        "text": "Flux.Combat.Defer(\"bars.slotprogram\", SlotProgram.ReassertAll)"
+      },
+      {
+        "path": "Bars/Strip.lua",
+        "line": 285,
+        "keyOrPrefix": "bars.strip.gamepad",
+        "text": "Flux.Combat.Defer(\"bars.strip.gamepad\", Strip.ApplyGamepadHud)"
+      },
+      {
+        "path": "Bars/Strip.lua",
+        "line": 299,
+        "keyOrPrefix": "bars.strip.gamepad",
+        "text": "Flux.Combat.Defer(\"bars.strip.gamepad\", Strip.ApplyGamepadHud)"
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "line": 901,
+        "keyOrPrefix": "bars.keys",
+        "text": "Flux.Combat.Defer(\"bars.keys\", function()"
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "line": 926,
+        "keyOrPrefix": "bars.state",
+        "text": "Flux.Combat.Defer(\"bars.state\", Bars.State.ForceApply)"
+      },
+      {
+        "path": "Bars/Watch.lua",
+        "line": 933,
+        "keyOrPrefix": "bars.empower",
+        "text": "Flux.Combat.Defer(\"bars.empower\", Bars.Clicks.ReassertEmpower)"
+      },
+      {
+        "path": "Bars/Pet/Init.lua",
+        "line": 123,
+        "keyOrPrefix": "bars.pet.pos",
+        "text": "Defer(\"bars.pet.pos\", Pet.UpdatePosition)"
+      },
+      {
+        "path": "Bars/Pet/Init.lua",
+        "line": 289,
+        "keyOrPrefix": "bars.pet.start",
+        "text": "Defer(\"bars.pet.start\", Pet.Start)"
+      },
+      {
+        "path": "Bars/Pet/Keys.lua",
+        "line": 16,
+        "keyOrPrefix": "bars.pet.keys",
+        "text": "Flux.Combat.Defer(\"bars.pet.keys\", Pet.SetupKeybindings)"
+      },
+      {
+        "path": "Bars/Pet/Layout.lua",
+        "line": 14,
+        "keyOrPrefix": "bars.pet.layout",
+        "text": "Flux.Combat.Defer(\"bars.pet.layout\", fn)"
+      },
+      {
+        "path": "Bars/Stance/Init.lua",
+        "line": 207,
+        "keyOrPrefix": "bars.stance.keys",
+        "text": "Flux.Combat.Defer(\"bars.stance.keys\", Stance.ReassignBindings)"
+      },
+      {
+        "path": "Bars/Stance/Init.lua",
+        "line": 329,
+        "keyOrPrefix": "bars.stance.start",
+        "text": "Defer(\"bars.stance.start\", Stance.Start)"
+      },
+      {
+        "path": "Bars/Stance/Layout.lua",
+        "line": 139,
+        "keyOrPrefix": "bars.stance.anchor",
+        "text": "Defer(\"bars.stance.anchor\", Stance.Anchor)"
+      },
+      {
+        "path": "Bars/Stance/Layout.lua",
+        "line": 220,
+        "keyOrPrefix": "bars.stance.layout",
+        "text": "Defer(\"bars.stance.layout\", function()"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "line": 913,
+        "keyOrPrefix": "ebs.assistant.bind",
+        "text": "Defer(\"ebs.assistant.bind\", Action.RebindAssistant)"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "line": 2369,
+        "keyOrPrefix": "ebs.macros.bind",
+        "text": "Defer(\"ebs.macros.bind\", function()"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "line": 2481,
+        "keyOrPrefix": "ebs.outfit.",
+        "text": "Defer(\"ebs.outfit.\" .. tostring(btn), refresh)"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Action.lua",
+        "line": 2575,
+        "keyOrPrefix": "ebs.professions",
+        "text": "Defer(\"ebs.professions\", Action.RefreshProfessions)"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Badge.lua",
+        "line": 150,
+        "keyOrPrefix": "ebs.badge.level",
+        "text": "Flux.Combat.Defer(\"ebs.badge.level\", function()"
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Watch.lua",
+        "line": 55,
+        "keyOrPrefix": "ebs.cvar",
+        "text": "Flux.Combat.Defer(\"ebs.cvar\", EBS.Widget.SyncCVars)"
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+        "line": 235,
+        "keyOrPrefix": "flyout.arrow.vis.",
+        "text": "Flyout.Defer(\"flyout.arrow.vis.\" .. tostring(widget), function()"
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Arrow.lua",
+        "line": 257,
+        "keyOrPrefix": "flyout.arrow.vis.",
+        "text": "Flyout.Defer(\"flyout.arrow.vis.\" .. tostring(widget), function()"
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Attach.lua",
+        "line": 117,
+        "keyOrPrefix": "flyout.setbuttons.",
+        "text": "Flyout.Defer(\"flyout.setbuttons.\" .. tostring(widget), apply)"
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Attach.lua",
+        "line": 144,
+        "keyOrPrefix": "flyout.clear.",
+        "text": "Flyout.Defer(\"flyout.clear.\" .. tostring(widget), apply)"
+      },
+      {
+        "path": "ExtraButtonSystem/FlyoutEngine/Init.lua",
+        "line": 147,
+        "keyOrPrefix": "flyout.squeeze",
+        "text": "Flyout.Defer(\"flyout.squeeze\", Flyout.OnDependentsLayoutChanged)"
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+        "line": 331,
+        "keyOrPrefix": "trinket.squeeze",
+        "text": "Flux.Combat.Defer(\"trinket.squeeze\", TM.ApplyHorizontalSqueeze)"
+      },
+      {
+        "path": "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua",
+        "line": 1266,
+        "keyOrPrefix": "trinket.arrow.vis",
+        "text": "Flyout.Defer(\"trinket.arrow.vis\", TM.UpdateArrowVisibility)"
+      },
+      {
+        "path": "Other/FluxCooldownDefaults.lua",
+        "line": 301,
+        "keyOrPrefix": "cooldown.defaults",
+        "text": "Flux.Combat.Defer(\"cooldown.defaults\", Defaults.Request)"
+      }
+    ],
+    "dormantExcluded": [
+      {
+        "path": "ExtraButtonSystem/Engine/Events.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "ExtraButtonSystem/Engine/Button.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxEBSButtonRefresh.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "ExtraButtonSystem/Flyout/FluxFlyoutCore.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "ExtraButtonSystem/Shared/FluxRange.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "ExtraButtonSystem/Layout.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      },
+      {
+        "path": "Core/ButtonFX/Click2.lua",
+        "reason": "Not in current common _FluxUI.toc; old compatibility source, not a current native callback owner."
+      }
+    ],
+    "workFixture": "combat-consumable-native-work-results.json",
+    "priorityOrder": [
+      "ConsumableAttach force same-item native rebind (measured calls; blind skip invalid)",
+      "Strip regenâ†’unconditional full Stance.ApplyLayout (source proof)",
+      "Bars secure aura epoch/all-column preparation + Glow all-listener notify (capability gated)",
+      "Unsupported assistant override clear and repeated per-item SyncAssistant work",
+      "Unconditional assistant host sweeps/Blizzard leftover; pending-only raw consumers lower priority"
+    ],
+    "candidateConstraints": [
+      "Do not remove force blindly: desired trackedItemID can be committed before native write failure/defer. Successful applied public secure-bundle stamp must be separate, invalidated before failed/deferred/other owned rewrites.",
+      "Retain fresh Best/usable selection at combat boundary, food/water and combat-only potion eligibility, depletion/newbest/conjure/craft/swap/pending binding/secondary click behavior.",
+      "No input/ID/keyroute/cadence regression; all five client models and reentrant/native failure need meaningful tests before runtime proposal."
+    ],
+    "candidateProposal": "combat-left-item-candidate-results.json",
+    "candidateState": "external only; root review required before runtime writes"
+  },
+  "engineBorderAudit": [
+    {
+      "path": "Core/Engine/Combat.lua",
+      "owner": "raw regen event and named/light/heavy queue drain",
+      "assessment": "Named replacement; detached batches; reentrant-lockdown preservation; sixteen light/heavy jobs per frame; optional token-owned timing only. Existing timing windows retained.",
+      "normalizedSHA256": "315bc0a990aaf8206b162124970724bdc4ab048351d24bff06ec335e679d36e3"
+    },
+    {
+      "path": "Core/Engine/Scheduler.lua",
+      "owner": "tier callback/listener dispatch; structural combat deferral",
+      "assessment": "Original tier order and tokens/callback multiplicity unchanged. One structural queue key; layout and display do not escalate. Anonymous listeners gain once-per-registration provenance.",
+      "normalizedSHA256": "e63870668c8bbf95c27b8cf0d2d8399c6ce1f4b556fa09a6b2dd9937f779a095"
+    },
+    {
+      "path": "Core/Engine/Events.lua",
+      "owner": "shared combat event dispatch",
+      "assessment": "Both regen events retain once-per-function bounded source provenance; no event payload reads or dispatch stacks.",
+      "normalizedSHA256": "7e153fb502f826e5811fec0d4eefee6aa569a2a6289cb322b04e974e2d11faa2"
+    },
+    {
+      "path": "Core/Engine/Context.lua",
+      "owner": "both combat events to Context.Request",
+      "assessment": "Existing coalesced context signature/poll ownership. Necessary native combat condition update; no speculative removal.",
+      "normalizedSHA256": "1c7cb31b199343039af7b38171481382991708adb9447c35d66d6c980fc78121"
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "owner": "raw regen fallback reconciliation",
+      "assessment": "Only active insecure attribute/unit watchers reconcile. Preserve immediate and next-frame pass plus native/polyfill polling contract; no real protected-driver work is attributed to this fallback without capability evidence.",
+      "normalizedSHA256": "1273e7acbc05fe2549493cec7c1173b0269a8417528c0a56127b7db45e539330"
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "owner": "regen classifyQueued and named protected apply/spellbook jobs",
+      "assessment": "Pending-only classify; keyed deferred apply/checkbox placement. Current classification, secure modifiers and action IDs retained.",
+      "normalizedSHA256": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306"
+    },
+    {
+      "path": "Core/Engine/Perf.lua",
+      "owner": "existing last-exit diagnostic windows",
+      "assessment": "Keeps same-tick/next-frame sections. Wall windows include unmeasured/render/wait time and are not callback CPU.",
+      "normalizedSHA256": "db8f3838bb63eff1381833aa03ce0d58f2ba2be493027395f9ac62df6ea01a07"
+    },
+    {
+      "path": "Core/BorderJunctions.lua",
+      "owner": "raw regen pending structural geometry and live paint",
+      "assessment": "Confirmed native Scheduler structural token border.junctions. Stable geometry/paint retained; genuine noncombat-grid growth triggers expensive reflow. Source-derived cache optimizations are not native timing acceptance.",
+      "normalizedSHA256": "9293b821bd9f21b47d8cfe7a082f2080d0e53839b91d3c977b035f31f31099df"
+    }
+  ],
+  "nativeR50Quiet": {
+    "version": "adaptive-fallback-r50",
+    "source": "User quiet native Forever first-combat-exit capture after all owned CPU/test/docs processes held",
+    "totalMs": 218.36,
+    "preflightMs": 0.78,
+    "alignMs": 0.22,
+    "geometryMs": 26.03,
+    "solveMs": 31.48,
+    "planMs": 93.71,
+    "commitMs": 66.15,
+    "operations": 311,
+    "fragments": 511,
+    "triangles": 3602,
+    "baseHits": 115,
+    "baseMisses": 2,
+    "sourceReads": 527,
+    "sourceHits": 516,
+    "fallbackHits": 2037,
+    "fallbackMisses": 10,
+    "fallbackProbes": 3292,
+    "commitFragmentsMs": 10.65,
+    "commitFallbacksMs": 14.78,
+    "commitMeshMs": 38.06,
+    "commitRetireMs": 1.03,
+    "setters": 9609,
+    "hits": 9117,
+    "writes": 492,
+    "alphaReads": 1758,
+    "alphaWrites": 58,
+    "basisReads": 96,
+    "drawReuse": 95,
+    "planCutsMs": 10.66,
+    "planBranchesMs": 16.91,
+    "planOwnersMs": 3.4,
+    "planCellsMs": 3.34,
+    "planFallbackMeshMs": 59.16,
+    "acceptance": "Hitch unresolved; not a performance improvement over quiet R49 207.94ms. Probe count is low; repeated numeric guard/copy work remains a candidate. Native FPS/taint not established."
+  },
+  "implementation": {
+    "optionalDiagnostics": [
+      "Both combat events keep bounded registration provenance",
+      "Scheduler listeners keep bounded registration provenance",
+      "Finite existing watch adds named/light/heavy Combat queue timing",
+      "No timing clocks without observer; no new timers/drivers/global replacements"
+    ],
+    "auraGroupLayout": {
+      "production": "UnitFrames/FluxUnitFrames_AurasEngine.lua",
+      "test": "tests/unit_aura_group_layout_work.lua",
+      "checks": 1702,
+      "focusedScripts": 14,
+      "unchangedModelCycles": 10,
+      "baselineNativeLayoutDirtyWrites": 60,
+      "candidateNativeLayoutDirtyWrites": 0,
+      "fullRefreshesRetained": 40,
+      "countQueriesRetained": 60,
+      "frameQueriesAndSizesRetained": 480,
+      "nativeTiming": "pending"
+    },
+    "minimap": {
+      "production": "Minimap/FluxMinimap.lua",
+      "test": "tests/minimap_combat_idempotence.lua",
+      "checks": 166,
+      "focusedScripts": 18,
+      "nativeStateChecks": "Fresh public guarded getter values; errors/private/missing values keep original setters; no persistent position cache",
+      "model100UnchangedPasses": {
+        "settersBefore": 4600,
+        "settersAfter": 300,
+        "indicatorCallsBefore": 100,
+        "indicatorCallsAfter": 100
+      },
+      "controls": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-minimap-controls.json",
+      "fixtureOnlyRepairs": [
+        "tests/minimap_mail_lifecycle.lua",
+        "Core/_tmp_minimaplayoutsmoke.lua"
+      ],
+      "nativeTiming": "pending"
+    },
+    "consumable": {
+      "production": "ExtraButtonSystem/Engine/Action.lua",
+      "test": "tests/ebs_item_applied_bundle.lua",
+      "checks": 525,
+      "focusedScripts": 20,
+      "perClientModel7Kinds10CleanExits": {
+        "actionCalls": 70,
+        "nativeAttributeWritesBefore": 1190,
+        "nativeAttributeWritesAfter": 140,
+        "addedGuardedAttributeReads": 840,
+        "overrideBindingClearsRetained": 140,
+        "overrideBindingWritesRetained": 140
+      },
+      "policy": "Successful applied public native left-item bundle only; fresh actual attributes and getter/setter ownership; invalidate before attempts/failure/lockdown/recreation. Best usability/selection, forced refresh, RC/key/craft/conjure/mouseover/paint/range paths remain live. Blind force removal rejected.",
+      "reports": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-left-item-runtime-focused.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-left-item-runtime-control.json"
+      ],
+      "nativeTiming": "pending"
+    },
+    "border": {
+      "production": "Core/BorderJunctions.lua",
+      "version": "prepared-guards-r51",
+      "checks": 31944,
+      "focusedScriptsBeforeBudgetCorrection": 43,
+      "focusedScriptsAfterBudgetCorrection": 7,
+      "policy": "Current numeric arrays validated once only in synchronous pure source-read planning; immutable copied numeric chunks and comparison results reused within that phase. Standalone calls always fresh. Phase state discarded on success/error/budget before paint. Numeric cache budget conservatively charges copied chunks+arm. No persistent native positions or new solver cache.",
+      "work24": {
+        "publicNumberBefore": 4752,
+        "publicNumberAfter": 1216,
+        "flatStoresBefore": 5760,
+        "flatStoresAfter": 0,
+        "comparisonsBefore": 6936,
+        "comparisonsAfter": 1240
+      },
+      "work56": {
+        "publicNumberBefore": 11088,
+        "publicNumberAfter": 2928,
+        "flatStoresBefore": 13440,
+        "flatStoresAfter": 0,
+        "comparisonsBefore": 16184,
+        "comparisonsAfter": 2984
+      },
+      "desktopAlternatingBlockCapture": {
+        "scope": "Desktop Windows Lua os.clock alternating5-pass blocks, full GC before each measured block; timing is not native FPS/latency evidence",
+        "hashes": {
+          "border-r51-baseline-r50.lua": "2830a7095afed7eeaf935028ae039dec01188d76a0871a87e726cd002bf1cdea",
+          "border-r51-array-guard-candidate.lua": "1d628a8057cbb3ee060d0c78f0fe654e979467bca8371b389ff9ba20f1d3a6c0"
+        },
+        "rows": [
+          {
+            "mode": "compileWarm",
+            "junctions": 24,
+            "samples": {
+              "baseline": [
+                0.099,
+                0.099,
+                0.099
+              ],
+              "candidate": [
+                0.067,
+                0.07,
+                0.073
+              ]
+            },
+            "medianBaseline": 0.099,
+            "medianCandidate": 0.07,
+            "deltaPercent": -29.292929292929294,
+            "raw": [
+              {
+                "mode": "compileWarm",
+                "junctions": "24",
+                "pair": "1",
+                "baseline": "0.099000000",
+                "candidate": "0.067000000",
+                "signature": "231309411/144/144/0"
+              },
+              {
+                "mode": "compileWarm",
+                "junctions": "24",
+                "pair": "2",
+                "baseline": "0.099000000",
+                "candidate": "0.070000000",
+                "signature": "231309411/144/144/0"
+              },
+              {
+                "mode": "compileWarm",
+                "junctions": "24",
+                "pair": "3",
+                "baseline": "0.099000000",
+                "candidate": "0.073000000",
+                "signature": "231309411/144/144/0"
+              }
+            ]
+          },
+          {
+            "mode": "compileWarm",
+            "junctions": 56,
+            "samples": {
+              "baseline": [
+                0.227,
+                0.254,
+                0.263
+              ],
+              "candidate": [
+                0.168,
+                0.197,
+                0.2
+              ]
+            },
+            "medianBaseline": 0.254,
+            "medianCandidate": 0.197,
+            "deltaPercent": -22.440944881889756,
+            "raw": [
+              {
+                "mode": "compileWarm",
+                "junctions": "56",
+                "pair": "1",
+                "baseline": "0.227000000",
+                "candidate": "0.168000000",
+                "signature": "1618011774/336/336/0"
+              },
+              {
+                "mode": "compileWarm",
+                "junctions": "56",
+                "pair": "2",
+                "baseline": "0.254000000",
+                "candidate": "0.197000000",
+                "signature": "1618011774/336/336/0"
+              },
+              {
+                "mode": "compileWarm",
+                "junctions": "56",
+                "pair": "3",
+                "baseline": "0.263000000",
+                "candidate": "0.200000000",
+                "signature": "1618011774/336/336/0"
+              }
+            ]
+          },
+          {
+            "mode": "fullWarm",
+            "junctions": 24,
+            "samples": {
+              "baseline": [
+                0.431,
+                0.395,
+                0.419
+              ],
+              "candidate": [
+                0.394,
+                0.395,
+                0.378
+              ]
+            },
+            "medianBaseline": 0.419,
+            "medianCandidate": 0.394,
+            "deltaPercent": -5.966587112171828,
+            "raw": [
+              {
+                "mode": "fullWarm",
+                "junctions": "24",
+                "pair": "1",
+                "baseline": "0.431000000",
+                "candidate": "0.394000000",
+                "signature": "231309411/144/144/0"
+              },
+              {
+                "mode": "fullWarm",
+                "junctions": "24",
+                "pair": "2",
+                "baseline": "0.395000000",
+                "candidate": "0.395000000",
+                "signature": "231309411/144/144/0"
+              },
+              {
+                "mode": "fullWarm",
+                "junctions": "24",
+                "pair": "3",
+                "baseline": "0.419000000",
+                "candidate": "0.378000000",
+                "signature": "231309411/144/144/0"
+              }
+            ]
+          },
+          {
+            "mode": "fullWarm",
+            "junctions": 56,
+            "samples": {
+              "baseline": [
+                1.206,
+                1.101,
+                1.066
+              ],
+              "candidate": [
+                1.208,
+                1.041,
+                1.033
+              ]
+            },
+            "medianBaseline": 1.101,
+            "medianCandidate": 1.041,
+            "deltaPercent": -5.449591280653953,
+            "raw": [
+              {
+                "mode": "fullWarm",
+                "junctions": "56",
+                "pair": "1",
+                "baseline": "1.206000000",
+                "candidate": "1.208000000",
+                "signature": "1618011774/336/336/0"
+              },
+              {
+                "mode": "fullWarm",
+                "junctions": "56",
+                "pair": "2",
+                "baseline": "1.101000000",
+                "candidate": "1.041000000",
+                "signature": "1618011774/336/336/0"
+              },
+              {
+                "mode": "fullWarm",
+                "junctions": "56",
+                "pair": "3",
+                "baseline": "1.066000000",
+                "candidate": "1.033000000",
+                "signature": "1618011774/336/336/0"
+              }
+            ]
+          },
+          {
+            "mode": "fullMove",
+            "junctions": 24,
+            "samples": {
+              "baseline": [
+                0.387,
+                0.385,
+                0.375
+              ],
+              "candidate": [
+                0.368,
+                0.359,
+                0.356
+              ]
+            },
+            "medianBaseline": 0.385,
+            "medianCandidate": 0.359,
+            "deltaPercent": -6.7532467532467555,
+            "raw": [
+              {
+                "mode": "fullMove",
+                "junctions": "24",
+                "pair": "1",
+                "baseline": "0.387000000",
+                "candidate": "0.368000000",
+                "signature": "1177880808/144/138/6"
+              },
+              {
+                "mode": "fullMove",
+                "junctions": "24",
+                "pair": "2",
+                "baseline": "0.385000000",
+                "candidate": "0.359000000",
+                "signature": "1177880808/144/138/6"
+              },
+              {
+                "mode": "fullMove",
+                "junctions": "24",
+                "pair": "3",
+                "baseline": "0.375000000",
+                "candidate": "0.356000000",
+                "signature": "1177880808/144/138/6"
+              }
+            ]
+          },
+          {
+            "mode": "fullMove",
+            "junctions": 56,
+            "samples": {
+              "baseline": [
+                0.912,
+                1.092,
+                1.173
+              ],
+              "candidate": [
+                0.878,
+                1.033,
+                1.096
+              ]
+            },
+            "medianBaseline": 1.092,
+            "medianCandidate": 1.033,
+            "deltaPercent": -5.4029304029304175,
+            "raw": [
+              {
+                "mode": "fullMove",
+                "junctions": "56",
+                "pair": "1",
+                "baseline": "0.912000000",
+                "candidate": "0.878000000",
+                "signature": "1207022710/336/330/6"
+              },
+              {
+                "mode": "fullMove",
+                "junctions": "56",
+                "pair": "2",
+                "baseline": "1.092000000",
+                "candidate": "1.033000000",
+                "signature": "1207022710/336/330/6"
+              },
+              {
+                "mode": "fullMove",
+                "junctions": "56",
+                "pair": "3",
+                "baseline": "1.173000000",
+                "candidate": "1.096000000",
+                "signature": "1207022710/336/330/6"
+              }
+            ]
+          }
+        ]
+      },
+      "finalBudgetNote": "Prototype timing precedes additional conservative scalar-budget accounting. Final runtime exact-state/work proofs rerun; native performance not established.",
+      "reports": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r51-array-guard-focused.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r51-budget-focused.json"
+      ],
+      "nativeTiming": "pending"
+    },
+    "unitExitPaintR52": {
+      "version": "static-unit-paint-r52",
+      "changedId": "COMBAT-TRANSITIONS-20261116",
+      "dateUTC": "2026-11-16T16:18:27.435198+00:00",
+      "sourceHashes": {
+        "Core/BorderJunctions.lua": {
+          "raw": "71e880f48eaef054d1c3805b1b7876e1b6572eaadbafb496836845aa0933d6bf",
+          "normalized": "4510d727e0645fd6e6b2b3a394318b567cc182405bedcb0c2ea06a36df657e94"
+        },
+        "UnitFrames/FluxUnitFrames_Shared.lua": {
+          "raw": "6e0e787fc08ee6ca14226a0b5c025d117b3fdeb1f6132508d3355af6837d8813",
+          "normalized": "0e97f78bcf3758e7f3adb3e1ee50004066d22a082e7cec313feeec9713ace6f2"
+        },
+        "UnitFrames/FluxUnitFrames_Party.lua": {
+          "raw": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558",
+          "normalized": "a3ac39d862703f1769766f40bdbaf8273615485f8d2d2b24eb257936eecce558"
+        },
+        "tests/border_unit_paint_idempotence.lua": {
+          "raw": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada",
+          "normalized": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada"
+        },
+        "tests/unit_portrait_final_paint.lua": {
+          "raw": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb",
+          "normalized": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb"
+        }
+      },
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-local-plan-before-20261116T155526Z",
+      "changes": [
+        "Skip derived paint only for identical public authored unit RGBA; native source suppression/fallback visibility still run; opaque opacity always forwards",
+        "Choose final normal/combat portrait color once per shared refresh; preserve party unit material classification while red and all direct party consumers"
+      ],
+      "dedicatedUnitPaintChecks": 98,
+      "dedicatedProducerChecks": 3560,
+      "producerStages": 100,
+      "focusedScripts": 20,
+      "syntaxChangedFiles": 5,
+      "upvalues": {
+        "CoreFunctions": 111,
+        "CoreMaximum": 57,
+        "SharedPartyFunctions": 433,
+        "SharedPartyMaximum": 20
+      },
+      "nativeWorkProof": {
+        "type2RepeatedExitDerivedAlphaReadsBefore": 2037,
+        "after": 0,
+        "sourceSuppressionRetained": true,
+        "freshVisibilityAndPrivateNativeSinksRetained": true,
+        "geometryInPaintReplay": 0,
+        "solvesInPaintReplay": 0,
+        "allocationsInPaintReplay": 0
+      },
+      "reports": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-unit-paint-focused.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-producer-focused.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-final-paint-work.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-portrait-material-work.json"
+      ],
+      "controls": [
+        "Original repeated unit paint fails work-count assertion",
+        "Unsafe private dedup fails opaque sink forwarding",
+        "Restored normal-first portrait block fails churn assertion",
+        "Skipping party portrait classification fails material assertion"
+      ],
+      "nativeAcceptance": "Pending: first/repeated unit exit lag; full unlocked UpdateOuterBorder geometry/whole callback cost; combat/dispel/class output, taint and other native clients. Paint-only replay zero solves is not proof of all event-edge geometry.",
+      "otherWork": "Actionstrip/seam and local-fallback-plan runtime edits held per user priority; external designs only",
+      "existingForeverDiskMatches": {
+        "Core/BorderJunctions.lua": true,
+        "UnitFrames/FluxUnitFrames_Shared.lua": true,
+        "UnitFrames/FluxUnitFrames_Party.lua": true
+      },
+      "manualInstallationCopies": false,
+      "incrementalSyntaxReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r52-incremental-syntax.json",
+      "currentSyntaxFiles": 1167,
+      "syntaxScope": "Current syntax inherits unchanged R51 syntax results and freshly compiles all changed/new Lua. Functional scope is R52 focused20; R51 full474 historical. No fresh whole-corpus functional sweep or native certification.",
+      "finalFreezeUTC": "2026-11-16T16:28:30.288885+00:00",
+      "ownedRuntimeTestChangedAfterGate": [],
+      "documentationValidation": {
+        "result": "Concurrent unrelated-source mismatch; unit-owned checks and files unchanged",
+        "issues": [
+          "Battlezonemap/FluxBattlefieldWorldMap.lua changed while documentation was checked",
+          "tests/world_map_surface.lua changed while documentation was checked",
+          "Generated inventory/interfaces/verification snapshot needs independent reconciliation for those newer sources"
+        ],
+        "checkerMadeEdits": false,
+        "scope": "No rerun or unrelated source edits; prioritize unit-frame native exit check"
+      },
+      "ownedCpuJobs": "All runtime/fixture/benchmark/documentation checks completed; held for native capture."
+    }
+  },
+  "desktop": {
+    "engineFocused": {
+      "combatQueueTimingChecks": 82,
+      "callbackOriginChecks": 315,
+      "finiteWatchChecks": 133,
+      "existingCallbackObserverChecks": 1066,
+      "sharedServiceChecks": 23237,
+      "startupChecks": 205
+    },
+    "fullGate": {
+      "pass": 474,
+      "fail": 0,
+      "syntaxCount": 1165,
+      "syntaxFailures": 0,
+      "changedDuringRun": [
+        "Battlezonemap/FluxBattlefieldWorldMap.lua",
+        "Core/_tmp_minimaplayoutsmoke.lua"
+      ],
+      "ownedRuntimeChangedDuringFull": [],
+      "replayChanged": [],
+      "scope": "Desktop full474-script sweep plus4 bounded replays after one legacy fixture extraction correction and a concurrent unrelated WorldMap source change. All8 owned runtime sources stable throughout; not a single globally frozen whole-corpus sweep. Native taint/input/pixels/FPS unperformed.",
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-r51-full-validation.json",
+      "initialSweep": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-r51-initial-full-sweep.json"
+    },
+    "runtimeUpvalueGate": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\combat-r51-runtime-upvalues.json",
+      "result": {
+        "files": 690,
+        "functions": 24916,
+        "maximum": 57,
+        "failures": [],
+        "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim"
+      }
+    }
+  },
+  "nativeAcceptance": {
+    "firstAndRepeatedEntryExit": "pending",
+    "borderCost": "pending newcandidate; R50 unresolved",
+    "combatDispelPaint": "pending",
+    "secureInputTaint": "pending",
+    "visualParity": "pending",
+    "otherNativeClients": "pending",
+    "userTestRoute": "manual native Forever; no new setup or automated input"
+  },
+  "version": "static-unit-paint-r52",
+  "runtimeAndTestNormalizedSHA256": {
+    "Core/BorderJunctions.lua": "aee5fff94b860529dccdb0ca25ea5bff4ebb172931f83f7aaebf743c058f1b60",
+    "Core/Engine/Combat.lua": "315bc0a990aaf8206b162124970724bdc4ab048351d24bff06ec335e679d36e3",
+    "Core/Engine/Events.lua": "7e153fb502f826e5811fec0d4eefee6aa569a2a6289cb322b04e974e2d11faa2",
+    "Core/Engine/Scheduler.lua": "e63870668c8bbf95c27b8cf0d2d8399c6ce1f4b556fa09a6b2dd9937f779a095",
+    "Other/FluxPerfCapture.lua": "678efe800c14b806143126855ec3fc7183f3dbd886a33167fbee25816e665c52",
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": "21ec16d37097dc24ae2108f1d6570770ec6182c76724c5ca98f67f8a54ea5e56",
+    "Minimap/FluxMinimap.lua": "7d792e6a9b1d6c1a5e85c9e3cf3a805268fcdaca150dbf3c4b3f2427aeeefeae",
+    "ExtraButtonSystem/Engine/Action.lua": "93606dc5d296813842daf1b2a9a1e30370461cd3be9141d59bc7886319e7f1b2",
+    "tests/combat_queue_timing.lua": "0658adfd5ad2ac86f3da2b5857145955695bc60a1d1e8c17bf5fa6bb9a58f607",
+    "tests/regen_callback_origin.lua": "a163f6dd888e6fbb35297cdaffedb566197d220e38342e9567e95731adac17cd",
+    "tests/perf_spike_watch.lua": "300f42c4e64de218377449fdafdb226a0fe20868bb88218febc4ceeef3168fd9",
+    "tests/unit_aura_group_layout_work.lua": "4d1cb8c75610ec2c1eda629af98a49abaa861c7ef481607f92d29f5e313178b5",
+    "tests/minimap_combat_idempotence.lua": "eee3f061dfe9c6f1e618fc270a62ff5c447a23aef6da9fd2ad717c3322dafd02",
+    "tests/minimap_mail_lifecycle.lua": "eed38d57a23c753c2cd82d1e228a84e0583d101b229e0d1b2e4963ba30eef57a",
+    "Core/_tmp_minimaplayoutsmoke.lua": "d31130b93066500fc1819eda612b1c1e4c7d0de89776c16c0a1e77859b603ec8",
+    "tests/ebs_item_applied_bundle.lua": "c1d2c7574e13175b4eab756a451c7bc0730623fa07d6feffe5b020fd0af0d499",
+    "tests/border_fallback_array_guards.lua": "0499d0818bac458d6eb2c49fd58dce8b5cdecff8ec60559b87ea7fdf46814672"
+  },
+  "sourceAuditLimits": "Loaded source/owner assessment is not exhaustive native causality. Raw frame/secure callbacks outside observed Flux services remain timing gaps. Source-derived candidate costs do not establish native hitch ownership.",
+  "solveProposal": "Per-pass pair-dedup investigated read-only; varied CPU samples, no robust common gain. Not applied; no persistent solver cache/source geometry skipping.",
+  "manualInstallationCopies": false,
+  "existingForeverDiskMatches": {
+    "Core/BorderJunctions.lua": true,
+    "Core/Engine/Combat.lua": true,
+    "Core/Engine/Events.lua": true,
+    "Core/Engine/Scheduler.lua": true,
+    "Other/FluxPerfCapture.lua": true,
+    "UnitFrames/FluxUnitFrames_AurasEngine.lua": true,
+    "Minimap/FluxMinimap.lua": true,
+    "ExtraButtonSystem/Engine/Action.lua": true
+  },
+  "latestUserPriority": [
+    "Combat-exit border rebuild first",
+    "Drag/drop actions should rebuild only affected border parts",
+    "Partial action-button occupancy must keep continuous strip top edge",
+    "Combat red unit-border tint restoration reported as exit-lag trigger"
+  ],
+  "nextBorderPhase": {
+    "status": "R52 unit paint and final portrait producer fixes frozen;20 focused scripts PASS. Native unit exit latency/full geometry acceptance pending. Further module/actionstrip/local-plan work held.",
+    "checkpoint": "C:/Users/mario/.codex/visualizations/2026/11/15/01a1ded4-a51f-7e41-8c99-dfbc0d58153b/border-local-plan-before-20261116T155526Z",
+    "checkpointFiles": 2981,
+    "historyVerified": true,
+    "changedDuringArchive": [],
+    "invariants": "No stale native geometry/privacy answer cache, unchanged secure action routes/IDs, exact styles/colors/gates/round caps, opaque alpha native sink only"
+  },
+  "currentPriority": "Optimize actual builder reflow on combat exit, minimap toggle and dynamic UI changes; retain prepared combat/dispel/class paint. Actionstrip mapping/seam edits held.",
+  "deferredWork": {
+    "actionStrip": "External findings preserved; no Bars/Core seam or cursor mapping edits. User priority holds this work.",
+    "localFallbackPlan": "External5244checks;55/56hits for1split;currentSourceReads72 retained; desktopwarm/local14–21% improvement but cold2–7% regression. No runtime admission; held for unit-exit paint priority."
+  },
+  "wowSimReview": {
+    "commit": "c85495655605de1f3756cc0824c4c7faa30be2a3",
+    "route": "Read-only; no installation/run",
+    "usefulFor": "Additional modeled public Lua/event state regression",
+    "limitations": [
+      "Missing vertex-offset triangles and full8point UVs",
+      "Recolor alpha differs from observed Forever",
+      "Secret/secure/taint/nativeperformance not modeled",
+      "Focus/pet/auras incomplete"
+    ],
+    "reference": "https://github.com/Photronix2020/WowSim/blob/c85495655605de1f3756cc0824c4c7faa30be2a3/README.md"
+  },
+  "nativeNext": "In-game testing is deferred by explicit user instruction until the user says it is available again. Continue offline work; do not request or initiate a native capture.",
+  "builderR53": {
+    "evidence": "docs/validation/border-builder-2026-11-16.json",
+    "nativeR52MinimapToggleMs": 232.41,
+    "nativeR53": "Pending",
+    "status": "R53 plan reuse/pair identity/readonly owner phase applied;95focused PASS/1170 current composed syntax; Core and owned sources stable; no new whole-corpus functional run"
+  },
+  "eventReflowR54": {
+    "version": "event-reflow-r54",
+    "evidence": "docs/validation/border-event-reflow-2026-11-16.json",
+    "focusedScripts": 129,
+    "native": "Pending",
+    "priority": "Combat exit first; severe party/raid join-and-leave hitch added as a related event path. Actual builder changed-layout cost remains a native acceptance requirement."
+  },
+  "nativeTestHold": {
+    "requestedDate": "2026-11-16",
+    "status": "Deferred by user until explicit renewed availability",
+    "offlineWorkAllowed": true,
+    "previousCaptureRequestsOnHold": true
+  },
+  "actionStripR55": {
+    "version": "strip-updates-r55",
+    "evidence": "docs/validation/action-strip-borders-2026-11-16.json",
+    "scripts": 144,
+    "native": "Deferred by explicit user instruction"
+  },
+  "junctionShadowsR56": {
+    "version": "shadow-support-r56",
+    "evidence": "docs/validation/junction-shadows-2026-11-16.json",
+    "nativeTesting": "DEFERRED BY USER",
+    "historicalSourceResultsRetained": true
+  }
+}

@@ -133,6 +133,7 @@ local unitWatchers = {}
 local fallbackFrame
 local fallbackTicker
 local fallbackEpoch = 0
+local rosterSweepPending = false
 local FallbackActive
 local fallbackTimer = 0
 local FALLBACK_THROTTLE = 0.2
@@ -152,6 +153,12 @@ end
 
 local function InLockdown()
 	return InCombatLockdown and InCombatLockdown() or false
+end
+
+local function IsSecretDriverValue(value)
+	if issecretvalue then return issecretvalue(value) end
+	local secrets = Flux.Secrets
+	return secrets and secrets.IsSecretValue and secrets.IsSecretValue(value)
 end
 
 local function FrameUnit(frame)
@@ -204,8 +211,13 @@ local function ApplyUnitWatch(frame, asState)
 		end
 		local unit = FrameUnit(frame)
 		local exists = unit and UnitExists(unit)
+		if IsSecretDriverValue(exists) then return end
 		if frame.SetAttribute then
-			pcall(frame.SetAttribute, frame, "state-unitexists", exists and true or false)
+			local present = exists and true or false
+			local ok, current = pcall(frame.GetAttribute, frame, "state-unitexists")
+			if not ok or IsSecretDriverValue(current) or current ~= present then
+				pcall(frame.SetAttribute, frame, "state-unitexists", present)
+			end
 		end
 		return
 	end
@@ -242,7 +254,10 @@ local function ApplyAttributeDriver(frame, attribute, values)
 		-- Combat fade sets alpha 0 while the button stays shown. A real
 		-- Show/Hide on regen must come back opaque or the next summon is invisible.
 		if petExistence and frame.SetAlpha and not InLockdown() then
-			pcall(frame.SetAlpha, frame, 1)
+			local ok, alpha = pcall(frame.GetAlpha, frame)
+			if not ok or IsSecretDriverValue(alpha) or alpha ~= 1 then
+				pcall(frame.SetAlpha, frame, 1)
+			end
 		end
 		return
 	end
@@ -298,6 +313,7 @@ local function FallbackOnUpdate(_, elapsed)
 	if fallbackTimer > 0 then return end
 	fallbackTimer = FALLBACK_THROTTLE
 	local epoch = fallbackEpoch
+	rosterSweepPending = false
 	ApplyAll()
 	-- A setter may synchronously register/unregister another owned driver.
 	-- Its fresh next-frame/idle state must not be replaced by this old pass.
@@ -330,8 +346,15 @@ local function EnsureFallbackFrame()
 	fallbackFrame = CreateFrame("Frame", "FluxInsecureStateDriver")
 	fallbackFrame:Hide()
 	fallbackFrame:SetScript("OnUpdate", FallbackOnUpdate)
-	fallbackFrame:SetScript("OnEvent", function()
-		if FallbackActive() then ReconcileFallback() end
+	fallbackFrame:SetScript("OnEvent", function(_, event)
+		if not FallbackActive() then return end
+		if event == "GROUP_ROSTER_UPDATE" then
+			-- Keep the immediate first sweep. The scheduled reconciliation
+			-- picks up any newer roster from this burst before rendering.
+			if rosterSweepPending then return end
+			rosterSweepPending = true
+		end
+		ReconcileFallback()
 	end)
 	fallbackFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 	fallbackFrame:RegisterEvent("PLAYER_FOCUS_CHANGED")
@@ -359,6 +382,7 @@ local function SyncFallbackFrame()
 		ReconcileFallback()
 	else
 		fallbackEpoch = fallbackEpoch + 1
+		rosterSweepPending = false
 		StopFallbackTicker()
 		f:SetScript("OnUpdate", nil)
 		f:Hide()

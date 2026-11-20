@@ -39,7 +39,7 @@ local function model(src, client, uiScale)
     e.UIParent:SetScale(uiScale)
     m:SetSetting('sideHideEmpty',true)
     check(#t:visible()==2 and t:visible()[1]==t.widgets[2] and t:visible()[2]==t.widgets[5], 'only unassigned slots collapse; depleted assigned item retained')
-    near(t.widgets[2].Widget:GetTop()-t.widgets[5].Widget:GetTop(),t.widgets[2].Widget:GetHeight()*t.widgets[2].Widget:GetScale(), 'sparse assigned slots pack together')
+    near(t.widgets[2].SlotFrame:GetTop()-t.widgets[5].SlotFrame:GetTop(),t.widgets[2].SlotFrame:GetHeight(), 'sparse assigned cells pack together while artwork stays inset')
     local identity=t.widgets[2].Widget
     t.cursorType,t.cursorValue='spell',40; t:event('CURSOR_CHANGED'); t:flush()
     check(#t:visible()==3 and t.widgets[1].Widget:IsVisible() and not t.widgets[3].Widget:IsVisible(), 'carried action reveals exactly one empty drop target')

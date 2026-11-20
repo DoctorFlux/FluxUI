@@ -1,0 +1,1064 @@
+{
+  "changeId": "LHO-FRESH-IDS-20261114",
+  "recordedUtc": "2026-11-14T22:54:42.166371+00:00",
+  "status": "APPLIED; current desktop integration PASS; native same-VM query allocation comparison PASS; full original goal ACTIVE.",
+  "application": {
+    "appliedUtc": "2026-11-14T22:31:52.731675+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-c1-20261114T222600Z",
+    "files": [
+      {
+        "path": "Inventory/Index.lua",
+        "before": "10e927b927f8276170eb8a410f1673e40bd26a25633040b505acde3901e0de89",
+        "after": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7"
+      },
+      {
+        "path": "Inventory/SpellReagents.lua",
+        "before": "fb55c4468968b62304a98e53bc85d20587e48667761872574112ade19d7ce653",
+        "after": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc"
+      },
+      {
+        "path": "tests/passive_inventory_item_ids.lua",
+        "before": null,
+        "after": "821b96d71f72db45b3f67cf793827fdab859ac269b10efc1081e27b4f6f1f1bd"
+      }
+    ],
+    "sourceBeforeTestGate": "386PASS/1074manifest current;C1actualsourcepairs+controls+2independentreviews passed beforeedit",
+    "scope": "Only2runtimefiles+1newtest;no preferences/clientinput/externalSynd edits",
+    "complete": true
+  },
+  "sourceBeforeEdit": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-c1-20261114T222600Z",
+    "files": 2824,
+    "sourceHistoryVerified": true,
+    "settingsMetadataEntries": 126,
+    "privateSettingsCopied": false,
+    "wholeCurrentBaseline": "386 scripts /1074 syntax, all report identities matched before edit; preserved ignored unloaded scratch parsed separately."
+  },
+  "implementation": {
+    "scope": "Only Index fresh ID query plus SpellReagents owned-helper selection; existing public GetUniqueItems function body/facade untouched.",
+    "contract": "Fresh ID-keyed map; values opaque dense indices. Same location traversal and count/link reads; no persisted counts shortcut. Private shared namespace establishes exact Inventory/helper ownership. Capture each legacy getter once; foreign/replaced/copied helpers and namespaces retain legacy fallback.",
+    "preserved": "Every harvest, refresh, native name read, predicate, item count, metadata read, history/alias/migration/error/reentry seam and cadence. No new event/timer/frame/hook/poll/settings/schema/UI/input change.",
+    "intentionalBugFix": "C0 candidate extension regressions fixed before application: facade getter2->3 reads, delegated getter1->2, copied foreign helper bypass. C0 never applied.",
+    "newTest": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\followup-data-audit\\durable\\passive_inventory_item_ids.lua",
+      "sha256": "821b96d71f72db45b3f67cf793827fdab859ac269b10efc1081e27b4f6f1f1bd",
+      "defaultSources": [
+        "Inventory/Index.lua",
+        "Inventory/SpellReagents.lua"
+      ],
+      "externalDependencies": false,
+      "cpuTimingAssertions": false,
+      "allocationWorkBound": "121fresh IDs; fresh ID query allocates <half the public record query with GC stopped over20calls (422.9688Ã¢â€ â€™149.2188KiB observed).",
+      "authorityOracle": "Independent legacy public query contract, not a disabled candidate guard.",
+      "c1Result": "c1-durable-v2.json",
+      "c0NegativeControl": "c0-durable-control.json: intentional exit1 reproduces facade2Ã¢â€ â€™3 getter/name702Ã¢â€ â€™703 before consumer load; accepted as negative-control rejection."
+    }
+  },
+  "beforeApplicationProof": {
+    "tests": {
+      "authorityChecks": 58,
+      "authorityBeforeAfterCases": 34,
+      "authorityTraceDifferences": 0,
+      "blockedC0AuthorityDifferences": 20,
+      "directFreshIDSemanticsChecks": 816,
+      "actualGetRowsChecksEachOwner": 1010,
+      "actualGetRowsProfilesEachOwner": 30,
+      "identicalNativeNameTraceLists": 30,
+      "historyColdAliasMigrationErrorReentryOptionalAPIChecksEachOwner": 13,
+      "compileChecks": 4,
+      "compositeBenchChecksEachRun": 228,
+      "alternatingSamplePairs": 3
+    },
+    "keysReview": "124 checks/63 cases;4 harmful controls rejected",
+    "historyReview": "220 cases; baseline300/candidate320 assertions; exact case traces equal;10 real fast-path entries; C0 rejected",
+    "seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\followup-data-audit\\c1-seal.json",
+      "sha256": "3ca7a94417368a0127c6742c4f2b03a8f98cb790d96b757518e941b27308df6c"
+    }
+  },
+  "desktopBenchmarks": {
+    "runtime": "Portable Lua5.4.6; product uses Lua5.1 constructs",
+    "queryUnits": {
+      "allocation": "KiB per100querycalls; GC stopped",
+      "seconds": "seconds per1000querycalls; GC enabled"
+    },
+    "querySamples": [
+      {
+        "dimensions": [
+          "0"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 18.75,
+              "seconds": 0.001
+            },
+            {
+              "allocation": 18.75,
+              "seconds": 0.001
+            },
+            {
+              "allocation": 18.75,
+              "seconds": 0.0
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 36.40625,
+              "seconds": 0.0
+            },
+            {
+              "allocation": 36.40625,
+              "seconds": 0.001
+            },
+            {
+              "allocation": 36.40625,
+              "seconds": 0.0
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 18.75,
+            "seconds": 0.001
+          },
+          "candidate": {
+            "allocation": 36.40625,
+            "seconds": 0.0
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "7"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 141.40625,
+              "seconds": 0.003
+            },
+            {
+              "allocation": 141.40625,
+              "seconds": 0.002
+            },
+            {
+              "allocation": 141.40625,
+              "seconds": 0.003
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 89.84375,
+              "seconds": 0.002
+            },
+            {
+              "allocation": 89.84375,
+              "seconds": 0.002
+            },
+            {
+              "allocation": 89.84375,
+              "seconds": 0.002
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 141.40625,
+            "seconds": 0.003
+          },
+          "candidate": {
+            "allocation": 89.84375,
+            "seconds": 0.002
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "20"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 390.625,
+              "seconds": 0.007
+            },
+            {
+              "allocation": 390.625,
+              "seconds": 0.007
+            },
+            {
+              "allocation": 390.625,
+              "seconds": 0.007
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 221.09375,
+              "seconds": 0.005
+            },
+            {
+              "allocation": 221.09375,
+              "seconds": 0.007
+            },
+            {
+              "allocation": 221.09375,
+              "seconds": 0.005
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 390.625,
+            "seconds": 0.007
+          },
+          "candidate": {
+            "allocation": 221.09375,
+            "seconds": 0.005
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 2114.84375,
+              "seconds": 0.035
+            },
+            {
+              "allocation": 2114.84375,
+              "seconds": 0.034
+            },
+            {
+              "allocation": 2114.84375,
+              "seconds": 0.034
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 746.09375,
+              "seconds": 0.02
+            },
+            {
+              "allocation": 746.09375,
+              "seconds": 0.023
+            },
+            {
+              "allocation": 746.09375,
+              "seconds": 0.021
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 2114.84375,
+            "seconds": 0.034
+          },
+          "candidate": {
+            "allocation": 746.09375,
+            "seconds": 0.021
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "200"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 3587.5,
+              "seconds": 0.054
+            },
+            {
+              "allocation": 3587.5,
+              "seconds": 0.055
+            },
+            {
+              "allocation": 3587.5,
+              "seconds": 0.055
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 1446.09375,
+              "seconds": 0.033
+            },
+            {
+              "allocation": 1446.09375,
+              "seconds": 0.034
+            },
+            {
+              "allocation": 1446.09375,
+              "seconds": 0.034
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 3587.5,
+            "seconds": 0.055
+          },
+          "candidate": {
+            "allocation": 1446.09375,
+            "seconds": 0.034
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "500"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 8640.625,
+              "seconds": 0.173
+            },
+            {
+              "allocation": 8640.625,
+              "seconds": 0.168
+            },
+            {
+              "allocation": 8640.625,
+              "seconds": 0.162
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 2846.09375,
+              "seconds": 0.077
+            },
+            {
+              "allocation": 2846.09375,
+              "seconds": 0.076
+            },
+            {
+              "allocation": 2846.09375,
+              "seconds": 0.077
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 8640.625,
+            "seconds": 0.168
+          },
+          "candidate": {
+            "allocation": 2846.09375,
+            "seconds": 0.077
+          }
+        }
+      }
+    ],
+    "compositeUnits": {
+      "allocation": "KiB per5actual GetRows(true)calls; GC stopped",
+      "seconds": "seconds per30actual GetRows(true)calls; GC enabled",
+      "names": "Mock native name calls over35totalcalls; original/candidate equal"
+    },
+    "compositeSamples": [
+      {
+        "dimensions": [
+          "false",
+          "0",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 121.70800781,
+              "seconds": 0.004,
+              "names": 4235
+            },
+            {
+              "allocation": 121.70800781,
+              "seconds": 0.004,
+              "names": 4235
+            },
+            {
+              "allocation": 121.70800781,
+              "seconds": 0.003,
+              "names": 4235
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 53.27050781,
+              "seconds": 0.003,
+              "names": 4235
+            },
+            {
+              "allocation": 53.27050781,
+              "seconds": 0.003,
+              "names": 4235
+            },
+            {
+              "allocation": 53.27050781,
+              "seconds": 0.003,
+              "names": 4235
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 121.70800781,
+            "seconds": 0.004,
+            "names": 4235
+          },
+          "candidate": {
+            "allocation": 53.27050781,
+            "seconds": 0.003,
+            "names": 4235
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "false",
+          "7",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 935.92675781,
+              "seconds": 0.03,
+              "names": 34370
+            },
+            {
+              "allocation": 935.92675781,
+              "seconds": 0.029,
+              "names": 34370
+            },
+            {
+              "allocation": 935.92675781,
+              "seconds": 0.029,
+              "names": 34370
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 388.17675781,
+              "seconds": 0.026,
+              "names": 34370
+            },
+            {
+              "allocation": 388.17675781,
+              "seconds": 0.026,
+              "names": 34370
+            },
+            {
+              "allocation": 388.17675781,
+              "seconds": 0.027,
+              "names": 34370
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 935.92675781,
+            "seconds": 0.029,
+            "names": 34370
+          },
+          "candidate": {
+            "allocation": 388.17675781,
+            "seconds": 0.026,
+            "names": 34370
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "false",
+          "20",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.081,
+              "names": 90335
+            },
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.079,
+              "names": 90335
+            },
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.075,
+              "names": 90335
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.073,
+              "names": 90335
+            },
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.069,
+              "names": 90335
+            },
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.07,
+              "names": 90335
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 2474.57226562,
+            "seconds": 0.079,
+            "names": 90335
+          },
+          "candidate": {
+            "allocation": 1037.38476562,
+            "seconds": 0.07,
+            "names": 90335
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "true",
+          "0",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 121.45800781,
+              "seconds": 0.005,
+              "names": 4235
+            },
+            {
+              "allocation": 121.45800781,
+              "seconds": 0.003,
+              "names": 4235
+            },
+            {
+              "allocation": 121.45800781,
+              "seconds": 0.004,
+              "names": 4235
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 53.02050781,
+              "seconds": 0.003,
+              "names": 4235
+            },
+            {
+              "allocation": 53.02050781,
+              "seconds": 0.003,
+              "names": 4235
+            },
+            {
+              "allocation": 53.02050781,
+              "seconds": 0.003,
+              "names": 4235
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 121.45800781,
+            "seconds": 0.004,
+            "names": 4235
+          },
+          "candidate": {
+            "allocation": 53.02050781,
+            "seconds": 0.003,
+            "names": 4235
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "true",
+          "7",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 935.61425781,
+              "seconds": 0.03,
+              "names": 34370
+            },
+            {
+              "allocation": 935.61425781,
+              "seconds": 0.029,
+              "names": 34370
+            },
+            {
+              "allocation": 935.61425781,
+              "seconds": 0.029,
+              "names": 34370
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 388.11425781,
+              "seconds": 0.029,
+              "names": 34370
+            },
+            {
+              "allocation": 388.11425781,
+              "seconds": 0.025,
+              "names": 34370
+            },
+            {
+              "allocation": 388.11425781,
+              "seconds": 0.026,
+              "names": 34370
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 935.61425781,
+            "seconds": 0.029,
+            "names": 34370
+          },
+          "candidate": {
+            "allocation": 388.11425781,
+            "seconds": 0.026,
+            "names": 34370
+          }
+        }
+      },
+      {
+        "dimensions": [
+          "true",
+          "20",
+          "121"
+        ],
+        "samples": {
+          "baseline": [
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.078,
+              "names": 90335
+            },
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.076,
+              "names": 90335
+            },
+            {
+              "allocation": 2474.57226562,
+              "seconds": 0.075,
+              "names": 90335
+            }
+          ],
+          "candidate": [
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.071,
+              "names": 90335
+            },
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.072,
+              "names": 90335
+            },
+            {
+              "allocation": 1037.38476562,
+              "seconds": 0.069,
+              "names": 90335
+            }
+          ]
+        },
+        "median": {
+          "baseline": {
+            "allocation": 2474.57226562,
+            "seconds": 0.076,
+            "names": 90335
+          },
+          "candidate": {
+            "allocation": 1037.38476562,
+            "seconds": 0.071,
+            "names": 90335
+          }
+        }
+      }
+    ],
+    "headline": "20 saved rows x121 visible IDs:494.914453124->207.476953124KiB per GetRows;58.1% less. CPU30-call medians79->70ms provider-off and76->71ms simulated provider-on. Actual external Syndicator not executed by these fixtures.",
+    "limits": [
+      "All repeated scans/name lookups remain; no claim that whole native40-59ms callback disappears.",
+      "Empty isolated query adds180.8bytes. Small CPU samples and overlapping ranges are retained.",
+      "Public query/history order must remain live: no frozen/first-set/unresolved-only harvest caching."
+    ]
+  },
+  "integration": {
+    "scriptsPass": 387,
+    "scriptsFail": 0,
+    "syntaxFiles": 1075,
+    "syntaxFailures": 0,
+    "sourceStableThroughout": true,
+    "sourceGuard": {
+      "capturedUtc": "2026-11-14T22:42:47.132611+00:00",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-c1-20261114T222600Z",
+      "changedRuntime": [
+        "Inventory/Index.lua",
+        "Inventory/SpellReagents.lua"
+      ],
+      "newTests": [
+        "tests/passive_inventory_item_ids.lua"
+      ],
+      "otherCheckpointLuaUnchanged": 1073,
+      "preserved": {
+        "assetsXMLTOC": {
+          "files": 252,
+          "allRawHashesMatch": true
+        },
+        "optionsBindings": {
+          "files": 85,
+          "allRawHashesMatch": true
+        },
+        "defaults": {
+          "files": 7,
+          "allRawHashesMatch": true
+        },
+        "licenses": {
+          "files": 5,
+          "allRawHashesMatch": true
+        }
+      },
+      "all1075IntegrationManifestPathsMatch": true,
+      "fullSuite": {
+        "pass": 387,
+        "fail": 0,
+        "syntax": 1075,
+        "syntaxFailures": 0
+      },
+      "externalSyndicator": {
+        "files": 41,
+        "allRawHashesMatch": true,
+        "readOnly": true
+      },
+      "installedCopies": {
+        "_retail_": {
+          "Inventory/Index.lua": {
+            "sha256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+            "matchesRetail": true
+          },
+          "Inventory/SpellReagents.lua": {
+            "sha256": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+            "matchesRetail": true
+          }
+        },
+        "_forever_": {
+          "Inventory/Index.lua": {
+            "sha256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+            "matchesRetail": true
+          },
+          "Inventory/SpellReagents.lua": {
+            "sha256": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+            "matchesRetail": true
+          }
+        },
+        "_classic_": {
+          "Inventory/Index.lua": {
+            "sha256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+            "matchesRetail": true
+          },
+          "Inventory/SpellReagents.lua": {
+            "sha256": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+            "matchesRetail": true
+          }
+        },
+        "_classic_era_": {
+          "Inventory/Index.lua": {
+            "sha256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+            "matchesRetail": true
+          },
+          "Inventory/SpellReagents.lua": {
+            "sha256": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+            "matchesRetail": true
+          }
+        },
+        "_anniversary_": {
+          "Inventory/Index.lua": {
+            "sha256": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+            "matchesRetail": true
+          },
+          "Inventory/SpellReagents.lua": {
+            "sha256": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+            "matchesRetail": true
+          }
+        }
+      },
+      "copyDifferences": [],
+      "manualSync": false,
+      "scope": "Read-onlydiskidentities; notnativepixels/taint/FPS"
+    },
+    "postDocumentationManifest": {
+      "capturedUtc": "2026-11-14T22:58:56.061137+00:00",
+      "manifestPaths": 1075,
+      "allMatch": true,
+      "normalization": "Runner exact read_bytes CRLF->LF only; raw identity remains in sourceguard/checkpoint",
+      "mismatches": []
+    }
+  },
+  "native": {
+    "scope": "Three alternating retained public-record query versus new fresh-ID query pairs in the same reloaded VM; not a whole-restock/cast/transaction before-after.",
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001,
+      "pid": 40032,
+      "hwnd": 7995860,
+      "executable": "F:\\World of Warcraft\\_forever_\\Wow.exe"
+    },
+    "readinessBeforeReload": "LHO4READY nil 1.60.1 0 function table",
+    "conditionalReload": {
+      "startedUtc": "2026-11-14T22:49:37.479976+00:00",
+      "pid": 40032,
+      "hwnd": 7995860,
+      "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-idle-reload.json",
+      "planSHA256": "aab1f4198c47e04757cf09f7b4c23220526432173b92238a3c4028427215102e",
+      "permission": "User explicitly permits targeted foreground/background profiling; focus is never activated or changed by helper.",
+      "diagnosticCleanupOnly": false,
+      "activation": false,
+      "systemWideInput": false,
+      "clipboard": false,
+      "profilerPreferenceWrites": false,
+      "itemMailQueueActions": false,
+      "commands": [
+        "/run local f=ProfessionsFrame or TradeSkillFrame;if not(InCombatLockdown() or UnitCastingInfo(\"player\") or UnitChannelInfo(\"player\") or f and f:IsShown() or SkilletFrame and SkilletFrame:IsShown())then ReloadUI()else print(\"LHO4DEFER\")end"
+      ],
+      "status": "complete",
+      "finishedUtc": "2026-11-14T22:49:38.257654+00:00",
+      "foregroundBefore": 7995860,
+      "foregroundAfter": 7995860,
+      "foregroundUnchanged": true
+    },
+    "reloadObserved": "Loading screen then addon startup and LHO4CTX function readiness; no active cast/combat/open native or Skillet profession window allowed by submitted condition.",
+    "contextAfterReload": {
+      "profilerEnabled": true,
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "externalSyndicator": "table",
+      "inventorySource": "syndicator",
+      "newQuery": "function"
+    },
+    "options": {
+      "bags": true,
+      "bank": true,
+      "warband": true
+    },
+    "orderedSamples": [
+      {
+        "label": "O1",
+        "uptimeSeconds": 113383.586,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0608,
+        "allocatedBytes": 22464,
+        "deallocatedBytes": 3528
+      },
+      {
+        "label": "N1",
+        "uptimeSeconds": 113384.364,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0577,
+        "allocatedBytes": 10800,
+        "deallocatedBytes": 3528
+      },
+      {
+        "label": "N2",
+        "uptimeSeconds": 113385.145,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0594,
+        "allocatedBytes": 10800,
+        "deallocatedBytes": 3528
+      },
+      {
+        "label": "O2",
+        "uptimeSeconds": 113385.93,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0595,
+        "allocatedBytes": 22464,
+        "deallocatedBytes": 3528
+      },
+      {
+        "label": "O3",
+        "uptimeSeconds": 113386.683,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0637,
+        "allocatedBytes": 22464,
+        "deallocatedBytes": 3528
+      },
+      {
+        "label": "N3",
+        "uptimeSeconds": 113387.492,
+        "ids": 51,
+        "elapsedMilliseconds": 0.0503,
+        "allocatedBytes": 10800,
+        "deallocatedBytes": 3528
+      }
+    ],
+    "keyParity": "PASS: all keys checked in both directions; LHO4PARITY 51.",
+    "emptyCall": {
+      "elapsedMilliseconds": 0.0002,
+      "allocatedBytes": 0,
+      "deallocatedBytes": 0,
+      "subtractedFromSamples": false
+    },
+    "preferencesAfter": {
+      "inventorySource": "syndicator",
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "profilerEnabled": true
+    },
+    "transcription": "Profiler labels/numbers manually read from retained private window captures; unrelated chat and settings are not copied to this public report.",
+    "artifacts": {
+      "c1-after-ready-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-after-ready-result.png",
+        "sha256": "7af5b9260a161aeb02a2d731350a3517c9c97cb2a7dc6a2a400f6079ae91fe7e"
+      },
+      "c1-native-pairs-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-pairs-result.png",
+        "sha256": "39d413eb8d1cfab7b774d63a9fc8a73ead5856104cc469b2bfcdc5960deebd3b"
+      },
+      "c1-native-key-parity-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-key-parity-result.png",
+        "sha256": "62a8773eb1a45567f6cd0cfe0796553bb43782b534b43b5efbcc058511400b09"
+      },
+      "c1-native-end-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-end-result.png",
+        "sha256": "f9d627516b531394e60173768d8d144f8eca8902efb5d1f83f9ac7175860adb6"
+      },
+      "c1-native-pairs.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-pairs.json",
+        "sha256": "493fb9733970fa6c62b40800afd72f3b3a3809724dca5368531eedabe9c181f4"
+      },
+      "c1-native-pairs-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-pairs-submission.json",
+        "sha256": "ea86e5d38c67d011e7f8a96094e02682acd123049fb09ee2d089b5d0b3b08cdc"
+      },
+      "c1-native-key-parity-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-key-parity-submission.json",
+        "sha256": "07c22270c85448e7dfcb053490c41227bdf4776066899ac0aca914166d010216"
+      },
+      "c1-native-end-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-end-submission.json",
+        "sha256": "e8ba8a031f5e3742dd4feb37871d8b4bbd5c6cf7dba85c0bf1effd3fbddd7a5d"
+      }
+    },
+    "limitations": [
+      "Player continued normal movement and activities; brief adjacent CPU ranges are not a controlled latency distribution or FPS gain.",
+      "Only this query and one currently populated 51-ID snapshot were measured; native provider-off, whole Followup, actual casting, populated mail, bank lifecycle and other clients remain pending.",
+      "API readiness plus disk hashes/reload do not cryptographically certify loaded bytecode.",
+      "Hardware and complete addon-list metadata were not freshly collected; no hardware-normalized result.",
+      "Existing public query body is retained; this is same-VM API comparison rather than loading two complete addon versions."
+    ],
+    "cleanup": "All commands use locals only; no diagnostic global, frame, wrapper, hook, timer or watcher was installed. No profiler preference change or item/mail/queue action. Reload naturally persists existing settings.",
+    "allocationSavedBytes": 11664,
+    "allocationReductionPercent": 51.92307692307692,
+    "medianMilliseconds": {
+      "old": 0.0608,
+      "new": 0.0577
+    }
+  },
+  "sourcePins": {
+    "Retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "Forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "Classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "Era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "Anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "preservation": "Other1073 checkpoint Lua unchanged;252 asset/XML/TOC,85 options/bindings,7 defaults,5licenses unchanged.41external Syndicator files untouched;10 runtime copies match across5installs read-only. Newer tooltip/EBS/unitframe work retained. No commit/publication/manual sync.",
+  "remaining": [
+    "Whole-workflow native before-after/FPS, raw casting start/cancel/finish attribution, provider-off and all-client native/taint/pixel/controller acceptance.",
+    "Bank/mail producer race/readiness and populated-mail timing remain; user requires native measurement before accepting exceptional delay.",
+    "Vendor/buy/sell/auction/pending/crafting/loot/receipt/bag/grid broad scope remains active. No purchases/sales/deletes by agent. Guild-bank/void callback bodies remain excluded."
+  ],
+  "quickPause": {
+    "cancelFirst": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\CANCEL",
+    "workers": "Interrupt external next-followup audit; stop only owned child if active; no native helper teardown currently needed.",
+    "reload": "Only on explicit pause reload request; remember latest reload boundary and re-add optional code on continuation.",
+    "continuity": "Save small current delta; mark goal paused only on explicit user pause."
+  },
+  "artifacts": {
+    "followup-data-audit/c1-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\followup-data-audit\\c1-seal.json",
+      "sha256": "3ca7a94417368a0127c6742c4f2b03a8f98cb790d96b757518e941b27308df6c"
+    },
+    "keys-review/verdict.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\keys-review\\verdict.json",
+      "sha256": "b5da7f7e2071dd86ba1675ed3321827aee474eff92823a8e06002e32d0362c06"
+    },
+    "history-review/review-final.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\history-review\\review-final.json",
+      "sha256": "707ecc96f5fd1c7a24cd4ccf83eeba8128ebd4f14cc0ff60188bb2f9986a6b7a"
+    },
+    "integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\integration-full.json",
+      "sha256": "53c913721d1b99b14a72e1d36311b3b82b99cbb93a6b7cd0a6b509c1b7dad258"
+    },
+    "integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\integration-stability.json",
+      "sha256": "e82f205accb30b8314ef0441a8af2b233e726c28c3fdd4d280885c67f98b2c15"
+    },
+    "c1-source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\c1-source-guard.json",
+      "sha256": "d1cefd240149a283e1527629e7ca5e2b8450dc06bd477a473fb405a854d1f5ee"
+    },
+    "baseline-source-audit.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\baseline-source-audit.json",
+      "sha256": "5beed2139376a1331fca0f23a1294d9ad302693c9f299f2d64f12411211ef639"
+    },
+    "native/c1-native-comparison.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\c1-native-comparison.json",
+      "sha256": "dd5ca7e6c9c0507f5a6aa211b73fa5d291831bcf8ea7cbf602868f0d0d3ffa23"
+    },
+    "native-source-review/source-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-source-review\\source-review.json",
+      "sha256": "693d0f4fb4c7a93b76d9731f286658371e8d4d236ba4bc329580128eeb02220b"
+    }
+  },
+  "documentationValidation": {
+    "sourceInventoryBuild": "PASS: docs/tools/build_reference.py",
+    "check": "PASS:1108classified sources;623reachable;444setting definitions;24SavedVariables;17478local links",
+    "state": {
+      "status": "complete",
+      "parentPid": 45172,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T22:56:36.246598+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T22:57:17.294225+00:00"
+    },
+    "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-c1.txt",
+    "logSHA256": "6c0dc642ca86630d7e707cc285c6dd5c4ae687e6bc64354e85974dd8993ba47c"
+  },
+  "laterCurrentSourceAudit": {
+    "recordedUtc": "2026-11-15T01:05:36.684877+00:00",
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\phase4\\remaining-inventory-audit\\audit.json",
+    "sha256": "550b03845c1de20fabac5e23fb17f682caf790cf5818f5edb74efbea572710b7",
+    "status": "READ ONLY; no further product edit",
+    "scope": "Current 1010checks/30profiles PASS; 21harvests and2581names for20rows121IDs remain; public history/getter/predicate/cold/reentry seams prevent broad skip without changed behavior"
+  },
+  "laterSuccessfulNameCacheAudit": {
+    "recordedUtc": "2026-11-15T01:18:32.246804+00:00",
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-name-cache-contract\\contract-review.json",
+    "sha256": "396d02261ce84377c1c89673f421965a753129739aafbe827f9b6d639d822d14",
+    "verdict": "REJECTED_NO_PROVEN_INVALIDATION; no product edits",
+    "scope": "All5primaryitemcontracts inspected; actual current owner replay41checks15cases. Current alias/history/pending resolution changes under stale-successcache; table/function replacements canbe guarded but same-function metadata freshness and complete invalidation not proven. No native rename/eviction observed; hypothetical source counterexamples are not native regression evidence."
+  }
+}

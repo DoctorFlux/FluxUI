@@ -1,0 +1,351 @@
+{
+  "changeId": "RAID-AURA-RETIREMENT-R167-20261120",
+  "capturedAtUTC": "2026-11-20T01:53:43.413736+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidAuras.lua": {
+      "beforeRaw": "de9a47189568fefa5a74e840ced5b9f53a79af21fdfd31baf4b8019515b2176d",
+      "afterRaw": "b4439640656d450376fff9af029b5dc29eb0271bd5cd92b8afc47264e9b39aa4",
+      "afterNormalized": "b968f1804f8db26ee34fcec5c5c7284beed2fd0870efa37e7e461dd93365c996"
+    },
+    "tests/raid_healer_auras.lua": {
+      "beforeRaw": "f3883eb83ad778ed3619f21c4435cba66cb0e6d4153268b219e35316cc278dc7",
+      "afterRaw": "2dd8d7c7cd5c383dc36c15c9fd5720abded4c9f79fce9d1af18e0f0348c5d617",
+      "afterNormalized": "2dd8d7c7cd5c383dc36c15c9fd5720abded4c9f79fce9d1af18e0f0348c5d617"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-owner-retirement-before-20261120-022706\\checkpoint.json",
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-owner-retirement-before-20261120-022706\\source.zip",
+    "sourceZipSHA256": "1015C902FB8C499B767EED08B2919185EE4BF6FD061F00176792D31D5D56559A",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Same Lua fixture over five-member party and forty-member raid, in the source-backed Retail and Forever native aura models. The secure-unit unbind and visibility cleanup call the same production Clear. The model blocks addon access to restricted native aura descendants during cleanup.",
+    "countOrder": [
+      "initial join SetUnit",
+      "initial join Hide",
+      "first cleanup SetUnit",
+      "first cleanup Hide",
+      "repeat cleanup SetUnit",
+      "repeat cleanup Hide",
+      "rejoin SetUnit",
+      "rejoin Hide"
+    ],
+    "beforeAfterPerCase": {
+      "live-5": [
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ],
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ],
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ]
+      ],
+      "live-40": [
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ],
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ],
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ]
+      ],
+      "forever-5": [
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ],
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ],
+        [
+          [
+            25,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0
+          ],
+          [
+            15,
+            0,
+            15,
+            15,
+            0,
+            0,
+            15,
+            0
+          ]
+        ]
+      ],
+      "forever-40": [
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ],
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ],
+        [
+          [
+            200,
+            0,
+            200,
+            200,
+            200,
+            200,
+            200,
+            0
+          ],
+          [
+            120,
+            0,
+            120,
+            120,
+            0,
+            0,
+            120,
+            0
+          ]
+        ]
+      ]
+    },
+    "rawSamples": [
+      [
+        "AURA_RETIRE|live|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|live|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "AURA_RETIRE|forever|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|forever|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "Native aura retirement: 3608 matched desktop checks"
+      ],
+      [
+        "AURA_RETIRE|live|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|live|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "AURA_RETIRE|forever|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|forever|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "Native aura retirement: 3608 matched desktop checks"
+      ],
+      [
+        "AURA_RETIRE|live|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|live|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "AURA_RETIRE|forever|5|25,0,25,25,25,25,25,0|15,0,15,15,0,0,15,0",
+        "AURA_RETIRE|forever|40|200,0,200,200,200,200,200,0|120,0,120,120,0,0,120,0",
+        "Native aura retirement: 3608 matched desktop checks"
+      ]
+    ]
+  },
+  "parity": "Every group state matches the external baseline. Active owners keep current unit events. Both cleanup paths leave owners hidden, unbound and with events retired. Failed unit writes propagate and retry. Unreadable visibility takes the existing owned setter. Partial native setup still falls back.",
+  "verification": {
+    "focusedPassed": 30,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-owner-retirement-before-20261120-022706\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-owner-retirement-before-20261120-022706\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-owner-retirement-before-20261120-022706\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Live party and raid transition timing, native aura pixels and combat taint remain pending."
+}

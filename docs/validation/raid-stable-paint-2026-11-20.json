@@ -1,0 +1,327 @@
+{
+  "changeId": "RAID-STABLE-PAINT-R154-20261120",
+  "capturedAtUTC": "2026-11-19T23:24:53.547316+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+      "afterRaw": "e70e52bd7ae829254f72bc2f15bf3881be38192e15bfd1797eb86c81f1f27c57",
+      "afterNormalized": "e70e52bd7ae829254f72bc2f15bf3881be38192e15bfd1797eb86c81f1f27c57"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "194f4052fed70d9c04e5dbda80470ea146e41acc41413cc9265ef66df63e80b6",
+      "afterRaw": "71d0f08f34a84a5519aa6b609ade4ef7d78f4ed194ebddc05095efd724d0bff2",
+      "afterNormalized": "71d0f08f34a84a5519aa6b609ade4ef7d78f4ed194ebddc05095efd724d0bff2"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\source.zip",
+    "sourceZipSHA256": "f3d8f3d1b3c6dfe21869576971ca836edbd56e96ceb25eb461c45071bf9d3fbf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched exact-source pairs under each of five client models. Execute the production header-child roster synchronization and its scheduled full paint on five and forty settled compact raid cells.",
+    "samples": [
+      {
+        "trial": 1,
+        "model": "live",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "live",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "forever",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "forever",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_era",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_era",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_anniversary",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 1,
+        "model": "classic_anniversary",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "live",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "live",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "forever",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "forever",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_era",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_era",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_anniversary",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 2,
+        "model": "classic_anniversary",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "live",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "live",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "forever",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "forever",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_era",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_era",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_anniversary",
+        "members": 5,
+        "beforeVisibilityWrites": 45,
+        "afterVisibilityWrites": 5,
+        "beforeRangeWrites": 10,
+        "afterRangeWrites": 0
+      },
+      {
+        "trial": 3,
+        "model": "classic_anniversary",
+        "members": 40,
+        "beforeVisibilityWrites": 360,
+        "afterVisibilityWrites": 40,
+        "beforeRangeWrites": 80,
+        "afterRangeWrites": 0
+      }
+    ],
+    "metrics": [
+      "Visual visibility setters",
+      "Health and power minimum/maximum setters"
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\matched.txt": "67a534db918c1a505e58fe5bf67fd5d75099c4d91f9c8f5f6b578c3d3bdf35ce",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\candidate.txt": "fff6859333110bdecf7d1b1f360d4a76079935abad5866f674a0957a6b0f4114",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\upvalues.json": "d62b8494a03014695dc618e051fee9fe8be17a74be1bddaa64437548133e040b"
+    },
+    "limits": "This counts native-setter calls in a desktop widget model. Read costs and native frame time are not measured."
+  },
+  "preservation": [
+    "Fresh protected getters confirm an already correct widget state. Changed, restricted or denied values use the existing setters.",
+    "Full roster paint still publishes current values, group leadership, auras, dispels, names and colors. Reassignment and previously scheduled widget paths retain their existing behavior.",
+    "Checks cover all tested client models and a real roster leader change. Native render, input, FPS and taint remain pending."
+  ],
+  "verification": {
+    "focusedPassed": 106,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-stable-paint-before-20261120-001855\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for party and raid membership hitches, rapid held-action crossings and drops, native seam pixels and combat taint."
+}

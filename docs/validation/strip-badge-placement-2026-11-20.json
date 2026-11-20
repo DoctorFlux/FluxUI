@@ -1,0 +1,202 @@
+{
+  "changeId": "STRIP-BADGE-PLACEMENT-R161-20261120",
+  "capturedAtUTC": "2026-11-20T00:41:56.963458+00:00",
+  "sources": {
+    "ExtraButtonSystem/Engine/Badge.lua": {
+      "beforeRaw": "713c2d1b6e27664d0a56a0a76bdde6e6d07bce4fbbcff461a3e9d207d236a58c",
+      "afterRaw": "dbd7bb7cb19b1416e88b53ada8b79dc99636851e12503a3fc105744b29853ae7",
+      "afterNormalized": "dbd7bb7cb19b1416e88b53ada8b79dc99636851e12503a3fc105744b29853ae7"
+    },
+    "Bars/BadgeHost.lua": {
+      "beforeRaw": "c80a75256a727848f015bb9a9e7fbee3c2910b83cbb2731851d2d0ddd491a0a0",
+      "afterRaw": "4e44eb4814ae247b15b33a2cb2d5b6f1f0ddec44920cc504f3cfd21be4b90124",
+      "afterNormalized": "4e44eb4814ae247b15b33a2cb2d5b6f1f0ddec44920cc504f3cfd21be4b90124"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "a5918665b9844722e3a8ea771cf21e91526438b4bd8d89d144732b191121f032",
+      "afterRaw": "e5b1959ecda909ec6b086ffcf2c3f05cdb4b8731dd40083d62fe736ce5aa7ba5",
+      "afterNormalized": "e5b1959ecda909ec6b086ffcf2c3f05cdb4b8731dd40083d62fe736ce5aa7ba5"
+    },
+    "tests/badge_page_owners.lua": {
+      "beforeRaw": "163d0292be36df7b7cd995c90f7a33bc1fb51a9bb5bb784120239a92534ff3d9",
+      "afterRaw": "4ece20cd10c166ab8ca8bbb0e4a4d92a12ae024462658251e1bd8006b7e03dc6",
+      "afterNormalized": "4ece20cd10c166ab8ca8bbb0e4a4d92a12ae024462658251e1bd8006b7e03dc6"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\source.zip",
+    "sourceZipSHA256": "90bae6a09ce895cac0d2609c837d9f94b4ece18eca5d1bf0e4dc6896b8fd81fa",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three paired runs across five modeled client shapes. Eight warm held-action layout notifications keep 135 prepared corner badge faces at the same local size and offset, including inactive action pages. The work counter includes size, scale, parent, point, shown-state, clipping and frame-level setters.",
+    "samples": [
+      {
+        "trial": 1,
+        "clientShape": "retail",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "clientShape": "forever",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "clientShape": "classic",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "clientShape": "era",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 1,
+        "clientShape": "anniversary",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "clientShape": "retail",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "clientShape": "forever",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "clientShape": "classic",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "clientShape": "era",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 2,
+        "clientShape": "anniversary",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "clientShape": "retail",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "clientShape": "forever",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "clientShape": "classic",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "clientShape": "era",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      },
+      {
+        "trial": 3,
+        "clientShape": "anniversary",
+        "preparedBadgeFaces": 135,
+        "placementAndLayerWrites": [
+          14040,
+          0
+        ]
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\matched-1.txt": "8154ae7534be87c7c7df5a9c0ec9b76324a21ba4317a11fa3dbc41f811d3d079",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\matched-2.txt": "8154ae7534be87c7c7df5a9c0ec9b76324a21ba4317a11fa3dbc41f811d3d079",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\matched-3.txt": "8154ae7534be87c7c7df5a9c0ec9b76324a21ba4317a11fa3dbc41f811d3d079",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\upvalues.json": "2177418a3e5abf13fa1f0b1d0bc7727dfd9b7c1f96f2659c7bc039e6a3e0237c"
+    },
+    "limits": "Write counts from the modeled widget boundary. Native getter costs, border publication and frame gaps were not timed in-game."
+  },
+  "preservation": [
+    "Local geometry, clipping, VFX layering and count text size agree in the matched scenes.",
+    "Real squeeze, drifted points, changed layer and glow clipping, missing getters and secret reads retain repair paths.",
+    "Explicit notification preserves full callback signatures. Combat uses the existing deferral and issues no protected placement writes in the model.",
+    "The strip still commits affected borders after all panel anchors settle."
+  ],
+  "verification": {
+    "focusedPassed": 17,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\focused-r161-targeted-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-badge-placement-before-20261120-013424\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings and drops, new border footprints, seam pixels and combat taint. Group transition timing is separately pending."
+}

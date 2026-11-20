@@ -1,0 +1,589 @@
+{
+  "changeId": "BORDER-FIELD-PAINT-R177-20261120",
+  "borderVersion": "border-field-paint-r177",
+  "capturedAtUTC": "2026-11-20T03:48:27.356025+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "3e3a7acabe47834a5e7156d390dd1e0b76f66450236e94dd2a669d74536f9926",
+      "afterRaw": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+      "afterNormalized": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-typed-paint-before-20261120T044431018\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Twelve warmed strip crossings or roster geometry changes per sample, using production Lua with modeled widgets. Five alternating pairs per style and trigger.",
+    "columns": [
+      "baseline Lua ms",
+      "candidate Lua ms",
+      "baseline ephemeral KiB",
+      "candidate ephemeral KiB"
+    ],
+    "samples": {
+      "strip-1": [
+        [
+          53.0,
+          47.0,
+          5602.6,
+          5570.2
+        ],
+        [
+          59.0,
+          53.0,
+          5599.9,
+          5567.5
+        ],
+        [
+          55.0,
+          50.0,
+          5600.1,
+          5567.8
+        ],
+        [
+          53.0,
+          53.0,
+          5599.6,
+          5567.2
+        ],
+        [
+          50.0,
+          53.0,
+          5599.6,
+          5567.2
+        ]
+      ],
+      "roster-1": [
+        [
+          69.0,
+          68.0,
+          7734.9,
+          7720.9
+        ],
+        [
+          67.0,
+          62.0,
+          7735.0,
+          7721.0
+        ],
+        [
+          68.0,
+          65.0,
+          7735.2,
+          7721.2
+        ],
+        [
+          69.0,
+          64.0,
+          7734.8,
+          7720.7
+        ],
+        [
+          68.0,
+          66.0,
+          7734.8,
+          7720.7
+        ]
+      ],
+      "strip-2": [
+        [
+          99.0,
+          94.0,
+          5585.7,
+          5552.1
+        ],
+        [
+          94.0,
+          99.0,
+          5585.9,
+          5552.3
+        ],
+        [
+          97.0,
+          100.0,
+          5586.2,
+          5552.6
+        ],
+        [
+          103.0,
+          94.0,
+          5585.7,
+          5552.1
+        ],
+        [
+          97.0,
+          96.0,
+          5585.7,
+          5552.1
+        ]
+      ],
+      "roster-2": [
+        [
+          187.0,
+          166.0,
+          9933.4,
+          9922.3
+        ],
+        [
+          192.0,
+          183.0,
+          9933.4,
+          9922.4
+        ],
+        [
+          180.0,
+          175.0,
+          9933.7,
+          9922.7
+        ],
+        [
+          190.0,
+          176.0,
+          9933.2,
+          9922.2
+        ],
+        [
+          183.0,
+          173.0,
+          9933.2,
+          9922.2
+        ]
+      ]
+    },
+    "medians": {
+      "strip-1": [
+        53.0,
+        53.0,
+        5599.9,
+        5567.5
+      ],
+      "roster-1": [
+        68.0,
+        65.0,
+        7734.9,
+        7720.9
+      ],
+      "strip-2": [
+        97.0,
+        96.0,
+        5585.7,
+        5552.1
+      ],
+      "roster-2": [
+        187.0,
+        175.0,
+        9933.4,
+        9922.3
+      ]
+    },
+    "objectCounts": {
+      "strip-1": [
+        1277,
+        1277
+      ],
+      "roster-1": [
+        1675,
+        1675
+      ],
+      "strip-2": [
+        1341,
+        1341
+      ],
+      "roster-2": [
+        2203,
+        2203
+      ]
+    },
+    "timedSource": {
+      "baseline": "3e3a7acabe47834a5e7156d390dd1e0b76f66450236e94dd2a669d74536f9926",
+      "measuredCandidate": "795555d036d7090b927c36f8dae417905da4f0122d1fc237bfda930c61825894",
+      "final": "fbad6e0f84b7afcb8e741ae32067bb09b7152aa8cae6f4118c9e2b306c6c1616",
+      "delta": "Version label and explanatory source comment only."
+    },
+    "renderWork": {
+      "baseline": {
+        "strip-1": {
+          "fieldCalls": 31932,
+          "fieldHits": 24228,
+          "fieldWrites": 7704,
+          "alphaReads": 5472,
+          "alphaWrites": 132,
+          "hideReads": 1446,
+          "hideWrites": 1446,
+          "showReads": 4002,
+          "showWrites": 1446,
+          "drawFields": 684,
+          "drawMisses": 282,
+          "basisReads": 162
+        },
+        "roster-1": {
+          "fieldCalls": 48780,
+          "fieldHits": 30024,
+          "fieldWrites": 18756,
+          "alphaReads": 6768,
+          "alphaWrites": 312,
+          "hideReads": 876,
+          "hideWrites": 876,
+          "showReads": 5688,
+          "showWrites": 876,
+          "drawFields": 0,
+          "drawMisses": 186,
+          "basisReads": 312
+        },
+        "strip-2": {
+          "fieldCalls": 35658,
+          "fieldHits": 27486,
+          "fieldWrites": 8172,
+          "alphaReads": 5892,
+          "alphaWrites": 126,
+          "hideReads": 1818,
+          "hideWrites": 1818,
+          "showReads": 4422,
+          "showWrites": 1818,
+          "drawFields": 744,
+          "drawMisses": 288,
+          "basisReads": 162
+        },
+        "roster-2": {
+          "fieldCalls": 87606,
+          "fieldHits": 51150,
+          "fieldWrites": 36456,
+          "alphaReads": 11082,
+          "alphaWrites": 1068,
+          "hideReads": 1914,
+          "hideWrites": 1914,
+          "showReads": 10002,
+          "showWrites": 1914,
+          "drawFields": 0,
+          "drawMisses": 312,
+          "basisReads": 312
+        }
+      },
+      "baselineRepeat": {
+        "strip-1": {
+          "fieldCalls": 31932,
+          "fieldHits": 24540,
+          "fieldWrites": 7392,
+          "alphaReads": 5472,
+          "alphaWrites": 120,
+          "hideReads": 1446,
+          "hideWrites": 1446,
+          "showReads": 4002,
+          "showWrites": 1446,
+          "drawFields": 684,
+          "drawMisses": 282,
+          "basisReads": 162
+        },
+        "roster-1": {
+          "fieldCalls": 48780,
+          "fieldHits": 31344,
+          "fieldWrites": 17436,
+          "alphaReads": 6768,
+          "alphaWrites": 288,
+          "hideReads": 876,
+          "hideWrites": 876,
+          "showReads": 5688,
+          "showWrites": 876,
+          "drawFields": 0,
+          "drawMisses": 186,
+          "basisReads": 312
+        },
+        "strip-2": {
+          "fieldCalls": 35658,
+          "fieldHits": 27558,
+          "fieldWrites": 8100,
+          "alphaReads": 5892,
+          "alphaWrites": 126,
+          "hideReads": 1818,
+          "hideWrites": 1818,
+          "showReads": 4422,
+          "showWrites": 1818,
+          "drawFields": 744,
+          "drawMisses": 288,
+          "basisReads": 162
+        },
+        "roster-2": {
+          "fieldCalls": 87606,
+          "fieldHits": 51426,
+          "fieldWrites": 36180,
+          "alphaReads": 11082,
+          "alphaWrites": 1008,
+          "hideReads": 1914,
+          "hideWrites": 1914,
+          "showReads": 10002,
+          "showWrites": 1914,
+          "drawFields": 0,
+          "drawMisses": 312,
+          "basisReads": 312
+        }
+      },
+      "candidate": {
+        "strip-1": {
+          "fieldCalls": 31932,
+          "fieldHits": 24240,
+          "fieldWrites": 7692,
+          "alphaReads": 5472,
+          "alphaWrites": 132,
+          "hideReads": 1446,
+          "hideWrites": 1446,
+          "showReads": 4002,
+          "showWrites": 1446,
+          "drawFields": 684,
+          "drawMisses": 282,
+          "basisReads": 162
+        },
+        "roster-1": {
+          "fieldCalls": 48780,
+          "fieldHits": 31944,
+          "fieldWrites": 16836,
+          "alphaReads": 6768,
+          "alphaWrites": 300,
+          "hideReads": 876,
+          "hideWrites": 876,
+          "showReads": 5688,
+          "showWrites": 876,
+          "drawFields": 0,
+          "drawMisses": 186,
+          "basisReads": 312
+        },
+        "strip-2": {
+          "fieldCalls": 35658,
+          "fieldHits": 27486,
+          "fieldWrites": 8172,
+          "alphaReads": 5892,
+          "alphaWrites": 126,
+          "hideReads": 1818,
+          "hideWrites": 1818,
+          "showReads": 4422,
+          "showWrites": 1818,
+          "drawFields": 744,
+          "drawMisses": 288,
+          "basisReads": 162
+        },
+        "roster-2": {
+          "fieldCalls": 87606,
+          "fieldHits": 55842,
+          "fieldWrites": 31764,
+          "alphaReads": 11082,
+          "alphaWrites": 672,
+          "hideReads": 1914,
+          "hideWrites": 1914,
+          "showReads": 10002,
+          "showWrites": 1914,
+          "drawFields": 0,
+          "drawMisses": 312,
+          "basisReads": 312
+        }
+      },
+      "note": "Attempted setter counts agree. Cache hit and native write counts vary between independently constructed models, including repeated baseline runs."
+    },
+    "prototype": {
+      "description": "Combining the protected anchor validation and update reduced pcall invocations in the prototype. Mixed medians and added write-phase state did not justify adopting it.",
+      "samples": {
+        "strip-1": [
+          [
+            50.0,
+            52.0,
+            5583.9,
+            5583.8
+          ],
+          [
+            49.0,
+            53.0,
+            5584.1,
+            5584.0
+          ],
+          [
+            54.0,
+            53.0,
+            5581.4,
+            5581.3
+          ],
+          [
+            58.0,
+            53.0,
+            5580.9,
+            5580.8
+          ],
+          [
+            58.0,
+            53.0,
+            5580.9,
+            5580.8
+          ]
+        ],
+        "roster-1": [
+          [
+            76.0,
+            72.0,
+            8204.8,
+            8203.2
+          ],
+          [
+            70.0,
+            67.0,
+            8204.9,
+            8203.3
+          ],
+          [
+            69.0,
+            76.0,
+            8205.1,
+            8203.5
+          ],
+          [
+            72.0,
+            79.0,
+            8204.6,
+            8203.0
+          ],
+          [
+            72.0,
+            66.0,
+            8204.6,
+            8203.0
+          ]
+        ],
+        "strip-2": [
+          [
+            98.0,
+            97.0,
+            5584.6,
+            5584.6
+          ],
+          [
+            98.0,
+            100.0,
+            5584.8,
+            5584.8
+          ],
+          [
+            97.0,
+            97.0,
+            5585.1,
+            5585.1
+          ],
+          [
+            96.0,
+            114.0,
+            5584.6,
+            5584.6
+          ],
+          [
+            100.0,
+            101.0,
+            5584.6,
+            5584.6
+          ]
+        ],
+        "roster-2": [
+          [
+            177.0,
+            196.0,
+            10939.7,
+            10935.2
+          ],
+          [
+            172.0,
+            174.0,
+            10939.7,
+            10935.3
+          ],
+          [
+            186.0,
+            180.0,
+            10940.0,
+            10935.5
+          ],
+          [
+            175.0,
+            181.0,
+            10939.5,
+            10935.0
+          ],
+          [
+            176.0,
+            178.0,
+            10939.5,
+            10935.0
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          54.0,
+          53.0,
+          5581.4,
+          5581.3
+        ],
+        "roster-1": [
+          72.0,
+          72.0,
+          8204.8,
+          8203.2
+        ],
+        "strip-2": [
+          98.0,
+          100.0,
+          5584.6,
+          5584.6
+        ],
+        "roster-2": [
+          176.0,
+          180.0,
+          10939.7,
+          10935.2
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "artifactSHA256": {
+      "bench.lua": "aca592991989c15876c1fdd817a75f06de2dd2b56b0ee7291d4610a31ff8dc32",
+      "paint-samples.txt": "4eb982279f6106f1590a872933f37ed942ce073a478e96624380c86596ba5941",
+      "single-guard.lua": "6082dee5507ab9d6d203341b5c0a5859d9e9eb6e87259ec5588fb78a2a4ebc2f",
+      "single-guard-samples.txt": "5e0146261c5e4680b4ca492ef3b79dcf11578cfa12021cf553ec6ec71254500f",
+      "measure-field-writes.lua": "d9acca8c81c55987d680effa441dd1f20d4f54939cd5da2e39dc3d17c26dccde",
+      "baseline-work.txt": "7adfd217b36a6083c380b95e4d3200003457927248ab9db66e8988a0a01d0413",
+      "control-work.txt": "79809082f2b31cb9cb1453858bcf99c82da080379de20567e20350c175cfe2e9",
+      "matched-work.txt": "737bc51ad4a9700294c7dee0894242432b3aeace651f1591c93fdfaed6d8cf6d",
+      "timed-source.json": "afb77cd48d04bccf7a297a1908e8b02eeed4c804dad4917557aa19e441ef6b4c"
+    }
+  },
+  "parity": "Cached native paint inputs, sampled joins, attempted setter counts and object counts agree. Existing native paint tests exercise public color, opaque paint, hide and reveal, failure rollback and reentry. The edit calls the same native methods with the same arguments.",
+  "verification": {
+    "focusedPassed": 47,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-typed-paint-before-20261120T044431018\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-typed-paint-before-20261120T044431018\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-typed-paint-before-20261120T044431018\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native action-strip latency and appearance, party/raid join and leave latency, and combat taint remain open."
+}

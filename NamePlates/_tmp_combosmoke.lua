@@ -2,8 +2,11 @@
 -- Actual nameplate core/component + actual Forever renderer/native point mixins.
 -- Native plate/frame proxies reject all writes and region measurements.
 local root = (arg[0]:match("^(.*)[/\\]") or ".") .. "/../"
+local archive, measure = arg[1], arg[2] == "--measure"
 local function Read(path)
-    local f = assert(io.open(root .. path)); local s = f:read("*a"); f:close(); return s
+    local archived = archive and (path == "NamePlates/Core.lua" or path == "NamePlates/ComboPoints.lua")
+    local f = assert(io.open(archived and (archive .. "/" .. path:gsub("/", "-")) or root .. path))
+    local s = f:read("*a"); f:close(); return s
 end
 local function Compile(s, env)
     if setfenv then local f = assert(loadstring(s)); setfenv(f, env); return f end
@@ -18,13 +21,14 @@ local function Secret(value)
 end
 local function Boot(family, class, strayCamelot)
     local state = { frames = {}, plates = {}, target = nil, count = 0, maximum = 5, power = 3,
-        fades = 0, reads = 0, class = class, vehicle = false, combat = false }
+        fades = 0, reads = 0, targetReads = 0, class = class, vehicle = false, combat = false }
     local client = { isEra = family == "era", isAnniversary = family == "anniversary",
         isCamelot = family == "forever" or strayCamelot, isForever = family == "forever",
         isRetail = family == "forever" or family == "live", isMists = family == "mists",
         isLiveMidnight = family == "live", majorVersion = family == "live" and 12 or 1 }
     client.isAnyClassic = client.isEra or client.isAnniversary or client.isMists
     local env = setmetatable({}, { __index = _G }); env._G = env
+    state.env = env
     local ns = { Flux = { Client = client, EBS = {} } }
     env.Flux, env.FLUX_API = ns.Flux, client
     env.WOW_PROJECT_MAINLINE, env.WOW_PROJECT_CLASSIC, env.WOW_PROJECT_BURNING_CRUSADE_CLASSIC = 1, 2, 5
@@ -63,7 +67,10 @@ local function Boot(family, class, strayCamelot)
     env.FluxUnitFrames_ShouldShowPortrait = function() return false end
     env.FluxUnitFrames_GetClassPowerScale = function() return 2 end
     env.C_NamePlate = {
-        GetNamePlateForUnit = function(unit) return state.plates[unit == "target" and state.target or unit] end,
+        GetNamePlateForUnit = function(unit)
+            if unit == "target" then state.targetReads = state.targetReads + 1 end
+            return state.plates[unit == "target" and state.target or unit]
+        end,
         GetNamePlates = function() local t = {}; for _, p in pairs(state.plates) do t[#t + 1] = p end; return t end,
     }
     local nativeRoot = "../__AddonsForRef/wow-ui-source-"
@@ -230,5 +237,49 @@ do
 end
 do
     local s = Boot("forever", "MAGE"); assert(not s.host and s.reads == 0)
+end
+for _, family in ipairs({ "era", "anniversary", "forever" }) do
+    local s, ns = Boot(family, "ROGUE")
+    local np = ns.Flux.NamePlates
+    for i = 1, 40 do s:add("nameplate" .. i) end
+    local jobs = {}
+    s.env.C_Timer = { After = function(_, fn) jobs[#jobs + 1] = fn end }
+    local function refreshRoster()
+        s.targetReads = 0
+        for _ = 1, 20 do s:event("GROUP_ROSTER_UPDATE") end
+        assert(#jobs == 1 and s.targetReads == 0)
+        table.remove(jobs, 1)()
+        return s.targetReads
+    end
+    local empty = refreshRoster()
+    assert(not s.host.shown)
+    s:select("nameplate40")
+    s.count = 3
+    local filled = refreshRoster()
+    s:filled(3)
+    assert(s.host.parent == s.plates.nameplate40)
+    s:select("offscreen")
+    local missing = refreshRoster()
+    assert(not s.host.shown)
+    if not measure then assert(empty == 1 and filled == 1 and missing == 1) end
+    print(("ROSTER_COMBO client=%s plates=40 noTarget=%d visibleTarget=%d missingTarget=%d")
+        :format(family, empty, filled, missing))
+
+    s:select("nameplate1")
+    s.count = 2; s.targetReads = 0
+    np.RefreshUnit("nameplate1")
+    assert(s.targetReads == 1); s:filled(2)
+    local errorToken = {}
+    local bulk, perUnit, normal, errors = 0, 0, 0, 0
+    local module = np.RegisterModule("bulk-control", {refreshAllCoversUnits = true})
+    function module.RefreshAll() bulk = bulk + 1; error(errorToken) end
+    function module.Refresh() perUnit = perUnit + 1 end
+    np.RegisterModule("normal-control", { Refresh = function() normal = normal + 1 end })
+    s.env.geterrorhandler = function() return function(err)
+        assert(err == errorToken); errors = errors + 1
+    end end
+    np.RefreshAll()
+    assert(bulk == 1 and errors == 1 and perUnit == 40 and normal == 40,
+        "failed bulk refresh keeps per-unit recovery and unrelated callbacks")
 end
 print("Nameplate combos OK: Era/Anniversary/Forever native templates; target-only top-of-health anchors; zero/gains/spends/transfers; combat/forms/vehicles; secret counts; removal/reuse; native frames untouched; independent of unit-frame options")

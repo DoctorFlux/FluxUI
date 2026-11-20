@@ -1,0 +1,173 @@
+{
+  "changeId": "LHO-PAUSE3-20261114",
+  "status": "paused; original full scope retained",
+  "pausedUtc": "2026-11-14T18:55:37.239152+00:00",
+  "reloadSubmittedUtc": "2026-11-14T18:53:16.630589+00:00",
+  "reloadSubmittedCET": "2026-11-14T19:53:16.630589+01:00",
+  "reloadConfirmed": true,
+  "savedVariablesRewriteObserved": true,
+  "sameClient": {
+    "pid": 40032,
+    "window": 7995860,
+    "path": "F:\\World of Warcraft\\_forever_\\Wow.exe"
+  },
+  "afterReload": "Read-only visual confirmation only; no profiling/test command or code reinstalled.",
+  "workers": "All three current workers interrupted; their prior states completed. No active owned child. Obsolete pending-init AH worker must not be started.",
+  "cancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\CANCEL",
+  "runtimeLuaEditsThisContinuation": false,
+  "retainedAppliedChanges": [
+    "Earlier Professions748cff40 catalogue allocation fix",
+    "Earlier Craft615d4be and Init69ee82e fixes",
+    "Other prior performance fixes",
+    "Newer EBS profession-rank and user/unit-frame work"
+  ],
+  "fullScope": [
+    "Casting start/channel/delay/cancel/interrupt/fail/finish",
+    "Vendor/restock/open-close/buy-sell simulations",
+    "AH/search/pending/reminder/crafting",
+    "Inventory/bags/loot/receipt/bank/mail",
+    "Builtin inventory plus bridge with and without external Syndicator",
+    "Extra buttons/combat and noncombat grids",
+    "All five existing client families; preserve appearance/features/cadence/commands/integrations/saved data",
+    "Test actual source before product Lua edits; before-after simulation",
+    "Keep external Syndicator read-only; no buys/sales/deletion by agent; item moves authorized; guild-bank/void callbacks excluded"
+  ],
+  "userClarification": "Normal city crafting is incidental; do not make White Bandit Mask or any particular crafted item a separate requested feature/bug test.",
+  "nativeFindings": {
+    "sameCallback": "Eight retained native function identities equal across PLAYER_MONEY59.4093ms, BAG_UPDATE_DELAYED52.0909ms and six TRADE_SKILL_LIST_UPDATE40.7239-42.2668ms.",
+    "sourceAttribution": "Only current Flux.Events trade-list subscriber is Followup.OnChange -> Refresh/Build. Source inference plus native equality; loaded-bytecode identity not certified.",
+    "helperRows": {
+      "rows": {
+        "seconds": 30.004000000001,
+        "calls": 198,
+        "inclusiveMs": 2530.8516998291,
+        "maxMs": 41.333499997854,
+        "ownRestore": true,
+        "badClock": false
+      },
+      "targets": {
+        "seconds": 30.002000000008,
+        "calls": 64,
+        "inclusiveMs": 1700.8391000032,
+        "maxMs": 28.977599993348,
+        "ownRestore": true,
+        "badClock": false
+      },
+      "notes": [
+        "Rows includes cheapGetRows(false)reads; Targets hasothercallers.",
+        "Staggeredoverlappinginclusivewindow totalscannotbeadded/subtractedasexclusiveCPU.",
+        "No artificialhelperinvocations; no buy/sell/delete/queue/reloadaction.",
+        "Auto-completioncalls exactstop:ownedmethods restored; directnilreadbackdeferredbecauseAuctionatorquantity/purchaseUIopen."
+      ]
+    },
+    "meaning": "Current-only inclusive spans; no FPS gain or exclusive CPU claimed. GetRows(false) reads and other target-list callers included; staggered windows not additive.",
+    "rawCast": {
+      "seconds": 30.002999999997,
+      "completedCalls": 0,
+      "validTimedCalls": 0,
+      "inclusiveSumMs": 0,
+      "maxMs": 0,
+      "clean": true,
+      "badClock": false,
+      "ownAtStop": true,
+      "moduleFrameCurrent": true,
+      "globalsAbsentVerified": true,
+      "scope": "No raw castedgecallback inside sample; longcast underway. No castingcost/FPS or lifecycleacceptanceclaim."
+    },
+    "foodAttempt": "One authorized cast/cancel pair submitted; C4LIVE returned no active cast. Not a successful cast/cancel validation.",
+    "cardinality": {
+      "outputs": 1,
+      "receipts": 0,
+      "rows": 6,
+      "vendorScanRows": 1
+    }
+  },
+  "amplification": {
+    "checks": 1010,
+    "profiles": 30,
+    "clientModels": 5,
+    "providers": 2,
+    "savedRows": 20,
+    "visibleItems": 121,
+    "GetUniqueItemsTraversalsPerGetRows": 21,
+    "harvestNameReads": 2541,
+    "totalNativeNameInvocations": 2581,
+    "spellsRefreshCalls": 63,
+    "OnVisibleCalls": 21,
+    "flagOnlyRowsReturned": 0,
+    "runtimeEdit": false,
+    "globalSkipRemedyRejected": "17actualfunctionchecks:historical/coldnames,aliases,finalize,errors,reentry lost. Needdifferentguardedremedy."
+  },
+  "externalCandidate": {
+    "status": "C0 BLOCKED; NO APPLY; correction not started",
+    "seal": "followup-data-audit/fresh-ids-seal.json",
+    "sealSHA256": "d5f62b206ed14c7fb18a10b113dc50d9cf805eeadeb86ce742c7af74c20bba58",
+    "index": "followup-data-audit/fresh-ids/candidate-array/Inventory/Index.lua",
+    "indexSHA256": "5d2b038578d678318d18b42c5e10077f0e6550a2bce57c2b9abce6b3b6bf64e5",
+    "spell": "followup-data-audit/fresh-ids/candidate/Inventory/SpellReagents.lua",
+    "spellSHA256": "6d45de9da056ea2c8b60e0765806fec8d3d38e75bc24b3a4aa86aed35a40fc35",
+    "benefit": "Desktop full GetRows20rows/121IDs494.914->207.477KiB (-58.1%); CPU6.7-9.2%lower. Empty isolated+181bytes. Every harvest/native name lookup retained; N+1 traversals not removed.",
+    "proof": "816direct+1010composite checks per owner;30profiles identical name order;13history/fallback checks per owner. These did NOT cover the following blockers.",
+    "blockers": [
+      "Facade getter __index reads2->3 selects different function/name702->703",
+      "Delegated Index getter reads1->2 selects name701->702",
+      "Copied default IDs helper on foreign Flux.Inventory bypasses custom getter/name999->123"
+    ],
+    "counterexamples": "commerce/keys-review/fallback-counterexamples.json and candidate-verdict.json",
+    "nextFix": "Capture each legacy getter ONCE before fallback. Establish trusted owner/query at Index definition; Harvester must fall back for foreign or copied namespaces/helpers, including replacements before consumer load. Do not add another legacy getter read at consumer boundary.",
+    "reviewers": [
+      "commerce_audit: three concrete blockers, no acceptance",
+      "provider_audit: historical names/aliases/error/reentry constraints;17negative checks",
+      "catalogue_peer: candidate author; use followup_task to resume correction"
+    ]
+  },
+  "rejected": [
+    "Index closure hoist saves136bytes/query but200-item CPU61->64us; do not apply",
+    "Pending/unresolved/lazy harvest skips lose historical names/aliases/finalized IDs and change errors/reentry;17checks reject",
+    "Frozen first reagent-set reuse has public/late-name gaps; do not apply",
+    "Bank/mail remedies remain unaccepted pending populated native timing/readiness"
+  ],
+  "sourceGate": {
+    "capturedUtc": "2026-11-14T18:33:26.420785+00:00",
+    "reportOwner": "EBS profession-rank work; root reused exactreport/source identities withoutclaimingits testexecution",
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1db23-d07c-7022-a7c8-de54688687d2\\tradeskill-ranks-final.json",
+    "reportSHA256": "0660059660a349120ad04a9d56001978329b445ba2cf6aa96ff568a1b06296a4",
+    "pass": 385,
+    "fail": 0,
+    "syntaxFiles": 1073,
+    "syntaxFailures": 0,
+    "checkedManifestPaths": 1073,
+    "drift": [],
+    "scope": "Desktop source suite; no nativeFPS/taint/pixel certification"
+  },
+  "docsValidation": {
+    "exit": 0,
+    "classifiedSources": 1106,
+    "reachable": 623,
+    "settings": 444,
+    "savedRoots": 24,
+    "localLinks": 17445,
+    "checkerWrites": false,
+    "log": "docs-validate-attribution2.txt"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\checkpoint-before-ids-20261114T184026Z",
+    "files": 2820,
+    "sourceHistoryVerified": true,
+    "settingsMetadataEntries": 126,
+    "privateSettingsCopied": false
+  },
+  "permissionsPersist": "Foreground/background targeted profiling authorized; no focus activation/system-wide input/clipboard; respect current edit/transaction context. No repeated permission question needed.",
+  "resumeOrder": [
+    "Wait for explicit continue",
+    "Inspect current docs/source and this pause record; preserve newer changes",
+    "Treat all prior diagnostic pointers/counters/globals as cleared by reload",
+    "Intentionally clear root/owned CANCEL after resumption",
+    "Use followup_task to restart bounded C0 compatibility correction and independent review",
+    "Retest new exact candidate/controls/measurements before any product Lua edit; verify checkpoint/current settings",
+    "Continue all original LHO paths including bank/mail/provider-off and native casting gaps; do not substitute tiny allocation edits or drop feature/cadence",
+    "Verify exact current client/window and safely re-add only necessary optional diagnostics"
+  ],
+  "evidenceRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z",
+  "fullState": "attribution-state.json"
+}

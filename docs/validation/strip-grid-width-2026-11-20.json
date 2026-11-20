@@ -1,0 +1,338 @@
+{
+  "changeId": "STRIP-GRID-WIDTH-20261120",
+  "capturedAtUTC": "2026-11-20T07:15:19.898316+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "97ff04527a9bbe7640d653092290c7e84dd856da2965ff141e70214dfb309bcf",
+      "afterRaw": "fa4946ae65833a81751c62df0cc0a3a4df67453d275c9af3444df5309865e5d1",
+      "afterNormalized": "fa4946ae65833a81751c62df0cc0a3a4df67453d275c9af3444df5309865e5d1"
+    },
+    "ExtraButtonSystem/CombatGrid/Grid.lua": {
+      "beforeRaw": "be647920d15dfc90e2f6e9ed422fe9629a9350c54f62881bf21d33a8b4897ab5",
+      "afterRaw": "d3d5bd31775a4425b421a5ea0e03706bcc48d06d28675302612c53c1f0af050a",
+      "afterNormalized": "d3d5bd31775a4425b421a5ea0e03706bcc48d06d28675302612c53c1f0af050a"
+    },
+    "ExtraButtonSystem/NonCombatGrid/Grid.lua": {
+      "beforeRaw": "f293a885f7e18dcdeae892320f8acea05874355d099bd9fa35113f0702198803",
+      "afterRaw": "273635d95899a58adfece53c5f3e0739694b3479754063091e58877dad7414e1",
+      "afterNormalized": "273635d95899a58adfece53c5f3e0739694b3479754063091e58877dad7414e1"
+    },
+    "tests/strip_grid_packing.lua": {
+      "beforeRaw": "b76554541e0d212512df0bf4e361dd6298781d2ddced12ecea8a30a878bb46f4",
+      "afterRaw": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "afterNormalized": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307"
+    }
+  },
+  "evidence": {
+    "counts": {
+      "retail": {
+        "writes": [
+          6844,
+          4484
+        ],
+        "faceRefreshes": [
+          944,
+          944
+        ],
+        "sorts": [
+          1239,
+          0
+        ]
+      },
+      "forever": {
+        "writes": [
+          6844,
+          4484
+        ],
+        "faceRefreshes": [
+          944,
+          944
+        ],
+        "sorts": [
+          1239,
+          0
+        ]
+      },
+      "classic": {
+        "writes": [
+          6844,
+          4484
+        ],
+        "faceRefreshes": [
+          944,
+          944
+        ],
+        "sorts": [
+          1239,
+          0
+        ]
+      }
+    },
+    "rawReplay": "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown.\nSTRIP_GRID_WIDTH profile=retail steps=60 writes=6844/4484 chrome=944/944 sorts=1239/0\nSTRIP_GRID_WIDTH profile=forever steps=60 writes=6844/4484 chrome=944/944 sorts=1239/0\nSTRIP_GRID_WIDTH profile=classic steps=60 writes=6844/4484 chrome=944/944 sorts=1239/0\nStrip grid packing passes both client shapes, changed squeeze and occupancy, repair, binding, batch and lockdown.\n",
+    "desktopTiming": {
+      "retail": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            20.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            19.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            20.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            20.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            20.0,
+            11.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            20.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            20.0,
+            13.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            21.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            20.0,
+            15.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            21.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            25.0,
+            11.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            20.0,
+            15.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            20.0,
+            11.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            19.0,
+            12.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            21.0,
+            13.0
+          ],
+          "allocatedKiB": [
+            5092.5,
+            867.5
+          ]
+        }
+      ]
+    },
+    "timingMediansMs": {
+      "retail": [
+        20.0,
+        12.0
+      ],
+      "forever": [
+        20.0,
+        12.0
+      ],
+      "classic": [
+        20.0,
+        12.0
+      ]
+    },
+    "allocationMediansKiB": {
+      "retail": [
+        5092.5,
+        867.5
+      ],
+      "forever": [
+        5092.5,
+        867.5
+      ],
+      "classic": [
+        5092.5,
+        867.5
+      ]
+    },
+    "timingScope": "320 synthetic width changes per pair on the actual two grid packers and notification flow using modeled widget methods. These are local grid timings and allocations.",
+    "clockHarnessSHA256": "cff57841acc88b5ed4fa4f1eade3be6724fc13482d97e6d0362dfc5335239eaa"
+  },
+  "parity": "Combat and Non-combat grids retain their verified column order when an action-strip crossing changes the horizontal squeeze. Across 60 modeled crossings, geometry setters fell from 6,844 to 4,484 and column sorts from 1,239 to zero in each client fixture. Both grid shapes, icon refreshes, clipping and Info/envelope notification order match. Five alternating desktop pairs per profile measured 20 to 12 ms median for 320 crossings of this layout path.",
+  "checkpoint": {
+    "files": {
+      "docs/CLIENT_MATRIX.csv": "78EFA907507A603990C083DE591CFFEF823405EA1103CCAA340BE47F453C2641",
+      "FluxDefaultSettings.lua": "97FF04527A9BBE7640D653092290C7E84DD856DA2965FF141E70214DFB309BCF",
+      "docs/STATUS.md": "73DBA5671EB17B5969E4A928CEEAE6F0A3B51A85B7EEB151B0DC185E248242F7",
+      "docs/12-extra-button-system.md": "E1D99A437325C6E13FC4993B836E6CBF836B00C43879C959BF0E0B88C237D9A9",
+      "docs/WORK_LOG.md": "950098C1AA6F1AD520ADCD6FD85E6DB0CA5B2A13591AF8E9035EF8EA53D75FCC",
+      "NEXT_SESSION.md": "E4C6E19D33390E9A65FA3DDB4E130C26B75101CCE496F61BAC3E314BCDF63652",
+      "docs/DECISIONS.md": "B13E2A3DC440B822EC05652CE6CF692521AB56BE5F678CCA69DB793046B230BA",
+      "docs/FEATURE_PARITY.csv": "35DED78F2159A01A5C620F70129665F47B580449FEBCF5F3CC34CD4D5E381A3C",
+      "ExtraButtonSystem/NonCombatGrid/Grid.lua": "F293A885F7E18DCDEAE892320F8ACEA05874355D099BD9FA35113F0702198803",
+      "docs/PERFORMANCE_RESULTS.csv": "905CD85F83BB199D6F868B4001050DAFC9B9812E22A7BE834AFDC65646B86FC4",
+      "docs/BORDER_BUILDER_LOCALITY.md": "F4D840F99131EF3AAE670E0EA1CCAF7D32C50F7E2F0583E57A662201DDD51FB9",
+      "docs/CLIENT_VALIDATION.md": "19BF635BB1C40DF326766CDAC259773E4A5FE71D2600E4DEDCF883B1D4303671",
+      "ExtraButtonSystem/CombatGrid/Grid.lua": "BE647920D15DFC90E2F6E9ED422FE9629A9350C54F62881BF21D33A8B4897AB5",
+      "tests/strip_grid_packing.lua": "B76554541E0D212512DF0BF4E361DD6298781D2DDCED12ECEA8A30A878BB46F4"
+    },
+    "settings": {
+      "_classic_": 2,
+      "_anniversary_": 10,
+      "_forever_": 3,
+      "_retail_": 2,
+      "_classic_era_": 4
+    },
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "created": "2026-11-20T08:08:47.1692261+01:00",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3"
+  },
+  "verification": {
+    "focusedPassed": 21,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "tests/grid_envelope_work.lua": "9ac32143f46892cb6a6b1f7c15e3b96cf0a12965e51ad791cbdd8723747c04d5",
+      "tests/squeeze_notification_work.lua": "3447172cfbdaa52eb841fd7d6fe79b3a2746d76a85346c0093bd5f617003b4ca",
+      "tests/trinket_squeeze_geometry_work.lua": "a8c87d8ed46f8b5ecfc52246a0f40d0837415a049e7f0f5ef56ee66752283fef",
+      "tests/strip_panel_settle.lua": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "tests/bars_strip_layout_work.lua": "3648763f4200e3fa3b4ef624f75e4533c90d3680b24c5a3a18280013d48170e2",
+      "tests/strip_drag_hover_edges.lua": "644c758e5ef1304f2d14a1c9da8f1dd46d91f12c8a64c3477eb67edad4038e7f",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/badge_page_owners.lua": "4ece20cd10c166ab8ca8bbb0e4a4d92a12ae024462658251e1bd8006b7e03dc6",
+      "tests/strip_unit_anchor_transaction.lua": "b77216e7ed092c23209698862eef804e6efedf2b013db17ad0ecb45674545001",
+      "tests/unit_squeeze_combat_release.lua": "090c787c88b583fa2c7c1cf3ee33e57ca13cb7d6a7275ff1c1fb8ab6facf13b3",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_locality.lua": "5d7e1e4f06a2a7b481dbac9dfe66e9992cc18bb636735403793c7990a1a8a160",
+      "tests/group_roster_performance.lua": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf",
+      "tests/unit_vertical_target_health.lua": "ff9158c349153c1abba3a805690a85df98f6ceaed32b6beaaa5ea4b962c9f98c"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-width-before-20261120T080846937\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-width-before-20261120T080846937\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-width-before-20261120T080846937\\syntax.json"
+  },
+  "nativeAcceptance": "Live action-strip latency, connected side-panel pixels and protected input remain pending. Party/raid join and leave, embedded minimap and combat timing remain open in the broader task."
+}

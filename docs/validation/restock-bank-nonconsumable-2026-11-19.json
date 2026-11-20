@@ -1,0 +1,148 @@
+{
+  "changeId": "LHO-RESTOCK-BANK-NONCONSUMABLE-20261119",
+  "status": "APPLIED_NATIVE_PAIRED_CLOSED_BANK_PASS",
+  "before": "fc653013d065d765e8c2b590040b04bf078ff5db856a348eb9aefd5f1e4f2c47",
+  "utc": "2026-11-19T01:10:20.6645019Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-restock-bank-class-20261119-20261119T011020Z",
+  "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+  "settingsStatRows": 21,
+  "settingsContentsCopied": false,
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "after": "7dec5f534686f7558d950cbca4031ef3ee1cbec9f56e477651b54c54f3fadc47",
+  "forever": "7dec5f534686f7558d950cbca4031ef3ee1cbec9f56e477651b54c54f3fadc47",
+  "syntax": [
+    "Lua 5.1 baseline and candidate",
+    "Lua 5.4 baseline and candidate"
+  ],
+  "mirrorMatches": true,
+  "installedMatcherSHA256Matches": [
+    "_retail_",
+    "_forever_",
+    "_classic_",
+    "_classic_era_",
+    "_anniversary_"
+  ],
+  "diffCheck": true,
+  "listSource": "a277da099817780a93da19627b8c27cf874f5d6042cbe65fba2ff9ed8ccb1e5f",
+  "native": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "provider": "Existing profile. Addon enable states untouched during this pass.",
+    "method": "debugprofilestop around A.GetRows(true). Commerce closed, no active job. A delegating strict matcher only in the baseline bypassed the new prefilter while retaining previous positive count reuse. All observers restored.",
+    "attribution140": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-rest140_a-submitted.png",
+      "sha": "b699c22d01bf513e6ae157ca37657e0ac2b4146ed6fa1ffc3906e017dd153213",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock140-current-costs-20261119",
+        "controllerSHA": "f30396675b956331b36d3b3e466c66514e01de79ad4de9b14a219b35c0dcd570",
+        "packetSHA": "eb599004137c23df152b8589130e7e0240ce174e0d5463ff10a547cce80c7bb9",
+        "packets": 15,
+        "luaSHA": "06e4d2b3acad806c4eaef6af349008bd3adaddb3d909f2d5d44ac33ff4b2d877"
+      },
+      "rowsMs": 19.1985,
+      "sharedMs": 16.8354,
+      "fiveBankTierMs": 13.2688,
+      "visibleNameResolutionMs": 1.1138,
+      "nonConsumableIDs": 17,
+      "knownConsumableIDs": 4,
+      "unknownIDs": 0,
+      "positiveNonConsumableIDs": 17,
+      "theirCountMs": 3.9094,
+      "errors": 0
+    },
+    "attribution141": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-rest141_a-submitted.png",
+      "sha": "8a390ecab500afddc8d140d4216284b4dfe26fa66d5c5210027853be45b510c0",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock141-bank-thresholds-20261119",
+        "controllerSHA": "0b0842e0534794b6848de8cd9e623348201c5b366670897b1bf667e8aa5b4397",
+        "packetSHA": "6fb83f06630771332cc33e6b609f9aec9c4e9cd2ed09d69a1932134d5a8fd33a",
+        "packets": 11,
+        "luaSHA": "03bcf3241a9903fb106688e8dd9efff52900805f39041b443d82da213bae58eb"
+      },
+      "rowsMs": 19.2902,
+      "fiveBankTierMs": 13.2121,
+      "thresholdMs": 0.0586,
+      "classifierCalls": 105,
+      "classifierMs": 1.1284,
+      "usableCalls": 0,
+      "errors": 0
+    },
+    "reload142": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-rest142_a-submitted.png",
+      "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock142-class-reload-20261119",
+        "controllerSHA": "0ae5a7b1c7dabdb7bcf7ead84872948e83c783b6a6dadef6029796a1413a6acc",
+        "packetSHA": "27f0c835e849aa1f58c83f1de48c0d6a8ba26ea7dc4a931d8038c28d3c82e70c",
+        "packets": 2,
+        "luaSHA": null
+      },
+      "returnedToWorld": {
+        "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-rest143_a-source.png",
+        "sha": "002ac6364bafdf6adb00059048d48636bfa1e3e8064d23831fe6dbd263d7c47c"
+      }
+    },
+    "matched143": {
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/rest143-results-r2.png",
+      "sha": "f45dd790fcb6dc9ae46ca13310638f16606b564d3d177ece8c7097c44e335d95",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-restock143-bank-class-pair-20261119",
+        "controllerSHA": "38b5db957814740483a270338700de5a0bfe5327bfcb5473a492d187fd37f847",
+        "packetSHA": "32d07c5d495c4b0dab541a25da4a8974e2ccc8b862dc146515b265fdb5fda127",
+        "packets": 19,
+        "luaSHA": "d6b2d507ecff9611d867555dc3157eeaae36eb730ff377671818c33765c3a637"
+      },
+      "pairs": [
+        {
+          "order": "before then after",
+          "beforeMs": 31.0528,
+          "afterMs": 15.4413
+        },
+        {
+          "order": "after then before",
+          "beforeMs": 21.6121,
+          "afterMs": 17.6776
+        }
+      ],
+      "positiveMemoKeysBefore": 21,
+      "positiveMemoKeysAfter": 4,
+      "excludedIDsPerBuild": 17,
+      "sharedRows": 9,
+      "visibleRows": 6,
+      "hiddenRows": 1,
+      "equalFields": true,
+      "sameBankGeneration": true,
+      "sameBagGeneration": true,
+      "bagGeneration": 5,
+      "restored": true,
+      "errors": 0
+    }
+  },
+  "pending": [
+    "Open vendor, Auction House and bank rendering and counts",
+    "Active Pending job, populated mail and overall frame spikes",
+    "Native verification on other client families and addon combinations"
+  ],
+  "jump": {
+    "state": "running",
+    "hostPid": 40116,
+    "controller": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r21-20261119",
+    "backgroundCueCalibrationPassed": true,
+    "keyPairInjected": true,
+    "firstTwoKeyPairTimesUtc": [
+      "2026-11-19T01:19:11.566005+00:00",
+      "2026-11-19T01:22:13.877085+00:00"
+    ],
+    "secondsBetweenDueJumps": 180,
+    "previousForeground": 196750,
+    "laterForeground": 196750,
+    "awayClearedInGame": true,
+    "trajectoryRecorded": false,
+    "capture": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jump21-after-first.png",
+    "captureSHA": "5ffa2a85342457d2653c295a5c856d169e7d1a1627b814cd410bd2ddfadf7bdb"
+  }
+}

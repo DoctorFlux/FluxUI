@@ -1,0 +1,103 @@
+{
+  "task": "WORLD-MAP-SURFACE-20261116",
+  "followup": "Native empty embedded map; stock blackout layered above adopted surface",
+  "dateUTC": "2026-11-16T15:58:18.377968+00:00",
+  "userObservation": {
+    "blankMap": true,
+    "diagnostic": "Flux Map Pins: active=true enabled=true mirror=true client=Retail\nBattlefieldMapFrame=true WorldMapFrame=true MapCanvas=true\nmirrored=0 added=0\nworldSurface=embedded\nroute=World hbd=false worldOpen=true\ntooltips=false getMapShim=false getMapIDShim=false registerPinHook=false"
+  },
+  "sourceCause": {
+    "worldMapStrata": "BACKGROUND from Battlefield target",
+    "nativeBlackoutStrata": "LOW from pinned Blizzard XML",
+    "nativeBlackoutAnchors": "UIParent full screen",
+    "paintOrder": "LOW is above BACKGROUND; a shown maximized blackout covers terrain and addon drawings",
+    "liveBlackoutStateBeforeFix": "Not captured; user status establishes embedded ownership, source establishes this layering bug"
+  },
+  "fix": "Snapshot/hide/restore only known native BlackoutFrame OOC; retain original addon drawings and full map native backdrop; bounded OnShow posthook",
+  "settingsWrites": false,
+  "agentClientInput": false,
+  "nativeBuild": "Not queried; host process path Forever; diagnostic label Retail is Flux family label, not build certification",
+  "clientFilesReadOnlyGuard": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": {
+      "sourceSha256": "f60bafda9675299b275fe7fb3c5b0cf9229075b2d407d75846ce46ba7ae831a6",
+      "foreverSha256": "f60bafda9675299b275fe7fb3c5b0cf9229075b2d407d75846ce46ba7ae831a6",
+      "equal": true
+    },
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": {
+      "sourceSha256": "ece295cc3cdbb1778cff786ef5da61a0963395d4bb4536f4f03310563e8128d3",
+      "foreverSha256": "ece295cc3cdbb1778cff786ef5da61a0963395d4bb4536f4f03310563e8128d3",
+      "equal": true
+    }
+  },
+  "nativeResultAfterFix": "Awaiting reload/observation of independent LOW surface and staged preparation",
+  "checkpoint": "docs/validation/world-map-surface-blank-checkpoint-2026-11-16.json",
+  "sourceEvidence": "docs/validation/world-map-surface-sources-2026-11-16.json",
+  "userPostBlackoutFix": {
+    "stillEmpty": true,
+    "status": "worldSurface=Waiting for World Map geometry; rootVisible=false strataMEDIUM blackoutShownfalse LOW; fallbackBF",
+    "laterStatus": "worldSurface=embedded;rootVisibletrue/BACKGROUND;blackoutShownfalse;canvasvisibletrue/alpha1/BACKGROUND;rootScale.427546769;rootEffectiveScale.43289113;scroll697x465,offset2/-67",
+    "nativeScreen": "Background PrintWindow captured exact PID46260 HWND600248958, World of Warcraft, Forever executable;1920x1009; battlefield terrain visible but no observed guide overlays. No focus/input taken.",
+    "capture": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e4ee-f735-7420-b3b7-b5568f701618/world-map-blank-native.png",
+    "captureSha256": "ef119eb2bc4e47d6619057a7c1406a95487f3da9d0afd49cbc2a4978946bae53",
+    "diagnosticError": "User read-only arithmetic command encountered nil native scroll bounds during a subsequent transition; no game mutation. Replaced by nil-safe built-in diagnostics."
+  },
+  "additionalFixes": [
+    "Independent ordinary UIParent-owned clipping surface, anchored battlefield scroll rectangle; LOW above BACKGROUND terrain below MEDIUM HUD/combat blocker",
+    "Shown alpha-zero preparation across bounded next-frame reads, six probes; temporary missing-anchor seed with exact cleanup; no OnUpdate poll",
+    "Nil-safe /fluxwm root/viewport/scroll/canvas diagnostic"
+  ],
+  "nativeFunctionalConfirmation": {
+    "userAnswer": "Map size, pins, and open/close work",
+    "sourceRawSha256": "a0942e5fe2b2585e83547528a1f75f011fad6bf562c9e818a80eac3e8c8f7990",
+    "scope": "User-tested map fill/pins and WorldMap-key open/close on current Forever; no all-client/FPS/taint/controller claim"
+  },
+  "uniformSizingFollowup": {
+    "userRequest": "Some pins and player arrow are not properly sized; scale the whole World Map into Flux including addon content",
+    "status": "User confirmed all look perfect now on uniform-scene candidate",
+    "sourceContracts": "docs/validation/world-map-uniform-scale-sources-2026-11-16.json",
+    "candidateRawSha256": "617852687b82e3f296b540b38fc326265f75e2a110bf5b5874b77c77319d5c90"
+  },
+  "intermediateSourcesBeforeMapOnly": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": "571122522f8361ae71a7591603202d2ad2de894f3269897e44e826eb03705076",
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": "9be4b00c79e7f3dd94715df653e90b62703bb4b6b81bfffda2f22c8b3417914c",
+    "tests/world_map_surface.lua": "3e2c1c11ba340c8bc934fbd7df987100f0c6f4be6230d8acb5d469610484f471"
+  },
+  "latestSources": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": {
+      "rawSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+      "normalizedSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10"
+    },
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": {
+      "rawSha256": "19d76597aa3207a505b171371c812a684cd6a536c36c3a487efaa239489f28ec",
+      "normalizedSha256": "19d76597aa3207a505b171371c812a684cd6a536c36c3a487efaa239489f28ec"
+    },
+    "Battlezonemap/FluxBattlefieldMapPinRouter.lua": {
+      "rawSha256": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+      "normalizedSha256": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc"
+    },
+    "Battlezonemap/_tmp_questiepinsmoke.lua": {
+      "rawSha256": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+      "normalizedSha256": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c"
+    },
+    "tests/world_map_surface.lua": {
+      "rawSha256": "10c6bfd6533cc3e86cc38cd1217096f2fde25b24130ec061d70de8fd269ad3bb",
+      "normalizedSha256": "10c6bfd6533cc3e86cc38cd1217096f2fde25b24130ec061d70de8fd269ad3bb"
+    },
+    "tests/map_hbd_all_clients.lua": {
+      "rawSha256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+      "normalizedSha256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0"
+    },
+    "_FluxUI.toc": {
+      "rawSha256": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5",
+      "normalizedSha256": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+    }
+  },
+  "opacityFollowup": {
+    "userRequest": "No movement transparency while inside Flux",
+    "userConfirmation": "It stays fully opaque now",
+    "sourceRawSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+    "implementation": "Remove exact mounted source from native active/deferred fader;alpha0 prep/alpha1 mounted;full nativefade and mapFade retained"
+  },
+  "finalNativeResult": "User confirms map fill/addonpins, real-map M openclose, complete-scene arrow/addon scaling and opaque movement; otherclient and broader native checks pending",
+  "finalEvidence": "docs/validation/world-map-surface-final-2026-11-16.json"
+}

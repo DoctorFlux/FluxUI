@@ -1,5 +1,10 @@
 # Options map and settings behavior
 
+15 November exact rollback restores the checkpoint's Border type and Border
+thickness controls and prior preview swatches. The later fixed-weight/preview
+changes are reverted with connected-border work at the user's request. Saved
+profile values are preserved. [Current restore](04-visual-system.md).
+
 13 November: HUD → Flux Window → General includes the shared minimap button count, Dynamic button count, optional screen-side layout/start position, hide-empty slots, always shown or mouseover visibility, 10–200% screen-side grid scale (new100%=previous85%) and an always-visible screen-side combat-hide option. Dynamic mode uses the count as a minimum, offers one temporary empty slot while carrying an action over a full grid, keeps it only when assigned, and shrinks when assignments are removed. There is no movement toggle: Always shown makes room automatically; mouseover leaves minimap/Questie/objectives/auras in place and overlays that area. Mouseover changes freeze during combat. Embedded minimap buttons ignore side visibility and empty filtering. Columns and button size are automatic in both layouts; embedded minimap size has no setting. These character-scoped controls preserve action assignments; see [defaults and acceptance](MINIMAP_EXTRA_LAYOUT.md#dynamic-minimum-and-automatic-frame-movement).
 
 10 November follow-up: **Auto open bank** joins Auto open vendor in the same
@@ -162,7 +167,9 @@ Independent scopes copy current shared values on first character initialization 
 | Control | Values / behavior |
 |---|---|
 | Settings scope | Account-wide / Character-specific. Selects General's active Ace profile via the owner rather than changing every feature's scope. |
-| Accent | Class color (default), Default atlas, Custom. Calls the shared appearance refresh. |
+| Border type | Border type 1 (existing battlefield) / Border type 2 (extracted Forever gold), with accent-aware swatches. Shared outer borders and registered divider/aura pieces change live with existing geometry/padding. |
+| Accent | Class color (default), Default atlas, Custom. No tint retains natural art; Forever bronze applies only to Border type 1. Calls the shared appearance refresh. |
+| Border thickness | 50%-200%, 25% steps, default 100% matching type 1 stroke. Applies to both types and registered dividers/aura panels; padding stays fixed. |
 | Custom accent color | RGB picker, defaults white; conditionally relevant to Custom accent. |
 
 Source: [General builder](../AddonOptions/FluxOptionsGeneral.lua).

@@ -1,0 +1,213 @@
+{
+  "task": "WORLD-MAP-BRIDGE-20261116",
+  "date": "2026-11-16",
+  "research_only": true,
+  "polestar": {
+    "repo": "fitzforge/polestar",
+    "default_branch": "next",
+    "default_commit": "1778266b01c837acf36733af7784bdcce607b721",
+    "latest_release": "v0.4.0",
+    "release_commit": "59071e2b7c0ea416a901ec6ad2f015cece3e3883",
+    "release_published_at": "2026-11-16T12:23:16Z",
+    "interface": 16001,
+    "license": "GPL-3.0-only for Polestar code; third-party components retain own licenses. No upstream code or artwork copied.",
+    "files": [
+      {
+        "path": "addon/Polestar/Core/Init.lua",
+        "blob_sha": "c47ebae7f4c1e812d78efdf4c5b2737f982e5f67",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Core/Init.lua"
+      },
+      {
+        "path": "addon/Polestar/Nav/MapCanvas.lua",
+        "blob_sha": "f50431f2b087a2aa77b97e46d541a878119ee554",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Nav/MapCanvas.lua"
+      },
+      {
+        "path": "addon/Polestar/Nav/Pins.lua",
+        "blob_sha": "9657acfcc9d8690918310605f00e492d0a18db00",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Nav/Pins.lua"
+      },
+      {
+        "path": "addon/Polestar/Maps/RouteLines.lua",
+        "blob_sha": "8c2cf46f5acd40ac80551d5ffa0d96de2bc17d6f",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Maps/RouteLines.lua"
+      },
+      {
+        "path": "addon/Polestar/Maps/WorldMap.lua",
+        "blob_sha": "034270d11ecb840fe135ed1f6905fafca189f262",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Maps/WorldMap.lua"
+      },
+      {
+        "path": "addon/Polestar/Maps/Reveal.lua",
+        "blob_sha": "87bc8753679b43f313e2ab4aeec86b1eaf194262",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Maps/Reveal.lua"
+      },
+      {
+        "path": "addon/Polestar/Polestar.toc",
+        "blob_sha": "ae249aee93dc0cc0d61d709b7cd6fd09161a51a2",
+        "url": "https://github.com/fitzforge/polestar/blob/59071e2b7c0ea416a901ec6ad2f015cece3e3883/addon/Polestar/Polestar.toc"
+      }
+    ],
+    "contracts": [
+      {
+        "file": "addon/Polestar/Core/Init.lua",
+        "lines": "10-11",
+        "contract": "Polestar global is the addon's namespace."
+      },
+      {
+        "file": "addon/Polestar/Nav/MapCanvas.lua",
+        "lines": "88-106,147-167,176-190",
+        "contract": "MapCanvas.Add(map) registers one map identity permanently and idempotently. OnAdd callbacks replay prior registrations. Get(map) returns view. There is no Remove API. Watch requires map table with GetMapID and GetCanvas; map methods only read source geometry and visual state. Own child frames under canvas stop OnUpdate when hidden."
+      },
+      {
+        "file": "addon/Polestar/Nav/Pins.lua",
+        "lines": "2010-2015",
+        "contract": "OnAdd adds independently owned world rendering for pin layers, areas, hulls and trail dots."
+      },
+      {
+        "file": "addon/Polestar/Maps/RouteLines.lua",
+        "lines": "1310-1317",
+        "contract": "OnAdd creates an independent watched view and refreshes route strokes/sparkles on the additional map."
+      },
+      {
+        "file": "addon/Polestar/Maps/WorldMap.lua",
+        "lines": "186-209,275-276,324-356,396-403,430-436",
+        "contract": "OnAdd installs zone labels and information bar; bar parents to map.ScrollContainer or map and inspects map children and size. A proxy must provide a gated viewport owner too, not only a gated canvas."
+      },
+      {
+        "file": "addon/Polestar/Maps/Reveal.lua",
+        "lines": "173-180,210-217",
+        "contract": "OnAdd tracks additional map identities and watches them when reveal setting is enabled."
+      }
+    ],
+    "release_contract_matches_default": true
+  },
+  "blizzard": [
+    {
+      "target": "retail",
+      "branch": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "files": [
+        {
+          "path": "version.txt",
+          "blob_sha": "61a71eb0d9c435ad6f9f9701ab4d9c072cd3237e",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+          "blob_sha": "eddf26fa304b44e953e1a1def7650f1a6cd62643",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml",
+          "blob_sha": "e898bd06e88dfda21ab90987764192bc4e1e8627",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+          "blob_sha": "267ba61790ab6df4f94098ea3890cc7a251547d2",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc",
+          "blob_sha": "4cb64e66fd1ffb0295bd9ffafa3022208d5ccca4",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml",
+          "blob_sha": "ab4bc691bd16f42f6d7ba167318d18bb411e47b6",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml"
+        }
+      ],
+      "evidence": "Source declaration and loaded TOC/XML inspected; native operation and taint/controller/FPS checks not run."
+    },
+    {
+      "target": "forever",
+      "branch": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938",
+      "files": [
+        {
+          "path": "version.txt",
+          "blob_sha": "d9e480e0da12ed6c10b3a65da1121a88c1e28848",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+          "blob_sha": "7fbef4053928ce826ab0951950dac8ce1f7e7873",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml",
+          "blob_sha": "5c4976cd25ef300f386d92f6d11e31e7e9e505c3",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+          "blob_sha": "9ae04c3789cbe98b6944f95bfe83e7ad92358ec0",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc",
+          "blob_sha": "3a6de1c622fa0d981e472ff912ee5824389a5532",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml",
+          "blob_sha": "ab4bc691bd16f42f6d7ba167318d18bb411e47b6",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_BattlefieldMap/Mainline/Blizzard_BattlefieldMap.xml"
+        }
+      ],
+      "evidence": "Source declaration and loaded TOC/XML inspected; native operation and taint/controller/FPS checks not run."
+    },
+    {
+      "target": "classic",
+      "branch": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "files": [
+        {
+          "path": "version.txt",
+          "blob_sha": "6888c66e55b78c6b76bdda185480facc60d9b5e5",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua",
+          "blob_sha": "9dc95c682b881cca9d138fd09d7647d470f8991d",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml",
+          "blob_sha": "b9ee39c770fabddaeba383a13ad75788c31afcaa",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc",
+          "blob_sha": "e770f9b55c49ebc47e3e51a10f260fa1fdfeba3d",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_MapCanvas/Blizzard_MapCanvas.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc",
+          "blob_sha": "d94d95be139bc4140b2e965af4d86e2fff28de57",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.xml",
+          "blob_sha": "0b7a6d430ded896ba53fffdd49c8a3f15f0a30eb",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_BattlefieldMap/Blizzard_BattlefieldMap.xml"
+        }
+      ],
+      "evidence": "Source declaration and loaded TOC/XML inspected; native operation and taint/controller/FPS checks not run."
+    }
+  ],
+  "recommendations": [
+    "Register a Flux-owned gated map proxy through Polestar.MapCanvas.Add once per map; add no Polestar dependency and call only when the optional capability is present.",
+    "Use Flux-owned frame objects created without Blizzard parent, then parent them under canvas/viewport, following Polestar's stated gamepad taint avoidance; never place plugin-owned values in Blizzard map pools or providers.",
+    "Because Add has no Remove, own both canvas and viewport visibility gates, so disabling Map Pins hides all Polestar content and stops child updates without touching Polestar preferences.",
+    "Forward read methods with actual BattlefieldMapFrame receiver; account for missing Classic HasZoomLevels and existing zoom capability differences.",
+    "Keep generic standard pin support separate from Polestar registration. Public addon-owned active pins can be read into Flux-owned paint snapshots without AcquirePin/global/provider replacement.",
+    "Arbitrary addon direct frames cannot be guaranteed without an exposed registration API or source-aware geometry; a hidden world map with a different mapID cannot provide fresh battlefield content generically without mutating source state."
+  ],
+  "native_checks": "NOT RUN: operation, pixels, gamepad navigation, taint, per-client acceptance, CPU and FPS."
+}

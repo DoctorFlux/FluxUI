@@ -19,6 +19,7 @@
     button, and the options tab work unchanged.
 ]]
 
+local _, ns = ...
 local Search = LibStub and LibStub("ItemSearch-1.3", true)
 
 FluxJunk = FluxJunk or {}
@@ -129,8 +130,8 @@ end
 -- LIST STATE
 -- ---------------------------------------------------------------------------
 
-local function GetListValue(id)
-    local list = GetSettings().junkList
+local function GetListValue(id, settings)
+    local list = (settings or GetSettings()).junkList
     local v = list[id]
     if v == nil then
         v = list[tostring(id)]
@@ -150,10 +151,9 @@ function FJ.IsExplicitJunk(id)
     return GetListValue(id) == true
 end
 
-local function IsProtected(id, slotInfo)
-    local v = GetListValue(id)
-    if v == false then return true end
-    if v == nil and BASE_WHITELIST[id] == false then
+local function IsProtected(id, slotInfo, listValue)
+    if listValue == false then return true end
+    if listValue == nil and BASE_WHITELIST[id] == false then
         local quality = slotInfo and slotInfo.quality
         local ic = IC()
         if quality == nil and ic and ic.GetQuality then quality = ic.GetQuality(id) end
@@ -170,10 +170,10 @@ end
 
 --- Manual restock targets are never auto-junked (rules / inferior).
 --- Explicit junk marks still win in IsJunk.
-local function IsManualRestockItem(id)
+local function IsManualRestockItem(id, settings)
     id = tonumber(id)
     if not id then return false end
-    local items = GetSettings().restockItems
+    local items = (settings or GetSettings()).restockItems
     local entry = items and items[id]
     return type(entry) == "table" and (tonumber(entry.targetQuantity) or 0) > 0
 end
@@ -325,7 +325,7 @@ function FJ.AnyUpgradeInferiorInBags()
     local bags = inv and inv.Bags
     for id in pairs(inferiorSet) do
         id = tonumber(id)
-        if id and FJ.IsUpgradeInferior(id) and not IsProtected(id) and not IsManualRestockItem(id) then
+        if id and FJ.IsUpgradeInferior(id) and not IsProtected(id, nil, GetListValue(id)) and not IsManualRestockItem(id) then
             if bags and bags.GetCount and bags.GetCount(id) > 0 then
                 return true
             elseif (not bags or not bags.GetCount) and C_Item and C_Item.GetItemCount then
@@ -453,12 +453,14 @@ local function IsConjuredConsumableExempt(id, info)
         return cached
     end
 
+    local classID = info and info.classID
     local function finish(result)
-        conjuredExemptCache[id] = result and true or false
-        return conjuredExemptCache[id]
+        if classID ~= nil then
+            conjuredExemptCache[id] = result
+        end
+        return result
     end
 
-    local classID = info and info.classID
     if classID ~= nil and classID ~= CONSUMABLES then
         return finish(false)
     end
@@ -510,9 +512,18 @@ function FJ.IsConjuredConsumable(itemID)
     if not itemID then
         return false
     end
+    -- Resolved results are invalidated by the same item-data and rule events.
+    -- Leave unresolved items on the metadata request path.
+    local cached = conjuredExemptCache[itemID]
+    if cached ~= nil then
+        return cached
+    end
     local ic = IC()
     return IsConjuredConsumableExempt(itemID, ic and ic.GetInfo(itemID) or nil)
 end
+
+local ownedConjuredCheck = FJ.IsConjuredConsumable
+local readCachedItemQuality = type(ns) == "table" and ns.ReadCachedItemQuality
 
 function FJ.IsLowConsumable(level)
     level = tonumber(level) or 0
@@ -672,12 +683,13 @@ end
 function FJ.IsJunk(id, slotInfo)
     id = tonumber(id)
     if not id then return false end
-    if IsProtected(id, slotInfo) then
+    local listValue = GetListValue(id)
+    if IsProtected(id, slotInfo, listValue) then
         return false
     end
     -- Explicit user junk still wins; never auto-junk conjured food/water
     -- or manual restock targets.
-    if GetListValue(id) == true then
+    if listValue == true then
         return true
     end
     if FJ.IsConjuredConsumable(id) or IsManualRestockItem(id) then
@@ -696,13 +708,17 @@ end
 function FJ.IsJunkForDisplay(id, slotInfo)
     id = tonumber(id)
     if not id then return false end
-    if IsProtected(id, slotInfo) then
+    local settings = GetSettings()
+    local listValue = GetListValue(id, settings)
+    if IsProtected(id, slotInfo, listValue) then
         return false
     end
-    if GetListValue(id) == true then
+    if listValue == true then
         return true
     end
-    if FJ.IsConjuredConsumable(id) or IsManualRestockItem(id) then
+    -- The ordinary display check can read both lists from the same profile.
+    local restockSettings = FJ.IsConjuredConsumable == ownedConjuredCheck and BASE_WHITELIST[id] == nil and settings
+    if FJ.IsConjuredConsumable(id) or IsManualRestockItem(id, restockSettings) then
         if inferiorSet[id] then
             inferiorSet[id] = nil
         end
@@ -762,11 +778,27 @@ end
 --- quest items and conjured consumables remain protected from automatic sales.
 function FJ.IsBlizzardVendorJunk(itemID, slotInfo)
     itemID = SecretNumber(itemID, 0)
-    if not itemID or itemID <= 0 or IsProtected(itemID, slotInfo) then
+    if not itemID or itemID <= 0 then
+        return false
+    end
+    -- Known non-gray quality rules out the native poor-quality fallback.
+    -- The Baganator callback supplies an item ID without container metadata.
+    local knownQuality
+    if slotInfo == nil and readCachedItemQuality and FJ.IsConjuredConsumable == ownedConjuredCheck then
+        knownQuality = readCachedItemQuality(itemID)
+    elseif type(slotInfo) == "table" and not (issecrettable and issecrettable(slotInfo))
+        and not (canaccesstable and not canaccesstable(slotInfo)) and not getmetatable(slotInfo) then
+        knownQuality = slotInfo.quality
+    end
+    if type(knownQuality) == "number" and not (issecretvalue and issecretvalue(knownQuality)) and knownQuality > POOR then
+        return false
+    end
+    local listValue = GetListValue(itemID)
+    if IsProtected(itemID, slotInfo, listValue) then
         return false
     end
     if IsQuestItem(itemID) then return false end
-    if GetListValue(itemID) ~= true and (IsManualRestockItem(itemID) or FJ.IsConjuredConsumable(itemID)) then
+    if listValue ~= true and (IsManualRestockItem(itemID) or FJ.IsConjuredConsumable(itemID)) then
         return false
     end
     local quality = slotInfo and slotInfo.quality
@@ -903,7 +935,7 @@ FJ.IterateJunkFast = FJ.IterateJunk
 
 function FJ.IterateUpgradeInferiorFast()
     return MakeBagSlotIterator(function(itemID)
-        if not FJ.IsUpgradeInferior(itemID) or IsProtected(itemID) or IsManualRestockItem(itemID) then
+        if not FJ.IsUpgradeInferior(itemID) or IsProtected(itemID, nil, GetListValue(itemID)) or IsManualRestockItem(itemID) then
             return false
         end
         if inferiorKindFilter and next(inferiorKindFilter) then

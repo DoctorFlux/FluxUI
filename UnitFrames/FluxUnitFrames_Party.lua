@@ -54,7 +54,7 @@ function Party.GetStatusText(unit)
     if yes(UnitIsAFK) then return CHAT_MSG_AFK or "AFK" end
 end
 
-function Party.StyleText(frame)
+function Party.StyleText(frame, deferIndicators)
     local relative = frame:GetEffectiveScale() / UIParent:GetEffectiveScale()
     local factor = math.max(1.35, .7 / math.max(.05, relative)) * Scale(DB().partyTextScale, 1)
     frame._fluxPartyNameTextScale = factor * .85
@@ -66,7 +66,16 @@ function Party.StyleText(frame)
         if label.SetTextScale then label:SetTextScale(factor) end
     end
     frame._fluxPartyTextBandHeight = 12 * factor + 10
-    if Party.LayoutIndicators then Party.LayoutIndicators(frame) end
+    if not deferIndicators and Party.LayoutIndicators then Party.LayoutIndicators(frame) end
+end
+
+local function LayoutRoleIcon(icon, point, relative, x, y, width, height)
+    if not UF.NameStripIconPointMatches(icon, point, relative, point, x, y) then
+        icon:ClearAllPoints()
+        icon:SetPoint(point, relative, point, x, y)
+    end
+    UF.SetNameStripIconSize(icon, width, height)
+    UF.SetNameStripIconDrawLayer(icon, "OVERLAY", 7)
 end
 
 function Party.LayoutIndicators(frame)
@@ -84,24 +93,23 @@ function Party.LayoutIndicators(frame)
         if icon and icon.IsShown then
             local shown = icon:IsShown()
             if not Secret(shown) and shown then
-                icon:ClearAllPoints(); icon:SetPoint("TOPLEFT", frame.PortraitFrame or frame.Health, "TOPLEFT", 2 + (slot % 2) * 25, -1 - math.floor(slot / 2) * 18)
-                icon:SetSize(22, 18); icon:SetDrawLayer("OVERLAY", 7)
+                LayoutRoleIcon(icon, "TOPLEFT", frame.PortraitFrame or frame.Health,
+                    2 + (slot % 2) * 25, -1 - math.floor(slot / 2) * 18, 22, 18)
                 slot = slot + 1
             end
         end
     end
     local portrait = not frame._fluxPortraitDisabled and frame.PortraitFrame or frame.Health
     -- Class/spec anchors and visibility come from the same UF factory as player.
-    for _, spec in ipairs({{"partyRoleIcon", "TOPRIGHT", -2, -2, 24}}) do
-        local icon = frame[spec[1]]
-        if icon then
-            icon:ClearAllPoints(); icon:SetPoint(spec[2], portrait, spec[2], spec[3], spec[4])
-            icon:SetSize(spec[5], spec[5]); icon:SetDrawLayer("OVERLAY", 7)
-        end
+    if frame.partyRoleIcon then
+        LayoutRoleIcon(frame.partyRoleIcon, "TOPRIGHT", portrait, -2, -2, 24, 24)
     end
     if UF.LayoutRaidMarker then UF.LayoutRaidMarker(frame) end
     if frame.levelText then
-        frame.levelText:ClearAllPoints(); frame.levelText:SetPoint("TOPRIGHT", layer, "TOPRIGHT", -3, -3)
+        if not UF.NameStripIconPointMatches(frame.levelText, "TOPRIGHT", layer, "TOPRIGHT", -3, -3) then
+            frame.levelText:ClearAllPoints()
+            frame.levelText:SetPoint("TOPRIGHT", layer, "TOPRIGHT", -3, -3)
+        end
         frame.levelText:SetWidth(40)
         if frame.levelText.SetTextScale then frame.levelText:SetTextScale(math.max(1, .6 / (frame:GetEffectiveScale() / UIParent:GetEffectiveScale()))) end
     end
@@ -149,19 +157,91 @@ function Party.SyncCastCover(frame)
     frame._fluxPartyCastCovered = covered
 end
 
+local function DeferCastOverlay(frame, bar, setup)
+    if setup then bar._fluxPartyCastNeedsSetup = true end
+    if bar._fluxPartyCastLayoutDeferred or not UF.DeferProtected then return end
+    bar._fluxPartyCastLayoutDeferred = true
+    if not bar._fluxPartyCastResume then
+        bar._fluxPartyCastLayoutToken = "party.cast.layout." .. tostring(bar)
+        bar._fluxPartyCastResume = function()
+            bar._fluxPartyCastLayoutDeferred = nil
+            if frame.CastBar ~= bar then return end
+            local needsSetup = bar._fluxPartyCastNeedsSetup
+            bar._fluxPartyCastNeedsSetup = nil
+            if needsSetup and not bar._fluxCompactOverlay then Party.SetupCompactCastOverlay(frame)
+            else
+                if bar.UpdateLayout then bar:UpdateLayout() end
+                if not bar._fluxCompactOverlay then Party.LayoutCastOverlay(frame) end
+            end
+        end
+    end
+    UF.DeferProtected(bar._fluxPartyCastLayoutToken, bar._fluxPartyCastResume)
+end
+
+local function CastOverlayLevel(frame, bar)
+    local owner = frame:GetFrameLevel()
+    local current = bar:GetFrameLevel()
+    if Secret(owner) or Secret(current) or type(owner) ~= "number" or type(current) ~= "number" then return end
+    local desired = math.min(65535, owner + 110)
+    if current ~= desired then bar:SetFrameLevel(desired) end
+    return desired
+end
+
+local function CastOverlayAnchorsMatch(bar, icon, header)
+    if not bar.GetNumPoints or not bar.GetPoint or icon and (not icon.GetNumPoints or not icon.GetPoint) then return false end
+    local count = bar:GetNumPoints()
+    if Secret(count) then return end
+    if count ~= 2 then return false end
+    local left, right = false, false
+    for i = 1, 2 do
+        local point, relative, relativePoint, x, y = bar:GetPoint(i)
+        if Secret(point) or Secret(relative) or Secret(relativePoint) or Secret(x) or Secret(y) then return end
+        if x ~= 0 or y ~= 0 then return false end
+        if point == "TOPLEFT" then
+            left = relative == (icon or header) and relativePoint == (icon and "TOPRIGHT" or "TOPLEFT")
+        elseif point == "TOPRIGHT" then right = relative == header and relativePoint == "TOPRIGHT" end
+    end
+    if not left or not right then return false end
+    if icon then
+        count = icon:GetNumPoints()
+        if Secret(count) then return end
+        if count ~= 1 then return false end
+        local point, relative, relativePoint, x, y = icon:GetPoint(1)
+        if Secret(point) or Secret(relative) or Secret(relativePoint) or Secret(x) or Secret(y) then return end
+        return point == "TOPLEFT" and relative == header and relativePoint == "TOPLEFT" and x == 0 and y == 0
+    end
+    return true
+end
+
 function Party.LayoutCastOverlay(frame)
     local bar = frame.CastBar
     if not bar then return end
+    if InCombatLockdown() then DeferCastOverlay(frame, bar); return end
+    local header, icon = frame.outerBorderFrame, bar.IconFrame
+    if not header then Party.SyncCastCover(frame); return end
+    local width, height = header:GetWidth(), header:GetHeight()
+    if Secret(width) or Secret(height) or type(width) ~= "number" or type(height) ~= "number" or width <= 0 or height <= 0 then
+        Party.SyncCastCover(frame); return
+    end
+    local level = CastOverlayLevel(frame, bar)
+    if level == nil then Party.SyncCastCover(frame); return end
+    local old = bar._fluxPartyCastOverlayLayout
+    local matches = CastOverlayAnchorsMatch(bar, icon, header)
+    if matches == nil then Party.SyncCastCover(frame); return end
+    if old and old.shared == bar._fluxPreparedLayout and old.header == header and old.icon == icon
+        and old.width == width and old.height == height and old.level == level and matches then
+        Party.SyncCastCover(frame); return
+    end
     -- Preserve the shared player cast art/size/icon, but put its whole row over
     -- the party header. Name and level live below this raised cast shell.
-    bar:SetFrameLevel(frame:GetFrameLevel() + 110)
     bar:ClearAllPoints()
-    local icon = bar.IconFrame
     if icon then
-        icon:ClearAllPoints(); icon:SetPoint("TOPLEFT", frame.outerBorderFrame, "TOPLEFT", 0, 0)
+        icon:ClearAllPoints(); icon:SetPoint("TOPLEFT", header, "TOPLEFT", 0, 0)
         bar:SetPoint("TOPLEFT", icon, "TOPRIGHT", 0, 0)
-    else bar:SetPoint("TOPLEFT", frame.outerBorderFrame, "TOPLEFT", 0, 0) end
-    bar:SetPoint("TOPRIGHT", frame.outerBorderFrame, "TOPRIGHT", 0, 0)
+    else bar:SetPoint("TOPLEFT", header, "TOPLEFT", 0, 0) end
+    bar:SetPoint("TOPRIGHT", header, "TOPRIGHT", 0, 0)
+    bar._fluxPartyCastOverlayLayout = {shared = bar._fluxPreparedLayout, header = header, icon = icon,
+        width = width, height = height, level = level}
     Party.SyncCastCover(frame)
 end
 
@@ -263,10 +343,9 @@ local function CreateThreat(frame)
     frame:HookScript("OnHide", function() layer:Hide() end)
 end
 
-function Party.PaintChrome(frame, only)
+function Party.PaintChrome(frame, only, skipPortrait)
     if not ns.Border then return end
-    -- Focus borrows party geometry, but its colors follow the focused unit just
-    -- like target, independently of the player's accent and party class option.
+    -- Focus borrows party geometry, but follows target's selected accent policy.
     if frame._fluxCompactFocus then
         UF.UpdateBorderColors(frame)
         return
@@ -291,6 +370,7 @@ function Party.PaintChrome(frame, only)
     end
     local function paint(surface)
         if not surface then return end
+        if ns.Border.SetUnitColor then ns.Border:SetUnitColor(surface,color) end
         ns.Border:SetClassColor(surface, 1, true)
         if color then
             ns.Border:SetBorderColor(surface, color.r, color.g, color.b, 1)
@@ -298,13 +378,23 @@ function Party.PaintChrome(frame, only)
         end
     end
     if only then paint(only); return end
-    paint(frame); paint(frame.outerBorderFrame); paint(frame.atlasBorderFrame); paint(frame.PortraitFrame)
+    paint(frame); paint(frame.outerBorderFrame); paint(frame.atlasBorderFrame)
+    if skipPortrait then
+        -- Keep material classification current even while combat red owns RGB.
+        if frame.PortraitFrame and ns.Border.SetUnitColor then
+            ns.Border:SetUnitColor(frame.PortraitFrame, color)
+        end
+    else
+        paint(frame.PortraitFrame)
+    end
 end
 
 function Party.RefreshChrome()
     for _, frame in ipairs(Party.members) do Party.PaintChrome(frame) end
+    for _, pet in ipairs(Party.pets or {}) do UF.UpdateBorderColors(pet) end
     if Party.preview then
         for _, frame in ipairs(Party.preview.members) do Party.PaintChrome(frame) end
+        for _, pet in ipairs(Party.preview.pets or {}) do UF.UpdateBorderColors(pet) end
     end
 end
 
@@ -419,10 +509,12 @@ end
 function Party.SetupCompactCastOverlay(frame)
     local bar = frame.CastBar
     if not bar or bar._fluxCompactOverlay then return end
+    if InCombatLockdown() then DeferCastOverlay(frame, bar, true); return end
     bar._fluxCompactOverlay = true
     local layout = bar.UpdateLayout
     bar.UpdateLayout = function(...)
-        bar:SetFrameLevel(frame:GetFrameLevel() + 110)
+        if InCombatLockdown() then DeferCastOverlay(frame, bar); return end
+        if CastOverlayLevel(frame, bar) == nil then Party.SyncCastCover(frame); return end
         if layout then layout(...) end
         Party.LayoutCastOverlay(frame)
     end
@@ -431,15 +523,19 @@ function Party.SetupCompactCastOverlay(frame)
     bar:UpdateLayout()
 end
 
-local function PaintTarget(frame)
-    UF.UpdateVerticalTargetHealth(frame, frame.unit)
+local function PaintTarget(frame, rosterRefresh)
+    UF.UpdateVerticalTargetHealth(frame, frame.unit, rosterRefresh)
 end
+
+local QueueRosterPaint
 
 local function BuildTarget(owner, preview)
     local unit = owner.unit .. "target"
     local frame = CreateFrame("Button", (preview and "FluxPartyPreview_" or "FluxUnitFrame_") .. unit, owner,
         not preview and "SecureUnitButtonTemplate" or nil)
     frame.unit, frame._fluxPartyTarget = unit, true
+    frame._FluxBorderIndependent = true
+    frame._FluxBorderStatic = true
     if not preview then
         SecureUnitButton_OnLoad(frame, unit)
         frame:SetAttribute("unit", unit)
@@ -461,14 +557,13 @@ local function BuildTarget(owner, preview)
         FluxSafeRegisterUnitEvent(frame, "UNIT_ABSORB_AMOUNT_CHANGED", unit)
         FluxSafeRegisterUnitEvent(frame, "UNIT_HEAL_ABSORB_AMOUNT_CHANGED", unit)
         frame:RegisterUnitEvent("UNIT_TARGET", owner.unit)
-        frame:RegisterEvent("GROUP_ROSTER_UPDATE")
         frame:SetScript("OnEvent", function(self, event)
-            if event == "UNIT_TARGET" or event == "GROUP_ROSTER_UPDATE" then UF.ResetVerticalTargetHealth(self) end
+            if event == "UNIT_TARGET" then UF.ResetVerticalTargetHealth(self) end
             if self:IsVisible() then PaintTarget(self) end
         end)
-        frame:SetScript("OnShow", function(self) C_Timer.After(0, function() if self:IsVisible() then PaintTarget(self) end end) end)
+        frame:SetScript("OnShow", function(self) QueueRosterPaint(self) end)
         frame:SetScript("OnEnter", function(self) if UF.ShowUnitTooltip then UF.ShowUnitTooltip(self, self.unit) end end)
-        frame:SetScript("OnLeave", function() if UF.HideUnitTooltip then UF.HideUnitTooltip() end end)
+        frame:SetScript("OnLeave", function(self) if UF.HideUnitTooltip then UF.HideUnitTooltip(self) end end)
     end
     return frame
 end
@@ -482,16 +577,20 @@ local function ApplyScale(frame, scale)
     if frame.SeparatorContainer then frame.SeparatorContainer:SetScale(relative) end
 end
 
-local function Paint(frame, keepPortrait)
+local function Paint(frame, keepPortrait, reuseRosterModel)
     if not InCombatLockdown() and frame.needsPartitionRelayout then frame:UpdatePartition() end
     UF.UpdateHealth(frame, frame.unit)
     if not frame._fluxPartyPet then UF.UpdatePower(frame, frame.unit) end
-    if frame.Portrait and not keepPortrait then UF.UpdatePortrait(frame, frame.unit) end
-    frame:UpdateOuterBorder()
-    Party.StyleText(frame)
+    if frame.Portrait and not keepPortrait then
+        UF.UpdatePortrait(frame, frame.unit, reuseRosterModel)
+    end
+    local updateIndicators = frame._fluxPartyMember and not not FluxRaidAuras
+    -- Outer chrome owns text styling. When this paint also refreshes the
+    -- indicators, lay them out once after their final visibility is known.
+    frame:UpdateOuterBorder(updateIndicators)
     Party.ApplyTextModes(frame)
     if frame._fluxPartyPet then frame.nameText:SetAlpha(0) end
-    if frame._fluxPartyMember and FluxRaidAuras then
+    if updateIndicators then
         frame.optionTable = FluxRaidVisuals.GetFluxRaidOptionTable()
         FluxRaidAuras.Update(frame)
         if FluxRaidCompat and FluxRaidCompat.ApplyRangeAlpha then FluxRaidCompat.ApplyRangeAlpha(frame) end
@@ -501,25 +600,73 @@ local function Paint(frame, keepPortrait)
 end
 
 local rosterPaintPending, rosterPaintScheduled = {}, false
-local function QueueRosterPaint(frame)
-    rosterPaintPending[frame] = true
-    if rosterPaintScheduled then return end
-    rosterPaintScheduled = true
-    C_Timer.After(0, function()
-        rosterPaintScheduled = false
-        local batch = rosterPaintPending; rosterPaintPending = {}
-        for member in pairs(batch) do
-            if member:IsVisible() then
-                if member.CastBar and ns.CastBar then
-                    if ns.CastBar.ResetCastForUnit then ns.CastBar.ResetCastForUnit(member.CastBar) end
-                    ns.CastBar.RefreshCastForUnit(member.CastBar, member.unit)
-                end
+local rosterEnabled, rosterUpdatePending = false, false
+
+local function RefreshRosterCast(frame)
+    local bar, cast = frame.CastBar, ns.CastBar
+    if not bar or not cast then return end
+    local guid = UnitGUID and UnitGUID(frame.unit)
+    if Secret(guid) or type(guid) ~= "string" or guid == "" then guid = nil end
+    local disabled = bar._fluxPetCastDisabled
+    if guid and bar._fluxPartyRosterGUID == guid and bar._fluxPartyRosterDisabled == disabled then return end
+    -- A public GUID proves the unit behind this party token stayed the same.
+    -- Cast events continue to drive an existing member's active cast.
+    bar._fluxPartyRosterGUID = nil
+    if cast.ResetCastForUnit then cast.ResetCastForUnit(bar) end
+    cast.RefreshCastForUnit(bar, frame.unit)
+    bar._fluxPartyRosterGUID, bar._fluxPartyRosterDisabled = guid, disabled
+end
+
+local function FlushRosterPaint()
+    rosterPaintScheduled = false
+    local batch = rosterPaintPending
+    rosterPaintPending = {}
+    local updateRoster = rosterUpdatePending and rosterEnabled
+    rosterUpdatePending = false
+    if updateRoster then
+        -- Inspect visibility once after the native headers have settled.
+        -- Explicit show/hide work keeps its range wake even if now hidden.
+        for slot, member in ipairs(Party.members) do
+            batch[member] = batch[member] or "roster"
+            local pet, target = Party.pets[slot], Party.targets[slot]
+            if pet then batch[pet] = batch[pet] or "roster" end
+            if target then batch[target] = "roster" end
+        end
+    end
+    local checkRange
+    for member, work in pairs(batch) do
+        local visible = member:IsVisible()
+        if member._fluxPartyTarget then
+            if visible then
+                PaintTarget(member, work == "roster")
+            end
+        else
+            if visible or work == true then checkRange = true end
+            if visible then
+                RefreshRosterCast(member)
                 if member.UpdateGroupText then member:UpdateGroupText() end
-                Paint(member)
+                Paint(member, false, true)
             end
         end
-        if FluxRaid_EnsureRangePoll then FluxRaid_EnsureRangePoll() end
-    end)
+    end
+    if checkRange and FluxRaid_EnsureRangePoll then FluxRaid_EnsureRangePoll() end
+end
+
+local function ScheduleRosterPaint()
+    if rosterPaintScheduled then return end
+    rosterPaintScheduled = true
+    C_Timer.After(0, FlushRosterPaint)
+end
+
+QueueRosterPaint = function(frame)
+    rosterPaintPending[frame] = true
+    ScheduleRosterPaint()
+end
+
+function Party.QueueRosterUpdate()
+    if not rosterEnabled or rosterUpdatePending then return end
+    rosterUpdatePending = true
+    ScheduleRosterPaint()
 end
 
 local function Build(unit, parent, pet, preview)
@@ -529,6 +676,9 @@ local function Build(unit, parent, pet, preview)
     local frame = UF.CreateBaseFrame(unit, parent, pet and 60 or width, pet and 28 or height, nil,
         preview and {preview = true, name = "FluxPartyPreview_" .. unit} or nil)
     frame._fluxPartyPet, frame._fluxPartyMember = pet or nil, not pet or nil
+    -- Each member/preview instance owns its outline. Neutral HUD pieces must
+    -- not bridge adjacent members through an otherwise compatible T/X.
+    frame._FluxBorderIndependent = true
     frame._fluxPartyOwnerUnit = pet and unit:gsub("^partypet", "party") or unit
     frame.portraitPosition = not pet and "LEFT" or nil
     frame.outerBorderAlignment, frame.outerBorderPadding = "BOTTOM", pet and 0 or 36
@@ -593,13 +743,14 @@ local function Build(unit, parent, pet, preview)
         frame.outerBorderFrame:SetMouseClickEnabled(false)
         return frame
     end
+    -- The raid event frame owns the global notification for all party slots.
+    frame:UnregisterEvent("GROUP_ROSTER_UPDATE")
     local sharedEvent = frame:GetScript("OnEvent")
     for event in pairs(INDICATOR_EVENTS) do
         pcall(frame.RegisterEvent, frame, event)
     end
     frame:SetScript("OnEvent", function(self, event, ...)
         if not self:IsVisible() then return end
-        if event == "GROUP_ROSTER_UPDATE" then QueueRosterPaint(self); return end
         -- UNIT_PET is global and carries the owner token. A change to one pet
         -- must not rebuild all eight prepared member/pet cells.
         if event == "UNIT_PET" then
@@ -645,6 +796,10 @@ local function Build(unit, parent, pet, preview)
         if event == "READY_CHECK" then self._fluxPartyReadyActive = true
         elseif event == "READY_CHECK_FINISHED" then self._fluxPartyReadyActive = false end
         if INDICATOR_EVENTS[event] then
+            -- An already queued roster paint includes these same group labels
+            -- and indicators. Standalone leader/loot events stay immediate.
+            if (rosterPaintPending[self] or rosterUpdatePending) and (event == "PARTY_LEADER_CHANGED"
+                or event == "PARTY_LOOT_METHOD_CHANGED") then return end
             -- Shared leader/loot/marker painters must run even without bar ticks.
             if sharedEvent then sharedEvent(self, event, ...) end
             Party.UpdateIndicators(self); return
@@ -684,9 +839,13 @@ local function Build(unit, parent, pet, preview)
         QueueRosterPaint(self)
     end)
     frame:HookScript("OnHide", function(self)
-        if self.CastBar and ns.CastBar and ns.CastBar.ResetCastForUnit then ns.CastBar.ResetCastForUnit(self.CastBar) end
+        if UF.ForgetRosterPortrait then UF.ForgetRosterPortrait(self) end
+        if self.CastBar then
+            self.CastBar._fluxPartyRosterGUID = nil
+            if ns.CastBar and ns.CastBar.ResetCastForUnit then ns.CastBar.ResetCastForUnit(self.CastBar) end
+        end
         if self._fluxPartyMember and FluxRaidAuras then FluxRaidAuras.Clear(self) end
-        if FluxRaid_EnsureRangePoll then FluxRaid_EnsureRangePoll() end
+        if FluxRaid_EnsureRangePoll then QueueRosterPaint(self) end
     end)
     local button = frame.outerBorderFrame
     -- Reuse the owned party/raid click-cast path for primary mouse chords too.
@@ -727,6 +886,7 @@ local function LayoutVisuals(frame, pet, target, db, scale, petScale)
     Party.StyleText(pet)
     pet.nameText:SetAlpha(0)
     pet:ClearAllPoints(); pet:SetPoint("LEFT", frame, "LEFT", 0, 0)
+    if UF.FitPortraitOverlay then UF.FitPortraitOverlay(pet, frame, "Left") end
     target:ClearAllPoints(); target:SetPoint("TOPLEFT", frame.outerBorderFrame, "TOPRIGHT", 0, 0)
     if UF.RecordFrameDimensions then UF.RecordFrameDimensions(target, tonumber(db.partyTargetWidth) or 30, height + 36) end
     target:SetSize(tonumber(db.partyTargetWidth) or 30, height + 36)
@@ -771,6 +931,7 @@ function Party.RefreshPreview(show)
         LayoutTextHosts(frame, hasPet, petScale)
         frame._fluxPartyPreviewClass = ({"WARRIOR", "PRIEST", "MAGE", "DRUID"})[i]
         Party.PaintChrome(frame)
+        UF.UpdateBorderColors(pet)
         AnchorSlot(frame, i, root, scale)
         frame.nameText:SetText("Party member " .. i)
         frame.Health:SetMinMaxValues(0, 100); frame.Health:SetValue(100 - i * 8)
@@ -828,6 +989,7 @@ function Party.ApplyOptions()
     local db, state = DB(), FluxRaidState
     local enabled = db.useFluxRaidFrames ~= false and db.partyAsRaid == false
     if not enabled then
+        rosterEnabled = false
         Party.ready = false
         if FluxRaidSecure and FluxRaidSecure.DisablePartyFrames then FluxRaidSecure.DisablePartyFrames() end
         for _, frame in ipairs(Party.members) do
@@ -856,6 +1018,7 @@ function Party.ApplyOptions()
     end
     state.partyRangeFrames = state.partyRangeFrames or {}
     for _, frame in ipairs(Party.members) do state.partyRangeFrames[frame] = true end
+    rosterEnabled = true
     Party.ready = FluxRaidSecure.ConfigurePartyFrames(Party.members, Party.pets, scale, petScale,
         db.partyShowPets ~= false, db.partyShowPortrait ~= false, Party.targets,
         {showTargets = db.partyShowTargets ~= false, height = select(2, Party.GetSizing(db))})

@@ -16,6 +16,36 @@ local lightQ = {}
 local heavyQ = {}
 local drainArmed = false
 local flushing = false
+local timingObserver,timingToken
+local function Clock()
+	if type(debugprofilestop)~="function" then return end
+	local ok,value=pcall(debugprofilestop)
+	if not ok then return end
+	if not (issecretvalue and issecretvalue(value)) and type(value)=="number"
+		and value==value and value>=0 and value<math.huge then return value end
+end
+function Combat.ObserveTiming(fn)
+	if type(fn)~="function" then return nil,"timing observer must be a function" end
+	if timingObserver then return nil,"timing observer already registered" end
+	local token={};timingObserver,timingToken=fn,token
+	return function()if timingToken==token then timingObserver,timingToken=nil,nil end end
+end
+local function RunOwned(key,fn)
+	local observer,token,began=timingObserver
+	if observer then token,began=timingToken,Clock() end
+	local ok,result=Flux.Safecall(fn)
+	if began and observer==timingObserver and token==timingToken then
+		local ended=Clock()
+		if ended and ended>=began then
+			local observed,err=pcall(observer,key,fn,ended-began,ok==false)
+			if not observed then
+				if observer==timingObserver and token==timingToken then timingObserver,timingToken=nil,nil end
+				local geh=geterrorhandler;if geh then geh()(tostring(err)) end
+			end
+		end
+	end
+	return ok,result
+end
 
 function Combat.InLockdown()
 	return InCombatLockdown and InCombatLockdown() and true or false
@@ -46,14 +76,16 @@ local function DrainRegenQueues()
 	local function run()
 		local count = 0
 		while count < REGEN_MAX_PER_FRAME and not Combat.InLockdown() do
-			local fn
+			local fn,key
 			if lightIndex <= #activeLight then
+				key="regen.light"
 				fn = activeLight[lightIndex]; activeLight[lightIndex] = false; lightIndex = lightIndex + 1
 			elseif heavyIndex <= #activeHeavy then
+				key="regen.heavy"
 				fn = activeHeavy[heavyIndex]; activeHeavy[heavyIndex] = false; heavyIndex = heavyIndex + 1
 			else break end
 			count = count + 1
-			Flux.Safecall(fn)
+			RunOwned(key,fn)
 		end
 	end
 	local Regen = Flux.Perf and Flux.Perf.Regen
@@ -150,10 +182,10 @@ function Combat.Flush()
 			keysRan[#keysRan + 1] = key
 			if Regen and Regen.Time then
 				Regen.Time("flush." .. key, function()
-					Flux.Safecall(fn)
+					RunOwned(key,fn)
 				end)
 			else
-				Flux.Safecall(fn)
+				RunOwned(key,fn)
 			end
 		end
 	end

@@ -1,0 +1,353 @@
+{
+  "changeId": "COMPACT-RAID-SEAM-DELTAS-R109-20261119",
+  "capturedAtUTC": "2026-11-19T13:49:04.029989+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "afterRaw": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef"
+    },
+    "tests/raid_connected_grid.lua": {
+      "beforeRaw": "784bf6e15bb724335d9d0451ba5948b914af4f7b854d962ec8f1108c929aafe7",
+      "afterRaw": "d948186a7c4da34bca4c0dae500d3b63fbe3f7f639f446ceb48a5b11bc6d94ec"
+    },
+    "RaidFrame/FluxRaidVisuals.lua": {
+      "beforeRaw": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75",
+      "afterRaw": "7c8f07bd71fef1121d4ff0954858781ece951d4c14e47da652acf55c810d4a75"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\compact-raid-seam-deltas-before-20261119-134125\\source.zip",
+    "sourceZipSHA256": "16bb4c35408b3362685b49d9a17dbb518c9bd0ed4a9603c9b46e1d96dd2cc193",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Compact raid or party-as-raid bordered cells. A modeled 40-member grid shrinks, grows, or moves one member at a time.",
+  "work": {
+    "metricColumns": [
+      "leave distance checks",
+      "join distance checks",
+      "move distance checks",
+      "visibility reads when leaving"
+    ],
+    "beforeAfter": {
+      "baseline": {
+        "counts": {
+          "legacy": [
+            627,
+            660,
+            648,
+            85
+          ],
+          "native": [
+            627,
+            660,
+            648,
+            85
+          ]
+        },
+        "rows": [
+          "RAID_CONNECTED_WORK|legacy|660|0",
+          "RAID_JOIN_DELTA|legacy|627|660|648|85",
+          "RAID_CONNECTED_WORK|native|660|0",
+          "RAID_JOIN_DELTA|native|627|660|648|85",
+          "Raid connected grid: 1346 checks; native one-pixel joins, partial groups, redundant neighbors, minis, opacity guards and two rejected controls"
+        ],
+        "captureSHA256": "49e5fcaf81fb5d1261ca8afd84a60740cf70e787176e93f1e7faabdec6371247"
+      },
+      "paired": {
+        "counts": {
+          "legacy": [
+            111,
+            111,
+            210,
+            40
+          ],
+          "native": [
+            111,
+            111,
+            210,
+            40
+          ]
+        },
+        "rows": [
+          "RAID_CONNECTED_WORK|legacy|660|0",
+          "RAID_JOIN_DELTA|legacy|111|111|210|40",
+          "RAID_CONNECTED_WORK|native|660|0",
+          "RAID_JOIN_DELTA|native|111|111|210|40",
+          "Raid connected grid: 1360 checks; native one-pixel joins, partial groups, redundant neighbors, minis, opacity guards and two rejected controls"
+        ],
+        "captureSHA256": "264f46b414133acdf5cb43be2aac3e429b96c0a000f79d06b18a57610149b892"
+      }
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6. Seven alternating archived and candidate pairs, aggregate CPU clock over one thousand refreshes per sample.",
+    "measures": {
+      "1:occupancy": {
+        "medians": [
+          90.0,
+          45.0
+        ],
+        "samples": [
+          [
+            82.0,
+            43.0
+          ],
+          [
+            83.0,
+            42.0
+          ],
+          [
+            83.0,
+            44.0
+          ],
+          [
+            90.0,
+            45.0
+          ],
+          [
+            96.0,
+            49.0
+          ],
+          [
+            97.0,
+            49.0
+          ],
+          [
+            91.0,
+            47.0
+          ]
+        ]
+      },
+      "1:slide": {
+        "medians": [
+          91.0,
+          50.0
+        ],
+        "samples": [
+          [
+            96.0,
+            53.0
+          ],
+          [
+            94.0,
+            54.0
+          ],
+          [
+            92.0,
+            50.0
+          ],
+          [
+            88.0,
+            48.0
+          ],
+          [
+            91.0,
+            49.0
+          ],
+          [
+            89.0,
+            51.0
+          ],
+          [
+            88.0,
+            47.0
+          ]
+        ]
+      },
+      "1:bulk": {
+        "medians": [
+          67.0,
+          68.0
+        ],
+        "samples": [
+          [
+            66.0,
+            66.0
+          ],
+          [
+            67.0,
+            76.0
+          ],
+          [
+            67.0,
+            64.0
+          ],
+          [
+            64.0,
+            64.0
+          ],
+          [
+            66.0,
+            68.0
+          ],
+          [
+            73.0,
+            68.0
+          ],
+          [
+            77.0,
+            75.0
+          ]
+        ]
+      },
+      "4:occupancy": {
+        "medians": [
+          105.0,
+          53.0
+        ],
+        "samples": [
+          [
+            117.0,
+            76.0
+          ],
+          [
+            129.0,
+            62.0
+          ],
+          [
+            110.0,
+            53.0
+          ],
+          [
+            91.0,
+            45.0
+          ],
+          [
+            88.0,
+            51.0
+          ],
+          [
+            105.0,
+            53.0
+          ],
+          [
+            102.0,
+            53.0
+          ]
+        ]
+      },
+      "4:slide": {
+        "medians": [
+          103.0,
+          55.0
+        ],
+        "samples": [
+          [
+            93.0,
+            53.0
+          ],
+          [
+            95.0,
+            53.0
+          ],
+          [
+            103.0,
+            55.0
+          ],
+          [
+            91.0,
+            53.0
+          ],
+          [
+            124.0,
+            65.0
+          ],
+          [
+            107.0,
+            59.0
+          ],
+          [
+            122.0,
+            59.0
+          ]
+        ]
+      },
+      "4:bulk": {
+        "medians": [
+          86.0,
+          84.0
+        ],
+        "samples": [
+          [
+            85.0,
+            88.0
+          ],
+          [
+            76.0,
+            68.0
+          ],
+          [
+            73.0,
+            87.0
+          ],
+          [
+            86.0,
+            78.0
+          ],
+          [
+            92.0,
+            86.0
+          ],
+          [
+            89.0,
+            84.0
+          ],
+          [
+            89.0,
+            69.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\compact-raid-seam-deltas-before-20261119-134125\\timing.lua",
+    "rawSHA256": "eaad0e39e9e8a23bd525e67d4212d62e192e4019195f9fbd83426c55be1f82cb",
+    "firstCandidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\compact-raid-seam-deltas-before-20261119-134125\\timing-first.txt",
+    "bulk": "The bulk case alternates four and forty visible cells to exercise the full sorted path."
+  },
+  "preservation": [
+    "same public four-edge flags through fractional seams and irregular grids",
+    "multiple qualifying neighbors cover a seam until the final neighbor retires",
+    "native paint retries apply geometry once",
+    "unused precreated cells skip visibility reads",
+    "only preexisting native paint calls are issued"
+  ],
+  "verification": {
+    "focusedPassed": 37,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 14,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\compact-raid-seam-deltas-before-20261119-134125\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\compact-raid-seam-deltas-before-20261119-134125\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef",
+      "matches": true
+    },
+    "forever": {
+      "sha256": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef",
+      "matches": true
+    },
+    "classic": {
+      "sha256": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef",
+      "matches": true
+    },
+    "classic-era": {
+      "sha256": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef",
+      "matches": true
+    },
+    "classic-anniversary": {
+      "sha256": "90c04cdcb65a3ce0f4b64c8c0d0f9058cba172f5d766cc2d25f212b2f857d4ef",
+      "matches": true
+    }
+  },
+  "nativeAcceptance": "Pending for actual party/raid membership latency, held-action hitches, seamless pixels, and combat taint. No game input or profiling changes."
+}

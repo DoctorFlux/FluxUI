@@ -1,0 +1,259 @@
+{
+  "changeId": "HELD-ACTION-REFLOW-R107-20261119",
+  "capturedAtUTC": "2026-11-19T13:26:00.737154+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "afterRaw": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450"
+    },
+    "Bars/Init.lua": {
+      "beforeRaw": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+      "afterRaw": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+      "afterRaw": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "0f4fd51169473f8514920db42712273df8a4c2de021a61578a5065496205ebf4",
+      "afterRaw": "72548e5983229d0832a9e28c43ded782d64429e68c39300d843503191eb5a779"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08",
+      "afterRaw": "61cffc859a6dd1f43ce160ccf9f66638f8957581f0a520d770dd7d6aaa7ff6fa"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\held-action-reflow-before-20261119-131917\\source.zip",
+    "sourceZipSHA256": "427aa2b01a35c432deea41461f62c2c42515702347f34e7a9886df426ce93fc7",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "Held-action cursor enters/leaves without changing any action slot. Existing strip, grid, Info and Trinket geometry stays in the replay.",
+  "reversalRegression": {
+    "withoutChanges": "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...-action-reflow-before-20261119-131917/exact-reversal.lua:21: hover reversals before the same update keep the already-painted layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...-action-reflow-before-20261119-131917/exact-reversal.lua:21: in upvalue 'check'\n\t...-action-reflow-before-20261119-131917/exact-reversal.lua:100: in local 'run'\n\t...-action-reflow-before-20261119-131917/exact-reversal.lua:141: in main chunk\n\t[C]: in ?\n\n",
+    "candidateChecks": "Strip drag hover edges: 32 checks; enter/leave while holding the same action. Native timing and seams pending."
+  },
+  "measurements": {
+    "scope": "Desktop Lua 5.4.6, archived and candidate source. Two first crossings and twelve prepared crossings per style. Instrumented visit counts and separate uninstrumented os.clock runs.",
+    "timingColumns": [
+      "first two before ms",
+      "first two after ms",
+      "twelve prepared before ms",
+      "twelve prepared after ms"
+    ],
+    "byStyle": {
+      "1": {
+        "visitsBeforeAfter": [
+          3810,
+          990
+        ],
+        "timingMedian": [
+          35.0,
+          35.0,
+          71.0,
+          72.0
+        ],
+        "timingSamples": [
+          [
+            32.0,
+            37.0,
+            69.0,
+            73.0
+          ],
+          [
+            35.0,
+            36.0,
+            71.0,
+            76.0
+          ],
+          [
+            36.0,
+            35.0,
+            77.0,
+            72.0
+          ],
+          [
+            35.0,
+            33.0,
+            70.0,
+            72.0
+          ],
+          [
+            35.0,
+            35.0,
+            71.0,
+            70.0
+          ],
+          [
+            34.0,
+            37.0,
+            75.0,
+            80.0
+          ],
+          [
+            33.0,
+            35.0,
+            74.0,
+            66.0
+          ]
+        ]
+      },
+      "2": {
+        "visitsBeforeAfter": [
+          4284,
+          930
+        ],
+        "timingMedian": [
+          67.0,
+          68.0,
+          144.0,
+          135.0
+        ],
+        "timingSamples": [
+          [
+            67.0,
+            99.0,
+            142.0,
+            215.0
+          ],
+          [
+            62.0,
+            104.0,
+            147.0,
+            136.0
+          ],
+          [
+            73.0,
+            64.0,
+            149.0,
+            134.0
+          ],
+          [
+            91.0,
+            67.0,
+            177.0,
+            135.0
+          ],
+          [
+            67.0,
+            68.0,
+            140.0,
+            135.0
+          ],
+          [
+            66.0,
+            59.0,
+            128.0,
+            126.0
+          ],
+          [
+            59.0,
+            83.0,
+            144.0,
+            137.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\held-action-reflow-before-20261119-131917\\compare.lua",
+    "rawSHA256": "34c92391f8b72bc8e1f8fff2f12ebb8472b33f618bb3e85240772940abe2c722"
+  },
+  "preservation": [
+    "exact captured button slot and layout signature after a reversal",
+    "genuine held-action crossings commit once at the final geometry",
+    "prepared draw descriptors preserve source and fallback order",
+    "live paint, source material change, layer change, neighbor move and combat deferral"
+  ],
+  "verification": {
+    "focusedPassed": 23,
+    "syntaxPassed": 1249,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\held-action-reflow-before-20261119-131917\\held-focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\held-action-reflow-before-20261119-131917\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "c60d46f19576d121b9146dc1be1452a04d2743981cbd5e52c8c1edd9ca126450",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b7b36ea421b4f9438ecbc634bac20374cd5a891dd4685b30d8ea4aa914636173",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for held-action hitching, party and raid transitions, seamless pixels and combat taint. No game input or profiling changes."
+}

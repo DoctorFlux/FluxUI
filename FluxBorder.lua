@@ -38,6 +38,25 @@ end
 
 -- Weak registry of frames that received FluxBorder (for live accent refresh from options)
 Border._accentFrames = Border._accentFrames or setmetatable({}, { __mode = "k" })
+-- Art changes include borders with explicit gameplay colors, independently of tint refresh.
+Border._frames = setmetatable({}, { __mode = "k" })
+
+local STYLE_ART
+
+function Border:GetBorderType()
+    local appearance = FluxOptions and FluxOptions.db and FluxOptions.db.profile and FluxOptions.db.profile.appearance
+    local borderType = appearance and appearance.borderType
+    return STYLE_ART and STYLE_ART[borderType] and borderType or 1
+end
+
+function Border:GetBorderThickness(borderType)
+    local art = STYLE_ART and STYLE_ART[borderType or self:GetBorderType()]
+    return art and art.thickness or 100
+end
+
+local function UsesForeverBronze(borderType)
+    return (borderType or Border:GetBorderType()) == 1
+end
 
 -- Blizzard StatusTrackingBar underlay on Interface\TargetingFrame\UI-StatusBar.
 -- wow-ui-source-forever StatusTrackingBarTemplate.xml: <Color r=".502" g=".443" b=".278" />
@@ -62,7 +81,7 @@ end
 
 --- True when Default atlas stays untinted. Forever uses Blizzard's status-bar gold instead.
 function Border:IsUntintedAtlasAccent()
-    return self:GetAccentMode() == "atlas" and not IsForeverClient()
+    return self:GetAccentMode() == "atlas" and not (IsForeverClient() and UsesForeverBronze())
 end
 
 --- Blizzard Forever chrome gold, or nil on every other client.
@@ -82,6 +101,21 @@ function Border:GetForeverClientBackdropRGB()
     return r * FOREVER_BACKDROP_SHADE, g * FOREVER_BACKDROP_SHADE, b * FOREVER_BACKDROP_SHADE
 end
 
+-- Default NPC material/palette is independent of Appearance.
+function Border:GetDefaultAccentRGB()
+    if IsForeverClient() and UsesForeverBronze() then
+        return FOREVER_DEFAULT_ATLAS_R, FOREVER_DEFAULT_ATLAS_G, FOREVER_DEFAULT_ATLAS_B
+    end
+    return 1,1,1
+end
+function Border:GetDefaultBackdropRGB()
+    if IsForeverClient() and UsesForeverBronze() then
+        return FOREVER_DEFAULT_ATLAS_R*FOREVER_BACKDROP_SHADE,
+            FOREVER_DEFAULT_ATLAS_G*FOREVER_BACKDROP_SHADE,FOREVER_DEFAULT_ATLAS_B*FOREVER_BACKDROP_SHADE
+    end
+    return .15,.15,.15
+end
+
 --- Resolve themed accent RGB + mode string ("class"|"atlas"|"custom") from FluxOptions when loaded.
 function Border:GetAccentColor()
     local db = FluxOptions and FluxOptions.db and FluxOptions.db.profile and FluxOptions.db.profile.appearance
@@ -91,7 +125,7 @@ function Border:GetAccentColor()
     end
     local mode = db.borderAccent or "class"
     if mode == "atlas" then
-        if IsForeverClient() then
+        if IsForeverClient() and UsesForeverBronze() then
             return FOREVER_DEFAULT_ATLAS_R, FOREVER_DEFAULT_ATLAS_G, FOREVER_DEFAULT_ATLAS_B, "atlas"
         end
         return 1, 1, 1, "atlas"
@@ -130,7 +164,7 @@ end
 --- Vertex RGB for texture tinting: untinted atlas → (1,1,1); Forever default atlas → Blizzard gold; else accent.
 function Border:GetThemedVertexRGB()
     local r, g, b, mode = self:GetAccentColor()
-    if mode == "atlas" and not IsForeverClient() then
+    if mode == "atlas" and not (IsForeverClient() and UsesForeverBronze()) then
         return 1, 1, 1
     end
     return r, g, b
@@ -140,7 +174,7 @@ end
 function Border:GetThemedBackdropFillRGB()
     local r, g, b, mode = self:GetAccentColor()
     if mode == "atlas" then
-        if IsForeverClient() then
+        if IsForeverClient() and UsesForeverBronze() then
             return r * FOREVER_BACKDROP_SHADE, g * FOREVER_BACKDROP_SHADE, b * FOREVER_BACKDROP_SHADE
         end
         return 0.15, 0.15, 0.15
@@ -150,6 +184,7 @@ end
 
 --- Reapply border accent and all registered appearance dependents (options / profile change).
 function Border:RefreshAppearanceDependents()
+    self:RefreshAllBorderTypes()
     if FluxOptions_ApplyConfigWindowAppearance then
         FluxOptions_ApplyConfigWindowAppearance()
     end
@@ -269,6 +304,308 @@ local LEGACY_COORDS = {
     Right = { left = 0.074, right = 0.137, top = 0.148, bottom = 0.672, width = 16, height = 134 },
 }
 
+local PIECES = { "TL", "TR", "BL", "BR", "Top", "Bottom", "Left", "Right" }
+-- Every added style supplies art in the same eight-piece canvas. Consumers own
+-- geometry; neither registration nor live style changes touch anchors or sizes.
+local NORMALIZED_COORDS = {
+    TL = {211/256,227/256,1/256,18/256}, TR = {229/256,245/256,1/256,18/256},
+    BL = {211/256,227/256,20/256,36/256}, BR = {229/256,245/256,20/256,36/256},
+    Top = {1/256,209/256,1/256,18/256}, Bottom = {1/256,209/256,20/256,36/256},
+    Left = {1/256,17/256,38/256,172/256}, Right = {19/256,35/256,38/256,172/256},
+}
+STYLE_ART = {
+    [1] = { texture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\Battlefield100.tga", thickness = 100,
+        tracks = {Top=8,Bottom=8,Left=9,Right=9.5}, coords = NORMALIZED_COORDS },
+    [2] = { texture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\ForeverMetal150.tga", thickness = 150, tracks = {Top=9,Bottom=7,Left=9.5,Right=9},
+        accentTexture = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\ForeverMetal150Tint.tga", coords = NORMALIZED_COORDS },
+}
+Border._pieces = setmetatable({}, { __mode = "k" })
+
+local DEFAULT_JOIN_TRACKS={Top=8,Bottom=8,Left=9,Right=9.5}
+function Border:GetJoinTracks()
+    local art=STYLE_ART[self:GetBorderType()]
+    return art and art.tracks or DEFAULT_JOIN_TRACKS
+end
+
+-- Core position relative to the container's left/right edge, including the
+-- authored corner overhang. Both styles retain the same sixteen-unit canvas.
+local function BorderGeometryScale(profile)
+    if issecretvalue and issecretvalue(profile) then return 1 end
+    if type(profile)=="table" or type(profile)=="userdata" then profile=profile._fluxBorderGeometryScale end
+    if issecretvalue and issecretvalue(profile) then return 1 end
+    if type(profile)~="number" or profile~=profile or profile<=0 or profile==math.huge then return 1 end
+    return profile
+end
+function Border:GetSideTrackOffset(side, padding, profile)
+    local tracks, scale = self:GetJoinTracks(), BorderGeometryScale(profile)
+    if side == "Left" then return padding + (atlasCorners.TL.ox + tracks.Left) * scale end
+    return -padding + (atlasCorners.TR.ox - 16 + tracks.Right) * scale
+end
+
+local function PieceArt(borderType, thickness, mode)
+    local art = STYLE_ART[borderType]
+    if not art then return nil end
+    return art, mode ~= "atlas" and art.accentTexture or art.texture
+end
+
+local function RestorePiece(texture, record)
+    if record.atlas then
+        if pcall(texture.SetAtlas, texture, record.atlas, false) then
+            if record.uv then texture:SetTexCoord(unpack(record.uv)) end
+            return
+        end
+    end
+    texture:SetTexture(record.texture or "Interface\\Buttons\\WHITE8X8")
+    if record.uv then texture:SetTexCoord(unpack(record.uv)) end
+end
+
+local function NaturalArtOwner(parent)
+    local p,natural,unitColor=parent,nil,nil
+    while p and p~=UIParent do
+        if natural==nil and p._FluxBorderNatural~=nil then natural=p._FluxBorderNatural end
+        if unitColor==nil then unitColor=p._FluxBorderUnitColor end
+        local owner=p._FluxBorderOwner
+        if owner then
+            if natural==nil and owner._FluxBorderNatural~=nil then natural=owner._FluxBorderNatural end
+            if unitColor==nil then unitColor=owner._FluxBorderUnitColor end
+        end
+        p=p.GetParent and p:GetParent()
+    end
+    return natural or false,unitColor or nil
+end
+
+-- Class/NPC transitions repaint only their registered presentation owners.
+-- This index contains public frame/texture references, never unit/GUID data.
+local paintOwners=setmetatable({}, {__mode="k"})
+local function RemovePaintOwners(texture,record)
+    for _,owner in ipairs(record.paintOwners or {}) do
+        local bucket=paintOwners[owner]
+        if bucket then bucket[texture]=nil end
+    end
+    record.paintOwners=nil
+end
+local function IndexPaintOwners(texture,record)
+    RemovePaintOwners(texture,record)
+    local owners,seen={},{}
+    local function Add(owner)
+        if not owner or seen[owner] then return end
+        seen[owner]=true;owners[#owners+1]=owner
+        local bucket=paintOwners[owner]
+        if not bucket then bucket=setmetatable({}, {__mode="k"});paintOwners[owner]=bucket end
+        bucket[texture]=record
+    end
+    local parent=texture.GetParent and texture:GetParent()
+    while parent and parent~=UIParent do
+        Add(parent);Add(parent._FluxBorderOwner)
+        parent=parent.GetParent and parent:GetParent()
+    end
+    record.paintOwners=owners
+end
+function Border:RefreshPaintOwners(object)
+    local record=self._pieces[object]
+    if record then IndexPaintOwners(object,record);return end
+    -- Reparenting a container changes only the indexed descendants/aliases.
+    local bucket=paintOwners[object]
+    if not bucket then return end
+    local batch={}
+    for texture,r in pairs(bucket) do if self._pieces[texture]==r then batch[#batch+1]={texture,r} end end
+    for _,item in ipairs(batch) do IndexPaintOwners(item[1],item[2]) end
+end
+local function PaintPiece(texture, record, borderType)
+    record.naturalArt,record.unitColor=NaturalArtOwner(texture.GetParent and texture:GetParent())
+    local mode=record.naturalArt and "atlas" or record.unitColor and "class" or Border:GetAccentMode()
+    local art, texturePath = PieceArt(borderType, Border:GetBorderThickness(), mode)
+    if record.current ~= borderType or record.art ~= texturePath then
+        if art then
+            local uv = art.coords[record.key]
+            texture:SetTexture(texturePath)
+            texture:SetTexCoord(uv[1], uv[2], uv[3], uv[4])
+        else
+            RestorePiece(texture, record)
+        end
+        record.current = borderType
+        record.art = texturePath
+        -- Capture our current native handle only after assigning authored art.
+        -- Recoloring never refreshes this trust if another owner replaces it.
+        local handle=texture:GetTexture()
+        record.artHandle=not (issecretvalue and issecretvalue(handle)) and handle or nil
+    end
+    -- Aura panel outlines keep their historical faint type-1 treatment; new
+    -- styles use the selected accent/natural colors with the same alpha.
+    if record.themed then
+        if record.naturalArt then
+            texture:SetVertexColor(1,1,1,record.alpha)
+        elseif record.unitColor then
+            local c=record.unitColor
+            texture:SetVertexColor(c.r,c.g,c.b,record.alpha)
+        elseif borderType ~= 1 then
+            local r, g, b = Border:GetAccentColor()
+            texture:SetVertexColor(r, g, b, record.alpha)
+        else
+            texture:SetVertexColor(unpack(record.color))
+        end
+    end
+end
+
+local function RepaintOwner(frame)
+    if Border.Junctions and hooksecurefunc then
+        for texture,record in pairs(paintOwners[frame] or {}) do
+            if Border._pieces[texture]==record then PaintPiece(texture,record,Border:GetBorderType()) end
+        end
+        return
+    end
+    -- Border can also be used without the topology observer. Preserve its
+    -- historical live-parent behavior when no reparent observer is available.
+    for texture,record in pairs(Border._pieces) do
+        local parent=texture.GetParent and texture:GetParent()
+        while parent and parent~=UIParent do
+            if parent==frame or parent._FluxBorderOwner==frame then PaintPiece(texture,record,Border:GetBorderType());break end
+            parent=parent.GetParent and parent:GetParent()
+        end
+    end
+end
+
+--- Adopt an existing corner or edge after its type-1 art/geometry are initialized.
+--- The native texture itself stays the render/color owner, including secure tinting.
+function Border:RegisterPiece(texture, key, themed, alpha)
+    if not texture or not NORMALIZED_COORDS[key] then return end
+    local record = self._pieces[texture]
+    if not record then
+        record = { key = key, current = 1, themed = themed, alpha = alpha or 1 }
+        if texture.GetAtlas then record.atlas = texture:GetAtlas() end
+        if texture.GetTexture then record.texture = texture:GetTexture() end
+        if texture.GetTexCoord then record.uv = { texture:GetTexCoord() } end
+        if themed then
+            record.color = texture.GetVertexColor and {texture:GetVertexColor()} or {.6,.6,.6,alpha or 1}
+        end
+        if not record.atlas and not record.texture then
+            if self:CanUseAtlases() then
+                record.atlas = atlasCorners[key] and atlasCorners[key].atlas or atlasEdges[key]
+            else
+                local c = LEGACY_COORDS[key]
+                record.texture = "Interface\\AddOns\\_FluxUI\\Texture\\BattlefieldMinimap.tga"
+                record.uv = { c.left, c.right, c.top, c.bottom }
+            end
+        end
+        self._pieces[texture] = record
+    else
+        -- Some pooled separators reset their base art during ordinary layout.
+        -- Reapply the selected style even when the setting itself did not change.
+        record.current = nil
+    end
+    IndexPaintOwners(texture,record)
+    PaintPiece(texture, record, self:GetBorderType())
+    if self.Junctions then self.Junctions:Adopt(texture,record) end
+end
+
+-- Unit chrome can keep its native artwork independently of the global accent.
+-- Repaint only on a classification boundary (NPC/player), not every unit update.
+function Border:SetUntinted(frame,enabled)
+    if not frame then return end
+    enabled=enabled and true or false
+    if frame._FluxBorderNatural==enabled then return end
+    local unchanged=frame._FluxBorderNatural==nil and NaturalArtOwner(frame)==enabled
+    frame._FluxBorderNatural=enabled
+    if unchanged then return end
+    RepaintOwner(frame)
+end
+
+-- Explicit per-unit class chrome uses neutral material even under global
+-- Default atlas, so gold artwork cannot shift the unit's class hue.
+function Border:SetUnitColor(frame,color)
+    if not frame then return end
+    -- False is an explicit no-unit-color boundary; nil still inherits.
+    local wanted=color or false
+    local old=frame._FluxBorderUnitColor
+    if old==wanted or old and color and old.r==color.r and old.g==color.g and old.b==color.b then return end
+    frame._FluxBorderUnitColor=wanted
+    RepaintOwner(frame)
+end
+
+function Border:RefreshBorderType(frame)
+    local bf = frame and frame.FluxBorderFrame
+    if not bf then return end
+    local borderType = self:GetBorderType()
+    local thickness = self:GetBorderThickness()
+    if bf._borderType == borderType and bf._borderThickness == thickness then return end
+    for _, key in ipairs(PIECES) do
+        local piece = bf[key]
+        local record = piece and self._pieces[piece]
+        if record then PaintPiece(piece, record, borderType) end
+    end
+    bf._borderType = borderType
+    bf._borderThickness = thickness
+    if bf._usesAccent then
+        local r, g, b = self:GetAccentColor()
+        for _, key in ipairs(PIECES) do
+            local piece = bf[key]
+            if piece then
+                piece:SetVertexColor(r, g, b, bf._accentAlpha or 1)
+            end
+        end
+    end
+end
+
+function Border:RefreshAllBorderTypes()
+    local borderType = self:GetBorderType()
+    for texture, record in pairs(self._pieces) do PaintPiece(texture, record, borderType) end
+    for frame in pairs(self._frames) do self:RefreshBorderType(frame) end
+    if self.Junctions then self.Junctions:Invalidate(true) end
+end
+
+-- English fallback catalog; native options controls retain the existing locale/input path.
+local TYPE_TEXT = {
+    name = "Border type",
+    desc = "Changes shared Flux Borders, dividers and aura panels. Border type 2 uses gold artwork extracted from the WoW Forever options window and fitted to the same border canvas as type 1, on every client. Thickness is fixed by type: type 1 is 100%; type 2 is 150%. Full-frame previews follow your accent. No tint keeps the original artwork colors; the extra Forever bronze tint applies only to type 1.",
+    [1] = "Border type 1", [2] = "Border type 2",
+}
+
+local function BorderTypeKeys()
+    local keys = { 1 }
+    for key in pairs(STYLE_ART) do if key~=1 then keys[#keys + 1] = key end end
+    table.sort(keys)
+    return keys
+end
+
+function Border:GetBorderPreview(borderType, width, height)
+    local r, g, b, mode = self:GetAccentColor()
+    if mode == "atlas" then
+        if IsForeverClient() and UsesForeverBronze(borderType) then
+            r, g, b = FOREVER_DEFAULT_ATLAS_R, FOREVER_DEFAULT_ATLAS_G, FOREVER_DEFAULT_ATLAS_B
+        else r, g, b = 1, 1, 1 end
+    end
+    local file = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\Preview" .. tostring(borderType)
+    if borderType ~= 1 and mode ~= "atlas" then file = file .. "Tint" end
+    return ("|T%s.tga:%d:%d:0:0:256:64:0:256:0:64:%d:%d:%d|t"):format(file, height or 20, width or 80,
+        math.floor(r*255+.5), math.floor(g*255+.5), math.floor(b*255+.5))
+end
+
+function Border:GetBorderTypeChoices()
+    local values = {}
+    for _, borderType in ipairs(BorderTypeKeys()) do
+        values[borderType] = (TYPE_TEXT[borderType] or ("Border type %d"):format(borderType)) .. "  " .. self:GetBorderPreview(borderType)
+    end
+    return values
+end
+
+function Border:CreateTypeOption(order)
+    return {
+        type = "select", name = TYPE_TEXT.name, desc = function()
+            local previews={TYPE_TEXT.desc}
+            for _,key in ipairs(BorderTypeKeys()) do
+                previews[#previews+1]=(TYPE_TEXT[key] or ("Border type %d"):format(key)) .. "\n" .. self:GetBorderPreview(key,192,48)
+            end
+            return table.concat(previews,"\n\n")
+        end, order = order, width = "full",
+        values = function() return self:GetBorderTypeChoices() end, sorting = BorderTypeKeys(),
+        get = function() return self:GetBorderType() end,
+        set = function(_, value)
+            FluxOptions.db.profile.appearance.borderType = STYLE_ART[value] and value or 1
+            self:RefreshAppearanceDependents()
+        end,
+    }
+end
+
 -- Create legacy border piece using BattlefieldMinimap.tga texture
 local function CreateLegacyBorderPiece(parent, layer, pieceType)
     if not parent then return nil end
@@ -294,9 +631,11 @@ end
 -- @param padY Padding Y (vertical). Negative expands outward. Optional, defaults to padX.
 -- @param insetX Backdrop Inset X. Negative expands background outward. Optional, defaults to 0.
 -- @param insetY Backdrop Inset Y. Negative expands background outward. Optional, defaults to insetX.
-function Border:ApplyTo(frame, padX, padY, insetX, insetY)
+-- @param geometryScale Optional fixed geometry factor; artwork/UVs, pads and content scale are unchanged.
+function Border:ApplyTo(frame, padX, padY, insetX, insetY, geometryScale)
     if not frame then return nil end
     if frame.FluxBorderFrame then return frame.FluxBorderFrame end -- Already has border
+    geometryScale = BorderGeometryScale(geometryScale)
 
     -- Handle overload/defaults
     -- If called as (frame, padding, inset), map accordingly
@@ -343,6 +682,10 @@ function Border:ApplyTo(frame, padX, padY, insetX, insetY)
     borderFrame:SetFrameLevel(math.min(frame:GetFrameLevel() + 10, 65535))
 
     frame.FluxBorderFrame = borderFrame
+    -- Nominal consumer insets are immutable. Nearby border alignment must
+    -- derive its targets from the content root, not its own adjusted textures.
+    borderFrame._fluxBorderInsets = {padX, padY}
+    borderFrame._fluxBorderGeometryScale = geometryScale
     borderFrame.BackgroundFrame = bgFrame
     borderFrame.Background = bg
     
@@ -376,7 +719,11 @@ function Border:ApplyTo(frame, padX, padY, insetX, insetY)
                 y = padY
             end
             
-            t:SetPoint(point, borderFrame, point, x + info.ox, y + info.oy)
+            if geometryScale ~= 1 then
+                local coords = LEGACY_COORDS[key]
+                t:SetSize(coords.width * geometryScale, coords.height * geometryScale)
+            end
+            t:SetPoint(point, borderFrame, point, x + info.ox * geometryScale, y + info.oy * geometryScale)
             t:SetVertexColor(ar, ag, ab, 1)
         end
         borderFrame[key] = t
@@ -434,7 +781,67 @@ function Border:ApplyTo(frame, padX, padY, insetX, insetY)
     borderFrame.Left = Left
     borderFrame.Right = Right
 
+    self._frames[frame] = true
+    for _, key in ipairs(PIECES) do self:RegisterPiece(borderFrame[key], key) end
+    borderFrame._usesAccent = true
+    borderFrame._accentAlpha = 1
+    borderFrame._borderType = 1
+    borderFrame._borderThickness = 100
+    -- Art swaps deliberately leave all existing anchors, dimensions and layers alone.
+    self:RefreshBorderType(frame)
+
     return borderFrame
+end
+
+--- Open only a mini overlay's portrait-facing end. The parent's continuous
+--- portrait stroke stays untouched, so hiding the mini never leaves a hole.
+function Border:SetPortraitAttachment(frame, child, side, offset)
+    local bf = frame and frame.FluxBorderFrame
+    if not bf then return false end
+    if side ~= "Left" and side ~= "Right" then side, child, offset = nil, nil, nil end
+    if bf._fluxAttachmentSide == side and bf._fluxAttachmentChild == child
+        and bf._fluxAttachmentOffset == offset then return false end
+    if InCombatLockdown and InCombatLockdown() then return false end
+    local old = bf._fluxAttachmentSide
+    if old ~= side then
+        for _, key in ipairs(PIECES) do
+            local omitted = side == "Left" and (key == "Left" or key == "TL" or key == "BL")
+                or side == "Right" and (key == "Right" or key == "TR" or key == "BR")
+            local piece = bf[key]
+            if piece and omitted and not piece._fluxPortraitOmitted then
+                if self.Junctions then self.Junctions:Forget(piece) end
+                piece._fluxPortraitOmitted = true
+                piece:Hide()
+            elseif piece and not omitted and piece._fluxPortraitOmitted then
+                piece._fluxPortraitOmitted = nil
+                self:RegisterPiece(piece, key)
+                piece:Show()
+            end
+        end
+    end
+    local pad = bf._fluxBorderInsets and bf._fluxBorderInsets[1] or 0
+    local scale = BorderGeometryScale(bf)
+    bf:ClearAllPoints()
+    if side == "Left" then
+        bf:SetPoint("TOPLEFT", child, "TOPLEFT", offset - pad - atlasCorners.TL.ox * scale, 0)
+        bf:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
+    elseif side == "Right" then
+        bf:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+        bf:SetPoint("BOTTOMRIGHT", child, "BOTTOMRIGHT", offset + pad - atlasCorners.TR.ox * scale, 0)
+    else bf:SetAllPoints(frame) end
+    -- Hidden corner anchors still define the unchanged source height. Extend
+    -- the straight artwork through their width only at the attached end.
+    for _, row in ipairs({{"Top", "TL", "TR"}, {"Bottom", "BL", "BR"}}) do
+        local edge, left, right = bf[row[1]], bf[row[2]], bf[row[3]]
+        if edge and left and right then
+            edge:ClearAllPoints()
+            edge:SetPoint("TOPLEFT", left, side == "Left" and "TOPLEFT" or "TOPRIGHT", 0, 0)
+            edge:SetPoint("BOTTOMRIGHT", right, side == "Right" and "BOTTOMRIGHT" or "BOTTOMLEFT", 0, 0)
+        end
+    end
+    bf._fluxAttachmentSide, bf._fluxAttachmentChild, bf._fluxAttachmentOffset = side, child, offset
+    if self.Junctions then self.Junctions:Invalidate(nil, bf, "portrait attachment") end
+    return true
 end
 
 --- Remove FluxBorder from a frame so ApplyTo can be called again with different padding.
@@ -443,6 +850,15 @@ function Border:RemoveFrom(frame)
         return
     end
     local bf = frame.FluxBorderFrame
+    self._frames[frame] = nil
+    for _, key in ipairs(PIECES) do
+        if bf[key] then
+            if self.Junctions then self.Junctions:Forget(bf[key]) end
+            local record=self._pieces[bf[key]]
+            if record then RemovePaintOwners(bf[key],record) end
+            self._pieces[bf[key]] = nil
+        end
+    end
     frame.FluxBorderFrame = nil
     frame._FluxBorderTintOpts = nil
     if self._accentFrames then
@@ -456,12 +872,44 @@ function Border:RemoveFrom(frame)
     bf:Hide()
 end
 
+--- Explicitly preserve an intentional overlay (combat portrait/cast/compact unit).
+function Border:SetOverlayLayer(frame,enabled)
+    if not frame then return end
+    if self.Junctions then self.Junctions:SetOverlay(frame,enabled)
+    else frame._FluxBorderOverlay=enabled and true or nil end
+end
+
+-- Portrait fills start two units inside their host while the left stroke lies
+-- on its edge. Fill that complete straight interior inset, leaving
+-- the native rounded corners and every registered border piece untouched.
+function Border:PreparePortraitBackdrop(frame)
+    local bf=frame and frame.FluxBorderFrame
+    local host=bf and bf.BackgroundFrame
+    if not host or bf.PortraitBackdropFill then return false end
+    if InCombatLockdown and InCombatLockdown() then return false end
+    local fill=host:CreateTexture(nil,"BACKGROUND",nil,-8)
+    fill:SetPoint("TOPLEFT",frame,"TOPLEFT",0,-7)
+    fill:SetPoint("BOTTOMRIGHT",host,"BOTTOMLEFT",0,5)
+    SetColorTexture_Compat(fill,0,0,0,0)
+    fill:Hide()
+    -- Both adjacent flat fills must use the border's continuous sampling at
+    -- fractional HUD scales, rather than snap their common boundary apart.
+    for _,texture in ipairs({bf.Background,fill}) do
+        if texture.SetSnapToPixelGrid then texture:SetSnapToPixelGrid(false) end
+        if texture.SetTexelSnappingBias then texture:SetTexelSnappingBias(0) end
+    end
+    bf.PortraitBackdropFill=fill
+    return true
+end
+
 --- Set border color for all pieces
 function Border:SetBorderColor(frame, r, g, b, a)
     if not frame then return end
     
     local borderFrame = frame.FluxBorderFrame
     if not borderFrame then return end
+    borderFrame._usesAccent = false
+    if self.Junctions then self.Junctions:Recolor(borderFrame,r,g,b,a or 1) end
     
     a = a or 1
     
@@ -471,6 +919,34 @@ function Border:SetBorderColor(frame, r, g, b, a)
         if piece and piece.SetVertexColor then
             piece:SetVertexColor(r, g, b, a)
         end
+    end
+end
+
+-- Only class-color results approved for native presentation use this stream.
+-- Unit ownership and public geometry remain with the existing border renderer.
+function Border:SetNativeUnitColor(frame,r,g,b)
+    local bf=frame and frame.FluxBorderFrame
+    if not bf then return end
+    for _,key in ipairs(PIECES) do
+        local piece=bf[key]
+        if piece then piece._FluxBorderNativeUnitRGB=true end
+    end
+    self:SetBorderColor(frame,r,g,b,1)
+end
+
+-- The class provider supplies RGB directly; its opacity is authored/public.
+function Border:SetNativeUnitBackdrop(frame,r,g,b)
+    local bf=frame and frame.FluxBorderFrame
+    local bg=bf and bf.Background
+    if not bg then return end
+    if bg.SetColorTexture then bg:SetColorTexture(r,g,b,.85)
+    else bg:SetTexture("Interface\\Buttons\\WHITE8X8");bg:SetVertexColor(r,g,b,.85) end
+    bg:Show()
+    local fill=bf.PortraitBackdropFill
+    if fill then
+        if fill.SetColorTexture then fill:SetColorTexture(r,g,b,.85)
+        else fill:SetTexture("Interface\\Buttons\\WHITE8X8");fill:SetVertexColor(r,g,b,.85) end
+        fill:Show()
     end
 end
 
@@ -484,6 +960,8 @@ function Border:SetBackdropColor(frame, r, g, b, a)
     a = a or 1
     SetColorTexture_Compat(borderFrame.Background, r, g, b, a)
     borderFrame.Background:Show()
+    local fill=borderFrame.PortraitBackdropFill
+    if fill then SetColorTexture_Compat(fill,r,g,b,a);fill:Show() end
 end
 
 --- Set backdrop alpha (convenience method)
@@ -497,6 +975,8 @@ function Border:SetBackdropAlpha(frame, alpha)
     local r, g, b = borderFrame.Background:GetVertexColor()
     SetColorTexture_Compat(borderFrame.Background, r, g, b, alpha)
     borderFrame.Background:Show()
+    local fill=borderFrame.PortraitBackdropFill
+    if fill then SetColorTexture_Compat(fill,r,g,b,alpha);fill:Show() end
 end
 
 --- Set themed accent for border (class / atlas / custom from options) and optionally backdrop
@@ -517,6 +997,10 @@ function Border:SetClassColor(frame, alpha, tintBackdrop)
     self._accentFrames[frame] = true
 
     self:SetBorderColor(frame, r, g, b, alpha)
+    if frame.FluxBorderFrame then
+        frame.FluxBorderFrame._usesAccent = true
+        frame.FluxBorderFrame._accentAlpha = alpha
+    end
 
     if tintBackdrop then
         local dr, dg, db = self:GetThemedBackdropFillRGB()
@@ -530,6 +1014,7 @@ function Border:HideBackground(frame)
     local borderFrame = frame.FluxBorderFrame
     if borderFrame and borderFrame.Background then
         borderFrame.Background:Hide()
+        if borderFrame.PortraitBackdropFill then borderFrame.PortraitBackdropFill:Hide() end
     end
 end
 
@@ -539,6 +1024,7 @@ function Border:ShowBackground(frame)
     local borderFrame = frame.FluxBorderFrame
     if borderFrame and borderFrame.Background then
         borderFrame.Background:Show()
+        if borderFrame.PortraitBackdropFill then borderFrame.PortraitBackdropFill:Show() end
     end
 end
 

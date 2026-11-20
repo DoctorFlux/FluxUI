@@ -1,0 +1,1482 @@
+{
+  "changeId": "FLUX-BORDER-TYPES-20261115",
+  "date": "2026-11-15T11:06:38.842015+00:00",
+  "request": "Numbered shared border types with options-window metal artwork and tint-aware dropdown preview; keep all existing consumers and footprint. Default no tint retains natural artwork except Forever bronze on current type 1.",
+  "mockupChoice": "Implement directly; user reply in this chat on 15 November 2026",
+  "testingChoice": "Existing Witchcraft in-game preference retained; no Witchcraft/UIForever/desktop interaction tool available in this chat. Native tests not run.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-border-types-before-20261115T105821Z",
+  "checkpointVerified": true,
+  "checkpointSourceFiles": 2835,
+  "availableSettingsMetadata": 40,
+  "privateSettingsCopied": false,
+  "baselineSHA256": {
+    "FluxBorder.lua": "32f95e3c04bb7ea3154973b2dff3fee6f9cd302cb913d17f430a1627d852707b",
+    "AddonOptions/FluxOptionsDefaults.lua": "053ccb196536d1747ba3d628c097c28fd9969915275cc3a34a8867bc9a6a1333",
+    "AddonOptions/FluxOptionsGeneral.lua": "75e2e1594fd7dee8afa380ded5fa02599a9a217aa6d41ae37160ca4e8ff7b406",
+    "AddonOptions/FluxOptionsAppearance.lua": "c56ff64ce3c0eca22e1a322d95de2f52ae92e8ffe8c7cc610bb0fc1ecf39848e",
+    "AddonOptions/FluxOptionsWidgets.lua": "4c030354c09a5f8addaa3cdf3ea5a17b57ed561ff41b570bdda90e8a05151d32",
+    "tests/border_types.lua": null,
+    "tests/border_dropdown.lua": null
+  },
+  "candidateNormalizedSHA256": {
+    "FluxBorder.lua": "8d4601ae2da022931eea1c00b92c32d9a5d7bdd48988264b15292992f4050695",
+    "_FluxUI.toc": "b3e08dd1c5c116bf2a23372d22c83f573ce6627628103331657cc03ed48ae521",
+    "Core/FluxAPI/UI.lua": "56d9c6b6fe5c28f18970c8dd6e5b7413962785af9b909a0c41903f83cf970345",
+    "AddonOptions/FluxOptionsAppearance.lua": "49485d91647d805decb2fd72650db15d0385441381714063467593ab12d73161",
+    "AddonOptions/FluxOptionsGeneral.lua": "f46079e7df3655b15864c3446dabc2de307bb7acb706ab2bfb3c40bb406cda46",
+    "AddonOptions/FluxOptionsDefaults.lua": "0916ee4a1aaedcdab2ca975af75ea3aeb37431b719021ddc3663ffc20985d1ac",
+    "AddonOptions/FluxOptionsWidgets.lua": "087abbdc4c9dc1b8d2e666a555ff17c6f82bf7ef070baf6823bc18b0da82ccf7",
+    "StatusBars/FluxStatusBar.lua": "27dc9858dfef98c21f273b38b6b3f910c3bd267dc5fe7c135bf210582957225b",
+    "UnitFrames/FluxUnitFrames_Shared.lua": "83ecd0bea57246c55701a67b3cdc19029729792525a0a3fe1420aab85a2305e0",
+    "UnitFrames/FluxUnitFrames_Auras.lua": "2d575dd0194868cfd0cb4076d4ca2754dde389efae8ba5ca0b2793a47a258e00",
+    "UnitFrames/FluxCastBar.lua": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+    "ExtraButtonSystem/Engine/Style.lua": "0cc2decc08090e6fbbeb32cf2b299ab4752ae27235832423ccd6aa8f55602e66",
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "9a5ce2455b05fcc4f602d9854ff7c3e7763e5304d42330c1601bcd35da8041c0",
+    "tools/build_border_art.py": "595404bc511bea45f51c7901fd7bfc4604eb51909a2a40691086c329de8b2b69",
+    "tests/border_types.lua": "8c74112dadb854d100a4f9132158a5c57335a26dda8b97098ac4f19ddaff4e00",
+    "tests/border_dropdown.lua": "4ff7ff800b8d4676574a4652546de9fa4ff0891f8ae640009f71c67abd3070a5",
+    "tests/border_art.py": "1fce465b80a86f2cef70125e3c5cd0d28e86bd872b088998322637be5d572583",
+    "tests/bars_startup_retry.lua": "fb7fbd3ad7e3182c94ccf7092235ec5ba06180e9ca38050db527126467f5e8e0"
+  },
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "sourceEvidence": "Existing exact native source captures in options-native-border-sources-2026-11-09.json; branch heads re-resolved today through GitHub. Current Forever SharedXML TOC/metal layout/Camelot offset overrides and TextureUtil captured externally in border-types-sources. Classic XML fallback slices verified against pinned captured source.",
+  "implementation": {
+    "current": "Exact pre-connection checkpoint restored;independent rendering only.",
+    "borderOptions": "Prior numbered types and50%-200% thickness control restored, including prior swatch previews. Later fixed100/150/fullpreview/Trinket changes reverted at user request.",
+    "geometry": "Same checkpoint source and original consumer ownership.",
+    "connections": "Removed module,TOC entry,hooks,masks,T/X graphics andtests.",
+    "actionRouting": "Matches GitHub main and pre-connection checkpoint;no action assignment writes."
+  },
+  "controllerPlan": {
+    "selector": "Reuse existing options native modern dropdown or Classic/Forever-gamepad fallback; existing focus/highlight/check state and select/back behavior. No new catcher/bindings/focus stops.",
+    "preview": "Decorative FontString markup, no mouse/input ownership; Classic measure FontString is hidden and reused",
+    "acceptance": "All five clients: open Settings/Appearance via existing route; focus dropdown; choose both numbered entries; confirm visible selected state; change class/custom/no tint; Back closes menu then window; reopen/switch profile; scrolling and existing navigation preserved. Directional navigation and native first focus remain unverified."
+  },
+  "localization": {
+    "catalog": "New selector/choice/help strings centralized as English fallback TYPE_TEXT in FluxBorder.lua; existing options accent descriptions updated.",
+    "coverage": "English only; no new non-English translation claim. Localized layout/glyph/native menu acceptance pending."
+  },
+  "focused": {
+    "tests": [
+      {
+        "path": "tests/border_types.lua",
+        "exit": 0,
+        "output": "Border types: 320 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n"
+      },
+      {
+        "path": "tests/border_dropdown.lua",
+        "exit": 0,
+        "output": "Border dropdown: 5 checks PASS; native font/render/controller acceptance pending\n"
+      },
+      {
+        "path": "tests/minimap_side_border.lua",
+        "exit": 0,
+        "output": "Minimap side border: 2794 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS\n"
+      },
+      {
+        "path": "tests/options_rework.lua",
+        "exit": 0,
+        "output": "Options rework: 1243 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending\n"
+      },
+      {
+        "path": "tests/options_navigation.lua",
+        "exit": 0,
+        "output": "Options navigation: 6682 checks; actual builders mapped across five client contracts; native rendering pending\n"
+      },
+      {
+        "path": "tests/window_runtime_spec.lua",
+        "exit": 0,
+        "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
+      }
+    ],
+    "syntaxFiles": 7,
+    "syntaxFailures": 0,
+    "normalizedSHA256": {
+      "FluxBorder.lua": "6c90ac670648b2b316be753aa527af281396e3ff89cfa30b27d4022e492528ec",
+      "AddonOptions/FluxOptionsDefaults.lua": "6d7894bca8239c109b67ae400d49e6c8be6e93f2536a2d95d8f9330a0998ff15",
+      "AddonOptions/FluxOptionsGeneral.lua": "d8c03c039b5ec209e978ef496d013d305bf22c998c6ef2cafee86ed4a24837eb",
+      "AddonOptions/FluxOptionsAppearance.lua": "4e94cec6c1abf9723a876f97651a91051a11bafd852a390510850f363bfb3398",
+      "AddonOptions/FluxOptionsWidgets.lua": "087abbdc4c9dc1b8d2e666a555ff17c6f82bf7ef070baf6823bc18b0da82ccf7",
+      "tests/border_types.lua": "02f6619381f8c176d8eb7945a9a6bd0fca9ae9de9cc2a03f4083ccf8bd1c8c5c",
+      "tests/border_dropdown.lua": "8a8761d86bea88339669a8dbdae027eb70ad3ba0e1bddb27d42d1498e048316f"
+    }
+  },
+  "fullGate": {
+    "wholeRunScripts": 396,
+    "wholeRunSyntaxFiles": 1084,
+    "failures": 0,
+    "finalFocusedScripts": 6,
+    "combinedScripts": 397,
+    "combinedPass": 397,
+    "combinedFail": 0,
+    "finalSyntaxFiles": 1085,
+    "finalOwnedSourceDrift": [],
+    "wholeRunFinalManifestChanges": [],
+    "addedSinceWholeRun": [
+      "tests/border_dropdown.lua"
+    ],
+    "reports": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-types-full.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-types-focused.json",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-types-final.json"
+    ],
+    "historical": true,
+    "current": "independentRollback"
+  },
+  "native": {
+    "sourceAdoption": "Exact pre-connection source restored on disk;new loaded-state/button recovery not yet verified.",
+    "pixels": "NOT RUN for final candidate; pending user/native acceptance",
+    "taint": "NOT RUN for final candidate; pending user/native acceptance",
+    "controller": "NOT RUN for final candidate; pending user/native acceptance",
+    "performance": "NOT RUN for final candidate; pending user/native acceptance"
+  },
+  "gameInputOrFocusControl": false,
+  "settingsOrProfilerWrites": false,
+  "publication": false,
+  "otherClientInstallCopies": "Not modified; this existing repository only",
+  "sourceURLs": [
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedXML/Mainline/NineSliceLayouts.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedXML/Camelot/NineSliceLayoutOverrides.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedXMLBase/TextureUtil.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.xml",
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleTextureAPIDocumentation.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+    "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/SlashCommands.lua"
+  ],
+  "documentationGate": {
+    "result": "PASS",
+    "sources": 1121,
+    "reachable": 624,
+    "settingDefinitions": 444,
+    "savedRoots": 24,
+    "literalDefaults": 584,
+    "localLinks": 17634,
+    "writes": "Generated existing reference artifacts with build_reference.py; validate_docs.py read-only PASS"
+  },
+  "correction": {
+    "status": "Actual Forever art correction retained; adjustable thickness superseded by finalFixedJunctions",
+    "requirements": {
+      "BORDER-02-ART": "Use exact Forever 1.60.1.70938 options-window bronze/gold frame artwork on every client; user screenshot is accepted reference. Do not substitute current-client metal art.",
+      "BORDER-02-FIT": "Normalize visible stroke/corners to Border type 1 footprint and seamless joins; do not just stretch whole native window pieces. Shared style descriptors must support subsequent types.",
+      "BORDER-02-COVERAGE": "Outer shared borders plus status row/column splits; unit HP/resource separators; class/spec icon edges; target/focus aura panel borders. Keep consumer tint/alpha/geometry and gameplay behavior.",
+      "BORDER-02-CONTROL": "Decorative changes only; reuse existing selector/focus/activation/back route. No new interactive element. Native gamepad/pixels/taint acceptance pending."
+    },
+    "designChoice": "Implement directly already authorized; screenshot now supplies precise visual target",
+    "sourcePlan": "Read exact Forever installed CASC artwork without game input; normalized shared artwork with alpha-aware geometry and shared piece registration. Native assets/source hashes and extraction provenance recorded before application.",
+    "checkpointPathFile": "External border-fit-checkpoint-path.txt; 2838 source/history files and 40 settings metadata verified",
+    "referenceScreenshot": "User attachment codex-clipboard-8955c298-0604-496c-83c6-5bd7e9821470.png; no edit of original",
+    "completedUTC": "2026-11-15T11:55:05.984138+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fit-before-20261115T111310Z",
+    "sourceBuild": {
+      "client": "Forever",
+      "version": "1.60.1.70938",
+      "product": "wowf",
+      "installation": "F:/World of Warcraft/_forever_",
+      "buildKey": "3627b099867bfde3e37a17cf44f69cdc",
+      "rootKey": "f5e8b398da97f055c74ee9898857af83",
+      "source": "Read offline from installed CASC; reader file opens forced STREAM_FLAG_READ_ONLY; no process/input/foreground interaction",
+      "cascLibrarySource": "ladislav-zezula/CascLib@6b889ec8f421cbc9baccec296c582362ab917887; external readonly/diagnostic patch",
+      "db2": {
+        "UiTextureAtlasMember": {
+          "FileDataID": 897532,
+          "layout": "75E12F73",
+          "records": 20685
+        },
+        "UiTextureAtlas": {
+          "FileDataID": 897470,
+          "layout": "91378408",
+          "records": 2826
+        }
+      },
+      "mapping": "c60-2x native variant, not old gray UIFrameMetal",
+      "usedMembers": [
+        38771,
+        38772,
+        38773,
+        38774,
+        38780
+      ],
+      "artFileDataIDs": [
+        8069114,
+        8069116,
+        8069118
+      ],
+      "sourceTables": {
+        "members": [
+          [
+            "battlefieldminimap-border-bottomleft",
+            7942,
+            1230,
+            16,
+            16,
+            211,
+            227,
+            20,
+            36,
+            7211,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-bottomright",
+            7943,
+            1230,
+            16,
+            16,
+            229,
+            245,
+            20,
+            36,
+            7212,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-top",
+            7944,
+            1230,
+            208,
+            17,
+            1,
+            209,
+            1,
+            18,
+            7213,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-topleft",
+            7945,
+            1230,
+            16,
+            17,
+            211,
+            227,
+            1,
+            18,
+            7214,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-topright",
+            7946,
+            1230,
+            16,
+            17,
+            229,
+            245,
+            1,
+            18,
+            7215,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-bottom",
+            7947,
+            1230,
+            208,
+            16,
+            1,
+            209,
+            20,
+            36,
+            7216,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-left",
+            7948,
+            1230,
+            16,
+            134,
+            1,
+            17,
+            38,
+            172,
+            7217,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "battlefieldminimap-border-right",
+            7949,
+            1230,
+            16,
+            134,
+            19,
+            35,
+            38,
+            172,
+            7218,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-cornerbottomleft-2x",
+            8499,
+            1390,
+            64,
+            64,
+            153,
+            217,
+            153,
+            217,
+            7674,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornerbottomright-2x",
+            8500,
+            1390,
+            64,
+            64,
+            219,
+            283,
+            153,
+            217,
+            7677,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertopleft-2x",
+            8501,
+            1390,
+            150,
+            150,
+            1,
+            151,
+            1,
+            151,
+            7678,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertopright-2x",
+            8502,
+            1390,
+            150,
+            150,
+            153,
+            303,
+            1,
+            151,
+            7679,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertoprightdouble-2x",
+            8508,
+            1390,
+            150,
+            150,
+            305,
+            455,
+            1,
+            151,
+            7715,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "!ui-frame-metal-edgeleft-2x",
+            8514,
+            1394,
+            150,
+            32,
+            1,
+            151,
+            0,
+            32,
+            7680,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            "!ui-frame-metal-edgeright-2x",
+            8515,
+            1394,
+            150,
+            32,
+            153,
+            303,
+            0,
+            32,
+            7681,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            "_ui-frame-metal-edgebottom-2x",
+            8516,
+            1395,
+            32,
+            64,
+            0,
+            32,
+            153,
+            217,
+            7673,
+            0,
+            0,
+            4,
+            2
+          ],
+          [
+            "_ui-frame-metal-edgetop-2x",
+            8517,
+            1395,
+            64,
+            150,
+            0,
+            64,
+            1,
+            151,
+            7676,
+            0,
+            0,
+            4,
+            2
+          ],
+          [
+            "!ui-frame-metal-edgeleft-c60-2x",
+            38771,
+            3977,
+            190,
+            256,
+            1,
+            191,
+            0,
+            256,
+            7680,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            "!ui-frame-metal-edgeright-c60-2x",
+            38772,
+            3977,
+            190,
+            256,
+            193,
+            383,
+            0,
+            256,
+            7681,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            "ui-frame-metal-cornerbottomleft-c60-2x",
+            38773,
+            3978,
+            190,
+            200,
+            1,
+            191,
+            1,
+            201,
+            7674,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornerbottomright-c60-2x",
+            38774,
+            3978,
+            190,
+            200,
+            1,
+            191,
+            203,
+            403,
+            7677,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertopleft-c60-2x",
+            38775,
+            3978,
+            190,
+            190,
+            193,
+            383,
+            1,
+            191,
+            7678,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertopright-c60-2x",
+            38776,
+            3978,
+            190,
+            190,
+            193,
+            383,
+            193,
+            383,
+            7679,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "ui-frame-metal-cornertoprightdouble-c60-2x",
+            38777,
+            3978,
+            190,
+            190,
+            385,
+            575,
+            1,
+            191,
+            7715,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            "_ui-frame-metal-edgebottom-c60-2x",
+            38780,
+            3979,
+            256,
+            200,
+            0,
+            256,
+            1,
+            201,
+            7673,
+            0,
+            0,
+            4,
+            2
+          ],
+          [
+            "_ui-frame-metal-edgetop-c60-2x",
+            38781,
+            3979,
+            256,
+            190,
+            0,
+            256,
+            203,
+            393,
+            7676,
+            0,
+            0,
+            4,
+            2
+          ],
+          [
+            "ui-frame-metal-tabs-bg-c60-2x",
+            39024,
+            4021,
+            120,
+            120,
+            1,
+            121,
+            1,
+            121,
+            35129,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-tabs-c60-2x",
+            39025,
+            4021,
+            120,
+            120,
+            123,
+            243,
+            1,
+            121,
+            35130,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-tabs-glow-c60-2x",
+            39026,
+            4021,
+            120,
+            120,
+            1,
+            121,
+            123,
+            243,
+            35131,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-tabs-bg-c60",
+            39027,
+            4020,
+            60,
+            60,
+            1,
+            61,
+            1,
+            61,
+            35129,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-tabs-c60",
+            39028,
+            4020,
+            60,
+            60,
+            63,
+            123,
+            1,
+            61,
+            35130,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-tabs-glow-c60",
+            39029,
+            4020,
+            60,
+            60,
+            1,
+            61,
+            63,
+            123,
+            35131,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-focus-c60-2x",
+            41332,
+            4210,
+            670,
+            652,
+            1,
+            671,
+            1,
+            653,
+            36437,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "ui-frame-metal-focus-c60",
+            41335,
+            4211,
+            335,
+            326,
+            1,
+            336,
+            1,
+            327,
+            36437,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "atlases": [
+          [
+            1230,
+            2103955,
+            0,
+            256,
+            256,
+            1
+          ],
+          [
+            1390,
+            2406979,
+            0,
+            512,
+            512,
+            1
+          ],
+          [
+            1394,
+            2406984,
+            0,
+            512,
+            32,
+            1
+          ],
+          [
+            1395,
+            2406987,
+            0,
+            64,
+            256,
+            1
+          ],
+          [
+            3977,
+            8069114,
+            1,
+            512,
+            256,
+            1
+          ],
+          [
+            3978,
+            8069116,
+            1,
+            1024,
+            512,
+            1
+          ],
+          [
+            3979,
+            8069118,
+            1,
+            256,
+            512,
+            1
+          ],
+          [
+            4020,
+            8117101,
+            1,
+            128,
+            128,
+            1
+          ],
+          [
+            4021,
+            8117103,
+            1,
+            256,
+            256,
+            2
+          ],
+          [
+            4210,
+            8280390,
+            1,
+            2048,
+            1024,
+            2
+          ],
+          [
+            4211,
+            8280392,
+            1,
+            1024,
+            512,
+            1
+          ]
+        ]
+      },
+      "extraction": [
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetal.blp",
+          "bytes": 1049748,
+          "sha256": "a476f027ef163a602d2bf784022376317e4b54bbd178f5fb66839a884394d384",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetalHorizontal.blp",
+          "bytes": 263316,
+          "sha256": "7b99f527c5a8edaa4b1cc5b32486be213a976d38e55f6578f4bce2a88c010839",
+          "size": [
+            128,
+            512
+          ]
+        },
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetalVertical.blp",
+          "bytes": 263316,
+          "sha256": "fd346737c1072a0e362f49858050d4e4128da67c14850297a505f2f5de8eff52",
+          "size": [
+            512,
+            128
+          ]
+        },
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetal2x.blp",
+          "bytes": 1049748,
+          "sha256": "5abbedd3a0da9e2a267cfb1a73f14c21b3706fd9e065a05b6d39b22825930bb0",
+          "size": [
+            512,
+            512
+          ]
+        },
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetalHorizontal2x.blp",
+          "bytes": 66708,
+          "sha256": "f5312225bf2da4e45edba30bf89297adf79b2f26c7907b65d030c0260e02f148",
+          "size": [
+            64,
+            256
+          ]
+        },
+        {
+          "name": "Interface/FrameGeneral/UIFrameMetalVertical2x.blp",
+          "bytes": 66708,
+          "sha256": "189e4a93feb23e1e27a1850447dc8834fe3f775e47bfdc5c0f42a1972d796036",
+          "size": [
+            512,
+            32
+          ]
+        },
+        {
+          "name": "DBFilesClient/UiTextureAtlasMember.db2",
+          "bytes": 1470633,
+          "sha256": "d48148857d3a2f31e76852b6951b86d9fb3878d45da1ca274399ce2e405ed734"
+        },
+        {
+          "name": "DBFilesClient/UiTextureAtlas.db2",
+          "bytes": 56934,
+          "sha256": "121bdf6325339dd7d6570e82da6a98fb156e6f0730fbdce333aa92797e98a064"
+        },
+        {
+          "name": "FileData/8069114.blp",
+          "bytes": 525460,
+          "sha256": "fa16cf9079e267a54f28a39b573e7d8dd4dbb9d2ee8e07c80aba252cbcade22c",
+          "size": [
+            512,
+            256
+          ]
+        },
+        {
+          "name": "FileData/8069116.blp",
+          "bytes": 2098324,
+          "sha256": "acb0f4d211caa359bf7df3e09ea94da2f96c1c2300bb42226a3786b74465da7f",
+          "size": [
+            1024,
+            512
+          ]
+        },
+        {
+          "name": "FileData/8069118.blp",
+          "bytes": 525460,
+          "sha256": "0eeeb8ac629f7980017d6ebd93bf75ef8f284cd76c14513854577f9bea9f111b",
+          "size": [
+            256,
+            512
+          ]
+        },
+        {
+          "name": "FileData/2103955.blp",
+          "bytes": 66708,
+          "sha256": "e4c8d6a4a3bf52b5f0a2b94e375bc2cc25e67ee770ec620a65e486669b4b6992",
+          "size": [
+            256,
+            256
+          ]
+        }
+      ]
+    },
+    "normalization": {
+      "canvas": [
+        256,
+        256
+      ],
+      "geometry": "Same eight integer-UV cells, original sizes/anchors/padding. Gold visible tracks are calibrated against original type1 outward core pixels before thickness resampling. Top/bottom/left 100% core width matches; right highlight can differ by one pixel while retaining outward boundary. Source2x bevel is uniformly reduced then distance-normalized; no title-band/portrait/window background.",
+      "joins": "170 raster checks PASS across all20 canvases/all7thickness values; exact cap/edge RGBA, natural gold/neutral masks, default stroke and outward padding checked",
+      "accent": "No tint preserves natural Forever gold on every client. Class/custom use neutral RGB mask with identical alpha, preserving selected hue. Type1 keeps Forever bronze exception.",
+      "sharedContract": "Every STYLE_ART entry uses the same canvas; choices/resolver derive from descriptors. Direct owners register once; pooled layout can reapply. Type1 snapshots restore atlas/UV exactly.",
+      "colorSafety": "Explicit RGB/alpha remain consumer-owned. Shared alpha is stored without potentially private vertex-color reads. Aura panels retain .4 alpha; type1 restores original .6 gray; new types follow accent."
+    },
+    "coverage": [
+      "ApplyTo outer borders",
+      "Status row/column splits",
+      "HP/resource separators including party helper",
+      "Class/spec icon edges",
+      "Target/focus aura panel corners/edges including compact focus",
+      "Shared legacy piece helper"
+    ],
+    "rawSHA256": {
+      "FluxBorder.lua": "c48fd59e654a31dd14eb9924addec3bce0273363400a82bb3c5674bc081df544",
+      "Core/FluxAPI/UI.lua": "50208e798ab6039ec9a3f3c6a4f199cba585b8f5c91f762e7b786de0b3368b34",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "3151e3f01d9c74ce55cc48281e9e3a83d2e6c24449cc7f07d6a0279c2064a507",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "78ac55cd47b639ef86e37da8c71997e9c3795f338a7449c59112ad42c4235fbe",
+      "StatusBars/FluxStatusBar.lua": "a9be538df08a18b907b2d9546f8544cfde24d5c48e0edbd3c6d250c299d4fde4",
+      "AddonOptions/FluxOptionsDefaults.lua": "0916ee4a1aaedcdab2ca975af75ea3aeb37431b719021ddc3663ffc20985d1ac",
+      "AddonOptions/FluxOptionsGeneral.lua": "f46079e7df3655b15864c3446dabc2de307bb7acb706ab2bfb3c40bb406cda46",
+      "AddonOptions/FluxOptionsAppearance.lua": "49485d91647d805decb2fd72650db15d0385441381714063467593ab12d73161",
+      "tests/border_types.lua": "37cf55bd903c6c8de558b4c0dbfca23057188746e5aa50185cb4afa160c08da3",
+      "tests/border_dropdown.lua": "328acba816838197240fbaf18d24a49e6c320debdcd17c2ad1c060a226eddb66",
+      "tools/build_border_art.py": "6a13c964b5f4743a917648545a228a7c9002b80fc207a8a78a6dfdeeecd29be0",
+      "tests/border_art.py": "2aec8959b549d80fcca489b9e7c22193c22a535a2870e3703af4f777d848113b",
+      "Texture/borders/README.md": "c0d2a135a2e11a9529395f11c0e41ec31a9f541af56a97bb8b1c273f840df0a2",
+      "Texture/borders/ForeverMetal.tga": "1dc6dce7118a07e58e290087efb9b9dcf74958e4e931b3178386619b652413af",
+      "Texture/borders/ForeverMetal125.tga": "4fb5480a75a574780aea0e49c9ea3e13c5c1b18086451ff4d82ca84318d736c4",
+      "Texture/borders/ForeverMetal125Tint.tga": "c2c8a25742cf86cae202f5c24e5da2d95d1057dd2cdbcd6960c8cc0dd3b8ba9f",
+      "Texture/borders/ForeverMetal150.tga": "476d8ebcbc84bcfe22b8ef780c7acbc0160bf14e7266e819cb1764ebcd6a43e7",
+      "Texture/borders/ForeverMetal150Tint.tga": "e5e08743880ee1596166e8fad131d6e2bba3aba71d97452c546148951705ee42",
+      "Texture/borders/ForeverMetal175.tga": "c98ebc396340b0204e24e14801d7fcda796725299d83dc0012c9beab4e4ef889",
+      "Texture/borders/ForeverMetal175Tint.tga": "51aaeb06e4c63c76d5862afbe5a1918c747518aec792ff83051bb3dc37796d65",
+      "Texture/borders/ForeverMetal200.tga": "840c3f24554a290855ec74ce54f9af7f43b9be481ebf8fb3f2d0df7e99811467",
+      "Texture/borders/ForeverMetal200Tint.tga": "8288dcede12c199a94a3f4a45e0da8ed24d1e28b1ebe1477bbf0d3b9cfa09222",
+      "Texture/borders/ForeverMetal50.tga": "ec1e0e690fe388cc22d3095f70e3caff67d7afd8f827e869a5cc5afa7c262589",
+      "Texture/borders/ForeverMetal50Tint.tga": "f177641aebcc00854eb630fcd830fae39a476b1f8360d04d8b0d71afde7fc6c6",
+      "Texture/borders/ForeverMetal75.tga": "6f9757d0873562f8d907c18576bd17d77e2c81eb96b943440301591f319e28a9",
+      "Texture/borders/ForeverMetal75Tint.tga": "6f3008213857f36dcd4e1bcea5e0f410b7eb9b16cbc2ca80ae6c43734dca0cbe",
+      "Texture/borders/ForeverMetalTint.tga": "0ac0129e115ad4708c6d93f3165941215fc2b0eea6a5f0debfd265e453969e1a",
+      "Texture/borders/Battlefield125.tga": "d9905b9118fbacbc518d7892a4bbc0a61b143dda8799987f12552c6d4fc1b205",
+      "Texture/borders/Battlefield150.tga": "4265c752165f815b0e8ad9b93818d56f5620b5829c81099005e9554b33d47606",
+      "Texture/borders/Battlefield175.tga": "675d7d84aeaa7702c7ecec1b8562c939e5edf373847cf51b987fea24f20a87c7",
+      "Texture/borders/Battlefield200.tga": "20d8a7b27c04523b2b9c4d24db407f22f3b5ad4ff682c1bc30c8ef0999910351",
+      "Texture/borders/Battlefield50.tga": "db10847693fc309165bada490fa40f38089b05dca834b9d818610c330f973271",
+      "Texture/borders/Battlefield75.tga": "07e27624d15d7620fa59f31a3d1b9223845c886a55fc5be56b9c7a5a1128fad1"
+    },
+    "normalizedSHA256": {
+      "FluxBorder.lua": "8d4601ae2da022931eea1c00b92c32d9a5d7bdd48988264b15292992f4050695",
+      "Core/FluxAPI/UI.lua": "56d9c6b6fe5c28f18970c8dd6e5b7413962785af9b909a0c41903f83cf970345",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "83ecd0bea57246c55701a67b3cdc19029729792525a0a3fe1420aab85a2305e0",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "2d575dd0194868cfd0cb4076d4ca2754dde389efae8ba5ca0b2793a47a258e00",
+      "StatusBars/FluxStatusBar.lua": "27dc9858dfef98c21f273b38b6b3f910c3bd267dc5fe7c135bf210582957225b",
+      "AddonOptions/FluxOptionsDefaults.lua": "0916ee4a1aaedcdab2ca975af75ea3aeb37431b719021ddc3663ffc20985d1ac",
+      "AddonOptions/FluxOptionsGeneral.lua": "f46079e7df3655b15864c3446dabc2de307bb7acb706ab2bfb3c40bb406cda46",
+      "AddonOptions/FluxOptionsAppearance.lua": "49485d91647d805decb2fd72650db15d0385441381714063467593ab12d73161",
+      "tests/border_types.lua": "8c74112dadb854d100a4f9132158a5c57335a26dda8b97098ac4f19ddaff4e00",
+      "tests/border_dropdown.lua": "4ff7ff800b8d4676574a4652546de9fa4ff0891f8ae640009f71c67abd3070a5"
+    },
+    "validation": {
+      "wholeSuite": "397 scripts/1085 syntax PASS at final Lua identities; border-thickness-full.json",
+      "finalFocused": {
+        "tests": [
+          {
+            "path": "tests/options_rework.lua",
+            "exit": 0,
+            "output": "Options rework: 1243 checks; complete shell/renderer/widgets and menu lifecycle across five client models; native acceptance pending\n"
+          },
+          {
+            "path": "tests/options_navigation.lua",
+            "exit": 0,
+            "output": "Options navigation: 6682 checks; actual builders mapped across five client contracts; native rendering pending\n"
+          },
+          {
+            "path": "tests/unit_class_icon_secrets.lua",
+            "exit": 0,
+            "output": "unit_class_icon_secrets: 560 checks PASS; native secrets/pixels NOT RUN\n"
+          },
+          {
+            "path": "tests/unit_aura_timer_policy.lua",
+            "exit": 0,
+            "output": "PASS 36 unit aura minute-policy checks; native rendering pending\n"
+          },
+          {
+            "path": "tests/unit_debuff_group_overlap.lua",
+            "exit": 0,
+            "output": "Unit debuff group overlap: 100 checks passed; simulated filter overlap; native acceptance pending\n"
+          },
+          {
+            "path": "tests/unit_frame_whole_scale.lua",
+            "exit": 0,
+            "output": "unit frame whole scale: 47 checks\n"
+          },
+          {
+            "path": "tests/raid_party_frames.lua",
+            "exit": 0,
+            "output": "Party player-style frames: 1035 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+          },
+          {
+            "path": "tests/window_runtime_spec.lua",
+            "exit": 0,
+            "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
+          },
+          {
+            "path": "Core/_tmp_coresmoke.lua",
+            "exit": 0,
+            "output": "core smoke OK\n  scheduler: layout \u00e2\u2020\u2019 display \u00e2\u2020\u2019 eval; paging defers eval/display\n  modifier: FluxModifierTracker alias, demand-driven OnUpdate\n  context: kinded fingerprint bus on display tier\n  identity: shown-face publish + last-sig skip\n  occupancy: type+id only, no GetMacroSpell\n  formstorm: IsBursting / IsSettling / GetSnapshot\n  hoplag: /fluxhop overlay, off by default\n  aura: slots/index gate on CanAccessSecrets; GetPlayerAuraBySpellID does not\n  secrets: SafeBooleanTest/SafeLooksEmpty/AuraUpdateInfoIsNoop/KeepLastNumber\n  swing: gated off live post-DF + post-Cata classic; Forever uses PLAYER_SWING; CLEU + DurationUtil probed\n"
+          },
+          {
+            "path": "tests/border_types.lua",
+            "exit": 0,
+            "output": "Border types: 388 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n"
+          },
+          {
+            "path": "tests/border_dropdown.lua",
+            "exit": 0,
+            "output": "Border dropdown: 5 checks PASS; native font/render/controller acceptance pending\n"
+          },
+          {
+            "path": "tests/minimap_side_border.lua",
+            "exit": 0,
+            "output": "Minimap side border: 2794 checks;actual FluxBorder/arrow layers;5 client models;30 art/scale cases;7 harmful controls PASS\n"
+          }
+        ],
+        "syntaxFiles": [
+          "FluxBorder.lua",
+          "Core/FluxAPI/UI.lua",
+          "UnitFrames/FluxUnitFrames_Shared.lua",
+          "UnitFrames/FluxUnitFrames_Auras.lua",
+          "StatusBars/FluxStatusBar.lua",
+          "tests/border_types.lua",
+          "tests/border_dropdown.lua"
+        ],
+        "normalizedSHA256": {
+          "FluxBorder.lua": "3b78a20da85923faaa96f80dacb3e28daadf82387f36da7955a487d855413094",
+          "Core/FluxAPI/UI.lua": "56d9c6b6fe5c28f18970c8dd6e5b7413962785af9b909a0c41903f83cf970345",
+          "UnitFrames/FluxUnitFrames_Shared.lua": "83ecd0bea57246c55701a67b3cdc19029729792525a0a3fe1420aab85a2305e0",
+          "UnitFrames/FluxUnitFrames_Auras.lua": "2d575dd0194868cfd0cb4076d4ca2754dde389efae8ba5ca0b2793a47a258e00",
+          "StatusBars/FluxStatusBar.lua": "27dc9858dfef98c21f273b38b6b3f910c3bd267dc5fe7c135bf210582957225b",
+          "tests/border_types.lua": "5ab13c837087fa9f39f0d67d18f3a3d47beb391a1c7006a438c25ed5801951c5",
+          "tests/border_dropdown.lua": "4ff7ff800b8d4676574a4652546de9fa4ff0891f8ae640009f71c67abd3070a5"
+        }
+      },
+      "raster": "170 PASS; tests/border_art.py; every thickness and both types; default stroke width and four outward pixel boundaries match reference",
+      "softwarePreview": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fit-art\\normalized-preview.png",
+      "native": "Native post-reload pixels/UI scales/taint/controller/performance NOT RUN. Software raster/source are accepted only within their stated scope.",
+      "wholeSuiteReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-thickness-full.json",
+      "directRegression": "Border types: 652 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n",
+      "finalFocusedStatus": "Earlier twelve focused observations retained; final full run covers all changed Lua and current tests."
+    },
+    "publication": false,
+    "nativeInputOrFocus": false,
+    "settingsOrProfilerWrites": false,
+    "installation": {
+      "manualSync": false,
+      "sourceAdoption": "Not verified; no reload issued",
+      "ForeverReadOnlyHashMatches": {
+        "FluxBorder.lua": true,
+        "Core/FluxAPI/UI.lua": true,
+        "UnitFrames/FluxUnitFrames_Shared.lua": true,
+        "UnitFrames/FluxUnitFrames_Auras.lua": true,
+        "StatusBars/FluxStatusBar.lua": true,
+        "AddonOptions/FluxOptionsDefaults.lua": true,
+        "AddonOptions/FluxOptionsGeneral.lua": true,
+        "AddonOptions/FluxOptionsAppearance.lua": true,
+        "Texture/borders/ForeverMetal.tga": true,
+        "Texture/borders/ForeverMetal125.tga": true,
+        "Texture/borders/ForeverMetal125Tint.tga": true,
+        "Texture/borders/ForeverMetal150.tga": true,
+        "Texture/borders/ForeverMetal150Tint.tga": true,
+        "Texture/borders/ForeverMetal175.tga": true,
+        "Texture/borders/ForeverMetal175Tint.tga": true,
+        "Texture/borders/ForeverMetal200.tga": true,
+        "Texture/borders/ForeverMetal200Tint.tga": true,
+        "Texture/borders/ForeverMetal50.tga": true,
+        "Texture/borders/ForeverMetal50Tint.tga": true,
+        "Texture/borders/ForeverMetal75.tga": true,
+        "Texture/borders/ForeverMetal75Tint.tga": true,
+        "Texture/borders/ForeverMetalTint.tga": true,
+        "Texture/borders/Battlefield125.tga": true,
+        "Texture/borders/Battlefield150.tga": true,
+        "Texture/borders/Battlefield175.tga": true,
+        "Texture/borders/Battlefield200.tga": true,
+        "Texture/borders/Battlefield50.tga": true,
+        "Texture/borders/Battlefield75.tga": true
+      }
+    },
+    "thickness": {
+      "fixedWeights": {
+        "1": 100,
+        "2": 150
+      },
+      "setting": "removed;obsolete saved values ignored",
+      "currentRecord": "finalFixedJunctions"
+    },
+    "previousAdjustableThickness": {
+      "userRequirement": "Same padding as border1; thinner default plus adjustable thickness for both border types",
+      "storage": "appearance.borderThickness; default100; 50..200 in25% steps; active General profile",
+      "option": "Border thickness, native percent slider; same existing mouse/keyboard/controller row route",
+      "normalization": "Gold base aligned to original outward stroke pixels before thickness sampling; normal distance changes around fixed edge/chamfer tracks. Same eight UV cells, anchors, dimensions, layer and consumer padding at every value. 100% top core matches type1; all four outward core boundaries match. Right highlight can differ by one pixel.",
+      "art": "20 precomputed canvases: natural gold + identical-alpha neutral mask at7values;6nondefault type1 canvases. Type1 at100 restores original atlas/UV. No runtime image generation, geometry scaling or new driver.",
+      "color": "No tint natural Forever gold; class/custom neutral mask; alpha and gameplay color ownership retained",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-thickness-before-20261115T114418Z",
+      "nativeControllerAcceptance": "NOT RUN: existing selector/slider focus, activation/adjustment, Back and scrolling on each client pending; no new catcher or binding",
+      "nativePixelAcceptance": "Software raster passes; actual client scale/pixels/source adoption NOT RUN",
+      "assetsBytes": 5243760
+    }
+  },
+  "previousAttemptStatus": "Historical generic metal and adjustable thickness attempts are superseded by latestRequirements and finalFixedJunctions.",
+  "latestRequirements": {
+    "status": "Connected work and later styling slice cancelled/rolled back to exact prior checkpoint",
+    "fixedWeights": {
+      "type1": 100,
+      "type2": 150
+    },
+    "thicknessSetting": "Removed from defaults/options/factory. Fixed weights1=100,2=150; old saved values ignored.",
+    "preview": "Complete border thumbnail in menu/selected label and larger accent-aware tooltip previews",
+    "gap": "Investigate atlas filtering at cap/edge joins; add longitudinal guard texels and sampling regressions",
+    "trinkets": "Use live EBS style owner for button ring and backplate, like action/combat/noncombat grids; preserve icon usability, cooldowns and secure slot actions",
+    "junctions": "Automatically detect shared structural collinear edges and T/X intersections through shared border registry, clip duplicate structural paint, draw one junction; both types and future styles",
+    "exceptions": "Preserve portrait combat/debuff overlays, cast bars, target-of-target/pet/party-member-target overlays",
+    "performance": "No permanent polling or color-driven geometry scan. Coalesce layout/visibility/style invalidation; cache unchanged geometry; spatial indexing; bounded lazy reusable masks/junction textures. Measure modeled work and native pending separately.",
+    "acceptance": "Current source restore in independentRollback;remaining13-19 native button complaint unresolved."
+  },
+  "supersededImplementation": {
+    "storage": "appearance.borderType = 1 or 2 in active General AceDB profile; missing/invalid values retain type 1; existing borderAccent/customAccent unchanged",
+    "type1": "Original battlefield atlas/packed legacy texture and all existing geometry",
+    "type2": "Client native UI-Frame-Metal family with rectangular top-left corner; whole-family capability check; Classic native UI-Frame/_UI-Frame/!UI-Frame UV fallback",
+    "normalization": "Swap artwork on original eight texture regions using SetAtlas false or native texture UVs. No SetPoint/SetSize/SetScale/layer/frame-level writes during swaps. Existing fractional/effective scale remains consumer-owned; native pixel fit is not certified.",
+    "preview": "Three-piece top-border swatch inside each existing native dropdown label; per-choice class/custom or white/Forever-bronze vertex tint",
+    "lifecycle": "Weak all-border registry includes explicit-color consumers; SetBorderColor overrides survive type changes. RemoveFrom releases both registries. New borders inherit selected art. No new event/timer/ticker/poll.",
+    "scope": "FluxBorder ApplyTo-owned rectangular borders; directly painted native/gameplay art and circular portrait ring remain consumer-owned. No per-consumer source edits. Existing dormant Minecraft selector preserved; not activated by this task."
+  },
+  "finalFixedJunctions": {
+    "changeId": "FLUX-BORDER-JUNCTIONS-20261115",
+    "completedUTC": "2026-11-15T12:50:23.399374+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fixed-types-before-20261115T120341Z",
+    "checkpointVerified": true,
+    "sourceFiles": 2861,
+    "settingsMetadata": 5,
+    "privateSettingsCopied": false,
+    "wholeRun": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fixed-final.json",
+    "wholeRunTests": 399,
+    "wholeRunPass": 399,
+    "wholeRunFail": 0,
+    "finalSyntaxFiles": 1088,
+    "finalSyntaxFail": 0,
+    "finalReplay": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fixed-focused.json",
+    "finalReplayTests": 12,
+    "finalReplayFail": 0,
+    "wholeRunSourceDriftBeforeReplay": [
+      "Core/BorderJunctions.lua",
+      "tests/border_junctions.lua"
+    ],
+    "driftResolution": "Final current J solver/renderer, rate ceiling, bucket limits and unchanged graph tested by86checks;12focused scripts replayed and all1088Lua recompiled. Current normalized hashes synced in verification index.",
+    "rasterChecks": 3334,
+    "rasterResult": "PASS offline only: fixed150%,outward padding,correct endpoint RGBA,filtered gutters,complete previews,40T/Xvariants and inverse clip mask.",
+    "performanceChecks": "2000segments/1000separatedX nodes with fewer than12000candidate visits;dense overlap aborts at24001candidates;wide extents abort at32769bucket entries;100dirty requests merge;500animation invalidations retain one wake;unchanged geometry reuses resources;no idle reschedule;Trinket restore adds zero size/template calls.",
+    "apiEvidence": "Pinned Forever SimpleTextureAPIDocumentation declares AddMaskTexture/RemoveMaskTexture with AllowedWhenUntainted arguments. Packaged widget declaration ledgers cover frame CreateMaskTexture,GetRect and hooks. Owned capability checks preserve originals when masking is unavailable;declarations do not prove native availability/capacity/security/GPU cost.",
+    "nativeInputOrFocus": false,
+    "settingsOrProfilerWrites": false,
+    "manualInstallationCopies": false,
+    "publication": false,
+    "nativePending": [
+      "Loaded source adoption after user reload",
+      "Exact portrait seam andT/X visuals at real fractional UI scales",
+      "All current dropdown/gamepad/Back/scroll routes",
+      "Owned mask support/capacity and GPU draw cost on all five clients",
+      "Combat taint/protected state;intentional overlay restoration",
+      "Matched native frame-time/FPS captures with profiler preferences preserved"
+    ],
+    "artRawSHA256": {
+      "Texture/borders/ForeverMetal150.tga": "d8db6d7338d4040e3413599614ccf17229c286bc431340dc85d5a8c340f9eb59",
+      "Texture/borders/ForeverMetal150Tint.tga": "a567a02d161e202d58b3a36362f318295e3f636a4c5fffd2b59c02f1ef397455",
+      "Texture/borders/Junction1.tga": "7bcd4fa30057164df95ea7da273f92d08ef75f5afd27a251ca4880b1c76db180",
+      "Texture/borders/Junction2.tga": "37ba2daa167c515c0823246763b8b626ef2674822bb7bb92406a70360f12a06c",
+      "Texture/borders/Junction2Tint.tga": "5ffd93c96666e5967bbc29d179d14bbba3175c359bbe951ef3b7fe6034f503af",
+      "Texture/borders/JunctionCut.tga": "0c72800109d85d279cf4601fa275a54ad9c2c5e07763d47f346f9273d029285e",
+      "Texture/borders/Preview1.tga": "dc62fda46daf45e8ecf31213e291984a98eda2189bb005c75fd5bc68b5937e56",
+      "Texture/borders/Preview2.tga": "470cee34b221b5596b44cdd82260bf8143434129e29c0eccedb0359ffa5b09dd",
+      "Texture/borders/Preview2Tint.tga": "a1b6c41904ec6b900ca40772321551ec81a688d527ad2cc8c718c2fe47150149"
+    },
+    "allOwnedRawSHA256": {
+      "FluxBorder.lua": "b7d13b27bc32ec07d0d72ed1268349f4f15a3434c0f1476ee3cbe057fbd34e8f",
+      "Core/BorderJunctions.lua": "e9ff1282e6d2c1a631df76da1048e63e222c30682a9f9cdeae08edeee1616095",
+      "_FluxUI.toc": "5a40e1c647b49a3f0f1d1f5aea436929a01027f1df8d1d0ed12dd8125b237d38",
+      "Core/FluxAPI/UI.lua": "50208e798ab6039ec9a3f3c6a4f199cba585b8f5c91f762e7b786de0b3368b34",
+      "AddonOptions/FluxOptionsAppearance.lua": "fde1167759240f7587ca7697b41b26acd25739e420dd9d521dd58bf80e9cdc0c",
+      "AddonOptions/FluxOptionsGeneral.lua": "82707be26f4e26f2d71ffbf9fc7e3fc936e0e04fc38aec3f5d028e8c4e3d17a8",
+      "AddonOptions/FluxOptionsDefaults.lua": "9b12344d5667499af5d97835c5aafcfa1c723c556856cb2389d13b4d21c58802",
+      "AddonOptions/FluxOptionsWidgets.lua": "087abbdc4c9dc1b8d2e666a555ff17c6f82bf7ef070baf6823bc18b0da82ccf7",
+      "StatusBars/FluxStatusBar.lua": "a9be538df08a18b907b2d9546f8544cfde24d5c48e0edbd3c6d250c299d4fde4",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "d28eb8d116cf90569b6a2c5880d96a3d1295250584328a253bd60e658b6417aa",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "78ac55cd47b639ef86e37da8c71997e9c3795f338a7449c59112ad42c4235fbe",
+      "UnitFrames/FluxCastBar.lua": "ebe7062ea5a7712a3440a42d378bb7b3f7c6b702926ed3aa16a9deb9beb19870",
+      "ExtraButtonSystem/Engine/Style.lua": "12bbd86dfdffcd6c112bc6a6a114bd5c79e08edf1ea90465e6ac08311e0a71ab",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "32383c589ec65b1b00ab9fb323734b47fba3477f0aab762b3871fe33baf43ad8",
+      "tools/build_border_art.py": "25303bb081e375868138b58ba950f7696306d0c31eba8abc62d88c0a6454eb3c",
+      "tests/border_types.lua": "80b19ae74757522f0eb37baa93abe632fe336469ba8083ff67ef158d63e7f9be",
+      "tests/border_dropdown.lua": "23ad3c88e5da93184f55abc069596e73710f5511bc7f864e96a054521706a48f",
+      "tests/border_junctions.lua": "0afded280e75d726774db140b6755c9a04a9f32ccf12f76c9ec8f7e741ed2745",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/border_art.py": "577d00a468861ab950ec9e47377abbf0aafde34b3d2d80419de5979b8a03651e",
+      "Texture/borders/ForeverMetal150.tga": "d8db6d7338d4040e3413599614ccf17229c286bc431340dc85d5a8c340f9eb59",
+      "Texture/borders/ForeverMetal150Tint.tga": "a567a02d161e202d58b3a36362f318295e3f636a4c5fffd2b59c02f1ef397455",
+      "Texture/borders/Junction1.tga": "7bcd4fa30057164df95ea7da273f92d08ef75f5afd27a251ca4880b1c76db180",
+      "Texture/borders/Junction2.tga": "37ba2daa167c515c0823246763b8b626ef2674822bb7bb92406a70360f12a06c",
+      "Texture/borders/Junction2Tint.tga": "5ffd93c96666e5967bbc29d179d14bbba3175c359bbe951ef3b7fe6034f503af",
+      "Texture/borders/JunctionCut.tga": "0c72800109d85d279cf4601fa275a54ad9c2c5e07763d47f346f9273d029285e",
+      "Texture/borders/Preview1.tga": "dc62fda46daf45e8ecf31213e291984a98eda2189bb005c75fd5bc68b5937e56",
+      "Texture/borders/Preview2.tga": "470cee34b221b5596b44cdd82260bf8143434129e29c0eccedb0359ffa5b09dd",
+      "Texture/borders/Preview2Tint.tga": "a1b6c41904ec6b900ca40772321551ec81a688d527ad2cc8c718c2fe47150149"
+    },
+    "readOnlyForeverDiskCheck": {
+      "missing": [],
+      "mismatches": [],
+      "manualCopy": false,
+      "loadedSourceVerified": false
+    },
+    "documentationGate": {
+      "result": "PASS",
+      "sources": 1121,
+      "reachable": 624,
+      "settingDefinitions": 444,
+      "savedRoots": 24,
+      "literalDefaults": 584,
+      "localLinks": 17634,
+      "writes": "Generated existing reference artifacts with build_reference.py; validate_docs.py read-only PASS"
+    },
+    "diffWhitespaceCheck": "PASS with normal repository CRLF handling; no unrelated whitespace cleanup",
+    "supersededBy": "scriptSupportFix for Watch script registration only; all original art/scope requirements remain",
+    "nativeReportedStartupFailure": "User15Nov2026 13:51:25/13:52:06 local: Texture:HookScript unsupported OnSizeChanged in Watch/Adopt/RegisterPiece; MicroMenu startup and RaidFrame module enable fail.",
+    "status": "ROLLED BACK at user request;historical evidence only",
+    "current": "independentRollback"
+  },
+  "scriptSupportFix": {
+    "changeId": "FLUX-BORDER-SCRIPT-SUPPORT-20261115",
+    "dateUTC": "2026-11-15T12:58:49.052626+00:00",
+    "userReport": "User15Nov2026 13:51:25/13:52:06 local: Texture:HookScript unsupported OnSizeChanged in Watch/Adopt/RegisterPiece; MicroMenu startup and RaidFrame module enable fail.",
+    "nativeBaselineStatus": "FAIL user-reported unsupported Texture OnSizeChanged hook;MicroMenu startup andRaidFrame enable fail. Runtime SHA/build not freshly probed.",
+    "rootCause": "HookScript method existence was incorrectly treated as support for frame-only script handlers. Desktop texture mock admitted every handler.",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-script-support-before-20261115T125455Z",
+    "settingsMetadata": 5,
+    "privateSettingsCopied": false,
+    "baselineRawSHA256": "e9ff1282e6d2c1a631df76da1048e63e222c30682a9f9cdeae08edeee1616095",
+    "reproduction": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-script-support-reproduction.json",
+    "implementation": "SupportsScript checks HookScript/HasScript existence; queries each requested handler; rejects secret/nontrue results. Supported OnShow/OnHide and frame OnSizeChanged remain hooked;geometry method/parent invalidation and cadence unchanged. No swallowed runtime exception.",
+    "tests": "Strict Frame/Texture/MaskTexture capabilities;texture refuses OnSizeChanged;scriptless/missing/secret capabilities;preserved prior handler;parent size invalidation;existing97junction/workload checks. Six focused scripts pass;three harmful guards rejected.",
+    "focusedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-script-support-focused.json",
+    "focusedPass": 6,
+    "junctionChecks": 97,
+    "mutationsRejected": 3,
+    "candidateNormalizedSHA256": {
+      "Core/BorderJunctions.lua": "4496e485ba8058b929147fc5403ed4f39a0e83a010e668ec37cd7c2cbf447d6f",
+      "tests/border_junctions.lua": "e5cb40ec1fd89a73bc20ce65930980ed44d2530dbd10cac661ee416093553fc4"
+    },
+    "fullGate": "399scripts/1088syntax PASS at handler-fix stage;current gate in maskLimitFix",
+    "apiEvidence": {
+      "contract": "SimpleScriptRegionAPI:HasScript(scriptName)->bool;Retail/Forever object-type secret return guarded;HookScript RequiresAssignableScript",
+      "pins": {
+        "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+      },
+      "sourcePaths": [
+        "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+      ],
+      "limits": "Pinned declarations verified;post-fix native operation not run."
+    },
+    "nativeAfterFix": "NOT RUN: user reload/startup plus combat/taint/rendering/controller/FPS remain pending",
+    "nativeInputOrFocus": false,
+    "settingsOrProfilerWrites": false,
+    "manualInstallCopy": false,
+    "publication": false,
+    "supersededForCapacity": "maskLimitFix;HasScript guards retained",
+    "status": "ROLLED BACK at user request;historical evidence only",
+    "current": "independentRollback"
+  },
+  "maskLimitFix": {
+    "changeId": "FLUX-BORDER-MASK-LIMIT-20261115",
+    "dateUTC": "2026-11-15T13:17:03.143343+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-mask-limit-before-20261115T130841Z",
+    "userNativeErrors": [
+      "13:58:53 Texture:AddMaskTexture maximum number of mask textures(3);Scheduler.Flush",
+      "14:07:02 same maximum3 failure;Scheduler.Flush"
+    ],
+    "rootCause": "Incorrect masksPerPiece=8 ignored the actual client maximum3 and masks attached by other effects. Desktop mock had no native mask count limit.",
+    "baselineReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-mask-limit-reproduction.json",
+    "baselineRawSHA256": "bb55a447c9390e7c1d9e40adac945bb78ef92a2077aef15875508b1b9ad609e8",
+    "implementation": "Three-mask ceiling;GetNumMaskTextures after releasing our old plan;guard missing/private count;reserve existing effect masks;preflight complete operations;local original-art fallback. Track slots before AddMaskTexture but mark attached only after success;remove only known attached own masks. Commit geometry signature after successful application so partial failure can retry.",
+    "focusedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-native-errors-final-focused.json",
+    "focusedPass": 11,
+    "junctionChecks": 147,
+    "barStartupChecks": 3822,
+    "mutationsRejected": 7,
+    "normalizedSHA256": {
+      "Core/BorderJunctions.lua": "809ea3411faef6a6942481903d510868a1668dbe6b29cd1beee450ac5f79931a",
+      "tests/border_junctions.lua": "fff6a97a8da5e649802f97e9e161d40e406e89ff7d2f898bafb07f51cf0132da",
+      "tests/bars_startup_retry.lua": "de02533eb950c377410e440b9464c1be36423cf0f686f826e8943808d89584bf"
+    },
+    "fullGate": {
+      "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-native-errors-final-full.json",
+      "pass": 399,
+      "fail": 0,
+      "syntaxFiles": 1088,
+      "syntaxFail": 0,
+      "sourceDrift": []
+    },
+    "nativeAfterFix": "Pending fresh clean-start/mask rendering/combat taint/controller/FPS. No computer input used by this chat.",
+    "settingsMetadata": 5,
+    "privateSettingsCopied": false,
+    "inputOrFocus": false,
+    "profilerWrites": false,
+    "manualCopy": false,
+    "publication": false,
+    "currentRawSHA256": {
+      "Core/BorderJunctions.lua": "1729db1b2818fa2a1600de0e5923d7491b12da4d90ee9abed511ed0fb23b188a",
+      "tests/border_junctions.lua": "fff6a97a8da5e649802f97e9e161d40e406e89ff7d2f898bafb07f51cf0132da",
+      "tests/bars_startup_retry.lua": "de02533eb950c377410e440b9464c1be36423cf0f686f826e8943808d89584bf"
+    },
+    "readOnlyForeverDiskCheck": {
+      "Core/BorderJunctions.lua": true,
+      "tests/border_junctions.lua": true,
+      "tests/bars_startup_retry.lua": true
+    },
+    "status": "ROLLED BACK at user request;historical evidence only",
+    "current": "independentRollback"
+  },
+  "actionBarPageDiagnosis": {
+    "nativeUserDump": "securePaging=yes;hub state-mod0;main/sec/tert native2/actionpage2;static page0;main1 action13;sec61;tert25;allID0;no promotion;user observed column18 same as6.",
+    "interpretation": "Ordinary page2 maps dynamic columns1..12 to13..24;fixed column18 remains18, hence dynamic6 duplicates18. Source action IDs are internally consistent.",
+    "trigger": "Unknown;the page2 selection event was not captured. No claim that border code selected page2.",
+    "sourceContract": "Forever Shared/SlashCommands.lua CheckAddSecureSlashCommand CHANGEACTIONBAR parses numeric page and calls C_ActionBar.SetActionBarPage.",
+    "nativeRecovery": "User confirmed normal page1 actions, then reported fixed13-19 still wrong. Further18/19 dumps show18/19 actionattrs andID0. Do not claim complete recovery.",
+    "codeChanges": "No action routing runtime changes;no automatic reset;no saved action-content changes.",
+    "startupRegression": "Actual Bars.Start->Strip.Create applies FluxBorder before State.Create/Hosts.Build. Old size-hook exception aborts before mappings;fixed handler enables57surfaces. Actual State agrees host.slot and click action across pages1/2/7/9,nomod/Shift/Ctrl forboth border types;3822startup checks total.",
+    "routingSourceSHA256": {
+      "Bars/Init.lua": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+      "Bars/SlotMath.lua": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+      "Bars/State.lua": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+      "Bars/Hosts.lua": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+      "Bars/Clicks.lua": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+      "Bars/Layout.lua": "cee77ad50dd6d3ac26a6cc446fde95ed7609f11822c132721735806870fe96d3",
+      "Bars/Strip.lua": "024bb26e739300faf2b8ce562c851b11a7baf6361626e6946191b9d6bf8791df",
+      "Bars/Blizzard.lua": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f"
+    },
+    "matchesPreBorderCheckpoint": true,
+    "remaining": "After exact pre-connection code restore, a fresh native check is still required;source restore has no game-stored action-content backup."
+  },
+  "independentRollback": {
+    "changeId": "FLUX-BORDER-CONNECTION-ROLLBACK-20261115",
+    "dateUTC": "2026-11-15T13:34:19.660225+00:00",
+    "request": "User requests everything restored to before connected borders;continued action-ID complaint retained.",
+    "preRollbackCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\connected-border-rollback-before-20261115T132425Z",
+    "targetCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fixed-types-before-20261115T120341Z",
+    "verification": {
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fixed-types-before-20261115T120341Z",
+      "runtimeLuaDrift": [],
+      "tocMatches": true,
+      "settingsWritten": false,
+      "liveActionDataWritten": false,
+      "remoteMain": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "allRuntimeSourceBytesMatch": true,
+      "restoreScope": "Exact pre-connection runtime and border art/options/tests/builder;later connected and appearance fixes removed;native action data not part of source checkpoint."
+    },
+    "remoteMain": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "restoreScope": "All changed runtime source since pre-connection checkpoint;prior border options/art20variants;prior tests and builder. Remove topology module/hooks/masks/assets and later fixed-weight/preview/Trinket changes.",
+    "fullGate": "EXACT_RESTORE_FULL_STATUS",
+    "focused": "652border lifecycle/direct-piece;714startup/retry;170raster PASS",
+    "settingsWritten": false,
+    "nativeActionContentsWritten": false,
+    "nativeInputOrFocus": false,
+    "publication": false,
+    "nativeAfterRestore": "Not verified. User reports13-19 wrong;expected/actual actions unavailable. Page1 confirmation applied to earlier normal-page recovery only.",
+    "cancellation": "Do not resume connected-border development without a new request.",
+    "foreverReadOnlyCheck": {
+      "runtimeSourceContentDrift": [
+        "AddonOptions/FluxOptionsAppearance.lua",
+        "AddonOptions/FluxOptionsDefaults.lua",
+        "AddonOptions/FluxOptionsGeneral.lua",
+        "AddonOptions/FluxOptionsWidgets.lua",
+        "Bars/Effects.lua",
+        "Bars/Paint.lua",
+        "Bars/_tmp_barsmoke.lua",
+        "Binding/Input/FluxMouseoverKeybind.lua",
+        "Blizzard/Hide.lua",
+        "Core/ButtonFX/Cast.lua",
+        "Core/FluxAPI/UI.lua",
+        "Core/_tmp_buffdebuffsmoke.lua",
+        "ExtraButtonSystem/Engine/Action.lua",
+        "ExtraButtonSystem/Engine/Paint.lua",
+        "ExtraButtonSystem/Engine/Watch.lua",
+        "ExtraButtonSystem/FlyoutEngine/Def.lua",
+        "ExtraButtonSystem/FlyoutEngine/Favorites.lua",
+        "ExtraButtonSystem/FlyoutEngine/Popup.lua",
+        "ExtraButtonSystem/NonCombatGrid/UtilitySlots/Manager.lua",
+        "FluxBorder.lua",
+        "Inventory/Builtin/FluxClassicCombinedBag.lua",
+        "Inventory/Craft.lua",
+        "Inventory/Index.lua",
+        "Inventory/Init.lua",
+        "Inventory/Professions.lua",
+        "Inventory/Restock/Vendor/FluxVendorSession.lua",
+        "Inventory/SpellReagents.lua",
+        "Other/FluxHUDTooltip.lua",
+        "RaidFrame/FluxRaidUnit.lua",
+        "StatusBars/FluxStatusBar.lua",
+        "UnitFrames/FluxUnitFrames_Auras.lua",
+        "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "UnitFrames/FluxUnitFrames_FocusTarget.lua",
+        "UnitFrames/FluxUnitFrames_Party.lua",
+        "UnitFrames/FluxUnitFrames_PetAuraTooltip.lua",
+        "UnitFrames/FluxUnitFrames_PetTarget.lua",
+        "UnitFrames/FluxUnitFrames_Shared.lua"
+      ],
+      "formatOnlyFiles": 84,
+      "normalization": "UTF8 BOM ignored and CRLF toLF;otherbytes preserved",
+      "tocContentMatches": true,
+      "connectedModuleAbsent": true,
+      "loadedStateVerified": false
+    }
+  }
+}

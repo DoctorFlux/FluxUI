@@ -28,52 +28,54 @@ function Item.GetIcon(item)
 	return icon
 end
 
+-- Private query helpers keep dynamic lookups; carriedOnly is passed per call.
+local function asCount(n)
+	local num = tonumber(n)
+	if num then
+		return num
+	end
+	if Flux.Secrets and Flux.Secrets.SafeGetNumber then
+		return Flux.Secrets.SafeGetNumber(n, 0)
+	end
+	return 0
+end
+local function tryCount(carriedOnly,...)
+	local api = C_Item and C_Item.GetItemCount
+	if api then
+		local ok, n = pcall(api, ...)
+		if ok and n ~= nil then
+			-- Zero is a valid answer. Falling through can resurrect a stale
+			-- positive after the last carried item is gone. Extended bank
+			-- queries retain their existing legacy compatibility fallback.
+			local num = asCount(n)
+			if num > 0 or (carriedOnly and num == 0) then return num end
+		end
+	end
+	if GetItemCount then
+		local ok, n = pcall(GetItemCount, ...)
+		if ok then
+			return asCount(n)
+		end
+	end
+	return 0
+end
+
 function Item.GetCount(itemID, includeBank, includeCharges, includeReagent, includeAccount)
 	includeBank = includeBank and true or false
 	includeCharges = includeCharges and true or false
 	includeReagent = includeReagent and true or false
 	includeAccount = includeAccount and true or false
 	local carriedOnly = not (includeBank or includeReagent or includeAccount)
-	local function asCount(n)
-		local num = tonumber(n)
-		if num then
-			return num
-		end
-		if Flux.Secrets and Flux.Secrets.SafeGetNumber then
-			return Flux.Secrets.SafeGetNumber(n, 0)
-		end
-		return 0
-	end
-	local function tryCount(...)
-		local api = C_Item and C_Item.GetItemCount
-		if api then
-			local ok, n = pcall(api, ...)
-			if ok and n ~= nil then
-				-- Zero is a valid answer. Falling through can resurrect a stale
-				-- positive after the last carried item is gone. Extended bank
-				-- queries retain their existing legacy compatibility fallback.
-				local num = asCount(n)
-				if num > 0 or (carriedOnly and num == 0) then return num end
-			end
-		end
-		if GetItemCount then
-			local ok, n = pcall(GetItemCount, ...)
-			if ok then
-				return asCount(n)
-			end
-		end
-		return 0
-	end
 	-- Classic GetItemCount is 2–3 args. 5-arg C_Item.GetItemCount can ignore
 	-- includeBank and return bags-only (>0), which would hide bank stacks if
 	-- we returned it first. Prefer 3-arg whenever includeBank is set, and
 	-- only keep a 5-arg result when it is actually larger.
-	local three = tryCount(itemID, includeBank, includeCharges)
+	local three = tryCount(carriedOnly,itemID, includeBank, includeCharges)
 	if not includeBank and not includeReagent and not includeAccount then
 		return three
 	end
-	local four = tryCount(itemID, includeBank, includeCharges, includeReagent)
-	local five = tryCount(itemID, includeBank, includeCharges, includeReagent, includeAccount)
+	local four = tryCount(carriedOnly,itemID, includeBank, includeCharges, includeReagent)
+	local five = tryCount(carriedOnly,itemID, includeBank, includeCharges, includeReagent, includeAccount)
 	local n = three
 	if four > n then
 		n = four

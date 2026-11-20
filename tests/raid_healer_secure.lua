@@ -25,9 +25,39 @@ local function fixture(client, options)
         local result = { pcall(fn, ...) }; e.depth = previous
         assert(result[1], result[2]); return table.unpack(result, 2)
     end
+    -- Use Blizzard's parser before exercising the body. Plain Lua's loader
+    -- also accepts declarations that the restricted client rejects at startup.
+    local restrictedSource = read(nativePath(client, "Blizzard_RestrictedAddOnEnvironment/RestrictedExecution.lua"))
+    local builderEnd = assert(restrictedSource:find("local CLOSURE_CACHE_MAX", 1, true))
+    local compilerEnv = setmetatable({
+        scrub = function(...) return ... end,
+        IsFrameHandle = function(value) return type(value) == "table" end,
+        loadstring_untainted = function(text, name) return load(text, name, "t", {}) end,
+        setfenv = function(fn, env)
+            for i = 1, math.huge do
+                local name = debug.getupvalue(fn, i)
+                if not name then break end
+                if name == "_ENV" then debug.setupvalue(fn, i, env); break end
+            end
+            return fn
+        end,
+    }, { __index = _G })
+    local compile = assert(load(restrictedSource:sub(1, builderEnd - 1)
+        .. "\nreturn BuildRestrictedClosure", "@native-restricted-builder-" .. client, "t", compilerEnv))("Blizzard", {})
+    local originalRegressedBody = "local function place(header, x, y) end"
+    local rejected, reason = compile(originalRegressedBody, {})
+    assert(not rejected and reason == "The function keyword is not permitted", client .. ": native parser detects the startup regression")
+    local closureCache = {}
     local function execute(header, frame, signature, body, ...)
-        local env = setmetatable({ control = header, newtable = function() return {} end }, { __index = e })
-        local fn = assert(load("return function(" .. signature .. ")\n" .. body .. "\nend", "@restricted-" .. client, "t", env))()
+        local cache = closureCache[header]
+        if not cache then cache = {}; closureCache[header] = cache end
+        local key = signature .. "\n" .. body
+        local fn = cache[key]
+        if not fn then
+            local env = setmetatable({ control = header, newtable = function() return {} end }, { __index = e })
+            fn = assert(compile(body, env, signature))
+            cache[key] = fn
+        end
         return secure(fn, frame, ...)
     end
     e.SecureHandler_Other_Execute = function(header, frame, signature, body, ...) return execute(header, frame, signature, body, ...) end
@@ -64,11 +94,22 @@ local function fixture(client, options)
     function methods:GetAttribute(key) return self.attrs[key] end
     function methods:SetAttribute(key, value)
         legal(); self.attrs[key] = value
-        if self.scripts.OnAttributeChanged then self.scripts.OnAttributeChanged(self, key, value) end
+        local handler = self.scripts.OnAttributeChanged
+        if self.secureAttributeDispatch then
+            handler(self, key, value)
+        else
+            e.SafeCallWrappedHandler(self, handler, key, value)
+        end
     end
     function methods:SetFrameRef(key, frame) assert(not e.combat and frame and frame.protected, "invalid secure frame reference"); self.refs[key] = frame end
     function methods:GetFrameRef(key) return self.refs[key] end
-    function methods:RunAttribute(key, ...) return execute(self, self, "self,...", assert(self.attrs[key]), ...) end
+    function methods:RunAttribute(key, ...)
+        if key == "_flux-roster-layout" then
+            e.rosterOwner = self
+            e.rosterPasses = (e.rosterPasses or 0) + 1
+        end
+        return execute(self, self, "self,...", assert(self.attrs[key]), ...)
+    end
     function methods:Execute(body) return execute(self, self, "self", body) end
     function methods:WrapScript(frame, event, body)
         assert(not e.combat)
@@ -77,6 +118,7 @@ local function fixture(client, options)
         local old = frame.scripts[event]
         local dispatch = event == "OnAttributeChanged" and nativeWrap or nativeShowHide
         frame.scripts[event] = function(f, ...) return dispatch(f, self, body, nil, old, ...) end
+        if event == "OnAttributeChanged" then frame.secureAttributeDispatch = true end
         frame.wrapCount = (frame.wrapCount or 0) + 1
     end
     function methods:SetScript(event, fn) self.scripts[event] = fn end
@@ -95,16 +137,25 @@ local function fixture(client, options)
         if was and self.scripts.OnHide then self.scripts.OnHide(self) end
     end
     function methods:EnableMouse(value) legal(); self.mouse = value end
-    function methods:SetPoint(...) legal(); self.point = { ... }; if self.point[2]=="$parent" then self.point[2]=self.parent end end
+    function methods:GetNumPoints() return self.point and 1 or 0 end
+    function methods:GetPoint() return table.unpack(self.point or {}) end
+    function methods:SetPoint(...)
+        legal(); self.pointWrites = (self.pointWrites or 0) + 1
+        self.point = { ... }
+        if self.point[2] == "$parent" then self.point[2] = self.parent end
+    end
     function methods:ClearAllPoints() legal(); self.point = nil end
     function methods:GetWidth() return self.width or 72 end
     function methods:GetHeight() return self.height or 43 end
-    function methods:SetWidth(value) legal(); self.width = value end
+    function methods:SetWidth(value) legal(); self.widthWrites = (self.widthWrites or 0) + 1; self.width = value end
     function methods:SetHeight(value) legal(); self.height = value end
     e.CreateFrame = function(_, name, parent, template)
         assert(not e.combat, "combat allocated a frame"); e.created = e.created + 1
         local f = setmetatable({ name = name, parent = parent, attrs = {}, refs = {}, scripts = {}, protected = true, shown = false }, { __index = methods })
-        if template == "SecureHandlerStateTemplate" then f.scripts.OnAttributeChanged = e.SecureHandler_StateOnAttributeChanged end
+        if template == "SecureHandlerStateTemplate" then
+            f.scripts.OnAttributeChanged = e.SecureHandler_StateOnAttributeChanged
+            f.secureAttributeDispatch = true
+        end
         return f
     end
     local ns = { Flux = {} }
@@ -275,14 +326,16 @@ local function exercise(client)
     assert(load(read(nativePath(client, "Blizzard_RestrictedAddOnEnvironment/SecureGroupHeaders.lua")), "@native-group-header-" .. client, "t", e))()
     local container, groups = e.CreateFrame("Frame", "Container"), {}
     local function group(name, capacity)
-        local h = e.CreateFrame("Frame", name)
+        local h = e.CreateFrame("Frame", name, container)
         h.attrs.unitsPerColumn, h.attrs.maxColumns = capacity == 40 and 4 or 5, capacity == 40 and 10 or 1
         h.attrs.columnAnchorPoint, h.attrs.columnSpacing = "LEFT", 2
         h.attrs.sortMethod, h.attrs.sortDir, h.attrs.yOffset = "INDEX", "ASC", capacity == 40 and -1 or 4
         for i = 1, capacity do
             local child = e.CreateFrame("Button", name .. "Child" .. i, h)
             h.attrs["child" .. i], h.refs["child" .. i] = child, child
-            check(S.AttachHeaderChild(child), client .. ": precreated native child wraps")
+            if capacity == 40 or i == 1 then
+                check(S.AttachHeaderChild(child), client .. ": layout-dependent child wraps")
+            end
         end
         h.scripts.OnShow = e.SecureGroupHeader_Update
         return h
@@ -314,9 +367,54 @@ local function exercise(client)
     check(secondChild.point[2] == firstChild and secondChild.point[3] == "BOTTOM" and secondTop == -39,
         client .. ": native header offsets resolve to39pixel member steps and4pixel overlap")
     check(not groups[2].shown and not mt.shown and groups[1].point[4] == 592, client .. ": party keeps group1 at existing rightmost dock")
+    local passes = e.rosterPasses
+    local leader = groups[1].attrs.child1
+    local pointWrites, widthWrites = groups[1].pointWrites, container.widthWrites
+    local savedPoint, savedWidth = groups[1].point[4], container.width
+    secure(function()
+        groups[1].attrs.child2:SetAttribute("unit", "party4")
+        groups[1].attrs.child2:SetAttribute("unit", "party1")
+    end)
+    check(e.rosterPasses == passes, client .. ": non-leading member bindings cannot request a layout")
+    secure(function()
+        for _ = 1, 20 do
+            leader:SetAttribute("unit", "party1")
+            leader:SetAttribute("unit", "player")
+        end
+    end)
+    check(e.rosterPasses == passes, client .. ": occupied first-slot rebindings update their unit without relayout")
+    secure(function() leader:SetAttribute("unit", nil) end)
+    check(e.rosterPasses == passes + 1 and groups[1].alpha == 0, client .. ": vacating the first slot updates geometry")
+    secure(function() leader:SetAttribute("unit", "player") end)
+    check(e.rosterPasses == passes + 2 and groups[1].alpha == 1, client .. ": filling a first slot updates geometry")
+    check(groups[1].pointWrites == pointWrites and container.widthWrites == widthWrites,
+        client .. ": secure layout skips matching header point and width")
+    groups[1].point[4], container.width = 8, 1
+    secure(function() e.rosterOwner:RunAttribute("_flux-roster-layout") end)
+    check(groups[1].point[4] == savedPoint and container.width == savedWidth
+        and groups[1].pointWrites == pointWrites + 1 and container.widthWrites == widthWrites + 1,
+        client .. ": native drift repairs matching authored geometry during combat")
+    local getPoint = groups[1].GetPoint
+    groups[1].GetPoint = function() return nil end
+    secure(function() e.rosterOwner:RunAttribute("_flux-roster-layout") end)
+    groups[1].GetPoint = getPoint
+    check(groups[1].pointWrites == pointWrites + 2, client .. ": restricted anchor takes native repair path")
     roster("raid", 0, { { group = 1, mt = true }, { group = 3 }, { group = 3 } })
     check(groups[1].attrs.child1.attrs.unit == "raid1" and groups[3].attrs.child1.attrs.unit == "raid2" and mt.attrs.child1.attrs.unit == "raid1", client .. ": party-to-raid native roster and tank membership update in combat")
     check(groups[1].point[4] == 592 and groups[3].point[4] == 518 and mt.point[4] == 444, client .. ": sparse groups pack in original reverse order with MTMA to left")
+    local mtChild = mt.attrs.child1
+    passes = e.rosterPasses
+    secure(function()
+        for _ = 1, 20 do
+            mtChild:SetAttribute("unit", "raid2")
+            mtChild:SetAttribute("unit", "raid1")
+        end
+    end)
+    check(e.rosterPasses == passes and mtChild.attrs.unit == "raid1", client .. ": occupied MT/MA slot rebindings skip geometry")
+    secure(function() mtChild:SetAttribute("unit", nil) end)
+    check(e.rosterPasses == passes + 1 and mt.alpha == 0, client .. ": clearing last MT/MA slot updates packing and visibility")
+    secure(function() mtChild:SetAttribute("unit", "raid1") end)
+    check(e.rosterPasses == passes + 2 and mt.alpha == 1, client .. ": refilling MT/MA slot restores geometry")
     roster("raid", 0, { { group = 2 }, { group = 8, mt = true }, { group = 8, mt = true } })
     check(groups[1].alpha == 0 and groups[2].point[4] == 592 and groups[8].point[4] == 518 and mt.point[4] == 444, client .. ": combat subgroup switch compacts gaps and keeps finite occupied positions")
     roster("party", 2)

@@ -17,6 +17,19 @@ Grid.DEFAULT_SCALE = 1 / 1.265 -- Default scale (Matched to NonCombatGrid)
 Grid.BUTTON_SLOT_SIZE_MULTIPLIER = 1.2 -- Visual scale multiplier
 Grid.GRID_SEQ = 1
 
+local function RefreshInfoAndBorder()
+    if FluxInfoFrame and FluxInfoFrame.UpdatePosition then FluxInfoFrame.UpdatePosition() end
+    if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then FluxUnifiedBorder.UpdateBorder() end
+end
+
+local function RequestGridLayoutUpdate()
+    if FluxUnifiedBorder and FluxUnifiedBorder.RequestGridLayoutUpdate then
+        FluxUnifiedBorder.RequestGridLayoutUpdate()
+    else
+        C_Timer.After(0, RefreshInfoAndBorder)
+    end
+end
+
 -- ============================================================================
 -- GRID CREATION
 -- ============================================================================
@@ -571,35 +584,7 @@ function Grid.New(parent, opts)
         end
     end
 
-    -- Relayout buttons (Column-Major: Fill columns from bottom-up or top-down?)
-    -- Layouts columns left-to-right. Rows bottom-to-top.
-    function grid:Relayout()
-        if (self._layoutBatchDepth or 0) > 0 then
-            self._layoutBatchPending = true
-            return
-        end
-        if InCombatLockdown() then
-            self._pendingRegenRelayout = true
-            return
-        end
-        self._pendingRegenRelayout = nil
-        local startup = _G.Flux and _G.Flux.Startup
-        if startup and startup.Count then startup.Count("layout_passes") end
-
-        local bm = _G.FluxBindingMode
-        if bm and bm.ShouldForceShowAllExtraSlots and bm:ShouldForceShowAllExtraSlots() then
-            for _, btn in ipairs(self.Buttons) do
-                if btn.SlotFrame then
-                    -- Ammo is hidden for the whole binding session (EBV.Apply); never force-show here.
-                    if not btn.IsAmmoDisplayButton then
-                        btn.SlotFrame:Show()
-                    end
-                end
-            end
-            if self.Frame then self.Frame:Show() end
-        end
-
-        -- Use dynamic priorities when any button has columnGroup (healing|mana|bandage)
+    local function UpdatePriorities(self)
         local useDynamic = false
         for _, btn in ipairs(self.Buttons) do
             if self.ColumnGroups[btn] then
@@ -612,50 +597,100 @@ function Grid.New(parent, opts)
         else
             self:ConsolidateColumns()
         end
-        
-        local btnSize = self.ButtonSize
-        local slotSize = btnSize * Grid.BUTTON_SLOT_SIZE_MULTIPLIER
-        local spacing = self.Spacing
-        
-        -- Group buttons by column priority
+    end
+
+    local function PackColumns(self)
         local cols = {}
         for _, btn in ipairs(self.Buttons) do
-            -- Visibilty check
-            local isVisible = true
-            if btn.SlotFrame then isVisible = btn.SlotFrame:IsShown() end
-            
-            if isVisible then
-                local colPri = self.ColumnPriorities[btn] or 1
-                if not cols[colPri] then cols[colPri] = {} end
-                table.insert(cols[colPri], btn)
+            if not btn.SlotFrame or btn.SlotFrame:IsShown() then
+                local pri = self.ColumnPriorities[btn] or 1
+                local list = cols[pri]
+                if not list then list = {}; cols[pri] = list end
+                table.insert(list, btn)
             end
         end
-        
-        -- Sort columns
-        local sortedCols = {}
+        local order = {}
         for pri, list in pairs(cols) do
-            table.insert(sortedCols, pri)
-            -- Sort buttons within column by order
-            table.sort(list, function(a, b) 
+            table.insert(order, pri)
+            table.sort(list, function(a, b)
                 return (self.ButtonOrder[a] or 0) < (self.ButtonOrder[b] or 0)
             end)
         end
-        table.sort(sortedCols)
+        table.sort(order)
+        return cols, order
+    end
+
+    local computePriorities = grid.ComputeDynamicPriorities
+    local consolidateColumns = grid.ConsolidateColumns
+    function grid:Relayout(keepPacking)
+        if (self._layoutBatchDepth or 0) > 0 then
+            self._layoutBatchPending = true
+            return
+        end
+        if InCombatLockdown() then
+            self._pendingRegenRelayout = true
+            return
+        end
+        local bm = _G.FluxBindingMode
+        local forceSlots = bm and bm.ShouldForceShowAllExtraSlots and bm:ShouldForceShowAllExtraSlots()
+        local squeeze = FluxUILayoutSqueeze
+        local scaleMultiplier = Grid.BUTTON_SLOT_SIZE_MULTIPLIER
+        -- Only the built-in priority rules are independent of strip width.
+        local allowWidthChange = self.ComputeDynamicPriorities == computePriorities
+            and self.ConsolidateColumns == consolidateColumns
+        local preparedPacking, xS
+        if keepPacking == true and not forceSlots and squeeze and squeeze.CanKeepGridPacking then
+            local keep, factor, packing = squeeze.CanKeepGridPacking(self, scaleMultiplier, allowWidthChange)
+            if keep then
+                if not packing then
+                    -- The host can shift even when its own packed slots stay put.
+                    RequestGridLayoutUpdate()
+                    return
+                end
+                preparedPacking, xS = packing, factor
+            end
+        end
+        self._fluxStripPacking = nil
+        self._pendingRegenRelayout = nil
+        local startup = _G.Flux and _G.Flux.Startup
+        if startup and startup.Count then startup.Count("layout_passes") end
+
+        if forceSlots then
+            for _, btn in ipairs(self.Buttons) do
+                if btn.SlotFrame then
+                    -- Ammo is hidden for the whole binding session (EBV.Apply); never force-show here.
+                    if not btn.IsAmmoDisplayButton then
+                        btn.SlotFrame:Show()
+                    end
+                end
+            end
+            if self.Frame then self.Frame:Show() end
+        end
+
+        if not preparedPacking then UpdatePriorities(self) end
+        local btnSize = self.ButtonSize
+        local slotSize = btnSize * Grid.BUTTON_SLOT_SIZE_MULTIPLIER
+        local spacing = self.Spacing
+        local cols, sortedCols
+        if preparedPacking then
+            cols, sortedCols = preparedPacking.columns, preparedPacking.order
+        else
+            cols, sortedCols = PackColumns(self)
+        end
         
         -- Hide grid when no visible buttons; defer InfoFrame/UnifiedBorder update
         if #sortedCols == 0 then
             self:Hide()
-            C_Timer.After(0, function()
-                if FluxInfoFrame and FluxInfoFrame.UpdatePosition then FluxInfoFrame.UpdatePosition() end
-                if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then FluxUnifiedBorder.UpdateBorder() end
-            end)
+            RequestGridLayoutUpdate()
             return
         end
-        self:Show()
-        C_Timer.After(0, function()
-            if FluxInfoFrame and FluxInfoFrame.UpdatePosition then FluxInfoFrame.UpdatePosition() end
-            if FluxUnifiedBorder and FluxUnifiedBorder.UpdateBorder then FluxUnifiedBorder.UpdateBorder() end
-        end)
+        local packing, packedSlots = preparedPacking, preparedPacking and preparedPacking.byButton
+        if not preparedPacking then
+            if not forceSlots and squeeze and squeeze.NewGridPacking then
+                packing, packedSlots = squeeze.NewGridPacking(self, scaleMultiplier)
+            end
+            self:Show()
+        end
         
         -- For right-to-left layout: priority 3 (healing) on right, priority 1 (bandage) on left
         -- Don't reverse - keep sorted order (1, 2, 3) so priority 1 is leftmost, priority 3 is rightmost
@@ -680,7 +715,8 @@ function Grid.New(parent, opts)
         end
 
         -- Same X squeeze as FluxMainActionBar: slot width, spacing X, and widget face width.
-        local xS = (FluxUILayoutSqueeze and FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor and FluxUILayoutSqueeze.GetActionBarHorizontalSqueezeFactor()) or 1
+        local scaleSettings = FluxUILayoutSqueeze
+        xS = xS or (scaleSettings and scaleSettings.GetActionBarHorizontalSqueezeFactor and scaleSettings.GetActionBarHorizontalSqueezeFactor()) or 1
         local spacingX = spacing * xS
         local slotSizeX = slotSize * xS
         local sizeStepX = slotSizeX + spacingX
@@ -700,14 +736,15 @@ function Grid.New(parent, opts)
             for rowIdx, btn in ipairs(btnList) do
                 local x = (colIdx - 1) * sizeStepX
                 local y = (rowIdx - 1) * sizeStep + centerOffset
-                
-                btn.SlotFrame:ClearAllPoints()
+                local row = packedSlots and packedSlots[btn]
+                local move = not preparedPacking or row.x ~= x
+                if move then btn.SlotFrame:ClearAllPoints() end
                 btn.SlotFrame:SetSize(slotSizeX, slotSize)
-                btn.SlotFrame:SetPoint("BOTTOMLEFT", self.Frame, "BOTTOMLEFT", x, y)
-                -- Also ensure frame level logic if needed
-                if btn.Widget then
-                     btn.SlotFrame:SetFrameLevel(btn.Widget:GetFrameLevel() - 1)
+                if move then btn.SlotFrame:SetPoint("BOTTOMLEFT", self.Frame, "BOTTOMLEFT", x, y) end
+                if not preparedPacking and btn.Widget then
+                    btn.SlotFrame:SetFrameLevel(btn.Widget:GetFrameLevel() - 1)
                 end
+                if row then row.x, row.y = x, y end
             end
         end
         
@@ -716,16 +753,16 @@ function Grid.New(parent, opts)
              local newW = maxCols * slotSizeX + math.max(0, maxCols - 1) * spacingX
              local newH = effectiveRows * slotSize + math.max(0, effectiveRows - 1) * spacing
              self.Frame:SetSize(newW, newH)
+             if packing then packing.width, packing.height = newW, newH end
         end
 
-        local scaleMultiplier = Grid.BUTTON_SLOT_SIZE_MULTIPLIER
         for _, btn in ipairs(self.Buttons) do
             if btn and btn.Widget then
                 local faceW = btnSize * xS
                 if btn.Widget.SetSize then
                     btn.Widget:SetSize(faceW, btnSize)
                 end
-                if btn.Widget.SetScale then
+                if not preparedPacking and btn.Widget.SetScale then
                     btn.Widget:SetScale(scaleMultiplier)
                 end
                 local Style = _G.Flux and _G.Flux.EBS and _G.Flux.EBS.Style
@@ -750,15 +787,24 @@ function Grid.New(parent, opts)
                 btn.SlotFrame:SetClipsChildren(clip)
             end
         end
+        if packing then
+            if allowWidthChange then
+                packing.columns, packing.order, packing.byButton = cols, sortedCols, packedSlots
+            end
+            packing.factor, packing.faceWidth = xS, btnSize * xS
+            packing.slotWidth, packing.slotHeight = slotSizeX, slotSize
+            self._fluxStripPacking = packing
+        end
+        RequestGridLayoutUpdate()
     end
     do
         local origRelayout = grid.Relayout
-        function grid:Relayout()
+        function grid:Relayout(keepPacking)
             local R = _G.Flux and _G.Flux.Perf and _G.Flux.Perf.Regen
             if R and R.Time then
-                return R.Time("combat.Relayout", origRelayout, self)
+                return R.Time("combat.Relayout", origRelayout, self, keepPacking)
             end
-            return origRelayout(self)
+            return origRelayout(self, keepPacking)
         end
     end
 

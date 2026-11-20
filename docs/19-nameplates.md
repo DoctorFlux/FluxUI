@@ -1,5 +1,9 @@
 # Nameplate overlays and chrome
 
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
 13 November shared threat warnings: **Threat warning visibility** in Unit Frame
 → General and Nameplates uses the existing Unit Frame scope/key. Choices are
 Always, In raid, In party, Off; In party includes raids. Nameplates and every
@@ -212,3 +216,23 @@ The last documentation check reported only inventory/verification freshness for
 `tests/raid_party_frames.lua`; refresh whole-project evidence after that batch.
 Six related quest/nameplate/Questie scripts pass and this feature's four owned
 Lua identities remain unchanged. See the quest validation JSON for scope.
+
+<!-- ROSTER-DISCOVERY-REFRESH-R116-20261119 -->
+Combo points paint the current target during the module-wide refresh. The unit loop preserves independent modules and direct unit refreshes and can retry a failed module-wide paint.
+[Matched validation](validation/roster-discovery-refresh-2026-11-19.json).
+<!-- /ROSTER-DISCOVERY-REFRESH-R116-20261119 -->
+
+<!-- GROUP-NAMEPLATE-ANCHORS-20261120 -->
+Roster refreshes retain verified quest badge anchors on visible nameplates. In 60 modeled roster bursts with 32 active plates, anchor writes fall from 7,680 to zero in each of five client models. Objective refresh counts and follow-up polls match. The desktop Lua median is 10 ms before and 11 ms after across all 60 bursts per model. Native write and frame-time costs remain unmeasured. The refresh still repaints changed rows and repairs unreadable anchors.
+[Matched validation](validation/group-nameplate-anchors-2026-11-20.json).
+<!-- /GROUP-NAMEPLATE-ANCHORS-20261120 -->
+
+<!-- GROUP-NAMEPLATE-LEVELS-20261120 -->
+Nameplate overlays keep a verified frame level while attached to the same plate. Across 60 modeled roster bursts with 32 plates, frame-level writes fall from 7,680 to zero in each of five client models. Two seconds of steady 20-plate polling reduce writes from 184 to 5 in Retail and 364 to 6 in Forever. Fresh attachment and repair preserve their existing writes. Modeled elapsed timings were mixed. The shared attachment helper covers quest, threat, level and combo hosts.
+[Matched validation](validation/group-nameplate-levels-2026-11-20.json).
+<!-- /GROUP-NAMEPLATE-LEVELS-20261120 -->
+
+<!-- NAMEPLATE-RANK-ROSTER-20261120 -->
+Nameplate threat refreshes now share successful public group identity reads for one pass. With 32 visible plates, a modeled party entry uses 10 GUID queries instead of 320. The raid case uses 82 instead of 2,624. A confirmed tanking player already has rank one, allowing the same raid replay to use 64 detailed threat queries instead of 2,592. Matched text, tint and plate lookups remain equal in all three client models. Share public identity for one full refresh. Keep per-target threat payloads for non-tanking ranks and fresh guarded reads for unreadable IDs and unit existence. Standalone rank calls retain their own reads. A replaced GUID or rank provider uses the current provider. A known tanking player row returns rank one before the group walk. No settings, events or timers are added.
+[Matched validation](validation/nameplate-rank-roster-2026-11-20.json).
+<!-- /NAMEPLATE-RANK-ROSTER-20261120 -->

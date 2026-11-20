@@ -1,0 +1,427 @@
+{
+  "changeId": "BORDER-FIELD-RETIREMENT-R184-20261120",
+  "borderVersion": "regional-field-retirement-r184",
+  "capturedAtUTC": "2026-11-20T07:23:33.038663+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "4a909660cdef1a5b3afe6191ec8bca7d8d76063bd5932857d707b7c4970d67b9",
+      "afterRaw": "022848d062f5d3bdef0c253469f861798b5a6af5047e7a967e70e04834a5a159",
+      "afterNormalized": "022848d062f5d3bdef0c253469f861798b5a6af5047e7a967e70e04834a5a159"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "5d7e1e4f06a2a7b481dbac9dfe66e9992cc18bb636735403793c7990a1a8a160",
+      "afterRaw": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "afterNormalized": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530"
+    }
+  },
+  "evidence": {
+    "counts": {
+      "hover": {
+        "1": {
+          "retirementVisibilityReads": [
+            1446,
+            0
+          ],
+          "retirementAlreadyHidden": [
+            0,
+            0
+          ],
+          "retainedTextureObjects": 1277,
+          "finalTriangleFields": 355
+        },
+        "2": {
+          "retirementVisibilityReads": [
+            1818,
+            0
+          ],
+          "retirementAlreadyHidden": [
+            0,
+            0
+          ],
+          "retainedTextureObjects": 1341,
+          "finalTriangleFields": 446
+        }
+      },
+      "roster": {
+        "1": {
+          "retirementVisibilityReads": [
+            876,
+            0
+          ],
+          "retirementAlreadyHidden": [
+            0,
+            0
+          ],
+          "retainedTextureObjects": 1675,
+          "finalTriangleFields": 809
+        },
+        "2": {
+          "retirementVisibilityReads": [
+            1914,
+            0
+          ],
+          "retirementAlreadyHidden": [
+            0,
+            0
+          ],
+          "retainedTextureObjects": 2203,
+          "finalTriangleFields": 1276
+        }
+      }
+    },
+    "rawReplay": "WORK hover 1 steps=12 getShown=1446/0 alreadyHidden=0/0 textures=1277 fields=355\nWORK roster 1 steps=12 getShown=876/0 alreadyHidden=0/0 textures=1675 fields=809\nWORK hover 2 steps=12 getShown=1818/0 alreadyHidden=0/0 textures=1341 fields=446\nWORK roster 2 steps=12 getShown=1914/0 alreadyHidden=0/0 textures=2203 fields=1276\n",
+    "desktopTiming": {
+      "hover": {
+        "1": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              111.0,
+              99.0
+            ],
+            "allocatedKiB": [
+              10620.894,
+              10620.636
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              105.0,
+              100.0
+            ],
+            "allocatedKiB": [
+              10621.029,
+              10620.834
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              103.0,
+              100.0
+            ],
+            "allocatedKiB": [
+              10618.529,
+              10618.334
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              103.0,
+              114.0
+            ],
+            "allocatedKiB": [
+              10617.533,
+              10617.338
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              111.0,
+              101.0
+            ],
+            "allocatedKiB": [
+              10617.576,
+              10617.381
+            ]
+          }
+        ],
+        "2": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              122.0,
+              114.0
+            ],
+            "allocatedKiB": [
+              10599.726,
+              10599.677
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              132.0,
+              116.0
+            ],
+            "allocatedKiB": [
+              10599.924,
+              10599.875
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              121.0,
+              112.0
+            ],
+            "allocatedKiB": [
+              10600.424,
+              10600.375
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              131.0,
+              180.0
+            ],
+            "allocatedKiB": [
+              10599.428,
+              10599.379
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              121.0,
+              118.0
+            ],
+            "allocatedKiB": [
+              10599.471,
+              10599.422
+            ]
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              145.0,
+              132.0
+            ],
+            "allocatedKiB": [
+              15012.09,
+              15012.139
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              128.0,
+              127.0
+            ],
+            "allocatedKiB": [
+              15012.16,
+              15012.209
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              130.0,
+              123.0
+            ],
+            "allocatedKiB": [
+              15012.66,
+              15012.709
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              134.0,
+              126.0
+            ],
+            "allocatedKiB": [
+              15011.664,
+              15011.713
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              149.0,
+              162.0
+            ],
+            "allocatedKiB": [
+              15011.68,
+              15011.729
+            ]
+          }
+        ],
+        "2": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              178.0,
+              174.0
+            ],
+            "allocatedKiB": [
+              19639.594,
+              19636.594
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              182.0,
+              179.0
+            ],
+            "allocatedKiB": [
+              19639.664,
+              19636.664
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              187.0,
+              189.0
+            ],
+            "allocatedKiB": [
+              19640.164,
+              19637.164
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              201.0,
+              192.0
+            ],
+            "allocatedKiB": [
+              19639.168,
+              19636.168
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              200.0,
+              189.0
+            ],
+            "allocatedKiB": [
+              19639.184,
+              19636.184
+            ]
+          }
+        ]
+      }
+    },
+    "timingMediansMs": {
+      "hover": {
+        "1": [
+          105.0,
+          100.0
+        ],
+        "2": [
+          122.0,
+          116.0
+        ]
+      },
+      "roster": {
+        "1": [
+          134.0,
+          127.0
+        ],
+        "2": [
+          187.0,
+          189.0
+        ]
+      }
+    },
+    "allocationMediansKiB": {
+      "hover": {
+        "1": [
+          10618.529,
+          10618.334
+        ],
+        "2": [
+          10599.726,
+          10599.677
+        ]
+      },
+      "roster": {
+        "1": [
+          15012.09,
+          15012.139
+        ],
+        "2": [
+          19639.594,
+          19636.594
+        ]
+      }
+    },
+    "timingScope": "Five alternating pairs of 24 warmed regional strip or roster geometry moves per border style with modeled widget methods.",
+    "alsoTried": "Skipping previously hidden pool entries alone eliminated no calls in the matched scenes. The installed path also hides each outgoing field directly.",
+    "replayHarnessSHA256": "55e14178035028d005e2032569164c26ecbdb0ce50ac1bbd36850bac42983ae7"
+  },
+  "parity": "The regional border renderer hides outgoing fragments and junction textures through their current ownership records. Twelve modeled held-action crossings removed 1,446 and 1,818 visibility reads in border style order. Twelve roster-layout moves removed 876 and 1,914. Native setter counts, sampled joins, and texture counts match in the model. Desktop timings improved for the two held-action medians and were mixed across roster reflows.",
+  "checkpoint": {
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "created": "2026-11-20T08:18:23.4717972+01:00",
+    "files": {
+      "docs/CLIENT_VALIDATION.md": "8968EBFE1D9A99002CB0286A6BFA1F7D7F914024F2EB2D0F269BEA59E69F64C7",
+      "docs/PERFORMANCE_RESULTS.csv": "958633527FF7BAF3C66320FCA9B6FB6A6C9CCCA1383E786780A2BDD6664175A6",
+      "docs/WORK_LOG.md": "4089692C98D817C3A84D5C1ACC66D1931B4DD13428D0EB2422450299C503ADEB",
+      "docs/CLIENT_MATRIX.csv": "EAA52A6C3951D250E309E64C49D5EF2DCFA9C976EAC5E70217001D0BC3EDD83D",
+      "docs/BORDER_BUILDER_LOCALITY.md": "FDC7DD4B5D4CA4800D68366C4058F6CA904366D37FD12094E1C6EC314C33A76D",
+      "docs/04-visual-system.md": "6E7D8A3FC36940770AC4D437A652606130731B3FFAC442D0CCDC2F78C7F55035",
+      "docs/FEATURE_PARITY.csv": "A69601B3BCE9E4B7983747F9A4A87F32E07140AEDABD1AF769EF1447252D9CFA",
+      "docs/STATUS.md": "914E2C373012D0D40A6FC90480479F583D6D18BDAC74B4B78907503AE5958849",
+      "tests/border_incremental_commit.lua": "967E7CDFDD633371F0014F30FE91C560D379721DA2E2A18A8D0ED098060FF70A",
+      "Core/BorderJunctions.lua": "4A909660CDEF1A5B3AFE6191EC8BCA7D8D76063BD5932857D707B7C4970D67B9",
+      "tests/border_locality.lua": "5D7E1E4F06A2A7B481DBAC9DFE66E9992CC18BB636735403793C7990A1A8A160",
+      "NEXT_SESSION.md": "24DA0A01EFA80A1FFF84366B0F55EEABAE9788709BDFA02750EB39F795A94CDD",
+      "docs/DECISIONS.md": "39424DB80C4A3BCC4377922B4CA08B87B9D2DA9DDC121FC8ED1D55FC7AD34732"
+    },
+    "settings": {
+      "_forever_": 3,
+      "_classic_": 2,
+      "_anniversary_": 10,
+      "_retail_": 2,
+      "_classic_era_": 4
+    },
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3"
+  },
+  "verification": {
+    "focusedPassed": 27,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "tests/border_incremental_commit.lua": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+      "tests/border_draw_reuse.lua": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3",
+      "tests/border_render_pool_work.lua": "51ca0472729a08e735f512758b29834b52e19f8f6b85575ff6b02d30521e4ef4",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+      "tests/border_paint_ownership.lua": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16",
+      "tests/border_private_paint.lua": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_region_routing.lua": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30",
+      "tests/border_regional_draw_work.lua": "7b0fd4802ea8c5efeb7facc17e828a17e0c5892cbc7f465836a8c1264984dc55",
+      "tests/border_regional_plan_work.lua": "702b6053fd5d77dd0788c42c50c1afc375d0eb82284ee7145d3ecb13374d7018",
+      "tests/border_junctions.lua": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+      "tests/border_junction_shadows.lua": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055",
+      "tests/border_fallback_opacity.lua": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "tests/regional_border_cuts.lua": "f143ec2fa33f491b1995ff84a3ca1502b7a9a05afed4bf1e91ee2ce4fc20f429",
+      "tests/regional_layout_index.lua": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_grid_packing.lua": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_drag_hover_edges.lua": "644c758e5ef1304f2d14a1c9da8f1dd46d91f12c8a64c3477eb67edad4038e7f",
+      "tests/group_roster_performance.lua": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf",
+      "tests/border_lua_upvalues.lua": "8fab8d288b2e8b70c2261a84412e2e80273c89225fc6ffd78994310b99bc1fab"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-retired-fields-before-20261120T081823215\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-retired-fields-before-20261120T081823215\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-retired-fields-before-20261120T081823215\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_BankRestock.lua",
+      "Inventory/Init.lua",
+      "tests/bank_visibility_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Live cursor crossings, party/raid join and leave, side seam appearance and combat taint remain pending. Embedded minimap toggles remain open for the broader goal."
+}

@@ -1,0 +1,218 @@
+{
+  "changeId": "STRIP-LAYER-COMMIT-R95-20261119",
+  "capturedAtUTC": "2026-11-19T11:10:42.336226+00:00",
+  "scope": "Held action cursor crossings and fallback group roster burst",
+  "sources": {
+    "Core/Engine/Restricted.lua": {
+      "beforeRaw": "1273e7acbc05fe2549493cec7c1173b0269a8417528c0a56127b7db45e539330",
+      "afterRaw": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2"
+    },
+    "Bars/Strip.lua": {
+      "beforeRaw": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+      "afterRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253"
+    },
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "d4a4dd7d76c3194d23da8774e16548648d0b6b793ef2f2a700cc40eade521fa2",
+      "afterRaw": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113"
+    },
+    "tests/fallback_roster_work.lua": {
+      "beforeRaw": null,
+      "afterRaw": "14467d6b7503758748621e2240037d8786e21b720a8e4d3e91a46b95960420a9"
+    },
+    "tests/strip_border_commit_work.lua": {
+      "beforeRaw": null,
+      "afterRaw": "2fbd442701f3fb94146711bc6d68e993bd5d97d428b80f993764f1b9e021dbc8"
+    }
+  },
+  "checkpoints": {
+    "fallback": {
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\fallback-roster-burst-r94-before-20261119T105335Z\\source.zip",
+      "archiveSHA256": "80cc5d8048a09f692fa8858aafc8cfc7342504ec6ff1af6185eb334fdedc73d2",
+      "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "settingsMetadataCounts": {
+        "_retail_": 1,
+        "_forever_": 1,
+        "_classic_": 1,
+        "_classic_era_": 1,
+        "_anniversary_": 2
+      }
+    },
+    "strip": {
+      "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-motion-r95-before-20261119T105909Z\\source.zip",
+      "archiveSHA256": "f8f01b7d7d5db331eea8e1c9643590e6a5f9218d8d7936aed7443d04e472237f",
+      "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "settingsMetadataCounts": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    }
+  },
+  "replays": {
+    "heldStrip": {
+      "source": "Exact R95 archive and candidate Lua in matching widget models",
+      "crossingsPerScenario": 6,
+      "borderTypes": [
+        1,
+        2
+      ],
+      "scales": [
+        0.75,
+        1,
+        1.25
+      ],
+      "exteriorAnchorAndSizeWrites": [
+        36,
+        0
+      ],
+      "canvasLayerReadsRange": [
+        2940,
+        3912
+      ],
+      "canvasLayerReadsCandidateRange": [
+        192,
+        240
+      ],
+      "checks": [
+        "action faces, slots and anchor geometry",
+        "canonical art sampling and final layer by owner",
+        "live level changes",
+        "retained regional ownership and prepared pose use"
+      ],
+      "rows": [
+        "STRIP_SHELL crossings=6 exteriorWrites=36/0",
+        "STRIP_LAYER style=1 scale=0.75 reads=3912/240 writes=0/0",
+        "STRIP_LAYER style=1 scale=1.00 reads=3876/240 writes=0/0",
+        "STRIP_LAYER style=1 scale=1.25 reads=3726/204 writes=0/0",
+        "STRIP_LAYER style=2 scale=0.75 reads=3624/240 writes=0/0",
+        "STRIP_LAYER style=2 scale=1.00 reads=3900/240 writes=0/0",
+        "STRIP_LAYER style=2 scale=1.25 reads=2940/192 writes=7/7",
+        "Strip commit replay passes live levels, canonical texture samples and retained regional ownership."
+      ],
+      "captureSHA256": "4ad3ddbd9a1f85ab43b9cc46cb8311d62a33f5439cc64ade46d3fd3a35b7c489"
+    },
+    "fallbackRoster": {
+      "source": "Exact R94 archive and candidate fallback Lua in matching widget models",
+      "matchedBatches": 8,
+      "notificationsPerBatch": 20,
+      "conditionParses": [
+        42,
+        4
+      ],
+      "matchingPetAlphaWrites": [
+        42,
+        0
+      ],
+      "existenceWrites": [
+        21,
+        1
+      ],
+      "checks": [
+        "first and final state agree",
+        "ticker and OnUpdate models",
+        "combat deferral and release",
+        "private values",
+        "owner cleanup"
+      ],
+      "rows": [
+        "FALLBACK_ROSTER ticker=true join=true parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=true join=false parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=true join=true parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=true join=false parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=false join=true parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=false join=false parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=false join=true parse=42/4 alpha=42/0 attributes=21/1",
+        "FALLBACK_ROSTER ticker=false join=false parse=42/4 alpha=42/0 attributes=21/1",
+        "Fallback roster passes final-state reconciliation, direct events, combat release, private values and cleanup."
+      ],
+      "captureSHA256": "9083a04bf9c5be16d680352e5baa439d4fd253ebee3729db936987a15c701981"
+    }
+  },
+  "verification": {
+    "focused": 207,
+    "syntax": 1239,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-motion-r95-before-20261119T105909Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-motion-r95-before-20261119T105909Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/Professions.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/Engine/Restricted.lua": {
+        "sha256": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2",
+        "matchesCandidate": true
+      },
+      "Bars/Strip.lua": {
+        "sha256": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+        "matchesCandidate": true
+      }
+    },
+    "forever": {
+      "Core/Engine/Restricted.lua": {
+        "sha256": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2",
+        "matchesCandidate": true
+      },
+      "Bars/Strip.lua": {
+        "sha256": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+        "matchesCandidate": true
+      }
+    },
+    "classic": {
+      "Core/Engine/Restricted.lua": {
+        "sha256": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2",
+        "matchesCandidate": true
+      },
+      "Bars/Strip.lua": {
+        "sha256": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+        "matchesCandidate": true
+      }
+    },
+    "classic-era": {
+      "Core/Engine/Restricted.lua": {
+        "sha256": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2",
+        "matchesCandidate": true
+      },
+      "Bars/Strip.lua": {
+        "sha256": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+        "matchesCandidate": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/Engine/Restricted.lua": {
+        "sha256": "f59d14a12af64ece6d19812a301cfd24274fac092fc770d5f74cfa6649c90fa2",
+        "matchesCandidate": true
+      },
+      "Bars/Strip.lua": {
+        "sha256": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "nativeAcceptance": "Native held-action latency, structural group hitch, combat taint and client pixels remain pending. No game interaction or profiling changes."
+}

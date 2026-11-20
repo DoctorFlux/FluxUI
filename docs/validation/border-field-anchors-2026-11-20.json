@@ -1,0 +1,639 @@
+{
+  "changeId": "BORDER-FIELD-ANCHORS-R176-20261120",
+  "borderVersion": "border-field-anchors-r176",
+  "capturedAtUTC": "2026-11-20T03:35:29.017568+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "1511776f237e6921aad0bb42c4b4199d31a4e7c9de6e9430b810d5ca611273b3",
+      "afterRaw": "3e3a7acabe47834a5e7156d390dd1e0b76f66450236e94dd2a669d74536f9926",
+      "afterNormalized": "3e3a7acabe47834a5e7156d390dd1e0b76f66450236e94dd2a669d74536f9926"
+    },
+    "tests/border_regional_draw_work.lua": {
+      "beforeRaw": "2bab4f1d77f0cad79e289a3dec4afc83f2fa8534b865df10219228420140673d",
+      "afterRaw": "5387cd471f88a2c9e6ef887243785d3d33d380c0db89f4106caeaa193f3ffa83",
+      "afterNormalized": "5387cd471f88a2c9e6ef887243785d3d33d380c0db89f4106caeaa193f3ffa83"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "apiEvidence": {
+    "pattern": "Blizzard’s scroll offset setter updates existing anchors by point name on every offset change. This is an example from client UI source.",
+    "reference": "https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_SharedXML/Shared/Scroll/ScrollBox.lua",
+    "sourceSnapshots": [
+      {
+        "client": "live",
+        "snapshot": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-live\\Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+        "sha256": "407222661A1E194F2B0641BEFAD24D9A5CCB83B0AAC7A9A8FC79C4277E0843E9",
+        "line": 270
+      },
+      {
+        "client": "forever",
+        "snapshot": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+        "sha256": "407222661A1E194F2B0641BEFAD24D9A5CCB83B0AAC7A9A8FC79C4277E0843E9",
+        "line": 270
+      },
+      {
+        "client": "classic",
+        "snapshot": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-classic\\Interface\\AddOns\\Blizzard_SharedXML\\Shared\\Scroll\\ScrollBox.lua",
+        "sha256": "3EF70681626BDDBF285058C82AA01C95B135CA83CFC4371768834DA23EDED11A",
+        "line": 270
+      }
+    ]
+  },
+  "work": {
+    "scope": "Twelve warmed action-strip crossings and twelve warmed roster geometry changes per style on actual renderer Lua with modeled widgets.",
+    "countColumns": [
+      "old anchor clears",
+      "new anchor clears",
+      "old point writes",
+      "new point writes"
+    ],
+    "countSamples": {
+      "strip-1": {
+        "ANCHOR_WRITES": [
+          [
+            1812,
+            12,
+            1812,
+            1812
+          ],
+          [
+            1764,
+            12,
+            1764,
+            1764
+          ],
+          [
+            1764,
+            12,
+            1764,
+            1764
+          ]
+        ],
+        "FIELDS": [
+          [
+            1277,
+            1277
+          ],
+          [
+            1277,
+            1277
+          ],
+          [
+            1277,
+            1277
+          ]
+        ]
+      },
+      "roster-1": {
+        "ANCHOR_WRITES": [
+          [
+            4200,
+            0,
+            4200,
+            4200
+          ],
+          [
+            4164,
+            0,
+            4164,
+            4164
+          ],
+          [
+            4140,
+            0,
+            4140,
+            4140
+          ]
+        ],
+        "FIELDS": [
+          [
+            1675,
+            1675
+          ],
+          [
+            1675,
+            1675
+          ],
+          [
+            1675,
+            1675
+          ]
+        ]
+      },
+      "strip-2": {
+        "ANCHOR_WRITES": [
+          [
+            1944,
+            12,
+            1944,
+            1944
+          ],
+          [
+            1932,
+            12,
+            1932,
+            1932
+          ],
+          [
+            1932,
+            12,
+            1932,
+            1932
+          ]
+        ],
+        "FIELDS": [
+          [
+            1341,
+            1341
+          ],
+          [
+            1341,
+            1341
+          ],
+          [
+            1341,
+            1341
+          ]
+        ]
+      },
+      "roster-2": {
+        "ANCHOR_WRITES": [
+          [
+            6828,
+            0,
+            6828,
+            6828
+          ],
+          [
+            6720,
+            0,
+            6720,
+            6720
+          ],
+          [
+            6648,
+            0,
+            6648,
+            6648
+          ]
+        ],
+        "FIELDS": [
+          [
+            2203,
+            2203
+          ],
+          [
+            2203,
+            2203
+          ],
+          [
+            2203,
+            2203
+          ]
+        ]
+      }
+    },
+    "countMedians": {
+      "strip-1": [
+        1764,
+        12,
+        1764,
+        1764
+      ],
+      "roster-1": [
+        4164,
+        0,
+        4164,
+        4164
+      ],
+      "strip-2": [
+        1932,
+        12,
+        1932,
+        1932
+      ],
+      "roster-2": [
+        6720,
+        0,
+        6720,
+        6720
+      ]
+    },
+    "iterationNote": "The first in-place variant left the prior point after a failed setter. The final variant clears the native points during error cleanup and propagates the original exception. Final count and clock comparisons use that corrected variant.",
+    "clock": {
+      "columns": [
+        "old Lua ms",
+        "new Lua ms",
+        "old temporary heap KiB",
+        "new temporary heap KiB"
+      ],
+      "samples": {
+        "strip-1": [
+          [
+            50.0,
+            51.0,
+            5710.7,
+            5588.5
+          ],
+          [
+            49.0,
+            49.0,
+            5708.0,
+            5585.7
+          ],
+          [
+            55.0,
+            51.0,
+            5708.3,
+            5586.0
+          ],
+          [
+            47.0,
+            52.0,
+            5707.8,
+            5585.5
+          ],
+          [
+            51.0,
+            50.0,
+            5707.8,
+            5585.5
+          ]
+        ],
+        "roster-1": [
+          [
+            67.0,
+            71.0,
+            8362.5,
+            8064.1
+          ],
+          [
+            64.0,
+            66.0,
+            8362.5,
+            8064.2
+          ],
+          [
+            66.0,
+            67.0,
+            8362.8,
+            8064.4
+          ],
+          [
+            76.0,
+            69.0,
+            8362.3,
+            8063.9
+          ],
+          [
+            66.0,
+            63.0,
+            8362.3,
+            8063.9
+          ]
+        ],
+        "strip-2": [
+          [
+            96.0,
+            95.0,
+            5717.9,
+            5581.9
+          ],
+          [
+            98.0,
+            96.0,
+            5718.1,
+            5582.1
+          ],
+          [
+            104.0,
+            109.0,
+            5718.3,
+            5582.4
+          ],
+          [
+            97.0,
+            109.0,
+            5717.8,
+            5581.9
+          ],
+          [
+            105.0,
+            101.0,
+            5717.8,
+            5581.9
+          ]
+        ],
+        "roster-2": [
+          [
+            175.0,
+            182.0,
+            11415.2,
+            10938.1
+          ],
+          [
+            176.0,
+            186.0,
+            11415.3,
+            10938.2
+          ],
+          [
+            159.0,
+            177.0,
+            11415.5,
+            10938.4
+          ],
+          [
+            160.0,
+            167.0,
+            11415.0,
+            10937.9
+          ],
+          [
+            164.0,
+            175.0,
+            11415.0,
+            10937.9
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          50.0,
+          51.0,
+          5708.0,
+          5585.7
+        ],
+        "roster-1": [
+          66.0,
+          67.0,
+          8362.5,
+          8064.1
+        ],
+        "strip-2": [
+          98.0,
+          101.0,
+          5717.9,
+          5581.9
+        ],
+        "roster-2": [
+          164.0,
+          177.0,
+          11415.2,
+          10938.1
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1277
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1341
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      }
+    },
+    "prototype": {
+      "description": "Two dedicated mesh pools for collapsed and expanded geometries reduced coordinate writes. The source remains external because the full clock was mixed and the warm strip needed 283 to 293 additional objects.",
+      "timings": {
+        "strip-1": [
+          [
+            57.0,
+            58.0,
+            5720.6,
+            5200.9
+          ],
+          [
+            60.0,
+            59.0,
+            5720.8,
+            5201.1
+          ],
+          [
+            56.0,
+            59.0,
+            5718.1,
+            5198.4
+          ],
+          [
+            53.0,
+            61.0,
+            5717.6,
+            5197.9
+          ],
+          [
+            54.0,
+            52.0,
+            5717.6,
+            5197.9
+          ]
+        ],
+        "roster-1": [
+          [
+            64.0,
+            66.0,
+            8025.6,
+            8027.5
+          ],
+          [
+            62.0,
+            62.0,
+            8025.7,
+            8027.5
+          ],
+          [
+            61.0,
+            62.0,
+            8025.9,
+            8027.8
+          ],
+          [
+            70.0,
+            69.0,
+            8025.4,
+            8027.3
+          ],
+          [
+            64.0,
+            67.0,
+            8025.4,
+            8027.3
+          ]
+        ],
+        "strip-2": [
+          [
+            91.0,
+            99.0,
+            5733.6,
+            5135.4
+          ],
+          [
+            93.0,
+            93.0,
+            5733.8,
+            5135.6
+          ],
+          [
+            96.0,
+            91.0,
+            5734.1,
+            5135.8
+          ],
+          [
+            97.0,
+            95.0,
+            5733.6,
+            5135.3
+          ],
+          [
+            100.0,
+            97.0,
+            5733.6,
+            5135.3
+          ]
+        ],
+        "roster-2": [
+          [
+            159.0,
+            151.0,
+            10561.7,
+            10562.2
+          ],
+          [
+            164.0,
+            170.0,
+            10561.7,
+            10562.3
+          ],
+          [
+            172.0,
+            164.0,
+            10562.0,
+            10562.5
+          ],
+          [
+            170.0,
+            176.0,
+            10561.5,
+            10562.0
+          ],
+          [
+            184.0,
+            173.0,
+            10561.5,
+            10562.0
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          56.0,
+          59.0,
+          5718.1,
+          5198.4
+        ],
+        "roster-1": [
+          64.0,
+          66.0,
+          8025.6,
+          8027.5
+        ],
+        "strip-2": [
+          96.0,
+          95.0,
+          5733.6,
+          5135.4
+        ],
+        "roster-2": [
+          170.0,
+          170.0,
+          10561.7,
+          10562.2
+        ]
+      },
+      "objectCounts": {
+        "strip-1": [
+          1277,
+          1570
+        ],
+        "roster-1": [
+          1675,
+          1675
+        ],
+        "strip-2": [
+          1341,
+          1624
+        ],
+        "roster-2": [
+          2203,
+          2203
+        ]
+      },
+      "writeTypes": [
+        "WRITE_TYPES|strip|1|1764|1536|2064|1596|528",
+        "PREPARED_COST|strip|1|fieldCalls=31932|fieldHits=24444|fieldWrites=7488|alphaReads=5472|alphaWrites=132|hideReads=1446|hideWrites=1446|showReads=4002|showWrites=1446|drawFields=684|drawMisses=282|basisReads=162",
+        "WRITE_TYPES|roster|1|4140|2184|9024|2244|336",
+        "PREPARED_COST|roster|1|fieldCalls=48780|fieldHits=30852|fieldWrites=17928|alphaReads=6768|alphaWrites=288|hideReads=876|hideWrites=876|showReads=5688|showWrites=876|drawFields=0|drawMisses=186|basisReads=312",
+        "WRITE_TYPES|strip|2|1932|1584|2352|1608|624",
+        "PREPARED_COST|strip|2|fieldCalls=35658|fieldHits=27558|fieldWrites=8100|alphaReads=5892|alphaWrites=126|hideReads=1818|hideWrites=1818|showReads=4422|showWrites=1818|drawFields=744|drawMisses=288|basisReads=162",
+        "WRITE_TYPES|roster|2|6684|3156|16884|3420|600",
+        "PREPARED_COST|roster|2|fieldCalls=87606|fieldHits=56862|fieldWrites=30744|alphaReads=11082|alphaWrites=552|hideReads=1914|hideWrites=1914|showReads=10002|showWrites=1914|drawFields=0|drawMisses=312|basisReads=312"
+      ]
+    },
+    "artifactSHA256": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\counts-1.txt": "7a5b99ac8fb378b69721145c7b8432d8d4979e51cb7571246e7592d312fae992",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\counts-2.txt": "edee491d811aa045f343e73692d9a684ec446ad4e8efc8eaf818869d5ada1dfc",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\counts-3.txt": "96cdcbf396e3a27be0d711dd0de1b8915b73626ac0e39a8f91fa705093eae4f0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\bench-anchor-count.lua": "4aa2e94eb89082525359869a09864209089eb29f1e16fa83eb94d4d63384ffff",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\bench-anchors.txt": "14d91fb4a979bb8f645003352d57d2e8ac4321f2f00ee3796eff24d1e9e9bed1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\bench-experimental-mesh.lua": "aca592991989c15876c1fdd817a75f06de2dd2b56b0ee7291d4610a31ff8dc32",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\experimental-pose-mesh.lua": "760026f11bf784d5f6991fb88b6960947cf2f909ce627527d592813b08480544",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\bench-experimental-mesh.txt": "151670eb87c8ce98e678dbb5226d1a4de17cc65dd736746829e063d36eb2fa99",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\archived-pose-mesh.txt": "e5f6fa599db11bace031b9e889e540f548a8f71a68eae102f6fe6643ad2d6fcb",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\experimental-pose-mesh.txt": "c8512da759bf5538bf8fa459506f00b9079e71d0211deb967d6441c003c2ef9a",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\instrument-current.lua": "9c3af182b8f7d5980b61402305e5e12cf2ecdce2c080fc3736e8197aa8dd7432",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\instrument-baseline.lua": "81050621e1f24b56574a29cac380770e995a4afb95703761858f671a19751621",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\current-field-writes.txt": "7450d9ee788131e984984152cfea2f3b3a58f9ffacb7fe93de373bb72a2e476f",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\anchor-source-evidence.json": "baa760e0ba1c4302fb5359385d9f52b5b59b9d7bc892525f221c90dae33bde84",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\focused-before-anchor-recovery.json": "ccea5be6d7af067361ad2246352550eed78d5f4582e0efb1b42961e6700e9e54",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\instrument-before-anchor-recovery.lua": "b399c612c94a95c11ac6ce63ff250146c4527523171657647685dac3b400f87d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\bench-anchors-before-recovery.txt": "06f1a58c26f3bc234f3d0a92841fe468b02e4fbeeb133643cf149ac9066fcdb2"
+    }
+  },
+  "parity": "Exact point assignments, source and sprite membership and sampled seams match. Directed tests cover extra anchors, wrong point names, unreadable and secret data, changing anchor owners and retries after a setter error. Both renderers create equal object counts.",
+  "verification": {
+    "focusedPassed": 47,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-sprite-reuse-before-20261120T042129403\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/SpellReagents.lua",
+      "tests/passive_inventory_item_ids.lua",
+      "tests/spell_reagent_presets.lua"
+    ]
+  },
+  "nativeAcceptance": "Live strip drag/drop and party/raid latency, pixels and combat taint remain pending."
+}

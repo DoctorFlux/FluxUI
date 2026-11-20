@@ -1,0 +1,308 @@
+{
+  "changeId": "PARTY-DISPEL-IDENTITY-R123-20261119",
+  "capturedAtUTC": "2026-11-19T16:53:27.172757+00:00",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+      "beforeRaw": "4f48ab1346008a65be60b7819f2d59525b2d12ca8330affff7681d3b2727c571",
+      "afterRaw": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d"
+    },
+    "tests/friendly_debuff_tint.lua": {
+      "beforeRaw": "d9f8323ce0ae4c1cc7fb4afd31b1e04bb034c34e8200227a5f0c4e3747c28dbc",
+      "afterRaw": "f2b2994d21585a049cda7c9a8dfda0c218183bcffb4751b142728a8b04aa50d0"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\source.zip",
+    "sourceZipSHA256": "1a05f9330ccb089296202c0f3f2c4a9536c8e0d6f8df8327b60b122ec878b2e8",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual event handler and party debuff tint module with pinned FrameXML owner methods on model widgets. Four visible friendly party members with one native aura container for each of three chrome surfaces. Stable runs deliver eight same-turn roster notifications per batch across 240 batches. One-member replacement is its own batch.",
+    "nativeOwnerRefreshes": {
+      "live:current:false": {
+        "before": 2880,
+        "after": 0
+      },
+      "live:current:true": {
+        "before": 2880,
+        "after": 0
+      },
+      "live:current:replacement": {
+        "before": 12,
+        "after": 3
+      },
+      "live:legacy:false": {
+        "before": 2880,
+        "after": 0
+      },
+      "live:legacy:true": {
+        "before": 2880,
+        "after": 0
+      },
+      "live:legacy:replacement": {
+        "before": 12,
+        "after": 3
+      },
+      "forever:current:false": {
+        "before": 2880,
+        "after": 0
+      },
+      "forever:current:true": {
+        "before": 2880,
+        "after": 0
+      },
+      "forever:current:replacement": {
+        "before": 12,
+        "after": 3
+      },
+      "forever:legacy:false": {
+        "before": 2880,
+        "after": 0
+      },
+      "forever:legacy:true": {
+        "before": 2880,
+        "after": 0
+      },
+      "forever:legacy:replacement": {
+        "before": 12,
+        "after": 3
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\compare.py": "f5701503387b563b822ecdcbeca3bd62505017ce94501d4c83412ec7a2335809",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\matched.json": "75486fb5a060a3ccc921e0019148de654285427fd6e65b542f741ba4c4273199",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\negative-control.txt": "71b79aeafa5b4f9274531ff7727df66839c18cfee141ef029e5eb4a63be87f99",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\before-1.txt": "b79217fc516454d841dc774260b1686d0abdae29be692c52ac6df0ee2e56b5ea",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\before-2.txt": "1c256ff348a017c25a7f3f8f1de17500f6e2f3f463c01fd836a7e61936df30d6",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\before-3.txt": "2fc46d08b64e0777cd4c1c9a3761587c0bb76fadc300dd4b49f35f379518b527",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\before-4.txt": "50f91a4003947f29b30c73fb01a8870a2290a3ea6c25f1462c0d87172c98fe61",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\before-5.txt": "50f91a4003947f29b30c73fb01a8870a2290a3ea6c25f1462c0d87172c98fe61",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\after-1.txt": "acc8044528b71e95ed2973896ec9cb775d95154e29761eb093a705d64b15c980",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\after-2.txt": "0a98b97c64d44e985ee47069b671a1fe1978741a6c138881f3df8343ab47692c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\after-3.txt": "fd5d05690079f3dc9ac1158149e9683c046644a456de76f6beb7e0fbfb450aed",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\after-4.txt": "b8debeab7d742d41bf0daf2d65a5189d8fc761c7be02248f3eebbac8308606b5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\after-5.txt": "a31e9e98d3aa5f34287ec10edfc3ee922ee19c31f184e7b8b8947abf95bbefff"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6, five alternating pairs. Scope is only the simulated roster notification, batch and paint work in this module. Maintains readable label scans. No changes to the client profiler.",
+    "results": {
+      "live:current:false": {
+        "before": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "after": [
+          13.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "medians": {
+          "before": 15.0,
+          "after": 13.0
+        }
+      },
+      "live:current:true": {
+        "before": [
+          13.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "after": [
+          11.0,
+          11.0,
+          11.0,
+          11.0,
+          11.0
+        ],
+        "medians": {
+          "before": 13.0,
+          "after": 11.0
+        }
+      },
+      "live:legacy:false": {
+        "before": [
+          18.0,
+          16.0,
+          16.0,
+          15.0,
+          15.0
+        ],
+        "after": [
+          15.0,
+          13.0,
+          14.0,
+          13.0,
+          13.0
+        ],
+        "medians": {
+          "before": 16.0,
+          "after": 13.0
+        }
+      },
+      "live:legacy:true": {
+        "before": [
+          15.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "after": [
+          12.0,
+          11.0,
+          10.0,
+          10.0,
+          11.0
+        ],
+        "medians": {
+          "before": 13.0,
+          "after": 11.0
+        }
+      },
+      "forever:current:false": {
+        "before": [
+          16.0,
+          17.0,
+          15.0,
+          16.0,
+          16.0
+        ],
+        "after": [
+          14.0,
+          13.0,
+          13.0,
+          14.0,
+          14.0
+        ],
+        "medians": {
+          "before": 16.0,
+          "after": 14.0
+        }
+      },
+      "forever:current:true": {
+        "before": [
+          13.0,
+          14.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "after": [
+          12.0,
+          10.0,
+          11.0,
+          11.0,
+          10.0
+        ],
+        "medians": {
+          "before": 13.0,
+          "after": 11.0
+        }
+      },
+      "forever:legacy:false": {
+        "before": [
+          15.0,
+          15.0,
+          15.0,
+          15.0,
+          15.0
+        ],
+        "after": [
+          12.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "medians": {
+          "before": 15.0,
+          "after": 13.0
+        }
+      },
+      "forever:legacy:true": {
+        "before": [
+          13.0,
+          13.0,
+          13.0,
+          13.0,
+          13.0
+        ],
+        "after": [
+          11.0,
+          11.0,
+          11.0,
+          11.0,
+          11.0
+        ],
+        "medians": {
+          "before": 13.0,
+          "after": 11.0
+        }
+      }
+    }
+  },
+  "preservation": [
+    "A settled public party GUID, unit token and filter are required to keep the live native owners.",
+    "Changed, missing, empty or opaque GUIDs keep native refresh.",
+    "Ordinary aura events still reach native owners and readable label paint.",
+    "Requested filter changes, explicit refreshes, independent unit changes, hide and reveal retain the current behavior.",
+    "No protected setup, frame allocation, new callback or game probe was added.",
+    "The Classic readable overlay path and restricted label handling are replayed separately."
+  ],
+  "verification": {
+    "focusedPassed": 84,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-dispel-identity-before-20261119-174719\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "sha256": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d",
+        "matches": true
+      }
+    },
+    "forever": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "sha256": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d",
+        "matches": true
+      }
+    },
+    "classic": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "sha256": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "sha256": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "UnitFrames/FluxUnitFrames_DebuffTint.lua": {
+        "sha256": "1aad90ca1f5ac2464a179609757d90e921e05491fdb98a329f9c2a82eab5d00d",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

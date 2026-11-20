@@ -1,0 +1,426 @@
+{
+  "changeId": "REGIONAL-BORDER-CUTS-R106-20261119",
+  "capturedAtUTC": "2026-11-19T13:11:40.865163+00:00",
+  "scope": "Avoid disjoint rectangle work and unchanged fallback arrays on cold builds",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "8af2f86ecf82c9187e61976e5f3151c27a36d365eae2b3e4d3630978500bbbbc",
+      "afterRaw": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6"
+    },
+    "tests/regional_border_cuts.lua": {
+      "beforeRaw": null,
+      "afterRaw": "876130c9683b28d9e1fce841cecc03adedcaa9b0f66bf64a74656856a2985467"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_fallback_plan_cache.lua": {
+      "beforeRaw": "49feba1de01accf3243d077519d212f019c98a4c59bb0409b09f8f37c3e05a4b",
+      "afterRaw": "49feba1de01accf3243d077519d212f019c98a4c59bb0409b09f8f37c3e05a4b"
+    },
+    "tests/regional_layout_index.lua": {
+      "beforeRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3",
+      "afterRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3"
+    },
+    "tests/regional_roster_poses.lua": {
+      "beforeRaw": "c677d9c391ab5fffc5282a841a60c18b9b37b840fb330009393dc438165a55ce",
+      "afterRaw": "c677d9c391ab5fffc5282a841a60c18b9b37b840fb330009393dc438165a55ce"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\source.zip",
+    "archiveSHA256": "fdc073ee8d93d5bb9b3386280b5661cc526a2dad96e6b725e3ea76e89d9b112e",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 2,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 held crossing",
+      "type 1 roster movement",
+      "type 2 held crossing",
+      "type 2 roster movement",
+      "type 1 parallel edges",
+      "type 2 parallel edges"
+    ],
+    "counts": [
+      [
+        280,
+        280,
+        280,
+        242
+      ],
+      [
+        160,
+        136,
+        160,
+        128
+      ],
+      [
+        273,
+        273,
+        273,
+        237
+      ],
+      [
+        176,
+        152,
+        176,
+        144
+      ],
+      [
+        984,
+        690,
+        984,
+        578
+      ],
+      [
+        984,
+        691,
+        984,
+        579
+      ]
+    ],
+    "countColumns": [
+      "before subtract calls",
+      "after subtract calls",
+      "before allocated output lists",
+      "after allocated output lists"
+    ],
+    "checks": [
+      "first two held-cursor and roster poses",
+      "four raid frames move with portrait dividers and overlapping resource bands",
+      "exact fallback output when 56 dividers overlap with parallel border strokes",
+      "touching cuts leave fragments alone, and partial cuts preserve fragment order",
+      "fallback drawing agrees when the keeper texture hides"
+    ],
+    "rows": [
+      "BORDER_CUTS style=1 case=hover passes=2 calls=280/280 arrays=280/242",
+      "BORDER_CUTS style=1 case=roster passes=2 calls=160/136 arrays=160/128",
+      "BORDER_CUTS style=2 case=hover passes=2 calls=273/273 arrays=273/237",
+      "BORDER_CUTS style=2 case=roster passes=2 calls=176/152 arrays=176/144",
+      "BORDER_CUTS style=1 case=parallel-edges passes=2 calls=984/690 arrays=984/578",
+      "BORDER_CUTS style=2 case=parallel-edges passes=2 calls=984/691 arrays=984/579",
+      "Cold border cuts preserve fragment order, sampled seams, and visibility backups."
+    ],
+    "captureSHA256": "8e63ba5aaf193aadfbaaa661150e4fc42b54936652edda3b4fd56bc8dd46d55d"
+  },
+  "desktopTiming": {
+    "scope": "Seven alternating pairs using os.clock for two builds per trigger and style",
+    "unit": "milliseconds",
+    "samples": {
+      "1:hover": {
+        "medians": [
+          35.0,
+          34.0
+        ],
+        "trials": [
+          [
+            35.0,
+            36.0
+          ],
+          [
+            37.0,
+            35.0
+          ],
+          [
+            33.0,
+            32.0
+          ],
+          [
+            31.0,
+            30.0
+          ],
+          [
+            37.0,
+            34.0
+          ],
+          [
+            37.0,
+            34.0
+          ],
+          [
+            30.0,
+            37.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          39.0,
+          35.0
+        ],
+        "trials": [
+          [
+            33.0,
+            35.0
+          ],
+          [
+            35.0,
+            34.0
+          ],
+          [
+            39.0,
+            35.0
+          ],
+          [
+            41.0,
+            39.0
+          ],
+          [
+            39.0,
+            34.0
+          ],
+          [
+            36.0,
+            37.0
+          ],
+          [
+            47.0,
+            45.0
+          ]
+        ]
+      },
+      "1:parallel": {
+        "medians": [
+          110.0,
+          110.0
+        ],
+        "trials": [
+          [
+            97.0,
+            119.0
+          ],
+          [
+            118.0,
+            110.0
+          ],
+          [
+            110.0,
+            103.0
+          ],
+          [
+            103.0,
+            110.0
+          ],
+          [
+            105.0,
+            118.0
+          ],
+          [
+            117.0,
+            107.0
+          ],
+          [
+            117.0,
+            114.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          75.0,
+          83.0
+        ],
+        "trials": [
+          [
+            50.0,
+            51.0
+          ],
+          [
+            38.0,
+            38.0
+          ],
+          [
+            75.0,
+            98.0
+          ],
+          [
+            64.0,
+            67.0
+          ],
+          [
+            79.0,
+            83.0
+          ],
+          [
+            75.0,
+            88.0
+          ],
+          [
+            84.0,
+            97.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          94.0,
+          94.0
+        ],
+        "trials": [
+          [
+            114.0,
+            117.0
+          ],
+          [
+            96.0,
+            118.0
+          ],
+          [
+            88.0,
+            86.0
+          ],
+          [
+            104.0,
+            114.0
+          ],
+          [
+            94.0,
+            94.0
+          ],
+          [
+            86.0,
+            92.0
+          ],
+          [
+            91.0,
+            88.0
+          ]
+        ]
+      },
+      "2:parallel": {
+        "medians": [
+          149.0,
+          148.0
+        ],
+        "trials": [
+          [
+            154.0,
+            141.0
+          ],
+          [
+            145.0,
+            151.0
+          ],
+          [
+            137.0,
+            137.0
+          ],
+          [
+            149.0,
+            169.0
+          ],
+          [
+            144.0,
+            148.0
+          ],
+          [
+            156.0,
+            153.0
+          ],
+          [
+            174.0,
+            146.0
+          ]
+        ]
+      }
+    },
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\timing.txt",
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\time.lua"
+  },
+  "subtractionTiming": {
+    "scope": "Seven alternating pairs of 60000 mixed cuts over 16 rectangles",
+    "medians": [
+      112.0,
+      57.0
+    ],
+    "samples": [
+      [
+        112.0,
+        57.0
+      ],
+      [
+        115.0,
+        58.0
+      ],
+      [
+        112.0,
+        58.0
+      ],
+      [
+        110.0,
+        60.0
+      ],
+      [
+        108.0,
+        57.0
+      ],
+      [
+        110.0,
+        57.0
+      ],
+      [
+        112.0,
+        56.0
+      ]
+    ],
+    "unit": "milliseconds",
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\subtract-time.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\subtract-timing.txt"
+  },
+  "discardedVariant": {
+    "reason": "The first rectangle loop reduced allocations but dense complete-reflow timing regressed",
+    "sourceSHA256LF": "42dad089d7b35b786adf8f5bc27e0b0170faf4852659718e482401b499c5eda2",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\first-candidate-timing.txt"
+  },
+  "verification": {
+    "focused": 45,
+    "focusedPassed": 44,
+    "syntax": 1249,
+    "compilerMaximumUpvalues": 52,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-border-cuts-r106-before-20261119T125808Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "3cb2e652f128f1eabe7ea5eb97ff3a371ece57b319797bae31f64bc7713561e6",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

@@ -475,6 +475,95 @@ local function ClassifyItem(itemId)
 	return helpful and 1 or 2
 end
 
+local function RangePublic(value)
+	local S = Flux.Secrets
+	local secret = S and S.IsSecretValue or issecretvalue
+	return not (secret and secret(value))
+end
+
+local function RangeFlag(widget, name, bare)
+	local ok, value
+	if not bare and SecureButton_GetModifiedAttribute then
+		ok, value = pcall(SecureButton_GetModifiedAttribute, widget, name, "LeftButton")
+	else
+		ok, value = pcall(widget.GetAttribute, widget, name)
+	end
+	return ok and RangePublic(value) and value ~= nil and value ~= false and value ~= ""
+end
+
+local function RangeModified(name)
+	if not IsModifiedClick then return false end
+	local ok, value = pcall(IsModifiedClick, name)
+	return ok and RangePublic(value) and value == true
+end
+
+-- NeedsRange and the probe ask consecutively for the same shown identity.
+-- Cache that immutable classification only; native slots can change contents
+-- in this frame, so their action-level classifier must stay live.
+local rangeClassTime, rangeClassType, rangeClassId, rangeClassValue, rangeClassOK
+local function RangeClassify(actionType, actionId)
+	local now = GetTime and GetTime()
+	if now and now == rangeClassTime and actionType == rangeClassType and actionId == rangeClassId then
+		return rangeClassValue, rangeClassOK
+	end
+	local ok, kind
+	if actionType == "spell" then
+		ok, kind = pcall(ClassifySpell, nil, nil, actionId)
+	elseif actionType == "item" then
+		ok, kind = pcall(ClassifyItem, actionId)
+	else
+		return nil, false
+	end
+	rangeClassTime, rangeClassType, rangeClassId = now, actionType, actionId
+	rangeClassValue, rangeClassOK = kind, ok
+	return kind, ok
+end
+
+--- Range target for plain actions. Macro/binding @units and explicit widget
+--- units are resolved by Flux.Range before this helper. This reads the same
+--- cast gates without running secure clicks or changing any attributes.
+function MouseoverCast.RangeUnit(widget, actionType, actionId)
+	if not widget or not widget.GetAttribute or not RangePublic(actionId) then return nil end
+	local native = MouseoverCast.UsesNativeCVar()
+	if MouseoverCast.IsActive() and UnitThere("mouseover") then
+		if native and actionType == "action" then
+			-- Native SecureButton_GetUnit chooses by friendship, with neutral
+			-- actions included. Unknown/restricted results never invent a hover.
+			if RangeFlag(widget, "checkmouseovercast") and actionId and UnitIsFriend and C_ActionBar then
+				local ok, friendly = pcall(UnitIsFriend, "player", "mouseover")
+				if ok and RangePublic(friendly) and type(friendly) == "boolean" then
+					local check = friendly and C_ActionBar.IsHelpfulAction or C_ActionBar.IsHarmfulAction
+					if check then
+						local checked, allowed = pcall(check, actionId, true)
+						if checked and RangePublic(allowed) and allowed == true then return "mouseover" end
+					end
+				end
+			end
+		elseif (not native or UsesNativeButtonAdapter(widget))
+			and (RangeFlag(widget, "smarttarget", true) or RangeFlag(widget, "flux-smart", true)) then
+			local kind, id = actionType, actionId
+			if kind == "action" and id and GetActionInfo then
+				local ok, at, aid, subtype = pcall(GetActionInfo, id)
+				if ok and RangePublic(at) and RangePublic(aid) and RangePublic(subtype) then
+					kind, id = at, aid
+					if kind == "macro" and subtype == "spell" then kind = "spell" end
+				end
+			end
+			local class, ok = RangeClassify(kind, id)
+			if ok and SecureCmdOptionParse then
+				local gate = class == 1 and "help" or class == 2 and "harm" or "exists"
+				local parsed, unit = pcall(SecureCmdOptionParse, "[@mouseover," .. gate .. "] mouseover")
+				if parsed and RangePublic(unit) and unit == "mouseover" then return unit end
+			end
+		end
+	end
+	-- Native order is mouseover, self cast, then focus cast. Only controls that
+	-- authorize those checks may override the ordinary selected target.
+	if RangeFlag(widget, "checkselfcast") and RangeModified("SELFCAST") then return "player" end
+	if RangeFlag(widget, "checkfocuscast") and RangeModified("FOCUSCAST") then return "focus" end
+	return nil
+end
+
 local function ClearSmartAttrs()
 	if not hub then
 		return
@@ -1272,7 +1361,10 @@ function MouseoverCast.Start()
 		else
 			Ev.Register("SPELLS_CHANGED", QueueClassify)
 		end
-		Ev.Register("PLAYER_SPECIALIZATION_CHANGED", QueueClassify)
+		Ev.Register("PLAYER_SPECIALIZATION_CHANGED", function(event, unit)
+		if Ev.IsPlayerUnitEvent and not Ev.IsPlayerUnitEvent(unit) then return end
+		QueueClassify(event, unit)
+	end)
 		Ev.Register("ACTIVE_TALENT_GROUP_CHANGED", QueueClassify)
 		-- Paging is secure, but a slot that changed contents OOC needs its
 		-- classification re-read.

@@ -692,7 +692,7 @@ local function KidOnEnter(self)
 			or (host and host._fluxFlyoutFavoritesCategory)
 			or (def and def.favoriteCategory)
 		if category then
-			Flyout.Favorites.AppendTooltip(self, category, itemId, spellId)
+		Flyout.Favorites.AppendTooltip(self, category, itemId, def._fluxProfessionAssignment or spellId)
 			return
 		end
 	end

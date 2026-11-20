@@ -4,8 +4,17 @@
     Kind tables and shared globals for the per-character best-consumable store.
 ]]
 
+local _, ns = ...
+
 FluxConsumableBest = FluxConsumableBest or {}
 local Best = FluxConsumableBest
+
+local snapshotItemIDQuery = type(ns) == "table" and rawget(ns, "InventoryUniqueItemIDQuery")
+local snapshotItemIDOwner, snapshotItemIDs
+if type(snapshotItemIDQuery) == "table" then
+    snapshotItemIDOwner = rawget(snapshotItemIDQuery, "owner")
+    snapshotItemIDs = rawget(snapshotItemIDQuery, "query")
+end
 
 Best.KINDS = {
     "food",
@@ -53,7 +62,12 @@ local function UniqueBagCount()
     local api = Flux and Flux.Inventory
     local unique
     if api and api.GetUniqueItems then
-        unique = api.GetUniqueItems({ bags = true, bank = false, warband = false })
+        if api == snapshotItemIDOwner and type(snapshotItemIDs) == "function"
+            and rawget(api, "GetUniqueItemIDs") == snapshotItemIDs then
+            unique = snapshotItemIDs({ bags = true, bank = false, warband = false })
+        else
+            unique = api.GetUniqueItems({ bags = true, bank = false, warband = false })
+        end
     end
     if type(unique) ~= "table" then
         return 0

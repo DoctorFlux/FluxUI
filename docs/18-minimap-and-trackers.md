@@ -1,5 +1,32 @@
 # Minimap, embedded buttons, objectives and buffs
 
+<!-- GROUP-COMBAT-SPIKES-20261116 -->
+16 November `GROUP-COMBAT-SPIKES-20261116`: combat transition redundant-work fixes applied; 491 scripts/1181 syntax PASS; final Lua corpus stable. Full paint/binding recovery and current native/private checks remain; native timings/taint/rendering pending. [Exact scope and evidence](validation/group-combat-spikes-2026-11-16.json).
+<!-- /GROUP-COMBAT-SPIKES-20261116 -->
+
+
+16 November `COMBAT-TRANSITIONS-20261116`: R51 `prepared-guards-r51` compares
+fresh native anchor, parent, scale and shown state before repeating minimap
+placement/cleanup setters. There is no persistent position cache. Unknown,
+private, missing or failing getters keep the original setter path; late frames
+and native changes still correct immediately. Movable/mouse/indicator cadence
+and combat/embed policy remain. Dedicated166 checks and18 focused scripts PASS;
+model mutation counts do not certify native speed, pixels or taint. Combined R51
+aggregate474 PASS/0FAIL and1165 syntax PASS follows the legacy extractor correction
+and four bounded replays; all eight owned runtime files stayed stable, not one
+globally frozen sweep. Global690 files/24916 prototypes max57/0fail PASS.
+Native R51 remains pending. [Requirements and evidence](COMBAT_TRANSITION_PERFORMANCE.md).
+
+16 November frozen border `adaptive-fallback-r50`: dedicated1226/Cost74 PASS;
+full467/1157 stable and global Lua5.1 689files/24857prototypes max57/0fail PASS.
+Quiet native R50 now measured218.36ms versus R49's207.94ms; hitch/CB36 OPEN.
+Adaptive large-bucket lookup retains small-bucket
+flat publication, guarded current paint/fresh coordinates and Window/side ownership.
+Common CPU is mixed; dense stress is not native evidence. Further native captures
+require all owned CPU/docs jobs finished. Accepted
+fits/settings/diagnostics/profiling preferences remain intact.
+[Border requirements and acceptance](CONNECTED_BORDERS.md).
+
 Target/focus tracking is now built in where the native engine exposes hidden
 filters. The normal tracking menu saves character choices; show-all and an enabled
 ForeverMinimapTarget stay native. Classic clients without the filter lookup remain
@@ -115,3 +142,8 @@ flowchart TD
 ```
 
 `IsTrackerEnabled` checks Questie/loader/profile availability and the actual preference, rather than `IsShown`. Layout requests coalesce; a pending combat request resumes on regen. Late-created header buttons receive hooks when available. Timer placement starts from Questie's own quest-positioning function each time, reserves native timer height plus four pixels, and restores saved native parent/anchors on release. Repeated relayout therefore does not intentionally accumulate a timer offset. This is source/mocked evidence; [live scenarios](41-verification.md#current-compatibility-scenarios) remain pending.
+
+<!-- STRIP-CHROME-MINIMAP-ROSTER-20261119 -->
+Same-turn instance-size and roster notifications share the difficulty and queue layout. Any pending update follows the normal protected-layout checks and settles on combat release or a full indicator refresh.
+[Strip and minimap evidence](validation/strip-chrome-minimap-roster-2026-11-19.json).
+<!-- /STRIP-CHROME-MINIMAP-ROSTER-20261119 -->

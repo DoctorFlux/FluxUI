@@ -12,6 +12,7 @@
       * FluxRestock (spell-reagent compat: reagent map, tooltip append, prices)
 ]]
 
+local _, ns = ...
 FluxRestockList = FluxRestockList or {}
 local List = FluxRestockList
 local FV = FluxVendorAuto
@@ -219,7 +220,11 @@ function FV.ResetTierReference(kind, skipNotify)
     end
 end
 
-local function BuildTierEntry(kind, merchantIndex, opts)
+local tierListOwner = Tiers()
+local ownedTierBagCount = tierListOwner and tierListOwner._Private and tierListOwner._Private.GetTierCountForRestockList
+local ownedTierBankCount = tierListOwner and tierListOwner._Private and tierListOwner._Private.GetBankCountForRestockList
+
+local function BuildTierEntry(kind, merchantIndex, opts, closedBankCounts, liveSlots)
     local T = Tiers()
     if not T then
         return nil
@@ -236,8 +241,22 @@ local function BuildTierEntry(kind, merchantIndex, opts)
         return nil
     end
     local countBank = T.GetCountBankFlag and T.GetCountBankFlag(kind) or false
-    local bagCount = T.GetTierCount and T.GetTierCount(kind, merchantIndex) or 0
-    local bankCount = T.GetBankCountForKind and T.GetBankCountForKind(kind, merchantIndex) or 0
+    local bagCount = 0
+    if T.GetTierCount then
+        if liveSlots and T == tierListOwner and ownedTierBagCount and T._Private
+            and T._Private.GetTierCountForRestockList == ownedTierBagCount then
+            bagCount = ownedTierBagCount(kind, merchantIndex, liveSlots) or 0
+        else
+            bagCount = T.GetTierCount(kind, merchantIndex) or 0
+        end
+    end
+    local getListBankCount = T._Private and T._Private.GetBankCountForRestockList
+    local bankCount
+    if getListBankCount and getListBankCount == ownedTierBankCount and opts and opts.skipAuctionFoodWaterBank
+        and (kind == "food" or kind == "water") then
+        bankCount = getListBankCount(kind, merchantIndex, closedBankCounts, true) or 0
+    elseif getListBankCount then bankCount = getListBankCount(kind, merchantIndex, closedBankCounts) or 0
+    else bankCount = T.GetBankCountForKind and T.GetBankCountForKind(kind, merchantIndex) or 0 end
     local entry = {
         isTierRestock = true,
         tierKind = kind,
@@ -287,10 +306,12 @@ local function IsBlacklistedReagentID(itemId)
     return false
 end
 
+local visibleReagentNames = type(ns) == "table" and rawget(ns, "InventoryReagentVisibleNames")
+
 --- Pull spell-book reagent itemIDs from FluxInv (SoT).
-local function GetPlayerReagentItemIDs(opts)
-    opts = type(opts) == "table" and opts or {}
+local function GetPlayerReagentItemIDs(names)
     local reagentIDs = {}
+    local settled
     local S = Spells()
     if S then
         -- Refresh so options / merchant see the current spell book.
@@ -300,7 +321,11 @@ local function GetPlayerReagentItemIDs(opts)
             S.ScheduleWarm()
         end
         -- Merchant / bags may have just taught us name→ID for Classic tooltips.
-        if S.OnVisibleItemsChanged then
+        if names and S == visibleReagentNames.owner
+            and rawget(S, "OnVisibleItemsChanged") == visibleReagentNames.publicQuery then
+            local _
+            _, settled = visibleReagentNames.query(names)
+        elseif S.OnVisibleItemsChanged then
             S.OnVisibleItemsChanged()
         end
         local set = (S.GetReagentItemIDSet and S.GetReagentItemIDSet()) or {}
@@ -311,7 +336,7 @@ local function GetPlayerReagentItemIDs(opts)
             end
         end
     end
-    return reagentIDs
+    return reagentIDs, settled
 end
 
 function List.CancelSpellReagentCacheWarm()
@@ -409,19 +434,38 @@ function FV.IsStaticSpellReagentItem(itemId)
     return false
 end
 
-function FV.IsKnownSpellReagentItem(itemId)
+local function IsKnownSpellReagentItem(itemId, names, settled)
     local n = tonumber(itemId)
     if not n or IsBlacklistedReagentID(n) then return false end
     local S = Spells()
     if S and S.IsReagentItem and S.IsReagentItem(n) then
         return true
     end
-    local reagentIDs = GetPlayerReagentItemIDs({})
+    -- The builder already harvested visible names. An owned retry can still resolve
+    -- late metadata, and an invalid or changed result takes the original discovery path.
+    if settled and S == visibleReagentNames.owner and visibleReagentNames.retry(settled) == false then
+        return false
+    end
+    local reagentIDs = GetPlayerReagentItemIDs(names)
     return reagentIDs[n] == true
+end
+
+function FV.IsKnownSpellReagentItem(itemId)
+    return IsKnownSpellReagentItem(itemId)
 end
 
 function FV.IsSpellReagentItem(itemId)
     return FV.IsKnownSpellReagentItem(itemId)
+end
+
+local knownReagent = FV.IsKnownSpellReagentItem
+local spellReagent = FV.IsSpellReagentItem
+local function IsRestockListReagent(itemId, names, settled)
+    if names and rawget(FV, "IsSpellReagentItem") == spellReagent
+        and rawget(FV, "IsKnownSpellReagentItem") == knownReagent then
+        return IsKnownSpellReagentItem(itemId, names, settled)
+    end
+    return FV.IsSpellReagentItem(itemId)
 end
 
 local function GetSpellsUsingReagentItem(itemId)
@@ -705,8 +749,10 @@ function FV.GetRestockTargetItems(opts)
     local seen = {}
 
     -- Tier targets first (food/water/bandage/pots via FluxConsumableBest).
+    local closedBankCounts = {}
+    local liveSlots = not opts.merchantAware and {}
     for _, kind in ipairs(TIER_KINDS) do
-        local entry = BuildTierEntry(kind, merchantIndex, opts)
+        local entry = BuildTierEntry(kind, merchantIndex, opts, closedBankCounts, liveSlots)
         if entry then
             list[#list + 1] = entry
         end
@@ -749,7 +795,9 @@ function FV.GetRestockTargetItems(opts)
     end
 
     -- Spell reagents from known max-rank spells (FluxInv.Spells).
-    local reagentIDs = GetPlayerReagentItemIDs(opts)
+    -- Keep every discovery pass, even if a later row changes the active set.
+    local reagentNames = visibleReagentNames and {}
+    local reagentIDs, settledReagents = GetPlayerReagentItemIDs(reagentNames)
     local s = Settings()
     for itemID in pairs(reagentIDs) do
         if not seen[itemID] then
@@ -778,7 +826,8 @@ function FV.GetRestockTargetItems(opts)
     -- Manual items.
     for itemID, data in pairs(s.restockItems) do
         itemID = tonumber(itemID)
-        if itemID and FV.IsSpellReagentItem(itemID) and not seen[itemID] and type(data) == "table" and not data.dismissed then
+        if itemID and IsRestockListReagent(itemID, reagentNames, settledReagents)
+            and not seen[itemID] and type(data) == "table" and not data.dismissed then
             local target = tonumber(data.targetQuantity) or 0
             if ShouldShowInRestockUI(opts, target) then
                 seen[itemID] = true
@@ -974,14 +1023,37 @@ function FV.RefreshRestockCacheEntries(items, merchantIndex)
             end
             if entry.craftTarget then entry.target = (entry.craftBaseTarget or 0) + entry.craftTarget end
             EnrichItemEntryBankCounts(entry)
+        elseif entry.isTierRestock and entry.tierKind then
+            -- Count-only merchant updates retain these rows. Refresh the same
+            -- bag/bank facts used by BuildTierEntry instead of leaving stale counts.
+            local T = Tiers()
+            if T then
+                if T.GetTierCount then
+                    entry.bagCount = T.GetTierCount(entry.tierKind, merchantIndex) or 0
+                end
+                if T.GetCountBankFlag then
+                    entry.countBank = T.GetCountBankFlag(entry.tierKind) or false
+                end
+                if entry.countBank and T.GetBankCountForKind then
+                    entry.bankCount = T.GetBankCountForKind(entry.tierKind, merchantIndex) or 0
+                end
+            end
         end
     end
     local auction = _G.FluxAuctionRestock
     if auction and auction.GetVendorCraftTargets then
+        -- Craft loads after this module. Its private contract identifies the
+        -- read-only defining getter; public replacements retain isolated rows.
+        local contract = type(ns) == "table" and rawget(ns, "VendorCraftBaseRows")
+        local canBorrow = type(contract) == "table" and rawget(contract, "canBorrow")
+        local borrow = type(canBorrow) == "function" and rawget(contract, "owner") == auction and canBorrow()
         local bases = {}
         for _, entry in ipairs(items) do
-            local base = {}; for key, value in pairs(entry) do base[key] = value end
-            if base.craftBaseTarget ~= nil then base.target = base.craftBaseTarget end
+            local base = entry
+            if not borrow or getmetatable(entry) ~= nil or entry.craftBaseTarget ~= nil then
+                base = {}; for key, value in pairs(entry) do base[key] = value end
+                if base.craftBaseTarget ~= nil then base.target = base.craftBaseTarget end
+            end
             bases[#bases + 1] = base
         end
         local temporary = auction.GetVendorCraftTargets(bases)
@@ -1240,12 +1312,39 @@ local function EnsureChargeScanTooltip()
     return chargeScanTip
 end
 
-local function ParseChargesFromLines(getLineText, numLines)
+-- Keep tooltip method and bank-slot conversion lookups inside pcall.
+local function SetChargeHyperlink(tip, link)
+    tip:SetHyperlink(link)
+end
+
+local function SetMainBankChargeSlot(tip, slot)
+    tip:SetInventoryItem("player", _G.BankButtonIDToInvSlotID(slot))
+end
+
+local function SetReagentBankChargeSlot(tip, slot)
+    tip:SetInventoryItem("player", _G.ReagentBankButtonIDToInvSlotID(slot))
+end
+
+local function SetBagChargeSlot(tip, bag, slot)
+    tip:SetBagItem(bag, slot)
+end
+
+local function ChargeScannerLineText(i)
+    local left = _G["FluxRestockChargeScanTooltipTextLeft" .. i]
+    return left and left:GetText()
+end
+
+local function ChargeDataLineText(i, data)
+    local line = data.lines[i]
+    return line and line.leftText
+end
+
+local function ParseChargesFromLines(getLineText, numLines, context)
     if not chargePatterns then
         chargePatterns = BuildChargePatterns()
     end
     for i = 1, numLines do
-        local t = getLineText(i)
+        local t = getLineText(i, context)
         if t and t ~= "" then
             t = t:lower()
             for _, p in ipairs(chargePatterns) do
@@ -1267,12 +1366,9 @@ local function ScanTooltipMaxCharges(itemID)
     local link = (ic and ic.GetLink(itemID)) or ("item:" .. tostring(itemID))
     local tip = EnsureChargeScanTooltip()
     tip:ClearLines()
-    local ok = pcall(function() tip:SetHyperlink(link) end)
+    local ok = pcall(SetChargeHyperlink, tip, link)
     if not ok then return nil end
-    return ParseChargesFromLines(function(i)
-        local left = _G["FluxRestockChargeScanTooltipTextLeft" .. i]
-        return left and left:GetText()
-    end, tip:NumLines())
+    return ParseChargesFromLines(ChargeScannerLineText, tip:NumLines())
 end
 
 local chargeInfoCache = {}
@@ -1343,10 +1439,7 @@ function Registry.GetSlotCharges(bag, slot)
                     pcall(TooltipUtil.SurfaceArgs, line)
                 end
             end
-            local n = ParseChargesFromLines(function(i)
-                local line = data.lines[i]
-                return line and line.leftText
-            end, #data.lines)
+            local n = ParseChargesFromLines(ChargeDataLineText, #data.lines, data)
             if n then return n end
         end
     end
@@ -1355,17 +1448,14 @@ function Registry.GetSlotCharges(bag, slot)
     tip:ClearLines()
     local ok
     if isLegacyMainBank and _G.BankButtonIDToInvSlotID then
-        ok = pcall(function() tip:SetInventoryItem("player", _G.BankButtonIDToInvSlotID(slot)) end)
+        ok = pcall(SetMainBankChargeSlot, tip, slot)
     elseif bag == reagentBank and _G.ReagentBankButtonIDToInvSlotID then
-        ok = pcall(function() tip:SetInventoryItem("player", _G.ReagentBankButtonIDToInvSlotID(slot)) end)
+        ok = pcall(SetReagentBankChargeSlot, tip, slot)
     else
-        ok = pcall(function() tip:SetBagItem(bag, slot) end)
+        ok = pcall(SetBagChargeSlot, tip, bag, slot)
     end
     if not ok then return nil end
-    return ParseChargesFromLines(function(i)
-        local left = _G["FluxRestockChargeScanTooltipTextLeft" .. i]
-        return left and left:GetText()
-    end, tip:NumLines())
+    return ParseChargesFromLines(ChargeScannerLineText, tip:NumLines())
 end
 
 local function ScanOwnedMaxCharges(itemID)
@@ -1457,6 +1547,23 @@ function Registry.IsChargeItem(itemID)
     local isCharge = Registry.GetChargeInfo(itemID)
     return isCharge == true
 end
+
+local chargeInfo, isChargeItem = Registry.GetChargeInfo, Registry.IsChargeItem
+local countOwner = C_Item and C_Item.GetItemCount and C_Item or _G
+local itemCount = issecurevariable and issecurevariable(countOwner, "GetItemCount")
+    and rawget(countOwner, "GetItemCount")
+ns.RestockOrdinaryCharge = {
+    CanReuse = function()
+        return _G.FluxRestockItemRegistry == Registry and Registry.GetChargeInfo == chargeInfo
+            and Registry.IsChargeItem == isChargeItem and type(itemCount) == "function"
+            and ((C_Item and C_Item.GetItemCount) or GetItemCount) == itemCount
+    end,
+    IsResolved = function(itemID)
+        local info = chargeInfoCache[itemID]
+        return type(info) == "table" and getmetatable(info) == nil
+            and info.resolved == true and info.isCharge == false
+    end,
+}
 
 function Registry.GetItemMaxCharges(itemID)
     itemID = tonumber(itemID)

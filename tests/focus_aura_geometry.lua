@@ -44,11 +44,17 @@ local function panel(frame,kind)
  function p:GetParent()return frame end
  function p:GetWidth()return self.width end
  function p:GetHeight()return self.height end
- function p:SetSize(w,h)self.width,self.height=w,h end
- function p:ClearAllPoints()self.point=nil end
- function p:SetPoint(...)self.point={...}end
+ function p:GetSize()return self.width,self.height end
+ function p:GetNumPoints()return self.extraPoint and 2 or self.point and 1 or 0 end
+ function p:GetPoint()return table.unpack(self.point or {})end
+ function p:SetSize(w,h)self.width,self.height=w,h;self.sizeWrites=(self.sizeWrites or 0)+1 end
+ function p:ClearAllPoints()self.point=nil;self.extraPoint=nil end
+ function p:SetPoint(...)self.point={...};self.anchorWrites=(self.anchorWrites or 0)+1 end
  function p:Show()self.shown=true end
- p.borderFrame={scale=1,SetSize=function(s,w,h)s.width,s.height=w,h end,SetScale=function(s,v)s.scale=v;s.scaleWrites=(s.scaleWrites or 0)+1 end}
+ p.borderFrame={scale=1,SetSize=function(s,w,h)s.width,s.height=w,h;s.sizeWrites=(s.sizeWrites or 0)+1 end,SetScale=function(s,v)s.scale=v;s.scaleWrites=(s.scaleWrites or 0)+1 end}
+ function p.borderFrame:GetSize()return self.width,self.height end
+ function p.borderFrame:ClearAllPoints()self.point=nil end
+ function p.borderFrame:SetPoint(...)self.point={...};self.anchorWrites=(self.anchorWrites or 0)+1 end
  for _,key in ipairs({'TL','TR','BL','BR'})do
   p.borderFrame[key]={ClearAllPoints=function(s)s.point=nil end,SetPoint=function(s,...)s.point={...}end}
  end
@@ -178,4 +184,59 @@ local targetBuff,targetDebuff=legacy.BuffContainer.point,legacy.DebuffContainer.
 env.TestEnableAuraLayout(legacy)
 check(samePoint(legacy.BuffContainer.point,targetBuff) and samePoint(legacy.DebuffContainer.point,targetDebuff),
  'target create/re-enable and relayout keep their matching positions')
+for _,style in ipairs({1,2})do for _,above in ipairs({true,false})do
+ local tracks=style==1 and {Top=8,Bottom=8}or{Top=9,Bottom=7}
+ env.Border={GetJoinTracks=function()return tracks end}
+ env.ShouldAurasAnchorAboveUnit=function()return above end
+ legacy.outerBorderFrame.FluxBorderFrame={_fluxBorderInsets={2,2}}
+ env.UF.UpdateAuraPosition(legacy)
+ for _,p in ipairs({legacy.BuffContainer,legacy.DebuffContainer})do
+  local bf=p.borderFrame
+  check(near(bf.width,legacy.width/2+legacy.height/2),'decorative aura halves exactly cover the unit while icon/container packing stays unchanged')
+  local point=bf.point;local offset=point[5]
+  local auraStroke,unitStroke
+  if above then auraStroke=-10+offset+11-tracks.Bottom;unitStroke=6-2-tracks.Top
+  else auraStroke=10+offset+4-tracks.Top;unitStroke=2+9-tracks.Bottom end
+  check(near(auraStroke,unitStroke),'aura and unit header sample one exact shared stroke in both styles/above and below')
+  for key,info in pairs(focusCorners)do
+   local q=bf[key].point;local right=key=='TR'or key=='BR';local bottom=key=='BL'or key=='BR'
+   check(q[4]==info.ox+(right and -2 or 2)and q[5]==info.oy+(bottom and 2 or -2),'ordinary aura caps use the same offsets as focus and shared unit chrome')
+  end
+  local writes=bf.anchorWrites;env.UF.UpdateAuraPosition(legacy)
+  check(bf.anchorWrites==writes,'unchanged aura data cannot re-anchor its decorative border')
+ end
+end end
+-- Group reconciliation uses UpdateAuraPosition even when the dock, panel
+-- dimensions and borders are already correct. It still refreshes aura paint.
+local private={}
+env.IsSecretValue=function(value)return rawequal(value,private)end
+for _,f in ipairs({dense,legacy})do
+ local p,b=f.BuffContainer,f.DebuffContainer
+ local calls=0
+ env.UF.UpdateAuras=function()calls=calls+1 end
+ env.UF.UpdateAuraPosition(f)
+ local function work()
+  return p.anchorWrites+b.anchorWrites,p.sizeWrites+b.sizeWrites+p.borderFrame.sizeWrites+b.borderFrame.sizeWrites
+ end
+ local anchors,sizes=work()
+ for _=1,20 do env.UF.UpdateAuraPosition(f)end
+ local afterAnchors,afterSizes=work()
+ check(calls==21,'existing aura paint still runs on every explicit refresh')
+ if arg[3]~='--measure' then
+  check(afterAnchors==anchors and afterSizes==sizes,'prepared aura panel keeps unchanged geometry across a roster burst')
+ end
+ print(string.format('AURA_ROSTER_WORK compact=%s anchors=%d sizes=%d paint=%d',
+  tostring(not not f._fluxCompactFocus),afterAnchors-anchors,afterSizes-sizes,calls-1))
+ local point=table.pack(p:GetPoint());local w,h=p:GetSize()
+ p.extraPoint=true;p.width=w+8
+ env.UF.UpdateAuraPosition(f)
+ check(not p.extraPoint and samePoint(p.point,point) and p.width==w and p.height==h,'unsignaled native drift is restored')
+ local getPoint,getSize=p.GetPoint,p.GetSize
+ p.GetPoint=function()return point[1],private,point[3],point[4],point[5]end
+ p.GetSize=function()return private,h end
+ anchors,sizes=work();env.UF.UpdateAuraPosition(f)
+ afterAnchors,afterSizes=work()
+ check(afterAnchors>anchors and afterSizes>sizes and samePoint(p.point,point),'unreadable native geometry takes the existing setter path')
+ p.GetPoint,p.GetSize=getPoint,getSize
+end
 print('Focus aura geometry: '..checks..' actual metric/anchor checks; native pixels pending')

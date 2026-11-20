@@ -95,5 +95,327 @@
     "empty-mailbox-timing-readback.png",
     "empty-mailbox-native-timing.png"
   ],
-  "decision": "User requested in-game measurement before accepting a mail fallback delay. Empty inbox establishes only the stated fixed-cost and existing snapshot observations. The populated/cold-mail latency decision remains pending; no mail runtime fix was applied."
+  "decision": "User requested in-game measurement before accepting a mail fallback delay. Empty inbox establishes only the stated fixed-cost and existing snapshot observations. The populated/cold-mail latency decision remains pending; no mail runtime fix was applied.",
+  "populatedR8Followup": {
+    "changeId": "LHO-MAIL-NATIVE-R8-20261115",
+    "recordedUtc": "2026-11-15T01:38:32.165494+00:00",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-result.json",
+      "sha256": "a080f372880a57492941d4d619e04160c13da02c56528431df54bfa8797f4fed"
+    },
+    "client": {
+      "family": "Forever",
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001,
+      "pid": 40032,
+      "hwnd": 7995860
+    },
+    "plan": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\mail-read-timing-plan\\plan.json",
+      "sha256": "52fb710ffa80ee6cb53e9d7af9ea4aa6f760f765def6b41f34662f81f2cbc4e4",
+      "payloadSHA256": "40a46b9ad71e4f291a3eeac57d1e256d90755b5ad03c4338532badd16ed476df",
+      "lifecycleChecks": 293,
+      "compiledHarmfulControlsRejected": 4
+    },
+    "context": {
+      "visible": true,
+      "source": "syndicator",
+      "ready": true,
+      "inCombat": false,
+      "accessibleMail": 1,
+      "totalMail": 1,
+      "nativeCommandPending": false,
+      "receiveSlots": 16,
+      "maxSlots": 16,
+      "attachmentsObserved": 1,
+      "aggregateAttachmentQuantity": 3
+    },
+    "samples": [
+      {
+        "sample": 1,
+        "early": false,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 16,
+        "dataReads": 17,
+        "headerIntervalMs": 0.14110000431538,
+        "itemsIntervalMs": 0.22980000078678,
+        "wholePassMs": 0.3948999941349,
+        "over1ms": false
+      },
+      {
+        "sample": 2,
+        "early": true,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 1,
+        "dataReads": 2,
+        "headerIntervalMs": 0.034699991345406,
+        "itemsIntervalMs": 0.018500000238419,
+        "wholePassMs": 0.069700002670288,
+        "over1ms": false
+      },
+      {
+        "sample": 3,
+        "early": true,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 1,
+        "dataReads": 2,
+        "headerIntervalMs": 0.1761000007391,
+        "itemsIntervalMs": 0.08110000193119,
+        "wholePassMs": 0.2694000005722,
+        "over1ms": false
+      },
+      {
+        "sample": 4,
+        "early": false,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 16,
+        "dataReads": 17,
+        "headerIntervalMs": 0.025100007653236,
+        "itemsIntervalMs": 0.018200010061264,
+        "wholePassMs": 0.066300004720688,
+        "over1ms": false
+      },
+      {
+        "sample": 5,
+        "early": false,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 16,
+        "dataReads": 17,
+        "headerIntervalMs": 0.021999999880791,
+        "itemsIntervalMs": 0.013800000085106,
+        "wholePassMs": 0.057700008153915,
+        "over1ms": false
+      },
+      {
+        "sample": 6,
+        "early": true,
+        "headerCardinality": 1,
+        "occupiedSlots": 1,
+        "totalQuantity": 3,
+        "itemCalls": 1,
+        "dataReads": 2,
+        "headerIntervalMs": 0.025399997830391,
+        "itemsIntervalMs": 0.010800004005432,
+        "wholePassMs": 0.048600003123283,
+        "over1ms": false
+      }
+    ],
+    "summary": {
+      "fullMedianMs": 0.066300004720688,
+      "fullRangeMs": [
+        0.057700008153915,
+        0.3948999941349
+      ],
+      "earlyMedianMs": 0.069700002670288,
+      "earlyRangeMs": [
+        0.048600003123283,
+        0.2694000005722
+      ],
+      "allPassesMatchReference": true,
+      "fullPairsEarlyMs": [
+        [
+          0.3948999941349,
+          0.069700002670288
+        ],
+        [
+          0.066300004720688,
+          0.2694000005722
+        ],
+        [
+          0.057700008153915,
+          0.048600003123283
+        ]
+      ],
+      "clockGate": "Allsampleh/im/wallfiniteandnonnegative;sumofintervals<=wholepass; no visible resetcrossing.",
+      "verdict": "No consistent CPU improvement; do not apply earlystop. Actual singlemail data passes below1ms.",
+      "scope": "Inclusive native call, profiling clock and local validation work. Size/contextguards, paircomparisonandprintoutside measuredpass; no totalframe1ms guarantee."
+    },
+    "cleanup": {
+      "global": "_FluxM9",
+      "ownedGlobalAbsent": true,
+      "M9FREE": true,
+      "M9CLEAR": true,
+      "expiryTimerDisposedByTeardownOrExpiry": true,
+      "noFrameDriverCreated": true,
+      "jumpHoldReleased": true
+    },
+    "preferences": {
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "profilerEnablementWrites": false,
+      "anyPreferenceWrites": false
+    },
+    "noActions": [
+      "No mail taken/sent/returned/deleted/opened-by-probe/read-text",
+      "No purchases/sales/deletes/crafts/queue/moves",
+      "No Flux/Synd snapshots/readiness/jobs/data publication",
+      "No productLua/source/externalSynd files changed by probe",
+      "No activation/systemwideinput/clipboard"
+    ],
+    "limits": [
+      "This is one actual mail withoneattachment, not100realmails or end-to-endproviderpublication latency. Usermeasure-firstgate nowhasthisnarrowpopulatedresult only.",
+      "All6currentpasses matchactual firstslot reference; this doesnotprove skipped-tail completeness when a native headerunderreports or becomesstale. Compiled hidden-tail control demonstratesgap; earlystop remainsblocked.",
+      "High rawvariation retained; firstfull/secondpair early spikesnotdiscarded. No native FPS or product before-after gain.",
+      "Correctingproviderstaleraces stillrequiresFlux-owned authority/persistence/characterhandoff,delegatedsummaries,expiry/predictions/receipt revisions and exactvariant/pet-linkpolicy. No correction implemented."
+    ],
+    "submissionContext": [
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-setup1-commands.json",
+        "startedUtc": "2026-11-15T01:33:11.281720+00:00",
+        "finishedUtc": "2026-11-15T01:33:16.070903+00:00",
+        "foregroundBefore": 67424,
+        "foregroundAfter": 67424,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-setup2-commands.json",
+        "startedUtc": "2026-11-15T01:33:19.839425+00:00",
+        "finishedUtc": "2026-11-15T01:33:24.614173+00:00",
+        "foregroundBefore": 67424,
+        "foregroundAfter": 67424,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-pair1-commands.json",
+        "startedUtc": "2026-11-15T01:33:27.934785+00:00",
+        "finishedUtc": "2026-11-15T01:33:29.498997+00:00",
+        "foregroundBefore": 67424,
+        "foregroundAfter": 67424,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-pair2-commands.json",
+        "startedUtc": "2026-11-15T01:34:07.273472+00:00",
+        "finishedUtc": "2026-11-15T01:34:08.837732+00:00",
+        "foregroundBefore": 201192,
+        "foregroundAfter": 201192,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-pair3-commands.json",
+        "startedUtc": "2026-11-15T01:34:18.136329+00:00",
+        "finishedUtc": "2026-11-15T01:34:19.688979+00:00",
+        "foregroundBefore": 201192,
+        "foregroundAfter": 201192,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-cleanup.json",
+        "startedUtc": "2026-11-15T01:35:08.062556+00:00",
+        "finishedUtc": "2026-11-15T01:35:08.840516+00:00",
+        "foregroundBefore": 67424,
+        "foregroundAfter": 67424,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      },
+      {
+        "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\mail-r8-cleared-commands.json",
+        "startedUtc": "2026-11-15T01:35:11.789946+00:00",
+        "finishedUtc": "2026-11-15T01:35:12.561692+00:00",
+        "foregroundBefore": 67424,
+        "foregroundAfter": 67424,
+        "foregroundUnchanged": true,
+        "status": "complete"
+      }
+    ],
+    "pairExecutionOrder": [
+      [
+        "full",
+        "early"
+      ],
+      [
+        "early",
+        "full"
+      ],
+      [
+        "full",
+        "early"
+      ]
+    ],
+    "acceptance": "DATA-PASS ONLY:one actual accessible mail/one attachment quantity3;all6native slot ID/quantity results match the full reference;finite positive/nonresetting data-pass clocks below1ms. No CPU-gain or production early-stop acceptance.",
+    "measurementBoundary": "Timed pass includes native calls/profiling clocks/local validation;size/context guards, pair comparison and print are outside. This is no whole-frame,end-to-end,provider-publication,100-mail or fallback-delay acceptance.",
+    "earlyStopBlocked": "The compiled hidden-tail counterexample remains unresolved:underreported/stale header cardinality cannot establish complete skipped-tail contents. Native single-mail agreement does not remove it;no early-stop implementation applied.",
+    "productionCorrectionStatus": "No mail candidate approved or implemented. Snapshot-only correction is insufficient for persistence/handoff/delegated summaries,variants/pets,receipt predictions,expiry and safe correction retirement.",
+    "mailCorrectionDesign": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\mail-correction-design\\initial-design.json",
+      "sha256": "e26db213882f9d489a83c55523f846fe6b49089bd4b339302f390c7adf60ffd6",
+      "sealedUtc": "2026-11-15T01:25:52.636773+00:00",
+      "status": "DESIGN ONLY; TRIGGER, HYPERLINK IDENTITY AND CADENCE NOT ACCEPTED",
+      "decision": "No mail candidate accepted or implemented. The existing services provide bounded collection and persistence homes, but full correctness plus all-feature/cadence preservation needs a proven trigger/publication policy, metadata authority and delegated-consumer overlay. Timing alone cannot authorize those semantics.",
+      "unresolvedAcceptanceGates": [
+        {
+          "gate": "Universal trigger and earliest safe publication",
+          "finding": "Second replacement in one native epoch detects some stale jobs but misses the first old-before-newCold completion. Header agreement is insufficient. Validating every relevant native inbox epoch is the only currently identified general bridge-side authority route; it adds real read work and may outlast0.2s on a large inbox. Publishing provider facts provisionally preserves first cadence but does not guarantee fresh counts for actions; delaying first publication changes cadence. Native measurement and explicit policy are required; neither choice is silently accepted."
+        },
+        {
+          "gate": "Cold/unknown freshness",
+          "finding": "A positive cached count is last-known, not proof of freshness. Empty/closed/unavailable native facts cannot clear a correction. Missing itemID versus true empty must use header attachment completeness plus readable scan identity; no timeout converts uncertainty into zero. Saved last-seen data must retain its status on reload."
+        },
+        {
+          "gate": "Corrections cannot retire on provider equality alone",
+          "finding": "A newer correct provider result can equal the correction and later be overwritten by an older still-pending cold producer. Without a public producer watermark, equality does not prove all old jobs drained. Keep authority through the relevant mailbox lifecycle and revalidate every later divergent replacement; no arbitrary timeout proves freshness."
+        },
+        {
+          "gate": "Full item links, battle pets and variants",
+          "finding": "Native ID/count collector cannot reconstruct exact battle-pet/variant hyperlink identity. Reusing a provider hyperlink merely because itemID/count match can attach the wrong cage/variant, especially with duplicates. A count-only correction cannot silently certify link-based tooltip/account results. Need independently validated full occurrence metadata or an explicitly scoped accepted limitation; native exceptional GetInboxItemLink cost remains measure-first."
+        },
+        {
+          "gate": "Delegated summary ownership/filtering",
+          "finding": "Mail adjustments must copy only affected returned rows while preserving faction/connected-realm/show filters, other location fields, row ordering and provider-owned return identity contracts where relied upon. ItemID and exact-link queries need separate authority; external summary mutation/cache invalidation is not assumed. This makes Adapter+Sync alone insufficient."
+        },
+        {
+          "gate": "Receipt predictions and in-place changes",
+          "finding": "Preserve every real appended receipt occurrence, including identical duplicates. Same array reference alone does not prove an append; confirm unchanged full prefix and new suffix under known producer semantics. Receipt revision changes during native scan invalidate/restart it. Keep post-capture predictions separately until an independently complete native view supersedes them under the existing receipt policy. Do not derive receipt identity from itemID alone."
+        },
+        {
+          "gate": "Expiry and future source changes",
+          "finding": "Preserve original per-occurrence expirationTime and existing last-seen/cleanup semantics; no new global TTL or polling expiry framework. Do not keep expired corrections forever, nor drop current receipt predictions merely on age without existing authority. Compare raw provider/Flux expiry behavior before choosing retirement; source files assign expiry but inspected hot paths do not themselves implement a universal expiry authority."
+        }
+      ]
+    },
+    "currentExactSourceGate": {
+      "scriptsPass": 390,
+      "syntaxFiles": 1078,
+      "all1078NormalizedLuaIdentitiesMatchAtFollowup": true
+    },
+    "goalStatus": "ACTIVE;full LHO-01 through LHO-13 retained.100real mails and end-to-end latency remain unmeasured/unaccepted;all-client native taint/pixels/controller/FPS and whole-workflow acceptance remain open.",
+    "recordScope": "Dated populated follow-up to historical empty-mailbox evidence. The actual mailbox was user-left-open;probe did not take/send/return/delete/open/read mail text or publish Flux/Syndicator data. No product/source/test/native/helper files edited by documentation task."
+  },
+  "postR8DocumentationGate": {
+    "recordedUtc": "2026-11-15T01:48:31.336165+00:00",
+    "status": "PASS",
+    "classifiedSources": 1111,
+    "tocXmlReachable": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17521,
+    "sourceFiles": 1078,
+    "mismatches": 0,
+    "sourceGuard": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\r8-postdocs-source-guard.json",
+      "sha256": "7bca7830ee1c5a7bbd40beb960b5fd31d333b2ec270f92ac30210b3e1af90235"
+    },
+    "log": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-r8final.txt",
+      "sha256": "47cafeacbf0eb2586866dc98faf9ee9f6aa637e6ad0b05d8f959e40ae65ccc10"
+    },
+    "scope": "Docs/current Lua identities only; native checks retain their stated scope"
+  }
 }

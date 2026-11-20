@@ -1,0 +1,504 @@
+{
+  "changeId": "STRIP-ARROW-OWNER-20261120",
+  "roadmapTrack": "HUD-1",
+  "capturedAtUTC": "2026-11-20T08:40:57.320902+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "fe472c24c6c742ff8914a07a373cb903c5fc3c780e06f4220da8ad32eb14e87d",
+      "afterRaw": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145",
+      "afterNormalized": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145"
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": {
+      "beforeRaw": "b73d216239fec966facbc74d7ce1a839d4119af9df4001663b97682fcef69bd2",
+      "afterRaw": "bf53644626a7b6e00629d719908518e02dda2c4c06a8b3d933305ea9a1ebb69c",
+      "afterNormalized": "2bd5b6c24ee11358a2939b2510ce3167b13608148ab1e55da37f5894dd8bf4c7"
+    },
+    "ExtraButtonSystem/FlyoutEngine/Init.lua": {
+      "beforeRaw": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+      "afterRaw": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd",
+      "afterNormalized": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd"
+    },
+    "ExtraButtonSystem/FlyoutEngine/Attach.lua": {
+      "beforeRaw": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+      "afterRaw": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+      "afterNormalized": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a"
+    },
+    "ExtraButtonSystem/FlyoutEngine/Arrow.lua": {
+      "beforeRaw": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "afterRaw": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "afterNormalized": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1"
+    },
+    "tests/trinket_squeeze_geometry_work.lua": {
+      "beforeRaw": "a8c87d8ed46f8b5ecfc52246a0f40d0837415a049e7f0f5ef56ee66752283fef",
+      "afterRaw": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+      "afterNormalized": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90"
+    },
+    "tests/border_strip_envelope.lua": {
+      "beforeRaw": "a47d1fc7da3649ae51f9be03b486d7506f1b4a72e4a72163301c910636fc2670",
+      "afterRaw": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "afterNormalized": "fa742b430144886fb367e6ece9ccc3d6565ae5667d2785e587e513b185c7a618"
+    },
+    "tests/grid_envelope_work.lua": {
+      "beforeRaw": "9ac32143f46892cb6a6b1f7c15e3b96cf0a12965e51ad791cbdd8723747c04d5",
+      "afterRaw": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7",
+      "afterNormalized": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7"
+    },
+    "tests/strip_panel_settle.lua": {
+      "beforeRaw": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "afterRaw": "c11eb168bce14057f20399e66d479b4a70a3720e7bea65a9ae5bcda32f592416",
+      "afterNormalized": "c11eb168bce14057f20399e66d479b4a70a3720e7bea65a9ae5bcda32f592416"
+    }
+  },
+  "evidence": {
+    "crossings60": {
+      "retail": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            180,
+            120
+          ],
+          "arrowUpdates": [
+            4800,
+            3600
+          ],
+          "nativeLayerSetters": [
+            720,
+            0
+          ],
+          "elapsedMs": [
+            15.0,
+            11.0
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            180,
+            120
+          ],
+          "arrowUpdates": [
+            4800,
+            3600
+          ],
+          "nativeLayerSetters": [
+            720,
+            0
+          ],
+          "elapsedMs": [
+            14.0,
+            11.0
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            180,
+            120
+          ],
+          "arrowUpdates": [
+            4800,
+            3600
+          ],
+          "nativeLayerSetters": [
+            720,
+            0
+          ],
+          "elapsedMs": [
+            15.0,
+            11.0
+          ]
+        }
+      ]
+    },
+    "desktopTimingSamples120": {
+      "retail": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            22.0
+          ]
+        },
+        {
+          "trial": 2,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            24.0
+          ]
+        },
+        {
+          "trial": 3,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            22.0
+          ]
+        },
+        {
+          "trial": 4,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 5,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            26.0,
+            22.0
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            30.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 2,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 3,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            29.0,
+            22.0
+          ]
+        },
+        {
+          "trial": 4,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            28.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 5,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            22.0
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "trial": 1,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            29.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 2,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            27.0,
+            24.0
+          ]
+        },
+        {
+          "trial": 3,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            28.0,
+            23.0
+          ]
+        },
+        {
+          "trial": 4,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            28.0,
+            22.0
+          ]
+        },
+        {
+          "trial": 5,
+          "sharedRefreshCalls": [
+            360,
+            240
+          ],
+          "arrowUpdates": [
+            9600,
+            7200
+          ],
+          "nativeLayerSetters": [
+            1440,
+            0
+          ],
+          "elapsedMs": [
+            28.0,
+            23.0
+          ]
+        }
+      ]
+    },
+    "desktopTimingMediansMs": {
+      "retail": [
+        27.0,
+        22.0
+      ],
+      "forever": [
+        28.0,
+        23.0
+      ],
+      "classic": [
+        28.0,
+        23.0
+      ]
+    },
+    "timingScope": "Five alternating pairs of 120 modeled crossings per client profile. The same two widths drive the actual squeeze notifier, Trinket Menu, envelope update and flyout engine. The 20 attached arrow frames use mock native methods. The border mesh, native click execution and FPS are outside this replay. Separate regression scripts exercise the real builder against modeled artwork and anchor contacts.",
+    "rawWork": "STRIP_ARROW client=retail trial=1 crossings=60 global=180/120 updates=4800/3600 layers=720/0 ms=15.000/11.000\r\nSTRIP_ARROW client=forever trial=1 crossings=60 global=180/120 updates=4800/3600 layers=720/0 ms=14.000/11.000\r\nSTRIP_ARROW client=classic trial=1 crossings=60 global=180/120 updates=4800/3600 layers=720/0 ms=15.000/11.000\r\nTRINKET_SQUEEZE_WORK|10notifications|20sourceCalls|geometry=0|nativeReads=380|clipWrites=40|styleCalls=40|arrowLayers=20\r\nTrinket squeeze geometry: 811 checks PASS; original calls/cadence/recovery retained; native timing pending",
+    "rawTiming": "STRIP_ARROW client=retail trial=1 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/22.000\nSTRIP_ARROW client=retail trial=2 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/24.000\nSTRIP_ARROW client=retail trial=3 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/22.000\nSTRIP_ARROW client=retail trial=4 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/23.000\nSTRIP_ARROW client=retail trial=5 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=26.000/22.000\nSTRIP_ARROW client=forever trial=1 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=30.000/23.000\nSTRIP_ARROW client=forever trial=2 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/23.000\nSTRIP_ARROW client=forever trial=3 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=29.000/22.000\nSTRIP_ARROW client=forever trial=4 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=28.000/23.000\nSTRIP_ARROW client=forever trial=5 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/22.000\nSTRIP_ARROW client=classic trial=1 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=29.000/23.000\nSTRIP_ARROW client=classic trial=2 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=27.000/24.000\nSTRIP_ARROW client=classic trial=3 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=28.000/23.000\nSTRIP_ARROW client=classic trial=4 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=28.000/22.000\nSTRIP_ARROW client=classic trial=5 crossings=120 global=360/240 updates=9600/7200 layers=1440/0 ms=28.000/23.000\nTRINKET_SQUEEZE_WORK|10notifications|20sourceCalls|geometry=0|nativeReads=380|clipWrites=40|styleCalls=40|arrowLayers=20\nTrinket squeeze geometry: 2035 checks PASS; original calls/cadence/recovery retained; native timing pending\n"
+  },
+  "parity": "The action-strip envelope now shares its completed flyout refresh with the Trinket Menu. Across 60 modeled crossings with 20 attached arrows, explicit shared scans fell from 180 to 120 and all visible arrow updates from 4,800 to 3,600. Trinket layer setters fell from 720 to zero with matching slot anchors, size, scale and atlas layering.",
+  "rules": "Both explicit updates and the native show handler pass the completed refresh function to Trinket. A separate or replaced function still runs. Trinket keeps the two local arrow placements, including arrows outside the engine scan. Matching readable points and layer values keep their placement. Unreadable or changed points and layers retain the original repair path.",
+  "checkpoint": {
+    "createdUTC": "2026-11-20T08:34:55.7781367Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "installedSettingsFileCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Layout/UnifiedBorder.lua": "fe472c24c6c742ff8914a07a373cb903c5fc3c780e06f4220da8ad32eb14e87d",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "b73d216239fec966facbc74d7ce1a839d4119af9df4001663b97682fcef69bd2",
+      "ExtraButtonSystem/FlyoutEngine/Attach.lua": "8304c1a87fd3501a08f2d2cfffe82ddde779ad1b237a2c6a70ada298ef39161a",
+      "ExtraButtonSystem/FlyoutEngine/Arrow.lua": "1ccb07ad412e39d0e54a66be7d259b2ba5d58ab74b7ff1242984a9130471c3f1",
+      "tests/strip_panel_settle.lua": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "tests/trinket_squeeze_geometry_work.lua": "a8c87d8ed46f8b5ecfc52246a0f40d0837415a049e7f0f5ef56ee66752283fef",
+      "docs/STATUS.md": "2338323d97fdb38c0890c3af9f7cb0882f7a571386a4a5de4da19751a741c2ea",
+      "docs/DECISIONS.md": "19e1a64cbd050333542a7c6d3821d832b591f0ee1e11b1d740afae4f1ab2bc42",
+      "docs/WORK_LOG.md": "03933f5a07304e7d7287fd2e83adbb038670b243f77186bae4dc8ce5c0ba85bb",
+      "NEXT_SESSION.md": "584327df622b215bbba830d2d2ccf21d4770e16dc919376fb8fa5f9cf85f1253",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "f2c54621b486a8c023210f231a65ec9f0b7d0d3fe2b966ccda0d6b271ba8114f",
+      "docs/BORDER_BUILDER_LOCALITY.md": "8198ddb439265ae247207e57dab73a764df389d193fa50a712db0cf87ad5986b",
+      "docs/12-extra-button-system.md": "6f71b5e73b3a2d99115a932bdb5990d96a2d3c7727d864d23e69406e9f22077b",
+      "docs/CLIENT_VALIDATION.md": "89f2a24df6ff492ea309e8c2de4944f08c807123cd849661a4f0c1d4c864a4b3",
+      "docs/FEATURE_PARITY.csv": "31932acaafc0195d8013278acc2b8a2b25544160780835bbea85288311965717",
+      "docs/PERFORMANCE_RESULTS.csv": "1d7b3fd401fd4a775b2a7b5aa8193ee076687bdf886cec02a56df60d86775d27",
+      "docs/CLIENT_MATRIX.csv": "8c391823bdc297ff07a2a22fdc9aa42a4b7b026efd26b522f832683051dada79",
+      "docs/reference/verification.json": "81bbcafa6103b7d7aadc3305d94e26c5a7dfb9e4f644143a1dd379b6c9ab8a9f",
+      "tests/border_strip_envelope.lua": "a47d1fc7da3649ae51f9be03b486d7506f1b4a72e4a72163301c910636fc2670",
+      "tests/grid_envelope_work.lua": "9ac32143f46892cb6a6b1f7c15e3b96cf0a12965e51ad791cbdd8723747c04d5",
+      "ExtraButtonSystem/FlyoutEngine/Init.lua": "de82ae67050ea4c83b8dea0d9ce8545f87b79999128c507405ecdb62294f74cd"
+    }
+  },
+  "verification": {
+    "focusedPassed": 25,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/trinket_regen_refresh.lua": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_panel_settle.lua": "c11eb168bce14057f20399e66d479b4a70a3720e7bea65a9ae5bcda32f592416",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/grid_envelope_work.lua": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/border_nearby_panels.lua": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-arrow-owner-2026-11-20-093455\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-arrow-owner-2026-11-20-093455\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-arrow-owner-2026-11-20-093455\\syntax.json"
+  },
+  "nativeAcceptance": "Live held-action and rapid-drop timing, actual side seams and combat taint remain open. Party and raid membership timing, embedded minimap transitions and combat exit remain open for the wider goal."
+}

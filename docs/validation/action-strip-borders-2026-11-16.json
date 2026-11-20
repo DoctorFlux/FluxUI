@@ -1,0 +1,173 @@
+{
+  "id": "ACTION-STRIP-BORDER-R55-20261116",
+  "version": "strip-updates-r55",
+  "dateUTC": "2026-11-16T19:43:39.326585+00:00",
+  "requirements": "docs/ACTION_STRIP_BORDER_UPDATES.md ASB01-ASB08; CT13/14 and CB17/36 retained",
+  "userScreenshot": "codex-clipboard-81a6edb4-45e7-479f-a0fc-0e7a0ce1d817.png",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\action-strip-border-before-20261116T190621Z",
+  "checkpointFiles": 3011,
+  "historyVerified": true,
+  "changedDuringArchive": [],
+  "settings": "Available Forever account settings/.bak verified by metadata; no agent edits, preference changes or running-client backup claim",
+  "sourceHashes": {
+    "Core/BorderJunctions.lua": {
+      "beforeCheckpointRaw": "1a4fcc323f6c48573dda28cad4126bf59186115fb762d2344557ecdc5a10b171",
+      "raw": "bc00e074fadf434404163a2e89da537f8f880ab8e6fd8dd46eb89a15ee42bb83",
+      "normalized": "f8cf01da8659a72d7bb28c14e89ac9cc1a8d336bf9df4d676ac3fadcab3ef833"
+    },
+    "Bars/Layout.lua": {
+      "beforeCheckpointRaw": "e37c02284013186ddb5318cae4ad3e0186d92f1fbbbd99da8a6563ec9e175aca",
+      "raw": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2",
+      "normalized": "f65feecf9599a0f43a3f1e74bd8f4e73951e01c290091ab3f8af4b616bc4ffc2"
+    },
+    "Bars/Strip.lua": {
+      "beforeCheckpointRaw": "fb761a41a0eab6f3aa4cfd5df669b9b7415f19d105e12152f26ab646c20c3dc2",
+      "raw": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a",
+      "normalized": "808b41536d883d563a81fce9f5e5cea5fbc001823e793eb2ab05fcde0cbe3b3a"
+    },
+    "tests/bars_strip_layout_work.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "94ca8ea6d639df931e391aaddfe94d45801ba8327513a843cfc66d2973b3fc8c",
+      "normalized": "94ca8ea6d639df931e391aaddfe94d45801ba8327513a843cfc66d2973b3fc8c"
+    },
+    "tests/border_strip_envelope.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "a47d1fc7da3649ae51f9be03b486d7506f1b4a72e4a72163301c910636fc2670",
+      "normalized": "264a6f54dbde8f9fc64b0d1967e7b33ae18d8c03cf51f693fb3ee232878e1091"
+    }
+  },
+  "changes": [
+    "Existing same-occupancy branch calls Strip.Layout with optional changedOnly=true. Fresh public frame/inner/sensing dimensions, scales and one-point anchors must match; otherwise original writer runs. Visibility and metadata still update. Direct/options/changed-hash calls keep original full behavior.",
+    "Exact action-strip/enclosing HUD border top nodes may join when their spans overlap within existing contact limit. Strip top is authoritative; decorative border geometry changes only. Roots, widgets and unit frames retain positions.",
+    "Mapping invalidation,171 flag writes, ForceApply, stock/paint/binding notifications, real packing and expand/collapse are retained"
+  ],
+  "desktopWork": {
+    "stripGuardControls": 157,
+    "sameOccupancySwap": {
+      "coalescedApply": 1,
+      "clearPointSizeWritesBefore": 9,
+      "after": 0,
+      "scaleWritesBefore": 1,
+      "afterScale": 0,
+      "playerLayoutCallbacksBefore": 1,
+      "afterPlayerLayout": 0,
+      "addedFreshNativeGetters": 15,
+      "mappingAttributeWritesRetained": 171,
+      "ForceApplyRetained": 1
+    },
+    "actualProducerCore": {
+      "pairedStyleStates": 10,
+      "occupiedSwapBorderPassesBefore": 1,
+      "after": 0,
+      "geometryReadsBefore": 0,
+      "afterReads": 0,
+      "solvesBefore": 0,
+      "afterSolves": 0,
+      "genuineGrowShrinkExpandCollapse": "Each genuine state change retains one commit/read/solve; actual mapping+mesh/layout parity verified for the paired same-Core guard comparison",
+      "coreVersion": "event-reflow-r54",
+      "coreNormalizedSha256": "3dbf2c76cb5cf56d12b6eebaa3e4d05d5a1100bc1cca8dc1bc08a14c5f7bc092",
+      "comparisonScope": "Ten paired states isolate the Strip guard on identical R54 Core; not ten combined R55 dynamic visual states."
+    },
+    "seam": {
+      "checks": 5798,
+      "actualProducerScenes": 144,
+      "oneSourceCrestSamples": 1080,
+      "attachedGapUiBefore": 2,
+      "after": 0,
+      "bothStyles": true,
+      "columns": [
+        8,
+        16,
+        19
+      ],
+      "uiScales": [
+        0.75,
+        1,
+        1.25
+      ],
+      "miniStates": [
+        false,
+        true
+      ],
+      "rootsPreserved": true,
+      "hiddenDistantDetachedControls": true,
+      "settledGeometryReadsSolvesNewObjects": 0
+    },
+    "dynamicIntegrationLimit": "Combined R55 integration completed paired type1 occupied/grow/shrink mesh/layout/mapping and straight-crest checks before an expansion-domain guard stopped the sampler. Both type1 routes emitted five states, but full all-style dynamic seam certification did not complete: neighboring grid/Trinket/focus layout functions are counted sinks in that compact fixture. The separate144 static actual producer R55 scenes and Bars behavioral gates retain their stated scopes; no fixture limitation is represented as native acceptance."
+  },
+  "rejectedCutCache": {
+    "applied": false,
+    "actualGrowShrinkExpandCollapseBothStylesExactPrefixHits": 0,
+    "actualCutCallsRange": [
+      56,
+      70
+    ],
+    "actualInputRectanglesRange": [
+      45,
+      58
+    ],
+    "trueIntersections": 42,
+    "scope": "Compact actual producer scene changes all26 affected complete piece descriptors. Synthetic one-divider fixture69/72 unchanged and174/190 potentially reusable subtracts did not establish benefit on the actual drag scene. No extra cache framework, memory or timing claim added."
+  },
+  "gate": {
+    "scripts": 144,
+    "failures": 0,
+    "syntaxFiles": 1187,
+    "freshCompiled": 15,
+    "inheritedUnchangedSyntax": 1172,
+    "changedDuringGate": [],
+    "compilerFiles": 7,
+    "prototypes": 782,
+    "maximumUpvalues": 54,
+    "wholeCorpusFunctionalRun": false
+  },
+  "nativeTesting": {
+    "status": "DEFERRED BY USER",
+    "until": "User explicitly says in-game testing is available again",
+    "previousCaptureRequestsOnHold": true,
+    "offlineWorkAllowed": true,
+    "noClientInputOrGameLuaOrProfiling": true
+  },
+  "r54NativeContext": {
+    "sample": "User supplied R54 combat exit",
+    "borderKind": "unchanged",
+    "preflightMs": 0.73,
+    "geometrySolvePlanCommitMs": 0,
+    "frameGapMs": 81,
+    "conclusion": "No border rebuild in that watched exit;81ms gap remains unattributed. This is not drag/drop or R55 native acceptance."
+  },
+  "remaining": "Native drag hitch/pixels/taint/controller/client matrix are deferred. Genuine changed layouts still perform fresh global discovery/solve with existing numeric reuse; full CB36 affected-part latency acceptance remains open.",
+  "manualInstallationCopies": false,
+  "existingForeverDiskMatches": {
+    "Core/BorderJunctions.lua": true,
+    "Bars/Layout.lua": true,
+    "Bars/Strip.lua": true
+  },
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r55-final-gate.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r55-final-upvalues.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\bars-r55-layout-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\bars-r55-layout-frozen.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-envelope-runtime-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-envelope-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-envelope-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-envelope-crest.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\drag-core-final-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\drag-core-work-report.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cut-plan-count-report.json"
+  ],
+  "finalReview": {
+    "counterScopeCorrected": true,
+    "documentationBuild": "PASS:1219 sources/625 reachable/444 settings/584 literal defaults",
+    "documentationValidation": "PENDING:8 stale references caused by concurrent unrelated Inventory edits after inventory generation; R55-owned files stable",
+    "concurrentStaleFiles": [
+      "Inventory/Index.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/FluxRestock_Inv.lua"
+    ],
+    "ownedHashesStable": true,
+    "historicalGateIncludesNowRemovedFile": "_tmp_striplines.lua; gate1187 syntax is historical frozen corpus, not a claim of1187 current files",
+    "ownedJobsRunning": 0,
+    "utc": "2026-11-16T19:49:19.479429+00:00"
+  }
+}

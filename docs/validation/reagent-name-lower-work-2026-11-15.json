@@ -1,0 +1,754 @@
+{
+  "changeId": "LHO-REAGENT-NAME-LOWER-20261115",
+  "recordedUtc": "2026-11-14T23:20:21.601346+00:00",
+  "status": "APPLIED; current desktop integration PASS; native after-lower NOT RUN; full original lag goal ACTIVE.",
+  "application": {
+    "appliedUtc": "2026-11-14T23:09:36.103763+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-lower-20261114T230124Z",
+    "files": [
+      {
+        "path": "Inventory/SpellReagents.lua",
+        "before": "724e4a406a3bacff5c3183fc62fecda7e0aed7370a18f86b93603b5d1f7508dc",
+        "after": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+      },
+      {
+        "path": "tests/spell_reagent_name_work.lua",
+        "before": null,
+        "after": "43ebeebc63faffb6217261bf6e3d816361c203abd0c0f28518f7146683499daf"
+      }
+    ],
+    "preEditGate": "387PASS/1075 exact current manifest; actual-source composite/name tests+3CPU pairs+independent review+durable3controls beforeedit",
+    "scope": "One primitive-string per-call key; nonstring original path; no harvest/native/API/history/cadence/features/preferences changes",
+    "nativeAfter": "Not loaded yet; C1native query comparison is distinct earlier evidence",
+    "complete": true
+  },
+  "fixtureCorrectionApplication": {
+    "appliedUtc": "2026-11-14T23:15:18.582753+00:00",
+    "path": "tests\\passive_inventory_item_ids.lua",
+    "before": "821b96d71f72db45b3f67cf793827fdab859ac269b10efc1081e27b4f6f1f1bd",
+    "after": "de6b7759886154e9d66d00375cd9c1afedc9eec631e244aba3136940e480653d",
+    "reason": "Two extracted private closure fixtures missing existing blacklist table; no production change; independent legacy oracle and C0 rejection retained",
+    "proof": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-ids-fixture-correction\\report.json"
+  },
+  "sourceBeforeEdit": {
+    "checkpoint": {
+      "status": "complete",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-lower-20261114T230124Z",
+      "childPid": null,
+      "files": 2826,
+      "settingsMetadataEntries": 126,
+      "sourceStableThroughout": true
+    },
+    "preEditGate": "387PASS/1075 exact current manifest; actual-source composite/name tests+3CPU pairs+independent review+durable3controls beforeedit",
+    "privateSettingsCopied": false
+  },
+  "implementation": {
+    "scope": "Only primitive-string RememberItemName branch; one durable test; two missing local dependencies added to older extracted fixture.",
+    "contract": "One lowercase key per ordinary primitive-string call, reused for blacklist and map writes. Original non-string method/getter/error/partial-write/reentry path retained.",
+    "preserved": "Features, look, cadence, native name reads/order, harvest/refresh traversals, blacklist/history/aliases/migration, counts, public inputs/outputs, options, grids/bridge integration and saved data.",
+    "noNewRuntimeMachinery": "No new events/timers/frames/hooks/polling/settings/schema.",
+    "newTest": {
+      "path": "tests/spell_reagent_name_work.lua",
+      "sha256": "43ebeebc63faffb6217261bf6e3d816361c203abd0c0f28518f7146683499daf"
+    },
+    "updatedFixture": {
+      "path": "tests/passive_inventory_item_ids.lua",
+      "sha256": "de6b7759886154e9d66d00375cd9c1afedc9eec631e244aba3136940e480653d",
+      "reason": "Two extracted private closure fixtures missing existing blacklist table; no production change; independent legacy oracle and C0 rejection retained",
+      "oracle": "Authority oracle and work bounds unchanged; corrected fixture passes current lower/prior C1 and still rejects C0 exact legacy getter regression."
+    }
+  },
+  "beforeApplicationProof": {
+    "wholeSourceWork": {
+      "baseline": {
+        "checks": 1010,
+        "profiles": 30,
+        "firstWorkLine": "GETROWS_WORK family=Retail provider=false kind=manual manual=20 visibleIDs=121 rows=20 unique=0 ids=21 names=2581 harvestNames=2541 refresh=63 visible=21 predicate=20 live=40 bank=20",
+        "firstLowerCalls": 7663,
+        "traceSha256": "3ed2b07a4757d9b2386006ce24d8e2d6fecf105aa83836851804c457d1f494b2"
+      },
+      "lower": {
+        "checks": 1010,
+        "profiles": 30,
+        "firstWorkLine": "GETROWS_WORK family=Retail provider=false kind=manual manual=20 visibleIDs=121 rows=20 unique=0 ids=21 names=2581 harvestNames=2541 refresh=63 visible=21 predicate=20 live=40 bank=20",
+        "firstLowerCalls": 2581,
+        "traceSha256": "3ed2b07a4757d9b2386006ce24d8e2d6fecf105aa83836851804c457d1f494b2"
+      },
+      "opts": {
+        "checks": 1010,
+        "profiles": 30,
+        "firstWorkLine": "GETROWS_WORK family=Retail provider=false kind=manual manual=20 visibleIDs=121 rows=20 unique=0 ids=21 names=2581 harvestNames=2541 refresh=63 visible=21 predicate=20 live=40 bank=20",
+        "firstLowerCalls": 7663,
+        "traceSha256": "3ed2b07a4757d9b2386006ce24d8e2d6fecf105aa83836851804c457d1f494b2"
+      }
+    },
+    "wholeSourceFunctional": "Whole-source GetRows 1010 checks/30 profiles per owner; all native-name ID/order and all measured work identical. Whole-source name_semantics final139 checks/32 owner-cases; two explicitly compiled harmful controls rejected.",
+    "durable": {
+      "checks": "146 checks/32 owner-cases/5 isolated work cases for explicit baseline/candidate and zero-argument exact-candidate mirror.",
+      "workBound": "Candidate only: ordinary primitive string 1 intrinsic lower, blacklisted primitive 1, invalid ID0, empty name0, fresh following primitive1. Baseline has no work bound. Hook exists only during isolated actual RememberItemName invocation; no CPU assertion.",
+      "controls": "Omit blacklist rejected built-in blacklist301~=nil; collapse non-string lower rejected count1~=2; extra redundant primitive lower rejected count2~=1. All controls explicitly compiled before execution."
+    },
+    "independent": {
+      "verdict": "PASS for narrow primitive-string lowercase reduction on exact candidate; no observed data/native/public-semantic regression in independent actual-source replay.",
+      "evidence": {
+        "testPath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-independent-review\\review.lua",
+        "testSHA256": "5a596ef016c5c8f568332813336f4c022814b299f2190ea02b9a51207aa37025",
+        "wholeSourceLoadedUnmodified": true,
+        "privateStateSetup": "Existing debug upvalues are inspected/seeded to establish cold and warmed preconditions; production functions are not replaced.",
+        "checksEachReplay": 1121,
+        "scenarios": 15,
+        "arbitraryNameCases": 89,
+        "exactBaselineCandidateComparison": "All native/API traces, name-map/pending rows, active sets, migrations and notification state equal.",
+        "controlsCompiledAndRejected": [
+          "localized blacklist skip",
+          "pending key retained",
+          "existing alias frozen",
+          "nonstring two lower calls collapsed to one"
+        ]
+      },
+      "coverage": [
+        "Arbitrary previously unknown names with ASCII case, localized UTF8/non-ASCII bytes, embedded NUL and leading/trailing whitespace; visible fact retained after item disappears.",
+        "Same normalized name receives successive ID301,302,0,-7,303; latest actual source behavior preserved.",
+        "Cold pending row resolves through public OnVisibleItemsChanged; actual warm Finalize publishes active higher-rank item and obsolete migration; pending clears.",
+        "Native6265 localized-name observation teaches dynamic blacklist; later same-name foreignID cannot overwrite prior mapping.",
+        "Native name API false/numeric/empty values retain GetItemInfo fallback order.",
+        "Native name getter reentry preserves nested remember and outer pending clear.",
+        "Merchant stringlike __index/lower callback sideeffects, distinct first/second keys, raw first/second errors and reentry retain two callback invocations.",
+        "Unexpected merchant number/boolean name errors and empty/false/nil skip behavior unchanged."
+      ],
+      "limits": [
+        "No performance benchmark or native client input in independent review; author owns timed before/after evidence.",
+        "Reduction from three primitive-string lower intrinsic calls to one is intentional; mutable global string-library monkeypatch call counts are not certified as a supported public/native contract. Nonstring method/getter semantics are explicitly tested.",
+        "Lua string.lower byte/case behavior is preserved without Unicode normalization; existing leading/trailing-whitespace lookup mismatch is retained, not fixed.",
+        "WoW secret-string restrictions/native all-client runtime remain outside this desktop replay; no native/FPS claim."
+      ]
+    }
+  },
+  "desktopBenchmarks": {
+    "runtime": "PortableLua5.4.6; product uses Lua5.1 constructs.",
+    "method": {
+      "sampleOrder": [
+        [
+          "baseline",
+          "lower",
+          "opts"
+        ],
+        [
+          "opts",
+          "lower",
+          "baseline"
+        ],
+        [
+          "baseline",
+          "lower",
+          "opts"
+        ]
+      ],
+      "workload": "Five GC-stopped allocation rebuilds and 30 normally collected timed rebuilds per 0/7/20-row profile; 121 visible IDs; provider off/on.",
+      "cpuInstrumentation": "No debug hook, no string.lower wrapper, no string metatable mutation. Separate work-count run alone uses debug.sethook to count existing intrinsic string.lower calls.",
+      "timer": "Portable Lua os.clock; millisecond quantization; three matched alternating rounds; desktop synthetic API costs, no client/FPS claim."
+    },
+    "samples": {
+      "baseline": {
+        "provider=false/rows=0": {
+          "seconds30": [
+            0.005,
+            0.004,
+            0.003
+          ],
+          "allocationKiB5": [
+            53.27050781,
+            53.27050781,
+            53.27050781
+          ],
+          "nativeNames35": [
+            4235,
+            4235,
+            4235
+          ],
+          "medianSeconds30": 0.004,
+          "rangeSeconds30": [
+            0.003,
+            0.005
+          ],
+          "medianMillisecondsPerRebuild": 0.13333333333333333
+        },
+        "provider=false/rows=7": {
+          "seconds30": [
+            0.029,
+            0.031,
+            0.03
+          ],
+          "allocationKiB5": [
+            388.17675781,
+            388.17675781,
+            388.17675781
+          ],
+          "nativeNames35": [
+            34370,
+            34370,
+            34370
+          ],
+          "medianSeconds30": 0.03,
+          "rangeSeconds30": [
+            0.029,
+            0.031
+          ],
+          "medianMillisecondsPerRebuild": 1.0
+        },
+        "provider=false/rows=20": {
+          "seconds30": [
+            0.075,
+            0.092,
+            0.077
+          ],
+          "allocationKiB5": [
+            1037.38476562,
+            1037.38476562,
+            1037.38476562
+          ],
+          "nativeNames35": [
+            90335,
+            90335,
+            90335
+          ],
+          "medianSeconds30": 0.077,
+          "rangeSeconds30": [
+            0.075,
+            0.092
+          ],
+          "medianMillisecondsPerRebuild": 2.566666666666667
+        },
+        "provider=true/rows=0": {
+          "seconds30": [
+            0.004,
+            0.004,
+            0.004
+          ],
+          "allocationKiB5": [
+            53.02050781,
+            53.02050781,
+            53.02050781
+          ],
+          "nativeNames35": [
+            4235,
+            4235,
+            4235
+          ],
+          "medianSeconds30": 0.004,
+          "rangeSeconds30": [
+            0.004,
+            0.004
+          ],
+          "medianMillisecondsPerRebuild": 0.13333333333333333
+        },
+        "provider=true/rows=7": {
+          "seconds30": [
+            0.029,
+            0.032,
+            0.028
+          ],
+          "allocationKiB5": [
+            388.11425781,
+            388.11425781,
+            388.11425781
+          ],
+          "nativeNames35": [
+            34370,
+            34370,
+            34370
+          ],
+          "medianSeconds30": 0.029,
+          "rangeSeconds30": [
+            0.028,
+            0.032
+          ],
+          "medianMillisecondsPerRebuild": 0.9666666666666667
+        },
+        "provider=true/rows=20": {
+          "seconds30": [
+            0.082,
+            0.08,
+            0.082
+          ],
+          "allocationKiB5": [
+            1037.38476562,
+            1037.38476562,
+            1037.38476562
+          ],
+          "nativeNames35": [
+            90335,
+            90335,
+            90335
+          ],
+          "medianSeconds30": 0.082,
+          "rangeSeconds30": [
+            0.08,
+            0.082
+          ],
+          "medianMillisecondsPerRebuild": 2.7333333333333334
+        }
+      },
+      "lower": {
+        "provider=false/rows=0": {
+          "seconds30": [
+            0.003,
+            0.002,
+            0.003
+          ],
+          "allocationKiB5": [
+            53.27050781,
+            53.27050781,
+            53.27050781
+          ],
+          "nativeNames35": [
+            4235,
+            4235,
+            4235
+          ],
+          "medianSeconds30": 0.003,
+          "rangeSeconds30": [
+            0.002,
+            0.003
+          ],
+          "medianMillisecondsPerRebuild": 0.1
+        },
+        "provider=false/rows=7": {
+          "seconds30": [
+            0.024,
+            0.024,
+            0.023
+          ],
+          "allocationKiB5": [
+            388.17675781,
+            388.17675781,
+            388.17675781
+          ],
+          "nativeNames35": [
+            34370,
+            34370,
+            34370
+          ],
+          "medianSeconds30": 0.024,
+          "rangeSeconds30": [
+            0.023,
+            0.024
+          ],
+          "medianMillisecondsPerRebuild": 0.8
+        },
+        "provider=false/rows=20": {
+          "seconds30": [
+            0.065,
+            0.062,
+            0.062
+          ],
+          "allocationKiB5": [
+            1037.38476562,
+            1037.38476562,
+            1037.38476562
+          ],
+          "nativeNames35": [
+            90335,
+            90335,
+            90335
+          ],
+          "medianSeconds30": 0.062,
+          "rangeSeconds30": [
+            0.062,
+            0.065
+          ],
+          "medianMillisecondsPerRebuild": 2.066666666666667
+        },
+        "provider=true/rows=0": {
+          "seconds30": [
+            0.003,
+            0.002,
+            0.003
+          ],
+          "allocationKiB5": [
+            53.02050781,
+            53.02050781,
+            53.02050781
+          ],
+          "nativeNames35": [
+            4235,
+            4235,
+            4235
+          ],
+          "medianSeconds30": 0.003,
+          "rangeSeconds30": [
+            0.002,
+            0.003
+          ],
+          "medianMillisecondsPerRebuild": 0.1
+        },
+        "provider=true/rows=7": {
+          "seconds30": [
+            0.024,
+            0.026,
+            0.026
+          ],
+          "allocationKiB5": [
+            388.11425781,
+            388.11425781,
+            388.11425781
+          ],
+          "nativeNames35": [
+            34370,
+            34370,
+            34370
+          ],
+          "medianSeconds30": 0.026,
+          "rangeSeconds30": [
+            0.024,
+            0.026
+          ],
+          "medianMillisecondsPerRebuild": 0.8666666666666667
+        },
+        "provider=true/rows=20": {
+          "seconds30": [
+            0.062,
+            0.064,
+            0.064
+          ],
+          "allocationKiB5": [
+            1037.38476562,
+            1037.38476562,
+            1037.38476562
+          ],
+          "nativeNames35": [
+            90335,
+            90335,
+            90335
+          ],
+          "medianSeconds30": 0.064,
+          "rangeSeconds30": [
+            0.062,
+            0.064
+          ],
+          "medianMillisecondsPerRebuild": 2.1333333333333333
+        }
+      }
+    },
+    "intrinsicLowerCallsPer20RowRebuild": {
+      "before": 7663,
+      "after": 2581
+    },
+    "headline": "Three matched alternating pairs,20saved rows/121visible IDs:30-rebuild CPU medians77->62ms provider-off and82->64ms simulated-on. Allocation unchanged at1037.38476562KiB per5rebuilds. Native names/API/order trace unchanged.",
+    "allocationChanged": false,
+    "notApplied": "Unused private options-table alternative saves only1.09375KiB per20-row rebuild with CPU inside noise; not applied.",
+    "limits": [
+      "Synthetic API costs; os.clock millisecond quantization and only3matched rounds; external Syndicator itself not executed.",
+      "N+1 harvest/native-name reads remain; no claim to remove native40-59ms callback or improve FPS.",
+      "Intrinsic primitive-string lower reduction intentional. Arbitrary string-library monkeypatch counts outside certified contract; non-string method semantics preserved."
+    ]
+  },
+  "integration": {
+    "initial": {
+      "scriptsPass": 387,
+      "scriptsFail": 1,
+      "syntaxFiles": 1076,
+      "sourceStableThroughout": true,
+      "failedScript": {
+        "path": "tests/passive_inventory_item_ids.lua",
+        "exit": 1,
+        "wallSeconds": 0.0227,
+        "output": "FRESH_IDS_FUNCTIONAL_CHECKS 816 PASS\nFRESH_IDS_ALLOCATION recordsKiB20=422.9688 idsKiB20=149.2188 PASS\nAUTHORITY_CASE before/ordinary SAME=false\nBASE name:123|ok:true\nCAND name:123|ok:false|error:actual-Harvest-authority:20: attempt to index a nil value (global 'blacklistedReagentNames')\nlua: tests\\passive_inventory_item_ids.lua:124: before/ordinary exact legacy observable trace: name:123|ok:true ~= name:123|ok:false|error:actual-Harvest-authority:20: attempt to index a nil value (global 'blacklistedReagentNames')\nstack traceback:\n\t[C]: in function 'assert'\n\ttests\\passive_inventory_item_ids.lua:124: in local 'eq'\n\ttests\\passive_inventory_item_ids.lua:211: in main chunk\n\t[C]: in ?\n"
+      },
+      "cause": "Old extracted fixture omitted blacklistedReagentNames; actual whole-owner tests passed. Failed report retained."
+    },
+    "final": {
+      "scriptsPass": 388,
+      "scriptsFail": 0,
+      "syntaxFiles": 1076,
+      "syntaxFailures": 0,
+      "sourceStableThroughout": true,
+      "allCurrentManifestPathsMatch": true
+    },
+    "sourceGuard": {
+      "otherNonDocumentationCheckpointFilesUnchanged": 1837,
+      "capturedUtc": "2026-11-14T23:19:35.917397+00:00",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-lower-20261114T230124Z",
+      "changedRuntime": [
+        "Inventory/SpellReagents.lua"
+      ],
+      "updatedFixture": "tests/passive_inventory_item_ids.lua",
+      "newTests": [
+        "tests/spell_reagent_name_work.lua"
+      ],
+      "otherCheckpointLuaUnchanged": 1074,
+      "exactCurrentFiles": {
+        "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+        "tests/passive_inventory_item_ids.lua": "de6b7759886154e9d66d00375cd9c1afedc9eec631e244aba3136940e480653d",
+        "tests/spell_reagent_name_work.lua": "43ebeebc63faffb6217261bf6e3d816361c203abd0c0f28518f7146683499daf"
+      },
+      "preserved": {
+        "assetsXMLTOC": {
+          "files": 252,
+          "allRawHashesMatch": true
+        },
+        "optionsBindings": {
+          "files": 79,
+          "allRawHashesMatch": true
+        },
+        "defaults": {
+          "files": 8,
+          "allRawHashesMatch": true
+        },
+        "licenses": {
+          "files": 3,
+          "allRawHashesMatch": true
+        }
+      },
+      "all1076IntegrationManifestPathsMatch": true,
+      "fullSuite": {
+        "pass": 388,
+        "fail": 0,
+        "syntax": 1076,
+        "syntaxFailures": 0
+      },
+      "externalSyndicator": {
+        "files": 41,
+        "allRawHashesMatch": true,
+        "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\checkpoint-20261114T092731Z",
+        "readOnly": true
+      },
+      "installedCopies": {
+        "_retail_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_forever_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_classic_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_classic_era_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_anniversary_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        }
+      },
+      "manualSync": false,
+      "scope": "Disk identities only; no native after-lower/FPS/taint/pixel claim."
+    }
+  },
+  "native": {
+    "afterLower": "NOT RUN; no reload/native lower-candidate comparison or cast-edge result claimed.",
+    "earlierC1": {
+      "report": "docs/validation/passive-inventory-item-ids-2026-11-14.json",
+      "sha256": "c5bae63ac351356cd239a1d143f2eed98888576c4416871a8714662b84b90ed8",
+      "scope": "Distinct earlier same-VM legacy/public query versus fresh-ID query over51IDs; not lower-name work or whole workflow.",
+      "allocationBytes": {
+        "before": 22464,
+        "after": 10800
+      },
+      "cpuMedianMs": {
+        "before": 0.0608,
+        "after": 0.0577
+      },
+      "keyParity": "Exact51-ID equality PASS",
+      "context": {
+        "profilerEnabled": true,
+        "scriptProfile": "0",
+        "maxFPS": "120",
+        "maxFPSBk": "30",
+        "externalSyndicator": "table",
+        "inventorySource": "syndicator",
+        "newQuery": "function"
+      }
+    },
+    "castPlan": "External actual-source720checks/168scenarios/7controls plan sealed; no raw cast probe installed. Native start/cancel/finish attribution pending until natural edges.",
+    "jumpHelper": "Separate user-authorized target-only jump every180seconds. Root CANCEL/JUMP_STOP and stale heartbeat stop it; input.lock excludes profiling submission; native/no_jump excludes cast captures. Stop before pause/done. Jumps cannot count as passive evidence.",
+    "limits": "Whole workflows/provider-off/other clients/real-secrets/taint/pixels/controller remain pending. Disk identities do not certify loaded bytecode."
+  },
+  "sourcePins": {
+    "Retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "Forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "Classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "Era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "Anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "preservation": {
+    "guard": {
+      "otherNonDocumentationCheckpointFilesUnchanged": 1837,
+      "capturedUtc": "2026-11-14T23:19:35.917397+00:00",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-lower-20261114T230124Z",
+      "changedRuntime": [
+        "Inventory/SpellReagents.lua"
+      ],
+      "updatedFixture": "tests/passive_inventory_item_ids.lua",
+      "newTests": [
+        "tests/spell_reagent_name_work.lua"
+      ],
+      "otherCheckpointLuaUnchanged": 1074,
+      "exactCurrentFiles": {
+        "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+        "tests/passive_inventory_item_ids.lua": "de6b7759886154e9d66d00375cd9c1afedc9eec631e244aba3136940e480653d",
+        "tests/spell_reagent_name_work.lua": "43ebeebc63faffb6217261bf6e3d816361c203abd0c0f28518f7146683499daf"
+      },
+      "preserved": {
+        "assetsXMLTOC": {
+          "files": 252,
+          "allRawHashesMatch": true
+        },
+        "optionsBindings": {
+          "files": 79,
+          "allRawHashesMatch": true
+        },
+        "defaults": {
+          "files": 8,
+          "allRawHashesMatch": true
+        },
+        "licenses": {
+          "files": 3,
+          "allRawHashesMatch": true
+        }
+      },
+      "all1076IntegrationManifestPathsMatch": true,
+      "fullSuite": {
+        "pass": 388,
+        "fail": 0,
+        "syntax": 1076,
+        "syntaxFailures": 0
+      },
+      "externalSyndicator": {
+        "files": 41,
+        "allRawHashesMatch": true,
+        "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\checkpoint-20261114T092731Z",
+        "readOnly": true
+      },
+      "installedCopies": {
+        "_retail_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_forever_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_classic_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_classic_era_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        },
+        "_anniversary_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+        }
+      },
+      "manualSync": false,
+      "scope": "Disk identities only; no native after-lower/FPS/taint/pixel claim."
+    },
+    "manualSync": false,
+    "publication": false,
+    "agentItemOrQueueActionsForThisChange": false,
+    "newerUserWork": "Tooltip/EBS/unit-frame retained; external Syndicator read-only."
+  },
+  "remaining": [
+    "Raw casting start/cancel/finish and delayed STOP continuation; whole restock/pending/auction/crafting/vendor/bank/mail/loot/receive/bag/grid before-after and passive FPS.",
+    "Inventory with/without external Syndicator and all-client/native/secret/taint/pixel/controller acceptance.",
+    "Bank/mail producer/readiness races and populated-mail timing; native measurement required before accepting exceptional delay.",
+    "All features/look/update speed retained; no purchase/sale/delete by agent, moves allowed; guild-bank/void callback bodies excluded."
+  ],
+  "quickPause": {
+    "cancelFirst": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\CANCEL",
+    "jumpStop": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\JUMP_STOP",
+    "workers": "Stop owned workers/children and external jump helper before paused/done; never leave helper running.",
+    "profiling": "Exact-cleanup any owned probe; none installed for this record.",
+    "reload": "Reload only on explicit pause-reload request; remember VM reset and re-add optional code only after continue.",
+    "goal": "Broad goal remains active until complete or explicit pause."
+  },
+  "artifacts": {
+    "next-followup-audit/verdict.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\next-followup-audit\\verdict.json",
+      "sha256": "edb745480d5463cd265a7c614fea6a81a7bfe7fef2c2f93bf55321a3ece10e21"
+    },
+    "next-followup-audit/durable-verdict.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\next-followup-audit\\durable-verdict.json",
+      "sha256": "da58eb37d10c454acff40e018cd35df2c426124bb38ed28fed1f920598cd7795"
+    },
+    "lower-independent-review/review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-independent-review\\review.json",
+      "sha256": "09cff8822ce8ff54d7766b627b096d5d6ce5a656c39329306b229de18b49b635"
+    },
+    "item-ids-fixture-correction/report.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\item-ids-fixture-correction\\report.json",
+      "sha256": "e74755040a333037596f1df2e045d4fe2d0c7d9f7a5527f9d526b105e0aa0d92"
+    },
+    "lower-applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-applied.json",
+      "sha256": "cd96bd55d464b026f8193db8f44418d713729161913b11f50c7d7987aec1eb47"
+    },
+    "fixture-correction-applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\fixture-correction-applied.json",
+      "sha256": "ff5872ebabda8a63f1301cb112e8c1adf50d26fde5b204c57716501a23793751"
+    },
+    "lower-integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-integration-full.json",
+      "sha256": "5321dccf1b4db46e6e388e0d89ff815fd8d79c10d43d1db0314d8d39c1342fd1"
+    },
+    "lower-integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-integration-stability.json",
+      "sha256": "c74cb56de463b3681ca93318f10343d523b355bb7b2af762ea5764e97a328de0"
+    },
+    "lower-final-integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-final-integration-full.json",
+      "sha256": "a0e92f46f419f0180075ccab83b01533d4e6a9c47523d0276b509562319082a8"
+    },
+    "lower-final-integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-final-integration-stability.json",
+      "sha256": "3408f0d6a13b31ffad64ea9621d7197a7afe2e4cc76c441857ae5afa7a826e0e"
+    },
+    "lower-source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\lower-source-guard.json",
+      "sha256": "83b90076d9a16c5a0a9350e3e7988f7298a7d5b825eef46ba45dfc1eba26eff5"
+    },
+    "checkpoint-lower-state.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-lower-state.json",
+      "sha256": "237f23eb3b11292876ebd314c265036179e5deb43fe633e423ccc506081af2af"
+    },
+    "cast-probe-plan/sealed-plan.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\cast-probe-plan\\sealed-plan.json",
+      "sha256": "06810b5a2a4439fbb5c6b7122c8eb4608a4ad97b40b0b49a28b6e7412206b491"
+    }
+  },
+  "documentationValidation": {
+    "build": {
+      "status": "complete",
+      "parentPid": 37928,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/build_reference.py"
+      ],
+      "startedUtc": "2026-11-14T23:20:50.715577+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T23:21:12.929350+00:00"
+    },
+    "check": {
+      "status": "complete",
+      "parentPid": 42040,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T23:21:21.508753+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T23:21:51.244332+00:00"
+    },
+    "result": "PASS: 1109 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17490 local links. Source inventory/evidence current. No files written.",
+    "logSHA256": "898e0f0eaafbd7d331189592262dbdba2f76f143d414c4610f07835a834937c7",
+    "postDocsSourceManifest": "1076/1076 exact runner-normalized paths match after documentation validation"
+  }
+}

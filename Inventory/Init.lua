@@ -165,21 +165,22 @@ local function CopyKeySet(src)
 	return out
 end
 
+local function UnionChangeKeys(a, b)
+	if not b then
+		return a
+	end
+	a = a or {}
+	for id in pairs(b) do
+		a[id] = true
+	end
+	return a
+end
+
 --- Merge two classifications. identityChanged wins; added/removed sets union.
 --- Copies first: callers keep their own last-change tables.
 function Inv.MergeChangeKind(kindA, addA, remA, kindB, addB, remB)
-	local function union(a, b)
-		if not b then
-			return a
-		end
-		a = a or {}
-		for id in pairs(b) do
-			a[id] = true
-		end
-		return a
-	end
-	local added = union(CopyKeySet(addA), addB)
-	local removed = union(CopyKeySet(remA), remB)
+	local added = UnionChangeKeys(CopyKeySet(addA), addB)
+	local removed = UnionChangeKeys(CopyKeySet(remA), remB)
 	if kindA == "identityChanged" or kindB == "identityChanged" then
 		return "identityChanged", added, removed
 	end
@@ -638,12 +639,15 @@ local heavyOrder = {}
 local heavyArmed = false
 local heavyFrame
 local heavyWakeAt, heavyWakeEpoch
+local heavyQueueVersion = 0
+local heavyMinimum, heavyMinimumVersion
 local ArmHeavyQueue
 local HEAVY_MAX_PER_FRAME = 2
 local HEAVY_BUDGET_MS = 1.5
 
 local function CancelHeavy(key)
 	if not heavyQueue[key] then return end
+	heavyQueueVersion = heavyQueueVersion + 1
 	heavyQueue[key] = nil
 	for i = #heavyOrder, 1, -1 do
 		if heavyOrder[i] == key then table.remove(heavyOrder, i) end
@@ -705,6 +709,7 @@ local function ProcessHeavyQueue(self)
 		if job and Now() < job.at then
 			index = index + 1
 		else
+			heavyQueueVersion = heavyQueueVersion + 1
 			table.remove(heavyOrder, index)
 			heavyQueue[key] = nil
 			if job and listeners[key] and listeners[key].fn == job.fn then
@@ -723,14 +728,24 @@ local function ProcessHeavyQueue(self)
 	ArmHeavyQueue()
 end
 
-ArmHeavyQueue = function()
+ArmHeavyQueue = function(appendedAt, previousVersion)
 	if not heavyFrame then return end
 	local earliest
-	for i = 1, #heavyOrder do
-		local job = heavyQueue[heavyOrder[i]]
-		local at = job and job.at or 0
-		if not earliest or at < earliest then earliest = at end
+	-- Adding one job can only retain or lower a known minimum. Any intervening
+	-- mutation, including reentrant work or an interrupted enqueue, needs a scan.
+	-- Zero may describe a leftover order entry without a job; reusing that key
+	-- replaces its unknown deadline as well as appending the new entry.
+	if appendedAt and heavyMinimum and heavyMinimum > 0 and heavyMinimumVersion == previousVersion
+		and heavyQueueVersion == previousVersion + 1 then
+		earliest = math.min(heavyMinimum, appendedAt)
+	else
+		for i = 1, #heavyOrder do
+			local job = heavyQueue[heavyOrder[i]]
+			local at = job and job.at or 0
+			if not earliest or at < earliest then earliest = at end
+		end
 	end
+	heavyMinimum, heavyMinimumVersion = earliest, heavyQueueVersion
 	if not earliest then
 		heavyArmed = false
 		heavyWakeAt, heavyWakeEpoch = nil, nil
@@ -758,25 +773,37 @@ end
 
 local function UnionSets(a, b)
 	local out = CopyKeySet(a) or {}
-	for key in pairs(b or {}) do out[key] = true end
+	if b then
+		for key in pairs(b) do out[key] = true end
+	end
 	return out
 end
 
-local function CopyContext(ctx)
+local MERGED_CONTEXT_FIELDS = {
+ regions = true, addedItemIDs = true, removedItemIDs = true,
+ dirtyBags = true, touchedItemIDs = true, changedItemIDs = true,
+}
+local MERGED_ITEM_SET_FIELDS = { "dirtyBags", "touchedItemIDs", "changedItemIDs" }
+
+local function CopyContext(ctx, merging)
 	local out = {}
 	for key, value in pairs(ctx) do
-		out[key] = type(value) == "table" and CopyKeySet(value) or value
+		-- MergeContext reconstructs these sets below; copying them here
+		-- would allocate a second set that is immediately discarded.
+		if not merging or not MERGED_CONTEXT_FIELDS[key] then
+			out[key] = type(value) == "table" and CopyKeySet(value) or value
+		end
 	end
 	return out
 end
 
 local function MergeContext(a, b)
-	local out = CopyContext(b)
+	local out = CopyContext(b, true)
 	out.regions = UnionSets(a.regions, b.regions)
 	out.changeKind, out.addedItemIDs, out.removedItemIDs = Inv.MergeChangeKind(
 		a.changeKind, a.addedItemIDs, a.removedItemIDs, b.changeKind, b.addedItemIDs, b.removedItemIDs)
 	-- Missing metadata for a relevant region means unknown, not an empty set.
-	for _, field in ipairs({ "dirtyBags", "touchedItemIDs", "changedItemIDs" }) do
+	for _, field in ipairs(MERGED_ITEM_SET_FIELDS) do
 		local aRelevant = a.regions.bags or (field == "dirtyBags" and (a.regions.bank or a.regions.warband))
 		local bRelevant = b.regions.bags or (field == "dirtyBags" and (b.regions.bank or b.regions.warband))
 		if (aRelevant and a[field] == nil) or (bRelevant and b[field] == nil) then
@@ -793,9 +820,12 @@ end
 -- Each listener has a quiet deadline and a maximum wait. New mail must not
 -- starve an unrelated queued listener, and a count-only pulse must not erase
 -- an earlier identity change or its dirty bags.
-local function EnqueueHeavy(entry, ctx)
+local function EnqueueHeavy(entry, ctx, promotedTier)
 	local key = entry.key
 	local job = heavyQueue[key]
+	local appended = job == nil
+	local previousVersion = heavyQueueVersion
+	heavyQueueVersion = previousVersion + 1
 	local now = Now()
 	if not job then
 		heavyOrder[#heavyOrder + 1] = key
@@ -804,10 +834,11 @@ local function EnqueueHeavy(entry, ctx)
 	else
 		job.ctx = MergeContext(job.ctx, ctx)
 	end
+	if promotedTier then job.ctx.tier = promotedTier end
 	job.at = math.min(now + CurrentDebounce(), job.first + HEAVY_MAX_WAIT)
 	heavyArmed = true
 	heavyFrame = heavyFrame or CreateFrame("Frame")
-	ArmHeavyQueue()
+	ArmHeavyQueue(appended and job.at or nil, previousVersion)
 end
 
 --- @return string kind, table|nil added, table|nil removed, table|nil dirtyBags
@@ -921,12 +952,7 @@ function Inv.Notify(tokens)
 			if force ~= true and deferred and not IsSyncListener(entry) then
 				-- Classic/Syndicator light notifications also owe scan listeners
 				-- a later pass. Keep count/overlay listeners inline below.
-				local queued = ctx
-				if tierRank < wantRank then
-					queued = CopyContext(ctx)
-					queued.tier = entry.tier
-				end
-				EnqueueHeavy(entry, queued)
+				EnqueueHeavy(entry, ctx, tierRank < wantRank and entry.tier or nil)
 			elseif tierRank >= wantRank then
 				-- Deliver earlier pending regions too: a forced mail refresh
 				-- must not drop a bag change waiting on the same listener.
@@ -1249,6 +1275,7 @@ function Inv.HasWarband()
 end
 
 local bankOpenLatch = false
+local bankClosePending
 local baganatorLiveLatch = false
 local lastEmittedBankOpen = false
 local lastEmittedCanTake = false
@@ -1289,7 +1316,7 @@ local function IsBlizzardBankFrameShown()
 		return true
 	end
 	local panel = rawget(_G, "BankPanel")
-	if panel and panel.IsShown and panel:IsShown() then
+	if panel and panel.IsVisible and panel:IsVisible() then
 		return true
 	end
 	return false
@@ -1297,14 +1324,24 @@ end
 
 -- Backup FluxInv.Bank.IsOpen treated any shown Baganator bank window as open.
 -- liveBankActive can lag or live on a parent while TransferButton is already up.
-local BAGANATOR_BANK_PREFIXES = {
-	"Baganator_SingleViewBankViewFrame",
-	"Baganator_CategoryViewBankViewFrame",
-}
-local BAGANATOR_BANK_SUFFIXES = {
-	"1", "2",
-	"blizzard", "blizzard_black", "dark", "elvui", "gw2_ui", "ndui",
-}
+-- Frame names are fixed; the frames and their visibility are read on every call.
+local BAGANATOR_BANK_FRAME_NAMES = {}
+do
+	local prefixes = {
+		"Baganator_SingleViewBankViewFrame",
+		"Baganator_CategoryViewBankViewFrame",
+	}
+	local suffixes = {
+		"1", "2",
+		"blizzard", "blizzard_black", "dark", "elvui", "gw2_ui", "ndui",
+	}
+	for _, prefix in ipairs(prefixes) do
+		BAGANATOR_BANK_FRAME_NAMES[#BAGANATOR_BANK_FRAME_NAMES + 1] = prefix
+		for _, suffix in ipairs(suffixes) do
+			BAGANATOR_BANK_FRAME_NAMES[#BAGANATOR_BANK_FRAME_NAMES + 1] = prefix .. suffix
+		end
+	end
+end
 
 local function FrameIsShown(frame)
 	return frame and frame.IsShown and frame:IsShown()
@@ -1337,15 +1374,9 @@ function Inv.IsBaganatorBankViewShown()
 			return true
 		end
 	end
-	for i = 1, #BAGANATOR_BANK_PREFIXES do
-		local prefix = BAGANATOR_BANK_PREFIXES[i]
-		if FrameIsShown(rawget(_G, prefix)) then
+	for i = 1, #BAGANATOR_BANK_FRAME_NAMES do
+		if FrameIsShown(rawget(_G, BAGANATOR_BANK_FRAME_NAMES[i])) then
 			return true
-		end
-		for s = 1, #BAGANATOR_BANK_SUFFIXES do
-			if FrameIsShown(rawget(_G, prefix .. BAGANATOR_BANK_SUFFIXES[s])) then
-				return true
-			end
 		end
 	end
 	return false
@@ -1412,6 +1443,7 @@ end
 
 function Inv.SetBankOpenLatch(open)
 	open = not not open
+	bankClosePending = nil
 	if not open and bankOpenLatch then
 		Inv.PersistBankCounts()
 	end
@@ -1429,13 +1461,28 @@ function Inv.SetBankOpenLatch(open)
 	EmitBankStateIfChanged()
 end
 
+local function RecheckBankClose(request)
+	if bankClosePending ~= request then return false end
+	if StillHasBankAccess() then return true end
+	local builtinBank = Inv.source == "builtin" and Inv.Builtin and Inv.Builtin.Bank
+	if builtinBank and builtinBank.SetOpen then
+		builtinBank.SetOpen(false)
+	end
+	Inv.SetBankOpenLatch(false)
+	return false
+end
+
 function Inv.SetBaganatorBankLive(active)
 	local nextLive = not not active
 	if baganatorLiveLatch == nextLive then
+		if not nextLive and bankClosePending then
+			RecheckBankClose(bankClosePending)
+		end
 		return
 	end
 	baganatorLiveLatch = nextLive
 	if baganatorLiveLatch then
+		bankClosePending = nil
 		bankOpenLatch = true
 		if Inv.Containers and Inv.Containers.Invalidate then
 			Inv.Containers.Invalidate()
@@ -1444,7 +1491,12 @@ function Inv.SetBaganatorBankLive(active)
 			Inv.Builtin.Bank.SetOpen(true)
 		end
 	elseif not StillHasBankAccess() then
-		bankOpenLatch = false
+		if bankClosePending then
+			RecheckBankClose(bankClosePending)
+			return
+		else
+			bankOpenLatch = false
+		end
 		if Inv.source == "builtin" and Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.SetOpen then
 			Inv.Builtin.Bank.SetOpen(false)
 		end
@@ -1468,10 +1520,10 @@ function Inv.IsBankLive()
 	if IsInteractingWithBanker() then
 		return true
 	end
-	if bankOpenLatch then
+	if bankOpenLatch and not bankClosePending then
 		return true
 	end
-	if Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
+	if not bankClosePending and Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
 		return true
 	end
 	return IsBlizzardBankFrameShown()
@@ -1490,23 +1542,23 @@ function Inv.CanTakeFromBank()
 	if IsInteractingWithBanker() then
 		return true
 	end
-	if bankOpenLatch then
+	if bankOpenLatch and not bankClosePending then
 		return true
 	end
-	if Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
+	if not bankClosePending and Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
 		return true
 	end
 	return IsBlizzardBankFrameShown()
 end
 
 function Inv.IsBankOpen()
-	if bankOpenLatch or baganatorLiveLatch then
+	if (bankOpenLatch and not bankClosePending) or baganatorLiveLatch then
 		return true
 	end
 	if Inv.IsBaganatorBankViewShown and Inv.IsBaganatorBankViewShown() then
 		return true
 	end
-	if Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
+	if not bankClosePending and Inv.Builtin and Inv.Builtin.Bank and Inv.Builtin.Bank.IsOpen and Inv.Builtin.Bank.IsOpen() then
 		return true
 	end
 	if IsInteractingWithBanker() then
@@ -1519,15 +1571,29 @@ local function HookBankOpenEvents()
 	if not (Flux.Events and Flux.Events.Register) then
 		return
 	end
+	local function OnBankAccessClosed()
+		if not StillHasBankAccess() then
+			Inv.SetBankOpenLatch(false)
+			return
+		end
+		if not bankOpenLatch or bankClosePending then return end
+		-- Native close can arrive before the view or the interaction disappears.
+		-- From that event onward, let actual access determine the public state.
+		local request = {}
+		bankClosePending = request
+		local after = Flux.Timer and Flux.Timer.After or C_Timer and C_Timer.After
+		if after then
+			after(0, function()
+				if RecheckBankClose(request) then
+					after(0.15, function() RecheckBankClose(request) end)
+				end
+			end)
+		end
+	end
 	Flux.Events.Register("BANKFRAME_OPENED", function()
 		Inv.SetBankOpenLatch(true)
 	end)
-	Flux.Events.Register("BANKFRAME_CLOSED", function()
-		if StillHasBankAccess() then
-			return
-		end
-		Inv.SetBankOpenLatch(false)
-	end)
+	Flux.Events.Register("BANKFRAME_CLOSED", OnBankAccessClosed)
 	Flux.Events.Register("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, kind)
 		if IsBankerInteractionType(kind) then
 			Inv.SetBankOpenLatch(true)
@@ -1537,10 +1603,7 @@ local function HookBankOpenEvents()
 		if not IsBankerInteractionType(kind) then
 			return
 		end
-		if StillHasBankAccess() then
-			return
-		end
-		Inv.SetBankOpenLatch(false)
+		OnBankAccessClosed()
 	end)
 end
 

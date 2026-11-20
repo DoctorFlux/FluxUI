@@ -1,0 +1,255 @@
+{
+  "changeId": "INDIVIDUAL-ROSTER-BATCH-20261119",
+  "capturedAtUTC": "2026-11-19T09:25:42.446607+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Avoid full individual unit-frame chrome and threat refreshes on every notification in a group event burst.",
+  "changes": [
+    "Coalesce individual group and raid notifications into one next-turn callback. Roles and loot share an already-pending roster refresh. Standalone role and loot notifications keep immediate paint.",
+    "Retain the full update methods, visibility decisions and protected-layout guards.",
+    "Resolve the player subgroup with one roster-row lookup when the client supplies a readable raid index and subgroup. Preserve identity scan fallback.",
+    "Restore the raid label when rejoining the same subgroup."
+  ],
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "bfaad9bfebbfc34493901cc4cdc637c2a425d50a979420ac0cb81391d1346a08",
+      "afterRaw": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d"
+    },
+    "tests/unit_group_chrome_batch.lua": {
+      "beforeRaw": null,
+      "afterRaw": "aa88cabe4f1eda192493e98744df7618f24264358a3cec577efb3ed6143db476"
+    },
+    "tests/unit_threat_roster_anchors.lua": {
+      "beforeRaw": "d653f42082b118a9f4a8dfdbf6e19b7a95e6b9ad0cd0ee1b9f8502b39f0b82db",
+      "afterRaw": "5be5ee042fd5e06e0386c7fb607ef2e810d90c8fc463a9aa7259195431ed68f6"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\individual-roster-batch-before-20261119T091231Z\\source.zip",
+    "archiveSHA256": "0286e3df3b761f39b74367a8c9dc42aa3fbf5ef73739d4104e8022826042fcc1",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "apiDeclarationEvidence": {
+    "snapshots": {
+      "retail": {
+        "version": "12.1.5.70783",
+        "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "referenceSHA256": "3e33d40c01ada27fb7b598040c342d8f2fc085358fe6264c99ebd9853f1f6bc6",
+        "source": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "declaration": {
+          "Name": "UnitInRaid",
+          "Type": "Function",
+          "SecretWhenUnitIdentityRestricted": true,
+          "SecretArguments": "AllowedWhenUntainted",
+          "Arguments": [
+            {
+              "Name": "unit",
+              "Type": "UnitToken",
+              "Nilable": true
+            },
+            {
+              "Name": "partyIndex",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ],
+          "Returns": [
+            {
+              "Name": "result",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ]
+        },
+        "evidence": {
+          "declaration": "source-declared",
+          "loadConditions": "unknown",
+          "runtime": "unknown",
+          "addonAccess": "unknown"
+        }
+      },
+      "forever": {
+        "version": "1.60.1.70938",
+        "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "referenceSHA256": "3d32fbbfad746df64364636a332c52ab7b400aa0d5f420919f8bb99049b99026",
+        "source": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "declaration": {
+          "Name": "UnitInRaid",
+          "Type": "Function",
+          "SecretWhenUnitIdentityRestricted": true,
+          "SecretArguments": "AllowedWhenUntainted",
+          "Arguments": [
+            {
+              "Name": "unit",
+              "Type": "UnitToken",
+              "Nilable": true
+            },
+            {
+              "Name": "partyIndex",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ],
+          "Returns": [
+            {
+              "Name": "result",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ]
+        },
+        "evidence": {
+          "declaration": "source-declared",
+          "loadConditions": "unknown",
+          "runtime": "unknown",
+          "addonAccess": "unknown"
+        }
+      },
+      "classic": {
+        "version": "5.5.4.70631",
+        "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "referenceSHA256": "4a28da798b18090840db9f313895a1e6e20b0a4d83ccd4684df1ccee3a34f3b7",
+        "source": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/UnitDocumentation.lua",
+        "declaration": {
+          "Name": "UnitInRaid",
+          "Type": "Function",
+          "Arguments": [
+            {
+              "Name": "unit",
+              "Type": "UnitToken",
+              "Nilable": true
+            },
+            {
+              "Name": "partyIndex",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ],
+          "Returns": [
+            {
+              "Name": "result",
+              "Type": "luaIndex",
+              "Nilable": true
+            }
+          ]
+        },
+        "evidence": {
+          "declaration": "source-declared",
+          "loadConditions": "unknown",
+          "runtime": "unknown",
+          "addonAccess": "unknown"
+        }
+      }
+    },
+    "scope": "Bundled Blizzard generated declarations. Current branch HTTP lookup unavailable. Era and Anniversary use the readable-index guard and existing fallback. Native runtime behavior remains unverified."
+  },
+  "workReplays": {
+    "exactPairedRosterBranch": [
+      "GROUP_CHROME solo>party callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME party>raid callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME raid>party callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME party>solo callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME raid>solo callbacks=0/1 refreshCalls=280/14",
+      "GROUP_SUBGROUP rosterRows=40/1 identityChecks=40/0",
+      "Group chrome replay: join, leave, conversion, raid subgroup, error and reentrant recovery pass."
+    ],
+    "managedTimerControl": [
+      "GROUP_CHROME solo>party callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME party>raid callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME raid>party callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME party>solo callbacks=0/1 refreshCalls=280/14",
+      "GROUP_CHROME raid>solo callbacks=0/1 refreshCalls=280/14",
+      "GROUP_SUBGROUP rosterRows=40/1 identityChecks=40/0",
+      "Group chrome replay: join, leave, conversion, raid subgroup, error and reentrant recovery pass."
+    ],
+    "threatAnchorControl": [
+      "Threat roster anchors: 560 checks, repeated points cleared/set 960 -> 0. Native latency/taint pending."
+    ],
+    "existingRosterSuite": [
+      "ROSTER|live|party|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=3",
+      "ROSTER|live|raid|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=4",
+      "ROSTER|live|normalPartyJoinLeave|mtmaAttachments=0|layouts=0|unitSyncs=0",
+      "ROSTER|live|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1",
+      "ROSTER|live|extras|rebinds=0|protectedWrites=0|paints=46|allocations=0|timers=0",
+      "ROSTER|forever|party|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=3",
+      "ROSTER|forever|raid|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=4",
+      "ROSTER|forever|normalPartyJoinLeave|mtmaAttachments=0|layouts=0|unitSyncs=0",
+      "ROSTER|forever|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1",
+      "ROSTER|forever|extras|rebinds=0|protectedWrites=0|paints=46|allocations=0|timers=0",
+      "ROSTER|classic|party|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=3",
+      "ROSTER|classic|raid|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=4",
+      "ROSTER|classic|normalPartyJoinLeave|mtmaAttachments=0|layouts=0|unitSyncs=0",
+      "ROSTER|classic|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1",
+      "ROSTER|classic|extras|rebinds=0|protectedWrites=0|paints=46|allocations=0|timers=0",
+      "ROSTER|classic_era|party|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=3",
+      "ROSTER|classic_era|raid|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=4",
+      "ROSTER|classic_era|normalPartyJoinLeave|mtmaAttachments=0|layouts=0|unitSyncs=0",
+      "ROSTER|classic_era|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1",
+      "ROSTER|classic_era|extras|rebinds=0|protectedWrites=0|paints=46|allocations=0|timers=0",
+      "ROSTER|classic_anniversary|party|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=3",
+      "ROSTER|classic_anniversary|raid|attributes=0|partyLayouts=0|unitSyncs=1|allocations=0|extraLayouts=0|headerShows=0|timers=4",
+      "ROSTER|classic_anniversary|normalPartyJoinLeave|mtmaAttachments=0|layouts=0|unitSyncs=0",
+      "ROSTER|classic_anniversary|binding|keyQueries=0|discoveries=1|protectedWrites=0|timers=1",
+      "ROSTER|classic_anniversary|extras|rebinds=0|protectedWrites=0|paints=46|allocations=0|timers=0",
+      "ROSTER|all|paint|synchronous=0|total=40",
+      "ROSTER|all|compactPartyUnitReads|scopedPaints=5|full=80|scoped=5",
+      "ROSTER|all|partyPaint|castResets=4|paints=8|timers=1|castRefreshes=4|rangeChecks=1",
+      "ROSTER|live|adjunctDisabled|updateCalls=0|auraQueries=0|timers=1",
+      "ROSTER|live|adjunctFullFirst|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|live|adjunctFullSecond|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|forever|adjunctDisabled|updateCalls=0|auraQueries=0|timers=1",
+      "ROSTER|forever|adjunctFullFirst|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|forever|adjunctFullSecond|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic|adjunctDisabled|updateCalls=0|auraQueries=0|timers=1",
+      "ROSTER|classic|adjunctFullFirst|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic|adjunctFullSecond|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic_era|adjunctDisabled|updateCalls=0|auraQueries=0|timers=1",
+      "ROSTER|classic_era|adjunctFullFirst|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic_era|adjunctFullSecond|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic_anniversary|adjunctDisabled|updateCalls=0|auraQueries=0|timers=1",
+      "ROSTER|classic_anniversary|adjunctFullFirst|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "ROSTER|classic_anniversary|adjunctFullSecond|fullPaint=40|updateCalls=40|auraQueries=440|timers=1",
+      "Group roster performance: 326 checks PASS; operation counts only; native performance/taint pending"
+    ],
+    "scope": "Counts model six individual frames and 20 same-turn notifications. Native event counts and wall time are not inferred."
+  },
+  "verification": {
+    "focused": 197,
+    "syntax": 1232,
+    "compilerMaximumUpvalues": 20,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\individual-roster-batch-before-20261119T091231Z\\focused.json",
+    "rejectedIntermediateReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\individual-roster-batch-before-20261119T091231Z\\focused-before-party-immediacy-fix.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\individual-roster-batch-before-20261119T091231Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\individual-roster-batch-before-20261119T091231Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "01133dba714cd81fe74ffa7a632e9d69ce6c768c4eb156e27ecca0b797566f7d",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending for party and raid join/leave hitch latency, appearance and combat taint. No native input or profiler changes."
+}

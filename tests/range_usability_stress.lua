@@ -12,7 +12,7 @@ local function check(ok, label)
 end
 local function fixture(client)
     local s = { now = 10, combat = false, range = true, usable = true, mana = false,
-        units = { target = true, mouseover = true, focus = true }, events = {}, queries = 0, writes = 0 }
+        units = { target = true, mouseover = true, focus = true, player = true }, events = {}, queries = 0, writes = 0 }
     local env = setmetatable({}, { __index = _G }); env._G = env; env.FluxButton = {}
     s.mask=0
     env.IsShiftKeyDown=function()return s.mask%2==1 end
@@ -86,7 +86,7 @@ for _, client in ipairs({"live","forever","classic_era","classic_anniversary"}) 
     extra._fluxUtilityGetEntry=nil;extra.MacroTarget="focus";s.invalidate();p.UpdateRange(extra)
     check(s.probeUnit=="focus",client.." ordinary macro keeps explicit target over hub unit")
     extra.MacroTarget="player";s.invalidate();p.UpdateRange(extra)
-    check(s.probeUnit=="target",client.." ordinary self macro ignores stale hovercast hub unit")
+    check(s.probeUnit=="player",client.." ordinary self macro ranges its explicit self target")
     f.Bars.Hosts={ForSlot=function()return {bar}end}
     bar.widget.GetAttribute=function()return "mouseover"end
     bar._outOfRange=false;b.ApplySlotRange(1,false,true)

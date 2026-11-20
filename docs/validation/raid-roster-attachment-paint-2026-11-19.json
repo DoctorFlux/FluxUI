@@ -1,0 +1,144 @@
+{
+  "changeId": "RAID-ROSTER-ATTACHMENT-PAINT-R93-20261119",
+  "capturedAtUTC": "2026-11-19T10:50:44.569933+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Remove repeated header and group-loot reads from party-as-raid and raid roster transitions.",
+  "changes": [
+    "Visit the prepared MT/MA header only for its target overlays. Readable alpha already at one stays in place.",
+    "Sample the public loot target token lazily once per raid paint or indicator batch. Standalone refreshes still read the current assignment.",
+    "Aura and unit paint remain on their existing paths. Private/absent loot results do not enter comparisons or group state."
+  ],
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "9ef4efb75503026d09f53608ce12b7c4c826d74a838fd682810f0810d934b5cb",
+      "afterRaw": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "2e908dab55f8241fcad2ff3b12895f9795383d6242f8d3fb2613efc861a51cac",
+      "afterRaw": "f08819d136a0e0b2c73f455a210cb835ce87e6215e72dc038a93ad78677ac1cd"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-attachment-paint-r93-before-20261119T104502Z\\source.zip",
+    "archiveSHA256": "32a6a19653a508656c239838209e74cf51c84ff66279e78a4142be58f488906b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Actual Lua Compat, raid unit paint queue, indicators and MT/MA attach path with modeled native frames. Five client API models and two roster sizes. Results count work and are not native timing, FPS or taint evidence.",
+    "matched": 10,
+    "clientModels": [
+      "retail",
+      "forever",
+      "classic",
+      "classic-era",
+      "classic-anniversary"
+    ],
+    "members5": {
+      "childAttributeReads": [
+        8,
+        2
+      ],
+      "alphaWrites": [
+        1,
+        0
+      ],
+      "lootReads": [
+        6,
+        1
+      ],
+      "indicatorLootReads": [
+        7,
+        1
+      ],
+      "auraUpdates": [
+        6,
+        6
+      ]
+    },
+    "members40": {
+      "childAttributeReads": [
+        50,
+        2
+      ],
+      "alphaWrites": [
+        1,
+        0
+      ],
+      "lootReads": [
+        41,
+        1
+      ],
+      "indicatorLootReads": [
+        42,
+        1
+      ],
+      "auraUpdates": [
+        41,
+        41
+      ]
+    },
+    "repairs": [
+      "clears previous looter",
+      "standalone paint reads a changed assignment",
+      "private looter cannot be compared",
+      "transparent and private wrapper alpha use original restore",
+      "all existing aura paints retained"
+    ],
+    "matchedRows": [
+      "RAID_ROSTER_BATCH live members=5 childReads=8/2 wrapWrites=1/0 loot=6/1 indicatorLoot=7/1 aura=6/6",
+      "RAID_ROSTER_BATCH live members=40 childReads=50/2 wrapWrites=1/0 loot=41/1 indicatorLoot=42/1 aura=41/41",
+      "RAID_ROSTER_BATCH forever members=5 childReads=8/2 wrapWrites=1/0 loot=6/1 indicatorLoot=7/1 aura=6/6",
+      "RAID_ROSTER_BATCH forever members=40 childReads=50/2 wrapWrites=1/0 loot=41/1 indicatorLoot=42/1 aura=41/41",
+      "RAID_ROSTER_BATCH classic members=5 childReads=8/2 wrapWrites=1/0 loot=6/1 indicatorLoot=7/1 aura=6/6",
+      "RAID_ROSTER_BATCH classic members=40 childReads=50/2 wrapWrites=1/0 loot=41/1 indicatorLoot=42/1 aura=41/41",
+      "RAID_ROSTER_BATCH classic_era members=5 childReads=8/2 wrapWrites=1/0 loot=6/1 indicatorLoot=7/1 aura=6/6",
+      "RAID_ROSTER_BATCH classic_era members=40 childReads=50/2 wrapWrites=1/0 loot=41/1 indicatorLoot=42/1 aura=41/41",
+      "RAID_ROSTER_BATCH classic_anniversary members=5 childReads=8/2 wrapWrites=1/0 loot=6/1 indicatorLoot=7/1 aura=6/6",
+      "RAID_ROSTER_BATCH classic_anniversary members=40 childReads=50/2 wrapWrites=1/0 loot=41/1 indicatorLoot=42/1 aura=41/41",
+      "Raid healer runtime: 3119 checks; complete Compat/Unit modules; three rejected negative controls"
+    ],
+    "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-attachment-paint-r93-before-20261119T104502Z\\matched.txt",
+    "sha256": "5d78e4435446d598ffdce6ed1f6258a6e0cb67b0151f9893a82ac042fe144d36"
+  },
+  "verification": {
+    "focused": 203,
+    "syntax": 1237,
+    "compilerMaximumUpvalues": 11,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-attachment-paint-r93-before-20261119T104502Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-attachment-paint-r93-before-20261119T104502Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-roster-attachment-paint-r93-before-20261119T104502Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/Professions.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "88c7048624483e1c74a21b3733450fe321a11c06e356a1026b57170086cb2471",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party and raid joins/leaves, held-action cursor latency, border seams and combat taint remain open. No native input or profiling changes."
+}

@@ -1,0 +1,1021 @@
+{
+  "task": "WORLD-MAP-ANCHOR-20261117",
+  "parentTask": "WORLD-MAP-SURFACE-20261116",
+  "dateUTC": "2026-11-16T23:32:59.560199+00:00",
+  "status": "Implemented; scoped desktop checks pass. Current native reload pending.",
+  "checkpoint": "world-map-anchor-recovery-checkpoint-2026-11-16.json",
+  "sourceContracts": "world-map-anchor-recovery-sources-2026-11-17.json",
+  "sourceManifest": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": {
+      "rawSha256": "8f2417e564d16957061f53542a48eaead11505f27277740fc0369c4a50f92e56",
+      "normalizedSha256": "8f2417e564d16957061f53542a48eaead11505f27277740fc0369c4a50f92e56"
+    },
+    "WindowMover/Engine.lua": {
+      "rawSha256": "fbf0a437dcbf34ad78434c4e3b0d517c920be1516296213573b20911ed758ddb",
+      "normalizedSha256": "fbf0a437dcbf34ad78434c4e3b0d517c920be1516296213573b20911ed758ddb"
+    },
+    "tests/world_map_surface.lua": {
+      "rawSha256": "39d9b7e58a5d93f2271a15ab0715fa6b0302171733aacb9df154662919edef6f",
+      "normalizedSha256": "39d9b7e58a5d93f2271a15ab0715fa6b0302171733aacb9df154662919edef6f"
+    },
+    "tests/world_map_window_mover.lua": {
+      "rawSha256": "0ff09037100404c67dd1723141920b3a22d4d1663d1aabf30742ce9b88c60496",
+      "normalizedSha256": "0ff09037100404c67dd1723141920b3a22d4d1663d1aabf30742ce9b88c60496"
+    }
+  },
+  "baseline": {
+    "surface": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+    "mover": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c",
+    "moverMatchesExternalCheckpoint": true
+  },
+  "nativeFailure": {
+    "enabled": true,
+    "embedded": true,
+    "visible": true,
+    "rootRect": "16,374.00003051758,697,465",
+    "viewportRect": "1543.54296875,19.349996566772,402.30017089844,268.65002441406",
+    "anchorOnlySurface": "814ae567503fea63adc31f995394a397cb349b3d18bc2b80b65661e263e6faba",
+    "anchorOnlyDesktop": "22168 checks per VM PASS",
+    "anchorOnlyNative": "FAIL after user reload; still nothing at all",
+    "rootAnchor": "BOTTOMLEFT:UIParent:BOTTOMLEFT:16,374.00003051758",
+    "rootPointCount": 1,
+    "scrollPointCount": 2,
+    "scrollFirstAnchor": "TOPLEFT:world:TOPLEFT:0,0",
+    "fixtureGap": "Isolated surface test did not load actual WindowMover hooks."
+  },
+  "cause": "Actual WindowMover SetPoint/SetScale posthooks synchronously call Apply and overwrite hosted placement with saved/session BOTTOMLEFT/UIParent x/y while Surface self-write guards are active.",
+  "fix": {
+    "ownership": "OwnsLayout identifies exact source during preparation/embedding, independent of requested for combat-deferred release; full-map layout released.",
+    "moverGates": [
+      "Apply before record/defer",
+      "ShouldReapplyAfterLayout before record work",
+      "CanLayout",
+      "OnMouseDown",
+      "_OnProxyUpdate stops before SavePoint/SaveScale"
+    ],
+    "geometry": "Actual root/scroll anchors checked; guarded native writer posthooks coalesce; parent OnShow reflow settles once.",
+    "preserved": [
+      "Original map/addon objects",
+      "Uniform complete-scene scaling",
+      "Mounted opacity and normal full-map fade",
+      "Hidden/OOC renderer policy",
+      "Native map-key handoff",
+      "WindowMover saved/session records/options and normal full-map dragging"
+    ],
+    "newMoverHooks": false,
+    "newPolling": false,
+    "settingsWrites": false,
+    "manualInstallSync": false
+  },
+  "desktop": {
+    "surfaceChecksPerVM": 22168,
+    "combinedMapMoverChecksPerVM": 315,
+    "currentSourceRuns": [
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\lua51.exe",
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nRead-only native PlayerMovementFrameFader executed; no native pixels/FPS claim\nOriginal world-map surface lifecycle PASS: 22168 checks\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nRead-only native PlayerMovementFrameFader executed; no native pixels/FPS claim\nOriginal world-map surface lifecycle PASS: 22168 checks\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/window_mover_disabled.lua"
+        ],
+        "exit": 0,
+        "output": "METRIC disabled_start catalog=0 resolves=0 hooks=0 polls=0 updates=0 attached=0\nMETRIC disabled_after_enable catalog=0 resolves=0 polls=0 updates=0 writes=0\nMETRIC cycles frames=7 hooks=7 saved_scale=1.2\nMETRIC disabled_api polls=0 updates=0 saved_changes=0\nWindow mover disabled: 220 checks, 0 failures\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "WindowMover/_tmp_charactercombatsmoke.lua"
+        ],
+        "exit": 0,
+        "output": "Character mover combat OK: native Forever show/layout untouched on keyboard/gamepad; deferred layout recovers; Retail unchanged\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+          "-p",
+          "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "WindowMover/Engine.lua",
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "WindowMover/Engine.lua",
+          "tests/world_map_surface.lua"
+        ],
+        "exit": 0,
+        "output": ""
+      }
+    ],
+    "combinedAndControlRuns": [
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\lua51.exe",
+          "tests/world_map_window_mover.lua"
+        ],
+        "exit": 0,
+        "expectedExit": 0,
+        "output": "Original world-map / actual WindowMover ownership PASS: 315 checks\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/world_map_window_mover.lua"
+        ],
+        "exit": 0,
+        "expectedExit": 0,
+        "output": "Original world-map / actual WindowMover ownership PASS: 315 checks\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe",
+          "tests/world_map_window_mover.lua",
+          "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-window-mover-before.lua"
+        ],
+        "exit": 1,
+        "expectedExit": 1,
+        "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/world_map_window_mover.lua:11: retail prepared source rejects real saved-layout applies without deferred jobs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/world_map_window_mover.lua:11: in local 'check'\n\ttests/world_map_window_mover.lua:95: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+          "-p",
+          "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "WindowMover/Engine.lua",
+          "tests/world_map_surface.lua",
+          "tests/world_map_window_mover.lua"
+        ],
+        "exit": 0,
+        "expectedExit": 0,
+        "output": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+          "-p",
+          "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "WindowMover/Engine.lua",
+          "tests/world_map_surface.lua",
+          "tests/world_map_window_mover.lua"
+        ],
+        "exit": 0,
+        "expectedExit": 0,
+        "output": ""
+      }
+    ],
+    "upvalues": {
+      "dateUTC": "2026-11-16T23:27:38.825619+00:00",
+      "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+      "files": 2,
+      "functions": 130,
+      "maximum": 25,
+      "failures": [],
+      "prototypes": [
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 32,
+          "end": 34,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 35,
+          "end": 47,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 39,
+          "end": 42,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 48,
+          "end": 50,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 51,
+          "end": 58,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 59,
+          "end": 61,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 62,
+          "end": 64,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 65,
+          "end": 74,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 75,
+          "end": 78,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 79,
+          "end": 84,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 85,
+          "end": 99,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 100,
+          "end": 107,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 108,
+          "end": 116,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 117,
+          "end": 133,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 125,
+          "end": 130,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 134,
+          "end": 139,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 136,
+          "end": 136,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 140,
+          "end": 147,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 148,
+          "end": 159,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 150,
+          "end": 155,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 160,
+          "end": 166,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 167,
+          "end": 186,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 187,
+          "end": 211,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 197,
+          "end": 199,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 212,
+          "end": 238,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 239,
+          "end": 252,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 253,
+          "end": 265,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 266,
+          "end": 271,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 272,
+          "end": 279,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 280,
+          "end": 343,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 283,
+          "end": 285,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 286,
+          "end": 288,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 289,
+          "end": 296,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 299,
+          "end": 301,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 303,
+          "end": 305,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 308,
+          "end": 312,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 313,
+          "end": 315,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 316,
+          "end": 321,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 327,
+          "end": 331,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 344,
+          "end": 369,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 370,
+          "end": 374,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 375,
+          "end": 381,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 382,
+          "end": 427,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 428,
+          "end": 441,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 442,
+          "end": 452,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 453,
+          "end": 483,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 465,
+          "end": 465,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 484,
+          "end": 500,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 501,
+          "end": 517,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 518,
+          "end": 655,
+          "upvalues": 25
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 571,
+          "end": 571,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 656,
+          "end": 668,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 662,
+          "end": 664,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 669,
+          "end": 675,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 676,
+          "end": 676,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 677,
+          "end": 677,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 678,
+          "end": 682,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 683,
+          "end": 683,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 684,
+          "end": 684,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 685,
+          "end": 714,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 688,
+          "end": 691,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 692,
+          "end": 703,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 719,
+          "end": 726,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 19,
+          "end": 36,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 24,
+          "end": 35,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 38,
+          "end": 51,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 53,
+          "end": 56,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 60,
+          "end": 67,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 78,
+          "end": 80,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 82,
+          "end": 104,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 106,
+          "end": 118,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 120,
+          "end": 133,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 135,
+          "end": 141,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 143,
+          "end": 148,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 150,
+          "end": 159,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 161,
+          "end": 171,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 173,
+          "end": 175,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 177,
+          "end": 180,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 182,
+          "end": 206,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 192,
+          "end": 194,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 208,
+          "end": 236,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 238,
+          "end": 248,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 244,
+          "end": 246,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 250,
+          "end": 263,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 265,
+          "end": 273,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 275,
+          "end": 290,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 292,
+          "end": 298,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 294,
+          "end": 296,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 300,
+          "end": 359,
+          "upvalues": 12
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 322,
+          "end": 324,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 350,
+          "end": 353,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 361,
+          "end": 379,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 381,
+          "end": 403,
+          "upvalues": 5
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 405,
+          "end": 413,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 423,
+          "end": 440,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 442,
+          "end": 460,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 462,
+          "end": 476,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 478,
+          "end": 542,
+          "upvalues": 14
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 544,
+          "end": 587,
+          "upvalues": 8
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 589,
+          "end": 621,
+          "upvalues": 8
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 623,
+          "end": 638,
+          "upvalues": 6
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 640,
+          "end": 650,
+          "upvalues": 4
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 652,
+          "end": 657,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 659,
+          "end": 661,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 663,
+          "end": 690,
+          "upvalues": 9
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 692,
+          "end": 694,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 707,
+          "end": 709,
+          "upvalues": 0
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 711,
+          "end": 732,
+          "upvalues": 7
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 734,
+          "end": 768,
+          "upvalues": 6
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 763,
+          "end": 767,
+          "upvalues": 5
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 772,
+          "end": 792,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 794,
+          "end": 819,
+          "upvalues": 4
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 808,
+          "end": 812,
+          "upvalues": 4
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 809,
+          "end": 811,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 813,
+          "end": 817,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 814,
+          "end": 816,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 821,
+          "end": 913,
+          "upvalues": 12
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 886,
+          "end": 888,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 895,
+          "end": 899,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 896,
+          "end": 898,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 915,
+          "end": 941,
+          "upvalues": 3
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 943,
+          "end": 958,
+          "upvalues": 5
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 960,
+          "end": 987,
+          "upvalues": 4
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 972,
+          "end": 977,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 980,
+          "end": 982,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 983,
+          "end": 985,
+          "upvalues": 1
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 989,
+          "end": 997,
+          "upvalues": 2
+        },
+        {
+          "path": "WindowMover/Engine.lua",
+          "start": 999,
+          "end": 1064,
+          "upvalues": 2
+        }
+      ]
+    },
+    "sourceStableDuringRun": true,
+    "adjacentLua54": {
+      "map_hbd_all_clients": 1969,
+      "map_provider_combat": 36,
+      "map_provider_detach": 31,
+      "map_init_watchers": 8464,
+      "idle_map": 2493,
+      "minimap_window_layout": 113,
+      "questiepinsmokeBenchmark": "PASS;1000/2000incremental pins;0visits/0fullrefreshes;modelcounts only"
+    },
+    "earlierNegativeControls": [
+      {
+        "source": "5bc1e4ef",
+        "exit": 1,
+        "assertion": "retail explicit sync repairs native-coordinate root anchor despite a matching fit cache"
+      },
+      {
+        "control": "Remove parentChanged settling queue",
+        "exit": 1,
+        "assertion": "retail parent repair settles synchronous native OnShow root and scroll rewrites"
+      }
+    ],
+    "fixtureCorrection": "Initial combined-test owner-count baseline was taken before adoption; moved after adoption. No runtime change was needed."
+  },
+  "scope": {
+    "nativeCurrent": "Pending user reload on final exact sources; current GetBuildInfo not queried. Retail diagnostic is a family label.",
+    "nativeActions": "User performs reload/key/diagnostic commands. No agent foreground/mouse/keyboard/clipboard control.",
+    "historicalResults": "Earlier visual/scale/opacity confirmations and478-script/1168syntax full run belong to their recorded sources only.",
+    "notCertified": [
+      "Final native rendering and full-map handoff",
+      "Other clients/exhaustive addons",
+      "Controller/combat/taint/native CPU-FPS"
+    ],
+    "performance": "No polling or new driver; bounded callbacks and stable writes tested; no timing/FPS gain claimed."
+  },
+  "readOnlyInstallGuard": {
+    "copies": [
+      "Current _retail_ repository",
+      "F:/World of Warcraft/_forever_/Interface/AddOns/_FluxUI"
+    ],
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": "8f2417e564d16957061f53542a48eaead11505f27277740fc0369c4a50f92e56",
+    "WindowMover/Engine.lua": "fbf0a437dcbf34ad78434c4e3b0d517c920be1516296213573b20911ed758ddb",
+    "allFourComparisonsEqual": true,
+    "manualCopy": false
+  }
+}

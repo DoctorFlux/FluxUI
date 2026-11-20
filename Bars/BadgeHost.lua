@@ -23,44 +23,43 @@ local function InLockdown()
 	return Flux.Combat and Flux.Combat.InLockdown and Flux.Combat.InLockdown()
 end
 
-local slotToColumn = nil
+local slotToColumns = nil
 
-local function BuildSlotToColumn()
+local function BuildSlotToColumns()
 	local State = Bars.State
 	if not State then
 		return
 	end
-	slotToColumn = {}
+	slotToColumns = {}
+	local function note(slot, col)
+		if not slot then return end
+		local columns = slotToColumns[slot]
+		if not columns then
+			columns = {}
+			slotToColumns[slot] = columns
+		end
+		-- Columns are visited in ascending order. Page0/1, mini pages and
+		-- every static main repeat a slot within the same column.
+		if columns[#columns] ~= col then columns[#columns + 1] = col end
+	end
 	for col = 1, (Bars.NUM_COLUMNS or 19) do
-		local sec = State.GetSecondarySlot(col)
-		if sec then
-			slotToColumn[sec] = col
-		end
-		local tert = State.GetTertiarySlot(col)
-		if tert then
-			slotToColumn[tert] = col
-		end
+		note(State.GetSecondarySlot(col), col)
+		note(State.GetTertiarySlot(col), col)
 		for page = 0, 18 do
-			local main = State.GetMainSlot(col, page)
-			if main then
-				slotToColumn[main] = col
-			end
+			note(State.GetMainSlot(col, page), col)
 		end
 	end
 end
 
-local function LocateColumn(slot)
+local function LocateColumns(slot)
 	slot = tonumber(slot)
 	if not slot then
 		return nil
 	end
-	if not slotToColumn then
-		BuildSlotToColumn()
+	if not slotToColumns then
+		BuildSlotToColumns()
 	end
-	if slotToColumn and slotToColumn[slot] then
-		return slotToColumn[slot]
-	end
-	return nil
+	return slotToColumns and slotToColumns[slot]
 end
 
 local function HostsForColumn(col)
@@ -656,16 +655,13 @@ function BadgeHost.PrepareSecureAuraForSlot(slot)
 	if not slot or not slotBadges[slot] or InLockdown() then
 		return
 	end
-	local col = LocateColumn(slot)
-	local rec = col and HostsForColumn(col)
-	if not rec then
-		return
-	end
-	local rows = { rec.main, rec.sec, rec.tert }
-	for i = 1, 3 do
-		local host = rows[i]
-		if host then
-			PrepareSecureBadgeSet(EnsureStack(host, slot))
+	local columns = LocateColumns(slot)
+	for i = 1, columns and #columns or 0 do
+		local rec = HostsForColumn(columns[i])
+		if rec then
+			if rec.main then PrepareSecureBadgeSet(EnsureStack(rec.main, slot)) end
+			if rec.sec then PrepareSecureBadgeSet(EnsureStack(rec.sec, slot)) end
+			if rec.tert then PrepareSecureBadgeSet(EnsureStack(rec.tert, slot)) end
 		end
 	end
 end
@@ -790,20 +786,25 @@ local function SyncSlot(slot, full)
 	if not slot then
 		return
 	end
-	local col = LocateColumn(slot)
-	local rec = col and HostsForColumn(col)
-	if not rec then
-		return
+	local columns = LocateColumns(slot)
+	for i = 1, columns and #columns or 0 do
+		local rec = HostsForColumn(columns[i])
+		if rec then
+			if rec.main then SyncHost(rec.main, slot, full) end
+			if rec.sec then SyncHost(rec.sec, slot, full) end
+			if rec.tert then SyncHost(rec.tert, slot, full) end
+		end
 	end
-	if rec.main then
-		SyncHost(rec.main, slot, full)
+end
+
+local function RangeClauseFingerprint(clauses)
+	if type(clauses) ~= "table" then return "" end
+	local parts = {}
+	for i = 1, #clauses do
+		local c = clauses[i]
+		parts[#parts + 1] = tostring(c.token) .. "[" .. table.concat(c.cond or {}, ",") .. "]"
 	end
-	if rec.sec then
-		SyncHost(rec.sec, slot, full)
-	end
-	if rec.tert then
-		SyncHost(rec.tert, slot, full)
-	end
+	return table.concat(parts, ";")
 end
 
 local function BadgeListFingerprint(list)
@@ -818,6 +819,8 @@ local function BadgeListFingerprint(list)
 				tostring(b.key),
 				tostring(b.macrotext),
 				tostring(b.hoverMacrotext),
+				RangeClauseFingerprint(b.rangeClauses),
+				RangeClauseFingerprint(b.rangeHoverClauses),
 				tostring(b.alpha),
 				tostring(b.hiddenAlways),
 				tostring(b.hiddenSwap),
@@ -1048,12 +1051,14 @@ function BadgeHost.SyncShownFaces()
 	local Effects = Bars.Effects
 	if Effects and Effects.Refresh then
 		for slot in pairs(slotBadges) do
-			local col = LocateColumn(slot)
-			local rec = col and HostsForColumn(col)
-			if rec and rec.main then
-				Effects.Refresh(rec.main)
-			elseif rec and rec.sec then
-				Effects.Refresh(rec.sec)
+			local columns = LocateColumns(slot)
+			for i = 1, columns and #columns or 0 do
+				local rec = HostsForColumn(columns[i])
+				if rec and rec.main then
+					Effects.Refresh(rec.main)
+				elseif rec and rec.sec then
+					Effects.Refresh(rec.sec)
+				end
 			end
 		end
 	end
@@ -1244,7 +1249,7 @@ function BadgeHost.GetVisibleBadgesForButton(button)
 	return #out > 0 and out or nil
 end
 
-function BadgeHost.RefreshLayout()
+function BadgeHost.RefreshLayout(stripCrossing)
 	if InLockdown() then
 		if Flux.Combat and Flux.Combat.Defer then
 			Flux.Combat.Defer("bars.badgehost", BadgeHost.FlushCombatQueue)
@@ -1261,7 +1266,11 @@ function BadgeHost.RefreshLayout()
 				for i = 1, MAX_BADGES do
 					local badge = set and set[i]
 					if badge then
-						EBS.Badge.Layout(badge, widget, i)
+						if stripCrossing == true then
+							EBS.Badge.Layout(badge, widget, i, true)
+						else
+							EBS.Badge.Layout(badge, widget, i)
+						end
 					end
 				end
 			end

@@ -1,0 +1,203 @@
+{
+  "changeId": "STANCE-STRIP-LAYOUT-R158-20261120",
+  "capturedAtUTC": "2026-11-20T00:12:39.664137+00:00",
+  "sources": {
+    "Bars/Stance/Layout.lua": {
+      "beforeRaw": "61b9c165e4ae28f8fd3f2d5f85ee458188bc7ce2a16765c255236da643c8eabd",
+      "afterRaw": "68163579b11b95b74e6844374717b0a4be14e8520ca3a6509e795567afe4730f",
+      "afterNormalized": "68163579b11b95b74e6844374717b0a4be14e8520ca3a6509e795567afe4730f"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "2ccea7dc6a0e2801d9d792d0c3cfecf4237bf6cf984c8802b5a0e3763d7b93cc",
+      "afterRaw": "a5918665b9844722e3a8ea771cf21e91526438b4bd8d89d144732b191121f032",
+      "afterNormalized": "a5918665b9844722e3a8ea771cf21e91526438b4bd8d89d144732b191121f032"
+    },
+    "Bars/Pet/Layout.lua": {
+      "beforeRaw": "ad57bae818c46996ba006ab73f5df9fffd35c35fb0897c4951d24f2c8291feb7",
+      "afterRaw": "36781a4af62de6baaaed2a33983b05958dfbdab8508607c6460db92f020a1096",
+      "afterNormalized": "36781a4af62de6baaaed2a33983b05958dfbdab8508607c6460db92f020a1096"
+    },
+    "tests/stance_regen_geometry_work.lua": {
+      "beforeRaw": "718c8f814f34e68b782ef221171456ea7591c8f5ec60f26ea3e90ff315f1364a",
+      "afterRaw": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "afterNormalized": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5"
+    },
+    "Bars/_tmp_barsmoke.lua": {
+      "beforeRaw": "b16000922a15896b609f45c1abf429dd20574e622774b38a7dab8e2789e196f7",
+      "afterRaw": "8ada146a7276be00e32c52457486c6b5de49d3f0e4a66e9f1462289835ba2fe7",
+      "afterNormalized": "8ada146a7276be00e32c52457486c6b5de49d3f0e4a66e9f1462289835ba2fe7"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\source.zip",
+    "sourceZipSHA256": "62deea301dccbafe2339d6e54062a533ecc4f6b8f805d091767fe14a26de8c9f",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched runs of eight held-action strip crossings against three settled stance buttons, with player and pet-side anchors.",
+    "samples": [
+      {
+        "trial": 1,
+        "dock": "player",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "trial": 1,
+        "dock": "pet",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "trial": 2,
+        "dock": "player",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "trial": 2,
+        "dock": "pet",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "trial": 3,
+        "dock": "player",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "trial": 3,
+        "dock": "pet",
+        "beforeAfter": {
+          "catalogs": [
+            8,
+            0
+          ],
+          "paints": [
+            24,
+            0
+          ],
+          "binds": [
+            8,
+            0
+          ],
+          "commits": [
+            16,
+            8
+          ]
+        }
+      }
+    ],
+    "metric": "Invocations of the stance catalog, button paint, binding rewrite and shared border commit",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\matched-1.txt": "ded18ae4972d9bbf26a9883db0a25c125a7cbcf18c9a93fa2618730e64c6936d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\matched-2.txt": "ded18ae4972d9bbf26a9883db0a25c125a7cbcf18c9a93fa2618730e64c6936d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\matched-3.txt": "ded18ae4972d9bbf26a9883db0a25c125a7cbcf18c9a93fa2618730e64c6936d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\upvalues.json": "4b5a2ccc04e5832304b8cea78dbdc85f7873d8434d96fbf1ba69ee5219fd49ee"
+    },
+    "limits": "The desktop model establishes reduced work and equal relative geometry. In-game frame time, visual parity and combat taint remain pending."
+  },
+  "preservation": [
+    "The stance root and buttons keep their verified relative anchors until a geometry or event input changes.",
+    "Live point, size, scale, visibility, slot ownership and clip checks select the settled path.",
+    "Changed geometry and unavailable native reads use the normal queued stance layout. Dirty form events and lockdown retain their existing owners.",
+    "Existing timers and full event paths retain their refresh cadence. The strip notifier runs after pet placement and before the shared border commit."
+  ],
+  "verification": {
+    "focusedPassed": 28,
+    "syntaxPassed": 1251,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\focused-r158-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\stance-strip-layout-before-20261120-010630\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings and drops, stance/player and pet/window seams, party and raid membership hitches, and combat taint."
+}

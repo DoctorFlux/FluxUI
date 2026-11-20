@@ -1,0 +1,378 @@
+{
+  "id": "UNIT-OVERLAYS-ACTIVE-CASTS-20261116",
+  "completedLocalDate": "2026-11-17",
+  "timezone": "Europe/Copenhagen",
+  "dateUTC": "2026-11-16T23:14:42.947755+00:00",
+  "status": "IMPLEMENTED; FOCUSED OFFLINE PASS; USER-REPORTED CURRENT NATIVE VISUAL PASS",
+  "requirements": "docs/UNIT_OVERLAY_ATTACHMENTS.md UOA01-UOA06; ACF01-ACF04",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-overlay-border-before-20261116T221600Z",
+  "checkpointFiles": 3036,
+  "checkpointVerified": {
+    "sourceZipCRCAndSHA": true,
+    "historyBundle": true,
+    "branch": "main",
+    "changedDuringArchive": [],
+    "settings": "37 existing files stat metadata only; no private contents copied/read and no closed-client backup claim"
+  },
+  "finalSources": {
+    "FluxBorder.lua": {
+      "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+      "normalized": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+    },
+    "Core/BorderJunctions.lua": {
+      "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+      "normalized": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "raw": "96e70d2c4b25bc8929814139511f6e7fda61576e55bfa07efb02629410aa098d",
+      "normalized": "0c69a4c3717c316f1aeac62f97f4699cdcd0f10c190f16904e5b1a0693acb43b"
+    },
+    "UnitFrames/FluxUnitFrames_Pet.lua": {
+      "raw": "df267c75dabc5dac313d6c5f961f684bd62585dda7ebedb5f63226d92e795d0a",
+      "normalized": "df267c75dabc5dac313d6c5f961f684bd62585dda7ebedb5f63226d92e795d0a"
+    },
+    "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+      "raw": "d6ddcc1c1ff774819e9048e4ac7afaf5e8c1a123daedc7ace10ef403c5110b26",
+      "normalized": "4f0984e76d1ba5241a10e0b8e485a7c65c3479f7832e2066da9d10969a120163"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "raw": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0",
+      "normalized": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0"
+    },
+    "UnitFrames/FluxCastBar.lua": {
+      "raw": "06eb83e4801acb48539211622acd5c91eb9f8898824c943428ba36c2abaf1951",
+      "normalized": "67fc6ee3b204db3ee4dcf7f53e84ecf1a79911fb9c334f0a2be201fc6a2f1044"
+    },
+    "UnitFrames/FluxCastBarTradeskills.lua": {
+      "raw": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1",
+      "normalized": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1"
+    }
+  },
+  "testSources": {
+    "tests/unit_portrait_overlay_attachment.lua": {
+      "raw": "07365a4a08618954e1b3cecfce79a4a32592ab281072b46e6dcf5f82fc053e95",
+      "normalized": "07365a4a08618954e1b3cecfce79a4a32592ab281072b46e6dcf5f82fc053e95"
+    },
+    "tests/castbar_active_crafting.lua": {
+      "raw": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6",
+      "normalized": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6"
+    },
+    "tests/castbar_border_layout.lua": {
+      "raw": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46",
+      "normalized": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46"
+    }
+  },
+  "intentionalChanges": [
+    "Mini top/bottom and resource divider meet parent portrait core with source corner overhang and complete scale",
+    "Omit only mini attached side/caps through existing Forget/Adopt; parent vertical stroke remains intact",
+    "Recognise exact five-piece open frame as one logical frame, retaining far-cap ownership/protection without merging unit scopes",
+    "Sync detached mini atlas/separator scale with full mini scale; commit fit only after successful public width/setters; warm unchanged fit writes nothing",
+    "Known public crafting uses normal chrome via one warning predicate; protected combat warning retained",
+    "Missing/placeholder/rejected public icon gets existing spell/profession fallback; restricted icons stay native sinks",
+    "Border type2 corrects one UI unit vertical icon/fill offset; exact two-unit core inset both types; green successful finish preserved"
+  ],
+  "preserved": [
+    "Unit/input/body/model/backdrop owners and overlay positions",
+    "Separate player/target/party/member/pet unit scopes and native visibility",
+    "Existing alpha/class/dispel/combat paint owners",
+    "Fixed type1 100% and type2 150%; settings/localization/input/TOCs",
+    "No new frame/mask/timer/event/hook/update driver; current solver budgets unchanged"
+  ],
+  "validation": {
+    "composition": "12 existing unit scripts plus12 cast scripts plus one new attachment script:25 unique focused scripts. Additional stronger active/fit replays and negative controls retained separately; not one full whole-addon native/frozen sweep.",
+    "unitExisting": {
+      "passed": 12,
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-overlay-final-focused.json",
+      "changedDuringRun": []
+    },
+    "attachment": {
+      "test": "tests/unit_portrait_overlay_attachment.lua",
+      "frozen": true,
+      "hashes": {
+        "tests/unit_portrait_overlay_attachment.lua": {
+          "raw": "07365a4a08618954e1b3cecfce79a4a32592ab281072b46e6dcf5f82fc053e95",
+          "lf": "07365a4a08618954e1b3cecfce79a4a32592ab281072b46e6dcf5f82fc053e95"
+        },
+        "FluxBorder.lua": {
+          "raw": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b",
+          "lf": "f2036b8623fb9ec28e359ad13f99d8636ac54e6d432670f1b9049421bf70532b"
+        },
+        "Core/BorderJunctions.lua": {
+          "raw": "cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962",
+          "lf": "244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df"
+        },
+        "UnitFrames/FluxUnitFrames_Shared.lua": {
+          "raw": "96e70d2c4b25bc8929814139511f6e7fda61576e55bfa07efb02629410aa098d",
+          "lf": "0c69a4c3717c316f1aeac62f97f4699cdcd0f10c190f16904e5b1a0693acb43b"
+        },
+        "UnitFrames/FluxUnitFrames_Pet.lua": {
+          "raw": "df267c75dabc5dac313d6c5f961f684bd62585dda7ebedb5f63226d92e795d0a",
+          "lf": "df267c75dabc5dac313d6c5f961f684bd62585dda7ebedb5f63226d92e795d0a"
+        },
+        "UnitFrames/FluxUnitFrames_TargetOfTarget.lua": {
+          "raw": "d6ddcc1c1ff774819e9048e4ac7afaf5e8c1a123daedc7ace10ef403c5110b26",
+          "lf": "4f0984e76d1ba5241a10e0b8e485a7c65c3479f7832e2066da9d10969a120163"
+        },
+        "UnitFrames/FluxUnitFrames_Party.lua": {
+          "raw": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0",
+          "lf": "05655e494ae2b6eecd12e1964d818e51d94d0fb2153be91effd739ffa101f2d0"
+        }
+      },
+      "final": {
+        "exit": 0,
+        "checks": 218107,
+        "mainScenes": 216,
+        "additionalControls": "four own-pet internal-cap scenes, four private/custom/type guard scenes, both-style parent-rescale and private-width/native-write retry controls"
+      },
+      "coreOnlyNegative": {
+        "source": "unit-overlay-Core-before.lua",
+        "lfSha256": "b8e0fac331afa27d5e5f8f8dad6ae46f35e1e1cf67df01f68a31a0d437060bc3",
+        "currentOtherSources": true,
+        "exit": 1,
+        "witness": {
+          "style": 1,
+          "globalScale": 0.75,
+          "miniScale": 0.7,
+          "unit": "pet",
+          "height": 28,
+          "ownPortrait": false,
+          "x": 191.2965,
+          "y": 276.76528125,
+          "beforeFields": 1,
+          "afterFields": 3,
+          "beforeMaxAlpha": 0.53768960784316,
+          "afterMaxAlpha": 0.9200637254902
+        }
+      },
+      "intermediateContactWitness": {
+        "frozenSource": false,
+        "description": "Initial API/controller omitted authored corner ox offsets; preserved for diagnosis only. Actual current source rectangles are the test oracle.",
+        "childEndpoint": 139.35,
+        "portraitCore": 150.375,
+        "reportedOffset": -9.2857142857143,
+        "style": 1,
+        "globalScale": 0.75,
+        "miniScale": 0.7
+      },
+      "scope": [
+        "actual file-art FluxBorder and Core, actual Shared partial portrait constructor/partition/attachment/separator helpers",
+        "factory-equivalent Pet/ToT/party-pet anchors; full consumer initializers and 3D models are not instantiated",
+        "both styles; UI scales .75/1/1.25; mini scales .7/1/1.3; heights24/28/45; optional pet own portrait",
+        "actual TGA outside/internal cap footprint and no added contributing fields",
+        "exact parent portrait core contact for top/bottom/HP divider; unchanged body/portrait box/background/root anchors",
+        "recolor, hide/reveal, detachment/restoration, custom/mirrored/multiple/private anchors and style transitions",
+        "zero idle geometry writes/solves/geometry reads/new objects; public parent scale synchronization",
+        "private width and observable native setter failure retry without caching incomplete work"
+      ],
+      "limits": [
+        "No all-client native API/rendering, taint or FPS acceptance inferred from the Forever-compatible file-art model",
+        "Contact endpoint geometry is verified; contact H/V shadow partition and complete native visual seamlessness remain user-review scope",
+        "No full corpus benchmark or native operations performed by child"
+      ],
+      "runtimeEditedByChild": false,
+      "jobsStopped": true
+    },
+    "casts": {
+      "initial12": [
+        {
+          "test": "castbar_active_crafting",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 736 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending\n"
+        },
+        {
+          "test": "castbar_border_layout",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 1820 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n"
+        },
+        {
+          "test": "castbar_border_junctions",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13422 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n"
+        },
+        {
+          "test": "timer_header_layout",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nTimer header layout: 1110 checks PASS; actual cast/Fire/swing/Shoot; fitted native clip bounds; both styles/alignments; shared source geometry; static unchanged hooks; cold/combat defer. Native pixels/taint/FPS pending\n"
+        },
+        {
+          "test": "castbar_terminal_styles",
+          "code": 0,
+          "output": "Cast terminal styles: 9973 checks; actual producer in five client models; native appearance/performance deferred\n"
+        },
+        {
+          "test": "castbar_completion_visual",
+          "code": 0,
+          "output": "Cast completion visual: 12571 checks; actual producer in five client models; native appearance/performance deferred\n"
+        },
+        {
+          "test": "castbar_school_themes",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14401 checks across five client families (native rendering/taint unverified)\n"
+        },
+        {
+          "test": "castbar_timer_sync",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+        },
+        {
+          "test": "castbar_rejected_cast",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nRejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n"
+        },
+        {
+          "test": "party_cast_lifecycle",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast lifecycle: 215 checks; five client models; native events/taint pending\n"
+        },
+        {
+          "test": "party_cast_border_layout",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 775 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n"
+        },
+        {
+          "test": "nameplate_castbar_schools",
+          "code": 0,
+          "output": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending\n"
+        }
+      ],
+      "finalReplays": {
+        "rows": [
+          {
+            "test": "castbar_active_crafting",
+            "code": 0,
+            "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 786 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending\n"
+          },
+          {
+            "test": "castbar_border_layout",
+            "code": 0,
+            "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 1820 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n"
+          },
+          {
+            "test": "upvalues",
+            "code": 0,
+            "output": "WoW upvalue check: 2 files / 159 prototypes; maximum=33; 0 failures (limit60)\n"
+          },
+          {
+            "test": "syntax:UnitFrames/FluxCastBar.lua",
+            "code": 0,
+            "output": ""
+          },
+          {
+            "test": "syntax:UnitFrames/FluxCastBarTradeskills.lua",
+            "code": 0,
+            "output": ""
+          },
+          {
+            "test": "syntax:tests/castbar_active_crafting.lua",
+            "code": 0,
+            "output": ""
+          },
+          {
+            "test": "syntax:tests/castbar_border_layout.lua",
+            "code": 0,
+            "output": ""
+          }
+        ],
+        "identities": {
+          "UnitFrames/FluxCastBar.lua": {
+            "raw": "06eb83e4801acb48539211622acd5c91eb9f8898824c943428ba36c2abaf1951",
+            "LF": "67fc6ee3b204db3ee4dcf7f53e84ecf1a79911fb9c334f0a2be201fc6a2f1044"
+          },
+          "UnitFrames/FluxCastBarTradeskills.lua": {
+            "raw": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1",
+            "LF": "02edf3282a092a869c0497c86fdcfe728d9635d203115c07edccab56c1bc0bb1"
+          },
+          "tests/castbar_active_crafting.lua": {
+            "raw": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6",
+            "LF": "721f596483b9b89e6903355e6c7b1cf345f2fd3f4d8d03e37facd77f23768bb6"
+          },
+          "tests/castbar_border_layout.lua": {
+            "raw": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46",
+            "LF": "b4850947b96c8b99e6c911384777076a009903497887eed761c9349958009d46"
+          }
+        }
+      },
+      "initialControls": [
+        {
+          "name": "active-positive",
+          "code": 1,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nC:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/castbar_active_crafting.lua:12: restricted icon passes directly to the native sink without metadata lookup\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_active_crafting.lua:12: in local 'check'\n\ttests/castbar_active_crafting.lua:68: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "active-baseline",
+          "code": 1,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nC:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/castbar_active_crafting.lua:12: live player crafting uses normal chrome without a combat-only shield\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_active_crafting.lua:12: in local 'check'\n\ttests/castbar_active_crafting.lua:46: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "fit-positive",
+          "code": 0,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 1820 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n"
+        },
+        {
+          "name": "fit-baseline",
+          "code": 1,
+          "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nC:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/castbar_border_layout.lua:13: fill has an exact two-pixel inset from each actual border-core edge\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/castbar_border_layout.lua:13: in local 'check'\n\ttests/castbar_border_layout.lua:82: in main chunk\n\t[C]: in ?\n"
+        }
+      ],
+      "note": "One initial private-icon counter included legitimate unrelated fill atlas lookups. Corrected to measure a restricted icon reaching metadata; final786 passes. Initial failed fixture remains in receipt."
+    },
+    "compiler": {
+      "unitFiles": 6,
+      "unitPrototypes": 709,
+      "unitMaxUpvalues": 55,
+      "castFiles": 2,
+      "castPrototypes": 159,
+      "castMaxUpvalues": 33,
+      "newTestSyntax": [
+        {
+          "path": "tests/unit_portrait_overlay_attachment.lua",
+          "exitCode": 0,
+          "output": ""
+        },
+        {
+          "path": "tests/castbar_active_crafting.lua",
+          "exitCode": 0,
+          "output": ""
+        },
+        {
+          "path": "tests/castbar_border_layout.lua",
+          "exitCode": 0,
+          "output": ""
+        }
+      ],
+      "receipts": [
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-overlay-final-compiler.json",
+        "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\active-cast-final-checks.json"
+      ],
+      "scope": "Lua5.4 compiler; includes _ENV conservatively; native5.1 API/taint not inferred"
+    },
+    "scopeLimits": [
+      "Actual artwork and Border/Core/Shared partial constructor/helper model with authored consumer-equivalent anchors; not complete pet/ToT/party initializers or native render capture",
+      "Outside-cap coverage/internal-cap counts and exact endpoint/scale fit proven in stated offline scenes; full cross-unit H/V shadow partition and GPU filtering not certified",
+      "Broader border builder/combat/group latency remains separate work; no native FPS speedup claim"
+    ]
+  },
+  "native": {
+    "permission": "User reopened relevant game testing on16November; background/no automated gameplay/input restrictions retained",
+    "agentOperations": false,
+    "route": "User manual reload and screenshots/feedback; no registered game-control MCP tool in this session",
+    "currentFeedback": {
+      "executor": "User after requested reload",
+      "miniBothStylesWhereVisible": "Connections look right",
+      "craftingAndFitBothStyles": "Crafting and fit look right",
+      "agentCaptureOrInput": false,
+      "scope": "User confirmation of the requested visual cases; no exhaustive unit-state/client/taint/FPS guarantee"
+    },
+    "freshBuild": "Not queried; existing user Forever context only",
+    "earlierGreenOnly": "User previously confirmed Green finish looks right for earlier source. Current offline regressions preserve it; that feedback is not reused as current attachment/crafting acceptance."
+  },
+  "documentation": {
+    "build": "PASS1231sources/625reachable/444settings/584literaldefaults",
+    "validation": "Own scoped links/source evidence written; global validator blocked by concurrent unrelated World Map edits",
+    "globalIssues": [
+      "Recorded verification predates Battlezonemap/FluxBattlefieldWorldMap.lua and tests/world_map_surface.lua",
+      "Concurrent World Map docs refer to validation/world-map-anchor-recovery-2026-11-17.json before that other task has written it"
+    ],
+    "qualification": "Preserve concurrent work and global counts; no unrelated World Map edits or tests performed for this task."
+  }
+}

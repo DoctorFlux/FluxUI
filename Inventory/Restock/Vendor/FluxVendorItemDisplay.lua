@@ -30,7 +30,8 @@ function FVID.GetItemFields(itemID)
     local name, link, quality, icon
 
     if C_Item and C_Item.GetItemInfo then
-        local info = C_Item.GetItemInfo(itemID)
+        local getItemInfo = C_Item.GetItemInfo
+        local info, itemLink, itemQuality, _, _, _, _, _, _, itemIcon = getItemInfo(itemID)
         if type(info) == "table" then
             name = info.itemName or info.name
             link = info.hyperlink or info.itemLink
@@ -38,6 +39,10 @@ function FVID.GetItemFields(itemID)
             icon = info.iconFileID or info.itemIcon or info.iconID
         elseif info ~= nil then
             name = info
+            -- Some clients expose the same native query through both names.
+            if GetItemInfo == getItemInfo and name and itemLink and type(itemQuality) == "number" then
+                link, quality, icon = itemLink, itemQuality, itemIcon
+            end
         end
     end
 
@@ -121,11 +126,17 @@ function FVID.GetDisplayText(itemID, name, link, quality)
     )
 end
 
-function FVID.ApplyNameFontString(fontString, itemID, fallbackName)
+-- A caller repainting this item may supply its freshly read link/quality.
+-- Omitted or incomplete metadata keeps GetDisplayText's ordinary lookup path.
+function FVID.ApplyNameFontString(fontString, itemID, fallbackName, link, quality)
     if not fontString then
         return
     end
-    fontString:SetText(FVID.GetDisplayText(itemID, fallbackName))
+    if link == nil and quality == nil then
+        fontString:SetText(FVID.GetDisplayText(itemID, fallbackName))
+    else
+        fontString:SetText(FVID.GetDisplayText(itemID, fallbackName, link, quality))
+    end
 end
 
 function FVID.ShowTooltip(owner, itemID, link, appendFn)

@@ -1,0 +1,193 @@
+
+-- Whole production CombinedBag owner. Rendering/native FrameScript delivery are explicit models.
+local function read(path)local f=assert(io.open(path,'rb'));local s=f:read('*a'):gsub('\r\n','\n');f:close();return s end
+local function slice(s,a,b)local i=assert(s:find(a,1,true));return s:sub(i,assert(s:find(b,i+1,true))-1)end
+local function goldCallbacks(e,G)
+ local s=read('StatusBars/FluxGoldLedger.lua')
+ local body='local G=...\n'..slice(s,'local COIN_BUTTON_KEYS =','\nlocal function TruncateForDrop')
+ body=body..'\nif type(hooksecurefunc)=="function" and type(_G.ContainerFrame_OnShow)=="function"then hooksecurefunc("ContainerFrame_OnShow",function(f)if f and f.GetID and f:GetID()==0 then AttachShownBagMoney()end end)end\nAttachShownBagMoney()'
+ return assert(load(body,'@actual-gold-bag-callbacks','t',e))(G)
+end
+local function junkCallbacks(e,...)
+ local s=read('Inventory/Restock/Junk/FluxJunkOverlay.lua')
+ local body='local ForeverGamepadUI,ShouldPaintContainer,ShouldSkipAllPaint,HasUnifiedBankUI,UpdateContainer=...\nlocal hookedFrames,containerPaintCooldown={},{}\n'..slice(s,'local function HookFrame(frame)','\nlocal function HookUpdateJunkItem()')
+ body=body..'\nlocal any=false;for i=1,NUM_CONTAINER_FRAMES do local f=_G["ContainerFrame"..i];if f and f.Update then HookFrame(f);any=true end end\nif not any and type(_G.ContainerFrame_Update)=="function"then hooksecurefunc("ContainerFrame_Update",function(f)if not ShouldPaintContainer(f)then return end;UpdateContainer(f)end)end'
+ return assert(load(body,'@actual-junk-bag-registration','t',e))(...)
+end
+local Unpack=unpack or table.unpack
+local function pack(...)return{n=select('#',...),...}end
+local function find(fn,wanted,seen)
+ seen=seen or{};if seen[fn]then return end;seen[fn]=true
+ for i=1,100 do local k,v=debug.getupvalue(fn,i);if not k then break end;if k==wanted then return v,true end end
+ for i=1,100 do local k,v=debug.getupvalue(fn,i);if not k then break end;if k~='_ENV'and type(v)=='function'then local got,yes=find(v,wanted,seen);if yes then return got,true end end end
+end
+local function boot(config)
+ local source=config.source or'Inventory/Builtin/FluxClassicCombinedBag.lua'
+ local s={trace={},observations={},metrics={},timers={},native={},itemHandlers={},childShown=0,childHidden=0,junk={},tooltip=0,now=1,cfg=config}
+ local e=setmetatable({},{__index=_G});e._G=e
+ local object,objects,allObjects,bind=assert(loadfile('tests/support/classic_combined_bag_objects.txt','t',e))()
+ local function rawEmit(o,key,...)
+  local fn=o.script and o.script[key];if fn then fn(o,...)end
+  for _,hook in ipairs(o.hookLists and o.hookLists[key]or{})do hook(o,...)end
+ end
+ local function snapshot(root)
+  local out={};local function add(o)out[#out+1]={object=o,visible=o:IsVisible()};for _,child in ipairs(o.children)do add(child)end end;add(root);return out
+ end
+ local function emitDelta(before)
+  local a,b,step=1,#before,1;if config.childFirst then a,b,step=#before,1,-1 end
+  for i=a,b,step do local rec=before[i];local visible=rec.object:IsVisible();if rec.visible~=visible then rawEmit(rec.object,visible and'OnShow'or'OnHide')end end
+ end
+ bind(rawEmit,snapshot,emitDelta)
+ e.UIParent=object('UIParent');e.UIParent.shown=true;e.UIParent:SetHeight(768)
+ function e.CreateFrame(_,name,parent)local o=object(name,parent);o.shown=true;s.moduleCreations=(s.moduleCreations or 0)+1;return o end
+ e.NUM_CONTAINER_FRAMES=7;e.NUM_BAG_FRAMES=(config.bags or 5)-1;e.NUM_BAG_SLOTS=4;e.KEYRING_CONTAINER=config.keyring and-2 or nil
+ e.UISpecialFrames={};e.BACKPACK_CONTAINER=0;e.ITEM_QUALITY_COLORS={[2]={r=0,g=1,b=0}}
+ e.GetTime=function()return s.now end;e.InCombatLockdown=function()return config.combat or false end
+ e.GetInventoryItemTexture=function(_,id)return id>=21 and id<=24 and'bag-icon'or nil end
+ e.GetInventoryItemLink=function(_,id)return id>=21 and id<=24 and'item:'..(id-20)or nil end
+ e.GetInventorySlotInfo=function()return 20,'bag-slot' end
+ e.IsInventoryItemProfessionBag=function(_,id)return config.specialty and config.specialty[id-20]or false end
+ e.IsBagOpen=function(id)for _,f in ipairs(s.native)do if f:GetID()==id and f:IsShown()then return true end end;return false end
+ e.CursorHasItem=function()return false end;e.GetCursorInfo=function()return nil end
+ e.C_AddOns={IsAddOnLoaded=function(name)return name=='Baganator'and config.alternative or false end}
+ e.C_Texture={GetAtlasInfo=function()return{}end}
+ e.C_Item={GetItemInfoInstant=function(link)local id=tonumber(link:match('item:(%d+)'));return id,nil,nil,nil,nil,1,config.specialty and config.specialty[id]and 1 or 0 end}
+ local function size(id)if config.externalSizes and config.externalSizes[id]then return config.externalSizes[id]end;if id==-2 then return config.keyring and 8 or 0 end;return id>=0 and id<=(config.bags or 5)-1 and(config.sizes and config.sizes[id]or config.slots or 16)or 0 end
+ e.C_Container={GetContainerNumSlots=size,ContainerIDToInventoryID=function(id)return 20+id end,
+  GetContainerNumFreeSlots=function(id)return math.floor(size(id)/2)end,
+  GetContainerItemInfo=function(bag,slot)if slot%2==1 then return{itemID=1000+bag*100+slot,stackCount=1,quality=2,hyperlink='item:'..slot}end end,
+  SetItemSearch=function(text)s.search=text end}
+ e.C_Timer={After=function(delay,fn)s.timers[#s.timers+1]={at=s.now+delay,fn=fn}end}
+ e.FluxBorder={ApplyTo=function(_,frame)frame.FluxBorderFrame=object(nil,frame);frame.FluxBorderFrame.shown=true;frame.FluxBorderFrame.BackgroundFrame=object(nil,frame.FluxBorderFrame);frame.FluxBorderFrame.BackgroundFrame.shown=true end,
+  RemoveFrom=function(_,frame)frame.FluxBorderFrame=nil end,SetBorderColor=function()end,SetBackdropColor=function()end,ApplyCircle=function(_,frame)return object(nil,frame)end}
+ e.hooksecurefunc=function(target,key,fn)
+  if type(target)=='string'then fn=key;key=target;target=e end
+  local original=assert(target[key]);target[key]=function(...)
+   local result=pack(original(...));fn(...);return Unpack(result,1,result.n)
+  end
+ end
+ local function parentLabel(o)
+  local p=o and o:GetParent();local combined=e.FluxCombinedBags
+  if not p then return'none'end
+  if combined and p==combined.FluxGoldStrip then return'gold-strip'end
+  if p==combined then return'combined'end
+  if p.fluxContainer then return'host:'..p:GetID()end
+  return p:GetName()or'other'
+ end
+ function s:observe(tag)
+  local combined=e.FluxCombinedBags;local row={tag=tag,combinedShown=combined and combined:IsShown()or false,hosted=combined and combined.FluxHostedButtons and#combined.FluxHostedButtons or 0,parents={},money={}}
+  for i,f in ipairs(self.native)do if f:IsShown()then
+   row.parents[#row.parents+1]=f:GetID()..':'..parentLabel(objects[f:GetName()..'Item1'])
+   row.money[#row.money+1]=f:GetID()..':'..parentLabel(f.MoneyFrame)
+  end end
+  self.observations[#self.observations+1]=row;return row
+ end
+ e.UpdateContainerFrameAnchors=function()s.trace[#s.trace+1]='native:anchors';s.anchorNames={};for i,name in ipairs(e.ContainerFrame1.bags)do s.anchorNames[i]=name end end
+ e.ContainerFrame_Update=function(frame)
+  s.trace[#s.trace+1]='native:update:'..frame:GetID()
+  for i=1,frame.size or 0 do local item=objects[frame:GetName()..'Item'..i];if item:GetID()%2==1 then item.icon:SetTexture('item-icon');item.icon:Show()else item.icon:SetTexture(nil);item.icon:Hide()end end
+ end
+ e.ContainerFrame_OnShow=function(frame)
+  s.trace[#s.trace+1]='native:onshow:'..frame:GetID();frame:RegisterEvent('BAG_UPDATE')
+  local bags=e.ContainerFrame1.bags;bags[#bags+1]=frame:GetName();e.ContainerFrame1.bagsShown=#bags
+  e.ContainerFrame_Update(frame);e.UpdateContainerFrameAnchors()
+ end
+ e.ContainerFrame_OnHide=function(frame)
+  s.trace[#s.trace+1]='native:onhide:'..frame:GetID();local bags=e.ContainerFrame1.bags
+  for i=#bags,1,-1 do if bags[i]==frame:GetName()then table.remove(bags,i)end end;e.ContainerFrame1.bagsShown=#bags
+ end
+ for n=1,e.NUM_CONTAINER_FRAMES do
+  local f=object('ContainerFrame'..n,e.UIParent);f:SetID(-999);f.size=0;f.bags=n==1 and{}or nil;f.bagsShown=0
+  f.MoneyFrame=object(f:GetName()..'MoneyFrame',f);f.MoneyFrame.shown=true
+  f.CloseButton=object(f:GetName()..'CloseButton',f);f.CloseButton.shown=true
+  f.PortraitButton=object(f:GetName()..'PortraitButton',f);f.PortraitButton.shown=true
+  f:SetScript('OnShow',function(self)e.ContainerFrame_OnShow(self)end);f:SetScript('OnHide',function(self)e.ContainerFrame_OnHide(self)end)
+  if config.frameUpdate then f.Update=function(self)e.ContainerFrame_Update(self)end end
+  for i=1,36 do
+   local b=object(f:GetName()..'Item'..i,f);b.icon=b:CreateTexture();b:SetNormalTexture('native-slot');b:SetPushedTexture('native-pushed')
+   local click=function()s.clicks=(s.clicks or 0)+1;return'click'end;b:SetScript('OnClick',click);s.itemHandlers[b]=click
+   b:SetScript('OnShow',function(self)s.childShown=s.childShown+1;s.trace[#s.trace+1]='child:show:'..self:GetID()..':'..parentLabel(self)end)
+   b:SetScript('OnHide',function(self)s.childHidden=s.childHidden+1;s.trace[#s.trace+1]='child:hide:'..self:GetID()..':'..parentLabel(self)end)
+  end
+  s.native[n]=f
+ end
+ e.ContainerFrame_GenerateFrame=function(frame,n,id)
+  s.trace[#s.trace+1]='native:generate:'..id;frame.size=n
+  for i=1,36 do local b=objects[frame:GetName()..'Item'..i]
+   if i<=n then b:SetID(n-i+1);b:ClearAllPoints();b:SetPoint('BOTTOMRIGHT',frame,'BOTTOMRIGHT',0,0);b:Show()else b:Hide()end
+  end
+  frame:SetID(id);frame.PortraitButton:SetID(id)
+  frame:Show();frame:Raise()
+  if config.errorAfterShow==id then error(config.errorObject,0)end
+ end
+ local function opened(id,force)
+  s.trace[#s.trace+1]='native:open:'..id
+  if config.errorAtBag==id then error(config.errorObject,0)end
+  if config.blocked then return end
+  local existing
+  for _,f in ipairs(s.native)do if f:GetID()==id then existing=f;break end end
+  if existing and existing:IsShown()and not force then return existing end
+  local f=existing
+  if not f then for _,one in ipairs(s.native)do if not one:IsShown()then f=one;break end end end
+  assert(f,'native frame pool exhausted');e.ContainerFrame_GenerateFrame(f,size(id),id);return f
+ end
+ e.OpenBag=opened;e.OpenBackpack=function()return opened(0)end
+ e.CloseBag=function(id)for _,f in ipairs(s.native)do if f:GetID()==id then f:Hide()end end end
+ e.CloseBackpack=function()return e.CloseBag(0)end
+ e.ToggleBag=function(id)if e.IsBagOpen(id)then return e.CloseBag(id)else return opened(id)end end
+ e.ToggleBackpack=function()return e.ToggleBag(0)end
+ e.OpenAllBags=function()for id=0,e.NUM_BAG_FRAMES do opened(id)end end
+ e.CloseAllBags=function()for _,f in ipairs(s.native)do f:Hide()end end
+ e.ToggleAllBags=function()if e.IsBagOpen(0)then e.CloseAllBags()else e.OpenAllBags()end end
+ if config.preopen then for id=0,e.NUM_BAG_FRAMES do opened(id)end end
+ local F={Client={isEra=config.family=='era',isAnniversary=config.family=='anniversary'},Container={GetTotalFreeBagSlots=function()local total=0;for id=0,e.NUM_BAG_FRAMES do total=total+math.floor(size(id)/2)end;return total end}}
+ e.Flux=F;s.e=e;s.objects=objects;s.allObjects=allObjects;s.rawEmit=rawEmit;s.size=size;s.parentLabel=parentLabel
+ s.beforeModuleCreations=s.moduleCreations or 0
+ assert(loadfile(source,'t',e))('_FluxUI',{Flux=F})
+ s.combined=e.FluxCombinedBags
+ if not s.combined then return s end
+ s.functions={}
+ for _,key in ipairs({'Refresh','LayoutSlots','LayoutItems','HostFor','Ghost','AdoptFrame','ShowCombined','OpenPlayerBags','PlaceMoney','ReturnItems'})do
+  local fn=find(e.OpenBackpack,key);if not fn then fn=find(e.ContainerFrame_GenerateFrame,key)end
+  if not fn then for _,list in pairs(s.combined.hookLists or{})do for _,hook in ipairs(list)do local value,yes=find(hook,key);if yes then fn=value;break end end;if fn then break end end end
+  assert(type(fn)=='function','missing whole-owner '..key);s.functions[fn]=key
+ end
+ function s:withCounts(fn,...)
+  local lastHook,lastMask,lastCount=debug.gethook()
+  debug.sethook(function(event)
+   local name=self.functions[debug.getinfo(2,'f').func]
+   if name and(event=='call'or event=='return')then local key=name..(event=='call'and':entered'or':completed');self.metrics[key]=(self.metrics[key]or 0)+1
+    if event=='return'and name=='LayoutItems'then self.trace[#self.trace+1]='owned:layout:'..(self.combined.FluxHostedButtons and#self.combined.FluxHostedButtons or 0)end
+   end
+  end,'cr')
+  local result=pack(pcall(fn,...));debug.sethook(lastHook,lastMask,lastCount);return Unpack(result,1,result.n)
+ end
+ if config.knownCallbacks then
+  local G={ShowAccountGoldTooltip=function(_,anchor)s.tooltip=s.tooltip+1;s.tooltipParent=parentLabel(anchor)end}
+  e.FluxGoldLedger=G;goldCallbacks(e,G)
+  local attach=G.AttachBagMoneyTooltip
+  G.AttachBagMoneyTooltip=function(self,money)s.goldCalls=(s.goldCalls or 0)+1;return attach(self,money)end
+  local function paint(frame)
+   local row={id=frame:GetID(),visible=frame:IsVisible(),parents={}}
+   for i=1,frame.size do row.parents[#row.parents+1]=parentLabel(objects[frame:GetName()..'Item'..i])end;s.junk[#s.junk+1]=row
+  end
+  junkCallbacks(e,function()return false end,function(frame)return frame and(frame:GetID() or-1)>=0 end,function()return false end,function()return false end,paint)
+ end
+ if config.foreignObservers then
+  e.hooksecurefunc('ContainerFrame_OnShow',function(frame)s:observe('foreign:onshow:'..frame:GetID())end)
+  e.hooksecurefunc('ContainerFrame_GenerateFrame',function(frame)s:observe('foreign:generated:'..frame:GetID())end)
+  s.combined:HookScript('OnShow',function()s:observe('foreign:combined:onshow')end)
+ end
+ function s:event(event,...)
+  for _,frame in ipairs(self.allObjects)do if frame.events and frame.events[event]and frame.script and frame.script.OnEvent then frame.script.OnEvent(frame,event,...)end end
+ end
+ function s:drain()
+  for iteration=1,20 do local t=self.timers;self.timers={};if#t==0 then return end;for _,timer in ipairs(t)do timer.fn()end end;error('timer loop')
+ end
+ function s:private(name)
+  local value,found=find(self.e.OpenBackpack,name);if found then return value,true end
+  for _,frame in ipairs(self.allObjects)do for _,fn in pairs(frame.script or{})do if type(fn)=='function'then value,found=find(fn,name);if found then return value,true end end end end
+ end
+ return s
+end
+return boot

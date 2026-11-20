@@ -29,26 +29,29 @@ local function ApplyLeftAnchor(grid)
         return
     end
     local frame = grid.Frame
-    local bottomY = GetActionStripBottomY()
-    frame:ClearAllPoints()
+    local keep = FluxUILayoutSqueeze and FluxUILayoutSqueeze.CanKeepGridAnchors
     local Cap = _G.Flux and _G.Flux.Cap
     local gamepad = Cap and Cap.GamepadHudActive and Cap.GamepadHudActive()
     local bar = _G.FluxMainActionBar
     if bar and bar:IsShown() and not gamepad then
         -- Same Y as action strip, pinned to the left edge of the screen (V9).
+        if keep and keep(frame, "LEFT", UIParent, "LEFT", NC_GRID_SCREEN_BOTTOM_X, 0,
+            "BOTTOM", bar, "BOTTOM", 0, 0) then return end
+        frame:ClearAllPoints()
         frame:SetPoint("LEFT", UIParent, "LEFT", NC_GRID_SCREEN_BOTTOM_X, 0)
         frame:SetPoint("BOTTOM", bar, "BOTTOM", 0, 0)
-    else
-        -- This frame is scaled. SetPoint offsets are in its own scale, so a
-        -- UIParent-space Y has to be divided by that scale or the row never rises.
-        local pointY = bottomY
-        local es = frame.GetEffectiveScale and frame:GetEffectiveScale()
-        local ps = UIParent and UIParent.GetEffectiveScale and UIParent:GetEffectiveScale()
-        if type(es) == "number" and es > 0 and type(ps) == "number" and ps > 0 then
-            pointY = bottomY * ps / es
-        end
-        frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", NC_GRID_SCREEN_BOTTOM_X, pointY)
+        return
     end
+    -- This frame is scaled. Convert the fallback floor from UIParent units.
+    local pointY = GetActionStripBottomY()
+    local es = frame.GetEffectiveScale and frame:GetEffectiveScale()
+    local ps = UIParent and UIParent.GetEffectiveScale and UIParent:GetEffectiveScale()
+    if type(es) == "number" and es > 0 and type(ps) == "number" and ps > 0 then
+        pointY = pointY * ps / es
+    end
+    if keep and keep(frame, "BOTTOMLEFT", UIParent, "BOTTOMLEFT", NC_GRID_SCREEN_BOTTOM_X, pointY) then return end
+    frame:ClearAllPoints()
+    frame:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", NC_GRID_SCREEN_BOTTOM_X, pointY)
 end
 
 function API.UpdateAnchor()

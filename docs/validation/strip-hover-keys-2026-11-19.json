@@ -1,0 +1,204 @@
+{
+  "changeId": "STRIP-HOVER-KEYS-R131-20261119",
+  "capturedAtUTC": "2026-11-19T18:47:45.537895+00:00",
+  "sources": {
+    "Bars/Clicks.lua": {
+      "beforeRaw": "b7a8003e7a95913533579ab6270091ae270ddc78ebe657e9d4e1e5654b519901",
+      "afterRaw": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6"
+    },
+    "Bars/Hosts.lua": {
+      "beforeRaw": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+      "afterRaw": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c"
+    },
+    "Bars/Init.lua": {
+      "beforeRaw": "5d2c97cd6c8fdcb3c1a0b6af1d81972f6847b3ba7b88f4e558350ef394ed3c3d",
+      "afterRaw": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11"
+    },
+    "Bars/Watch.lua": {
+      "beforeRaw": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+      "afterRaw": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93"
+    },
+    "tests/bars_explicit_modifier_keys.lua": {
+      "beforeRaw": "13f42f09d83606f56393b293223273f3841b1c626e9309e7b7284c6c49b01414",
+      "afterRaw": "ac3210fbb7083ee72eea20adda40ddeed34eea0f4de9086b0be95cbad8f5861a"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "ebca2ecb0abb7395a7619ff82c50bc3646400300dce606764ee29857796a8f5b",
+      "afterRaw": "43e550236dbac5ab242adca2c41fbaa27e5cce604e0225556d82bc5695cb15da"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-keys-before-20261119-193452\\source.zip",
+    "sourceZipSHA256": "8c8c9aa4f61fba4aeb167c55ba9f0d0b3d8358d1bb3dc20853fb7f79865831d9",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs for each click transport. The fixture drives six actual held-action layout transactions with a spell, item and macro across 19 columns. It uses the production click router, host forwarding and binding subscription with modeled native APIs. Counts cover the key router; the fixture substitutes the hotkey paint methods.",
+    "samples": {
+      "wrapped": [
+        {
+          "trial": "1",
+          "reads": "114/0"
+        },
+        {
+          "trial": "2",
+          "reads": "114/0"
+        },
+        {
+          "trial": "3",
+          "reads": "114/0"
+        },
+        {
+          "trial": "4",
+          "reads": "114/0"
+        },
+        {
+          "trial": "5",
+          "reads": "114/0"
+        }
+      ],
+      "proxy": [
+        {
+          "trial": "1",
+          "reads": "114/0"
+        },
+        {
+          "trial": "2",
+          "reads": "114/0"
+        },
+        {
+          "trial": "3",
+          "reads": "114/0"
+        },
+        {
+          "trial": "4",
+          "reads": "114/0"
+        },
+        {
+          "trial": "5",
+          "reads": "114/0"
+        }
+      ]
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-keys-before-20261119-193452\\compare.lua": "8d6dc5e39b8a0dbab07e468c0bd08297e9d82ac4dba6f94b7d50723fa114e16c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-keys-before-20261119-193452\\matched.txt": "85a827b509071cb4798674a077ade43e7180f8fe1c788eab19a668708a84f485"
+    }
+  },
+  "preservation": [
+    "Pure cursor edges skip live binding queries only after a successful binding event subscription and an installed route snapshot.",
+    "The current override owner, host identity, binding command, click transport and proxy action validate that snapshot.",
+    "Binding event updates invalidate immediately, including deferred rebuilds during combat. Invalidated, incomplete and moved routes use normal refresh.",
+    "Six matched edges retain current main and modifier routes, action IDs, widget geometry and one border commit per edge. Native cursor and roster latency and combat taint remain pending."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-keys-before-20261119-193452\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-keys-before-20261119-193452\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Clicks.lua": {
+        "sha256": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6",
+        "matches": true
+      },
+      "Bars/Hosts.lua": {
+        "sha256": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+        "matches": true
+      },
+      "Bars/Watch.lua": {
+        "sha256": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/Clicks.lua": {
+        "sha256": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6",
+        "matches": true
+      },
+      "Bars/Hosts.lua": {
+        "sha256": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+        "matches": true
+      },
+      "Bars/Watch.lua": {
+        "sha256": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/Clicks.lua": {
+        "sha256": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6",
+        "matches": true
+      },
+      "Bars/Hosts.lua": {
+        "sha256": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+        "matches": true
+      },
+      "Bars/Watch.lua": {
+        "sha256": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/Clicks.lua": {
+        "sha256": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6",
+        "matches": true
+      },
+      "Bars/Hosts.lua": {
+        "sha256": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+        "matches": true
+      },
+      "Bars/Watch.lua": {
+        "sha256": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Clicks.lua": {
+        "sha256": "513b83882792e4a70c849d5301d74911cc23f82344c773ff6077dc19924300f6",
+        "matches": true
+      },
+      "Bars/Hosts.lua": {
+        "sha256": "8355a4d632ecb5ef4217ea2f3f49e49d621c59b8914c84253fdfb5e00d7b217c",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+        "matches": true
+      },
+      "Bars/Watch.lua": {
+        "sha256": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

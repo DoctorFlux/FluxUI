@@ -1,0 +1,276 @@
+{
+  "changeId": "BORDER-VISIBILITY-COMMIT-R122-20261119",
+  "capturedAtUTC": "2026-11-19T16:41:36.089008+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "9cbaf4ddc1fe9241d7174abf49e1e5bd70bfef2d7a3d057f50f46079360e7a4e",
+      "afterRaw": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897"
+    },
+    "tests/border_fallback_opacity.lua": {
+      "beforeRaw": "5d159648b7f42cf1d025d2537a898e1d7913d82d1ace97cb70d172864af6d28a",
+      "afterRaw": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\source.zip",
+    "sourceZipSHA256": "259e47833adda625b12037bc488a9a7ad3d125175965fd04240b1342880379a1",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Matched production border renderer with two styles, live strip, unit roots and movable side panels. Unit roots have their normal prepared static marker. HUD panels use their normal non-unit ancestry. Eight settled crossings with a held action and no drop. Frame-only calls in the full reflow are counted. The independent roster scene has zero affected fallback ancestors.",
+    "nominalFrameReads": {
+      "1:hover": {
+        "alpha": [
+          472,
+          40
+        ],
+        "shown": [
+          472,
+          40
+        ]
+      },
+      "1:roster": {
+        "alpha": [
+          0,
+          0
+        ],
+        "shown": [
+          0,
+          0
+        ]
+      },
+      "2:hover": {
+        "alpha": [
+          472,
+          40
+        ],
+        "shown": [
+          472,
+          40
+        ]
+      },
+      "2:roster": {
+        "alpha": [
+          0,
+          0
+        ],
+        "shown": [
+          0,
+          0
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\compare.lua": "abb725379bdc2e4d5cb5dbdd12e57c628efd3bbe18fbc91a4e66ed3a094bf5c6",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\matched.txt": "fa195e31ce4d43bb204b8bf1ecc7b270b5f303e17bce1e3599fce37c63fe93f2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\ancestor-only.txt": "44c9c354f8ea6fecd92da74534f809f2ede6379f2b53de610881a64a1109637b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\negative-control.txt": "687b9daee2d32c9f8e7d4405de5499902d17267a1956da8782bc372894afa2d5"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6 and mock native methods. Seven alternating pairs of 24 warm reflows per style and scenario. Timing is mixed and does not establish a GPU, FPS or native CPU gain.",
+    "results": {
+      "1:hover": {
+        "medians": [
+          221.0,
+          231.0
+        ],
+        "samples": [
+          [
+            133.0,
+            130.0
+          ],
+          [
+            132.0,
+            123.0
+          ],
+          [
+            224.0,
+            231.0
+          ],
+          [
+            215.0,
+            247.0
+          ],
+          [
+            237.0,
+            236.0
+          ],
+          [
+            221.0,
+            216.0
+          ],
+          [
+            223.0,
+            346.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          82.0,
+          83.0
+        ],
+        "samples": [
+          [
+            82.0,
+            83.0
+          ],
+          [
+            93.0,
+            83.0
+          ],
+          [
+            79.0,
+            85.0
+          ],
+          [
+            87.0,
+            81.0
+          ],
+          [
+            82.0,
+            83.0
+          ],
+          [
+            81.0,
+            83.0
+          ],
+          [
+            91.0,
+            107.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          251.0,
+          247.0
+        ],
+        "samples": [
+          [
+            240.0,
+            238.0
+          ],
+          [
+            251.0,
+            227.0
+          ],
+          [
+            258.0,
+            260.0
+          ],
+          [
+            239.0,
+            241.0
+          ],
+          [
+            245.0,
+            247.0
+          ],
+          [
+            254.0,
+            252.0
+          ],
+          [
+            258.0,
+            251.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          85.0,
+          96.0
+        ],
+        "samples": [
+          [
+            85.0,
+            96.0
+          ],
+          [
+            85.0,
+            92.0
+          ],
+          [
+            85.0,
+            86.0
+          ],
+          [
+            85.0,
+            105.0
+          ],
+          [
+            84.0,
+            99.0
+          ],
+          [
+            90.0,
+            94.0
+          ],
+          [
+            95.0,
+            109.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "Only frames with installed show, hide and alpha observers can share a public sample.",
+    "A unit root excluded by the native ownership chain keeps its own alpha path.",
+    "Instance-specific getters and opaque native values continue through the existing live observation path.",
+    "An alpha or visibility write during the commit drops that frame’s sample before a following tile uses it.",
+    "Texture availability, color, and fallback ownership remain scoped to the current tile.",
+    "The commit clears its samples before returning, including rollback. Existing combat gating remains in place.",
+    "Both styles match the archived renderer’s geometry and paint samples after every crossing."
+  ],
+  "verification": {
+    "focusedPassed": 81,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-commit-before-20261119-173200\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e77cd3e3d44203038cf357a6f3f5f9f2fc22f5272c330dee0c8bbfc66fff8897",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action and drop latency, party and raid transitions, HUD seam pixels and combat taint. No game input or profiling changes."
+}

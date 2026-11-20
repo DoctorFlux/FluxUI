@@ -1,0 +1,169 @@
+{
+  "changeId": "ACTION-ROUTING-RELIABILITY-20261115",
+  "dateUTC": "2026-11-15T17:21:35.696006+00:00",
+  "requirements": "docs/ACTION_ROUTING_RELIABILITY.md",
+  "status": "Implemented; reported Forever casting and release visuals confirmed by user; broader native acceptance not inferred",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\action-routing-full-before-20261115T161307Z",
+  "checkpointFiles": 2885,
+  "sourceZipCRCVerified": true,
+  "historyBundleVerified": true,
+  "settingsMetadata": 5,
+  "privateSettingsCopied": false,
+  "baselineRootRevision": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "branch": "main",
+  "finalNormalizedSHA256": {
+    "Bars/State.lua": "84717259e9e1a037ea0a56a231eed3598ddb38fffa76580866fd4f209df440c9",
+    "Bars/Clicks.lua": "b7a8003e7a95913533579ab6270091ae270ddc78ebe657e9d4e1e5654b519901",
+    "Bars/Hosts.lua": "691217d9fe6f13d039f51c439eff766aa107d6d97db8c57c3f366c6801132b61",
+    "Bars/Watch.lua": "9b1f97b2c105231d90a35007c9c1e395012600a4edf175aadcfe59ec35bd8fb3",
+    "Bars/Init.lua": "54b3d637be80130594e4c6783bf72ff4f1273d8dbee29381672077cb3e45b296",
+    "Bars/BadgeHost.lua": "6e7170d067edb85bca080cc11b320f1661994e1b3885c51b1d2df2265c1d0fec",
+    "Binding/Core/Apply.lua": "77a6f78df4f7bf042c358c9a3454e671792eb27ccbfa859b738848eccc734b31",
+    "Binding/Core/PushPress.lua": "3a44b4aa463282849efe4cc3306929a6f98135ec35a2296c3794cbdb1922c627",
+    "Binding/Input/FluxMouseoverKeybind.lua": "45e7e617e9a2fd59ca6dbf8ad6d291516f9bd3159129c99eda0951f077ec2418"
+  },
+  "nativeBuild": "Forever1.60.1.70938",
+  "nativeSourceBuildKey": "3627b099867bfde3e37a17cf44f69cdc",
+  "nativeEvidence": [
+    {
+      "scope": "Before live bundle",
+      "result": "FAIL",
+      "observation": "Real Shift-\u00bd PreClick had empty prefix/raw modifier context; shown66 but effective action6 and typeaction. User screenshots show expected large/mini displacement."
+    },
+    {
+      "scope": "Intermediate hover candidate",
+      "result": "FAIL",
+      "timeCopenhagen": "17:40:18",
+      "observation": "Restricted builder rejected quoted function literal in capability check; exact prior source fails new actual-builder regression. Corrected without changing validator."
+    },
+    {
+      "scope": "Final live bundle",
+      "result": "PASS for captured route and native macro condition context",
+      "observation": {
+        "frame": "FluxActionStripKey6",
+        "button": "LeftButton",
+        "down": true,
+        "shown": 66,
+        "type": "macro",
+        "action": 66,
+        "release": "macro",
+        "macro": null,
+        "unit": null,
+        "useOnKeyDown": true,
+        "pressAndHoldAction": false,
+        "nativePrefix": "",
+        "rawShift": false,
+        "rawCtrl": false,
+        "SecureCmdOptionParse": "both",
+        "program": "Correct slot66 forward FrostWard/CtrlShiftFireWard macro"
+      }
+    },
+    {
+      "scope": "Actual cast and visual release",
+      "result": "PASS reported by user",
+      "userConfirmation": "Fire Ward casts; icons return correctly",
+      "limits": "User-confirmed Ctrl-Shift-\u00bd and release only; not native all19/allpages/controller/FPS acceptance"
+    }
+  ],
+  "implementation": {
+    "keyboard": "Secure main alone publishes current bare type/release/action/macro/delegate bundle to keyer through header FrameRef; fallback and initial/reused keyer twin. Does not repick row from consumed modifiers.",
+    "mouse": "Independent eight-mask prepared attributes retained",
+    "pages": "Resting minis update inverse routes; fallback control pages suppress ordinary main overlays",
+    "visual": "OOC modifier read-only index; identity before badge/effect observers; own-header page resolution; no stale callback rollback; page bursts preserve held mini selection",
+    "badges": "Each slot maps to all potential columns; shared dynamic/static stacks prewarmed before combat",
+    "binding": "Explicit unassigned Shift/Ctrl routes; native exact/free chord owners preserved; hovered updates clear old vectors before replacement; stationary retries rearm",
+    "compiler": "Unchanged macro conditions; native parser retains both even when raw key APIs are false",
+    "diagnostics": "Read-only trace plus optional one-click observer using existing push hooks; 12-second timer only when explicitly armed; no ongoing poll",
+    "settingsOrActionWrites": false,
+    "newIdlePollsOrTickers": false,
+    "manualInstallationCopy": false
+  },
+  "finalTests": {
+    "modifierMatrix": 363885,
+    "nativeFullClickHandlersConsumedAndUnconsumed": 864,
+    "sharedMouseAndLiveKey": 1651,
+    "explicitKeyRoutesAndCacheRepair": 424,
+    "visualIdentityAndPaint": 21532,
+    "badgePageOwners": 510,
+    "hoverNativeBuilderAndRouting": 547,
+    "readOnlyTraceAndObservation": 168,
+    "barContract": 469,
+    "barRefresh": 17454,
+    "barRefreshMutationsRejected": 19,
+    "recovery": 9448,
+    "foreverControl": 25920,
+    "source": "Final focused reports and external per-owner evidence; final full sweep below predates fixture repair only"
+  },
+  "fullSweep": {
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\action-routing-live-main-full.json",
+    "pass": 408,
+    "fail": 2,
+    "syntaxFiles": 1099,
+    "syntaxFailures": 0,
+    "failures": [
+      {
+        "path": "Bars/_tmp_forevercontrolsmoke.lua",
+        "exit": 1,
+        "wallSeconds": 0.0409,
+        "output": "lua: Bars\\_tmp_forevercontrolsmoke.lua:243: normal wrong main action\nstack traceback:\n\t[C]: in function 'assert'\n\tBars\\_tmp_forevercontrolsmoke.lua:243: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "path": "tests/unit_portrait_combat_restore.lua",
+        "exit": 1,
+        "wallSeconds": 0.0124,
+        "output": "lua: actual-portrait-combat-restore:125: attempt to call a nil value (global 'GetUnitClassColor')\nstack traceback:\n\tactual-portrait-combat-restore:125: in upvalue 'ApplyNormalPortraitChrome'\n\tactual-portrait-combat-restore:196: in field 'UpdatePortraitCombatTint'\n\ttests\\unit_portrait_combat_restore.lua:46: in main chunk\n\t[C]: in ?\n"
+      }
+    ],
+    "reconciliation": "Forever control fixture corrected and standalone25920PASS; remaining unit_portrait_combat_restore missing GetUnitClassColor stub is concurrent unrelated unit-frame scope, not edited here",
+    "nativeAcceptance": false
+  },
+  "workload": {
+    "steadyPriorEightMaskThreeHost": "118 protected metadata writes;7actioninfo;7empower probes",
+    "initialThreeHost": "188 metadata writes;12actioninfo;12empower probes",
+    "ordinaryPageChangeThreeHost": "177metadata writes;10actioninfo;10empower; includes required inverse mini restamps",
+    "livePublisher": "7writes per changed main; zero added native spell probes",
+    "visual": "One57-host read-only mapping pass per modifier edge; unchanged repeats translate zero identities; moved identity before observers",
+    "badge": "9faces ordinary;18max shared;100identical applies no extra lookups/writes/layout; no new poll",
+    "FPS": "Not measured; no native CPU/FPS improvement claimed"
+  },
+  "nativeSourceExtraction": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\native-input-audit70938\\restricted-extraction.json",
+  "evidenceFiles": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\explicit-modifier-key-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\badge-page-owners-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\hover-modifier-routing-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\modifier-visual-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\consumed-modifier-dispatch-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\live-main-keyboard-regression-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\forever-control-live-main-fixture-evidence.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1dfde-f5e1-7fb0-9be7-b4ec6c0aa5f2\\actual-input-consumed-modifier-summary.json"
+  ],
+  "references": {
+    "Bartender4Fixed": "Local Bartended1.0.0 based4.17.4;LAB1001;Allrightsreserved root/BSD3style library;read-only;no code copied",
+    "EllesmereUIActionBars": "Local9.8.6;EllesmereUI customAllrightsreserved;read-only;no code copied",
+    "Clicked": "Local1.19.1 GPL3+;distinct keyboard suffix concept read-only;no code copied",
+    "pins": {
+      "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf"
+    }
+  },
+  "installationAgreement": {
+    "Bars/State.lua": true,
+    "Bars/Clicks.lua": true,
+    "Bars/Hosts.lua": true,
+    "Bars/Watch.lua": true,
+    "Bars/Init.lua": true,
+    "Bars/BadgeHost.lua": true,
+    "Binding/Core/Apply.lua": true,
+    "Binding/Core/PushPress.lua": true,
+    "Binding/Input/FluxMouseoverKeybind.lua": true
+  },
+  "nativePending": [
+    "All19columns and full page/form/control workflows",
+    "Other selected clients",
+    "Native taint/controller/pixel parity",
+    "Matched CPU/FPS measurements"
+  ],
+  "publication": false,
+  "agentNativeInputFocusClipboardProfilerWrites": false
+}

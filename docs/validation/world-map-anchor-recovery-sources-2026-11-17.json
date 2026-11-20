@@ -1,0 +1,120 @@
+{
+  "task": "WORLD-MAP-ANCHOR-RECOVERY-20261117",
+  "date": "2026-11-17",
+  "scope": "Source evidence for recovering the original World Map scene inside Flux after a later layout writer relocates it outside the clipped battlefield viewport. This records source contracts and the diagnosed WindowMover ownership conflict; final validation and native acceptance belong to the companion recovery record.",
+  "requirements": [
+    "Continue hosting the original WorldMapFrame, ScrollContainer, canvas, provider/pin identities and addon drawing code; do not copy addon content or introduce addon-specific adapters or dependencies.",
+    "Keep one uniformly scaled original map scene, normal full-map handoff and the accepted opacity behavior.",
+    "Preserve WindowMover registrations, saved records, session placement and normal full-map movement. Temporary battlefield layout ownership must prevent competing writes and accidental drag/scale capture.",
+    "Do not add polling, per-frame mirroring, canvas scans, hooks on panel-manager internals or a new coordination framework. Existing source hooks and deferred synchronization remain bounded."
+  ],
+  "source_provenance": {
+    "provider": "GitHub fetch_file at exact commit refs",
+    "repository": "Gethe/wow-ui-source",
+    "note": "All three panel-manager blobs below were freshly fetched at their pinned refs. The local Retail vendor file had a different blob and line numbers, so it is not used as the pinned Retail identity. A web raw-page cache also presented different line numbers; the GitHub contents response and its blob SHA are authoritative for this record."
+  },
+  "pinned_panel_sources": [
+    {
+      "client": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "path": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "blob_sha": "660d07edf74ef37a1f679301fdfb341af263c7fa",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "anchor_writes": {
+        "maximize": { "clear_all_points": 142, "set_point": 143 },
+        "left": { "clear_all_points": 633, "set_point": 634 },
+        "doublewide": { "clear_all_points": 652, "set_point": 653 },
+        "center": { "clear_all_points": 678, "set_point": 680 },
+        "right": { "clear_all_points": 726, "set_point": 727 }
+      }
+    },
+    {
+      "client": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "path": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "blob_sha": "50964750c2a5739b4baf5c7333a980362afdf6b6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "anchor_writes": {
+        "maximize": { "clear_all_points": 142, "set_point": 143 },
+        "left": { "clear_all_points": 643, "set_point": 644 },
+        "doublewide": { "clear_all_points": 662, "set_point": 663 },
+        "center": { "clear_all_points": 688, "set_point": 690 },
+        "right": { "clear_all_points": 736, "set_point": 737 }
+      }
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "path": "Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "blob_sha": "db5647ab60667d6d1975a0ee2c721d1eb0ae20e6",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIParentPanelManager/Shared/UIParentPanelManager.lua",
+      "anchor_writes": {
+        "maximize": { "clear_all_points": 146, "set_point": 147 },
+        "left": { "clear_all_points": 602, "set_point": 603 },
+        "doublewide": { "clear_all_points": 621, "set_point": 622 },
+        "center": { "clear_all_points": 647, "set_point": 649 },
+        "right": { "clear_all_points": 695, "set_point": 696 }
+      }
+    }
+  ],
+  "panel_contract": {
+    "finding": "UpdateUIPanelPositions clears and rewrites the root's anchors to UIParent coordinates for its managed panel slots. These positioning writes need not change root size or parent, so OnSizeChanged and a cached desired fit do not establish actual placement. The maximize path also rewrites anchors.",
+    "boundary": "These are verified possible native writers, not proof that the panel manager caused the later BOTTOMLEFT failure. Flux must not mutate or hook the forbidden FramePositionDelegate internals."
+  },
+  "owned_window_mover_sources": {
+    "catalog": {
+      "path": "WindowMover/Catalog.lua",
+      "raw_sha256": "14c94b599aa08cdb075c16b284f24da2f153a77d6483e6f4b55a2b858614a5fb",
+      "line": 72,
+      "finding": "WorldMapFrame is included in the existing mover catalog, with the pre-existing Leatrix_Maps exclusion. The recovery does not remove that entry or expand an addon-specific compatibility list."
+    },
+    "engine_baseline": {
+      "path": "WindowMover/Engine.lua",
+      "raw_sha256": "18fe804892664cc2e720d44e78ff47aec41b905a48e71a148401dea85395a48c",
+      "checkpoint_record": "docs/validation/world-map-anchor-recovery-checkpoint-2026-11-16.json",
+      "checkpoint_archive": "C:/Users/mario/.codex/visualizations/2026/11/16/01a1e4ee-f735-7420-b3b7-b5568f701618/world-map-anchor-before-20261116T225919Z/source.zip",
+      "checkpoint_verification": "Root verified the exact current Engine bytes equal the archived checkpoint entry before the delegated guard edit.",
+      "call_chain": [
+        { "lines": "901-903", "finding": "Attach installs instance layout posthooks for SetPoint and SetScale." },
+        { "lines": "706-726", "finding": "ShouldReapplyAfterLayout checks mover recursion, permanent suppression, dynamic size, settings and saved/session placement, but has no temporary hosted-scene ownership check." },
+        { "lines": "758-760", "finding": "A layout posthook synchronously invokes WindowMover.Apply for the same root." },
+        { "lines": "295-347", "finding": "Apply resolves saved/session placement, marks mover recursion, and writes the root at BOTTOMLEFT relative to UIParent. This runs inside Surface Fit's own SetPoint or SetScale call." },
+        { "lines": "344-347", "finding": "The position branch sets ignoreFramePositionManager, clears anchors and writes BOTTOMLEFT/UIParent/BOTTOMLEFT with the saved or session x/y." },
+        { "lines": "473-531", "finding": "An existing active drag/scale job saves session and optional persistent records before Apply. Apply-only suppression would therefore leave accidental capture possible across a full-map-to-field handoff." }
+      ]
+    },
+    "engine_guard_candidate": {
+      "path": "WindowMover/Engine.lua",
+      "raw_sha256": "fbf0a437dcbf34ad78434c4e3b0d517c920be1516296213573b20911ed758ddb",
+      "change": "One dynamic SurfaceOwnsLayout helper and guards in Apply, ShouldReapplyAfterLayout, CanLayout, OnMouseDown and the existing active-proxy cancellation branch. No new hooks, timers, permanent suppression, settings edits or session resets.",
+      "validation": "Candidate identity at edit completion; final regression results and any later source identities belong to the companion recovery validation record."
+    }
+  },
+  "native_failure_sequence": [
+    {
+      "stage": "previously accepted original scene",
+      "surface_raw_sha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+      "observation": "Earlier user reports accepted map fill, addon pins, World Map key open/close, uniform whole-scene scaling and opacity while moving. This is historical acceptance for those stated scenarios."
+    },
+    {
+      "stage": "initial missing scene",
+      "observation": "One diagnostic reported worldSurface=inactive and the original source returned to UIParent. That requires requested=false and is distinct from the later active hosted scene outside its clipping viewport. Enabling Map Pins restored active ownership but did not resolve the wrong position."
+    },
+    {
+      "stage": "generic anchor recovery still failed natively",
+      "surface_raw_sha256": "814ae567503fea63adc31f995394a397cb349b3d18bc2b80b65661e263e6faba",
+      "observation": "After reload, the user still saw no hosted content. Diagnostics showed an embedded visible source with the correct surface parent, expected 697 by 465 logical scene and framebuffer disabled, but one BOTTOMLEFT/UIParent/BOTTOMLEFT anchor at x=16 and y=374.0000305. The independent viewport remained correctly positioned at the Flux battlefield area. ScrollContainer retained two anchors and its reported first point was TOPLEFT relative to the World Map root.",
+      "interpretation": "The reported BOTTOMLEFT/UIParent tuple matches Flux WindowMover.Apply's exact positioning branch. Its synchronous posthook can overwrite Surface's own placement while Surface.changing=true, so adding generic deferred placement recovery alone does not resolve the competing owner. This is a source-supported diagnosis of the observed tuple, not a sampled native call stack."
+    }
+  ],
+  "layout_ownership_contract": {
+    "owner": "FluxBattlefieldWorldMap:OwnsLayout(frame)",
+    "rule": "Only the exact current original source root is owned while preparing or embedded. Ownership remains true when requested=false but protected release is deferred by combat. A normal full map has returned layout ownership and remains eligible for the existing mover.",
+    "release": "The mover retains its records and permanent hooks. Existing OnShow and layout behavior resumes after release; no map addon dependency or copied rendering content is introduced."
+  },
+  "anchor_api_evidence_boundary": {
+    "native_observation": "The user's loaded-client diagnostic reports ScrollContainer GetNumPoints=2 and a TOPLEFT point relative to the original World Map root.",
+    "source_declaration": "SimpleScriptRegionResizingAPI declares SetAllPoints(relativeTo, doResize=true), GetNumPoints and GetPoint(anchorIndex, resolveCollapsed=false) with a frame-point/relative-region/relative-point/x/y return tuple.",
+    "limit": "The generated declaration does not expose the C implementation or guarantee an exact two-corner canonicalization. The live count and first corner support this client's observed mounted layout; the second BOTTOMRIGHT corner remains the standard API assumption until separately captured. No all-client renderer, taint, input or FPS result follows from these source or fixture checks."
+  }
+}

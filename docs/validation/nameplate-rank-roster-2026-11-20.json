@@ -1,0 +1,1311 @@
+{
+  "changeId": "NAMEPLATE-RANK-ROSTER-20261120",
+  "roadmapTracks": [
+    "HUD-2"
+  ],
+  "capturedAtUTC": "2026-11-20T09:15:57.267069+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/API/Threat.lua": {
+      "beforeRaw": "c70b2a56a66b55c0f1e4a10eca1c9e5ab74f35f4452cf5a58c65ee526a2deba5",
+      "afterRaw": "22d1fdc176aa73c4f3b04b0e2cd2278ebda7bf5d3953fb4571e70ca08e2821ea",
+      "afterNormalized": "282400e58676c959b3baa3077c6fcd5ce5c1519155d59c71bd70673bcbc041cb"
+    },
+    "NamePlates/Threat.lua": {
+      "beforeRaw": "c8228f5b6eee3392be97c77248a9ac73e291145b42a51bd587c905043950495f",
+      "afterRaw": "d719729d102a84d5e4d1ebd1c2c2ee58c059d7853a9cdd71e88a2cc8b6b93bad",
+      "afterNormalized": "bf6ccf51553210f617cfee5e122a9cfae2e2108a6c6c00a0db00c68e0b8488ab"
+    },
+    "NamePlates/Core.lua": {
+      "beforeRaw": "d09d337cf7520d3c15d3ff99bb445ed83730cc3b7be2ef9fb353305e174da2da",
+      "afterRaw": "d09d337cf7520d3c15d3ff99bb445ed83730cc3b7be2ef9fb353305e174da2da",
+      "afterNormalized": "774092d1dc0024f11c95aff773521019a7a4fe2f8dd895a678b8abd89c7349cf"
+    },
+    "NamePlates/Level.lua": {
+      "beforeRaw": "e5ff1034d3bf5e5d752f25a51c7a38f612168e16e6c0e3ec3a3bf06a27c983af",
+      "afterRaw": "e5ff1034d3bf5e5d752f25a51c7a38f612168e16e6c0e3ec3a3bf06a27c983af",
+      "afterNormalized": "d051df80b887b3ec77d17ff5b1d6aebe15d6c9cf9550016813c346ef9fa5be66"
+    },
+    "NamePlates/Countdown.lua": {
+      "beforeRaw": "9fffce07500cc142fca3bbb0f4abb77a08ecbdbd64eebad5dd5559cd7f329cd0",
+      "afterRaw": "9fffce07500cc142fca3bbb0f4abb77a08ecbdbd64eebad5dd5559cd7f329cd0",
+      "afterNormalized": "e6960d8a229312547ea57d13ec83d8124fd7ae1e80e8e421fbd87a340487332d"
+    },
+    "Core/_tmp_coresmoke.lua": {
+      "beforeRaw": "9f0fb6964971dc878197a0f35d719e75be3ce12684f40eeb09b937eb58087432",
+      "afterRaw": "2ca6f40525cc43cd4091af660f842beb08301de64879a634b296630d9e24d7bd",
+      "afterNormalized": "2ca6f40525cc43cd4091af660f842beb08301de64879a634b296630d9e24d7bd"
+    },
+    "tests/passive_threat_rank.lua": {
+      "beforeRaw": "8f3e63334f77045005b86848e493b3496c549ab8c24d892b8c1adac3ffbb2cd1",
+      "afterRaw": "02bee63239bcbaf12956485eeb1c7110df1942d4238f0f4faaf4134dc5ba4f20",
+      "afterNormalized": "0c2740c97a31588933896d74e44e9683e8f972cfd19b1c736c6200404e0fa831"
+    },
+    "tests/passive_nameplate_optimization.lua": {
+      "beforeRaw": "2eae6ff0296b9bf0ddeb495e9159861e9480ce442729579915499a1d272b3f34",
+      "afterRaw": "2e67dce90654d489aa6698157312c8f3da70fa853c8bdb647129cdf8df546bfe",
+      "afterNormalized": "03e3e719ba10f3d1eed11a6cc4d50b9f8c77dc24e8f7b988262fa9a2b2bf335a"
+    },
+    "tests/nameplate_refresh_batch.lua": {
+      "beforeRaw": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+      "afterRaw": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+      "afterNormalized": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f"
+    }
+  },
+  "evidence": {
+    "cases": {
+      "retail/party": {
+        "client": "retail",
+        "case": "party",
+        "work": {
+          "guidQueries": [
+            320,
+            10
+          ],
+          "detailQueries": [
+            352,
+            352
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            5.0,
+            6.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              21.0,
+              18.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              19.0,
+              17.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              20.0,
+              18.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              22.0,
+              19.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              19.0,
+              19.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          20.0,
+          18.0
+        ]
+      },
+      "retail/raid": {
+        "client": "retail",
+        "case": "raid",
+        "work": {
+          "guidQueries": [
+            2624,
+            82
+          ],
+          "detailQueries": [
+            2592,
+            2592
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            13.0,
+            13.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              88.0,
+              79.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              86.0,
+              79.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              86.0,
+              76.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              85.0,
+              77.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              84.0,
+              77.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          86.0,
+          77.0
+        ]
+      },
+      "retail/raidTank": {
+        "client": "retail",
+        "case": "raidTank",
+        "work": {
+          "guidQueries": [
+            2624,
+            1
+          ],
+          "detailQueries": [
+            2592,
+            64
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            15.0,
+            3.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              76.0,
+              10.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              68.0,
+              10.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              69.0,
+              10.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              68.0,
+              10.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              70.0,
+              11.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          69.0,
+          10.0
+        ]
+      },
+      "forever/party": {
+        "client": "forever",
+        "case": "party",
+        "work": {
+          "guidQueries": [
+            320,
+            10
+          ],
+          "detailQueries": [
+            352,
+            352
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            4.0,
+            12.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              22.0,
+              22.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              21.0,
+              22.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              22.0,
+              22.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              22.0,
+              23.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              22.0,
+              23.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          22.0,
+          22.0
+        ]
+      },
+      "forever/raid": {
+        "client": "forever",
+        "case": "raid",
+        "work": {
+          "guidQueries": [
+            2624,
+            82
+          ],
+          "detailQueries": [
+            2592,
+            2592
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            19.0,
+            19.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              88.0,
+              82.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              87.0,
+              80.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              91.0,
+              84.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              85.0,
+              82.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              89.0,
+              88.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          88.0,
+          82.0
+        ]
+      },
+      "forever/raidTank": {
+        "client": "forever",
+        "case": "raidTank",
+        "work": {
+          "guidQueries": [
+            2624,
+            1
+          ],
+          "detailQueries": [
+            2592,
+            64
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            18.0,
+            3.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              76.0,
+              17.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              78.0,
+              17.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              75.0,
+              17.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              76.0,
+              19.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              75.0,
+              19.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          76.0,
+          17.0
+        ]
+      },
+      "classic/party": {
+        "client": "classic",
+        "case": "party",
+        "work": {
+          "guidQueries": [
+            320,
+            10
+          ],
+          "detailQueries": [
+            352,
+            352
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            9.0,
+            4.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              26.0,
+              32.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              27.0,
+              28.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              28.0,
+              31.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              26.0,
+              28.0
+            ]
+          },
+          {
+            "guidQueries": [
+              1920,
+              60
+            ],
+            "detailQueries": [
+              2112,
+              2112
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              27.0,
+              28.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          27.0,
+          28.0
+        ]
+      },
+      "classic/raid": {
+        "client": "classic",
+        "case": "raid",
+        "work": {
+          "guidQueries": [
+            2624,
+            82
+          ],
+          "detailQueries": [
+            2592,
+            2592
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            19.0,
+            16.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              88.0,
+              84.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              90.0,
+              81.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              87.0,
+              84.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              85.0,
+              82.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              492
+            ],
+            "detailQueries": [
+              15552,
+              15552
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              89.0,
+              87.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          88.0,
+          84.0
+        ]
+      },
+      "classic/raidTank": {
+        "client": "classic",
+        "case": "raidTank",
+        "work": {
+          "guidQueries": [
+            2624,
+            1
+          ],
+          "detailQueries": [
+            2592,
+            64
+          ],
+          "plateLookups": [
+            64,
+            64
+          ],
+          "elapsedMs": [
+            16.0,
+            3.0
+          ]
+        },
+        "matchedPlateTextAndTint": "nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0",
+        "pairedSixCycleTimings": [
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              77.0,
+              13.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              79.0,
+              14.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              73.0,
+              14.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              75.0,
+              13.0
+            ]
+          },
+          {
+            "guidQueries": [
+              15744,
+              6
+            ],
+            "detailQueries": [
+              15552,
+              384
+            ],
+            "plateLookups": [
+              384,
+              384
+            ],
+            "elapsedMs": [
+              74.0,
+              18.0
+            ]
+          }
+        ],
+        "elapsedMediansMs": [
+          75.0,
+          14.0
+        ]
+      }
+    },
+    "rawPairedReplays": [
+      {
+        "trial": 1,
+        "source": "before",
+        "bursts": 1,
+        "output": "ROSTER_RANK client=retail case=party bursts=1 guid=320 detailed=352 lookup=64 ms=5.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=1 guid=2624 detailed=2592 lookup=64 ms=13.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=1 guid=2624 detailed=2592 lookup=64 ms=15.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=1 guid=320 detailed=352 lookup=64 ms=4.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=1 guid=2624 detailed=2592 lookup=64 ms=19.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=1 guid=2624 detailed=2592 lookup=64 ms=18.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=1 guid=320 detailed=352 lookup=64 ms=9.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=1 guid=2624 detailed=2592 lookup=64 ms=19.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=1 guid=2624 detailed=2592 lookup=64 ms=16.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 324 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 1,
+        "source": "current",
+        "bursts": 1,
+        "output": "ROSTER_RANK client=retail case=party bursts=1 guid=10 detailed=352 lookup=64 ms=6.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=1 guid=82 detailed=2592 lookup=64 ms=13.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=1 guid=1 detailed=64 lookup=64 ms=3.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=1 guid=10 detailed=352 lookup=64 ms=12.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=1 guid=82 detailed=2592 lookup=64 ms=19.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=1 guid=1 detailed=64 lookup=64 ms=3.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=1 guid=10 detailed=352 lookup=64 ms=4.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=1 guid=82 detailed=2592 lookup=64 ms=16.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=1 guid=1 detailed=64 lookup=64 ms=3.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 324 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 1,
+        "source": "before",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=21.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=88.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=76.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=88.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=76.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=26.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=88.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=77.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 1,
+        "source": "current",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=18.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=79.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=10.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=82.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=17.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=32.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=84.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=13.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 2,
+        "source": "current",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=17.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=79.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=10.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=80.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=17.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=28.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=81.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=14.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 2,
+        "source": "before",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=19.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=86.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=68.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=21.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=87.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=78.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=27.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=90.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=79.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 3,
+        "source": "before",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=20.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=86.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=69.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=91.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=75.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=28.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=87.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=73.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 3,
+        "source": "current",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=18.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=76.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=10.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=84.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=17.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=31.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=84.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=14.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 4,
+        "source": "current",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=19.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=77.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=10.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=23.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=82.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=19.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=28.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=82.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=13.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 4,
+        "source": "before",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=85.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=68.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=85.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=76.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=26.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=85.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=75.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 5,
+        "source": "before",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=19.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=84.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=70.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=22.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=89.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=75.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=1920 detailed=2112 lookup=384 ms=27.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=15744 detailed=15552 lookup=384 ms=89.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=15744 detailed=15552 lookup=384 ms=74.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      },
+      {
+        "trial": 5,
+        "source": "current",
+        "bursts": 6,
+        "output": "ROSTER_RANK client=retail case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=19.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=retail case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=77.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=retail case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=11.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=forever case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=23.000 paint=nameplate10=1..55%@1,1,0.47/nameplate11=1..55%@1,1,0.47/nameplate12=1..55%@1,1,0.47/nameplate13=1..55%@1,1,0.47/nameplate14=1..55%@1,1,0.47/nameplate15=1..55%@1,1,0.47/nameplate16=1..55%@1,1,0.47/nameplate17=1..55%@1,1,0.47/nameplate18=1..55%@1,1,0.47/nameplate19=1..55%@1,1,0.47/nameplate1=10..55%@1,1,0.47/nameplate20=1..55%@1,1,0.47/nameplate21=1..55%@1,1,0.47/nameplate22=1..55%@1,1,0.47/nameplate23=1..55%@1,1,0.47/nameplate24=1..55%@1,1,0.47/nameplate25=1..55%@1,1,0.47/nameplate26=1..55%@1,1,0.47/nameplate27=1..55%@1,1,0.47/nameplate28=1..55%@1,1,0.47/nameplate29=1..55%@1,1,0.47/nameplate2=9..55%@1,1,0.47/nameplate30=1..55%@1,1,0.47/nameplate31=1..55%@1,1,0.47/nameplate32=1..55%@1,1,0.47/nameplate3=7..55%@1,1,0.47/nameplate4=5..55%@1,1,0.47/nameplate5=5..55%@1,1,0.47/nameplate6=3..55%@1,1,0.47/nameplate7=1..55%@1,1,0.47/nameplate8=1..55%@1,1,0.47/nameplate9=1..55%@1,1,0.47\nROSTER_RANK client=forever case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=88.000 paint=nameplate10=66..55%@1,1,0.47/nameplate11=65..55%@1,1,0.47/nameplate12=63..55%@1,1,0.47/nameplate13=61..55%@1,1,0.47/nameplate14=59..55%@1,1,0.47/nameplate15=58..55%@1,1,0.47/nameplate16=57..55%@1,1,0.47/nameplate17=55..55%@1,1,0.47/nameplate18=53..55%@1,1,0.47/nameplate19=51..55%@1,1,0.47/nameplate1=80..55%@1,1,0.47/nameplate20=50..55%@1,1,0.47/nameplate21=49..55%@1,1,0.47/nameplate22=47..55%@1,1,0.47/nameplate23=45..55%@1,1,0.47/nameplate24=43..55%@1,1,0.47/nameplate25=42..55%@1,1,0.47/nameplate26=41..55%@1,1,0.47/nameplate27=39..55%@1,1,0.47/nameplate28=37..55%@1,1,0.47/nameplate29=35..55%@1,1,0.47/nameplate2=79..55%@1,1,0.47/nameplate30=35..55%@1,1,0.47/nameplate31=33..55%@1,1,0.47/nameplate32=31..55%@1,1,0.47/nameplate3=77..55%@1,1,0.47/nameplate4=75..55%@1,1,0.47/nameplate5=74..55%@1,1,0.47/nameplate6=73..55%@1,1,0.47/nameplate7=71..55%@1,1,0.47/nameplate8=69..55%@1,1,0.47/nameplate9=67..55%@1,1,0.47\nROSTER_RANK client=forever case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=19.000 paint=nameplate10=1..100%@1,1,0.47/nameplate11=1..100%@1,1,0.47/nameplate12=1..100%@1,1,0.47/nameplate13=1..100%@1,1,0.47/nameplate14=1..100%@1,1,0.47/nameplate15=1..100%@1,1,0.47/nameplate16=1..100%@1,1,0.47/nameplate17=1..100%@1,1,0.47/nameplate18=1..100%@1,1,0.47/nameplate19=1..100%@1,1,0.47/nameplate1=1..100%@1,1,0.47/nameplate20=1..100%@1,1,0.47/nameplate21=1..100%@1,1,0.47/nameplate22=1..100%@1,1,0.47/nameplate23=1..100%@1,1,0.47/nameplate24=1..100%@1,1,0.47/nameplate25=1..100%@1,1,0.47/nameplate26=1..100%@1,1,0.47/nameplate27=1..100%@1,1,0.47/nameplate28=1..100%@1,1,0.47/nameplate29=1..100%@1,1,0.47/nameplate2=1..100%@1,1,0.47/nameplate30=1..100%@1,1,0.47/nameplate31=1..100%@1,1,0.47/nameplate32=1..100%@1,1,0.47/nameplate3=1..100%@1,1,0.47/nameplate4=1..100%@1,1,0.47/nameplate5=1..100%@1,1,0.47/nameplate6=1..100%@1,1,0.47/nameplate7=1..100%@1,1,0.47/nameplate8=1..100%@1,1,0.47/nameplate9=1..100%@1,1,0.47\nROSTER_RANK client=classic case=party bursts=6 guid=60 detailed=2112 lookup=384 ms=28.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=10..55%@1,0.9,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=9..55%@1,0.9,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=7..55%@1,0.9,0/nameplate4=5..55%@1,0.9,0/nameplate5=5..55%@1,0.9,0/nameplate6=3..55%@1,0.9,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nROSTER_RANK client=classic case=raid bursts=6 guid=492 detailed=15552 lookup=384 ms=87.000 paint=nameplate10=66..55%@1,0.9,0/nameplate11=65..55%@1,0.9,0/nameplate12=63..55%@1,0.9,0/nameplate13=61..55%@1,0.9,0/nameplate14=59..55%@1,0.9,0/nameplate15=58..55%@1,0.9,0/nameplate16=57..55%@1,0.9,0/nameplate17=55..55%@1,0.9,0/nameplate18=53..55%@1,0.9,0/nameplate19=51..55%@1,0.9,0/nameplate1=80..55%@1,0.9,0/nameplate20=50..55%@1,0.9,0/nameplate21=49..55%@1,0.9,0/nameplate22=47..55%@1,0.9,0/nameplate23=45..55%@1,0.9,0/nameplate24=43..55%@1,0.9,0/nameplate25=42..55%@1,0.9,0/nameplate26=41..55%@1,0.9,0/nameplate27=39..55%@1,0.9,0/nameplate28=37..55%@1,0.9,0/nameplate29=35..55%@1,0.9,0/nameplate2=79..55%@1,0.9,0/nameplate30=35..55%@1,0.9,0/nameplate31=33..55%@1,0.9,0/nameplate32=31..55%@1,0.9,0/nameplate3=77..55%@1,0.9,0/nameplate4=75..55%@1,0.9,0/nameplate5=74..55%@1,0.9,0/nameplate6=73..55%@1,0.9,0/nameplate7=71..55%@1,0.9,0/nameplate8=69..55%@1,0.9,0/nameplate9=67..55%@1,0.9,0\nROSTER_RANK client=classic case=raidTank bursts=6 guid=6 detailed=384 lookup=384 ms=18.000 paint=nameplate10=1..55%@1,0,0/nameplate11=1..55%@1,0,0/nameplate12=1..55%@1,0,0/nameplate13=1..55%@1,0,0/nameplate14=1..55%@1,0,0/nameplate15=1..55%@1,0,0/nameplate16=1..55%@1,0,0/nameplate17=1..55%@1,0,0/nameplate18=1..55%@1,0,0/nameplate19=1..55%@1,0,0/nameplate1=1..55%@1,0,0/nameplate20=1..55%@1,0,0/nameplate21=1..55%@1,0,0/nameplate22=1..55%@1,0,0/nameplate23=1..55%@1,0,0/nameplate24=1..55%@1,0,0/nameplate25=1..55%@1,0,0/nameplate26=1..55%@1,0,0/nameplate27=1..55%@1,0,0/nameplate28=1..55%@1,0,0/nameplate29=1..55%@1,0,0/nameplate2=1..55%@1,0,0/nameplate30=1..55%@1,0,0/nameplate31=1..55%@1,0,0/nameplate32=1..55%@1,0,0/nameplate3=1..55%@1,0,0/nameplate4=1..55%@1,0,0/nameplate5=1..55%@1,0,0/nameplate6=1..55%@1,0,0/nameplate7=1..55%@1,0,0/nameplate8=1..55%@1,0,0/nameplate9=1..55%@1,0,0\nRoster threat replay: 414 checks; actual Core and NamePlates handlers."
+      }
+    ],
+    "timingScope": "One modeled party or raid entry after a solo refresh per operation-count pair, plus five alternating timing pairs with six entries and intervening leaves. The actual Core nameplate event dispatcher, Threat API and Threat, Level and Countdown modules run on counted widget and unit stubs. Quest overlay is disabled and 32 hostile nameplates remain active. The untimed final leave clears group-only tints. These are subworkflow counts and desktop CPU timings, with native latency still open.",
+    "timingSummary": "The simulated Forever tank case has six-cycle medians of 76 and 17 ms. Non-tank timing varied by desktop client model and case. Non-tank detailed payload counts remain equal."
+  },
+  "parity": "Nameplate threat refreshes now share successful public group identity reads for one pass. With 32 visible plates, a modeled party entry uses 10 GUID queries instead of 320. The raid case uses 82 instead of 2,624. A confirmed tanking player already has rank one, allowing the same raid replay to use 64 detailed threat queries instead of 2,592. Matched text, tint and plate lookups remain equal in all three client models.",
+  "rules": "Share public identity for one full refresh. Keep per-target threat payloads for non-tanking ranks and fresh guarded reads for unreadable IDs and unit existence. Standalone rank calls retain their own reads. A replaced GUID or rank provider uses the current provider. A known tanking player row returns rank one before the group walk. No settings, events or timers are added.",
+  "checkpoint": {
+    "createdUTC": "2026-11-20T09:09:15.2089569Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "installedSettingsFileCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Core/API/Threat.lua": "c70b2a56a66b55c0f1e4a10eca1c9e5ab74f35f4452cf5a58c65ee526a2deba5",
+      "NamePlates/Threat.lua": "c8228f5b6eee3392be97c77248a9ac73e291145b42a51bd587c905043950495f",
+      "NamePlates/Core.lua": "d09d337cf7520d3c15d3ff99bb445ed83730cc3b7be2ef9fb353305e174da2da",
+      "tests/passive_threat_rank.lua": "8f3e63334f77045005b86848e493b3496c549ab8c24d892b8c1adac3ffbb2cd1",
+      "tests/nameplate_refresh_batch.lua": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+      "tests/passive_nameplate_optimization.lua": "2eae6ff0296b9bf0ddeb495e9159861e9480ce442729579915499a1d272b3f34",
+      "docs/STATUS.md": "c62731c4e9752959a854957a493c28072d533c40e5a8b0176b2261020619b55e",
+      "docs/DECISIONS.md": "6fdab19148630eaefed51b7e6fee5a488d6241c982f72865333b15561eb9a939",
+      "docs/WORK_LOG.md": "5055bdeae9139f8de7762bff0565e575b16ff5073554f1a464ac93774f68243c",
+      "NEXT_SESSION.md": "21904eb5b890a17240f40ab638b0d46267cd2a0524cc54f1d1a378eaf8d8c141",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "12d014b1f7d51c4940dbf4cac1f4a66df36d3eb880062c2eccb75164d8766da7",
+      "docs/19-nameplates.md": "b983f50926a288050e565e40fbf2edfc90b0f093f694c9f1b54d22d6a3875cda",
+      "docs/GROUP_ROSTER_PERFORMANCE.md": "8df9db1caaf7a8c177a14a8a7d1be51e4cdd19552d49df5fd312fac0fc8bee9b",
+      "docs/CLIENT_VALIDATION.md": "db67a88046aa28ef7b05ce016a8affb1f072cd898bb66c81ccf3b338155d68a8",
+      "docs/FEATURE_PARITY.csv": "1e3cc7aed0f1f00410dde5aafadc3311a4350dc1289357e27a78b29cb1ee8ac8",
+      "docs/PERFORMANCE_RESULTS.csv": "3703e08ee4e58773e0511ec8a68055644009cabb161cb5f5efebec4e06cfc71b",
+      "docs/CLIENT_MATRIX.csv": "8804feebc4edba40691c18347623d74a5a3a3ac8bf1dcf3ed8d631497b2a45a2",
+      "docs/reference/verification.json": "3471f65607069312199eb2e1630e82ded5cdc2e0f4d9b77d86f3754c438258a8",
+      "NamePlates/Level.lua": "e5ff1034d3bf5e5d752f25a51c7a38f612168e16e6c0e3ec3a3bf06a27c983af",
+      "NamePlates/Countdown.lua": "9fffce07500cc142fca3bbb0f4abb77a08ecbdbd64eebad5dd5559cd7f329cd0",
+      "Core/_tmp_coresmoke.lua": "9f0fb6964971dc878197a0f35d719e75be3ce12684f40eeb09b937eb58087432"
+    }
+  },
+  "verification": {
+    "focusedPassed": 56,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/trinket_regen_refresh.lua": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_panel_settle.lua": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/grid_envelope_work.lua": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/border_nearby_panels.lua": "572c6620f37f4d8470f5334fe26f68062668c9a41fb040ae7dd4ab9107de6bdf",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "tests/idle_info_layout.lua": "848dfbc036cb12e9794827fd8a786d03128c64a36ca3e3a6ca48254f12c6ae8b",
+      "tests/info_all_stats.lua": "d75d700b8d6d0cdc23a418b55dba02fcd844fc2c47cf6d9534151fb68fb6a2a3",
+      "tests/info_combat_stats.lua": "f40271f54b49e6821fc1d9655a68911b5a8cc4860569e82e4938d716a163bf57",
+      "tests/border_junctions.lua": "00dec0a18f47acad06f08ab8509cdcd44280a3adfbaafd49b22bbb6f3afba368",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_observer_refresh.lua": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+      "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_native_unit_rgb.lua": "3a3d8f49a5c19729b140c0679d0835bfbf7d6e514bc750eafa35e36b8c16bc3f",
+      "tests/border_fallback_opacity.lua": "841954b3207c7e43dc58208a2951f88a7db72e3778cb10de1b0cd8ea27e01e79",
+      "tests/raid_binding_cast.lua": "04432ba0d4b2e9cdd86679ef763cdf7e985b2e83ca9dc98fa79ee92c07a858cc",
+      "tests/raid_party_binding_cast.lua": "9978e68057f35e25761ddf5554ce7b64fe3bfb7e00ad7fd17e60ab942a0b408b",
+      "tests/mouseover_native.lua": "d8b9b3ba24d6317a860da9e1d83453d446a7eb11a9f18f60610bb603c1128bc3",
+      "tests/native_mouse_suppression.lua": "899210f970242de8662d3b78f45f352836894421e9a244eb4aa7f0d09800a1ed",
+      "tests/roster_native_hover_cleanup.lua": "7fb8b4c66731c991ea43c55413a0089875df48f211df7c74d3eda2ef415fe1da",
+      "tests/group_ghost_hover.lua": "4c5c26762245cac75624e2d45da96e47ddd1a11d2d717747c4de84a11f9a17e4",
+      "tests/binding_hover_modifier_routes.lua": "532021cbac5928fa821e8aacb459cc7b3000f11496bb038518097345ac6cf793",
+      "tests/hover_children_varargs.lua": "f8c4aa49f49507bc9d0f3f6fe7c38e90e1124a8371818004dc0005afe76fdf89",
+      "tests/consumable_roster_bindings.lua": "c7a658fe200c1fd2dc6e739ffd11fa856cfd2af1e979523aa64d0161428091fc",
+      "tests/passive_threat_rank.lua": "02bee63239bcbaf12956485eeb1c7110df1942d4238f0f4faaf4134dc5ba4f20",
+      "tests/passive_nameplate_optimization.lua": "2e67dce90654d489aa6698157312c8f3da70fa853c8bdb647129cdf8df546bfe",
+      "tests/nameplate_refresh_batch.lua": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+      "tests/nameplate_quest_progress.lua": "862e932ade747689a54ac564b77ce8d204d8123903347ee03c06132ec5701bc4",
+      "tests/threat_warning_visibility.lua": "c539ab5bbcbdb04f88d200bb5b33fef46186a451ba4c73c06798fc74cff5c069",
+      "tests/standalone_threat_meter.lua": "befb9381688bbdfa9de08beb40ae8c6961dab3a58a84c4f297c46b1fd74b801d",
+      "NamePlates/_tmp_combosmoke.lua": "34b2be7732c5c21f7674392564c59e41264760d6fba8c45d2c63d770e61a00f8",
+      "Core/_tmp_coresmoke.lua": "2ca6f40525cc43cd4091af660f842beb08301de64879a634b296630d9e24d7bd",
+      "tests/unit_threat_roster_anchors.lua": "5be5ee042fd5e06e0386c7fb607ef2e810d90c8fc463a9aa7259195431ed68f6",
+      "tests/raid_nameplate_defaults.lua": "d412690ff90f431ec6ad36ac09efc3f97e9bc3cac3055a38d9d52d803f24b50e"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-nameplate-rank-roster-2026-11-20-100914\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-nameplate-rank-roster-2026-11-20-100914\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-nameplate-rank-roster-2026-11-20-100914\\syntax.json"
+  },
+  "nativeAcceptance": "Live party and raid join or leave timing and native secret-value and combat checks remain pending. Action strip, border seams, embedded minimap and combat exit acceptance remain open for the wider goal."
+}

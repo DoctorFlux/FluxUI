@@ -1,0 +1,339 @@
+{
+  "changeId": "BORDER-ANCHOR-BURSTS-R144-20261119",
+  "capturedAtUTC": "2026-11-19T21:43:17.375841+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "36c4a6872837a3c328f74d91bd9f0ac52c9f77583aea9ac0b7963f86a01e7656",
+      "afterRaw": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+      "afterNormalized": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304"
+    },
+    "tests/border_observer_refresh.lua": {
+      "beforeRaw": "be23328c1bbf8d2bb8df9663831521d3cc3f84069dcee2a46112571d0a53dbe9",
+      "afterRaw": "00295ed106eb6cb43845169df60227dd7814bec0535ce35c22f5a0ac94e05357",
+      "afterNormalized": "00295ed106eb6cb43845169df60227dd7814bec0535ce35c22f5a0ac94e05357"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\source.zip",
+    "sourceZipSHA256": "b2524f8973b9b2a9653f24e29a31f275099551e03a6c9564c3b0a55263de4432",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Archived and current actual renderer on four moving panels and five- or forty-frame reanchor batches. Alternating settled points with unchanged final artwork, three pairs each in both border styles. Every transition compares rendered coordinates, atlas sampling, vertices, colors, opacity and layer.",
+    "samples": [
+      {
+        "frames": 4,
+        "style": 1,
+        "sample": 1,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 30.0,
+        "desktopMillisecondsAfter": 29.0
+      },
+      {
+        "frames": 4,
+        "style": 1,
+        "sample": 2,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 29.0,
+        "desktopMillisecondsAfter": 30.0
+      },
+      {
+        "frames": 4,
+        "style": 1,
+        "sample": 3,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 29.0,
+        "desktopMillisecondsAfter": 29.0
+      },
+      {
+        "frames": 4,
+        "style": 2,
+        "sample": 1,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 30.0,
+        "desktopMillisecondsAfter": 33.0
+      },
+      {
+        "frames": 4,
+        "style": 2,
+        "sample": 2,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 28.0,
+        "desktopMillisecondsAfter": 28.0
+      },
+      {
+        "frames": 4,
+        "style": 2,
+        "sample": 3,
+        "commits": 12,
+        "pointCountQueriesBefore": 144,
+        "pointCountQueriesAfter": 48,
+        "pointQueriesBefore": 144,
+        "pointQueriesAfter": 96,
+        "nativeFrameRectReadsBoth": 96,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 27.0,
+        "desktopMillisecondsAfter": 29.0
+      },
+      {
+        "frames": 5,
+        "style": 1,
+        "sample": 1,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 34.0,
+        "desktopMillisecondsAfter": 37.0
+      },
+      {
+        "frames": 5,
+        "style": 1,
+        "sample": 2,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 35.0,
+        "desktopMillisecondsAfter": 37.0
+      },
+      {
+        "frames": 5,
+        "style": 1,
+        "sample": 3,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 36.0,
+        "desktopMillisecondsAfter": 33.0
+      },
+      {
+        "frames": 5,
+        "style": 2,
+        "sample": 1,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 35.0,
+        "desktopMillisecondsAfter": 35.0
+      },
+      {
+        "frames": 5,
+        "style": 2,
+        "sample": 2,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 36.0,
+        "desktopMillisecondsAfter": 34.0
+      },
+      {
+        "frames": 5,
+        "style": 2,
+        "sample": 3,
+        "commits": 12,
+        "pointCountQueriesBefore": 180,
+        "pointCountQueriesAfter": 60,
+        "pointQueriesBefore": 180,
+        "pointQueriesAfter": 120,
+        "nativeFrameRectReadsBoth": 120,
+        "geometryPassesBoth": 12,
+        "desktopMillisecondsBefore": 34.0,
+        "desktopMillisecondsAfter": 34.0
+      },
+      {
+        "frames": 40,
+        "style": 1,
+        "sample": 1,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 112.0,
+        "desktopMillisecondsAfter": 123.0
+      },
+      {
+        "frames": 40,
+        "style": 1,
+        "sample": 2,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 112.0,
+        "desktopMillisecondsAfter": 114.0
+      },
+      {
+        "frames": 40,
+        "style": 1,
+        "sample": 3,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 113.0,
+        "desktopMillisecondsAfter": 116.0
+      },
+      {
+        "frames": 40,
+        "style": 2,
+        "sample": 1,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 125.0,
+        "desktopMillisecondsAfter": 127.0
+      },
+      {
+        "frames": 40,
+        "style": 2,
+        "sample": 2,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 150.0,
+        "desktopMillisecondsAfter": 139.0
+      },
+      {
+        "frames": 40,
+        "style": 2,
+        "sample": 3,
+        "commits": 4,
+        "pointCountQueriesBefore": 480,
+        "pointCountQueriesAfter": 160,
+        "pointQueriesBefore": 480,
+        "pointQueriesAfter": 320,
+        "nativeFrameRectReadsBoth": 320,
+        "geometryPassesBoth": 4,
+        "desktopMillisecondsBefore": 373.0,
+        "desktopMillisecondsAfter": 238.0
+      }
+    ],
+    "bridge": "The existing held spell/item/macro and rapid drop replays cover the bars producer. The paired renderer model independently verifies ClearAllPoints followed by two SetPoint calls.",
+    "limits": "Work counts are modeled calls. Total mock timing includes mesh comparison and varies by sample. Native hitch duration and pixels remain pending.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\compare.lua": "197e34f234d4121c114b08afa8d5d6f53ba1e121554670609775e6fed13bc34d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\matched.txt": "aa4d40e875e8126fc0800abf7c45fe354e4f5e0e5e6dea0f88858e6105109959",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\negative.txt": "6306756030c25b69967b7583c4fef8ab66c474e474b029a741a5575596d5275e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\upvalues.json": "aaee46ffcb0fa4687db500fe856777b337026bf52b59a9bd35d66990ed25395d"
+    }
+  },
+  "preservation": [
+    "Anchor link replacement runs before dependency traversal and again after dependent panel alignment. Equal geometry still records a new anchor identity without a mesh rebuild.",
+    "Only changed links replace their reverse entries. Latest uncertainty continues to broaden the dependency walk when needed. Observers leave combat-deferred layouts pending and maintain immediate opacity and color ownership.",
+    "All native geometry and regional-eligibility guards remain per-pass. No change to protected action routing or identifier handling."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-anchor-bursts-before-20261119-223028\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "d75bb957bed4ec9ad039727390b824a3762d35a74a7aa23e83f940339258c304",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for held-action crossings and rapid drops, group join and leave, seam pixels, and combat taint. No client or profiling changes."
+}

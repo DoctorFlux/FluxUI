@@ -52,7 +52,7 @@ local function loadRegistry(bankOpen, withIterator)
         end
         return { RegisterEvent = function() end, SetScript = function() end }
     end
-    assert(load(body, "FluxRestockList.lua", "t", env))()
+    assert(load(body, "FluxRestockList.lua", "t", env))("_FluxUI", {})
     local registry = env.FluxRestockItemRegistry
     registry.GetSlotCharges = function(bag)
         return bag == 5 and 3 or 2

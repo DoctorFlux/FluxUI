@@ -17,6 +17,7 @@
     invalidated on every bag pulse) that made tooltip parsing a recurring cost.
 ]]
 
+local _, ns = ...
 FluxItemClass = FluxItemClass or {}
 local IC = FluxItemClass
 
@@ -117,8 +118,10 @@ local function BuildInfoRecord(itemID)
     local name, link, quality, itemLevel, minLevel, itemType, itemSubType,
         stackCount, equipLoc, icon, sellPrice, classID, subClassID, bindType
     if C_Item and C_Item.GetItemInfo then
-        local info = C_Item.GetItemInfo(itemID)
-        if type(info) == "table" then
+        name, link, quality, itemLevel, minLevel, itemType, itemSubType,
+            stackCount, equipLoc, icon, sellPrice, classID, subClassID, bindType = C_Item.GetItemInfo(itemID)
+        if type(name) == "table" then
+            local info = name
             name = info.itemName or info.name
             link = info.itemLink or info.hyperlink
             quality = info.itemQuality or info.quality
@@ -133,9 +136,6 @@ local function BuildInfoRecord(itemID)
             classID = info.classID
             subClassID = info.subclassID
             bindType = info.bindType
-        elseif info ~= nil then
-            name, link, quality, itemLevel, minLevel, itemType, itemSubType,
-                stackCount, equipLoc, icon, sellPrice, classID, subClassID, bindType = C_Item.GetItemInfo(itemID)
         end
     end
     if not name and GetItemInfo then
@@ -225,6 +225,21 @@ end
 function IC.GetQuality(itemID)
     local rec = IC.GetInfo(itemID)
     return rec and rec.quality or nil
+end
+
+if type(ns) == "table" then
+    local getInfo, getQuality = IC.GetInfo, IC.GetQuality
+    -- The native gray-junk fallback can use a quality we've already resolved.
+    -- Peeking here never requests otherwise unavailable item data.
+    function ns.ReadCachedItemQuality(itemID)
+        if _G.FluxItemClass ~= IC or IC.GetInfo ~= getInfo or IC.GetQuality ~= getQuality
+            or (issecretvalue and issecretvalue(itemID)) then return nil end
+        local rec = infoCache[itemID]
+        if type(rec) == "table" and not (issecrettable and issecrettable(rec))
+            and not (canaccesstable and not canaccesstable(rec)) and getmetatable(rec) == nil then
+            return rawget(rec, "quality")
+        end
+    end
 end
 
 function IC.GetSellPrice(itemID)
@@ -323,17 +338,20 @@ local function CollectTooltipTextFromCTooltipInfo(getData, ...)
     return table.concat(parts, "\n")
 end
 
+-- Reuse the worker while retaining method lookup and errors inside pcall.
+local function PopulateScanTooltip(tip, itemLink, bag, slot)
+    if bag ~= nil and slot ~= nil and tip.SetBagItem then
+        tip:SetBagItem(bag, slot)
+    else
+        tip:SetHyperlink(itemLink)
+    end
+end
+
 local function CollectTooltipTextFromGameTooltip(itemLink, bag, slot)
     local tip = EnsureScanTooltip()
     tip:SetOwner(UIParent, "ANCHOR_NONE")
     tip:ClearLines()
-    local ok = pcall(function()
-        if bag ~= nil and slot ~= nil and tip.SetBagItem then
-            tip:SetBagItem(bag, slot)
-        else
-            tip:SetHyperlink(itemLink)
-        end
-    end)
+    local ok = pcall(PopulateScanTooltip, tip, itemLink, bag, slot)
     if not ok then
         return nil
     end
@@ -351,6 +369,29 @@ local function CollectTooltipTextFromGameTooltip(itemLink, bag, slot)
     return table.concat(parts, "\n")
 end
 
+local tooltipInventory = ns and ns.Flux and ns.Flux.Inventory
+local tooltipIndex = tooltipInventory and tooltipInventory.Index
+local tooltipFind = tooltipIndex and tooltipIndex.Find
+local tooltipIndexFirst = tooltipIndex and tooltipIndex.GetFirst
+local tooltipFirst = tooltipInventory and tooltipInventory.GetFirst
+local tooltipGeneration = tooltipInventory and tooltipInventory.GetBagGeneration
+local tooltipReliable = tooltipInventory and tooltipInventory.IsReliable
+local tooltipAPI = C_TooltipInfo
+local nativeBagTooltip = tooltipAPI and issecurevariable and issecurevariable(tooltipAPI, "GetBagItem")
+    and tooltipAPI.GetBagItem
+local auctionTooltips, tooltipRevision = nil, 0
+
+local function AuctionTooltipLocation(memo, inv, itemID, location)
+    if inv ~= tooltipInventory or inv.GetFirst ~= tooltipFirst
+        or inv.Index ~= tooltipIndex or tooltipIndex.Find ~= tooltipFind or tooltipIndex.GetFirst ~= tooltipIndexFirst
+        or C_TooltipInfo ~= tooltipAPI or tooltipAPI.GetBagItem ~= nativeBagTooltip
+        or inv.GetBagGeneration ~= tooltipGeneration or tooltipGeneration() ~= memo.generation
+        or memo.revision ~= tooltipRevision or type(itemID) ~= "number"
+        or (issecretvalue and (issecretvalue(itemID) or issecretvalue(location.link)))
+        or location.region ~= "bags" or type(location.link) ~= "string" or location.link == "" then return end
+    return memo.items
+end
+
 --- Lowercase multi-line tooltip text for an item, or nil if unavailable.
 function IC.GetTooltipText(itemID, itemLink)
     -- Query the owned location as well as its hyperlink. Classic item IDs can
@@ -362,8 +403,20 @@ function IC.GetTooltipText(itemID, itemLink)
     })
     local text
     if location then
+        -- Share only confirmed native bag text in this one row assembly. A
+        -- missing result must still reach the hyperlink and GameTooltip paths.
+        local memo = auctionTooltips and AuctionTooltipLocation(auctionTooltips, Inv, itemID, location)
+        local saved = memo and memo[itemID]
+        if saved and saved.bag == location.bag and saved.slot == location.slot and saved.link == location.link then
+            return saved.text
+        end
         text = CollectTooltipTextFromCTooltipInfo(C_TooltipInfo and C_TooltipInfo.GetBagItem, location.bag, location.slot)
-        if text then return text end
+        if text then
+            if memo and (not issecretvalue or not issecretvalue(text)) then
+                memo[itemID] = { bag = location.bag, slot = location.slot, link = location.link, text = text }
+            end
+            return text
+        end
     end
     itemLink = itemLink or IC.GetLink(itemID)
     if not itemLink then return nil end
@@ -374,6 +427,30 @@ function IC.GetTooltipText(itemID, itemLink)
         if text then return text end
     end
     return CollectTooltipTextFromGameTooltip(itemLink)
+end
+
+local ownedTooltipText = IC.GetTooltipText
+if ns then
+    function ns.WithAuctionRestockBagTooltips(build, list)
+        local flux = _G.Flux
+        local inv = flux and flux.Inventory
+        local previous = auctionTooltips
+        if previous then tooltipRevision = tooltipRevision + 1 end
+        local memo
+        if _G.FluxItemClass == IC and IC.GetTooltipText == ownedTooltipText and nativeBagTooltip and tooltipIndex
+            and inv == tooltipInventory and tooltipGeneration and inv.GetBagGeneration == tooltipGeneration
+            and tooltipReliable and inv.IsReliable == tooltipReliable and tooltipReliable()
+            and not (InCombatLockdown and InCombatLockdown()) then
+            memo = { generation = tooltipGeneration(), revision = tooltipRevision, items = {} }
+        elseif not previous then
+            return build(list)
+        end
+        auctionTooltips = memo
+        local ok, rows, ordinary = pcall(build, list)
+        auctionTooltips = previous
+        if not ok then error(rows, 0) end
+        return rows, ordinary
+    end
 end
 
 --- Permanent restore record for an item:
@@ -568,6 +645,7 @@ function IC.ClassifyConsumable(itemID, itemLink)
 end
 
 function IC.InvalidateClassification(itemID)
+    if auctionTooltips then tooltipRevision = tooltipRevision + 1 end
     itemID = tonumber(itemID)
     if itemID then
         kindCache[itemID] = nil

@@ -249,7 +249,7 @@ if IsLegacy() and not _G.FluxButtonLegacySystem then
         updateFlags.RefFull = true
         if flagName and updateFlags[flagName] ~= nil then updateFlags[flagName] = true end
         if not updater:GetScript("OnUpdate") then
-            updater:SetScript("OnUpdate", function() Process() end)
+            updater:SetScript("OnUpdate", Process)
         end
     end
 
@@ -852,20 +852,42 @@ if not IsLegacy() then
         return true
     end
 
+    local function safeCall(btn, method)
+        if btn and btn[method] then
+            pcall(btn[method], btn)
+        end
+    end
+
+    local function BatchTexture(button)
+        safeCall(button, "UpdateTexture")
+    end
+
+    local function BatchChecked(button)
+        safeCall(button, "UpdateChecked")
+    end
+
+    local function BatchEquipped(button)
+        safeCall(button, "UpdateEquipped")
+    end
+
+    local function BatchCooldown(button)
+        safeCall(button, "UpdateCooldown")
+    end
+
+    local function BatchText(button)
+        safeCall(button, "UpdateTextCount")
+    end
+
+    local function BatchSpells(button)
+        safeCall(button, "RefreshSpell")
+    end
+
     function Full:OnUpdate(elapsed)
         if self.RefreshButtons then
-            local function safeCall(btn, method)
-                if btn and btn[method] then
-                    pcall(btn[method], btn)
-                end
-            end
-
             local incomplete = false
 
             if not self.RefSkipTexture then
-                if not ForEachEligibleBudgeted(self, "tex", function(button)
-                    safeCall(button, "UpdateTexture")
-                end) then
+                if not ForEachEligibleBudgeted(self, "tex", BatchTexture) then
                     incomplete = true
                 else
                     -- Prevent re-walking textures on subsequent budgeted ticks of same flush.
@@ -874,9 +896,7 @@ if not IsLegacy() then
             end
             
             if self.RefChecked then
-                if not ForEachEligibleBudgeted(self, "chk", function(button)
-                    safeCall(button, "UpdateChecked")
-                end) then
+                if not ForEachEligibleBudgeted(self, "chk", BatchChecked) then
                     incomplete = true
                 else
                     -- Action-bar badges are excluded from ButtonBatchEligible — still need
@@ -899,9 +919,7 @@ if not IsLegacy() then
             end
             
             if self.RefEquipped then
-                if not ForEachEligibleBudgeted(self, "eq", function(button)
-                    safeCall(button, "UpdateEquipped")
-                end) then
+                if not ForEachEligibleBudgeted(self, "eq", BatchEquipped) then
                     incomplete = true
                 else
                     self.RefEquipped = false
@@ -946,9 +964,7 @@ if not IsLegacy() then
             end
             
             if self.RefCooldown then
-                if not ForEachEligibleBudgeted(self, "cd", function(button)
-                    safeCall(button, "UpdateCooldown")
-                end) then
+                if not ForEachEligibleBudgeted(self, "cd", BatchCooldown) then
                     incomplete = true
                 else
                     -- Action-bar badges are excluded from ButtonBatchEligible (usable/checked
@@ -973,9 +989,7 @@ if not IsLegacy() then
             end
             
             if self.RefText then
-                if not ForEachEligibleBudgeted(self, "txt", function(button)
-                    safeCall(button, "UpdateTextCount")
-                end) then
+                if not ForEachEligibleBudgeted(self, "txt", BatchText) then
                     incomplete = true
                 else
                     self.RefText = false
@@ -1074,9 +1088,7 @@ if not IsLegacy() then
             
             -- Handle spell refresh (for spell overrides like Smite -> Void Blast)
             if self.RefSpells then
-                if not ForEachEligibleBudgeted(self, "spl", function(button)
-                    safeCall(button, "RefreshSpell")
-                end) then
+                if not ForEachEligibleBudgeted(self, "spl", BatchSpells) then
                     incomplete = true
                 else
                     self.RefSpells = false
@@ -1459,6 +1471,7 @@ if not IsLegacy() then
         end
         -- Defer processing to OnUpdate (ButtonForge pattern - avoids spam during spec swaps)
         Full.RefSpells = true
+        Full.RefSkipTexture = false
         Full.RefreshButtons = true
         if not Full:GetScript("OnUpdate") then Full:SetScript("OnUpdate", Full.OnUpdate) end
     end
@@ -1552,6 +1565,10 @@ if not IsLegacy() then
             return
         end
         if ctx.sessionClose and ctx.changeKind == "countOnly" then
+            if not Full.RefreshButtons then
+                Full.RefSkipTexture = true
+            end
+            Full.RefreshButtons = true
             Full.RefText = true
             Full.RefUsable = true
             if not Full:GetScript("OnUpdate") then
@@ -1562,6 +1579,10 @@ if not IsLegacy() then
         -- Stack size / same unique IDs: count + usable only (loot/craft storms).
         if ctx.changeKind == "countOnly" and not ctx.force
             and not ctx.fromItemData and not ctx.itemDataItemID then
+            if not Full.RefreshButtons then
+                Full.RefSkipTexture = true
+            end
+            Full.RefreshButtons = true
             Full.RefText = true
             Full.RefUsable = true
             if not Full:GetScript("OnUpdate") then
@@ -1598,6 +1619,7 @@ if not IsLegacy() then
                 return
             end
         end
+        Full.RefSkipTexture = false
         Full.RefreshButtons = true
         Full.RefText = true
         Full.RefUsable = true
@@ -1786,6 +1808,7 @@ function FluxButtonEvents.ForceRefresh()
         end
     else
         if Full then
+            Full.RefSkipTexture = false
             Full.RefreshButtons = true
             Full.RefChecked = true
             Full.RefEquipped = true

@@ -31,6 +31,7 @@ FluxOptionsDefaults = {
             buttonSpacingOffset = -2,
         },
         appearance = {
+            borderType = 1, -- Shared FluxBorder art; 1 preserves the existing battlefield border.
             borderAccent = "class", -- "class" | "atlas" | "custom"
             customAccent = { r = 1, g = 1, b = 1 },
         },

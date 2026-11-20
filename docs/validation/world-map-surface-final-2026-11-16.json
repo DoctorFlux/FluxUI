@@ -1,0 +1,1969 @@
+{
+  "task": "WORLD-MAP-SURFACE-20261116",
+  "dateUTC": "2026-11-16T17:23:43.308838+00:00",
+  "status": "Implemented; user-reported native visual/control scenarios pass on current Forever client. Other-client/native broader checks pending.",
+  "sourceManifest": {
+    "Battlezonemap/FluxBattlefieldWorldMap.lua": {
+      "rawSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+      "normalizedSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10"
+    },
+    "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua": {
+      "rawSha256": "19d76597aa3207a505b171371c812a684cd6a536c36c3a487efaa239489f28ec",
+      "normalizedSha256": "19d76597aa3207a505b171371c812a684cd6a536c36c3a487efaa239489f28ec"
+    },
+    "Battlezonemap/FluxBattlefieldMapPinRouter.lua": {
+      "rawSha256": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc",
+      "normalizedSha256": "a3e363eab0f124296569eb60ef99ad7109f65dcea642d891ec19efda251d14fc"
+    },
+    "Battlezonemap/_tmp_questiepinsmoke.lua": {
+      "rawSha256": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c",
+      "normalizedSha256": "9b9114a267745eb7b1dd751c9bf46586a436ab7e7b3c853f7263b4b5197a016c"
+    },
+    "tests/world_map_surface.lua": {
+      "rawSha256": "10c6bfd6533cc3e86cc38cd1217096f2fde25b24130ec061d70de8fd269ad3bb",
+      "normalizedSha256": "10c6bfd6533cc3e86cc38cd1217096f2fde25b24130ec061d70de8fd269ad3bb"
+    },
+    "tests/map_hbd_all_clients.lua": {
+      "rawSha256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+      "normalizedSha256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0"
+    },
+    "_FluxUI.toc": {
+      "rawSha256": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5",
+      "normalizedSha256": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+    }
+  },
+  "nativeUserConfirmations": [
+    {
+      "sourceRawSha256": "a0942e5fe2b2585e83547528a1f75f011fad6bf562c9e818a80eac3e8c8f7990",
+      "answer": "Map size, pins, and open/close work"
+    },
+    {
+      "sourceRawSha256": "617852687b82e3f296b540b38fc326265f75e2a110bf5b5874b77c77319d5c90",
+      "answer": "all look perfect now",
+      "scope": "Uniform complete scene/player arrow/addon content sizing; subsequent movement fade request separate"
+    },
+    {
+      "sourceRawSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+      "answer": "It stays fully opaque now",
+      "scope": "Hosted map remains opaque while moving"
+    }
+  ],
+  "nativeScope": {
+    "clientProcess": "F:/World of Warcraft/_forever_/Wow.exe PID46260",
+    "window": "World of Warcraft HWND600248958 verified host read-only",
+    "build": "GetBuildInfo not queried; Flux diagnostic Retail label is family label",
+    "actions": "User performed reload/map key/movement/diagnostic commands; agent took no foreground/mouse/keyboard/clipboard control",
+    "agentCapture": "Read-only background PrintWindow of the verified window for the earlier failure; private image retained externally",
+    "notCertified": [
+      "Other clients in native operation",
+      "Exhaustive addon compatibility",
+      "Controller navigation",
+      "Combat/taint safety",
+      "Native CPU/FPS/memory or pixel parity"
+    ]
+  },
+  "implementation": {
+    "source": "Original WorldMapFrame/canvas/pools/providers/addon frames retained, no per-addon adapter/dependency or cloning",
+    "scene": "Immutable original logical viewport; outer fit transform scales native pins/player arrow/direct addon content together",
+    "render": "Framebuffer/flatten originals captured before preparation; change only hidden/OOC, restore before full map",
+    "input": "Native root toggle posthook owns one open/close handoff; ShowUIPanel transfers deferred; stock chrome/root hit region suppressed only mounted",
+    "opacity": "Remove only source from native active/deferred movement fading; prep alpha0/mounted1; normal full map OnShow and mapFade preference retained",
+    "performance": "No Flux OnUpdate/ticker/canvas enumeration/content copies; constant-time root transforms; logical native refresh only mount/reference change;1000 unchanged Sync no fade/alpha writes; no native speedup claim"
+  },
+  "desktop": {
+    "fullPass": 478,
+    "fullFail": 0,
+    "syntaxFiles": 1168,
+    "syntaxFailures": [],
+    "changedDuringRun": [],
+    "helperPriority": "BelowNormal helper;no client priority change",
+    "surfaceChecks": 11064,
+    "hbdChecks": 1969,
+    "lua51Upvalues": {
+      "dateUTC": "2026-11-16T17:15:12.402157+00:00",
+      "scope": "Compiler prototype upvalue limit only; includes _ENV on Lua5.4; no native/API/FPS claim",
+      "files": 3,
+      "functions": 195,
+      "maximum": 25,
+      "failures": [],
+      "prototypes": [
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 19,
+          "end": 27,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 53,
+          "end": 55,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 57,
+          "end": 60,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 62,
+          "end": 74,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 76,
+          "end": 91,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 93,
+          "end": 98,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 100,
+          "end": 116,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 118,
+          "end": 135,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 137,
+          "end": 139,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 141,
+          "end": 158,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 160,
+          "end": 168,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 170,
+          "end": 186,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 188,
+          "end": 201,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 203,
+          "end": 264,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 225,
+          "end": 250,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 240,
+          "end": 247,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 251,
+          "end": 259,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 266,
+          "end": 271,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 275,
+          "end": 280,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 285,
+          "end": 359,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 319,
+          "end": 345,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 346,
+          "end": 354,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 361,
+          "end": 368,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 370,
+          "end": 380,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 384,
+          "end": 431,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 393,
+          "end": 401,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 433,
+          "end": 451,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 453,
+          "end": 473,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 479,
+          "end": 492,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 494,
+          "end": 513,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 515,
+          "end": 540,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 542,
+          "end": 601,
+          "upvalues": 8
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 567,
+          "end": 574,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 576,
+          "end": 578,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 579,
+          "end": 581,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 593,
+          "end": 598,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 603,
+          "end": 613,
+          "upvalues": 7
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 615,
+          "end": 637,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 639,
+          "end": 663,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 645,
+          "end": 656,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 665,
+          "end": 669,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 671,
+          "end": 685,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 691,
+          "end": 700,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 702,
+          "end": 731,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 733,
+          "end": 743,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 737,
+          "end": 741,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 745,
+          "end": 767,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 754,
+          "end": 765,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 769,
+          "end": 798,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 800,
+          "end": 846,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 853,
+          "end": 921,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 877,
+          "end": 881,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapPinRouter.lua",
+          "start": 913,
+          "end": 918,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 50,
+          "end": 58,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 60,
+          "end": 80,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 82,
+          "end": 89,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 91,
+          "end": 96,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 98,
+          "end": 112,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 135,
+          "end": 159,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 147,
+          "end": 155,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 161,
+          "end": 166,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 168,
+          "end": 192,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 175,
+          "end": 191,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 194,
+          "end": 199,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 207,
+          "end": 216,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 218,
+          "end": 241,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 243,
+          "end": 245,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 247,
+          "end": 258,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 260,
+          "end": 292,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 294,
+          "end": 299,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 301,
+          "end": 306,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 308,
+          "end": 316,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 318,
+          "end": 323,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 325,
+          "end": 341,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 343,
+          "end": 359,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 361,
+          "end": 381,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 383,
+          "end": 388,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 390,
+          "end": 394,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 399,
+          "end": 417,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 440,
+          "end": 445,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 447,
+          "end": 480,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 482,
+          "end": 487,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 494,
+          "end": 502,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 504,
+          "end": 515,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 517,
+          "end": 523,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 527,
+          "end": 529,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 531,
+          "end": 533,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 535,
+          "end": 547,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 549,
+          "end": 553,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 555,
+          "end": 564,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 566,
+          "end": 609,
+          "upvalues": 11
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 611,
+          "end": 622,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 624,
+          "end": 639,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 641,
+          "end": 646,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 648,
+          "end": 692,
+          "upvalues": 7
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 678,
+          "end": 684,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 695,
+          "end": 723,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 710,
+          "end": 716,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 725,
+          "end": 775,
+          "upvalues": 8
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 755,
+          "end": 760,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 777,
+          "end": 798,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 786,
+          "end": 791,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 793,
+          "end": 795,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 800,
+          "end": 802,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 804,
+          "end": 815,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 817,
+          "end": 845,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 847,
+          "end": 864,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 856,
+          "end": 863,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 866,
+          "end": 879,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 870,
+          "end": 875,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 876,
+          "end": 878,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 881,
+          "end": 895,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 888,
+          "end": 894,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 897,
+          "end": 902,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 904,
+          "end": 915,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 917,
+          "end": 923,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 925,
+          "end": 944,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 929,
+          "end": 942,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 946,
+          "end": 1014,
+          "upvalues": 12
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 965,
+          "end": 967,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 968,
+          "end": 970,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 990,
+          "end": 996,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1008,
+          "end": 1012,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1016,
+          "end": 1022,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1024,
+          "end": 1050,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1052,
+          "end": 1068,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1070,
+          "end": 1078,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1080,
+          "end": 1093,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1095,
+          "end": 1103,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1105,
+          "end": 1132,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1134,
+          "end": 1222,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1228,
+          "end": 1279,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1263,
+          "end": 1270,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldMapWorldFeatures.lua",
+          "start": 1282,
+          "end": 1293,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 0,
+          "end": 0,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 32,
+          "end": 34,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 35,
+          "end": 47,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 39,
+          "end": 42,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 48,
+          "end": 50,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 51,
+          "end": 58,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 59,
+          "end": 61,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 62,
+          "end": 64,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 65,
+          "end": 74,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 75,
+          "end": 78,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 79,
+          "end": 84,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 85,
+          "end": 99,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 100,
+          "end": 107,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 108,
+          "end": 116,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 117,
+          "end": 133,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 125,
+          "end": 130,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 134,
+          "end": 139,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 136,
+          "end": 136,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 140,
+          "end": 147,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 148,
+          "end": 159,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 150,
+          "end": 155,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 160,
+          "end": 166,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 167,
+          "end": 186,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 187,
+          "end": 211,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 197,
+          "end": 199,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 212,
+          "end": 238,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 239,
+          "end": 252,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 253,
+          "end": 265,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 266,
+          "end": 271,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 272,
+          "end": 279,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 280,
+          "end": 327,
+          "upvalues": 6
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 283,
+          "end": 285,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 286,
+          "end": 288,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 289,
+          "end": 296,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 299,
+          "end": 301,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 303,
+          "end": 305,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 308,
+          "end": 312,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 313,
+          "end": 315,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 316,
+          "end": 321,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 328,
+          "end": 353,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 354,
+          "end": 386,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 387,
+          "end": 400,
+          "upvalues": 4
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 401,
+          "end": 411,
+          "upvalues": 0
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 412,
+          "end": 442,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 424,
+          "end": 424,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 443,
+          "end": 459,
+          "upvalues": 5
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 460,
+          "end": 476,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 477,
+          "end": 617,
+          "upvalues": 25
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 531,
+          "end": 531,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 618,
+          "end": 630,
+          "upvalues": 3
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 624,
+          "end": 626,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 631,
+          "end": 637,
+          "upvalues": 2
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 638,
+          "end": 638,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 639,
+          "end": 639,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 640,
+          "end": 640,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 641,
+          "end": 641,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 642,
+          "end": 664,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 645,
+          "end": 653,
+          "upvalues": 1
+        },
+        {
+          "path": "Battlezonemap/FluxBattlefieldWorldMap.lua",
+          "start": 669,
+          "end": 676,
+          "upvalues": 3
+        }
+      ]
+    },
+    "fullRawReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-final-full-validation.json",
+    "fullRawReportSha256": "7d2669e93a27ecf392c7743e115a2b584deed86958f1ce6b498f060fbf989359",
+    "verification": "docs/reference/verification.json"
+  },
+  "phaseEvidence": {
+    "hbd": {
+      "scope": "Actual production router + tooltip Lua; map/frame APIs modeled; no native taint/pixels/FPS acceptance",
+      "baselineSHA256": "74d9d550fd12f2998be46fcbbaaf68eeecb98421459dd30b8defdb25e7c79d0a",
+      "candidateSHA256": "76241ad1911fd6b0ab6af2e83590e776af3d193c51f897c31e43c038e023bebe",
+      "testSHA256": "63849b17100bb348113d2c728b87384810223556bc5d786f62024da4676f7eb0",
+      "runs": [
+        {
+          "run": 1,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "run": 1,
+          "source": "candidate",
+          "exit": 0,
+          "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+        },
+        {
+          "run": 2,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "run": 2,
+          "source": "candidate",
+          "exit": 0,
+          "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+        },
+        {
+          "run": 3,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "run": 3,
+          "source": "candidate",
+          "exit": 0,
+          "output": "HBD all-client bridge: 1969 checks PASS; 50 toggles retain 2 hooks; 1000/2000 inserts have zero scans/redraws\n"
+        },
+        {
+          "source": "reject-modern-clients",
+          "script": "tests/map_hbd_all_clients.lua",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: optional HBD bridge installs\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:15: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "source": "retain-per-visit-removal-hooks",
+          "script": "tests/map_hbd_all_clients.lua",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/map_hbd_all_clients.lua:8: retail: removal stays one callback per library across map visits\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/map_hbd_all_clients.lua:8: in local 'check'\n\ttests/map_hbd_all_clients.lua:30: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "source": "refresh-inactive-clone",
+          "script": "Battlezonemap/_tmp_questiepinsmoke.lua",
+          "exit": 1,
+          "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: Battlezonemap/_tmp_questiepinsmoke.lua:271: inactive native map refresh stole World Map icons\nstack traceback:\n\t[C]: in function 'assert'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:271: in local 'Check'\n\tBattlezonemap/_tmp_questiepinsmoke.lua:294: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    },
+    "blackout": {
+      "scope": "Desktop explicit native blackout strata+coverage and ownership regressions; native client confirmation pending",
+      "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-blackout-before-20261116T155533Z",
+      "baselineSha256": "727569703de32235d26be93ce82a49ca7f5cb3ca4299202d0ffeca3c34d5c4cb",
+      "candidateSha256": "f60bafda9675299b275fe7fb3c5b0cf9229075b2d407d75846ce46ba7ae831a6",
+      "testSha256": "3edcc20028db423a721241b61230d6a3532fecf4e1c5781bc2105ca54322285d",
+      "records": [
+        {
+          "pair": 1,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native fullscreen blackout cannot obscure embedded map surface\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:563: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 6797 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native fullscreen blackout cannot obscure embedded map surface\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:563: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 6797 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native fullscreen blackout cannot obscure embedded map surface\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:563: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 6797 checks\n"
+        }
+      ]
+    },
+    "preparation": {
+      "scope": "Desktop first-load native-layout simulation, lifecycle/layering regressions, and harmful controls; no native pixel/taint/FPS acceptance",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-preparation-before-20261116T160828Z",
+      "baselineSha256": "2a1899b0a6e8a76ef35e772c989ad04415dfcad83aa4935413626e96bdb9dfeb",
+      "candidateSha256": "571122522f8361ae71a7591603202d2ad2de894f3269897e44e826eb03705076",
+      "testSha256": "3e2c1c11ba340c8bc934fbd7df987100f0c6f4be6230d8acb5d469610484f471",
+      "sourceStable": true,
+      "pairs": [
+        {
+          "pair": 1,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source crop reads settled child insets after native next-frame layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:642: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 7013 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source crop reads settled child insets after native next-frame layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:642: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 7013 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source crop reads settled child insets after native next-frame layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:642: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 7013 checks\n"
+        }
+      ],
+      "controls": [
+        {
+          "name": "hide-between-native-layout-probes",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source settles for 1 frame(s) before original surface adoption\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:714: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "measure-populated-stale-rect-immediately",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source crop reads settled child insets after native next-frame layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:642: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-zero-anchor-seed",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: unanchored native source gets only a temporary centered invisible preparation anchor\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:657: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-preparation-opacity-restoration",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail retains native root size and opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:223: in method 'CheckRestored'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:259: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "ignore-preparing-full-map-handoff",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native full-map request during preparation keeps original normal window\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:737: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "classify-preparing-source-as-full-map",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail original world map visible in Flux host\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:237: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "unbounded-native-layout-probes",
+          "exit": 1,
+          "rejected": true,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: unavailable native layout exhausts bounded retries without permanent polling\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:749: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    },
+    "mapOnly": {
+      "scope": "Desktop native-map-only mounting, anchor-aware physical rectangle, readable source scale and ownership regressions. Native pixels/input/taint/FPS remain pending.",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-field-size-before-20261116T161806Z",
+      "baselineSha256": "571122522f8361ae71a7591603202d2ad2de894f3269897e44e826eb03705076",
+      "candidateSha256": "e1bdfcf9dba0ce8aea08a84dc0ae8629c0ff9f3afbfda60f0dfaff3d12e9df60",
+      "testSha256": "0322338f87ea2b0d6c976522ea8773bfff6b1e0e83fdbdb4dab3a3578e21a21a",
+      "sourceStable": true,
+      "pairs": [
+        {
+          "pair": 1,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail original source uses normal pin and text scale inside Flux viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:297: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 9398 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail original source uses normal pin and text scale inside Flux viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:297: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 9398 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail original source uses normal pin and text scale inside Flux viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:297: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 9398 checks\n"
+        }
+      ],
+      "controls": [
+        {
+          "name": "shrink-complete-native-window",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:260: surface host scheduled recursive timers\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:260: in method 'Flush'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:293: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-map-only-scroll-anchor",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map-only source mount follows settled native next-frame layout\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:701: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-root-viewport-size",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:260: surface host scheduled recursive timers\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:260: in method 'Flush'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:293: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-original-root-size-restore",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail retains native root size and opacity\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:280: in method 'CheckRestored'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:316: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-original-scroll-anchor-restore",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: full native map restores original scroll owner and first anchor tuple\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:821: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "leave-native-window-chrome-visible",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: embedded source hides only known stock window chrome\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:813: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "leave-native-root-mouse-enabled",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: embedded native root cannot intercept mouse outside its map content\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:801: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-battlefield-click-policy",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: original source adopts battlefield input policy through unchanged native methods\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:802: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "repeat-native-size-refresh-unchanged",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: unchanged map-only source has no repeated input-policy or native-size work\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:811: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-native-size-refresh",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map-only source performs one native size refresh after its body settles\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:807: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    },
+    "rendererToggle": {
+      "scope": "Desktop native-toggle ordering, render-flag ownership and hidden/OOC setter sequencing, battlefield UI scale, unchanged addon members. No GPU cache/compositor simulation or native rendering acceptance.",
+      "baselineOrigin": "Canonical prior validated source reconstructed by undoing exactly one recorded harmful control; digest matches prior candidate report.",
+      "priorReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-field-size-validation\\results.json",
+      "baselineSha256": "e1bdfcf9dba0ce8aea08a84dc0ae8629c0ff9f3afbfda60f0dfaff3d12e9df60",
+      "candidateSha256": "a0942e5fe2b2585e83547528a1f75f011fad6bf562c9e818a80eac3e8c8f7990",
+      "testSha256": "236870d13e237309e9a4d6b6d1ad7e8a4a36ce443ed0fd7e20a9ef7221971b12",
+      "sourceStable": true,
+      "pairs": [
+        {
+          "pair": 1,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map key closes full window even when native toggle selected another open state\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:987: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 10393 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map key closes full window even when native toggle selected another open state\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:987: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 10393 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "baseline",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map key closes full window even when native toggle selected another open state\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:987: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "candidate",
+          "exit": 0,
+          "output": "Original world-map surface lifecycle PASS: 10393 checks\n"
+        }
+      ],
+      "controls": [
+        {
+          "name": "reopen-instead-of-close-full-toggle",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: map key closes full window even when native toggle selected another open state\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:987: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "double-handle-method-and-global-toggle",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: root-method and global toggle posthooks cannot double-transfer first open\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1029: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "ignore-direct-native-root-toggle",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: direct root method and global wrapper close full map exactly once\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1033: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "transfer-from-inside-native-show-panel",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: legacy first open can call ShowUIPanel inside native toggle without closing the requested full map\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1000: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "ignore-battlefield-effective-scale",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source logical scale follows native battlefield effective scale\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1054: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-logical-size-scale-compensation",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: source logical size compensates for native battlefield scale\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1056: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "snapshot-transient-render-flags",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source OnShow observes already-configured rendering flags\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1099: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:111: in local 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:34: in upvalue 'dispatch'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:43: in method 'Show'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:220: in upvalue 'old'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:243: in global 'ShowUIPanel'\n\t...gle-scale-validation\\snapshot-transient-render-flags.lua:432: in upvalue 'OpenFull'\n\t...gle-scale-validation\\snapshot-transient-render-flags.lua:267: in upvalue 'OnNativeToggle'\n\t...gle-scale-validation\\snapshot-transient-render-flags.lua:274: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:243: in field 'ToggleWorldMap'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1115: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-original-renderer-restoration",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source OnShow observes already-configured rendering flags\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1099: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:111: in local 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:34: in upvalue 'dispatch'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:43: in method 'Show'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:220: in upvalue 'old'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:243: in global 'ShowUIPanel'\n\t...-scale-validation\\omit-original-renderer-restoration.lua:432: in upvalue 'OpenFull'\n\t...-scale-validation\\omit-original-renderer-restoration.lua:267: in upvalue 'OnNativeToggle'\n\t...-scale-validation\\omit-original-renderer-restoration.lua:274: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:243: in field 'ToggleWorldMap'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1115: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "leave-native-render-flags-enabled",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source OnShow observes already-configured rendering flags\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1099: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:111: in local 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:34: in upvalue 'dispatch'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:43: in method 'Show'\n\t...e-scale-validation\\leave-native-render-flags-enabled.lua:531: in upvalue 'Sync'\n\t...e-scale-validation\\leave-native-render-flags-enabled.lua:609: in method 'Sync'\n\t...e-scale-validation\\leave-native-render-flags-enabled.lua:599: in method 'Activate'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1104: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "repeat-unneeded-framebuffer-setter",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: initial native render flags change only when their saved values differ\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1108: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "configure-renderer-after-native-show",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source OnShow observes already-configured rendering flags\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1099: in upvalue 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:111: in local 'fn'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:34: in upvalue 'dispatch'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:43: in method 'Show'\n\t...cale-validation\\configure-renderer-after-native-show.lua:531: in upvalue 'Sync'\n\t...cale-validation\\configure-renderer-after-native-show.lua:610: in method 'Sync'\n\t...cale-validation\\configure-renderer-after-native-show.lua:600: in method 'Activate'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1104: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    },
+    "uniformScene": {
+      "scope": "Desktop whole-scene uniform transform, actual read-only native Lua pin/player scale methods, original addon object pixel ratios, fixed logical scene and native-refresh bounds. Native GPU pixels/controller/taint/FPS remain outside this fixture.",
+      "requirementChange": "Prior native-BF-UI-size behavior was accepted for layout/render/M then superseded by explicit whole-world-map uniform scaling request. Baseline rejection demonstrates the new requirement, not a retroactive failure of prior scope.",
+      "baselineOrigin": "Canonical prior validated source recovered by reversing exactly one prior control; digest verified against prior report.",
+      "priorReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-render-toggle-scale-validation\\results.json",
+      "baselineSha256": "a0942e5fe2b2585e83547528a1f75f011fad6bf562c9e818a80eac3e8c8f7990",
+      "candidateSha256": "617852687b82e3f296b540b38fc326265f75e2a110bf5b5874b77c77319d5c90",
+      "testSha256": "6e7ce0357e23eea7f5c7d9e434d8c9ddca1fe471c66d3edb599a67f230e6c1b0",
+      "nativeSourceMethods": [
+        {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_MapCanvas\\MapCanvas_DataProviderBase.lua",
+          "sha256": "22d116c7d374116623ca1f4adab12a5dea48a6f94485606712578b96a59df7a0"
+        },
+        {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_SharedMapDataProviders\\GroupMembersDataProvider.lua",
+          "sha256": "573212512b608253fad4c3ab256427d0c41599bc60304479b9683f3616202909"
+        }
+      ],
+      "sourceStable": true,
+      "pairs": [
+        {
+          "pair": 1,
+          "source": "superseded-native-ui-scale-mode",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail entire original scene uses one uniform fit with its native logical viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:352: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "uniform-scene-candidate",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nOriginal world-map surface lifecycle PASS: 10893 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "superseded-native-ui-scale-mode",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail entire original scene uses one uniform fit with its native logical viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:352: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "uniform-scene-candidate",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nOriginal world-map surface lifecycle PASS: 10893 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "superseded-native-ui-scale-mode",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail entire original scene uses one uniform fit with its native logical viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:352: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "uniform-scene-candidate",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nOriginal world-map surface lifecycle PASS: 10893 checks\n"
+        }
+      ],
+      "controls": [
+        {
+          "name": "resize-native-logical-scene-to-host",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail entire original scene uses one uniform fit with its native logical viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:352: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "restore-native-battlefield-ui-scale-only",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: retail entire original scene uses one uniform fit with its native logical viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:352: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "fit-width-while-clipping-height",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source scene stays inside the battlefield viewport\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:334: in local 'CheckSceneFit'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:816: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-source-scene-centering",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native source scene is centered without stretching\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in upvalue 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:336: in local 'CheckSceneFit'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:816: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "reset-native-canvas-on-every-host-resize",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: host scale changes do not reset native canvas zoom or pin sizing\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1081: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "retain-old-scene-across-new-ownership",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: new source ownership captures its new normal native viewport instead of stale field geometry\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1212: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-native-scene-logical-size",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:269: surface host scheduled recursive timers\nstack traceback:\n\t[C]: in function 'error'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:269: in method 'Flush'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:347: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "recapture-reference-from-embedded-geometry",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: dirty embedded geometry cannot replace the captured source scene dimensions\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1084: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    },
+    "opacity": {
+      "scope": "Desktop source-owned opacity with actual read-only native PlayerMovementFrameFader active/deferred service, native movement events, normal full-map fade, unchanged shared service, no opacity polling or preference writes. Native new opacity pixels/combat taint/FPS not certified.",
+      "baselineAcceptance": "Prior source617852 was natively accepted for uniform scene/render/map-key behavior; the new explicit always-opaque Flux-host request supersedes movement-fade behavior only.",
+      "baselineOrigin": "Canonical prior validated source recovered by reversing exactly one recorded control; digest matches prior report.",
+      "priorReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-uniform-scene-validation\\results.json",
+      "baselineSha256": "617852687b82e3f296b540b38fc326265f75e2a110bf5b5874b77c77319d5c90",
+      "candidateSha256": "5bc1e4efbe866913c05ac85dba214e7bce7d3e257fcf498b0ff150501d7e8e10",
+      "testSha256": "10c6bfd6533cc3e86cc38cd1217096f2fde25b24130ec061d70de8fd269ad3bb",
+      "nativeSourceFiles": [
+        {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_FrameXMLBase\\PlayerMovementFrameFader.lua",
+          "sha256": "7f4ff062b75e5fbea78570968f07bfab3b64f91d7a3e7d3fde8bca4a0b28617d"
+        },
+        {
+          "path": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\__AddonsForRef\\wow-ui-source-forever\\Interface\\AddOns\\Blizzard_WorldMap\\Blizzard_WorldMap.lua",
+          "sha256": "e371d44d568613e38ba7155726c37a65f659b5143e77fdf09fdba2afbab8043d"
+        }
+      ],
+      "sourceStable": true,
+      "pairs": [
+        {
+          "pair": 1,
+          "source": "prior-native-accepted-uniform-scene",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: zero-anchor source initializes fully opaque inside Flux\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:776: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 1,
+          "source": "opaque-flux-host",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nRead-only native PlayerMovementFrameFader executed; no native pixels/FPS claim\nOriginal world-map surface lifecycle PASS: 11064 checks\n"
+        },
+        {
+          "pair": 2,
+          "source": "prior-native-accepted-uniform-scene",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: zero-anchor source initializes fully opaque inside Flux\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:776: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 2,
+          "source": "opaque-flux-host",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nRead-only native PlayerMovementFrameFader executed; no native pixels/FPS claim\nOriginal world-map surface lifecycle PASS: 11064 checks\n"
+        },
+        {
+          "pair": 3,
+          "source": "prior-native-accepted-uniform-scene",
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: zero-anchor source initializes fully opaque inside Flux\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:776: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "pair": 3,
+          "source": "opaque-flux-host",
+          "exit": 0,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nRead-only native PlayerMovementFrameFader executed; no native pixels/FPS claim\nOriginal world-map surface lifecycle PASS: 11064 checks\n"
+        }
+      ],
+      "controls": [
+        {
+          "name": "leave-native-deferred-fader-registered",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nC:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native movement events cannot reveal a still-preparing source\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1367: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "reveal-source-during-preparation",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: unanchored native source gets only a temporary centered invisible preparation anchor\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:773: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "miss-late-embedded-native-onshow",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nC:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: late native OnShow deferred entry is removed before movement can merge it\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1377: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "suppress-normal-full-map-fade",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native full-map request during preparation preserves opacity and requested map\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:934: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "remove-native-fader-on-every-sync",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nC:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: 1000 unchanged syncs perform no native fader removals or opacity writes\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1382: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "write-opacity-on-every-sync",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nC:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: 1000 unchanged syncs perform no native fader removals or opacity writes\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1382: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "omit-original-source-alpha-save",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: zero-anchor source release restores original empty anchors and hidden state\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:779: in main chunk\n\t[C]: in ?\n"
+        },
+        {
+          "name": "use-wrong-shared-fader-receiver",
+          "compiled": true,
+          "rejected": true,
+          "exit": 1,
+          "output": "Read-only native pin/player scale methods executed; GPU rendering remains unverified\nC:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: ...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: native movement events cannot reveal a still-preparing source\nstack traceback:\n\t[C]: in function 'assert'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:5: in local 'check'\n\t...il_\\Interface\\AddOns\\_FluxUI\\tests\\world_map_surface.lua:1367: in main chunk\n\t[C]: in ?\n"
+        }
+      ]
+    }
+  },
+  "sourceEvidence": [
+    "docs/validation/world-map-bridge-sources-2026-11-16.json",
+    "docs/validation/world-map-surface-sources-2026-11-16.json",
+    "docs/validation/world-map-uniform-scale-sources-2026-11-16.json",
+    "docs/validation/world-map-opacity-sources-2026-11-16.json"
+  ],
+  "checkpoints": [
+    "docs/validation/world-map-bridge-checkpoint-2026-11-16.json",
+    "docs/validation/world-map-surface-blank-checkpoint-2026-11-16.json",
+    "docs/validation/world-map-field-size-checkpoint-2026-11-16.json"
+  ],
+  "sourceHistoryAndPrivateSettings": "External verified checkpoints;129 read-only on-disk settings metadata entries;no quiescent settings backup claimed",
+  "agentSettingsOrProfilerWrites": false,
+  "manualInstallationCopy": false,
+  "publication": "Existing main/dirty work preserved;no branch/commit/push",
+  "wowSim": "Read-only evaluation: docs/validation/wowsim-evaluation-2026-11-16.json;not installed or used to certify native rendering",
+  "documentationValidation": {
+    "exit": 1,
+    "issues": [
+      "Recorded verification predates current source: Bars/Paint.lua"
+    ],
+    "reason": "Unrelated source changed after the stable full run;not reverted or replaced. Map-owned sources still exactly match final tested hashes.",
+    "oldPaintNormalizedSha256": "a2f62dd6a6cb07e7eeddbd1bed57b1060a04a9f5360519f080e55303b3e256b7",
+    "newPaintNormalizedSha256": "24736d8c52e7ef5a69e16bcaa9848986aed1600f465ecf2e11ba34e326dea501",
+    "sourceInventory": "Refreshed:1201 sources;625 TOC/XML reachable;444 settings;584 defaults",
+    "noOwnedSourceIssuesReported": true
+  },
+  "finalWhitespaceCheck": "git diff --check scoped tracked files PASS;main and .githooks retained"
+}

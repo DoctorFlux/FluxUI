@@ -731,6 +731,46 @@ local function ChatMetricsClose(pin, x, y, w, h)
         and math.abs(pin.h - h) <= CHAT_PIN_HOLD_PX
 end
 
+local function ChatPinValueMatches(current, expected)
+    if issecretvalue and issecretvalue(current) then return false end
+    if type(expected) == "number" then
+        return type(current) == "number" and math.abs(current - expected) < 1/1024
+    end
+    return current == expected
+end
+
+local function ChatPinMatches(chatFrame, pin)
+    local matches = ChatPinValueMatches
+    if not (matches(chatFrame.ignoreFramePositionManager, true) and chatFrame.GetNumPoints
+        and chatFrame.GetPoint and matches(chatFrame:GetNumPoints(), 1)) then return false end
+    local point, parent, relative, x, y = chatFrame:GetPoint(1)
+    if not (matches(point, "BOTTOMLEFT") and matches(parent, UIParent) and matches(relative, "BOTTOMLEFT")
+        and matches(x, pin.x) and matches(y, pin.y) and matches(chatFrame:GetWidth(), pin.w)
+        and matches(chatFrame:GetHeight(), pin.h)) then return false end
+    if chatFrame.IsMovable and not matches(chatFrame:IsMovable(), true) then return false end
+    if chatFrame.IsUserPlaced and not matches(chatFrame:IsUserPlaced(), true) then return false end
+    local info = chatFrame.systemInfo
+    if issecretvalue and issecretvalue(info) then return false end
+    if not info then return true end
+    local anchor = info.anchorInfo
+    if issecretvalue and issecretvalue(anchor) then return false end
+    local scale = chatFrame.GetScale and chatFrame:GetScale() or 1
+    if issecretvalue and issecretvalue(scale) or type(scale) ~= "number" or scale <= 0 then return false end
+    return anchor and matches(info.isInDefaultPosition, false) and matches(info.anchorInfo2, nil)
+        and matches(anchor.point, "BOTTOMLEFT") and matches(anchor.relativeTo, "UIParent")
+        and matches(anchor.relativePoint, "BOTTOMLEFT") and matches(anchor.offsetX, pin.x * scale)
+        and matches(anchor.offsetY, pin.y * scale)
+end
+
+local function UpdateChatDockDependents(chatFrame, pin)
+    if chatFrame ~= ChatFrame1 then return end
+    local focus = FluxUIPositionFocusFrameDefault
+    if focus then focus() end
+    local raid = FluxRaidFrame_UpdatePosition
+    if raid then raid() end
+    pin.focus, pin.raid = focus, raid
+end
+
 local chatPinApplying = false
 local chatPinPending = false
 local chatPinHold = false
@@ -761,7 +801,7 @@ local function ScheduleChatPin(chatFrame)
     end
 end
 
-ApplyPosition = function(chatFrame, force)
+ApplyPosition = function(chatFrame, force, stripOnly)
     if chatPinHold or not chatFrame or chatPinApplying then
         return
     end
@@ -781,6 +821,9 @@ ApplyPosition = function(chatFrame, force)
     local w = GetChatWidth()
     local h = GetChatHeight()
     local yBottom = GetChatFloorAboveActionStrip()
+    -- The raid stack reads the computed strip floor even in pos2, where the
+    -- chat log itself follows the micro-menu column.
+    local dockY = yBottom + h
     local pos2Bottom, pos2H = GetPos2ChatVertical()
     if pos2Bottom then
         yBottom = pos2Bottom
@@ -792,11 +835,24 @@ ApplyPosition = function(chatFrame, force)
         return
     end
     local xLeft = GetChatBottomLeftX()
+    if stripOnly and lastChatPin and lastChatPin.x == xLeft and lastChatPin.y == yBottom
+        and lastChatPin.w == w and lastChatPin.h == h then
+        local ok, matches = pcall(ChatPinMatches, chatFrame, lastChatPin)
+        if ok and matches then
+            if lastChatPin.dockY ~= dockY or lastChatPin.focus ~= FluxUIPositionFocusFrameDefault
+                or lastChatPin.raid ~= FluxRaidFrame_UpdatePosition then
+                UpdateChatDockDependents(chatFrame, lastChatPin)
+                lastChatPin.dockY = dockY
+            end
+            chatPinApplying = false
+            return
+        end
+    end
     if not force and ChatMetricsClose(lastChatPin, xLeft, yBottom, w, h) then
         chatPinApplying = false
         return
     end
-    lastChatPin = { x = xLeft, y = yBottom, w = w, h = h }
+    lastChatPin = { x = xLeft, y = yBottom, w = w, h = h, dockY = dockY }
     PinChatFrame(chatFrame, xLeft, yBottom, w, h)
 
     local id = chatFrame:GetID()
@@ -815,13 +871,7 @@ ApplyPosition = function(chatFrame, force)
     -- Edit Mode anchors under addon execution and poisons a later
     -- UpdateBottomActionBarPositions → RightManagedFrameContainer:SetSize.
 
-    if chatFrame == ChatFrame1 and FluxUIPositionFocusFrameDefault then
-        FluxUIPositionFocusFrameDefault()
-    end
-
-    if chatFrame == ChatFrame1 and FluxRaidFrame_UpdatePosition then
-        FluxRaidFrame_UpdatePosition()
-    end
+    UpdateChatDockDependents(chatFrame, lastChatPin)
     chatPinApplying = false
 end
 
@@ -853,6 +903,10 @@ function _G.FluxChatFrame_ApplyPrimaryPosition(force)
         return
     end
     ApplyPositionWithRetries(ChatFrame1, force)
+end
+
+function _G.FluxChatFrame_UpdateAfterStripLayout()
+    ApplyPosition(ChatFrame1, true, true)
 end
 
 --- Classic bag drags resize BagsBar and UIParent then re-pins chat from a fresh

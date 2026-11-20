@@ -7,6 +7,8 @@ local function slice(s, first, last)
 end
 local hideSource = read("Blizzard/Hide.lua")
 local runtimeSource = read("UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua")
+local hoverSource = slice(read("Binding/Input/FluxMouseoverKeybind.lua"), "local function FrameUnderMouse(f)",
+    "function FluxMouseoverKeybind:HasHoverRoutingActive()")
 local playerSource = read("UnitFrames/FluxUnitFrames_Player.lua")
 local writeSource = read("BlizzardSettings/Write.lua")
 local uiSource = read("Core/FluxAPI/UI.lua")
@@ -45,13 +47,23 @@ local function exercise(branch, source)
     function methods:IsProtected() return not self.owned end
     function methods:GetParent() return self.parent end
     function methods:SetParent(parent) write(); check(not self.editMode, "native Edit Mode root never reparented"); self.parent = parent end
-    function methods:GetChildren() return table.unpack(self.children) end
+    function methods:GetChildren()
+        s.childReads = (s.childReads or 0) + 1
+        return table.unpack(self.children)
+    end
     function methods:SetAllPoints() end
     function methods:IsShown() return self.shown end
     function methods:Hide() write(); check(not self.editMode, "native Edit Mode root never hidden"); self.shown = false end
     function methods:Show() write(); self.shown = true end
     function methods:SetAlpha(value) write(); self.alpha = value end
     function methods:GetAlpha() return self.alpha end
+    function methods:IsForbidden() return false end
+    function methods:IsMouseOver() return self.hovered == true end
+    function methods:GetHitRectInsets() return table.unpack(self.insets or { 0, 0, 0, 0 }) end
+    function methods:SetHitRectInsets(left, right, top, bottom)
+        write(); self.insets = { left, right, top, bottom }
+        self.hitRectWrites = (self.hitRectWrites or 0) + 1
+    end
     function methods:IsMouseClickEnabled() return self.secretClick and secret or self.click end
     function methods:IsMouseMotionEnabled()
         self.motionReads = (self.motionReads or 0) + 1
@@ -100,6 +112,43 @@ local function exercise(branch, source)
     local function run(body) return assert(load(body, "@native-mouse-production", "t", env))("_FluxUI", ns) end
     run(sources.hide or hideSource)
     local blizz = ns.Flux.Blizz
+    if sources.measureRoster then
+        local roots = {}
+        for _, count in ipairs({40, 5, 5}) do
+            local grid = frame("Grid" .. count, false, true, true, true, true, true)
+            grid.parent = env.UIParent
+            roots[#roots + 1] = grid
+            for i = 1, count do
+                local member = frame("Member" .. i, false, false, true, true, true, true)
+                grid.children[#grid.children + 1] = member
+                for j = 1, 4 do
+                    local child = frame("Child" .. j, false, false, true, false, true, true)
+                    child.skip = j == 4
+                    member.children[#member.children + 1] = child
+                end
+            end
+        end
+        local opts = {keepEvents = true, keepParent = true, skipMouseChild = function(widget) return widget.skip end}
+        local function sweep()
+            for _, root in ipairs(roots) do blizz.Hide(root, opts) end
+        end
+        sweep()
+        local writes, reads = s.writes, s.childReads
+        collectgarbage("collect")
+        collectgarbage("stop")
+        local heap, start = collectgarbage("count"), os.clock()
+        for _ = 1, 24 do sweep() end
+        local growth, seconds = collectgarbage("count") - heap, os.clock() - start
+        collectgarbage("restart")
+        for _, root in ipairs(roots) do
+            check(root.alpha == 0 and not root.click, "whole grid remains suppressed")
+            for _, member in ipairs(root.children) do
+                check(not member.click and not member.children[3].motion and member.children[4].motion,
+                    "wide and narrow descendants retain the exclusion policy")
+            end
+        end
+        return {writes = s.writes - writes, reads = s.childReads - reads, growth = growth, milliseconds = seconds * 1000}
+    end
     local grid = frame("CompactPartyFrame", false, true, true, true, true)
     local member = frame("CompactPartyFrameMember1", false, false, true, true, true)
     grid.children = { member }; grid.parent = env.UIParent; grid.alpha = 0.7
@@ -112,7 +161,19 @@ local function exercise(branch, source)
     check(not grid.click and not member.click and grid.scripts.OnShow == originalScript and s.hooks == hooks,
         "native grid suppresses input without hooking native OnShow")
     check(grid.events.GROUP_ROSTER_UPDATE, "native roster events retained")
+    local warmWrites = s.writes
     blizz.Hide(grid, { keepEvents = true, keepParent = true })
+    check(s.writes == warmWrites, "already transparent root and settled mouse geometry require no writes")
+    grid.alpha = 0.4
+    blizz.Hide(grid, { keepEvents = true, keepParent = true })
+    check(grid.alpha == 0, "a native root that restores alpha is suppressed on the next sweep")
+    for _, getter in ipairs({function() return secret end, function() error("alpha unavailable") end, false}) do
+        grid.GetAlpha = getter
+        grid.alpha = 0.4
+        blizz.Hide(grid, { keepEvents = true, keepParent = true })
+        check(grid.alpha == 0, "an unreadable or absent alpha getter retains conservative suppression")
+    end
+    grid.GetAlpha = nil
     blizz.Unhide(grid)
     check(grid.alpha == 0.7 and grid.click and member.click and grid.parent == env.UIParent,
         "native grid restoration preserves original alpha/input/parent after repeated suppression")
@@ -134,6 +195,14 @@ local function exercise(branch, source)
     blizz.Unhide(grid)
     check(grid.alpha == 0.7 and grid.click, "cancelled deferred restoration cannot overwrite the original alpha snapshot")
     local player = frame("PlayerFrame", false, true, true, true, true, true)
+    local nativeInsets = (branch == "live" or branch == "forever") and { 6, 0, 4, 9 } or { 21, 19, 12, 15 }
+    player.insets = nativeInsets
+    local function containsPlayerRect(widget)
+        local left, right, top, bottom = widget:GetHitRectInsets()
+        -- Native PlayerFrame is 232x100 on all inspected clients. Ignore mouse
+        -- switches deliberately: native transitions can restore/obscure them.
+        return 100 >= left and 100 <= 232 - right and 50 >= bottom and 50 <= 100 - top
+    end
     player.unit = "player"; env.PlayerFrame = player
     player.events.UNIT_ENTERED_VEHICLE = {}; player.events.UNIT_HEAL_PREDICTION = { "player", "vehicle" }
     player.PlayerFrameContent = frame("PlayerFrameContent", false, false, true, false, true)
@@ -141,6 +210,7 @@ local function exercise(branch, source)
     local health = frame("PlayerFrameHealthBar", false, false, true, false, true)
     local legacy = frame("PlayerFrameManaBar", false, false, false, true, true)
     local pet = frame("PetFrame", false, false, true, true, true)
+    env.PetFrame = pet
     local resources = frame("PlayerBottomManagedFrameContainer", false, false, true, true, true)
     local totem = frame("TotemFrame", false, false, true, true, true)
     env.PlayerBottomManagedFrameContainer, env.TotemFrame = resources, totem
@@ -156,6 +226,21 @@ local function exercise(branch, source)
     check(player.click and s.deferred["suppress.player"], "combat suppression deferred until replacement is legal")
     s.combat = false; s.deferred["suppress.player"]()
     check(not player.click and not player.motion and not player.wheel, "transparent native player root is mouse-transparent")
+    check(not containsPlayerRect(player), "native player rectangle cannot supply a hover unit even if mouse switches change")
+    local scan = run("local registeredFrames = { PlayerFrame }\n" .. (sources.hover or hoverSource)
+        .. "\nreturn _PerformHoverContextScan")
+    player.hovered, health.hovered = true, true
+    env.GetMouseFoci = function() return { player } end
+    check(not scan(), "suppressed native root cannot activate hover bindings through mouse foci or geometry fallback")
+    env.GetMouseFoci = function() return { health } end
+    check(not scan(), "suppressed native descendant cannot activate its retained parent hover registration")
+    env.GetMouseFoci = nil
+    check(not scan(), "fallback hover scan excludes the suppressed root and its children")
+    local petScan = run("local registeredFrames = { PlayerFrame, PetFrame }\n" .. (sources.hover or hoverSource)
+        .. "\nreturn _PerformHoverContextScan")
+    pet.hovered = true
+    check(petScan(), "independently registered native pet remains a valid hover surface")
+    pet.hovered = false
     check(not health.motion and not legacy.click and not legacy.motion, "nested modern/legacy status bars stop catching input")
     check(pet.click and resources.click and totem.click, "independent pet/class-resource/totem controls keep input")
     check(player.unit == "player" and player.events.UNIT_ENTERED_VEHICLE and player.scripts.OnEvent == originalCast,
@@ -165,9 +250,13 @@ local function exercise(branch, source)
         and not player.PlayerFrameContent.shown, "unused player artwork containers are hidden and mouse-transparent")
     local writes = s.writes
     env.FluxUnitFrames_SuppressBlizzardUnitFrame("player")
+    check(player.hitRectWrites == 1, "unchanged player rectangle is not rewritten")
     -- Content/alpha can be reasserted by the existing coordinator; no input setter repeats.
     check(not player.click and not health.motion, "repeated player suppression remains effective")
     s.wanted = false; env.FluxUnitFrames_RefreshBothSidesAfterToggle()
+    check(scan(), "restored Blizzard frame participates in hover bindings again")
+    check(containsPlayerRect(player) and table.concat(player.insets, ",") == table.concat(nativeInsets, ","),
+        "Blizzard selection restores its exact client-specific hit rectangle")
     check(player.click and player.motion and player.wheel and not health.click and health.motion,
         "Blizzard selection restores exact split input states")
     check(legacy.click and legacy.motion, "legacy combined mouse input restored")
@@ -180,6 +269,29 @@ local function exercise(branch, source)
     env.FluxUnitFrames_SetBlizzardPlayerPredictionMuted(false)
     check(not player.PlayerFrameContainer.shown, "repeated suppression preserves an originally hidden artwork container")
     check(player.events.UNIT_HEAL_PREDICTION[2] == "vehicle", "native overlay unit filters restored")
+    -- Reproduce the root that the ordinary mouse helper deliberately leaves
+    -- untouched when its switches are opaque. Geometry remains public.
+    local opaquePlayer = frame("PlayerFrame", false, true, true, true, true, true)
+    opaquePlayer.secretClick, opaquePlayer.secretMotion = true, true
+    opaquePlayer.insets = { 0, 0, 0, 33 } -- Classic death-knight layout
+    env.PlayerFrame = opaquePlayer; s.wanted = true
+    env.FluxUnitFrames_SuppressBlizzardUnitFrame("player")
+    check(opaquePlayer.click and opaquePlayer.motion and not containsPlayerRect(opaquePlayer),
+        "opaque native player switches cannot leave a ghost hover rectangle")
+    opaquePlayer.insets = { 3, 4, 5, 6 } -- native layout/vehicle refresh
+    env.FluxUnitFrames_SuppressBlizzardUnitFrame("player")
+    check(not containsPlayerRect(opaquePlayer), "event reconciliation repairs a native hit-rectangle reset")
+    opaquePlayer.insets = { 3, 4, 5, 6 }
+    s.combat = true; local hitWrites = opaquePlayer.hitRectWrites
+    env.FluxUnitFrames_SuppressBlizzardUnitFrame("player")
+    env.FluxUnitFrames_SetBlizzardPlayerPredictionMuted(true)
+    check(opaquePlayer.hitRectWrites == hitWrites, "player hit rectangle is not changed in combat")
+    s.combat = false; s.deferred["suppress.player"]()
+    check(not containsPlayerRect(opaquePlayer), "deferred player reconciliation repairs geometry after combat")
+    s.wanted = false; env.FluxUnitFrames_RefreshBothSidesAfterToggle()
+    check(table.concat(opaquePlayer.insets, ",") == "0,0,0,33" and opaquePlayer.click and opaquePlayer.motion,
+        "repeated repairs retain the first rectangle and opaque native input policy")
+    env.PlayerFrame = player
     -- Generic helper: overlapping owners, late children, reparented children and
     -- latest-request-wins combat deferral without extra hooks/timers.
     local root = frame("mouseRoot", false, true, true, true, false)
@@ -191,8 +303,10 @@ local function exercise(branch, source)
     check(s.writes == writes and s.hooks == hooks and #s.timers == timers, "unchanged suppression adds no writes/hooks/timers")
     blizz.SetMouseSuppressed(root, false)
     check(root.click and not root.motion and not child.motion, "one owner cannot prematurely restore another owner's child")
+    check(not blizz.IsMouseSuppressed(root) and blizz.IsMouseSuppressed(child), "hover policy follows overlapping input owners")
     blizz.SetMouseSuppressed(child, false)
     check(not child.click and child.motion and child.wheel, "last owner restores original child input")
+    check(not blizz.IsMouseSuppressed(child), "hover policy releases with the final input owner")
     blizz.SetMouseSuppressed(root, true)
     local late = frame("lateChild", false, false, true, true, true); root.children[2] = late
     blizz.SetMouseSuppressed(root, true); check(not late.click, "late native children join suppression")
@@ -309,6 +423,25 @@ local function exercise(branch, source)
     check(not modeRoot.click and applied == 2, "combat recovery completes deferred input and settings once")
     check(not s.illegal, "no illegal input mutation was attempted or swallowed by pcall")
 end
+if arg[1] == "--roster-work" then
+    local archived = read(assert(arg[2]))
+    for trial = 1, 5 do
+        local old, new
+        if trial % 2 == 1 then
+            old = exercise("forever", {hide = archived, measureRoster = true})
+            new = exercise("forever", {measureRoster = true})
+        else
+            new = exercise("forever", {measureRoster = true})
+            old = exercise("forever", {hide = archived, measureRoster = true})
+        end
+        check(old.writes == 72 and new.writes == 0, "all three settled roots skip alpha writes")
+        check(old.reads == new.reads and new.reads == 4872, "warm suppression still visits every eligible widget")
+        check(new.growth < old.growth, "modeled roster sweep allocates fewer temporary bytes")
+        print(("NATIVE_GROUP_HIDE|%d|%d|%d|%d|%d|%.3f|%.3f|%.3f|%.3f"):format(trial,
+            old.writes, new.writes, old.reads, new.reads, old.growth, new.growth, old.milliseconds, new.milliseconds))
+    end
+    return
+end
 for _, branch in ipairs({ "live", "classic_era", "classic_anniversary", "classic", "forever" }) do exercise(branch) end
 local mouseStart = assert(hideSource:find("function Blizz.SetMouseSuppressed", 1, true))
 local unguardedMouse = hideSource:sub(1, mouseStart - 1)
@@ -329,6 +462,12 @@ local mutants = {
     unguardedMouse,
     { runtime = runtimeSource:gsub('"PlayerFrameContent", "PlayerFrameContainer"', '"PlayerFrameContent"', 1) },
     { runtime = runtimeSource:gsub('savedPlayerVisuals%[content%] == nil', 'not savedPlayerVisuals[content]', 1) },
+    { runtime = runtimeSource:gsub('        SetPlayerHitRectMuted%(frame, muted%)', '', 1) },
+    { runtime = runtimeSource:gsub('if not saved then\n        %-%- Preserve', 'if true then\n        -- Preserve', 1) },
+    { runtime = runtimeSource:gsub('frame:SetHitRectInsets%(unpack%(saved%)%)', 'frame:SetHitRectInsets(10000, 10000, 10000, 10000)', 1) },
+    { runtime = runtimeSource:gsub('if not workBlocked%(%) then\n        SetPlayerHitRectMuted', 'if true then\n        SetPlayerHitRectMuted', 1) },
+    { hide = hideSource:gsub('return mouseStates%[frame%] ~= nil', 'return false', 1) },
+    { hover = hoverSource:gsub('return not %(blizz and blizz.IsMouseSuppressed and blizz.IsMouseSuppressed%(frame%)%)', 'return true', 1) },
 }
 for i, mutant in ipairs(mutants) do check(not pcall(exercise, "forever", mutant), "negative control " .. i .. " rejected") end
 print(("Native mouse suppression/Edit Mode: %d checks; five branches; %d negative controls passed"):format(checks, #mutants))

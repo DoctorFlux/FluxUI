@@ -49,6 +49,10 @@ loginFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 loginFrame:RegisterEvent("ADDON_LOADED")
 pcall(loginFrame.RegisterEvent, loginFrame, "SKILL_LINES_CHANGED")
 loginFrame:SetScript("OnEvent", function(_, event, arg1)
+    if event == "PLAYER_SPECIALIZATION_CHANGED" then
+        local sharedEvents = _G.Flux and _G.Flux.Events
+        if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(arg1) then return end
+    end
     if event == "ADDON_LOADED" then
         if arg1 == "Blizzard_UIPanels_Game" or arg1 == "Blizzard_Bags" then
             InstallHooks()

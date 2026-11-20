@@ -1,0 +1,286 @@
+{
+  "changeId": "MAIN-ROW-RECOVERY-20261115",
+  "dateUTC": "2026-11-15T14:14:14.264101+00:00",
+  "objective": "Restore main1-19,especially13-19 onForever;check other clients against docs.",
+  "requirements": "docs/MAIN_ROW_RECOVERY.md MR01-06",
+  "goalStatus": "BLOCKED pending native acceptance; objective not achieved",
+  "userTestingConstraint": "User explicitly says we cannot test in game yet. No command run by this chat.",
+  "nativeUnavailableConsecutiveGoalTurns": 3,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-recovery-before-20261115T134537Z",
+  "checkpointVerified": true,
+  "privateSettingsCopied": false,
+  "availableSettingsMetadata": 5,
+  "installedSourceComparisonBefore": {
+    "_retail_": {
+      "Bars/Init.lua": {
+        "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "sameContentAsRepo": true
+      },
+      "Bars/SlotMath.lua": {
+        "rawSHA256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+        "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "sameContentAsRepo": true
+      },
+      "Bars/State.lua": {
+        "rawSHA256": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+        "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "sameContentAsRepo": true
+      },
+      "Bars/Hosts.lua": {
+        "rawSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "normalizedSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "sameContentAsRepo": true
+      },
+      "Bars/Clicks.lua": {
+        "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "sameContentAsRepo": true
+      }
+    },
+    "_forever_": {
+      "Bars/Init.lua": {
+        "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "sameContentAsRepo": true
+      },
+      "Bars/SlotMath.lua": {
+        "rawSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "sameContentAsRepo": true
+      },
+      "Bars/State.lua": {
+        "rawSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "sameContentAsRepo": true
+      },
+      "Bars/Hosts.lua": {
+        "rawSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "normalizedSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "sameContentAsRepo": true
+      },
+      "Bars/Clicks.lua": {
+        "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "sameContentAsRepo": true
+      }
+    },
+    "_classic_": {
+      "Bars/Init.lua": {
+        "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "sameContentAsRepo": true
+      },
+      "Bars/SlotMath.lua": {
+        "rawSHA256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+        "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "sameContentAsRepo": true
+      },
+      "Bars/State.lua": {
+        "rawSHA256": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+        "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "sameContentAsRepo": true
+      },
+      "Bars/Hosts.lua": {
+        "rawSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "normalizedSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "sameContentAsRepo": true
+      },
+      "Bars/Clicks.lua": {
+        "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "sameContentAsRepo": true
+      }
+    },
+    "_classic_era_": {
+      "Bars/Init.lua": {
+        "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "sameContentAsRepo": true
+      },
+      "Bars/SlotMath.lua": {
+        "rawSHA256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+        "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "sameContentAsRepo": true
+      },
+      "Bars/State.lua": {
+        "rawSHA256": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+        "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "sameContentAsRepo": true
+      },
+      "Bars/Hosts.lua": {
+        "rawSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "normalizedSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "sameContentAsRepo": true
+      },
+      "Bars/Clicks.lua": {
+        "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "sameContentAsRepo": true
+      }
+    },
+    "_anniversary_": {
+      "Bars/Init.lua": {
+        "rawSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "normalizedSHA256": "169e18d2f7b946ed41c1890828ede7ce0cec8a8d3041fccf23e11f5dc85dba38",
+        "sameContentAsRepo": true
+      },
+      "Bars/SlotMath.lua": {
+        "rawSHA256": "b202149ea5bb73adc23124c7bf6b60221e729d42dc381b9f28176404e4042cb8",
+        "normalizedSHA256": "271b88bfe7b597ffc61a2d17afffbb84eb71b51da5ca6e9d51a86cf4fb72d40a",
+        "sameContentAsRepo": true
+      },
+      "Bars/State.lua": {
+        "rawSHA256": "99b9b5b5476824bc370ea0050402e582cebd8ca74152e6bf8544f6f9aaae25be",
+        "normalizedSHA256": "52f005c429b03e4d04495a6183f200323fa71e71ecd0127296b29f4aa0a9dfef",
+        "sameContentAsRepo": true
+      },
+      "Bars/Hosts.lua": {
+        "rawSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "normalizedSHA256": "b560ada112381b34057426ccfc5b9d900a169fc330956e45746433f687239ea9",
+        "sameContentAsRepo": true
+      },
+      "Bars/Clicks.lua": {
+        "rawSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "normalizedSHA256": "08bcd2bf585d13550d5077a2706ed0abccd589d07ff585951df2e43dedf8726a",
+        "sameContentAsRepo": true
+      }
+    }
+  },
+  "nativeMethodNormalizedSHA256": {
+    "retail": {
+      "function SecureActionButtonMixin:CalculateAction(button)": "920fe9d86a461ed6934de0446edf0305aae0a1c3967e06b269a651e8a69d3bd5",
+      "function SecureButton_GetModifiedAttribute(frame, name, button, prefix, suffix)": "1f9703ae5844c6dd2930450a96c2a293f5d6a239088b350e3394285dd2a38d12"
+    },
+    "forever": {
+      "function SecureActionButtonMixin:CalculateAction(button)": "920fe9d86a461ed6934de0446edf0305aae0a1c3967e06b269a651e8a69d3bd5",
+      "function SecureButton_GetModifiedAttribute(frame, name, button, prefix, suffix)": "1f9703ae5844c6dd2930450a96c2a293f5d6a239088b350e3394285dd2a38d12"
+    },
+    "classic": {
+      "function SecureActionButtonMixin:CalculateAction(button)": "920fe9d86a461ed6934de0446edf0305aae0a1c3967e06b269a651e8a69d3bd5",
+      "function SecureButton_GetModifiedAttribute(frame, name, button, prefix, suffix)": "1f9703ae5844c6dd2930450a96c2a293f5d6a239088b350e3394285dd2a38d12"
+    },
+    "era": {
+      "function SecureActionButtonMixin:CalculateAction(button)": "920fe9d86a461ed6934de0446edf0305aae0a1c3967e06b269a651e8a69d3bd5",
+      "function SecureButton_GetModifiedAttribute(frame, name, button, prefix, suffix)": "1f9703ae5844c6dd2930450a96c2a293f5d6a239088b350e3394285dd2a38d12"
+    },
+    "anniversary": {
+      "function SecureActionButtonMixin:CalculateAction(button)": "920fe9d86a461ed6934de0446edf0305aae0a1c3967e06b269a651e8a69d3bd5",
+      "function SecureButton_GetModifiedAttribute(frame, name, button, prefix, suffix)": "1f9703ae5844c6dd2930450a96c2a293f5d6a239088b350e3394285dd2a38d12"
+    }
+  },
+  "sourcePins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "candidateNormalizedSHA256": {
+    "Bars/Init.lua": "9e17fa8e76972559f02340c818c84fcd99ad13024b2dfb6fb3f643c44562845d",
+    "tests/main_row_recovery.lua": "e1d20f9e48e687fcba6b0dbde2b40fcfe5ab192c8dae65326f4ee649d0ba73b2",
+    "tests/main_row_audit.lua": "564da22e84010b371cec18edfb1a9683b4ca6b948784e38e0bf3d67c65ea97e9"
+  },
+  "focusedReport": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-recovery-focused.json",
+  "focusedPass": 7,
+  "recoveryChecks": 9448,
+  "auditChecks": 700,
+  "mutationsRejected": 6,
+  "fullGate": {
+    "pass": 399,
+    "fail": 0,
+    "syntaxFiles": 1087,
+    "syntaxFailures": 0,
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-secure-recovery-full.json",
+    "manifestMatchesCurrent": true,
+    "nativeAcceptance": false
+  },
+  "installation": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Bars\\Init.lua",
+    "beforeRawSHA256": "b21611e50b65dbba6b1ed608a432445d6f1cefd0a5550d8c0204456cb76c160b",
+    "afterRawSHA256": "9e17fa8e76972559f02340c818c84fcd99ad13024b2dfb6fb3f643c44562845d",
+    "source": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Init.lua",
+    "scope": "Only explicit audit/restore commands;secure recovery now reindexes display slots;no startup/idle invocation, native input or placed-action/raw binding write.",
+    "nativeTest": "Deferred at user request;not executed",
+    "bindingProfileRefresh": "Existing NotifyBarReady after key routes rebuilt",
+    "dateUTC": "2026-11-15T14:27:05.736434+00:00",
+    "externalPriorSource": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-secure-review-before-20261115T142205Z\\Forever-Init.lua"
+  },
+  "native": {
+    "operatorCommandsExecuted": false,
+    "recoveredSlots1to19": "PENDING",
+    "rootCauseOfLiveWrongActions": "Not confirmed; source routing unchanged across prior checkpoint, HEAD and35 installed owners. Shadowed routes and stale secure recovery cache reproduced offline only.",
+    "secretSecureTaint": "PENDING native",
+    "controller": "Existing routes preserved bysource;native PENDING",
+    "FPS": "Not measured;no new idle driver"
+  },
+  "inputOrFocus": false,
+  "settingsOrProfilerWrites": false,
+  "actionPlacementOrRawBindingWrites": false,
+  "publication": false,
+  "finalForeverInitSHA256": "9e17fa8e76972559f02340c818c84fcd99ad13024b2dfb6fb3f643c44562845d",
+  "documentationGate": {
+    "pass": true,
+    "classifiedSources": 1120,
+    "tocXmlReachable": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17637
+  },
+  "diffCheck": {
+    "exit": 0,
+    "command": "git -c core.whitespace=cr-at-eol diff --check",
+    "report": "main-row-secure-diff-check.txt"
+  },
+  "previousGoalTurnClassification": "Progress: corrected secure recovery display reindex, expanded fallback/secure-header regression to9448 checks, passed399/1087 full gate and installed scoped Forever source.",
+  "securePathReview": {
+    "scope": "Actual Flux State/RegisterDrivers/ForceApply/ChildUpdate, Layout, Clicks, Hosts.IndexSlot and native slot-calculator methods; modeled protected/attribute/driver transport (not native driver manager); no game secure VM, taint, FPS or live root-cause proof.",
+    "pass": true,
+    "checks": 9448,
+    "baselineRejected": true,
+    "baselinePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-secure-review-before-20261115T142205Z\\Init.lua",
+    "baselineOutput": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe: tests/main_row_recovery.lua:4: retail: documented main 1 host=999 action=1 click=1 secure=true\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/main_row_recovery.lua:4: in local 'check'\n\ttests/main_row_recovery.lua:172: in main chunk\n\t[C]: in function 'dofile'\n\t(command line):1: in main chunk\n\t[C]: in ?\n",
+    "candidateOutput": "Main-row recovery: 9448 checks PASS across five client models and fallback/secure-header paths; actual state/layout/click owners and native slot calculator; modeled secure transport, in-game acceptance pending\n",
+    "hashes": {
+      "tests/main_row_recovery.lua": "e1d20f9e48e687fcba6b0dbde2b40fcfe5ab192c8dae65326f4ee649d0ba73b2",
+      "Bars/Init.lua": "9e17fa8e76972559f02340c818c84fcd99ad13024b2dfb6fb3f643c44562845d"
+    }
+  },
+  "routingProvenanceReview": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-recovery-review-2.json",
+  "priorFullGate": {
+    "pass": 399,
+    "fail": 0,
+    "syntaxFiles": 1087,
+    "syntaxFailures": 0,
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\main-row-recovery-full.json",
+    "manifestMatchesCurrent": true,
+    "nativeAcceptance": false
+  },
+  "priorCandidateNormalizedSHA256": {
+    "Bars/Init.lua": "9e17fa8e76972559f02340c818c84fcd99ad13024b2dfb6fb3f643c44562845d",
+    "tests/main_row_recovery.lua": "e1d20f9e48e687fcba6b0dbde2b40fcfe5ab192c8dae65326f4ee649d0ba73b2",
+    "tests/main_row_audit.lua": "564da22e84010b371cec18edfb1a9683b4ca6b948784e38e0bf3d67c65ea97e9"
+  },
+  "priorInstallation": {
+    "path": "F:\\World of Warcraft\\_forever_\\Interface\\AddOns\\_FluxUI\\Bars\\Init.lua",
+    "beforeRawSHA256": "d50d7105abf1cdebb40f9bed790c6bac53b809544fefd02a4613f32739df5cbf",
+    "afterRawSHA256": "b21611e50b65dbba6b1ed608a432445d6f1cefd0a5550d8c0204456cb76c160b",
+    "source": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Bars\\Init.lua",
+    "scope": "Only explicit audit/restore commands;no startup invocation or game input;placed actions and raw bindings preserved.",
+    "nativeTest": "Deferred at user request;not executed",
+    "bindingProfileRefresh": "Existing NotifyBarReady after key routes rebuilt"
+  },
+  "requiredNextEvidence": "Native fresh-load mouse/key resolution and expected versus actual actions for1-19 when testing becomes available. No new speculative runtime change without concrete defect evidence.",
+  "blockedAudit": {
+    "dateUTC": "2026-11-15T14:29:05.228340+00:00",
+    "consecutiveTurns": 3,
+    "sameCondition": "User cannot test in game yet; native actual mouse/key actions and expected spell identities remain unavailable. No Witchcraft/UIForever tools are available in this chat.",
+    "currentTurnClassification": "No further goal progress available; verified unchanged candidate/full corpus/Forever installation and no new native evidence.",
+    "candidateHashesMatch": true,
+    "fullCorpusHashesMatch": true,
+    "foreverInstalledFileMatches": true,
+    "pendingValidationOrDeploymentJob": false,
+    "remainingRequirement": "MR-06 native acceptance of correct actions for all1-19,especially13-19; original live root cause still unconfirmed",
+    "noMeaningfulIndependentWorkRemains": "Existing source rollback, multi-client comparison, recovery implementation, secure/fallback models and documentation gates are complete; another speculative repair or unchanged test rerun cannot establish actual casting."
+  }
+}

@@ -1,0 +1,94 @@
+local Unpack=unpack or table.unpack
+local objects = {}
+local allObjects = {}
+local RawEmit, VisibilitySnapshot, EmitVisibilityDelta
+local function object(name, parent)
+	local value = { name = name, parent = parent, shown = false, alpha = 1, mouse = true, points = {}, level = 1, id = 0 }
+	allObjects[#allObjects + 1] = value
+	function value:SetSize(w, h) self.width, self.height = w, h end
+	function value:SetWidth(w) self.width = w end
+	function value:SetHeight(h) self.height = h end
+	function value:GetWidth() return self.width or 37 end
+	function value:GetHeight() return self.height or 768 end
+	function value:SetTexture(texture) self.texture = texture; self.atlas = nil end
+	function value:GetTexture() return self.texture end
+	function value:SetAtlas(atlas) self.atlas = atlas; self.texture = nil end
+	function value:GetAtlas() return self.atlas end
+	function value:SetVertexColor() end
+	function value:SetPoint(...) self.points[#self.points + 1] = { ... } end
+	function value:ClearAllPoints() self.points = {} end
+	function value:GetNumPoints() return #self.points end
+	function value:GetPoint(i) return Unpack(self.points[i]) end
+	function value:SetAllPoints(other) self.allPoints = other end
+	function value:SetParent(p) self.parent = p end
+	function value:GetParent() return self.parent end
+	function value:GetName() return self.name end
+	function value:SetID(id) self.id = id end
+	function value:GetID() return self.id end
+	function value:SetFrameLevel(level) self.level = level end
+	function value:GetFrameLevel() return self.level end
+	function value:SetAlpha(alpha) self.alpha = alpha end
+	function value:GetAlpha() return self.alpha end
+	function value:EnableMouse(on) self.mouse = on end
+	function value:IsMouseEnabled() return self.mouse end
+	function value:Show() self.shown = true; if self.hooks and self.hooks.OnShow then self.hooks.OnShow(self) end end
+	function value:Hide() self.shown = false; if self.script and self.script.OnHide then self.script.OnHide(self) end; if self.hooks and self.hooks.OnHide then self.hooks.OnHide(self) end end
+	function value:SetShown(on) if on then self:Show() else self:Hide() end end
+	function value:IsShown() return self.shown end
+	function value:SetScript(event, fn) self.script = self.script or {}; self.script[event] = fn end
+	function value:GetScript(event) return self.script and self.script[event] end
+	function value:HookScript(event, fn) self.hooks = self.hooks or {}; self.hooks[event] = fn end
+	function value:RegisterEvent() end
+	function value:RegisterForDrag() end
+	function value:RegisterForClicks() end
+	function value:SetFrameStrata() end
+	function value:GetFrameStrata() return "HIGH" end
+	function value:SetScale(scale) self.scale = scale end
+	function value:GetScale() return self.scale or 1 end
+	function value:GetSize() return self.width or 36, self.height or 36 end
+	function value:SetClampedToScreen() end
+	function value:SetMovable() end
+	function value:SetToplevel() end
+	function value:EnableMouseWheel() end
+	function value:SetScrollChild(child) self.child = child end
+	function value:GetVerticalScroll() return self.scroll or 0 end
+	function value:SetVerticalScroll(n) self.scroll = n end
+	function value:CreateTexture() local child = object(nil, self); function child:AddMaskTexture() end; return child end
+	function value:CreateMaskTexture() return object(nil, self) end
+	function value:CreateFontString() local child = object(nil, self); function child:SetText(s) self.text = s end; return child end
+
+ value.children={};if parent then parent.children=parent.children or{};parent.children[#parent.children+1]=value end
+ function value:IsVisible()if not self.shown then return false end;return not self.parent or self.parent:IsVisible()end
+ function value:SetParent(p)
+  local before=VisibilitySnapshot(self)
+  local old=self.parent;if old then for i=#old.children,1,-1 do if old.children[i]==self then table.remove(old.children,i)end end end
+  self.parent=p;if p then p.children=p.children or{};p.children[#p.children+1]=self end
+  EmitVisibilityDelta(before)
+ end
+ function value:Show()if self.shown then return end;local before=VisibilitySnapshot(self);self.shown=true;EmitVisibilityDelta(before)end
+ function value:Hide()if not self.shown then return end;local before=VisibilitySnapshot(self);self.shown=false;EmitVisibilityDelta(before)end
+ function value:HookScript(key,fn)self.hookLists=self.hookLists or{};local list=self.hookLists[key]or{};self.hookLists[key]=list;list[#list+1]=fn end
+ function value:RegisterEvent(key)self.events=self.events or{};self.events[key]=true end
+ function value:UnregisterEvent(key)if self.events then self.events[key]=nil end end
+ function value:GetChildren()return Unpack(self.children)end
+ function value:GetText()return self.text or''end
+ function value:SetText(text)self.text=text end
+ function value:SetChecked(on)self.checked=on end
+ function value:GetChecked()return self.checked end
+ function value:Raise()self.raised=(self.raised or 0)+1 end
+ function value:CreateTexture()local child=object(nil,self);child.shown=true;return child end
+ function value:CreateFontString()local child=object(nil,self);child.shown=true;return child end
+ function value:CreateMaskTexture()local child=object(nil,self);child.shown=true;return child end
+ function value:SetNormalTexture(texture)self.normal=self.normal or self:CreateTexture();self.normal:SetTexture(texture)end
+ function value:SetPushedTexture(texture)self.pushed=self.pushed or self:CreateTexture();self.pushed:SetTexture(texture)end
+ function value:SetHighlightTexture(texture)self.highlight=self.highlight or self:CreateTexture();self.highlight:SetTexture(texture)end
+ function value:GetNormalTexture()return self.normal end
+ function value:GetPushedTexture()return self.pushed end
+ function value:GetHighlightTexture()return self.highlight end
+ for _,method in ipairs({'SetJustifyH','SetWordWrap','SetFontObject','SetAutoFocus','SetFont','SetTextInsets','ClearFocus','AddMaskTexture','SetTexCoord','SetBlendMode','SetDesaturated','SetColorTexture','StartMoving','StopMovingOrSizing','SetHitRectInsets','SetClipsChildren','SetPropagateKeyboardInput'})do value[method]=value[method]or function()end end
+
+	if name then objects[name] = value; _G[name] = value end
+	return value
+end
+
+return object,objects,allObjects,function(emit,snapshot,delta)RawEmit,VisibilitySnapshot,EmitVisibilityDelta=emit,snapshot,delta end

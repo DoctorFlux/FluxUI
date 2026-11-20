@@ -165,7 +165,7 @@ local function InitializePetTargetFrame()
         if self.mouseoverHighlight then
             self.mouseoverHighlight:Hide()
         end
-        UF.HideUnitTooltip()
+        UF.HideUnitTooltip(self)
     end)
 
     local evt = CreateFrame("Frame", nil, frame)

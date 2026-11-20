@@ -1,0 +1,667 @@
+{
+  "changeId": "GROUP-NAMEPLATE-ANCHORS-20261120",
+  "capturedAtUTC": "2026-11-20T05:46:06.690617+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "NamePlates/Core.lua": {
+      "beforeRaw": "3ce4658e7e7f4054be49926838db36578b0d7568f42edc4b4b26d497450e6eae",
+      "afterRaw": "a7119ab4359efb3e95c229cfcc82e2da28b49f7f062bbded0ac21cfe5154b6d8",
+      "afterNormalized": "1fb382082cd9b18b3e3a9b346b50c0a47e684d8339bb02ac58e35d3009947d6d"
+    },
+    "tests/nameplate_quest_progress.lua": {
+      "beforeRaw": "8bdd02d49705087689ef7316d0e50aebff7a391f7a501bad31ce30c176ee9358",
+      "afterRaw": "862e932ade747689a54ac564b77ce8d204d8123903347ee03c06132ec5701bc4",
+      "afterNormalized": "862e932ade747689a54ac564b77ce8d204d8123903347ee03c06132ec5701bc4"
+    },
+    "tests/nameplate_refresh_batch.lua": {
+      "beforeRaw": "1edde5dea90ef5329eac96c079b804f893936d82e9817da742388fd89a3026b8",
+      "afterRaw": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f",
+      "afterNormalized": "ff4b60485493f5ac202b3ccee9e3638a690380be0ef60568d8e9267485cf103f"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-quest-anchors-before-20261120T064034846\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual roster dispatch and quest badge update with 32 modeled plates and two badges per plate. Sixty bursts of twenty roster notifications each. Run the existing deferred refresh and following settled quest poll after each burst.",
+    "samplesByClientAndPair": {
+      "live": {
+        "baseline": {
+          "1": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1122.2
+          ],
+          "2": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1122.2
+          ],
+          "3": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1122.2
+          ],
+          "4": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1122.2
+          ],
+          "5": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1122.2
+          ]
+        },
+        "candidate": {
+          "1": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            102.4
+          ],
+          "2": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            102.4
+          ],
+          "3": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            102.4
+          ],
+          "4": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            102.4
+          ],
+          "5": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            102.4
+          ]
+        }
+      },
+      "forever": {
+        "baseline": {
+          "1": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            1119.4
+          ],
+          "2": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "3": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1119.4
+          ],
+          "4": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "5": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            1119.4
+          ]
+        },
+        "candidate": {
+          "1": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "2": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "3": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            99.4
+          ],
+          "4": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            99.4
+          ],
+          "5": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            99.4
+          ]
+        }
+      },
+      "classic": {
+        "baseline": {
+          "1": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            1119.4
+          ],
+          "2": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "3": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1119.4
+          ],
+          "4": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            1119.4
+          ],
+          "5": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ]
+        },
+        "candidate": {
+          "1": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "2": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "3": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "4": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "5": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            99.4
+          ]
+        }
+      },
+      "classic_era": {
+        "baseline": {
+          "1": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            1119.4
+          ],
+          "2": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1119.4
+          ],
+          "3": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "4": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "5": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ]
+        },
+        "candidate": {
+          "1": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "2": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "3": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            99.4
+          ],
+          "4": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            99.4
+          ],
+          "5": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            99.4
+          ]
+        }
+      },
+      "classic_anniversary": {
+        "baseline": {
+          "1": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1119.4
+          ],
+          "2": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "3": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "4": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            1119.4
+          ],
+          "5": [
+            7680.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            9.0,
+            1119.4
+          ]
+        },
+        "candidate": {
+          "1": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "2": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "3": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            11.0,
+            99.4
+          ],
+          "4": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            12.0,
+            99.4
+          ],
+          "5": [
+            0.0,
+            240.0,
+            0.0,
+            0.0,
+            0.0,
+            10.0,
+            99.4
+          ]
+        }
+      }
+    },
+    "columns": [
+      "SetPoint writes",
+      "Questie objective Update calls",
+      "frames created",
+      "text writes",
+      "native tooltip queries",
+      "elapsed Lua ms",
+      "temporary Lua KiB"
+    ],
+    "mediansByClient": {
+      "live": {
+        "baseline": [
+          7680.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          1122.2
+        ],
+        "candidate": [
+          0.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          11.0,
+          102.4
+        ]
+      },
+      "forever": {
+        "baseline": [
+          7680.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          1119.4
+        ],
+        "candidate": [
+          0.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          11.0,
+          99.4
+        ]
+      },
+      "classic": {
+        "baseline": [
+          7680.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          1119.4
+        ],
+        "candidate": [
+          0.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          11.0,
+          99.4
+        ]
+      },
+      "classic_era": {
+        "baseline": [
+          7680.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          1119.4
+        ],
+        "candidate": [
+          0.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          11.0,
+          99.4
+        ]
+      },
+      "classic_anniversary": {
+        "baseline": [
+          7680.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          10.0,
+          1119.4
+        ],
+        "candidate": [
+          0.0,
+          240.0,
+          0.0,
+          0.0,
+          0.0,
+          11.0,
+          99.4
+        ]
+      }
+    },
+    "clockScope": "Five pairs in alternating process order with collection paused during measurement. Mocked native methods make the clock scope different from native frame time.",
+    "followUpTrial": "Matched external replay of the shared nameplate attachment function finds one frame-level write per settled row visit. Guarded level reuse removes those writes in the five client models. Current runtime change covers only anchors.",
+    "artifactSHA256": {
+      "baseline.lua": "3c3da70a4352b9eb2330fc77fd8fef59e796d4229c83823a71f7fdaa455b3a2c",
+      "candidate.lua": "1fb382082cd9b18b3e3a9b346b50c0a47e684d8339bb02ac58e35d3009947d6d",
+      "replay.lua": "56be79e7f1efc66a0b3f8d1305e92820a4331a18886ebb8a2dc995e236c040f7",
+      "quest-fixture.lua": "120f25437edac7357ff6d5f00e815fdf25e9d93c855620eee38fe09228b00f3b",
+      "replay.txt": "f9288a12494492da85ef20b561438a853f46fb608c6f478077c134c44ea8e983",
+      "legacy-result.txt": "75a18b26963751acc2bc1f4b7b2051e61b5c3144413af0e85a5ffa76a9fed056",
+      "level-trial.lua": "c9fa3583f263b7abadefbbb1c4a020be2cf2e4064d0068c1c2cd15b161a34f40",
+      "level-replay.lua": "45688cb3d0f219563791ce91487fa9f6ba2524e7191a6e991574f33e6ff1f9fe",
+      "quest-level-fixture.lua": "55a43b48bf9ebe5dafdc8d27b4e00a338835fb676a5050fba980da01a75b856b",
+      "level-trial.txt": "f94fcf2a6c46e8c5a9117d4b6de2aef316064b51aa9c488b54e83bfd08b84044"
+    }
+  },
+  "parity": "Reuses only a visible and attached badge with exactly one verified native point and matching public relative frame and offsets. Changed, hidden, multiple, private or denied points take the existing placement path. Initial painting, read cadence, roster coalescing, follow-up retries, provider changes, ordinary failure recovery and restricted instance checks are covered by the desktop fixtures.",
+  "verification": {
+    "focusedPassed": 64,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-quest-anchors-before-20261120T064034846\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-quest-anchors-before-20261120T064034846\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-quest-anchors-before-20261120T064034846\\upvalues.json",
+    "legacyControl": [
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: nameplate-refresh-batch-fixture:5: the roster refresh keeps verified native badge anchors",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\tnameplate-refresh-batch-fixture:5: in upvalue 'check'",
+      "\tnameplate-refresh-batch-fixture:208: in local 'scenario'",
+      "\tnameplate-refresh-batch-fixture:624: in main chunk",
+      "\ttests/nameplate_refresh_batch.lua:228: in main chunk",
+      "\t[C]: in ?"
+    ],
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_catalogue_allocation.lua"
+    ]
+  },
+  "nativeAcceptance": "Native group join and leave latency, nameplate rendering and combat taint remain pending."
+}

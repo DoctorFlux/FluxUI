@@ -217,7 +217,44 @@ local playerOverlayEvents = {
 }
 local savedPlayerOverlayEvents
 local savedPlayerVisuals = {}
+local savedPlayerHitRects = setmetatable({}, { __mode = "k" })
 local playerVisualKeys = { "PlayerFrameContent", "PlayerFrameContainer" }
+
+-- Mouse switches may be secret, so SetMouseSuppressed must sometimes leave
+-- them native. Empty the replaced root's hit rectangle as well: alpha zero
+-- alone still leaves a SecureUnitButton available to mouseover/hover bindings.
+-- Do not Hide/reparent the Edit Mode root or replace its scripts/unit state.
+-- Called only outside combat and the native Edit Mode reset stack.
+local function SetPlayerHitRectMuted(frame, muted)
+    if not frame.GetHitRectInsets or not frame.SetHitRectInsets then return end
+    local saved = savedPlayerHitRects[frame]
+    if not muted then
+        if saved then
+            frame:SetHitRectInsets(unpack(saved))
+            savedPlayerHitRects[frame] = nil
+        end
+        return
+    end
+    local insets = { frame:GetHitRectInsets() }
+    local readable = true
+    for i = 1, 4 do
+        local value = insets[i]
+        if (issecretvalue and issecretvalue(value)) or type(value) ~= "number" then
+            readable = false
+            break
+        end
+    end
+    if not saved then
+        -- Preserve the native/client-specific rectangle; never guess a restore.
+        if not readable then return end
+        savedPlayerHitRects[frame] = insets
+    end
+    if not readable or insets[1] ~= 10000 or insets[2] ~= 10000
+        or insets[3] ~= 10000 or insets[4] ~= 10000 then
+        frame:SetHitRectInsets(10000, 10000, 10000, 10000)
+    end
+end
+
 local function KeepIndependentMouseChild(child)
     return ShouldSkipMuteChild(child)
         or child == _G.PlayerBottomManagedFrameContainer
@@ -240,12 +277,17 @@ function FluxUnitFrames_SetBlizzardPlayerPredictionMuted(muted)
     if blizz and blizz.SetMouseSuppressed then
         blizz.SetMouseSuppressed(frame, muted, KeepIndependentMouseChild)
     end
+    local keybinds = ns.FluxMouseoverKeybind
+    if keybinds and keybinds.SyncNativePlayerSuppression then
+        keybinds:SyncNativePlayerSuppression()
+    end
     -- Alpha 0 still runs both bars' OnUpdate secret comparisons. The stock
     -- visual containers have no show/hide scripts, and native player art never
     -- shows them explicitly. Hide those ancestors to stop unused art and bars while
     -- preserving every original script and the root's player/vehicle events.
     -- In particular, do not detach and later reattach native OnUpdate scripts.
     if not workBlocked() then
+        SetPlayerHitRectMuted(frame, muted)
         if muted then
             for _, key in ipairs(playerVisualKeys) do
                 local content = frame[key]

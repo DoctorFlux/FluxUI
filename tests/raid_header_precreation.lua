@@ -386,13 +386,17 @@ for _,client in ipairs({"retail","forever","era","anniversary","mists"}) do
         check(e.FluxRaidContainer:IsShown(),client.." "..mode..": enabled parent remains shown for secure future roster transitions")
         local attached=0
         for _ in pairs(s.secureChildren) do attached=attached+1 end
-        check(attached==80,client.." "..mode..": every allocated child joins secure roster updates")
+        check(attached==48,client.." "..mode..": eight leading groups and all forty MT/MA slots request secure column layout")
         for index=1,8 do
             local header=e.FluxRaidState.raidHeaders[index]
             local call=s.secureCalls[header]
             check(call and call.index==index and not call.isMTMA,
                 client.." "..mode..": secure group controller receives stable group identity")
             check(header:GetAttribute("child5") and not header:GetAttribute("child6"),"universal member columns retain five-cell capacity")
+            for childIndex=1,5 do
+                check((s.secureChildren[header:GetAttribute("child"..childIndex)] == true) == (childIndex == 1),
+                    "only the leading child determines whether its group occupies a layout column")
+            end
             check(header:GetAttribute("showRaid")==true and header:GetAttribute("showParty")== (index==1)
                 and header:GetAttribute("showPlayer")==true and header:GetAttribute("showSolo")==false,
                 "all group roster modes are prepared without later Lua rewrites")

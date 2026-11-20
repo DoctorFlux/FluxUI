@@ -1,0 +1,119 @@
+{
+  "changeId": "LHO-JUNK-CACHED-QUALITY-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "provider": "syndicator",
+  "currentVisiblePanels": [
+    "Baganator backpack",
+    "Auction Buy",
+    "Tailoring"
+  ],
+  "checkpoint": {
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "files": [
+      {
+        "file": "Inventory/FluxItemClass.lua",
+        "archive": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/junk-cached-quality-20261119T112400Z/FluxItemClass.before.lua",
+        "sha": "85c16cb1888511d4b6af8cd68f8ad1f2bb0ab6b62e0b070e95da39f1d04a5f10"
+      },
+      {
+        "file": "Inventory/Restock/Junk/FluxJunk.lua",
+        "archive": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/junk-cached-quality-20261119T112400Z/FluxJunk.before.lua",
+        "sha": "f810822c0d57605f7239bc2bd9ba30c6c74116325709753a71a2145f3fed12d5"
+      }
+    ],
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settings": 21
+  },
+  "historySha256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "sourceProof": {
+    "files": [
+      {
+        "file": "Inventory/FluxItemClass.lua",
+        "archive": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/junk-cached-quality-20261119T112400Z/FluxItemClass.before.lua",
+        "sha": "85c16cb1888511d4b6af8cd68f8ad1f2bb0ab6b62e0b070e95da39f1d04a5f10",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\junk-cached-quality-20261119T112400Z\\FluxItemClass.candidate.lua",
+        "candidateSha": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+        "installs": {
+          "_retail_": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+          "_forever_": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+          "_classic_": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+          "_classic_era_": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966",
+          "_anniversary_": "b2a5dfe87caa2c3f4efa7514c5ab8300287591d63116567bdbfc61ea62daf966"
+        }
+      },
+      {
+        "file": "Inventory/Restock/Junk/FluxJunk.lua",
+        "archive": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/junk-cached-quality-20261119T112400Z/FluxJunk.before.lua",
+        "sha": "f810822c0d57605f7239bc2bd9ba30c6c74116325709753a71a2145f3fed12d5",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\junk-cached-quality-20261119T112400Z\\FluxJunk.candidate.lua",
+        "candidateSha": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+        "installs": {
+          "_retail_": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+          "_forever_": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+          "_classic_": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+          "_classic_era_": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0",
+          "_anniversary_": "6ed24a6a07f63249bfa3d1e84e962ca80e6f2c8cad602318ad4adafbe4eb6af0"
+        }
+      }
+    ],
+    "syntaxRuns": 24
+  },
+  "r303": "Second preflight stopped before input on foreground or recent PC activity. The retained exact Restock row probe was not submitted.",
+  "r307": "Foreground input changed during source capture. The cosmetic and slot-protection comparison was not submitted.",
+  "r308": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag308-baganator-junk-fallback-native-pairs-20261119",
+      "controllerSHA": "b2157995e7690fe38f721ca7aca1fa1a83fb1ef2b4a2623de51ebebf52c8ba42",
+      "packetSHA": "42dd5844cf1e39ade5e080e42c9f4ab3b057e81ca2599bbe7cf5498d913c7640",
+      "packets": 8,
+      "luaSHA": "7f0e46007f258059a00704459fcfc771a9a8c81e11d077df12cc6eb80c1c064c"
+    },
+    "capture": {
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag308_a-submitted.png",
+      "sha256": "763b4b9f4dd77d50db84e0625b8269595b991637ac4e093a0f74b34483a98fbb"
+    },
+    "leaseReleased": true,
+    "pairsMs": [
+      [
+        0.18,
+        0.013
+      ],
+      [
+        0.148,
+        0.163
+      ],
+      [
+        0.144,
+        0.009
+      ]
+    ],
+    "mediansMs": [
+      0.148,
+      0.013
+    ],
+    "verdictsPerPair": 48,
+    "matchesPerPair": 48,
+    "grayItems": 0,
+    "unchangedBagGeneration": true,
+    "errorDelta": 0,
+    "scope": "Actual item qualities read before timing. Candidate helper skips native gray fallback only when known non-gray. Timings exclude production cache-owner and quality read checks. No result on gray, cold, full paint, frame gaps, or installed-candidate timing."
+  },
+  "coldPath": {
+    "reference": "docs/validation/backpack-final-callback-2026-11-19.json",
+    "sourceFile": "Baganator/ItemViewCommon/ItemButton.lua",
+    "sourceSequence": "Forever uses the Retail-style live item button. In that path, GUID and equipment-set lookup finish before the first quest callback. New-item animation, widget resets, the item-cache and cosmetic checks, and registered Junk and corner callbacks precede GetItemSpell at the start of the final callback.",
+    "fluxRespecSource": "FluxBaganator_GearSets returns a prebuilt lookup by GUID; FluxBaganator_Junk separately calls slot lock then IsJunkForDisplay.",
+    "nextScope": "Keep native API owners intact and capture the registered callbacks on a genuinely cold open. The cached-quality warm comparison has no causal link to the earlier single-slot hitch."
+  },
+  "jump": {
+    "workerPid": 10224,
+    "threePairsUTC": [
+      "11:18:13.823378",
+      "11:21:16.371100",
+      "11:24:18.757149"
+    ],
+    "movementAcknowledged": false,
+    "mode": "First key pair foreground; background activation succeeded for the next two requests"
+  },
+  "reloadSent": false
+}

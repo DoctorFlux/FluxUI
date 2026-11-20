@@ -1,0 +1,698 @@
+{
+  "changeId": "RAID-JOIN-INDEX-R143-20261119",
+  "capturedAtUTC": "2026-11-19T21:23:47.906359+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "76bc0ed5e1e8c6aefe07a30bcdb8b7bb49fefdb2c30b0a3df59f4d16313ed838",
+      "afterRaw": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3"
+    },
+    "tests/raid_connected_grid.lua": {
+      "beforeRaw": "37e2d441a987a2229e04ae01f302d4859c409bea736a344200e11c8cde0a965a",
+      "afterRaw": "b5bcdf7a01a9663fd0becf50fbc794dd8b2c690d234ff202d07fbc5381d05b2f"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\source.zip",
+    "sourceZipSHA256": "927829bc70f5ab78a0020aefa8dbad8810b59ffe4b51419199aedf722d1c831b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating archive/candidate pairs for each of the one-pixel and four-pixel row overlap models across six scenarios. Repeated first appearances of a five-cell party or forty-cell raid, a common fractional origin crossing zero, five-cell departures and returns, single-cell moves, and an irregular row. Compare visible edge flags at every measured transition.",
+    "samples": {
+      "party": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "5.000/6.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/5.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "30/2:0/0",
+          "work": "120/16:0/0",
+          "ms": "6.000/6.000"
+        }
+      ],
+      "cold": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "40.000/29.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "36.000/30.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "39.000/31.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "39.000/36.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "37.000/29.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "35.000/28.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/31.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "37.000/28.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/27.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/27.000"
+        }
+      ],
+      "offset": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "38.000/30.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "36.000/31.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "35.000/30.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "35.000/38.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/30.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "35.000/30.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/30.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "35.000/29.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "34.000/29.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "2640/16:0/0",
+          "ms": "36.000/30.000"
+        }
+      ],
+      "roster": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "45.000/32.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "44.000/31.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "44.000/31.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "44.000/32.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "44.000/32.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "47.000/33.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "44.000/32.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "47.000/32.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "52.000/31.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "4740/16:0/0",
+          "ms": "86.000/65.000"
+        }
+      ],
+      "move": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "24.000/25.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "24.000/24.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "25.000/27.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "25.000/25.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "25.000/25.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "55.000/53.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "66.000/57.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "54.000/55.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "53.000/52.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "660/2:0/0",
+          "work": "1680/0:1680/0",
+          "ms": "55.000/59.000"
+        }
+      ],
+      "irregular": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "35.000/35.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "34.000/36.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "36.000/40.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "36.000/35.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "38.000/37.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "69.000/64.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "64.000/67.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "64.000/65.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "61.000/67.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "initial": "660/2:660/2",
+          "work": "2640/16:2640/8",
+          "ms": "62.000/63.000"
+        }
+      ]
+    },
+    "desktopTiming600RefreshesMs": {
+      "party": {
+        "1": [
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          }
+        ],
+        "4": [
+          {
+            "min": 6.0,
+            "median": 6.0,
+            "max": 6.0
+          },
+          {
+            "min": 5.0,
+            "median": 6.0,
+            "max": 6.0
+          }
+        ]
+      },
+      "cold": {
+        "1": [
+          {
+            "min": 36.0,
+            "median": 39.0,
+            "max": 40.0
+          },
+          {
+            "min": 29.0,
+            "median": 30.0,
+            "max": 36.0
+          }
+        ],
+        "4": [
+          {
+            "min": 34.0,
+            "median": 34.0,
+            "max": 37.0
+          },
+          {
+            "min": 27.0,
+            "median": 28.0,
+            "max": 31.0
+          }
+        ]
+      },
+      "offset": {
+        "1": [
+          {
+            "min": 34.0,
+            "median": 35.0,
+            "max": 38.0
+          },
+          {
+            "min": 30.0,
+            "median": 30.0,
+            "max": 38.0
+          }
+        ],
+        "4": [
+          {
+            "min": 34.0,
+            "median": 35.0,
+            "max": 36.0
+          },
+          {
+            "min": 29.0,
+            "median": 30.0,
+            "max": 30.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 44.0,
+            "median": 44.0,
+            "max": 45.0
+          },
+          {
+            "min": 31.0,
+            "median": 32.0,
+            "max": 32.0
+          }
+        ],
+        "4": [
+          {
+            "min": 44.0,
+            "median": 47.0,
+            "max": 86.0
+          },
+          {
+            "min": 31.0,
+            "median": 32.0,
+            "max": 65.0
+          }
+        ]
+      },
+      "move": {
+        "1": [
+          {
+            "min": 24.0,
+            "median": 25.0,
+            "max": 25.0
+          },
+          {
+            "min": 24.0,
+            "median": 25.0,
+            "max": 27.0
+          }
+        ],
+        "4": [
+          {
+            "min": 53.0,
+            "median": 55.0,
+            "max": 66.0
+          },
+          {
+            "min": 52.0,
+            "median": 55.0,
+            "max": 59.0
+          }
+        ]
+      },
+      "irregular": {
+        "1": [
+          {
+            "min": 34.0,
+            "median": 36.0,
+            "max": 38.0
+          },
+          {
+            "min": 35.0,
+            "median": 36.0,
+            "max": 40.0
+          }
+        ],
+        "4": [
+          {
+            "min": 61.0,
+            "median": 64.0,
+            "max": 69.0
+          },
+          {
+            "min": 63.0,
+            "median": 65.0,
+            "max": 67.0
+          }
+        ]
+      }
+    },
+    "focusedGridRegression": "Raid connected grid: 1384 checks; native one-pixel joins, partial groups, redundant neighbors, minis, opacity guards and two rejected controls",
+    "additionalMatchedOracle": "JOIN_ORACLE 600 matched layouts; fractional offsets, duplicate origins, mixed extents and groups",
+    "guards": "Work fields are tolerance distance calls followed by axis sorts. A colon separates baseline and candidate. Timing uses uninstrumented widget mocks. Current live timing and native pixels remain pending.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\compare.lua": "2fedfbb6eb8903b3acebb2304da8aca88e5857e8d5ebc1166296b65bd4023214",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\matched.txt": "f077dba50ea16be49d38e8fbbb83c2c8c4c4021b22f4c5a3ee85881cd4a01ce2",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\grid-regression.txt": "b953984bdca75faa7e7a99c7680718bdf8dee974fb31415287da904ea997d7b6",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\rounded-negative.lua": "b62e91e1eb3eab0ea685cac325e448a36cc467bc10e975543248dc5169ccb5d8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\ignore-axis-span.lua": "3e0f8512208ea37c9bc8673aece81a0bd0172d5f6f45c39d8aebb3dd48a6b30c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\controls.txt": "93997c476ba25e594cacf5625275708c949f80e87d8ad2406aa4426e386d022e",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\oracle.lua": "ffe92993d7bd96409cc8dd0260cca3ae918d136beb74da70487fe912653477c1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\oracle.txt": "fbcdaf25a2c0159a4d634de258eb18099401b146ced3ac8a07e40e7a5165a860",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\prototype-timing.txt": "9513c6c082af2c46aabd4361aa45351b5edde4ff22406030836ff97b4cf780b1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\aligned-timing.txt": "b6cec7030f7b33bb71ad97f5d54ef352d0f513af106093aa29e90c53c97b15c5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\signed-aligned-timing.txt": "977542fff1d5aa0b8fbe38a1c231ebaa32bf0bf51801c743b915e314304a76a4",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\first-signed-match.txt": "277b05c267425e6a6d6c6fd41c6daf3a2a828767c25f71b3d8d7d50a20efa7c2"
+    }
+  },
+  "preservation": [
+    "The indexed path requires each axis to share an exact fractional coordinate, including the vertical overlap endpoint. Compare complete row or column extents for every direct contact.",
+    "Normalize fractional coordinates without rounding tiny negative values into the same track. An irregular or ambiguous layout uses the existing tolerance solver.",
+    "Single-cell updates retain their existing incremental comparisons. Old and new visible edge flags also match 600 additional varied layouts and occupancy updates. Geometry and paint use current inputs."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected RaidFrame-FluxRaidUnit.lua by an aligned grid finds neighbors directly without sorting or tolerance scans",
+      "Rejected rounded-negative.lua by tiny negative fractions do not bypass tolerance checks",
+      "Rejected ignore-axis-span.lua by aligned contacts still require equal row heights and column widths"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-join-index-before-20261119-221221\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "BaganatorCompat/FluxBaganator_ConsumablesCategories.lua",
+      "BaganatorCompat/FluxBaganator_EquipmentSetSection.lua",
+      "BaganatorCompat/FluxBaganator_GearSets.lua",
+      "BaganatorCompat/FluxBaganator_Junk.lua",
+      "tests/baganator_junk_detector.lua",
+      "tests/data_integrity.lua"
+    ],
+    "syntaxRefreshedAtUTC": "2026-11-19T21:25:55.543983+00:00"
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "617799104f8061e448b04f124546ce9e57cc8b44bb0ec135ece770661a349ce3",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

@@ -1,0 +1,552 @@
+{
+  "changeId": "LHO-NATIVE-RESUME3-20261114",
+  "capturedUtc": "2026-11-14T16:25:28.953978+00:00",
+  "goalStatus": "active; broad goal incomplete",
+  "sourceGate": {
+    "scripts": 383,
+    "syntax": 1071,
+    "normalizedManifestMatches": true,
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-full.json"
+  },
+  "native": {
+    "pid": 40032,
+    "hwnd": 7995860,
+    "client": "Forever1.60.1",
+    "build": 70938,
+    "interface": 16001,
+    "scriptProfile": 0,
+    "profilerEnabled": true,
+    "maxFPS": 120,
+    "maxFPSBk": 30,
+    "provider": "syndicator",
+    "preflightGetTime": 89346.673
+  },
+  "permission": "Automatic targeted read-only profiling in foreground or background explicitly authorized. No foreground activation, system-wide input, clipboard, profiler-setting or item/mail/queue actions.",
+  "recipeSamples": [
+    {
+      "round": 1,
+      "kind": "healPotion",
+      "at": 89517.167,
+      "rows": 5,
+      "ms": 4.1947,
+      "allocated": 275665,
+      "deallocated": 50176
+    },
+    {
+      "round": 1,
+      "kind": "manaPotion",
+      "at": 89517.167,
+      "rows": 2,
+      "ms": 3.6725,
+      "allocated": 250392,
+      "deallocated": 50176
+    },
+    {
+      "round": 1,
+      "kind": "bandage",
+      "at": 89517.167,
+      "rows": 8,
+      "ms": 3.7122,
+      "allocated": 267568,
+      "deallocated": 50372
+    },
+    {
+      "round": 2,
+      "kind": "manaPotion",
+      "at": 89596.08,
+      "rows": 2,
+      "ms": 3.5531,
+      "allocated": 250392,
+      "deallocated": 50176
+    },
+    {
+      "round": 2,
+      "kind": "bandage",
+      "at": 89597.108,
+      "rows": 8,
+      "ms": 3.5383,
+      "allocated": 267568,
+      "deallocated": 50176
+    },
+    {
+      "round": 2,
+      "kind": "healPotion",
+      "at": 89597.917,
+      "rows": 5,
+      "ms": 3.7067,
+      "allocated": 262928,
+      "deallocated": 50176
+    },
+    {
+      "round": 3,
+      "kind": "bandage",
+      "at": 89649.696,
+      "rows": 8,
+      "ms": 4.1491,
+      "allocated": 267568,
+      "deallocated": 50176
+    },
+    {
+      "round": 3,
+      "kind": "healPotion",
+      "at": 89650.616,
+      "rows": 5,
+      "ms": 3.6456,
+      "allocated": 262928,
+      "deallocated": 50176
+    },
+    {
+      "round": 3,
+      "kind": "manaPotion",
+      "at": 89651.554,
+      "rows": 2,
+      "ms": 3.7386,
+      "allocated": 250392,
+      "deallocated": 50176
+    }
+  ],
+  "emptyControls": [
+    {
+      "at": 89516.242,
+      "ms": 0.0002,
+      "allocated": 0,
+      "deallocated": 0
+    },
+    {
+      "at": 89598.832,
+      "ms": 0.0002,
+      "allocated": 0,
+      "deallocated": 0
+    },
+    {
+      "at": 89648.763,
+      "ms": 0.0002,
+      "allocated": 0,
+      "deallocated": 0
+    }
+  ],
+  "summary": {
+    "healPotion": {
+      "medianMs": 3.7067,
+      "rangeMs": [
+        3.6456,
+        4.1947
+      ]
+    },
+    "manaPotion": {
+      "medianMs": 3.6725,
+      "rangeMs": [
+        3.5531,
+        3.7386
+      ]
+    },
+    "bandage": {
+      "medianMs": 3.7122,
+      "rangeMs": [
+        3.5383,
+        4.1491
+      ]
+    }
+  },
+  "catalogueSamples": [
+    {
+      "at": 89826.436,
+      "rows": 121,
+      "ms": 1.0842,
+      "allocated": 110672,
+      "deallocated": 35728
+    },
+    {
+      "at": 89827.354,
+      "rows": 121,
+      "ms": 0.9034,
+      "allocated": 110672,
+      "deallocated": 35728
+    },
+    {
+      "at": 89828.266,
+      "rows": 121,
+      "ms": 1.0092,
+      "allocated": 110672,
+      "deallocated": 35728
+    }
+  ],
+  "normalCacheHits": {
+    "kind": "bandage",
+    "generation": 402,
+    "best": [
+      null,
+      null
+    ],
+    "ms": [
+      0.0068,
+      0.001
+    ],
+    "allocated": [
+      0,
+      0
+    ],
+    "forcedInvalidation": false
+  },
+  "passiveWindow": {
+    "start": 90003.473,
+    "end": 90050.066,
+    "before": [
+      158387,
+      71821,
+      14760,
+      1029,
+      463,
+      4,
+      2
+    ],
+    "after": [
+      158682,
+      71848,
+      14783,
+      1037,
+      465,
+      4,
+      2
+    ],
+    "thresholdsMs": [
+      1,
+      5,
+      10,
+      50,
+      100,
+      500,
+      1000
+    ],
+    "scope": "Existing overlapping profiler tick counters, same PID and uninterrupted sample window. Natural crafting/AH/user activity; no recipe stress queries or watcher during interval. Endpoint commands/captures and normal desktop activity remain; not controlled FPS or individual-callback attribution.",
+    "seconds": 46.593,
+    "delta": [
+      295,
+      27,
+      23,
+      8,
+      2,
+      0,
+      0
+    ]
+  },
+  "recentContext": {
+    "at": 89762.857,
+    "FluxRecentMs": 0.44889666666667,
+    "FluxLatestMs": 0.1095,
+    "SyndicatorRecentMs": 1.680975,
+    "SkilletRecentMs": 0.017151666666667,
+    "scope": "Separate recent60-tick/latest-tick snapshots; not interval averages or additive decomposition."
+  },
+  "nativeActions": {
+    "commandsSent": 28,
+    "newGlobalsFramesHooksWatchers": false,
+    "preferenceChanges": false,
+    "transactionQueueChanges": false,
+    "focusActivation": false,
+    "reload": false,
+    "profilingCommands": 27,
+    "optionalMetadataQueries": 1
+  },
+  "transcription": "Numerical rows transcribed from exact-window captures stored externally, including rotated round order and controls. Keep raw captures authoritative; no private chat copied into repository.",
+  "limits": [
+    "Current loaded-function native cost only, no original/candidate native comparison or FPS improvement claim.",
+    "Round1 measures three kinds synchronously in one command; rounds2/3 split one query per command across frames. Natural facts/caches can change between commands.",
+    "Catalogue and list measurements occur separately with warming/reentry; do not sum/subtract them as exact partitions.",
+    "Installed disk identities and observations do not prove other-client native behavior, pixels, secure VM, controller or taint acceptance."
+  ],
+  "followup": {
+    "eventReplay": "Actual-source fallback101checks/7scenarios plus isolation controls. Unrelated delayed bag update rebuilds all3; required pre-provider live zero proves fallback cannot simply be removed. Model producer transport is not native timing.",
+    "candidate": "APPLIED Professions748cff40 +durable regression e34a52c2; current384scripts/1072syntax PASS, all Lua stable. Native after reload remains pending.",
+    "bankMail": "Native open-bank/count readiness and populated mailbox read-stage timing remain prerequisites; stale producer races/exceptional latency decision unresolved.",
+    "candidateEvidence": "profession-catalogue-allocation-2026-11-14.json",
+    "watcher": "Not armed: existing diagnostic root preservation across unexpected reload/logout unproven, and relevant raw-frame/native-timer work is outside watcher coverage.",
+    "watcherEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\providers\\watch-plan\\verdict.json"
+  },
+  "artifacts": {
+    "catalogue-components-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\catalogue-components-commands-submission.json",
+      "sha256": "674a6d1f03fe9988bdefcc289ff39b4b4e03af1f2a2773a57345ccc633d0a333"
+    },
+    "catalogue-components-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\catalogue-components-commands.json",
+      "sha256": "10b118418fee1d1dd84fb4d5eb477e64d74f2ece8e91a9ff01174f6587bc2ca4"
+    },
+    "catalogue-components-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\catalogue-components-readout-capture.json",
+      "sha256": "109a1bd59f9bc9c120b3d68039edcf19da69c07e0eed81b7509b0bcd9f488f00"
+    },
+    "catalogue-components-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\catalogue-components-readout.png",
+      "sha256": "9e402346626c20da94b603b46f6dd906bfc65b0f7e2af169af06cbe6d8c91d1c"
+    },
+    "context-after-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-after-commands-submission.json",
+      "sha256": "7956cf1295c09370bc483ba1af2f68504f08da8cc392f59abe06f77826d8facf"
+    },
+    "context-after-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-after-commands.json",
+      "sha256": "1722baeb23606f791526011eeed8b93f9161566623e875fe77300f47b77dc874"
+    },
+    "context-after-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-after-readout-capture.json",
+      "sha256": "0f3fa33946989357902090104f0df7bd1c9f8d6f033dad05ea3e590f854ea5ae"
+    },
+    "context-after-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-after-readout.png",
+      "sha256": "3ae81b0b9ffe002377e08513516a1b9ad516a23d9f666300f6611afa8ad06371"
+    },
+    "context-before-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-before-commands-submission.json",
+      "sha256": "a9f724d1dd56b55baebc2583b72bc6b5954b83aa80c35ac8c300cba3940ecd35"
+    },
+    "context-before-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-before-commands.json",
+      "sha256": "01b3fbee609a2d81b083c7dee775f935d58a8836827c82ca79d0c0ae4c2b4340"
+    },
+    "context-before-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-before-readout-capture.json",
+      "sha256": "dae0875d88ea0bd88da89cae4d0036dd8c538912f3b9a08f68a2b9a05f650e37"
+    },
+    "context-before-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\context-before-readout.png",
+      "sha256": "8f135a8318d3861fe56e6cb4aec54800dbac3691719cd95bf4a33f751c89d397"
+    },
+    "normal-best-cache-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\normal-best-cache-commands-submission.json",
+      "sha256": "47a2c1e02683ba394ce54702886ea2a20079efd0e8e0c02b99305bcbaa64848b"
+    },
+    "normal-best-cache-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\normal-best-cache-commands.json",
+      "sha256": "f4e91a013d16bb18ebfcd6e60fc7a6126eb9f92ef309de1d70cc977b23cf9bb0"
+    },
+    "normal-best-cache-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\normal-best-cache-readout-capture.json",
+      "sha256": "ce424fbb9e0ddf81e9876aab559b91420b575b09f921d68c48340a7a34b4c1c0"
+    },
+    "normal-best-cache-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\normal-best-cache-readout.png",
+      "sha256": "5e4909a48bf809d2a6576be49f6a6171a461472a496ebec4d27cdd67f4028b30"
+    },
+    "passive-end-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-end-commands-submission.json",
+      "sha256": "cca835aa54e3269213177256746a77799644e37b86b3dfce26cd44608e689a8b"
+    },
+    "passive-end-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-end-commands.json",
+      "sha256": "1722baeb23606f791526011eeed8b93f9161566623e875fe77300f47b77dc874"
+    },
+    "passive-end-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-end-readout-capture.json",
+      "sha256": "45e8d1cd94052e804804ec74c8a8d01256fc861861061fd2a46bf7c20649b055"
+    },
+    "passive-end-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-end-readout.png",
+      "sha256": "9bfbef1e12c77a722b35468a39261a4db43bf1cc8ddb933d75e5420c8d3c2b3b"
+    },
+    "passive-start-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-start-commands-submission.json",
+      "sha256": "516c729aa14c92c72da279de86e2893f65b43388e50e23a9256c8cc3066f9519"
+    },
+    "passive-start-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-start-commands.json",
+      "sha256": "1722baeb23606f791526011eeed8b93f9161566623e875fe77300f47b77dc874"
+    },
+    "passive-start-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-start-readout-capture.json",
+      "sha256": "f02ef53c59cc67d1810a56375a6542352e8a2fa4537cc3ef05083e81e9ca1378"
+    },
+    "passive-start-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\passive-start-readout.png",
+      "sha256": "7a54921b2894f6dbe610e2b9a04993f5a46281f1b01e01ae5ba103879e4cfa51"
+    },
+    "preflight-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-commands-submission.json",
+      "sha256": "055ca14022637194d29de38bc9a367dd29e7f5f5b78e15c9c21b61231e67bd12"
+    },
+    "preflight-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-commands.json",
+      "sha256": "974abce6e7a1e56609dcf3abf1d0e6b27fa639828a0fc64130b8cbdb8760aa16"
+    },
+    "preflight-readout-v2-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-readout-v2-capture.json",
+      "sha256": "be2c6f218ec5ac2a3edc9d64981aeeb28a97ddb5dd326d5c385c52916d169284"
+    },
+    "preflight-readout-v2.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-readout-v2.png",
+      "sha256": "84d68ccba6b4ce8d11de65ec55702c1e35b71692032899b962ab5c6ad9b2d8dc"
+    },
+    "preflight-results.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-results.json",
+      "sha256": "fc23fcb34456fc9a73581d27310f3eba71e29d881aae6109bb602d0a2afac4d2"
+    },
+    "preflight-results.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight-results.png",
+      "sha256": "766f44c82758c064dfb49ee589be6623f063828cd16620d952a474460d97c194"
+    },
+    "preflight.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\preflight.json",
+      "sha256": "42318c375481336a643365851bf45b09975bbe089a96dcf092747a76712886fa"
+    },
+    "recent-costs-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recent-costs-commands-submission.json",
+      "sha256": "d3a5ed5d8689dd9d842a97dfda6b56373b90fcaeb9c1a88a5a6d19082f0c842c"
+    },
+    "recent-costs-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recent-costs-commands.json",
+      "sha256": "02d3407d6fce827980be2176b467c4e78b9a2cf369612e7c33ca58cfdf247e65"
+    },
+    "recent-costs-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recent-costs-readout-capture.json",
+      "sha256": "1e33fcdca80b9f5ad6fe0ddfa213a36f28a1d1b4ebced139a4bbfe9c102fc923"
+    },
+    "recent-costs-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recent-costs-readout.png",
+      "sha256": "94768d74212c843cada17db77ee2b8b695904cdeaa3058030f4f7ec4d5f52172"
+    },
+    "recipe-round1-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round1-commands-submission.json",
+      "sha256": "97f98090deab78e1bb850040e0662ef53552fa547d655ba7ba5798bafcd6dcc1"
+    },
+    "recipe-round1-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round1-commands.json",
+      "sha256": "1f6a845eddde4866026d4b4bfb01ad68ec3ca3eba02a2d182e09b7f2ca0039e4"
+    },
+    "recipe-round1-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round1-readout-capture.json",
+      "sha256": "51603ff5416879fe74171c1e2d6245f4d1d980fd74f4d24b4e7efd56c8f1e99c"
+    },
+    "recipe-round1-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round1-readout.png",
+      "sha256": "1883cd0756a737c87e0ea8208e921de3991d361bfb194602e91498e8b2180365"
+    },
+    "recipe-round2-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round2-commands.json",
+      "sha256": "997b5d447409224f98794d0bee681529db06cc1d8dbc202759089b5b83b9feac"
+    },
+    "recipe-round2-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round2-readout-capture.json",
+      "sha256": "e13ff3ffc2fe6d6048be894994114ffb8bd0b927c5e9b5b9067f8f4a141f06e6"
+    },
+    "recipe-round2-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round2-readout.png",
+      "sha256": "08a16cd3de2b14edd8105335dca294371c580bbdac6367028cfe2a080651b42e"
+    },
+    "recipe-round2-split-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round2-split-commands-submission.json",
+      "sha256": "9519570cac3a53452c8ec0a9116ee15fb9254de9de884cccf0138b12007e1597"
+    },
+    "recipe-round2-split-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round2-split-commands.json",
+      "sha256": "49a6dc54f1ec6b93a40da544a6dda4784051463eaf4b46c33f5e5147b7f4f892"
+    },
+    "recipe-round3-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round3-commands.json",
+      "sha256": "c2ccc88ba8420566f02237bdcd4dcbb477f853ec0d300c7aac09c1b749d2c899"
+    },
+    "recipe-round3-readout-capture.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round3-readout-capture.json",
+      "sha256": "fe34b47dd47c3b080f279f7bb0fb77db8336af695087498335e051ddaaa649db"
+    },
+    "recipe-round3-readout.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round3-readout.png",
+      "sha256": "76b17ac589a9dc835098c814553c3bc13ef20bedda0d108530c584d44ba333ba"
+    },
+    "recipe-round3-split-commands-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round3-split-commands-submission.json",
+      "sha256": "83976c3c90c01a23336e1b09d40dada79d12b4872c157c8132a33fba0c89e26e"
+    },
+    "recipe-round3-split-commands.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\recipe-round3-split-commands.json",
+      "sha256": "ea202c26a21a2d5977ea94a1f2c046eb55226d78c6ff30601ea56aa965487ba1"
+    },
+    "resumed-preflight-context.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\resumed-preflight-context.json",
+      "sha256": "c4c9f0a6249a9e7d05dcbc1e7668742db8a1c8dad953001c204dd94d13fd8b89"
+    },
+    "resumed-preflight-context.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\resumed-preflight-context.png",
+      "sha256": "9c292ba8d3fe79d22c76b8a575f1078a983c6f9add94c58a34ae771d9217a9d3"
+    },
+    "reviewed-plans.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\native\\reviewed-plans.json",
+      "sha256": "40069646b4576164e365ccfc0c1d97eaa850edc9404cb2dd2f865c2e330c4b6e"
+    },
+    "final-verification.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\final-verification.json",
+      "sha256": "1e98dc0b730a7ca9a691fdd96aca14643226f1bb4a53a80ac468dd0dc96d8739"
+    }
+  },
+  "quickPause": {
+    "cancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\CANCEL",
+    "nativeTemporaryCleanup": "None needed currently; all commands use local variables; no watcher installed.",
+    "workers": "Stop/interrupt current external candidate tests before writing continuity; current source unchanged."
+  },
+  "currentIntegration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 384,
+    "scriptsFail": 0,
+    "syntaxFiles": 1072,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "finalVerification": {
+    "sealedUtc": "2026-11-14T16:46:38.834878+00:00",
+    "documentation": {
+      "result": "PASS: 1105 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17422 local links. Source inventory/evidence current. No files written.",
+      "state": {
+        "status": "complete",
+        "parentPid": 31972,
+        "command": [
+          "C:\\Program Files\\Python310\\python.exe",
+          "docs/tools/validate_docs.py"
+        ],
+        "startedUtc": "2026-11-14T16:44:52.105346+00:00",
+        "childPid": null,
+        "exit": 0,
+        "finishedUtc": "2026-11-14T16:45:16.851952+00:00"
+      },
+      "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\docs-validate.txt",
+      "sha256": "69e0457cfcadb8ebedbda87ff9692a27788017183df5644cdca4130f5a940fc0"
+    },
+    "source": {
+      "allNormalizedLuaStillMatchIntegration": true,
+      "scriptsPass": 384,
+      "syntaxFiles": 1072,
+      "runtimeSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6"
+    },
+    "native": {
+      "commandsSent": 28,
+      "profilingCommands": 27,
+      "optionalSourceMetadataQueries": 1,
+      "batchWindowStates": {
+        "foregroundBatches": 7,
+        "backgroundBatches": 5
+      },
+      "helperActivation": false,
+      "sourceMetadata": {
+        "result": false,
+        "getTime": 91388.541,
+        "meaning": "Optional debug.getinfo is unavailable/false; no loaded-bytecode identity or after-change performance certified."
+      },
+      "currentTemporaryGlobalsFramesHooksWatchers": false,
+      "profilingPreferenceChanges": false,
+      "itemMailCraftQueueActions": false,
+      "reloadThisPass": false
+    },
+    "goalStatus": "active; original broad scope remains incomplete",
+    "quickPause": {
+      "rootCancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\CANCEL",
+      "jobCancel": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume3-20261114T160712Z\\integration-job\\CANCEL",
+      "ownedChildren": "All source-suite/checkpoint/docs/focused jobs complete; no active native watcher or cleanup required."
+    },
+    "remaining": [
+      "Native matched/new-source performance after a verified reload and before/after context",
+      "Slow natural tick callback attribution; current watcher misses raw bag/native timer owners and saved-root lifecycle remains unproved",
+      "Bank cache readiness/provenance/provider-off restore; stale mail producer races and populated/cold-mail timing before exceptional-delay decision",
+      "Other-client native/input/controller/secureVM/taint/pixel acceptance"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "utc": "2026-11-18T22:32:33.4089837Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 20,
+  "settingsContentsCopied": false,
+  "before": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/FluxConsumableBest/Scan.lua": "21883c7d637ef49221d432852a5d30755cff44c074a9b8750daecc06e14ea4aa",
+    "Inventory/FluxConsumableBest/Persist.lua": "7082172e7f26df0c9c8bc87330a262bf26eb23f48c90115294b54452f1e9f6b2"
+  },
+  "changeId": "LHO-CARRIED-SCAN-COUNT-20261118",
+  "status": "LUA_APPLIED_NATIVE_ADOPTION_PENDING",
+  "after": {
+    "Inventory/Index.lua": "e2f7919a871837bcac592f1ff39c0776fe9ac7c8a84bfeba683d826904e11778",
+    "Inventory/FluxConsumableBest/Scan.lua": "d422a9071df715f4c3fcae7f7403269b0b5c04203c8ac14a729a71c72c2f5196",
+    "Inventory/FluxConsumableBest/Persist.lua": "b39618c58eb487da169d3641ba370989835579c0cb0c803d3811dc34202f9833"
+  },
+  "externalCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-carried-scan-count-20261118",
+  "verification": {
+    "lua5.1": {
+      "beforeAfterPerFile": 6,
+      "pass": true
+    },
+    "lua5.4": {
+      "beforeAfterPerFile": 6,
+      "pass": true
+    },
+    "newSimulations": 0,
+    "source": [
+      "Canonical carried snapshot count defaults select bags only, with all other regions disabled. ReadOpts still invokes the same HasWarband check.",
+      "The index helper reads the current snapshot each time and keeps the same canonical tonumber and accumulation.",
+      "The caller falls back to fresh explicit flags when the public facade or its closed index getter is replaced, or the private helper is unavailable.",
+      "Saved-reference reuse requires the original Classify and IsRejected methods and a classifier without a metatable."
+    ]
+  },
+  "native109BeforeTheseEdits": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "orderedPathSamples": {
+      "legacy": [],
+      "current": []
+    },
+    "eligiblePasses": 0,
+    "methodsRestored": true,
+    "startJournal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-ref109resume_b-journal.json",
+    "resultImage": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\ref109resume-results.png",
+    "resultImageSha256": "5ef9622ae07088913750378cdc5e84057a96972e694c6ea999f7cbb0f0ed56cd",
+    "limit": "Session and workload changed. This run produced no matched timing."
+  },
+  "native110": {
+    "time": 1795041123.0724175,
+    "ownLockRemoved": true,
+    "reason": "Lease expired",
+    "inputSent": false
+  },
+  "jump": "Prior helper stopped. No new cue or host installed after observed client process change.",
+  "goalDashboard": "paused at observed read; latest user authorized manual continuation",
+  "remaining": [
+    "Loaded candidate verification",
+    "Native frame-time and per-workflow comparison",
+    "Other client, provider and UI parity checks"
+  ]
+}

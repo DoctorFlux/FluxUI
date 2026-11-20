@@ -1,0 +1,422 @@
+{
+  "changeId": "STRIP-BORDER-REFRESH-R112-20261119",
+  "capturedAtUTC": "2026-11-19T14:23:00.474216+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "6e6d397186ffa39160f5ed3ff9e9942970a5cc5e995171ee7bd2efd5986ff8e3",
+      "afterRaw": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "cc28a224e10a0c760ee29edd9b737facb68e0c34f32f21fba61248d4f2446288",
+      "afterRaw": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "72548e5983229d0832a9e28c43ded782d64429e68c39300d843503191eb5a779",
+      "afterRaw": "3088b4c913b61cc18ef2c44a95b29d42deebc6106cedddb31003721472de7f25"
+    },
+    "tests/bars_strip_layout_work.lua": {
+      "beforeRaw": "5b4058c855765288a75e0b95ec15603b0cc1b29c12dbf333b9fa10f93d136ffe",
+      "afterRaw": "5b4058c855765288a75e0b95ec15603b0cc1b29c12dbf333b9fa10f93d136ffe"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\source.zip",
+    "sourceZipSHA256": "9426372b3972aff2939fda5c83e9d53bd828c39c0290de20bfcac2568249877b",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenario": "A held action crosses the strip repeatedly. Panels pack or expand. The regional renderer also processes matched roster geometry changes.",
+  "work": {
+    "hostColumns": [
+      "Show before",
+      "Show after",
+      "Hide before",
+      "Hide after",
+      "SetScale before",
+      "SetScale after"
+    ],
+    "hostsPerTwelveCrossings": {
+      "false:false": [
+        612,
+        72,
+        72,
+        72,
+        402,
+        0
+      ],
+      "false:true": [
+        684,
+        0,
+        0,
+        0,
+        456,
+        0
+      ],
+      "true:false": [
+        612,
+        72,
+        72,
+        72,
+        402,
+        0
+      ],
+      "true:true": [
+        684,
+        0,
+        0,
+        0,
+        456,
+        0
+      ]
+    },
+    "regionsPerEightCrossings": {
+      "1:hover": [
+        1176,
+        784,
+        26272,
+        17968,
+        3208,
+        72
+      ],
+      "1:roster": [
+        1176,
+        784,
+        26248,
+        17968,
+        3216,
+        80
+      ],
+      "2:hover": [
+        1176,
+        784,
+        26272,
+        17968,
+        3208,
+        72
+      ],
+      "2:roster": [
+        1176,
+        784,
+        26248,
+        17968,
+        3216,
+        80
+      ]
+    },
+    "registryColumns": [
+      "group visits before",
+      "group visits after",
+      "piece visits before",
+      "piece visits after",
+      "owner index entries reread before",
+      "owner index entries reread after"
+    ],
+    "rawSHA256": "47ea5391c3702fc28e7064922beb688bcf15613df5f4b70e92f65981c238e0e5"
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6. Seven alternating exact source pairs. Host samples cover 140 crossings and border samples cover 12 reflows.",
+    "hostMeasures": {
+      "false": {
+        "medians": [
+          26.0,
+          27.0
+        ],
+        "samples": [
+          [
+            24.0,
+            26.0
+          ],
+          [
+            25.0,
+            26.0
+          ],
+          [
+            26.0,
+            27.0
+          ],
+          [
+            25.0,
+            29.0
+          ],
+          [
+            27.0,
+            27.0
+          ],
+          [
+            26.0,
+            27.0
+          ],
+          [
+            27.0,
+            27.0
+          ]
+        ]
+      },
+      "true": {
+        "medians": [
+          26.0,
+          26.0
+        ],
+        "samples": [
+          [
+            25.0,
+            26.0
+          ],
+          [
+            26.0,
+            27.0
+          ],
+          [
+            26.0,
+            26.0
+          ],
+          [
+            26.0,
+            26.0
+          ],
+          [
+            26.0,
+            26.0
+          ],
+          [
+            26.0,
+            27.0
+          ],
+          [
+            27.0,
+            27.0
+          ]
+        ]
+      }
+    },
+    "borderMeasures": {
+      "1:hover": {
+        "medians": [
+          194.0,
+          195.0
+        ],
+        "samples": [
+          [
+            171.0,
+            174.0
+          ],
+          [
+            179.0,
+            168.0
+          ],
+          [
+            218.0,
+            215.0
+          ],
+          [
+            261.0,
+            229.0
+          ],
+          [
+            227.0,
+            195.0
+          ],
+          [
+            188.0,
+            198.0
+          ],
+          [
+            194.0,
+            192.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          49.0,
+          52.0
+        ],
+        "samples": [
+          [
+            58.0,
+            50.0
+          ],
+          [
+            49.0,
+            52.0
+          ],
+          [
+            52.0,
+            60.0
+          ],
+          [
+            55.0,
+            61.0
+          ],
+          [
+            49.0,
+            47.0
+          ],
+          [
+            47.0,
+            48.0
+          ],
+          [
+            47.0,
+            52.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          184.0,
+          172.0
+        ],
+        "samples": [
+          [
+            183.0,
+            194.0
+          ],
+          [
+            186.0,
+            170.0
+          ],
+          [
+            179.0,
+            177.0
+          ],
+          [
+            182.0,
+            170.0
+          ],
+          [
+            188.0,
+            173.0
+          ],
+          [
+            192.0,
+            168.0
+          ],
+          [
+            184.0,
+            172.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          57.0,
+          50.0
+        ],
+        "samples": [
+          [
+            56.0,
+            46.0
+          ],
+          [
+            64.0,
+            53.0
+          ],
+          [
+            57.0,
+            51.0
+          ],
+          [
+            53.0,
+            48.0
+          ],
+          [
+            52.0,
+            50.0
+          ],
+          [
+            60.0,
+            54.0
+          ],
+          [
+            60.0,
+            48.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\compare.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\matched-final.txt",
+    "earlierIndexVariant": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\matched.txt",
+    "limits": "Overall desktop timings are mixed. Native frame and setter timings remain to be measured."
+  },
+  "preservation": [
+    "exact protected host layout and action mapping for dense and sparse top and bottom minis",
+    "repair when native scale or visibility genuinely differs",
+    "opaque or denied reads fall back to existing setter",
+    "matching sampled HUD joins and independent roster border geometry",
+    "foreign source, registration, mask and combat guards"
+  ],
+  "verification": {
+    "focusedPassed": 44,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-border-refresh-before-20261119-141449\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "d5cd726e35260ba5b491825de4212ed14954a276f7f893f86bf177d88be3c222",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party/raid membership latency, held-action hitches, seamless pixels, and combat taint. No game input or profiling changes."
+}

@@ -1,0 +1,326 @@
+-- Frozen COMPLETE J:Solve implementation from Core/BorderJunctions.lua.
+-- Parent normalized SHA256:244413aac79c8f8ab04e55cadd6c1eb22cf08efc32de2d27917b096f804798df
+-- Parent raw SHA256:cd598e6c798af6f869a10599650a3525571fd8f20cf1d0e6f35467b932a8b962
+-- Scope: only this solver body is frozen; the regression loads all remaining
+-- helpers from its current tested Core. This is not an independent oracle for
+-- future changes to those shared helpers. Do not reconstruct by reversal.
+function J:Solve(segments)
+    if #segments>self.limits.segments then return nil,"segment budget" end
+    local bins, nodes, operations, candidates = {}, {}, {}, 0
+    local bucketEntries=0
+    local function Add(op)
+        operations[#operations+1]=op
+        return #operations<=self.limits.operations
+    end
+    table.sort(segments,function(a,b)
+        if a.axis~=b.axis then return a.axis<b.axis end
+        if a.group.plane~=b.group.plane then return a.group.plane<b.group.plane end
+        if a.p~=b.p then return a.p<b.p end
+        if a.a~=b.a then return a.a<b.a end
+        return a.group.id<b.group.id
+    end)
+    -- Build one spatial index for parallel overlap and perpendicular joins.
+    for i,s in ipairs(segments) do
+        s.id=i;s.rawP=s.p;s.paintCuts={};s.weldOffset=0
+    end
+    for _,s in ipairs(segments) do
+        local low,high=floor((s.a-EPS)/CELL),floor((s.b+EPS)/CELL)
+        local c=floor(s.p/CELL)
+        if high-low>128 then return nil,"extent budget" end
+        for along=low,high do
+            for across=c-1,c+1 do
+                bucketEntries=bucketEntries+1
+                if bucketEntries>self.limits.bucketEntries then return nil,"bucket budget" end
+                local key=s.group.plane..":"..(s.axis=="H" and along..":"..across or across..":"..along)
+                local bin=bins[key]
+                if not bin then bin={H={},V={}};bins[key]=bin end
+                local list=bin[s.axis];list[#list+1]=s
+            end
+        end
+    end
+    -- Check every local parallel neighbour, rather than partitioning by one
+    -- representative line. Interleaved opposing/same-side runs otherwise hide
+    -- real contacts (for example Micro Menu versus NonCombat Grid).
+    local parallelSeen,pairsToPaint={},{}
+    for _,bin in pairs(bins) do
+        for _,axis in ipairs({bin.H,bin.V}) do
+            for i,a in ipairs(axis) do for k=i+1,#axis do
+                local b=axis[k]
+                candidates=candidates+1
+                if candidates>self.limits.candidates then self.stats.candidates=candidates;return nil,"candidate budget" end
+                local seenA=parallelSeen[a]
+                if not seenA then seenA={};parallelSeen[a]=seenA end
+                if not seenA[b] then
+                    seenA[b]=true
+                    local low,high=max(a.a,b.a),min(a.b,b.b)
+                    if a.group~=b.group and high-low>EPS and abs(a.p-b.p)<=CollinearTolerance(a,b) then
+                        local loser,keeper=a,b
+                        if Above(a,b) then loser,keeper=b,a end
+                        pairsToPaint[#pairsToPaint+1]={loser=loser,keeper=keeper,a=low,b=high}
+                    end
+                end
+            end end
+        end
+    end
+    table.sort(pairsToPaint,function(a,b)
+        if a.keeper.group~=b.keeper.group then return Above(a.keeper,b.keeper) end
+        if a.loser.group~=b.loser.group then return Above(a.loser,b.loser) end
+        return a.loser.id<b.loser.id
+    end)
+    for _,pair in ipairs(pairsToPaint) do
+        local loser,keeper=pair.loser,pair.keeper
+        if JoinAllowed(loser,keeper) then
+            -- Keep every original higher owner, including intermediary sources
+            -- later hidden by a still higher duplicate. Compile paint fallbacks
+            -- from these public layout intervals; visibility never re-solves.
+            local function Availability(item,rect,owner)
+                if not item then return end
+                item.availabilityCuts=item.availabilityCuts or {}
+                item.availabilityCuts[#item.availabilityCuts+1]={rect=rect,owner=owner}
+            end
+            if loser.item and loser.rect then
+                local r=loser.axis=="H" and {pair.a,loser.rect[2],pair.b,loser.rect[4]}
+                    or {loser.rect[1],pair.a,loser.rect[3],pair.b}
+                Availability(loser.item,r,keeper.texture)
+                for _,item in ipairs(loser.group.pieces or {}) do
+                    local sides=capSides[item.record.key]
+                    if sides and sides[loser.side] then
+                        for _,other in ipairs(keeper.group.pieces or {}) do
+                            if other.record.key==item.record.key and sides[keeper.side] then
+                                local same=true
+                                for axis=1,4 do if abs(item.rect[axis]-other.rect[axis])>EPS then same=false;break end end
+                                if same then Availability(item,item.rect,other.texture) end
+                            end
+                        end
+                    end
+                end
+            end
+            local boundaries,visited={pair.a,pair.b},{}
+            if not CollectOwnerBoundaries(loser,pair.a,pair.b,boundaries,visited)
+                or not CollectOwnerBoundaries(keeper,pair.a,pair.b,boundaries,visited) then return nil,"ownership boundary budget" end
+            table.sort(boundaries)
+            local previous=boundaries[1]
+            for i=2,#boundaries do
+                local finish=boundaries[i]
+                if finish-previous>.00001 then
+                    local a,b=PaintOwner(loser,(previous+finish)/2),PaintOwner(keeper,(previous+finish)/2)
+                    if a~=b and JoinAllowed(a,b) then
+                        local lower,higher=a,b
+                        if Above(a,b) then lower,higher=b,a end
+                        lower.paintCuts[#lower.paintCuts+1]={a=previous,b=finish,owner=higher}
+                        local offset=abs(lower.rawP-higher.rawP)
+                        lower.weldOffset=max(lower.weldOffset,offset);higher.weldOffset=max(higher.weldOffset,offset)
+                        local center,half=higher.rawP,16*max(lower.scale,higher.scale)
+                        local r=lower.axis=="H" and {previous,center-half,finish,center+half}
+                            or {center-half,previous,center+half,finish}
+                        if lower.rect and higher.rect then
+                            local axis=lower.axis=="H" and 2 or 1
+                            r[axis]=min(lower.rect[axis],higher.rect[axis])-EPS
+                            r[axis+2]=max(lower.rect[axis+2],higher.rect[axis+2])+EPS
+                        end
+                        local corners={}
+                        -- Coincident complete outlines share their caps too.
+                        -- Edge-only cuts stop at stroke centers and otherwise
+                        -- leave several copies of the outside corner/shadow.
+                        for _,item in ipairs(lower.group.pieces or {}) do
+                            local sides=capSides[item.record.key]
+                            if sides and sides[lower.side] then
+                                for _,other in ipairs(higher.group.pieces or {}) do
+                                    if other.record.key==item.record.key and sides[higher.side] then
+                                        local same=true
+                                        for axis=1,4 do if abs(item.rect[axis]-other.rect[axis])>EPS then same=false;break end end
+                                        if same then corners[#corners+1]=item end
+                                    end
+                                end
+                            end
+                        end
+                        if not Add({rect=r,cut={[lower.group]=true},edges={[lower.group]={[lower.side]=true}},corners=corners,
+                            members={[lower.group]=true,[higher.group]=true}}) then return nil,"operation budget" end
+                    end
+                    previous=finish
+                end
+            end
+        elseif opposite[loser.side]==keeper.side and loser.rect and keeper.rect then
+            local low,high=loser,keeper
+            if low.rawP>high.rawP then low,high=high,low end
+            local mid=(low.rawP+high.rawP)/2
+            local lr=low.axis=="H" and {pair.a,mid,pair.b,max(low.rect[4],high.rect[4])+EPS}
+                or {mid,pair.a,max(low.rect[3],high.rect[3])+EPS,pair.b}
+            local hr=low.axis=="H" and {pair.a,min(low.rect[2],high.rect[2])-EPS,pair.b,mid}
+                or {min(low.rect[1],high.rect[1])-EPS,pair.a,mid,pair.b}
+            for _,entry in ipairs({{low,lr},{high,hr}}) do
+                local edge,rect=entry[1],entry[2]
+                if not Add({rect=rect,cut={[edge.group]=true},edges={[edge.group]={[edge.side]=true}},
+                    members={[low.group]=true,[high.group]=true},shadowOnly=true}) then return nil,"operation budget" end
+            end
+        end
+    end
+    local seen={}
+    local nodeList={}
+    for _,bin in pairs(bins) do
+        for _,originalH in ipairs(bin.H) do
+            for _,originalV in ipairs(bin.V) do
+                local h,v=originalH,originalV
+                candidates=candidates+1
+                if candidates>self.limits.candidates then self.stats.candidates=candidates;return nil,"candidate budget" end
+                local seenH=seen[h]
+                if not seenH then seenH={};seen[h]=seenH end
+                if not seenH[v] then
+                    seenH[v]=true
+                    local tolerance=Tolerance(h,v)
+                    local reach=tolerance+max(h.weldOffset or 0,v.weldOffset or 0)
+                    if JoinAllowed(h,v) and v.p>=h.a-reach and v.p<=h.b+reach and h.p>=v.a-reach and h.p<=v.b+reach then
+                        h=PaintOwner(h,v.rawP)
+                        v=PaintOwner(v,h.rawP)
+                        h=PaintOwner(h,v.rawP)
+                        if JoinAllowed(h,v) and JoinAllowed(originalH,v) and JoinAllowed(h,originalV) then
+                        local x,y=v.rawP,h.rawP
+                        local unitOwner=originalH.group.unitOwner or originalV.group.unitOwner or h.group.unitOwner or v.group.unitOwner
+                        local bx,by=floor(x/4),floor(y/4)
+                        local node
+                        for dx=-1,1 do
+                            for dy=-1,1 do
+                                local bucket=nodes[h.group.plane..":"..(bx+dx)..":"..(by+dy)]
+                                for _,n in ipairs(bucket or {}) do
+                                    if abs(n.x-x)<=tolerance and abs(n.y-y)<=tolerance
+                                        and not (n.unitOwner and unitOwner and n.unitOwner~=unitOwner) then node=n;break end
+                                end
+                            end
+                        end
+                        if not node then
+                            node={x=x,y=y,members={},segments={},hs=h,vs=v,unitOwner=unitOwner}
+                            local nk=h.group.plane..":"..bx..":"..by
+                            nodes[nk]=nodes[nk] or {};table.insert(nodes[nk],node)
+                            nodeList[#nodeList+1]=node
+                        end
+                        node.unitOwner=node.unitOwner or unitOwner
+                        node.segments[h]=true;node.segments[v]=true
+                        node.segments[originalH]=true;node.segments[originalV]=true
+                        node.members[h.group]=true;node.members[v.group]=true
+                        node.members[originalH.group]=true;node.members[originalV.group]=true
+                        if Above(h,node.hs) then node.hs=h end
+                        if Above(v,node.vs) then node.vs=v end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    for _,node in ipairs(nodeList) do
+        local l,r,u,d=false,false,false,false
+        local count=0
+        for _ in pairs(node.members) do count=count+1 end
+        if count>1 then
+            node.x,node.y=node.vs.p,node.hs.p
+            local tolerance=Tolerance(node.hs,node.vs)
+            for s in pairs(node.segments) do
+                if s.axis=="H" then l=l or s.a<node.x-tolerance;r=r or s.b>node.x+tolerance
+                else d=d or s.a<node.y-tolerance;u=u or s.b>node.y+tolerance end
+            end
+            local bits=(l and 1 or 0)+(r and 2 or 0)+(u and 4 or 0)+(d and 8 or 0)
+            if shape[bits] then
+                node.bits=bits
+                node.rect={node.x-16*node.vs.scale,node.y-16*node.hs.scale,node.x+16*node.vs.scale,node.y+16*node.hs.scale}
+                node.fullRect={unpack(node.rect)}
+                node.cut=node.members
+                node.edges={}
+                for s in pairs(node.segments) do
+                    node.edges[s.group]=node.edges[s.group] or {}
+                    node.edges[s.group][s.side]=true
+                end
+                if not Add(node) then return nil,"operation budget" end
+            end
+        end
+    end
+    -- Close junction patches must not stack over one another. Partition their
+    -- overlap and crop the matching source UVs; the original line fills outside.
+    local patches={}
+    for _,node in ipairs(nodeList) do
+        if node.bits then
+            local rect=node.rect
+            local x0,x1,y0,y1=floor(rect[1]/CELL),floor(rect[3]/CELL),floor(rect[2]/CELL),floor(rect[4]/CELL)
+            if (x1-x0+1)*(y1-y0+1)>64 then return nil,"patch extent budget" end
+            local visited={}
+            for x=x0,x1 do for y=y0,y1 do
+                local key=node.hs.group.plane..":"..x..":"..y
+                for _,other in ipairs(patches[key] or {}) do
+                    if not visited[other] then
+                        visited[other]=true;candidates=candidates+1
+                        if candidates>self.limits.candidates then return nil,"candidate budget" end
+                        if Intersects(node.rect,other.rect) then
+                            local dx,dy=node.x-other.x,node.y-other.y
+                            local axis=abs(dx)>=abs(dy) and 1 or 2
+                            local mid=axis==1 and (node.x+other.x)/2 or (node.y+other.y)/2
+                            local first=(axis==1 and dx or dy)<0
+                            local low,high=first and node or other,first and other or node
+                            low.rect[axis+2]=min(low.rect[axis+2],mid)
+                            high.rect[axis]=max(high.rect[axis],mid)
+                        end
+                    end
+                end
+                patches[key]=patches[key] or {};table.insert(patches[key],node)
+            end end
+        end
+    end
+    -- Resolve current interval owners once. A remote parallel keeper may be
+    -- sampled by this node even though it did not form the intersection. Cut
+    -- its native edge too, without changing the node's geometric candidates.
+    for _,node in ipairs(nodeList) do if node.bits then
+        local best=Branches(node)
+        node.branchBest=best;node.branchSlices={}
+        local remote={}
+        for arm=1,4 do if floor(node.bits/2^(arm-1))%2==1 then
+            local slices,reason=ArmSlices(node,arm,best)
+            if not slices then node.branchError=reason;break end
+            node.branchSlices[arm]=slices
+            for _,slice in ipairs(slices) do
+                local segment=slice.segment
+                if segment.group.plane~=node.hs.group.plane or not JoinAllowed(node.hs,segment) or not JoinAllowed(node.vs,segment) then
+                    node.branchError="incompatible interval owner";break
+                end
+                if not node.segments[segment] then remote[segment]=true end
+            end
+            if node.branchError then break end
+        end end
+        if not node.branchError then for segment in pairs(remote) do
+            local g=segment.group
+            node.members[g]=true
+            node.edges[g]=node.edges[g] or {};node.edges[g][segment.side]=true
+        end end
+    end end
+    -- A T near an ordinary outside L must not erase that cap or draw a
+    -- clamped straight-edge field across it. Compact unit blocks can put a
+    -- resource split inside the 32px junction window of both outer corners.
+    for _,node in ipairs(nodeList) do
+        if node.bits then
+            local tolerance=Tolerance(node.hs,node.vs)
+            node.protectedCaps={};node.protectedRects={}
+            local hasAura=false
+            for g in pairs(node.members) do if g.parent and g.parent._FluxBorderAuraPanel then hasAura=true end end
+            node.roundCaps={}
+            for g in pairs(node.members) do
+                for _,item in ipairs(g.pieces or {}) do
+                    local matched=item.cornerX and abs(item.cornerX-node.x)<=tolerance and abs(item.cornerY-node.y)<=tolerance
+                    local rounded=matched and hasAura and g.parent and g.parent._FluxBorderRoundCorners
+                    local internal=g.parent and g.parent._FluxBorderCastInternalSide
+                    local internalCap=internal and capSides[item.record.key] and capSides[item.record.key][internal]
+                    if item.cornerX and not internalCap and Intersects(item.rect,node.rect) and (not matched or rounded) then
+                        node.protectedCaps[item]=true
+                        node.protectedRects[#node.protectedRects+1]=item.rect
+                        if #node.protectedRects>64 then return nil,"junction cap budget" end
+                        if rounded then
+                            local incoming
+                            for s in pairs(node.segments) do
+                                if s.axis=="V" and s.group.parent and s.group.parent._FluxBorderAuraPanel
+                                    and (not incoming or Above(s,incoming)) then incoming=s end
+                            end
+                            if incoming then node.roundCaps[#node.roundCaps+1]={item=item,segment=incoming} end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    self.stats.candidates=candidates
+    return operations
+end

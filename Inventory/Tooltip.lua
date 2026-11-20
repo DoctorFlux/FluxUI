@@ -146,6 +146,31 @@ local function TotalOf(s)
 	return (s.bags or 0) + (s.bank or 0) + (s.mail or 0) + (s.equipped or 0) + (s.void or 0) + (s.auctions or 0)
 end
 
+local function SortTooltipCharacters(a, b)
+	local left, right = TotalOf(a), TotalOf(b)
+	if left == right then
+		return CharComparator(a, b)
+	end
+	return left > right
+end
+
+local function SortTooltipGuilds(a, b)
+	if (a.bank or 0) == (b.bank or 0) then
+		if a.realmNormalized == b.realmNormalized then
+			return tostring(a.guild) < tostring(b.guild)
+		end
+		return tostring(a.realmNormalized) < tostring(b.realmNormalized)
+	end
+	return (a.bank or 0) > (b.bank or 0)
+end
+
+local function SortTooltipCurrencies(a, b)
+	if (a.quantity or 0) == (b.quantity or 0) then
+		return tostring(a.character) < tostring(b.character)
+	end
+	return (a.quantity or 0) > (b.quantity or 0)
+end
+
 local function AddItemLines(tooltip, itemLink)
 	local cfg = Inv.GetAwarenessOptions()
 	if not cfg.showItems or not ShiftOk(cfg) then
@@ -164,22 +189,8 @@ local function AddItemLines(tooltip, itemLink)
 		info.guilds = {}
 	end
 
-	table.sort(info.characters or {}, function(a, b)
-		local left, right = TotalOf(a), TotalOf(b)
-		if left == right then
-			return CharComparator(a, b)
-		end
-		return left > right
-	end)
-	table.sort(info.guilds or {}, function(a, b)
-		if (a.bank or 0) == (b.bank or 0) then
-			if a.realmNormalized == b.realmNormalized then
-				return tostring(a.guild) < tostring(b.guild)
-			end
-			return tostring(a.realmNormalized) < tostring(b.realmNormalized)
-		end
-		return (a.bank or 0) > (b.bank or 0)
-	end)
+	table.sort(info.characters or {}, SortTooltipCharacters)
+	table.sort(info.guilds or {}, SortTooltipGuilds)
 
 	local totals = 0
 	local seenRealms = {}
@@ -298,12 +309,7 @@ local function AddCurrencyLines(tooltip, currencyID)
 	if type(rows) ~= "table" or #rows == 0 then
 		return
 	end
-	table.sort(rows, function(a, b)
-		if (a.quantity or 0) == (b.quantity or 0) then
-			return tostring(a.character) < tostring(b.character)
-		end
-		return (a.quantity or 0) > (b.quantity or 0)
-	end)
+	table.sort(rows, SortTooltipCurrencies)
 	local total = 0
 	local seenRealms = {}
 	for i = 1, #rows do

@@ -5,7 +5,7 @@ local Flux = ns.Flux
 local Capture = {}
 Flux.PerfCapture = Capture
 local active
-local watch, watchFrame
+local watch, watchFrame, watchArming, watchFrameBusy, watchReportOwner
 local PREFIX = "|cff00ccffFluxPerf|r"
 local SCRIPTS = { "OnUpdate", "OnEvent" }
 
@@ -275,7 +275,7 @@ function Capture.Print()
 end
 
 function Capture.Cancel()
-    if watch then Capture.StopWatch("cancelled") end
+    if watch or watchArming then Capture.StopWatch("cancelled") end
     if not active then return end
     if active.timer then active.timer:Cancel() end
     if active.sampler then active.sampler:Cancel() end
@@ -285,7 +285,7 @@ function Capture.Cancel()
 end
 
 function Capture.Start(seconds)
-    if watch then print(PREFIX, "Spike watch is running. /fluxperf watch off") return end
+    if watch or watchArming or watchFrameBusy then print(PREFIX, "Spike watch is running. /fluxperf watch off") return end
     if active then print(PREFIX, "Capture already running. /fluxperf cancel") return end
     if not (GetTime and C_Timer and C_Timer.NewTimer and C_Timer.NewTicker) then
         print(PREFIX, "This client has no capture timer API.")
@@ -450,13 +450,21 @@ local function FunctionLabels()
 end
 
 local function CallbackLabel(state, fn, kind, key)
+    if watch ~= state then return end
     if issecretvalue and issecretvalue(fn) then return kind .. ":unavailable" end
+    local service = Flux[kind]
+    if service and type(service.GetCallbackOrigin) == "function" then
+        local origin = service.GetCallbackOrigin(fn)
+        if watch ~= state then return end
+        if PublicString(origin) then return origin end
+    end
     local label = state.labels[fn]
     if label then return label end
     -- Lua debug metadata, when supplied by the client, concerns the callback
     -- function only. No event arguments, frame graphs or actor data are read.
     if type(debug) == "table" and type(debug.getinfo) == "function" then
         local ok, info = pcall(debug.getinfo, fn, "S")
+        if watch ~= state then return end
         if ok and ReadableTable(info) and PublicString(info.short_src) and PlainNumber(info.linedefined) then
             label = info.short_src:sub(1, 180) .. ":" .. info.linedefined
         end
@@ -500,6 +508,7 @@ end
 
 local function AddWatchCost(state, started)
     local ended = WatchClock()
+    if watch ~= state then return end
     if started and ended and ended >= started then
         local ms = ended - started
         state.report.diagnosticMs = state.report.diagnosticMs + ms
@@ -509,10 +518,12 @@ end
 
 local function ObserveWatch(state, kind, key, fn, ms, failed, tokens)
     if watch ~= state or not WatchNumber(ms) then return end
+    if watch ~= state then return end
     local r = state.report
     r.observedCallbacks = r.observedCallbacks + 1
     state.frameCallbackCount = state.frameCallbackCount + 1
     key = (PublicString(key) or (PlainNumber(key) and key == key and key > -math.huge and key < math.huge)) and key or "unavailable"
+    if watch ~= state then return end
     local keys = state.frameKeys[kind]
     if keys[key] then keys[key] = keys[key] + 1
     elseif state.frameKeyCount < 64 then
@@ -526,12 +537,15 @@ local function ObserveWatch(state, kind, key, fn, ms, failed, tokens)
     end
     if ms < 10 then return end
     local started = WatchClock()
+    if watch ~= state then return end
+    local now = GetTime()
+    if watch ~= state then return end
+    if not WatchNumber(now) or not WatchNumber(state.started) or now < state.started then return end
     key = PublicString(key) and key or (PlainNumber(key) and tostring(key) or "unavailable")
-    r.callbackCount = r.callbackCount + 1
-    local row = PushWatchRow(r.callbacks, WATCH_CALLBACKS, r.callbackCount)
-    row.sequence, row.at, row.kind, row.key = r.callbackCount, GetTime() - state.started, kind, key
-    row.ms, row.failed = ms, failed == true
-    row.label = CallbackLabel(state, fn, kind, key)
+    if watch ~= state then return end
+    local label = CallbackLabel(state, fn, kind, key)
+    if watch ~= state then return end
+    local tokenNames
     if ReadableTable(tokens) then
         local names, visited = {}, 0
         for token in pairs(tokens) do
@@ -539,141 +553,350 @@ local function ObserveWatch(state, kind, key, fn, ms, failed, tokens)
             if PublicString(token) then names[#names + 1] = token:sub(1, 80) end
             if #names == 4 or visited == 16 then break end
         end
-        row.tokens = table.concat(names, ",")
+        tokenNames = table.concat(names, ",")
     end
-    if hottest then
-        state.frameCallbackTokens = row.tokens
-    end
+    if watch ~= state then return end
+    r.callbackCount = r.callbackCount + 1
+    local row = PushWatchRow(r.callbacks, WATCH_CALLBACKS, r.callbackCount)
+    row.sequence, row.at, row.kind, row.key = r.callbackCount, now - state.started, kind, key
+    row.ms, row.failed, row.label, row.tokens = ms, failed == true, label, tokenNames
+    if hottest then state.frameCallbackTokens = tokenNames end
     AddWatchCost(state, started)
 end
 
+-- Only two bounded scalar batches exist: deliveries since Update entry, and
+-- the detached batch currently being sampled. No event-time clock is queried.
+local function FinishCombatBatch(state, reason, at, gapMs)
+    local r = state.report.combatTransitions
+    local enter, exit = state.inflightEnter, state.inflightExit
+    state.inflightEnter, state.inflightExit = 0, 0
+    if reason == "sampled" then
+        r.enterSampledEvents, r.exitSampledEvents = r.enterSampledEvents + enter, r.exitSampledEvents + exit
+        if enter > 0 then
+            r.enterSampledFrames = r.enterSampledFrames + 1
+            local row = r.enterWorst
+            if not row.present or gapMs > row.gapMs then row.present, row.at, row.gapMs = true, at, gapMs end
+        end
+        if exit > 0 then
+            r.exitSampledFrames = r.exitSampledFrames + 1
+            local row = r.exitWorst
+            if not row.present or gapMs > row.gapMs then row.present, row.at, row.gapMs = true, at, gapMs end
+        end
+    elseif reason == "first" then
+        r.enterFirstUnmeasured, r.exitFirstUnmeasured = r.enterFirstUnmeasured + enter, r.exitFirstUnmeasured + exit
+    elseif reason == "invalid" then
+        r.enterInvalidUnmeasured, r.exitInvalidUnmeasured = r.enterInvalidUnmeasured + enter, r.exitInvalidUnmeasured + exit
+    else
+        r.enterStoppedUnmeasured, r.exitStoppedUnmeasured = r.enterStoppedUnmeasured + enter, r.exitStoppedUnmeasured + exit
+    end
+end
+
+local function WatchFrameCall(frame, method, ...)
+    return frame[method](frame, ...)
+end
+
+-- WoW frames cannot be destroyed. A failed arm retains this hidden frame for
+-- retry, and attempts every owned cleanup operation even if one operation fails.
+local function DisarmWatchFrame(state)
+    local frame = state.frame
+    if not frame then return true end
+    watchFrameBusy = true
+    local success, failure = true, nil
+    local ok, err = pcall(WatchFrameCall, frame, "SetScript", "OnUpdate", nil)
+    if not ok then success, failure = false, err end
+    ok, err = pcall(WatchFrameCall, frame, "SetScript", "OnEvent", nil)
+    if not ok and success then success, failure = false, err end
+    ok, err = pcall(WatchFrameCall, frame, "UnregisterEvent", "PLAYER_LOGOUT")
+    if not ok and success then success, failure = false, err end
+    ok, err = pcall(WatchFrameCall, frame, "UnregisterEvent", "PLAYER_REGEN_DISABLED")
+    if not ok and success then success, failure = false, err end
+    ok, err = pcall(WatchFrameCall, frame, "UnregisterEvent", "PLAYER_REGEN_ENABLED")
+    if not ok and success then success, failure = false, err end
+    ok, err = pcall(WatchFrameCall, frame, "Hide")
+    if not ok and success then success, failure = false, err end
+    watchFrameBusy = nil
+    return success, failure
+end
+
+local function ReleaseWatch(state)
+    local releases = state.releases
+    state.labels, state.releases, state.frameKeys, state.frameCallbackFn = nil, nil, nil, nil
+    local success, failure = true, nil
+    for _, release in ipairs(releases) do
+        local ok, err = pcall(release)
+        if not ok and success then success, failure = false, err end
+    end
+    return success, failure
+end
+
+local function WatchSavedRootMatches(current, expected)
+    if type(expected) == "nil" then return type(current) == "nil" end
+    if not ReadableTable(current) or not ReadableTable(expected) then return false end
+    -- Decline a root swap observed after the preceding permission reads. The
+    -- final native permission/identity primitives are trusted checks; arbitrary
+    -- continuously mutating replacements cannot form an atomic transaction.
+    local fresh = _G.FluxPerfCaptureDB
+    return ReadableTable(fresh) and rawequal(current, expected) and rawequal(fresh, expected)
+end
+
+local function RollbackWatchPublication(state)
+    local db = state.savedRoot
+    if ReadableTable(db) then
+        local current
+        if state.savedSlotTouched then current = rawget(db, "spikeWatch") end
+        if ReadableTable(current) and ReadableTable(state.report) and rawequal(current, state.report) then
+            rawset(db, "spikeWatch", state.previousSavedReport)
+        end
+        if state.createdSavedRoot and WatchSavedRootMatches(_G.FluxPerfCaptureDB, db)
+            and type(next(db)) == "nil" and type(getmetatable(db)) == "nil" then _G.FluxPerfCaptureDB = nil end
+    end
+    state.savedRoot, state.previousSavedReport = nil, nil
+end
+
+local function FinishWatchReport(state, reason)
+    local r = state.report
+    r.status = reason or "stopped"
+    local now = GetTime()
+    if WatchNumber(now) and WatchNumber(state.started) and now >= state.started then r.seconds = now - state.started
+    else r.stopTimingUnavailable = true end
+    r.heapAfterKB, r.errorsAfter = HeapKB(), ErrorCount()
+end
+
 function Capture.StopWatch(reason)
+    if watchArming then watchArming.cancelled = true; return true end
     local state = watch
     if not state then return false end
     watch = nil
-    watchFrame:SetScript("OnUpdate", nil)
-    watchFrame:SetScript("OnEvent", nil)
-    watchFrame:UnregisterEvent("PLAYER_LOGOUT")
-    watchFrame:Hide()
-    for _, release in ipairs(state.releases) do release() end
+    state.inflightEnter = state.inflightEnter + state.pendingEnter
+    state.inflightExit = state.inflightExit + state.pendingExit
+    state.pendingEnter, state.pendingExit = 0, 0
+    FinishCombatBatch(state, "stopped")
+    local ok, err = DisarmWatchFrame(state)
+    local released, releaseError = ReleaseWatch(state)
+    if ok and not released then ok, err = false, releaseError end
+    local finished, finishError = pcall(FinishWatchReport, state, reason)
+    if ok and not finished then ok, err = false, finishError end
     local r = state.report
-    r.status, r.seconds = reason or "stopped", math.max(0, GetTime() - state.started)
-    r.heapAfterKB, r.errorsAfter = HeapKB(), ErrorCount()
-    state.labels, state.releases, state.frameKeys, state.frameCallbackFn = nil, nil, nil, nil
-    local db = _G.FluxPerfCaptureDB
-    if db == nil then db = {}; _G.FluxPerfCaptureDB = db end
-    if ReadableTable(db) then db.spikeWatch = r end
+    -- A release/read hook may have successfully started AND stopped B. Its
+    -- publication token still wins even when there is no current active watch.
+    if rawequal(watchReportOwner, r) then
+        local db = _G.FluxPerfCaptureDB
+        if type(db) == "nil" then db = {}; _G.FluxPerfCaptureDB = db end
+        if ReadableTable(db) and rawequal(watchReportOwner, r) then db.spikeWatch = r end
+    end
+    if not ok then error(err, 0) end
     print(PREFIX, string.format("Spike watch stopped: %d frame gaps; %d slow callbacks. /fluxperf spikes", r.spikeCount, r.callbackCount))
     return true
 end
 
 function Capture.WatchStatus()
-    if not watch then return { active = false } end
-    return { active = true, secondsRemaining = math.max(0, watch.deadline - GetTime()),
-        spikes = watch.report.spikeCount, callbacks = watch.report.callbackCount }
+    local state = watch
+    if not state then return { active = false } end
+    local now = GetTime()
+    if watch ~= state then return { active = watch ~= nil } end
+    return { active = true, secondsRemaining = WatchNumber(now) and math.max(0, state.deadline - now) or nil,
+        spikes = state.report.spikeCount, callbacks = state.report.callbackCount }
 end
 
-function Capture.StartWatch(seconds, thresholdMs)
-    if watch or active then print(PREFIX, "A capture/watch is already running. /fluxperf cancel") return false end
+-- Optional consumers can attach bounded phase timings to this exact finite
+-- watch. Returning the already-owned report avoids allocations on each check.
+function Capture.GetActiveWatchReport()
+    return watch and watch.report or nil
+end
+
+local function UpdateWatch(state, thresholdMs, elapsed)
+    local started = WatchClock()
+    if watch ~= state then return end
+    local now = GetTime()
+    if watch ~= state then return end
+    local r = state.report
+    r.frameCount = r.frameCount + 1
+    local previous = state.previousTime
+    local validTime = WatchNumber(now) and WatchNumber(state.started) and now >= state.started
+        and (previous == nil or (WatchNumber(previous) and now >= previous))
+    local gapMs = WatchNumber(elapsed) and elapsed * 1000 or nil
+    local validGap = gapMs and WatchNumber(gapMs)
+    if watch ~= state then return end
+    if not validTime or not validGap then FinishCombatBatch(state, "invalid")
+    elseif previous == nil then FinishCombatBatch(state, "first")
+    else FinishCombatBatch(state, "sampled", now - state.started, gapMs) end
+    if validTime and validGap and previous ~= nil then
+        r.peakFrameMs = math.max(r.peakFrameMs, gapMs)
+        if gapMs >= thresholdMs then
+            r.spikeCount = r.spikeCount + 1
+            local row = PushWatchRow(r.spikes, WATCH_SPIKES, r.spikeCount)
+            row.sequence, row.at, row.gapMs = r.spikeCount, now - state.started, gapMs
+            row.intervalCallbacks, row.callbackMs = state.frameCallbackCount, state.frameCallbackMs
+            local label = state.frameCallbackFn and CallbackLabel(state, state.frameCallbackFn, state.frameCallbackKind, tostring(state.frameCallbackKey)) or nil
+            if watch ~= state then return end
+            row.callbackLabel = label
+            row.callbackKey, row.callbackKind, row.callbackTokens = state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens
+            row.busyKeys, row.keyOverflow = {}, state.frameKeyOverflow
+            for kind, keys in pairs(state.frameKeys) do
+                for key, count in pairs(keys) do row.busyKeys[#row.busyKeys + 1] = { kind = kind, key = tostring(key), callbacks = count } end
+            end
+            table.sort(row.busyKeys, function(a, b) return a.callbacks > b.callbacks end)
+            while #row.busyKeys > 4 do row.busyKeys[#row.busyKeys] = nil end
+            row.preHeapKB, row.preHeapAgeSeconds = state.lastHeapKB, state.lastHeapAt and now - state.lastHeapAt or nil
+            row.contextSampled = not state.contextAt or now - state.contextAt >= 1
+            if row.contextSampled then
+                local profiler = ProfilerTick()
+                if watch ~= state then return end
+                row.profiler = profiler
+                local heap = HeapKB()
+                if watch ~= state then return end
+                local errors = ErrorCount()
+                if watch ~= state then return end
+                row.heapKB, row.errors = heap, errors
+                if row.heapKB and state.previousHeap then row.heapDeltaKB = row.heapKB - state.previousHeap end
+                if row.heapKB and row.preHeapKB then row.shortHeapDeltaKB = row.heapKB - row.preHeapKB end
+                if row.errors and state.previousErrors then row.errorDelta = math.max(0, row.errors - state.previousErrors) end
+                state.previousHeap, state.previousErrors, state.contextAt = row.heapKB, row.errors, now
+                state.heapAttemptAt = now
+                if row.heapKB then state.lastHeapKB, state.lastHeapAt = row.heapKB, now end
+            end
+            local tab = Method(_G.FluxWindowFrame, "GetActiveTab")
+            if watch ~= state then return end
+            local mail = FrameState(_G.MailFrame)
+            if watch ~= state then return end
+            local auction = FrameState(_G.AuctionHouseFrame or _G.AuctionFrame)
+            if watch ~= state then return end
+            local worldMap = FrameState(_G.WorldMapFrame)
+            if watch ~= state then return end
+            local combat = (InCombatLockdown and InCombatLockdown()) or false
+            if watch ~= state then return end
+            row.ui = { fluxTab = tab, mail = mail, auction = auction, worldMap = worldMap, combat = combat }
+        end
+    end
+    if validTime and now - state.heapAttemptAt >= 1 then
+        local heap = HeapKB()
+        if watch ~= state then return end
+        state.heapAttemptAt, r.periodicHeapSamples = now, r.periodicHeapSamples + 1
+        if heap then state.lastHeapKB, state.lastHeapAt = heap, now end
+    end
+    state.previousTime, state.frameCallbackMs = validTime and validGap and now or nil, 0
+    state.frameCallbackFn, state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens = nil, nil, nil, nil
+    state.frameCallbackCount, state.frameKeyCount, state.frameKeyOverflow = 0, 0, 0
+    for _, keys in pairs(state.frameKeys) do for key in pairs(keys) do keys[key] = nil end end
+    AddWatchCost(state, started)
+    if watch == state and validTime and now >= state.deadline then Capture.StopWatch("expired") end
+end
+
+local function RegisterWatchEvent(state, event)
+    local result = state.frame:RegisterEvent(event)
+    if watchArming ~= state or state.cancelled then return false end
+    return type(result) == "boolean" and not (issecretvalue and issecretvalue(result)) and result == true
+end
+
+local function ArmWatch(state, seconds, thresholdMs)
     if type(CreateFrame) ~= "function" or type(GetTime) ~= "function" then
         print(PREFIX, "Spike watch is unavailable on this client.") return false
     end
     local db = _G.FluxPerfCaptureDB
-    if db ~= nil and not ReadableTable(db) then print(PREFIX, "Saved diagnostic data is unavailable; it was preserved.") return false end
+    if type(db) ~= "nil" and not ReadableTable(db) then print(PREFIX, "Saved diagnostic data is unavailable; it was preserved.") return false end
     seconds, thresholdMs = tonumber(seconds), tonumber(thresholdMs)
     seconds = PlainNumber(seconds) and seconds == seconds and math.max(30, math.min(3600, seconds)) or 600
     thresholdMs = PlainNumber(thresholdMs) and thresholdMs == thresholdMs and math.max(50, math.min(5000, thresholdMs)) or 200
     local version, build = GetBuildInfo()
-    local state = { started = GetTime(), releases = {}, frameCallbackMs = 0,
-        frameCallbackCount = 0, frameKeyCount = 0, frameKeyOverflow = 0,
-        frameKeys = { Events = {}, Ticker = {}, Scheduler = {} },
-        report = { mode = "spike-watch", diagnosticVersion = 2, status = "watching", version = version, build = tostring(build),
-            durationLimit = seconds, thresholdMs = thresholdMs, scriptProfile = WatchCVar("scriptProfile"),
-            maxFPS = WatchCVar("maxFPS"), maxFPSBk = WatchCVar("maxFPSBk"),
-            capturedAt = date and date("%Y-%m-%d %H:%M:%S") or nil,
-            heapBeforeKB = HeapKB(), errorsBefore = ErrorCount(),
-            spikeCount = 0, callbackCount = 0, observedCallbacks = 0, frameCount = 0,
-            peakFrameMs = 0, diagnosticMs = 0, diagnosticPeakMs = 0, periodicHeapSamples = 0, spikes = {}, callbacks = {}, coverage = {},
-            interpretation = "Gaps include loading/background/rendering; callback spans are inclusive and may overlap. Nearest profiler tick is not exact gap attribution. Heap is global Lua KB, not addon allocations or a leak test. Error deltas span sampled boundaries. Unit callback failures and work outside observed Flux services are not timed. Diagnostic timings cover recorded sections only, excluding observer seam and fast callback overhead." } }
+    if state.cancelled then return false end
+    state.started = GetTime()
+    if state.cancelled or not WatchNumber(state.started) then return false end
+    state.frameCallbackMs, state.frameCallbackCount, state.frameKeyCount, state.frameKeyOverflow = 0, 0, 0, 0
+    state.pendingEnter, state.pendingExit, state.inflightEnter, state.inflightExit = 0, 0, 0, 0
+    state.frameKeys = { Events = {}, Ticker = {}, Scheduler = {}, Combat = {} }
+    state.report = { mode = "spike-watch", diagnosticVersion = 3, status = "watching", version = version, build = tostring(build),
+        durationLimit = seconds, thresholdMs = thresholdMs, scriptProfile = WatchCVar("scriptProfile"),
+        maxFPS = WatchCVar("maxFPS"), maxFPSBk = WatchCVar("maxFPSBk"),
+        capturedAt = date and date("%Y-%m-%d %H:%M:%S") or nil,
+        heapBeforeKB = HeapKB(), errorsBefore = ErrorCount(),
+        spikeCount = 0, callbackCount = 0, observedCallbacks = 0, frameCount = 0,
+        peakFrameMs = 0, diagnosticMs = 0, diagnosticPeakMs = 0, periodicHeapSamples = 0, spikes = {}, callbacks = {}, coverage = {},
+        combatTransitions = { schemaVersion = 1, initialState = "unknown", enters = 0, exits = 0,
+            enterSampledEvents = 0, exitSampledEvents = 0, enterSampledFrames = 0, exitSampledFrames = 0,
+            enterFirstUnmeasured = 0, exitFirstUnmeasured = 0, enterInvalidUnmeasured = 0, exitInvalidUnmeasured = 0,
+            enterStoppedUnmeasured = 0, exitStoppedUnmeasured = 0, enterWorst = { present = false }, exitWorst = { present = false } },
+        interpretation = "Gaps include loading/background/rendering; callback spans are inclusive and may overlap. Nearest profiler tick is not exact gap attribution. Heap is global Lua KB, not addon allocations or a leak test. Error deltas span sampled boundaries. Unit callback failures and work outside observed Flux services are not timed. Diagnostic timings cover recorded sections only, excluding observer seam and fast callback overhead. Combat counts are delivered regen events; initial state is unknown. Worst rows correlate the next eligible driver frame gap, including below-threshold gaps, not event CPU or reaction time. First, invalid and stopped batches are unmeasured; active unresolved deliveries remain pending/inflight. Both directions may share one gap; do not sum them. Combat event counters and Update protection/detach add active overhead not fully covered by diagnostic clock sections." }
+    if state.cancelled then return false end
     state.deadline, state.previousHeap, state.previousErrors = state.started + seconds, state.report.heapBeforeKB, state.report.errorsBefore
-    state.heapAttemptAt = state.started
-    state.lastHeapKB = state.report.heapBeforeKB
+    if not WatchNumber(state.deadline) then return false end
+    state.heapAttemptAt, state.lastHeapKB = state.started, state.report.heapBeforeKB
     state.lastHeapAt = state.lastHeapKB and state.started or nil
     state.labels, state.labelCount = FunctionLabels()
-    for _, kind in ipairs({ "Events", "Ticker", "Scheduler" }) do
+    if state.cancelled then return false end
+    for _, kind in ipairs({ "Events", "Ticker", "Scheduler", "Combat" }) do
         local sourceKind = kind
         local service = Flux[kind]
         if service and type(service.ObserveTiming) == "function" then
             local release, reason = service.ObserveTiming(function(...) ObserveWatch(state, sourceKind, ...) end)
-            if not release then
-                for _, undo in ipairs(state.releases) do undo() end
-                print(PREFIX, "Timing observer busy: " .. kind .. "; " .. tostring(reason)) return false
-            end
-            state.releases[#state.releases + 1], state.report.coverage[kind] = release, true
+            if release then state.releases[#state.releases + 1], state.report.coverage[kind] = release, true end
+            if state.cancelled then return false end
+            if not release then print(PREFIX, "Timing observer busy: " .. kind .. "; " .. tostring(reason)) return false end
         else state.report.coverage[kind] = false end
     end
-    watch = state
     if not watchFrame then watchFrame = CreateFrame("Frame") end
-    watchFrame:RegisterEvent("PLAYER_LOGOUT")
+    state.frame = watchFrame
+    if state.cancelled then return false end
+    if not RegisterWatchEvent(state, "PLAYER_LOGOUT") then return false end
+    if not RegisterWatchEvent(state, "PLAYER_REGEN_DISABLED") then return false end
+    if not RegisterWatchEvent(state, "PLAYER_REGEN_ENABLED") then return false end
     watchFrame:SetScript("OnEvent", function(_, event)
-        if event == "PLAYER_LOGOUT" and watch == state then Capture.StopWatch("logout") end
+        if event == "PLAYER_LOGOUT" and (watch == state or watchArming == state) then Capture.StopWatch("logout")
+        elseif watch == state then
+            local r = state.report.combatTransitions
+            if event == "PLAYER_REGEN_DISABLED" then r.enters, state.pendingEnter = r.enters + 1, state.pendingEnter + 1
+            elseif event == "PLAYER_REGEN_ENABLED" then r.exits, state.pendingExit = r.exits + 1, state.pendingExit + 1 end
+        end
     end)
+    if state.cancelled then return false end
     watchFrame:SetScript("OnUpdate", function(_, elapsed)
-        if watch ~= state then return end
-        local started, now = WatchClock(), GetTime()
-        local r = state.report
-        r.frameCount = r.frameCount + 1
-        if state.previousTime and WatchNumber(elapsed) then
-            local gapMs = elapsed * 1000
-            r.peakFrameMs = math.max(r.peakFrameMs, gapMs)
-            if gapMs >= thresholdMs then
-                r.spikeCount = r.spikeCount + 1
-                local row = PushWatchRow(r.spikes, WATCH_SPIKES, r.spikeCount)
-                row.sequence, row.at, row.gapMs = r.spikeCount, now - state.started, gapMs
-                row.intervalCallbacks, row.callbackMs = state.frameCallbackCount, state.frameCallbackMs
-                row.callbackLabel = state.frameCallbackFn and CallbackLabel(state, state.frameCallbackFn, state.frameCallbackKind, tostring(state.frameCallbackKey)) or nil
-                row.callbackKey, row.callbackKind, row.callbackTokens = state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens
-                row.busyKeys, row.keyOverflow = {}, state.frameKeyOverflow
-                for kind, keys in pairs(state.frameKeys) do
-                    for key, count in pairs(keys) do
-                        row.busyKeys[#row.busyKeys + 1] = { kind = kind, key = tostring(key), callbacks = count }
-                    end
-                end
-                table.sort(row.busyKeys, function(a, b) return a.callbacks > b.callbacks end)
-                while #row.busyKeys > 4 do row.busyKeys[#row.busyKeys] = nil end
-                row.preHeapKB, row.preHeapAgeSeconds = state.lastHeapKB, state.lastHeapAt and now - state.lastHeapAt or nil
-                row.contextSampled = not state.contextAt or now - state.contextAt >= 1
-                if row.contextSampled then
-                    row.profiler = ProfilerTick()
-                    row.heapKB, row.errors = HeapKB(), ErrorCount()
-                    if row.heapKB and state.previousHeap then row.heapDeltaKB = row.heapKB - state.previousHeap end
-                    if row.heapKB and row.preHeapKB then row.shortHeapDeltaKB = row.heapKB - row.preHeapKB end
-                    if row.errors and state.previousErrors then row.errorDelta = math.max(0, row.errors - state.previousErrors) end
-                    state.previousHeap, state.previousErrors, state.contextAt = row.heapKB, row.errors, now
-                    state.heapAttemptAt = now
-                    if row.heapKB then state.lastHeapKB, state.lastHeapAt = row.heapKB, now end
-                end
-                row.ui = { fluxTab = Method(_G.FluxWindowFrame, "GetActiveTab"),
-                    mail = FrameState(_G.MailFrame), auction = FrameState(_G.AuctionHouseFrame or _G.AuctionFrame),
-                    worldMap = FrameState(_G.WorldMapFrame), combat = (InCombatLockdown and InCombatLockdown()) or false }
-            end
+        if watch ~= state or state.updating then return end
+        state.updating = true
+        state.inflightEnter, state.inflightExit = state.pendingEnter, state.pendingExit
+        state.pendingEnter, state.pendingExit = 0, 0
+        -- One active-only protected call uses a static body, not a fresh closure.
+        -- It releases the recursive-update guard and preserves raw errors.
+        local ok, err = pcall(UpdateWatch, state, thresholdMs, elapsed)
+        state.updating = nil
+        if not ok then
+            if watch == state then FinishCombatBatch(state, "invalid"); state.previousTime = nil end
+            error(err, 0)
         end
-        if now - state.heapAttemptAt >= 1 then
-            local heap = HeapKB()
-            state.heapAttemptAt, r.periodicHeapSamples = now, r.periodicHeapSamples + 1
-            if heap then state.lastHeapKB, state.lastHeapAt = heap, now end
-        end
-        state.previousTime, state.frameCallbackMs = now, 0
-        state.frameCallbackFn, state.frameCallbackKey, state.frameCallbackKind, state.frameCallbackTokens = nil, nil, nil, nil
-        state.frameCallbackCount, state.frameKeyCount, state.frameKeyOverflow = 0, 0, 0
-        for _, keys in pairs(state.frameKeys) do for key in pairs(keys) do keys[key] = nil end end
-        AddWatchCost(state, started)
-        if now >= state.deadline then Capture.StopWatch("expired") end
     end)
+    if state.cancelled then return false end
     watchFrame:Show()
-    if db == nil then db = {}; _G.FluxPerfCaptureDB = db end
+    if state.cancelled then return false end
+    if not WatchSavedRootMatches(_G.FluxPerfCaptureDB, db) then return false end
+    if type(db) == "nil" then
+        db = {}
+        state.savedRoot, state.createdSavedRoot = db, true
+        _G.FluxPerfCaptureDB = db
+    else state.savedRoot = db end
+    if state.cancelled or not ReadableTable(db) then return false end
+    state.previousSavedReport, state.savedSlotTouched = rawget(db, "spikeWatch"), true
     db.spikeWatch = state.report
-    print(PREFIX, string.format("Watching %.0fs for frame gaps >= %.0fms and Flux callbacks >= 10ms. Play normally; no profiler setting changed.", seconds, thresholdMs))
+    if state.cancelled or not WatchSavedRootMatches(_G.FluxPerfCaptureDB, db) then return false end
+    return true
+end
+
+function Capture.StartWatch(seconds, thresholdMs)
+    if watch or active or watchArming or watchFrameBusy then print(PREFIX, "A capture/watch is already running. /fluxperf cancel") return false end
+    local state = { releases = {} }
+    watchArming = state
+    local ok, result = pcall(ArmWatch, state, seconds, thresholdMs)
+    if not ok or not result or state.cancelled then
+        local clean, cleanupError = DisarmWatchFrame(state)
+        local restored, restoreError = pcall(RollbackWatchPublication, state)
+        watchArming = nil
+        local released, releaseError = ReleaseWatch(state)
+        if not ok then error(result, 0) end
+        if not clean then error(cleanupError, 0) end
+        if not restored then error(restoreError, 0) end
+        if not released then error(releaseError, 0) end
+        return false
+    end
+    watchArming, watch, watchReportOwner = nil, state, state.report
+    state.savedRoot, state.previousSavedReport = nil, nil
+    print(PREFIX, string.format("Watching %.0fs for frame gaps >= %.0fms and Flux callbacks >= 10ms. Play normally; no profiler setting changed.", state.report.durationLimit, state.report.thresholdMs))
     return true
 end
 
@@ -694,7 +917,7 @@ function Capture.PrintSpikes()
     end
     for sequence = math.max(1, r.callbackCount - 7), r.callbackCount do
         local row = r.callbacks[(sequence - 1) % WATCH_CALLBACKS + 1]
-        print(PREFIX, string.format("  +%.1fs callback %.1fms %s %s %s", row.at, row.ms, row.kind, row.key, row.label))
+        print(PREFIX, string.format("  +%.1fs callback %.1fms %s %s %s failed=%s", row.at, row.ms, row.kind, row.key, row.label, tostring(row.failed)))
     end
     print(PREFIX, "Correlations only: do not sum overlapping spans or equate a frame gap with Flux CPU. /fluxperf watch off saves; /reload writes diagnostics to disk.")
 end

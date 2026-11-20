@@ -1,5 +1,14 @@
 # Blizzard window movement and scaling
 
+17 November **WORLD-MAP-ANCHOR-20261117**: the original World Map temporarily
+belongs to Flux's map surface during preparation/embedding. Mover apply/reapply,
+layout and input paths yield for that exact frame; an active proxy gesture stops
+before saving hosted geometry. Existing World Map saved/session records and
+normal full-map movement resume on handoff. This fixes synchronous saved-position
+hooks moving the hosted scene outside its clip. No permanent exclusion or new
+mover driver is added. Native reload acceptance remains pending.
+[Current shared-owner evidence](validation/world-map-anchor-recovery-2026-11-17.json).
+
 `Flux.WindowMover` lets eligible game panels remember a position/scale. It is independent of HUD Layout: action bars, unit frames, minimap, chat, loot/HUD anchors and the unified envelope have their own placement logic. [Init.lua](../WindowMover/Init.lua) registers the module and `/fluxwindows`.
 
 ## Catalog, resolution and exclusions

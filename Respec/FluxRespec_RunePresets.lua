@@ -31,7 +31,7 @@ function Presets.SetBarsApplyChoice(value)
 end
 
 function Presets.ShouldSkipBarsOnClient()
-    return Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
+    return false -- Native talent loadouts do not disable explicit bar bundles.
 end
 
 local function GetActiveNamedPreset()

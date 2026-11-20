@@ -1,0 +1,237 @@
+{
+  "changeId": "STRIP-SLOT-SETTLE-20261120",
+  "capturedAtUTC": "2026-11-20T06:22:16.309789+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "ce7ef768a571bf67d611d9b31a731d1dc86d83e6ee7b809197facecc0d0a0fcc",
+      "afterRaw": "9d72dddf57767f9f15b9488f6b6e2a479ae232d4bd47e2a5111e76d6d00dea68",
+      "afterNormalized": "9d72dddf57767f9f15b9488f6b6e2a479ae232d4bd47e2a5111e76d6d00dea68"
+    },
+    "Bars/Init.lua": {
+      "beforeRaw": "63e9f3274555b8481891d2054e8cf7d4ee6c427f79b005fd82cc13f75827ba11",
+      "afterRaw": "b37e1a381706a7eb43dc3ccda943a974baf92b45758187d43431c7b88d979ccb",
+      "afterNormalized": "b37e1a381706a7eb43dc3ccda943a974baf92b45758187d43431c7b88d979ccb"
+    },
+    "tests/bars_strip_layout_work.lua": {
+      "beforeRaw": "5b4058c855765288a75e0b95ec15603b0cc1b29c12dbf333b9fa10f93d136ffe",
+      "afterRaw": "3648763f4200e3fa3b4ef624f75e4533c90d3680b24c5a3a18280013d48170e2",
+      "afterNormalized": "3648763f4200e3fa3b4ef624f75e4533c90d3680b24c5a3a18280013d48170e2"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-settle-before-20261120T071641808\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_classic_": 2,
+      "_forever_": 3,
+      "_anniversary_": 10,
+      "_classic_era_": 4
+    }
+  },
+  "work": {
+    "scope": "Actual slot event and queued Bars layout, host placement, button chrome and ring sizing. One column is added or removed on each of 60 alternating edits. A separate replay exercises the real squeeze notifier and player/target anchors with modeled public geometry.",
+    "clients": {
+      "retail": {
+        "samplesMs": [
+          [
+            200.0,
+            55.0
+          ],
+          [
+            209.0,
+            50.0
+          ],
+          [
+            181.0,
+            44.0
+          ],
+          [
+            188.0,
+            48.0
+          ],
+          [
+            176.0,
+            43.0
+          ]
+        ],
+        "edits": 60,
+        "points": [
+          2610,
+          3
+        ],
+        "clears": [
+          2610,
+          3
+        ],
+        "ring": [
+          3420,
+          30
+        ],
+        "artwork": [
+          188100,
+          1650
+        ],
+        "medianMs": [
+          188.0,
+          48.0
+        ]
+      },
+      "forever": {
+        "samplesMs": [
+          [
+            189.0,
+            49.0
+          ],
+          [
+            183.0,
+            47.0
+          ],
+          [
+            177.0,
+            45.0
+          ],
+          [
+            193.0,
+            48.0
+          ],
+          [
+            206.0,
+            48.0
+          ]
+        ],
+        "edits": 60,
+        "points": [
+          2610,
+          3
+        ],
+        "clears": [
+          2610,
+          3
+        ],
+        "ring": [
+          3420,
+          30
+        ],
+        "artwork": [
+          188100,
+          1650
+        ],
+        "medianMs": [
+          189.0,
+          48.0
+        ]
+      },
+      "classic": {
+        "samplesMs": [
+          [
+            477.0,
+            112.0
+          ],
+          [
+            488.0,
+            158.0
+          ],
+          [
+            433.0,
+            99.0
+          ],
+          [
+            449.0,
+            110.0
+          ],
+          [
+            463.0,
+            99.0
+          ]
+        ],
+        "edits": 60,
+        "points": [
+          2610,
+          3
+        ],
+        "clears": [
+          2610,
+          3
+        ],
+        "ring": [
+          3420,
+          30
+        ],
+        "artwork": [
+          191520,
+          1680
+        ],
+        "medianMs": [
+          463.0,
+          110.0
+        ]
+      }
+    },
+    "unitPlacementsAndScales": [
+      {
+        "placement": "1",
+        "scale": "0.75",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      },
+      {
+        "placement": "1",
+        "scale": "1.00",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      },
+      {
+        "placement": "1",
+        "scale": "1.25",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      },
+      {
+        "placement": "2",
+        "scale": "0.75",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      },
+      {
+        "placement": "2",
+        "scale": "1.00",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      },
+      {
+        "placement": "2",
+        "scale": "1.25",
+        "edits": "10",
+        "full": "20/0",
+        "anchorOnly": "0/10",
+        "chrome": "20/0"
+      }
+    ],
+    "trialEdits": 250,
+    "clockScope": "Five paired desktop Lua samples with alternating execution order. Timing covers the modeled slot layout and actual Lua chrome paths. Native geometry settlement time, renderer time and FPS require a live comparison.",
+    "matchedReplaySHA256": "11c4efd2ad2b0cd41a0e2b7defa8a2feacd4e410e5197e588ad38b564bcf129d"
+  },
+  "parity": "Every action edit keeps identical modeled action routes, button geometry and visible art. Both unit placements at three scales keep their settled screen position. A changed support height settles before the junction transaction. The separate suite covers real resize and hover, fast pickup and drop, grids, trinkets, combat and border scope. Startup, explicit options and unreadable layout state retain their established repair paths.",
+  "verification": {
+    "focusedPassed": 29,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-settle-before-20261120T071641808\\final-focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-settle-before-20261120T071641808\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-slot-settle-before-20261120T071641808\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native rapid pickup/drop and held-action crossings, side seam pixels, combat taint and party/raid hitch timing remain pending."
+}

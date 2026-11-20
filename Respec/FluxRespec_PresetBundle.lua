@@ -31,7 +31,7 @@ function Bundle.GroupLabel(group)
 end
 
 function Bundle.SkipBarsOnClient()
-    return Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
+    return false -- Explicit bar snapshots work independently of native talent loadouts.
 end
 
 function Bundle.MigrateLegacyBars(preset)
@@ -259,9 +259,11 @@ function Bundle.SaveBarsForActiveGroup(preset)
     if type(preset) ~= "table" then return false end
     if Bundle.SkipBarsOnClient() then return false end
     if not R.ActionBars or not R.ActionBars.Capture then return false end
+    local bars, reason = R.ActionBars.Capture()
+    if not bars then return false, reason end
     Bundle.MigratePreset(preset)
     local group = Bundle.GetActiveGroup()
-    preset.barsByGroup[group] = R.ActionBars.Capture()
+    preset.barsByGroup[group] = bars
     preset.barsTalentByGroup[group] = Bundle.CaptureTalentSnapshot()
     return true
 end

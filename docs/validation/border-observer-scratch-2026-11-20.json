@@ -1,0 +1,468 @@
+{
+  "changeId": "BORDER-OBSERVER-SCRATCH-R185-20261120",
+  "borderVersion": "observer-scratch-r185",
+  "capturedAtUTC": "2026-11-20T08:02:45.875504+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "022848d062f5d3bdef0c253469f861798b5a6af5047e7a967e70e04834a5a159",
+      "afterRaw": "0b6b88790c14e9b8d4e1a8f8a1b13484df140f0c47b24c68871c1b3b1f4a734a",
+      "afterNormalized": "0b6b88790c14e9b8d4e1a8f8a1b13484df140f0c47b24c68871c1b3b1f4a734a"
+    },
+    "tests/border_observer_refresh.lua": {
+      "beforeRaw": "54e9d20ec78a44def9a3991e8d202a92efbf1161070d8927055ff30d43b92a7a",
+      "afterRaw": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+      "afterNormalized": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088"
+    }
+  },
+  "evidence": {
+    "counts": {
+      "hover": {
+        "1": {
+          "snapshots": [
+            432,
+            432
+          ],
+          "frontierEntryTables": [
+            768,
+            0
+          ],
+          "frontierVisits": [
+            768,
+            768
+          ],
+          "scratchLinkTables": [
+            48,
+            12
+          ],
+          "publishedLinkSets": [
+            0,
+            0
+          ],
+          "textureObjects": 1277
+        },
+        "2": {
+          "snapshots": [
+            432,
+            432
+          ],
+          "frontierEntryTables": [
+            768,
+            0
+          ],
+          "frontierVisits": [
+            768,
+            768
+          ],
+          "scratchLinkTables": [
+            48,
+            12
+          ],
+          "publishedLinkSets": [
+            0,
+            0
+          ],
+          "textureObjects": 1341
+        }
+      },
+      "roster": {
+        "1": {
+          "snapshots": [
+            576,
+            576
+          ],
+          "frontierEntryTables": [
+            1056,
+            0
+          ],
+          "frontierVisits": [
+            1056,
+            1056
+          ],
+          "scratchLinkTables": [
+            48,
+            12
+          ],
+          "publishedLinkSets": [
+            0,
+            0
+          ],
+          "textureObjects": 1675
+        },
+        "2": {
+          "snapshots": [
+            576,
+            576
+          ],
+          "frontierEntryTables": [
+            1056,
+            0
+          ],
+          "frontierVisits": [
+            1056,
+            1056
+          ],
+          "scratchLinkTables": [
+            48,
+            12
+          ],
+          "publishedLinkSets": [
+            0,
+            0
+          ],
+          "textureObjects": 2203
+        }
+      }
+    },
+    "rawReplay": "WORK hover 1 steps=12 snapshots=432/432 entries=768/0 visits=768/768 linkScratch=48/12 linksPublished=0/0 textures=1277\nWORK roster 1 steps=12 snapshots=576/576 entries=1056/0 visits=1056/1056 linkScratch=48/12 linksPublished=0/0 textures=1675\nWORK hover 2 steps=12 snapshots=432/432 entries=768/0 visits=768/768 linkScratch=48/12 linksPublished=0/0 textures=1341\nWORK roster 2 steps=12 snapshots=576/576 entries=1056/0 visits=1056/1056 linkScratch=48/12 linksPublished=0/0 textures=2203\n",
+    "clockSamples": {
+      "hover": {
+        "1": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              121.0,
+              119.0
+            ],
+            "allocatedKiB": [
+              10730.54,
+              10184.542
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              133.0,
+              128.0
+            ],
+            "allocatedKiB": [
+              10730.676,
+              10184.74
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              125.0,
+              120.0
+            ],
+            "allocatedKiB": [
+              10728.145,
+              10182.209
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              121.0,
+              124.0
+            ],
+            "allocatedKiB": [
+              10727.148,
+              10181.213
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              115.0,
+              121.0
+            ],
+            "allocatedKiB": [
+              10727.191,
+              10181.256
+            ]
+          }
+        ],
+        "2": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              236.0,
+              210.0
+            ],
+            "allocatedKiB": [
+              10752.962,
+              10206.538
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              224.0,
+              238.0
+            ],
+            "allocatedKiB": [
+              10753.16,
+              10206.736
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              240.0,
+              298.0
+            ],
+            "allocatedKiB": [
+              10753.66,
+              10207.236
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              242.0,
+              229.0
+            ],
+            "allocatedKiB": [
+              10752.664,
+              10206.24
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              228.0,
+              224.0
+            ],
+            "allocatedKiB": [
+              10752.707,
+              10206.283
+            ]
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              163.0,
+              167.0
+            ],
+            "allocatedKiB": [
+              15169.463,
+              14438.539
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              161.0,
+              163.0
+            ],
+            "allocatedKiB": [
+              15169.533,
+              14438.609
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              291.0,
+              256.0
+            ],
+            "allocatedKiB": [
+              15170.033,
+              14439.109
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              283.0,
+              301.0
+            ],
+            "allocatedKiB": [
+              15169.037,
+              14438.113
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              274.0,
+              266.0
+            ],
+            "allocatedKiB": [
+              15169.053,
+              14438.129
+            ]
+          }
+        ],
+        "2": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              441.0,
+              445.0
+            ],
+            "allocatedKiB": [
+              20478.893,
+              19748.115
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              506.0,
+              386.0
+            ],
+            "allocatedKiB": [
+              20478.963,
+              19748.186
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              414.0,
+              532.0
+            ],
+            "allocatedKiB": [
+              20479.463,
+              19748.686
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              509.0,
+              413.0
+            ],
+            "allocatedKiB": [
+              20478.467,
+              19747.689
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              489.0,
+              424.0
+            ],
+            "allocatedKiB": [
+              20478.482,
+              19747.705
+            ]
+          }
+        ]
+      }
+    },
+    "timingMediansMs": {
+      "hover": {
+        "1": [
+          121.0,
+          121.0
+        ],
+        "2": [
+          236.0,
+          229.0
+        ]
+      },
+      "roster": {
+        "1": [
+          274.0,
+          256.0
+        ],
+        "2": [
+          489.0,
+          424.0
+        ]
+      }
+    },
+    "temporaryAllocationMediansKiB": {
+      "hover": {
+        "1": [
+          10728.145,
+          10182.209
+        ],
+        "2": [
+          10752.962,
+          10206.538
+        ]
+      },
+      "roster": {
+        "1": [
+          15169.463,
+          14438.539
+        ],
+        "2": [
+          20478.893,
+          19748.115
+        ]
+      }
+    },
+    "timingScope": "Five alternating desktop Lua 5.4.6 CPU pairs for 24 warmed strip or roster layout moves per style, with actual observer and renderer code and modeled widgets.",
+    "replayHarnessSHA256": "18695eaa426d0f5498d9523f0f28980385b797f665b03ff4afcdc6f91f238d12"
+  },
+  "parity": "Regional preflight uses a flat dependency stack and one scratch link set per settled anchor batch. Twelve modeled strip crossings remove 768 temporary dependency entries and 432 temporary snapshot validation tables per style. Twelve modeled roster moves remove 1,056 entries and 576 validation tables. Each replay reduces scratch link sets from 48 to 12, with identical dependency visits and snapshot counts. Texture setters, sampled seams and operation counts match.",
+  "rules": "Use the original current native getters and preserve dependency order, cycle detection, traversal ceilings and conservative global fallback. Publish a separate weak-key link set for each real rewire. Reject opaque parents before producing a comparable snapshot.",
+  "checkpoint": {
+    "createdAt": "2026-11-20T07:54:47.5167086Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settings": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "Core/BorderJunctions.lua": "022848d062f5d3bdef0c253469f861798b5a6af5047e7a967e70e04834a5a159",
+      "tests/border_observer_refresh.lua": "54e9d20ec78a44def9a3991e8d202a92efbf1161070d8927055ff30d43b92a7a",
+      "docs/STATUS.md": "5fd1f2244dd4a3c4a274b416a2a3ef88f3c340450b95d3cc618048eb02731838",
+      "docs/DECISIONS.md": "4329110ad4444ef7bb3d3b81807241f5190f88d63c135c8d2eec7fb5808a7cfe",
+      "docs/WORK_LOG.md": "edc5fdb9cd5a1c1257398108012befc5dc5ed3287e56180773037915ef10d9e1",
+      "NEXT_SESSION.md": "307b742a5b6a8ad78be7558a8c686ad817fcd583278fd9aa45b202cc92e2fb89",
+      "docs/04-visual-system.md": "9bfe73a5ea1ad319f16d0a6bb2e1be2d255388be468fb7de34625f58e2623e35",
+      "docs/BORDER_BUILDER_LOCALITY.md": "6b39331869fb3bc34803b4050df826473fec718bb2ef3702993fa9e6cf37f1c5",
+      "docs/CLIENT_VALIDATION.md": "a5d3aae3469ece494895550f46f6570e03322c7ab90340a200b5f16b041c9c76",
+      "docs/CLIENT_MATRIX.csv": "b04cbcb5915aed1d1db96dca6c9f3ff9565e8ed7653594ca38b99899f29bf2c6",
+      "docs/FEATURE_PARITY.csv": "4d2b7b8d0639ca0e9e18bbbf9041dd4e17d19674f667c1cb786006ef342088a4",
+      "docs/PERFORMANCE_RESULTS.csv": "46db419e43aafc81678cda1a713d57bc4921ecf1f03c2050b387066c3a98b3d9",
+      "docs/reference/verification.json": "a3b1a1d558689057faf27b5317e6017aa2a39c6b55f7d48d92d8ec24d4b6a285"
+    }
+  },
+  "verification": {
+    "focusedPassed": 23,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/border_observer_refresh.lua": "1dd99dae6aa13e848dc0dc0d97a51e20058a034028feb6054f657837655b4088",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_source_phase.lua": "a51dadf072a23c03dc76b2107db111bad3e016959ff8cafa26bc2381f0cce7d4",
+      "tests/border_region_routing.lua": "804980c586875965771366a9f52a698c960ceb1598740353a24bb4e160975a30",
+      "tests/border_nearby_panels.lua": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/border_retained_units.lua": "4ee5cb409ce0af84a5f5f62e2d5a7995966f46155914a9e1a65892f2fa788dd1",
+      "tests/border_hidden_anchors.lua": "7492cd77ec2be14be711ef82d9155346f5dcaef27349d6456ea38488f419935f",
+      "tests/border_private_paint.lua": "1f504140590d442cb554b37c4c70b16d842bbfa9211ff0a0b4a786ed698675d0",
+      "tests/border_fallback_array_guards.lua": "47838160198ac6dce03c642e72db2f1c9b690fdce0b7fc08d3bcb0bfe2f75c7b",
+      "tests/border_incremental_commit.lua": "967e7cdfdd633371f0014f30fe91c560d379721da2e2a18a8d0ed098060ff70a",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/raid_roster_layout_work.lua": "1a17c3f9b0427cbbd2deb9376ad895e6a5050cc5d8ccae6a7f2671697264f423",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/border_locality.lua": "29f10e45527865c03939101afb7694097fc8876564e54ebb986ad87964ccf530"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observer-walk-before-20261120T075447245\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observer-walk-before-20261120T075447245\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observer-walk-before-20261120T075447245\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "tests/tier_count_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Native held-action and rapid-drop latency, real strip-to-panel seams, and party and raid join/leave timing remain pending. Embedded minimap toggles and combat-exit timing and taint also remain open."
+}

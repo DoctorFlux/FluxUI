@@ -10,6 +10,7 @@ local BUFF_BOXES={"buffs","buffsTail"}
 local DEBUFF_BOXES={"dispel","dispelPlain","dispelTail","dispelPlainTail"}
 local DEBUFF_GROUPS={"bossDebuffs","bossBuffs","priorityDebuffs","dispel","debuffs"}
 local ICON_BOXES={"buffs","buffsTail","dispel","dispelPlain","dispelTail","dispelPlainTail"}
+local LARGE_AURA_FIELDS={"isBossAura","isTankRoleAura","isHealerRoleAura","isDPSRoleAura","isHarmful"}
 local TYPE_COLORS = {Magic={.2,.6,1},Curse={.6,.2,1},Disease={.6,.4,0},Poison={0,.65,0},Bleed={.8,.2,.15}}
 local function Secret(value)
     if issecretvalue then return issecretvalue(value) end
@@ -40,9 +41,40 @@ local function Friendly(unit)
     local ok,value=pcall(query,"player",unit)
     return ok and not Secret(value) and value==true
 end
+local function SetOwnedShown(object,enabled)
+    local shown=object.IsShown and object:IsShown()
+    if not Secret(shown) and shown==enabled then return end
+    if object.SetShown then object:SetShown(enabled)
+    elseif enabled then object:Show()
+    else object:Hide() end
+end
+local function ReadOwnedPaint(object,getter)
+    if not getter then return end
+    local ok,value=pcall(getter,object)
+    if ok and Readable(value) then return value end
+end
+local function SetBoxUnit(units,box,unit)
+    -- The addon owns these container bindings. Remember a completed write
+    -- on the actual container, including when its subscription is retired.
+    if units[box]==unit then return end
+    units[box]=nil
+    box:SetUnit(unit)
+    if units[box]==nil then units[box]=unit end
+end
 local function RetireOwners(frame)
-    for _,box in pairs(frame._fluxAuraContainers or {}) do box:SetUnit("none");box:Hide() end
-    if frame._fluxAuraNativeState then frame._fluxAuraNativeState.units={} end
+    local boxes=frame._fluxAuraContainers
+    if not boxes then return end
+    local native=frame._fluxAuraNativeState
+    for _,box in pairs(boxes) do
+        if native then
+            SetBoxUnit(native.units,box,"none")
+            SetOwnedShown(box,false)
+        else
+            -- A client can fail partway through creating the native owners.
+            if box.SetUnit then box:SetUnit("none") end
+            box:Hide()
+        end
+    end
 end
 local function ClassBuffFilter()
     if FluxRaidHealerExtras and FluxRaidHealerExtras.GetClassBuffFilter then return FluxRaidHealerExtras.GetClassBuffFilter() end
@@ -330,6 +362,7 @@ local function BuildNative(frame)
     local client=ns.Flux and ns.Flux.Client
     local largeHelpful=client and client.isAnyClassic==true
     local boxes,buttons,initializerError={},frame._fluxNativeAuraButtons or {},nil
+    local units={}
     frame._fluxNativeAuraButtons=buttons
     frame._fluxAuraContainers=boxes -- Exclude even partial native subtrees from binding discovery.
     local function guarded(callback)
@@ -420,7 +453,7 @@ local function BuildNative(frame)
             candidateFilters={includeDispelTypes={Magic=true,Curse=true,Disease=true,Poison=true,Bleed=true}},
             sortMethod=AuraContainerSortMethod.Default})
         if initializerError then error(initializerError) end
-        for _,box in pairs(boxes) do box:SetUnit("none"); box:Hide() end
+        for _,box in pairs(boxes) do SetBoxUnit(units,box,"none"); box:Hide() end
     end)
     if not ok then
         frame._fluxAuraNativeError=tostring(setupError)
@@ -428,7 +461,7 @@ local function BuildNative(frame)
         return false
     end
     frame._fluxAuraNative,frame._fluxAuraNativeMetrics=true,metrics
-    frame._fluxAuraNativeState={groups={},units={},strict={}}
+    frame._fluxAuraNativeState={groups={},units=units,strict={}}
     return true
 end
 EnsureNativeTails=function(frame,geometry)
@@ -447,7 +480,7 @@ EnsureNativeTails=function(frame,geometry)
             local box=frame._fluxCreateAuraBox(key,row.tail,spec[3])
             local _,anchor=FluxRaidVisuals.GetFrameAuraAnchor(frame,spec[3])
             box:ClearAllPoints(); box:SetPoint(anchor,row,anchor,0,0)
-            box:SetUnit("none"); box:Hide()
+            SetBoxUnit(frame._fluxAuraNativeState.units,box,"none"); box:Hide()
             frame._fluxAuraNativeState.classBuffs=nil
         end
     end
@@ -510,17 +543,18 @@ local function SetGroup(frame,key,group,enabled)
     if state[id]~=enabled then frame._fluxAuraContainers[key]:SetAuraGroupEnabled(group,enabled); state[id]=enabled end
 end
 local function BindBox(frame,key,unit,enabled)
-    local state=frame._fluxAuraNativeState.units
     local token=enabled and unit or "none"
     local box=frame._fluxAuraContainers[key]
-    if state[key]~=token then box:SetUnit(token); state[key]=token end
-    box:SetShown(enabled)
+    SetBoxUnit(frame._fluxAuraNativeState.units,box,token)
+    SetOwnedShown(box,enabled)
 end
 local function UpdateNative(frame,unit,valid,opt)
     local buffs=valid and opt.displayBuffs~=false
+    local debuffs=valid and opt.displayDebuffs~=false
     local classBuffs=buffs and ShowClassBuffs()
     local geometry=frame._fluxAuraRowMetrics
-    if frame._fluxAuraNativeState.classBuffs~=classBuffs or frame._fluxAuraNativeState.hiddenRevision~=hiddenRevision then
+    local state=frame._fluxAuraNativeState
+    if state.classBuffs~=classBuffs or state.hiddenRevision~=hiddenRevision then
         for _,key in ipairs(BUFF_BOXES) do
             local box=frame._fluxAuraContainers[key]
             if box then
@@ -529,47 +563,69 @@ local function UpdateNative(frame,unit,valid,opt)
                 box:SetAuraGroupCandidateFilters("classBuffs",{includeSpellIDs=ClassBuffFilter()})
             end
         end
-        frame._fluxAuraNativeState.classBuffs=classBuffs
-        frame._fluxAuraNativeState.hiddenRevision=hiddenRevision
-    end
-    for _,key in ipairs(BUFF_BOXES) do
-        if frame._fluxAuraContainers[key] then
-            local enabled=buffs and (key=="buffs" or geometry.buffs.count==3 or geometry.buffs.count==5)
-            SetGroup(frame,key,"classBuffs",enabled and classBuffs)
-            SetGroup(frame,key,"raidBuffs",enabled); BindBox(frame,key,unit,enabled)
-        end
+        state.classBuffs=classBuffs
+        state.hiddenRevision=hiddenRevision
+        state.presentation=nil
     end
     local highlight=not FluxRaid_IsDispelHighlightEnabled or FluxRaid_IsDispelHighlightEnabled()
     local strict=OnlyDispellable(frame)
-    for _,key in ipairs(DEBUFF_BOXES) do
-        if frame._fluxAuraContainers[key] then
-            local tail=key:find("Tail",1,true)~=nil
-            local decorated=not key:find("Plain",1,true)
-            local enabled=valid and opt.displayDebuffs~=false and decorated==highlight
-                and (not tail or geometry.debuffs.count==3 or geometry.debuffs.count==5)
-            if frame._fluxAuraNativeState.strict[key]~=strict then
-                -- Strict mode enables only HARMFUL|RAID across the chosen limit;
-                -- boss, own and priority categories cannot bypass this filter.
-                local candidates
-                if strict then candidates={isBossOrRoleAura=false}
-                elseif not strict then candidates={processedAuraType=AuraUtil.AuraUpdateChangedType.Dispel,isBossOrRoleAura=false} end
-                frame._fluxAuraContainers[key]:SetAuraGroupCandidateFilters("dispel",candidates)
-                frame._fluxAuraContainers[key]:SetAuraGroupFilterString("bossDebuffs",strict and "HARMFUL|RAID" or "HARMFUL")
-                frame._fluxAuraNativeState.strict[key]=strict
-            end
-            SetGroup(frame,key,"dispel",enabled)
-            SetGroup(frame,key,"bossDebuffs",enabled)
-            for _,group in ipairs({"bossBuffs","priorityDebuffs","debuffs"}) do
-                SetGroup(frame,key,group,enabled and not strict)
-            end
-            BindBox(frame,key,unit,enabled)
-        end
+    local buffTail=geometry.buffs.count==3 or geometry.buffs.count==5
+    local debuffTail=geometry.debuffs.count==3 or geometry.debuffs.count==5
+    local presentation=state.presentation
+    -- Native owners process their own aura data. Reuse the group settings
+    -- for ordinary roster repaint, with current unit and visibility sinks.
+    local buffsChanged=not presentation or presentation.buffs~=buffs or presentation.buffTail~=buffTail
+    local debuffsChanged=not presentation or presentation.debuffs~=debuffs or presentation.debuffTail~=debuffTail
+        or presentation.highlight~=highlight or presentation.strict~=strict
+    if buffsChanged or debuffsChanged then
+        presentation=presentation or {bindings={}}
+        -- If a native setter fails, let the next refresh rebuild both sides.
+        state.presentation=nil
     end
+    if buffsChanged then
+        for _,key in ipairs(BUFF_BOXES) do
+            if frame._fluxAuraContainers[key] then
+                local enabled=buffs and (key=="buffs" or buffTail)
+                SetGroup(frame,key,"classBuffs",enabled and classBuffs)
+                SetGroup(frame,key,"raidBuffs",enabled)
+                presentation.bindings[key]=enabled
+            end
+        end
+        presentation.buffs,presentation.buffTail=buffs,buffTail
+    end
+    if debuffsChanged then
+        for _,key in ipairs(DEBUFF_BOXES) do
+            if frame._fluxAuraContainers[key] then
+                local tail=key:find("Tail",1,true)~=nil
+                local decorated=not key:find("Plain",1,true)
+                local enabled=debuffs and decorated==highlight and (not tail or debuffTail)
+                if state.strict[key]~=strict then
+                    -- Strict mode enables only HARMFUL|RAID across the chosen limit.
+                    local candidates
+                    if strict then candidates={isBossOrRoleAura=false}
+                    else candidates={processedAuraType=AuraUtil.AuraUpdateChangedType.Dispel,isBossOrRoleAura=false} end
+                    frame._fluxAuraContainers[key]:SetAuraGroupCandidateFilters("dispel",candidates)
+                    frame._fluxAuraContainers[key]:SetAuraGroupFilterString("bossDebuffs",strict and "HARMFUL|RAID" or "HARMFUL")
+                    state.strict[key]=strict
+                end
+                SetGroup(frame,key,"dispel",enabled)
+                SetGroup(frame,key,"bossDebuffs",enabled)
+                for _,group in ipairs({"bossBuffs","priorityDebuffs","debuffs"}) do
+                    SetGroup(frame,key,group,enabled and not strict)
+                end
+                presentation.bindings[key]=enabled
+            end
+        end
+        presentation.debuffs,presentation.debuffTail=debuffs,debuffTail
+        presentation.highlight,presentation.strict=highlight,strict
+    end
+    state.presentation=presentation
+    for key,enabled in pairs(presentation.bindings) do BindBox(frame,key,unit,enabled) end
     local party=PartyUnit(frame,unit)
-    BindBox(frame,"dispelBorder",unit,valid and opt.displayDebuffs~=false and highlight and not party)
-    BindBox(frame,"partyDispelGlow",unit,valid and opt.displayDebuffs~=false and highlight and party and Friendly(unit))
-    frame._fluxAuraRows.top:SetShown(buffs)
-    frame._fluxAuraRows.bottom:SetShown(valid and opt.displayDebuffs~=false)
+    BindBox(frame,"dispelBorder",unit,debuffs and highlight and not party)
+    BindBox(frame,"partyDispelGlow",unit,debuffs and highlight and party and Friendly(unit))
+    SetOwnedShown(frame._fluxAuraRows.top,buffs)
+    SetOwnedShown(frame._fluxAuraRows.bottom,debuffs)
 end
 local function ReadAura(unit,index,filter)
     local data
@@ -683,12 +739,12 @@ end
 local function PaintList(list,auras,limit,geometry,side)
     for i,icon in ipairs(list) do
         local aura=i<=limit and auras[i]
-        if not aura or not Readable(aura.icon) or not aura.icon then icon:Hide()
+        local image=aura and aura.icon
+        if not Readable(image) or not image then SetOwnedShown(icon,false)
         else
             if geometry.nativeDefaults then
                 local large=false
-                local fields={"isBossAura","isTankRoleAura","isHealerRoleAura","isDPSRoleAura","isHarmful"}
-                local accessible=true;for _,field in ipairs(fields) do if not Readable(aura[field]) then accessible=false;break end end
+                local accessible=true;for _,field in ipairs(LARGE_AURA_FIELDS) do if not Readable(aura[field]) then accessible=false;break end end
                 if accessible and geometry.largeRoleEnabled then
                     local client=ns.Flux and ns.Flux.Client
                     large=(aura.isBossAura or aura.isTankRoleAura or aura.isHealerRoleAura or aura.isDPSRoleAura)
@@ -700,22 +756,24 @@ local function PaintList(list,auras,limit,geometry,side)
                     if icon._fluxCountdownText then StyleDurationText(icon._fluxCountdownText,icon,width) end
                 end
             end
-            icon.Icon:SetTexture(aura.icon)
+            if not rawequal(ReadOwnedPaint(icon.Icon,icon.Icon.GetTexture),image) then icon.Icon:SetTexture(image) end
             if icon._fluxPartyDebuffBorder then
                 local kind=Readable(aura.dispelName) and aura.dispelName
                 FluxRaidVisuals.SetPartyDebuffBorderType(icon,kind,Readable(aura.isHelpful) and aura.isHelpful==true)
             end
-            local n=aura.applications; icon.Count:SetText(Readable(n) and type(n)=="number" and n>1 and n or "")
+            local n=aura.applications
+            local count=Readable(n) and type(n)=="number" and n>1 and n or ""
+            if ReadOwnedPaint(icon.Count,icon.Count.GetText)~=tostring(count) then icon.Count:SetText(count) end
             local duration,expiration=aura.duration,aura.expirationTime
-            if Readable(duration) and Readable(expiration) and type(duration)=="number" and type(expiration)=="number" and duration>0 then
+            local timed=Readable(duration) and Readable(expiration) and type(duration)=="number" and type(expiration)=="number" and duration>0
+            if timed then
                 icon.Cooldown:SetCooldown(expiration-duration,duration)
-                icon.Cooldown:Show()
-                if icon._fluxCountdownText then icon._fluxCountdownText:Show() end
             else
-                icon.Cooldown:SetCooldown(0,0); icon.Cooldown:Hide()
-                if icon._fluxCountdownText then icon._fluxCountdownText:Hide() end
+                icon.Cooldown:SetCooldown(0,0)
             end
-            icon:Show()
+            SetOwnedShown(icon.Cooldown,timed)
+            if icon._fluxCountdownText then SetOwnedShown(icon._fluxCountdownText,timed) end
+            SetOwnedShown(icon,true)
         end
     end
 end
@@ -781,26 +839,27 @@ function A.Update(frame)
     local geometry=frame._fluxAuraRowMetrics
     PaintList(frame._fluxAuraCorners.buffs,buffs,geometry.buffs.count,geometry,geometry.buffs)
     PaintList(frame._fluxAuraCorners.debuffs,debuffs,geometry.debuffs.count,geometry,geometry.debuffs)
-    frame._fluxAuraRows.top:SetShown(valid and opt.displayBuffs~=false)
-    frame._fluxAuraRows.bottom:SetShown(valid and opt.displayDebuffs~=false)
+    SetOwnedShown(frame._fluxAuraRows.top,valid and opt.displayBuffs~=false)
+    SetOwnedShown(frame._fluxAuraRows.bottom,valid and opt.displayDebuffs~=false)
     frame._fluxDispelType=nil
     for _,aura in ipairs(dispel) do
         local kind=aura.dispelName
         if Readable(kind) and TYPE_COLORS[kind] then frame._fluxDispelType=kind;break end
     end
     A.UpdateDispel(frame)
+    return true -- The readable painter has already applied the dispel highlight.
 end
 function A.UpdateDispel(frame)
     local highlight,glow=frame.dispelHighlight,frame._fluxPartyDispelGlow
     if frame._fluxAuraNative or (FluxRaid_IsDispelHighlightEnabled and not FluxRaid_IsDispelHighlightEnabled()) then
-        if highlight then highlight:Hide() end
-        if glow then glow:Hide() end
+        if highlight then SetOwnedShown(highlight,false) end
+        if glow then SetOwnedShown(glow,false) end
         return
     end
     local kind=frame._fluxDispelType; local color=Readable(kind) and TYPE_COLORS[kind]
     if not color then
-        if highlight then highlight:Hide() end
-        if glow then glow:Hide() end
+        if highlight then SetOwnedShown(highlight,false) end
+        if glow then SetOwnedShown(glow,false) end
         return
     end
     local unit=Unit(frame)
@@ -809,14 +868,14 @@ function A.UpdateDispel(frame)
         if party and Friendly(unit) then
             if AuraUtil and AuraUtil.SetAuraBorderColor then AuraUtil.SetAuraBorderColor(glow._fluxDispelGlowTexture,kind)
             else glow._fluxDispelGlowTexture:SetVertexColor(color[1],color[2],color[3]) end
-            glow:Show();if highlight then highlight:Hide() end;return
-        else glow:Hide() end
+            SetOwnedShown(glow,true);if highlight then SetOwnedShown(highlight,false) end;return
+        else SetOwnedShown(glow,false) end
     end
-    if party then if highlight then highlight:Hide() end;return end
+    if party then if highlight then SetOwnedShown(highlight,false) end;return end
     if not highlight then return end
     if highlight.fill then highlight.fill:SetVertexColor(color[1],color[2],color[3],.12) end
     if highlight.border then highlight.border:SetVertexColor(color[1],color[2],color[3]) end
-    highlight:Show()
+    SetOwnedShown(highlight,true)
 end
 function A.Refresh(frame)
     if not frame or not frame._fluxHealerAuras then return end
@@ -831,12 +890,11 @@ end
 function A.Clear(frame)
     if not frame then return end
     RetireOwners(frame)
-    for _,list in pairs(frame._fluxAuraCorners or {}) do for _,icon in ipairs(list) do icon:Hide() end end
-    for _,row in pairs(frame._fluxAuraRows or {}) do row:Hide() end
-    if frame._fluxAuraNativeState then frame._fluxAuraNativeState.units={} end
+    for _,list in pairs(frame._fluxAuraCorners or {}) do for _,icon in ipairs(list) do SetOwnedShown(icon,false) end end
+    for _,row in pairs(frame._fluxAuraRows or {}) do SetOwnedShown(row,false) end
     frame._fluxDispelType=nil
-    if frame.dispelHighlight then frame.dispelHighlight:Hide() end
-    if frame._fluxPartyDispelGlow then frame._fluxPartyDispelGlow:Hide() end
+    if frame.dispelHighlight then SetOwnedShown(frame.dispelHighlight,false) end
+    if frame._fluxPartyDispelGlow then SetOwnedShown(frame._fluxPartyDispelGlow,false) end
 end
 function A.Diagnostics()
     local selected,prepared
@@ -865,13 +923,14 @@ function A.Diagnostics()
         if HiddenBuffs()[id] then hiddenClass=hiddenClass+1 end
     end
     local groups=state.groups or {}
+    local buffOwner=frame._fluxAuraContainers and frame._fluxAuraContainers.buffs
     return "aura-policy-20261106c: native="..scalar(frame._fluxAuraNative).." ready="..scalar(frame._fluxHealerAuras)
         .." buffs="..scalar((frame.optionTable or {}).displayBuffs).." class="..scalar(db.showClassBuffs)
         .." normalGroup="..scalar(groups["buffs:raidBuffs"]).." classGroup="..scalar(groups["buffs:classBuffs"])
         .." classOOC="..scalar(ShowClassBuffs()).." hidden="..hiddenCount
         .." classIDs="..classCount.." hiddenClass="..hiddenClass
         .." alpha="..scalar(FluxRaidVisuals.AURA_ICON_ALPHA).." row="..scalar(shown)
-        .." bound="..scalar(state.units and state.units.buffs).." width="..scalar(frame._fluxAuraNativeMetrics and frame._fluxAuraNativeMetrics.widthScale).." pendingWidth="..scalar(frame._fluxPendingNativeWidth).." error="..scalar(reason)
+        .." bound="..scalar(state.units and state.units[buffOwner]).." width="..scalar(frame._fluxAuraNativeMetrics and frame._fluxAuraNativeMetrics.widthScale).." pendingWidth="..scalar(frame._fluxPendingNativeWidth).." error="..scalar(reason)
 end
 function A.DebugDuration()
     if Locked() then return "aura-clock-probe1: out of combat only" end

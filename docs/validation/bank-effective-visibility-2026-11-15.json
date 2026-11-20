@@ -1,0 +1,1210 @@
+{
+  "changeId": "LHO-BANK-EFFECTIVE-VISIBILITY-20261115",
+  "recordedUtc": "2026-11-15T00:33:01.680397+00:00",
+  "status": "APPLIED; 390scripts/1078syntax exact-source desktop integration PASS; specific Forever native false-bank-access acceptance PASS after guarded bundle reload; full LHO-01 through LHO-13 goal ACTIVE.",
+  "application": {
+    "appliedUtc": "2026-11-15T00:13:03.950153+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-bank-visibility-20261115T001054Z",
+    "files": [
+      {
+        "path": "Inventory/Init.lua",
+        "before": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+        "after": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+      },
+      {
+        "path": "tests/bank_visibility_work.lua",
+        "before": null,
+        "after": "ff3d3e8fb4d051fb830d8f5f210d07d1b652ad59058d0ea94552181ca5ce7dd6"
+      }
+    ],
+    "preEditGate": "389scripts/1077exactcurrentmanifest;native shown/invisiblefalsebankcontext;3sourcepairs/3285checks/625baselinefailures;6compiledcontrols;11focusedfixtures;independentreview beforeedit",
+    "intentionalBugFix": "BankPanel ownshown child mustbe effectivelyvisible tograntnativefallbackbankaccess; allotherprioritybranches/latches/data/cadence unchanged",
+    "nativeAfter": "Not loaded/certified; no agentreload bythisapply; countcacheauthority/races remainseparate",
+    "complete": true
+  },
+  "applicationStatusNote": "Application receipt correctly recorded no native reload at apply time; later guarded reload and narrow native acceptance are recorded separately below.",
+  "sourceBeforeEdit": {
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-bank-visibility-20261115T001054Z",
+    "capturedUtc": "2026-11-15T00:10:58.972357+00:00",
+    "files": 2830,
+    "sourceArchiveSHA256": "4071727cb01e8bcfafd6a1a0e6a3f7b8275fd166fb929802aed5cc0a53262d8e",
+    "historyBundleSHA256": "49d3c072e655e078154cf6c42d1b79cd7699ce3b0bb02d48600c91fb30a064c0",
+    "sourceAndHistoryHashesReverifiedForRecord": true,
+    "historyVerifiedAtCheckpoint": true,
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "hooksPath": ".githooks",
+    "settingsMetadataEntries": 126,
+    "privateSettingsCopied": false,
+    "sourceStableThroughout": true,
+    "preEditGate": "389scripts/1077exactcurrentmanifest;native shown/invisiblefalsebankcontext;3sourcepairs/3285checks/625baselinefailures;6compiledcontrols;11focusedfixtures;independentreview beforeedit"
+  },
+  "intentionalBugFix": {
+    "trigger": "BankPanel reports IsShown=true but IsVisible=false while native bank access flags are false. Its own shown bit previously granted canonical fallback bank access.",
+    "expected": "Only effective visibility of the fallback BankPanel grants this branch of native bank access; a shown but invisible panel alone no longer reports bank open/live.",
+    "exactEdit": {
+      "owner": "Inventory/Init.lua",
+      "before": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+      "candidate": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "changedTokens": "panel.IsShown and panel:IsShown() -> panel.IsVisible and panel:IsVisible()",
+      "otherBytes": "unchanged"
+    },
+    "preserved": [
+      "Root BankFrame own-shown policy",
+      "True native PIM bank access and event-owned latches",
+      "Cached Baganator browser open/display policy and live/locked-tab precedence",
+      "Visible bank behavior, snapshot/data roots and persistence",
+      "Existing event, queue, timer and retry cadence outside intentionally prevented false-open work",
+      "Native getter errors remain observable; no broad error suppression"
+    ],
+    "noNewRuntimeMachinery": "No new events/timers/frames/hooks/polling/caches/settings/data-reset policy. Other bank gate branches and all original cadence remain; false-open downstream work is intentionally prevented.",
+    "alreadyStaleLatch": "Private event-owned open latch remains owned by normal close signals or reload; no count-driven reset.",
+    "sourceVersusNative": "Pinned TOC/XML supports the parent-child mechanism and source uses BankPanel:IsVisible. Native captures observed the shown/visible discrepancy; the runtime parent chain or reparenting was not queried."
+  },
+  "sourceEvidence": {
+    "sourceArtifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\primary-source-evidence.json",
+      "sha256": "c4808b7438101254a37665b9bb7d6294448eccdb88e8aeb76372162856e28d60"
+    },
+    "scope": "Source-pinned load and frame model only; no inference that native parent links were inspected.",
+    "sources": [
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game.toc",
+        "blob": "7b6537794b17e8a2d1c7eef582f1f724c0e180f7",
+        "line": 137
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.xml",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.xml",
+        "blob": "544f1d9dc3c26d5a624aad3f335a7133420b6f7b",
+        "line": 59
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.xml",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.xml",
+        "blob": "544f1d9dc3c26d5a624aad3f335a7133420b6f7b",
+        "line": 86
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.xml",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.xml",
+        "blob": "0acab3633c85523dd7431db1bd8aa8dac90f04f3",
+        "line": 667
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.lua",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/BankFrameTemplates.lua",
+        "blob": "160399011be5d1fd538a4ea638c60a2a13b27fef",
+        "line": 104
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.lua",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Camelot/BankFrame.lua",
+        "blob": "3da34df4abc55e9437574a302ba74331dfcc3be6",
+        "line": 225
+      },
+      {
+        "path": "Interface/AddOns/Blizzard_FrameXMLUtil/ItemUtil.lua",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FrameXMLUtil/ItemUtil.lua",
+        "blob": "b0df85d2c1e221c4bca43f3b68de6abd311c2125",
+        "line": 103
+      }
+    ],
+    "frameContracts": [
+      {
+        "target": "live",
+        "pin": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "blob": "f0951c3f8a2556ac881434d33b687d8b9671ca1a",
+        "line": 968
+      },
+      {
+        "target": "forever",
+        "pin": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "blob": "07debf919e8b4d43087306d2eccfb8e18e8f2c82",
+        "line": 969
+      },
+      {
+        "target": "classic",
+        "pin": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "blob": "a089a65c8ca55ee33693bf35359337812e174490",
+        "line": 858
+      },
+      {
+        "target": "era",
+        "pin": "4192ac60067fc55566182291bc67c85dd9b6794d",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "blob": "a089a65c8ca55ee33693bf35359337812e174490",
+        "line": 858
+      },
+      {
+        "target": "anniv",
+        "pin": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+        "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+        "blob": "a089a65c8ca55ee33693bf35359337812e174490",
+        "line": 858
+      }
+    ]
+  },
+  "beforeApplicationProof": {
+    "sealedStatus": "EXTERNAL CANDIDATE, DURABLE PROOF AND INDEPENDENT REVIEW PASS; READY FOR ROOT CHECKPOINT/APPLICATION",
+    "sealedStatusMeaning": "Handoff, durable proof and independent review were sealed with candidate external. Root later checkpointed/applied/reloaded; historical status is retained.",
+    "durable": {
+      "capturedUtc": "2026-11-15T00:09:03.723267+00:00",
+      "status": "DURABLE_DEFAULT_SOURCE_AND_EXPLICIT_CANDIDATE_PASS; BASELINE_AND_SIX_CONTROLS_FAIL_EXPECTED_BOUNDS",
+      "regression": "bank_visibility_work.lua",
+      "regressionSHA256": "ff3d3e8fb4d051fb830d8f5f210d07d1b652ad59058d0ea94552181ca5ce7dd6",
+      "baselineSHA256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+      "candidateSHA256": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "productSourceUnchanged": true,
+      "checksPerRun": 3285,
+      "gateScenariosPerRun": 340,
+      "actualRIExtraChecks": 430,
+      "globalIdentityChecks": 3,
+      "fiveFamilies": [
+        "retail",
+        "forever",
+        "mists",
+        "era",
+        "anniversary"
+      ],
+      "twoGateProviders": [
+        "builtin",
+        "syndicator"
+      ],
+      "defaultSource": "Inventory/Init.lua",
+      "absolutePathsInDurableTest": false,
+      "copiedGateFunctionBodies": false,
+      "fixtures": "Full Init and Builtin.Bank; existing complete inventory smoke boot imports actual Containers/Index/Scheduler/Syndicator Adapter and full real RI. Only native API/UI facts are modeled.",
+      "pairs": 3,
+      "controls": [
+        {
+          "name": "drop-open-latch",
+          "sourceSHA256": "50a308036d3c6c4cfce1e37f21a3025e82be3f41df4ba11ae11cb31c8b05ee01",
+          "syntaxPass": true
+        },
+        {
+          "name": "hide-cached-Baganator",
+          "sourceSHA256": "851523e4279d1e64bbc5e8104c9b03e53022fe92c837fad9f8b3caee30389cc7",
+          "syntaxPass": true
+        },
+        {
+          "name": "ignore-frame-access",
+          "sourceSHA256": "83db4c1115c415bf105a7efc89bc2867a21d7a5f781961b8ae6d01928a49a3b2",
+          "syntaxPass": true
+        },
+        {
+          "name": "shown-fallback",
+          "sourceSHA256": "37189afaa468e4fd352e384925be4d20ab5574c3bb668e6cc68f9ad7f62619c6",
+          "syntaxPass": true
+        },
+        {
+          "name": "skip-panel",
+          "sourceSHA256": "5b992308fe290f550d0b6a1651386d9e67ed3ed1923b17fb89c37822e9c6f152",
+          "syntaxPass": true
+        },
+        {
+          "name": "swallow-visibility-error",
+          "sourceSHA256": "95a7fe2759699aa046229722ef470c81c1d13fcc0bda0319986accece48c9f2f",
+          "syntaxPass": true
+        }
+      ],
+      "runs": [
+        {
+          "run": "durable-baseline-1",
+          "exit": 1,
+          "output": "durable-baseline-1.txt",
+          "sha256": "f9b527fd078b4841f5ecd3b47d02089a00d41e3b483484196606ec4117d70858"
+        },
+        {
+          "run": "durable-candidate-1",
+          "exit": 0,
+          "output": "durable-candidate-1.txt",
+          "sha256": "6cd817d57686bb118098152cda47b4b24a0ff770ef5b7dfd33672d94504a322a"
+        },
+        {
+          "run": "durable-baseline-2",
+          "exit": 1,
+          "output": "durable-baseline-2.txt",
+          "sha256": "f64890964716cf743c50356e163232f34fde2976a5a28c4424ffceab69e85978"
+        },
+        {
+          "run": "durable-candidate-2",
+          "exit": 0,
+          "output": "durable-candidate-2.txt",
+          "sha256": "6cd817d57686bb118098152cda47b4b24a0ff770ef5b7dfd33672d94504a322a"
+        },
+        {
+          "run": "durable-baseline-3",
+          "exit": 1,
+          "output": "durable-baseline-3.txt",
+          "sha256": "028db88d0f1af485eac9fa2a66152d8c7d8e7867b7c5278021e96cf351463242"
+        },
+        {
+          "run": "durable-candidate-3",
+          "exit": 0,
+          "output": "durable-candidate-3.txt",
+          "sha256": "6cd817d57686bb118098152cda47b4b24a0ff770ef5b7dfd33672d94504a322a"
+        },
+        {
+          "run": "durable-default-current",
+          "exit": 1,
+          "output": "durable-default-current.txt",
+          "sha256": "13de9075cf37da19b769e025386b9ae5895c3e57a32f967aa3a0c7c30a1e84e2"
+        },
+        {
+          "run": "durable-default-candidate",
+          "exit": 0,
+          "output": "durable-default-candidate.txt",
+          "sha256": "6cd817d57686bb118098152cda47b4b24a0ff770ef5b7dfd33672d94504a322a"
+        },
+        {
+          "run": "durable-control-drop-open-latch",
+          "exit": 1,
+          "output": "durable-control-drop-open-latch.txt",
+          "sha256": "0813659d13f72d929e2f4363c460d454a46728675694ecab7f36c96cabc54bab"
+        },
+        {
+          "run": "durable-control-hide-cached-Baganator",
+          "exit": 1,
+          "output": "durable-control-hide-cached-Baganator.txt",
+          "sha256": "9ddeaf77b68c17ee84499c3294666a8c2ec86c2c7f45f9c013a6b0a45888f636"
+        },
+        {
+          "run": "durable-control-ignore-frame-access",
+          "exit": 1,
+          "output": "durable-control-ignore-frame-access.txt",
+          "sha256": "bbf6a0f232a3c513ae96988a864999e8a6bd27477df7463a48e2d4821d824511"
+        },
+        {
+          "run": "durable-control-shown-fallback",
+          "exit": 1,
+          "output": "durable-control-shown-fallback.txt",
+          "sha256": "627ff95159f860a723dcee8f4ce10f2e42fec62c0b2468255b208670787b780d"
+        },
+        {
+          "run": "durable-control-skip-panel",
+          "exit": 1,
+          "output": "durable-control-skip-panel.txt",
+          "sha256": "7d20545eb4760f5a0cf3232b3dfb2a38a7eb3e5781f63ad3df42c84b9b4ee3f0"
+        },
+        {
+          "run": "durable-control-swallow-visibility-error",
+          "exit": 1,
+          "output": "durable-control-swallow-visibility-error.txt",
+          "sha256": "7f5bcae2f8d430dd6cf822e116c6346aa8d55cae41337266603975f8d222a49d"
+        }
+      ],
+      "focusedChecksPriorProof": {
+        "path": "visibility-proof.json",
+        "sha256": "ce487d3ab7764716311080c356a9ed106898737018faabf2365651995a599379",
+        "tests": 11,
+        "candidateUnchangedSinceFocusedPass": true
+      },
+      "parityScope": [
+        "Visible BankFrame and true PIM bank/native early returns retain existing ordering before panel fallback.",
+        "Cached/live Baganator and event-owned latch branches remain unchanged. Private latches are not reset from counts.",
+        "Only fallback BankPanel query changes from own shown bit to effective visibility. Native branch getter errors remain observable.",
+        "Entire snapshot and saved maps remain unchanged by access queries. Last-seen values/provider rows remain intact in corrected hidden-only RI scenarios.",
+        "True PIM/visible access still scans native slots, returns live zero and preserves the existing throttle in all five desktop policies."
+      ],
+      "limits": [
+        "Root native captures establish hidden shown child and false access, not bank item counts or a native performance improvement.",
+        "No native count queries were performed. Cold-cache authority, Syndicator cold producer clearing and mail races remain unresolved.",
+        "UI source declares IsVisible and supplies the loaded Forever parent-child model; secure VM, pixels, controller and other native clients remain untested.",
+        "An already stuck private event latch is retained until an existing normal close signal or reload; no speculative reset is introduced."
+      ]
+    },
+    "checksMeaning": "Each of three source pairs uses 3285 checks across340 gate scenarios, including430 actual restock-consumer work checks, five family models and builtin/Syndicator providers. Baseline625 failures; candidate0. Six harmful controls compiled and rejected;11 earlier focused fixtures PASS.",
+    "independentReview": {
+      "capturedUtc": "2026-11-15T00:09:17.396334+00:00",
+      "status": "INDEPENDENT_REVIEW_PASS",
+      "scope": "Read-only source/durable regression review of the hidden native BankPanel visibility fix; no runtime application or native interaction.",
+      "twoTokenDiffOnly": true,
+      "allSourceIdentitiesStable": true,
+      "candidateChecks": 3285,
+      "gateScenarios": 340,
+      "compiledControls": 6,
+      "runs": [
+        {
+          "label": "candidate",
+          "exit": 0,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 0"
+          ],
+          "outputSHA256": "6cd817d57686bb118098152cda47b4b24a0ff770ef5b7dfd33672d94504a322a"
+        },
+        {
+          "label": "default-source-baseline",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 625"
+          ],
+          "outputSHA256": "801217180d8726c126da5183af0f98805814b473e738e6569de6496e63cbe905"
+        },
+        {
+          "label": "explicit-baseline",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 625"
+          ],
+          "outputSHA256": "10019da87d5863c46f22421ab776b980c4d061fdd9b4d03d281e3f8100ed733e"
+        },
+        {
+          "label": "control-drop-open-latch",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 30"
+          ],
+          "outputSHA256": "0813659d13f72d929e2f4363c460d454a46728675694ecab7f36c96cabc54bab"
+        },
+        {
+          "label": "control-hide-cached-Baganator",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 140"
+          ],
+          "outputSHA256": "9ddeaf77b68c17ee84499c3294666a8c2ec86c2c7f45f9c013a6b0a45888f636"
+        },
+        {
+          "label": "control-ignore-frame-access",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 160"
+          ],
+          "outputSHA256": "62adea25af5f04547cb810935cfab5d26a0effcc56fcd53d9a6543b91f892ca2"
+        },
+        {
+          "label": "control-shown-fallback",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 605"
+          ],
+          "outputSHA256": "627ff95159f860a723dcee8f4ce10f2e42fec62c0b2468255b208670787b780d"
+        },
+        {
+          "label": "control-skip-panel",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 80"
+          ],
+          "outputSHA256": "2348257716c6ef8726b58ecc9af47a8fff7fe341dc5f397122c2a6c77c366d0f"
+        },
+        {
+          "label": "control-swallow-visibility-error",
+          "exit": 1,
+          "expected": true,
+          "tail": [
+            "BANK_VISIBILITY_SCENARIOS 340",
+            "BANK_VISIBILITY_CHECKS 3285 FAILURES 20"
+          ],
+          "outputSHA256": "440ffcab98050de2d1db5174c7700cd706c83019b7647f05966b8d221213e1ba"
+        }
+      ],
+      "limitations": [
+        "The engine frame and container seams are desktop models. This does not certify native secure VM, taint, pixels, FPS or CPU savings.",
+        "The five-family consumer fixture forces a modern bank shape for counted work; it is a source-model check, not proof of native Classic bank API behavior.",
+        "An already-stale private open latch is intentionally not reset from counts; existing close signals or reload remain responsible.",
+        "The fix does not establish native C_Item count-cache freshness or repair the separate Syndicator cold-close producer clear/mail race.",
+        "Actual native parent reparenting was not queried by this reviewer; pinned XML and root-observed visibility establish the stated scope only."
+      ]
+    },
+    "independentReviewSummary": "No actionable findings. Gate precedence, actual-source consumers, cached Baganator policy, latches, persistence, native positive access/live-zero/error/throttle behavior and six compiled rejection controls checked."
+  },
+  "desktopWork": {
+    "rawCountedWork": {
+      "scope": "Actual source owners, modeled native APIs; queries/callbacks drive this conditional work. No assertion of unconditional polling or current native scans.",
+      "spacedQueries": {
+        "queries": 20,
+        "gapSeconds": 0.21,
+        "before": {
+          "capacity": 20,
+          "itemInfo": 1920,
+          "itemID": 2560
+        },
+        "candidate": {
+          "capacity": 0,
+          "itemInfo": 0,
+          "itemID": 0
+        }
+      },
+      "sameTimestampQueries": {
+        "beforeCapacity": 1,
+        "candidateCapacity": 0,
+        "existingThrottleSeconds": 0.2
+      },
+      "closedToHiddenAuctioneerTransition": {
+        "beforeCapacity": 2,
+        "beforeOpenCallbacks": 1,
+        "candidateCapacity": 0,
+        "candidateOpenCallbacks": 0,
+        "beforeDelayedRescanSeconds": 0.15
+      },
+      "preservedData": "Canonical snapshot counts/byBag, provider bankTabs rows and persisted last-seen five remain unchanged in each proof. Corrected RI getter returns cached five, not proof of current physical five.",
+      "positivePaths": "True PIM or effective visible panel still executes actual native slot queries, returns live empty zero, and preserves same-time throttle across all five desktop policies."
+    },
+    "headline": "For20 queries spaced0.21s apart under the hidden-panel modeled context, capacity probes20->0, item-info probes1920->0 and item-ID probes2560->0. Same-time queries retain the original0.2s throttle; visible/PIM access still performs real source native-slot queries and returns genuine live zero.",
+    "scope": "Queries and callbacks drive the modeled work. This is no claim of unconditional polling, observed native scan counts, native CPU/memory/FPS magnitude or all-client operation.",
+    "noNativeTimingClaim": true
+  },
+  "integration": {
+    "final": {
+      "exit": 0,
+      "sourceStableThroughout": true,
+      "scriptsPass": 390,
+      "scriptsFail": 0,
+      "syntaxFiles": 1078,
+      "syntaxFailures": 0,
+      "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+      "cancellable": true
+    },
+    "all1078CurrentNormalizedLuaManifestPathsMatchAtRecord": true,
+    "rawAppliedSourceAndTestHashesMatchAtRecord": true,
+    "normalizedAppliedHashes": {
+      "Inventory/Init.lua": "f76efdfda682e6ec3315c7dbbdf16c4749ed28bccb8ccbbd1b90779516bb1d78",
+      "tests/bank_visibility_work.lua": "f5a4d010f793f99637f3c04a7a2e0beabfd23e55eea75c9efe0e8b7924d546ba"
+    },
+    "sourceGuard": {
+      "otherNonDocumentationCheckpointFilesUnchanged": 1840,
+      "capturedUtc": "2026-11-15T00:23:34.875204+00:00",
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\checkpoint-before-bank-visibility-20261115T001054Z",
+      "changedRuntime": [
+        "Inventory/Init.lua"
+      ],
+      "updatedFixture": null,
+      "newTests": [
+        "tests/bank_visibility_work.lua"
+      ],
+      "otherCheckpointLuaUnchanged": 1077,
+      "exactCurrentFiles": {
+        "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+        "tests/bank_visibility_work.lua": "ff3d3e8fb4d051fb830d8f5f210d07d1b652ad59058d0ea94552181ca5ce7dd6"
+      },
+      "preserved": {
+        "assetsXMLTOC": {
+          "files": 252,
+          "allRawHashesMatch": true
+        },
+        "optionsBindings": {
+          "files": 79,
+          "allRawHashesMatch": true
+        },
+        "defaults": {
+          "files": 8,
+          "allRawHashesMatch": true
+        },
+        "licenses": {
+          "files": 3,
+          "allRawHashesMatch": true
+        }
+      },
+      "all1078IntegrationManifestPathsMatch": true,
+      "fullSuite": {
+        "pass": 390,
+        "fail": 0,
+        "syntax": 1078,
+        "syntaxFailures": 0
+      },
+      "externalSyndicator": {
+        "files": 41,
+        "allRawHashesMatch": true,
+        "baselineCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\checkpoint-20261114T092731Z",
+        "readOnly": true
+      },
+      "installedCopies": {
+        "_retail_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+          "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+        },
+        "_forever_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+          "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+        },
+        "_classic_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+          "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+        },
+        "_classic_era_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+          "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+        },
+        "_anniversary_": {
+          "Inventory/Index.lua": "054731cefbb168b674174d6fdd1e78bced3ec7911f312cbab7392b9d9564afe7",
+          "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+          "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+          "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581"
+        }
+      },
+      "manualSync": false,
+      "scope": "Disk identities only; no native after-bank-candidate/FPS/taint/pixel claim."
+    }
+  },
+  "nativeBefore": {
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-mail-r5-context.json",
+      "sha256": "96cbd7f322885e0081696ebe78321627a0a1dc193aafae04883ee91a80d2f68d"
+    },
+    "bank": {
+      "InvIsBankOpen": true,
+      "InvIsBankLive": true,
+      "InvIsBaganatorBankLive": false,
+      "baganatorViewShown": false,
+      "baganatorLiveShown": false,
+      "builtinBankOpen": false,
+      "BankFrame": {
+        "IsShown": false,
+        "IsVisible": false
+      },
+      "BankPanel": {
+        "IsShown": true,
+        "IsVisible": false
+      },
+      "nativePIM": {
+        "Banker": false,
+        "CharacterBanker": false,
+        "AccountBanker": false,
+        "Auctioneer": true
+      },
+      "CharacterBankTabsActive": true,
+      "legacyBankType": "table",
+      "modernBankTabsType": "table",
+      "legacyFirstID": "none; notamoderncacheenumeration",
+      "nativeCountAPIsSameFunction": true,
+      "countQueryPerformed": false
+    },
+    "scope": "Observed canonical open/live true versus shown=true/visible=false panel and false native banker flags. Modern bank tabs were active; first legacy-ID absence was not a modern-cache enumeration."
+  },
+  "nativeAfter": {
+    "capturedUtc": "2026-11-15T00:29:53.576098+00:00",
+    "reloadSubmission": {
+      "startedUtc": "2026-11-15T00:22:04.933001+00:00",
+      "pid": 40032,
+      "hwnd": 7995860,
+      "plan": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-idle-reload.json",
+      "planSHA256": "b42b6ed75d55d2bbdf2a13315ff2aa5a3a753d54b66ec2ed2269c2eccda165e8",
+      "permission": "User explicitly permits targeted foreground/background profiling; focus is never activated or changed by helper.",
+      "diagnosticCleanupOnly": false,
+      "activation": false,
+      "systemWideInput": false,
+      "clipboard": false,
+      "profilerPreferenceWrites": false,
+      "itemMailQueueActions": false,
+      "commands": [
+        "/run if InCombatLockdown()or UnitCastingInfo(\"player\")or UnitChannelInfo(\"player\")or MailFrame and MailFrame:IsShown()or MerchantFrame and MerchantFrame:IsShown()then print(\"R6DEFER\")else ReloadUI()end"
+      ],
+      "status": "complete",
+      "finishedUtc": "2026-11-15T00:22:05.719230+00:00",
+      "foregroundBefore": 67424,
+      "foregroundAfter": 67424,
+      "foregroundUnchanged": true
+    },
+    "reloadObserved": "Loading screen thenworld/startup in samePID40032/HWND7995860;foregroundunchanged",
+    "diskSourcesAtReload": {
+      "Core/ButtonFX/Cast.lua": "773cd8525ffbf6d558179d59dd333f58e887245c3e55e34d8f2d422ae5419ce9",
+      "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67"
+    },
+    "R6BANK": {
+      "IsBankOpen": false,
+      "IsBankLive": false,
+      "BankPanelIsShown": true,
+      "BankPanelIsVisible": false,
+      "source": "syndicator",
+      "ready": true
+    },
+    "R6CTX": {
+      "scriptProfile": "0",
+      "profilerEnabled": true,
+      "maxFPS": "120",
+      "maxFPSBk": "30",
+      "ownedC5GlobalAbsent": true,
+      "version": "1.60.1",
+      "build": 70938,
+      "interface": 16001
+    },
+    "R6CACHE": {
+      "item1101": null,
+      "bankSnapshotGeneration": 1
+    },
+    "R6CAST": {
+      "OnEvent": "function",
+      "publicMatcherCallSucceeded": true,
+      "publicMatcherSameIDResult": true
+    },
+    "acceptance": "Specific nativefalse-bankaccessbug PASS;notallbankworkflows/countauthority/taint/pixels/FPS. Castingafterreloadhandler/matcherready; actualaftercastcapturestillpending.",
+    "noItemsMailQueueOrPrefsActions": "Reloadandlocalread-onlyqueriesonly; existingclientsettingsnaturallypersistonreload",
+    "artifacts": {
+      "r6-idle-reload-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-idle-reload-result.png",
+        "sha256": "fb2b926d62820c6f7f129dc1ca1004b9ace613e7c0836097f586200f0a2e88f9"
+      },
+      "r6-ready-screen.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-ready-screen.png",
+        "sha256": "24d707e7b8a7de21768b4e273d539e04dc86867cf6595454038edeec92a2dcaf"
+      },
+      "r6-context-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-context-result.png",
+        "sha256": "f9f053f7e70e140bb4aa09191790308f1377649ef9df8b480692cb1b1468b086"
+      },
+      "r6-context.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-context.json",
+        "sha256": "c8fc55936732d2e518ecba4764efeac7e71da13b217399bd4863cb01846e21d4"
+      },
+      "r6-context-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-context-submission.json",
+        "sha256": "1ef2582ddcfcf6e286507b51ae3461f483cff734e598062595ad3a457315bd89"
+      }
+    }
+  },
+  "nativeAcceptance": {
+    "verdict": "PASS for specific false-bank-access bug only",
+    "reloadUtc": "2026-11-15T00:22:04.933001+00:00",
+    "sameClient": "Forever1.60.1/build70938/interface16001;PID40032/window7995860;loading then world/startup observed;foreground unchanged.",
+    "observed": "After reload IsBankOpen=false and IsBankLive=false with BankPanel still IsShown=true/IsVisible=false; sourceSyndicator/readytrue. No ownedC5 diagnostic global. Cast raw OnEvent is a function and public same-ID matcher succeeds.",
+    "preferences": "nativeProfilerEnabled=true;scriptProfile=0;maxFPS120/maxFPSBk30 unchanged;no agent preference writes.",
+    "limits": "Disk source identities and observed reload/readiness establish this narrow acceptance; loaded bytecode was not hashed. No actual after-Cast event capture, CPU/FPS, native bank moves/close/persistence/cold-zero authority, taint/pixels/controller or other-client acceptance."
+  },
+  "nativeCountContext": {
+    "capturedUtc": "2026-11-15T00:29:53.565216+00:00",
+    "itemID": 1101,
+    "modernProviderCachedRowCount": 1,
+    "fluxBankSnapshotCount": null,
+    "fluxBankSnapshotGeneration": 739,
+    "rawCItem": {
+      "3arguments": {
+        "carried": 0,
+        "includingCharacterBank": 0,
+        "bothCallsSucceeded": true
+      },
+      "4arguments": {
+        "carried": 0,
+        "includingCharacterBank": 0,
+        "bothCallsSucceeded": true
+      },
+      "5arguments": {
+        "carried": 0,
+        "includingCharacterBank": 0,
+        "bothCallsSucceeded": true
+      }
+    },
+    "globalAndCItemSameFunction": true,
+    "physicalContext": "NativePIMbanker/character/accountfalse;Auctioneertrue;BankPanel showntruevisiblefalse; nobankopen/moves performed",
+    "interpretation": "Observable cache disagreement, notproofphysicalitempresence/absence ornativecold-zeroauthority. Existingstale-bank/cold-close questionremains. Onecachedrowisnotprovideraggregate/bank-onlyproof.",
+    "actions": "Alllocals-onlyrawcounts/readscurrentmaps; noitems/profilepref changes",
+    "artifacts": {
+      "bank-r5-modern-id-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-modern-id-result.png",
+        "sha256": "1403dcba12984478d25f6124172d07d82471d9cc88ef0c062ddba99c82cfba5c"
+      },
+      "bank-r5-counts1101-result.png": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-counts1101-result.png",
+        "sha256": "bef092ab960f96cfd7876a3f566c61ffe2bec4b45b8abb3715ac24cadb57b163"
+      },
+      "bank-r5-counts1101.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-counts1101.json",
+        "sha256": "11d7e40b2eeddef3e80d5e403187d3433c26f001a71b6d25b3c207830046ff3e"
+      },
+      "bank-r5-counts1101-submission.json": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-counts1101-submission.json",
+        "sha256": "5d839d99643f3be7f57ac66bacb43179bb3c87e2147bc6430aaa2ec6f6dd2491"
+      }
+    }
+  },
+  "countContextLimits": [
+    "Modern provider cached row item1101 quantity1 is one cached row, not a provider aggregate, bank-only proof or current physical inventory authority.",
+    "Canonical bank snapshot item1101 was nil at generation739. Native C_Item calls with3/4/5 arguments all publicly succeeded with carried0/include-character-bank0; global and C_Item were the same backend. This disagreement proves neither physical absence nor native cold-zero freshness.",
+    "After reload snapshot count remains nil at generation1. This visibility correction does not repair item data, native count-cache authority, the separate Syndicator cold-close producer clearing or stale-mail races.",
+    "Mailbox remains closed in retained context; cached0/0 is no actual-empty-inbox or server-freshness measurement. User-populated100-mail measure-first latency gate and fallback-delay decision remain."
+  ],
+  "goalContinuity": {
+    "status": "ACTIVE;all original LHO-01 through LHO-13 retained",
+    "currentSourceBundle": "C1 fresh IDs, primitive-name reuse, Cast equality helpers and bank effective visibility are on disk and included in the guarded R6 bundle reload. Actual after-Cast cost and full native workflows remain pending.",
+    "remaining": "Provider readiness/provenance;native bank cold-zero/stale-close/count authority and mail races;populated100-mail timing;pending/restock/crafting/vendor/AH/bag/loot/receive/grid whole workflows;native cast completion/channels/pet;provider-off/all-client secure VM,taint,pixels,controller and matched FPS.",
+    "jumpHelper": "NEXT_SESSION first paragraph preserved verbatim;external user-requested180second helper process42416/session21056 continues while goal active. CANCEL/JUMP_STOP before pause/done;600second heartbeat;input.lock/no_jump guards. Jumps never count as passive gameplay evidence.",
+    "restrictions": "No purchase/sale/delete/item/mail/queue action;external Syndicator untouched;guild-bank/void-storage callback bodies excluded;no manual sync/commit/publication. Profiler preferences and prior diagnostic roots preserved."
+  },
+  "externalArtifacts": {
+    "bank-visibility-audit/handoff-final.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\handoff-final.json",
+      "sha256": "ecbd47e81311511b491aaa648b2ddfae8570e7470bf3a4ff6a510e527a8bab84"
+    },
+    "bank-visibility-audit/durable-proof.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\durable-proof.json",
+      "sha256": "a67739c8cb00b27cc8bcf6dd6286e99d484969cb83dbca6137135791a0e2f724"
+    },
+    "bank-visibility-audit/peer-review/independent-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\peer-review\\independent-review.json",
+      "sha256": "f69f47101d750c62430fd0c2470d8ac39cab7d9d91213bb458f5648d92f9b3db"
+    },
+    "bank-visibility-applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-applied.json",
+      "sha256": "d668ca094497e33c1aa0356293f510b65ed00bdfda1f73d56d438034e28ef6da"
+    },
+    "bank-source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-source-guard.json",
+      "sha256": "9ac882a28004e353d8d1d7348436a68eaabd2bbea4107c6826157bb72d670271"
+    },
+    "bank-integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-integration-full.json",
+      "sha256": "d4ba533bafda9d3786b5b39c3865fbecbf4b92ad5fb244f3aa7ba2f98c7315d6"
+    },
+    "bank-integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-integration-stability.json",
+      "sha256": "11902dd667d74a2851b02826928ed3952e60f00b0e787a0de22986073ce0d8a8"
+    },
+    "bank-visibility-audit/primary-source-evidence.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\primary-source-evidence.json",
+      "sha256": "c4808b7438101254a37665b9bb7d6294448eccdb88e8aeb76372162856e28d60"
+    },
+    "bank-visibility-audit/visibility-proof.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-visibility-audit\\visibility-proof.json",
+      "sha256": "ce487d3ab7764716311080c356a9ed106898737018faabf2365651995a599379"
+    },
+    "native/bank-mail-r5-context.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-mail-r5-context.json",
+      "sha256": "96cbd7f322885e0081696ebe78321627a0a1dc193aafae04883ee91a80d2f68d"
+    },
+    "native/bank-r5-count-result.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\bank-r5-count-result.json",
+      "sha256": "cf026b083ac08e30d4636627a5e16a37802f259d16eb68fd042bff0c47bd4a1c"
+    },
+    "native/r6-context-result.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-context-result.json",
+      "sha256": "543292175302010548a769a75d6889cca64d26bfcc239800682c873a421941c5"
+    },
+    "native/r6-idle-reload-submission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\r6-idle-reload-submission.json",
+      "sha256": "54f14f2b96a463e361a1d297b885ddb2f3bc393b4cd965203ddbdbb61f017e49"
+    }
+  },
+  "recordScope": "Documentation only; own structured diagnostic summaries and metrics; no unrelated private chat, account settings or screenshot contents copied.",
+  "postNativeDocumentationGate": {
+    "recordedUtc": "2026-11-15T01:01:39.603177+00:00",
+    "status": "PASS",
+    "classifiedSources": 1111,
+    "tocXmlReachable": 623,
+    "settingDefinitions": 444,
+    "savedVariables": 24,
+    "localLinks": 17515,
+    "sourceGate": {
+      "files": 1078,
+      "mismatches": 0,
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bankcast-postdocs-source-guard.json",
+      "sha256": "7c68580067c40ac376527ea732946446d34f5883d516da1a42079eeba5c6cf71"
+    },
+    "logs": {
+      "docs-build-bankcastfinal.txt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-build-bankcastfinal.txt",
+        "sha256": "2b18416825ea8c1107b4a0d3e603344e90223ba4690cd90ea03d971cf401b82d"
+      },
+      "docs-validate-bankcastfinal.txt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\docs-validate-bankcastfinal.txt",
+        "sha256": "f091b5bd1610551fc38578c7b51c48cfbf4076a301f11e8af5fdd98a95a86c87"
+      }
+    },
+    "scope": "Documentation and current source identities only; no native compatibility/FPS certification"
+  },
+  "nativeBankComboFollowup20261115": {
+    "recordId": "LHO-BANK-NATIVE-COMBO-20261115",
+    "recordedUtc": "2026-11-15T03:23:49.842713+00:00",
+    "status": "REQUESTED_ADDON_MODE_COMPARISON_COMPLETE_ORIGINAL_MODE_RESTORED; FULL_LHO_ACTIVE",
+    "client": {
+      "target": "Forever",
+      "build": 70938,
+      "interface": 16001,
+      "samePlayerVerified": true
+    },
+    "evidencePrivacy": "Raw identities, private settings and screenshots remain external. This follow-up copies only sanitized results and artifact hashes.",
+    "modeJournal": {
+      "sha256": "4aac2626259b3ea39328467d31b4b333fc535471ca818715d99eb44ec629da2d",
+      "comboFinalSamplesReady": true,
+      "restoreRequired": false,
+      "pendingReload": false,
+      "loadedMode": "both-original-restored",
+      "restoredVerifiedUtc": "2026-11-15T03:18:33.546919+00:00"
+    },
+    "source": {
+      "path": "Inventory/Init.lua",
+      "sha256Raw": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "sha256LF": "f76efdfda682e6ec3315c7dbbdf16c4749ed28bccb8ccbbd1b90779516bb1d78",
+      "hashNormalization": "LF hash normalizes CRLF; raw hash identifies on-disk bytes."
+    },
+    "runtimeEditsThisFollowup": false,
+    "priorFullGate": {
+      "scripts": 390,
+      "syntaxFiles": 1078,
+      "status": "PRIOR_PASS_SOURCE_UNCHANGED; NOT_RERUN_BY_THIS_DOCUMENTATION_TASK"
+    },
+    "initialBothLive": {
+      "nativePIMBanker": true,
+      "FluxBankLiveFlags": [
+        true,
+        true,
+        true
+      ],
+      "BankFrameShownVisible": [
+        true,
+        false
+      ],
+      "BankPanelShownVisible": [
+        true,
+        false
+      ],
+      "visibleCustomOwner": "Baganator category character-bank view",
+      "customLiveBankActive": true,
+      "customCurrentTabIsLive": true,
+      "customCurrentTabIsCharacter": true,
+      "providerCharacterBankTabsActive": true,
+      "providerBankTabsAsBags": true,
+      "providerWarbandBankActive": false,
+      "snapshotGeneration": 6,
+      "positiveItemIDs": [
+        1191,
+        3343
+      ],
+      "positiveSnapshotCounts": [
+        1,
+        1
+      ],
+      "nativeCarriedIncludeBankPerPositive": [
+        0,
+        1
+      ],
+      "nativeArities": [
+        3,
+        4,
+        5
+      ],
+      "missing1101": "Snapshot row missing and native carried/includeBank0; no physical absence or cold-zero authority inferred.",
+      "slotWalk": {
+        "reads": 54,
+        "positiveItemRows": 10,
+        "ambiguousNilSecretOrErrorRows": 44,
+        "capacities": {
+          "6": 48,
+          "7": 6
+        },
+        "physicalEmptySlotsProved": false
+      },
+      "interpretation": "Custom live bank is legitimate with hidden Blizzard chrome; installed Baganator hides/reparents BankFrame. This does not reinstate the fixed hidden-panel native fallback."
+    },
+    "closedModeComparisons": [
+      {
+        "mode": "Syndicator only",
+        "context": "closed bank after mode reload",
+        "source": "syndicator",
+        "ready": true,
+        "allBankLiveFlags": false,
+        "BankFrameShownVisible": [
+          false,
+          false
+        ],
+        "BankPanelShownVisible": [
+          true,
+          false
+        ],
+        "snapshotGeneration": 1,
+        "snapshotCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": "missing"
+        },
+        "publicCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": 0
+        },
+        "nativeArity3_4_5CarriedIncludeBank": {
+          "1191": [
+            0,
+            1
+          ],
+          "3343": [
+            0,
+            1
+          ],
+          "1101": [
+            0,
+            0
+          ]
+        },
+        "queryTimingSamplesMsRounded6": [
+          1.624,
+          1.6242,
+          1.6419,
+          1.6526,
+          1.6928
+        ],
+        "queryTimingMedianMs": 1.6419,
+        "queryTimingRangeMs": [
+          1.624,
+          1.6928
+        ],
+        "callsPerTimingSample": 2000
+      },
+      {
+        "mode": "neither",
+        "context": "closed bank after mode reload",
+        "source": "builtin",
+        "ready": true,
+        "allBankLiveFlags": false,
+        "BankFrameShownVisible": [
+          false,
+          false
+        ],
+        "BankPanelShownVisible": [
+          true,
+          false
+        ],
+        "snapshotGeneration": 1,
+        "snapshotCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": "missing"
+        },
+        "publicCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": 0
+        },
+        "nativeArity3_4_5CarriedIncludeBank": {
+          "1191": [
+            0,
+            1
+          ],
+          "3343": [
+            0,
+            1
+          ],
+          "1101": [
+            0,
+            0
+          ]
+        },
+        "queryTimingSamplesMsRounded6": [
+          1.6448,
+          1.6851,
+          1.6465,
+          1.6452,
+          1.6404
+        ],
+        "queryTimingMedianMs": 1.6452,
+        "queryTimingRangeMs": [
+          1.6404,
+          1.6851
+        ],
+        "callsPerTimingSample": 2000
+      },
+      {
+        "mode": "restored both",
+        "context": "closed bank after mode reload",
+        "source": "syndicator",
+        "ready": true,
+        "allBankLiveFlags": false,
+        "BankFrameShownVisible": [
+          false,
+          false
+        ],
+        "BankPanelShownVisible": [
+          true,
+          false
+        ],
+        "snapshotGeneration": 1,
+        "snapshotCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": "missing"
+        },
+        "publicCounts": {
+          "1191": 1,
+          "3343": 1,
+          "1101": 0
+        },
+        "nativeArity3_4_5CarriedIncludeBank": {
+          "1191": [
+            0,
+            1
+          ],
+          "3343": [
+            0,
+            1
+          ],
+          "1101": [
+            0,
+            0
+          ]
+        },
+        "queryTimingSamplesMsRounded6": [
+          1.6965,
+          1.6337,
+          1.6463,
+          1.6526,
+          1.6387
+        ],
+        "queryTimingMedianMs": 1.6463,
+        "queryTimingRangeMs": [
+          1.6337,
+          1.6965
+        ],
+        "callsPerTimingSample": 2000
+      }
+    ],
+    "additionalSyndicatorOnlyLive": {
+      "status": "PASS_TWO_POSITIVE_ITEM_COUNTS_AND_NATIVE_VISIBLE_CONTEXT_ONLY",
+      "openedBy": "user",
+      "observedBeforeFinalReload": true,
+      "BaganatorEnableFlagAlreadyRestoredButUnloaded": true,
+      "FluxBankLiveFlags": [
+        true,
+        true,
+        false
+      ],
+      "BankFrameShownVisible": [
+        true,
+        true
+      ],
+      "BankPanelShownVisible": [
+        true,
+        true
+      ],
+      "nativePIMBanker": true,
+      "otherPIMBankerFlags": false,
+      "snapshotGeneration": 12,
+      "snapshotCounts": {
+        "1191": 1,
+        "3343": 1,
+        "1101": "missing"
+      },
+      "publicCounts": {
+        "1191": 1,
+        "3343": 1,
+        "1101": 0
+      },
+      "nativeArity3_4_5CarriedIncludeBank": {
+        "1191": [
+          0,
+          1
+        ],
+        "3343": [
+          0,
+          1
+        ],
+        "1101": [
+          0,
+          0
+        ]
+      }
+    },
+    "timingScope": {
+      "operation": "Public Flux.Inventory.GetCount bank-only snapshot query",
+      "samplesPerMode": 5,
+      "callsPerSample": 2000,
+      "sourceIsReadOnly": true,
+      "optionsAllocatedBeforeTimer": true,
+      "printOutsideTimer": true,
+      "nativeWrappersInstalled": false,
+      "result": "Similar query timings; no lag improvement established.",
+      "notMeasured": [
+        "bank-open or bank-close refresh",
+        "whole addon CPU",
+        "native callback gain",
+        "FPS",
+        "matched optimization gain"
+      ],
+      "sameNativeBackend": "C_Item3/4/5 argument variants share one backend; global alias is not independent evidence.",
+      "zeroAuthority": "Native0 and missing/public0 do not prove physical absence, current cache freshness or cold-zero correctness."
+    },
+    "probeValidation": {
+      "compiledCommands": 14,
+      "maxCommandsPerBatch": 6,
+      "maxCharactersPerCommand": 255,
+      "actualGetCountSealedStateChecks": 15,
+      "syntheticNativeCommandErrorSecretChecks": 138,
+      "scope": "Desktop source/command semantics only; not native secure input, taint, pixel or FPS acceptance."
+    },
+    "interactionAttempts": {
+      "successfulAutomaticBankReopen": false,
+      "hiddenOwnerAttempt": "Native arm/gate and key submission succeeded; bank remained closed. Cause unproved.",
+      "shownOwner80msAttempt": "Native arm/gate and both key submissions succeeded; bank remained closed. Cause unproved.",
+      "noFurtherInteractionRetry": true,
+      "minimizedAttempt": "Zero commands submitted; same host client remained running.",
+      "windowRecovery": "One targeted SW_SHOWNOACTIVATE(4) plus HWND_BOTTOM(13) recovered minimized client without activation; foreground unchanged for that helper. A separate already-drawable helper made zero window operations. Possible geometry effects retained externally.",
+      "foregroundScope": "Some unrelated capture foreground changed naturally; no blanket foreground-unchanged claim.",
+      "finalOriginalTargetRetarget": {
+        "status": "PASS",
+        "scope": "Secure exacttargetmacro restoredcapturedoriginalNPC; nativechecks targetmatchestrue/nonplayertrue/softtargetmatchestrue. Lateruserlocation/targetchangespreserved; automaticbankreopenNOTproven."
+      }
+    },
+    "restoration": {
+      "originalEnablement": {
+        "Syndicator": 2,
+        "Baganator": 2
+      },
+      "aggregateEnablement": {
+        "Syndicator": 2,
+        "Baganator": 2
+      },
+      "defaultsBothEnabled": true,
+      "loadedBoth": true,
+      "finalReloadFreshVM": true,
+      "samePlayerVerified": true,
+      "scriptProfile": 0,
+      "maxFPS": 120,
+      "maxFPSBk": 30,
+      "nativeProfiler": true,
+      "temporaryDiagnosticGlobals": "C5/L7/M9/CXO nil",
+      "F24RawAndEffective": "blank",
+      "ShiftV": "unchanged",
+      "savedBindingsWritten": false,
+      "itemMovesPurchasesSalesDeletes": false,
+      "sourceFilesOrExternalProviderSourceChanged": false
+    },
+    "remainingNativeAcceptance": [
+      "neither-provider live-bank workflow",
+      "complete bank open/close/refresh and count-authority races",
+      "native whole-workflow CPU and matched FPS",
+      "all clients, taint, pixels and controller"
+    ],
+    "jumpHelper": "Existing R2 process46504/session52455 remains owned/active under preserved NEXT_SESSION stop/lock/heartbeat rules; jump sends are separate from passive evidence.",
+    "goalStatus": "ACTIVE; all LHO-01 through LHO-13 retained"
+  }
+}

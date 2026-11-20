@@ -1,0 +1,777 @@
+{
+  "changeId": "LHO-INVENTORY-PRIVATE-CALLBACKS-20261116",
+  "recordedUTC": "2026-11-16T20:53:41.345155+00:00",
+  "status": "APPLIED_OFFLINE_NATIVE_PENDING",
+  "goalStatus": "ACTIVE",
+  "workMode": "OFFLINE_ONLY_USER_NATIVE_HOLD",
+  "userNativeTestingHold": "No game tests,input,queries,captures,jumps,reloads or saved diagnostic collection until explicit user release. Generic goal continuation does not release this hold.",
+  "nativeTestingAllowed": false,
+  "nativeActions": false,
+  "loadedClientAdoption": "UNVERIFIED_USER_NATIVE_HOLD",
+  "sourceChanges": [
+    {
+      "lead": "P75",
+      "path": "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+      "beforeSHA256": "ef94f0c14defe12b12c513de5795c9a25eea2b84d3396a700a849ab8049dfaaf",
+      "afterSHA256": "cbcaaad02cb9d3e946ac0c5d7ee233bc71f62b6912c8edbfc9cbb14c88369465",
+      "inPlaceFileIdentityPreserved": true
+    },
+    {
+      "lead": "P76",
+      "path": "Inventory/Init.lua",
+      "beforeSHA256": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "afterSHA256": "98d3e23223e46b750b45688f03df9aa2a612d5898f2f24dc1aa6ca4325d66226",
+      "inPlaceFileIdentityPreserved": true
+    }
+  ],
+  "applicationUTC": "2026-11-16T20:51:00.205202+00:00",
+  "behavior": "Only private callback construction changes. SlotKeyOk calls the identical protected numeric body through a reusable helper, with raw bag/slot arguments. MergeChangeKind reuses the identical union helper. Both numeric reads, short-circuit floor checks, errors, all validations, fresh maps, query/public callback order, cadence and paint calls remain.",
+  "functional": {
+    "firstJobs": 12,
+    "noRetries": true,
+    "allChildrenReaped": true,
+    "P75": {
+      "pairedCasesPerVM": 32,
+      "focusedChecksPerVM": 235,
+      "unchangedVisibleBagChecksPerVariantPerVM": 65,
+      "sameVMExistingStdoutByteEqual": true,
+      "fixtureFamilies": [
+        "era",
+        "anniversary",
+        "mists",
+        "retail",
+        "forever"
+      ],
+      "alternativeBagBypassIncluded": true
+    },
+    "P76": {
+      "pairedScenarioGroupsPerVM": 8,
+      "focusedChecksPerVM": 45,
+      "unchangedPassiveInventoryChecksPerVariantPerVM": 263,
+      "sameVMExistingStdoutByteEqual": true,
+      "controls": [
+        "fresh and retained maps",
+        "typed and false-valued keys",
+        "mutable pairs selection",
+        "opaque errors",
+        "VM-specific proxy iteration",
+        "nested reentry",
+        "replacement/unregister",
+        "queued bag-mail merge/cancellation"
+      ]
+    },
+    "nativeCertification": false
+  },
+  "performance": {
+    "firstFixedJobs": 44,
+    "cpuChildren": 36,
+    "gcChildren": 8,
+    "rawGCWindows": 48,
+    "runtimes": {
+      "stock51": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\lua51.exe",
+      "stock54": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\lua.exe"
+    },
+    "normalGCCPU": true,
+    "cpuScope": "Entire stock Lua5.1 child including owner/fixture load,256warm calls,assertions/output; user+kernel GetProcessTimes with15.625ms quantum; wall separately. Not exclusive handler or whole workflow CPU.",
+    "noRerunsOrReplacementSamples": true,
+    "results": {
+      "P75": {
+        "cpu": [
+          {
+            "profile": "valid",
+            "baselineMs": [
+              890.625,
+              1093.75,
+              1062.5
+            ],
+            "candidateMs": [
+              546.875,
+              484.375,
+              531.25
+            ],
+            "baselineMedianMs": 1062.5,
+            "candidateMedianMs": 531.25,
+            "medianPercentChange": -50.0,
+            "pairedDeltaMs": [
+              -343.75,
+              -609.375,
+              -531.25
+            ],
+            "wins": 3,
+            "losses": 0,
+            "ties": 0,
+            "wallBaselineMs": [
+              1218.9999999827705,
+              1141.0000000032596,
+              1139.9999999557622
+            ],
+            "wallCandidateMs": [
+              593.9999999827705,
+              593.9999999827705,
+              592.9999999934807
+            ],
+            "wallMedianPercentChange": -47.94040315678584
+          },
+          {
+            "profile": "invalid-nil",
+            "baselineMs": [
+              750.0,
+              671.875,
+              625.0
+            ],
+            "candidateMs": [
+              234.375,
+              281.25,
+              281.25
+            ],
+            "baselineMedianMs": 671.875,
+            "candidateMedianMs": 281.25,
+            "medianPercentChange": -58.13953488372092,
+            "pairedDeltaMs": [
+              -515.625,
+              -390.625,
+              -343.75
+            ],
+            "wins": 3,
+            "losses": 0,
+            "ties": 0,
+            "wallBaselineMs": [
+              782.0000000065193,
+              702.9999999795109,
+              686.9999999762513
+            ],
+            "wallCandidateMs": [
+              280.9999999590218,
+              313.0000000237487,
+              313.0000000237487
+            ],
+            "wallMedianPercentChange": -55.47652915606385
+          },
+          {
+            "profile": "throws",
+            "baselineMs": [
+              265.625,
+              265.625,
+              281.25
+            ],
+            "candidateMs": [
+              187.5,
+              187.5,
+              203.125
+            ],
+            "baselineMedianMs": 265.625,
+            "candidateMedianMs": 187.5,
+            "medianPercentChange": -29.411764705882348,
+            "pairedDeltaMs": [
+              -78.125,
+              -78.125,
+              -78.125
+            ],
+            "wins": 3,
+            "losses": 0,
+            "ties": 0,
+            "wallBaselineMs": [
+              297.0000000204891,
+              281.00000001722947,
+              297.0000000204891
+            ],
+            "wallCandidateMs": [
+              250.0,
+              233.99999999674037,
+              218.99999998277053
+            ],
+            "wallMedianPercentChange": -21.212121218654055
+          }
+        ],
+        "GC": {
+          "stock51": {
+            "baseline": {
+              "rawGrowthBytesAt1000And2000": {
+                "valid": [
+                  136000.0,
+                  272000.0
+                ],
+                "invalid-nil": [
+                  136000.0,
+                  272000.0
+                ],
+                "throws": [
+                  136000.0,
+                  272000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "valid": 136.0,
+                "invalid-nil": 136.0,
+                "throws": 136.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "valid": [
+                  41590.0,
+                  146429.0,
+                  146429.0
+                ],
+                "invalid-nil": [
+                  46379.0,
+                  146605.0,
+                  146605.0
+                ],
+                "throws": [
+                  46555.0,
+                  146901.0,
+                  146901.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 104839.0,
+              "firstColdRetainedWarmBytes": 104839.0
+            },
+            "candidate": {
+              "rawGrowthBytesAt1000And2000": {
+                "valid": [
+                  0.0,
+                  0.0
+                ],
+                "invalid-nil": [
+                  0.0,
+                  0.0
+                ],
+                "throws": [
+                  0.0,
+                  0.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "valid": 0.0,
+                "invalid-nil": 0.0,
+                "throws": 0.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "valid": [
+                  41591.0,
+                  146578.0,
+                  146578.0
+                ],
+                "invalid-nil": [
+                  46380.0,
+                  146770.0,
+                  146770.0
+                ],
+                "throws": [
+                  46572.0,
+                  147066.0,
+                  147066.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 104987.0,
+              "firstColdRetainedWarmBytes": 104987.0
+            },
+            "pairedSavedBytesPerCallAt1000And2000": {
+              "valid": [
+                136.0,
+                136.0
+              ],
+              "invalid-nil": [
+                136.0,
+                136.0
+              ],
+              "throws": [
+                136.0,
+                136.0
+              ]
+            },
+            "firstColdRetainedCandidateMinusBaselineBytes": 148.0
+          },
+          "stock54": {
+            "baseline": {
+              "rawGrowthBytesAt1000And2000": {
+                "valid": [
+                  136192.0,
+                  272000.0
+                ],
+                "invalid-nil": [
+                  136000.0,
+                  272000.0
+                ],
+                "throws": [
+                  136000.0,
+                  272000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "valid": 135.808,
+                "invalid-nil": 136.0,
+                "throws": 136.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "valid": [
+                  34333.0,
+                  130551.0,
+                  130487.0
+                ],
+                "invalid-nil": [
+                  39037.0,
+                  132311.0,
+                  132311.0
+                ],
+                "throws": [
+                  40733.0,
+                  132455.0,
+                  131143.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 96218.0,
+              "firstColdRetainedWarmBytes": 96154.0
+            },
+            "candidate": {
+              "rawGrowthBytesAt1000And2000": {
+                "valid": [
+                  192.0,
+                  0.0
+                ],
+                "invalid-nil": [
+                  0.0,
+                  0.0
+                ],
+                "throws": [
+                  0.0,
+                  0.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "valid": -0.192,
+                "invalid-nil": 0.0,
+                "throws": 0.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "valid": [
+                  34334.0,
+                  130702.0,
+                  130638.0
+                ],
+                "invalid-nil": [
+                  39038.0,
+                  132462.0,
+                  132462.0
+                ],
+                "throws": [
+                  40734.0,
+                  132606.0,
+                  131358.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 96368.0,
+              "firstColdRetainedWarmBytes": 96304.0
+            },
+            "pairedSavedBytesPerCallAt1000And2000": {
+              "valid": [
+                136.0,
+                136.0
+              ],
+              "invalid-nil": [
+                136.0,
+                136.0
+              ],
+              "throws": [
+                136.0,
+                136.0
+              ]
+            },
+            "firstColdRetainedCandidateMinusBaselineBytes": 150.0
+          }
+        },
+        "predeclaredCPURejected": false,
+        "observedPairedAllocationReduction": true,
+        "acceptedForSmallSourceApplication": true,
+        "warnings": []
+      },
+      "P76": {
+        "cpu": [
+          {
+            "profile": "countOnly",
+            "baselineMs": [
+              296.875,
+              312.5,
+              312.5
+            ],
+            "candidateMs": [
+              250.0,
+              234.375,
+              218.75
+            ],
+            "baselineMedianMs": 312.5,
+            "candidateMedianMs": 234.375,
+            "medianPercentChange": -25.0,
+            "pairedDeltaMs": [
+              -46.875,
+              -78.125,
+              -93.75
+            ],
+            "wins": 3,
+            "losses": 0,
+            "ties": 0,
+            "wallBaselineMs": [
+              327.9999999795109,
+              327.9999999795109,
+              359.99999998603016
+            ],
+            "wallCandidateMs": [
+              295.99999997299165,
+              234.99999998603016,
+              234.99999998603016
+            ],
+            "wallMedianPercentChange": -28.353658536368954
+          },
+          {
+            "profile": "identity",
+            "baselineMs": [
+              328.125,
+              343.75,
+              343.75
+            ],
+            "candidateMs": [
+              375.0,
+              359.375,
+              296.875
+            ],
+            "baselineMedianMs": 343.75,
+            "candidateMedianMs": 359.375,
+            "medianPercentChange": 4.545454545454541,
+            "pairedDeltaMs": [
+              46.875,
+              15.625,
+              -46.875
+            ],
+            "wins": 1,
+            "losses": 2,
+            "ties": 0,
+            "wallBaselineMs": [
+              406.00000001722947,
+              390.00000001396984,
+              375.0
+            ],
+            "wallCandidateMs": [
+              391.00000000325963,
+              391.00000000325963,
+              329.00000002700835
+            ],
+            "wallMedianPercentChange": 0.2564102536548596
+          },
+          {
+            "profile": "mixed",
+            "baselineMs": [
+              203.125,
+              171.875,
+              203.125
+            ],
+            "candidateMs": [
+              171.875,
+              171.875,
+              171.875
+            ],
+            "baselineMedianMs": 203.125,
+            "candidateMedianMs": 171.875,
+            "medianPercentChange": -15.384615384615385,
+            "pairedDeltaMs": [
+              -31.25,
+              0.0,
+              -31.25
+            ],
+            "wins": 2,
+            "losses": 0,
+            "ties": 1,
+            "wallBaselineMs": [
+              234.99999998603016,
+              202.9999999795109,
+              233.99999999674037
+            ],
+            "wallCandidateMs": [
+              266.00000000325963,
+              204.00000002700835,
+              202.9999999795109
+            ],
+            "wallMedianPercentChange": -12.82051280775638
+          }
+        ],
+        "GC": {
+          "stock51": {
+            "baseline": {
+              "rawGrowthBytesAt1000And2000": {
+                "countOnly": [
+                  40000.0,
+                  80000.0
+                ],
+                "identity": [
+                  400000.0,
+                  800000.0
+                ],
+                "mixed": [
+                  220000.0,
+                  440000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "countOnly": 40.0,
+                "identity": 400.0,
+                "mixed": 220.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "countOnly": [
+                  51019.0,
+                  182144.0,
+                  182144.0
+                ],
+                "identity": [
+                  57008.0,
+                  182144.0,
+                  182144.0
+                ],
+                "mixed": [
+                  57008.0,
+                  182144.0,
+                  182144.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 131125.0,
+              "firstColdRetainedWarmBytes": 131125.0
+            },
+            "candidate": {
+              "rawGrowthBytesAt1000And2000": {
+                "countOnly": [
+                  0.0,
+                  0.0
+                ],
+                "identity": [
+                  360000.0,
+                  720000.0
+                ],
+                "mixed": [
+                  180000.0,
+                  360000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "countOnly": 0.0,
+                "identity": 360.0,
+                "mixed": 180.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "countOnly": [
+                  51020.0,
+                  182236.0,
+                  182236.0
+                ],
+                "identity": [
+                  57025.0,
+                  182236.0,
+                  182236.0
+                ],
+                "mixed": [
+                  57025.0,
+                  182236.0,
+                  182236.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 131216.0,
+              "firstColdRetainedWarmBytes": 131216.0
+            },
+            "pairedSavedBytesPerCallAt1000And2000": {
+              "countOnly": [
+                40.0,
+                40.0
+              ],
+              "identity": [
+                40.0,
+                40.0
+              ],
+              "mixed": [
+                40.0,
+                40.0
+              ]
+            },
+            "firstColdRetainedCandidateMinusBaselineBytes": 91.0
+          },
+          "stock54": {
+            "baseline": {
+              "rawGrowthBytesAt1000And2000": {
+                "countOnly": [
+                  40128.0,
+                  80000.0
+                ],
+                "identity": [
+                  304000.0,
+                  608000.0
+                ],
+                "mixed": [
+                  172000.0,
+                  344000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "countOnly": 39.872,
+                "identity": 304.0,
+                "mixed": 172.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "countOnly": [
+                  42506.0,
+                  157855.0,
+                  157855.0
+                ],
+                "identity": [
+                  48074.0,
+                  157983.0,
+                  157983.0
+                ],
+                "mixed": [
+                  48074.0,
+                  157983.0,
+                  157983.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 115349.0,
+              "firstColdRetainedWarmBytes": 115349.0
+            },
+            "candidate": {
+              "rawGrowthBytesAt1000And2000": {
+                "countOnly": [
+                  128.0,
+                  0.0
+                ],
+                "identity": [
+                  264000.0,
+                  528000.0
+                ],
+                "mixed": [
+                  132000.0,
+                  264000.0
+                ]
+              },
+              "rawObservedTwoPointBytesPerCall": {
+                "countOnly": -0.128,
+                "identity": 264.0,
+                "mixed": 132.0
+              },
+              "rawBootHeapBytesBeforeAfterWarm": {
+                "countOnly": [
+                  42507.0,
+                  157918.0,
+                  157918.0
+                ],
+                "identity": [
+                  48075.0,
+                  158046.0,
+                  158046.0
+                ],
+                "mixed": [
+                  48075.0,
+                  158046.0,
+                  158046.0
+                ]
+              },
+              "firstColdRetainedBootBytes": 115411.0,
+              "firstColdRetainedWarmBytes": 115411.0
+            },
+            "pairedSavedBytesPerCallAt1000And2000": {
+              "countOnly": [
+                40.0,
+                40.0
+              ],
+              "identity": [
+                40.0,
+                40.0
+              ],
+              "mixed": [
+                40.0,
+                40.0
+              ]
+            },
+            "firstColdRetainedCandidateMinusBaselineBytes": 62.0
+          }
+        },
+        "predeclaredCPURejected": false,
+        "observedPairedAllocationReduction": true,
+        "acceptedForSmallSourceApplication": true,
+        "warnings": [
+          "Populated identity profile: median CPU +4.54545%,2slower/1faster; below the declared5% rejection threshold, retained as regression."
+        ]
+      }
+    },
+    "limits": [
+      "Entire standalone child CPU, including owner/fixture load,warm256calls,normalGC,assertions/output; stock51 only,15.625ms quantum,3pairs/profile with broad observed ranges. No isolated handler or full-workflow/native FPS result.",
+      "GC has one1000/2000 pair perprofile/source/VM.54first windows contain192B(P75valid) or128B(P76countOnly) shared floors; declining candidate observed slope is a fixed artifact, not negative allocation. Paired per-window source difference is136B/call(P75) or40B/call(P76).",
+      "First profile is the cold retained-load comparison; later profiles are warmed. Load-window deltas include modeled owner/fixture/closures/parser/source strings/path identity; not native retained heap or universal addon startup cost.",
+      "P75 native/conforming vararg-pcall/default owner environment only; arbitrary pcall replacements/private setfenv/debug introspection not certified. P76 public-only setfenv outside ordinary caller contract.",
+      "No cache/query/validation/map/callback/cadence/paint feature skipped. Source prevalence conditional; junk-overlay owner bypasses alternative bag UI.",
+      "Native tests,input,queries,capture,jump,reload and saved diagnostic collection held until explicit user release. No cost child inspected or controlled WoW."
+    ]
+  },
+  "recovery": {
+    "datedExternalCheckpointVerified": true,
+    "exactRelevantArchiveEntries": 2,
+    "exactCurrentRestoreCopies": 2,
+    "availableKnownSettingsMetadataEntries": 125,
+    "settingsValuesReadOrCopied": false,
+    "currentWholeTreeArchiveClaim": false,
+    "historyAndMainHooksVerified": true
+  },
+  "sourceAndIntegrationScope": {
+    "inventoryAndExtraButtons": true,
+    "externalSyndicatorOrBaganatorEdited": false,
+    "manualSync": false,
+    "commitOrPublication": false,
+    "otherInstallationsOrLoadedCopiesVerifiedForThisSlice": false,
+    "newNativeAPIOrSettings": false,
+    "fullCorpusGateRunForThisSlice": false,
+    "currentWholeCorpusClaim": false,
+    "nativeControlsUnchanged": {
+      "NATIVE_TESTING_HOLD.json": "2912949b8863cc3ce3af8a94618ad997c511b2f08cd8f661fad22c87c7637244",
+      "JUMP_STOP": "e260712f3687509928e1149e7c13858995c8805623e4b2efa8e1610cbeaaa084",
+      "INPUT_HALTED": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+      "no_jump": "95aa08f0114a6049b2ad0d2a24da3dd33507a153dd971964325c7e391b51fd73",
+      "craft_hold": "84a0291483b3895b20ad6f5036208dba69223b0f8c0bf4f49843ee7a137b9ac1"
+    }
+  },
+  "contractBoundaries": [
+    "P75 assumes native or conforming vararg-forwarding pcall and the ordinary module environment. Fresh callback becomes shared and pcall argument count changes1to3; arbitrary replacements retaining/changing callbacks or dropping arguments are not certified. Private function setfenv/debug introspection is not an ordinary caller integration.",
+    "P76 public-only setfenv is outside the ordinary caller contract; dynamic global pairs reads and callbacks remain.",
+    "Generated error source names/line numbers differ after moving the body and are preserved in raw logs; P75 caller false and opaque error identity/provider order match.",
+    "The junk-overlay owner returns before construction when alternative bag UI is active. Eligible visible paint paths can check a slot twice; native occurrence rates and gain with current Baganator are not established.",
+    "P76 populated identity CPU median regressed4.54545% with2slower pairs/1faster, below declared5% rejection; no universal path improvement claim.",
+    "54GC first windows retain192B(P75valid)/128B(P76countOnly) artifacts. Raw candidate declining two-point slopes are not negative allocation; paired source differences are136B/call or40B/call. Startup retained deltas remain."
+  ],
+  "remaining": [
+    "Whole-AH P74 loading-recovery workflow proposal N1/N25 needs a first actual-model parity proof before any quiet cost; proposed, not run.",
+    "Native FPS/frame spikes/taint/pixels/controller and all five clients/provider combinations remain pending under user hold.",
+    "The stale-mail attachment issue retains its user-requested native measure-first gate; no mail correctness change in this slice."
+  ],
+  "evidence": {
+    "functional-admission.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\functional-admission.json",
+      "sha256": "4249e81b279c4d46a6e91bde012236fb45e67c92bfd5c675c59e66059cf12610"
+    },
+    "report.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\report.json",
+      "sha256": "4408e37be97b2c5a6f897412ab8e02e9f2f982040962b197ac4f2af092202320"
+    },
+    "independent-numeric-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\independent-numeric-review.json",
+      "sha256": "c3cebdf0e0674aabddb6bc4454b32612029c9df573f779b53a1186b0b778e5ee"
+    },
+    "declaration.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\declaration.json",
+      "sha256": "ed020dd9ddd64977e701c668803296b834a0df6cc20012111229193c17cf2448"
+    },
+    "fixed-first-batch/raw.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\fixed-first-batch\\raw.json",
+      "sha256": "4d4fcdf7cdf88bba93a270489328fb2454326f7b5d002c49e8d53146f2fe3cb3"
+    },
+    "checkpoint/checkpoint.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\checkpoint\\checkpoint.json",
+      "sha256": "a61cb034727f88a03b3dfab1aa126bd571de7e1750d1aa9fe531ac30b2a9c69e"
+    },
+    "application.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\private-closure-cost-p75p76-r1\\application.json",
+      "sha256": "f4d9ff09f62b87177387de2364a774a33205006161cc04a40523435a40fca422"
+    }
+  }
+}

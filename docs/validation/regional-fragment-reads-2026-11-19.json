@@ -1,0 +1,147 @@
+{
+  "changeId": "REGIONAL-FRAGMENT-READS-R100-20261119",
+  "capturedAtUTC": "2026-11-19T11:59:41.676313+00:00",
+  "scope": "Shared source setup within a regional border commit",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+      "afterRaw": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483"
+    },
+    "tests/regional_fragment_reads.lua": {
+      "beforeRaw": null,
+      "afterRaw": "8ede1dd596ad922b70ccf8cf987a29d3d70cdfc0ab7b36edab113aeaabcb39ac"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_render_basis.lua": {
+      "beforeRaw": "bdaa91fa07e582e8d4934df5d94a7ad5eeea6b6a2ea1dd23f4814281a4a3b3df",
+      "afterRaw": "bdaa91fa07e582e8d4934df5d94a7ad5eeea6b6a2ea1dd23f4814281a4a3b3df"
+    },
+    "tests/rapid_strip_drops.lua": {
+      "beforeRaw": "a7ee98bdfc4cfa2186d19968c1f891f1465616d4212e8234ab87253fbe8cc78e",
+      "afterRaw": "a7ee98bdfc4cfa2186d19968c1f891f1465616d4212e8234ab87253fbe8cc78e"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-fragment-reads-r100-before-20261119T115255Z\\source.zip",
+    "archiveSHA256": "5c1a5a15f00082749f92a00138853576b23672ffaf5312e8fc1855d21b57edd6",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 8,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 strip width",
+      "type 1 local join",
+      "type 2 strip width",
+      "type 2 local join"
+    ],
+    "counts": [
+      [
+        4072,
+        2448,
+        1296,
+        488,
+        1600,
+        976
+      ],
+      [
+        1104,
+        672,
+        208,
+        64,
+        272,
+        128
+      ],
+      [
+        3896,
+        2280,
+        1296,
+        488,
+        1600,
+        976
+      ],
+      [
+        1104,
+        672,
+        208,
+        64,
+        272,
+        128
+      ]
+    ],
+    "countColumns": [
+      "before parent reads",
+      "after parent reads",
+      "before layer reads",
+      "after layer reads",
+      "before opacity reads",
+      "after opacity reads"
+    ],
+    "checks": [
+      "two new and six reused strip widths per type",
+      "all sampled join fields and ownership agree",
+      "live layer and color changes get current inputs",
+      "hide events still update visibility",
+      "reflow does not retain transient ancestry or suppression data"
+    ],
+    "rows": [
+      "FRAGMENT_READS style=1 scene=strip-width commits=8 parents=4072/2448 layers=1296/488 alpha=1600/976",
+      "FRAGMENT_READS style=1 scene=local-join commits=8 parents=1104/672 layers=208/64 alpha=272/128",
+      "FRAGMENT_READS style=2 scene=strip-width commits=8 parents=3896/2280 layers=1296/488 alpha=1600/976",
+      "FRAGMENT_READS style=2 scene=local-join commits=8 parents=1104/672 layers=208/64 alpha=272/128",
+      "Regional fragment reads preserve sampled joins, live layer and paint, and tile listener ownership."
+    ],
+    "captureSHA256": "0808719c2e6769a46a1e7c8032a6f8ba0c2b7cf370a55b1a676d28d91aec650c"
+  },
+  "verification": {
+    "focused": 214,
+    "focusedPassed": 213,
+    "syntax": 1244,
+    "compilerMaximumUpvalues": 51,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-fragment-reads-r100-before-20261119T115255Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-fragment-reads-r100-before-20261119T115255Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "587b1dbb571519faa7c7fc1ff01e8880add1ac509be2dc23c75406838576c483",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

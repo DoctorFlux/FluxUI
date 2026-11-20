@@ -1,0 +1,142 @@
+{
+  "changeId": "STRIP-HOVER-MAPPINGS-R130-20261119",
+  "capturedAtUTC": "2026-11-19T18:30:10.045621+00:00",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "85413f3f6acedb32a88d1234464efef069816053d29e35bb3875230ccba0c8a5",
+      "afterRaw": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "398161ef8154f561d1aee06d354290ad42de63c203cfa5a5bb2946ea7cea13c3",
+      "afterRaw": "ebca2ecb0abb7395a7619ff82c50bc3646400300dce606764ee29857796a8f5b"
+    },
+    "tests/bars_refresh_regression.lua": {
+      "beforeRaw": "33c5d2a78771a0db9dd4899d2488b3243db539efe896e8d84c022d2e9deb8deb",
+      "afterRaw": "e18f772a294414ea89020e57b44ae1129a8c83842b7275fea2e645f4ead3597b"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\source.zip",
+    "sourceZipSHA256": "ffd22ac57f8c71dc5a46ac823c485cadc31e3e8d169ff783750f7edf9a1c919d",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five matched desktop pairs per mini-row position. Each pair simulates enter and leave with a spell, item and macro held. It runs the existing queued action-strip transaction against archived and current Layout.lua. The action set includes promoted mini faces and an action on a different form.",
+    "samples": {
+      "top": [
+        {
+          "trial": "1",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "2",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "3",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "4",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "5",
+          "writes": "1026/594",
+          "reads": "300/186"
+        }
+      ],
+      "bottom": [
+        {
+          "trial": "1",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "2",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "3",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "4",
+          "writes": "1026/594",
+          "reads": "300/186"
+        },
+        {
+          "trial": "5",
+          "writes": "1026/594",
+          "reads": "300/186"
+        }
+      ]
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\matched.txt": "f62bc7fdb075c203e174033d2a8d450032a468478250503fea151600551d8694",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\baseline-control.lua": "9f8bd2b771c4e8765ca79c3d37c958dfdbc8bc6da8fc0e14efdccb22320b092b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\baseline-rejection.txt": "220ce8e10336d44c9f00433f229280c372db6af3b3182098cdda85d9a889908f"
+    }
+  },
+  "preservation": [
+    "All 57 mock host slots, sizes, points, visibility and protected flags match after each crossing.",
+    "Each crossing performs one secure ForceApply attempt and one settled border commit in the model.",
+    "A real slot invalidation still stamps the three flags on every widget in its column.",
+    "Actual live attributes are read for flags that stay equal in a changed column. A mismatched or opaque flag takes the existing setter.",
+    "Lockdown still defers all protected mapping work. Ongoing native gameplay timing and taint remain pending."
+  ],
+  "verification": {
+    "focusedPassed": 100,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-mappings-before-20261119-191859\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Layout.lua": {
+        "sha256": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/Layout.lua": {
+        "sha256": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/Layout.lua": {
+        "sha256": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/Layout.lua": {
+        "sha256": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Layout.lua": {
+        "sha256": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

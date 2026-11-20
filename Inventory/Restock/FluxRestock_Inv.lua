@@ -8,6 +8,19 @@ _G.FluxRestock = FluxRestock
 local RI = {}
 FluxRestock.Inv = RI
 
+-- Validate the addon-private defining-function/query pair once at load.
+local carriedInventoryRecord = rawget(ns, "InventoryCarriedLiveQuery")
+local carriedInventoryFacade, carriedInventoryQuery
+if type(carriedInventoryRecord) == "table" and type(Flux) == "table"
+    and rawequal(rawget(carriedInventoryRecord, "namespace"), ns)
+    and rawequal(rawget(carriedInventoryRecord, "flux"), Flux) then
+    local facade = rawget(carriedInventoryRecord, "facade")
+    local query = rawget(carriedInventoryRecord, "query")
+    if type(facade) == "function" and type(query) == "function" then
+        carriedInventoryFacade, carriedInventoryQuery = facade, query
+    end
+end
+
 local KEYRING = _G.KEYRING_CONTAINER
 local function ReagentBankID()
     local Cap = Flux and Flux.Cap
@@ -231,13 +244,37 @@ function RI.GetCount(itemID, opts)
 end
 RI.GetItemCount = RI.GetCount
 
-function RI.GetLiveCount(itemID, opts)
+local function OwnedRestockCarriedGetLiveCount(itemID, opts)
     local api = API()
     if api and api.GetLiveCount then
         return api.GetLiveCount(itemID, opts) or 0
     end
     return RI.GetCount(itemID, opts)
 end
+
+RI.GetLiveCount = OwnedRestockCarriedGetLiveCount
+
+local function QueryCarriedLiveCount(itemID, charges)
+    local api = API()
+    if api and api.GetLiveCount then
+        -- Keep the second selected getter; do not reread after selection.
+        local getLiveCount = api.GetLiveCount
+        if carriedInventoryQuery and getLiveCount == carriedInventoryFacade then
+            return carriedInventoryQuery(itemID, charges) or 0
+        end
+        return getLiveCount(itemID, {
+            bags = true, bank = false, warband = false, equipped = false, charges = charges,
+        }) or 0
+    end
+    return RI.GetCount(itemID, {
+        bags = true, bank = false, warband = false, equipped = false, charges = charges,
+    })
+end
+ns.RestockCarriedLiveQuery = {
+    namespace = ns, flux = Flux,
+    getter = OwnedRestockCarriedGetLiveCount, query = QueryCarriedLiveCount,
+}
+
 
 function RI.GetUniqueItems(opts)
     local api = API()
@@ -252,6 +289,25 @@ RI.Bags = RI.Bags or {}
 function RI.Bags.GetUniqueItems()
     return RI.GetUniqueItems({ bags = true, bank = false, warband = false })
 end
+
+-- The private count view is valid only through these defining bag-query owners.
+-- Returning nil lets a consumer run its original query when any owner changes.
+local uniqueBagRecord = rawget(ns, "InventoryUniqueItemIDQuery")
+local uniqueBagOwner = type(uniqueBagRecord) == "table" and rawget(uniqueBagRecord, "owner")
+local uniqueBagCounts = type(uniqueBagRecord) == "table" and rawget(uniqueBagRecord, "bagCounts")
+local carriedOrBankLink = type(uniqueBagRecord) == "table" and rawget(uniqueBagRecord, "carriedOrBankLink")
+local uniqueBagFacade = RI.GetUniqueItems
+local uniqueBagTable, uniqueBagGetter = RI.Bags, RI.Bags.GetUniqueItems
+local function QueryUniqueBagCounts()
+    if RI.GetUniqueItems ~= uniqueBagFacade or RI.Bags ~= uniqueBagTable
+        or RI.Bags.GetUniqueItems ~= uniqueBagGetter or API() ~= uniqueBagOwner
+        or type(uniqueBagCounts) ~= "function" then
+        return nil
+    end
+    return uniqueBagCounts()
+end
+ns.RestockUniqueBagCountsQuery = { owner = RI, bags = uniqueBagTable,
+    getter = uniqueBagGetter, query = QueryUniqueBagCounts }
 
 function RI.ForEachLocation(fn, opts)
     local api = API()
@@ -494,6 +550,44 @@ function RI.GetContainerItemInfo(bag, slot)
         return NormalizeItemInfo(C.GetItemInfo(bag, slot))
     end
     return nil
+end
+
+local tierSlotContainer = Container()
+local tierSlotItemInfo = tierSlotContainer and tierSlotContainer.GetItemInfo
+local restockSlotInfo = RI.GetContainerItemInfo
+local nativeSlotInfo = C_Container and C_Container.GetContainerItemInfo
+local nativeSlotID = C_Container and C_Container.GetContainerItemID
+local legacySlotInfo = GetContainerItemInfo
+local isSecretSlotValue = Flux.Secrets and Flux.Secrets.IsSecretValue
+
+local function ReadTierSlotCount(value)
+    if isSecretSlotValue and isSecretSlotValue(value) then return nil end
+    return tonumber(value)
+end
+
+-- Read the usual normalized record, with a separate completeness flag for tier scans.
+-- The normalized fallback count of one must not be reused while live data is loading.
+local function ReadTierSlot(bag, slot)
+    local raw = tierSlotItemInfo(bag, slot)
+    local info = NormalizeItemInfo(raw)
+    if not info then return nil end
+    local count = ReadTierSlotCount(raw.stackCount) or ReadTierSlotCount(raw.count)
+    local itemID = info.itemID
+    local link = info.hyperlink
+    local complete = type(itemID) == "number" and (not isSecretSlotValue or not isSecretSlotValue(itemID)) and itemID > 0
+        and count and count > 0 and type(link) == "string"
+        and (not isSecretSlotValue or not isSecretSlotValue(link)) and link ~= ""
+    return info, complete
+end
+
+function ns.GetRestockTierSlotReader(inv)
+    if inv == RI and inv.GetContainerItemInfo == restockSlotInfo
+        and tierSlotItemInfo and Container() == tierSlotContainer and tierSlotContainer.GetItemInfo == tierSlotItemInfo
+        and (C_Container and C_Container.GetContainerItemInfo) == nativeSlotInfo
+        and (C_Container and C_Container.GetContainerItemID) == nativeSlotID
+        and GetContainerItemInfo == legacySlotInfo then
+        return ReadTierSlot
+    end
 end
 
 function RI.GetContainerItemID(bag, slot)
@@ -969,32 +1063,33 @@ function Bank.IsLive()
     return RI.IsBankLive() and true or false
 end
 
+local function AppendBankContainerIDs(list, ids, seen)
+    if type(list) ~= "table" then
+        return
+    end
+    for i = 1, #list do
+        local bag = list[i]
+        if bag ~= nil and not seen[bag] and not SkipBankWalkBag(bag) then
+            seen[bag] = true
+            ids[#ids + 1] = bag
+        end
+    end
+end
+
 function Bank.GetContainerIDs()
     if not Bank.IsOpen() and not Bank.IsLive() then
         return {}
     end
     local ids, seen = {}, {}
-    local function append(list)
-        if type(list) ~= "table" then
-            return
-        end
-        for i = 1, #list do
-            local bag = list[i]
-            if bag ~= nil and not seen[bag] and not SkipBankWalkBag(bag) then
-                seen[bag] = true
-                ids[#ids + 1] = bag
-            end
-        end
-    end
     local C = Containers()
     local charIDs = C and C.GetCharacterBankIDs and C.GetCharacterBankIDs() or RI.GetCharacterBankIDs()
     if (not charIDs or #charIDs == 0) and Bank.IsLive() and C and C.Invalidate then
         C.Invalidate()
         charIDs = C.GetCharacterBankIDs and C.GetCharacterBankIDs() or RI.GetCharacterBankIDs()
     end
-    append(charIDs)
+    AppendBankContainerIDs(charIDs, ids, seen)
     if RI.HasWarband() then
-        append(RI.GetWarbandBankIDs())
+        AppendBankContainerIDs(RI.GetWarbandBankIDs(), ids, seen)
     end
     return ids
 end
@@ -1315,6 +1410,42 @@ local function NumSlotsForBankWalk(bag)
     return 0
 end
 
+local function WalkLiveBankStacks(ids, region, fn)
+    if type(ids) ~= "table" then
+        return
+    end
+    for i = 1, #ids do
+        local bag = ids[i]
+        if not SkipBankWalkBag(bag) then
+            local numSlots = NumSlotsForBankWalk(bag)
+            if numSlots > 0 then
+                Bank._bagsWalked = (Bank._bagsWalked or 0) + 1
+            end
+            for slot = 1, numSlots do
+                local info = RI.GetContainerItemInfo(bag, slot)
+                if (not info or not info.itemID) and RI.GetContainerItemID then
+                    local id = RI.GetContainerItemID(bag, slot)
+                    if id then
+                        info = info or {}
+                        info.itemID = id
+                        info.count = info.count or 1
+                    end
+                end
+                local itemID = info and (tonumber(info.itemID) or info.itemID)
+                local count = info and (tonumber(info.count) or 0) or 0
+                if itemID and count > 0 then
+                    fn(bag, slot, {
+                        itemID = itemID,
+                        count = count,
+                        link = info.hyperlink or info.link,
+                        locked = info.locked,
+                    }, region)
+                end
+            end
+        end
+    end
+end
+
 function Bank.ForEachLiveStack(fn, opts)
     if type(fn) ~= "function" then
         return
@@ -1323,41 +1454,6 @@ function Bank.ForEachLiveStack(fn, opts)
         return
     end
     opts = opts or {}
-    local function walk(ids, region)
-        if type(ids) ~= "table" then
-            return
-        end
-        for i = 1, #ids do
-            local bag = ids[i]
-            if not SkipBankWalkBag(bag) then
-                local numSlots = NumSlotsForBankWalk(bag)
-                if numSlots > 0 then
-                    Bank._bagsWalked = (Bank._bagsWalked or 0) + 1
-                end
-                for slot = 1, numSlots do
-                    local info = RI.GetContainerItemInfo(bag, slot)
-                    if (not info or not info.itemID) and RI.GetContainerItemID then
-                        local id = RI.GetContainerItemID(bag, slot)
-                        if id then
-                            info = info or {}
-                            info.itemID = id
-                            info.count = info.count or 1
-                        end
-                    end
-                    local itemID = info and (tonumber(info.itemID) or info.itemID)
-                    local count = info and (tonumber(info.count) or 0) or 0
-                    if itemID and count > 0 then
-                        fn(bag, slot, {
-                            itemID = itemID,
-                            count = count,
-                            link = info.hyperlink or info.link,
-                            locked = info.locked,
-                        }, region)
-                    end
-                end
-            end
-        end
-    end
     if opts.bank ~= false then
         local C = Containers()
         local ids = RI.GetCharacterBankIDs()
@@ -1367,10 +1463,10 @@ function Bank.ForEachLiveStack(fn, opts)
             end
             ids = RI.GetCharacterBankIDs()
         end
-        walk(ids, "bank")
+        WalkLiveBankStacks(ids, "bank", fn)
     end
     if opts.warband ~= false and RI.HasWarband() then
-        walk(RI.GetWarbandBankIDs(), "warband")
+        WalkLiveBankStacks(RI.GetWarbandBankIDs(), "warband", fn)
     end
 end
 
@@ -1525,14 +1621,15 @@ function Bank.FindStacks(itemID, opts)
     Bank.Refresh(opts)
     local wantBank = opts.bank ~= false
     local wantWar = opts.warband ~= false and RI.HasWarband()
-    local function collect(slotsStore, ids, region)
+    local function collect(slotsStore, ids, region, seen)
         if type(ids) ~= "table" then
             return
         end
         for i = 1, #ids do
             local bag = ids[i]
             local slots = slotsStore[bag]
-            if slots then
+            if slots and not seen[bag] then
+                seen[bag] = true
                 for slot, rec in pairs(slots) do
                     if tonumber(rec.itemID) == itemID then
                         out[#out + 1] = {
@@ -1549,11 +1646,13 @@ function Bank.FindStacks(itemID, opts)
         end
     end
     if wantBank then
-        collect(charSlots, Bank.GetContainerIDs(), "bank")
-        collect(charSlots, RI.GetCharacterBankIDs(), "bank")
+        -- The displayed and fallback container lists may include the same bag.
+        local seen = {}
+        collect(charSlots, Bank.GetContainerIDs(), "bank", seen)
+        collect(charSlots, RI.GetCharacterBankIDs(), "bank", seen)
     end
     if wantWar then
-        collect(warSlots, RI.GetWarbandBankIDs(), "warband")
+        collect(warSlots, RI.GetWarbandBankIDs(), "warband", {})
     end
     return out
 end
@@ -1599,6 +1698,10 @@ function Bank.GetItemLink(itemID)
     local stack = stacks and stacks[1]
     if stack and stack.bag and stack.slot then
         return RI.GetContainerItemLink(stack.bag, stack.slot)
+    end
+    if RI.GetUniqueItems == uniqueBagFacade and API() == uniqueBagOwner and type(carriedOrBankLink) == "function" then
+        local handled, link = carriedOrBankLink(itemID)
+        if handled then return link end
     end
     local u = RI.GetUniqueItems({ bags = true, bank = true, warband = true })[itemID]
     return u and u.link or nil

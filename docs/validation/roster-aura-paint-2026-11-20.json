@@ -1,0 +1,739 @@
+{
+  "changeId": "ROSTER-AURA-PAINT-20261120",
+  "capturedAtUTC": "2026-11-20T06:47:44.907858+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "RaidFrame/FluxRaidAuras.lua": {
+      "beforeRaw": "b4439640656d450376fff9af029b5dc29eb0271bd5cd92b8afc47264e9b39aa4",
+      "afterRaw": "c60ebd1851d2ec01c0aeb5b4bde74d80f5de2e346bd9d74dc8773e795a0766a1",
+      "afterNormalized": "d046edeb40e0e1f1d167887ddd10153c41114cf7251c4a8ea5e77f83a7d5432e"
+    },
+    "tests/raid_healer_auras.lua": {
+      "beforeRaw": "2dd8d7c7cd5c383dc36c15c9fd5720abded4c9f79fce9d1af18e0f0348c5d617",
+      "afterRaw": "0323b1fcf4e7d596922087536583db262c15cc5855743f16566f9bd035dff330",
+      "afterNormalized": "0323b1fcf4e7d596922087536583db262c15cc5855743f16566f9bd035dff330"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-setters-before-20261120T074219971\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_classic_": 2,
+      "_forever_": 3,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual aura update, dispel presentation and retirement using four and forty prepared unit cells. Twenty steady reflows, then twenty reflows with one slot alternating between present and absent. Readable profiles use one timed stacked buff and one timed stacked debuff per cell.",
+    "samplesByClient": {
+      "live": {
+        "works": {
+          "4": {
+            "steady": {
+              "visible": [
+                80,
+                0
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                175,
+                95
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                57,
+                57
+              ]
+            }
+          },
+          "40": {
+            "steady": {
+              "visible": [
+                800,
+                0
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                895,
+                95
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                57,
+                57
+              ]
+            }
+          }
+        },
+        "clockMs": [
+          [
+            4.0,
+            3.0
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            3.0,
+            4.0
+          ],
+          [
+            4.0,
+            4.0
+          ],
+          [
+            4.0,
+            3.0
+          ]
+        ],
+        "clockMedianMs": [
+          4.0,
+          3.0
+        ]
+      },
+      "forever": {
+        "works": {
+          "4": {
+            "steady": {
+              "visible": [
+                80,
+                0
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                175,
+                95
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                57,
+                57
+              ]
+            }
+          },
+          "40": {
+            "steady": {
+              "visible": [
+                800,
+                0
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                895,
+                95
+              ],
+              "icons": [
+                0,
+                0
+              ],
+              "stacks": [
+                0,
+                0
+              ],
+              "query": [
+                0,
+                0
+              ],
+              "cooldown": [
+                0,
+                0
+              ],
+              "unit": [
+                57,
+                57
+              ]
+            }
+          }
+        },
+        "clockMs": [
+          [
+            4.0,
+            4.0
+          ],
+          [
+            4.0,
+            4.0
+          ],
+          [
+            5.0,
+            3.0
+          ],
+          [
+            4.0,
+            3.0
+          ],
+          [
+            3.0,
+            4.0
+          ]
+        ],
+        "clockMedianMs": [
+          4.0,
+          4.0
+        ]
+      },
+      "classic": {
+        "works": {
+          "4": {
+            "steady": {
+              "visible": [
+                1920,
+                320
+              ],
+              "icons": [
+                160,
+                0
+              ],
+              "stacks": [
+                160,
+                0
+              ],
+              "query": [
+                480,
+                480
+              ],
+              "cooldown": [
+                160,
+                160
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                1840,
+                375
+              ],
+              "icons": [
+                140,
+                0
+              ],
+              "stacks": [
+                140,
+                0
+              ],
+              "query": [
+                420,
+                420
+              ],
+              "cooldown": [
+                140,
+                140
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          },
+          "40": {
+            "steady": {
+              "visible": [
+                16000,
+                0
+              ],
+              "icons": [
+                1600,
+                0
+              ],
+              "stacks": [
+                1600,
+                0
+              ],
+              "query": [
+                4800,
+                4800
+              ],
+              "cooldown": [
+                1600,
+                1600
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                15960,
+                95
+              ],
+              "icons": [
+                1580,
+                0
+              ],
+              "stacks": [
+                1580,
+                0
+              ],
+              "query": [
+                4740,
+                4740
+              ],
+              "cooldown": [
+                1580,
+                1580
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "clockMs": [
+          [
+            39.0,
+            44.0
+          ],
+          [
+            39.0,
+            43.0
+          ],
+          [
+            38.0,
+            41.0
+          ],
+          [
+            41.0,
+            41.0
+          ],
+          [
+            37.0,
+            40.0
+          ]
+        ],
+        "clockMedianMs": [
+          39.0,
+          41.0
+        ]
+      },
+      "classic_era": {
+        "works": {
+          "4": {
+            "steady": {
+              "visible": [
+                1920,
+                320
+              ],
+              "icons": [
+                160,
+                0
+              ],
+              "stacks": [
+                160,
+                0
+              ],
+              "query": [
+                480,
+                480
+              ],
+              "cooldown": [
+                160,
+                160
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                1840,
+                375
+              ],
+              "icons": [
+                140,
+                0
+              ],
+              "stacks": [
+                140,
+                0
+              ],
+              "query": [
+                420,
+                420
+              ],
+              "cooldown": [
+                140,
+                140
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          },
+          "40": {
+            "steady": {
+              "visible": [
+                16000,
+                0
+              ],
+              "icons": [
+                1600,
+                0
+              ],
+              "stacks": [
+                1600,
+                0
+              ],
+              "query": [
+                4800,
+                4800
+              ],
+              "cooldown": [
+                1600,
+                1600
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                15960,
+                95
+              ],
+              "icons": [
+                1580,
+                0
+              ],
+              "stacks": [
+                1580,
+                0
+              ],
+              "query": [
+                4740,
+                4740
+              ],
+              "cooldown": [
+                1580,
+                1580
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "clockMs": [
+          [
+            36.0,
+            40.0
+          ],
+          [
+            37.0,
+            40.0
+          ],
+          [
+            37.0,
+            47.0
+          ],
+          [
+            39.0,
+            44.0
+          ],
+          [
+            42.0,
+            44.0
+          ]
+        ],
+        "clockMedianMs": [
+          37.0,
+          44.0
+        ]
+      },
+      "classic_anniversary": {
+        "works": {
+          "4": {
+            "steady": {
+              "visible": [
+                1920,
+                320
+              ],
+              "icons": [
+                160,
+                0
+              ],
+              "stacks": [
+                160,
+                0
+              ],
+              "query": [
+                480,
+                480
+              ],
+              "cooldown": [
+                160,
+                160
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                1840,
+                375
+              ],
+              "icons": [
+                140,
+                0
+              ],
+              "stacks": [
+                140,
+                0
+              ],
+              "query": [
+                420,
+                420
+              ],
+              "cooldown": [
+                140,
+                140
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          },
+          "40": {
+            "steady": {
+              "visible": [
+                16000,
+                0
+              ],
+              "icons": [
+                1600,
+                0
+              ],
+              "stacks": [
+                1600,
+                0
+              ],
+              "query": [
+                4800,
+                4800
+              ],
+              "cooldown": [
+                1600,
+                1600
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            },
+            "join": {
+              "visible": [
+                15960,
+                95
+              ],
+              "icons": [
+                1580,
+                0
+              ],
+              "stacks": [
+                1580,
+                0
+              ],
+              "query": [
+                4740,
+                4740
+              ],
+              "cooldown": [
+                1580,
+                1580
+              ],
+              "unit": [
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "clockMs": [
+          [
+            91.0,
+            101.0
+          ],
+          [
+            86.0,
+            94.0
+          ],
+          [
+            88.0,
+            96.0
+          ],
+          [
+            89.0,
+            121.0
+          ],
+          [
+            121.0,
+            100.0
+          ]
+        ],
+        "clockMedianMs": [
+          89.0,
+          100.0
+        ]
+      }
+    },
+    "clockScope": "Five paired 24-transition Lua clock samples per profile. Widget methods are modeled and collection is suspended during clock samples.",
+    "replaySHA256": "b2bc40e1e79b4c95eaf223f7735ead2adc782eee4ba86c9ac0ece72ca0dd3d14"
+  },
+  "parity": "Exact visibility, icon, stack, timing, native container assignment and shown-state signatures agree after each step. Aura queries, cooldown updates, color writes and unit assignment writes agree. Current widget drift, denied getters, opaque values, removal, permanent aura timers, native restricted descendants and setup lockdown are covered.",
+  "verification": {
+    "focusedPassed": 33,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-setters-before-20261120T074219971\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-setters-before-20261120T074219971\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-aura-setters-before-20261120T074219971\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "tests/tier_count_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Native party and raid join/leave frame time, combat taint and rapid action-strip transitions remain pending."
+}

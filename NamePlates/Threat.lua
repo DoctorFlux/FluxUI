@@ -190,7 +190,7 @@ local function InCombat()
 	return NP.BoolTest(v, true)
 end
 
-local function UpdateUnit(unit)
+local function UpdateUnit(unit, batch)
 	local state = states[unit]
 	if not NP.IsThreatSupported() or not IsVisibilityAllowed()
 		or (not IsNpcThreatEnabled() and not IsEnemyPlayerTargetEnabled()) then
@@ -267,7 +267,13 @@ local function UpdateUnit(unit)
 	end
 	-- Forever's resolved status color does not consume rank. With numeric
 	-- text disabled, avoid constructing a rank that no visible sink needs.
-	if showText or not r then rank = ThreatAPI.GetPlayerRank and ThreatAPI.GetPlayerRank(unit) or nil end
+	if showText or not r then
+		if batch and ThreatAPI.GetPlayerRankForNameplateBatch then
+			rank = ThreatAPI.GetPlayerRankForNameplateBatch(unit, batch) or nil
+		elseif ThreatAPI.GetPlayerRank then
+			rank = ThreatAPI.GetPlayerRank(unit) or nil
+		end
+	end
 	if not r and ThreatAPI.GetTintColor then
 		r, g, b = ThreatAPI.GetTintColor(percent, status, isTanking, rank)
 	end
@@ -307,8 +313,8 @@ function Threat.Removed(unit)
 	states[unit] = nil
 end
 
-function Threat.Refresh(unit)
-	UpdateUnit(unit)
+function Threat.Refresh(unit, batch)
+	UpdateUnit(unit, batch)
 end
 
 function Threat.Poll()

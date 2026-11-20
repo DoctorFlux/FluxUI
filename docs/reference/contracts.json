@@ -113,7 +113,7 @@
   },
   {
     "source": "Inventory/Restock/Core/FluxRestockSettings.lua",
-    "contains": "local function MigrateLegacyStores()"
+    "contains": "local function MigrateLegacyStores(root)"
   },
   {
     "source": "Inventory/Restock/Core/FluxRestockSettings.lua",

@@ -1,0 +1,1953 @@
+{
+  "changeId": "AH-VIEWPORT-SCALE-20261114",
+  "scope": "Exact production AHUI/SharedGrid, matched native-fact fixture. No native FPS/controller/taint/pixel proof.",
+  "sourceHashes": {
+    "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+      "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+      "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+      "beforeSHA256": "6b07eb9493aa02bbf051c5bfc604597a0a90a9a3b05b611751af2fa8d276bc33",
+      "candidateSHA256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+    },
+    "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+      "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+      "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+      "beforeSHA256": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+      "candidateSHA256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827"
+    }
+  },
+  "testHashes": {
+    "tests/auction_restock_viewport_work.lua": "a3f244a349fa829814d85d31acd8f420c34635dd768b7afd084e3540e0e2eb95",
+    "tests/auction_restock_viewport_actions.lua": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+    "tests/auction_restock_scroll.lua": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99"
+  },
+  "comparison": {
+    "scope": "Exact production AHUI/SharedGrid, matched native-fact fixture. No native FPS/controller/taint/pixel proof.",
+    "sources": {
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+        "beforeSHA256": "6b07eb9493aa02bbf051c5bfc604597a0a90a9a3b05b611751af2fa8d276bc33",
+        "candidateSHA256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+      },
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+        "beforeSHA256": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+        "candidateSHA256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827"
+      }
+    },
+    "tests": {
+      "tests/auction_restock_viewport_work.lua": "a3f244a349fa829814d85d31acd8f420c34635dd768b7afd084e3540e0e2eb95",
+      "tests/auction_restock_viewport_actions.lua": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+      "tests/auction_restock_scroll.lua": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99"
+    },
+    "pairs": [
+      {
+        "before": {
+          "work": {
+            "exit": 0,
+            "seconds": 13.02670109999599,
+            "raw": "before-1-work.txt",
+            "summary": [
+              "AH viewport work: 117780 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.9066506999952253,
+            "raw": "before-1-actions.txt",
+            "summary": [
+              "AH viewport actions: 88500 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.06675740001082886,
+            "raw": "before-1-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.039000 warm20Seconds=0.004000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "candidate": {
+          "work": {
+            "exit": 0,
+            "seconds": 7.376449099989259,
+            "raw": "candidate-1-work.txt",
+            "summary": [
+              "AH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.9943790999968769,
+            "raw": "candidate-1-actions.txt",
+            "summary": [
+              "AH viewport actions: 88620 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.07929049999802373,
+            "raw": "candidate-1-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.050000 warm20Seconds=0.005000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "semanticTrace": {
+          "equal": true,
+          "bytes": 1335636,
+          "SHA256": "32c107986e5e89ef949fef783f62277e279fa2929c57395b44d24961dababb14"
+        }
+      },
+      {
+        "before": {
+          "work": {
+            "exit": 0,
+            "seconds": 14.936804400000256,
+            "raw": "before-2-work.txt",
+            "summary": [
+              "AH viewport work: 117780 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.9912506999971811,
+            "raw": "before-2-actions.txt",
+            "summary": [
+              "AH viewport actions: 88500 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.0719740000058664,
+            "raw": "before-2-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.045000 warm20Seconds=0.006000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "candidate": {
+          "work": {
+            "exit": 0,
+            "seconds": 5.439097900001798,
+            "raw": "candidate-2-work.txt",
+            "summary": [
+              "AH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.8618764999991981,
+            "raw": "candidate-2-actions.txt",
+            "summary": [
+              "AH viewport actions: 88620 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.06481150000763591,
+            "raw": "candidate-2-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.044000 warm20Seconds=0.004000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "semanticTrace": {
+          "equal": true,
+          "bytes": 1335636,
+          "SHA256": "32c107986e5e89ef949fef783f62277e279fa2929c57395b44d24961dababb14"
+        }
+      },
+      {
+        "before": {
+          "work": {
+            "exit": 0,
+            "seconds": 13.995678100007353,
+            "raw": "before-3-work.txt",
+            "summary": [
+              "AH viewport work: 117780 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.7751374999934342,
+            "raw": "before-3-actions.txt",
+            "summary": [
+              "AH viewport actions: 88500 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.06308190000709146,
+            "raw": "before-3-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.041000 warm20Seconds=0.004000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "candidate": {
+          "work": {
+            "exit": 0,
+            "seconds": 5.662697000007029,
+            "raw": "candidate-3-work.txt",
+            "summary": [
+              "AH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN"
+            ]
+          },
+          "actions": {
+            "exit": 0,
+            "seconds": 0.7887085999973351,
+            "raw": "candidate-3-actions.txt",
+            "summary": [
+              "AH viewport actions: 88620 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN"
+            ]
+          },
+          "churn": {
+            "exit": 0,
+            "seconds": 0.061480799995479174,
+            "raw": "candidate-3-churn.txt",
+            "summary": [
+              "AH_CHURN models=101 configuredRows=20 residentCells=20 widgets=321 churnSeconds=0.041000 warm20Seconds=0.003000 warm20ShownCalls=2440"
+            ]
+          }
+        },
+        "semanticTrace": {
+          "equal": true,
+          "bytes": 1335636,
+          "SHA256": "32c107986e5e89ef949fef783f62277e279fa2929c57395b44d24961dababb14"
+        }
+      }
+    ],
+    "controls": [
+      {
+        "name": "eager-regions",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.16012630000477657,
+        "raw": "control-eager-regions.txt",
+        "summary": []
+      },
+      {
+        "name": "paint-all-groups",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.2656208999978844,
+        "raw": "control-paint-all-groups.txt",
+        "summary": []
+      },
+      {
+        "name": "omit-native-scroll-hook",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.27243860000453424,
+        "raw": "control-omit-native-scroll-hook.txt",
+        "summary": []
+      },
+      {
+        "name": "omit-partial-group",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.2624344999931054,
+        "raw": "control-omit-partial-group.txt",
+        "summary": []
+      },
+      {
+        "name": "omit-bank-height",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.08563859999412671,
+        "raw": "control-omit-bank-height.txt",
+        "summary": []
+      },
+      {
+        "name": "omit-upgrade-height",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.080696099990746,
+        "raw": "control-omit-upgrade-height.txt",
+        "summary": []
+      },
+      {
+        "name": "churn-fresh-owner-token",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.4376373999984935,
+        "raw": "control-churn-fresh-owner-token.txt",
+        "summary": []
+      },
+      {
+        "name": "accept-stale-owner",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.5152851999882841,
+        "raw": "control-accept-stale-owner.txt",
+        "summary": []
+      },
+      {
+        "name": "accept-stale-proposal",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.10465179999300744,
+        "raw": "control-accept-stale-proposal.txt",
+        "summary": []
+      },
+      {
+        "name": "swallow-paint-error",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.5627176999987569,
+        "raw": "control-swallow-paint-error.txt",
+        "summary": []
+      },
+      {
+        "name": "trust-interrupted-paint",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.6938279000023613,
+        "raw": "control-trust-interrupted-paint.txt",
+        "summary": []
+      },
+      {
+        "name": "replace-editor-on-first-paint",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.3947033000004012,
+        "raw": "control-replace-editor-on-first-paint.txt",
+        "summary": []
+      },
+      {
+        "name": "repeat-tooltip-passive",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.12896430000546388,
+        "raw": "control-repeat-tooltip-passive.txt",
+        "summary": []
+      },
+      {
+        "name": "skip-native-enabled-repair",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.5482688000047347,
+        "raw": "control-skip-native-enabled-repair.txt",
+        "summary": []
+      },
+      {
+        "name": "unsafe-default-editor-reuse",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.10591689999273513,
+        "raw": "control-unsafe-default-editor-reuse.txt",
+        "summary": []
+      },
+      {
+        "name": "per-key-retention-rejected",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "seconds": 0.09729229999356903,
+        "raw": "control-per-key-retention-rejected.txt",
+        "summary": []
+      },
+      {
+        "name": "per-key-lifetime-churn-isolated",
+        "compiled": true,
+        "rejected": true,
+        "exit": 1,
+        "raw": "churn-guard-rejected-per-key.txt",
+        "oracle": "101 disjoint20-row models retain20cells/321objects; the rejected per-key source fails without hover or gesture confounders."
+      }
+    ],
+    "focused": [
+      {
+        "script": "tests/auction_active_rows.lua",
+        "exit": 0,
+        "seconds": 0.043285599997034296,
+        "raw": "focus-auction_active_rows.txt",
+        "summary": [
+          "auction active rows: 156 checks, 0 failures; burst visits=600, classifications=200"
+        ]
+      },
+      {
+        "script": "tests/auction_cold_tooltip.lua",
+        "exit": 0,
+        "seconds": 0.012135400000261143,
+        "raw": "focus-auction_cold_tooltip.txt",
+        "summary": [
+          "auction cold tooltip: 48 checks, 0 failures; desktop production replay only"
+        ]
+      },
+      {
+        "script": "tests/auction_incoming_mail.lua",
+        "exit": 0,
+        "seconds": 0.384693599989987,
+        "raw": "focus-auction_incoming_mail.txt",
+        "summary": [
+          "Auction incoming mail: 743 checks PASS; 15 client/provider profiles; native purchase/taint/latency NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_metadata_work.lua",
+        "exit": 0,
+        "seconds": 0.04355299999588169,
+        "raw": "focus-auction_metadata_work.txt",
+        "summary": [
+          "auction metadata: 230 checks, 0 failures; burst names=0 info=0 walks=0 junk=0 invalidations=0 cacheEntries=0"
+        ]
+      },
+      {
+        "script": "tests/auction_query_ownership.lua",
+        "exit": 0,
+        "seconds": 0.025765900005353615,
+        "raw": "focus-auction_query_ownership.txt",
+        "summary": [
+          "auction query ownership: 628 checks, 0 failures; duplicate-burst legacy queries=4 modern queries=6 foreign queries=0 reentrant queries=10"
+        ]
+      },
+      {
+        "script": "tests/auction_refresh_batching.lua",
+        "exit": 0,
+        "seconds": 0.04346459999214858,
+        "raw": "focus-auction_refresh_batching.txt",
+        "summary": [
+          "auction refresh batching: 365 checks, 0 failures; progressive rebuilds=10 snapshot rows=5000 maps=10 publications=10 scheduler requests=10"
+        ]
+      },
+      {
+        "script": "tests/auction_restock.lua",
+        "exit": 0,
+        "seconds": 0.36758810000901576,
+        "raw": "focus-auction_restock.txt",
+        "summary": [
+          "Auction restock: 13100 checks PASS; 20 client/provider/addon profiles; native purchases/input/taint/pixels/FPS NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_bank_flag_ui.lua",
+        "exit": 0,
+        "seconds": 0.32870380001259036,
+        "raw": "focus-auction_restock_bank_flag_ui.txt",
+        "summary": [
+          "Auction ingredient bank UI: 180 checks PASS; 20 profiles; native clicks/pixels/controller NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_charges.lua",
+        "exit": 0,
+        "seconds": 0.5697763000061968,
+        "raw": "focus-auction_restock_charges.txt",
+        "summary": [
+          "Auction restock charges: 15566 checks PASS; 20 profiles +33 real-receipt profiles; native charges/mail/purchases NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_craft_settle.lua",
+        "exit": 0,
+        "seconds": 1.6680174999928568,
+        "raw": "focus-auction_restock_craft_settle.txt",
+        "summary": [
+          "Auction craft settlement: 412 checks PASS; 20 client/provider/yield profiles; native event timing/art/input NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_crafting.lua",
+        "exit": 0,
+        "seconds": 0.40522869999404065,
+        "raw": "focus-auction_restock_crafting.txt",
+        "summary": [
+          "Auction restock crafting/tab: 836 checks PASS; 20 profiles; native quote permissions/rendering/controller NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_data_work.lua",
+        "exit": 0,
+        "seconds": 1.011843600004795,
+        "raw": "focus-auction_restock_data_work.txt",
+        "summary": [
+          "Auction restock data work: 1900 checks PASS; 20 profiles; native latency/CPU/FPS NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup.lua",
+        "exit": 0,
+        "seconds": 1.3296717000048375,
+        "raw": "focus-auction_restock_followup.txt",
+        "summary": [
+          "Auction restock follow-up: 674 checks PASS; 10 client/provider profiles; native mail/vendor/craft permissions NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_automation.lua",
+        "exit": 0,
+        "seconds": 1.3784432000102242,
+        "raw": "focus-auction_restock_followup_automation.txt",
+        "summary": [
+          "Auction follow-up automation: 1260 checks PASS; 20 client/provider/global-option profiles; native actions/glow NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_closed_profession.lua",
+        "exit": 0,
+        "seconds": 1.0864187000115635,
+        "raw": "focus-auction_restock_followup_closed_profession.txt",
+        "summary": [
+          "Closed-profession restock follow-up: 1220 checks PASS; 30 client/provider/bank +20 craft-progress profiles; native mail/login/profession execution NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_craft.lua",
+        "exit": 0,
+        "seconds": 0.15909210000245366,
+        "raw": "focus-auction_restock_followup_craft.txt",
+        "summary": [
+          "Auction restock follow-up craft: 1844 checks PASS; 20 profiles; native open/craft/input/taint NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_integration.lua",
+        "exit": 0,
+        "seconds": 0.1614110999944387,
+        "raw": "focus-auction_restock_followup_integration.txt",
+        "summary": [
+          "Auction restock follow-up integration: 290 checks PASS; 10 client/provider profiles; native actions/pixels/input/taint NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_render_work.lua",
+        "exit": 0,
+        "seconds": 0.044841700000688434,
+        "raw": "focus-auction_restock_followup_render_work.txt",
+        "summary": [
+          "Auction follow-up render work: 1020 checks PASS; 15 matched client trials; native pixels/latency/controller/taint/FPS NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_followup_ui.lua",
+        "exit": 0,
+        "seconds": 0.7074343999993289,
+        "raw": "focus-auction_restock_followup_ui.txt",
+        "summary": [
+          "Auction restock per-item follow-up UI: 63063 checks PASS; 5 client profiles plus193/500/1000 overflow; native pixels/clipping/input/controller/taint NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_generation.lua",
+        "exit": 0,
+        "seconds": 0.18047609999484848,
+        "raw": "focus-auction_restock_generation.txt",
+        "summary": [
+          "Auction generation/quantity: 276 checks PASS; 20 client/provider profiles; native detection/buying NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_inline_upgrades.lua",
+        "exit": 0,
+        "seconds": 1.9426297000027262,
+        "raw": "focus-auction_restock_inline_upgrades.txt",
+        "summary": [
+          "AH inline upgrades: 1220 checks PASS/20 profiles; independent cells, bandages, blacklist, options and real purchase owners"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_market.lua",
+        "exit": 0,
+        "seconds": 1.5271189999912167,
+        "raw": "focus-auction_restock_market.txt",
+        "summary": [
+          "Auction dense grid/stock/price bridge: 2288 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_owner_rejection.lua",
+        "exit": 0,
+        "seconds": 0.7460693000030005,
+        "raw": "focus-auction_restock_owner_rejection.txt",
+        "summary": [
+          "Auction owner rejection: 620 checks PASS; 10 client/provider profiles; native permissions/moves NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_passive.lua",
+        "exit": 0,
+        "seconds": 2.0420622000092408,
+        "raw": "focus-auction_restock_passive.txt",
+        "summary": [
+          "AH passive refresh: 440 checks PASS/20 profiles;one shortage scan;stable choices;zero passive queries;per-kind defaults/options"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_potion_confirmation.lua",
+        "exit": 0,
+        "seconds": 4.317430199997034,
+        "raw": "focus-auction_restock_potion_confirmation.txt",
+        "summary": [
+          "AH potion confirmation: 672 checks PASS/20 client-addon-provider profiles; native inline controls/input tested separately"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_potion_restore.lua",
+        "exit": 0,
+        "seconds": 1.8148590000055265,
+        "raw": "focus-auction_restock_potion_restore.txt",
+        "summary": [
+          "AH potion restore/browse: 388 checks PASS/20 profiles; native server availability tested separately"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_potion_upgrade.lua",
+        "exit": 0,
+        "seconds": 0.7532427000114694,
+        "raw": "focus-auction_restock_potion_upgrade.txt",
+        "summary": [
+          "AH usable potion upgrades: 280 checks PASS/20 client-addon-provider profiles; native scanning/tier UI NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_potions.lua",
+        "exit": 0,
+        "seconds": 4.120173399991472,
+        "raw": "focus-auction_restock_potions.txt",
+        "summary": [
+          "Auction potion upgrades: 580 checks PASS; 20 profiles; native browse/usability/tier/input NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_price_policy.lua",
+        "exit": 0,
+        "seconds": 1.8260695000062697,
+        "raw": "focus-auction_restock_price_policy.txt",
+        "summary": [
+          "Auction explicit price policy: 820 checks PASS; 20 profiles; native input/rendering NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_purchase_flow.lua",
+        "exit": 0,
+        "seconds": 0.8252368999965256,
+        "raw": "focus-auction_restock_purchase_flow.txt",
+        "summary": [
+          "Auction restock purchase flow: 420 checks PASS; 20 client/provider/excess profiles; native purchasing/taint/latency NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_queue.lua",
+        "exit": 0,
+        "seconds": 0.5171482000005199,
+        "raw": "focus-auction_restock_queue.txt",
+        "summary": [
+          "Auction restock automatic queue: 968 checks PASS; 20 profiles; native purchase permissions/pixels NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_scan_all.lua",
+        "exit": 0,
+        "seconds": 0.5628969999961555,
+        "raw": "focus-auction_restock_scan_all.txt",
+        "summary": [
+          "Auction all-target scans: 284 checks PASS; 20 client/provider/addon profiles; native searches/tier updates NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_scroll.lua",
+        "exit": 0,
+        "seconds": 0.8420927999977721,
+        "raw": "focus-auction_restock_scroll.txt",
+        "summary": [
+          "Auction compact scrolling tab: 832 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_sources.lua",
+        "exit": 0,
+        "seconds": 2.6047438999958104,
+        "raw": "focus-auction_restock_sources.txt",
+        "summary": [
+          "Auction restock sources: 1464 checks PASS; 20 profiles; native bank/vendor permissions NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_speed.lua",
+        "exit": 0,
+        "seconds": 2.3639020000118762,
+        "raw": "focus-auction_restock_speed.txt",
+        "summary": [
+          "Auction on-demand speed: 492 checks PASS; 20 profiles; native latency/input/taint NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_vendor_prices.lua",
+        "exit": 0,
+        "seconds": 0.15449939999962226,
+        "raw": "focus-auction_restock_vendor_prices.txt",
+        "summary": [
+          "Auction vendor opportunity prices: 1170 checks PASS; 20 profiles; native vendor/AH prices/input NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_vendor_queue.lua",
+        "exit": 0,
+        "seconds": 0.2253418999898713,
+        "raw": "focus-auction_restock_vendor_queue.txt",
+        "summary": [
+          "Auction vendor opportunity queue: 1106 checks PASS; 20 profiles; native purchasing/taint/provider coexistence NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_vendor_routes.lua",
+        "exit": 0,
+        "seconds": 1.1783378000109224,
+        "raw": "focus-auction_restock_vendor_routes.txt",
+        "summary": [
+          "Auction restock vendor routes: 476 checks PASS; 20 client/addon profiles; native price/stack/vendor/craft permissions NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_restock_workflow.lua",
+        "exit": 0,
+        "seconds": 0.6801388000021689,
+        "raw": "focus-auction_restock_workflow.txt",
+        "summary": [
+          "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_vendor_catalog.lua",
+        "exit": 0,
+        "seconds": 0.35198120000131894,
+        "raw": "focus-auction_vendor_catalog.txt",
+        "summary": [
+          "Auction vendor catalog: 30990 checks PASS; 12 client/alias profiles; native stock/access/discounts NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/auction_vendor_learning.lua",
+        "exit": 0,
+        "seconds": 0.2387009000085527,
+        "raw": "focus-auction_vendor_learning.txt",
+        "summary": [
+          "Auction vendor source learning: 480 checks PASS; 30 configured client/source profiles; native merchant operation/FPS NOT RUN"
+        ]
+      },
+      {
+        "script": "tests/consumable_config_visibility.lua",
+        "exit": 0,
+        "seconds": 0.02046919999702368,
+        "raw": "focus-consumable_config_visibility.txt",
+        "summary": [
+          "Consumable config visibility: 8 checks passed"
+        ]
+      },
+      {
+        "script": "tests/consumable_refresh_timer.lua",
+        "exit": 0,
+        "seconds": 0.022291800007224083,
+        "raw": "focus-consumable_refresh_timer.txt",
+        "summary": [
+          "Consumable refresh timer: 35 checks passed"
+        ]
+      },
+      {
+        "script": "tests/consumable_restock_clicks.lua",
+        "exit": 0,
+        "seconds": 0.05975689999468159,
+        "raw": "focus-consumable_restock_clicks.txt",
+        "summary": [
+          "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified"
+        ]
+      }
+    ],
+    "geometry": {
+      "before": {
+        "exit": 0,
+        "seconds": 0.20803920000616927,
+        "raw": "before-geometry.txt",
+        "summary": [
+          "AH logical geometry proof: 11404 checks PASS; 12 production baseline profiles; native pixels/controller NOT RUN"
+        ]
+      },
+      "candidate": {
+        "exit": 0,
+        "seconds": 0.21131949999835342,
+        "raw": "candidate-geometry.txt",
+        "summary": [
+          "AH logical geometry proof: 11404 checks PASS; 12 production baseline profiles; native pixels/controller NOT RUN"
+        ]
+      }
+    },
+    "requirements": "final-requirements.json",
+    "tradeoffs": {
+      "nativeFrames": "Original four native frame pointers per baseline row slot up to maximum simultaneous row count; native navigation CreateFrame scan cost retained.",
+      "regions": "Decorations are allocated only on first viewport/overscan visit, then retained per baseline slot. Full traversal converges to baseline resident object count.",
+      "scroll": "Newly entering flow groups perform synchronous font/text/icon paint. Full1000row traversal adds952 width measurements where eager baseline scrolling added0.",
+      "pool": "Original fully viewport-bounded physical-pool requirement NOT MET; root accepted baseline maxN native slot ownership to avoid native-focus regressions and per-key memory growth."
+    },
+    "sourceStable": true,
+    "defaultEditorBodyGuard": {
+      "equalAfterNewlineNormalization": true,
+      "SHA256": "a08a0aedfeed7d6ad7d8114a185c1363083ebad9c9996aede79eb94576f06f02",
+      "note": "Original native editor creation statements and order are unchanged; SetupCellChrome calls factory at the same original default position. AH alone opts into existing editor/chrome reuse."
+    },
+    "churnGuard": {
+      "before": {
+        "exit": 0,
+        "raw": "churn-guard-before.txt"
+      },
+      "candidate": {
+        "exit": 0,
+        "raw": "churn-guard-candidate.txt"
+      },
+      "rejected-per-key": {
+        "exit": 1,
+        "raw": "churn-guard-rejected-per-key.txt"
+      }
+    },
+    "independentTiming": {
+      "artifact": "../commerce/ah-size-comparison.json",
+      "SHA256": "a995e26b7a0e3269bd9a818ba1696dc03e1cc5cdfcae88d4eb07fb930cf9b599",
+      "pairs": 3,
+      "sourcesVerified": "Same frozen98c20279/07c71407 runtime source pair.",
+      "smallTradeoff": "7/20-row all-visible desktop fixtures add approximately10-40microseconds per update;20-row fixture adds44KB per10refreshes. Root explicitly accepted this scoped tradeoff.",
+      "large": "80/1000-row models improve. Read exact per-mode medians in the independent artifact.",
+      "zeroExtraWork": "Same-owner warm/fresh hovered ordinary/proposal fixture:0new tooltip/market calls,0callback identities and0owner-token changes.",
+      "limits": "Desktop Lua/widget-fixture timings and allocations are not native CPU/FPS results."
+    },
+    "relatedFixtureUpdate": {
+      "path": "tests/commerce_redundant_work.lua",
+      "SHA256": "b9511fef47d183687691e9c618e3c61df1ed6548c15d20f4001ceda6f6b59637",
+      "scope": "Integration guard records viewport-aware original maximum-work ceilings and exact raw-error/reentry assertions; new viewport tests supply exact painted-row counts. This agent did not edit the file in continuation."
+    },
+    "requirementsCoverage": {
+      "AVS-01": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-02": {
+        "hostStatus": "Focused actual-production callback/model replay; native acceptance remains NOT RUN.",
+        "originalStatus": "NOT MET / deliberately superseded; full viewport-only physical frame pool rejected to preserve native input.",
+        "native": "NOT RUN"
+      },
+      "AVS-03": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-04": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-05": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-06": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-07": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-08": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-09": {
+        "hostStatus": "Original Button/chrome/bank/editor/native scroll roles and default consumers replayed; physical controller/native focus acceptance NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-10": {
+        "hostStatus": "Simulated current-owner actions reveal offscreen target before activation; baseline ordinal mapping preserved on model changes. Physical controller acceptance NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-11": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-12": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-13": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      },
+      "AVS-14": {
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN.",
+        "originalStatus": null,
+        "native": "NOT RUN"
+      }
+    },
+    "limits": [
+      "Original fully viewport-bounded physical pool AVS-02 is NOT MET; maxN native pool deliberately preserved.",
+      "Opening retains4N native frames and corresponding native navigation scans. Visited slot decoration grows to original baseline count.",
+      "New scroll groups require paint;1000-row traversal adds952modeled width measurements vs0eager-baseline scroll-only.",
+      "Small all-visible desktop fixtures have accepted10-40us/call and44KB/10refresh20row overhead.",
+      "No native pixel/controller/taint/FPS certification or saved-root/settings/input/profiler changes by this agent."
+    ]
+  },
+  "summary": {
+    "status": "Sealed source-stable; independent peer/timing review separate",
+    "sources": {
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\Inventory\\Restock\\Auction\\FluxAuctionRestockUI.lua",
+        "beforeSHA256": "6b07eb9493aa02bbf051c5bfc604597a0a90a9a3b05b611751af2fa8d276bc33",
+        "candidateSHA256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+      },
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+        "before": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\baseline\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+        "candidate": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\auction_scale\\sealed-index-candidate\\ExtraButtonSystem\\Shared\\FluxConsumablesGridUI.lua",
+        "beforeSHA256": "a444bc60318885cdd833f72f39dab26a56c561e475839e1692e4b37c4ea9c28f",
+        "candidateSHA256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827"
+      }
+    },
+    "tests": {
+      "tests/auction_restock_viewport_work.lua": "a3f244a349fa829814d85d31acd8f420c34635dd768b7afd084e3540e0e2eb95",
+      "tests/auction_restock_viewport_actions.lua": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+      "tests/auction_restock_scroll.lua": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99"
+    },
+    "relatedFixtureUpdate": {
+      "path": "tests/commerce_redundant_work.lua",
+      "SHA256": "b9511fef47d183687691e9c618e3c61df1ed6548c15d20f4001ceda6f6b59637",
+      "scope": "Integration guard records viewport-aware original maximum-work ceilings and exact raw-error/reentry assertions; new viewport tests supply exact painted-row counts. This agent did not edit the file in continuation."
+    },
+    "pairs": 3,
+    "semanticTraceBytes": 1335636,
+    "semanticTraceSHA256": "32c107986e5e89ef949fef783f62277e279fa2929c57395b44d24961dababb14",
+    "controls": 17,
+    "focusedScripts": 44,
+    "newWorkChecks": 117900,
+    "newActionChecks": 88620,
+    "geometryChecksPerSource": 11404,
+    "metrics": {
+      "1000rowOpeningObjects": [
+        15021,
+        4549
+      ],
+      "20PaintWidthReads": [
+        20000,
+        960
+      ],
+      "20PaintTextWrites": [
+        100140,
+        4940
+      ],
+      "20PaintIconWrites": [
+        20000,
+        960
+      ],
+      "101Disjoint20rowModelsCells": [
+        20,
+        20
+      ],
+      "101Disjoint20rowModelsObjects": [
+        321,
+        321
+      ]
+    },
+    "limits": [
+      "Original fully viewport-bounded physical pool AVS-02 is NOT MET; maxN native pool deliberately preserved.",
+      "Opening retains4N native frames and corresponding native navigation scans. Visited slot decoration grows to original baseline count.",
+      "New scroll groups require paint;1000-row traversal adds952modeled width measurements vs0eager-baseline scroll-only.",
+      "Small all-visible desktop fixtures have accepted10-40us/call and44KB/10refresh20row overhead.",
+      "No native pixel/controller/taint/FPS certification or saved-root/settings/input/profiler changes by this agent."
+    ],
+    "comparison": "comparison.json",
+    "requirements": "final-requirements.json",
+    "timing": "../commerce/ah-size-comparison.json"
+  },
+  "requirements": {
+    "changeId": "AH-VIEWPORT-SCALE-20261114",
+    "revision": 3,
+    "status": "Frozen and sealed:3matched production source pairs,17compiled harmful controls,44existing focused scripts and11404geometry checks per source. Exact full scalar traces equal.",
+    "history": [
+      {
+        "revision": 1,
+        "path": "requirements-initial.json",
+        "result": "Original AVS-02 full viewport physical-pool requirement NOT MET."
+      },
+      {
+        "revision": 2,
+        "path": "retention-design.json",
+        "result": "Permanent per-item native frames REJECTED:101 disjoint20-row models retained2020cells/30321objects and42440warm SetShown calls vs baseline20/321/2440."
+      },
+      {
+        "revision": 3,
+        "result": "Root accepted original max-row-index physical owners; no native focus query or manager writes. Semantic owner tokens protect stale gestures/callbacks while metadata-only refresh retains valid input."
+      }
+    ],
+    "scope": [
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+      "tests/auction_restock_viewport_work.lua",
+      "tests/auction_restock_viewport_actions.lua",
+      "tests/auction_restock_scroll.lua"
+    ],
+    "targets": [
+      "Retail",
+      "Forever",
+      "Classic progression/Mists",
+      "Era",
+      "Anniversary"
+    ],
+    "requirements": [
+      {
+        "id": "AVS-01",
+        "behavior": "All logical targets/proposals remain complete; ordinary selection remains stable by itemID while native physical slots retain baseline ordinal ownership.",
+        "acceptance": "1000-target model retains all rows; selecting last row edits that item and never changes shopping queue or purchases.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-02",
+        "behavior": "Native interactive frame allocation retains the original maxN slot bound; decorations are lazy per existing slot and heavy paint is viewport bounded.",
+        "acceptance": "1000rows opening4549vs15021objects;20paints960vs20000widthreads;101disjoint20rowmodels retain20cells/321objects/2440warmSetShowncalls. Full traversal converges to baseline count; no fully bounded viewport-pool claim.",
+        "hostStatus": "Focused actual-production callback/model replay; native acceptance remains NOT RUN.",
+        "originalBehavior": "Widget creation and text/font/icon painting are bounded by intersecting viewport flow rows plus a bounded overscan and one active quantity editor, independent of total configured rows.",
+        "originalAcceptance": "Opening/20repaints at80/500/1000rows with same viewport has bounded physical cells/work; complete scroll traversal does not allocate per visited logical row.",
+        "originalStatus": "NOT MET / deliberately superseded; full viewport-only physical frame pool rejected to preserve native input."
+      },
+      {
+        "id": "AVS-03",
+        "behavior": "Same coordinates and scroll extent for ordinary/bank/upgrade variable-height flow rows, including partially visible rows and bottom annotations.",
+        "acceptance": "Compare actual baseline visible widget geometry/text/sinks at0/84/123/maxScroll, mixed bank lines, all3upgrade kinds, shrink/expand and640/800/1024owner sizes.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-04",
+        "behavior": "Existing native scrollbar OnVerticalScroll/OnScrollRangeChanged handlers stay installed; mousewheel, thumb, arrows and native SetVerticalScroll paint synchronously without selection/buy changes.",
+        "acceptance": "Original template handler observations and arguments persist; intermediate/native-driven offsets populate correct current rows on the same callback.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-05",
+        "behavior": "Fixed currency fields keep typed text/focus and semantic item identity across scrolling/resorting; exact Enter/Tab/reverseTab/Escape/blur/close commit policy remains.",
+        "acceptance": "Edit last item's price, scroll to first, sort/refresh sameID, then commit correct item. Removed selection reproduces old blur ordering rather than committing to the replacement item.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-06",
+        "behavior": "A focused quantity editor remains bound to its semantic item while offscreen and cannot be recycled into another row. Row removal hides before clearing focus, preserving cancellation behavior.",
+        "acceptance": "Type quantity, scroll far, press Enter/Escape or remove row; only intended item receives valid commit; no hidden/recycled target or extra purchase.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-07",
+        "behavior": "Upgrade/candidate tooltip and3choice actions retain exact proposal object/kind identity across sorting, recycling and sameID model replacement.",
+        "acceptance": "Capture old callback, recycle its physical card, invoke old callback: no different proposal resolves. Current explicit Upgrade/Keep/Blacklist affects only its own kind and never buys.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-08",
+        "behavior": "Hovered/recycled cells show current tooltip identity and facts; released frames cannot leave another row's tooltip or action active.",
+        "acceptance": "Scroll/rebind under stationary hover, refresh sameID metadata and remove/replace row; tooltip/item/price/units follow current binding or hide until a valid current enter.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-09",
+        "behavior": "Ordinary native Button/EditBox/scrollbar roles and click paths remain. Decorative edges never capture input. No new global capture/bindings or copied secure navigation manager.",
+        "acceptance": "Production callback replay retains mouse/right-click/keyboard text paths. Test native controller cursor/directional focus/reveal/recycle per available client; unperformed physical cases remain NOT RUN.",
+        "hostStatus": "Original Button/chrome/bank/editor/native scroll roles and default consumers replayed; physical controller/native focus acceptance NOT RUN."
+      },
+      {
+        "id": "AVS-10",
+        "behavior": "Controller semantic focus must not activate an invisible or rebound different item. Re-evaluate/reveal current semantic target before activation through any existing native navigation path.",
+        "acceptance": "Scroll away from focused row, sort, resize, replace sameID, disable controls, change input mode and return; no stale release/action. Native adapter availability must be verified rather than inferred from a glyph or mouse replay.",
+        "hostStatus": "Simulated current-owner actions reveal offscreen target before activation; baseline ordinal mapping preserved on model changes. Physical controller acceptance NOT RUN."
+      },
+      {
+        "id": "AVS-11",
+        "behavior": "Current native enabled state and original transaction/combat ownership remain authoritative. No rejected blanket getter/setter cache is reintroduced.",
+        "acceptance": "Transaction disables original controls immediately; native resets repair at original paint; frozen stale callbacks cannot authorize purchase/choice.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-12",
+        "behavior": "Native setter/getter failures and same-stack model/paint reentry retain errors and newest model authority; no stuck render latch or stale pool membership after failure.",
+        "acceptance": "Inject font/icon/scroll failures and nested sort/row replacement; raw errors propagate, next original update recovers, older paint cannot overwrite newer bindings.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-13",
+        "behavior": "Unknown/opaque viewport data is not permission to omit rows or compare secrets. Conservative old paint/forward behavior remains where safe; no guessed geometry or source/result cache suppresses live facts.",
+        "acceptance": "Missing/error/opaque geometry/readability fixtures prove safe fallback and original error policy without new timers or slower cadence.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      },
+      {
+        "id": "AVS-14",
+        "behavior": "No saved-root/default/schema/input/capability/new purchase behavior changes; all current AH policy, source recovery and potion minimum fixes remain.",
+        "acceptance": "Exact source guards and existing whole workflow regressions across20client/addon/provider profiles; native pixels/controller/taint remain separate acceptance.",
+        "hostStatus": "PASS within production callback/widget-fixture scope; native pixels/controller/taint/FPS remain NOT RUN."
+      }
+    ],
+    "design": {
+      "nativePool": "Four original native frame pointers (row Button/chrome Frame/EditBox/bank Button) per slot up to maximum simultaneous row count, matching baseline. Configuration resort/replacement preserves baseline ordinal-pointer behavior. Scrolling never changes slot ownership.",
+      "selection": "Ordinary selection and fixed price editor remain by itemID. Quantity editor retains native draft on same semantic owner; model reassignment hides before clearing focus as baseline.",
+      "regions": "Decorative regions lazily allocated for current intersecting flow groups plus one adjacent group on either side; they remain owned by maxN baseline slots. Full traversal reaches original resident widget count.",
+      "paint": "Original update cadence, full logical enabled/layout authority, original native scrollbar callbacks; only expensive font/text/icon paint is culled. Synchronous newly entering scroll groups paint before callback returns. No timers.",
+      "nativeSecurity": "No addon focus-manager writes/copies/query assumptions. Four CreateFrame calls per row and native scan cost retained. Existing native hierarchy/default SharedGrid editor creation preserved.",
+      "reentry": "Interrupted or errored paint marks that target dirty before propagating the exact raw error; latest model remains authoritative even if nested callback scrolls away.",
+      "hover": "No new passive same-owner tooltip/item/market queries. Only changed current semantic tooltip/proposal owner refreshes its help; stale leave/enter cannot act on another current owner."
+    },
+    "nativeAcceptance": "Native pixels/controller/taint/FPS NOT RUN by this agent; source and simulated widget contracts do not certify those.",
+    "timing": "Independent3-pair actual production desktop fixture timing at continuation/commerce/ah-size-comparison.json; small7/20 lists add10-40us percall and44KB/10refreshes in20row model;80/1000 larger lists improve. No native FPS gain claimed.",
+    "authorization": "Root verified continuation checkpoint2792 files and375baseline scripts, then authorized AHUI+SharedGrid and durable tests; root accepted baseline maxN pool and recorded small desktop overhead tradeoff.",
+    "evidence": {
+      "comparison": "comparison.json",
+      "manifest": "candidate-manifest.json",
+      "independentPeer": "../commerce/ah-final-peer-review.json",
+      "independentTiming": "../commerce/ah-size-comparison.json"
+    }
+  },
+  "independentReview": {
+    "capturedUtc": "2026-11-14T11:50:36.025869+00:00",
+    "reviewer": "commerce_audit",
+    "readOnly": true,
+    "runtimeSourceHashes": {
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827"
+    },
+    "sourceStable": true,
+    "status": "PASS; no open correctness blockers in reviewed current source",
+    "blockers": [],
+    "scope": "Independent current two-owner review versus continuation375 baseline;actual production renderer/shared widget helpers with native/provider seams modeled. No client input or runtime/test/repository edits.",
+    "resolvedFindings": [
+      {
+        "finding": "Fresh same-owner rows re-bound callbacks/tokens and could swallow legitimate paired mouse activation.",
+        "resolution": "Bind persists for SameQuantityOwner;handlers read current cell.row;only true owner changes retire token. Independent current actions/work tests and renderer callback counts pass."
+      },
+      {
+        "finding": "Interrupted old paint after nested newer-model update and scroll-away retained current paintRevision but stale count2.",
+        "resolution": "Independently reproduced on c8d211917... candidate,then fixed. Interrupted/error target is dirty;current98c final replay shows current count9 after reveal. Original failing and intermediate successful sources/logs remain external."
+      },
+      {
+        "finding": "Permanent logical-ID pool retained unbounded ever-seen frames and loops under same-cardinality churn.",
+        "resolution": "Original max-row index pool restored. Native Button/chrome/editor/bank pointers and hierarchy remain per slot;semantic tokens protect rebind. Current durable churn case matches baseline20 resident slots rather than2020."
+      },
+      {
+        "finding": "Hover refresh was newly repeated during passive paints.",
+        "resolution": "Refresh only on changed semantic tooltip owner/proposal. All independent warm/fresh same-owner ordinary/proposal cases have0 extra tooltip/native item/market calls."
+      }
+    ],
+    "reviewedContracts": [
+      "Baseline index-based native slot identity,maxN residency,parent hierarchy,frame levels and native scroll HookScript composition.",
+      "Fresh same-owner count/name/bank updates preserve gesture token/editor draft/focus;changed owners,removal,reintroduction and proposal replacement retire stale closures/held releases.",
+      "Upgrade actions preserve exact proposal object and native enabled state/combat/transaction availability;no native purchase dispatched by review tests.",
+      "Full logical geometry/content range at same cadence;visible count font-fitting remains the original formatter;bank-line logical height uses existing shared formatter.",
+      "Old interrupted paint and paint errors cannot retain a current revision;pcall scope is the stateless PaintCell helper;raw errors are rethrown rather than hidden.",
+      "Default shared-grid setup still creates fresh chrome/editors;reuse is explicit and retains exact AH native editor/draft/focus. Existing SetupCellChrome layout/styles remain.",
+      "Row key uniqueness follows ordinary GetRows item dedup and DiscoverPotionUpgrades kind/source dedup;candidate aliases do not become duplicate pool cells."
+    ],
+    "independentTests": [
+      {
+        "path": "tests/auction_restock_viewport_work.lua",
+        "SHA256": "a3f244a349fa829814d85d31acd8f420c34635dd768b7afd084e3540e0e2eb95",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_viewport_work.txt",
+        "output": "AH_VIEWPORT Retail provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Retail provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Forever provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=false optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT MoP provider=true optimized=true openingWidgets=4549 nativeFrames=4012 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15021 scrollWidth=952\nAH_VIEWPORT Era provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Era provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=false optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH_VIEWPORT Anniversary provider=true optimized=true openingWidgets=4548 nativeFrames=4011 openingWidth=192 warmWidth=960 warmText=4940 warmTexture=960 fullVisitWidgets=15020 scrollWidth=952\nAH viewport work: 117900 checks PASS; 10 client/provider models; semanticTraceBytes=1335636; native FPS/controller/taint NOT RUN\n"
+      },
+      {
+        "path": "tests/auction_restock_viewport_actions.lua",
+        "SHA256": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_viewport_actions.txt",
+        "output": "AH viewport actions: 88620 checks PASS; 10 client/provider models; native input/controller/FPS/taint NOT RUN\n"
+      },
+      {
+        "path": "tests/auction_restock_scroll.lua",
+        "SHA256": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_scroll.txt",
+        "output": "Auction compact scrolling tab: 832 checks PASS; 20 client/addon profiles; native pixels/clipping/controller/input/taint NOT RUN\n"
+      },
+      {
+        "path": "tests/auction_restock_market.lua",
+        "SHA256": "028159286192e26f6e19367ca84d3f937ccec780f5241f434386f81af39d1d2f",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_market.txt",
+        "output": "Auction dense grid/stock/price bridge: 2288 checks PASS; 20 profiles; native pixels/vendor coverage/coexistence NOT RUN\n"
+      },
+      {
+        "path": "tests/auction_restock_bank_flag_ui.lua",
+        "SHA256": "33ce5ad6d3ca8cbc14b745148ba9ccc81b4aa98658f23a260fd644431bfb206e",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_bank_flag_ui.txt",
+        "output": "Auction ingredient bank UI: 180 checks PASS; 20 profiles; native clicks/pixels/controller NOT RUN\n"
+      },
+      {
+        "path": "tests/auction_restock_workflow.lua",
+        "SHA256": "24742717bb2ca722a22c2937958d7573f9b10d30d29fff3f3fc57bbbd4ae76cd",
+        "exit": 0,
+        "raw": "ah-peer-focus-auction_restock_workflow.txt",
+        "output": "Auction restock workflow: 310 checks PASS; 10 client/provider profiles; native delivery/permissions NOT RUN\n"
+      },
+      {
+        "path": "tests/commerce_redundant_work.lua",
+        "SHA256": "b9511fef47d183687691e9c618e3c61df1ed6548c15d20f4001ceda6f6b59637",
+        "exit": 0,
+        "raw": "ah-peer-focus-commerce_redundant_work.txt",
+        "output": "COMMERCE_WORK retail/false potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK retail/false ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK retail/true potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK retail/true ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK forever/false potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK forever/false ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK forever/true potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK forever/true ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK mists/false potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK mists/false ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK mists/true potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK mists/true ui80x50 text=12350,texture=2400,enabled=8400,shown=17700,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK era/false potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK era/false ui80x50 text=12350,texture=2400,enabled=8350,shown=17650,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK era/true potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK era/true ui80x50 text=12350,texture=2400,enabled=8350,shown=17650,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK anniversary/false potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK anniversary/false ui80x50 text=12350,texture=2400,enabled=8350,shown=17650,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCOMMERCE_WORK anniversary/true potion50 need=100,bag=151,mail=100\nCOMMERCE_WORK anniversary/true ui80x50 text=12350,texture=2400,enabled=8350,shown=17650,checked=150,getText=0,getTexture=0,isEnabled=0,isShown=100,getChecked=0\nCommerce redundant work: 810 checks PASS/10 models; native pixels/latency/FPS/taint/input NOT RUN\n"
+      }
+    ],
+    "independentReentry": {
+      "exit": 0,
+      "raw": "ah-peer-final-reentry.txt",
+      "output": "REENTRY_AFTER_CALLBACK\ttrue\t9\t|cffffff002|r|cff888888/10|r\tnil\t6\t478\nREENTRY_AFTER_REVEAL\tactual=|cffffff009|r|cff888888/10|r\texpected=|cffffff009|r|cff888888/10|r\tpaint=6\tmodel=6\n"
+    },
+    "timingEvidence": "ah-size-comparison.json",
+    "timingVerdict": "Scoped improvement accepted by parent.7/20-row cases incur disclosed absolute CPU/allocation overhead;80+ rows improve in the fixture. No blanket all-size or native FPS improvement claim.",
+    "limits": "Lua5.4 fixture os.clock/GC allocation/counter evidence does not certify WoW native CPU,frame latency,taint,rendered pixels,gamepad/controller/navigation or secure input. Parent final combined source run remains the acceptance owner. No private/native raw data copied into repository.",
+    "fixtureUpdates": {
+      "tests/auction_restock_scroll.lua": {
+        "beforeSHA256": "0290c92b64aba3e0f6cdae6ff961c4747aa615d086774c4791849bd8d0f00893",
+        "currentSHA256": "a2294480975500a9f95c0ad6da6da65104bb498d118d00d26c9d3b13180d1a99",
+        "assessment": "Allow bounded first-visit decorative regions,then take the frame snapshot before asserting allocation-free repeat editor/scroll operations. Original native scroll composition,selection/editor/currency/action behavior checks remain."
+      },
+      "tests/commerce_redundant_work.lua": {
+        "beforeSHA256": "a91c1bbbb6e82d04ff22617d76e4cf46d2f56c7942e6e5b318eb631fba7447eb",
+        "currentSHA256": "b9511fef47d183687691e9c618e3c61df1ed6548c15d20f4001ceda6f6b59637",
+        "assessment": "Exact full-list paint counts become ceilings plus positive visible native paints and zero broad text/texture getter guards. Opaque values must forward for every currently painted row. The getter-only pcall-depth assertion becomes forwarded setter value before reentry plus exact raw error propagation after PaintCell cleanup. This preserves repair/error guarantees under the approved viewport model.",
+        "writer": "Not attributed by this review; reviewer did not edit this file during continuation. Filesystem LastWriteTimeUtc2026-11-14T11:42:54 is observation,not author evidence."
+      }
+    }
+  },
+  "desktopSizeHoverSummary": [
+    {
+      "legacy": "false",
+      "rows": 7,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 56.666666666666664,
+        "freshMicrosecondsMedian": 120.0,
+        "warm10KBMedian": 48.873,
+        "fresh10KBMedian": 135.436,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 66.66666666666667,
+        "freshMicrosecondsMedian": 120.0,
+        "warm10KBMedian": 64.085,
+        "fresh10KBMedian": 150.647,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 7,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 53.333333333333336,
+        "freshMicrosecondsMedian": 110.0,
+        "warm10KBMedian": 48.873,
+        "fresh10KBMedian": 135.436,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 66.66666666666667,
+        "freshMicrosecondsMedian": 120.0,
+        "warm10KBMedian": 64.085,
+        "fresh10KBMedian": 150.647,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 7,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 56.666666666666664,
+        "freshMicrosecondsMedian": 110.0,
+        "warm10KBMedian": 52.857,
+        "fresh10KBMedian": 139.42,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 73.33333333333333,
+        "freshMicrosecondsMedian": 140.0,
+        "warm10KBMedian": 68.069,
+        "fresh10KBMedian": 154.632,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 20,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 163.33333333333334,
+        "freshMicrosecondsMedian": 310.0,
+        "warm10KBMedian": 172.076,
+        "fresh10KBMedian": 450.592,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 193.33333333333334,
+        "freshMicrosecondsMedian": 350.0,
+        "warm10KBMedian": 216.041,
+        "fresh10KBMedian": 494.557,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 20,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 163.33333333333334,
+        "freshMicrosecondsMedian": 340.0,
+        "warm10KBMedian": 172.076,
+        "fresh10KBMedian": 450.592,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 196.66666666666666,
+        "freshMicrosecondsMedian": 360.0,
+        "warm10KBMedian": 216.041,
+        "fresh10KBMedian": 494.557,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 20,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 180.0,
+        "freshMicrosecondsMedian": 330.0,
+        "warm10KBMedian": 176.061,
+        "fresh10KBMedian": 454.576,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 190.0,
+        "freshMicrosecondsMedian": 350.0,
+        "warm10KBMedian": 220.025,
+        "fresh10KBMedian": 498.541,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 80,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 866.6666666666666,
+        "freshMicrosecondsMedian": 1540.0,
+        "warm10KBMedian": 848.951,
+        "fresh10KBMedian": 2104.342,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 623.3333333333334,
+        "freshMicrosecondsMedian": 1310.0,
+        "warm10KBMedian": 838.561,
+        "fresh10KBMedian": 2093.951,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 80,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 870.0,
+        "freshMicrosecondsMedian": 1570.0,
+        "warm10KBMedian": 848.951,
+        "fresh10KBMedian": 2104.342,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 643.3333333333334,
+        "freshMicrosecondsMedian": 1260.0,
+        "warm10KBMedian": 838.561,
+        "fresh10KBMedian": 2093.951,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 80,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 840.0,
+        "freshMicrosecondsMedian": 1630.0,
+        "warm10KBMedian": 852.936,
+        "fresh10KBMedian": 2108.326,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 560.0,
+        "freshMicrosecondsMedian": 1210.0,
+        "warm10KBMedian": 797.545,
+        "fresh10KBMedian": 2052.936,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 1000,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 27400.0,
+        "freshMicrosecondsMedian": 43800.0,
+        "warm10KBMedian": 14130.201,
+        "fresh10KBMedian": 32591.842,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 5733.333333333333,
+        "freshMicrosecondsMedian": 15600.0,
+        "warm10KBMedian": 10736.49,
+        "fresh10KBMedian": 29198.131,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 1000,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 34899.99999999999,
+        "freshMicrosecondsMedian": 45400.0,
+        "warm10KBMedian": 14130.201,
+        "fresh10KBMedian": 32591.842,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 5966.666666666667,
+        "freshMicrosecondsMedian": 15700.0,
+        "warm10KBMedian": 10736.49,
+        "fresh10KBMedian": 29198.131,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "false",
+      "rows": 1000,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 32333.333333333332,
+        "freshMicrosecondsMedian": 45200.0,
+        "warm10KBMedian": 14134.186,
+        "fresh10KBMedian": 32595.826,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 6733.333333333333,
+        "freshMicrosecondsMedian": 19100.0,
+        "warm10KBMedian": 10695.475,
+        "fresh10KBMedian": 29157.115,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 7,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 63.333333333333336,
+        "freshMicrosecondsMedian": 110.0,
+        "warm10KBMedian": 48.873,
+        "fresh10KBMedian": 135.436,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 83.33333333333333,
+        "freshMicrosecondsMedian": 180.0,
+        "warm10KBMedian": 64.085,
+        "fresh10KBMedian": 150.647,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 7,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 56.666666666666664,
+        "freshMicrosecondsMedian": 130.0,
+        "warm10KBMedian": 48.873,
+        "fresh10KBMedian": 135.436,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 83.33333333333333,
+        "freshMicrosecondsMedian": 180.0,
+        "warm10KBMedian": 64.085,
+        "fresh10KBMedian": 150.647,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 7,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 76.66666666666667,
+        "freshMicrosecondsMedian": 130.0,
+        "warm10KBMedian": 52.857,
+        "fresh10KBMedian": 139.42,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 100.0,
+        "freshMicrosecondsMedian": 160.0,
+        "warm10KBMedian": 68.069,
+        "fresh10KBMedian": 154.632,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 20,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 196.66666666666666,
+        "freshMicrosecondsMedian": 330.0,
+        "warm10KBMedian": 172.076,
+        "fresh10KBMedian": 450.592,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 236.66666666666666,
+        "freshMicrosecondsMedian": 390.0,
+        "warm10KBMedian": 216.041,
+        "fresh10KBMedian": 494.557,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 20,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 200.0,
+        "freshMicrosecondsMedian": 390.0,
+        "warm10KBMedian": 172.076,
+        "fresh10KBMedian": 450.592,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 203.33333333333334,
+        "freshMicrosecondsMedian": 420.0,
+        "warm10KBMedian": 216.041,
+        "fresh10KBMedian": 494.557,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 20,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 206.66666666666666,
+        "freshMicrosecondsMedian": 410.0,
+        "warm10KBMedian": 176.061,
+        "fresh10KBMedian": 454.576,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 236.66666666666666,
+        "freshMicrosecondsMedian": 420.0,
+        "warm10KBMedian": 220.025,
+        "fresh10KBMedian": 498.541,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 80,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 1056.6666666666667,
+        "freshMicrosecondsMedian": 1910.0,
+        "warm10KBMedian": 848.951,
+        "fresh10KBMedian": 2104.342,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 773.3333333333334,
+        "freshMicrosecondsMedian": 1510.0,
+        "warm10KBMedian": 838.561,
+        "fresh10KBMedian": 2093.951,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 80,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 1030.0,
+        "freshMicrosecondsMedian": 1880.0,
+        "warm10KBMedian": 848.951,
+        "fresh10KBMedian": 2104.342,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 746.6666666666666,
+        "freshMicrosecondsMedian": 1660.0,
+        "warm10KBMedian": 838.561,
+        "fresh10KBMedian": 2093.951,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 80,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 990.0,
+        "freshMicrosecondsMedian": 1970.0,
+        "warm10KBMedian": 852.936,
+        "fresh10KBMedian": 2108.326,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 763.3333333333334,
+        "freshMicrosecondsMedian": 1610.0,
+        "warm10KBMedian": 797.545,
+        "fresh10KBMedian": 2052.936,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 1000,
+      "hover": "none",
+      "before": {
+        "warmMicrosecondsMedian": 31366.666666666668,
+        "freshMicrosecondsMedian": 50200.0,
+        "warm10KBMedian": 14130.201,
+        "fresh10KBMedian": 32591.842,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 7800.0,
+        "freshMicrosecondsMedian": 20600.0,
+        "warm10KBMedian": 10736.49,
+        "fresh10KBMedian": 29198.131,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 1000,
+      "hover": "ordinary",
+      "before": {
+        "warmMicrosecondsMedian": 28633.333333333332,
+        "freshMicrosecondsMedian": 48000.0,
+        "warm10KBMedian": 14130.201,
+        "fresh10KBMedian": 32591.842,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 7233.333333333333,
+        "freshMicrosecondsMedian": 22200.0,
+        "warm10KBMedian": 10736.49,
+        "fresh10KBMedian": 29198.131,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    },
+    {
+      "legacy": "true",
+      "rows": 1000,
+      "hover": "proposal",
+      "before": {
+        "warmMicrosecondsMedian": 32566.666666666668,
+        "freshMicrosecondsMedian": 43800.0,
+        "warm10KBMedian": 14134.186,
+        "fresh10KBMedian": 32595.826,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      },
+      "candidate": {
+        "warmMicrosecondsMedian": 7800.0,
+        "freshMicrosecondsMedian": 20900.0,
+        "warm10KBMedian": 10695.475,
+        "fresh10KBMedian": 29157.115,
+        "fresh10NewCallbacks": [
+          0
+        ],
+        "fresh10Tooltip": [
+          0
+        ]
+      }
+    }
+  ],
+  "combinedIntegration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 379,
+    "scriptsFail": 0,
+    "syntaxFiles": 1067,
+    "syntaxFailures": 0,
+    "runtime": {
+      "lua.exe": "ed7edea70015f3f9474a29ed3154f9c867f22b44c91fd9b557aadee8c7dc76c7",
+      "luac.exe": "af668f47ca5e6ee3ede34442d28443d472ec34ebe7fcfd71e556ce13d7edaadc"
+    },
+    "scope": "Current continuation whole desktop suite, normalized Lua hashes stable through run. Native FPS, secure VM, pixels and controller acceptance remain separate."
+  },
+  "nativeAcceptance": "NOT RUN for this new source set; no FPS, pixels, controller or taint inference.",
+  "combinedEvidence": "docs/validation/lag-hotspots-continuation-2026-11-14.json"
+}

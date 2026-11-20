@@ -1,0 +1,252 @@
+{
+  "changeId": "LHO-PROF-ALIAS-REMOVAL-20261115",
+  "capturedUtc": "2026-11-15T21:41:56.446924+00:00",
+  "goalStatus": "ACTIVE",
+  "state": "APPLIED_ON_DISK_NATIVE_ADOPTION_AND_WORKFLOWS_PENDING",
+  "application": {
+    "utc": "2026-11-15T21:26:58.107330+00:00",
+    "scope": [
+      "Inventory/Professions.lua",
+      "tests/profession_alias_event_work.lua"
+    ],
+    "baselineOwnerSHA256": "748cff40f06cb32b1b6749fe6a0df28ca0faab1dd12e1e55b2b881d1a12086d6",
+    "appliedOwnerSHA256": "e096bf70136140f59b67c7d92fb23d849a8d37fa8c2a7034f76758997e08991b",
+    "durableSHA256": "04f156c4fe63aaa2b38f55294f82e71a15b75bab26ede2ca9a8fa189cc736f5b",
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\application.json",
+      "sha256": "eca356da0525eefd541018cecfb4f180eb400a6e16172cb8d5ba3054bd37aea6"
+    },
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "hooksPath": ".githooks"
+  },
+  "checkpoint": {
+    "utc": "2026-11-15T21:18:12Z",
+    "sourceHistoryFiles": 2911,
+    "settingsMetadataEntries": 125,
+    "privateSettingsValuesCopied": false,
+    "sourceAndArchiveHashesVerifiedByRoot": true,
+    "reference": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\integration-20261115T211752Z\\checkpoint"
+  },
+  "implementation": {
+    "summary": "Set an explicit false observation in the already-required private unlearned output map during first recipe pass; remove later per-false-ID membership rescan. No extra included=false hash storage.",
+    "nativeAPICallsPublicCallbacksAndCadenceRetained": true,
+    "savedLearnedAliasForeignLegacyRulesRetained": true,
+    "newTimersEventsHooksCachesOrSettings": false
+  },
+  "externalBeforeApply": {
+    "fullScriptsPass": 420,
+    "syntaxPass": 1109,
+    "sourceStable": true,
+    "fullGateSHA256": "a204d8430166d6ac4cc43dba64dcfeb7598b7db768163601aaaa25221cfb878a",
+    "pairedFunctionalChecksPerVariant": 2490,
+    "sameVMObservations": 72,
+    "sameVMFieldChecks": 720,
+    "durableChecks": 31,
+    "durableFirstIpairsYields": 2346,
+    "durableRepeatIpairsYields": 2346,
+    "baselineDurableWorkBudgetRejected": true,
+    "harmfulControlsRejected": 2,
+    "stockLua51QuietSmoke": [
+      8,
+      64
+    ],
+    "stockLua51SacrificialCountProfilesChecks": [
+      5,
+      60
+    ],
+    "clientScope": [
+      "Retail model",
+      "Forever model",
+      "MoP model",
+      "Era model",
+      "Anniversary model"
+    ]
+  },
+  "postApplyBeforeTheseDocs": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\post-apply-20261115T213010Z\\report.json",
+      "sha256": "0aac246740c9679f8671c4efd67ca33f19c49f1d041bab4cf5bf8d5a952c29fe"
+    },
+    "seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\post-apply-20261115T213010Z\\seal.json",
+      "sha256": "b8d2b12245c9668c0d6ff758468b1597d946316557105bfe69b9c25dec164648"
+    },
+    "actualAllRawFiles": 2912,
+    "actualNormalizedLuaFiles": 1109,
+    "projectionExactBeforeAfter": true,
+    "focusedDefaultCWDTests": 4,
+    "focusedChecks": 2040,
+    "sourceDefaultOverrides": false,
+    "referenceIOInjected": false,
+    "ownedSyntaxFilesEach51And54": 2,
+    "readOnlyInstallIdentityMatches": 10,
+    "readOnlyInstallIdentityFiles": 10,
+    "manualInstallCopies": 0,
+    "fullSuiteRepeated": false,
+    "generatedVerificationWritten": false,
+    "scope": "Whole-tree projection proof precedes this continuity-only update; source/durable identities retained. Disk identity is not loaded client adoption."
+  },
+  "costR2": {
+    "raw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\cost-plan-r1\\single-batch\\raw.json",
+      "sha256": "7e06300b87eb91c610e30ac352980957bce6c12db2d7fa6f9ce9650bef316687"
+    },
+    "analysis": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\cost-plan-r1\\analysis.json",
+      "sha256": "f5bfaf753578b31e6678ab2e439c872e0d2a96b1a44e58ee56548a94deeaabe8"
+    },
+    "seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\cost-plan-r1\\seal.json",
+      "sha256": "0bac5452c814711d2af1b15d8d319f59e021284cf67f0329a20065e9d1a03fa7"
+    },
+    "independentNumeric": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r2\\cost-plan-r1\\independent-numeric-review\\review.json",
+      "sha256": "47c6888e461440e6b06048749ec4dd12e8781b5d07927cd8b59a125bd451d17b"
+    },
+    "runtime": "StockLua5.1.5;modeled APIs/widgets/no-op Inv.Notify",
+    "CPUChildren": 30,
+    "separateGCChildren": 2,
+    "reruns": 0,
+    "CPUQuantizationMs": 15.625,
+    "wholeChildIncludesBootWarmPoolGCPostValidation": true,
+    "FIRSTIndependentOwners": 64,
+    "sameFixedMatrixAsR1": true,
+    "CPUFirstMedianChangePercent": -28.6666666666667,
+    "CPURepeatMedianChangePercent": -65.2421652421652,
+    "CPUM0MedianChangePercent": 0,
+    "M0CPUPairs": "two ties;one candidate faster",
+    "noOwnedCPUPercent": 2.27272727272727,
+    "noOwnedWallPercent": 3.3355243445459593,
+    "noOwnedPairs": "CPU two slower/one tie;wall all3slower",
+    "noOwnedScope": "Factory performs ownedM0 warm before hidden flag; whole-child result cannot isolate branch cause",
+    "repeatCandidatePair2CPUms": 2375,
+    "all5GCRawN4N8EqualBothTrials": true,
+    "GCSlopesBytesPerEvent": {
+      "M0": 338248,
+      "noOwnedM1000": 607584,
+      "firstM1000": 1077752,
+      "repeatM1000": 1200632,
+      "allCachedRemoved": 59768
+    },
+    "nativeAllocationCPUFPSAcceptance": false
+  },
+  "supersededR1": {
+    "state": "EXTERNAL_UNAPPLIED_SUPERSEDED;allraw immutable",
+    "ownerSHA256": "e19b623a5a217e5d81a381a7b073a3a9ed5f66f4afa6f472d109459b109bc52c",
+    "raw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r1\\cost-plan-r1\\single-batch\\raw.json",
+      "sha256": "0363c827cbbb298dbee958689026156fbb6a674bca841253b5bad3795a6833c3"
+    },
+    "seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-alias-witness-r1\\cost-plan-r1\\seal.json",
+      "sha256": "ee874ad00260ffda02948f49e631b6ee697f2296742ba157463fda20aed4ce75"
+    },
+    "CPUFirstPercent": -25.4901960784314,
+    "CPURepeatPercent": -63.2835820895522,
+    "noOwnedCPUPercent": 4.34782608695652,
+    "noOwnedWallPercent": 3.929277950255905,
+    "allCachedRemovedGrowthBytes": {
+      "baseline": 59768,
+      "R1": 64888,
+      "extra": 5120
+    },
+    "R1VsR2MatchedCPUClaim": false
+  },
+  "nativeContinuation": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\profession-event-observer-p50\\native-partial-20261115.json",
+      "sha256": "1cda4d97035e6dc2b87fafb9f35889e75337c15c03d75b63f0158c277a8379a5"
+    },
+    "setupStepsExecuted": [
+      1,
+      2,
+      3
+    ],
+    "armExecuted": false,
+    "methodWrapped": false,
+    "timingWindow": false,
+    "oldP47AbsentVerified": true,
+    "P50ExpiryOrAbsenceVerified": false,
+    "laterClearAttempt": {
+      "label": "p50zclear",
+      "queuedCharacters": 0,
+      "queryPerformed": false,
+      "stop": "foreground input guard"
+    },
+    "rootLastReportedFiles": {
+      "inputLock": "absent",
+      "noJump": "absent",
+      "craftHold": "present"
+    },
+    "rootLastReportedJumper": {
+      "variant": "R4c",
+      "pid": 33168,
+      "state": "last alive; no movement verified"
+    },
+    "latestReadOnlyClientSnapshot": {
+      "capture": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume2138-capture.json",
+        "sha256": "4662c2355c6ff5ccbea74419db5f8b6acfde5bf6d6e30751b606ee9820fbb922"
+      },
+      "scene": "Character selection; Enter World available",
+      "inputSent": false,
+      "enteredWorldVerified": false,
+      "priorStageCleanupVerified": false
+    },
+    "noReplayOrTagReuse": true,
+    "nativeAdoptionOrGainEstablished": false
+  },
+  "nativeAfterCode": {
+    "performedByThisTask": false,
+    "loadedSourceAdoptionVerified": false,
+    "FPSOrWorstFrameGainEstablished": false,
+    "allWorkflowAcceptance": false,
+    "allFiveClientNativeAcceptance": false,
+    "providerOnOffCombinationNativeAcceptance": false
+  },
+  "remaining": {
+    "fullLagGoal": "ACTIVE",
+    "priority": "Inventory and related EBS individual-event/burst/worst-frame attribution; vendor/AH/pending/craft/bank/mail/loot/receive and provider combinations remain",
+    "P50ExpiryAndRootAbsence": "R52N1 at21:55UTC verifies both old roots ABSENT; prior exact expiry/delivery timing remains unverified; no replay",
+    "Craft4b17fbc5": "external/unapplied",
+    "guildBankAndVoidCallbacks": "outofscope per repository rules"
+  },
+  "prohibitedActionsPerformed": {
+    "nativeInputByDocsTask": false,
+    "providerOrSettingsWrites": false,
+    "manualSync": false,
+    "generatedVerificationOrDocsGateRegeneration": false,
+    "commitOrPublication": false
+  },
+  "nativeReadinessR52N1": {
+    "utc": "2026-11-15T21:55:17.056833+00:00",
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-readiness-r52n1-fixed\\native-result.json",
+      "sha256": "b41c0b8f1287fa3f3828cf985f1d50258e3a641290d0b15a6069a6cd9395f476"
+    },
+    "marker": "R52N1",
+    "worldEntryVerified": true,
+    "version": "1.60.1",
+    "build": "70938",
+    "interface": 16001,
+    "scriptProfile": "0",
+    "source": "syndicator",
+    "ready": true,
+    "oldP47Absent": true,
+    "oldP50Absent": true,
+    "priorP50PartialHistoryRetained": true,
+    "priorStagingExpiryDeliveryTimeVerified": false,
+    "businessHandlerCalled": false,
+    "loadedSourceByteIdentityVerified": false,
+    "FPSOrWorkflowAcceptance": false,
+    "rootReportedState": {
+      "ownNoJumpTokenRemoved": true,
+      "inputLock": "absent",
+      "craftHold": "preserved",
+      "inputHalted": "preserved"
+    },
+    "fullLagGoal": "ACTIVE",
+    "P52BaselineAndExternalCandidate": "pending"
+  }
+}

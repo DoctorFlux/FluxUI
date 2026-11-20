@@ -30,6 +30,10 @@ local function scenario(branch)
         function w:IsShown() return self.shown end
         function w:ClearAllPoints() self.point = nil end
         function w:SetPoint(...) self.point = { ... }; calls.anchors = calls.anchors + 1 end
+        function w:GetNumPoints() return self.point and 1 or 0 end
+        function w:GetPoint(index)
+            if index == 1 and self.point then return table.unpack(self.point) end
+        end
         function w:SetSize(x, y) self.width, self.height = x, y end
         function w:GetWidth() return self.width end
         function w:SetFont(...) self.font = { ... } end

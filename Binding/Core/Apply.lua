@@ -911,6 +911,10 @@ local function BuildBadges(slot, native, chordNk, bucketBindings, clauses, token
                     key = uid,
                     macrotext = reverse,
                     hoverMacrotext = hoverReverse,
+                    -- Reverse text is a display complement: its swapped token
+                    -- must not inherit the other action's targeting clauses.
+                    rangeClauses = clauses,
+                    rangeHoverClauses = hoverClauses,
                     conditionalMacro = hasOwnerClause,
                     forms = formsActive,
                     spellId = peerSpellId,
@@ -2639,6 +2643,15 @@ end
 
 function FluxBinding.NormalizeChord(chord)
     return ChordMap.Normalize(chord)
+end
+
+--- The committed world owner for a free chord, shared with UF passthrough.
+--- Return values only; callers must not mutate the apply owner's state.
+function FluxBinding.GetWorldChordTarget(chord)
+    local info = appliedFree[ChordMap.Normalize(chord)]
+    if info and info.text then
+        return info.btnName, "LeftButton"
+    end
 end
 
 function FluxBinding.FindColumnForChord(chord)

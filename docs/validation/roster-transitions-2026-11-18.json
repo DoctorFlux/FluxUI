@@ -1,0 +1,2386 @@
+{
+  "changeId": "ROSTER-TRANSITIONS-R70-20261118",
+  "atUTC": "2026-11-18T13:19:02.412558+00:00",
+  "status": "R70 direct Lua follow-up implemented; user away/no questions or native test requests; native party/raid hitch and taint acceptance OPEN",
+  "userRequest": "R69 still hitches; inspect and optimize every party/raid join/leave path found; rework where useful; do not ask questions while user is away",
+  "before": {
+    "Core/BorderJunctions.lua": "8ada3aa14fb8f66e0e6307c45dce9128a574c3d1fa7edaa9b8b39d796af901cd",
+    "Core/Engine/Events.lua": "7e153fb502f826e5811fec0d4eefee6aa569a2a6289cb322b04e974e2d11faa2",
+    "Core/Engine/MouseoverCast.lua": "7fd837f0f39a34f880ddd409f7f06dfb38a266ad8b78e822ad378a9856a31306",
+    "Core/Engine/Range.lua": "edf031b1e838f42d51c2518311217c5e5a6173bb31fc745dba97f11d3a1ea971",
+    "Core/FluxAPI/Actions.lua": "e08ef87f80a997052a0735adcf045a0bc3b2d230d8896df5e760109830d68948",
+    "Core/FluxAPI/UI.lua": "50208e798ab6039ec9a3f3c6a4f199cba585b8f5c91f762e7b786de0b3368b34",
+    "UnitFrames/FluxCastBarThemes.lua": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+    "UnitFrames/FluxClassPower.lua": "dfd00625eea83257b4d8cf43df01768bae4940636d2cfa9ece004d4b5acdb60c",
+    "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua": "e0ddf47835df81ef2cce6791175cc977080cc25a7c06365d44891bed2436b6a9",
+    "RaidFrame/FluxRaidFrame.lua": "d53d6473d4ee6ce1e5207b3bed3fdfdcb2b93700d773c482824b556c1c6c1532",
+    "RaidFrame/FluxRaidSecure.lua": "9dc1fdb075b8a77f27f597d3d3356257ee6379027f8247fd72c610832720dad7",
+    "RaidFrame/FluxRaidUnit.lua": "6d208e523d1e28d1d63276d3f7bcea94d583ab4af0f24d9979772a08049b2124",
+    "Bars/SpellRank.lua": "cfc560a52257a15cd41911988a73f852e54d2d0feff08567926c67aa8d1fb88e",
+    "Bars/Stance/Watch.lua": "dd6405f6475ce5a0f9591a3737596fbc3696c9b553925bbbcd91fa85aad1eeec",
+    "Binding/Core/Conditions.lua": "6403b5c3e587b542b40b69a11ac57b859a22d0180a3b65e33fd2ee3c258cc661",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "Inventory/FluxEquipSlotCandidates.lua": "ec103630cfe1cbfa5f11105b5799ec3108f0ef3e0028431e244aaac604098698",
+    "Other/FluxCooldownDefaults.lua": "d2c449ddde42935b169eb87670801664758f2161ca8e60b1d20f20fb3b9841cd",
+    "Respec/FluxRespec_Core.lua": "70a8a8eb1ff6e7967d0efb0bf13bd873f1ec0d986eeb1ba1ba7dbf5560b9f32e",
+    "Respec/FluxRespec_UI.lua": "ed4261f9369602d470b958e4eb04f0b643410afc967621431c87510bf2f0b00e",
+    "Salvage/FluxSalvage.lua": "0a68fd5448a07c763fb2e2a76571f78797b4a26e539eaae2c3141f09d2ad7c7c"
+  },
+  "after": {
+    "Core/BorderJunctions.lua": {
+      "raw": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550",
+      "lf": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550"
+    },
+    "Core/Engine/Events.lua": {
+      "raw": "b1513647d5d43875c3bef19a8e8f4a3848745c331f487a798c196f3e93a6f25c",
+      "lf": "b1513647d5d43875c3bef19a8e8f4a3848745c331f487a798c196f3e93a6f25c"
+    },
+    "Core/Engine/MouseoverCast.lua": {
+      "raw": "f9bde360ac51f1a69e2f8e2332d3adba2f3be18c1795fda2a4c32c93fdfbc0b6",
+      "lf": "f9bde360ac51f1a69e2f8e2332d3adba2f3be18c1795fda2a4c32c93fdfbc0b6"
+    },
+    "Core/Engine/Range.lua": {
+      "raw": "5a7724f0b6302e4529635c960686c0cc9971709fccc3e0b17fb9f2278d188014",
+      "lf": "5a7724f0b6302e4529635c960686c0cc9971709fccc3e0b17fb9f2278d188014"
+    },
+    "Core/FluxAPI/Actions.lua": {
+      "raw": "2ebeaa115b467514cacd50609d3c93a8e6bd07ff75c5bc62d196bc63b6dc09b6",
+      "lf": "2ebeaa115b467514cacd50609d3c93a8e6bd07ff75c5bc62d196bc63b6dc09b6"
+    },
+    "Core/FluxAPI/UI.lua": {
+      "raw": "7fdd27bb6b7fa80eb058fa47c598a8061e7e2fef73911bbc0d6b27b4703384a8",
+      "lf": "d6992e055490c04b56847ea686774a50a99458d9b8edfe43d5807097df8b6e67"
+    },
+    "UnitFrames/FluxCastBarThemes.lua": {
+      "raw": "383c285b5db5606b09e476be75ffa0a13969903ebe6d6ed6ac6c87b4e3b9e47d",
+      "lf": "383c285b5db5606b09e476be75ffa0a13969903ebe6d6ed6ac6c87b4e3b9e47d"
+    },
+    "UnitFrames/FluxClassPower.lua": {
+      "raw": "d3f45505124c45ba8b370214e04ea1dcd6b0755a1436545fd9cdc4ccf2d052cf",
+      "lf": "d3f45505124c45ba8b370214e04ea1dcd6b0755a1436545fd9cdc4ccf2d052cf"
+    },
+    "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua": {
+      "raw": "a266a17515d443f197395f6877987399d2a4c34cf0b601652849374b7a61e14f",
+      "lf": "a266a17515d443f197395f6877987399d2a4c34cf0b601652849374b7a61e14f"
+    },
+    "RaidFrame/FluxRaidFrame.lua": {
+      "raw": "f87c3afc4f1873eebb89a243cebb887ed98b333cd10cfe7752b8efec7361fb4c",
+      "lf": "f87c3afc4f1873eebb89a243cebb887ed98b333cd10cfe7752b8efec7361fb4c"
+    },
+    "RaidFrame/FluxRaidSecure.lua": {
+      "raw": "f0b7f21ba212ffbe9cf071e91abc433023cfa4e52b2812fd385e5c3d31b5e1fb",
+      "lf": "f0b7f21ba212ffbe9cf071e91abc433023cfa4e52b2812fd385e5c3d31b5e1fb"
+    },
+    "RaidFrame/FluxRaidUnit.lua": {
+      "raw": "b5502f70412be607a2dfe28e905cad45d169fa4ce043f7e75794e70bfd37e39b",
+      "lf": "b5502f70412be607a2dfe28e905cad45d169fa4ce043f7e75794e70bfd37e39b"
+    },
+    "Bars/SpellRank.lua": {
+      "raw": "ba4de45e63d4bc6fd3aec2f459b9fbc8aaf53fd735300022ff623525601ae46a",
+      "lf": "ba4de45e63d4bc6fd3aec2f459b9fbc8aaf53fd735300022ff623525601ae46a"
+    },
+    "Bars/Stance/Watch.lua": {
+      "raw": "3840bc78ae872e7d5bf66324e61b3f3d9e88f7675c0cfd8b8744f4b34bcd72ab",
+      "lf": "3840bc78ae872e7d5bf66324e61b3f3d9e88f7675c0cfd8b8744f4b34bcd72ab"
+    },
+    "Binding/Core/Conditions.lua": {
+      "raw": "a993d66653ea62a4f486c961a6ee89c6a6098d791320033f9f3b4bc3d9472f00",
+      "lf": "a993d66653ea62a4f486c961a6ee89c6a6098d791320033f9f3b4bc3d9472f00"
+    },
+    "ExtraButtonSystem/Engine/Watch.lua": {
+      "raw": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+      "lf": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a"
+    },
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": {
+      "raw": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+      "lf": "2006132c5ef907d8b61e5b06cf45a3c70aed3508d3419abd30c08bd4a90b01d9"
+    },
+    "Inventory/FluxEquipSlotCandidates.lua": {
+      "raw": "8dbf02435fd629bc3d1bbe7c8bf4d952cc7e698242849c84ade9367282807cd5",
+      "lf": "8dbf02435fd629bc3d1bbe7c8bf4d952cc7e698242849c84ade9367282807cd5"
+    },
+    "Other/FluxCooldownDefaults.lua": {
+      "raw": "58f46b89ae9f43088b5cf8b5205e0e944d177103a6f09b08f0bb30a74addd2ab",
+      "lf": "58f46b89ae9f43088b5cf8b5205e0e944d177103a6f09b08f0bb30a74addd2ab"
+    },
+    "Respec/FluxRespec_Core.lua": {
+      "raw": "edac21aae1714784017e7c147d3f1d100b8273432d3346c63f074481958fc847",
+      "lf": "edac21aae1714784017e7c147d3f1d100b8273432d3346c63f074481958fc847"
+    },
+    "Respec/FluxRespec_UI.lua": {
+      "raw": "d43d5a06f199316a4d8eea02a13c6fdf935460069d095806503c18f3a3b80505",
+      "lf": "d43d5a06f199316a4d8eea02a13c6fdf935460069d095806503c18f3a3b80505"
+    },
+    "Salvage/FluxSalvage.lua": {
+      "raw": "d67104c20c6913b59c83c9842cea646bf9681ffa673898b940953472b149fd48",
+      "lf": "d67104c20c6913b59c83c9842cea646bf9681ffa673898b940953472b149fd48"
+    }
+  },
+  "tests": {
+    "tests/border_authored_unit_layout.lua": "446505d0ad32eee73859dd7faf96bc04a3f0e8815689e5389db9f3de5db385b7",
+    "tests/roster_player_specialization.lua": "f5fac03b455e7875322bc94f4df8ae4fc1ce51eed489020a6b1199688c44a698",
+    "tests/raid_roster_attribute_work.lua": "8a82946f7a6521755014ac47cd47020920875fc8b18d07b3489e6c505a411429",
+    "tests/raid_spell_refresh_work.lua": "ef09b9d24d1db08be7428ced199a6726473eae6bbd0f7411d53a9ad6283e53f0",
+    "tests/border_regional_draw_work.lua": "6f9c2589487c9d59b6cc74ddf1116722e9b771cd1e556b506df702099ab96c17",
+    "Bars/_tmp_barsmoke.lua": "739b2634dc25a14aba08831968b600777f6050b366402305240220211e519bbb"
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-transition-before-20261118T123108Z\\source.zip",
+    "sha256": "c232a184c63f847d280ad092f441d6d26db1de707907185608b28f62dd450b37",
+    "files": 271,
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "additionalArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-transition-spec-before-20261118.zip",
+    "additionalSHA256": "7fc605e0619640780e0e0269e6d8774fb84fa7e461cbf56adeada7ae0ec6a0eb",
+    "consumerArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-transition-consumers-before-20261118.zip",
+    "consumerSHA256": "8a2d869abc4ec8456b86e6ceb71e6b8506b151523d4d8c0475edb0d93b398064"
+  },
+  "settings": "Six available on-disk metadata records retained externally only; no private settings contents copied, edited or placed in addon",
+  "implementation": [
+    "Observe only addon-owned unit roots with recorded public dimensions using current public intrinsic size/anchors/scale/parent/layer; unstable computed rectangle availability is not layout. Foreign/missing/private inputs retain previous guarded native path; dependency/point/size edits still refresh geometry.",
+    "Use existing guarded Draw reuse in regional contexts with each cell previous epoch and actual clipped draw rectangle. Retained/updated cells share original global cache limits. Empty/cold/failed contexts clear records; current paint/source/parent/visibility guards and atomic rollback remain.",
+    "Shared IsPlayerUnitEvent conservatively ignores only UnitIsUnit-confirmed foreign public units. Own aliases, absent/unknown/private identity and absent helper/API preserve refresh.17player-only consumers no longer react to other member specialization notifications. Per-unit class/spec/aura consumers unchanged.",
+    "SPELLS_CHANGED updates raid aura/dispel/BigDebuffs via existing coalesced unit paint; no saved geometry/header reinstallation. HoT/class-buff consumers retain their own spell notifications.",
+    "Native secure roster executes on every reconciliation and frame-reference recovery stays.Only unchanged public layout/snippet attributes skip SetAttribute; changed/private/tampered values restore normally; combat guard unchanged."
+  ],
+  "scope": {
+    "runtimeFiles": 22,
+    "signalFiles": 40,
+    "playerOnlyConsumers": 17,
+    "newEvents": 0,
+    "newTimers": 0,
+    "newCommands": 0,
+    "newSavedVariables": 0,
+    "protectedInputRoutingChanges": 0,
+    "identityCaches": 0,
+    "guildBankVoidStorage": "untouched",
+    "controller": "Decorative/backend only;focus/input routes unchanged;native controller verification not performed"
+  },
+  "focused": {
+    "count": 179,
+    "failed": [],
+    "stable": true,
+    "runtimePins": {
+      "Core/BorderJunctions.lua": "d4d77fe8a34702b10bf60a18ab0a4f2010f4bd55d5c17c3c1e7fa46cfe48b550",
+      "Core/Engine/Events.lua": "b1513647d5d43875c3bef19a8e8f4a3848745c331f487a798c196f3e93a6f25c",
+      "Core/Engine/MouseoverCast.lua": "f9bde360ac51f1a69e2f8e2332d3adba2f3be18c1795fda2a4c32c93fdfbc0b6",
+      "Core/Engine/Range.lua": "5a7724f0b6302e4529635c960686c0cc9971709fccc3e0b17fb9f2278d188014",
+      "Core/FluxAPI/Actions.lua": "2ebeaa115b467514cacd50609d3c93a8e6bd07ff75c5bc62d196bc63b6dc09b6",
+      "Core/FluxAPI/UI.lua": "7fdd27bb6b7fa80eb058fa47c598a8061e7e2fef73911bbc0d6b27b4703384a8",
+      "UnitFrames/FluxCastBarThemes.lua": "383c285b5db5606b09e476be75ffa0a13969903ebe6d6ed6ac6c87b4e3b9e47d",
+      "UnitFrames/FluxClassPower.lua": "d3f45505124c45ba8b370214e04ea1dcd6b0755a1436545fd9cdc4ccf2d052cf",
+      "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua": "a266a17515d443f197395f6877987399d2a4c34cf0b601652849374b7a61e14f",
+      "RaidFrame/FluxRaidFrame.lua": "f87c3afc4f1873eebb89a243cebb887ed98b333cd10cfe7752b8efec7361fb4c",
+      "RaidFrame/FluxRaidSecure.lua": "f0b7f21ba212ffbe9cf071e91abc433023cfa4e52b2812fd385e5c3d31b5e1fb",
+      "RaidFrame/FluxRaidUnit.lua": "b5502f70412be607a2dfe28e905cad45d169fa4ce043f7e75794e70bfd37e39b",
+      "Bars/SpellRank.lua": "ba4de45e63d4bc6fd3aec2f459b9fbc8aaf53fd735300022ff623525601ae46a",
+      "Bars/Stance/Watch.lua": "3840bc78ae872e7d5bf66324e61b3f3d9e88f7675c0cfd8b8744f4b34bcd72ab",
+      "Binding/Core/Conditions.lua": "a993d66653ea62a4f486c961a6ee89c6a6098d791320033f9f3b4bc3d9472f00",
+      "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+      "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+      "Inventory/FluxEquipSlotCandidates.lua": "8dbf02435fd629bc3d1bbe7c8bf4d952cc7e698242849c84ade9367282807cd5",
+      "Other/FluxCooldownDefaults.lua": "58f46b89ae9f43088b5cf8b5205e0e944d177103a6f09b08f0bb30a74addd2ab",
+      "Respec/FluxRespec_Core.lua": "edac21aae1714784017e7c147d3f1d100b8273432d3346c63f074481958fc847",
+      "Respec/FluxRespec_UI.lua": "d43d5a06f199316a4d8eea02a13c6fdf935460069d095806503c18f3a3b80505",
+      "Salvage/FluxSalvage.lua": "d67104c20c6913b59c83c9842cea646bf9681ffa673898b940953472b149fd48"
+    },
+    "results": [
+      {
+        "path": "tests/border_aura_crest.lua",
+        "exitCode": 0,
+        "seconds": 0.15,
+        "output": "Aura crest: 1216 checks PASS; exact native rectangles; both styles/four scales/registration orders; continuous crest; one source per sample; bounded stem; static reuse; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_aura_sampling.lua",
+        "exitCode": 0,
+        "seconds": 0.161,
+        "output": "Aura UV sampling: 880 checks PASS; real canonical UVs/native rectangles; paths and negative client IDs; both styles/scales; nonsingular endpoint fields; static reuse; native GPU acceptance pending\n"
+      },
+      {
+        "path": "tests/border_branch_compile_cache.lua",
+        "exitCode": 0,
+        "seconds": 1.032,
+        "output": "BRANCH_COMPILE_WORK|1|56|54|2|56|0\nBRANCH_COMPILE_WORK|2|56|54|2|56|0\nBorder branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_branch_coverage.lua",
+        "exitCode": 0,
+        "seconds": 0.25,
+        "output": "Branch coverage: 504 checks PASS; short/long shared owners; T/X; both axes/styles/scales; no missing or doubled source fields; static recolor; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_canvas_layers.lua",
+        "exitCode": 0,
+        "seconds": 0.119,
+        "output": "Border canvas layers: 780 checks PASS; shared source with multiple peer strata/levels/orders; retained source visibility; no later canvas demotion; both styles/scales; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_cap_junctions.lua",
+        "exitCode": 0,
+        "seconds": 0.743,
+        "output": "Cap-safe junctions: 18804 checks PASS; real compact outline/divider rendering; both styles and fractional scales; preserved outer shapes; no stacked cap/mesh area; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_clip_work.lua",
+        "exitCode": 0,
+        "seconds": 0.033,
+        "output": "Border clip work: 441 checks PASS; distantCapCalls=0 distantCapBuilds=0 geometry=2111483736\n"
+      },
+      {
+        "path": "tests/border_combat_transitions.lua",
+        "exitCode": 0,
+        "seconds": 0.033,
+        "output": "Border combat transitions: 20 checks PASS; actual clean10exits0reads/solves/full requests/resources; pending native geometry/material/UV/style retained once; unchanged dirty preflight; coalesced wakes; no native FPS/taint claim\n"
+      },
+      {
+        "path": "tests/border_cost_reasons.lua",
+        "exitCode": 0,
+        "seconds": 0.065,
+        "output": "Border cost reasons: 342 checks PASS; actual watched preflight reasons/counts, unchanged rows, native getter parity, private retirement/recovery and bounded output; native timings unmeasured\n"
+      },
+      {
+        "path": "tests/border_draw_reuse.lua",
+        "exitCode": 0,
+        "seconds": 1.675,
+        "output": "DRAW_REUSE_WORK style=1 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=334513276 beforeMesh=215315591\nDRAW_REUSE_WORK style=2 fields=1354 warmCalls=726 warmHits=726 warmReuses=56 moveCalls=1128 moveReuses=54 moveMisses=2 claimed=1188 mesh=822842411 beforeMesh=997882298\nborder draw reuse: 15016 checks passed\n"
+      },
+      {
+        "path": "tests/border_dropdown.lua",
+        "exitCode": 0,
+        "seconds": 0.009,
+        "output": "Border dropdown: 6 checks PASS; native font/render/controller acceptance pending\n"
+      },
+      {
+        "path": "tests/border_dynamic_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.475,
+        "output": "Dynamic border layouts: 402 checks PASS; both styles; six HUD families; preexisting/all-point/named anchors; new/hidden pieces; actual action-strip completion; no-op work; combat deferral; cycle/private guards. Native pixels/input/FPS pending\n"
+      },
+      {
+        "path": "tests/border_fallback_array_guards.lua",
+        "exitCode": 0,
+        "seconds": 1.3,
+        "output": "FALLBACK_ARRAY_WORK style=1 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=1 junctions=56 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=24 calls=0 validations=0 warmFingerprints=0\nFALLBACK_ARRAY_WORK style=2 junctions=56 calls=0 validations=0 warmFingerprints=0\nBorder fallback array guards: 42508 checks PASS; public-only immutable snapshots; plan-only positive/negative pairs; direct mutations; private/current recovery; exact legacy fingerprints\n"
+      },
+      {
+        "path": "tests/border_fallback_compile_cache.lua",
+        "exitCode": 0,
+        "seconds": 0.402,
+        "output": "FALLBACK_COMPILE_WORK|1|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nFALLBACK_COMPILE_WORK|2|cold=768/576|warm=0/0|move=32/24|hits=184|misses=8\nBorder fallback compile cache: 1226 checks PASS; numeric parity/current paint/blockers; source validity; merge isolation; committed-only bounded generations; native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_fallback_opacity.lua",
+        "exitCode": 0,
+        "seconds": 0.324,
+        "output": "FALLBACK_OPACITY_WORK style=1 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=419162723\nFALLBACK_OPACITY_WORK style=2 aliases=192 alphaWrites=0 revivals=0 parents=112 owners=14 totalAlphaWrites=0 mesh=361236605\nborder fallback opacity: 4634 checks passed\n"
+      },
+      {
+        "path": "tests/border_fallback_plan_cache.lua",
+        "exitCode": 0,
+        "seconds": 8.003,
+        "output": "LOCAL_PLAN style=1 nodes=24 case=cold fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=1 nodes=24 case=warm fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=one-split fields=626 baselineFallbacks=192 candidateFallbacks=8 baseGuards=192 candidateGuards=8 merges=96/73 sourceReads=26/26 subtracts=98/98 hits=23 misses=1\nLOCAL_PLAN style=1 nodes=24 case=warm-move fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=live-color fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=material fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=27/27 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=priority fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=1 nodes=24 case=uv fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=27/27 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=1 nodes=24 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/2 subtracts=1/1 hits=0 misses=0\nLOCAL_PLAN style=1 nodes=24 case=unmask fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=1 nodes=24 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/2 subtracts=1/1 hits=0 misses=0\nLOCAL_PLAN style=1 nodes=24 case=public-recovery fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=1 nodes=24 case=private-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=public-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=24 case=release-recovery fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=1 nodes=56 case=cold fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=1 nodes=56 case=warm fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=one-split fields=1493 baselineFallbacks=448 candidateFallbacks=8 baseGuards=448 candidateGuards=8 merges=128/73 sourceReads=72/72 subtracts=492/492 hits=55 misses=1\nLOCAL_PLAN style=1 nodes=56 case=warm-move fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=live-color fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=material fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=73/73 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=priority fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=1 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=492/492 hits=49 misses=7\nLOCAL_PLAN style=1 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=33/33 subtracts=71/71 hits=0 misses=0\nLOCAL_PLAN style=1 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=1 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=33/33 subtracts=71/71 hits=0 misses=0\nLOCAL_PLAN style=1 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=1 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=1 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=24 case=cold fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=2 nodes=24 case=warm fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=one-split fields=626 baselineFallbacks=192 candidateFallbacks=8 baseGuards=192 candidateGuards=8 merges=96/73 sourceReads=26/26 subtracts=98/98 hits=23 misses=1\nLOCAL_PLAN style=2 nodes=24 case=warm-move fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=live-color fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=material fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=27/27 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=priority fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=2 nodes=24 case=uv fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=27/27 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=2 nodes=24 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/2 subtracts=1/1 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=24 case=unmask fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=2 nodes=24 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=2/2 subtracts=1/1 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=24 case=public-recovery fields=626 baselineFallbacks=192 candidateFallbacks=192 baseGuards=192 candidateGuards=192 merges=1752/1752 sourceReads=26/26 subtracts=98/98 hits=0 misses=24\nLOCAL_PLAN style=2 nodes=24 case=private-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=public-alpha fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=24 case=release-recovery fields=626 baselineFallbacks=192 candidateFallbacks=0 baseGuards=192 candidateGuards=0 merges=24/0 sourceReads=26/26 subtracts=98/98 hits=24 misses=0\nLOCAL_PLAN style=2 nodes=56 case=cold fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=warm fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=one-split fields=1493 baselineFallbacks=448 candidateFallbacks=8 baseGuards=448 candidateGuards=8 merges=128/73 sourceReads=72/72 subtracts=492/492 hits=55 misses=1\nLOCAL_PLAN style=2 nodes=56 case=warm-move fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=live-color fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=material fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=73/73 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=priority fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=uv fields=1493 baselineFallbacks=448 candidateFallbacks=56 baseGuards=448 candidateGuards=56 merges=560/511 sourceReads=73/73 subtracts=492/492 hits=49 misses=7\nLOCAL_PLAN style=2 nodes=56 case=masked fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=31/31 subtracts=67/67 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=unmask fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-uv fields=0 baselineFallbacks=0 candidateFallbacks=0 baseGuards=0 candidateGuards=0 merges=0/0 sourceReads=31/31 subtracts=67/67 hits=0 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=448 baseGuards=448 candidateGuards=448 merges=4088/4088 sourceReads=72/72 subtracts=492/492 hits=0 misses=56\nLOCAL_PLAN style=2 nodes=56 case=private-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=public-alpha fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nLOCAL_PLAN style=2 nodes=56 case=release-recovery fields=1493 baselineFallbacks=448 candidateFallbacks=0 baseGuards=448 candidateGuards=0 merges=56/0 sourceReads=72/72 subtracts=492/492 hits=56 misses=0\nBorder fallback plan cache: 5992 checks PASS; current native geometry/source validation; immutable public plan metadata; current paint/priority/opaque alpha; release/rollback/budgets; native latency pending\n"
+      },
+      {
+        "path": "tests/border_geometry_phase.lua",
+        "exitCode": 0,
+        "seconds": 1.455,
+        "output": "PHASE_WORK|1|7374|485|160|640|4480\nPHASE_WORK|2|7374|485|160|640|4480\nBorder geometry phase: 38 checks PASS; exact native/hidden/private/missing/depth/budget/cycle contracts; alignment/exception/future-phase freshness; actual mesh parity and shared-anchor API work. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_hidden_anchors.lua",
+        "exitCode": 0,
+        "seconds": 0.356,
+        "output": "Hidden unit anchors: 6154 checks PASS; delayed native root/corner/edge rectangles AND origins; exact public anchor geometry; intrinsic sizes; both styles/five units/three scales; first/repeated visibility0reads/solves/resources; actual moves; private/cycle/budget guards; native acceptance pending\n"
+      },
+      {
+        "path": "tests/border_idle_trace.lua",
+        "exitCode": 0,
+        "seconds": 0.023,
+        "output": "Border idle trace: 11 checks PASS; finite same-interval producer/read evidence; registration/removal/settings/event causes; bounded records; no stale quiet-capture reasons or persistent timer\n"
+      },
+      {
+        "path": "tests/border_incremental_commit.lua",
+        "exitCode": 0,
+        "seconds": 0.615,
+        "output": "INCREMENTAL_WORK style=1 fields=913 beforeFields=912 writes=114 unrelated=0 allocations=1 mesh=387381709 beforeMesh=1734568480\nINCREMENTAL_WORK style=2 fields=913 beforeFields=912 writes=101 unrelated=0 allocations=1 mesh=673959543 beforeMesh=1972831681\nborder incremental commit: 1894 checks passed\n"
+      },
+      {
+        "path": "tests/border_junction_shadows.lua",
+        "exitCode": 0,
+        "seconds": 14.973,
+        "output": "border junction shadows: 486929 checks PASS; 56 scenes, 240576 source-footprint samples; actual factory/Core/TGA; native testing deferred\n"
+      },
+      {
+        "path": "tests/border_junctions.lua",
+        "exitCode": 0,
+        "seconds": 0.67,
+        "output": "Border junctions: 4841 checks PASS; bounded interval/bucket solver, mask-free disjoint fragments, live tint/alpha, two styles, shared panels and overlay/combat lifecycle. Native GPU/FPS/taint pending.\n"
+      },
+      {
+        "path": "tests/border_locality.lua",
+        "exitCode": 0,
+        "seconds": 7.338,
+        "output": "Regional render style=1 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=1 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=1 scale=1.25 retained=60 updated=4 rectReads=2/26\nRegional render style=2 scale=0.75 retained=34 updated=4 rectReads=2/26\nRegional render style=2 scale=1.00 retained=46 updated=4 rectReads=2/26\nRegional render style=2 scale=1.25 retained=60 updated=4 rectReads=2/26\nActual-source regional border checks: 144267 passed; native GPU/FPS/combat acceptance pending.\n"
+      },
+      {
+        "path": "tests/border_lua_upvalues.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "Border Lua upvalues: 129 functions PASS; maximum=51, conservative desktop limit60 including_ENV; native reload still required\n"
+      },
+      {
+        "path": "tests/border_native_alpha.lua",
+        "exitCode": 0,
+        "seconds": 0.103,
+        "output": "Native unit alpha: 640 checks PASS; initial private alpha; public recolor/opaque alpha; zero topology work/resources; native SetAlpha sink only; public RGB; combat paint; actual native taint/performance pending\n"
+      },
+      {
+        "path": "tests/border_native_unit_rgb.lua",
+        "exitCode": 0,
+        "seconds": 0.097,
+        "output": "Native unit RGB: 600 checks PASS; cold/warm, combat, fallbacks, real reflow, native-only opaque channels; no native taint/FPS claim\n"
+      },
+      {
+        "path": "tests/border_nearby_panels.lua",
+        "exitCode": 0,
+        "seconds": 1.262,
+        "output": "Nearby panel borders: 1452 checks PASS; both styles; fractional mixed scales; module/frame exports; grids/Info/strip/menu/window/envelope T contacts; transitive floors; detach/hide/reattach; static work; combat deferral; untouched content/input geometry. Native pixels/FPS pending\n"
+      },
+      {
+        "path": "tests/border_observer_refresh.lua",
+        "exitCode": 0,
+        "seconds": 1.412,
+        "output": "OBSERVER_WORK|1|parents=360->4|sources=360->360\nOBSERVER_WORK|2|parents=360->4|sources=360->360\nBorder observer refresh: 63 checks PASS; complete mesh parity, localized observer API work, native source privacy/missing freshness, anchor replacement/parent/scale/cycle/budget guards. Native FPS/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_optional_unit_parts.lua",
+        "exitCode": 0,
+        "seconds": 11.633,
+        "output": "UNIT_FALLBACK checks=272 samples=177498 baselineMissing=0 candidateMissing=0 worstMissingAlpha=0\nCACHE_GUARDS style1 PASS; warm/current/moved/static/profile/unknown/cap guard\nCACHE_GUARDS style2 PASS; warm/current/moved/static/profile/unknown/cap guard\nUnit fallback cache/profile guards: 334 checks PASS; actual source producer/factory/Core, no native acceptance claim\nFOREIGN_PROFILE style1 samples138 doubled86 overdraw67 regions14 inactive10 unchanged\nFOREIGN_PROFILE style2 samples60 doubled54 overdraw54 regions20 inactive10 unchanged\nOptional unit parts: 357 checks PASS; actual factory/Core/TGA, four Ts+X, exact hidden RGBA, active mesh parity, partial/own parallel backups, eligibility, current generation, budgets; native validation pending\n"
+      },
+      {
+        "path": "tests/border_owner_phase.lua",
+        "exitCode": 0,
+        "seconds": 0.027,
+        "output": "Render owner phase: 246 checks PASS; complete-public negatives only; private/missing/cycle/budget recovery; live hierarchy freshness; query guards; actual commit/release cleanup; both styles\n"
+      },
+      {
+        "path": "tests/border_owner_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.224,
+        "output": "Border owner visibility: 2641 checks PASS; own source/host hide and public alpha-zero; whole/partial overlap; both styles/scales; one source per interval; zero solves/reads/allocations including combat; native pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_paint_order.lua",
+        "exitCode": 0,
+        "seconds": 0.036,
+        "output": "Border paint order: 128 checks PASS; sibling aura/background frames; both registration orders/styles; retained stratum/visibility/scale; static reuse; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_paint_ownership.lua",
+        "exitCode": 0,
+        "seconds": 0.376,
+        "output": "PARTY_PAINT_WORK style=1 scopedParentReads=548 legacyParentReads=31844\nPARTY_PAINT_WORK style=2 scopedParentReads=548 legacyParentReads=31844\nBorder paint ownership: 16 checks PASS; actual scoped/legacy parity; detached shells; reparent; combat presentation only; native acceptance pending.\n"
+      },
+      {
+        "path": "tests/border_party_container.lua",
+        "exitCode": 0,
+        "seconds": 1.021,
+        "output": "CONTAINER|style=1|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=1|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=1|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=false|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=false|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nCONTAINER|style=2|cold=true|candidate=false|reads=1|aligns=1|solves=0|wakes=1|alphaReads=2|alphaAligns=2|alphaWakes=2\nCONTAINER|style=2|cold=true|candidate=true|reads=0|aligns=0|solves=0|wakes=0|alphaReads=0|alphaAligns=0|alphaWakes=0\nParty container borders: 164 checks; 2026-11-18T13:06:28Z; actual Core/Border/init prefix; no native latency claim\n"
+      },
+      {
+        "path": "tests/border_party_isolation.lua",
+        "exitCode": 0,
+        "seconds": 0.133,
+        "output": "Party border isolation: 72 checks PASS; member/preview identity; neutral HUD bridge; detached logical hosts; internal joins; both styles/scales; static reuse; native group pixels pending\n"
+      },
+      {
+        "path": "tests/border_prepared_icons.lua",
+        "exitCode": 0,
+        "seconds": 1.37,
+        "output": "Prepared class borders: 576 checks PASS; actual shared slot producer and divider paint; first/repeated player target/focus; modern/legacy API shapes; both styles/alignments/mirrors/scales; zero transition reads/solves/resources; no hidden spec duplicate; combat guard; real settings update\n"
+      },
+      {
+        "path": "tests/border_private_paint.lua",
+        "exitCode": 0,
+        "seconds": 0.142,
+        "output": "Private border paint: 2428 checks PASS; alpha/RGBA retirement once; repeated focus-style sinks0reads/solves/full requests; original opaque source preserved; no opaque value copied; combat deferral; native taint/FPS pending\n"
+      },
+      {
+        "path": "tests/border_reflow_cost.lua",
+        "exitCode": 0,
+        "seconds": 0.038,
+        "output": "Border reflow cost: 148 checks PASS; existing finite-watch epochs; legacy aggregate/nested mesh algebra; retained peak; zero default clocks; opaque/faulty midpoint and draw recovery; native timings pending\n"
+      },
+      {
+        "path": "tests/border_registration_pairs.lua",
+        "exitCode": 0,
+        "seconds": 0.287,
+        "output": "Register pair controls: 185 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback\n"
+      },
+      {
+        "path": "tests/border_render_basis.lua",
+        "exitCode": 0,
+        "seconds": 0.333,
+        "output": "RENDER_BASIS_WORK style=1 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=797656323\nFIELD_ARGS_WORK style=1 calls=1000 native=1 tables=1\nRENDER_BASIS_WORK style=2 fields=254 left=1 bottom=1 rect=1 scale=2 mesh=894356635\nFIELD_ARGS_WORK style=2 calls=1000 native=1 tables=1\nborder render basis: 40 checks passed\n"
+      },
+      {
+        "path": "tests/border_render_pool_work.lua",
+        "exitCode": 0,
+        "seconds": 0.149,
+        "output": "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045\nRENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962\nRENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497\nborder render pool work: 1034 checks passed\n"
+      },
+      {
+        "path": "tests/border_resource_hold.lua",
+        "exitCode": 0,
+        "seconds": 0.157,
+        "output": "Resource border hold: 230 checks PASS; real power producer and solver; clear-return target/focus/party/pet/ToT; zero reads/solves; actual no-resource state preserved; native counters pending\n"
+      },
+      {
+        "path": "tests/border_retained_units.lua",
+        "exitCode": 0,
+        "seconds": 0.374,
+        "output": "Retained unit borders: 15894 checks PASS; initial hidden prebuild; target/focus/party/pet/ToT show/hide/fade; zero reads/solves/allocations; combat native inheritance; immediate material; real layout invalidation; native pixels pending\n"
+      },
+      {
+        "path": "tests/border_shadow_material.lua",
+        "exitCode": 0,
+        "seconds": 0.241,
+        "output": "Shadow material support: 111147 PASS; exact TGA alpha/half-texel margins; natural/tint parity; trusted handles; live support-change/recovery rebuilds; static tint/RGB; private/recolor/cropped UV recovery; offline only\n"
+      },
+      {
+        "path": "tests/border_solve_pair_identity.lua",
+        "exitCode": 0,
+        "seconds": 5.544,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nBorder pair identity: 182 checks PASS; exact complete operations/source mutations; per-pass ownership/caps/budgets; stale-miss controls; native performance/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/border_solver_allocation_work.lua",
+        "exitCode": 0,
+        "seconds": 15.099,
+        "output": "CONTROL|numeric|REJECTED\nCONTROL|membership|REJECTED\nCONTROL|caps|REJECTED\nCONTROL|budget|REJECTED\nCONTROL|persistent-miss|REJECTED\nMETACALLBACK|legacy=14|current=14|elision-control=4\nCONTROL|plane-concat-elision|REJECTED\nCONTROL|first-match|REJECTED\nCONTROL|persistent-point-index|REJECTED\nBorder solver allocation: 313 checks PASS; complete frozen R57Solve/current helpers,8native/permission/field pairs,14/14metadata calls,8controls; no CPU/native claim\n"
+      },
+      {
+        "path": "tests/border_source_phase.lua",
+        "exitCode": 0,
+        "seconds": 0.332,
+        "output": "SOURCE_PHASE_WORK style=1 sources=25 coldCalls=25 changedCalls=25 mesh=1929517577 changedMesh=1543180358 fields=409\nSOURCE_PHASE_WORK style=2 sources=25 coldCalls=25 changedCalls=25 mesh=1391507343 changedMesh=791779424 fields=409\nBorder source phase: 916 checks PASS; current native source validation; pure-plan reuse; fresh material and opaque alpha; failure/budget cleanup; exact reflow meshes. Native latency pending\n"
+      },
+      {
+        "path": "tests/border_static_geometry.lua",
+        "exitCode": 0,
+        "seconds": 0.546,
+        "output": "Static border geometry: 22 checks PASS; native float precision;100 no-op layout rounds with500 unrelated pieces; real pixel moves and immediate paint; no native FPS claim\n"
+      },
+      {
+        "path": "tests/border_static_pieces.lua",
+        "exitCode": 0,
+        "seconds": 0.944,
+        "output": "Static unit pieces: 63660 checks PASS; R34 own Hide/Show and opacity-zero trace; hidden prebuild; logical/global ownership; zero probes/solves/resources; combat paint; real moves rebuild; native acceptance pending\n"
+      },
+      {
+        "path": "tests/border_strip_envelope.lua",
+        "exitCode": 0,
+        "seconds": 10.865,
+        "output": "Strip/envelope border: 5798 checks PASS; 144 actual factory/Strip/Unified/Core scenes; 1080 one-source crest samples; unchanged roots/static warm checks; native pixels/FPS/taint pending\n"
+      },
+      {
+        "path": "tests/border_types.lua",
+        "exitCode": 0,
+        "seconds": 0.122,
+        "output": "Border types: 634 checks PASS; atlas/legacy/partial families; native pixels/controller pending\n"
+      },
+      {
+        "path": "tests/border_unit_contours.lua",
+        "exitCode": 0,
+        "seconds": 1.244,
+        "output": "Unit contour borders: 930 checks PASS; both styles/scales; rounded source caps; filled aura turns; top-middle T; target/focus/party/pet/ToT hide/fade/show; static recolor; native combat/pixels pending\n"
+      },
+      {
+        "path": "tests/border_unit_paint_idempotence.lua",
+        "exitCode": 0,
+        "seconds": 0.073,
+        "output": "DIRECT_ALPHA_WORK\t1\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t1\ttrue\t0\t0\nDIRECT_ALPHA_WORK\t2\tfalse\t0\t0\nDIRECT_ALPHA_WORK\t2\ttrue\t0\t0\nUnitPaint public idempotence: 166 checks PASS; native source suppression; changed RGB/alpha; source visibility; private scalar native sinks/recovery; private RGB retirement; rebuilt fields; both styles. Native taint/FPS pending.\n"
+      },
+      {
+        "path": "tests/border_wake_ownership.lua",
+        "exitCode": 0,
+        "seconds": 0.394,
+        "output": "Border wake ownership: 328 checks PASS; 40 lifecycle/render scenarios; useful early-return/error recovery, same deadlines, stale callbacks, native privacy/reentry, combat and fallbacks; no native/CPU claim\n"
+      },
+      {
+        "path": "tests/border_window_bounds.lua",
+        "exitCode": 0,
+        "seconds": 0.747,
+        "output": "Flux Window bounds: 972 checks PASS; fixed decorative/content geometry; HIGH side/map/header moves and embed-like visibility; window paint owner; detach/reconnect; static reuse; both styles/scales/module exports; conflicting fixed references; native pixels pending\n"
+      },
+      {
+        "path": "tests/group_roster_performance.lua",
+        "exitCode": 0,
+        "seconds": 0.147,
+        "output": "ROSTER|live|party|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|extraLayouts=0\nROSTER|live|raid|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=4|extraLayouts=0\nROSTER|live|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|live|extras|allocations=0|rebinds=0|timers=1|paints=46|protectedWrites=0\nROSTER|forever|party|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|extraLayouts=0\nROSTER|forever|raid|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=4|extraLayouts=0\nROSTER|forever|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|forever|extras|allocations=0|rebinds=0|timers=1|paints=46|protectedWrites=0\nROSTER|classic|party|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|extraLayouts=0\nROSTER|classic|raid|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=4|extraLayouts=0\nROSTER|classic|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic|extras|allocations=0|rebinds=0|timers=1|paints=46|protectedWrites=0\nROSTER|classic_era|party|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|extraLayouts=0\nROSTER|classic_era|raid|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=4|extraLayouts=0\nROSTER|classic_era|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic_era|extras|allocations=0|rebinds=0|timers=1|paints=46|protectedWrites=0\nROSTER|classic_anniversary|party|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=3|extraLayouts=0\nROSTER|classic_anniversary|raid|attributes=0|headerShows=0|partyLayouts=0|allocations=0|unitSyncs=1|timers=4|extraLayouts=0\nROSTER|classic_anniversary|binding|keyQueries=0|discoveries=1|timers=1|protectedWrites=0\nROSTER|classic_anniversary|extras|allocations=0|rebinds=0|timers=1|paints=46|protectedWrites=0\nROSTER|all|paint|total=40|synchronous=0\nROSTER|all|partyPaint|timers=1|rangeChecks=1|castResets=4|castRefreshes=4|paints=8\nGroup roster performance: 163 checks PASS; operation counts only; native performance/taint pending\n"
+      },
+      {
+        "path": "tests/raid_roster_layout_work.lua",
+        "exitCode": 0,
+        "seconds": 0.169,
+        "output": "WORK forever party unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=1/1 bind=0/0\nWORK forever party transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=1/1\nWORK forever party transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever party transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK forever party transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever party transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever party transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK forever party transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK forever party mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK forever party mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK forever raid unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=0/0\nWORK forever raid transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever raid transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK forever raid transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK forever raid transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever raid transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK forever raid transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK forever raid transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK forever raid mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK forever raid mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER forever partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live party unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=1/1 bind=0/0\nWORK live party transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=1/1\nWORK live party transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live party transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live party transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live party transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live party transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live party mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live party mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nWORK live raid unchanged-prepared clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=0/0\nWORK live raid transition1solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition2party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=2/2\nWORK live raid transition3party clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=2/2 bind=3/3\nWORK live raid transition4raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition5raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=9/9\nWORK live raid transition6raid clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=6/6\nWORK live raid transition7solo clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=0/0\nWORK live raid mtma-four-plus clear=18/9 points=18/9 width=2/1 execute=1/1 fullPaint=0/0 bind=24/24\nWORK live raid mtma-chat-lift clear=18/9 points=19/10 width=2/1 execute=1/1 fullPaint=24/24 bind=0/0\nQUALIFIER live partial-false hidden poses differ; both hide/Blizzard-restore/retry retained\nParty roster prepared delegation: 5428 checks PASS. Actual Layout/RefreshRosterLayout/ROSTER_LAYOUT/Sync functions; modeled native rebinding and protected widgets. Native latency/taint pending.\n"
+      },
+      {
+        "path": "tests/raid_combat_roster_transitions.lua",
+        "exitCode": 0,
+        "seconds": 12.746,
+        "output": "COMBAT_ROSTER|live|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|live|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|forever|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_era|normal|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|compact|transitions=180|newFrames=0\nCOMBAT_ROSTER|classic_anniversary|normal|transitions=180|newFrames=0\nCombat roster transitions: 247385 checks PASS; native secure VM/taint/timing acceptance pending\n"
+      },
+      {
+        "path": "tests/raid_party_frames.lua",
+        "exitCode": 0,
+        "seconds": 0.488,
+        "output": "Party player-style frames: 1095 checks; five pinned secure handler models, combat roster/pet/anchor transitions; native visuals/input pending\n"
+      },
+      {
+        "path": "tests/raid_party_binding_cast.lua",
+        "exitCode": 0,
+        "seconds": 0.055,
+        "output": "Party Flux hover casting: 310 checks; twelve party/pet/target tokens on five binding/secure models; native input/taint pending\n"
+      },
+      {
+        "path": "tests/raid_group_conversion_conditions.lua",
+        "exitCode": 0,
+        "seconds": 1.744,
+        "output": "Universal group conversion conditions: 53615 checks / 2800 combat transitions PASS; native client acceptance separate\n"
+      },
+      {
+        "path": "tests/party_native_contracts.lua",
+        "exitCode": 0,
+        "seconds": 0.028,
+        "output": "Party native contracts: 78 checks across five pinned restricted implementations; native rendering/taint pending\n"
+      },
+      {
+        "path": "tests/party_steady_performance.lua",
+        "exitCode": 0,
+        "seconds": 0.138,
+        "output": "PARTY_STEADY|live|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|forever|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_era|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nPARTY_STEADY|classic_anniversary|health=800|power=400|prediction=1200|chrome=0|portrait=0|style=0|indicators=0|auras=40|modes=1200|cover=0|powerAnchors=0\nParty steady performance: 305 checks PASS; modeled operation counts, native performance pending\n"
+      },
+      {
+        "path": "tests/party_cast_lifecycle.lua",
+        "exitCode": 0,
+        "seconds": 0.415,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast lifecycle: 215 checks; five client models; native events/taint pending\n"
+      },
+      {
+        "path": "tests/party_cast_border_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.107,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParty cast border layout: 835 checks PASS; actual shared layout plus real Party wrapper/direct overlay; cold and live combat guards; one deferred job; unchanged100calls zero native geometry/level/script writes; real shared/header/anchor changes; exact name/level alpha restoration. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/party_divider_boundary.lua",
+        "exitCode": 0,
+        "seconds": 0.023,
+        "output": "Party divider boundary: 396 checks; fitted party HP, prediction geometry, resource transitions and unchanged target/focus; native pixels/combat pending\n"
+      },
+      {
+        "path": "tests/party_blizzard_dispels.lua",
+        "exitCode": 0,
+        "seconds": 0.18,
+        "output": "Party Blizzard dispellable-only setting: 418 checks PASS; five client models; native filtering/pixels/taint pending\n"
+      },
+      {
+        "path": "tests/party_debuff_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.085,
+        "output": "Party debuff visibility: 408 checks PASS; five client models, native/legacy render paths and missing-atlas fallback; native pixels/taint pending\n"
+      },
+      {
+        "path": "tests/unit_debuff_group_overlap.lua",
+        "exitCode": 0,
+        "seconds": 0.029,
+        "output": "Unit debuff group overlap: 100 checks passed; simulated filter overlap; native acceptance pending\n"
+      },
+      {
+        "path": "tests/unit_aura_group_layout_work.lua",
+        "exitCode": 0,
+        "seconds": 0.021,
+        "output": "AURA_GROUP_LAYOUT_WORK|forever|unchangedNativeDirty=60->0|fullAuraRefreshes=40|groupCountReads=60|groupFrameReads=480|buttonSizeWrites=480\nAURA_GROUP_LAYOUT_WORK|live|unchangedNativeDirty=60->0|fullAuraRefreshes=40|groupCountReads=60|groupFrameReads=480|buttonSizeWrites=480\nUnit aura group layout: 1702 checks PASS; exact native setters, complete descriptors, unchanged paint/membership cadence, real engine/group lifetime, failure/private/hot-load recovery. Native FPS/taint pending\n"
+      },
+      {
+        "path": "tests/unit_portrait_callback_work.lua",
+        "exitCode": 0,
+        "seconds": 0.973,
+        "output": "CALLBACK_IDENTITIES baseline=129 candidate=13 fullCalls=20; not bytes or native CPU\nPortrait protected callbacks: 114 scenarios/105969 checks PASS; actual production bodies, modeled native endpoints; no CPU timing/native tests\n"
+      },
+      {
+        "path": "tests/unit_outer_party_geometry.lua",
+        "exitCode": 0,
+        "seconds": 0.265,
+        "output": "PARTY_OUTER|live|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|live|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|live|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|live|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|live|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|forever|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|forever|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|forever|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|forever|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|forever|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic_era|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic_era|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic_era|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic_era|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic_era|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPARTY_OUTER|classic_anniversary|tenCleanExits|chrome=40|writes=120->0|reads=120\nPARTY_OUTER|classic_anniversary|coalescedRosterBurst|chrome=8|writes=24->0|reads=24\nPARTY_OUTER|classic_anniversary|matchingPetChange|chrome=2|writes=6->0|reads=6\nPARTY_OUTER|classic_anniversary|unrelatedPetChange|chrome=0|writes=0->0|reads=0\nPARTY_OUTER|classic_anniversary|realPetWidthChange|chrome=1|writes=3->3|reads=1\nPASS actual Party dispatcher/queue -> Shared geometry-stage 60 checks; other Shared painter bodies modeled; no native performance claim\n"
+      },
+      {
+        "path": "tests/roster_focus_dock.lua",
+        "exitCode": 0,
+        "seconds": 0.05,
+        "output": "Roster focus dock: 188 checks PASS; first/settings/default/unknown/drift recovery; body/scale/parent/context; combat+reentrant native-header policy; notification retention. Native latency/taint/pixels pending.\n"
+      },
+      {
+        "path": "tests/binding_hover_modifier_routes.lua",
+        "exitCode": 0,
+        "seconds": 0.039,
+        "output": "PASS binding hover modifier routes: 547 checks (native dispatch/taint unverified)\n"
+      },
+      {
+        "path": "tests/group_ghost_hover.lua",
+        "exitCode": 0,
+        "seconds": 0.066,
+        "output": "Group ghost hover: 120 checks; five client policies; combat group/attribute/hide/child transitions and screenshot chrome source; native VM pending\n"
+      },
+      {
+        "path": "tests/castbar_border_junctions.lua",
+        "exitCode": 0,
+        "seconds": 3.529,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border junctions: 13522 checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/mini_unit_colors.lua",
+        "exitCode": 0,
+        "seconds": 0.16,
+        "output": "Mini unit colors: 11148 checks PASS; 12 real Border/shared/party color scenes; both styles/all accents; owner availability; independent ToT PC/NPC; party setting and appearance; existing combat/dispel priorities. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/border_regional_plan_work.lua",
+        "exitCode": 0,
+        "seconds": 9.048,
+        "output": "REGIONAL_PLAN style=1 scale=0.75 compiled/misses/ms=4/1/5.000,5/1/7.000,4/1/8.000,5/1/6.000,4/1/4.000,5/1/5.000\nREGIONAL_PLAN style=1 scale=1.00 compiled/misses/ms=3/1/5.000,3/1/5.000,3/1/3.000,3/1/7.000,3/1/5.000,3/1/5.000\nREGIONAL_PLAN style=1 scale=1.25 compiled/misses/ms=3/1/3.000,3/1/4.000,3/1/4.000,3/1/5.000,3/1/3.000,3/1/4.000\nREGIONAL_PLAN style=2 scale=0.75 compiled/misses/ms=4/1/6.000,5/1/6.000,4/1/6.000,5/1/7.000,4/1/8.000,5/1/8.000\nREGIONAL_PLAN style=2 scale=1.00 compiled/misses/ms=3/1/10.000,3/1/5.000,3/1/7.000,3/1/6.000,3/1/8.000,3/1/4.000\nREGIONAL_PLAN style=2 scale=1.25 compiled/misses/ms=3/1/16.000,3/1/7.000,3/1/7.000,3/1/7.000,3/1/5.000,3/1/5.000\nREGIONAL_PLAN_TOTAL compiled=126 misses=36 ms=216.000 checks=150230; desktop source/art parity only, native latency/taint pending\n"
+      },
+      {
+        "path": "tests/assistant_binding_lifecycle.lua",
+        "exitCode": 0,
+        "seconds": 0.016,
+        "output": "assistant binding lifecycle: 19 checks PASS; native input/taint pending\n"
+      },
+      {
+        "path": "tests/binding_respec_regression.lua",
+        "exitCode": 0,
+        "seconds": 0.076,
+        "output": "binding/respec regression: 110 checks passed\n"
+      },
+      {
+        "path": "tests/castbar_active_crafting.lua",
+        "exitCode": 0,
+        "seconds": 0.191,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nactive crafting cast bar: 826 checks PASS; actual producers/known-private states/icon fallback/sampling; native fit pending\n"
+      },
+      {
+        "path": "tests/castbar_border_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.294,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast border layout: 2020 checks PASS; five client API shapes; canonical icon/body touch; cached unchanged rows; real reflow; combat defer; restricted width; pet icon ownership; party class/global chrome; custom labels. Native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/castbar_completion_visual.lua",
+        "exitCode": 0,
+        "seconds": 0.8,
+        "output": "Cast completion visual: 12571 checks; actual producer in five client models; native appearance/performance deferred\n"
+      },
+      {
+        "path": "tests/castbar_rejected_cast.lua",
+        "exitCode": 0,
+        "seconds": 1.485,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nRejected cast lifecycle: 24775 checks PASS; five client models; native input/taint/pixels pending\n"
+      },
+      {
+        "path": "tests/castbar_school_themes.lua",
+        "exitCode": 0,
+        "seconds": 3.407,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14411 checks across five client families (native rendering/taint unverified)\n"
+      },
+      {
+        "path": "tests/castbar_terminal_styles.lua",
+        "exitCode": 0,
+        "seconds": 0.676,
+        "output": "Cast terminal styles: 9973 checks; actual producer in five client models; native appearance/performance deferred\n"
+      },
+      {
+        "path": "tests/castbar_timer_sync.lua",
+        "exitCode": 0,
+        "seconds": 0.178,
+        "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nCast timer synchronization: 379 checks across five client source models; native visuals/taint pending\n"
+      },
+      {
+        "path": "tests/combat_grid_use_events.lua",
+        "exitCode": 0,
+        "seconds": 1.214,
+        "output": "Combat grid use events: 1219 checks, 0 failures; immediateRecounts=80 totalWithSettle=160\n"
+      },
+      {
+        "path": "tests/hover_children_varargs.lua",
+        "exitCode": 0,
+        "seconds": 0.054,
+        "output": "METRIC hover branch=live cases=11 assertions_recorded=true\nMETRIC hover branch=forever cases=11 assertions_recorded=true\nMETRIC hover branch=classic_era cases=11 assertions_recorded=true\nMETRIC hover branch=classic_anniversary cases=11 assertions_recorded=true\nMETRIC hover branch=classic cases=11 assertions_recorded=true\nSUMMARY checks=55 failures=0\n"
+      },
+      {
+        "path": "tests/nameplate_castbar_schools.lua",
+        "exitCode": 0,
+        "seconds": 0.009,
+        "output": "PASS nameplate cast-bar themes: 56 checks; native taint/pixels pending\n"
+      },
+      {
+        "path": "tests/nameplate_countdown_work.lua",
+        "exitCode": 0,
+        "seconds": 0.455,
+        "output": "METRIC era_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=100 anchors=0 frames=5\nMETRIC era_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=2.296875 cpu_seconds=0.032000\nMETRIC era_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC era_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1017.546875 cpu_seconds=0.035000\nMETRIC anniversary_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=100 anchors=0 frames=5\nMETRIC anniversary_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1.921875 cpu_seconds=0.029000\nMETRIC anniversary_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC anniversary_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1017.546875 cpu_seconds=0.035000\nMETRIC progression_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=100 anchors=0 frames=5\nMETRIC progression_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1.921875 cpu_seconds=0.030000\nMETRIC progression_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC progression_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1017.546875 cpu_seconds=0.034000\nMETRIC live_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=100 anchors=0 frames=5\nMETRIC live_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1.921875 cpu_seconds=0.030000\nMETRIC live_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC live_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1017.546875 cpu_seconds=0.036000\nMETRIC forever_lifecycle font_reads=200 region_reads=100 level_reads=900 label_writes=100 anchors=0 frames=5\nMETRIC forever_modern_startup font_reads=100 region_reads=0 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_modern font_reads=10000 region_reads=0 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1.921875 cpu_seconds=0.031000\nMETRIC forever_legacy_startup font_reads=0 region_reads=100 level_reads=300 label_writes=100 anchors=100 frames=102\nMETRIC forever_legacy font_reads=0 region_reads=10000 level_reads=30000 label_writes=0 anchors=0 frames=102 heap_kib=1017.546875 cpu_seconds=0.036000\nNameplate countdown work: 1160 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/nameplate_quest_progress.lua",
+        "exitCode": 0,
+        "seconds": 0.028,
+        "output": "QUEST_PROGRESS client=live frames=5 checks=256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=512 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=760 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1008 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1256 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1261 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+      },
+      {
+        "path": "tests/nameplate_refresh_batch.lua",
+        "exitCode": 0,
+        "seconds": 0.033,
+        "output": "QUEST_PROGRESS client=live frames=5 checks=291 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=forever frames=5 checks=582 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic frames=5 checks=860 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_era frames=5 checks=1138 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS client=classic_anniversary frames=5 checks=1416 idle_polls=1000 idle_queries=0\nQUEST_PROGRESS checks=1421 failures=0 native_pixels_taint_performance=NOT_RUN\n"
+      },
+      {
+        "path": "tests/passive_nameplate_metric_recovery.lua",
+        "exitCode": 0,
+        "seconds": 0.285,
+        "output": "PASS: 6 actual-module scenarios; 78 checks; no native FPS or CPU measurement\n"
+      },
+      {
+        "path": "tests/passive_nameplate_optimization.lua",
+        "exitCode": 0,
+        "seconds": 0.253,
+        "output": "{\"lua\":\"Lua 5.4\",\"scenarios\":[{\"behavior\":{\"diffShown\":false,\"levelShown\":false},\"branch\":\"retail\",\"calls\":{\"ClearAllPoints\":5,\"GetChildren\":1200,\"GetCountdownFontString\":1600,\"GetFrameLevel\":4980,\"GetNamePlateForUnit\":20,\"GetText\":1600,\"Hide\":6,\"IsShown\":16400,\"SetFrameLevel\":184,\"SetParent\":6,\"SetPoint\":4,\"SetTextColor\":1780,\"SetVertexColor\":1085,\"SettingsIsShown\":289,\"Show\":2140,\"ThreatDisplay\":180},\"fps\":144,\"mode\":\"steady\",\"plates\":20,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool-only\"},{\"behavior\":{\"diffShown\":false,\"levelShown\":false},\"branch\":\"retail\",\"calls\":{\"ClearAllPoints\":5,\"GetChildren\":1200,\"GetCountdownFontString\":1600,\"GetFrameLevel\":4980,\"GetNamePlateForUnit\":20,\"GetText\":1600,\"Hide\":6,\"IsShown\":16400,\"SetFrameLevel\":184,\"SetParent\":6,\"SetPoint\":4,\"SetTextColor\":1780,\"SetVertexColor\":1085,\"SettingsIsShown\":289,\"Show\":2140,\"ThreatDisplay\":180},\"fps\":144,\"mode\":\"steady\",\"plates\":20,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool+list\"},{\"branch\":\"retail\",\"calls\":{\"ClearAllPoints\":2005,\"CreateFontString\":5,\"CreateFrame\":5,\"CreateTexture\":1,\"GetChildren\":3000,\"GetCountdownFontString\":4000,\"GetFrameLevel\":13000,\"GetNamePlateForUnit\":1000,\"GetStringWidth\":1,\"GetText\":4000,\"Hide\":5005,\"IsShown\":12000,\"SetFont\":5,\"SetFrameLevel\":1004,\"SetParent\":2004,\"SetPoint\":1011,\"SetSize\":6,\"SetText\":5,\"SetTextColor\":5004,\"SetVertexColor\":11000,\"Show\":8001,\"ThreatDisplay\":1000},\"fps\":60,\"frames_created\":5,\"mode\":\"1000-add-remove-cycles\",\"note\":\"Retained stub objects model native widgets; frame persistence is a native contract, not measured memory bytes.\",\"objects_created\":11,\"plates\":1,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool-only\",\"visible_units\":0},{\"behavior\":{\"alpha\":0,\"healthX\":0,\"healthY\":2},\"branch\":\"forever\",\"calls\":{\"ClearAllPoints\":6,\"GetAlpha\":34920,\"GetChildren\":1260,\"GetCountdownFontString\":1680,\"GetFrameLevel\":5400,\"GetNamePlateForUnit\":20,\"GetNumPoints\":11640,\"GetPoint\":11640,\"GetText\":1680,\"Hide\":185,\"IsShown\":5080,\"SetAlpha\":187,\"SetFrameLevel\":364,\"SetParent\":8,\"SetPoint\":6,\"SetTextColor\":2040,\"SetVertexColor\":1265,\"SettingsIsShown\":291,\"Show\":2580,\"ThreatDisplay\":180,\"UnitLevel\":360},\"fps\":144,\"mode\":\"steady\",\"plates\":20,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool-only\"},{\"behavior\":{\"alpha\":0,\"healthX\":0,\"healthY\":2},\"branch\":\"forever\",\"calls\":{\"ClearAllPoints\":6,\"GetAlpha\":34920,\"GetChildren\":1260,\"GetCountdownFontString\":1680,\"GetFrameLevel\":5400,\"GetNamePlateForUnit\":20,\"GetNumPoints\":11640,\"GetPoint\":11640,\"GetText\":1680,\"Hide\":185,\"IsShown\":5080,\"SetAlpha\":187,\"SetFrameLevel\":364,\"SetParent\":8,\"SetPoint\":6,\"SetTextColor\":2040,\"SetVertexColor\":1265,\"SettingsIsShown\":291,\"Show\":2580,\"ThreatDisplay\":180,\"UnitLevel\":360},\"fps\":144,\"mode\":\"steady\",\"plates\":20,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool+list\"},{\"branch\":\"forever\",\"calls\":{\"ClearAllPoints\":4006,\"CreateFontString\":6,\"CreateFrame\":6,\"CreateTexture\":3,\"GetChildren\":3000,\"GetCountdownFontString\":4000,\"GetFrameLevel\":14000,\"GetNamePlateForUnit\":1000,\"GetStringWidth\":2,\"GetText\":4000,\"Hide\":7007,\"IsShown\":12000,\"SetAlpha\":1000,\"SetFont\":7,\"SetFrameLevel\":2004,\"SetParent\":4004,\"SetPoint\":2015,\"SetSize\":9,\"SetText\":6,\"SetTextColor\":6004,\"SetTexture\":1,\"SetVertexColor\":12000,\"Show\":10002,\"ThreatDisplay\":1000,\"UnitLevel\":2000},\"fps\":60,\"frames_created\":6,\"mode\":\"1000-add-remove-cycles\",\"note\":\"Retained stub objects model native widgets; frame persistence is a native contract, not measured memory bytes.\",\"objects_created\":15,\"plates\":1,\"seconds\":2,\"stub_limitations\":\"plain values; native widget costs not timed; four unchanging aura labels per plate; quest overlay disabled; threat always visible\",\"topology\":\"pool-only\",\"visible_units\":0}],\"scope\":\"actual unchanged NamePlates Core/Level/Threat/Countdown operation replay\",\"source_paths\":[\"NamePlates/Core.lua\",\"NamePlates/Level.lua\",\"NamePlates/Threat.lua\",\"NamePlates/Countdown.lua\"]}\nPASS: 6 actual-module scenarios; 32 checks; no native FPS or CPU measurement\n"
+      },
+      {
+        "path": "tests/passive_raid_aura_snapshots.lua",
+        "exitCode": 0,
+        "seconds": 0.345,
+        "output": "PASS raid fallback snapshots: 108 actual-painter checks; native owners untouched\n"
+      },
+      {
+        "path": "tests/profession_alias_event_work.lua",
+        "exitCode": 0,
+        "seconds": 0.038,
+        "output": "Profession alias state facts: 30 checks PASS\nProfession alias event work: 31 checks PASS; first=2346/repeat=2346 ipairs yields; native performance NOT RUN\n"
+      },
+      {
+        "path": "tests/raid_aura_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.031,
+        "output": "Raid aura layout: 2944 checks; stock-relative squares, independent aura resizing and actual text crop; four rejected mutants; native rendering pending\n"
+      },
+      {
+        "path": "tests/raid_aura_live_options.lua",
+        "exitCode": 0,
+        "seconds": 0.397,
+        "output": "Raid aura live options: 1696 checks; actual scoped options/orchestrator/unit/aura/queue bridge on five modeled clients; native pixels pending\n"
+      },
+      {
+        "path": "tests/raid_aura_native_filters.lua",
+        "exitCode": 0,
+        "seconds": 0.715,
+        "output": "Raid native aura policy: 126 passed, 0 failed; five pinned client policies, public native predicates; native VM/rendering pending\n"
+      },
+      {
+        "path": "tests/raid_aura_options.lua",
+        "exitCode": 0,
+        "seconds": 0.022,
+        "output": "Raid aura options/preview: 280 checks; actual scopes/resets and synthetic native-relative widgets; desktop only\n"
+      },
+      {
+        "path": "tests/raid_big_debuff_boundary.lua",
+        "exitCode": 0,
+        "seconds": 0.01,
+        "output": "Raid BigDebuffs boundary: 8 checks; native owners, late optional addon, readable compatibility and one rejected control\n"
+      },
+      {
+        "path": "tests/raid_binding_cast.lua",
+        "exitCode": 0,
+        "seconds": 0.139,
+        "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n"
+      },
+      {
+        "path": "tests/raid_blizzard_default_sizes.lua",
+        "exitCode": 0,
+        "seconds": 0.214,
+        "output": "Blizzard default raid sizes: 981 checks; five pinned native setup/preset/conversion sources, absolute localized status fonts and scales; six rejected mutants; native rendering pending\n"
+      },
+      {
+        "path": "tests/raid_connected_grid.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "Raid connected grid: 34 checks; native one-pixel joins, partial groups, minis, opacity guards and two rejected controls\n"
+      },
+      {
+        "path": "tests/raid_header_precreation.lua",
+        "exitCode": 0,
+        "seconds": 0.2,
+        "output": "raid precreation retail raid initialChildren=80 combatBlocked=0\nraid precreation retail visible-parent initialChildren=80 combatBlocked=0\nraid readiness retail ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation forever raid initialChildren=80 combatBlocked=0\nraid precreation forever visible-parent initialChildren=80 combatBlocked=0\nraid readiness forever ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation era raid initialChildren=80 combatBlocked=0\nraid precreation era visible-parent initialChildren=80 combatBlocked=0\nraid readiness era ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation anniversary raid initialChildren=80 combatBlocked=0\nraid precreation anniversary visible-parent initialChildren=80 combatBlocked=0\nraid readiness anniversary ancestorCombatBlocked=0 recoveredChildren=80\nraid precreation mists raid initialChildren=80 combatBlocked=0\nraid precreation mists visible-parent initialChildren=80 combatBlocked=0\nraid readiness mists ancestorCombatBlocked=0 recoveredChildren=80\nraid header precreation: 1160 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/raid_healer_auras.lua",
+        "exitCode": 0,
+        "seconds": 0.452,
+        "output": "Raid healer auras: 11410 checks; actual native owner/flow projection, global one-to-six limits, native-relative sizing, strict filters and cooldown sinks; eleven rejected negative controls; client visuals/scheduling pending\n"
+      },
+      {
+        "path": "tests/raid_healer_extras.lua",
+        "exitCode": 0,
+        "seconds": 0.027,
+        "output": "Raid healer adjuncts: 511 checks; five client contracts; two rejected negative controls\n"
+      },
+      {
+        "path": "tests/raid_healer_hots.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "Raid healer HoT estimates: 355 checks; optional Forever own casts, strict descriptions, secret guards, expiry and inactive cleanup\n"
+      },
+      {
+        "path": "tests/raid_healer_prediction.lua",
+        "exitCode": 0,
+        "seconds": 0.014,
+        "output": "Raid healer prediction: 218 checks; five clients, native opaque sinks, readable fallback, combat geometry, cast cost\n"
+      },
+      {
+        "path": "tests/raid_healer_runtime.lua",
+        "exitCode": 0,
+        "seconds": 0.028,
+        "output": "Raid healer runtime: 429 checks; complete Compat/Unit modules; three rejected negative controls\n"
+      },
+      {
+        "path": "tests/raid_healer_secure.lua",
+        "exitCode": 0,
+        "seconds": 8.823,
+        "output": "Raid healer secure: 255908 checks; five native wrap/state/roster/click source implementations; desktop only\n"
+      },
+      {
+        "path": "tests/raid_healer_visuals.lua",
+        "exitCode": 0,
+        "seconds": 0.055,
+        "output": "raid healer visuals: 674 checks passed (desktop only)\n"
+      },
+      {
+        "path": "tests/raid_hidden_buff_event.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "Raid hidden-buff event: 5 checks; actual dispatcher, combat aura-only refresh and inactive guards\n"
+      },
+      {
+        "path": "tests/raid_manager_ghost.lua",
+        "exitCode": 0,
+        "seconds": 0.532,
+        "output": "Raid manager/ghost: 9329 checks; five actual native handlers; four rejected negative controls; reference source trees\n"
+      },
+      {
+        "path": "tests/raid_marker_secret.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "Raid markers: 2730 checks; readable/restricted/all-eight/removal on five source-client models; native pixels/taint pending\n"
+      },
+      {
+        "path": "tests/raid_nameplate_defaults.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "raid and nameplate defaults: 15 checks passed\n"
+      },
+      {
+        "path": "tests/raid_native_member_order.lua",
+        "exitCode": 0,
+        "seconds": 0.137,
+        "output": "Raid native member order: 58 checks; five native discrete/party ordering implementations, alphabetical negative control; desktop source execution only\n"
+      },
+      {
+        "path": "tests/raid_native_sizing_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.013,
+        "output": "Raid native sizing layout: 11 checks; actual column/mini reservations and shared preview/live XML; one rejected stale-height control\n"
+      },
+      {
+        "path": "tests/raid_owned_settings.lua",
+        "exitCode": 0,
+        "seconds": 0.01,
+        "output": "raid owned settings: 9 checks passed\n"
+      },
+      {
+        "path": "tests/raid_range_discovery_work.lua",
+        "exitCode": 0,
+        "seconds": 0.01,
+        "output": "Raid range discovery: 24 checks PASS; first-owner visibility reads=1; native timing pending\n"
+      },
+      {
+        "path": "tests/raid_range_helper_work.lua",
+        "exitCode": 0,
+        "seconds": 0.031,
+        "output": "Raid range helper work: 175 checks PASS; complete owners, current callbacks/pools, fresh ticker identity and5rejected controls; native behavior/timing pending\n"
+      },
+      {
+        "path": "tests/raid_startup.lua",
+        "exitCode": 0,
+        "seconds": 0.027,
+        "output": "Raid startup: 2055 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+      },
+      {
+        "path": "tests/respec_actionbar_completion.lua",
+        "exitCode": 0,
+        "seconds": 0.184,
+        "output": "respec action-bar completion: 425 checks passed (all cases; five client models; native pending)\n"
+      },
+      {
+        "path": "tests/respec_actionbar_safety.lua",
+        "exitCode": 0,
+        "seconds": 0.101,
+        "output": "respec action-bar safety: 477 checks / 120 cases passed (live/forever/classic; native pending)\n"
+      },
+      {
+        "path": "tests/respec_equipment_completion.lua",
+        "exitCode": 0,
+        "seconds": 0.322,
+        "output": "Respec equipment completion: 470 checks; five clients; missing/partial/retry/combat/locks/bank/replacement ownership PASS\n"
+      },
+      {
+        "path": "tests/respec_section_results.lua",
+        "exitCode": 0,
+        "seconds": 0.342,
+        "output": "respec section results: 200 checks passed; five clients; production owners, native pending\n"
+      },
+      {
+        "path": "tests/respec_timer_ownership.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "Respec timer ownership: 68 checks; native NewTimer and void-After fallback; picker/spec/learn cadence PASS\n"
+      },
+      {
+        "path": "tests/spell_rank_pickup_safety.lua",
+        "exitCode": 0,
+        "seconds": 0.074,
+        "output": "spell_rank_pickup_safety: 224 checks PASS\n"
+      },
+      {
+        "path": "tests/stance_aura_sync.lua",
+        "exitCode": 0,
+        "seconds": 0.012,
+        "output": "Stance aura sync: 26 checks passed; duplicate-sweep mutation rejected\n"
+      },
+      {
+        "path": "tests/stance_aura_text_cache.lua",
+        "exitCode": 0,
+        "seconds": 0.014,
+        "output": "Stance aura text cache: 2075 checks passed; three mutations rejected; 1000 stable ticks write owned text once; native rendering/performance unverified\n"
+      },
+      {
+        "path": "tests/stance_player_scale.lua",
+        "exitCode": 0,
+        "seconds": 0.01,
+        "output": "stance player scale: 21 checks\n"
+      },
+      {
+        "path": "tests/stance_portrait_backdrop_contact.lua",
+        "exitCode": 0,
+        "seconds": 0.773,
+        "output": "Portrait border fit: 45792 checks PASS; actual constructors/partition/outer/tint and shared factory; both types/atlas-file clients/mirrors/alignments/scales; exterior cores match; content/model/background/padding retained; cached paint and combat/private guards. Native pixels/taint pending\nStance/portrait backdrop: 2208 checks /288 actual scenes PASS; source chrome and anchor; attach/detach; unchanged corners/roots; warm combat static; native pixels/taint/FPS pending\n"
+      },
+      {
+        "path": "tests/stance_regen_geometry_work.lua",
+        "exitCode": 0,
+        "seconds": 0.031,
+        "output": "stance regen geometry work: 468 checks PASS; native latency/geometry/taint pending\n"
+      },
+      {
+        "path": "tests/unit_spec_icon.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "PASS 59 player spec selection checks\n"
+      },
+      {
+        "path": "tests/unitframes_lifecycle_spec.lua",
+        "exitCode": 0,
+        "seconds": 0.022,
+        "output": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n"
+      },
+      {
+        "path": "tests/window_runtime_spec.lua",
+        "exitCode": 0,
+        "seconds": 0.019,
+        "output": "Mirror repositions after 3 lifecycle events: show=1, event=1\nMeter retry extra FontStrings=0; tab-switch detached objects=0\nWindow/runtime checks: 36, failures: 0\n"
+      },
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exitCode": 0,
+        "seconds": 2.108,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 469 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range the cast\n         spell against its own @unit; frame-shared memo; bounded mouseover bursts\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+      },
+      {
+        "path": "Bars/_tmp_forevercontrolsmoke.lua",
+        "exitCode": 0,
+        "seconds": 4.472,
+        "output": "Forever control smoke passed: 25920 native mouse/key/mini actions; consumed keyboard globals, combat entry/exit, empty columns, modifiers, promotion, overlay restoration, v8 input, native collectors and failed-engine probe\n"
+      },
+      {
+        "path": "tests/border_authored_unit_layout.lua",
+        "exitCode": 0,
+        "seconds": 0.282,
+        "output": "Authored unit layout: 1218 checks PASS; both border types/seven units/three scales;16visibility/availability transitions zero root-rect reads/rebuilds/resources;real point/size changes;private/foreign guards. Native pending.\n"
+      },
+      {
+        "path": "tests/roster_player_specialization.lua",
+        "exitCode": 0,
+        "seconds": 0.021,
+        "output": "Roster player-specialization: 168 checks PASS; complete rank/stance modules and17 actual player-only callbacks;foreign notifications produce no rebuild requests/retries;aliases/private/missing cases preserve refresh. Native pending.\n"
+      },
+      {
+        "path": "tests/raid_roster_attribute_work.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "Secure roster attributes: 111 checks PASS;100 warm reconciliations zero attribute writes vs800;native executes/reference recovery retained;public edits/private values/tamper/combat/failure paths. Native pending.\n"
+      },
+      {
+        "path": "tests/raid_spell_refresh_work.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "Raid spell refresh: 172 checks PASS;30-event bursts/80prepared units/OOC+combat;one existing queue wake;32shown full units retain aura/dispel/BigDebuffs paint;zero header/options rebuilds. Native pending.\n"
+      },
+      {
+        "path": "tests/badge_cooldown_secrets.lua",
+        "exitCode": 0,
+        "seconds": 0.146,
+        "output": "Badge cooldown secrets: 80 checks passed (desktop boundary only)\n"
+      },
+      {
+        "path": "tests/bars_hotkey_range.lua",
+        "exitCode": 0,
+        "seconds": 0.029,
+        "output": "Bar hotkey range: 951 checks PASS; actual range/event/hotkey Lua owners, FontString sink modeled; native glyph pixels pending\n"
+      },
+      {
+        "path": "tests/binding_mode_scope_safety.lua",
+        "exitCode": 0,
+        "seconds": 0.014,
+        "output": "binding_mode_scope_safety: 80 checks PASS\n"
+      },
+      {
+        "path": "tests/binding_roadmap_regression.lua",
+        "exitCode": 0,
+        "seconds": 0.321,
+        "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n"
+      },
+      {
+        "path": "tests/cast_range_macro.lua",
+        "exitCode": 0,
+        "seconds": 0.012,
+        "output": "Cast range macro: 66 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/cast_range_plain_target.lua",
+        "exitCode": 0,
+        "seconds": 0.861,
+        "output": "PASS 4288 plain cast range target checks (native C APIs/frame lookup modeled)\n"
+      },
+      {
+        "path": "tests/cast_range_target.lua",
+        "exitCode": 0,
+        "seconds": 0.039,
+        "output": "Cast range target integration: 380 checks, 0 failures (desktop API/parser/frame boundaries; native pending)\n"
+      },
+      {
+        "path": "tests/combat_consumable_junk.lua",
+        "exitCode": 0,
+        "seconds": 0.437,
+        "output": "SAMPLE forever immediate bandage bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever immediate healPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever immediate manaPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider bandage bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider healPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE forever delayed-provider manaPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate bandage bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate healPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live immediate manaPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider bandage bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider healPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE live delayed-provider manaPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate bandage bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate healPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era immediate manaPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider bandage bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider healPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE era delayed-provider manaPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate bandage bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate healPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary immediate manaPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider bandage bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider healPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE anniversary delayed-provider manaPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate bandage bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate healPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists immediate manaPotion bagWalks=160 liveQueries=122 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider bandage bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider healPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nSAMPLE mists delayed-provider manaPotion bagWalks=159 liveQueries=137 sells=1 warmWalks=0 warmLiveQueries=0\nCombat consumable junk: 1230 checks, 0 failures; native acceptance pending\n"
+      },
+      {
+        "path": "tests/consumable_all_buttons_recovery.lua",
+        "exitCode": 0,
+        "seconds": 0.631,
+        "output": "All consumable button recovery: 2580 checks, 0 failures; profiles=20\nSAMPLE forever/builtin/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE forever/builtin/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE forever/syndicator/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE forever/syndicator/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE retail/builtin/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE retail/builtin/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE retail/syndicator/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE retail/syndicator/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE mists/builtin/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE mists/builtin/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE mists/syndicator/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE mists/syndicator/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE era/builtin/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE era/builtin/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE era/syndicator/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE era/syndicator/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE anniversary/builtin/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE anniversary/builtin/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE anniversary/syndicator/single burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\nSAMPLE anniversary/syndicator/charged burstTimers=2 totalRecounts=266 idleScans=0 idleTimers=0\n"
+      },
+      {
+        "path": "tests/consumable_aura_advance.lua",
+        "exitCode": 0,
+        "seconds": 0.035,
+        "output": "Consumable aura advance: 66 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_bag_detection.lua",
+        "exitCode": 0,
+        "seconds": 1.044,
+        "output": "SAMPLE forever builtin healPotion recoveryScans=1 metadataRequests=2\nSAMPLE forever builtin manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE forever builtin bandage recoveryScans=1 metadataRequests=2\nSAMPLE forever builtin food recoveryScans=1 metadataRequests=2\nSAMPLE forever builtin water recoveryScans=1 metadataRequests=2\nSAMPLE forever syndicator healPotion recoveryScans=1 metadataRequests=2\nSAMPLE forever syndicator manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE forever syndicator bandage recoveryScans=1 metadataRequests=2\nSAMPLE forever syndicator food recoveryScans=1 metadataRequests=2\nSAMPLE forever syndicator water recoveryScans=1 metadataRequests=2\nSAMPLE retail builtin healPotion recoveryScans=1 metadataRequests=2\nSAMPLE retail builtin manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE retail builtin bandage recoveryScans=1 metadataRequests=2\nSAMPLE retail builtin food recoveryScans=1 metadataRequests=2\nSAMPLE retail builtin water recoveryScans=1 metadataRequests=2\nSAMPLE retail syndicator healPotion recoveryScans=1 metadataRequests=2\nSAMPLE retail syndicator manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE retail syndicator bandage recoveryScans=1 metadataRequests=2\nSAMPLE retail syndicator food recoveryScans=1 metadataRequests=2\nSAMPLE retail syndicator water recoveryScans=1 metadataRequests=2\nSAMPLE era builtin healPotion recoveryScans=1 metadataRequests=2\nSAMPLE era builtin manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE era builtin bandage recoveryScans=1 metadataRequests=2\nSAMPLE era builtin food recoveryScans=1 metadataRequests=2\nSAMPLE era builtin water recoveryScans=1 metadataRequests=2\nSAMPLE era syndicator healPotion recoveryScans=1 metadataRequests=2\nSAMPLE era syndicator manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE era syndicator bandage recoveryScans=1 metadataRequests=2\nSAMPLE era syndicator food recoveryScans=1 metadataRequests=2\nSAMPLE era syndicator water recoveryScans=1 metadataRequests=2\nSAMPLE anniversary builtin healPotion recoveryScans=1 metadataRequests=2\nSAMPLE anniversary builtin manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE anniversary builtin bandage recoveryScans=1 metadataRequests=2\nSAMPLE anniversary builtin food recoveryScans=1 metadataRequests=2\nSAMPLE anniversary builtin water recoveryScans=1 metadataRequests=2\nSAMPLE anniversary syndicator healPotion recoveryScans=1 metadataRequests=2\nSAMPLE anniversary syndicator manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE anniversary syndicator bandage recoveryScans=1 metadataRequests=2\nSAMPLE anniversary syndicator food recoveryScans=1 metadataRequests=2\nSAMPLE anniversary syndicator water recoveryScans=1 metadataRequests=2\nSAMPLE mists builtin healPotion recoveryScans=1 metadataRequests=2\nSAMPLE mists builtin manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE mists builtin bandage recoveryScans=1 metadataRequests=2\nSAMPLE mists builtin food recoveryScans=1 metadataRequests=2\nSAMPLE mists builtin water recoveryScans=1 metadataRequests=2\nSAMPLE mists syndicator healPotion recoveryScans=1 metadataRequests=2\nSAMPLE mists syndicator manaPotion recoveryScans=1 metadataRequests=2\nSAMPLE mists syndicator bandage recoveryScans=1 metadataRequests=2\nSAMPLE mists syndicator food recoveryScans=1 metadataRequests=2\nSAMPLE mists syndicator water recoveryScans=1 metadataRequests=2\nConsumable bag detection: 1030 checks, 0 failures; native acceptance pending\n"
+      },
+      {
+        "path": "tests/consumable_config_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.011,
+        "output": "Consumable config visibility: 8 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_craft_identity.lua",
+        "exitCode": 0,
+        "seconds": 0.544,
+        "output": "SAMPLE forever builtin healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE forever builtin manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE forever builtin bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE forever syndicator healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE forever syndicator manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE forever syndicator bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail builtin healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail builtin manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail builtin bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail syndicator healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail syndicator manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE retail syndicator bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era builtin healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era builtin manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era builtin bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era syndicator healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era syndicator manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE era syndicator bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary builtin healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary builtin manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary builtin bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=3 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary syndicator healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary syndicator manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE anniversary syndicator bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists builtin healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists builtin manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists builtin bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists syndicator healPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists syndicator manaPotion craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nSAMPLE mists syndicator bandage craftPlaceholders=0 craftBinds=0 craftVisibilityChanges=0 craftScans=4 quietSecond30Scans=0 craftFrameDelta=1\nConsumable craft identity: 620 checks, 0 failures; native acceptance pending\n"
+      },
+      {
+        "path": "tests/consumable_craft_visibility.lua",
+        "exitCode": 0,
+        "seconds": 0.811,
+        "output": "Consumable craft visibility: 1609 checks, 0 failures; native acceptance pending\n"
+      },
+      {
+        "path": "tests/consumable_hold_reconciliation.lua",
+        "exitCode": 0,
+        "seconds": 4.429,
+        "output": "Consumable hold reconciliation: 2104 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/consumable_loading_end.lua",
+        "exitCode": 0,
+        "seconds": 4.146,
+        "output": "Consumable loading completion: 2230 checks, 0 failures; scenarios=240\n"
+      },
+      {
+        "path": "tests/consumable_refresh_timer.lua",
+        "exitCode": 0,
+        "seconds": 0.015,
+        "output": "Consumable refresh timer: 35 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_restock_clicks.lua",
+        "exitCode": 0,
+        "seconds": 0.057,
+        "output": "Consumable restock clicks: 784 checks across seven client models; native secure VM unverified\n"
+      },
+      {
+        "path": "tests/consumable_shared_exclusions.lua",
+        "exitCode": 0,
+        "seconds": 0.201,
+        "output": "Shared consumable exclusions: 240 checks PASS/10 profiles; actual Best, persist, vendor and healing-button owners\n"
+      },
+      {
+        "path": "tests/consumable_usability.lua",
+        "exitCode": 0,
+        "seconds": 0.056,
+        "output": "Consumable usability: 75 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/consumable_weapon_targets.lua",
+        "exitCode": 0,
+        "seconds": 0.014,
+        "output": "Consumable weapon targets: 30 checks passed\n"
+      },
+      {
+        "path": "tests/consumable_zero_reset.lua",
+        "exitCode": 0,
+        "seconds": 0.466,
+        "output": "Consumable zero reset: 375 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/cooldown_defaults.lua",
+        "exitCode": 0,
+        "seconds": 0.024,
+        "output": "[FluxUI] Cooldown defaults stopped: native metadata changed; reload before continuing.\ncooldown defaults: 202 checks PASS (desktop data/guard scope)\n"
+      },
+      {
+        "path": "tests/default_flux_grid_bindings.lua",
+        "exitCode": 0,
+        "seconds": 0.028,
+        "output": "full Flux binding persistence: 507 checks passed\n"
+      },
+      {
+        "path": "tests/ebs_range_work.lua",
+        "exitCode": 0,
+        "seconds": 0.271,
+        "output": "EBS_RANGE_WORK cases=40 checks=295 failures=0 native_FPS_GC_taint=NOT_RUN\n"
+      },
+      {
+        "path": "tests/hotkey_range_glyphs.lua",
+        "exitCode": 0,
+        "seconds": 0.709,
+        "output": "Hotkey range glyphs: 1144 checks PASS; four actual consumers; native GPU tint pending\n"
+      },
+      {
+        "path": "tests/mouseover_native.lua",
+        "exitCode": 0,
+        "seconds": 0.085,
+        "output": "native mouseover: 4984 checks passed; native taint/visual/input/FPS pending\n"
+      },
+      {
+        "path": "tests/mp5_mana_ticks.lua",
+        "exitCode": 0,
+        "seconds": 0.053,
+        "output": "PASS MP5 mana ticks: 127 checks (native rendering and taint unverified)\n"
+      },
+      {
+        "path": "tests/options_dynamic_range.lua",
+        "exitCode": 0,
+        "seconds": 0.036,
+        "output": "Options dynamic range: 298 checks; complete renderer/widgets across five engine models; three rejected controls; native callbacks/rendering pending\n"
+      },
+      {
+        "path": "tests/range_usability_stress.lua",
+        "exitCode": 0,
+        "seconds": 1.004,
+        "output": "RANGE_USABILITY client=live rapid_edges=135168 hop_sweeps=19 checks=21718 failures=0\nRANGE_USABILITY client=forever rapid_edges=135168 hop_sweeps=19 checks=43436 failures=0\nRANGE_USABILITY client=classic_era rapid_edges=135168 hop_sweeps=19 checks=65154 failures=0\nRANGE_USABILITY client=classic_anniversary rapid_edges=135168 hop_sweeps=19 checks=86872 failures=0\nRANGE_USABILITY SUMMARY checks=86872 failures=0 modeled_edges=540672 native_VM_pixels_FPS=NOT_RUN\n"
+      },
+      {
+        "path": "tests/salvage_overlay.lua",
+        "exitCode": 0,
+        "seconds": 0.095,
+        "output": "salvage overlay: 2033 checks passed (five client fixtures, missing-atlas and mutation coverage)\n"
+      },
+      {
+        "path": "tests/shared_binding_modifiers.lua",
+        "exitCode": 0,
+        "seconds": 0.093,
+        "output": "Shared binding modifier regression: 1651 checks PASS (desktop transport only)\n"
+      },
+      {
+        "path": "tests/syndicator_consumable_updates.lua",
+        "exitCode": 0,
+        "seconds": 0.567,
+        "output": "Syndicator consumable updates: 400 checks, 0 failures\n"
+      },
+      {
+        "path": "tests/trinket_equipped_usability.lua",
+        "exitCode": 0,
+        "seconds": 0.012,
+        "output": "trinket equipped usability: 10 checks\n"
+      },
+      {
+        "path": "tests/universal_mouseover_priority.lua",
+        "exitCode": 0,
+        "seconds": 0.042,
+        "output": "Matched plain clicks: classic clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_era clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_anniversary clicks=9 actionQueries=9 polarityQueries=18\nResources: clicks=176 actionQueries=3273 polarityQueries=356 compiles=124\nUniversal mouseover priority: 916 checks, 0 failures; native protected execution pending\n"
+      },
+      {
+        "path": "tests/border_regional_draw_work.lua",
+        "exitCode": 0,
+        "seconds": 5.773,
+        "output": "REGIONAL_DRAW style=1 scale=0.75 reused=28 setters=1680\nREGIONAL_DRAW style=1 scale=1.00 reused=16 setters=1803\nREGIONAL_DRAW style=1 scale=1.25 reused=16 setters=1575\nREGIONAL_DRAW style=2 scale=0.75 reused=28 setters=2598\nREGIONAL_DRAW style=2 scale=1.00 reused=16 setters=2793\nREGIONAL_DRAW style=2 scale=1.25 reused=16 setters=2655\nRegional sprite reuse: 120918 checks PASS;canonical art/retained indexes/native paint/context epochs/global budgets;native GPU/CPU/taint pending\n"
+      }
+    ]
+  },
+  "initialGate": {
+    "count": 179,
+    "failed": [
+      "Bars/_tmp_barsmoke.lua"
+    ],
+    "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r70-checks.json",
+    "resolution": "Unchanged Shared unit-color helper is1286characters after routine start; old smoke scanned1200. Test now scans full routine to stable boundary and keeps helper/raw-key assertions. No runtime color-policy fix or weakening."
+  },
+  "syntax": {
+    "files": 1225,
+    "failed": [],
+    "stable": true,
+    "changedDuring": [],
+    "finalFixtureReparse": [
+      "Bars/_tmp_barsmoke.lua",
+      "tests/border_regional_draw_work.lua"
+    ]
+  },
+  "upvalues": {
+    "files": 22,
+    "functions": 1427,
+    "maximum": 51,
+    "failures": []
+  },
+  "negativeControls": [
+    {
+      "script": "tests/border_authored_unit_layout.lua",
+      "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r69-original\\Core\\BorderJunctions.lua",
+      "exitCode": 1,
+      "rejected": true,
+      "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/border_authored_unit_layout.lua:9: computed root availability changes cannot rediscover or rebuild authored unit borders\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/border_authored_unit_layout.lua:9: in local 'check'\n\ttests/border_authored_unit_layout.lua:29: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "script": "tests/roster_player_specialization.lua",
+      "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r69-original",
+      "exitCode": 1,
+      "rejected": true,
+      "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/roster_player_specialization.lua:9: forty foreign spec events cannot invalidate the own spell-rank cache\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/roster_player_specialization.lua:9: in local 'check'\n\ttests/roster_player_specialization.lua:20: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "script": "tests/raid_roster_attribute_work.lua",
+      "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r69-original\\RaidFrame\\FluxRaidSecure.lua",
+      "exitCode": 1,
+      "rejected": true,
+      "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/raid_roster_attribute_work.lua:4: unchanged roster reconciliation does not rewrite layout/snippet attributes\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_roster_attribute_work.lua:4: in local 'check'\n\ttests/raid_roster_attribute_work.lua:13: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "script": "tests/raid_spell_refresh_work.lua",
+      "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r69-original\\RaidFrame\\FluxRaidFrame.lua",
+      "exitCode": 1,
+      "rejected": true,
+      "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: tests/raid_spell_refresh_work.lua:8: spell bursts do not reinstall options/header layout or defer full configuration\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_spell_refresh_work.lua:8: in local 'check'\n\ttests/raid_spell_refresh_work.lua:29: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "script": "tests/border_regional_draw_work.lua",
+      "baseline": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r70-before-draw.lua",
+      "exitCode": 1,
+      "rejected": true,
+      "output": "C:/Users/mario/.codex/visualizations/2026/11/13/01a1d663-d601-7f93-879b-be03642eb3fc/lua-runtime/lua.exe: regional-sprite-work:86: unchanged joins inside changed regions reuse prepared native fields, even after unrelated intervening commits\nstack traceback:\n\t[C]: in function 'assert'\n\tregional-sprite-work:86: in local 'check'\n\tregional-sprite-work:141: in main chunk\n\ttests/border_regional_draw_work.lua:26: in main chunk\n\t[C]: in ?\n"
+    }
+  ],
+  "rosterAudit": [
+    {
+      "path": "Bars/SpellRank.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 1905,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Ev.Register(\"PLAYER_SPECIALIZATION_CHANGED\", function(event, unit)"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Bars/Stance/Watch.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 45,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Ev.Register(\"PLAYER_SPECIALIZATION_CHANGED\", function(event, unit)"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Bars/Watch.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 495,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "Ev.Register(\"GROUP_ROSTER_UPDATE\", function()"
+        }
+      ],
+      "review": "Retained group-dependent conditions and native fallback reconciliation; required for actual roster-dependent visibility/actions."
+    },
+    {
+      "path": "Battlezonemap/FluxThreat.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 202,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "ThreatFrame:UnregisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 839,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "elseif event == \"GROUP_ROSTER_UPDATE\" then"
+        },
+        {
+          "line": 910,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "ThreatFrame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 913,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "ThreatFrame:UnregisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 943,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "elseif event == \"GROUP_ROSTER_UPDATE\" then"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "Battlezonemap/FluxThreatMeter.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 333,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "\"GROUP_ROSTER_UPDATE\", \"UNIT_THREAT_LIST_UPDATE\", \"ADDON_LOADED\" }) do pane:RegisterEvent(event) end"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "Binding/Core/Conditions.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 609,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "pcall(gateEvents.RegisterEvent, gateEvents, \"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 2244,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "eventFrame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 2354,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "elseif event == \"EDIT_MODE_LAYOUTS_UPDATED\" or event == \"GROUP_ROSTER_UPDATE\" then"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "CharacterInfo/StatsProgression.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 938,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "CharacterStatsTbcFrame:RegisterEvent(\"GROUP_ROSTER_UPDATE\");"
+        },
+        {
+          "line": 965,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "event == \"GROUP_ROSTER_UPDATE\") then"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "Core/Engine/MouseoverCast.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 1364,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Ev.Register(\"PLAYER_SPECIALIZATION_CHANGED\", QueueClassify)"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Core/Engine/Range.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 535,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Ev.Register(\"PLAYER_SPECIALIZATION_CHANGED\", Refresh)"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Core/Engine/Restricted.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 342,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "fallbackFrame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Retained group-dependent conditions and native fallback reconciliation; required for actual roster-dependent visibility/actions."
+    },
+    {
+      "path": "Core/FluxAPI/Actions.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 106,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "FluxSafeRegisterEvent(spellCacheInvalidator, \"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Core/FluxAPI/UI.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 272,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "-- spec/level (PLAYER_SPECIALIZATION_CHANGED \u2192 UpdateLayoutInfo)."
+        },
+        {
+          "line": 1350,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "manaCacheFrame:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 1366,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "elseif event == \"PLAYER_SPECIALIZATION_CHANGED\" or event == \"ACTIVE_TALENT_GROUP_CHANGED\" or event == \"PLAYER_TALENT_UPDATE\" then"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 800,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Ev.Register(\"PLAYER_SPECIALIZATION_CHANGED\", function(event, unit)"
+        },
+        {
+          "line": 804,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "Ev.Register(\"GROUP_ROSTER_UPDATE\", function()"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Food.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 538,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "bindEvents:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "ExtraButtonSystem/NonCombatGrid/Buttons/Water.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 176,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "bindEvents:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "FluxDefaultSettings.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 57,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "_conjureNameSync:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Data/optional diagnostic event references; no permanent roster builder added or enabled."
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 592,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "f:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 597,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"PLAYER_LEVEL_UP\" or event == \"PLAYER_SPECIALIZATION_CHANGED\""
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Inventory/FluxEquipSlotCandidates.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 670,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "Flux.Events.Register(\"PLAYER_SPECIALIZATION_CHANGED\", function()"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "MicroMenu/FluxLFGMicroButton.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 427,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "lfgEventFrame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "Minimap/FluxMinimap.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 81,
+          "signals": [
+            "INSTANCE_GROUP_SIZE_CHANGED"
+          ],
+          "source": "FluxMinimap:RegisterEvent(\"INSTANCE_GROUP_SIZE_CHANGED\")"
+        },
+        {
+          "line": 82,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "FluxMinimap:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 87,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "-- Do not listen to PLAYER_SPECIALIZATION_CHANGED / level-up. Forever fires that"
+        },
+        {
+          "line": 297,
+          "signals": [
+            "GROUP_ROSTER_UPDATE",
+            "INSTANCE_GROUP_SIZE_CHANGED"
+          ],
+          "source": "elseif event == \"UPDATE_INSTANCE_INFO\" or event == \"PLAYER_DIFFICULTY_CHANGED\" or event == \"INSTANCE_GROUP_SIZE_CHANGED\" or event == \"GROUP_ROSTER_UPDATE\" or event == \"MINIMAP_UPDATE_TRACKING\" then"
+        },
+        {
+          "line": 1742,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "-- (Forever PLAYER_SPECIALIZATION_CHANGED) and a Flux re-dock fights Edit Mode."
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "NamePlates/Core.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 588,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "events:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Reviewed: retain group-dependent status/conditional/catalog/stat/threat/plate or hover-binding discovery; existing active/visible/coalescing paths preserved. No measured independent hotspot justifies suppressing live data."
+    },
+    {
+      "path": "Other/FluxCooldownDefaults.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 392,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "for _, event in ipairs({\"PLAYER_ENTERING_WORLD\", \"PLAYER_SPECIALIZATION_CHANGED\", \"UPDATE_SHAPESHIFT_FORM\","
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Other/FluxExtraAbilityHUD.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 58,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "-- (PLAYER_SPECIALIZATION_CHANGED \u2192 UpdateLayoutInfo). Wiping the mixin leaves"
+        },
+        {
+          "line": 210,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "pcall(regenFrame.RegisterUnitEvent, regenFrame, \"PLAYER_SPECIALIZATION_CHANGED\", \"player\")"
+        },
+        {
+          "line": 232,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "elseif event == \"PLAYER_SPECIALIZATION_CHANGED\" then"
+        }
+      ],
+      "review": "Already native player-unit registration plus current-spec token guard; retain retry/recovery."
+    },
+    {
+      "path": "Other/FluxInputDebug.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 187,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "snapshot.nativeSpecEvent = call(manager, \"IsEventRegistered\", \"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Data/optional diagnostic event references; no permanent roster builder added or enabled."
+    },
+    {
+      "path": "RaidFrame/FluxRaidFrame.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 198,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "function EventHandlers:GROUP_ROSTER_UPDATE()"
+        },
+        {
+          "line": 204,
+          "signals": [
+            "PARTY_MEMBERS_CHANGED"
+          ],
+          "source": "function EventHandlers:PARTY_MEMBERS_CHANGED()"
+        },
+        {
+          "line": 288,
+          "signals": [
+            "PLAYER_ROLES_ASSIGNED"
+          ],
+          "source": "function EventHandlers:PLAYER_ROLES_ASSIGNED()"
+        },
+        {
+          "line": 318,
+          "signals": [
+            "PARTY_LEADER_CHANGED"
+          ],
+          "source": "EventHandlers.PARTY_LEADER_CHANGED=EventHandlers.RAID_TARGET_UPDATE"
+        },
+        {
+          "line": 325,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "\"GROUP_ROSTER_UPDATE\","
+        },
+        {
+          "line": 326,
+          "signals": [
+            "PARTY_MEMBERS_CHANGED"
+          ],
+          "source": "\"PARTY_MEMBERS_CHANGED\","
+        },
+        {
+          "line": 335,
+          "signals": [
+            "PLAYER_ROLES_ASSIGNED"
+          ],
+          "source": "\"PLAYER_ROLES_ASSIGNED\","
+        },
+        {
+          "line": 340,
+          "signals": [
+            "PARTY_LEADER_CHANGED"
+          ],
+          "source": "\"PARTY_LEADER_CHANGED\","
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "RaidFrame/FluxRaidHealerExtras.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 277,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "for _, event in ipairs({ \"PLAYER_REGEN_ENABLED\", \"PLAYER_ENTERING_WORLD\", \"GROUP_ROSTER_UPDATE\" }) do"
+        },
+        {
+          "line": 344,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "if event == \"GROUP_ROSTER_UPDATE\" then"
+        }
+      ],
+      "review": "Retained: already prepared/coalesced roster/companion visibility, actual membership data and previews; same token can identify a different member. Native drivers remain authoritative."
+    },
+    {
+      "path": "RaidFrame/FluxRaidPreview.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 942,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "previewSessionListener:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 962,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "elseif ev == \"GROUP_ROSTER_UPDATE\" then"
+        }
+      ],
+      "review": "Retained: already prepared/coalesced roster/companion visibility, actual membership data and previews; same token can identify a different member. Native drivers remain authoritative."
+    },
+    {
+      "path": "Respec/FluxRespec_Core.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 852,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "FluxSafeRegisterEvent(specIconRefreshFrame, \"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 855,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "specIconRefreshFrame:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Respec/FluxRespec_TalentsRetail.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 593,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "f:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Retained: temporary own-switch completion listener; rechecks current player spec, not a persistent roster rebuild owner."
+    },
+    {
+      "path": "Respec/FluxRespec_UI.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 3133,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "pcall(function() UI._liveFrame:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\") end)"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "Salvage/FluxSalvage.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 48,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "loginFrame:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 58,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"SPELLS_CHANGED\" or event == \"PLAYER_SPECIALIZATION_CHANGED\" or event == \"SKILL_LINES_CHANGED\" then"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "UnitFrames/FluxCastBarThemes.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 955,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"PLAYER_SPECIALIZATION_CHANGED\" then"
+        },
+        {
+          "line": 985,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "pcall(events.RegisterEvent,events,\"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "UnitFrames/FluxClassPower.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 714,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "eventFrame:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 726,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"PLAYER_SPECIALIZATION_CHANGED\" then"
+        },
+        {
+          "line": 741,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"PLAYER_ENTERING_WORLD\" or event == \"PLAYER_SPECIALIZATION_CHANGED\""
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_DebuffTint.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 322,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "for _, event in ipairs({\"UNIT_AURA\", \"UNIT_FACTION\", \"UNIT_FLAGS\", \"UNIT_MAXPOWER\", \"UNIT_DISPLAYPOWER\", \"GROUP_ROSTER_UPDATE\", \"CVAR_UPDATE\","
+        },
+        {
+          "line": 332,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "elseif event == \"GROUP_ROSTER_UPDATE\" then"
+        }
+      ],
+      "review": "Retained actual unit group indicators/threat/auras/friendly-dispel/native target refresh; player-only filtering does not apply to these unit consumers."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 332,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "-- on spec/level (PLAYER_SPECIALIZATION_CHANGED \u2192 UpdateLayoutInfo)."
+        },
+        {
+          "line": 419,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "pcall(resuppressFrame.RegisterEvent, resuppressFrame, \"PLAYER_SPECIALIZATION_CHANGED\")"
+        }
+      ],
+      "review": "Retained: native Blizzard layout callbacks may reappear after unrelated spec notifications; suppression/recovery must follow them."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Party.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 6,
+          "signals": [
+            "PARTY_LEADER_CHANGED",
+            "PLAYER_ROLES_ASSIGNED",
+            "ROLE_CHANGED_INFORM"
+          ],
+          "source": "PARTY_LEADER_CHANGED=true, PARTY_LOOT_METHOD_CHANGED=true, PLAYER_ROLES_ASSIGNED=true, ROLE_CHANGED_INFORM=true,"
+        },
+        {
+          "line": 550,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "frame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 552,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "if event == \"UNIT_TARGET\" or event == \"GROUP_ROSTER_UPDATE\" then UF.ResetVerticalTargetHealth(self) end"
+        },
+        {
+          "line": 691,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "if event == \"GROUP_ROSTER_UPDATE\" then QueueRosterPaint(self); return end"
+        }
+      ],
+      "review": "Retained actual unit group indicators/threat/auras/friendly-dispel/native target refresh; player-only filtering does not apply to these unit consumers."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_PlayerSpecClick.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 1185,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "evt:RegisterEvent(\"PLAYER_SPECIALIZATION_CHANGED\")"
+        },
+        {
+          "line": 1188,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"PLAYER_SPECIALIZATION_CHANGED\" then"
+        },
+        {
+          "line": 1192,
+          "signals": [
+            "PLAYER_SPECIALIZATION_CHANGED"
+          ],
+          "source": "if event == \"ACTIVE_TALENT_GROUP_CHANGED\" or event == \"PLAYER_SPECIALIZATION_CHANGED\" or event == \"PLAYER_TALENT_UPDATE\" then"
+        }
+      ],
+      "review": "Changed: conservative own-player specialization gate, authored unit observer, existing queue reuse or redundant secure attribute writes; see exact diff/source identities."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Shared.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 9493,
+          "signals": [
+            "GROUP_ROSTER_UPDATE",
+            "RAID_ROSTER_UPDATE"
+          ],
+          "source": "elseif event == \"GROUP_ROSTER_UPDATE\" or event == \"RAID_ROSTER_UPDATE\""
+        },
+        {
+          "line": 9494,
+          "signals": [
+            "PARTY_LEADER_CHANGED"
+          ],
+          "source": "or event == \"PARTY_LEADER_CHANGED\" or event == \"PARTY_LOOT_METHOD_CHANGED\" then"
+        },
+        {
+          "line": 9791,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "frame:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 9792,
+          "signals": [
+            "RAID_ROSTER_UPDATE"
+          ],
+          "source": "frame:RegisterEvent(\"RAID_ROSTER_UPDATE\")"
+        },
+        {
+          "line": 9793,
+          "signals": [
+            "PARTY_LEADER_CHANGED"
+          ],
+          "source": "frame:RegisterEvent(\"PARTY_LEADER_CHANGED\")"
+        }
+      ],
+      "review": "Retained actual unit group indicators/threat/auras/friendly-dispel/native target refresh; player-only filtering does not apply to these unit consumers."
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_Target.lua",
+      "thirdParty": false,
+      "hits": [
+        {
+          "line": 31,
+          "signals": [
+            "GROUP_ROSTER_UPDATE"
+          ],
+          "source": "tf:RegisterEvent(\"GROUP_ROSTER_UPDATE\")"
+        }
+      ],
+      "review": "Retained actual unit group indicators/threat/auras/friendly-dispel/native target refresh; player-only filtering does not apply to these unit consumers."
+    }
+  ],
+  "measurements": {
+    "scope": "Actual source Lua5.4 models and canonical-art samples; not native latency/FPS/GPU/security certification",
+    "authoredUnits": "1218checks;seven units/styles1/2/scales.75/1/1.25;16availability/visibility transitions per scene:0computed-root rectangle reads/rebuilds/resources;real point/size/private/foreign cases retained",
+    "ownSpec": "168checks;whole rank/stance modules and17actual callback bodies;foreign40-event rank burst leaves cache clean;private/unknown/aliases/missing payload retain work",
+    "secure": "111checks;100unchanged roster passes0attribute writes versus800, with101native executes/1010frame refs in the modeled native layer",
+    "spells": "172checks;30events/80prepared units in/out of combat,1existing wake;32shown full cells each retain aura/dispel/BigDebuffs;0options/header rebuilds",
+    "regionalDraw": [
+      {
+        "style": 1,
+        "scale": 0.75,
+        "before": {
+          "reused": 0,
+          "setterChecks": 4200
+        },
+        "after": {
+          "reused": 28,
+          "setterChecks": 1680
+        }
+      },
+      {
+        "style": 1,
+        "scale": 1.0,
+        "before": {
+          "reused": 0,
+          "setterChecks": 3531
+        },
+        "after": {
+          "reused": 16,
+          "setterChecks": 1803
+        }
+      },
+      {
+        "style": 1,
+        "scale": 1.25,
+        "before": {
+          "reused": 0,
+          "setterChecks": 3231
+        },
+        "after": {
+          "reused": 16,
+          "setterChecks": 1575
+        }
+      },
+      {
+        "style": 2,
+        "scale": 0.75,
+        "before": {
+          "reused": 0,
+          "setterChecks": 7350
+        },
+        "after": {
+          "reused": 28,
+          "setterChecks": 2598
+        }
+      },
+      {
+        "style": 2,
+        "scale": 1.0,
+        "before": {
+          "reused": 0,
+          "setterChecks": 6393
+        },
+        "after": {
+          "reused": 16,
+          "setterChecks": 2793
+        }
+      },
+      {
+        "style": 2,
+        "scale": 1.25,
+        "before": {
+          "reused": 0,
+          "setterChecks": 5787
+        },
+        "after": {
+          "reused": 16,
+          "setterChecks": 2655
+        }
+      }
+    ],
+    "regionalArtChecks": 120918,
+    "pairedDesktopCPU": [
+      {
+        "style": 1.0,
+        "trial": 1.0,
+        "beforeMs": 24.0,
+        "afterMs": 22.0,
+        "beforeKB": 4956.435,
+        "afterKB": 4861.237,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 1.0,
+        "trial": 2.0,
+        "beforeMs": 24.0,
+        "afterMs": 24.0,
+        "beforeKB": 4854.292,
+        "afterKB": 4843.587,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 1.0,
+        "trial": 3.0,
+        "beforeMs": 22.0,
+        "afterMs": 21.0,
+        "beforeKB": 4604.778,
+        "afterKB": 4577.161,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 1.0,
+        "trial": 4.0,
+        "beforeMs": 20.0,
+        "afterMs": 19.0,
+        "beforeKB": 4331.12,
+        "afterKB": 4294.745,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 1.0,
+        "trial": 5.0,
+        "beforeMs": 20.0,
+        "afterMs": 19.0,
+        "beforeKB": 4137.792,
+        "afterKB": 4188.698,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 2.0,
+        "trial": 1.0,
+        "beforeMs": 31.0,
+        "afterMs": 28.0,
+        "beforeKB": 6711.708,
+        "afterKB": 6475.151,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 2.0,
+        "trial": 2.0,
+        "beforeMs": 28.0,
+        "afterMs": 28.0,
+        "beforeKB": 6545.128,
+        "afterKB": 6265.017,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 2.0,
+        "trial": 3.0,
+        "beforeMs": 30.0,
+        "afterMs": 26.0,
+        "beforeKB": 5925.528,
+        "afterKB": 5969.606,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 2.0,
+        "trial": 4.0,
+        "beforeMs": 28.0,
+        "afterMs": 27.0,
+        "beforeKB": 5812.261,
+        "afterKB": 5654.151,
+        "compiled": 18.0,
+        "misses": 6.0
+      },
+      {
+        "style": 2.0,
+        "trial": 5.0,
+        "beforeMs": 28.0,
+        "afterMs": 26.0,
+        "beforeKB": 5489.417,
+        "afterKB": 5503.104,
+        "compiled": 18.0,
+        "misses": 6.0
+      }
+    ],
+    "clock": "os.clock coarse1ms;5alternating pairs/style,6localmoves/sample;GC collect before each timed run;active GC. Small/model-dependent gains, raw variation retained."
+  },
+  "apiEvidence": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-r70-api-contracts.json",
+  "native": "Not run or requested;user is away. No native input, profiling, settings, group invites/leaves, automated controller or reload by this owner.",
+  "ownerPreservation": [
+    {
+      "path": "Core/FluxAPI/UI.lua",
+      "byteExactInverse": true,
+      "newlinePolicy": "Original line endings preserved; added guard uses the same line endings"
+    },
+    {
+      "path": "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+      "byteExactInverse": true,
+      "newlinePolicy": "Original line endings preserved; added guard uses the same line endings"
+    },
+    {
+      "path": "ExtraButtonSystem/Engine/Watch.lua",
+      "byteExactInverse": true
+    }
+  ],
+  "nonASCIIAndLicenses": "All22runtime files preserve the exact original nonASCII byte sequence; inverse proof above restores complete original owner files",
+  "documentationValidation": "PASS:1257classified sources;625TOC/XMLreachable;444setting definitions;24SavedVariables;18649local links",
+  "finalIdentityCheckUTC": "2026-11-18T13:30:01.143407+00:00",
+  "jobs": "All own test, benchmark, compiler and documentation-check processes finished. No native input/profiling/reload; user-away instruction retained."
+}

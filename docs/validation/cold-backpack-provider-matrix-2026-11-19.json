@@ -1,0 +1,259 @@
+{
+  "changeId": "LHO-COLD-BACKPACK-PROVIDER-MATRIX-20261119",
+  "status": "THREE_PROVIDER_CONFIGURATIONS_MEASURED_ORIGINAL_RESTORED",
+  "client": "Forever 1.60.1 / 70959 / 16001",
+  "pid": 9012,
+  "hwnd": 3541714,
+  "gameInput": "Backpack open and close only during each timed capture. Per-character addon flags changed and restored via the client. No item actions or profiler settings writes.",
+  "sourceHistory": {
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+    "bundleSHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "sources": [
+      "Inventory/Restock/Junk/FluxJunk.lua 091616c121d880e4ecf3cc230fee0bf32b46ef54ecc270b6e4eeeb4fa70010df",
+      "Inventory/Init.lua 36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+      "Inventory/Syndicator/Adapter.lua f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+      "MicroMenu/FluxCombinedBagHeader.lua 3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223",
+      "F:/World of Warcraft/_forever_/Interface/AddOns/Baganator/CategoryViews/BagLayout.lua a2eaa28e3fd4020e7373de70c7fae4445f602232c7bca39aa384de2f71775761"
+    ],
+    "settingsPathMetadata": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/bag154-addon-flags-file-stats.json"
+  },
+  "testInterruption": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag154_a-submitted.png",
+    "sha": "cf5494172d124b53527b503929059b604b4c4d9372cec3e8aa939c2ca8d0311a",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag154-provider-matrix-20261119",
+      "controllerSHA": "d99d51fa0426e6f547a6de957c3162d87f2e869778f1cce4983ff369153b85dc",
+      "packetSHA": "5ec11b72fd3d662b989757b5ad1e59276c24e140cae10174cf464104237de8dd",
+      "packets": 11,
+      "luaSHA": "27a8a88b7c735ed4e53feada65dd7dd14bf434adae3470a79f560d161cafc91e"
+    },
+    "result": "Temporary timer-driven reload triggered ForceTaint_Strong. No reload occurred. Read of current flags showed Baganator had been disabled for the current character but remained loaded until direct reload 165.",
+    "flagRead": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag160_a-submitted.png",
+      "sha": "b7058876b83d7ed12fb43493d8fabd3000e9413e4552b0d2eadd43738202eeba",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag160-direct-provider-matrix-20261119",
+        "controllerSHA": "07e1934a4efd567017a5e5014030668aeafbcac12368191e4985cfda895455a0",
+        "packetSHA": "842f711512decffbc882b4acdce65347551c1eaebe64a665cf52aba1041cf1af",
+        "packets": 1
+      }
+    }
+  },
+  "native": {
+    "bothPrior153": {
+      "openMs": 149.1494,
+      "reopenMs": 6.0444,
+      "firstPeakMs": 161,
+      "source": "docs/validation/baganator-cold-open-junk-2026-11-19.json"
+    },
+    "syndicatorOnly155": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag155-matrix-result.png",
+      "sha": "3017c696c5c34f646104080cbd7d1897cca356344452ca84bb51d6c119b5c72a",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag155-provider-matrix-20261119",
+        "controllerSHA": "bd8a81afe3d212ffda2cb585515f515e6030c34ff76f22db2d9f1a01bafe63ad",
+        "packetSHA": "3a2cf8742433920fba42fb80a31266dbe6d633760068624688c0c1b6d25c296e",
+        "packets": 18,
+        "luaSHA": "5e851441f2a46854a10e846c2e1bed178c16dc64f652e22a63759fd159ecd6a3"
+      },
+      "reload": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag165_a-submitted.png",
+        "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+        "controller": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag165-direct-provider-matrix-20261119",
+          "controllerSHA": "8d60c5588dfbc8aa1628a624a05eca1c48b3b6f4d00b223f79a56c5dbee2bee7",
+          "packetSHA": "1aa67bbfe9536228226d352a8b06fd7452f7359f71296809e36c21ee21797495",
+          "packets": 1
+        }
+      },
+      "flags": [
+        2,
+        0
+      ],
+      "loaded": [
+        true,
+        false
+      ],
+      "source": "syndicator",
+      "view": "ContainerFrameCombinedBags",
+      "toggleMs": [
+        155.7002,
+        2.2558,
+        25.7392,
+        1.3126
+      ],
+      "phasePeaksMs": [
+        15,
+        163,
+        15,
+        34,
+        16
+      ],
+      "count33_3OrMore": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "bagGenerationUnchanged": true,
+      "closedAfter": true,
+      "reliable": true,
+      "scriptProfile": 0,
+      "errors": 0
+    },
+    "builtIn157": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag157-matrix-result.png",
+      "sha": "301ec934485e634a1cb57dfc52a833e725ad49c74c41c44cb9c7548f41bec433",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag157-provider-matrix-20261119",
+        "controllerSHA": "4990e1e2f4305447ffdd7147151857aa6bdc25e15b951587567a6a0048dd1cd5",
+        "packetSHA": "7095404a295336dc062b6770ac39536812aa7891eee63b7482446d918e4a8e3e",
+        "packets": 18,
+        "luaSHA": "628589535d25ae91e12c625f10775530f1335cef43e165d2eb1a4214e15d49c8"
+      },
+      "reload": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag162_a-submitted.png",
+        "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+        "controller": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag162-direct-provider-matrix-20261119",
+          "controllerSHA": "840f242d5c3fea07e20a3a23c4a1bd6bf62dc05764c7f94163400712dda0b487",
+          "packetSHA": "ed5dd7b0496367c220c68a4e09aa83be672ea4a17c08d9a248917b5d1bf4369f",
+          "packets": 1
+        }
+      },
+      "flags": [
+        0,
+        0
+      ],
+      "loaded": [
+        false,
+        false
+      ],
+      "source": "builtin",
+      "view": "ContainerFrameCombinedBags",
+      "toggleMs": [
+        150.7081,
+        1.3272,
+        25.6534,
+        1.5195
+      ],
+      "phasePeaksMs": [
+        19,
+        158,
+        20,
+        36,
+        18
+      ],
+      "count33_3OrMore": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "bagGenerationUnchanged": true,
+      "closedAfter": true,
+      "reliable": true,
+      "scriptProfile": 0,
+      "errors": 0
+    },
+    "restoredFlags159": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag159_a-submitted.png",
+      "sha": "9c0eab62c7013429e5bf95f3805797f5ffaff4c9d7fd2066c4ad6c2f5cb79ebf",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag159-provider-matrix-20261119",
+        "controllerSHA": "01733308f29a7e2f4fa3386f132cbfd804a6ecdab2780c0c8bd5738a7903ad98",
+        "packetSHA": "09ed125805145b5372ac5176a7b6896d06a7134e37dba6e009b0d63fea10f435",
+        "packets": 9,
+        "luaSHA": "1ae3defadcafbd1617055d1dcd2873ce8d79749dc83cded6317c4446385d0822"
+      },
+      "reload": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag163_a-submitted.png",
+        "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+        "controller": {
+          "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag163-direct-provider-matrix-20261119",
+          "controllerSHA": "ce0ec19d4e104289f253aee9f40ac87d946950a914642fccf255ee38c1513382",
+          "packetSHA": "9013787b3d80aea10bf4f859a4157815f137291882c3912c3c2e32d37a49d1ec",
+          "packets": 2
+        }
+      },
+      "source": "syndicator",
+      "loaded": [
+        true,
+        true
+      ],
+      "characterEnable": [
+        2,
+        2
+      ],
+      "overallEnable": [
+        2,
+        2
+      ],
+      "ready": true,
+      "reliable": true,
+      "scriptProfile": 0,
+      "closedAfter": true,
+      "errors": 0
+    },
+    "restoredLayout166": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag166-matrix-result.png",
+      "sha": "13f20a1e613db9a3388c4ab38aebcdb600dc200dbc93cfa8523029731c958ea3",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag166-layout-phase-attribution-20261119",
+        "controllerSHA": "fd345d9a054d40a7b8c52aae9f287f69298101e0455fabaaac71f596a32ac39f",
+        "packetSHA": "0210cdccb50a667b28bf524fb8c535c418c75da77589c1ee7e4a088b25b71e27",
+        "packets": 28,
+        "luaSHA": "05aae85dac0b1f434307a98a5dfd45f8edc8ad4f668f190b0ad68ec0d80fbd81"
+      },
+      "toggleMs": [
+        150.0066,
+        1.1134,
+        7.4348,
+        1.1164
+      ],
+      "phasePeaksMs": [
+        19,
+        162,
+        25,
+        20,
+        23
+      ],
+      "count33_3OrMore": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "displayCalls": 1,
+      "displayInclusiveMs": 122.95,
+      "displayMsOutsideNestedObservers": 122.19,
+      "categoryFilterMsOutsideNestedObservers": 8.81,
+      "fluxJunkMs": 5.36,
+      "closedAfter": true,
+      "bagGenerationUnchanged": true,
+      "observersRestored": true,
+      "errors": 0
+    }
+  },
+  "jump": {
+    "pid": 9324,
+    "cueReady": true,
+    "pairs": 2,
+    "restore": true,
+    "latest": "2026-11-19T03:20:05.345368+01:00",
+    "body": "running",
+    "nextDue": 180,
+    "controller": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r24-20261119",
+    "cue": "4ecaf9d18380f975e822cab0812432eb7c2d45e513b3f32901b87d213be3475b"
+  },
+  "limits": [
+    "Provider configurations were sequential after reload, on the same Forever process and profile. The samples locate the hitch across configurations. They do not establish a causal speed difference between providers.",
+    "Display time outside measured nested wrappers includes uninstrumented descendants and rendering APIs. The exclusive cause within Display and the equivalent native implementation remain unknown.",
+    "The two native warm opens took about 25.7 ms and each had a 34–36 ms frame gap. The category view warm open was about 7.4 ms. Native layout and FluxUI hooks remain separate attribution targets.",
+    "No new runtime source edit was made in this provider-matrix pass."
+  ]
+}

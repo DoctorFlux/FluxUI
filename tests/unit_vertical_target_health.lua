@@ -80,9 +80,9 @@ local function fixture(client, unit, withExistingLoss, initiallyDisabled)
     s.enabled = not initiallyDisabled
     if not withExistingLoss then f.Health.AnimatedLossBar = nil end
     UF.ConfigureVerticalTargetHealth(f, f.Health)
-    function s:sample(h)
+    function s:sample(h, rosterRefresh)
         self.health = h
-        UF.UpdateVerticalTargetHealth(f, unit)
+        UF.UpdateVerticalTargetHealth(f, unit, rosterRefresh)
     end
     function s:step(dt)
         self.now = self.now + dt
@@ -204,6 +204,52 @@ for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_a
     check(not bar._fluxHealthLossUnderlay and bar.ClassicLossTex and bar.AnimatedLossBar, "disabled initial configuration prewarms vertical effects")
     s.enabled = true; s:sample(100); s:sample(50)
     check(bar.ClassicLossTex:IsShown(), "initially disabled feature enables during combat without new frames")
+end
+
+for _, client in ipairs({"live", "forever", "classic", "classic_era", "classic_anniversary"}) do
+    local s, UF, f, bar = fixture(client, "party1target")
+    local tex, loss = bar.ClassicLossTex, bar.AnimatedLossBar
+    s:sample(80)
+    local sequence, start, writes = bar._fluxLossSecretSeq, tex._animStart, s.lossWrites
+    for _ = 1, 20 do s:sample(80, true) end
+    check(tex:IsShown() and tex._driver:IsShown() and tex._animStart == start, "unchanged roster preserves the live trail")
+    check(bar._fluxLossSecretSeq == sequence and s.lossWrites == writes, "unchanged roster avoids restarting the loss sink")
+    s.absorbs = 6; s:sample(80, true)
+    check(not tex:IsShown() and f.verticalAbsorbBar:IsShown(), "a readable shield still ends an active trail")
+    s.absorbs = 0; s:sample(60)
+    s.guid = "same-health-replacement"; s:sample(60, true)
+    check(not tex:IsShown() and bar._fluxLossGUID == s.guid, "a replacement with the same health clears the old trail")
+
+    for _, guid in ipairs({false, "", s:secret("string"), {secretKind="string", inaccessible=true}}) do
+        s.guid = "old-target"; s:sample(100); s:sample(50)
+        s.guid = guid or nil
+        s:sample(50, true)
+        check(not loss:IsShown() and not tex:IsShown() and s.opaqueOps == 0, "unverified identity clears the old target without inspecting private values")
+    end
+    s.guid = "final-target"; s:sample(100); s:sample(80)
+    s:sample(70, true)
+    check(not tex:IsShown() and bar.value == 70, "changed health reprimes through the existing roster path")
+    s:sample(s:secret("number"))
+    local stale = s.timers[#s.timers]
+    check(bar._fluxLossSecretPending and loss:IsShown(), "opaque combat sample has a pending native callback")
+    local opaque = s:secret("number")
+    s:sample(opaque, true)
+    check(rawequal(bar.value, opaque) and not bar._fluxLossSecretPending and not loss:IsShown(),
+        "opaque roster clears the old native trail and uses its regular value sink")
+    local writes = s.lossWrites
+    stale()
+    check(s.lossWrites == writes and s.opaqueOps == 0, "the stale callback cannot overwrite the roster sample")
+
+    s:sample(100); s:sample(80)
+    local setValue = bar.SetValue
+    function bar:SetValue(value)
+        self.SetValue = setValue
+        s.guid = "replaced-during-value-write"
+        UF.ResetVerticalTargetHealth(f)
+        setValue(self, value)
+    end
+    s:sample(80, true)
+    check(bar._fluxLossGUID == s.guid and not tex:IsShown(), "a reset during publication reprimes the current target")
 end
 
 -- The existing Classic horizontal path shares the corrected trailing-edge math.

@@ -1,0 +1,903 @@
+{
+  "changeId": "LHO-BARS-USABLE-CLOSURE-P69-20261116",
+  "recordedUTC": "2026-11-16T17:34:57.525988+00:00",
+  "status": "APPLIED_EXACT_TESTED_BYTES",
+  "goalStatus": "ACTIVE",
+  "owner": {
+    "owner": "Bars/Paint.lua",
+    "beforeSHA256": "1f2c1ffddc2b89bc204dc2d66d3bc823e6a730666dc837bea3368746f781649b",
+    "afterSHA256": "7b6273f75e501f79c5cb287cb5e03b303f6226965b676d1e8a9fec090db34bb0",
+    "mechanism": "One private file-local usable-state helper replacing one per-eligible-host closure; three call sites pass exact host/C/charge locals. Current public/native lookup order, branches, palette/state writes, raw errors/reentry and cadence retained by source+functional model proof."
+  },
+  "applicationAndPostcheck": {
+    "appliedUTC": "2026-11-16T17:27:37.499072+00:00",
+    "applicationSHA256": "581df1dd2040404524866f515d660997ad6e2528e3a63a902bba33173ab87b0a",
+    "postcheckUTC": "2026-11-16T17:30:46.932482+00:00",
+    "postcheckSHA256": "ee4137b18a3cdab6312e395333c566c8ab0223ca069a2c58b3ab3c9ac43ed83a",
+    "numericReviewSHA256": "1cf7da635d767a7937960567aea574226c85cc5361d642f04db361fd2dd23b55",
+    "costRawSHA256": "7c5e179a55f40785fef88b511cf9f1230711228b8f699771f3c2d1cc6674b1b7",
+    "changedRuntimeFiles": 1,
+    "actualCandidateByteEqual": true,
+    "P68ExpectedPinsMatched": 11,
+    "readOnlyInstalledOwnerIdentitiesMatched": 5,
+    "manualSync": false,
+    "nativeLoadedSourceAdoption": "PENDING",
+    "fullSuiteOrCurrentWholeTreePassClaim": false
+  },
+  "sourceContract": "One file-local private usable-state helper replaces the per-eligible-host closure at three call sites. Captured host/C/charge points, public/native query order, palette/secret branch priorities, callback/reentry/error behavior, feature data, appearance intent and cadence remain unchanged by source and modeled functional proof.",
+  "functional": {
+    "pipelineCasesEachVM": 6,
+    "pipelineChecksEachVM": 642,
+    "pipelineScalarFieldsEachVM": 18036,
+    "pipelineScalarFieldsTotal": 36072,
+    "pipelineRawStdoutByteEquality": true,
+    "distributedFiveClientLabelsAndBothProviders": true,
+    "notNativeOrFullFactorial": true,
+    "focusedCasesEachVM": 16,
+    "focusedChecksEachVM": 361,
+    "focusedStableObjectIDsAndRawOpaqueErrors": true,
+    "existingStressRuntime": "54",
+    "existingStressChecksEachSource": 86872,
+    "existingStressModeledEdgesEachSource": 540672
+  },
+  "cost": {
+    "records": 88,
+    "CPUrecords": 24,
+    "GCwindows": 64,
+    "CPUdefinition": "StockLua5.1 own-child GetProcessTimes user+kernel,15.625ms quantum, includes setup+100 warm passes+normalGC+final checks; monotonic wall separately. Four modeled leaf shapes only.",
+    "GCdefinition": "Separate stockLua5.1/5.4 stopped-GC N4/N8 windows, two trials per profile; slopes exclude fixed intercept. Transient growth, not retained heap/native pause/FPS.",
+    "CPU": [
+      {
+        "profile": "normal1",
+        "hosts": 1,
+        "iterations": 120000,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": "B/C",
+            "baselineCPUms": 265.625,
+            "candidateCPUms": 265.625,
+            "CPUdeltaMs": 0.0,
+            "CPUdeltaPercent": 0.0,
+            "baselineWallMs": 297.0000000204891,
+            "candidateWallMs": 296.99999996228144,
+            "wallDeltaMs": -5.820766091346741e-08,
+            "wallDeltaPercent": -1.9598533906872717e-08
+          },
+          {
+            "pair": 2,
+            "order": "C/B",
+            "baselineCPUms": 343.75,
+            "candidateCPUms": 265.625,
+            "CPUdeltaMs": -78.125,
+            "CPUdeltaPercent": -22.72727272727273,
+            "baselineWallMs": 358.99999999674037,
+            "candidateWallMs": 281.00000001722947,
+            "wallDeltaMs": -77.9999999795109,
+            "wallDeltaPercent": -21.727019493097245
+          },
+          {
+            "pair": 3,
+            "order": "B/C",
+            "baselineCPUms": 328.125,
+            "candidateCPUms": 218.75,
+            "CPUdeltaMs": -109.375,
+            "CPUdeltaPercent": -33.333333333333336,
+            "baselineWallMs": 358.99999999674037,
+            "candidateWallMs": 266.00000000325963,
+            "wallDeltaMs": -92.99999999348074,
+            "wallDeltaPercent": -25.905292477527897
+          }
+        ],
+        "baselineCPUms": {
+          "raw": [
+            265.625,
+            343.75,
+            328.125
+          ],
+          "median": 328.125,
+          "min": 265.625,
+          "max": 343.75,
+          "spread": 78.125
+        },
+        "candidateCPUms": {
+          "raw": [
+            265.625,
+            265.625,
+            218.75
+          ],
+          "median": 265.625,
+          "min": 218.75,
+          "max": 265.625,
+          "spread": 46.875
+        },
+        "medianCPUpercent": -19.047619047619047,
+        "baselineWallMs": {
+          "raw": [
+            297.0000000204891,
+            358.99999999674037,
+            358.99999999674037
+          ],
+          "median": 358.99999999674037,
+          "min": 297.0000000204891,
+          "max": 358.99999999674037,
+          "spread": 61.999999976251274
+        },
+        "candidateWallMs": {
+          "raw": [
+            296.99999996228144,
+            281.00000001722947,
+            266.00000000325963
+          ],
+          "median": 281.00000001722947,
+          "min": 266.00000000325963,
+          "max": 296.99999996228144,
+          "spread": 30.999999959021807
+        },
+        "medianWallPercent": -21.727019493097245
+      },
+      {
+        "profile": "normal57",
+        "hosts": 57,
+        "iterations": 2500,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": "B/C",
+            "baselineCPUms": 328.125,
+            "candidateCPUms": 296.875,
+            "CPUdeltaMs": -31.25,
+            "CPUdeltaPercent": -9.523809523809524,
+            "baselineWallMs": 358.99999999674037,
+            "candidateWallMs": 327.9999999795109,
+            "wallDeltaMs": -31.000000017229468,
+            "wallDeltaPercent": -8.635097497913913
+          },
+          {
+            "pair": 2,
+            "order": "C/B",
+            "baselineCPUms": 343.75,
+            "candidateCPUms": 281.25,
+            "CPUdeltaMs": -62.5,
+            "CPUdeltaPercent": -18.181818181818176,
+            "baselineWallMs": 375.0,
+            "candidateWallMs": 297.0000000204891,
+            "wallDeltaMs": -77.9999999795109,
+            "wallDeltaPercent": -20.799999994536243
+          },
+          {
+            "pair": 3,
+            "order": "B/C",
+            "baselineCPUms": 375.0,
+            "candidateCPUms": 296.875,
+            "CPUdeltaMs": -78.125,
+            "CPUdeltaPercent": -20.833333333333336,
+            "baselineWallMs": 406.00000001722947,
+            "candidateWallMs": 297.0000000204891,
+            "wallDeltaMs": -108.99999999674037,
+            "wallDeltaPercent": -26.847290638451902
+          }
+        ],
+        "baselineCPUms": {
+          "raw": [
+            328.125,
+            343.75,
+            375.0
+          ],
+          "median": 343.75,
+          "min": 328.125,
+          "max": 375.0,
+          "spread": 46.875
+        },
+        "candidateCPUms": {
+          "raw": [
+            296.875,
+            281.25,
+            296.875
+          ],
+          "median": 296.875,
+          "min": 281.25,
+          "max": 296.875,
+          "spread": 15.625
+        },
+        "medianCPUpercent": -13.636363636363635,
+        "baselineWallMs": {
+          "raw": [
+            358.99999999674037,
+            375.0,
+            406.00000001722947
+          ],
+          "median": 375.0,
+          "min": 358.99999999674037,
+          "max": 406.00000001722947,
+          "spread": 47.0000000204891
+        },
+        "candidateWallMs": {
+          "raw": [
+            327.9999999795109,
+            297.0000000204891,
+            297.0000000204891
+          ],
+          "median": 297.0000000204891,
+          "min": 297.0000000204891,
+          "max": 327.9999999795109,
+          "spread": 30.999999959021807
+        },
+        "medianWallPercent": -20.799999994536243
+      },
+      {
+        "profile": "empty57",
+        "hosts": 57,
+        "iterations": 5000,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": "B/C",
+            "baselineCPUms": 140.625,
+            "candidateCPUms": 125.0,
+            "CPUdeltaMs": -15.625,
+            "CPUdeltaPercent": -11.111111111111116,
+            "baselineWallMs": 141.00000000325963,
+            "candidateWallMs": 250.0,
+            "wallDeltaMs": 108.99999999674037,
+            "wallDeltaPercent": 77.30496453490817
+          },
+          {
+            "pair": 2,
+            "order": "C/B",
+            "baselineCPUms": 125.0,
+            "candidateCPUms": 125.0,
+            "CPUdeltaMs": 0.0,
+            "CPUdeltaPercent": 0.0,
+            "baselineWallMs": 141.00000000325963,
+            "candidateWallMs": 155.9999999590218,
+            "wallDeltaMs": 14.999999955762178,
+            "wallDeltaPercent": 10.638297840720146
+          },
+          {
+            "pair": 3,
+            "order": "B/C",
+            "baselineCPUms": 109.375,
+            "candidateCPUms": 140.625,
+            "CPUdeltaMs": 31.25,
+            "CPUdeltaPercent": 28.57142857142858,
+            "baselineWallMs": 140.00000001396984,
+            "candidateWallMs": 156.00000001722947,
+            "wallDeltaMs": 16.00000000325963,
+            "wallDeltaPercent": 11.428571429759348
+          }
+        ],
+        "baselineCPUms": {
+          "raw": [
+            140.625,
+            125.0,
+            109.375
+          ],
+          "median": 125.0,
+          "min": 109.375,
+          "max": 140.625,
+          "spread": 31.25
+        },
+        "candidateCPUms": {
+          "raw": [
+            125.0,
+            125.0,
+            140.625
+          ],
+          "median": 125.0,
+          "min": 125.0,
+          "max": 140.625,
+          "spread": 15.625
+        },
+        "medianCPUpercent": 0.0,
+        "baselineWallMs": {
+          "raw": [
+            141.00000000325963,
+            141.00000000325963,
+            140.00000001396984
+          ],
+          "median": 141.00000000325963,
+          "min": 140.00000001396984,
+          "max": 141.00000000325963,
+          "spread": 0.9999999892897904
+        },
+        "candidateWallMs": {
+          "raw": [
+            250.0,
+            155.9999999590218,
+            156.00000001722947
+          ],
+          "median": 156.00000001722947,
+          "min": 155.9999999590218,
+          "max": 250.0,
+          "spread": 94.0000000409782
+        },
+        "medianWallPercent": 10.638297882002167
+      },
+      {
+        "profile": "outOfRange57",
+        "hosts": 57,
+        "iterations": 3000,
+        "pairs": [
+          {
+            "pair": 1,
+            "order": "B/C",
+            "baselineCPUms": 265.625,
+            "candidateCPUms": 265.625,
+            "CPUdeltaMs": 0.0,
+            "CPUdeltaPercent": 0.0,
+            "baselineWallMs": 296.99999996228144,
+            "candidateWallMs": 282.00000000651926,
+            "wallDeltaMs": -14.999999955762178,
+            "wallDeltaPercent": -5.050505036251563
+          },
+          {
+            "pair": 2,
+            "order": "C/B",
+            "baselineCPUms": 250.0,
+            "candidateCPUms": 250.0,
+            "CPUdeltaMs": 0.0,
+            "CPUdeltaPercent": 0.0,
+            "baselineWallMs": 250.0,
+            "candidateWallMs": 266.00000000325963,
+            "wallDeltaMs": 16.00000000325963,
+            "wallDeltaPercent": 6.400000001303852
+          },
+          {
+            "pair": 3,
+            "order": "B/C",
+            "baselineCPUms": 250.0,
+            "candidateCPUms": 250.0,
+            "CPUdeltaMs": 0.0,
+            "CPUdeltaPercent": 0.0,
+            "baselineWallMs": 266.00000000325963,
+            "candidateWallMs": 281.00000001722947,
+            "wallDeltaMs": 15.000000013969839,
+            "wallDeltaPercent": 5.639097749543609
+          }
+        ],
+        "baselineCPUms": {
+          "raw": [
+            265.625,
+            250.0,
+            250.0
+          ],
+          "median": 250.0,
+          "min": 250.0,
+          "max": 265.625,
+          "spread": 15.625
+        },
+        "candidateCPUms": {
+          "raw": [
+            265.625,
+            250.0,
+            250.0
+          ],
+          "median": 250.0,
+          "min": 250.0,
+          "max": 265.625,
+          "spread": 15.625
+        },
+        "medianCPUpercent": 0.0,
+        "baselineWallMs": {
+          "raw": [
+            296.99999996228144,
+            250.0,
+            266.00000000325963
+          ],
+          "median": 266.00000000325963,
+          "min": 250.0,
+          "max": 296.99999996228144,
+          "spread": 46.999999962281436
+        },
+        "candidateWallMs": {
+          "raw": [
+            282.00000000651926,
+            266.00000000325963,
+            281.00000001722947
+          ],
+          "median": 281.00000001722947,
+          "min": 266.00000000325963,
+          "max": 282.00000000651926,
+          "spread": 16.00000000325963
+        },
+        "medianWallPercent": 5.639097749543609
+      }
+    ],
+    "GC": [
+      {
+        "runtime": "51",
+        "profile": "normal1",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 800.0,
+              "N8bytes": 1600.0,
+              "bytesPerUpdateUsableSlope": 200.0,
+              "bytesPerPassSlope": 200.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 800.0,
+              "N8bytes": 1600.0,
+              "bytesPerUpdateUsableSlope": 200.0,
+              "bytesPerPassSlope": 200.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "51",
+        "profile": "normal57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 45600.0,
+              "N8bytes": 91200.0,
+              "bytesPerUpdateUsableSlope": 200.0,
+              "bytesPerPassSlope": 11400.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 45600.0,
+              "N8bytes": 91200.0,
+              "bytesPerUpdateUsableSlope": 200.0,
+              "bytesPerPassSlope": 11400.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "51",
+        "profile": "empty57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "51",
+        "profile": "outOfRange57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 0,
+              "N8bytes": 0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 0.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "54",
+        "profile": "normal1",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 896.0,
+              "N8bytes": 1664.0,
+              "bytesPerUpdateUsableSlope": 192.0,
+              "bytesPerPassSlope": 192.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 896.0,
+              "N8bytes": 1664.0,
+              "bytesPerUpdateUsableSlope": 192.0,
+              "bytesPerPassSlope": 192.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 4,
+              "N8calls": 8,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "54",
+        "profile": "normal57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 43776.0,
+              "N8bytes": 87552.0,
+              "bytesPerUpdateUsableSlope": 192.0,
+              "bytesPerPassSlope": 10944.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 43776.0,
+              "N8bytes": 87552.0,
+              "bytesPerUpdateUsableSlope": 192.0,
+              "bytesPerPassSlope": 10944.0,
+              "interceptBytes": 0.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "54",
+        "profile": "empty57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          }
+        ]
+      },
+      {
+        "runtime": "54",
+        "profile": "outOfRange57",
+        "trials": [
+          {
+            "trial": 1,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          },
+          {
+            "trial": 2,
+            "baseline": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            },
+            "candidate": {
+              "N4calls": 228,
+              "N8calls": 456,
+              "N4bytes": 128.0,
+              "N8bytes": 128.0,
+              "bytesPerUpdateUsableSlope": 0.0,
+              "bytesPerPassSlope": 0.0,
+              "interceptBytes": 128.0
+            }
+          }
+        ]
+      }
+    ],
+    "controlRegressions": [
+      "empty57 CPU median tie; pairCPU deltas -15.625/0/+31.25ms and all3 wall pairs slower; wall median+10.638297882%.",
+      "outOfRange57 all3CPU ties; wall2slower/1faster, median+5.639097750%.",
+      "Lua54 normal57 candidate has128B fixed window intercept versus baseline0; slopes192 to0B/call. Normal1 Lua54 intercept128B bothvariants."
+    ],
+    "priorR1SetupFailure": {
+      "failedBaselineChildren": 1,
+      "validPairs": 0,
+      "phase": "setup before warm/work",
+      "partialSHA256": "6b113cd17a0aebeb9b3fb6f1352881e9f8344634493fb5f815565614a33ec5fe",
+      "failureSHA256": "3bad6e888e9f0682b13f112c59ae7a56058c5539aed25cdbfd276fbe4fe3c0ab",
+      "repairExactlyOneRedundantAssignmentRemoved": true,
+      "existingFixtureGetterAlreadyConstant": true,
+      "recordsExcludedFromR2Metrics": true
+    },
+    "priorR1RepairSHA256": "2c277b6a85d68abd1f0868d052d142e150f790e6ab5cd04e90e45f9613e902bd",
+    "allRawPreserved": true,
+    "completedMeasurementsResampled": false,
+    "interpretation": "Normal leaf CPU medians improve19.047619% (one host) and13.636364% (57 hosts). Empty/OOR CPU medians tie while wall medians regress10.638298%/5.639098%; all negative pairs remain evidence. Normal transient-growth slopes200B/call in stock51 and192B/call in54 become0. Lua54 fixed128B window intercepts are retained, including normal57 candidate128 versus baseline0. This is not whole-pipeline/native CPU, retained heap or GC-pause/FPS proof."
+  },
+  "checkpoint": {
+    "receiptSHA256": "48280a1e9f9f6dbd3700c18d55621b5902fafe45c7547abc93f46d9f5d61f38c",
+    "completedUTC": "2026-11-16T17:26:33.940969+00:00",
+    "status": "SCOPED_PREAPPLY_SOURCE_HISTORY_SETTINGS_METADATA_PASS",
+    "knownSettingsMetadataPaths": 125,
+    "availableSettingsMetadataPaths": 125,
+    "privateValuesReadOrCopied": false,
+    "scope": "Fresh scoped owned-file restore coverage and verified historical source/history archive; no current whole-tree archive/manifest or full-suite claim."
+  },
+  "artifacts": {
+    "sourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\independent-source-review-r15-20261116T170323Z\\review.json",
+      "SHA256": "c9f3e18c495028bd35ab099fc5068726d06070c934e2133c038dcd580d37f84d"
+    },
+    "pipelinePair": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-bag-lane-p68-baseline\\candidate-pair-report.json",
+      "SHA256": "f69c2b5c4ac50293e4a1a73fbe18b03b23ba2e8ac64b19fe04ea2b1ae2f5a84d"
+    },
+    "focused": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\focused-r1\\execution-20261116T171515Z\\execution.json",
+      "SHA256": "45982a2babb69d50d422659d8ff412e40c81d27ba4b30c7c60b8dbc3df95feec"
+    },
+    "focusedResult": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\focused-r1\\execution-20261116T171515Z\\result.json",
+      "SHA256": "5519555e865d63ae86670ba6680681066a4d331d1ff26b4257069727bce31d6d"
+    },
+    "existingStress54": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\existing-regression54-first\\execution.json",
+      "SHA256": "5a31812204fce63b3640eda7934d971ec9e7b7cd98a1c80a51470d5d4d705095"
+    },
+    "costRaw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-repaired-batch-r2\\raw.json",
+      "SHA256": "7c5e179a55f40785fef88b511cf9f1230711228b8f699771f3c2d1cc6674b1b7"
+    },
+    "costDeclaration": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-declaration.json",
+      "SHA256": "1e8ea51b26bad10c7c7dd17f8b3e63306e45e1f96392c5ac5d7be31c02cd53fb"
+    },
+    "costGateR2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-go-r2.json",
+      "SHA256": "c519e24cf2ee35d33b67dc6f06de850c41b5e98eb6270012bbf21d93c0c82649"
+    },
+    "independentNumeric": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\independent-numeric-review-hook\\review.json",
+      "SHA256": "1cf7da635d767a7937960567aea574226c85cc5361d642f04db361fd2dd23b55"
+    },
+    "priorR1Partial": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-first-batch\\partial.json",
+      "SHA256": "6b113cd17a0aebeb9b3fb6f1352881e9f8344634493fb5f815565614a33ec5fe"
+    },
+    "priorR1Failure": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-first-batch\\failure.json",
+      "SHA256": "3bad6e888e9f0682b13f112c59ae7a56058c5539aed25cdbfd276fbe4fe3c0ab"
+    },
+    "costRepair": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\cost-repair-r2.json",
+      "SHA256": "2c277b6a85d68abd1f0868d052d142e150f790e6ab5cd04e90e45f9613e902bd"
+    },
+    "checkpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\preapply-checkpoint-r1\\checkpoint.json",
+      "SHA256": "48280a1e9f9f6dbd3700c18d55621b5902fafe45c7547abc93f46d9f5d61f38c"
+    },
+    "application": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\application.json",
+      "SHA256": "581df1dd2040404524866f515d660997ad6e2528e3a63a902bba33173ab87b0a"
+    },
+    "postcheck": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bars-usable-closure-p69-r1\\postcheck.json",
+      "SHA256": "ee4137b18a3cdab6312e395333c566c8ab0223ca069a2c58b3ab3c9ac43ed83a"
+    }
+  },
+  "postcheckScope": "Root/Combo read-only actual owner+11P68 dependency pins, main6b444/.githooks, scoped diff check0 and5installed-file identities. No additional test/model/native/manual-copy job; on-disk identity does not prove loaded-client adoption.",
+  "limits": [
+    "Four leaf/fallback shapes only; modeled native API/widget endpoints, not the complete EBS or bag pipeline CPU.",
+    "CPU is own-child user+kernel with15.625ms quantum, including setup,100 warm passes, normalGC and final checks.",
+    "Empty control CPU pairs -15.625/0/+31.25ms; allthree wall pairs slower. OOR CPU allties; wall2slower/1faster. These observed regressions are not erased or proven to be noise.",
+    "Actual VM GC-stopped transient growth and two-point slopes only; no retained heap, GC-pause, native allocation or FPS improvement proof.",
+    "Lua54 candidate normal57 has128B fixed window intercept versus baseline0; slope still0 versus192B/call.",
+    "First R1 setup failure is retained separately; no valid paired sample existed before repair. R2 contains the declared fixed88-job schedule with no resampling.",
+    "Models distribute all5client labels/both providers across6cases; not a native factorial or complete workflow FPS benchmark.",
+    "No native loaded-source adoption, whole-event/frame-spike/taint/pixel/all-client acceptance. P67 remains external prepared/never installed."
+  ],
+  "nativeContinuation": {
+    "P67": "FinalR3/protocol55packet package prepared; never natively staged/armed at Root checkpoint.",
+    "latestRootReport": "stage1c/1d stopped before input; watchers and input.lock absent, owned holds unchanged; no future quiet window assumed.",
+    "scope": "Dated Root report only; no native query or transient-resource inference by this task.",
+    "goalStatus": "ACTIVE"
+  },
+  "preservation": "P67 remains prepared/never natively installed. WowSim and prior P58/P60/P62toP66/native records remain historical evidence. No new quiet window, actual movement, native FPS/spike/adoption, taint/pixels or all-client workflow acceptance. Existing active goal and pause procedure continue.",
+  "documentationAction": "Eleven approved docs only; no runtime/test/native/settings/generator/manual-sync/commit/publication action by this writer."
+}

@@ -1,0 +1,107 @@
+{
+  "id": "LHO-KEYS-ONLY-CONSUMERS-20261117",
+  "utc": "2026-11-17T20:35:40.523668+00:00",
+  "status": "APPLIED; SOURCE_REVIEW_AND_SYNTAX_PASS; goal active",
+  "userDirection": "Continue direct inventory Lua optimization; no new simulations",
+  "runtimeFiles": [
+    {
+      "file": "Inventory/FluxConsumableBest/Scan.lua",
+      "before": "9ac3e06c7beba074e4bfa6a26a2b284051b2203a5a43c6cfaa2c3bc18ee349c7",
+      "after": "43f9a81edea184244bce4cea8c2ccb5ddde1140d0dee75b4fd49b1c72b31330b"
+    },
+    {
+      "file": "Inventory/Craft.lua",
+      "before": "819e5b69041ce82e18b4a2c2b281ccc3d96452c3dc099af5c5fb3562a2bbb10a",
+      "after": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005"
+    },
+    {
+      "file": "Inventory/FluxConsumableBest/Init.lua",
+      "before": "24ec2905c39b15000e76c0e2a6d6780d46ef8e6a4337ae801aa092a9f48ff920",
+      "after": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610"
+    }
+  ],
+  "dependencies": {
+    "Inventory/Index.lua": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "_FluxUI.toc": "50dd0fa7c812000e357e0a5be5885773ace4cc1ec2fc1e7c8675a35e74f52dc5"
+  },
+  "implementation": {
+    "Scan": "Use authenticated existing fresh ID helper for bags-only unique query; conjure-priority and normal loops consume only keys. Bank record query unchanged.",
+    "Craft": "Use same guarded helper only while resolving missing reagent itemID by name; GetItemInfo loop, equality, r.itemID assignment and fallback behavior retained.",
+    "Init": "Use same guarded helper to count unique bags in login recovery; ticker/settled/empty-kind/force retry and timing unchanged.",
+    "ownership": "Capture Index-owned namespace pair at load; require exact Inventory owner and exact public helper. Existing helper itself preserves facade and Index public GetUniqueItems overrides; copied/replaced/foreign helper uses legacy path.",
+    "loadOrder": "Existing _FluxUI.toc Index78; Best.Init110; Best.Scan114; Craft120. No TOC edits.",
+    "results": "Fresh maps; keys only consumed at these three call sites. Supplied options stay fresh with original fields. No snapshot/count/name/metadata reads removed."
+  },
+  "historicalLead": {
+    "evidence": "docs/validation/passive-inventory-item-ids-2026-11-14.json",
+    "scope": "C1 historical same-VM native query allocation/key parity plus desktop ownership/override tests; different source/application identities.",
+    "nativeObservation": "3pairs;51IDs;22464 to10800 allocated bytes per query observation; uncontrolled brief CPU samples.",
+    "transferLimit": "Establishes existing helper as a candidate mechanism only; not current Scan/Craft/Init native or functional/performance acceptance.",
+    "smallInventoryQualifier": "ID helper retains parallel private count/link arrays and per-query workers; no speed/byte win is claimed for every inventory size or route."
+  },
+  "validation": {
+    "newSyntaxPasses": 6,
+    "compilers": [
+      "Lua5.1.5",
+      "Lua5.4.6"
+    ],
+    "mode": "-p only; addon chunks not executed",
+    "sourceReview": [
+      "Both consumers of unique use keys only; no record values escape",
+      "Private namespace owner/helper captured at load; public helper replacement/copied foreign owner falls back",
+      "Private helper retains original facade and Index public query override fallback",
+      "Same fresh query options and capability/region defaults",
+      "Same conjure-priority and classification-cap/pending loops",
+      "Bank query still uses full records and original count guard",
+      "Same pending reuse guards; generation/listener publication and live metadata recovery",
+      "Same timer/event/cadence/UI/settings and external addon files",
+      "Fresh ID result, same option flags and same item-name read loop",
+      "Unresolved name r.itemID update retained at original point",
+      "No name memoization or skipped native GetItemInfo reads",
+      "Original public getter presence checks retained; owned helper retains original facade and Index fallback",
+      "Login ticker/settled/empty-kind/count/force retry conditions unchanged",
+      "No recipe matching/crafting counts, saved data, UI or cadence change"
+    ],
+    "applicationReceipts": [
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-best-id-query-20261117\\application.json",
+        "sha256": "43df3a5c68677918e1e6ca18a86920013715d91741da71e1b05eaf4fa82dc14a"
+      },
+      {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-best-id-query-20261117\\craft-login-application.json",
+        "sha256": "ec4929f16dbea40bc014df4659e88250789a70ca720744148babc811458399cb"
+      }
+    ],
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "newFunctionalTests": "NOT RUN; user disabled simulations",
+    "nativeFunctionality": "PENDING",
+    "CPU_FPS_or_lagSpikeGain": "NOT ESTABLISHED"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-best-id-query-20261117\\checkpoint.json",
+    "sha256": "1b481f45eb0b3ffacffeced3858dceb3be279f583bc84298b29703937e73ac9e",
+    "craftLogin": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-best-id-query-20261117\\craft-login-checkpoint.json",
+    "historyVerified": true,
+    "settingsMetadataPaths": 125,
+    "privateValuesReadOrModified": false
+  },
+  "preserved": [
+    "Same look/features, defaults, commands, saves and integrations",
+    "Same live count/name/classify/metadata reads and fallback API paths",
+    "Same cast/conjure pending caps/retries, priorities, generation and listener publication",
+    "Same bag/login/merchant/bank timers and refresh cadence",
+    "External Syndicator and Baganator untouched",
+    "Full-record paths remain when count/link/location values are consumed"
+  ],
+  "remaining": [
+    "All-client native loaded source, behavior and lag-spike verification",
+    "Builtin only, Syndicator only and Syndicator+Baganator legal runtime combinations",
+    "Casting/interrupt/success, crafting/receive/loot/bags, vendor/restock/AH/pending and bank/mail workflows",
+    "Stale-mail prior measure-first instruction retained",
+    "Guild-bank/void-storage callbacks remain excluded"
+  ],
+  "nativeState": "No native helper/probe installed or input/jump host started. Last owned pause reload cleared temporary globals; foreign controls preserved."
+}

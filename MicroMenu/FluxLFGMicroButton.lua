@@ -426,9 +426,18 @@ local function CreateFluxLFGButton()
         lfgEventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
         lfgEventFrame:RegisterEvent("GROUP_ROSTER_UPDATE")
 
+        local statusUpdatePending = false
+        local function RunPendingStatusUpdate()
+            -- Release before querying: a new event from a callback can request
+            -- another pass, and a query error cannot strand the pending flag.
+            statusUpdatePending = false
+            UpdateLFGStatus()
+        end
         lfgEventFrame:SetScript("OnEvent", function(self, event, ...)
             if C_Timer and C_Timer.After then
-                C_Timer.After(0.1, UpdateLFGStatus)
+                if statusUpdatePending then return end
+                statusUpdatePending = true
+                C_Timer.After(0.1, RunPendingStatusUpdate)
             else
                 UpdateLFGStatus()
             end

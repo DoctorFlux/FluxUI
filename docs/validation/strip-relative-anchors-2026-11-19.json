@@ -1,0 +1,147 @@
+{
+  "changeId": "STRIP-RELATIVE-ANCHORS-R96-20261119",
+  "capturedAtUTC": "2026-11-19T11:19:17.464106+00:00",
+  "scope": "Held-action cursor crossings with stable native points and moving panel peers",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+      "afterRaw": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+      "afterRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4"
+    },
+    "tests/strip_relative_anchor_work.lua": {
+      "beforeRaw": null,
+      "afterRaw": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-relative-anchors-r96-before-20261119T111250Z\\source.zip",
+    "archiveSHA256": "723cb380ab4ee8f595eae4e47ce63d879c73075b47a3002b77fdb1ba2b446617",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact before and after Lua with modeled widgets and the existing layout/Info fixtures",
+    "faces": {
+      "crossingsPerCase": 6,
+      "miniPlacements": [
+        "top",
+        "bottom"
+      ],
+      "sparseWrites": [
+        834,
+        312
+      ],
+      "denseWrites": [
+        924,
+        300
+      ],
+      "countsInclude": [
+        "ClearAllPoints",
+        "SetPoint"
+      ]
+    },
+    "envelope": {
+      "crossingsPerCase": 8,
+      "placements": [
+        "actionStrip",
+        "screenTopLeft",
+        "minimapTop",
+        "statusIntegrated"
+      ],
+      "pointWrites": [
+        32,
+        0
+      ]
+    },
+    "checks": [
+      "exact final button points, size, scale and mapped action",
+      "ordinary mini promotion, drag placeholders and parking",
+      "matching relative owners follow changed geometry",
+      "peer replacement and offset drift repair",
+      "unavailable/private getters and combat guards"
+    ],
+    "rows": [
+      "STRIP_POINTS bottom=false dense=false crossings=6 writes=834/312",
+      "STRIP_POINTS bottom=false dense=true crossings=6 writes=924/300",
+      "STRIP_POINTS bottom=true dense=false crossings=6 writes=834/312",
+      "STRIP_POINTS bottom=true dense=true crossings=6 writes=924/300",
+      "ENVELOPE_POINTS placement=actionStrip crossings=8 writes=32/0",
+      "ENVELOPE_POINTS placement=screenTopLeft crossings=8 writes=32/0",
+      "ENVELOPE_POINTS placement=minimapTop crossings=8 writes=32/0",
+      "ENVELOPE_POINTS placement=statusIntegrated crossings=8 writes=32/0",
+      "Relative anchor replay passes face mapping, mini promotion and parking, panel ownership, drift repair and lockdown."
+    ],
+    "captureSHA256": "7eb718b1333c15945b1c829a00ebe7a8d075cbbfda5282fea53c066306a88c5e"
+  },
+  "verification": {
+    "focused": 208,
+    "syntax": 1240,
+    "compilerMaximumUpvalues": 13,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-relative-anchors-r96-before-20261119T111250Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-relative-anchors-r96-before-20261119T111250Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Layout.lua": {
+        "sha256": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+        "matchesCandidate": true
+      },
+      "Layout/UnifiedBorder.lua": {
+        "sha256": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+        "matchesCandidate": true
+      }
+    },
+    "forever": {
+      "Bars/Layout.lua": {
+        "sha256": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+        "matchesCandidate": true
+      },
+      "Layout/UnifiedBorder.lua": {
+        "sha256": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+        "matchesCandidate": true
+      }
+    },
+    "classic": {
+      "Bars/Layout.lua": {
+        "sha256": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+        "matchesCandidate": true
+      },
+      "Layout/UnifiedBorder.lua": {
+        "sha256": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+        "matchesCandidate": true
+      }
+    },
+    "classic-era": {
+      "Bars/Layout.lua": {
+        "sha256": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+        "matchesCandidate": true
+      },
+      "Layout/UnifiedBorder.lua": {
+        "sha256": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+        "matchesCandidate": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Layout.lua": {
+        "sha256": "943efccf0c799afa32f771efeea3a125ba672dfc3069a3d961eccef2ba52f383",
+        "matchesCandidate": true
+      },
+      "Layout/UnifiedBorder.lua": {
+        "sha256": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "nativeAcceptance": "Held-cursor latency, party or raid join and leave latency, client seam pixels and combat taint remain open."
+}

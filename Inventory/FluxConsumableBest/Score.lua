@@ -80,10 +80,21 @@ function Score.GetPools()
     return maxHP, maxMana
 end
 
+local canonicalGetPools = Score.GetPools
+
 --- Recompute effective restore for a classify result against current pools.
 function Score.EffectiveFromClassify(cls, maxHP, maxMana)
     if not cls then
         return 0
+    end
+    -- A fixed numeric restore does not depend on either resource pool. Keep
+    -- supplied-pool calls and replacement getters on the original path.
+    if (not maxHP or not maxMana) and Score.GetPools == canonicalGetPools
+        and type(cls) == "table" and getmetatable(cls) == nil and not rawget(cls, "isPercent") then
+        local effective = rawget(cls, "effective")
+        if type(effective) == "number" then
+            return effective
+        end
     end
     maxHP = maxHP or select(1, Score.GetPools())
     maxMana = maxMana or select(2, Score.GetPools())
@@ -158,6 +169,15 @@ local function TooltipRestrictionRed(itemID)
     if not itemID or not C_TooltipInfo then
         return false
     end
+    -- Some clients expose the table without these restriction line kinds.
+    -- There is no typed red-line check to perform there; keep the textual
+    -- level/skill fallback below, without fetching a second native tooltip.
+    local lineTypes = Enum and Enum.TooltipDataLineType
+    if not lineTypes or (lineTypes.RestrictedRaceClass == nil
+        and lineTypes.RestrictedLevel == nil and lineTypes.RestrictedSkill == nil
+        and lineTypes.RestrictedFaction == nil) then
+        return false
+    end
     local data
     if C_TooltipInfo.GetItemByID then
         local ok, result = pcall(C_TooltipInfo.GetItemByID, itemID)
@@ -175,10 +195,6 @@ local function TooltipRestrictionRed(itemID)
     end
     local lines = data and data.lines
     if not lines then
-        return false
-    end
-    local lineTypes = Enum and Enum.TooltipDataLineType
-    if not lineTypes then
         return false
     end
     for i = 1, #lines do

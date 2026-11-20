@@ -1,0 +1,402 @@
+{
+  "changeId": "BORDER-DRAW-INPUTS-R127-20261119",
+  "capturedAtUTC": "2026-11-19T17:50:01.213637+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+      "afterRaw": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d"
+    },
+    "tests/border_draw_reuse.lua": {
+      "beforeRaw": "e5eeeb02736cb2fc0e6175ffbefe77b4dea8d0fd9719f2a074c9b60cfb43b27b",
+      "afterRaw": "b0ac50ebdbe5c405365c55ef717b1d7fe3ea9f8b1454303a5a95c9ac71049817"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\source.zip",
+    "sourceZipSHA256": "1449d88d948a12f9f6f33266ab1da004c27d6073b47097e5f4d34cab126d57d0",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual regional renderer with modeled native widgets. Eight warmed held-action crossings per border style. Public draw descriptors still validate live sources and the rendered samples match. The matched roster relocation scene is a negative control because those changed regions contain no junction descriptors.",
+    "drawDescriptorListWork": {
+      "style1-hover": {
+        "descriptors": "236",
+        "hits": "0/48",
+        "values": "12996/9588"
+      },
+      "style1-roster": {
+        "descriptors": "0",
+        "hits": "0/0",
+        "values": "0/0"
+      },
+      "style2-hover": {
+        "descriptors": "240",
+        "hits": "0/48",
+        "values": "12232/8960"
+      },
+      "style2-roster": {
+        "descriptors": "0",
+        "hits": "0/0",
+        "values": "0/0"
+      }
+    },
+    "heapGrowthKiBWithCollectionPaused": {
+      "style1-hover": {
+        "medians": [
+          4157.641,
+          4097.088
+        ],
+        "samples": [
+          [
+            4158.125,
+            4097.572
+          ],
+          [
+            4158.625,
+            4098.072
+          ],
+          [
+            4157.637,
+            4097.084
+          ],
+          [
+            4159.641,
+            4099.088
+          ],
+          [
+            4157.641,
+            4097.088
+          ],
+          [
+            4157.641,
+            4097.088
+          ],
+          [
+            4157.641,
+            4097.088
+          ]
+        ]
+      },
+      "style1-roster": {
+        "medians": [
+          1662.298,
+          1662.351
+        ],
+        "samples": [
+          [
+            1662.782,
+            1662.835
+          ],
+          [
+            1663.282,
+            1663.335
+          ],
+          [
+            1662.294,
+            1662.347
+          ],
+          [
+            1664.271,
+            1664.323
+          ],
+          [
+            1662.298,
+            1662.351
+          ],
+          [
+            1662.298,
+            1662.351
+          ],
+          [
+            1662.298,
+            1662.351
+          ]
+        ]
+      },
+      "style2-hover": {
+        "medians": [
+          4323.918,
+          4271.881
+        ],
+        "samples": [
+          [
+            4324.402,
+            4272.365
+          ],
+          [
+            4324.902,
+            4272.865
+          ],
+          [
+            4323.914,
+            4271.877
+          ],
+          [
+            4325.918,
+            4273.881
+          ],
+          [
+            4323.918,
+            4271.881
+          ],
+          [
+            4323.918,
+            4271.881
+          ],
+          [
+            4323.918,
+            4271.881
+          ]
+        ]
+      },
+      "style2-roster": {
+        "medians": [
+          1766.798,
+          1766.763
+        ],
+        "samples": [
+          [
+            1767.282,
+            1767.247
+          ],
+          [
+            1767.782,
+            1767.747
+          ],
+          [
+            1766.794,
+            1766.759
+          ],
+          [
+            1768.771,
+            1768.735
+          ],
+          [
+            1766.798,
+            1766.763
+          ],
+          [
+            1766.798,
+            1766.763
+          ],
+          [
+            1766.798,
+            1766.763
+          ]
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\compare.lua": "f5676fbbbe28376eda9e87fecef9fd3aeaa74097c241a985ad7a22a2cbe53c4d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\counts.txt": "81f1c1de6e5d91e7d19140a20bdfabe7ce06f51773bc9e34cf8b6c24597b91e3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\timing.txt": "c26cb8d7ab6646f18a23fd75193d605b786579e192962fe750e67254e77b1437",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\baseline-rejection.txt": "a982ffbcb3160ddd82399c13e949e1cc6ad038d313427bcdd33bdf0f8cded730"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6, seven alternating pairs of 24 warmed layout changes. Native client time remains unmeasured.",
+    "results": {
+      "style1-hover": {
+        "medians": [
+          207.0,
+          225.0
+        ],
+        "samples": [
+          [
+            113.0,
+            118.0
+          ],
+          [
+            113.0,
+            117.0
+          ],
+          [
+            114.0,
+            301.0
+          ],
+          [
+            218.0,
+            212.0
+          ],
+          [
+            231.0,
+            226.0
+          ],
+          [
+            214.0,
+            249.0
+          ],
+          [
+            207.0,
+            225.0
+          ]
+        ]
+      },
+      "style1-roster": {
+        "medians": [
+          92.0,
+          84.0
+        ],
+        "samples": [
+          [
+            91.0,
+            97.0
+          ],
+          [
+            85.0,
+            83.0
+          ],
+          [
+            99.0,
+            87.0
+          ],
+          [
+            92.0,
+            83.0
+          ],
+          [
+            96.0,
+            96.0
+          ],
+          [
+            109.0,
+            84.0
+          ],
+          [
+            89.0,
+            84.0
+          ]
+        ]
+      },
+      "style2-hover": {
+        "medians": [
+          223.0,
+          224.0
+        ],
+        "samples": [
+          [
+            221.0,
+            219.0
+          ],
+          [
+            215.0,
+            224.0
+          ],
+          [
+            223.0,
+            221.0
+          ],
+          [
+            225.0,
+            238.0
+          ],
+          [
+            255.0,
+            228.0
+          ],
+          [
+            231.0,
+            227.0
+          ],
+          [
+            216.0,
+            208.0
+          ]
+        ]
+      },
+      "style2-roster": {
+        "medians": [
+          83.0,
+          83.0
+        ],
+        "samples": [
+          [
+            82.0,
+            80.0
+          ],
+          [
+            83.0,
+            94.0
+          ],
+          [
+            79.0,
+            83.0
+          ],
+          [
+            85.0,
+            82.0
+          ],
+          [
+            83.0,
+            83.0
+          ],
+          [
+            84.0,
+            81.0
+          ],
+          [
+            263.0,
+            127.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "Current geometry tokens, public paint, canvas placement and fallback visibility still have to match.",
+    "A changed public value starts a new input list with the already verified prefix.",
+    "Native field presence, parent, source and visibility are checked before reusing sprites. A hidden field is repaired even when all source inputs match.",
+    "Opaque alpha still forwards through the existing sink and is not stored in the public descriptor.",
+    "The focused regression rejects the archived renderer because repairing a hidden field did not share its matching input list."
+  ],
+  "verification": {
+    "focusedPassed": 96,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-draw-inputs-before-20261119-184301\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "374e2abd1c724af4e0547f2f4ff03f1fc65a1574524d5738fa69676535a6db8d",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

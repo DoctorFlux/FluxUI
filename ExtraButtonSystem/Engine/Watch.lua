@@ -641,7 +641,18 @@ function Watch.Start()
 	-- The SpellBook bus debounces and signature-gates the form/vehicle
 	-- SPELLS_CHANGED spam, so the flyout cache wipe here only runs when the
 	-- book actually changed.
+	local professionPending = false
+	local function RunProfessionRefresh()
+		professionPending = false
+		EBS.Action.RefreshProfessions()
+	end
+	local function QueueProfessions()
+		if professionPending or not (EBS.Action and EBS.Action.RefreshProfessions) then return end
+		professionPending = true
+		if Flux.Timer and Flux.Timer.After then Flux.Timer.After(0.25, RunProfessionRefresh) else RunProfessionRefresh() end
+	end
 	local function OnSpellBookChanged()
+		QueueProfessions()
 		if EBS.Paint and EBS.Paint.InvalidateSpellCaches then
 			EBS.Paint.InvalidateSpellCaches()
 		end
@@ -659,6 +670,16 @@ function Watch.Start()
 	else
 		Ev.Register("SPELLS_CHANGED", OnSpellBookChanged)
 	end
+	-- A trained profession rank can replace an entry without changing the
+	-- SpellBook bus's slot-count signature. Use the validated skill/learn events.
+	Ev.Register("SKILL_LINES_CHANGED", QueueProfessions)
+	Ev.Register("PLAYER_ENTERING_WORLD", QueueProfessions)
+	Ev.Register("LEARNED_SPELL_IN_TAB", QueueProfessions)
+	Ev.Register("LEARNED_SPELL_IN_SKILL_LINE", QueueProfessions)
+	Ev.Register("SPELL_DATA_LOAD_RESULT", function(_, id, success)
+		if success ~= false and EBS.Action and EBS.Action.IsProfessionSpellData
+			and EBS.Action.IsProfessionSpellData(id) then QueueProfessions() end
+	end)
 
 	Ev.Register("GET_ITEM_INFO_RECEIVED", function()
 		if EBS.Paint and EBS.Paint.HasPendingIcon and not EBS.Paint.HasPendingIcon() then
@@ -776,10 +797,18 @@ function Watch.Start()
 		Ev.Register("ACTIONBAR_PAGE_CHANGED", OnMacroConditional)
 	end
 	Ev.Register("ACTIVE_TALENT_GROUP_CHANGED", OnMacroConditional)
-	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", OnMacroConditional)
-	Ev.Register("GROUP_ROSTER_UPDATE", function()
-		RequestCond("combat")
-	end)
+	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", function(event, unit)
+        if Ev.IsPlayerUnitEvent and not Ev.IsPlayerUnitEvent(unit) then return end
+        OnMacroConditional(event, unit)
+    end)
+	local pf = Flux.Bars and Flux.Bars.ProgramFace
+	if not (pf and pf.RegisterRosterRefresh and pf.RegisterRosterRefresh()) then
+		Ev.Register("GROUP_ROSTER_UPDATE", function()
+			local current = Flux.Bars and Flux.Bars.ProgramFace
+			if current and current.RequestRosterRefresh then current.RequestRosterRefresh()
+			else RequestCond("combat") end
+		end)
+	end
 
 	local function OnPlayerUnit(_, unit)
 		if unit and unit ~= "player" then

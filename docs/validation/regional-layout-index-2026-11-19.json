@@ -1,0 +1,157 @@
+{
+  "changeId": "REGIONAL-LAYOUT-INDEX-R102-20261119",
+  "capturedAtUTC": "2026-11-19T12:23:40.269306+00:00",
+  "scope": "Retained layout fingerprints and early culling of distant HUD borders",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "32f28b7ce8cd4f0d61e4407f659f6da9aeaee2634170c4364d6de32a2f997614",
+      "afterRaw": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419"
+    },
+    "tests/regional_layout_index.lua": {
+      "beforeRaw": null,
+      "afterRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_region_routing.lua": {
+      "beforeRaw": "df23ba64feba489b4a6d500d7c1d75f9efbc2427e0a236c615c7b850af3d2736",
+      "afterRaw": "df23ba64feba489b4a6d500d7c1d75f9efbc2427e0a236c615c7b850af3d2736"
+    },
+    "tests/border_static_geometry.lua": {
+      "beforeRaw": "dd72a1a01d874b43df7803165c20730f010ae88c003601d4f51c16c4b35c633f",
+      "afterRaw": "dd72a1a01d874b43df7803165c20730f010ae88c003601d4f51c16c4b35c633f"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+      "afterRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+      "afterRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-layout-index-r102-before-20261119T121825Z\\source.zip",
+    "archiveSHA256": "cfd9637609ae9a73158f82d5e0dcbd742a446be5cc781d08c6b7752ab6478585",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 6,
+    "backgroundRaidFrames": 40,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 held crossing",
+      "type 1 roster movement",
+      "type 2 held crossing",
+      "type 2 roster movement"
+    ],
+    "counts": [
+      [
+        2352,
+        192,
+        1998,
+        78,
+        43,
+        234
+      ],
+      [
+        2352,
+        192,
+        1932,
+        60,
+        58,
+        60
+      ],
+      [
+        2352,
+        192,
+        1998,
+        78,
+        43,
+        234
+      ],
+      [
+        2352,
+        192,
+        1932,
+        60,
+        58,
+        60
+      ]
+    ],
+    "countColumns": [
+      "before sorted stamp entries",
+      "after sorted stamp entries",
+      "before exact piece probes",
+      "after exact piece probes",
+      "retained cells",
+      "total cell rebuilds"
+    ],
+    "checks": [
+      "first and repeated held-cursor poses with four prepared hits per style",
+      "roster movement repositions four existing origins",
+      "identical solve counts and sampled artwork with active and retained tile indexes",
+      "cast planes and exact edge bounds retain their normal query"
+    ],
+    "rows": [
+      "REGIONAL_LAYOUT style=1 trigger=hover stamps=2352/192 probes=1998/78 retained=43 updates=234",
+      "REGIONAL_LAYOUT style=1 trigger=roster stamps=2352/192 probes=1932/60 retained=58 updates=60",
+      "REGIONAL_LAYOUT style=2 trigger=hover stamps=2352/192 probes=1998/78 retained=43 updates=234",
+      "REGIONAL_LAYOUT style=2 trigger=roster stamps=2352/192 probes=1932/60 retained=58 updates=60",
+      "Regional layout snapshots preserve sampled seams, prepared hover poses and retained roster regions."
+    ],
+    "captureSHA256": "a5fc5a4fc278844a654af7e87a315d573cac2c1c5dfbfedb48b5eceabdcf7296"
+  },
+  "verification": {
+    "focused": 30,
+    "focusedPassed": 29,
+    "syntax": 1245,
+    "compilerMaximumUpvalues": 52,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-layout-index-r102-before-20261119T121825Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-layout-index-r102-before-20261119T121825Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

@@ -37,6 +37,9 @@ local function KeyIconPath(token)
 end
 
 local function KeyIcon(path, size, width)
+	if Flux and Flux.Hotkey and Flux.Hotkey.Markup then
+		return Flux.Hotkey.Markup(path, size or KEY_ICON_SIZE, width)
+	end
     size = size or KEY_ICON_SIZE
     width = width or size
     size = math.max(1, math.floor(size + 0.5))
@@ -55,6 +58,24 @@ local function ResolveHotKeyFrame(btn)
         return _G[name .. "HotKey"]
     end
     return nil
+end
+
+function HotkeyUtil.SetText(fontString, text)
+    local H = Flux and Flux.Hotkey
+    if H and H.SetText then H.SetText(fontString, text)
+    elseif fontString then fontString:SetText(text or "") end
+end
+
+function HotkeyUtil.SetRange(btn, outOfRange, forceColor)
+    if not btn or btn.badgeMode then return end
+    -- These display-only states can retain the last action's range cache.
+    -- Keep label refreshes consistent with Paint.UpdateUsable without changing it.
+    if btn.IgnoreUsabilityVisual or btn.PlaceholderTexture
+        or not btn.ActionType or btn.ActionValue == nil then
+        outOfRange = false
+    end
+    local H = Flux and Flux.Hotkey
+    if H and H.SetRange then H.SetRange(ResolveHotKeyFrame(btn), outOfRange, forceColor) end
 end
 
 local function PrepareHotKeyFrame(hotKeyFrame, widget, iconSize, iconWidth)
@@ -84,7 +105,12 @@ local function PrepareHotKeyFrame(hotKeyFrame, widget, iconSize, iconWidth)
     if font then
         hotKeyFrame:SetFont(font, fontSize, "OUTLINE")
     end
-    hotKeyFrame:SetTextColor(0.75, 0.75, 0.75)
+    local H = Flux and Flux.Hotkey
+    if H and H.SetRange then
+        H.SetRange(hotKeyFrame, H.IsOutOfRange and H.IsOutOfRange(hotKeyFrame), true)
+    else
+        hotKeyFrame:SetTextColor(0.75, 0.75, 0.75)
+    end
     hotKeyFrame:SetJustifyH("RIGHT")
     hotKeyFrame:SetJustifyV("TOP")
     if hotKeyFrame.SetWordWrap then
@@ -255,12 +281,13 @@ function HotkeyUtil.UpdateHotkeyText(btn, bindingName, addDynamicModifiers, hasM
     
     local text = HotkeyUtil.GetBindingKeyText(bindingName, addDynamicModifiers, hasModifierAssignments, resolvedIconSize, resolvedIconWidth)
     if text and text ~= "" then
-        hotKeyFrame:SetText(text)
+        HotkeyUtil.SetText(hotKeyFrame, text)
         hotKeyFrame:Show()
     else
-        hotKeyFrame:SetText("")
+        HotkeyUtil.SetText(hotKeyFrame, "")
         hotKeyFrame:Hide()
     end
+    HotkeyUtil.SetRange(btn, btn._outOfRange == true)
 end
 
 -- Update button's hotkey text from multiple possible bindings (for buttons with multiple actions)
@@ -280,7 +307,7 @@ function HotkeyUtil.UpdateHotkeyTextMultiple(btn, bindingNames, iconSize)
     btn.HotkeyBinding = nil
     local hotKeyFrame = ResolveHotKeyFrame(btn)
     if hotKeyFrame then
-        hotKeyFrame:SetText("")
+        HotkeyUtil.SetText(hotKeyFrame, "")
         hotKeyFrame:Hide()
     end
 end

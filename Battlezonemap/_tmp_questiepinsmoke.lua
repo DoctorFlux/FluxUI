@@ -8,7 +8,7 @@ local function Runtime(forever, nativeQuests)
     local env = setmetatable({}, { __index = _G }); env._G = env
     local ns = { _isCamelotGameType = forever }
     local frames, timers, now, combat, active, enabled = {}, {}, 0, false, true, true
-    local metrics = { visits = 0, acquisitions = 0, refreshes = 0 }
+    local metrics = { visits = 0, acquisitions = 0, refreshes = 0, removalHooks = 0, removalHookCalls = 0 }
     env.table = setmetatable({ wipe = function(t) for k in pairs(t) do t[k] = nil end end }, { __index = table })
     env.InCombatLockdown = function() return combat end
     env.FLUX_API = { isForever = forever, isCamelot = forever }
@@ -23,7 +23,12 @@ local function Runtime(forever, nativeQuests)
     env.CreateFromMixins = function(...) return Copy({}, ...) end
     env.MapCanvasDataProviderMixin = { GetMap = function(self) return self.owningMap end }
     env.hooksecurefunc = function(obj, key, fn)
-        local old = assert(obj[key]); obj[key] = function(...) local result = { old(...) }; fn(...); return unpack(result) end
+        if key == "RemoveWorldMapIcon" then metrics.removalHooks = metrics.removalHooks + 1 end
+        local old = assert(obj[key]); obj[key] = function(...)
+            local result = { old(...) }
+            if key == "RemoveWorldMapIcon" then metrics.removalHookCalls = metrics.removalHookCalls + 1 end
+            fn(...); return unpack(result)
+        end
     end
     local function Frame(parent)
         local f = { parent = parent, shown = true, scripts = {}, events = {}, width = 16, height = 16 }
@@ -252,7 +257,7 @@ local function Check(forever, native)
     if native then
         assert(r.battlefield.RegisterPin == register and r.battlefield.pinPools.AreaPOIPinTemplate == nativePool)
         assert(r.stock.worldmapProvider.HandlePin ~= stockHandle and r.stock.worldmapProvider.GetMap ~= stockGetMap)
-        assert(r.battlefield.pinPools.HereBeDragonsPinsTemplate, "RestedXP's standard HBD library was excluded on Forever")
+        assert(r.battlefield.pinPools.HereBeDragonsPinsTemplate, "standard HBD library was excluded beside native providers")
     end
     -- World Map visibility and filters act on these same icon objects; minimap
     -- visibility and trackerEnabled are deliberately unrelated to this route.
@@ -285,13 +290,13 @@ local function Check(forever, native)
     r.world.mapID = 20; r.world:Show(); wp:RefreshAllData()
     assert(icon:IsVisible() and icon:GetParent().owningMap == r.world, "world pins did not recover after Map Pins off")
 end
+if arg[1] == "--fixture" then return Runtime end
 Check(true, true)
 Check(false, false)
+Check(false, true)
 
--- Live retail remains on its native provider path.
-local live = Runtime(false, true)
-local before = live.questie.worldmapProvider.HandlePin
-assert(not live.router:Install() and live.questie.worldmapProvider.HandlePin == before)
+-- Native quest providers coexist with optional third-party routes on Retail
+-- and progression Classic, using the same public MapCanvas/HBD contract.
 
 -- Questie can finish loading after the battlefield map is already active.
 local late = Runtime(true, true); late.SetAvailable(false)
@@ -390,6 +395,7 @@ local function CheckRestedXP(forever, native)
 end
 CheckRestedXP(true, true)
 CheckRestedXP(false, false)
+CheckRestedXP(false, true)
 
 -- A working Questie route must not prevent discovery of RestedXP's later lib.
 local rxpLate = Runtime(true, true); rxpLate.SetStockAvailable(false)
@@ -398,7 +404,7 @@ rxpLate.SetStockAvailable(true); rxpLate.Event("ADDON_LOADED", "RXPGuides"); rxp
 local rxpIcon = rxpLate.Frame(rxpLate.env.UIParent)
 rxpLate.stock:AddWorldMapIconMap({}, rxpIcon, 10, .1, .9)
 assert(rxpIcon:IsVisible() and rxpIcon:GetParent().owningMap == rxpLate.battlefield, "late RestedXP library was missed")
-print("Questie/RestedXP battlefield pins smoke OK (native coexistence, Classic route, settings/icons, handoff, filters, tooltips, late loading, combat recovery, Map Pins off and live retail isolation)")
+print("Questie/RestedXP battlefield pins smoke OK (all MapCanvas clients, native coexistence, settings/icons, handoff, filters, tooltips, late loading, combat recovery and Map Pins off)")
 
 if arg[1] == "--benchmark" then
     for _, count in ipairs({ 1000, 2000 }) do

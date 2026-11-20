@@ -1,0 +1,257 @@
+{
+  "changeId": "NATIVE-GROUP-HIDE-R159-20261120",
+  "capturedAtUTC": "2026-11-20T00:22:38.345621+00:00",
+  "sources": {
+    "Blizzard/Hide.lua": {
+      "beforeRaw": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "afterRaw": "ce8637d11f0a3055f4b2a85baa43c0f0bebb46187934dd4145296300d5f189e2",
+      "afterNormalized": "ce8637d11f0a3055f4b2a85baa43c0f0bebb46187934dd4145296300d5f189e2"
+    },
+    "tests/native_mouse_suppression.lua": {
+      "beforeRaw": "b0eaee785dabc82edea30fab81801599c19b4e19b090d9e43e3da50cb39ff6a8",
+      "afterRaw": "899210f970242de8662d3b78f45f352836894421e9a244eb4aa7f0d09800a1ed",
+      "afterNormalized": "899210f970242de8662d3b78f45f352836894421e9a244eb4aa7f0d09800a1ed"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\source.zip",
+    "sourceZipSHA256": "2f792f91910a3dfb6acf56303a9754d90127b8174f0ce6f7e95ebf733419886d",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating-order pairs of 24 and 240 warm sweeps through the production Hide service. The modeled 40-member grid and two five-member party roots have 203 eligible widgets and 50 excluded subtrees. Collection is stopped during measurement.",
+    "samples24Sweeps": [
+      {
+        "trial": 1,
+        "alphaWrites": [
+          72,
+          0
+        ],
+        "childrenReads": [
+          4872,
+          4872
+        ],
+        "growthKiB": [
+          562.312,
+          203.375
+        ],
+        "cpuMs": [
+          5.0,
+          5.0
+        ]
+      },
+      {
+        "trial": 2,
+        "alphaWrites": [
+          72,
+          0
+        ],
+        "childrenReads": [
+          4872,
+          4872
+        ],
+        "growthKiB": [
+          562.125,
+          200.25
+        ],
+        "cpuMs": [
+          5.0,
+          5.0
+        ]
+      },
+      {
+        "trial": 3,
+        "alphaWrites": [
+          72,
+          0
+        ],
+        "childrenReads": [
+          4872,
+          4872
+        ],
+        "growthKiB": [
+          562.125,
+          200.25
+        ],
+        "cpuMs": [
+          5.0,
+          5.0
+        ]
+      },
+      {
+        "trial": 4,
+        "alphaWrites": [
+          72,
+          0
+        ],
+        "childrenReads": [
+          4872,
+          4872
+        ],
+        "growthKiB": [
+          562.125,
+          200.25
+        ],
+        "cpuMs": [
+          5.0,
+          5.0
+        ]
+      },
+      {
+        "trial": 5,
+        "alphaWrites": [
+          72,
+          0
+        ],
+        "childrenReads": [
+          4872,
+          4872
+        ],
+        "growthKiB": [
+          562.125,
+          200.25
+        ],
+        "cpuMs": [
+          4.0,
+          5.0
+        ]
+      }
+    ],
+    "samples240Sweeps": [
+      {
+        "trial": 1,
+        "alphaWrites": [
+          720,
+          0
+        ],
+        "childrenReads": [
+          48720,
+          48720
+        ],
+        "growthKiB": [
+          5621.438,
+          2005.625
+        ],
+        "cpuMs": [
+          52.0,
+          51.0
+        ]
+      },
+      {
+        "trial": 2,
+        "alphaWrites": [
+          720,
+          0
+        ],
+        "childrenReads": [
+          48720,
+          48720
+        ],
+        "growthKiB": [
+          5621.25,
+          2002.5
+        ],
+        "cpuMs": [
+          57.0,
+          58.0
+        ]
+      },
+      {
+        "trial": 3,
+        "alphaWrites": [
+          720,
+          0
+        ],
+        "childrenReads": [
+          48720,
+          48720
+        ],
+        "growthKiB": [
+          5621.25,
+          2002.5
+        ],
+        "cpuMs": [
+          54.0,
+          49.0
+        ]
+      },
+      {
+        "trial": 4,
+        "alphaWrites": [
+          720,
+          0
+        ],
+        "childrenReads": [
+          48720,
+          48720
+        ],
+        "growthKiB": [
+          5621.25,
+          2002.5
+        ],
+        "cpuMs": [
+          54.0,
+          50.0
+        ]
+      },
+      {
+        "trial": 5,
+        "alphaWrites": [
+          720,
+          0
+        ],
+        "childrenReads": [
+          48720,
+          48720
+        ],
+        "growthKiB": [
+          5621.25,
+          2002.5
+        ],
+        "cpuMs": [
+          53.0,
+          50.0
+        ]
+      }
+    ],
+    "medianHeap24KiB": [
+      562.125,
+      200.25
+    ],
+    "medianCpu240Ms": [
+      54.0,
+      50.0
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\matched.txt": "a1823be2ede92f5ce1e353640bf52ef52b714e372514ca2b0bb98051a4016ce5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\long-work.txt": "8513ee577d48489e171accd55131764bd443124f9da6327e1f1a4f8ecf5ee535",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\long-work.lua": "f4266607ccffbbd0b86a9683fc7c03c07cbfae03f48e6a6b23d7ff2670476488",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\upvalues.json": "c3d3543523b34c0c4299c330b0190543558475d43f42fb2438843a0d3d35efc4"
+    },
+    "limits": "Lua heap growth and process clock in a desktop widget model do not establish native frame timing, pixels or combat taint."
+  },
+  "preservation": [
+    "Transparent roots skip an identical alpha write after a public live read. Restored, unavailable and private alpha take the conservative existing hide path.",
+    "Every eligible native child still participates in the input suppression walk. Small lists pass directly as Lua arguments and wider pools retain bulk traversal.",
+    "Late children, overlapping owners, recycled controls, restores, and combat and Edit Mode deferral retain their existing paths. Native widget mutations use the existing suppression and restore owners."
+  ],
+  "verification": {
+    "focusedPassed": 31,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\focused-r159-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\native-group-hide-before-20261120-011716\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/FluxRestock_Inv.lua",
+      "tests/bank_restock_find_stacks.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for rapid held-action crossings and drops, party and raid membership hitches, native seams and combat taint."
+}

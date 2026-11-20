@@ -1,0 +1,666 @@
+{
+  "changeId": "LHO-RESUMED-20261114",
+  "capturedUtc": "2026-11-14T13:40:11.938107+00:00",
+  "goalStatus": "paused by explicit user request after second requested reload; see latestPause",
+  "resumeInstruction": "Continue original casting/all inventory goal; client has reloaded; restore temporary diagnostics only if needed; pause quickly on request.",
+  "priorReload": "Confirmed14Nov12:27UTC/13:27Europe-Copenhagen in pause record; prior temporary diagnostics treated as cleared.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\checkpoint-20261114T124621Z",
+    "files": 2806,
+    "settingsMetadataOnly": 125,
+    "historyVerified": true
+  },
+  "baseline": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 380,
+    "scriptsFail": 0,
+    "syntaxFiles": 1068,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "currentIntegration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 383,
+    "scriptsFail": 0,
+    "syntaxFiles": 1071,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "sourceGuard": {
+    "capturedUtc": "2026-11-14T13:39:13.641633+00:00",
+    "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\checkpoint-20261114T124621Z",
+    "checkpointFiles": 2806,
+    "branch": "main",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "hooksPath": ".githooks",
+    "runtimeChanged": [
+      "Inventory/Craft.lua"
+    ],
+    "runtimeHashes": {
+      "Inventory/Craft.lua": {
+        "before": "3d539a419dba681d8dcf1a1ebbd052723c3b6567c942c96a9c599d94124dd88b",
+        "current": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209"
+      }
+    },
+    "newTests": {
+      "tests/craft_mixed_first_aid.lua": "d906989f2ae280d9cc3638d140be9dfc2937bc66e000eff01b79097552ad522d",
+      "tests/craft_selector_allocation_work.lua": "2a877110bbdfad856796af72e98aae3f10d7ab2ec64cb2f16154b021d1ff9ea5"
+    },
+    "otherLuaUnchanged": 1065,
+    "preserved": {
+      "assetsXMLTOC": {
+        "count": 257,
+        "allSHA256Match": true,
+        "concurrentExceptions": []
+      },
+      "optionsBindings": {
+        "count": 84,
+        "allSHA256Match": true,
+        "concurrentExceptions": [
+          "Binding/Input/FluxMouseoverKeybind.lua"
+        ]
+      },
+      "defaultsSettings": {
+        "count": 7,
+        "allSHA256Match": true,
+        "concurrentExceptions": []
+      },
+      "licenses": {
+        "count": 5,
+        "allSHA256Match": true,
+        "concurrentExceptions": []
+      }
+    },
+    "concurrentPreserved": {
+      "record": "F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\docs\\validation\\group-ghost-hover-2026-11-14.json",
+      "recordSHA256": "df47658688333234bffe13bf1ac4dbb9df09c0a0f750b9fe7448201e00faac2a",
+      "existing": {
+        "Binding/Input/FluxMouseoverKeybind.lua": "395dfea0f926224a5bce2ca150768883037518c95273fa1b90b259fe3e06387b",
+        "UnitFrames/FluxUnitFrames_Shared.lua": "f0c00b3ca9f2e02c6c117e81e2d935bb2c9fb8a6b376a883d7bf507e7e4f7655",
+        "tests/raid_binding_cast.lua": "d2d1e38ef5247340b42056f67b70ef6dffb4541de4c01d303055b52fac7129be"
+      },
+      "added": {
+        "tests/group_ghost_hover.lua": "4c5c26762245cac75624e2d45da96e47ddd1a11d2d717747c4de84a11f9a17e4"
+      },
+      "allMatchLatestOwnerEvidence": true,
+      "writtenByThisSlice": false
+    },
+    "externalSyndicator": {
+      "files": 41,
+      "allSHA256Match": true,
+      "readOnly": true
+    },
+    "cumulativeOwners": [
+      "Core/ButtonFX/Cast.lua",
+      "ExtraButtonSystem/Engine/Button.lua",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua",
+      "Inventory/Builtin/Bank.lua",
+      "Inventory/Craft.lua",
+      "Inventory/Init.lua",
+      "Inventory/Professions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
+      "Inventory/Restock/FluxRestock_Inv.lua",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua",
+      "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua",
+      "Inventory/Restock/Vendor/FluxAlreadyKnown.lua",
+      "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua",
+      "Inventory/Syndicator/Adapter.lua",
+      "Mail/CategoryAttach.lua",
+      "UnitFrames/FluxCastBar.lua"
+    ],
+    "installedCopies": {
+      "retail": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "forever": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "classic": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "era": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      },
+      "anniversary": {
+        "Core/ButtonFX/Cast.lua": {
+          "sha256": "98458939e5c752648b285e903e675e1397b6c3b80d0b63fe0a2d689e52cef969",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Engine/Button.lua": {
+          "sha256": "18af1f5abbb35221b31b999b6f4f6a0d95435df6615b4f9d5bc3eb3809095282",
+          "matchesRetail": true
+        },
+        "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": {
+          "sha256": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+          "matchesRetail": true
+        },
+        "Inventory/Builtin/Bank.lua": {
+          "sha256": "f6d39536fb5aecc9174f2b6d43ed4ec4d03bda180f1c30e5e9814218499d4983",
+          "matchesRetail": true
+        },
+        "Inventory/Craft.lua": {
+          "sha256": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+          "matchesRetail": true
+        },
+        "Inventory/Init.lua": {
+          "sha256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+          "matchesRetail": true
+        },
+        "Inventory/Professions.lua": {
+          "sha256": "e253aec1cf5e8d0665a89193ae8ca09d934959d17d225d828684d71c3f4247ad",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockData.lua": {
+          "sha256": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": {
+          "sha256": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": {
+          "sha256": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/FluxRestock_Inv.lua": {
+          "sha256": "9afb3fb492de1b36322218ac63650f113fb90480f3cfde352be9e9838c56df0f",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll.lua": {
+          "sha256": "1fa9f4fca8f2d9b461d6c0d1ba82c98e40c63d54960be1c479204909c771fd65",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/BuyEmAll/FluxBuyEmAll_Compat.lua": {
+          "sha256": "7b3c1db712eaa7106ffc0ece75da9a2bc3d8a606a902d3cfd99644519e8d6dc5",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnown.lua": {
+          "sha256": "c7d10d0230d82b4ed5a7c65eb0f217730abec0f7154958dd58eea314cffa2942",
+          "matchesRetail": true
+        },
+        "Inventory/Restock/Vendor/FluxAlreadyKnownClassic.lua": {
+          "sha256": "4929e21c61913f02449d3c8f8974a6b44ae028b7384bc7261f9f46ab37191357",
+          "matchesRetail": true
+        },
+        "Inventory/Syndicator/Adapter.lua": {
+          "sha256": "8c8a1a52c61f8f95407480a27526e510908b06fcc16355441c0937fec37e6bda",
+          "matchesRetail": true
+        },
+        "Mail/CategoryAttach.lua": {
+          "sha256": "4d2ba435b10b70e33730a61da5030455723c1a60a8f779d83d806432e427c159",
+          "matchesRetail": true
+        },
+        "UnitFrames/FluxCastBar.lua": {
+          "sha256": "4abb417d1d7245a6711f303d7ba03e2a409d64d73ca49f2f8359bfea2ee58e4e",
+          "matchesRetail": true
+        }
+      }
+    },
+    "copyDifferences": [],
+    "ownedCopies": 90,
+    "allOwnedCopiesMatch": true,
+    "allLuaStableDuringAudit": true,
+    "accountOriginals": {
+      "Inventory/Store.lua": "dad969c1591dba31b587b5e5ce1a9e7fe815cb6b1174bea126fb2f6abdf68482",
+      "Inventory/Summaries.lua": "985849d8c88db361394a2ee6d1c0aaa013abba7ce197c30f30ad709efa3bdf62",
+      "Inventory/Syndicator/Sync.lua": "80074a7574589f51db039534bfc47ac8dd232d77944b20934c9fc32ec0c57b80"
+    },
+    "actions": {
+      "runtimeWrites": false,
+      "externalWrites": false,
+      "manualSync": false,
+      "publication": false,
+      "settingsWrites": false
+    },
+    "scope": "Read-only disk/source identities;not loaded-runtime/FPS/pixels/controller/taint certification."
+  },
+  "currentPerformanceOwners": [
+    "Inventory/Init.lua",
+    "Inventory/Craft.lua"
+  ],
+  "cumulativePerformanceOwners": 18,
+  "sourceChangesInThisResume": [
+    "Inventory/Craft.lua"
+  ],
+  "newTests": [
+    "tests/craft_mixed_first_aid.lua",
+    "tests/craft_selector_allocation_work.lua"
+  ],
+  "craftEvidence": "docs/validation/craft-selector-allocation-2026-11-14.json",
+  "notificationEvidence": "docs/validation/inventory-notification-performance-2026-11-14.json",
+  "accountAudit": {
+    "mainStoreSummariesSyncUnchanged": {
+      "Inventory/Store.lua": "dad969c1591dba31b587b5e5ce1a9e7fe815cb6b1174bea126fb2f6abdf68482",
+      "Inventory/Summaries.lua": "985849d8c88db361394a2ee6d1c0aaa013abba7ce197c30f30ad709efa3bdf62",
+      "Inventory/Syndicator/Sync.lua": "80074a7574589f51db039534bfc47ac8dd232d77944b20934c9fc32ec0c57b80"
+    },
+    "result": "Both account shortcuts rejected; demand-only67us baseline query became123us with provenance guards. No passive account scan on bag publication.",
+    "artifact": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\account-audit-seal.json",
+      "sha256": "d85602694199b337eb45dff51e2be3a3fb5da2f3be76564df9e5a54254d51451"
+    }
+  },
+  "native": {
+    "windowPID": 40032,
+    "windowHWND": 7995860,
+    "executableVerified": "F:/World of Warcraft/_forever_/Wow.exe",
+    "readOnlyBackgroundChatException": "User explicitly answered Allow background profiling chat input for this goal after the keyboard-rule question. Do not ask for this same permission again.",
+    "exceptionBoundary": "Only temporary read-only /run profiling in background WoW; no foreground activation, system-wide input, clipboard, profiler-setting, item/mail/queue actions.",
+    "approvalHistory": "Automatic review initially rejected chat input under AGENTS keyboard rule; explicit user exception resolved approval. Subsequent launch was allowed but runtime foreground/desktop guard blocked all input.",
+    "commandsSent": 2,
+    "temporaryProbesInstalled": false,
+    "currentProfilerPreferencesQueried": true,
+    "observation": "Read-only screenshot showed an already active user Skillet tailoring queue. No craft was started/cancelled/changed; no completion/timing attribution claimed.",
+    "timingStatus": "Paused before timing. Foreground/background permission resolved; do not send more diagnostics until continue.",
+    "latestPermission": "User explicitly authorizes automatic profiling in foreground OR background; supersedes earlier background-only restriction for this goal. Preserve focus, transaction/queue/profiler restrictions.",
+    "latestObservation": "Two preflight readouts succeeded with focus unchanged before requested13:44:27UTC reload; scriptProfile0/profilertrue/Forever70938/Syndicator/5heal2mana8bandage. No timing batch ran. Reload now clears diagnostic epoch; no postreload test code."
+  },
+  "quickPause": {
+    "validationCancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-job\\CANCEL",
+    "nativeAndBatchCancelFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\CANCEL",
+    "documentationCancelFiles": [
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\docs-build-job\\CANCEL",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\docs-validate-job\\CANCEL",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\docs-validate-final-job\\CANCEL"
+    ],
+    "behavior": "On pause write cancel flags first; wrapper checks active owned child every0.1s and terminates it. Native waits are cancellable and at most8s; direct focused children are at most5s. Then interrupt workers and save only the small current-state delta. Do not auto-reload unless requested.",
+    "activeValidation": "complete; no owned child remains"
+  },
+  "remaining": [
+    "Native populated/cold mail timing and user latency-policy decision",
+    "Actual producer bank/mail races; safe bank cache-readiness/provenance/provider-off persistence remedy",
+    "Native whole-workflow performance, provider-off and other-client/input/controller/pixels/secure VM acceptance"
+  ],
+  "artifacts": {
+    "checkpoint-location.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\checkpoint-location.json",
+      "sha256": "c69a108be12cf4111c353c5cc1523ead883145d93bb7c10fd5c718008eded693"
+    },
+    "baseline-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\baseline-full.json",
+      "sha256": "7d8d40e7777f8c9f7c75819bf12390e668c5b95d394e2165242ad77ca27a8ade"
+    },
+    "baseline-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\baseline-stability.json",
+      "sha256": "83eaffe4518901d26b2e76b5731b213ea990efb65f5dc33b57e8a6bce621eae4"
+    },
+    "integration-full.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-full.json",
+      "sha256": "ad829eeb7ef20fc70d086c98b210acb71405b8dc9ea08890a19d5563827d6f36"
+    },
+    "integration-stability.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-stability.json",
+      "sha256": "5b1ff690dfbca067b138d881b84134ab8d05be48d27c0c7b7e7612f0f70523a6"
+    },
+    "source-guard.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\source-guard.json",
+      "sha256": "ad07c54af62bcd828c432e8515f8c78f6fe44498d53b1eca19b956217352b879"
+    },
+    "crafting/requirements.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\requirements.json",
+      "sha256": "cf2eb7d42ac6faf2e218824358ed99fe700e1ce06804baf84ac4c845490b87d1"
+    },
+    "crafting/applied.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\applied.json",
+      "sha256": "62b7867a8242a58552e3b684afadfa2cc8c3aaeee1980c9e883e9635286526cd"
+    },
+    "crafting/pair1.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair1.json",
+      "sha256": "be78c254ca6f4e4650ea03d23b2c339c2526ebeb1eadc1acbc2f8a8034da2c27"
+    },
+    "crafting/pair2.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair2.json",
+      "sha256": "17d8804a74622df5c32b27cea6e7c48d2ada143059aff289d27f363a5caa9f2d"
+    },
+    "crafting/pair3.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\pair3.json",
+      "sha256": "6b8c07d417a5dc429311db3e27be5e19a41b3456380883e114834662ee042078"
+    },
+    "crafting/timing-summary.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\crafting\\timing-summary.json",
+      "sha256": "37ab91e4a2fa9d08b13e4300c67994289be723800f8c39f92487093610b2d0a4"
+    },
+    "providers/craft-allocation-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-allocation-peer-review.json",
+      "sha256": "1de6e06d228482061928a17d01e0aced1b85ba37da8820b6f6ea1e7e193d5dfb"
+    },
+    "providers/craft-mixed-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\providers\\craft-mixed-peer-review.json",
+      "sha256": "4e2638bc6a71e549d38fb21d8d52a7900171ba58e8f0c51cd2b9cd99509f3d93"
+    },
+    "commerce/craft-allocation-static-peer-review.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\craft-allocation-static-peer-review.json",
+      "sha256": "386b56dbe3b0d418d6c8fbb39a419ae6da9e41c8d2fe940f8481308729d1458f"
+    },
+    "commerce/account-audit-seal.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\commerce\\account-audit-seal.json",
+      "sha256": "d85602694199b337eb45dff51e2be3a3fb5da2f3be76564df9e5a54254d51451"
+    },
+    "final-documentation-check.json": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\final-documentation-check.json",
+      "sha256": "53e3464449e27cc287d2ecba2264417dd0b0e8ef510c062c6559dc80e34f35c3"
+    }
+  },
+  "actions": {
+    "externalSyndicatorWrites": false,
+    "manualSync": false,
+    "publication": false,
+    "settingsOrProfilerPreferenceWrites": false,
+    "nativeProtectedActions": false
+  },
+  "documentationValidation": {
+    "exit": 0,
+    "summary": "PASS: 1104 classified sources; 623 TOC/XML reachable; 444 setting definitions; 24 SavedVariables; 17401 local links. Source inventory/evidence current. No files written.",
+    "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\docs-validate-final.txt",
+    "logSHA256": "9b6d4d9d9b596c636cfcd67fe8666c8c5a12c3987c928bca94a3beb542c6820a",
+    "state": {
+      "status": "complete",
+      "parentPid": 4164,
+      "command": [
+        "C:\\Program Files\\Python310\\python.exe",
+        "docs/tools/validate_docs.py"
+      ],
+      "startedUtc": "2026-11-14T13:40:18.117108+00:00",
+      "childPid": null,
+      "exit": 0,
+      "finishedUtc": "2026-11-14T13:40:44.114877+00:00"
+    }
+  },
+  "finalReadOnlyVerification": {
+    "allNormalizedLuaMatchManifest": true,
+    "scriptsPass": 383,
+    "syntaxFiles": 1071,
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume-20261114T124621Z\\integration-full.json"
+  },
+  "latestPause": "docs/validation/lag-hotspots-pause-final-2026-11-14.json"
+}

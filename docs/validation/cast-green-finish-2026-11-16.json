@@ -1,0 +1,132 @@
+{
+  "id": "CAST-GREEN-FINISH-20261116",
+  "dateUTC": "2026-11-16T22:09:09.573979+00:00",
+  "status": "IMPLEMENTED; 12 FOCUSED OFFLINE SCRIPTS PASS; USER-REPORTED GREEN VISUAL PASS",
+  "requirements": "docs/CAST_COMPLETION.md CFIN01-CFIN06",
+  "userInstruction": "for finished cast just make it a green",
+  "userNativeRelease": "we can test ingame now if needed",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-interruptibility-before-20261116T215434Z",
+  "checkpointFiles": 3033,
+  "sourceArchiveVerified": true,
+  "historyBundleVerified": true,
+  "checkpointSettings": "39 existing settings metadata entries only; no contents copied/read and no closed-client backup claim",
+  "baselineCastBarNormalized": "734c005d641f3ea26b7c030985b90ec608515120817db5c9bc6897c1258aaea6",
+  "finalSources": {
+    "UnitFrames/FluxCastBar.lua": {
+      "raw": "c9e2191c0a6496b4d337cfd339f7709dd79f8d57d9a76fbaf5d54a69d2fbfc1d",
+      "normalized": "e0c602ef97e3cf83bbcd9204c1d256ac69a57711345bfc5cf4185e8eebc53d14"
+    },
+    "UnitFrames/FluxCastBarTradeskills.lua": {
+      "raw": "b10ea2c4fcabcb702623ce9f6a6dca9d1c3a2a1471ba9c82cb69732d9761ca69",
+      "normalized": "b10ea2c4fcabcb702623ce9f6a6dca9d1c3a2a1471ba9c82cb69732d9761ca69"
+    },
+    "UnitFrames/FluxCastBarThemes.lua": {
+      "raw": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880",
+      "normalized": "4df24992455359139c3a913c2e9e3dac7fa68c4a921ebd010354130203f93880"
+    },
+    "tests/castbar_school_themes.lua": {
+      "raw": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45",
+      "normalized": "1595010beb8b6be5eb7c0c7ebe6bad1deecdf7c411d01efec706d2a486a90a45"
+    },
+    "tests/castbar_completion_visual.lua": {
+      "raw": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0",
+      "normalized": "ffa3405d6df7051c5f8c9c04f79e103bff62c1bdad6510672b17605b3fa6a1d0"
+    },
+    "tests/castbar_terminal_styles.lua": {
+      "raw": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+      "normalized": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233"
+    }
+  },
+  "runtimeFilesChanged": [
+    "UnitFrames/FluxCastBar.lua"
+  ],
+  "unchangedSharedRuntime": [
+    "UnitFrames/FluxCastBarThemes.lua",
+    "UnitFrames/FluxCastBarTradeskills.lua"
+  ],
+  "intentionalChanges": [
+    "All successful shared unit casts use plain .12/.86/.15 green",
+    "Release school/profession active effects at success through existing Reset owner",
+    "Clear terminal notInterruptible state and restore normal chrome without repainting terminal fill",
+    "Restore ordinary success text inset after shield removal; prevent custom timer inheriting warning"
+  ],
+  "preserved": [
+    "Active protected red/shield indicators",
+    "Active school/profession art and options",
+    "Interrupted/failed fill art and existing hold/fade",
+    "Success .35 hold/.75 fade; normal full and channel empty behavior",
+    "Native-nameplate public theme Finish; settings and input; swing release",
+    "Existing source/progress masks; no new border reconstruction/regions/driver/event/timer/hook"
+  ],
+  "validation": {
+    "focusedScriptCount": 12,
+    "initialEleven": {
+      "passed": 10,
+      "failed": 1,
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-terminal-final-focused.json",
+      "failure": "Old successful hold remains themed assertion conflicts with new user instruction; corrected intentionally, original failure retained"
+    },
+    "correctedReplay": {
+      "script": "tests/castbar_school_themes.lua",
+      "exitCode": 0,
+      "output": "PASS tradeskill cast themes: 455 checks; native rendering/input/taint pending\nParticle Lua texture writes over 2s: native=300, fallback=6197 (mock call counts, not native FPS)\nValidated 116 fills against original base-school palette compositing\nPASS cast-bar school themes: 14401 checks across five client families (native rendering/taint unverified)\n",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-terminal-school-replay.json"
+    },
+    "newTerminalStyles": {
+      "test": "tests/castbar_terminal_styles.lua",
+      "rawSha256": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+      "lfSha256": "0ae9086fc727c7def0ac5ceb3bcba4819babd1bf3fcb4721da754ade97c61233",
+      "runtimeLfSha256": "e0c602ef97e3cf83bbcd9204c1d256ac69a57711345bfc5cf4185e8eebc53d14",
+      "candidateChecks": 9973,
+      "candidateExit": 0,
+      "baseline": {
+        "source": "cast-terminal-archive-FluxCastBar.lua",
+        "lfSha256": "734c005d641f3ea26b7c030985b90ec608515120817db5c9bc6897c1258aaea6",
+        "exit": 1,
+        "witness": "live/player/cast: terminal cast clears uninterruptible flag"
+      },
+      "scope": "actual producer, five client labels, player/target/focus/pet/party1; locked cast/channel restores normal chrome and hides shield; all success exact plain green; school/profession overlays and identity released; later Apply inert; active art and recasts preserved; interrupts/failures red and original timing; preallocated source replacement; native-owned nameplate theme callback remains unchanged",
+      "resourceScope": "no fill/icon/chrome/shield geometry setters, Border.ApplyTo, frames/textures/animation groups/new OnUpdate drivers during success; existing trough anchoring/backdrop paint counted separately",
+      "review": "No actionable source issue found in scoped baseline-to-candidate diff. Terminal cleanup uses chromeOnly before green; channel0/normal max+detach/hold/fade retained; Themes Reset releases effects without altering shared Trades or nameplate Finish. Native rendering/security remain unverified.",
+      "native": {
+        "status": "USER_REPORTED_VISUAL_ONLY",
+        "feedback": "Green finish looks right",
+        "scope": "User confirmed successful normal/crafting green finish after reload. No automatic native check performed; broader appearance, uninterruptible cleanup, taint and FPS acceptance not inferred."
+      },
+      "runtimeEditedByChild": false,
+      "frozen": true
+    },
+    "syntax": {
+      "passed": 13,
+      "failed": 0,
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-terminal-final-syntax.json",
+      "qualification": "Changed school assertion freshly recompiled in corrected replay; other12 unchanged since initial syntax gate"
+    },
+    "upvalues": {
+      "runtimeFiles": 1,
+      "prototypes": 147,
+      "maximum": 33,
+      "failures": 0,
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\cast-terminal-final-upvalues.json"
+    },
+    "scope": "Actual Lua producers in five client models; compile and mutation/resource counts do not certify actual client taint, GPU pixels or FPS",
+    "sourceStability": "Owned runtime stable across initial focused run, new test and corrected replay; no full corpus functional rerun in this task"
+  },
+  "native": {
+    "status": "USER_REPORTED_VISUAL_PASS",
+    "question": "After /reload, do successful casts—including crafting—finish solid green, with no red border, shield or animated fill left behind? Active casts should keep their usual appearance.",
+    "answer": "Green finish looks right",
+    "executor": "User",
+    "agentNativeOperations": false,
+    "connectedTools": "No registered Witchcraft/WoW/native control or capture MCP tool found",
+    "exactBuild": "Not freshly queried; historical Forever session context only",
+    "pending": "Other clients, exhaustive protected-cast/party states, FPS/taint and cross-client visual parity not inferred"
+  },
+  "outOfScope": "Existing wider border rebuild/transition latency and midcast interruptibility-event support remain separate work.",
+  "documentation": {
+    "build": "PASS:1226 classified sources;625 reachable;444 setting definitions;584 literal defaults",
+    "validation": "PASS:1226 classified sources;625 reachable;444 settings;24 SavedVariables;18161 local links",
+    "initialFailure": "Verification manifest still referred to three older affected sources; composed it with current scoped test/compiler receipts. Historical full record preserved externally; no new full functional corpus claim.",
+    "finalOwnedSourceDrift": []
+  }
+}

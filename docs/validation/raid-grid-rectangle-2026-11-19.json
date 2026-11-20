@@ -1,0 +1,774 @@
+{
+  "changeId": "RAID-GRID-RECTANGLE-R141-20261119",
+  "capturedAtUTC": "2026-11-19T20:57:04.024191+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "c92c15bc2be1f97a5ff80e530c364dbbe9d8c34497802937cf0551b88055d862",
+      "afterRaw": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8"
+    },
+    "tests/raid_connected_grid.lua": {
+      "beforeRaw": "d948186a7c4da34bca4c0dae500d3b63fbe3f7f639f446ceb48a5b11bc6d94ec",
+      "afterRaw": "37e2d441a987a2229e04ae01f302d4859c409bea736a344200e11c8cde0a965a"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\source.zip",
+    "sourceZipSHA256": "960a91ff67579ed8bac608da45c80fd2377ef1a4c484aba23e2ccf38e4bc13f4",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs for each of the one-pixel and four-pixel row overlap models. A populated 40-member grid and 45 dormant cells replay eight unchanged-position rebinds, eight five-cell leave/return transitions or eight single-cell movements. Visible edge flags are compared at every transition.",
+    "samples": {
+      "stable": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "22.000/18.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "21.000/19.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "21.000/17.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "21.000/17.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "22.000/17.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "24.000/18.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "22.000/17.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "23.000/19.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "22.000/17.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/0",
+          "ms": "22.000/18.000"
+        }
+      ],
+      "roster": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "49.000/47.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "49.000/45.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "50.000/48.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "48.000/46.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "51.000/45.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "50.000/45.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "49.000/47.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "48.000/48.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "52.000/49.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1200:280/80",
+          "ms": "50.000/46.000"
+        }
+      ],
+      "move": [
+        {
+          "overlap": "1",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "30.000/25.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "31.000/28.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "30.000/28.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "29.000/26.000"
+        },
+        {
+          "overlap": "1",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "31.000/25.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "1",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "31.000/25.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "2",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "29.000/26.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "3",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "31.000/26.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "4",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "31.000/26.000"
+        },
+        {
+          "overlap": "4",
+          "pair": "5",
+          "cold": "0/160:0/160",
+          "reads": "0/1280:320/32",
+          "ms": "30.000/26.000"
+        }
+      ]
+    },
+    "desktopTiming600RefreshesMs": {
+      "stable": {
+        "1": [
+          {
+            "min": 21.0,
+            "median": 21.0,
+            "max": 22.0
+          },
+          {
+            "min": 17.0,
+            "median": 17.0,
+            "max": 19.0
+          }
+        ],
+        "4": [
+          {
+            "min": 22.0,
+            "median": 22.0,
+            "max": 24.0
+          },
+          {
+            "min": 17.0,
+            "median": 18.0,
+            "max": 19.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 48.0,
+            "median": 49.0,
+            "max": 51.0
+          },
+          {
+            "min": 45.0,
+            "median": 46.0,
+            "max": 48.0
+          }
+        ],
+        "4": [
+          {
+            "min": 48.0,
+            "median": 50.0,
+            "max": 52.0
+          },
+          {
+            "min": 45.0,
+            "median": 47.0,
+            "max": 49.0
+          }
+        ]
+      },
+      "move": {
+        "1": [
+          {
+            "min": 29.0,
+            "median": 30.0,
+            "max": 31.0
+          },
+          {
+            "min": 25.0,
+            "median": 26.0,
+            "max": 28.0
+          }
+        ],
+        "4": [
+          {
+            "min": 29.0,
+            "median": 31.0,
+            "max": 31.0
+          },
+          {
+            "min": 25.0,
+            "median": 26.0,
+            "max": 26.0
+          }
+        ]
+      }
+    },
+    "focusedGridRegression": [
+      "RAID_CONNECTED_WORK|legacy|660|0",
+      "RAID_JOIN_DELTA|legacy|111|111|210|40",
+      "RAID_JOIN_READS|legacy|0/160|800/0|39/0|39/4|40/4",
+      "RAID_CONNECTED_WORK|native|660|0",
+      "RAID_JOIN_DELTA|native|111|111|210|40",
+      "RAID_JOIN_READS|native|0/160|800/0|39/0|39/4|40/4",
+      "Raid connected grid: 1374 checks; native one-pixel joins, partial groups, redundant neighbors, minis, opacity guards and two rejected controls"
+    ],
+    "guards": "Counts are rectangle queries followed by individual edge queries for each source. The two versions are separated by a colon. Desktop timings repeat each scenario with counting disabled. Live performance and native edge parity remain pending.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\compare.lua": "8b31992375aafad2d5602c1b204d998833fd2163f0df3f76473bd9499cba5051",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\matched.txt": "629ad7271ff6cb95452a717e198697633917252099edc2987aa8a56b4cb80ae0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\grid-regression.txt": "9803470b6495cd24029252a2d2cfdcd1ac910702b3834e7ebe4c66e2d97046ea",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\ignore-right-edge.lua": "16699df64cabc18580e03688961d14e8548f9e514b3a0de5c0a8d3e817c17cc4",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\controls.txt": "63ac50aecdb6979354038a0b706b829ca81c6033603bf1c9396b2a317ddec590",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\widget-contracts.json": "892aa7d1cfe7bb979c65c387b004fc1460192f1ccea51dfa3a42d61f250c6821"
+    }
+  },
+  "widgetDeclarations": {
+    "retail": {
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "schemaSHA256": "64e2c42fbd816c366bf4e0ce51f6a584f944b1b1e5110e1ed23b6981c5fa347f",
+      "methods": {
+        "GetBottom": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 105
+          },
+          "declaration": {
+            "Name": "GetBottom",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L105"
+        },
+        "GetLeft": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 153
+          },
+          "declaration": {
+            "Name": "GetLeft",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L153"
+        },
+        "GetRect": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 168
+          },
+          "declaration": {
+            "Name": "GetRect",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "width",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "height",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L168"
+        },
+        "GetRight": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 186
+          },
+          "declaration": {
+            "Name": "GetRight",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "right",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L186"
+        },
+        "GetTop": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 283
+          },
+          "declaration": {
+            "Name": "GetTop",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "top",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L283"
+        }
+      }
+    },
+    "forever": {
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938",
+      "schemaSHA256": "626fb7bfeb1fccfcc736edf95267d6e90a6856463b5ea6a26cfe175718fb37d6",
+      "methods": {
+        "GetBottom": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 129
+          },
+          "declaration": {
+            "Name": "GetBottom",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L129"
+        },
+        "GetLeft": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 177
+          },
+          "declaration": {
+            "Name": "GetLeft",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L177"
+        },
+        "GetRect": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 192
+          },
+          "declaration": {
+            "Name": "GetRect",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "width",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "height",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L192"
+        },
+        "GetRight": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 210
+          },
+          "declaration": {
+            "Name": "GetRight",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "right",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L210"
+        },
+        "GetTop": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 307
+          },
+          "declaration": {
+            "Name": "GetTop",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "SecretWhenAnchoringSecret": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "top",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L307"
+        }
+      }
+    },
+    "classic": {
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "schemaSHA256": "53b9f11b69e14ba2e2b8af759637e900018afeea793c6737ad793f50a493a91f",
+      "methods": {
+        "GetBottom": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 100
+          },
+          "declaration": {
+            "Name": "GetBottom",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L100"
+        },
+        "GetLeft": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 143
+          },
+          "declaration": {
+            "Name": "GetLeft",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L143"
+        },
+        "GetRect": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 157
+          },
+          "declaration": {
+            "Name": "GetRect",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "left",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "bottom",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "width",
+                "Type": "uiUnit",
+                "Nilable": false
+              },
+              {
+                "Name": "height",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L157"
+        },
+        "GetRight": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 174
+          },
+          "declaration": {
+            "Name": "GetRight",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "right",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L174"
+        },
+        "GetTop": {
+          "source": {
+            "file": "SimpleScriptRegionAPIDocumentation.lua",
+            "line": 248
+          },
+          "declaration": {
+            "Name": "GetTop",
+            "Type": "Function",
+            "MayReturnNothing": true,
+            "Arguments": [],
+            "Returns": [
+              {
+                "Name": "top",
+                "Type": "uiUnit",
+                "Nilable": false
+              }
+            ]
+          },
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua#L248"
+        }
+      }
+    }
+  },
+  "widgetEvidenceScope": "Bundled commit-pinned Retail, Forever and Classic progression declarations. Frame availability is checked at the call site and native output is checked before any tuple arithmetic.",
+  "preservation": [
+    "The first appearance and changed or unreadable rectangular bounds use exact legacy edge getters. An exact public rectangle confirms retained edge coordinates.",
+    "The join solver still compares the same edge values against the same limits. Existing visibility filtering, pending refresh cadence and paint recovery run in the same order.",
+    "The focused fixture covers near-threshold mismatch, unavailable and opaque rectangles and loss of readable edge data. The all-pairs oracle covers mixed fractional layouts."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "Rejected ignore-right-edge.lua by a mismatching rectangle keeps the native edge at the exact join limit"
+    ],
+    "leafRecertification": null,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-grid-rectangle-before-20261119-215018\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+        "matches": true
+      }
+    },
+    "forever": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+        "matches": true
+      }
+    },
+    "classic": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "RaidFrame/FluxRaidUnit.lua": {
+        "sha256": "9be2f23fd3d2f55aaaa7551155dc4740696d85d69264d8a63927abd86de1e2a8",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, seam pixels and combat taint. No client input, settings or profiling changes."
+}

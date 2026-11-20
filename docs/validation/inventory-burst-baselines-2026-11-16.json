@@ -1,0 +1,465 @@
+{
+  "recordId": "LHO-BURST-BASELINES-P77-P78-P80-20261116",
+  "status": "RECORDED_P77_MODEL_PASS_P78_SKIP_UNSAFE_P80_REJECTED_UNAPPLIED",
+  "createdAtUTC": "2026-11-16T23:05:29.883825+00:00",
+  "goalStatus": "ACTIVE",
+  "workMode": "OFFLINE_BASELINES_WITH_READ_ONLY_NATIVE_PREFLIGHT",
+  "nativeAuthority": "User permits in-game testing; Root alone owns fresh guarded inspection/input. Read-only host/window/world observations are recorded separately. No native Lua status/performance reply, loaded-source adoption or FPS acceptance; no profiler preferences changed.",
+  "currentSourceHashes": {
+    "Inventory/Init.lua": "98d3e23223e46b750b45688f03df9aa2a612d5898f2f24dc1aa6ca4325d66226",
+    "Inventory/Containers.lua": "d043cfe03da4e5702b07025b86e1a2d279b76fa6743fe1907ee2628d4d16639d",
+    "Inventory/Index.lua": "80acf30770b0907efd6460467c06ff0a5da77306e086a89a882469f2a0130711",
+    "Inventory/Restock/FluxRestock_Inv.lua": "d56520026c0f15053754226ccd88af53611885e63f176af99034e964a52800bb",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "d6c94547b3cc98a2f9fa12df924421aef074cf5cd78ef31837099dbdf74bb242",
+    "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+    "Inventory/Professions.lua": "e096bf70136140f59b67c7d92fb23d849a8d37fa8c2a7034f76758997e08991b"
+  },
+  "runtimeEditsThisSlice": 0,
+  "P77": {
+    "status": "SCOPED_DESKTOP_COST_GATES_PASS_NO_NEW_RUNTIME_EDIT",
+    "firstRecovery": {
+      "sizes": [
+        1,
+        25
+      ],
+      "forcedBuilds": [
+        6,
+        102
+      ],
+      "modeledItemCalls": [
+        18,
+        5526
+      ],
+      "finishedPulseBuilds": [
+        1,
+        1
+      ],
+      "finishedPulseModeledItemCalls": [
+        2,
+        50
+      ],
+      "checks51": 1080308,
+      "checks54": 1079132,
+      "sourcePins": 64
+    },
+    "repeatedPublicLifecycle": {
+      "cyclesPerContext": 2,
+      "sizes": [
+        1,
+        25
+      ],
+      "forcedBuildsPerCycle": [
+        7,
+        103
+      ],
+      "modeledItemCallsPerCycle": [
+        19,
+        5551
+      ],
+      "checks51": 2019830,
+      "checks54": 2017758,
+      "sourcePins": 68,
+      "sameVMFullOrderedTraceAndPublicUIStateEqual": true,
+      "finishedPulseRestartsQueue": false
+    },
+    "meaning": "Archival pre-P74 baseline and already-applied P74 query code preserve modeled public/native/UI behavior; these are counts, not speed, live requests or real workload frequency.",
+    "quietStatus": "Qualified; exactly16 fixed cost children completed without resampling.",
+    "cost": {
+      "counts": {
+        "costChildren": 16,
+        "CPUChildren": 12,
+        "GCChildren": 4,
+        "GCWindows": 16,
+        "CPUPairs": 6,
+        "frozenPinsCurrentReverified": 117,
+        "stdoutFiles": 16,
+        "emptyStderrFiles": 16,
+        "pairedNonTimingWorkFieldChecks": 84
+      },
+      "decision": "Neither N profile triggers the declared medianCPU>5% OR atLeast2/3slower gate. Supports this bounded desktop whole-public-lifecycle model only. This is not an automatic source change/revert or native acceptance decision.",
+      "CPUSummary": [
+        {
+          "N": 1,
+          "episodesPerCPUChild": 1000,
+          "medianCPUDeltaPct": -9.375,
+          "medianWallDeltaPct": -5.825242712411304,
+          "fasterCPUPairs": 2,
+          "tiedCPUPairs": 1,
+          "slowerCPUPairs": 0,
+          "rejectWholeWorkflowAcceptance": false
+        },
+        {
+          "N": 25,
+          "episodesPerCPUChild": 50,
+          "medianCPUDeltaPct": -0.6024096385542133,
+          "medianWallDeltaPct": -0.5714285697433263,
+          "fasterCPUPairs": 2,
+          "tiedCPUPairs": 0,
+          "slowerCPUPairs": 1,
+          "rejectWholeWorkflowAcceptance": false
+        }
+      ],
+      "GCsummary": [
+        {
+          "runtime": "stock51",
+          "N": 1,
+          "slopeDeltaBytesPerEpisode": -4608.0,
+          "slopeDeltaPct": -11.081718051079791,
+          "retainedDeltaBytes": 3642.0,
+          "interceptsEqual": true
+        },
+        {
+          "runtime": "stock51",
+          "N": 25,
+          "slopeDeltaBytesPerEpisode": -1142784.0,
+          "slopeDeltaPct": -13.436076629505699,
+          "retainedDeltaBytes": 3642.0,
+          "interceptsEqual": true
+        },
+        {
+          "runtime": "stock54",
+          "N": 1,
+          "slopeDeltaBytesPerEpisode": -2976.0,
+          "slopeDeltaPct": -9.309891759994994,
+          "retainedDeltaBytes": 2967.0,
+          "interceptsEqual": true
+        },
+        {
+          "runtime": "stock54",
+          "N": 25,
+          "slopeDeltaBytesPerEpisode": -738048.0,
+          "slopeDeltaPct": -11.90563222377261,
+          "retainedDeltaBytes": 2967.0,
+          "interceptsEqual": true
+        }
+      ],
+      "scopeAndLimits": [
+        "Exactly declared first16 jobs, no failed measurement/replacement/retry/resample. Existing P72 and P74 leaf costs stay immutable and are not pooled.",
+        "StockLua5.1 own-child GetProcessTimes kernel+user CPU,15.625ms quantization; monotonic wall separate. Normal GC enabled during CPU.",
+        "Whole-child CPU includes source compilation/boot once, real UI setup, initial loading completion, one warm public episode, fixed full Hide/Show/loading/recovery repetitions, final assertions and output. It is not event-exclusive or exclusive-owner CPU.",
+        "Actual frozen owner bodies/native pcall retained; explicit modeled item/provider/widget endpoints have their stated limits. No nativeFPS/spike/loaded-client adoption or real workflow-frequency inference.",
+        "N1 and N25 cover manual limited-price0 shortages only. Free-owned crafting semantics remain preserved by prior proofs; no query/build/callback pruning or new product source.",
+        "Separate stopped-GC4/8 windows preserve exact raw bytes, positive remaining slopes, intercepts and post-boot/setup/warm retention. One window pair per shape/runtime/variant is not universal linearity, GC-pause cost or steady heap proof.",
+        "Completed ordinary-pulse no-restart acceptance is outside the cost loop; original and two-consecutive-episode proofs retain its full work/state equality.",
+        "No native or additional Lua jobs during postprocess; Root exclusively owns any native actions."
+      ],
+      "regressionsAndFloors": [
+        "N25 CPU pair2 is +31.25ms and wall pair2 is +62ms; no sample removal.",
+        "N1 wall pair3 is +16ms despite faster process CPU.",
+        "N25 median CPU improvement is exactly one15.625ms tick; baseline pair1 is substantially higher than baseline pairs2/3.",
+        "All four candidate GC slopes are positive; all intercepts and startup retention increases remain explicit."
+      ],
+      "medianCPUms": {
+        "N1": [
+          500,
+          453.125
+        ],
+        "N25": [
+          2593.75,
+          2578.125
+        ]
+      }
+    }
+  },
+  "P78": {
+    "status": "BASELINE_COMPLETE_NO_CANDIDATE_BLIND_SECOND_RESOLVER_SKIP_UNSAFE",
+    "finalCasesEachVM": 9,
+    "checksEachVM": 281,
+    "finalPins": 31,
+    "stdoutAndJSONLByteEqual": true,
+    "successfulWarmLeaf": {
+      "resolverEntries": 2,
+      "harvestEntries": 2,
+      "rowVisits": 2,
+      "notification": 1
+    },
+    "ordinaryNotWarmOrUnchangedResolverEntries": 1,
+    "activeJobBagEvent": {
+      "totalGetRows": 9,
+      "forcedGetRows": 1,
+      "resolverEntries": 3,
+      "harvestEntries": 3,
+      "notification": 1
+    },
+    "counterexamples": [
+      "Second pass learns later native metadata and exposed reagent-array mutation.",
+      "Second-harvest opaque error preserves pass-one state and prevents final migration/notification."
+    ],
+    "failureHistory": "R1/R2 zero-return fixture issue, R3 explicit-nil repair and total-vs-forced metric mismatch retained; final R4 two jobs pass. No production fix, cache, skip or cost run.",
+    "limits": "16 actual production owners; full RI and Inventory.Init are reference-only/mocked boundaries; not full native pipeline."
+  },
+  "P80": {
+    "status": "PREDECLARED_COST_GATE_FAILED_REJECT_HOLD_UNAPPLIED",
+    "baselineInit": "98d3e23223e46b750b45688f03df9aa2a612d5898f2f24dc1aa6ca4325d66226",
+    "candidateInit": "fba020ccd25b0c10325cf56c65dee39600a32afd0f830d27e9cabf1d369d5984",
+    "applied": false,
+    "functional": {
+      "logicalFirstJobs": 6,
+      "initialJobs": 3,
+      "resumedNotRerun": 3,
+      "rerunJobs": 0,
+      "pairedGroupsEachVM": 8,
+      "checksEachVM": 461,
+      "contextsEachVM": 16,
+      "invariantPassesEachVM": 38,
+      "unchangedCoalescingChecksEachBCVM": 790,
+      "regressionStdoutPairsByteEqual": true,
+      "allChildrenReaped": true,
+      "pins": 31,
+      "distributedSelectedIDs": [
+        24,
+        8
+      ],
+      "retainedWarmSelectedIDs": [
+        16,
+        0
+      ]
+    },
+    "originalHarnessFailure": "Wrong expected summary header after three successful children; original receipt kept; only unstarted three resumed.",
+    "quietObserverRevision": "Pre-execution source correction wraps existing warmup frames plus future CreateFrame; unchanged candidate/driver/lifecycle/schedule/Ns/52-check admission gate. Prior frozen bytes retained.",
+    "quietAdmissionJobsRun": 6,
+    "costJobsRun": 34,
+    "limits": "Full actual Init/Containers with mocked native/frame/Scheduler sinks; no Store/Notify integration. Model clock0/no OnUpdate retry interval inside cost waveform. Whole-child desktop CPU/GC measured; no event-exclusive/native/FPS/prevalence or adoption claim.",
+    "quietAdmission": {
+      "status": "PASS",
+      "pairsEachVM": 6,
+      "checksEachVM": 52,
+      "CLIchildren": 4,
+      "sameVMCLIBytesAndFiveProfileFactsEqual": true,
+      "frameCallsPerUnit": [
+        4,
+        163,
+        0,
+        0,
+        0
+      ],
+      "pins": [
+        35,
+        39
+      ]
+    },
+    "cost": {
+      "children": 34,
+      "CPUchildren": 30,
+      "GCchildren": 4,
+      "GCwindows": 40,
+      "streamsVerified": 68,
+      "pins": 52,
+      "exactFactObjects": 70,
+      "smallLifecycleCPUms": {
+        "baseline": [
+          312.5,
+          265.625,
+          234.375
+        ],
+        "candidate": [
+          265.625,
+          281.25,
+          250
+        ]
+      },
+      "CPUmedianDeltaPctRounded": {
+        "smallLifecycle1": 0,
+        "distributed160": -6.25,
+        "warmUnrelated128": -23.8095,
+        "noPendingWarm32": 0,
+        "syndicatorGuard": 0
+      },
+      "directions": {
+        "smallLifecycle1": "1win/2losses: mandatory gate fails",
+        "distributed160": "2wins/1loss",
+        "warmUnrelated128": "3wins",
+        "noPendingWarm32": "1loss",
+        "syndicatorGuard": "1loss"
+      },
+      "noPendingWallMedianDeltaPctRounded": 13.1313,
+      "noPendingWallDirections": "2losses/1tie",
+      "GCslopeIncreaseBytesPerUnit": {
+        "stock51": {
+          "small": 104,
+          "distributed": 6720,
+          "other3": 0
+        },
+        "stock54": {
+          "small": 80,
+          "distributed": 4120,
+          "other3": 0
+        }
+      },
+      "coldestOwnerRetainedDeltaBytes": {
+        "stock51": 1283,
+        "stock54": 1161
+      },
+      "preparedTotalDeltaBytes": {
+        "small": {
+          "stock51": 1323,
+          "stock54": 1185
+        },
+        "warmUnrelated": {
+          "stock51": 6731,
+          "stock54": 4545
+        }
+      },
+      "rawFloorsRetained": [
+        29,
+        4640,
+        928
+      ],
+      "decision": "Keep unapplied: declared medianCPU>5% OR2/3slower gate triggers on two slower small-lifecycle pairs despite flat median. Stress wins cannot override it.",
+      "scope": "All raw CPU/wall samples, ranges,40growth windows,20boot rows and two-point slopes/intercepts remain in the linked report. No reruns or retiming of this measured candidate; it remains unapplied."
+    }
+  },
+  "decisions": [
+    "P77 scoped desktop model passes; no new runtime/native acceptance.",
+    "P78 blind resolver skip remains unsafe/no candidate.",
+    "P80 remains external/unapplied after mandatory cost gate failure; no resampling or unchanged replay.",
+    "P56/P57/P59/P72 dispositions stay unchanged.",
+    "Goal ACTIVE; Root alone owns fresh guarded native work under user permission."
+  ],
+  "artifacts": {
+    "P77.firstFunctional": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/functional-report.json",
+      "sha256": "b0c2081183229736521ce5f322a809af5465284d5cf267c14740e64407cb8477"
+    },
+    "P77.repeatedLifecycle": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/reuse-r1/functional-report.json",
+      "sha256": "20141b40e1df88b4032f5385cea4973a2b4dea79d2bbd8c027658ff3ab1c2f37"
+    },
+    "P77.quietSource": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/preparation.json",
+      "sha256": "ca4698756760042f9bba893624ebfedcaa7b3c2262c6a046a1995de6407e9152"
+    },
+    "P77.quietPeer": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/independent-source-review-hook/review.json",
+      "sha256": "133e3d35c22b24e78839ca2c55ff3993d692bb1bace7a6bbf52818455a41f63a"
+    },
+    "P78.finalBaseline": {
+      "relativeToExternalP4": "inventory-burst-audit-p78-sourceonly/final-baseline-report.json",
+      "sha256": "3b16b199ac45c0803da73407388674deece483738c2979f2ac186dd7ac307410"
+    },
+    "P79.sourceAuthority": {
+      "relativeToExternalP4": "inventory-provider-burst-p79-sourceonly/audit.json",
+      "sha256": "603b4b20b0083ed5443f6ccec1a96f8c8ec1b1dc7775e9c419c3f919bd6e79ce"
+    },
+    "P80.functional": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/functional-report.json",
+      "sha256": "4101f5a1ebf88e0e29cef85278d01869b53b2d979cee8ddf4de387a340a71983"
+    },
+    "P80.originalHarnessFailure": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/first-functional-r2-20261116T213857Z/execution.json",
+      "sha256": "007834035407739b8b4c68c230d49466765d96455094e0027a97fc0f58b2a756"
+    },
+    "P80.resumeNoRerun": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/resume-three-execution-20261116T214804Z/execution.json",
+      "sha256": "7b0740349ab89bb9647c6226a1eeb079724ed71fb1f8a12245175af76213d8cc"
+    },
+    "P80.correctedQuietPeer": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/independent-corrected-source-review/review.json",
+      "sha256": "a1d7edb72183b2cc0a6c4aec3b9830f2c1b0a3e3f8b188627e782cb41f50259c"
+    },
+    "P80.quietDeclaration": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/declaration.json",
+      "sha256": "d971611916ad47f621f7e4d808d435193b2da8d6875196b09b54e856d3e92421"
+    },
+    "P80.quietAdmissionManifest": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/preparation-manifest.json",
+      "sha256": "48cc71a0d120b2834f3fcec75564678194a4a42fe8859e6c61dea86748238cad"
+    },
+    "P77.costReport": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/cost-report.json",
+      "sha256": "9a7248d7758f2afcbf42ca399d01350c10e5eb0858ee9aed1a924a0cff7bd59a"
+    },
+    "P77.costRaw": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/fixed-first-batch/raw.json",
+      "sha256": "e31e75ee1aff8a67dadf96a47e44ccb1f7e33a6948f1fa5251454e964474f9df"
+    },
+    "P77.costSeal": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/cost-result-seal.json",
+      "sha256": "c73bff945a4eea33bda0d18f90cd0aca4f12187be6c664397892c64079795764"
+    },
+    "P77.rootNumeric": {
+      "relativeToExternalP4": "auction-whole-workflow-p77-r1/quiet-r1/root-numeric-review.json",
+      "sha256": "f2ca492032271f65321cb8d110a2bca8407ccbf334753c6e8addb1f0e2c47fee"
+    },
+    "P80.admission": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/admission-report.json",
+      "sha256": "d76b81efc0148db10556bcfcf26b4fa1614171f9931241e4994258596ef3ea4e"
+    },
+    "P80.costRaw": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/fixed-first-cost/raw.json",
+      "sha256": "adbd14230bfdef5771d34ee31d7db23c3090d783ef104292429dc3338213fe11"
+    },
+    "P80.rootNumeric": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/root-numeric-review.json",
+      "sha256": "f9bee381343351b540087bc8a09ad344a9d21b46f84ebb17a85d0c8455653db5"
+    },
+    "P80.independentNumeric": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/independent-numeric-review-addon-combo/report.json",
+      "sha256": "e49a7e5b0b5736ae30d323a4bd7d10db0ae920eba0e15d16862c2dac1d7048ff"
+    },
+    "P80.independentSeal": {
+      "relativeToExternalP4": "item-data-bag-index-p80-r1/quiet-r1/independent-numeric-review-addon-combo/seal.json",
+      "sha256": "4b8922d12cea089dd554890b4638071559834ee4b78cdc8893ae1b2aabc1f1c6"
+    },
+    "Native.P81AD": {
+      "relativeToExternalP4": "native-status-p81a-fixed/no-input-resume-report.json",
+      "sha256": "f8024d76d11615b55cc74284974032b561e3944912fac595a3e36c07bb83f783"
+    },
+    "Native.P81E.resume81a20261116e-begin.stderr": {
+      "relativeToExternalP4": "native-status-p81a-fixed/resume81a20261116e-begin.stderr",
+      "sha256": "9727891197a64a02614223da3fdb249907a501bb20b1a3b078c045caea9a6b37"
+    },
+    "Native.P81E.resume81a20261116e-begin.stdout": {
+      "relativeToExternalP4": "native-status-p81a-fixed/resume81a20261116e-begin.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "Native.P81E.resume81a20261116e-eligibility.json": {
+      "relativeToExternalP4": "native-status-p81a-fixed/resume81a20261116e-eligibility.json",
+      "sha256": "58fb89921f6c3373a923e71cb12eff0251021cd27a7fab22c584e4b38dedd7b9"
+    }
+  },
+  "application": {
+    "status": "DOCUMENTATION_ONLY_RECORDED",
+    "applyExecuted": true,
+    "runtimeEdits": 0,
+    "externalReceiptRelativeToP4": "p77-p78-p80-continuity-draft-r2-final-20261116\\root-application\\application.json",
+    "originalDraftSHA256": "c543effddda224a9c074aeb7e72ac429e30488c7070dbf630a0c13092b865fb0",
+    "rootReviewCorrections": [
+      "P80 limits acknowledge measured desktop CPU/GC; native/event-exclusive/frequency/adoption pending.",
+      "CLIENT_MATRIX distinguishes read-only host/window observations from absent loaded-addon version/status reply.",
+      "Final validation records documentation application, retaining original sealed draft.",
+      "Candidate rejection does not withdraw user authorization for distinct tested improvements."
+    ]
+  },
+  "revision": "ROOT_REVIEWED_FIXED_OUTCOMES",
+  "NativeP81": {
+    "ADreceiptScope": "Four dated attempts; no command/run/input; receipt f802 remains immutable.",
+    "A": "Foreground LastInput changed before input.",
+    "B": "Source captured; lease expired before attestation; no run.",
+    "C": "Foreground LastInput changed before input.",
+    "D": "45s WAIT_EXPIRED_NO_INPUT.",
+    "E": "Later BEGIN_FAILED_NO_INPUT: capture guard saw Foreground unknown after foreground became0; no attest/run/input. Not a client-closed claim.",
+    "initialRootVisualTarget": {
+      "PID": 46260,
+      "HWND": 600248958,
+      "client": "Forever",
+      "scope": "World/outdoors source only; no fresh loaded-status/build reply."
+    },
+    "ADfinalReceipt": {
+      "fourControlHashesUnchanged": true,
+      "permissionReleased": true,
+      "inputLockAbsentAtADReceipt": true
+    },
+    "currentNativeMetricsOrAdoption": false,
+    "furtherNativeTriesQueued": false,
+    "agentGameActions": 0
+  },
+  "nextSourceLead": {
+    "status": "SOURCE_ONLY_NO_CANDIDATE_OR_MODEL",
+    "owner": "ExtraButtonSystem/Engine/ConsumableBind.lua",
+    "sha256": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+    "path": "Inventory listener3471 -> BagCount3482 -> private ApplyCount3491; private opts allocation2919, freeze read/write2941/2950.",
+    "next": "Before any edit, actual-owner8contexts: positive/empty/held/faceswap/missingSetCount/error/reentry/public-options identity. No candidate or job queued."
+  },
+  "rootRecordedUTC": "2026-11-16T23:09:21.230640+00:00"
+}

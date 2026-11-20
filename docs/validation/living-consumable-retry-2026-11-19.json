@@ -1,0 +1,103 @@
+{
+  "changeId": "LHO-LIVING-CONSUMABLE-RETRY-20261119",
+  "client": "Forever 1.60.1/70959/16001",
+  "scope": "World character alive with backpack open and both external inventory addons loaded. No item or merchant operations. No production source changes in this trace.",
+  "sourcePins": [
+    "Scan.lua d422a9071df715f4c3fcae7f7403269b0b5c04203c8ac14a729a71c72c2f5196",
+    "Score.lua 13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+    "Persist.lua b39618c58eb487da169d3641ba370989835579c0cb0c803d3811dc34202f9833",
+    "FluxConsumableClassify.lua 37606d4fd7b8ca672363c1e3a0cc40f663f5ea1662b30cebc0dc83f7be7fe63b",
+    "FluxItemClass.lua 85c16cb1888511d4b6af8cd68f8ad1f2bb0ab6b62e0b070e95da39f1d04a5f10"
+  ],
+  "r219": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag219-living-passive-consumables-20261119",
+      "controllerSHA": "116b53a9e3fd12b2cddb4edc9b61178e4d24f038ab0921271ba76d41bbc68e6a",
+      "packetSHA": "0460f32538754dcb11d2b47e89ab5d5015d753b3fa256f001943c7f67c87c685",
+      "packets": 9,
+      "luaSHA": "72622419d70d5bdf36f8322cb2791abed89cdd10ab125a7e0fa0467d3f24bad8"
+    },
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag219-consumable-result.png",
+      "sha": "09e5e6199fe338b3e57aea0446844c5809ac9b70d56b9f638489c8570a16d7e5"
+    },
+    "durationSeconds": 3,
+    "recomputeCalls": 7,
+    "pendingReadCalls": 7,
+    "tooltipReads": 112,
+    "totalMs": 43.62,
+    "peakMs": 6.865,
+    "restored": true,
+    "deadOrGhost": false
+  },
+  "r220": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag220-living-tooltip-caller-cost-20261119",
+      "controllerSHA": "88251dc91179c29c9de76985a09c1180a7c98d098a51685a12816318334c6bd6",
+      "packetSHA": "cc6b526c195bf7020575bb0b2f13c0d1195200bdda91f8ab83311c14104b31ae",
+      "packets": 10,
+      "luaSHA": "ac0dbfceba62cbf17fa14a13c3c25af14ebd706d6951c723108491d67cdeccef"
+    },
+    "status": "Upload stopped when a physical modifier was held. No capture ran and the lease was released."
+  },
+  "r221": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag221-living-tooltip-site-counts-20261119",
+      "controllerSHA": "d2aec28b3412006a3f4974e315a57dcfadf8b8dc2bc4951a00eed9dc036f993b",
+      "packetSHA": "033c005f6479f19645a308025c84b19ed31e75b0fc6f771e3d441127ec3cb8ca",
+      "packets": 8,
+      "luaSHA": "3a9a14566fcb366e784e2621a6a1f1df061b97769cf8607376f82668b966fb6c"
+    },
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag221-consumable-result.png",
+      "sha": "b69645cced489e2d655f5df3942066106aba0f856044c0bccdd67ad9072897a1"
+    },
+    "durationSeconds": 2,
+    "tooltipCalls": [
+      {
+        "site": "Inventory/FluxConsumableBest/Score.lua:243",
+        "calls": 60,
+        "uniqueItemIDs": 6
+      },
+      {
+        "site": "Inventory/FluxConsumableClassify.lua:1228",
+        "calls": 20,
+        "uniqueItemIDs": 4
+      }
+    ],
+    "restored": true,
+    "limitation": "R219 and R221 wrap IC.GetTooltipText. This makes Persist's owner match false, so the observed Score calls can include fallback gating induced by the observer."
+  },
+  "r222": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag222-living-pending-envelope-only-20261119",
+      "controllerSHA": "413e5990a24988cfc4a22f1c84a10996894f83ecddd00512346ef9b75c3bde9a",
+      "packetSHA": "9a8d8f889c5658c26ca75a164785fddd4ca986bb8580c9c40569b0c813b9893c",
+      "packets": 6,
+      "luaSHA": "01f2e80dc20306233ad03ed52301787460d1875ac002e8d65bf210773fa87024"
+    },
+    "status": "Stopped before input on active foreground input. Lease released."
+  },
+  "r223": {
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag223-living-pending-envelope-only-quick-20261119",
+      "controllerSHA": "b9dcb75912dc24a864aa2af8d3f9345a94b6b36235c0d5c7fb9cfab53aba231b",
+      "packetSHA": "a58c6f21acb54604f364bd04fa8d3e5e00f00583a4b37a422c6a3d2e45aab59d",
+      "packets": 6,
+      "luaSHA": "228bb88c05df8febc0ee52f03da781801406f40d323e4c0dcfe7ea14edf555e6"
+    },
+    "capture": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag223-consumable-result.png",
+      "sha": "b47bf63578aa6faa92bae86dafaaad5a182e4440269b8479b4f9f38c3add3c75"
+    },
+    "durationSeconds": 3,
+    "pendingReadCalls": 8,
+    "totalMs": 44.914,
+    "meanMs": 5.61425,
+    "peakMs": 7.043,
+    "onlyWrapper": "Best.Scan.Recompute",
+    "tooltipAndEligibilityFunctionsUnmodified": true,
+    "restored": true
+  },
+  "followup": "Profile individual callers with an existing telemetry seam or matched exact functions without changing the owner identity guard. Keep fresh requirement gates and unresolved metadata retry cadence."
+}

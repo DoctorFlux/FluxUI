@@ -365,6 +365,21 @@ function R.CaptureInto(name)
         return R.Includes.SectionEnabled(profile, key) ~= false
     end
 
+    -- A failed/in-flight bar capture must leave the last saved setup intact.
+    local capturedBars
+    if sectionOn("bars") and R.ActionBars and R.ActionBars.Capture then
+        if R.Apply and R.Apply.IsRunning and R.Apply.IsRunning() then
+            R.Warn("Wait for the current profile load before saving action bars.")
+            return false, "ACTION_BARS_APPLY_PENDING"
+        end
+        local reason
+        capturedBars, reason = R.ActionBars.Capture()
+        if not capturedBars then
+            R.Warn("Action bars were not saved: " .. tostring(reason or "ACTION_BARS_READ_FAILED"))
+            return false, reason or "ACTION_BARS_READ_FAILED"
+        end
+    end
+
     -- Unchecked sections/slots keep last save; checked parts recapture from live.
     if sectionOn("equipment") and R.Equipment and R.Equipment.Capture then
         local live = R.Equipment.Capture()
@@ -377,18 +392,7 @@ function R.CaptureInto(name)
     if sectionOn("talents") and R.Talents and R.Talents.Capture then
         profile.talents = R.Talents.Capture()
     end
-    -- Retail (post-Dragonflight): action-bar *slots* are part of each Blizzard loadout,
-    -- so we do not snapshot slots 1–120. Flux stance bar order/hidden still saves.
-    local skipBars = Compat and Compat.HasTalentLoadouts and Compat.HasTalentLoadouts()
-    if sectionOn("bars") then
-        if not skipBars and R.ActionBars and R.ActionBars.Capture then
-            profile.bars = R.ActionBars.Capture()
-        elseif skipBars and R.ActionBars and R.ActionBars.CaptureStanceLayout then
-            profile.bars = R.ActionBars.CaptureStanceLayout()
-        elseif skipBars then
-            profile.bars = nil
-        end
-    end
+    if capturedBars then profile.bars = capturedBars end
     if sectionOn("runes") and R.Runes and R.Runes.Capture then
         local shouldPreserve = R.RunePresets and R.RunePresets.ShouldPreserveProfileRunesOnSave
             and R.RunePresets.ShouldPreserveProfileRunesOnSave(profile)
@@ -856,6 +860,10 @@ local function InitSpecIconRefreshBridge()
     specIconRefreshFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
     specIconRefreshFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
     specIconRefreshFrame:SetScript("OnEvent", function(_, event, changedSlotID)
+        if event == "PLAYER_SPECIALIZATION_CHANGED" then
+            local sharedEvents = _G.Flux and _G.Flux.Events
+            if sharedEvents and sharedEvents.IsPlayerUnitEvent and not sharedEvents.IsPlayerUnitEvent(changedSlotID) then return end
+        end
         if event == "PLAYER_EQUIPMENT_CHANGED" then
             if not ShouldRefreshSpecIconOnEquipChange(changedSlotID) then
                 return

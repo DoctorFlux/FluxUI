@@ -1,0 +1,181 @@
+{
+  "changeId": "ROSTER-REGION-ROUTING-R75-20261119",
+  "capturedAtUTC": "2026-11-19T05:48:16.471854+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Identify and reduce hitches reported on joining/leaving both forms of group across FluxUI. Broader goal remains active pending matching native evidence.",
+  "nativeAttribution": {
+    "scope": "Previously saved Forever spikeWatch. Read existing saved diagnostic root only. No fresh R75 group transition or CPU capture.",
+    "version": "1.60.1",
+    "frameGapPeakMs": 190.00001251698,
+    "callbacksMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "schedulerToken": "border.junctions",
+    "borderVersion": "party-paint-r68",
+    "localRegions": 59,
+    "changedRegions": 6,
+    "planningMs": 105.40190005302,
+    "planBranchesMs": 34.425300002098,
+    "planFallbackMeshMs": 52.205099999905,
+    "heapKB": [
+      796674.24511719,
+      862726.4609375
+    ],
+    "interpretation": "Historical callback times identify the builder. Heap values include the full captured environment and cannot attribute allocations to FluxUI or native work. R74/R75 live performance remains unverified."
+  },
+  "additionalAudit": {
+    "border": "Read actual Solve, plan and commit path beyond the R74 event owners. Regional clip preparation rescanned all pieces/ops per tile. Warm query repeatedly allocated padded bounds.",
+    "focus": "PositionContainer calls the focus aura layout helper on roster changes. UpdateAuraPosition cleared and re-added both anchors and rewrote already-matching panel sizes.",
+    "raid": "The native unit attribute callback binds event filters before reveal. The reveal callback redundantly installed them and could immediately replace them if it discovered a different unit.",
+    "other": "Reviewed native compact-grid suppression, mouseover routing recovery, range, adjunct aura/HoT/MTMA paint and direct event owners from R74. Keep live ownership and recovery."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "60389a8b02ca7576cf5f08d4d95538d28c82760337d3b479e50cee3ef61e4b5b",
+      "RaidFrame/FluxRaidUnit.lua": "b6f6410677015d0a9d96da43aecb037a5052fdb4d7524bed82dbf1bc2f6cf675",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "1b98ff8551b69e4738818374162b8a757d4cce39aef4c757f51cffc0202de505"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+      "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+      "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+    },
+    "fixturesRaw": {
+      "tests/border_region_routing.lua": "7b3577eeff5ac97959525861203f6de6fd3dd34cdc630ca936fe5cbeb288a68f",
+      "tests/raid_healer_runtime.lua": "fdb6e77cf9f95cf82bf18be6ee2b16f55600829c997a5958c22fbe5a37590395",
+      "tests/focus_aura_geometry.lua": "c3b15812d35caa077e51dc7f6974160109ae83db99454bb33b4956c6df8f450b",
+      "Bars/_tmp_barsmoke.lua": "87c7cb07f77f16f9be96589e1feeef896b2834f284e683b503f1445dc1fddcfc"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\source.zip",
+    "archiveSHA256": "6f58066f55c7f2ebc55b333710618b4f9e9e01e82171f84333e3f9b9d00d8a38",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "matchedOfflineWork": {
+    "region": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\region-routing.txt",
+      "case": "40 fixture units, long HUD edge, signed tile boundaries, separate cast scopes and out-of-rectangle sources. 21 HUD tiles and one cast scope.",
+      "records": [
+        "REGION_ROUTE after query=0 rect=144 owners=2 outputFields=144",
+        "REGION_ROUTE before query=398 rect=2816 owners=23 outputFields=144",
+        "REGION_ROUTE sample=1 before=3.120ms after=0.940ms",
+        "REGION_ROUTE sample=2 before=2.610ms after=0.990ms",
+        "REGION_ROUTE sample=3 before=2.630ms after=0.960ms",
+        "REGION_ROUTE sample=4 before=2.690ms after=1.000ms",
+        "REGION_ROUTE sample=5 before=2.660ms after=0.920ms"
+      ],
+      "medianPerPassMsBeforeAfter": [
+        2.66,
+        0.96
+      ],
+      "comparedFields": 144,
+      "units": "Helper calls and desktop module-planning timing. Native frame time remains unverified."
+    },
+    "raid": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\raid-unit-route.txt",
+      "case": "20 pairs of bind/reveal and different-token reveal on 5 policy fixtures, preserving display/events.",
+      "rows": [
+        "RAID_UNIT_ROUTE|live|1920|960",
+        "RAID_UNIT_ROUTE|forever|1920|960",
+        "RAID_UNIT_ROUTE|classic|1920|960",
+        "RAID_UNIT_ROUTE|classic_era|1920|960",
+        "RAID_UNIT_ROUTE|classic_anniversary|1920|960"
+      ]
+    },
+    "focusAura": {
+      "case": "20 settled aura geometry calls in compact and legacy layouts, with identical 20 aura refreshes. Unknown/private dimensions and externally disturbed anchors take the repair path.",
+      "before": [
+        "AURA_ROSTER_WORK compact=true anchors=40 sizes=80 paint=20",
+        "AURA_ROSTER_WORK compact=false anchors=40 sizes=40 paint=20"
+      ],
+      "after": [
+        "AURA_ROSTER_WORK compact=true anchors=0 sizes=0 paint=20",
+        "AURA_ROSTER_WORK compact=false anchors=0 sizes=0 paint=20"
+      ]
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+        "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+        "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+        "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+        "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+        "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff",
+        "UnitFrames/FluxUnitFrames_Auras.lua": "960792259e205d782f7627dd5b897766c944bb9e8b230294fb862881f7dc1edf"
+      }
+    }
+  },
+  "verification": {
+    "focused": 186,
+    "syntax": 1226,
+    "upvaluesLua51Maximum": 50,
+    "prototypes": 392,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\upvalues.json",
+    "selected": {
+      "tests/border_region_routing.lua": "Border region routing: source and operation binning, boundary/cast scope and foreign texture references PASS",
+      "tests/raid_healer_runtime.lua": "Raid healer runtime: 471 checks; complete Compat/Unit modules; three rejected negative controls",
+      "tests/focus_aura_geometry.lua": "Focus aura geometry: 1075 actual metric/anchor checks; native pixels pending",
+      "Bars/_tmp_barsmoke.lua": "          VFX continues or appears/clears with the visible face"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "ExtraButtonSystem/Engine/Paint.lua",
+      "Inventory/FluxConsumableClassify.lua",
+      "Inventory/FluxItemClass.lua",
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/Restock/Core/FluxRestockSettings.lua",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua",
+      "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "Inventory/Restock/Junk/FluxJunk.lua",
+      "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+      "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua"
+    ]
+  },
+  "validationRepair": "The broad suite identified an existing reagent-count source assertion that assumed an inline comparison. Its test now recognizes the actionType local used by the current EBS count worker. Reagent runtime code was preserved. The generated-docs verifier also found the Restock migration signature reference behind the existing source. The reference now names the root argument.",
+  "nativeAcceptance": "Pending. Live party and raid join/leave latency, combat taint and pixels were not measured for R75.",
+  "followupPrototype": {
+    "runtimeApplied": false,
+    "baselineReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\fallback-cull-baseline.txt",
+    "candidateReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-region-r75-before-20261119T053110Z\\fallback-cull-differential.txt",
+    "description": "Test-only disjoint triangle and fallback-cell exclusion before guarding. Both runs pass 5,992 checks. All 52 comparable nonblocked cases report the same work, so this candidate offers no supported gain on those fixtures."
+  }
+}

@@ -1,4 +1,4 @@
--- Real unit/pet/raid tooltip owners with isolated widgets. Ordinary Lua mocks
+-- Real unit/pet/raid owners sharing Blizzard's tooltip. Ordinary Lua mocks
 -- cannot certify native secret-value VM behavior, taint or rendered pixels.
 local function read(path)
     local f = assert(io.open(path, "rb")); local s = f:read("*a"):gsub("\r\n", "\n"); f:close(); return s
@@ -25,7 +25,8 @@ local previewSource = "local ns, PreviewUnitExists = ...\n" .. preview:sub(previ
 for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_anniversary" }) do
     local env = setmetatable({}, { __index = _G }); env._G = env
     local made, queued, tickers = {}, {}, {}
-    local exists, guid, locked, hover, ownerShown = true, "same-guid", false, true, true
+    local exists, guid, locked, hover, ownerShown, ancestorShown = true, "same-guid", false, true, true, true
+    local nativeTip, ownerHooks, unitResult, forbidden = nil, {}, true, false
     local secret = setmetatable({}, { __index = function() error("opaque value indexed") end })
     env.issecretvalue = function(value) return rawequal(value, secret) end
     env.UnitExists = function() return exists end
@@ -41,7 +42,10 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
         return f
     end
     function methods:GetName() return self.name end
-    function methods:SetScript(kind, fn) self.scripts[kind] = fn end
+    function methods:SetScript(kind, fn)
+        check(self ~= nativeTip, client .. ": native tooltip script never replaced")
+        self.scripts[kind] = fn
+    end
     function methods:GetScript(kind) return self.scripts[kind] end
     function methods:HookScript(kind, fn)
         local before = self.scripts[kind]
@@ -53,13 +57,20 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
         if wasShown and self.scripts.OnHide then self.scripts.OnHide(self) end
     end
     function methods:IsShown() return self.shown end
-    function methods:IsForbidden() return false end
-    function methods:SetOwner(owner, anchor) self:Hide(); self.owner, self.anchor = owner, anchor end
+    function methods:IsForbidden() return forbidden end
+    function methods:ClearLines()
+        self.lines = {}
+        if self.scripts.OnTooltipCleared then self.scripts.OnTooltipCleared(self) end
+    end
+    function methods:SetOwner(owner, anchor)
+        self:Hide(); self:ClearLines(); self.owner, self.anchor = owner, anchor
+        for _, fn in ipairs(ownerHooks) do fn(self, owner, anchor) end
+    end
     function methods:GetOwner() return self.owner end
     function methods:SetUnit(unit, hideStatus)
-        self:Hide(); self.unit, self.hideStatus, self.lines = unit, hideStatus, {}
+        self:Hide(); self:ClearLines(); self.unit, self.hideStatus = unit, hideStatus
         self.unitCalls = (self.unitCalls or 0) + 1
-        return true
+        return unitResult
     end
     function methods:GetUnit() return "Pet", self.unit end
     function methods:AddLine(text) self.lines[#self.lines + 1] = text end
@@ -82,17 +93,28 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     end
     env.CreateFrame = function(kind, name, parent, template)
         local f = widget(name, parent)
-        if kind == "GameTooltip" then
-            check(name == "FluxUnitTooltip" and template == "GameTooltipTemplate", client .. ": same native tooltip template")
-            f.StatusBar = widget(name .. "StatusBar", f)
-        end
+        check(kind ~= "GameTooltip", client .. ": no duplicate display tooltip allocated")
         return f
     end
     env.UIParent = widget("UIParent")
     local nativeReset, nativeHealth = function() end, function() end
-    local nativeTip = setmetatable({}, { __newindex = function() error("native tooltip field written") end,
-        __index = function() error("native tooltip consumed by addon unit owner") end })
-    env.GameTooltip, env.GameTooltipStatusBar = nativeTip, { SetScript = function() error("native health script replaced") end }
+    nativeTip = widget("GameTooltip", env.UIParent)
+    setmetatable(nativeTip, { __index = methods, __newindex = function(t, key, value)
+        assert(not tostring(key):match("^_flux") and key ~= "UpdateTooltip", "native tooltip field written: " .. key)
+        rawset(t, key, value)
+    end })
+    env.GameTooltip = nativeTip
+    env.GameTooltipStatusBar = { SetScript = function() error("native health script replaced") end }
+    nativeTip.StatusBar = env.GameTooltipStatusBar
+    env.hooksecurefunc = function(tip, method, fn)
+        if type(tip) == "string" then
+            local original, hook = env[tip], method
+            env[tip] = function(...) original(...); hook(...) end
+            return
+        end
+        check(tip == nativeTip and method == "SetOwner", client .. ": narrow native ownership hook")
+        ownerHooks[#ownerHooks + 1] = fn
+    end
     env.GameTooltipUnitHealthBarMixin = { ResetUnitHealth = nativeReset, UpdateUnitHealth = nativeHealth }
     env.GameTooltip_OnShow = function(self) self.nativeShows = (self.nativeShows or 0) + 1 end
     env.GameTooltip_OnUpdate = function(self, elapsed)
@@ -103,6 +125,21 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
         if owner and owner.UpdateTooltip then owner:UpdateTooltip()
         elseif self.UpdateTooltip then self:UpdateTooltip() end
     end
+    local nativeSourceRoot = os.getenv("FLUX_NATIVE_TOOLTIP_SOURCE_ROOT")
+    if nativeSourceRoot then
+        local source = read(nativeSourceRoot .. "/" .. client .. "/GameTooltip.lua")
+        local function loadNative(name)
+            local first = assert(source:find("function " .. name .. "(", 1, true))
+            local last = source:find("\nfunction ", first + 1, true) or (#source + 1)
+            assert(load(source:sub(first, last - 1), "@pinned-" .. client .. "-" .. name, "t", env))()
+        end
+        env.TOOLTIP_UPDATE_TIME = .2
+        nativeTip.updateTooltipTimer = .2
+        nativeTip.shoppingTooltips = { widget(), widget() }
+        if source:find("function GameTooltip_IsUpdateNeeded(", 1, true) then loadNative("GameTooltip_IsUpdateNeeded") end
+        loadNative("GameTooltip_OnUpdate")
+    end
+    nativeTip.scripts.OnUpdate = env.GameTooltip_OnUpdate
     env.GameTooltip_SetDefaultAnchor = function(tip, owner) tip:SetOwner(owner, "ANCHOR_NONE") end
     env.GameTooltip_AddBlankLineToTooltip = function(tip) tip:AddLine(" ") end
     env.GameTooltip_AddInstructionLine = function(tip, text) tip:AddLine(text) end
@@ -112,56 +149,84 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     local UF = {}
     local ns = { UnitFrames = UF, API = { SafeGetAuraDataByIndex = function(_, index, filter)
         if index == 1 and filter == "HELPFUL" then return { auraInstanceID = 1, icon = 123, duration = 0, applications = 2 } end
-    end }, ApplyHUDTooltipPosition = function(tip) check(tip ~= nativeTip, client .. ": explicit owned HUD position"); tip.hud = true end }
+    end } }
+    local hudAnchor = widget("FluxHUDTestAnchor", env.UIParent)
+    env.FluxWindowFrame = { GetFrame = function() return hudAnchor end }
+    assert(load(read("Other/FluxHUDTooltip.lua"), "@hud-tooltip", "t", env))("_FluxUI", ns)
     assert(load(unitSource, "@unit-tooltip-owner", "t", env))(UF, ns)
     UF.HideUnitTooltip()
-    check(UF.GetUnitTooltip(false) == nil, client .. ": hidden tooltip remains unallocated")
-    local owner = { IsMouseOver = function() return hover end, IsShown = function() return ownerShown end }
+    check(UF.GetUnitTooltip(false) == nativeTip and UF.UnitTooltipState.owner == nil, client .. ": lookup uses existing Blizzard tooltip")
+    local owner = { IsMouseOver = function() return hover end, IsShown = function() return ownerShown end, IsVisible = function() return ancestorShown and ownerShown end }
     for _, unit in ipairs({ false, "", 42, secret }) do UF.ShowUnitTooltip(owner, unit) end
-    check(UF.GetUnitTooltip(false) == nil, client .. ": invalid/opaque tokens allocate no tooltip")
+    check(UF.GetUnitTooltip(false) == nativeTip and UF.UnitTooltipState.owner == nil, client .. ": invalid/opaque tokens do not claim native tooltip")
     exists = secret; UF.ShowUnitTooltip(owner, "party1")
-    check(UF.GetUnitTooltip(false) == nil, client .. ": opaque existence is not tested in Lua")
+    check(UF.GetUnitTooltip(false) == nativeTip and UF.UnitTooltipState.owner == nil, client .. ": opaque existence is not tested in Lua")
     exists = true; UF.ShowUnitTooltip(owner, "party1")
     local tip = UF.GetUnitTooltip(false)
-    check(tip and tip ~= nativeTip and tip:IsShown() and tip.unit == "party1" and tip.hud, client .. ": isolated live unit content and HUD placement")
-    check(tip._fluxUnitTipOwner == owner and tip:GetOwner() == env.UIParent, client .. ": logical owner retained independently of anchor")
+    check(tip and tip == nativeTip and tip:IsShown() and tip.unit == "party1", client .. ": native live unit content")
+    check(tip.point[1] == "BOTTOMLEFT" and tip.point[2] == hudAnchor and tip.point[3] == "TOPLEFT"
+        and tip.point[4] == 0 and tip.point[5] == 30, client .. ": exact existing HUD position retained")
+    check(UF.UnitTooltipState.owner == owner and tip:GetOwner() == owner, client .. ": native owner is actual hovered frame")
     check(tip:GetScript("OnUpdate") == env.GameTooltip_OnUpdate, client .. ": native refresh cadence retained")
-    local guard = assert(tip.StatusBar:GetScript("OnValueChanged"))
-    guard(tip.StatusBar, secret); check(tip.StatusBar.color == nil, client .. ": opaque health never compared or recolored")
-    guard(tip.StatusBar, .5); check(tip.StatusBar.color[2] == 1, client .. ": existing public health tint retained")
     UF.ShowUnitTooltip(owner, "party1"); check(tip.unitCalls == 1, client .. ": duplicate enter reuses visible GUID")
     tip:GetScript("OnUpdate")(tip, .1); check(tip.unitCalls == 1, client .. ": no faster polling introduced")
     tip:GetScript("OnUpdate")(tip, .1); check(tip.unitCalls == 2, client .. ": native tick refreshes unit")
     guid = secret; UF.ShowUnitTooltip(owner, "party1"); UF.ShowUnitTooltip(owner, "party1")
-    check(tip.unitCalls == 4 and tip._fluxUnitTipGuid == nil, client .. ": opaque GUID never cached or compared")
+    check(tip.unitCalls == 4 and UF.UnitTooltipState.guid == nil, client .. ": opaque GUID never cached or compared")
     guid = nil; UF.ShowUnitTooltip(owner, "party1"); check(tip.unitCalls == 5, client .. ": absent GUID refreshes normally")
     guid = "same-guid"
     local other = { IsMouseOver = function() return true end, IsShown = function() return true end }
     UF.ShowUnitTooltip(other, "party2"); UF.HideUnitTooltip(owner)
-    check(tip:IsShown() and tip._fluxUnitTipOwner == other, client .. ": old owner cannot dismiss another unit tooltip")
+    check(tip:IsShown() and UF.UnitTooltipState.owner == other, client .. ": old owner cannot dismiss another unit tooltip")
     ownerShown = false; UF.ShowUnitTooltip(owner, "party1"); tip:GetScript("OnUpdate")(tip, .2)
-    check(not tip:IsShown() and tip.UpdateTooltip == nil, client .. ": hidden owner dismisses and stops refresh")
+    check(not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": hidden owner dismisses and stops refresh")
     ownerShown, hover = true, true; UF.ShowUnitTooltip(owner, "party1"); hover = false; tip:GetScript("OnUpdate")(tip, .2)
-    check(not tip:IsShown() and tip.UpdateTooltip == nil, client .. ": leaving hover dismisses and stops refresh")
+    check(not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": leaving hover dismisses and stops refresh")
     hover = true
+
+    UF.ShowUnitTooltip(owner, "party1")
+    ancestorShown = false; tip:GetScript("OnUpdate")(tip, .2)
+    check(not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": hidden ancestor retires native unit tip")
+    ancestorShown = true
+    UF.ShowUnitTooltip(owner, "party1")
+    local staleRefresh = owner.UpdateTooltip
+    tip:SetOwner(other, "ANCHOR_RIGHT"); tip:SetText("Native item"); tip:Show()
+    staleRefresh(); UF.HideUnitTooltip(owner); UF.HideUnitTooltip()
+    check(tip:IsShown() and tip:GetOwner() == other and tip.lines[1] == "Native item"
+        and owner.UpdateTooltip == nil and UF.UnitTooltipState.owner == nil,
+        client .. ": item takeover retires old refresh; stale leave/callback cannot hide or steal it")
+    UF.ShowUnitTooltip(owner, "party1"); tip:ClearLines()
+    check(owner.UpdateTooltip == nil and UF.UnitTooltipState.owner == nil, client .. ": native clear retires Flux state")
+    unitResult = false; UF.ShowUnitTooltip(owner, "party1")
+    check(not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": failed SetUnit dismisses old content")
+    unitResult = true
+    forbidden = true; UF.ShowUnitTooltip(owner, "party1"); UF.HideUnitTooltip(owner)
+    check(UF.GetUnitTooltip(true) == nil, client .. ": forbidden native tooltip not accessed")
+    forbidden = false
 
     -- Load the full pet module; icons, spacers and cleanup must use this same tip.
     assert(load(read("UnitFrames/FluxUnitFrames_PetAuraTooltip.lua"), "@pet-tooltip", "t", env))("_FluxUI", ns)
     UF.ShowUnitTooltip(owner, secret)
     UF.ShowUnitTooltip(owner, "pet")
     local host = assert(made.FluxPetAuraTooltipHost)
-    check(host.parent == tip and host:IsShown(), client .. ": pet aura host follows isolated tooltip")
+    check(host.parent == tip and host:IsShown(), client .. ": pet aura host follows native tooltip")
     check(made.FluxPetAuraTooltipHostBuff1.Icon.texture == 123 and made.FluxPetAuraTooltipHostBuff1:IsShown(), client .. ": existing pet buff icon painted")
     check(#tip.lines > 0 and host.point[2] == tip, client .. ": pet aura spacers and anchors stay inside own tip")
     UF.HideUnitTooltip(other); check(host:IsShown(), client .. ": stale owner does not dismiss pet auras")
     UF.HideUnitTooltip(owner)
-    check(not host:IsShown() and not tip:IsShown() and tip.UpdateTooltip == nil, client .. ": pet hide clears icons and refresh together")
+    check(not host:IsShown() and not tip:IsShown() and owner.UpdateTooltip == nil, client .. ": pet hide clears icons and refresh together")
+    UF.ShowUnitTooltip(owner, "pet")
+    local oldPetRefresh = owner.UpdateTooltip
+    tip:SetOwner(other, "ANCHOR_NONE"); tip:SetText("World unit"); tip:Show()
+    check(not host:IsShown() and owner.UpdateTooltip == nil, client .. ": world takeover clears pet icons and refresh")
+    oldPetRefresh(); UF.HideUnitTooltip(owner)
+    check(tip:IsShown() and tip.lines[1] == "World unit", client .. ": old pet callback cannot replace world content")
     local happinessEnter, happinessLeave = assert(load(happinessSource, "@pet-happiness-tooltip", "t", env))(UF)
     UF.ShowUnitTooltip(owner, "pet")
     local icon = { tooltip = "Happy", tooltipDamage = "125% damage", tooltipLoyalty = "Loyal", tooltipDiet = "Meat" }
     happinessEnter(icon)
-    check(tip:IsShown() and tip._fluxUnitTipOwner == icon and tip:GetOwner() == icon
-        and tip.UpdateTooltip == nil and #tip.lines == 4, client .. ": pet happiness text survives owner-reset hide and stops previous unit refresh")
+    check(tip:IsShown() and UF.UnitTooltipState.owner == icon and tip:GetOwner() == icon
+        and owner.UpdateTooltip == nil and #tip.lines == 4, client .. ": pet happiness text survives owner-reset hide and stops previous unit refresh")
     check(not host:IsShown(), client .. ": pet aura icons clear before happiness text reuses tooltip")
     happinessLeave(icon); check(not tip:IsShown(), client .. ": pet happiness leave dismisses its own tip")
 
@@ -171,33 +236,35 @@ for _, client in ipairs({ "live", "forever", "classic", "classic_era", "classic_
     local raidOwner = { unit = "raid1", hideStatusOnTooltip = true, IsMouseOver = function() return true end,
         IsShown = function() return true end, mouseOverHighlight = widget() }
     env.FluxRaidUnit_OnEnter(raidOwner)
-    check(tip.unit == "raid1" and tip.hideStatus and tip._fluxUnitTipOwner == raidOwner, client .. ": raid unit uses dedicated tooltip")
+    check(tip.unit == "raid1" and tip.hideStatus and UF.UnitTooltipState.owner == raidOwner, client .. ": raid unit uses Blizzard tooltip")
     check(tip.lines[#tip.lines] == env.UNIT_POPUP_RIGHT_CLICK, client .. ": raid context-menu instruction preserved")
     local calls = tip.unitCalls; tip:GetScript("OnUpdate")(tip, .2)
     check(tip.unitCalls == calls + 1 and raidOwner.UpdateTooltip, client .. ": raid hover keeps native refresh cadence")
     env.FluxRaidUnit_OnHide(raidOwner)
-    check(not tip:IsShown() and tip.UpdateTooltip == nil and raidOwner.UpdateTooltip == nil, client .. ": raid owner hide clears its tooltip")
+    check(not tip:IsShown() and raidOwner.UpdateTooltip == nil, client .. ": raid owner hide clears its tooltip")
     env.FluxRaidUnit_OnEnter(raidOwner); UF.ShowUnitTooltip(other, "party2"); env.FluxRaidUnit_OnHide(raidOwner)
-    check(tip:IsShown() and tip._fluxUnitTipOwner == other, client .. ": hidden raid owner preserves newer owner")
+    check(tip:IsShown() and UF.UnitTooltipState.owner == other, client .. ": hidden raid owner preserves newer owner")
     env.FluxRaidUnit_OnEnter(raidOwner); env.FluxRaidUnit_OnLeave(raidOwner)
     check(tip.faded and not tip:IsShown(), client .. ": raid native fade-out retained")
     env.FluxRaidUnit_OnEnter(raidOwner); raidOwner.unit = nil; tip:GetScript("OnUpdate")(tip, .2)
-    check(not tip:IsShown() and tip.UpdateTooltip == nil and raidOwner.UpdateTooltip == nil, client .. ": recycled empty raid unit stops both refresh callbacks and stale content")
+    check(not tip:IsShown() and raidOwner.UpdateTooltip == nil, client .. ": recycled empty raid unit stops both refresh callbacks and stale content")
 
     env.FluxRaidPreview_ApplyIdleHighlights = function() end
     assert(load(previewSource, "@preview-tooltip-owner", "t", env))(ns, function() return true end)
     local previewOwner = { _previewUnit = "player", IsMouseOver = function() return true end, IsShown = function() return true end }
     env.FluxRaidPreviewUnit_OnEnter(previewOwner)
-    check(tip.unit == "player" and tip._fluxUnitTipOwner == previewOwner, client .. ": real preview unit uses owned tooltip")
+    check(tip.unit == "player" and UF.UnitTooltipState.owner == previewOwner, client .. ": real preview unit uses owned tooltip")
     env.FluxRaidPreviewUnit_OnLeave(previewOwner)
     check(not tip:IsShown(), client .. ": preview leave dismisses tooltip")
     env.FluxRaidPreviewUnit_OnEnter(previewOwner); UF.ShowUnitTooltip(other, "party2"); env.FluxRaidPreviewUnit_OnLeave(previewOwner)
-    check(tip:IsShown() and tip._fluxUnitTipOwner == other, client .. ": stale preview leave preserves newer unit owner")
+    check(tip:IsShown() and UF.UnitTooltipState.owner == other, client .. ": stale preview leave preserves newer unit owner")
     local mixinKeys = 0
     for _ in pairs(env.GameTooltipUnitHealthBarMixin) do mixinKeys = mixinKeys + 1 end
     check(env.GameTooltip == nativeTip and env.GameTooltipUnitHealthBarMixin.ResetUnitHealth == nativeReset
         and env.GameTooltipUnitHealthBarMixin.UpdateUnitHealth == nativeHealth and mixinKeys == 2,
         client .. ": native tooltip and secure health mixin identity never changed")
-    check(UF.GetUnitTooltip(true) == tip, client .. ": one tooltip is reused across all unit owners")
+    check(UF.GetUnitTooltip(true) == tip and not made.FluxUnitTooltip, client .. ": one Blizzard tooltip across all unit owners")
+    check(tip:GetScript("OnUpdate") == env.GameTooltip_OnUpdate and #ownerHooks == 1,
+        client .. ": native updater and single lifetime hook retained")
 end
 print("unit_tooltip_ownership: " .. checks .. " checks passed (desktop ownership/lifecycle only)")

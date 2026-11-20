@@ -1,0 +1,541 @@
+{
+  "changeId": "RAID-UNIT-EVENT-RETIREMENT-R169-20261120",
+  "capturedAtUTC": "2026-11-20T02:14:53.289325+00:00",
+  "sources": {
+    "RaidFrame/FluxRaidUnit.lua": {
+      "beforeRaw": "1eed04c4a5fff66eca0e2360abf242a8a4e4b2dad66b7bfefa13ac8b5c5016b4",
+      "afterRaw": "08fb9814da74b227bd7d0b4749da15f3c6aca91345e48bc397a1df5de8a8f1ab",
+      "afterNormalized": "08fb9814da74b227bd7d0b4749da15f3c6aca91345e48bc397a1df5de8a8f1ab"
+    },
+    "tests/raid_healer_runtime.lua": {
+      "beforeRaw": "9ca568316858522f76a7282c7b21d10ea29eefaf7965b828d9819c713c6989a1",
+      "afterRaw": "5bcdefd97199a937e5f436865938f4e8b0e6d53d5f677dd0eca0404a4d7d5167",
+      "afterNormalized": "5bcdefd97199a937e5f436865938f4e8b0e6d53d5f677dd0eca0404a4d7d5167"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-unit-event-retirement-before-20261120T031047237\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": [
+      {
+        "client": "_retail_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_forever_",
+        "directory": true,
+        "settingsFiles": 3
+      },
+      {
+        "client": "_classic_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_classic_era_",
+        "directory": true,
+        "settingsFiles": 4
+      },
+      {
+        "client": "_anniversary_",
+        "directory": true,
+        "settingsFiles": 10
+      }
+    ]
+  },
+  "work": {
+    "scope": "Five-client desktop replay with five party members and forty raid members. Both native unbind and hide orders run while the mock is in combat, followed by rejoin with rotated unit tokens. A fresh first bind is included as a control.",
+    "countOrder": [
+      "before leave UnregisterAllEvents",
+      "after leave UnregisterAllEvents",
+      "before rejoin UnregisterAllEvents",
+      "after rejoin UnregisterAllEvents"
+    ],
+    "beforeAfterPerCase": {
+      "live-5-false": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "live-5-true": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "live-40-false": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "live-40-true": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "forever-5-false": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "forever-5-true": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "forever-40-false": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "forever-40-true": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic-5-false": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic-5-true": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic-40-false": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic-40-true": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic_era-5-false": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic_era-5-true": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic_era-40-false": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic_era-40-true": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic_anniversary-5-false": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic_anniversary-5-true": [
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ],
+        [
+          10,
+          5,
+          5,
+          0
+        ]
+      ],
+      "classic_anniversary-40-false": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ],
+      "classic_anniversary-40-true": [
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ],
+        [
+          80,
+          40,
+          40,
+          0
+        ]
+      ]
+    },
+    "rawSamples": [
+      [
+        "RAID_EVENT_RETIRE|live|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|live|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|true|80|40|40|0",
+        "Raid event retirement: 7272 matched desktop checks"
+      ],
+      [
+        "RAID_EVENT_RETIRE|live|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|live|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|true|80|40|40|0",
+        "Raid event retirement: 7272 matched desktop checks"
+      ],
+      [
+        "RAID_EVENT_RETIRE|live|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|live|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|live|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|forever|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|forever|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_era|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_era|40|true|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|false|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|5|true|10|5|5|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|false|80|40|40|0",
+        "RAID_EVENT_RETIRE|classic_anniversary|40|true|80|40|40|0",
+        "Raid event retirement: 7272 matched desktop checks"
+      ]
+    ]
+  },
+  "parity": "Current event names, unit filters and registration counts match the baseline. Completed clears stay valid until the addon writes new unit or deferred layout events. Failed clears propagate and retry, and reentrant registration keeps cleanup armed. Replacement writers and unowned frames retain the native reset. Existing frame scripts and timers continue to provide event scheduling.",
+  "verification": {
+    "focusedPassed": 30,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-unit-event-retirement-before-20261120T031047237\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-unit-event-retirement-before-20261120T031047237\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\raid-unit-event-retirement-before-20261120T031047237\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native party and raid transition timing, actual event delivery, combat taint and action-strip hitch confirmation remain pending."
+}

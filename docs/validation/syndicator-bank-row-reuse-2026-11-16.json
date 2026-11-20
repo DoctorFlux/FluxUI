@@ -1,0 +1,1061 @@
+{
+  "changeId": "LHO-SYNDICATOR-BANK-ROW-REUSE-P55-20261116",
+  "recordedUTC": "2026-11-16T08:36:30.060207+00:00",
+  "goal": "ACTIVE",
+  "state": "APPLIED_P55_COMPONENT_NATIVE_GAIN_PENDING",
+  "application": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\application-20261116.json",
+      "sha256": "0be388c871015a8e31300a75fe76af217d31f807f8a1227662e9e034b100ca46"
+    },
+    "completedUTC": "2026-11-16T08:24:40.550593+00:00",
+    "onlyFiles": {
+      "Inventory/Containers.lua": "d043cfe03da4e5702b07025b86e1a2d279b76fa6743fe1907ee2628d4d16639d",
+      "Inventory/Syndicator/Adapter.lua": "66b85fd5b9007e9ec8bbe4b1fa371b2ead199da04498ffa060acbb3de97ffd5b",
+      "tests/syndicator_bank_row_reuse.lua": "fc8d5790a7ec1605cbeed405e159de1e4f56074fa8cf55eacb1b81b49dfb3ff9"
+    },
+    "main": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "hooksPath": ".githooks"
+  },
+  "change": "Reuse unchanged plain normalized character-bank rows only with exact privately captured canonical owner/helper. Sticky revocation before foreign exposure; postFill same-map detach precedes unchanged ordinary public DiffSlots lookup/call. No business pcall/cache/timer/cadence/query/notification/persistence change.",
+  "contract": "Stable plain normalized records, immutable after publication. Capability is ownership evidence, not a security boundary. Foreign/copy/missing capability remains fresh permanently until reload; canonical restoration does not re-enable reuse.",
+  "source": {
+    "baseline": {
+      "Inventory/Containers.lua": "9bdfc0cad6a5fff1b091f1c3ec02c7a4c7287ebfe298ff948294eb8d79a11d10",
+      "Inventory/Syndicator/Adapter.lua": "8ce1a7456589a5f53a17adeb03486f20d19b6a1b7efc6c9f32cdb15d670ea4dc"
+    },
+    "applied": {
+      "Inventory/Containers.lua": "d043cfe03da4e5702b07025b86e1a2d279b76fa6743fe1907ee2628d4d16639d",
+      "Inventory/Syndicator/Adapter.lua": "66b85fd5b9007e9ec8bbe4b1fa371b2ead199da04498ffa060acbb3de97ffd5b",
+      "tests/syndicator_bank_row_reuse.lua": "fc8d5790a7ec1605cbeed405e159de1e4f56074fa8cf55eacb1b81b49dfb3ff9"
+    },
+    "sourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\independent-source-review-r15\\review.json",
+      "sha256": "e872227892561c95ffabe6fc1c5d40cc4c840c1341533b098b90cf789791d0af"
+    }
+  },
+  "checkpoint": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\checkpoint-20261116\\checkpoint.json",
+      "sha256": "978f7646e524f9a49b4933ed7f0f684975df2bbdf8ce1ea15a215216fa50cead"
+    },
+    "sourceArchiveSHA256": "cab957eb2ce4e6cd100af5bfe6c1f9d7c1c1805dec7347276556d6479bb93761",
+    "sourceFiles": 2925,
+    "allEntriesVerified": true,
+    "wholeDriftAtCapture": [],
+    "ownedRestoreExact": true,
+    "parentHistoryReferenceSHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+    "parentBundleVerified": true,
+    "settingsMetadataAvailable": 125,
+    "privateValuesReadOrCopied": false
+  },
+  "functional": {
+    "receipt": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\report.json",
+      "sha256": "60cd0a2afaa70b7d730749f06f2e50a59296c01e726539079e3ffbd2e8058032"
+    },
+    "layouts": [
+      "tabbed",
+      "legacy"
+    ],
+    "stock51": {
+      "casesPerVariant": 90,
+      "checksPerVariant": 641,
+      "comparisons": 2160,
+      "resultSHA256": "54f9b27cc1c7a84794091678b8f816e70f29ac3cc11f2d984d550819758259df"
+    },
+    "Lua54": {
+      "casesPerVariant": 90,
+      "checksPerVariant": 639,
+      "comparisons": 2160,
+      "resultSHA256": "bb986020d0845c84111262c2924f617d81ce366d4c14bb7acfb53d886479823c"
+    },
+    "canonicalMethodUntouched": true,
+    "controls": "noSticky/lateCheck/detachBypass rejected underboth runtimes; rawerrors/virtualgetter/oldnil/copiedowner/nested+delayed retention/fullafterforeign covered.",
+    "durable": {
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\durable-draft\\report.json",
+        "sha256": "bff5fdaf36793711187d7effa20cc2ab8188b5ae224d718c887a7be410ebe24f"
+      },
+      "checks": 32,
+      "baselineSemanticChecksBeforeBudgetFailure": 29,
+      "newRowsUnchangedOneCountOneLink": {
+        "baseline": [
+          98,
+          98,
+          98
+        ],
+        "applied": [
+          0,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "cost": {
+    "raw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\quiet-cost\\single-batch\\raw.json",
+      "sha256": "c7a3d076a24bf013dc02015091d7e5259d22dde4bb9c333a2dd9c1fb4d6a1adf"
+    },
+    "independentNumeric": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\quiet-cost\\independent-numeric-review-r15\\review.json",
+      "sha256": "470c24c4057ed4481f036e796e90ffad8c7782681f5cbd80b078459d97b8ee74"
+    },
+    "schedule": "ONE42CPU+2GCchildren;3alternatingpairs7profiles;15000callbacks;2trialsN4/N8 pluslateN1;no reruns",
+    "runtime": "StockLua5.1.5;actual8owners;provider/native/widget/timer endpoints modeled",
+    "clock": "Whole-child GetProcessTimes user+kernelCPU includes boot/setup/warmup/normalGC/finalfacts;15.625ms quantum. Python monotonicwall separately;no Luaos.clock CPU.",
+    "quietness": "CanonicalDiff untouched;no iteration/debug/row observers,meters,packedwrappers,injected businesspcall or growing traces in measured contexts. Work/callback accounting in separate sacrificialcontexts;banklightdirectNotify bypassesSchedulerRequest.",
+    "metrics": {
+      "unchanged98": {
+        "baselineCPU": {
+          "raw": [
+            1859.375,
+            1890.625,
+            1843.75
+          ],
+          "median": 1859.375,
+          "min": 1843.75,
+          "max": 1890.625
+        },
+        "candidateCPU": {
+          "raw": [
+            1546.875,
+            1625.0,
+            1687.5
+          ],
+          "median": 1625.0,
+          "min": 1546.875,
+          "max": 1687.5
+        },
+        "CPUMedianPercent": -12.605042016806722,
+        "baselineWall": {
+          "raw": [
+            1902.8427999874111,
+            1941.271699994104,
+            1917.3183000239078
+          ],
+          "median": 1917.3183000239078,
+          "min": 1902.8427999874111,
+          "max": 1941.271699994104
+        },
+        "candidateWall": {
+          "raw": [
+            1554.4833000167273,
+            1671.2560000014491,
+            1695.6241000152659
+          ],
+          "median": 1671.2560000014491,
+          "min": 1554.4833000167273,
+          "max": 1695.6241000152659
+        },
+        "wallMedianPercent": -12.833669819945415,
+        "CPUFasterSlowerTiedPairs": [
+          3,
+          0,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 1859.375,
+            "candidateCPUMs": 1546.875,
+            "CPUAbsMs": -312.5,
+            "CPUPercent": -16.806722689075627,
+            "baselineWallMs": 1902.8427999874111,
+            "candidateWallMs": 1554.4833000167273,
+            "wallAbsMs": -348.3594999706838,
+            "wallPercent": -18.30731892161499
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 1890.625,
+            "candidateCPUMs": 1625.0,
+            "CPUAbsMs": -265.625,
+            "CPUPercent": -14.049586776859503,
+            "baselineWallMs": 1941.271699994104,
+            "candidateWallMs": 1671.2560000014491,
+            "wallAbsMs": -270.01569999265485,
+            "wallPercent": -13.90921734414997
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 1843.75,
+            "candidateCPUMs": 1687.5,
+            "CPUAbsMs": -156.25,
+            "CPUPercent": -8.47457627118644,
+            "baselineWallMs": 1917.3183000239078,
+            "candidateWallMs": 1695.6241000152659,
+            "wallAbsMs": -221.69420000864193,
+            "wallPercent": -11.562722788692803
+          }
+        ]
+      },
+      "oneChanged98": {
+        "baselineCPU": {
+          "raw": [
+            1921.875,
+            1968.75,
+            2015.625
+          ],
+          "median": 1968.75,
+          "min": 1921.875,
+          "max": 2015.625
+        },
+        "candidateCPU": {
+          "raw": [
+            1843.75,
+            1609.375,
+            1687.5
+          ],
+          "median": 1687.5,
+          "min": 1609.375,
+          "max": 1843.75
+        },
+        "CPUMedianPercent": -14.28571428571429,
+        "baselineWall": {
+          "raw": [
+            2009.4013000198174,
+            1993.3842000027653,
+            2073.912299994845
+          ],
+          "median": 2009.4013000198174,
+          "min": 1993.3842000027653,
+          "max": 2073.912299994845
+        },
+        "candidateWall": {
+          "raw": [
+            1845.1628000184428,
+            1642.031199997291,
+            1723.9609999815002
+          ],
+          "median": 1723.9609999815002,
+          "min": 1642.031199997291,
+          "max": 1845.1628000184428
+        },
+        "wallMedianPercent": -14.205241135033708,
+        "CPUFasterSlowerTiedPairs": [
+          3,
+          0,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 1921.875,
+            "candidateCPUMs": 1843.75,
+            "CPUAbsMs": -78.125,
+            "CPUPercent": -4.0650406504065035,
+            "baselineWallMs": 2009.4013000198174,
+            "candidateWallMs": 1845.1628000184428,
+            "wallAbsMs": -164.23850000137463,
+            "wallPercent": -8.173504217388272
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 1968.75,
+            "candidateCPUMs": 1609.375,
+            "CPUAbsMs": -359.375,
+            "CPUPercent": -18.253968253968257,
+            "baselineWallMs": 1993.3842000027653,
+            "candidateWallMs": 1642.031199997291,
+            "wallAbsMs": -351.3530000054743,
+            "wallPercent": -17.62595489645131
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 2015.625,
+            "candidateCPUMs": 1687.5,
+            "CPUAbsMs": -328.125,
+            "CPUPercent": -16.279069767441857,
+            "baselineWallMs": 2073.912299994845,
+            "candidateWallMs": 1723.9609999815002,
+            "wallAbsMs": -349.95130001334473,
+            "wallPercent": -16.87396810435111
+          }
+        ]
+      },
+      "allChanged98": {
+        "baselineCPU": {
+          "raw": [
+            2937.5,
+            2187.5,
+            2328.125
+          ],
+          "median": 2328.125,
+          "min": 2187.5,
+          "max": 2937.5
+        },
+        "candidateCPU": {
+          "raw": [
+            3187.5,
+            2203.125,
+            2343.75
+          ],
+          "median": 2343.75,
+          "min": 2203.125,
+          "max": 3187.5
+        },
+        "CPUMedianPercent": 0.6711409395973256,
+        "baselineWall": {
+          "raw": [
+            3100.5061000178102,
+            2187.1696999878623,
+            2389.4937000004575
+          ],
+          "median": 2389.4937000004575,
+          "min": 2187.1696999878623,
+          "max": 3100.5061000178102
+        },
+        "candidateWall": {
+          "raw": [
+            3360.9915999986697,
+            2268.290000007255,
+            2386.599000019487
+          ],
+          "median": 2386.599000019487,
+          "min": 2268.290000007255,
+          "max": 3360.9915999986697
+        },
+        "wallMedianPercent": -0.12114281703148322,
+        "CPUFasterSlowerTiedPairs": [
+          0,
+          3,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 2937.5,
+            "candidateCPUMs": 3187.5,
+            "CPUAbsMs": 250.0,
+            "CPUPercent": 8.51063829787233,
+            "baselineWallMs": 3100.5061000178102,
+            "candidateWallMs": 3360.9915999986697,
+            "wallAbsMs": 260.48549998085946,
+            "wallPercent": 8.401386469756122
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 2187.5,
+            "candidateCPUMs": 2203.125,
+            "CPUAbsMs": 15.625,
+            "CPUPercent": 0.7142857142857117,
+            "baselineWallMs": 2187.1696999878623,
+            "candidateWallMs": 2268.290000007255,
+            "wallAbsMs": 81.12030001939274,
+            "wallPercent": 3.7089165975481064
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 2328.125,
+            "candidateCPUMs": 2343.75,
+            "CPUAbsMs": 15.625,
+            "CPUPercent": 0.6711409395973256,
+            "baselineWallMs": 2389.4937000004575,
+            "candidateWallMs": 2386.599000019487,
+            "wallAbsMs": -2.894699980970472,
+            "wallPercent": -0.12114281703148322
+          }
+        ]
+      },
+      "foreign98": {
+        "baselineCPU": {
+          "raw": [
+            1937.5,
+            1906.25,
+            2000.0
+          ],
+          "median": 1937.5,
+          "min": 1906.25,
+          "max": 2000.0
+        },
+        "candidateCPU": {
+          "raw": [
+            1843.75,
+            1953.125,
+            1906.25
+          ],
+          "median": 1906.25,
+          "min": 1843.75,
+          "max": 1953.125
+        },
+        "CPUMedianPercent": -1.6129032258064502,
+        "baselineWall": {
+          "raw": [
+            1985.8849000011105,
+            1918.9097000053152,
+            2059.767400001874
+          ],
+          "median": 1985.8849000011105,
+          "min": 1918.9097000053152,
+          "max": 2059.767400001874
+        },
+        "candidateWall": {
+          "raw": [
+            1870.136999990791,
+            2019.0796999959275,
+            1930.567700008396
+          ],
+          "median": 1930.567700008396,
+          "min": 1870.136999990791,
+          "max": 2019.0796999959275
+        },
+        "wallMedianPercent": -2.7855189388208523,
+        "CPUFasterSlowerTiedPairs": [
+          2,
+          1,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 1937.5,
+            "candidateCPUMs": 1843.75,
+            "CPUAbsMs": -93.75,
+            "CPUPercent": -4.8387096774193505,
+            "baselineWallMs": 1985.8849000011105,
+            "candidateWallMs": 1870.136999990791,
+            "wallAbsMs": -115.74790001031943,
+            "wallPercent": -5.82853014342647
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 1906.25,
+            "candidateCPUMs": 1953.125,
+            "CPUAbsMs": 46.875,
+            "CPUPercent": 2.4590163934426146,
+            "baselineWallMs": 1918.9097000053152,
+            "candidateWallMs": 2019.0796999959275,
+            "wallAbsMs": 100.16999999061227,
+            "wallPercent": 5.220151838845499
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 2000.0,
+            "candidateCPUMs": 1906.25,
+            "CPUAbsMs": -93.75,
+            "CPUPercent": -4.6875,
+            "baselineWallMs": 2059.767400001874,
+            "candidateWallMs": 1930.567700008396,
+            "wallAbsMs": -129.19969999347813,
+            "wallPercent": -6.272538345512246
+          }
+        ]
+      },
+      "lateRevoked98": {
+        "baselineCPU": {
+          "raw": [
+            1906.25,
+            1875.0,
+            1734.375
+          ],
+          "median": 1875.0,
+          "min": 1734.375,
+          "max": 1906.25
+        },
+        "candidateCPU": {
+          "raw": [
+            2250.0,
+            1921.875,
+            1734.375
+          ],
+          "median": 1921.875,
+          "min": 1734.375,
+          "max": 2250.0
+        },
+        "CPUMedianPercent": 2.499999999999991,
+        "baselineWall": {
+          "raw": [
+            1941.8452999962028,
+            1928.6448000057135,
+            1771.874600002775
+          ],
+          "median": 1928.6448000057135,
+          "min": 1771.874600002775,
+          "max": 1941.8452999962028
+        },
+        "candidateWall": {
+          "raw": [
+            2248.664999991888,
+            1948.577600007411,
+            1759.1495999949984
+          ],
+          "median": 1948.577600007411,
+          "min": 1759.1495999949984,
+          "max": 2248.664999991888
+        },
+        "wallMedianPercent": 1.0335132732392394,
+        "CPUFasterSlowerTiedPairs": [
+          0,
+          2,
+          1
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 1906.25,
+            "candidateCPUMs": 2250.0,
+            "CPUAbsMs": 343.75,
+            "CPUPercent": 18.032786885245898,
+            "baselineWallMs": 1941.8452999962028,
+            "candidateWallMs": 2248.664999991888,
+            "wallAbsMs": 306.81969999568537,
+            "wallPercent": 15.800419322604409
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 1875.0,
+            "candidateCPUMs": 1921.875,
+            "CPUAbsMs": 46.875,
+            "CPUPercent": 2.499999999999991,
+            "baselineWallMs": 1928.6448000057135,
+            "candidateWallMs": 1948.577600007411,
+            "wallAbsMs": 19.932800001697615,
+            "wallPercent": 1.0335132732392394
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 1734.375,
+            "candidateCPUMs": 1734.375,
+            "CPUAbsMs": 0.0,
+            "CPUPercent": 0.0,
+            "baselineWallMs": 1771.874600002775,
+            "candidateWallMs": 1759.1495999949984,
+            "wallAbsMs": -12.725000007776543,
+            "wallPercent": -0.7181659473958657
+          }
+        ]
+      },
+      "full98": {
+        "baselineCPU": {
+          "raw": [
+            2203.125,
+            1437.5,
+            1343.75
+          ],
+          "median": 1437.5,
+          "min": 1343.75,
+          "max": 2203.125
+        },
+        "candidateCPU": {
+          "raw": [
+            1468.75,
+            1421.875,
+            1281.25
+          ],
+          "median": 1421.875,
+          "min": 1281.25,
+          "max": 1468.75
+        },
+        "CPUMedianPercent": -1.0869565217391353,
+        "baselineWall": {
+          "raw": [
+            2400.8000000030734,
+            1486.4378000202123,
+            1368.1354000000283
+          ],
+          "median": 1486.4378000202123,
+          "min": 1368.1354000000283,
+          "max": 2400.8000000030734
+        },
+        "candidateWall": {
+          "raw": [
+            1508.8465999870095,
+            1453.445399994962,
+            1322.6818999974057
+          ],
+          "median": 1453.445399994962,
+          "min": 1322.6818999974057,
+          "max": 1508.8465999870095
+        },
+        "wallMedianPercent": -2.2195614256312446,
+        "CPUFasterSlowerTiedPairs": [
+          3,
+          0,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 2203.125,
+            "candidateCPUMs": 1468.75,
+            "CPUAbsMs": -734.375,
+            "CPUPercent": -33.333333333333336,
+            "baselineWallMs": 2400.8000000030734,
+            "candidateWallMs": 1508.8465999870095,
+            "wallAbsMs": -891.9534000160638,
+            "wallPercent": -37.152340886992754
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 1437.5,
+            "candidateCPUMs": 1421.875,
+            "CPUAbsMs": -15.625,
+            "CPUPercent": -1.0869565217391353,
+            "baselineWallMs": 1486.4378000202123,
+            "candidateWallMs": 1453.445399994962,
+            "wallAbsMs": -32.99240002525039,
+            "wallPercent": -2.2195614256312446
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 1343.75,
+            "candidateCPUMs": 1281.25,
+            "CPUAbsMs": -62.5,
+            "CPUPercent": -4.651162790697672,
+            "baselineWallMs": 1368.1354000000283,
+            "candidateWallMs": 1322.6818999974057,
+            "wallAbsMs": -45.453500002622604,
+            "wallPercent": -3.3222954396634807
+          }
+        ]
+      },
+      "small8": {
+        "baselineCPU": {
+          "raw": [
+            312.5,
+            328.125,
+            328.125
+          ],
+          "median": 328.125,
+          "min": 312.5,
+          "max": 328.125
+        },
+        "candidateCPU": {
+          "raw": [
+            281.25,
+            343.75,
+            296.875
+          ],
+          "median": 296.875,
+          "min": 281.25,
+          "max": 343.75
+        },
+        "CPUMedianPercent": -9.523809523809524,
+        "baselineWall": {
+          "raw": [
+            334.32269998593256,
+            380.308599997079,
+            339.8397999990266
+          ],
+          "median": 339.8397999990266,
+          "min": 334.32269998593256,
+          "max": 380.308599997079
+        },
+        "candidateWall": {
+          "raw": [
+            303.7287000042852,
+            404.34799998183735,
+            320.77059999573976
+          ],
+          "median": 320.77059999573976,
+          "min": 303.7287000042852,
+          "max": 404.34799998183735
+        },
+        "wallMedianPercent": -5.611232116821352,
+        "CPUFasterSlowerTiedPairs": [
+          2,
+          1,
+          0
+        ],
+        "pairs": [
+          {
+            "pair": 1,
+            "baselineCPUMs": 312.5,
+            "candidateCPUMs": 281.25,
+            "CPUAbsMs": -31.25,
+            "CPUPercent": -9.999999999999998,
+            "baselineWallMs": 334.32269998593256,
+            "candidateWallMs": 303.7287000042852,
+            "wallAbsMs": -30.593999981647357,
+            "wallPercent": -9.15103879662813
+          },
+          {
+            "pair": 2,
+            "baselineCPUMs": 328.125,
+            "candidateCPUMs": 343.75,
+            "CPUAbsMs": 15.625,
+            "CPUPercent": 4.761904761904767,
+            "baselineWallMs": 380.308599997079,
+            "candidateWallMs": 404.34799998183735,
+            "wallAbsMs": 24.039399984758347,
+            "wallPercent": 6.321024553466059
+          },
+          {
+            "pair": 3,
+            "baselineCPUMs": 328.125,
+            "candidateCPUMs": 296.875,
+            "CPUAbsMs": -31.25,
+            "CPUPercent": -9.523809523809524,
+            "baselineWallMs": 339.8397999990266,
+            "candidateWallMs": 320.77059999573976,
+            "wallAbsMs": -19.069200003286824,
+            "wallPercent": -5.611232116821352
+          }
+        ]
+      }
+    },
+    "allocation": {
+      "unchanged98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "candidateRawBytes": {
+              "4": 59814,
+              "8": 118598
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 14696.0,
+            "slopeDeltaBytesPerCallback": -21952.0,
+            "slopePercent": -59.899585243396636,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "candidateRawBytes": {
+              "4": 59814,
+              "8": 118598
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 14696.0,
+            "slopeDeltaBytesPerCallback": -21952.0,
+            "slopePercent": -59.899585243396636,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "oneChanged98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 147942,
+              "8": 294854
+            },
+            "candidateRawBytes": {
+              "4": 61030,
+              "8": 121030
+            },
+            "baselineSlopeBytesPerCallback": 36728.0,
+            "candidateSlopeBytesPerCallback": 15000.0,
+            "slopeDeltaBytesPerCallback": -21728.0,
+            "slopePercent": -59.1592245698105,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 147942,
+              "8": 294854
+            },
+            "candidateRawBytes": {
+              "4": 61030,
+              "8": 121030
+            },
+            "baselineSlopeBytesPerCallback": 36728.0,
+            "candidateSlopeBytesPerCallback": 15000.0,
+            "slopeDeltaBytesPerCallback": -21728.0,
+            "slopePercent": -59.1592245698105,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "allChanged98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 188582,
+              "8": 376134
+            },
+            "candidateRawBytes": {
+              "4": 188582,
+              "8": 376134
+            },
+            "baselineSlopeBytesPerCallback": 46888.0,
+            "candidateSlopeBytesPerCallback": 46888.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 188582,
+              "8": 376134
+            },
+            "candidateRawBytes": {
+              "4": 188582,
+              "8": 376134
+            },
+            "baselineSlopeBytesPerCallback": 46888.0,
+            "candidateSlopeBytesPerCallback": 46888.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "foreign98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "candidateRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 36648.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "candidateRawBytes": {
+              "4": 147622,
+              "8": 294214
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 36648.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "lateRevoked98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "1": 37758,
+              "4": 147702,
+              "8": 294294
+            },
+            "candidateRawBytes": {
+              "1": 37758,
+              "4": 147702,
+              "8": 294294
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 36648.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1110.0,
+            "candidateInterceptBytes": 1110.0,
+            "allRawWindowsEqual": true
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "1": 37758,
+              "4": 147702,
+              "8": 294294
+            },
+            "candidateRawBytes": {
+              "1": 37758,
+              "4": 147702,
+              "8": 294294
+            },
+            "baselineSlopeBytesPerCallback": 36648.0,
+            "candidateSlopeBytesPerCallback": 36648.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1110.0,
+            "candidateInterceptBytes": 1110.0,
+            "allRawWindowsEqual": true
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "full98": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 148742,
+              "8": 296454
+            },
+            "candidateRawBytes": {
+              "4": 148742,
+              "8": 296454
+            },
+            "baselineSlopeBytesPerCallback": 36928.0,
+            "candidateSlopeBytesPerCallback": 36928.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 148742,
+              "8": 296454
+            },
+            "candidateRawBytes": {
+              "4": 148742,
+              "8": 296454
+            },
+            "baselineSlopeBytesPerCallback": 36928.0,
+            "candidateSlopeBytesPerCallback": 36928.0,
+            "slopeDeltaBytesPerCallback": 0.0,
+            "slopePercent": 0.0,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": true
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      },
+      "small8": {
+        "trials": [
+          {
+            "trial": 1,
+            "baselineRawBytes": {
+              "4": 20902,
+              "8": 40774
+            },
+            "candidateRawBytes": {
+              "4": 13734,
+              "8": 26438
+            },
+            "baselineSlopeBytesPerCallback": 4968.0,
+            "candidateSlopeBytesPerCallback": 3176.0,
+            "slopeDeltaBytesPerCallback": -1792.0,
+            "slopePercent": -36.070853462157814,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          },
+          {
+            "trial": 2,
+            "baselineRawBytes": {
+              "4": 20902,
+              "8": 40774
+            },
+            "candidateRawBytes": {
+              "4": 13734,
+              "8": 26438
+            },
+            "baselineSlopeBytesPerCallback": 4968.0,
+            "candidateSlopeBytesPerCallback": 3176.0,
+            "slopeDeltaBytesPerCallback": -1792.0,
+            "slopePercent": -36.070853462157814,
+            "baselineInterceptBytes": 1030.0,
+            "candidateInterceptBytes": 1030.0,
+            "allRawWindowsEqual": false
+          }
+        ],
+        "bothTrialsRawAndSlopesExact": true
+      }
+    },
+    "lateScope": "One initialrevocation+14999restoredcanonicalstickyfallback events;N1heap37758B bothvariants/trials. Not isolateddetachmentCPU.",
+    "startupScope": "One private capability table per ownerload is outsidecallbackGCwindows;no retainedheap or GCpause claim.",
+    "retainedRegressions": "Allchanged+250/+15.625/+15.625msCPU;late+343.75/+46.875/0msCPU;smallpair2+15.625msCPU;foreignmixed;fullfirstpair2203.125->1468.75ms is unattributedhostvariation.",
+    "nativeFPSProof": false
+  },
+  "gates": {
+    "componentBeforeApply": {
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\component-integration-20261116T081955Z\\final-gate.json",
+        "sha256": "ffc30afa139763373e73cb2507b8fa0d05fa064b2f4f3a5052ca92eb6046b860"
+      },
+      "scripts": 8,
+      "checks": 37612,
+      "syntax": 1121,
+      "componentPinsBeforeAfter": [
+        358,
+        359
+      ],
+      "componentAndExternalCompositionStable": true,
+      "fullSuiteRun": false
+    },
+    "actualPostApply": {
+      "receipt": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-row-reuse-p55-candidate-r1\\post-apply-20261116T082952Z\\report.json",
+        "sha256": "4ef2d90dfa219b323bb4b8db47338d8457617ede090a1973f9e3b69ecc0ce90a"
+      },
+      "defaultCWDTests": 5,
+      "checks": 847,
+      "ownedSyntaxJobs": 6,
+      "runtimes": [
+        "Lua5.1",
+        "Lua5.4"
+      ],
+      "componentPins": 359,
+      "componentMatchesPassedBeforeAfter": true,
+      "allRawBeforeAfterStable": true,
+      "olderWholeProjectionExact": false,
+      "unrelatedDrift": [],
+      "diskIdentitiesMatched": 15,
+      "manualCopiesOrSync": false,
+      "nativeAdoptionClaim": false
+    }
+  },
+  "historyScope": "Earlier P52 full421/1110 and other dated whole-project sweeps remain history. P55 used current component+all-syntax and bounded actual postapply;no new whole-project full-run claim.",
+  "native": {
+    "P54FunctionalSmokeSeparate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-functional-smoke-20261116\\native-functional-observation.json",
+      "sha256": "f1806835ab11e51560045950a5bea5adef115fdcc7aa3f3c60ba22becdf597cd"
+    },
+    "currentClient": {
+      "pid": 46260,
+      "hwnd": 600248958,
+      "birthFILETIME": 134392816726299937,
+      "build": 70938,
+      "interface": 16001
+    },
+    "P54ActualPayloadAuthority": "_P54/z53/tagP54_b84e619a;600stage/20active;proposedz54metadata unused",
+    "observerInstalledByThisMilestone": false,
+    "nativeP55SourceAdoptionBankFrameSpikesFPSOrAllWorkflowAcceptance": false,
+    "scope": "Native P54 functional cast/cancel/setup evidence is separate and does not validate loaded P55bank code or performance. Rootowns all native/holds/pause."
+  },
+  "remaining": "FullInventory/EBS passive/event/worstframe goal ACTIVE;native providercombos/vendor/AH/pending/craft/bank/mail/loot/receive performance andallclientacceptance remain.",
+  "actionsByDocsTask": {
+    "addonLuaEdits": 0,
+    "nativeInput": 0,
+    "settingsOrExternalAddOnWrites": 0,
+    "testsOrGeneratedGates": false,
+    "manualSyncCommitPublication": false
+  }
+}

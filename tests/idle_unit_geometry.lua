@@ -4,7 +4,8 @@ local function read(path)local f=assert(io.open(path,"rb"));local s=f:read("*a")
 local source=read("UnitFrames/FluxUnitFrames_Shared.lua")
 local function cut(a,b)local i=assert(source:find(a,1,true));return source:sub(i,assert(source:find(b,i+#a,true))-1)end
 local helpers=cut("local function ValueIsSecret(value)","local function PlayerDeadOrGhost(unit)")
-local candidate=cut("function UF.SyncPortraitModelGeometry(self)","--- Full portrait refresh after resolution")
+local geometryStart=source:find("-- Protected portrait geometry callback:",1,true)and"-- Protected portrait geometry callback:"or"function UF.SyncPortraitModelGeometry(self)"
+local candidate=cut(geometryStart,"--- Full portrait refresh after resolution")
 local baseline=read("tests/fixtures/unit_portrait_geometry_before.txt")
 local checks=0
 local function check(ok,msg)checks=checks+1;assert(ok,msg)end

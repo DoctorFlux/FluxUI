@@ -1,0 +1,193 @@
+{
+  "id": "BORDER-BUILDER-R53-20261116",
+  "version": "local-plans-r53",
+  "capturedAtUTC": "2026-11-16T17:51:08.770558+00:00",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\minimap-toggle-before-20261116T163228Z",
+  "checkpointScope": "2988 source files plus verified main history; no changes during archive; available settings verified outside AddOns; no manual installation copies",
+  "priority": "Optimize actual builder reflow on combat exit, minimap toggle and dynamic UI changes; retain prepared combat/dispel/class paint. Actionstrip mapping/seam edits held.",
+  "nativeBaseline": {
+    "version": "static-unit-paint-r52",
+    "scenario": "Quiet embedded-minimap toggle with side buttons; user confirmed loaded R52",
+    "buildMs": 232.41,
+    "preflightMs": 0.19,
+    "alignMs": 0.21,
+    "geometryMs": 19.01,
+    "solveMs": 50.6,
+    "planMs": 88.94,
+    "commitMs": 73.45,
+    "operations": 317,
+    "fragments": 521,
+    "triangles": 3673,
+    "baseHits": 114,
+    "baseMisses": 5,
+    "sourceReads": 535,
+    "sourceHits": 528,
+    "fallbackHits": 2050,
+    "fallbackMisses": 90,
+    "fallbackProbes": 3256,
+    "commit": {
+      "fragmentsMs": 12.31,
+      "fallbacksMs": 16.37,
+      "meshMs": 41.8,
+      "retireMs": 1.1
+    },
+    "work": {
+      "setters": 7752,
+      "hits": 6342,
+      "writes": 1410,
+      "alphaReads": 1569,
+      "alphaWrites": 74,
+      "basisReads": 96,
+      "drawReuse": 102
+    },
+    "plan": {
+      "cutsMs": 13.34,
+      "branchesMs": 19.52,
+      "ownersMs": 4.32,
+      "cellsMs": 4.1,
+      "fallbackMeshMs": 47.33
+    },
+    "watch": {
+      "frameGaps": 1,
+      "peakGapMs": 274,
+      "slowServiceCallbacks": 0,
+      "peakObservedCallbackMs": 1.2
+    },
+    "interpretation": "Synchronous UI CommitLayout is outside shared-service callback timing. Direct border phases establish232.41ms builder cost;274ms frame gap is correlation, not an additional CPU total. No multi-solve storm established."
+  },
+  "implemented": [
+    "Per-operation immutable fallback numeric plan reuse after fresh current Source/mask/UV/cell/blocker descriptors; committed-only bounded cache and fresh wrapper rebinding",
+    "Per-pass segment identity maps replace string concatenation for parallel and perpendicular pair deduplication; no persistent geometry state",
+    "Public unit-owner identity lookup memo exists only during the established readonly commit phase after original source paint settles; incomplete/private/missing/cyclic/budget walks cannot cache a negative commit result; all current per-field native guards retained"
+  ],
+  "sourceHashes": {
+    "Core/BorderJunctions.lua": {
+      "raw": "a72891828522fde82e2e9acfe23cdd37bef85f8a2468cab1815b9527e876142e",
+      "normalized": "e45902817207a50b408c4290ae594f07c15f5c4dfc7c4118f2b366b17dfbb85c"
+    },
+    "tests/border_fallback_plan_cache.lua": {
+      "raw": "696bc580855615b47f1e39bcc466900d3ca3f9aaf040211f0c01f16f338e7519",
+      "normalized": "696bc580855615b47f1e39bcc466900d3ca3f9aaf040211f0c01f16f338e7519"
+    },
+    "tests/border_fallback_array_guards.lua": {
+      "raw": "405c98a8ca9207d9010c7551c0a5f23f753ee7f2f851d71e7792ec5c289fccc0",
+      "normalized": "405c98a8ca9207d9010c7551c0a5f23f753ee7f2f851d71e7792ec5c289fccc0"
+    },
+    "tests/border_reflow_cost.lua": {
+      "raw": "dd16d110e56e994a80ca538912e3211ff34f7ea5cfa65b88cea1bd37b573b912",
+      "normalized": "dd16d110e56e994a80ca538912e3211ff34f7ea5cfa65b88cea1bd37b573b912"
+    },
+    "tests/border_solve_pair_identity.lua": {
+      "raw": "6cf67e747eefc5919f1e2663b2de79b53941aece1a01c140ecbe18ffaa790782",
+      "normalized": "c8ba782c461d406aaa1c07b61c87f07829dfd0297cb846e340815354d7cf0aab"
+    },
+    "tests/border_owner_phase.lua": {
+      "raw": "9a2d47851aea4732ace58614918ce533d15648d9d4ea557ff1a05714d2bfb5e6",
+      "normalized": "9a2d47851aea4732ace58614918ce533d15648d9d4ea557ff1a05714d2bfb5e6"
+    },
+    "tests/border_draw_reuse.lua": {
+      "raw": "f92168682aa4b8e9fdfcbdbe345539c19a4d711b85b8d6f2dcdee7f026951274",
+      "normalized": "f92168682aa4b8e9fdfcbdbe345539c19a4d711b85b8d6f2dcdee7f026951274"
+    }
+  },
+  "invariants": [
+    "Fresh native geometry/source/privacy/mask checks and current authored paint retained",
+    "Exact numeric shapes, rounded corners, ownership, visibility fallback and multi-color T/X output retained",
+    "Existing candidate/fragment/triangle/scalar budgets and transactional rollback retained",
+    "No new recurring driver, native input/action-ID changes, profiler preference edits or manual installation copies"
+  ],
+  "nativeAcceptance": "R53 pending. R52 still severe according to user. Desktop modeled work/CPU results do not certify native latency, FPS, pixels, controller, secure input or taint.",
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-toggle-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-solve-change-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-solve-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-solve-upvalues.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\render-owner-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r53-final-gate.json"
+  ],
+  "rejected": [
+    "Persistent cross-pass predicate cache: token validation/map work exceeded useful predicate work; not admitted",
+    "Derived-field mutation epochs: Lua hooks cannot prove native hierarchy/shown/privacy freshness on all supported clients; not admitted",
+    "Blind size-only minimap watcher suppression: misses equal-size anchor/height/parent repairs; not admitted",
+    "Per-parent ReadLayout metadata cache: no repeated parents in measured toggle layouts, adds allocation without query savings; not admitted",
+    "Sorted-tail solve pruning: original type2 mixed, reach-map median1.68% gain with outlier and mixed invalid-scale parity unproved; not admitted",
+    "Fused draw reservation/registration: no robust model CPU benefit and earlier registration adds complexity; not admitted"
+  ],
+  "finalDesktopGate": {
+    "scripts": 95,
+    "failures": 0,
+    "syntaxFiles": 1170,
+    "freshSyntaxFiles": 11,
+    "unchangedSyntaxInherited": 1159,
+    "changedDuringGate": [],
+    "ownedChangedDuringGate": [],
+    "compilerPrototypes": 608,
+    "maximumUpvalues": 54,
+    "scope": "Current Core border builder + unit/cast/aura/party/minimap/micro/strip consumer regression. Desktop Lua5.4 models and conservative WoW upvalue limit only; no native latency/FPS/security/pixel claim.",
+    "wholeCorpusFunctionalSweep": false
+  },
+  "componentWorkProofs": {
+    "fallbackPlan": {
+      "oneChangedSplit": {
+        "hits": 55,
+        "misses": 1,
+        "oldFallbackCalls": 336,
+        "newFallbackCalls": 6,
+        "sourceReadsBefore": 72,
+        "sourceReadsAfter": 72
+      },
+      "actualToggle40StateMeshParity": true,
+      "modelWarmLocalCpu": "14-21% reduction in staged paired component proof; cold+1.6/+7.1% tradeoff; not final native latency"
+    },
+    "pairIdentity": {
+      "dedicatedChecks": 182,
+      "modelType2MedianPairedCpuPercent": -14.75,
+      "trials": 8,
+      "scope": "Representative pure260segment/300operation solve; staged component timing, not native builder timing"
+    },
+    "ownerPhase": {
+      "dedicatedChecks": 246,
+      "drawGuardChecks": 9628,
+      "embedGetParentBefore": 9591,
+      "embedGetParentAfter": 5562,
+      "restoreBefore": 7869,
+      "restoreAfter": 4792,
+      "actualToggle40StateMeshParity": true,
+      "modelCpu": "Small/mixed; native getter work reduction is not a measured native latency gain"
+    }
+  },
+  "installedForeverCoreDiskMatches": true,
+  "manualInstallationCopies": false,
+  "sourceScope": "Exact Core and tests above;95 current focused scripts;1170 composed syntax checks; stable Lua corpus during gate. Historical full-corpus functional rows retained separately.",
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1202,
+    "tocXmlReachable": 625,
+    "settings": 444,
+    "savedVariables": 24,
+    "localLinks": 18037,
+    "checkerMadeEdits": false
+  },
+  "finalFreezeUTC": "2026-11-16T17:55:43.218935+00:00",
+  "ownedCpuJobs": "All root and delegated tests, benchmarks, reference builds and validators finished; held for quiet native R53 capture.",
+  "externalFollowup": {
+    "candidate": "R54 observer-pair cache, NOT admitted",
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-register-pair-proof.json",
+    "source": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-register-pair-candidate.lua",
+    "scope": "40 modeled toggle digests match and registration work falls; opacity work-count assertion and unknown/private/missing-chain controls unresolved. No runtime edits; do not claim accepted."
+  },
+  "eventReflowR54": {
+    "version": "event-reflow-r54",
+    "evidence": "docs/validation/border-event-reflow-2026-11-16.json",
+    "focusedScripts": 129,
+    "native": "Pending",
+    "priority": "Combat exit first; severe party/raid join-and-leave hitch added as a related event path. Actual builder changed-layout cost remains a native acceptance requirement."
+  },
+  "junctionShadowsR56": {
+    "version": "shadow-support-r56",
+    "evidence": "docs/validation/junction-shadows-2026-11-16.json",
+    "nativeTesting": "DEFERRED BY USER",
+    "historicalSourceResultsRetained": true
+  }
+}

@@ -1,0 +1,1175 @@
+{
+  "utc": "2026-11-19T00:25:58.8115602Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": [
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "file": "FluxRestockTiers_Match.lua",
+      "before": "1e25e5d34465b728a2bc1b3ce701ec31e4e2eb67ece258cebf702bab16a8725e"
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua",
+      "file": "FluxRestockTiers_Bank.lua",
+      "before": "ccddd30e5efc1a0b2dc6276ad066bf3371c4a6b708086c482a557941e3f9e37c"
+    }
+  ],
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 21,
+  "settingsContentsCopied": false,
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-bank-tier-live-counts-20261119T002558Z",
+  "afterSources": [
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+      "before": "1e25e5d34465b728a2bc1b3ce701ec31e4e2eb67ece258cebf702bab16a8725e",
+      "after": "9618e22b98a0afd60c0cbb404537f45cba838b900e84900e0719d505903dfe68",
+      "forever": "9618e22b98a0afd60c0cbb404537f45cba838b900e84900e0719d505903dfe68",
+      "mirrorMatches": true
+    },
+    {
+      "path": "Inventory/Restock/Core/Tiers/FluxRestockTiers_Bank.lua",
+      "before": "ccddd30e5efc1a0b2dc6276ad066bf3371c4a6b708086c482a557941e3f9e37c",
+      "after": "b51d6bc3693166ca5f28bb833425089a07ddcd35aec9fc9da19945eb624f227e",
+      "forever": "b51d6bc3693166ca5f28bb833425089a07ddcd35aec9fc9da19945eb624f227e",
+      "mirrorMatches": true
+    }
+  ],
+  "changeId": "LHO-BANK-TIER-LIVE-COUNTS-20261119",
+  "status": "LUA_APPLIED_NATIVE_CLOSED_BANK_PAIRED_PASS",
+  "previousTurn": "Progress. The baseline tier matcher was optimized and showed a measured 67% closed-bank builder improvement in two same-session native orders.",
+  "native": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "provider": "Syndicator profile from earlier observed baseline; no addon changes in this continuation",
+    "overlap132": {
+      "deferredAttempt": "25-second world refresh countdown; no game input and own reservation released",
+      "worldReturnImage": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bank132-after-refresh.png",
+      "worldReturnSHA": "92b3f51d9d98e04a88b9c0c58c8320eda664c17d423a2a7dfc73d81928c7eb28",
+      "image": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/jq4-bankcounts132_b-submitted.png",
+      "imageSHA": "ede54749200cc94513ece0b26eb240400bc95904b26b5e170317b8025307b35f",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank132-count-overlap-20261119",
+        "controllerSHA": "a0284f022f442ce0eefae92a6bfe350bb08da5ad16e0b55667ef772722b053b5",
+        "packetSHA": "de929c2d947d67543cc9a72af0b2eba47375c84234ac48ef2c975232a240653a",
+        "packets": 9,
+        "luaSHA": "555d9e44c064c97e992047e755437d73b955042d7c8c8eb45eed479a4a105c0e"
+      },
+      "elapsedMs": 13.7375,
+      "rows": 0,
+      "positiveReads": 290,
+      "repeatPositiveReads": 239,
+      "distinctIDs": 51,
+      "disagreements": 0,
+      "zeroReads": 0,
+      "originalGetterRestored": true,
+      "errors": 0
+    },
+    "reload133": {
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank133-count-reload-20261119",
+        "controllerSHA": "e3d7690ddf99d18b62ab6eeb14cdb05bfb626261f4f856364e0fc17e721ddaff",
+        "packetSHA": "44e9bc12f6d62f262d24c3ef00a7262db10d2b1850fa528c6845e566152ece63"
+      },
+      "firstCaptureSHA": "3323f155cd451a29beb2bfc42e8b1479b8de20496f91f967611bbe409d304df3",
+      "firstCapture": "Readiness and blank chat before the queued reload finished",
+      "worldReturnImage": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bank133-late.png",
+      "worldReturnSHA": "300b74f0199647a2bf858ffbe1e60b35f52ef37d42e4421e35b6856d44ad3846",
+      "freshStartupObserved": true,
+      "clientForegroundUnchanged": true
+    },
+    "matched134": {
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank134-count-memo-pairs-20261119",
+        "controllerSHA": "dde7099b0cdbae9a205ef87250199d1e5209b2e9fef0201dd366d8b1d1ff05ad",
+        "packetSHA": "2b29fce5f62610bef56ccb5377c69fea726fc3527db7067aa5c86dd5efb5f56b",
+        "packets": 15,
+        "luaSHA": "82087d8423aa6c60785f84b872dc93eff85cb27480ab73123e580b136f516123"
+      },
+      "submittedSHA": "d11e16f42fdc399ab3a62079affc7e581452271856b8576b21c880142f315253",
+      "finalImage": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bank134-results.png",
+      "finalSHA": "5db7b9c9dbed4e3555c8ac40395250ec2b4e2c87a2effb4f332eb36e9b9b44dc",
+      "order": [
+        "baseline",
+        "candidate",
+        "candidate",
+        "baseline"
+      ],
+      "baselineMilliseconds": [
+        16.0921,
+        15.2402
+      ],
+      "candidateMilliseconds": [
+        10.1717,
+        11.1664
+      ],
+      "candidateDistinctPositiveCounts": [
+        51,
+        51
+      ],
+      "matchedTierTotals": 5,
+      "allRowsEqual": true,
+      "withdrawalRows": 0,
+      "bagGeneration": 5,
+      "generationEqualAcrossAllReads": true,
+      "observerRestored": true,
+      "errors": 0
+    }
+  },
+  "behavior": "The exact built-in count owners share positive carried counts within one synchronous bank target build. The table is discarded after the build, reset when the observed bag generation changes, and cleared when the fast path is unavailable. Existing zero/fallback count calls, replacement public getters, per-kind matching, refresh cadence, and withdrawal code are retained.",
+  "method": "Same-session native builder comparisons with the same read-only observer. The reference selects the existing public per-tier method, whose count path uses no memo. Probe 132 counts the actual public live reads before the change. Probe 134 reads the number of distinct positive entries from the candidate memo. No simulated workloads, item transactions, settings changes or third-party edits.",
+  "syntax": {
+    "beforeAndAfter": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ],
+    "checks": 8,
+    "diffWhitespace": "pass"
+  },
+  "remaining": [
+    "Open bank and eligible withdrawal rows, active Pending and weak/zero inventory behavior in real sessions",
+    "Alternative provider combinations, other clients and actual frame spikes",
+    "Continue casting, mail, auction, restock, vendor, crafting and other bag/Extra Button System coverage",
+    "Jump helper remains inactive, and the current game epoch has no calibrated readiness marker."
+  ],
+  "restockBankUniqueStackCollection": {
+    "id": "LHO-RESTOCK-UNIQUE-BANK-STACKS-20261120",
+    "date": "2026-11-20",
+    "path": "Inventory/Restock/FluxRestock_Inv.lua",
+    "checkpoint": {
+      "folder": "restock-bank-stack-collection-20261120T001714Z",
+      "gitHead": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "historySHA256": "ac61ea84c858096b2d0973be05251276c3b2f4b3122ee8e170e4e11610fcbf55",
+      "nonemptySettingsFiles": {
+        "_retail_": 2,
+        "_forever_": 3,
+        "_classic_": 2,
+        "_classic_era_": 4,
+        "_anniversary_": 10
+      }
+    },
+    "beforeSHA256": "4d4cfd665ce86f768cb578e75db4b1642512d4120de864b1b2c171aa7d11bb6c",
+    "afterSHA256": "af7a4e2d7640d2877877f0b1d5283a5018b1ab6ec9852758e77939705237fa08",
+    "diskCopies": [
+      "Retail",
+      "Forever",
+      "Classic progression",
+      "Classic Era",
+      "Anniversary"
+    ],
+    "behavior": "When display and fallback lists both contain a character-bank bag, FindStacks now walks that bag once. Bag and slot order follow first discovery. Account-bank bags use their own set. Genuine multiple stacks and lock flags remain. The existing live-bank gate and fresh refresh calls are retained.",
+    "actualOwnerRegression": {
+      "file": "tests/bank_restock_find_stacks.lua",
+      "clientAPI": "desktop fixtures",
+      "before": [
+        5,
+        14,
+        5
+      ],
+      "after": [
+        3,
+        9,
+        3
+      ],
+      "columns": [
+        "returned stack entries",
+        "summed charges",
+        "slot charge reads"
+      ],
+      "assertionsPassOnLua51": 8,
+      "assertionsPassOnLua54": 8
+    },
+    "knownBaselineTestHarnessIssues": [
+      "restock_charge_bank_iterator requires the module namespace argument; 12 checks pass with it in a scratch harness.",
+      "bulk_capacity_work requires a namespace in its extracted reader environment; 133 checks in 60 modes pass with it in a scratch harness."
+    ],
+    "compilerChecks": 10,
+    "remaining": "Native open bank acceptance pending after the R551 reload and R552 closed gate check. No transaction, protected move or whole-frame timing claimed. R550 is independent read-only count evidence, not a reproduction of the stack fixture or the provider cold-close race."
+  },
+  "restockBankUniqueStackLoadedClosed": {
+    "id": "LHO-RESTOCK-BANK-STACKS-LOADED-CLOSED-20261120",
+    "date": "2026-11-20",
+    "file": "Inventory/Restock/FluxRestock_Inv.lua",
+    "diskSHA256": "af7a4e2d7640d2877877f0b1d5283a5018b1ab6ec9852758e77939705237fa08",
+    "reload": "R551",
+    "reloadSubmittedSHA256": "0a0632dcf83da8fea6b364792c368fe87502a42cbc7602921f7ce6e12fcfb2aa",
+    "freshStartupScreenshotSHA256": "f3ff51e9a72ba2523a283bae1a2924ae22b9c2d87929b7782994917e31427d8b",
+    "probe": "R552",
+    "probeSHA256": "1c09bcb19910eb7dea9e5caf1f3c1e3e2371d360201f77f4a01141bd5c680fc1",
+    "rawScreenshot": "resume552_loaded_closed_bank.png",
+    "screenshotSHA256": "c66bc84704caefa92a20e4f508c467cb63aae5b053bdf8f15ec6ea05be274752",
+    "client": "Forever 1.60.1/70959/16001",
+    "provider": "syndicator",
+    "baganatorLoaded": true,
+    "nativeBankClosed": true,
+    "nativeBankNotLive": true,
+    "positiveBankIds": 21,
+    "matchingNativeAggregates": 21,
+    "withdrawableStacksReported": 0,
+    "bankGeneration": 1,
+    "bagGenerationStable": true,
+    "newLuaErrors": 0,
+    "auctionPendingState": "none",
+    "scope": "Post-reload loaded client with the bank closed. No live banker, Pending receipt, item mutation, overall FPS or runtime speed proof. The new collector's open-bank behavior is still covered by the production-source regression.",
+    "jump": {
+      "oldPid": 2292,
+      "currentPid": 30528,
+      "supervisorPid": 2852,
+      "label": "live20261120ac",
+      "cue": "R75",
+      "nonce": "ja7wxy75",
+      "clientSize": [
+        1903,
+        1000
+      ],
+      "centers": [
+        [
+          11,
+          989
+        ],
+        [
+          17,
+          989
+        ],
+        [
+          24,
+          989
+        ],
+        [
+          30,
+          989
+        ]
+      ],
+      "calibrationProposalSHA256": "f41eda06a6c10578487e3e839ef22fb5338b82babf9680c7d14cc829702e2937",
+      "foregroundCalibrationSHA256": "66df9d06970b4e293cc482d0543233bf3e9fa14fa544844f9b7986a0589ab4a2",
+      "verifiedPairsUtc": [
+        "2026-11-20T00:26:22.998488Z",
+        "2026-11-20T00:29:25.197463Z"
+      ],
+      "movementAcknowledged": false,
+      "backgroundRuntime": "Existing background safeguards retained, resized frame calibrated while foreground."
+    }
+  },
+  "nativeOpenCharacterBankStackParity": {
+    "id": "LHO-BANK-LIVE-POSITIVE-STACK-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "program": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank662-native-live-read-20261120",
+      "controllerSHA": "3744670c063c83dd61e0deb19c1767f7fbab01463ade3e93f733e6524c2d8810",
+      "packets": 15,
+      "luaSHA": "80abe9757b800f4422f4a0e73c26888bb9d6579613fcdc71caa3043a59037a93"
+    },
+    "source": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank662_a-source.png",
+      "pngSha": "a9e814e090cd8415414a7e94dadede6dbafcd1efae913e67fa967d2c63922b57",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank662_a-source-capture.json",
+      "metaSha": "c161816c92b23fe77b6248291c5fb8674d6e5d1b0c653e40c6a549922f8323d0",
+      "started": 1795159513.9584765,
+      "time": 1795159515.9541237,
+      "stage": "source",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 22742608,
+        "last": 124145578,
+        "idle": 0.109,
+        "held": [
+          1
+        ],
+        "drawable": true
+      }
+    },
+    "result": {
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank662_a-submitted.png",
+      "pngSha": "f51cd0ad4ada2785c5c618909db4459769cf400869d9e1cca68638a1ae01c659",
+      "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank662_a-submitted-capture.json",
+      "metaSha": "034a9d6b5a39751a02f25083e9d1f97031d72eb0ac263e5c1f0bc3464f5815f5",
+      "started": 1795159538.7509208,
+      "time": 1795159540.631178,
+      "stage": "submitted",
+      "baseline": {
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "fg": 22742608,
+        "last": 124170453,
+        "idle": 0.031,
+        "held": [],
+        "drawable": true
+      }
+    },
+    "runtime": "Inventory/Restock/FluxRestock_Inv.lua",
+    "sha256": "af7a4e2d7640d2877877f0b1d5283a5018b1ab6ec9852758e77939705237fa08",
+    "method": "Player-opened live character bank. Scan the native slot APIs independently and compare each count with GetCount, the native extended aggregate minus carried aggregate, and all FindStacks item, bag, slot, count and lock facts.",
+    "containerIds": 9,
+    "occupiedNativeSlots": 22,
+    "positiveItemIds": 21,
+    "returnedStacks": 22,
+    "countMismatches": 0,
+    "locationOrStackMismatches": 0,
+    "duplicates": 0,
+    "nativeAggregateMismatches": 0,
+    "scriptProfile": 0,
+    "stockLookupMs": 1.05,
+    "stackLookupMs": 0.762,
+    "bugsDelta": 0,
+    "moneyAndCarriedGenerationStable": true,
+    "scope": "Character-bank query and stack acceptance on the previously loaded build. Open bank stays available for the user. No withdrawal, item move, deposit, pending receipt or cold frame-time claim."
+  },
+  "nativeOpenBankRestockButton": {
+    "id": "LHO-BANK-OPEN-RESTOCK-BUTTON-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "source": {
+      "bank": "d6b136fb39d76b8c5e2e6a6b13e88ec287d72b847ba8982fad686f5d8ac62837",
+      "button": "b684b61a0b874efea3555953dfd408a9bbad3abd03deb2d51fd6ecc8f73de7b8"
+    },
+    "r663": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank663-button-cost-20261120",
+        "controllerSHA": "af2a2b58c3dbaabae88697697a540462ab8ade47c0cf8921e4afcf10871d2afd",
+        "packets": 19,
+        "luaSHA": "cbccfb9ba6202d8dbf1d634abe8df666a52763a3e42bba12e10b47d73519480a"
+      },
+      "source": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank663_a-source.png",
+        "pngSha": "db7305e89e7b7c29584a5bcdf147ea1c9895fd524b5cd905c3d3781ba7415807",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank663_a-source-capture.json",
+        "metaSha": "13c86613fb4c57d4c07a296ef87aa4dee299bc8bb255e0fc0266db96175dde1d",
+        "started": 1795159784.0139067,
+        "time": 1795159785.8712986,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124410406,
+          "idle": 5.328,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank663_a-submitted.png",
+        "pngSha": "f134800747fad1fc7ace314bdb9b45ad9da15c6562f6452c8af3a50f25d23dd2",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank663_a-submitted-capture.json",
+        "metaSha": "10104745b7a5d83695c25a87366c7495ceb04dae9bfc321a54d2d4c83c5b6d1a",
+        "started": 1795159809.895972,
+        "time": 1795159811.6782641,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124441625,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "rows": 4,
+      "countBankRows": 0,
+      "pull": 0,
+      "bugsDelta": 0,
+      "moneyBagAndBankGenerationStable": true,
+      "exactRows": true,
+      "summaryMs": [
+        0.09,
+        0.1,
+        0.093,
+        0.092
+      ],
+      "tooltipMs": [
+        0.105,
+        0.104,
+        0.118,
+        0.104
+      ],
+      "cachedMs": [
+        0.007,
+        0.007,
+        0.005,
+        0.005
+      ],
+      "idleButtonMs": [
+        0.081,
+        0.008,
+        0.007,
+        0.007
+      ],
+      "attribution": {
+        "registry": {
+          "count": 2,
+          "ms": 0.002
+        },
+        "carriedTier": {
+          "count": 0,
+          "ms": 0
+        },
+        "bankTier": {
+          "count": 0,
+          "ms": 0
+        },
+        "bankItemCounts": {
+          "count": 8,
+          "ms": 0.015
+        }
+      },
+      "method": "Direct live calls with fresh cache for each summary. Separate instrumented lookup trace restored all four method identities. Normal button refresh invoked with no click."
+    },
+    "r664": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank664-neutral-clean-baseline-20261120",
+        "controllerSHA": "bbe73ce56dbb5b4fbcbaa0c90ff6fa23577283dcae8e011949bdbbfe1bff9c89",
+        "packets": 30,
+        "luaSHA": "1f594ee035f41900a8e7c1903e6800ddda9ac39712a7b8f237320a6b3d2c1837"
+      },
+      "source": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank664_a-source.png",
+        "pngSha": "405d596df8a84c9736922b3a6592a1abe80fa48578aacae16124969576115f54",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank664_a-source-capture.json",
+        "metaSha": "4de289b97c5dea1e1d490a53b89fddc7e468e25143232167d59f5dfacde50da0",
+        "started": 1795159965.4492948,
+        "time": 1795159967.3303337,
+        "stage": "source",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 124596781,
+          "idle": 0.39,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "submitted": false,
+      "reason": "The player closed the bank before the reservation was used. Released before any input."
+    },
+    "limits": "No positive target, cold open, bank mutation or frame time coverage. Ordinary warm visibility loaded comparison used the closed bank state."
+  },
+  "nativeOpenBankTierKindWork": {
+    "id": "LHO-BANK-TIER-SETTLED-KIND-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "r666": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank666-lifecycle-20261120",
+        "controllerSHA": "59bc58ab9d0aaf0e9c984b0b3a10b5c39338197e3a952db45d794bba839ca169",
+        "packets": 26,
+        "luaSHA": "a6a7c013cb8b01589b389a3b798eba13e27d201116fc6d7ce2ca2c1fb0f7b78b"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank666_b-submitted.png",
+        "pngSha": "0904a87523d7a2b5b46e8639773fa1496452185d2f3ea387b88ab8af9c88e83b",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank666_b-submitted-capture.json",
+        "metaSha": "06e63c3ecb3dd570a7eb67af9ae1de4fe15e686e5287d49f31c4ce2c31e6c057",
+        "started": 1795160858.299862,
+        "time": 1795160860.1046064,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 22742608,
+          "last": 125482343,
+          "idle": 7.688,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "trigger": "Player opened the verified bank while passive observer was armed. The scripted click was stopped before any input by the foreground guard.",
+      "end": "Timeout with bank still open; all observers restored.",
+      "png": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume666_bank_lifecycle_finish.png",
+      "pngSHA256": "99ee467e5358651b8c9064a7d456fa3ab3e38a057089d2d0d30da2ab51eaed6e",
+      "itemIds": 21,
+      "automationOff": true,
+      "bankSessionRan": false,
+      "bagGenerationStable": false,
+      "moneyStable": true,
+      "bugsDelta": 0,
+      "events": [
+        "BANKFRAME_OPENED",
+        "PLAYER_INTERACTION_MANAGER_FRAME_SHOW"
+      ],
+      "maxFrameIntervalMS": 100,
+      "ms": {
+        "refresh": [
+          27,
+          5.731
+        ],
+        "physicalWalk": [
+          5,
+          5.538
+        ],
+        "persist": [
+          2,
+          0.037
+        ],
+        "summary": [
+          6,
+          18.902
+        ],
+        "button": [
+          3,
+          0.258
+        ],
+        "attach": [
+          16,
+          0.512
+        ],
+        "notify": [
+          2,
+          3.216
+        ]
+      },
+      "limits": "Elapsed frame gap has no causal attribution. Unmatched 100-second window with natural activity and successful positive bank open only."
+    },
+    "r667": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank667-summary-attribution-20261120",
+        "controllerSHA": "160830dae957c19594605671a4e6f3bb9677d10e806b0bed8ff17c6564f51f2e",
+        "packets": 20,
+        "luaSHA": "3afe08aede4df6cbc9a5f59325f0304498cc1420e17c182a48c3a2a712bf9d66"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank667_a-submitted.png",
+        "pngSha": "ed55b541fcaac3f6aafbf372ee0802c52e59fd94d212218310cf46df144d6645",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank667_a-submitted-capture.json",
+        "metaSha": "b3843983bfdf752d0309d137a22f0c9463b0f4fe99bc2449ce96396c7d5b0200",
+        "started": 1795161158.789709,
+        "time": 1795161160.5505395,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 125593062,
+          "idle": 197.453,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "rows": 4,
+      "withdrawals": 0,
+      "exactFields": true,
+      "stockAndMoneyStable": true,
+      "bugsDelta": 0,
+      "summaryWithColdRegistry": [
+        6.88,
+        6.779,
+        6.941,
+        6.795
+      ],
+      "tierEntryDirect": [
+        6.483,
+        6.556,
+        6.417,
+        6.522
+      ],
+      "instrumentedTierEntry": [
+        1,
+        6.426
+      ],
+      "instrumentedTierBagTotals": [
+        5,
+        6.388
+      ],
+      "rawSlots": [
+        0,
+        0
+      ],
+      "observersRestored": true
+    },
+    "r668": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank668-tier-gate-attribution-20261120",
+        "controllerSHA": "b36c4e476c78a57c7b74eb971b2eb5e5e1f3b1d536cf48fd4cd871d60fb68be7",
+        "packets": 14,
+        "luaSHA": "0c7f40ac4db551fa8a5834f3777b0bf5d2de22bdc684a4bf901ba0a037f40d78"
+      },
+      "error": "Foreground became unknown after the sixth setup packet; no observer executed. The private incomplete upload was cleared by R669."
+    },
+    "r669": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank669-tier-gate-attribution-20261120",
+        "controllerSHA": "99a4faeeda6be26f5e46c263c0d1898263f573b357052b07e1f62025de5e8e25",
+        "packets": 14,
+        "luaSHA": "055ce5700d0093e42a584456de97782883d9ff5cc2fcc256a3407ab60645d14c"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank669_a-submitted.png",
+        "pngSha": "a8a7c23064af9fef0d3a7ddc766494bbf884a2316d07689f86830cc0a96dabdc",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank669_a-submitted-capture.json",
+        "metaSha": "682e36f8cf52eab928fc547d6a697377bb45f3a1bc45a28c678721d8818a1bf3",
+        "started": 1795161365.020144,
+        "time": 1795161366.8540776,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 118887064,
+          "last": 125993437,
+          "idle": 3.313,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "tierRows": 0,
+      "observersRestored": true,
+      "bugsDelta": 0,
+      "buildMs": 6.773,
+      "gates": {
+        "match": [
+          240,
+          3.816,
+          1
+        ],
+        "usable": [
+          90,
+          2.939,
+          70
+        ],
+        "excluded": [
+          106,
+          0.19,
+          0
+        ],
+        "junk": [
+          70,
+          0.031,
+          0
+        ]
+      },
+      "originalKindHistogram": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        43
+      ],
+      "note": "Nested timings overlap."
+    },
+    "r670": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank670-tier-candidate-stable-items-20261120",
+        "controllerSHA": "56f1b0ace2a098b63996d5200944d187f44325fc49bddb5f2f4226c43fcc20aa",
+        "packets": 18,
+        "luaSHA": "389b52b67a4c36b64087e3f242c6ec2a30edfeaa3f1a4c535fa669990e793a70"
+      },
+      "error": "The foreground mode changed before any command; lease released."
+    },
+    "r671": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank671-tier-candidate-live-20261120",
+        "controllerSHA": "c2976500a458b2cc114d8dc7222ab0af3501870cd267146141287a3fdbb0afcb",
+        "packets": 18,
+        "luaSHA": "1f0877771862549811365b7fa67ca45930d94fc68f2cb3930f5e39879fef4c00"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank671_a-submitted.png",
+        "pngSha": "61938fa67d698aa2223249fb4a4d04d54fddb50156eb2f8446552da7e8e50b3a",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank671_a-submitted-capture.json",
+        "metaSha": "ddebb0e567c5168a482a09af403b48d12249a09ac3b6478d1c6145045b4b16bb",
+        "started": 1795161623.634229,
+        "time": 1795161626.524142,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 221255160,
+          "last": 126255359,
+          "idle": 0,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "png": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume671_live_bank_candidate.png",
+      "pngSHA256": "4ca79ba22e16f0d5d56a8d4ca6c2c4c43b1584e61823ed99d84c0d2e3eee3405",
+      "qualifiedCarriedIDs": 6,
+      "skippedWrongTierChecks": 132,
+      "withdrawalRows": 0,
+      "exactRows": true,
+      "bugsDelta": 0,
+      "base": [
+        8.564,
+        8.985,
+        9.862,
+        10.171,
+        12.524,
+        10.436
+      ],
+      "candidate": [
+        7.582,
+        8.713,
+        9.238,
+        10.119,
+        9.481,
+        10.269
+      ],
+      "medians": [
+        10.0165,
+        9.3595
+      ],
+      "scope": "Same native closed-automation bank session, actual items. The diagnostic records settled kinds outside the timing loop. The production cache and owner checks have a separate verification requirement."
+    },
+    "checkpoint": {
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-tier-settled-kind-20261120T080213Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+      "bundleSHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "settingsMetadata": {
+        "_retail_": {
+          "files": 2,
+          "bytes": 18783
+        },
+        "_forever_": {
+          "files": 3,
+          "bytes": 713466
+        },
+        "_classic_": {
+          "files": 2,
+          "bytes": 7961
+        },
+        "_classic_era_": {
+          "files": 4,
+          "bytes": 250426
+        },
+        "_anniversary_": {
+          "files": 10,
+          "bytes": 830927
+        }
+      },
+      "sources": {
+        "Inventory/FluxConsumableClassify.lua": {
+          "sha256": "fd2e0ca86bf165aea1c94dea031e5fb41b9ab561bee0009ded68b3cf2fbc34a1",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-tier-settled-kind-20261120T080213Z\\FluxConsumableClassify.lua.before"
+        },
+        "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": {
+          "sha256": "95de71e2a8b9bd850456284e8e4f2b97855ce42156a832ca14a1270f245ba004",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-tier-settled-kind-20261120T080213Z\\FluxRestockTiers_Match.lua.before"
+        },
+        "tests/tier_count_work.lua": {
+          "sha256": "b69bdf56d227e9f7fda291c2182dd38029c602ea229fd635bf1655a9b6c0205f",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-tier-settled-kind-20261120T080213Z\\tier_count_work.lua.before"
+        }
+      }
+    },
+    "sourcesAfter": {
+      "classify": "130e6b9ce94c26a5f4c89eb481f7235bdeb774846d79ebafe4d7f2c1b022de83",
+      "match": "88b9337a984b8c06ae7a8f1407687d40ba24e493fbe260abddd42d0da9d8f3e0",
+      "test": "689866717e97b882cefa0e6e6b1423a606e789ee4760fc879da67b37912f6151"
+    },
+    "regression": {
+      "scriptsPassed": [
+        "tier_count_work",
+        "idle_tiers",
+        "bank_visibility_work",
+        "bank_restock_find_stacks",
+        "bank_snapshot_work",
+        "vendor_tier_work",
+        "auction_restock",
+        "consumable_pending_read"
+      ],
+      "tierChecks": 1732,
+      "priorSourceFailsNewAssertion": true,
+      "otherFailure": "consumable_parser_line_work expects three workers for percent-rate, actual one. The exact archived pre-edit classifier fails identically.",
+      "syntaxChecks": 11,
+      "matchingInstalledClients": 5
+    },
+    "reload": "Deferred while bank is open.",
+    "keepalive": {
+      "oldWorker": 24080,
+      "replacementSupervisor": 1316,
+      "replacementWorker": 29036,
+      "client": [
+        1920,
+        1009
+      ],
+      "proofSHA256": "8784d81fd899e08748e854d99d6a3f59e2ec8ac40c7a0a35fe18fdb35c35fca8",
+      "existingCueReused": true,
+      "pairsObserved": 0,
+      "latest": "Held physical input deferred a jump."
+    }
+  },
+  "nativeBankSlotMoveAndCloseLatch": {
+    "id": "LHO-BANK-CLOSE-LATCH-20261120",
+    "client": "Forever 1.60.1/70959/16001",
+    "addons": [
+      "_FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "r672": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank672-slot-change-20261120",
+        "controllerSHA": "7205f723cea7b2cb93d2e59dc352bb5329b8e64c86df0694a3e4acc588be7d95",
+        "packets": 32,
+        "luaSHA": "aee2dac3c8cdfe94722570b460fdbf7b53f21c37f4073d49e33b2667588930f5"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank672_a-submitted.png",
+        "pngSha": "19a4a7ba6f0d90775274b1f6bb23548aefb51fa53f169c434b2dddf73cd18e60",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank672_a-submitted-capture.json",
+        "metaSha": "ce367f714bbcb59f36547932ee6ffa8472d26ed705f584fde9f78948f9d9ac0f",
+        "started": 1795162339.871847,
+        "time": 1795162342.397183,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 76222782,
+          "last": 126941468,
+          "idle": 30.125,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "png": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume672_real_bank_slot_result.png",
+      "pngSHA256": "9e06b01f63864cae4070158ebe92851eb03db96eee485eb1c43d3145f3f1aabd",
+      "bank": {
+        "bag": 6,
+        "slot": 1,
+        "temporarySlot": 2,
+        "itemID": 1191,
+        "stack": 1
+      },
+      "outAndReturnVerified": true,
+      "originalSlotRestored": true,
+      "destinationAndCursorEmpty": true,
+      "observersRestored": true,
+      "carriedGenerationStable": true,
+      "bankGenerationChanged": true,
+      "nativeAndFluxTotalsStable": true,
+      "moneyStable": true,
+      "bugsDelta": 0,
+      "move": {
+        "summary": [
+          2,
+          13.97
+        ],
+        "refresh": [
+          10,
+          1.551
+        ],
+        "walk": [
+          1,
+          1.486
+        ],
+        "persist": [
+          0,
+          0
+        ],
+        "button": [
+          1,
+          0.172
+        ],
+        "notify": [
+          1,
+          0.172
+        ],
+        "events": [
+          2,
+          1,
+          0,
+          0
+        ],
+        "peakObservedFrameIntervalMS": 54
+      },
+      "return": {
+        "summary": [
+          2,
+          10.907
+        ],
+        "refresh": [
+          10,
+          1.214
+        ],
+        "walk": [
+          1,
+          1.169
+        ],
+        "persist": [
+          0,
+          0
+        ],
+        "button": [
+          1,
+          0.171
+        ],
+        "notify": [
+          1,
+          0.166
+        ],
+        "events": [
+          2,
+          1,
+          0,
+          0
+        ],
+        "peakObservedFrameIntervalMS": 36
+      },
+      "eventOrder": [
+        "BAG_UPDATE",
+        "BAG_UPDATE_DELAYED",
+        "PLAYERBANKSLOTS_CHANGED",
+        "BANKFRAME_CLOSED"
+      ],
+      "limits": "One real before-change move and return. Frame gaps include other client work, and the callbacks overlap."
+    },
+    "r673": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank673-actual-close-20261120",
+        "controllerSHA": "0d2d3a7d8b9860cf80fa55757e837e6e04d74ee2f26ee77df86f4afa80e4716b",
+        "packets": 17,
+        "luaSHA": "2b72b1783ee8481c2e40e3f5107ba4411623e1d5bd7376878660f5428b7da4df"
+      },
+      "submission": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank673_a-submitted.png",
+        "pngSha": "1d2b01186b0ba71d4532af184ec8d0630a564871ff82cd066b665ab2ad983490",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank673_a-submitted-capture.json",
+        "metaSha": "1e601fa87bcdd12a26910b72059ff17bacce4961eeb7d764f8d6a14cd4ed2e6c",
+        "started": 1795162518.3625035,
+        "time": 1795162520.9381645,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 196862,
+          "last": 127127250,
+          "idle": 22.843,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "targetedClose": {
+        "kind": "close_bank",
+        "clientXY": [
+          425,
+          126
+        ],
+        "identity": {
+          "pid": 9012,
+          "hwnd": 3541714,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134395136956432080
+        },
+        "captureSHA256": "1d2b01186b0ba71d4532af184ec8d0630a564871ff82cd066b665ab2ad983490",
+        "foregroundUnchanged": true,
+        "cursorUnchanged": true,
+        "buttonSent": true,
+        "time": 1795162554.6186228
+      },
+      "finalPng": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/resume673_close_timeout_result.png",
+      "finalPngSHA256": "d4f9f7a83aa48a23f363d5a0e4e90dafa86a39f861e2011f468ec7caca89d1bc",
+      "visuallyClosed": true,
+      "events": [
+        "BANKFRAME_CLOSED",
+        "PLAYER_INTERACTION_MANAGER_FRAME_HIDE"
+      ],
+      "closePhysicallyObserved": true,
+      "luaClosed": false,
+      "luaLiveAccessRevoked": false,
+      "timeoutSeconds": 120,
+      "observersRestored": true,
+      "moneyStable": true,
+      "carriedGenerationStable": true,
+      "bugsDelta": 0,
+      "persistenceCalls": 2,
+      "persistenceMs": 0.062,
+      "peakObservedFrameIntervalMS": 40
+    },
+    "r675": {
+      "program": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bank675-close-signals-20261120",
+        "controllerSHA": "7e80c63994d477f5e65bf068feb5b7736acbf947d97b3b1bcc9c8fcfb4f7d602",
+        "packets": 10,
+        "luaSHA": "c917e4ed3043dfa64c3474fba059755e509f009d52dc67783469e212265ea7c4"
+      },
+      "result": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank675_a-submitted.png",
+        "pngSha": "e2ccfba30131cd5324376a6c4414fa8a7b17c365a347652aaa82a58cebdb2ecd",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bank675_a-submitted-capture.json",
+        "metaSha": "b44d1d72ea7d4d95dea48a642d2554d2618d86a8746b9b00be9ec5bf14faee25",
+        "started": 1795162860.5578632,
+        "time": 1795162863.0175796,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 9012,
+            "hwnd": 3541714,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134395136956432080
+          },
+          "fg": 76222782,
+          "last": 127470171,
+          "idle": 22.11,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "provider": "syndicator",
+      "sharedRestockAndInventoryOpenLiveAndCanTake": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "baganatorLatch": false,
+      "baganatorViewsShown": false,
+      "baganatorLiveView": false,
+      "bankerCharacterAndAccountInteractions": [
+        false,
+        false,
+        false
+      ],
+      "blizzardBankFrameShown": false,
+      "bankPanelShown": false,
+      "bankPanelVisible": false,
+      "builtinBankOpen": false,
+      "containerBankReadable": false,
+      "baganatorRegisteredViews": 2,
+      "activeBaganatorViews": 0,
+      "automationOff": true
+    },
+    "checkpoint": {
+      "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-close-latch-event-20261120T082302Z",
+      "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+      "bundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+      "bundleSHA256": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+      "settingsMetadata": {
+        "_retail_": {
+          "files": 2,
+          "bytes": 18783
+        },
+        "_forever_": {
+          "files": 3,
+          "bytes": 713466
+        },
+        "_classic_": {
+          "files": 2,
+          "bytes": 7961
+        },
+        "_classic_era_": {
+          "files": 4,
+          "bytes": 250426
+        },
+        "_anniversary_": {
+          "files": 10,
+          "bytes": 830927
+        }
+      },
+      "sources": {
+        "Inventory/Init.lua": {
+          "sha256": "6f4bf0899ac8769a28f34125b4526d7bb0d4c588057931ae74755fac95c9ee01",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-close-latch-event-20261120T082302Z\\Init.lua.before"
+        },
+        "tests/bank_visibility_work.lua": {
+          "sha256": "d7c200063e9da4135076f011de96ba6c66f3e06cf0dff1e7f470b52e06743787",
+          "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\bank-close-latch-event-20261120T082302Z\\bank_visibility_work.lua.before"
+        }
+      }
+    },
+    "sourceAfter": "28b765fa3a12ace6db8b7de8ceb11512d335212788352520893fe2e4b8c12d21",
+    "testAfter": "a5e515586389db512e4e3c16cecb1b85e76c9a5a411fd860ed0c27749a6e380e",
+    "regression": {
+      "bankVisibilityChecks": 3782,
+      "bankVisibilityScenarios": 390,
+      "priorSourceFailures": 85,
+      "scriptsPassed": 10,
+      "syntaxChecks": 6,
+      "matchingInstalledClients": 5
+    },
+    "fix": "After a native close event, live provider and physical access own the gates even if the original event latch was withheld. Recheck at the next turn and once 0.15 seconds later when needed. A provider hide can settle a retained cached view, and a real new open cancels old close work.",
+    "nativePatched": {
+      "reloadRun": "R674 third reservation",
+      "reloadLog": "Forever Logs/General.log, 20 November 09:35:13 CET, isReloadingUI=true",
+      "run": "R676",
+      "client": "Forever 1.60.1/70959/16001",
+      "providers": ["Syndicator", "Baganator"],
+      "phaseEvents": ["BANKFRAME_OPENED", "PLAYER_INTERACTION_MANAGER_FRAME_SHOW", "BANKFRAME_CLOSED", "PLAYER_INTERACTION_MANAGER_FRAME_HIDE"],
+      "liveCharacterBankCountEntries": 21,
+      "liveCharacterBankCountReadMs": 1.213,
+      "closedSampleDelaySeconds": 0.65,
+      "allGatesCleared": ["Inventory.IsBankOpen", "Inventory.IsBankLive", "Inventory.CanTakeFromBank", "Restock.Bank.IsOpen", "Restock.Bank.IsLive"],
+      "cachedCountDifferences": 0,
+      "moneyUnchanged": true,
+      "cursorEmpty": true,
+      "newLuaErrors": 0,
+      "closeMouseClientXY": [425, 131],
+      "foregroundUnchangedDuringClose": true,
+      "desktopCursorUnchangedDuringClose": false,
+      "notes": "The player opened the bank. The targeted close used messages inside the verified window. Desktop cursor positions differed across that close, and the controller did not move or reposition the desktop cursor. Only this bank close and count read were timed; repeat the reversible move to measure the loaded tier shortcut.",
+      "observerSHA256": "74c9c5421473625278ea660c3a5c753edfb9625ceda65e27aee87e38db376eea",
+      "captureDirectory": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native",
+      "captures": {
+        "reload": ["roadmap_bank_loaded.png", "1a606a6f55520e2ffd36a76892c2c9ff78ed469cb1387f69640bd13422109c9d"],
+        "live": ["bank676_hover_bank.png", "145ef1862cb3b27686a163f9239db107211373605dd9bfa90fc097bce734eeaa"],
+        "firstClosed": ["bank676_closed_result.png", "f5b27981c8249654a49b9a695ec5745808c4e3c4c1e239f1179185d362543e82"],
+        "closeReadback": ["bank676_close_later.png", "a65e8c4767e314a65b245fe6dd925dc3ea12b2871d8bb0e3cbd05fe282eee268"]
+      }
+    }
+  }
+}

@@ -78,7 +78,7 @@ local function ListOpenRecipeIDs()
     if not C_TradeSkillUI then
         return nil
     end
-    local ids, seen = {}, {}
+    local ids, seen, filtered = {}, {}, nil
     if type(C_TradeSkillUI.GetAllRecipeIDs) == "function" then
         local ok, list = pcall(C_TradeSkillUI.GetAllRecipeIDs)
         if ok then
@@ -89,6 +89,7 @@ local function ListOpenRecipeIDs()
         local ok, list = pcall(C_TradeSkillUI.GetFilteredRecipeIDs)
         if ok then
             AppendRecipeIDs(ids, seen, list)
+            filtered = list
         end
     end
     local info = Prof.GetOpenProfessionInfo()
@@ -110,7 +111,82 @@ local function ListOpenRecipeIDs()
     if #ids == 0 then
         return nil
     end
-    return ids
+    return ids, seen, filtered
+end
+
+local nativeTradeSkill, nativeSpellBook = C_TradeSkillUI, C_SpellBook
+local nativeOpenProfession = Prof.GetOpenProfessionInfo
+local spellInBook = nativeSpellBook and nativeSpellBook.IsSpellInSpellBook
+local spellBookBank = Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player
+local learnedFilterValues = {
+    GetShowLearned = true, GetShowUnlearned = false,
+    GetOnlyShowMakeableRecipes = false, GetOnlyShowSkillUpRecipes = false,
+    GetOnlyShowFirstCraftRecipes = false, AreAnyInventorySlotsFiltered = false,
+    AnyRecipeCategoriesFiltered = false, GetRecipeItemNameFilter = "",
+    IsTradeSkillReady = true, IsDataSourceChanging = false,
+}
+local function CaptureLearnedFilterReaders()
+    if not nativeTradeSkill or type(spellInBook) ~= "function" or spellBookBank == nil
+        or not issecurevariable or not issecurevariable(nativeSpellBook, "IsSpellInSpellBook") then return end
+    local readers = {}
+    for _, name in ipairs({ "GetAllRecipeIDs", "GetFilteredRecipeIDs", "GetRecipeInfo" }) do
+        if type(nativeTradeSkill[name]) ~= "function" or not issecurevariable(nativeTradeSkill, name) then return end
+        readers[name] = nativeTradeSkill[name]
+    end
+    for name in pairs(learnedFilterValues) do
+        if type(nativeTradeSkill[name]) ~= "function" or not issecurevariable(nativeTradeSkill, name) then return end
+        readers[name] = nativeTradeSkill[name]
+    end
+    return readers
+end
+local learnedFilterReaders = CaptureLearnedFilterReaders()
+
+local settledRecipeList, recipeListRevision = nil, 0
+local function ForgetSettledRecipeList()
+    settledRecipeList = nil
+    recipeListRevision = recipeListRevision + 1
+end
+
+local function ObserveLearnedRecipeList(info, ids, recipeIDs, filtered)
+    if not learnedFilterReaders or C_TradeSkillUI ~= nativeTradeSkill or C_SpellBook ~= nativeSpellBook
+        or nativeSpellBook.IsSpellInSpellBook ~= spellInBook or Prof.GetOpenProfessionInfo ~= nativeOpenProfession
+        or type(filtered) ~= "table" or #filtered == 0 then return end
+    for name, reader in pairs(learnedFilterReaders) do
+        if nativeTradeSkill[name] ~= reader then return end
+    end
+    for name, expected in pairs(learnedFilterValues) do
+        local ok, value = pcall(learnedFilterReaders[name])
+        if not ok or (issecretvalue and issecretvalue(value)) or value ~= expected then return end
+    end
+    local ui = _G.Professions
+    local sourcesUnfiltered = ui and ui.AreAllSourcesUnfiltered
+    if type(sourcesUnfiltered) ~= "function" or not issecurevariable(ui, "AreAllSourcesUnfiltered") then return end
+    local ok, allSources = pcall(sourcesUnfiltered)
+    if not ok or (issecretvalue and issecretvalue(allSources)) or allSources ~= true then return end
+
+    local visible = {}
+    for _, id in ipairs(filtered) do
+        if type(id) ~= "number" or (issecretvalue and issecretvalue(id)) or not recipeIDs[id] or visible[id] then return end
+        visible[id] = true
+    end
+    return { parent = info.parentProfessionID, profession = info.professionID or info.skillLineID,
+        ui = ui, sourcesUnfiltered = sourcesUnfiltered, ids = recipeIDs, count = #ids,
+        visible = visible, visibleCount = #filtered, revision = recipeListRevision }
+end
+
+local function SameLearnedRecipeList(current, previous)
+    if not current or not previous or current.parent ~= previous.parent or current.profession ~= previous.profession
+        or current.ui ~= previous.ui or current.sourcesUnfiltered ~= previous.sourcesUnfiltered
+        or current.revision ~= previous.revision or current.count ~= previous.count
+        or current.visibleCount ~= previous.visibleCount then return false end
+    for id in pairs(current.ids) do if not previous.ids[id] then return false end end
+    for id in pairs(current.visible) do if not previous.visible[id] then return false end end
+    return true
+end
+
+local function ConfirmStillUnlearned(recipeID)
+    local ok, learned = pcall(spellInBook, recipeID, spellBookBank, false)
+    return ok and not (issecretvalue and issecretvalue(learned)) and learned == false
 end
 
 local function TradeSkillDataNotReady()
@@ -206,7 +282,75 @@ local function EnsureDB()
     return FluxInvDB.professions[key]
 end
 
-local function StoreSkill(skillKey, payload)
+local BuildCachedRecipeCatalogue, OwnedListAllCachedRecipes, RankObservedRecipes
+
+local function PlainModernAliasRecipe(recipe)
+    if type(recipe) ~= "table" or getmetatable(recipe) ~= nil or recipe.legacy then return false end
+    local id = recipe.recipeID
+    return type(id) == "number" and (not issecretvalue or not issecretvalue(id))
+        and id >= 1 and id <= 2147483647 and id % 1 == 0
+end
+
+local function AliasNeedsSync(data, observations, numericOnly)
+    if getmetatable(data) ~= nil then return true end
+    local recipes, removed = data.recipes, data.unlearnedRecipeIDs
+    if getmetatable(recipes) ~= nil or getmetatable(removed) ~= nil then return true end
+    -- The numeric and named entries can reconcile the same observation during one scan.
+    for _, recipe in ipairs(recipes or {}) do
+        if getmetatable(recipe) ~= nil then return true end
+        if numericOnly and not PlainModernAliasRecipe(recipe) then return true end
+        if not recipe.legacy then
+            local observed = observations[recipe.recipeID]
+            if observed ~= nil and (not removed or not rawequal(observed, recipe)) then return true end
+        end
+    end
+    for id, tombstone in pairs(removed or {}) do
+        local observed = observations[id]
+        if observed ~= nil and (not recipes or observed ~= false or tombstone ~= true) then return true end
+    end
+    return false
+end
+
+-- The first save can already have propagated every observed recipe to the
+-- named alias. Reuse only complete reconciliations with the original catalogue.
+local function ReuseNamedAliasRecipes(db, previous, payload)
+    if math.type or not payload.ownedRecipeScan or Prof.ListAllCachedRecipes ~= OwnedListAllCachedRecipes
+        or type(previous) ~= "table" or getmetatable(previous) ~= nil
+        or type(db.bySkillLine) ~= "table" or getmetatable(db.bySkillLine) ~= nil then return end
+    local recipes, observed, old = payload.recipes, payload.observedRecipes, previous.recipes
+    if type(observed) ~= "table" or type(old) ~= "table" or getmetatable(old) ~= nil
+        or #recipes == 0 or #recipes ~= #observed or #recipes ~= #old then return end
+
+    local observations = {}
+    local out = {}
+    for index, recipe in ipairs(recipes) do
+        local fresh = observed[index]
+        if not PlainModernAliasRecipe(recipe) or not PlainModernAliasRecipe(fresh)
+            or fresh.recipeID ~= recipe.recipeID or observations[recipe.recipeID] ~= nil then return end
+        local reagents, crafting = recipe.reagents, recipe.craftingData
+        if (reagents ~= nil and (type(reagents) ~= "table" or getmetatable(reagents) ~= nil))
+            or (crafting ~= nil and type(crafting) == "table" and getmetatable(crafting) ~= nil) then return end
+        observations[recipe.recipeID] = recipe
+        out[index] = recipe
+    end
+    for id, removed in pairs(payload.removedRecipeIDs or {}) do
+        if removed == true then
+            if observations[id] ~= nil then return end
+            observations[id] = false
+        end
+    end
+    for _, recipe in ipairs(old) do
+        if not PlainModernAliasRecipe(recipe) or not rawequal(observations[recipe.recipeID], recipe) then return end
+    end
+    for key, data in pairs(db.bySkillLine) do
+        if type(data) ~= "table" or AliasNeedsSync(data, observations, true) then return end
+        local cached = sessionCache[key]
+        if cached ~= nil and cached ~= data and AliasNeedsSync(cached, observations, true) then return end
+    end
+    return out
+end
+
+local function StoreSkill(skillKey, payload, reuseNamedAlias)
     skillKey = tostring(skillKey)
     local db = EnsureDB()
     local previous = sessionCache[skillKey] or db.bySkillLine[skillKey]
@@ -223,6 +367,8 @@ local function StoreSkill(skillKey, payload)
         for id, removed in pairs(payload.removedRecipeIDs or {}) do if removed == true then observations[id] = false end end
         local function SyncAlias(data)
             if type(data) ~= "table" then return end
+            -- Another profession's alias cannot change without a shared recipe or tombstone.
+            if not AliasNeedsSync(data, observations) then return end
             local recipes, touched, included = {}, false, {}
             local unlearned = {}
             for id, removed in pairs(data.unlearnedRecipeIDs or {}) do unlearned[id] = removed end
@@ -231,7 +377,7 @@ local function StoreSkill(skillKey, payload)
                 if not recipe.legacy then observed = observations[recipe.recipeID] end
                 if observed ~= nil then
                     touched = true
-                    if observed then recipes[#recipes + 1] = observed; included[recipe.recipeID] = true end
+                    if observed then recipes[#recipes + 1] = observed; included[recipe.recipeID] = true else unlearned[recipe.recipeID] = true end
                 else recipes[#recipes + 1] = recipe end
             end
             for id, observed in pairs(observations) do
@@ -239,10 +385,6 @@ local function StoreSkill(skillKey, payload)
                     touched = true
                     if observed and not included[id] then recipes[#recipes + 1] = observed end
                     unlearned[id] = observed == false and true or nil
-                elseif observed == false then
-                    for _, recipe in ipairs(data.recipes or {}) do
-                        if not recipe.legacy and recipe.recipeID == id then unlearned[id] = true; break end
-                    end
                 end
             end
             if touched then data.recipes, data.unlearnedRecipeIDs = recipes, unlearned end
@@ -255,55 +397,83 @@ local function StoreSkill(skillKey, payload)
         end
     end
     local observed = #(payload.recipes or {})
-    -- Filters and half-ready recipe lists are observations, not a replacement
-    -- for the character's learned catalogue. Only an explicit unlearn removes it.
-    local function Identity(recipe)
-        return recipe.legacy and ("legacy:" .. tostring(recipe.name or recipe.outputItemID or recipe.recipeID))
-            or ("recipe:" .. tostring(recipe.recipeID))
-    end
-    local recipes, seen = {}, {}
-    local old = {}
-    for _, recipe in ipairs(previous and previous.recipes or {}) do old[Identity(recipe)] = recipe end
-    local aliasPrior = {}
-    if payload.ownedRecipeScan and Prof.ListAllCachedRecipes then
-        local observedIDs = {}
-        for _, recipe in ipairs(payload.recipes or {}) do
-            if not recipe.legacy then observedIDs[recipe.recipeID] = true end
+    local recipes = reuseNamedAlias and ReuseNamedAliasRecipes(db, previous, payload)
+    if recipes then
+        payload.recipes = recipes
+    else
+        -- Filters and half-ready recipe lists are observations, not a replacement
+        -- for the character's learned catalogue. Only an explicit unlearn removes it.
+        local function Identity(recipe)
+            return recipe.legacy and ("legacy:" .. tostring(recipe.name or recipe.outputItemID or recipe.recipeID))
+                or ("recipe:" .. tostring(recipe.recipeID))
         end
-        -- Parent metadata can become available after an older expansion-key
-        -- scan. Its new canonical key must not turn an uninformative positive
-        -- observation into loss of the only complete learned recipe facts.
-        for _, recipe in ipairs(Prof.ListAllCachedRecipes()) do
-            if not recipe.legacy and observedIDs[recipe.recipeID] then aliasPrior[recipe.recipeID] = recipe end
-        end
-    end
-    for _, recipe in ipairs(payload.recipes or {}) do
-        local key = Identity(recipe)
-        local prior = not recipe.legacy and aliasPrior[recipe.recipeID] or old[key]
-        local needsMerge = false
-        if prior then
-            for field, value in pairs(prior) do
-                if recipe[field] == nil or field == "reagents" and #recipe[field] == 0 and value and #value > 0 then
-                    needsMerge = true; break
+        local seen = {}
+        recipes = {}
+        local old = {}
+        for _, recipe in ipairs(previous and previous.recipes or {}) do old[Identity(recipe)] = recipe end
+        local aliasPrior = {}
+        if payload.ownedRecipeScan and Prof.ListAllCachedRecipes then
+            -- Lua versions with separate integer/float text keys retain the text lookup.
+            local observedIDs, numeric = {}, not math.type
+            for _, recipe in ipairs(payload.recipes or {}) do
+                if not recipe.legacy then
+                    local id = recipe.recipeID
+                    observedIDs[id] = true
+                    if type(id) ~= "number" or id < 1 or id > 2147483647 or id % 1 ~= 0 then numeric = false end
+                end
+            end
+            -- The saved alias winner can retain facts that a half-ready scan omits.
+            -- Plain modern recipe IDs can be ranked directly into the merge lookup.
+            local ownsCatalogue = Prof.ListAllCachedRecipes == OwnedListAllCachedRecipes
+            aliasPrior = numeric and ownsCatalogue and RankObservedRecipes(db, observedIDs)
+            if not aliasPrior then
+                aliasPrior = {}
+                local catalogue
+                if ownsCatalogue then
+                    local recipeKeys = {}
+                    for id in pairs(observedIDs) do recipeKeys["recipe:" .. tostring(id)] = true end
+                    catalogue = BuildCachedRecipeCatalogue(db, nil, nil, recipeKeys)
+                else
+                    catalogue = Prof.ListAllCachedRecipes()
+                end
+                for _, recipe in ipairs(catalogue) do
+                    if not recipe.legacy and observedIDs[recipe.recipeID] then aliasPrior[recipe.recipeID] = recipe end
                 end
             end
         end
-        if needsMerge then
-            local merged = {}; for field, value in pairs(prior) do merged[field] = value end
-            for field, value in pairs(recipe) do
-                if field ~= "reagents" or #value > 0 or not prior.reagents or #prior.reagents == 0 then merged[field] = value end
+        for _, recipe in ipairs(payload.recipes or {}) do
+            local key = Identity(recipe)
+            local prior = not recipe.legacy and aliasPrior[recipe.recipeID] or old[key]
+            local needsMerge = false
+            -- The first alias can already point at this exact record. In a plain
+            -- record there are no missing fields or reagents to recover from itself.
+            local sameRecord = prior and rawequal(prior, recipe) and getmetatable(recipe) == nil
+            local reagents = sameRecord and rawget(recipe, "reagents")
+            if prior and (not sameRecord or (reagents ~= nil
+                and (type(reagents) ~= "table" or getmetatable(reagents) ~= nil))) then
+                for field, value in pairs(prior) do
+                    if recipe[field] == nil or field == "reagents" and #recipe[field] == 0 and value and #value > 0 then
+                        needsMerge = true; break
+                    end
+                end
             end
-            recipe = merged
+            if needsMerge then
+                local merged = {}; for field, value in pairs(prior) do merged[field] = value end
+                for field, value in pairs(recipe) do
+                    if field ~= "reagents" or #value > 0 or not prior.reagents or #prior.reagents == 0 then merged[field] = value end
+                end
+                recipe = merged
+            end
+            recipes[#recipes + 1], seen[key] = recipe, true
         end
-        recipes[#recipes + 1], seen[key] = recipe, true
-    end
-    for key, recipe in pairs(old) do
-        if not seen[key] and not (payload.removedRecipeIDs and payload.removedRecipeIDs[recipe.recipeID]) then
-            recipes[#recipes + 1] = recipe
+        for key, recipe in pairs(old) do
+            if not seen[key] and not (payload.removedRecipeIDs and payload.removedRecipeIDs[recipe.recipeID]) then
+                recipes[#recipes + 1] = recipe
+            end
         end
+        payload.recipes = recipes
+        SyncOwnedAliases()
     end
-    payload.recipes = recipes
-    SyncOwnedAliases()
     local unlearned = {}
     for id, removed in pairs(previous and previous.unlearnedRecipeIDs or {}) do if removed == true then unlearned[id] = true end end
     for id, removed in pairs(payload.removedRecipeIDs or {}) do if removed == true then unlearned[id] = true end end
@@ -342,6 +512,48 @@ local function LoadSkill(skillKey)
         return stored
     end
     return nil
+end
+
+-- A previous removal needs no new observation if both primary aliases
+-- already retain it and no alias has a row or a flag that it could change.
+local function RetainableRecipeRemovals(previous, named, list)
+    if type(previous) ~= "table" or getmetatable(previous) or previous.source ~= "open" or previous.needsOpen
+        or type(named) ~= "table" or getmetatable(named) or named.source ~= "open" or named.needsOpen then return end
+    local byID, byName = previous.unlearnedRecipeIDs, named.unlearnedRecipeIDs
+    if type(byID) ~= "table" or getmetatable(byID) or type(byName) ~= "table" or getmetatable(byName) then return end
+    local candidates = {}
+    for id, removed in pairs(byID) do
+        if removed == true and byName[id] == true and list.ids[id] and not list.visible[id] then
+            candidates[id] = true
+        end
+    end
+    if not next(candidates) then return end
+
+    local function ExcludeConflicts(data)
+        if type(data) ~= "table" or getmetatable(data) then return false end
+        local recipes, removed = data.recipes, data.unlearnedRecipeIDs
+        if (recipes ~= nil and (type(recipes) ~= "table" or getmetatable(recipes)))
+            or (removed ~= nil and (type(removed) ~= "table" or getmetatable(removed))) then return false end
+        for _, recipe in ipairs(recipes or {}) do
+            if type(recipe) ~= "table" or getmetatable(recipe) then return false end
+            local id = recipe.recipeID
+            if issecretvalue and issecretvalue(id) then return false end
+            if candidates[id] then candidates[id] = nil end
+        end
+        for id, value in pairs(removed or {}) do
+            if value ~= true or not recipes then candidates[id] = nil end
+        end
+        return true
+    end
+
+    local db = EnsureDB().bySkillLine
+    if type(db) ~= "table" or getmetatable(db) or not ExcludeConflicts(previous) or not ExcludeConflicts(named) then return end
+    for key, data in pairs(db) do
+        local cached = sessionCache[key]
+        if not ExcludeConflicts(data) or (cached and cached ~= data and cached ~= previous
+            and cached ~= named and not ExcludeConflicts(cached)) then return end
+    end
+    return next(candidates) and candidates or nil
 end
 
 local function Now()
@@ -433,7 +645,7 @@ local function ExtractModernQuantity(recipeID, knownSchematic)
             elseif amin and amin > 0 then
                 qtyMax = amin
             end
-            return qtyMin, qtyMax
+            return qtyMin, qtyMax, schematic
         end
     end
     if C_TradeSkillUI and C_TradeSkillUI.GetRecipeInfo then
@@ -454,22 +666,35 @@ end
 
 -- Save plain recipe facts, never native tables, allocations, prices or bag counts.
 -- Quality operations remain live checks because equipment/skill can change them.
-local function CaptureCraftingData(recipeID, info, schematic)
+local function ExtractModernRecipeData(recipeID, info, schematic)
     if type(schematic) ~= "table" or type(schematic.reagentSlotSchematics) ~= "table"
-        or not tonumber(schematic.quantityMin) or schematic.quantityMin <= 0 then return end
+        or not tonumber(schematic.quantityMin) or schematic.quantityMin <= 0 then
+        return ExtractModernReagents(recipeID, schematic)
+    end
+    local reagents = {}
+    local reagentTypes = Enum and Enum.CraftingReagentType
+    local basicType = reagentTypes and reagentTypes.Basic
     local copy = { quantityMin = schematic.quantityMin, quantityMax = schematic.quantityMax,
         outputItemID = schematic.outputItemID, hasCraftingOperationInfo = schematic.hasCraftingOperationInfo == true,
         reagentSlotSchematics = {} }
-    for _, slot in ipairs(schematic.reagentSlotSchematics) do
-        local saved = { required = slot.required == true, reagentType = slot.reagentType,
-            quantityRequired = slot.quantityRequired, dataSlotIndex = slot.dataSlotIndex, reagents = {} }
-        for _, reagent in ipairs(slot.reagents or {}) do
+    for index, slot in ipairs(schematic.reagentSlotSchematics) do
+        local options, count, kind = slot.reagents, slot.quantityRequired, slot.reagentType
+        local first = options and options[1]
+        if first and first.itemID and count and (not reagentTypes or not kind or kind == basicType) then
+            reagents[#reagents + 1] = { itemID = first.itemID, count = count }
+        end
+        local saved = { required = slot.required == true, reagentType = kind,
+            quantityRequired = count, dataSlotIndex = slot.dataSlotIndex, reagents = {} }
+        for _, reagent in ipairs(options or {}) do
             if tonumber(reagent.itemID) then saved.reagents[#saved.reagents + 1] = { itemID = reagent.itemID } end
         end
-        if (saved.required or (tonumber(saved.quantityRequired) or 0) > 0)
-            and (#saved.reagents == 0 or not tonumber(saved.dataSlotIndex)) then return { version = 1, complete = false } end
-        copy.reagentSlotSchematics[#copy.reagentSlotSchematics + 1] = saved
+        if (saved.required or (tonumber(count) or 0) > 0)
+            and (#saved.reagents == 0 or not tonumber(saved.dataSlotIndex)) then
+            return ExtractModernReagents(recipeID, schematic), { version = 1, complete = false }
+        end
+        copy.reagentSlotSchematics[index] = saved
     end
+    if #reagents == 0 then reagents = CollectModernReagentRows(schematic, false) end
     local qualities = {}
     if C_TradeSkillUI.GetRecipeQualityItemIDs then
         local ok, ids = pcall(C_TradeSkillUI.GetRecipeQualityItemIDs, recipeID)
@@ -477,7 +702,7 @@ local function CaptureCraftingData(recipeID, info, schematic)
             for _, id in ipairs(ids) do if tonumber(id) then qualities[#qualities + 1] = id end end
         end
     end
-    return { version = 1, complete = true, schematic = copy, qualityItemIDs = qualities,
+    return reagents, { version = 1, complete = true, schematic = copy, qualityItemIDs = qualities,
         supportsQualities = info.supportsQualities == true or #qualities > 1 }
 end
 
@@ -492,14 +717,14 @@ local function PulseProfessionsChanged()
     end
 end
 
-local function ScanModernOpenProfession(source)
+local function ScanModernOpenProfession(source, allowSettledList, allowSavedRemovals)
     if not HasModernRecipeList() then
         return nil
     end
     if TradeSkillDataNotReady() then
         return nil
     end
-    local recipeIDs = ListOpenRecipeIDs()
+    local recipeIDs, allIDs, filtered = ListOpenRecipeIDs()
     if type(recipeIDs) ~= "table" or #recipeIDs == 0 then
         return nil
     end
@@ -520,8 +745,17 @@ local function ScanModernOpenProfession(source)
     local ownOpen = frame and frame.IsShown and frame:IsShown() == true and resolvedOpen and resolvedOpen > 0
         and skillLineID ~= "current" and skillName and Prof.GetProfessionKnowledge
         and Prof.GetProfessionKnowledge({ skillName }) == true
+    local list = source == "open" and ownOpen and ObserveLearnedRecipeList(info, recipeIDs, allIDs, filtered)
+    local reuse = allowSettledList and SameLearnedRecipeList(list, settledRecipeList)
+    local retainedBefore = reuse and settledRecipeList.retainedRemovals
+    local verified = list and true or false
     local prevByRecipeID = {}
     local prevData = LoadSkill(skillLineID)
+    local savedRemovals
+    if list and (allowSavedRemovals or retainedBefore) and tostring(skillName) ~= tostring(skillLineID)
+        and Prof.ListAllCachedRecipes == OwnedListAllCachedRecipes then
+        savedRemovals = RetainableRecipeRemovals(prevData, LoadSkill(skillName), list)
+    end
     if prevData and prevData.recipes then
         for _, prev in ipairs(prevData.recipes) do
             if prev and prev.recipeID then
@@ -531,14 +765,30 @@ local function ScanModernOpenProfession(source)
     end
     local recipes, removedRecipeIDs = {}, {}
     for _, recipeID in ipairs(recipeIDs) do
-        local okInfo, info = pcall(C_TradeSkillUI.GetRecipeInfo, recipeID)
-        if okInfo and type(info) == "table"
+        -- A complete scan already established these removals. The unchanged
+        -- learned list and a fresh spellbook negative both have to agree.
+        local retain = savedRemovals and savedRemovals[recipeID]
+        local confirmed = (retain or reuse and not (retainedBefore and retainedBefore[recipeID]))
+            and not list.visible[recipeID] and ConfirmStillUnlearned(recipeID)
+        local okInfo, info
+        if not confirmed then okInfo, info = pcall(C_TradeSkillUI.GetRecipeInfo, recipeID) end
+        if confirmed then
+            if retain then
+                -- Keep the saved removal, without presenting it as a fresh
+                -- observation. Recheck alias safety on subsequent events.
+                list.retainedRemovals = list.retainedRemovals or {}
+                list.retainedRemovals[recipeID] = true
+            else
+                removedRecipeIDs[recipeID] = true
+            end
+        elseif okInfo and type(info) == "table"
             and not info.isDummyRecipe
             and not info.isGatheringRecipe
             and not info.isEnchantingRecipe
             and not info.isSalvageRecipe then
             -- Persist known recipes only (matches "character know").
             local learned = info.learned == true
+            if list and info.learned ~= (list.visible[recipeID] == true) then verified = false end
             if info.learned == false and ownOpen then removedRecipeIDs[recipeID] = true end
             if learned then
                 local schematic
@@ -548,7 +798,7 @@ local function ScanModernOpenProfession(source)
                 end
                 local outputItemID, link = ExtractModernOutput(recipeID)
                 local qtyMin, qtyMax = ExtractModernQuantity(recipeID, schematic)
-                local reagents = ExtractModernReagents(recipeID, schematic)
+                local reagents, craftingData = ExtractModernRecipeData(recipeID, info, schematic)
                 -- Half-ready opens can return empty reagents; keep prior known mats.
                 if #reagents == 0 then
                     local prev = prevByRecipeID[recipeID]
@@ -566,13 +816,21 @@ local function ScanModernOpenProfession(source)
                     quantityMin = qtyMin,
                     quantityMax = qtyMax,
                     reagents = reagents,
-                    craftingData = CaptureCraftingData(recipeID, info, schematic),
+                    craftingData = craftingData,
                     legacy = false,
                     skillLineID = skillLineID,
                     skillName = skillName,
                 }
             end
+        else
+            verified = false
         end
+    end
+    if list and list.revision ~= recipeListRevision then verified = false end
+    if (reuse or list and list.retainedRemovals) and not verified then
+        -- Read the entire list before publishing when either native view disagrees.
+        ForgetSettledRecipeList()
+        return ScanModernOpenProfession(source, false)
     end
     local payload = {
         recipes = recipes,
@@ -587,8 +845,9 @@ local function ScanModernOpenProfession(source)
     StoreSkill(skillLineID, payload)
     -- Also index by profession name for Classic-style lookups.
     if skillName and tostring(skillName) ~= tostring(skillLineID) then
-        StoreSkill(skillName, payload)
+        StoreSkill(skillName, payload, true)
     end
+    settledRecipeList = verified and list and list.revision == recipeListRevision and list or nil
     openSkillKey = tostring(skillLineID)
     if source == "open" then
         PulseProfessionsChanged()
@@ -670,25 +929,30 @@ local function ScanLegacyOpenProfession(source)
     return payload
 end
 
-local function ScanOpenProfession(source)
+-- Reuse the worker without moving live backend queries outside pcall.
+local function ScanOpenProfessionProtected(source, allowSettledList, allowSavedRemovals)
+    if HAS_MODERN_PROF and HasModernRecipeList() then
+        local modern = ScanModernOpenProfession(source, allowSettledList, allowSavedRemovals)
+        if modern then
+            return modern
+        end
+    end
+    ForgetSettledRecipeList()
+    return ScanLegacyOpenProfession(source)
+end
+
+local function ScanOpenProfession(source, allowSettledList, allowSavedRemovals)
     if scanBusy then
         return nil
     end
     if IsForeignProfession() then return nil end
     scanBusy = true
-    local ok, payload = pcall(function()
-        if HAS_MODERN_PROF and HasModernRecipeList() then
-            local modern = ScanModernOpenProfession(source)
-            if modern then
-                return modern
-            end
-        end
-        return ScanLegacyOpenProfession(source)
-    end)
+    local ok, payload = pcall(ScanOpenProfessionProtected, source, allowSettledList, allowSavedRemovals)
     scanBusy = false
     if ok then
         return payload
     end
+    ForgetSettledRecipeList()
     return nil
 end
 
@@ -707,7 +971,7 @@ function Prof.GetRecipeLive(recipeID)
         if ok and type(info) == "table" then
             if info.learned == nil then return nil, "none" end
             local outputItemID = ExtractModernOutput(recipeID)
-            local qtyMin, qtyMax = ExtractModernQuantity(recipeID)
+            local qtyMin, qtyMax, schematic = ExtractModernQuantity(recipeID)
             return {
                 recipeID = recipeID,
                 name = info.name,
@@ -716,7 +980,7 @@ function Prof.GetRecipeLive(recipeID)
                 outputItemID = outputItemID,
                 quantityMin = qtyMin,
                 quantityMax = qtyMax,
-                reagents = ExtractModernReagents(recipeID),
+                reagents = ExtractModernReagents(recipeID, schematic),
                 legacy = false,
                 source = "live",
             }, "live"
@@ -851,7 +1115,10 @@ end
 -- ---------------------------------------------------------------------------
 
 function Prof.OnProfessionEvent(event, arg1, arg2)
+    local listUpdate = event == "TRADE_SKILL_LIST_UPDATE" or event == "TRADE_SKILL_UPDATE"
+    if not listUpdate or scanBusy then ForgetSettledRecipeList() end
     if TradeSkillDataNotReady() then
+        ForgetSettledRecipeList()
         return
     end
     if event == "NEW_RECIPE_LEARNED" then
@@ -872,45 +1139,86 @@ function Prof.OnProfessionEvent(event, arg1, arg2)
         end
         return
     end
-    ScanOpenProfession("open")
+    ScanOpenProfession("open", listUpdate, event == "TRADE_SKILL_DATA_SOURCE_CHANGED")
     if Inv.Craft and Inv.Craft.TryFlushPendingCraft then
         Inv.Craft.TryFlushPendingCraft()
     end
 end
 
-local function RecipeCatalogueRank(recipe, key, data)
+local catalogueToString = tostring
+
+local function RecipeCatalogueRank(recipe, key, data, textKey)
     local crafting = recipe.craftingData
     local complete = type(crafting) == "table" and crafting.version == 1 and crafting.complete == true
     local flat = recipe.outputItemID and (tonumber(recipe.quantityMin) or 0) > 0
         and type(recipe.reagents) == "table" and #recipe.reagents > 0
-    local canonical = recipe.skillLineID and tostring(recipe.skillLineID) == tostring(key)
+    local canonical = recipe.skillLineID and tostring(recipe.skillLineID)
+        == (textKey and tostring == catalogueToString and textKey or tostring(key))
         or recipe.legacy and recipe.skillName == key
     return (complete and 16 or 0) + (flat and 8 or 0) + (canonical and 4 or 0)
         + (data.source == "open" and 2 or 0) + (recipe.learned == true and 1 or 0)
 end
 
 --- All cached recipes across every skill line for this character.
-local function BuildCachedRecipeCatalogue(db)
+BuildCachedRecipeCatalogue = function(db, recipeKey, floatKey, recipeKeys)
     local out = {}
     local seen, revoked = {}, {}
+    local ranks, keys
+    -- Full scans can use numeric keys without allocating a string for every
+    -- modern recipe. Targeted lookups still compare their original text keys.
+    local numericKeys = recipeKey == nil and recipeKeys == nil and tostring == catalogueToString
+        and (not issecurevariable or issecurevariable(_G, "tostring"))
+    local numberType = math.type
     for _, data in pairs(db and db.bySkillLine or {}) do
         for id, removed in pairs(data.unlearnedRecipeIDs or {}) do if removed == true then revoked[id] = true end end
     end
     for key, data in pairs(db and db.bySkillLine or {}) do
+        -- Saved skill aliases are normally already text. Keep conversion when
+        -- a provider replaces tostring, including during a recipe field read.
+        local textKey = numericKeys and type(key) == "string"
+            and (not issecretvalue or not issecretvalue(key)) and key
         if data and data.recipes then
             for _, r in ipairs(data.recipes) do
                 local id = r.recipeID
-                local uniq = r.legacy and (tostring(r.skillName or key) .. ":" .. tostring(r.name or r.outputItemID or id))
-                    or ("recipe:" .. tostring(id))
-                if r.legacy or not revoked[id] then
-                    local rank = RecipeCatalogueRank(r, key, data)
+                local legacy = r.legacy
+                local uniq
+                if numericKeys and not legacy and type(id) == "number"
+                    and (not issecretvalue or not issecretvalue(id)) and tostring == catalogueToString
+                    and id >= 1 and id <= 2147483647 and id % 1 == 0
+                    and (not numberType or numberType(id) == "integer") then
+                    uniq = id
+                else
+                    uniq = legacy and (tostring(r.skillName or key) .. ":" .. tostring(r.name or r.outputItemID or id))
+                        or ("recipe:" .. tostring(id))
+                    -- Older saves can mix numeric and textual IDs. A legacy
+                    -- record can also spell the same key. Keep those collisions.
+                    if numericKeys and (not issecretvalue or not issecretvalue(uniq)) and uniq:sub(1, 7) == "recipe:" then
+                        local digits = uniq:sub(8)
+                        local number = tonumber(digits)
+                        if number and number >= 1 and number <= 2147483647 and number % 1 == 0
+                            and (not numberType or numberType(number) == "integer")
+                            and catalogueToString(number) == digits then
+                            uniq = number
+                        end
+                    end
+                end
+                if (not recipeKeys or recipeKeys[uniq])
+                    and (recipeKey == nil or uniq == recipeKey or uniq == floatKey)
+                    and (r.legacy or not revoked[id]) then
+                    local rank = RecipeCatalogueRank(r, key, data, textKey)
                     local old = seen[uniq]
                     if not old then
                         out[#out + 1] = r
-                        seen[uniq] = { index = #out, rank = rank, key = tostring(key) }
-                    elseif rank > old.rank or rank == old.rank and tostring(key) < old.key then
-                        out[old.index] = r
-                        old.rank, old.key = rank, tostring(key)
+                        local index = #out
+                        if not ranks then ranks, keys = {}, {} end
+                        ranks[index], keys[index] = rank,
+                            (textKey and tostring == catalogueToString and textKey or tostring(key))
+                        seen[uniq] = index
+                    elseif rank > ranks[old] or rank == ranks[old]
+                        and (textKey and tostring == catalogueToString and textKey or tostring(key)) < keys[old] then
+                        out[old] = r
+                        ranks[old], keys[old] = rank,
+                            (textKey and tostring == catalogueToString and textKey or tostring(key))
                     end
                 end
             end
@@ -919,12 +1227,36 @@ local function BuildCachedRecipeCatalogue(db)
     return out
 end
 
+RankObservedRecipes = function(db, observedIDs)
+    local prior, ranks, aliases, revoked = {}, {}, {}, {}
+    for _, data in pairs(db.bySkillLine or {}) do
+        for id, removed in pairs(data.unlearnedRecipeIDs or {}) do
+            if observedIDs[id] and removed == true then revoked[id] = true end
+        end
+    end
+    for key, data in pairs(db.bySkillLine or {}) do
+        local alias = tostring(key)
+        for _, recipe in ipairs(data.recipes or {}) do
+            local id = recipe.recipeID
+            if recipe.legacy or type(id) ~= "number" or id < 1 or id > 2147483647 or id % 1 ~= 0 then return nil end
+            if observedIDs[id] and not revoked[id] then
+                local rank = RecipeCatalogueRank(recipe, key, data)
+                local old = ranks[id]
+                if not old or rank > old or rank == old and alias < aliases[id] then
+                    prior[id], ranks[id], aliases[id] = recipe, rank, alias
+                end
+            end
+        end
+    end
+    return prior
+end
+
 function Prof.ListAllCachedRecipes(characterKey)
     local db = characterKey and FluxInvDB.professions and FluxInvDB.professions[characterKey] or (not characterKey and EnsureDB())
     return BuildCachedRecipeCatalogue(db)
 end
 
-local OwnedListAllCachedRecipes = Prof.ListAllCachedRecipes
+OwnedListAllCachedRecipes = Prof.ListAllCachedRecipes
 
 local function RecipeProduces(recipe, itemID)
     local matches = recipe.outputItemID == itemID
@@ -993,7 +1325,42 @@ function Prof.ListRecipesForOutput(itemID, characterKey)
     return out
 end
 
+local OwnedListRecipesForOutput = Prof.ListRecipesForOutput
+
+-- A single owned snapshot is enough for the auction comparison of several
+-- distinct items. Resolve aliases before grouping so a lower-ranked saved
+-- recipe cannot add an output that the canonical recipe no longer produces.
+function ns.ListOwnedRecipesByOutput(outputIDs)
+    if Inv.Professions ~= Prof or getmetatable(Prof) ~= nil
+        or Prof.ListAllCachedRecipes ~= OwnedListAllCachedRecipes
+        or Prof.ListRecipesForOutput ~= OwnedListRecipesForOutput then
+        return nil
+    end
+
+    local grouped = {}
+    for itemID in pairs(outputIDs) do grouped[itemID] = {} end
+    for _, recipe in ipairs(OwnedListAllCachedRecipes()) do
+        if recipe.learned == true then
+            local items = grouped[recipe.outputItemID]
+            if items then items[#items + 1] = recipe end
+
+            local groupedQualities
+            for _, qualityID in ipairs(recipe.craftingData and recipe.craftingData.qualityItemIDs or {}) do
+                local qualityItems = grouped[qualityID]
+                if qualityItems and qualityID ~= recipe.outputItemID
+                    and (not groupedQualities or not groupedQualities[qualityID]) then
+                    if not groupedQualities then groupedQualities = {} end
+                    groupedQualities[qualityID] = true
+                    qualityItems[#qualityItems + 1] = recipe
+                end
+            end
+        end
+    end
+    return grouped
+end
+
 function Prof.OnProfessionClosed()
+    ForgetSettledRecipeList()
     openSkillKey = nil
 end
 
@@ -1130,6 +1497,11 @@ local function PackProfessionIndices(...)
     return { n = select("#", ...), ... }
 end
 
+-- Resolve the current roster function inside the protected call.
+local function ReadProfessionIndices()
+    return PackProfessionIndices(GetProfessions())
+end
+
 local function GetPlayerProfessionSkillLines()
     local lines = {}
     local seen = {}
@@ -1210,7 +1582,7 @@ local function GetPlayerRankSkillLines()
     end
     local lines = {}
     local seen = {}
-    local function addLine(id, name, modern, rank)
+    local function addLine(id, name, modern, rank, fromSkillPane)
         local key = id or name
         if not key or seen[tostring(key)] then
             return
@@ -1227,6 +1599,7 @@ local function GetPlayerRankSkillLines()
             name = name,
             modern = modern and true or false,
             rank = tonumber(rank) or 0,
+            fromSkillPane = fromSkillPane,
         }
     end
     if GetProfessions and GetProfessionInfo then
@@ -1250,9 +1623,9 @@ local function GetPlayerRankSkillLines()
         n = tonumber(GetNumSkillLines()) or 0
     end
     for i = 1, n do
-        local name, rank = SkillLineNameAndRank(i)
+        local name, rank, skillID = SkillLineNameAndRank(i)
         if name then
-            addLine(name, name, false, rank)
+            addLine(skillID or name, name, false, rank, true)
         end
     end
     -- An empty login roster can be transient. Do not make it a session-long
@@ -1268,8 +1641,11 @@ function Prof.GetProfessionKnowledge(needles, skillLineID)
         needles = { needles }
     end
     if type(needles) ~= "table" or #needles == 0 then return nil end
-    if GetProfessions and GetProfessionInfo then
-        local ok, indices = pcall(function() return PackProfessionIndices(GetProfessions()) end)
+    local hasBook = GetProfessions and GetProfessionInfo
+    local bookMissing
+    local skillID = tonumber(skillLineID)
+    if hasBook then
+        local ok, indices = pcall(ReadProfessionIndices)
         local observed, incomplete, alias = false, not ok, false
         if ok then
             for i = 1, indices.n do
@@ -1278,7 +1654,7 @@ function Prof.GetProfessionKnowledge(needles, skillLineID)
                     local valid, name, icon, rank, maxRank, spells, offset, id = pcall(GetProfessionInfo, index)
                     if valid and type(name) == "string" and name ~= "" then
                         observed = true
-                        if tonumber(skillLineID) and tonumber(skillLineID) > 0 and tonumber(id) == tonumber(skillLineID) then return true end
+                        if skillID and skillID > 0 and tonumber(id) == skillID then return true end
                         if SkillNameMatches(name, needles) then return true end
                         -- Older complete records can name an expansion skill
                         -- while the native book reports its root profession.
@@ -1293,13 +1669,24 @@ function Prof.GetProfessionKnowledge(needles, skillLineID)
         end
         -- The native book exposes five/six slots. A shortened/unready result
         -- can still prove a positive match, never a missing profession.
-        if observed and not incomplete and not alias and indices.n >= 5 then return false end
-    else
-        local lines = GetPlayerRankSkillLines()
-        for _, line in ipairs(lines) do if SkillNameMatches(line.name, needles) then return true end end
-        -- Skill-pane rows can be partial or include only weapon/language ranks;
-        -- their absence alone does not prove a previously learned profession gone.
+        bookMissing = observed and not incomplete and not alias and indices.n >= 5
     end
+    -- A learned skill can be present in the skill pane while omitted from the
+    -- profession book. Use positive pane evidence before accepting that miss.
+    -- A cached book entry cannot override the live book's removal.
+    if (C_SkillInfo and C_SkillInfo.GetNumSkillLines and C_SkillInfo.GetSkillLineInfo)
+        or (GetNumSkillLines and GetSkillLineInfo) then
+        local ok, lines = pcall(GetPlayerRankSkillLines)
+        if ok then
+            for _, line in ipairs(lines) do
+                if line.fromSkillPane and (line.rank > 0 or not hasBook)
+                    and ((skillID and skillID > 0 and line.id == skillID) or SkillNameMatches(line.name, needles)) then
+                    return true
+                end
+            end
+        end
+    end
+    if bookMissing then return false end
     local db = EnsureDB()
     for _, data in pairs(db.bySkillLine or {}) do
         for _, recipe in ipairs(data.recipes or {}) do
@@ -1322,7 +1709,18 @@ function Prof.GetRecipeKnowledge(descriptor)
             if data.unlearnedRecipeIDs and data.unlearnedRecipeIDs[id] == true then return false end
         end
     end
-    for _, recipe in ipairs(Prof.ListAllCachedRecipes()) do
+    local list = Prof.ListAllCachedRecipes
+    local recipes
+    if list == OwnedListAllCachedRecipes and getmetatable(descriptor) == nil and not descriptor.legacy
+        and type(id) == "number" and not (issecretvalue and issecretvalue(id))
+        and id > 0 and id < 2147483648 and id % 1 == 0 then
+        -- Rank every alias of the requested catalogue key, including older
+        -- records with differently typed IDs that share the same key.
+        recipes = BuildCachedRecipeCatalogue(EnsureDB(), "recipe:" .. tostring(math.floor(id)), "recipe:" .. tostring(id + 0.0))
+    else
+        recipes = list()
+    end
+    for _, recipe in ipairs(recipes) do
         local matches = descriptor.legacy and recipe.legacy and type(name) == "string" and name == recipe.name
             and (not skillName or recipe.skillName == skillName)
             or not descriptor.legacy and not recipe.legacy and id ~= nil and id == recipe.recipeID
@@ -1803,12 +2201,19 @@ SafeRegisterEvent(eventFrame, "TRADE_SKILL_LIST_UPDATE")
 SafeRegisterEvent(eventFrame, "NEW_RECIPE_LEARNED")
 SafeRegisterEvent(eventFrame, "TRADE_SKILL_DATA_SOURCE_CHANGED")
 SafeRegisterEvent(eventFrame, "SKILL_LINES_CHANGED")
+if learnedFilterReaders then SafeRegisterEvent(eventFrame, "SPELLS_CHANGED") end
 eventFrame:SetScript("OnEvent", function(_, event, arg1, arg2)
+    if event == "SPELLS_CHANGED" then
+        ForgetSettledRecipeList()
+        return
+    end
     if event == "SKILL_LINES_CHANGED" then
+        ForgetSettledRecipeList()
         Prof.InvalidateSkillCaches()
         return
     end
     if event == "PLAYER_ENTERING_WORLD" then
+        ForgetSettledRecipeList()
         Prof.ScheduleLoginScan()
         return
     end

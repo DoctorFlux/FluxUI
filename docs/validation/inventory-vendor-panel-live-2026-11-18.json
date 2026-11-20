@@ -1,0 +1,140 @@
+{
+  "id": "LHO-VENDOR-PANEL-LIVE-20261118",
+  "utc": "2026-11-18T10:03:27.279485+00:00",
+  "sourceSet": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "53df5afe86e710b554f44cdbcb29f8cca04280ba27b5c50c425c866c24a9ccc9",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "retailForeverPairsMatched": 24,
+  "runtimeLuaEdits": 0,
+  "client": {
+    "exe": "F:\\World of Warcraft\\_forever_\\Wow.exe",
+    "pid": 42724,
+    "hwnd": 50333792,
+    "birthFileTime": 134394624880288175,
+    "build": 70959,
+    "interface": 16001,
+    "buildScope": "Earlier actual BS23 in same process; no build inference from project ID alone"
+  },
+  "native": {
+    "userVendorOpen": "Actual Edna Mullby Merchant UI visible in idleGen source capture. User had answered can open after Shift instruction; automation-skip flag not independently read. Agent did not open merchant or issue item-action commands.",
+    "idleRead": "idleGen_20261118a source-only; saw merchant opening instead of idle baseline, then lease ended Not drawable (minimized). No ID24 query entered. It is retired.",
+    "backgroundRestore": {
+      "source": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\restore_minimized_background_20261118.py",
+      "sourceSha256": "50e7bcdb423c6f2f2cf97f9124ee9f22a5b66046d3de7d41c5208fbfed8a9ede",
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\background-restore-20261118a.json",
+      "result": {
+        "time": 1794995080.9103684,
+        "identity": {
+          "pid": 42724,
+          "hwnd": 50333792,
+          "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+          "created": 134394624880288175
+        },
+        "foregroundBefore": 692126702,
+        "initialIconic": true,
+        "inputSent": false,
+        "focusAPIUsed": false,
+        "cursorOrClipboardUsed": false,
+        "requests": [
+          "SetWindowPos HWND_BOTTOM NOSIZE NOMOVE NOACTIVATE ASYNCWINDOWPOS",
+          "ShowWindowAsync SW_SHOWNOACTIVATE",
+          "SetWindowPos final HWND_BOTTOM NOACTIVATE"
+        ],
+        "status": "restored-background",
+        "finalIconic": false,
+        "finalVisible": true,
+        "foregroundAfter": 692126702,
+        "foregroundUnchanged": true,
+        "finished": 1794995081.0512621
+      },
+      "scope": "Exact verified minimized WoW restored behind other windows. No keyboard/mouse, cursor/clipboard or activation API. Foreground692126702 unchanged across call. Later user/client foreground changes not attributed to this instantaneous check. Single-use receipt; preserve it.",
+      "apiSources": [
+        "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow",
+        "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos"
+      ]
+    },
+    "tabSelection": {
+      "run": "vendorselect_20261118a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorselect_20261118a-journal.json",
+      "payload": "/run if not InCombatLockdown()and MerchantFrame:IsShown()then for _,t in ipairs(LibStub('SecureTabs-2.0').tabs[MerchantFrame]or{})do if t.frame==FluxVendorRestockPanelFrame then t:Select();print('VS24');break end end end",
+      "capture": {
+        "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorselect_20261118a-submitted.png",
+        "pngSha": "e091627a9085750fd43086495163d1199ed08c6b9cecdff76bd69a994633f171",
+        "meta": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-vendorselect_20261118a-submitted-capture.json",
+        "metaSha": "42753f26a5add2192923443539f450f0ee1b66810ff2e576ef328a8cc04f1ff1",
+        "started": 1794995436.9014843,
+        "time": 1794995438.837632,
+        "stage": "submitted",
+        "baseline": {
+          "identity": {
+            "pid": 42724,
+            "hwnd": 50333792,
+            "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+            "created": 134394624880288175
+          },
+          "fg": 692126702,
+          "last": 412116484,
+          "idle": 25.531,
+          "held": [],
+          "drawable": true
+        }
+      },
+      "result": "Actual SecureTabs normal Select handler; new VS24 output and Restock panel visible; current sold-only list empty",
+      "notScope": "No count-query timing, target mutation, commerce, pixel-parity comparison or native zero-error read"
+    },
+    "countQuery": {
+      "run": "vendorpane_20261118a",
+      "stage": "aborted-no-retry",
+      "reason": "last changed during foreground phase",
+      "inputQueued": false,
+      "result": "Source capture aborted on physical foreground input before any Enter/characters. Shared input lock released; run terminal, do not replay."
+    },
+    "latestInputGate": "Fresh same-window snapshots after abort repeatedly showed foreground physical mouse activity; no further typing attempted. Do not weaken the guard.",
+    "preferences": "No filter/profiler settings changed; sold-only checkbox stays unchecked",
+    "priorDiagnosticRoots": "No persistent probe roots/hooks installed",
+    "itemActionsIssued": false
+  },
+  "newSourceLead": {
+    "status": "UNAPPLIED; source-reachable duplicate scheduling, native multiplicity/timing unmeasured",
+    "files": {
+      "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "e42f40bf0db07eb1fcc6c8af5a6969fa8447aa192169af1b33739f83b38d8b12",
+      "libs/SecureTabs-2.0/SecureTabs-2.0.lua": "fdd306aa1f994faef1e29514362619fff075c58e43832cabdbe315ea387405b6"
+    },
+    "path": [
+      "SecureTabs.Update calls enabled selected tab.OnSelect before showing its frame",
+      "Restock tab.OnSelect calls Panel.OnTabSelected, which queues After0 RefreshSelectedPanel",
+      "Showing hidden panel invokes its OnShow -> Panel.OnTabSelected -> another After0 RefreshSelectedPanel",
+      "RefreshSelectedPanel has no shared pending guard and calls private QueryItems -> GetRestockList(true) -> full BuildRestockList",
+      "First changed frame size can additionally run OnSizeChanged -> RefreshList; full build occurs only if cache is then empty"
+    ],
+    "boundary": "No native counter was installed; do not assert measured double/triple calls or causal FPS. QueryItems checks ordinary item metadata and schedules0.2s metadata retry when unready; tier/classification readiness has separate owners. A warm dedupe must preserve late/cold readiness and public replacement behavior, not remove a useful retry blindly."
+  },
+  "toolDiscovery": "No current Witchcraft/WoW MCP execution/context tools exposed; no daemon/addon/MCP setup performed. Polestar_Codex metadata is a content database, not such a connection.",
+  "simulationRuns": 0,
+  "newMockTests": 0,
+  "nativeAcceptance": "Current24 ownreload earlier observed; actual Restock tab display now observed. Populated count/override/craft/burst/close/spike checks still pending.",
+  "goal": "ACTIVE"
+}

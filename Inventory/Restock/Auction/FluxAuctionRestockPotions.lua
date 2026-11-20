@@ -60,6 +60,7 @@ function A.CapturePotionTargets(list)
         end
     end
 end
+ns.AuctionRestockCapturePotionTargets = A.CapturePotionTargets
 function A.PotionReplacement(id)
     local replacement = replacements[id]
     local _, score = Services()
@@ -103,6 +104,7 @@ function A.ApplyPotionReplacements(rows, deferNeed)
     end
     return result
 end
+ns.AuctionRestockApplyPotionReplacements = A.ApplyPotionReplacements
 function A.CancelPotionDiscovery()
     local job = current
     current = nil

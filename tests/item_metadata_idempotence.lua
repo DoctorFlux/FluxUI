@@ -70,6 +70,64 @@ for _,client in ipairs({"forever","retail","era","anniversary","mists"}) do
     check(IC.GetRestore(200).ready,"parser retry recovers without losing the item")
  end
 end
+do
+    local e = setmetatable({}, { __index = _G }); e._G = e
+    e.wipe = function(t) for k in pairs(t) do t[k] = nil end end
+    e.CreateFrame = function() return { RegisterEvent = function() end, SetScript = function() end } end
+    e.issecurevariable = function() return true end
+    local generation, reads = 1, 0
+    local link, slot, text = "item:42", 1, "original"
+    local inv = {
+        Index = {},
+        GetFirst = function() return { region = "bags", bag = 0, slot = slot, link = link } end,
+        GetBagGeneration = function() return generation end,
+        IsReliable = function() return true end,
+    }
+    e.Flux = { Inventory = inv }
+    e.C_TooltipInfo = {
+        GetBagItem = function()
+            reads = reads + 1
+            if text then return { lines = { {}, { leftText = text } } } end
+        end,
+        GetHyperlink = function() return { lines = { {}, { leftText = "hyperlink" } } } end,
+    }
+    local ns = { Flux = e.Flux }
+    local ic = assert(loadfile(source, "t", e))("_FluxUI", ns)
+    local scope = ns.WithAuctionRestockBagTooltips
+    if scope then
+        scope(function()
+            check(ic.GetTooltipText(42, link) == "original" and reads == 1, "first bag tooltip reads native text")
+            check(ic.GetTooltipText(42, link) == "original" and reads == 1, "same slot and link share native text")
+            slot, text = 2, "moved"
+            check(ic.GetTooltipText(42, link) == "moved" and reads == 2, "moved stock rereads the new slot")
+            generation, text = generation + 1, "new generation"
+            check(ic.GetTooltipText(42, link) == "new generation" and reads == 3, "changed inventory generation rereads text")
+        end)
+        text = nil
+        scope(function()
+            check(ic.GetTooltipText(42, link) == "hyperlink" and reads == 4, "missing native text uses the live hyperlink fallback")
+            text = "available"
+            check(ic.GetTooltipText(42, link) == "available" and reads == 5, "formerly missing native data is retried immediately")
+            ic.InvalidateClassification(42)
+            text = "updated metadata"
+            check(ic.GetTooltipText(42, link) == "updated metadata" and reads == 6, "item invalidation breaks same-build reuse")
+        end)
+        local ok = pcall(scope, function()
+            ic.GetTooltipText(42, link)
+            error("row builder failed")
+        end)
+        text = "next callback"
+        check(not ok and ic.GetTooltipText(42, link) == "next callback" and reads == 8, "failed row builder cannot leave an active cache")
+        e.C_TooltipInfo.GetBagItem = function()
+            reads = reads + 1
+            return { lines = { {}, { leftText = "foreign" } } }
+        end
+        scope(function()
+            check(ic.GetTooltipText(42, link) == "foreign" and ic.GetTooltipText(42, link) == "foreign" and reads == 10,
+                "replacement tooltip provider reads live for every call")
+        end)
+    end
+end
 print(string.format("item metadata idempotence: %d checks, %d failures; stable burst junk=%d selectors=%d timers=%d cancels=%d",
     checks,failed,totals.junk,totals.selectors,totals.timers,totals.cancels))
 if failed>0 then os.exit(1)end

@@ -1,0 +1,368 @@
+{
+  "changeId": "STRIP-VISIBILITY-R117-20261119",
+  "capturedAtUTC": "2026-11-19T15:31:07.959230+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "ef3d6db51fbabe4516001b977457bb5aee46d5455a520cff7dffc0c9c5c4ee85",
+      "afterRaw": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902"
+    },
+    "Bars/Init.lua": {
+      "beforeRaw": "1a517b36c38dac5d0932bfe8321cf789ec246701a7ae4d404fe3b17b96df2f92",
+      "afterRaw": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "8355e350596d9ca79bd501a28b12aa84825248f67b1d63b374d53e188ee245eb",
+      "afterRaw": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "d80266ffd1f101fcf7a3d3e47bbe027ef569ec54e05c4148b926c7d0eb87c5da"
+    },
+    "tests/strip_drag_hover_edges.lua": {
+      "beforeRaw": "5d7bc9a7371aa87408b0c34cba90485c434eb2a4e4c57c616a4aedaf42d15c59",
+      "afterRaw": "8cdc762f137cfc029ceb4a42a9a506e8e554947f6848c651800b350be51a975a"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\source.zip",
+    "sourceZipSHA256": "c29deaeda936eb245d841d9ed0ee1b6f7e60fb6c41ac200bcda935a3bfda1a84",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenarios": {
+    "hover": "Held spell, item and macro cross and return before the same scheduled strip update. Test from expanded and collapsed poses with actual strip callbacks and no slot writes.",
+    "renderer": "Both border styles, populated HUD with attached grids and 40 additional raid cells. Alternate held-action strip layouts and separate roster moves, and compare sampled contacts and ownership."
+  },
+  "work": {
+    "regionalListenerAttachDetachEntries": {
+      "1:hover": [
+        1952,
+        704
+      ],
+      "1:roster": [
+        0,
+        0
+      ],
+      "2:hover": [
+        1696,
+        704
+      ],
+      "2:roster": [
+        0,
+        0
+      ]
+    },
+    "sameUpdateReversal": {
+      "spell:true": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      },
+      "spell:false": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      },
+      "item:true": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      },
+      "item:false": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      },
+      "macro:true": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      },
+      "macro:false": {
+        "nativeWidthReads": [
+          30,
+          0
+        ],
+        "keyRefreshes": [
+          10,
+          0
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\compare.lua": "efd3da9a695b0a72140bc448f229a3844786be4e6431625e419e45cb833a5a01",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\matched.txt": "49e5c88ed498f1d317913fdff276f266bb4abbdd7672217d7cfb083188289c9d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\hover-reversals.lua": "e902ae287b5a8856cb9d178bc206e1ff83022ecaefc8aee9758d0f30faaba695",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\hover-reversals.txt": "68e2f95d93496409bd165a4d5f15c5bbc6567a5f4fd69d9bda3f5c9accdb3c34"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6, seven alternating exact-source pairs for each style and scenario, 24 warm reflows per trial.",
+    "results": {
+      "1:hover": {
+        "medians": [
+          239.0,
+          226.0
+        ],
+        "samples": [
+          [
+            150.0,
+            156.0
+          ],
+          [
+            239.0,
+            156.0
+          ],
+          [
+            275.0,
+            233.0
+          ],
+          [
+            252.0,
+            256.0
+          ],
+          [
+            229.0,
+            223.0
+          ],
+          [
+            230.0,
+            226.0
+          ],
+          [
+            278.0,
+            239.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          85.0,
+          83.0
+        ],
+        "samples": [
+          [
+            84.0,
+            82.0
+          ],
+          [
+            90.0,
+            83.0
+          ],
+          [
+            84.0,
+            84.0
+          ],
+          [
+            84.0,
+            83.0
+          ],
+          [
+            85.0,
+            83.0
+          ],
+          [
+            104.0,
+            78.0
+          ],
+          [
+            96.0,
+            87.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          270.0,
+          264.0
+        ],
+        "samples": [
+          [
+            241.0,
+            264.0
+          ],
+          [
+            276.0,
+            264.0
+          ],
+          [
+            270.0,
+            245.0
+          ],
+          [
+            276.0,
+            273.0
+          ],
+          [
+            240.0,
+            240.0
+          ],
+          [
+            231.0,
+            236.0
+          ],
+          [
+            280.0,
+            265.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          93.0,
+          86.0
+        ],
+        "samples": [
+          [
+            93.0,
+            82.0
+          ],
+          [
+            100.0,
+            97.0
+          ],
+          [
+            88.0,
+            85.0
+          ],
+          [
+            109.0,
+            88.0
+          ],
+          [
+            82.0,
+            86.0
+          ],
+          [
+            106.0,
+            86.0
+          ],
+          [
+            88.0,
+            89.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "settled hover crossings still commit in the live layout dispatch",
+    "cursor and slot events keep their prior full contract and pending paint",
+    "fallback paint receives the same source and blocker relationships with current availability",
+    "every regional observer holds only live cell lists after retirement",
+    "full renderer, original materials and existing combat/opaque value guards stay on their prior paths"
+  ],
+  "verification": {
+    "focusedPassed": 71,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-visibility-before-20261119-162355\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "0430edbfc7f097517b3ae01b02f79d49fe1020a1cb6ede9c0d642a6f89324902",
+        "matches": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "b044d8ca00c6c5c391a8d9ddb82773dad46e9d25566b4b3851b5540bebd228c4",
+        "matches": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "cbd41815403929831a805bf064d059437f3adf82dce1933d41ca9aadf645e5f4",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action and group timing, seam pixels and combat taint. No native inputs or profiling changes."
+}

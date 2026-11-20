@@ -1,0 +1,10 @@
+{
+  "recordedAtUTC": "2026-11-16T22:02:09.183787+00:00",
+  "userInstruction": "we can test ingame now if needed",
+  "state": "RELEASED for this combat/group performance task",
+  "supersedes": "Earlier in-game testing/inspection holds in this chat. Historical hold observations remain dated evidence.",
+  "scope": "Root owns sequential native inspection and bounded authorized UI diagnostics. Verify exact host client/window/build and current world/combat/UI state before input. Leave WoW in background, preserve profiling preferences and prior diagnostic roots. User supplies gameplay-dependent combat/party/raid transitions.",
+  "unrelatedHolds": "Do not resume jump/crafting/commerce helpers, remove their stops, or alter unrelated native-test ownership/session controls. Inspect shared controller state before any command.",
+  "nativeResults": "Not yet collected after release; no performance/taint/pixel/adoption claim.",
+  "goal": "ACTIVE"
+}

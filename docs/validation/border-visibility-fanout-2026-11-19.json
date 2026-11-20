@@ -1,0 +1,355 @@
+{
+  "changeId": "BORDER-VISIBILITY-FANOUT-R114-20261119",
+  "capturedAtUTC": "2026-11-19T14:46:15.413834+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "be491bb932f649679410c53ae127ccbc455207ff8d103182ed096fe7681d9888",
+      "afterRaw": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f"
+    },
+    "tests/border_fallback_opacity.lua": {
+      "beforeRaw": "1b5cfe9f2bdc344e9d46b7f9c89c2ebb4a4df6f0f14c23d0dcb86a6c434fda47",
+      "afterRaw": "5d159648b7f42cf1d025d2537a898e1d7913d82d1ace97cb70d172864af6d28a"
+    },
+    "tests/border_registration_pairs.lua": {
+      "beforeRaw": "a568c9a20b361ea95ae5c0bf2e379c1aea3172b95491d6c0d226f2c11b86c4af",
+      "afterRaw": "130eefa83876f6cbdd3be873ff6ae79737dce317e869c09479bb1461570e52cc"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\source.zip",
+    "sourceZipSHA256": "c089c995d96853a3511d77a59e044a39d7b3b2858862ba18e484f8bd3c872cdf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "scenarios": {
+    "visibility": "A prepared crossbar with 192 shared fallback fields in each style. Alternate source show/hide and ancestor zero/nonzero alpha including combat.",
+    "regional": "Both border types and a HUD with 40 unrelated raid cells. Alternate expanded/collapsed strip layouts and separate roster geometry moves, comparing sampled contacts after each transition."
+  },
+  "work": {
+    "before": {
+      "1": {
+        "aliasCount": 192,
+        "disabledAlphaWrites": 0,
+        "revivals": 0,
+        "registrationParentReads": 112,
+        "registrationOwnerReads": 14,
+        "availabilityQueries": 64,
+        "totalAlphaWrites": 0,
+        "mesh": 419162723,
+        "liveUpdates": 8,
+        "liveParentReads": 42886
+      },
+      "2": {
+        "aliasCount": 192,
+        "disabledAlphaWrites": 0,
+        "revivals": 0,
+        "registrationParentReads": 112,
+        "registrationOwnerReads": 14,
+        "availabilityQueries": 64,
+        "totalAlphaWrites": 0,
+        "mesh": 361236605,
+        "liveUpdates": 8,
+        "liveParentReads": 42886
+      }
+    },
+    "after": {
+      "1": {
+        "aliasCount": 192,
+        "disabledAlphaWrites": 0,
+        "revivals": 0,
+        "registrationParentReads": 112,
+        "registrationOwnerReads": 14,
+        "availabilityQueries": 16,
+        "totalAlphaWrites": 0,
+        "mesh": 419162723,
+        "liveUpdates": 8,
+        "liveParentReads": 274
+      },
+      "2": {
+        "aliasCount": 192,
+        "disabledAlphaWrites": 0,
+        "revivals": 0,
+        "registrationParentReads": 112,
+        "registrationOwnerReads": 14,
+        "availabilityQueries": 16,
+        "totalAlphaWrites": 0,
+        "mesh": 361236605,
+        "liveUpdates": 8,
+        "liveParentReads": 274
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\work-before.txt": "f0248628c49ae10ed6971448894c69061ff1be89394941cef9bec6c555b526b3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\work-after.txt": "9053f1885003a9b1f219edfacd9c8b420ffbacc43d901a55a3e0306b421c527b"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Desktop Lua 5.4.6. Seven alternating exact-source pairs. Each visibility trial performs 240 callbacks. Each regional trial performs eight warm layout transitions.",
+    "results": {
+      "1:visibility": {
+        "medians": [
+          371.0,
+          33.0
+        ],
+        "samples": [
+          [
+            375.0,
+            32.0
+          ],
+          [
+            375.0,
+            33.0
+          ],
+          [
+            370.0,
+            31.0
+          ],
+          [
+            378.0,
+            34.0
+          ],
+          [
+            371.0,
+            33.0
+          ],
+          [
+            365.0,
+            34.0
+          ],
+          [
+            367.0,
+            32.0
+          ]
+        ]
+      },
+      "1:hover": {
+        "medians": [
+          88.0,
+          82.0
+        ],
+        "samples": [
+          [
+            96.0,
+            81.0
+          ],
+          [
+            79.0,
+            79.0
+          ],
+          [
+            87.0,
+            81.0
+          ],
+          [
+            95.0,
+            82.0
+          ],
+          [
+            92.0,
+            87.0
+          ],
+          [
+            88.0,
+            83.0
+          ],
+          [
+            83.0,
+            84.0
+          ]
+        ]
+      },
+      "1:roster": {
+        "medians": [
+          29.0,
+          28.0
+        ],
+        "samples": [
+          [
+            29.0,
+            28.0
+          ],
+          [
+            28.0,
+            29.0
+          ],
+          [
+            27.0,
+            28.0
+          ],
+          [
+            33.0,
+            30.0
+          ],
+          [
+            29.0,
+            26.0
+          ],
+          [
+            34.0,
+            31.0
+          ],
+          [
+            29.0,
+            28.0
+          ]
+        ]
+      },
+      "2:visibility": {
+        "medians": [
+          788.0,
+          62.0
+        ],
+        "samples": [
+          [
+            808.0,
+            64.0
+          ],
+          [
+            827.0,
+            69.0
+          ],
+          [
+            751.0,
+            64.0
+          ],
+          [
+            797.0,
+            62.0
+          ],
+          [
+            788.0,
+            60.0
+          ],
+          [
+            782.0,
+            62.0
+          ],
+          [
+            766.0,
+            59.0
+          ]
+        ]
+      },
+      "2:hover": {
+        "medians": [
+          82.0,
+          82.0
+        ],
+        "samples": [
+          [
+            83.0,
+            82.0
+          ],
+          [
+            89.0,
+            89.0
+          ],
+          [
+            82.0,
+            83.0
+          ],
+          [
+            82.0,
+            82.0
+          ],
+          [
+            82.0,
+            81.0
+          ],
+          [
+            81.0,
+            81.0
+          ],
+          [
+            94.0,
+            96.0
+          ]
+        ]
+      },
+      "2:roster": {
+        "medians": [
+          32.0,
+          31.0
+        ],
+        "samples": [
+          [
+            35.0,
+            33.0
+          ],
+          [
+            32.0,
+            33.0
+          ],
+          [
+            32.0,
+            31.0
+          ],
+          [
+            32.0,
+            33.0
+          ],
+          [
+            31.0,
+            31.0
+          ],
+          [
+            28.0,
+            29.0
+          ],
+          [
+            29.0,
+            30.0
+          ]
+        ]
+      }
+    },
+    "driver": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\compare.lua",
+    "rawFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\matched.txt",
+    "rawSHA256": "54cefdc739c16ae4433563c0e0e8f60c7f1218352efb5342ce177215014e3e3e"
+  },
+  "preservation": [
+    "same callback order and native opacity sinks, including opaque unit alpha",
+    "same shared fallback observer order and guards for inaccessible, truncated, replaced or overdepth blockers",
+    "same visible mesh samples, no redundant intermediate opacity writes and no new geometry on visibility updates",
+    "surface exact writer failures and allow an identical visibility event to retry",
+    "same regional solves and live paint on prepared strip and roster layouts"
+  ],
+  "verification": {
+    "focusedPassed": 57,
+    "syntaxPassed": 1250,
+    "compilerMaximumUpvalues": 52,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-visibility-fanout-before-20261119-153934\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "match": true
+    },
+    "forever": {
+      "sha256": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "match": true
+    },
+    "classic": {
+      "sha256": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "match": true
+    },
+    "classic-era": {
+      "sha256": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "match": true
+    },
+    "classic-anniversary": {
+      "sha256": "5b0cebd6ccd79124c50bce6c396f12b5cc375602f00394dbe1c3ab80c253095f",
+      "match": true
+    }
+  },
+  "nativeAcceptance": "Pending for actual held-action frame time, join and leave latency, seam pixels and combat taint. No game input or profiling changes."
+}

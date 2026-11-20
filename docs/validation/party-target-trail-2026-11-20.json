@@ -1,0 +1,1077 @@
+{
+  "changeId": "PARTY-TARGET-TRAIL-20261120",
+  "capturedAtUTC": "2026-11-20T07:34:47.063890+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "UnitFrames/FluxHealthLossOverlay.lua": {
+      "beforeRaw": "cb8731379edb3f010b4b6c602974e96bf98ef767bb84528faf611a7fcf88defc",
+      "afterRaw": "512798002c53a53c64c3cd8a63cce6c08d77115231896e0de683b4e78668fb98",
+      "afterNormalized": "512798002c53a53c64c3cd8a63cce6c08d77115231896e0de683b4e78668fb98"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+      "afterRaw": "6aadd9e59276e96e18daebe9ed5f892797711e37ad0c1f075edfba09672ebccd",
+      "afterNormalized": "50b244090407eed856da1c50c321377c402667926172c19791704f66b0f64dc1"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRaw": "1586c6444a85153d5a0e8a034cef697e30979dc5314951bd544039fd8cb06d95",
+      "afterRaw": "c305ccc5bdbff0a4f86668d3ffba493f6b525440df71aa1952bd37017da29908",
+      "afterNormalized": "c305ccc5bdbff0a4f86668d3ffba493f6b525440df71aa1952bd37017da29908"
+    },
+    "tests/unit_vertical_target_health.lua": {
+      "beforeRaw": "ff9158c349153c1abba3a805690a85df98f6ceaed32b6beaaa5ea4b962c9f98c",
+      "afterRaw": "47c89e3bfa37615dbb89f4610c764406bdbc817a449e6cabbafad6b254deec0c",
+      "afterNormalized": "47c89e3bfa37615dbb89f4610c764406bdbc817a449e6cabbafad6b254deec0c"
+    },
+    "tests/group_roster_performance.lua": {
+      "beforeRaw": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf",
+      "afterRaw": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "afterNormalized": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a"
+    },
+    "tests/raid_party_frames.lua": {
+      "beforeRaw": "077169e3cfe5771032d2d61fb10ecc3aa1fcd16bf655d3bff8735986c6fc665a",
+      "afterRaw": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "afterNormalized": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14"
+    },
+    "tests/unit_outer_party_geometry.lua": {
+      "beforeRaw": "5585349ee3e26cb9e98cff3bbc6cabcebc0f10c52557e372c8958cf49307c30c",
+      "afterRaw": "c59c7d7a7cf4306ae4c3f76a465b75d849d4568843ede5ea58eee5e82fa68933",
+      "afterNormalized": "5b3f80cd62616604b631f9c3866a79e5b49de4f4727aa4e26e922f4e02f11082"
+    }
+  },
+  "evidence": {
+    "counts": {
+      "live": {
+        "false": {
+          "resets": [
+            240,
+            0
+          ],
+          "hides": [
+            1440,
+            0
+          ],
+          "values": [
+            240,
+            0
+          ],
+          "health": [
+            720,
+            240
+          ],
+          "max": [
+            720,
+            240
+          ],
+          "guid": [
+            240,
+            240
+          ]
+        },
+        "true": {
+          "resets": [
+            240,
+            60
+          ],
+          "hides": [
+            1440,
+            360
+          ],
+          "values": [
+            240,
+            60
+          ],
+          "health": [
+            720,
+            360
+          ],
+          "max": [
+            720,
+            360
+          ],
+          "guid": [
+            240,
+            300
+          ]
+        }
+      },
+      "forever": {
+        "false": {
+          "resets": [
+            240,
+            0
+          ],
+          "hides": [
+            1440,
+            0
+          ],
+          "values": [
+            240,
+            0
+          ],
+          "health": [
+            720,
+            240
+          ],
+          "max": [
+            720,
+            240
+          ],
+          "guid": [
+            240,
+            240
+          ]
+        },
+        "true": {
+          "resets": [
+            240,
+            60
+          ],
+          "hides": [
+            1440,
+            360
+          ],
+          "values": [
+            240,
+            60
+          ],
+          "health": [
+            720,
+            360
+          ],
+          "max": [
+            720,
+            360
+          ],
+          "guid": [
+            240,
+            300
+          ]
+        }
+      },
+      "classic": {
+        "false": {
+          "resets": [
+            240,
+            0
+          ],
+          "hides": [
+            1440,
+            0
+          ],
+          "values": [
+            240,
+            0
+          ],
+          "health": [
+            720,
+            240
+          ],
+          "max": [
+            720,
+            240
+          ],
+          "guid": [
+            240,
+            240
+          ]
+        },
+        "true": {
+          "resets": [
+            240,
+            60
+          ],
+          "hides": [
+            1440,
+            360
+          ],
+          "values": [
+            240,
+            60
+          ],
+          "health": [
+            720,
+            360
+          ],
+          "max": [
+            720,
+            360
+          ],
+          "guid": [
+            240,
+            300
+          ]
+        }
+      },
+      "classic_era": {
+        "false": {
+          "resets": [
+            240,
+            0
+          ],
+          "hides": [
+            1440,
+            0
+          ],
+          "values": [
+            240,
+            0
+          ],
+          "health": [
+            720,
+            240
+          ],
+          "max": [
+            720,
+            240
+          ],
+          "guid": [
+            240,
+            240
+          ]
+        },
+        "true": {
+          "resets": [
+            240,
+            60
+          ],
+          "hides": [
+            1440,
+            360
+          ],
+          "values": [
+            240,
+            60
+          ],
+          "health": [
+            720,
+            360
+          ],
+          "max": [
+            720,
+            360
+          ],
+          "guid": [
+            240,
+            300
+          ]
+        }
+      },
+      "classic_anniversary": {
+        "false": {
+          "resets": [
+            240,
+            0
+          ],
+          "hides": [
+            1440,
+            0
+          ],
+          "values": [
+            240,
+            0
+          ],
+          "health": [
+            720,
+            240
+          ],
+          "max": [
+            720,
+            240
+          ],
+          "guid": [
+            240,
+            240
+          ]
+        },
+        "true": {
+          "resets": [
+            240,
+            60
+          ],
+          "hides": [
+            1440,
+            360
+          ],
+          "values": [
+            240,
+            60
+          ],
+          "health": [
+            720,
+            360
+          ],
+          "max": [
+            720,
+            360
+          ],
+          "guid": [
+            240,
+            300
+          ]
+        }
+      }
+    },
+    "rawReplay": "TARGET_ROSTER client=live churn=false steps=60 resets=240/0 hides=1440/0 values=240/0 health=720/240 max=720/240 guid=240/240\nTARGET_ROSTER client=live churn=true steps=60 resets=240/60 hides=1440/360 values=240/60 health=720/360 max=720/360 guid=240/300\nTARGET_ROSTER client=forever churn=false steps=60 resets=240/0 hides=1440/0 values=240/0 health=720/240 max=720/240 guid=240/240\nTARGET_ROSTER client=forever churn=true steps=60 resets=240/60 hides=1440/360 values=240/60 health=720/360 max=720/360 guid=240/300\nTARGET_ROSTER client=classic churn=false steps=60 resets=240/0 hides=1440/0 values=240/0 health=720/240 max=720/240 guid=240/240\nTARGET_ROSTER client=classic churn=true steps=60 resets=240/60 hides=1440/360 values=240/60 health=720/360 max=720/360 guid=240/300\nTARGET_ROSTER client=classic_era churn=false steps=60 resets=240/0 hides=1440/0 values=240/0 health=720/240 max=720/240 guid=240/240\nTARGET_ROSTER client=classic_era churn=true steps=60 resets=240/60 hides=1440/360 values=240/60 health=720/360 max=720/360 guid=240/300\nTARGET_ROSTER client=classic_anniversary churn=false steps=60 resets=240/0 hides=1440/0 values=240/0 health=720/240 max=720/240 guid=240/240\nTARGET_ROSTER client=classic_anniversary churn=true steps=60 resets=240/60 hides=1440/360 values=240/60 health=720/360 max=720/360 guid=240/300\n",
+    "desktopTiming": {
+      "live": {
+        "false": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              12.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          }
+        ],
+        "true": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1260.344
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              14.0,
+              14.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          }
+        ]
+      },
+      "forever": {
+        "false": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              14.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1196.531
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              14.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.344,
+              1196.281
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              14.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          }
+        ],
+        "true": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              16.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1260.344
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              18.0,
+              14.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              14.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              15.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              14.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          }
+        ]
+      },
+      "classic": {
+        "false": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1196.531
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.344,
+              1196.281
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          }
+        ],
+        "true": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1260.344
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              12.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              14.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              13.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          }
+        ]
+      },
+      "classic_era": {
+        "false": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              14.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1196.531
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.344,
+              1196.281
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              10.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          }
+        ],
+        "true": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1260.344
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              14.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          }
+        ]
+      },
+      "classic_anniversary": {
+        "false": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1196.531
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              12.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.344,
+              1196.281
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              12.0,
+              10.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              13.0,
+              11.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1196.281
+            ]
+          }
+        ],
+        "true": [
+          {
+            "trial": 1,
+            "elapsedMs": [
+              14.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.594,
+              1260.344
+            ]
+          },
+          {
+            "trial": 2,
+            "elapsedMs": [
+              14.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 3,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 4,
+            "elapsedMs": [
+              13.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          },
+          {
+            "trial": 5,
+            "elapsedMs": [
+              12.0,
+              12.0
+            ],
+            "allocatedKiB": [
+              1451.281,
+              1260.031
+            ]
+          }
+        ]
+      }
+    },
+    "timingMediansMs": {
+      "live": {
+        "false": [
+          13.0,
+          12.0
+        ],
+        "true": [
+          13.0,
+          13.0
+        ]
+      },
+      "forever": {
+        "false": [
+          14.0,
+          11.0
+        ],
+        "true": [
+          14.0,
+          14.0
+        ]
+      },
+      "classic": {
+        "false": [
+          13.0,
+          11.0
+        ],
+        "true": [
+          13.0,
+          13.0
+        ]
+      },
+      "classic_era": {
+        "false": [
+          13.0,
+          11.0
+        ],
+        "true": [
+          12.0,
+          12.0
+        ]
+      },
+      "classic_anniversary": {
+        "false": [
+          12.0,
+          11.0
+        ],
+        "true": [
+          13.0,
+          12.0
+        ]
+      }
+    },
+    "allocationMediansKiB": {
+      "live": {
+        "false": [
+          1451.281,
+          1196.281
+        ],
+        "true": [
+          1451.281,
+          1260.031
+        ]
+      },
+      "forever": {
+        "false": [
+          1451.281,
+          1196.281
+        ],
+        "true": [
+          1451.281,
+          1260.031
+        ]
+      },
+      "classic": {
+        "false": [
+          1451.281,
+          1196.281
+        ],
+        "true": [
+          1451.281,
+          1260.031
+        ]
+      },
+      "classic_era": {
+        "false": [
+          1451.281,
+          1196.281
+        ],
+        "true": [
+          1451.281,
+          1260.031
+        ]
+      },
+      "classic_anniversary": {
+        "false": [
+          1451.281,
+          1196.281
+        ],
+        "true": [
+          1451.281,
+          1260.031
+        ]
+      }
+    },
+    "timingScope": "Five alternating pairs of 480 coalesced roster batches per scenario and client model using the actual party-target and loss Lua with modeled widgets.",
+    "replayHarnessSHA256": "4bcdbc726df6d96a9534f2bee126e80df955722ee02252ddfefd462130d8d9a0"
+  },
+  "parity": "Party-target roster refreshes keep the existing damage trail when the same readable unit and health sample remain current. Sixty modeled roster batches that change one of four targets reduce trail resets from 240 to 60 and hide calls from 1,440 to 360. With all four targets unchanged those counts fall to zero. Main health and color paint remain current. Replacements use their existing fresh identity read after reset, including one extra GUID read when the replacement has the same health. Desktop elapsed gains are small and vary by scenario.",
+  "checkpoint": {
+    "settings": {
+      "_anniversary_": 10,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_retail_": 2
+    },
+    "created": "2026-11-20T08:28:12.797651+01:00",
+    "files": {
+      "docs/DECISIONS.md": "F0ADC2E2CE15C05338FF200EEE9E7A186FB4EBEADEB69BAE857218E123D0846C",
+      "docs/FEATURE_PARITY.csv": "4BBBB42ABBDB9AB2FA7F1D5F02377A78713FCFF675999B39DA1149E53B28B197",
+      "docs/14-unit-frames.md": "362265AB989AE6D22F126A346C811A5F58926A9B5077145DDEE189DDD5FAF9C6",
+      "NEXT_SESSION.md": "E57A23CEBEB390D34740856A511194DBD1DF26C84C5E3184AF8754E2704EBB57",
+      "docs/CLIENT_VALIDATION.md": "F7EC872F601E0C21E5647BA1CA77B7B567BD42667F2D99ED9F62761895FCC627",
+      "tests/group_roster_performance.lua": "9B36FCC497758B4F7231DBCDDAAE8FCC0424428EED7BB7EB4B6C6D57E71C4CDF",
+      "docs/WORK_LOG.md": "F0568DD723CE25C53EEF3B3F805CF5302066C3D76D8363A4DF20A58F686560F9",
+      "docs/GROUP_ROSTER_PERFORMANCE.md": "87BF0E34F14EE580B1B6FF62511B5C0421C4447C75612C78C1F97455321D88E9",
+      "docs/CLIENT_MATRIX.csv": "F4C370A37FEDFB6B6A5AB71BF1BDDE291A0E6B30AC797D026FD295E05298102D",
+      "docs/STATUS.md": "93C586A3DC348C233149863E3370880327205261EA4A94CCCD1A99062F7E5018",
+      "tests/unit_vertical_target_health.lua": "FF9158C349153C1ABBA3A805690A85DF98F6CEAED32B6BEAAA5EA4B962C9F98C",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "8F4B34811D0F23196B0AF6D245A7AC8E245EE556CE0BDB7A4B6F72DE43DEDEA0",
+      "UnitFrames/FluxUnitFrames_Party.lua": "1586C6444A85153D5A0E8A034CEF697E30979DC5314951BD544039FD8CB06D95",
+      "UnitFrames/FluxHealthLossOverlay.lua": "CB8731379EDB3F010B4B6C602974E96BF98EF767BB84528FAF611A7FCF88DEFC",
+      "docs/PERFORMANCE_RESULTS.csv": "D452C502E7A9CF534A5DA137DA148952BF3F40AE4A0BEC17740886F9BD5F1ECF",
+      "tests/raid_party_frames.lua": "077169E3CFE5771032D2D61FB10ECC3AA1FCD16BF655D3BFF8735986C6FC665A",
+      "tests/unit_outer_party_geometry.lua": "5585349EE3E26CB9E98CFF3BBC6CABCEBC0F10C52557E372C8958CF49307C30C"
+    },
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece"
+  },
+  "verification": {
+    "focusedPassed": 28,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/unit_vertical_target_health.lua": "47c89e3bfa37615dbb89f4610c764406bdbc817a449e6cabbafad6b254deec0c",
+      "tests/unit_overlay_secret_identity.lua": "8650633fbd8e3cf8b128bb47570bcd2c011a39820a98a2987545660af3b1a0b6",
+      "tests/unit_identity_feedback.lua": "9c5663dfbcf0339b5b8d045517905a388ac7b2e8671b8e83e7e86bbbbc0e93d8",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/raid_roster_layout_work.lua": "1a17c3f9b0427cbbd2deb9376ad895e6a5050cc5d8ccae6a7f2671697264f423",
+      "tests/raid_roster_attribute_work.lua": "8a82946f7a6521755014ac47cd47020920875fc8b18d07b3489e6c505a411429",
+      "tests/raid_roster_native_writes.lua": "760a072d4de15014f2289476d47f1cf8a8ad5f9331928d676db2c4d70388c7b6",
+      "tests/raid_healer_auras.lua": "0323b1fcf4e7d596922087536583db262c15cc5855743f16566f9bd035dff330",
+      "tests/raid_spell_refresh_work.lua": "c96295762d0fb7e036796024e65e6f8f115d504dec83922658f1b9ab6d0ac77b",
+      "tests/roster_native_hover_cleanup.lua": "7fb8b4c66731c991ea43c55413a0089875df48f211df7c74d3eda2ef415fe1da",
+      "tests/roster_player_specialization.lua": "f5fac03b455e7875322bc94f4df8ae4fc1ce51eed489020a6b1199688c44a698",
+      "tests/roster_focus_dock.lua": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38",
+      "tests/unit_group_chrome_batch.lua": "aa88cabe4f1eda192493e98744df7618f24264358a3cec577efb3ed6143db476",
+      "tests/unit_aura_group_layout_work.lua": "4d1cb8c75610ec2c1eda629af98a49abaa861c7ef481607f92d29f5e313178b5",
+      "tests/unit_outer_lifecycle.lua": "987b5e6422771f0fdf571bedf8630f092e44d47f74b685a33bf889c9d099e438",
+      "tests/unit_outer_party_geometry.lua": "c59c7d7a7cf4306ae4c3f76a465b75d849d4568843ede5ea58eee5e82fa68933",
+      "tests/unit_portrait_overlay_attachment.lua": "2633cd255099795e118d0afa840edb897223851624bfbec411ee27815f4a078a",
+      "tests/unit_squeeze_combat_release.lua": "090c787c88b583fa2c7c1cf3ee33e57ca13cb7d6a7275ff1c1fb8ab6facf13b3",
+      "tests/tot_npc_secret_colors.lua": "7c8838a097d18fd42fb1985d18802a6ab8959c25d5b866cbfbf592c1611cb92f",
+      "tests/mini_unit_colors.lua": "13ab9ad1a38a5d4e9cc3e17ed8dda5b27bf914dcb3b05599eb34a64dde1bc402",
+      "tests/party_cast_border_layout.lua": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/border_party_container.lua": "1cb6a8fd6e7075496305c28c65522c22619509074ce5efdbfd29523039c6ebed",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/regional_roster_poses.lua": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_drag_hover_edges.lua": "644c758e5ef1304f2d14a1c9da8f1dd46d91f12c8a64c3477eb67edad4038e7f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-target-trail-before-20261120T082812445\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-target-trail-before-20261120T082812445\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-target-trail-before-20261120T082812445\\syntax.json",
+    "fixtureRepairs": "The old outer-party fixture failed against both sources because it delivered obsolete per-frame roster callbacks. The fixture now uses the shared roster owner when present. The secure party regression forwards the new optional painter scope."
+  },
+  "nativeAcceptance": "Actual party and raid join and leave timing, protected state behavior and the in-game damage trail remain pending. Native held-action strip and border acceptance remain open."
+}

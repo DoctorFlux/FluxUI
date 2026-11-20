@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-18T22:50:14.3817621Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 20,
+  "settingsContentsCopied": false,
+  "before": {
+    "Inventory/Index.lua": "e2f7919a871837bcac592f1ff39c0776fe9ac7c8a84bfeba683d826904e11778",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8"
+  },
+  "changeId": "LHO-BANK-SNAPSHOT-LINK-20261118",
+  "status": "APPLIED_AND_RELOADED_FOREVER_ONE_CLOSED_BANK_LINK_PASS_NATIVE_TIMING_PENDING",
+  "after": {
+    "Inventory/Index.lua": "452aa9044f184f843b546ecfdc6ce33f21e8bb996be2bf1a1f394bcc13a33af5",
+    "Inventory/Restock/FluxRestock_Inv.lua": "f3890c5ef6b9059056ab8fe029b935177fcea9d35ff1e84f22f6447e23ddaee1"
+  },
+  "exactSourceCheckpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-bank-link-lookup-20261118",
+  "previousTurn": "Progress: applied modern saved recipe lookup projection.",
+  "beforeEvidence": {
+    "existingNativeBankWindow": "bank-effective-visibility-2026-11-15.json",
+    "scope": "Native proof of carried/bank snapshot count activity across the legal addon combinations. There is no native timing for this link path.",
+    "source": "Old fallback materializes a combined item/count map, then uses only the requested row's link."
+  },
+  "sourceProof": {
+    "priorBodiesRestoreExactlyWhenRemovingAddedPaths": true,
+    "orderedRegions": [
+      "carried",
+      "character bank",
+      "warband when supported"
+    ],
+    "linkRule": "Return the first present link for the matching numeric ID in the original snapshot iteration order.",
+    "publicOverrides": "Replaced restock, inventory facade or index unique-item getter goes through the standard map query.",
+    "liveBankQuery": "Existing FindStacks and live container link resolution occurs first.",
+    "allocations": "Canonical snapshot fallback creates no unique-item map or per-item records.",
+    "lua51BeforeAfter": {
+      "passed": 4
+    },
+    "lua54BeforeAfter": {
+      "passed": 4
+    },
+    "sameRetailForeverDiskSources": true,
+    "newSimulations": 0
+  },
+  "native113": {
+    "targetPid": 9012,
+    "targetWindow": 3541714,
+    "allPacketsFullyQueued": true,
+    "charactersQueued": 414,
+    "commandAcknowledged": false,
+    "captureGuard": "Foreground unknown",
+    "ownedLockReleased": true,
+    "followupScreenshotSHA256": "6834031c24b526d402034326f5a1acc07dbb1c8a230b05074260679503d12a99",
+    "followup": "Client in foreground showing fresh addon startup messages and a group invitation. No recipe or bank diagnostic outputs visible. No replay or goal-driven reload."
+  },
+  "native117": {
+    "afterObservedReload": true,
+    "itemID": 1191,
+    "expectedLinkPresent": true,
+    "equalsSnapshotLink": true,
+    "bankOpen": false,
+    "evidence": "fixed-recipe-slots-2026-11-19.json"
+  },
+  "limitations": [
+    "Full link parity, frequency and frame spike impact remain unmeasured. Native 117 covers one closed-bank link.",
+    "The bank and mail correctness cases involving stale Syndicator producer data are separate and remain open.",
+    "No native item actions, client settings changes or external addon edits."
+  ]
+}

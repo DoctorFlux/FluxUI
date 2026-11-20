@@ -1,0 +1,218 @@
+{
+  "changeId": "STRIP-CHROME-MINIMAP-ROSTER-20261119",
+  "capturedAtUTC": "2026-11-19T09:47:43.603003+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce action-strip crossing paint and repeated native minimap layout during party and raid notifications.",
+  "changes": [
+    "On a held-action layout crossing, reuse stable native button chrome after checking the existing art handler, size, visible region identities, normal artwork and applied native paint.",
+    "Restore newly shown, replaced or changed faces through the normal skinning path. Preserve full accent and native restyle calls.",
+    "Remember the size passed by the strip layout setter so same-frame native size lag does not leave stale ring geometry.",
+    "Coalesce minimap difficulty and queue updates for group and instance-size notifications. Retain combat retry and let a full indicator pass consume the pending work."
+  ],
+  "sources": {
+    "Bars/Blizzard.lua": {
+      "beforeRaw": "9b2209f02654001750f85a9ccf3c935ff4b58ef7cf8d42d0b81dfc77b785925f",
+      "afterRaw": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a"
+    },
+    "Bars/Hosts.lua": {
+      "beforeRaw": "691217d9fe6f13d039f51c439eff766aa107d6d97db8c57c3f366c6801132b61",
+      "afterRaw": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "d7b086c07f2b1c5388e1544b98ff4087b0ed428408d3a1a388004015fdaa4619",
+      "afterRaw": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0"
+    },
+    "Minimap/FluxMinimap.lua": {
+      "beforeRaw": "a0acc38716cf151cc7e1cea635386e25f2bfdb42b2f9fb5c87ccf7c6d6c0a72a",
+      "afterRaw": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef"
+    },
+    "tests/strip_drag_button_chrome.lua": {
+      "beforeRaw": null,
+      "afterRaw": "06912db9c6c27bc87991530e3c73f7601e04ab18b0dfaf397da0059ec09d5978"
+    },
+    "tests/minimap_indicator_work.lua": {
+      "beforeRaw": "837321949553a48766fd3d5795d243c0a29c33c94b2a1327b38c03110d99e7ec",
+      "afterRaw": "acff8dd19da6f1eec99888f96eb660ae3a12cf4e516731a5e388b16775586252"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chrome-minimap-roster-before-20261119T092918Z\\source.zip",
+    "archiveSHA256": "b34a47f7f41899a43128763a4dc135d94ef48bcbf86f409bda510048a128a174",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "sharedFixtureDependencies": {
+    "Bars/Strip.lua": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf",
+    "ExtraButtonSystem/Engine/Style.lua": "12bbd86dfdffcd6c112bc6a6a114bd5c79e08edf1ea90465e6ac08311e0a71ab",
+    "tests/bars_strip_layout_work.lua": "9a1ec0ad3355e63058fae38cd5959b6a21ea2693d1d3b0b76671be0a4660112a",
+    "tests/minimap_mail_lifecycle.lua": "eed38d57a23c753c2cd82d1e228a84e0583d101b229e0d1b2e4963ba30eef57a"
+  },
+  "workReplays": {
+    "heldActionCrossings": [
+      "STRIP_BUTTON_CHROME|retail|1|sizing=57/19|writes=3135/1045",
+      "STRIP_BUTTON_CHROME|retail|2|sizing=57/0|writes=3135/0",
+      "STRIP_BUTTON_CHROME|retail|3|sizing=57/19|writes=3135/1045",
+      "STRIP_BUTTON_CHROME|retail|4|sizing=57/0|writes=3135/0",
+      "STRIP_BUTTON_CHROME|forever|1|sizing=57/19|writes=3135/1045",
+      "STRIP_BUTTON_CHROME|forever|2|sizing=57/0|writes=3135/0",
+      "STRIP_BUTTON_CHROME|forever|3|sizing=57/19|writes=3135/1045",
+      "STRIP_BUTTON_CHROME|forever|4|sizing=57/0|writes=3135/0",
+      "STRIP_BUTTON_CHROME|classic|1|sizing=57/19|writes=3192/1064",
+      "STRIP_BUTTON_CHROME|classic|2|sizing=57/0|writes=3192/0",
+      "STRIP_BUTTON_CHROME|classic|3|sizing=57/19|writes=3192/1064",
+      "STRIP_BUTTON_CHROME|classic|4|sizing=57/0|writes=3192/0",
+      "Strip button chrome: exact layout, visible art, squeeze, native repair and accent controls pass."
+    ],
+    "minimapBurst": {
+      "before": [
+        "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60|layouts=20|queues=20",
+        "MINIMAP_INDICATOR_WORK|cluster|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60|layouts=20|queues=20",
+        "MINIMAP_INDICATOR_WORK|global|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60|layouts=20|queues=20",
+        "MINIMAP_INDICATOR_WORK|minimap|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=60|layouts=20|queues=20",
+        "MINIMAP_INDICATOR_WORK|missing|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "Minimap indicator work: 188 checks PASS; actual controller, fresh state and native updates retained; native timing pending"
+      ],
+      "after": [
+        "MINIMAP_GROUP_WORK|cluster|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1",
+        "MINIMAP_INDICATOR_WORK|cluster|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|global|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1",
+        "MINIMAP_INDICATOR_WORK|global|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|minimap|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1",
+        "MINIMAP_INDICATOR_WORK|minimap|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "MINIMAP_GROUP_WORK|missing|20rosterOrSize|tracking=0|landing=0|mail=0|anchors=3|layouts=1|queues=1",
+        "MINIMAP_INDICATOR_WORK|missing|100unchanged|geometryWrites=0|nativeUpdates=500",
+        "Minimap indicator work: 228 checks PASS; actual controller, fresh state and native updates retained; native timing pending"
+      ]
+    },
+    "scope": "Counts of modeled native calls. Exact archived and candidate strip layout and art code, three client style models. Four minimap fixture shapes. Native event counts, rendering and wall time remain open."
+  },
+  "verification": {
+    "focused": 198,
+    "syntax": 1233,
+    "compilerMaximumUpvalues": 20,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chrome-minimap-roster-before-20261119T092918Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chrome-minimap-roster-before-20261119T092918Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-chrome-minimap-roster-before-20261119T092918Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/Restock/Core/FluxRestockList.lua",
+      "Inventory/SpellReagents.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sources": {
+        "Bars/Blizzard.lua": {
+          "sha256": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+          "matchesCandidate": true
+        },
+        "Bars/Hosts.lua": {
+          "sha256": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+          "matchesCandidate": true
+        },
+        "Minimap/FluxMinimap.lua": {
+          "sha256": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sources": {
+        "Bars/Blizzard.lua": {
+          "sha256": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+          "matchesCandidate": true
+        },
+        "Bars/Hosts.lua": {
+          "sha256": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+          "matchesCandidate": true
+        },
+        "Minimap/FluxMinimap.lua": {
+          "sha256": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sources": {
+        "Bars/Blizzard.lua": {
+          "sha256": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+          "matchesCandidate": true
+        },
+        "Bars/Hosts.lua": {
+          "sha256": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+          "matchesCandidate": true
+        },
+        "Minimap/FluxMinimap.lua": {
+          "sha256": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sources": {
+        "Bars/Blizzard.lua": {
+          "sha256": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+          "matchesCandidate": true
+        },
+        "Bars/Hosts.lua": {
+          "sha256": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+          "matchesCandidate": true
+        },
+        "Minimap/FluxMinimap.lua": {
+          "sha256": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sources": {
+        "Bars/Blizzard.lua": {
+          "sha256": "32dde165f2f83c9d04e2294cedbc562e03a87f4721d5890057585dca07248e7a",
+          "matchesCandidate": true
+        },
+        "Bars/Hosts.lua": {
+          "sha256": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+          "matchesCandidate": true
+        },
+        "Minimap/FluxMinimap.lua": {
+          "sha256": "d2ba2333fbec532f6a5526b88209e3dd002a7e687a7aa6c8817f388a5c27fdef",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending for party and raid latency, held-action cursor hitch, border seams and combat taint. No native input or profiler changes."
+}

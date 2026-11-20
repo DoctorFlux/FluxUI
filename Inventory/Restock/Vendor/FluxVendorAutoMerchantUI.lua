@@ -894,11 +894,13 @@ local function AttachAutoToggle(hostButton, config)
     return toggle
 end
 
+local function CancelPendingMerchantUpdateTimer()
+    uiState.merchantUpdateTimer:Cancel()
+end
+
 local function CancelMerchantUpdateTimer()
     if uiState.merchantUpdateTimer then
-        pcall(function()
-            uiState.merchantUpdateTimer:Cancel()
-        end)
+        pcall(CancelPendingMerchantUpdateTimer)
         uiState.merchantUpdateTimer = nil
     end
 end
@@ -914,6 +916,11 @@ local function RunScheduledMerchantUpdate()
         DeferRestockDataRefresh()
     end
     FluxVendorAutoMerchantUI.UpdateMerchantUI(mode)
+end
+
+local function RunMerchantUpdateTimer()
+    uiState.merchantUpdateTimer = nil
+    RunScheduledMerchantUpdate()
 end
 
 local function ScheduleMerchantUpdateImmediate(mode)
@@ -941,12 +948,30 @@ ScheduleMerchantUpdate = function(mode)
         debounce = uiState.debounce.merchantUIBurst
     end
     if C_Timer and C_Timer.NewTimer then
-        uiState.merchantUpdateTimer = C_Timer.NewTimer(debounce, function()
-            uiState.merchantUpdateTimer = nil
-            RunScheduledMerchantUpdate()
-        end)
+        uiState.merchantUpdateTimer = C_Timer.NewTimer(debounce, RunMerchantUpdateTimer)
     else
         RunScheduledMerchantUpdate()
+    end
+end
+
+local function RunThrottledMerchantFrameUpdate()
+    uiState.merchantFrameUpdateTimer = nil
+    if not MerchantFrame or not MerchantFrame:IsShown() or not IsMerchantBuyTabActive() then
+        return
+    end
+    if FV and FV.IsJunkSellActive and FV.IsJunkSellActive() then
+        return
+    end
+    if not uiState.junkCountFreshThisPulse and not uiState.junkStatsDirty then
+        ApplyNativeSellJunkButtonState()
+    elseif (uiState.junkStatsDirty or not uiState.junkCountFreshThisPulse)
+        and FV and FV.IsVendorBurstActive and not FV.IsVendorBurstActive()
+        and VendorAutomationEnabled() then
+        RefreshCheapJunkSlotCount()
+        ApplyNativeSellJunkButtonState()
+    end
+    if not UseClassicMerchantButtonStyle() then
+        LayoutPostDFActionCluster(GetRepairClusterVisible())
     end
 end
 
@@ -971,26 +996,7 @@ local function ScheduleThrottledMerchantFrameUpdate()
         end
         return
     end
-    uiState.merchantFrameUpdateTimer = C_Timer.NewTimer(uiState.debounce.merchantFrameUpdate, function()
-        uiState.merchantFrameUpdateTimer = nil
-        if not MerchantFrame or not MerchantFrame:IsShown() or not IsMerchantBuyTabActive() then
-            return
-        end
-        if FV and FV.IsJunkSellActive and FV.IsJunkSellActive() then
-            return
-        end
-        if not uiState.junkCountFreshThisPulse and not uiState.junkStatsDirty then
-            ApplyNativeSellJunkButtonState()
-        elseif (uiState.junkStatsDirty or not uiState.junkCountFreshThisPulse)
-            and FV and FV.IsVendorBurstActive and not FV.IsVendorBurstActive()
-            and VendorAutomationEnabled() then
-            RefreshCheapJunkSlotCount()
-            ApplyNativeSellJunkButtonState()
-        end
-        if not UseClassicMerchantButtonStyle() then
-            LayoutPostDFActionCluster(GetRepairClusterVisible())
-        end
-    end)
+    uiState.merchantFrameUpdateTimer = C_Timer.NewTimer(uiState.debounce.merchantFrameUpdate, RunThrottledMerchantFrameUpdate)
 end
 
 local function CancelMerchantFrameUpdateTimer()

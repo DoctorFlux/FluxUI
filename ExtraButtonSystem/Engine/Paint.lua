@@ -27,6 +27,16 @@ local COLOR_OOR = { 0.8, 0.1, 0.1 }
 local RANDOM_MOUNT_ID = 268435455
 local RANDOM_BATTLE_PET_ID = "BattlePet-0-FFFFFFFFFFFFFF"
 
+local function ApplyHotkeyRange(btn, outOfRange)
+	if not btn or btn.badgeMode or btn.kind == "badge" then
+		return
+	end
+	local Hotkey = _G.FluxNCHotkeyUtil
+	if Hotkey and Hotkey.SetRange then
+		Hotkey.SetRange(btn, outOfRange)
+	end
+end
+
 local BAG_COUNT_OPTS = {
 	bags = true,
 	bank = false,
@@ -2373,7 +2383,18 @@ local function KeepOr(btn, field, value)
 end
 
 function Paint.UpdateUsable(btn)
-	if not btn or not btn.WIcon then
+	if not btn then
+		return
+	end
+	-- Reuse the existing public range decision, including native/direct
+	-- usability refreshes. Other unusable states never turn the hotkey red.
+	local hotkeyOOR = btn._outOfRange == true
+	if btn.IgnoreUsabilityVisual or btn.PlaceholderTexture
+		or not btn.ActionType or btn.ActionValue == nil then
+		hotkeyOOR = false
+	end
+	ApplyHotkeyRange(btn, hotkeyOOR)
+	if not btn.WIcon then
 		return
 	end
 	if btn.PlaceholderTexture then
@@ -3563,6 +3584,26 @@ local function UnitExistsSafe(unit)
 end
 
 -- true / false / nil. Second return true = keep last OOR (combat item range).
+local function ProbeSpellRange(btn, R, unit, ident)
+	btn._fluxRangeItem = nil
+	if not ident or not R or not R.CheckSpell then
+		return nil
+	end
+	return R.CheckSpell(ident, unit)
+end
+local function ProbeItemRange(btn, R, unit, itemId)
+	if not itemId or not R or not R.CheckItem then
+		return nil
+	end
+	local inRange, keepLast = R.CheckItem(itemId, unit)
+	local revision = R.GetUnitRevision and R.GetUnitRevision(unit) or 0
+	local same = btn._fluxRangeItem == itemId and btn._fluxRangeUnit == unit
+		and btn._fluxRangeRevision == revision
+	btn._fluxRangeItem, btn._fluxRangeUnit, btn._fluxRangeRevision = itemId, unit, revision
+	-- A restricted check may retain this exact item/unit's prior result.
+	return inRange, keepLast and same
+end
+
 local function ProbeRange(btn)
 	if not btn then
 		return nil
@@ -3571,6 +3612,25 @@ local function ProbeRange(btn)
 	if t ~= "spell" and t ~= "item" and t ~= "macro" and t ~= "macrotext" and t ~= "toy" then
 		btn._fluxRangeItem = nil
 		return nil
+	end
+	local R = Flux.Range
+	local Action = EBS.Action
+	if Action and Action.CastForRange then
+		local kind, id, castUnit, handled = Action.CastForRange(btn)
+		if handled then
+			local unit
+			if kind and id and castUnit then
+				if R and R.ResolveUnit then unit = R.ResolveUnit(nil, castUnit) else unit = castUnit end
+			end
+			if not unit or not UnitExistsSafe(unit) then
+				btn._fluxRangeItem = nil
+				return nil
+			end
+			if kind == "spell" then return ProbeSpellRange(btn, R, unit, PaintSpell(id)) end
+			if kind == "item" then return ProbeItemRange(btn, R, unit, id) end
+			btn._fluxRangeItem = nil
+			return nil
+		end
 	end
 	local macroUnit
 	if IsMacroLike(btn) then
@@ -3582,57 +3642,46 @@ local function ProbeRange(btn)
 	end
 	-- Macros click with their own @unit; do not inherit leftover hub `unit`.
 	-- Plain spells use the mouseover-cast widget attribute (toggle-gated).
-	local R = Flux.Range
 	local widget
 	if not IsMacroLike(btn) or btn._fluxUtilityGetEntry then widget = btn.Widget end
-	local unit = R and R.ResolveUnit and R.ResolveUnit(widget, macroUnit) or (macroUnit or "target")
-	if not UnitExistsSafe(unit) then
+	local shownKind, shownId = t, btn.ActionValue
+	if t == "spell" then shownId = ShownSpellId(btn)
+	elseif t == "item" then shownId = btn.ItemId
+	elseif IsMacroLike(btn) then
+		shownKind = btn.MacroMode
+		shownId = shownKind == "spell" and MacroShownSpell(btn) or MacroShownItem(btn)
+	end
+	local unit
+	if R and R.ResolveUnit then unit = R.ResolveUnit(widget, macroUnit, shownKind, shownId)
+	else unit = macroUnit or "target" end
+	if not unit or not UnitExistsSafe(unit) then
 		btn._fluxRangeItem = nil
 		return nil
 	end
-	local function spellRange(ident)
-		btn._fluxRangeItem = nil
-		if not ident or not R or not R.CheckSpell then
-			return nil
-		end
-		return R.CheckSpell(ident, unit)
-	end
-	local function itemRange(itemId)
-		if not itemId or not R or not R.CheckItem then
-			return nil
-		end
-		local inRange, keepLast = R.CheckItem(itemId, unit)
-		local revision = R.GetUnitRevision and R.GetUnitRevision(unit) or 0
-		local same = btn._fluxRangeItem == itemId and btn._fluxRangeUnit == unit
-			and btn._fluxRangeRevision == revision
-		btn._fluxRangeItem, btn._fluxRangeUnit, btn._fluxRangeRevision = itemId, unit, revision
-		-- A restricted check may retain this exact item/unit's prior result.
-		return inRange, keepLast and same
-	end
 	if t == "spell" then
-		return spellRange(PaintSpell(ShownSpellId(btn)))
+		return ProbeSpellRange(btn, R, unit, PaintSpell(ShownSpellId(btn)))
 	elseif t == "item" then
 		-- Match item macro faces: an effect spell's target range can be
 		-- meaningless for a self-use item or a weapon enchant.
-		return itemRange(btn.ItemId)
+		return ProbeItemRange(btn, R, unit, btn.ItemId)
 	elseif t == "toy" then
 		local toyId = btn.ToyId or btn.ItemId or btn.ActionValue
 		local spell = ItemSpellIdent(toyId)
 		if spell then
-			local r = spellRange(spell)
+			local r = ProbeSpellRange(btn, R, unit, spell)
 			if r ~= nil then
 				return r
 			end
 		end
-		return itemRange(toyId)
+		return ProbeItemRange(btn, R, unit, toyId)
 	elseif IsMacroLike(btn) then
 		local spell = MacroShownSpell(btn)
 		if spell then
-			return spellRange(spell)
+			return ProbeSpellRange(btn, R, unit, spell)
 		end
 		local iid = MacroShownItem(btn)
 		if iid then
-			return itemRange(iid)
+			return ProbeItemRange(btn, R, unit, iid)
 		end
 	end
 	return nil
@@ -3644,6 +3693,7 @@ function Paint.UpdateRange(btn)
 	end
 	if btn.IgnoreUsabilityVisual then
 		btn._outOfRange = false
+		ApplyHotkeyRange(btn, false)
 		return
 	end
 	local inRange, keepLast = ProbeRange(btn)
@@ -3654,6 +3704,8 @@ function Paint.UpdateRange(btn)
 	if btn._outOfRange ~= oor then
 		btn._outOfRange = oor
 		Paint.UpdateUsable(btn)
+	else
+		ApplyHotkeyRange(btn, oor)
 	end
 end
 
@@ -3806,43 +3858,38 @@ function Paint.FlushCounts(ctx)
 	local recovery = ctx and ctx.recovery
 	local changedIDs = not recovery and doBags and ctx and ctx.changedItemIDs
 	local any = false
-	local function CountOne(btn)
-		-- The full eval already skips parked faces. Keep inventory pulses on
-		-- the same policy; OnShow / Badge.ShowVisual requests a fresh full eval.
-		if not btn or not btn.ActionType or Paint.IsParked(btn) then
-			return
-		end
-		local spellFace = btn.ActionType == "spell"
-		if not (spellFace or btn.ActionType == "item" or btn.ActionType == "toy" or IsMacroLike(btn)) then
-			return
-		end
-		if doBags then
-			-- A spell reagent is not in changedItemIDs. Refresh every bag pulse.
-			local id = (not spellFace) and changedIDs and CountItemId(btn)
-			local usesCharges = id and Flux.Item and Flux.Item.UsesConsumableCharges
-				and Flux.Item.UsesConsumableCharges(id, CountKind(btn))
-			if not (id and not changedIDs[id] and usesCharges ~= true) then
-				local changed = Paint.UpdateCount(btn)
-				-- 0-count gems must re-tint even when the digit did not change.
-				if changed or ConsumableKindButton(btn) or recovery then
-					Paint.UpdateUsable(btn)
-					any = true
+	local list = EBS.buttons
+	for pass = 1, 2 do
+		if pass == 2 then list = EBS.badges end
+		if list then
+			for i = 1, #list do
+				local btn = list[i]
+				-- OnShow / Badge.ShowVisual requests a fresh full eval for parked faces.
+				if btn and btn.ActionType and not Paint.IsParked(btn) then
+					local actionType = btn.ActionType
+					local spellFace = actionType == "spell"
+					if spellFace or actionType == "item" or actionType == "toy" or IsMacroLike(btn) then
+						if doBags then
+							-- Spell reagents still refresh when no indexed item count changed.
+							local id = (not spellFace) and changedIDs and CountItemId(btn)
+							local usesCharges = id and Flux.Item and Flux.Item.UsesConsumableCharges
+								and Flux.Item.UsesConsumableCharges(id, CountKind(btn))
+							if not (id and not changedIDs[id] and usesCharges ~= true) then
+								local changed = Paint.UpdateCount(btn)
+								-- A zero-charge consumable may need to re-tint even if its digit is unchanged.
+								if changed or ConsumableKindButton(btn) or recovery then
+									Paint.UpdateUsable(btn)
+									any = true
+								end
+							end
+						end
+						if doEquip then
+							Paint.UpdateEquipped(btn)
+							any = true
+						end
+					end
 				end
 			end
-		end
-		if doEquip then
-			Paint.UpdateEquipped(btn)
-			any = true
-		end
-	end
-	local list = EBS.buttons
-	for i = 1, #list do
-		CountOne(list[i])
-	end
-	local badges = EBS.badges
-	if badges then
-		for i = 1, #badges do
-			CountOne(badges[i])
 		end
 	end
 	return any

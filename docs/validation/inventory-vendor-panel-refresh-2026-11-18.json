@@ -1,0 +1,62 @@
+{
+  "id": "LHO-VENDOR-PANEL-REFRESH-20261118",
+  "utc": "2026-11-17T23:51:30.627774+00:00",
+  "file": "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+  "before": "0d0d7edb53147f2962a605bee21136017e174c4ee8778cd6f0b323b129e2ad1a",
+  "after": "eb27a4851876c7ea694e7eab4f4d211e1d1309a9722d4ffc3578a4eb75e187b1",
+  "syntax": [
+    {
+      "vm": "Lua5.1.5",
+      "exit": 0,
+      "mode": "syntax/listing only; no addon execution",
+      "stderr": ""
+    },
+    {
+      "vm": "Lua5.4.6",
+      "exit": 0,
+      "mode": "syntax/listing only; no addon execution",
+      "stderr": ""
+    }
+  ],
+  "compilerBindingBefore": "GETGLOBAL RefreshScrollList",
+  "compilerBindingAfter": "GETUPVAL RefreshScrollList",
+  "candidateCompilerBlock": "function <F:\\World of Warcraft\\_retail_\\Interface\\AddOns\\_FluxUI\\Inventory\\Restock\\Vendor\\FluxVendorRestockPanel.lua:276,290> (51 instructions, 204 bytes at 0000019F0A244AB0)\n0 params, 4 slots, 5 upvalues, 1 local, 6 constants, 0 functions\n\t1\t[277]\tGETUPVAL \t0 0\t; panelFrame\n\t2\t[277]\tTEST     \t0 0 0\n\t3\t[277]\tJMP      \t5\t; to 9\n\t4\t[277]\tGETUPVAL \t0 0\t; panelFrame\n\t5\t[277]\tSELF     \t0 0 -1\t; \"IsShown\"\n\t6\t[277]\tCALL     \t0 2 2\n\t7\t[277]\tTEST     \t0 0 1\n\t8\t[277]\tJMP      \t1\t; to 10\n\t9\t[278]\tRETURN   \t0 1\n\t10\t[280]\tGETUPVAL \t0 1\t; cachedList\n\t11\t[280]\tTEST     \t0 0 1\n\t12\t[280]\tJMP      \t4\t; to 17\n\t13\t[281]\tGETUPVAL \t0 2\t; Panel\n\t14\t[281]\tSELF     \t0 0 -2\t; \"RefreshList\"\n\t15\t[281]\tCALL     \t0 2 1\n\t16\t[282]\tRETURN   \t0 1\n\t17\t[284]\tGETUPVAL \t0 3\t; FV\n\t18\t[284]\tTEST     \t0 0 1\n\t19\t[284]\tJMP      \t2\t; to 22\n\t20\t[284]\tGETGLOBAL\t0 -3\t; _G\n\t21\t[284]\tGETTABLE \t0 0 -4\t; \"FluxVendorAuto\"\n\t22\t[284]\tSETUPVAL \t0 3\t; FV\n\t23\t[285]\tGETUPVAL \t0 3\t; FV\n\t24\t[285]\tTEST     \t0 0 0\n\t25\t[285]\tJMP      \t10\t; to 36\n\t26\t[285]\tGETUPVAL \t0 3\t; FV\n\t27\t[285]\tGETTABLE \t0 0 -5\t; \"GetMerchantItemIndex\"\n\t28\t[285]\tTEST     \t0 0 0\n\t29\t[285]\tJMP      \t6\t; to 36\n\t30\t[285]\tGETUPVAL \t0 3\t; FV\n\t31\t[285]\tGETTABLE \t0 0 -5\t; \"GetMerchantItemIndex\"\n\t32\t[285]\tLOADBOOL \t1 0 0\n\t33\t[285]\tCALL     \t0 2 2\n\t34\t[285]\tTEST     \t0 0 1\n\t35\t[285]\tJMP      \t1\t; to 37\n\t36\t[285]\tLOADNIL  \t0 0\n\t37\t[286]\tGETUPVAL \t1 3\t; FV\n\t38\t[286]\tTEST     \t1 0 0\n\t39\t[286]\tJMP      \t9\t; to 49\n\t40\t[286]\tGETUPVAL \t1 3\t; FV\n\t41\t[286]\tGETTABLE \t1 1 -6\t; \"RefreshRestockCacheEntries\"\n\t42\t[286]\tTEST     \t1 0 0\n\t43\t[286]\tJMP      \t5\t; to 49\n\t44\t[287]\tGETUPVAL \t1 3\t; FV\n\t45\t[287]\tGETTABLE \t1 1 -6\t; \"RefreshRestockCacheEntries\"\n\t46\t[287]\tGETUPVAL \t2 1\t; cachedList\n\t47\t[287]\tMOVE     \t3 0\n\t48\t[287]\tCALL     \t1 3 1\n\t49\t[289]\tGETUPVAL \t1 4\t; RefreshScrollList\n\t50\t[289]\tCALL     \t1 1 1\n\t51\t[290]\tRETURN   \t0 1\n\n",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-vendor-panel-refresh-20261118\\checkpoint.json",
+  "changes": [
+    "Forward-declare renderer so count refresh calls local implementation",
+    "Reuse private tab-selected and bag-debounce callback bodies; no captured per-request data"
+  ],
+  "preserved": [
+    "0-delay tab callback",
+    "0.2s idle / 0.35s burst count debounce",
+    "storm guards and retry scheduling",
+    "native counts, metadata queries, visual writes, purchasing and settings"
+  ],
+  "simulationRuns": 0,
+  "benchmarks": 0,
+  "nativeAcceptance": "PENDING actual shown merchant Restock panel with bag update; no simulated UI events",
+  "performanceGain": "UNMEASURED; two repeated callback constructions removed at source",
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "1b74de66f03eed00b34a6833b7010824366ad548b49372edf1666f3e03b930ca",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "92954c1857505d127c15ddedbfaef5e920ef39603f59ca6bdbe574be6c637540",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "0f73c69e9a4ae9e3bc805ebde44ef70ed997f863d4fbd58014cb23969f39a62b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "b9f20c0fa90dca097e83e8e5d00bbb0e4a116175832b6821e1689f3a70ae87f9",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "eb27a4851876c7ea694e7eab4f4d211e1d1309a9722d4ffc3578a4eb75e187b1"
+  },
+  "additionalFinding": "RefreshRestockCacheEntries handles only itemID entries; tier rows may retain old bagCount on count-only path. Source lead only; not fixed or natively reproduced this slice.",
+  "goal": "ACTIVE"
+}

@@ -577,43 +577,43 @@ Changes FluxUI border art and supported button frames. The Minecraft textures ar
 | get | `function() return FluxOptions.db.profile.appearance.style or "default" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L33) |
 | set | `function(_, val) FluxOptions.db.profile.appearance.style = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L36) |
 
-### accentHeader · Accent · L41
+### accentHeader · Accent · L42
 
-Source: [AddonOptions/FluxOptionsAppearance.lua:41](../../AddonOptions/FluxOptionsAppearance.lua#L41). Type: `"header"`.
-
-| Contract | Source expression / implementation |
-|---|---|
-
-### accentDesc · The default style tints FluxUI chrome with this accent. Minecraft panel borders keep their original gray pixe… · L42
-
-Source: [AddonOptions/FluxOptionsAppearance.lua:42](../../AddonOptions/FluxOptionsAppearance.lua#L42). Type: `"description"`.
+Source: [AddonOptions/FluxOptionsAppearance.lua:42](../../AddonOptions/FluxOptionsAppearance.lua#L42). Type: `"header"`.
 
 | Contract | Source expression / implementation |
 |---|---|
 
-### borderAccent · Accent · L48
+### accentDesc · The default style tints FluxUI chrome with this accent. Minecraft panel borders keep their original gray pixe… · L43
 
-Source: [AddonOptions/FluxOptionsAppearance.lua:48](../../AddonOptions/FluxOptionsAppearance.lua#L48). Type: `"select"`.
-
-Class color matches your class. Default atlas leaves atlas-based art untinted, except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below.
+Source: [AddonOptions/FluxOptionsAppearance.lua:43](../../AddonOptions/FluxOptionsAppearance.lua#L43). Type: `"description"`.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ class = "Class color", atlas = "Default atlas (no tint)", custom = "Custom color", }` [source](../../AddonOptions/FluxOptionsAppearance.lua#L54) |
-| get | `function() return FluxOptions.db.profile.appearance.borderAccent or "class" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L59) |
-| set | `function(_, val) FluxOptions.db.profile.appearance.borderAccent = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L62) |
 
-### customAccent · Custom accent color · L67
+### borderAccent · Accent · L49
 
-Source: [AddonOptions/FluxOptionsAppearance.lua:67](../../AddonOptions/FluxOptionsAppearance.lua#L67). Type: `"color"`.
+Source: [AddonOptions/FluxOptionsAppearance.lua:49](../../AddonOptions/FluxOptionsAppearance.lua#L49). Type: `"select"`.
+
+Class color matches your class. Default atlas preserves the artwork's original colors. On WoW Forever, Border type 1 keeps its existing bronze; Border type 2 stays untinted. Custom uses the color below.
+
+| Contract | Source expression / implementation |
+|---|---|
+| values | `{ class = "Class color", atlas = "Default atlas (no tint)", custom = "Custom color", }` [source](../../AddonOptions/FluxOptionsAppearance.lua#L55) |
+| get | `function() return FluxOptions.db.profile.appearance.borderAccent or "class" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L60) |
+| set | `function(_, val) FluxOptions.db.profile.appearance.borderAccent = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L63) |
+
+### customAccent · Custom accent color · L68
+
+Source: [AddonOptions/FluxOptionsAppearance.lua:68](../../AddonOptions/FluxOptionsAppearance.lua#L68). Type: `"color"`.
 
 Used when Accent is set to Custom.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 } return c.r or 1, c.g or 1, c.b or 1 end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L73) |
-| set | `function(_, r, g, b) local c = FluxOptions.db.profile.appearance.customAccent if not c then c = {} FluxOptions.db.profile.appearance.customAccent = c end c.r, c.g, c.b = r, g, b RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L77) |
-| hidden | `function() return (FluxOptions.db.profile.appearance.borderAccent or "class") ~= "custom" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L86) |
+| get | `function() local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 } return c.r or 1, c.g or 1, c.b or 1 end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L74) |
+| set | `function(_, r, g, b) local c = FluxOptions.db.profile.appearance.customAccent if not c then c = {} FluxOptions.db.profile.appearance.customAccent = c end c.r, c.g, c.b = r, g, b RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L78) |
+| hidden | `function() return (FluxOptions.db.profile.appearance.borderAccent or "class") ~= "custom" end` [source](../../AddonOptions/FluxOptionsAppearance.lua#L87) |
 
 ## FluxOptionsBattlezone.lua
 
@@ -927,29 +927,29 @@ Source: [AddonOptions/FluxOptionsGeneral.lua:51](../../AddonOptions/FluxOptionsG
 | Contract | Source expression / implementation |
 |---|---|
 
-### borderAccent · Accent · L57
+### borderAccent · Accent · L58
 
-Source: [AddonOptions/FluxOptionsGeneral.lua:57](../../AddonOptions/FluxOptionsGeneral.lua#L57). Type: `"select"`.
+Source: [AddonOptions/FluxOptionsGeneral.lua:58](../../AddonOptions/FluxOptionsGeneral.lua#L58). Type: `"select"`.
 
-Class color matches your class. Default atlas leaves atlas-based art untinted (neutral grays), except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below. Applies to borders, backdrops, and the on-state of this options window.
+Class color matches your class. Default atlas preserves the artwork's original colors. On WoW Forever, Border type 1 keeps its existing bronze; Border type 2 stays untinted. Custom uses the color below. Applies to borders, backdrops, and the on-state of this options window.
 
 | Contract | Source expression / implementation |
 |---|---|
-| values | `{ class = "Class color", atlas = "Default atlas (no tint)", custom = "Custom color", }` [source](../../AddonOptions/FluxOptionsGeneral.lua#L63) |
-| get | `function() return FluxOptions.db.profile.appearance.borderAccent or "class" end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L68) |
-| set | `function(_, val) FluxOptions.db.profile.appearance.borderAccent = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L71) |
+| values | `{ class = "Class color", atlas = "Default atlas (no tint)", custom = "Custom color", }` [source](../../AddonOptions/FluxOptionsGeneral.lua#L64) |
+| get | `function() return FluxOptions.db.profile.appearance.borderAccent or "class" end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L69) |
+| set | `function(_, val) FluxOptions.db.profile.appearance.borderAccent = val RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L72) |
 
-### customAccent · Custom accent color · L76
+### customAccent · Custom accent color · L77
 
-Source: [AddonOptions/FluxOptionsGeneral.lua:76](../../AddonOptions/FluxOptionsGeneral.lua#L76). Type: `"color"`.
+Source: [AddonOptions/FluxOptionsGeneral.lua:77](../../AddonOptions/FluxOptionsGeneral.lua#L77). Type: `"color"`.
 
 Used when Border accent is set to Custom.
 
 | Contract | Source expression / implementation |
 |---|---|
-| get | `function() local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 } return c.r or 1, c.g or 1, c.b or 1 end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L82) |
-| set | `function(_, r, g, b) local c = FluxOptions.db.profile.appearance.customAccent if not c then c = {} FluxOptions.db.profile.appearance.customAccent = c end c.r, c.g, c.b = r, g, b RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L86) |
-| hidden | `function() return (FluxOptions.db.profile.appearance.borderAccent or "class") ~= "custom" end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L95) |
+| get | `function() local c = FluxOptions.db.profile.appearance.customAccent or { r = 1, g = 1, b = 1 } return c.r or 1, c.g or 1, c.b or 1 end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L83) |
+| set | `function(_, r, g, b) local c = FluxOptions.db.profile.appearance.customAccent if not c then c = {} FluxOptions.db.profile.appearance.customAccent = c end c.r, c.g, c.b = r, g, b RefreshAppearance() end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L87) |
+| hidden | `function() return (FluxOptions.db.profile.appearance.borderAccent or "class") ~= "custom" end` [source](../../AddonOptions/FluxOptionsGeneral.lua#L96) |
 
 ## FluxOptionsInfo.lua
 

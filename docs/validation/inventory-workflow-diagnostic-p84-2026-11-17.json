@@ -1,0 +1,188 @@
+{
+  "changeID": "LHO-WORKFLOW-DIAGNOSTIC-P84-20261117",
+  "recordedUTC": "2026-11-17T03:52:00.159188+00:00",
+  "status": "EXTERNAL_DIAGNOSTIC_SOURCE_AND_MODELS_PREPARED_NATIVE_PROTOCOL_PENDING",
+  "goalStatus": "ACTIVE",
+  "runtimeApplied": false,
+  "repositoryRuntimeEdits": 0,
+  "body": {
+    "sha256": "3f06bf8328a518eb39e6cf61f2a5a4d380a5636258c473645ee2ba11ba3605fd",
+    "mockJobs": 2,
+    "casesEachVM": 31,
+    "checksEachVM": 1272,
+    "pins": 54,
+    "scope": "Lifecycle/arity/raw-business-errors/clock/ownership/cleanup mocks only"
+  },
+  "actualRoutes": {
+    "R1": {
+      "pairsEachVM": 2,
+      "contextsEachVM": 4,
+      "checksEachVM": 62,
+      "pins": 114,
+      "scope": "Genuine selected public routes and sameVM selected call/order/state parity; original-entry counters did not prove observer row entry"
+    },
+    "R2": {
+      "pairsEachVM": 2,
+      "contextsEachVM": 4,
+      "checksEachVM": 88,
+      "pins": 130,
+      "businessFixtureUnchanged": true,
+      "savedCurrentAndAutomaticPostRowsEnteredCompletedValid": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "rowOrder": [
+        "provider",
+        "Inventory.Notify",
+        "Best.Scan.Recompute",
+        "EBS.FlushEval",
+        "EBS.FlushCounts",
+        "Bars.Flush"
+      ],
+      "allUncompletedZero": true,
+      "sameVMSelectedCountsOrderedTraceStateEqual": true,
+      "allSixCurrentSlotsOriginal": true
+    },
+    "argumentLimit": "GetItemCount trace first3 named args only; fixture ignores varargs4/5. Not allAPI coverage.",
+    "unqualified": [
+      "Shared Core.Scheduler/private HeavyQueue",
+      "Full EBS/Bars eval dispatcher",
+      "Upstream Syndicator/Store/native provider work",
+      "Native event delivery/taint/FPS/loaded-byte adoption"
+    ],
+    "R1History": "Metadata crossVM raw-byte overassert failed before report; original script retained. Actual model jobs passed. Listener pairs order/raw numeric-format differences preserved without normalization or model rerun."
+  },
+  "sourceReviewCorrectionsBeforeFirstTests": [
+    "Omit querying Perf.Snapshot/IsScanPending and Scheduler stats; pure bounded raw fields only",
+    "Final timer jitter metadata differs from strict post actual/request/deadline bounds; all completed spans must be valid",
+    "Diagnostic error objects private; raw business errors unchanged",
+    "Initial/current secret-safe provider selector and before/post/final generation monotonicity",
+    "Truthful partial rollback, foreign slot/frame/root preservation",
+    "R2 adds missing six observer-row assertion/persistence qualification; R1 genuine-route evidence retained"
+  ],
+  "eventContract": {
+    "primary": "Forever1.60.1.70938/bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "sourceFiles": 9,
+    "unitEvents": 5,
+    "bagEvents": 2,
+    "registration": "Protected RegisterUnitEvent(player)/RegisterEvent must returntrue; rollback all attempted registrations onfalse/error",
+    "payloads": "Ignored in full, including unit/GUID/spellID; no native delivery proven"
+  },
+  "checkpoint": {
+    "sourceFiles": 23,
+    "sourceReportReference": "sourceCheckpoint",
+    "historyVerifiedByRoot": true,
+    "knownSettingsStatOnly": 125,
+    "privateSettingsCopied": false,
+    "newSettingsCollectionByDraft": false
+  },
+  "nativeReadiness": {
+    "provenance": "Root personally read/formally ACKed NEW line; draft reads existing journals/hashes only, no client inspection",
+    "run": "p84ctx20261117a",
+    "line": "P84CTX 1.60.1 70938 16001 syndicator true table true true",
+    "submittedUTC": "2026-11-17T03:43:14.380961+00:00",
+    "identity": {
+      "pid": 46260,
+      "hwnd": 600248958,
+      "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+      "created": 134392816726299937
+    },
+    "helperSHA256": "c6ebd6a87a8ff1315d33dced6e81479b565c1dd32ac17b53f7cbd79aa069eb7c",
+    "sourceProof": "Root reports exact inverse253-byte payload/26-function AST transport proof versus P67 metadata; existing physical guards retained",
+    "charactersQueued": 253,
+    "enqueueMs": 141.00000000325963,
+    "formalACK": true,
+    "lockReleased": true,
+    "observerTyped": false,
+    "FoodActorSent": false,
+    "scope": "Build/interface/provider/ready/Food Button table and both selected diagnostic roots absent at this dated snapshot only; no event/FPS/body-adoption result"
+  },
+  "nativeResources": {
+    "provenance": "Root dated release report and archivedhold hashes, not a new liveness inspection",
+    "ownCTXNoJumpArchived": "nativeArchivedNoJump",
+    "ownCTXReservationArchived": "nativeArchivedReservation",
+    "INPUT_HALTED": "Root reports retained",
+    "jumpHelperB5872": "Root reports resumed; existing dated launch facts preserved; not independently probed"
+  },
+  "nextStep": "Root reviews native protocol first2 proof, fresh guarded source and independent Idle, then Root-only fast authorized Food inside30s if eligible; automatic first-success+2s snapshot, paged read/Stop/current cleanup proof. No actor is included in diagnostic body. Native protocol is still preparing as of this draft.",
+  "P83": "REJECTED_UNAPPLIED; ConsumableBind remains7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4; no retime/application",
+  "scopeLimits": "All broader LHO01-13/native/client/provider/bank/mail and whole-workflow gain gaps remain. No native performance result from model counts.",
+  "evidence": {
+    "body": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\observer.lua",
+      "sha256": "3f06bf8328a518eb39e6cf61f2a5a4d380a5636258c473645ee2ba11ba3605fd"
+    },
+    "bodyFirst2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\execution-20261117T031619Z\\execution.json",
+      "sha256": "9fdf2a1704848c5550dda3b1ebe554c28566ffbb1a5be64670e99037501cecb7"
+    },
+    "bodyReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\model-report.json",
+      "sha256": "185570c7f2b00a93a7cef640340651081c34a1a336f5740abad43896159e80a2"
+    },
+    "routeR1": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r1\\route-report.json",
+      "sha256": "8750d36cdf95abe537b771330a9ce02f46878d0c4db711c40f39b24108012024"
+    },
+    "routeR1CrossVM": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r1\\cross-vm-difference-addendum.json",
+      "sha256": "a9448dbdd6c33e5bed801ba0892ba2af9e3211c7190d373314db54808e00b545"
+    },
+    "routeR1MetadataOverassert": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r1\\postprocess_route_crossvm-assumption-retained.ps1",
+      "sha256": "c7d607c33e91760c4cbcf1e63104c01a3410f8e04dcd379d17a5d0a7afebce04"
+    },
+    "routeR2First2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r2\\execution-20261117T034231Z\\execution.json",
+      "sha256": "70a19bd98187fe92be49b6fb51d929989b864f58a2674df9c7281492492ec9df"
+    },
+    "routeR2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r2\\route-report.json",
+      "sha256": "32f5e2923adf77c01024a3c868a1fafdbb814989843c3d0143cbb505a2c4e986"
+    },
+    "routeR2Seal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r2\\result-seal.json",
+      "sha256": "3245b60a803e81d83309482631cd17424a97e73b2089d3ec01821979f6ad642b"
+    },
+    "routeR2Peer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-workflow-p84-r1\\route-r2\\independent-source-review-addon-combo\\review.json",
+      "sha256": "4864375c8853108538f4e5e2c0abc4f08fdbc2dd2df8cc0f48c0ff2a089edb00"
+    },
+    "eventAPI": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-forever-event-contract-sourceonly\\report.json",
+      "sha256": "46386348ace6952b259589c4ed7eaa003b92d30f137d5ae081fdda13162f4648"
+    },
+    "sourceCheckpoint": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p84-readiness-checkpoint-20261117T025808Z\\report.json",
+      "sha256": "df115f94d1c4bb07547f92a9cb86bc9be78e50942d8c2f7af02e971419a896ac"
+    },
+    "nativeCTXJournal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p84ctx20261117a-journal.json",
+      "sha256": "2c544b6883ddb0b7b4b318ce3620f081bfc65e3dfe3ecf243cd53f29eabe9731"
+    },
+    "nativeCTXCapture": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p84ctx20261117a-submitted-capture.json",
+      "sha256": "1f06ea4c55b4def17347fd742f3de7594608f80d7457d6c29740a8158eaf64a7"
+    },
+    "nativeCTXPNG": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p84ctx20261117a-submitted.png",
+      "sha256": "f42daa82cb5078040397ce54ed809cb29a6e24735b5e9aee4848a8f28684b554"
+    },
+    "nativeCTXLeaseEnded": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p84ctx20261117a-lease-ended.json",
+      "sha256": "4446d4e134a3cfffb7561d5633ad9579f32d3b5ee3954b5f14037bf0b70dc155"
+    },
+    "nativeArchivedNoJump": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\p84ctx-release-20261117a\\no_jump",
+      "sha256": "4710708df64e5ecf9e91292dafd04af0e3461cfc25604db729e866a0d80cab87"
+    },
+    "nativeArchivedReservation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\p84ctx-release-20261117a\\NATIVE_CAPTURE_RESERVATION.json",
+      "sha256": "49a66255ed84c541d9da2ff2af2b8e40104848bc8a4b8e74497abf2790fba5fc"
+    }
+  }
+}

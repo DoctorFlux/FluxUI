@@ -1,0 +1,280 @@
+{
+  "changeId": "STRIP-PANEL-SETTLE-R92-20261119",
+  "capturedAtUTC": "2026-11-19T10:40:06.544399+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Consolidate Trinket Menu and Info work during strip crossings and keep neighboring borders attached to the correct owners.",
+  "changes": [
+    "Apply the Trinket Menu squeeze once after the other panels settle. Keep the native strip anchor when it matches, with original writers for missing or changed points.",
+    "Refresh only strip-local Info placement on a crossing after its current mode is initialized. Preserve ordinary full layout and the first pass for a changed placement.",
+    "Resolve envelope owners once and include their identities in the unchanged test. Resolve both fills as the strip moves, keeping the verified relative points of the trinket gap."
+  ],
+  "sources": {
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "b5d366e0cb35282593e4667f138c7ad4bdcc833a32e3e7b0054eca505eac066a",
+      "afterRaw": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+      "afterRaw": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "57fd5ab51e9eb961c1714e897e207e196f6b874800686827195273d5bf0a1192",
+      "afterRaw": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635"
+    },
+    "StatusBars/FluxInfoFrame.lua": {
+      "beforeRaw": "71761f90f0c40d686abfc9bb9f2685373c1ba5cb9cce85d7a08878f230769f4c",
+      "afterRaw": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208"
+    },
+    "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+      "beforeRaw": "913d1c4c3a4b8721abbb311f36fe8fdf03ada6ed033033441dd421f6e51c60a0",
+      "afterRaw": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38"
+    },
+    "tests/trinket_squeeze_geometry_work.lua": {
+      "beforeRaw": "313886b72b3ffcf96ff222a5890589916512ad931ff86e5bcb0a6ab259b23049",
+      "afterRaw": "a8c87d8ed46f8b5ecfc52246a0f40d0837415a049e7f0f5ef56ee66752283fef"
+    },
+    "tests/strip_panel_settle.lua": {
+      "beforeRaw": null,
+      "afterRaw": "868ec2328e74d32d28734aa20124ea18904713b9789e1f13060aea1a1b8647b5"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\source.zip",
+    "archiveSHA256": "b6164b7f0f43ae4a578613cb4decdc741066c24a98674facc87b887204d802e5",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Desktop runs of the actual Lua transaction and relevant layout owners, with native widget/paint and coordinate behavior modeled. The two matched scenarios are independent.",
+    "info": {
+      "matched": 32,
+      "placements": [
+        "actionStrip",
+        "minimapTop",
+        "screenTopLeft",
+        "statusIntegrated"
+      ],
+      "fullChromePerCrossing": [
+        1,
+        0
+      ],
+      "rows": [
+        "STRIP_INFO placement=actionStrip crossing=1 fullChrome=1/0 stats=1/1 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=2 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=3 fullChrome=1/0 stats=1/1 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=4 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=5 fullChrome=1/0 stats=1/1 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=6 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=7 fullChrome=1/0 stats=1/1 gap=0/1",
+        "STRIP_INFO placement=actionStrip crossing=8 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=1 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=2 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=3 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=4 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=5 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=6 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=7 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=minimapTop crossing=8 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=1 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=2 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=3 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=4 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=5 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=6 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=7 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=screenTopLeft crossing=8 fullChrome=1/0 stats=1/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=1 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=2 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=3 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=4 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=5 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=6 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=7 fullChrome=1/0 stats=0/0 gap=0/1",
+        "STRIP_INFO placement=statusIntegrated crossing=8 fullChrome=1/0 stats=0/0 gap=0/1",
+        "Strip panel settlement passes all Info placements, narrow slots, changing ownership and combat guards."
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\panels.txt",
+      "sha256": "85ee8815b2b0bc079d0a88c7d47e6ecc0f9ea3f99f7e467471aff3d1e920237a"
+    },
+    "trinket": {
+      "matched": 40,
+      "shapes": [
+        "modern",
+        "legacy"
+      ],
+      "clientModels": [
+        "post-DF",
+        "Classic"
+      ],
+      "squeezePerCrossing": [
+        2,
+        1
+      ],
+      "steadyAnchorResetsPerCrossing": [
+        1,
+        0
+      ],
+      "rows": [
+        "STRIP_TRINKET shape=modern classic=false squeeze=20/10 anchor=10/0",
+        "STRIP_TRINKET shape=modern classic=true squeeze=20/10 anchor=10/0",
+        "STRIP_TRINKET shape=legacy classic=false squeeze=20/10 anchor=10/0",
+        "STRIP_TRINKET shape=legacy classic=true squeeze=20/10 anchor=10/0",
+        "TRINKET_SQUEEZE_WORK|10notifications|20sourceCalls|geometry=0|nativeReads=300|clipWrites=40|styleCalls=40|arrowLayers=20",
+        "Trinket squeeze geometry: 546 checks PASS; original calls/cadence/recovery retained; native timing pending"
+      ],
+      "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\trinket.txt",
+      "sha256": "4655c405f2f3bead583e618f6dad29481ce2697d4d9c6c5b5d0b187af53c879a"
+    },
+    "repairs": [
+      "narrow Info slot hides and reappears as the available width crosses the threshold",
+      "same-rectangle replacement causes envelope to anchor to the current owner",
+      "trinket gap attaches to the strip or trinket depending on visibility and keeps stable points during translation",
+      "new Info placement and explicit refresh keep original full calls",
+      "changed or private Trinket Menu anchor falls back and current squeeze remains correct",
+      "existing combat guards prevent layout work"
+    ]
+  },
+  "verification": {
+    "focused": 203,
+    "syntax": 1237,
+    "compilerMaximumUpvalues": 28,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-panel-settle-r92-before-20261119T103223Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+          "matchesCandidate": true
+        },
+        "Layout/UnifiedBorder.lua": {
+          "sha256": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+          "matchesCandidate": true
+        },
+        "StatusBars/FluxInfoFrame.lua": {
+          "sha256": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+          "sha256": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+          "matchesCandidate": true
+        },
+        "Layout/UnifiedBorder.lua": {
+          "sha256": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+          "matchesCandidate": true
+        },
+        "StatusBars/FluxInfoFrame.lua": {
+          "sha256": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+          "sha256": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+          "matchesCandidate": true
+        },
+        "Layout/UnifiedBorder.lua": {
+          "sha256": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+          "matchesCandidate": true
+        },
+        "StatusBars/FluxInfoFrame.lua": {
+          "sha256": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+          "sha256": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+          "matchesCandidate": true
+        },
+        "Layout/UnifiedBorder.lua": {
+          "sha256": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+          "matchesCandidate": true
+        },
+        "StatusBars/FluxInfoFrame.lua": {
+          "sha256": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+          "sha256": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sources": {
+        "FluxDefaultSettings.lua": {
+          "sha256": "08766768b7720efec4ed43bf6d84b7f0afb953a6606ee864a935296e3a01e8d3",
+          "matchesCandidate": true
+        },
+        "Bars/Layout.lua": {
+          "sha256": "88b9f18f0500dd71f4271a4908eb9e7717cbdeddb73043a6a5155c0cfcab3df2",
+          "matchesCandidate": true
+        },
+        "Layout/UnifiedBorder.lua": {
+          "sha256": "692ab0eb21040e0dcf5efb04662216ce29581d03329c0c4a81d5524aa814a635",
+          "matchesCandidate": true
+        },
+        "StatusBars/FluxInfoFrame.lua": {
+          "sha256": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+          "matchesCandidate": true
+        },
+        "ExtraButtonSystem/TrinketMenu/FluxTrinketMenuManager.lua": {
+          "sha256": "a9a931008178275ba24d76b477cfbbc3f65bf0450f5d223665a864cfe2bdae38",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Held-action cursor latency, panel seams, independent party and raid join/leave timing, and combat taint remain open. No native input or profiling changes."
+}

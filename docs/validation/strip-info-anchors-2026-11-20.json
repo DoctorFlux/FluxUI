@@ -1,0 +1,359 @@
+{
+  "changeId": "STRIP-INFO-ANCHORS-20261120",
+  "capturedAtUTC": "2026-11-20T06:09:27.352863+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "StatusBars/FluxInfoFrame.lua": {
+      "beforeRaw": "d74f90dd5da9cd8c55540cc48a7157cecb96be32a5f0a60704dbbd41bdb7c208",
+      "afterRaw": "816699e0369e6f04273786b62f9228277f65aa70fe0f003807069f284b9b445b",
+      "afterNormalized": "816699e0369e6f04273786b62f9228277f65aa70fe0f003807069f284b9b445b"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+      "afterRaw": "5b3dd290630d770bf3e9d12960fa99457e1fd2ac24118bbbcab8f218c704654d",
+      "afterNormalized": "5b3dd290630d770bf3e9d12960fa99457e1fd2ac24118bbbcab8f218c704654d"
+    },
+    "tests/strip_panel_settle.lua": {
+      "beforeRaw": "868ec2328e74d32d28734aa20124ea18904713b9789e1f13060aea1a1b8647b5",
+      "afterRaw": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "afterNormalized": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-info-anchors-before-20261120T070157151\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_retail_": 2,
+      "_anniversary_": 10,
+      "_forever_": 3
+    }
+  },
+  "work": {
+    "scope": "Actual source slices for Info placement and envelope settle with modeled widget methods. A warm held-action cursor changes the neighboring grid position across two widths. Each mode compares all 60 states before clock trials.",
+    "trials": {
+      "actionStrip": {
+        "wide": {
+          "samplesMs": [
+            [
+              42.0,
+              30.0
+            ],
+            [
+              44.0,
+              33.0
+            ],
+            [
+              47.0,
+              31.0
+            ],
+            [
+              43.0,
+              30.0
+            ],
+            [
+              44.0,
+              34.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            180,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            44.0,
+            31.0
+          ]
+        },
+        "narrow": {
+          "samplesMs": [
+            [
+              46.0,
+              35.0
+            ],
+            [
+              45.0,
+              33.0
+            ],
+            [
+              51.0,
+              34.0
+            ],
+            [
+              46.0,
+              34.0
+            ],
+            [
+              45.0,
+              33.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            90,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            46.0,
+            34.0
+          ]
+        }
+      },
+      "screenTopLeft": {
+        "wide": {
+          "samplesMs": [
+            [
+              44.0,
+              32.0
+            ],
+            [
+              46.0,
+              33.0
+            ],
+            [
+              46.0,
+              31.0
+            ],
+            [
+              47.0,
+              31.0
+            ],
+            [
+              48.0,
+              30.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            180,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            46.0,
+            31.0
+          ]
+        },
+        "narrow": {
+          "samplesMs": [
+            [
+              45.0,
+              36.0
+            ],
+            [
+              45.0,
+              29.0
+            ],
+            [
+              46.0,
+              30.0
+            ],
+            [
+              47.0,
+              33.0
+            ],
+            [
+              46.0,
+              36.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            90,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            46.0,
+            33.0
+          ]
+        }
+      },
+      "minimapTop": {
+        "wide": {
+          "samplesMs": [
+            [
+              46.0,
+              35.0
+            ],
+            [
+              47.0,
+              35.0
+            ],
+            [
+              41.0,
+              29.0
+            ],
+            [
+              43.0,
+              29.0
+            ],
+            [
+              47.0,
+              29.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            180,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            46.0,
+            29.0
+          ]
+        },
+        "narrow": {
+          "samplesMs": [
+            [
+              42.0,
+              29.0
+            ],
+            [
+              43.0,
+              27.0
+            ],
+            [
+              39.0,
+              29.0
+            ],
+            [
+              47.0,
+              31.0
+            ],
+            [
+              45.0,
+              32.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            90,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            43.0,
+            29.0
+          ]
+        }
+      },
+      "statusIntegrated": {
+        "wide": {
+          "samplesMs": [
+            [
+              46.0,
+              35.0
+            ],
+            [
+              46.0,
+              33.0
+            ],
+            [
+              47.0,
+              34.0
+            ],
+            [
+              149.0,
+              44.0
+            ],
+            [
+              121.0,
+              86.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            180,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            47.0,
+            35.0
+          ]
+        },
+        "narrow": {
+          "samplesMs": [
+            [
+              105.0,
+              78.0
+            ],
+            [
+              121.0,
+              74.0
+            ],
+            [
+              106.0,
+              85.0
+            ],
+            [
+              123.0,
+              78.0
+            ],
+            [
+              127.0,
+              100.0
+            ]
+          ],
+          "crossings": 60,
+          "setPoints": [
+            90,
+            0
+          ],
+          "leftOwnerBottomReads": [
+            180,
+            60
+          ],
+          "medianMs": [
+            121.0,
+            78.0
+          ]
+        }
+      }
+    },
+    "trialCrossings": 4000,
+    "trialOrder": "Five paired clock samples with execution order alternating; before and after values listed in that order.",
+    "matchedReplaySHA256": "84cd8f9d21e81f6d094f0770b86845cf7f148f23a786ecfda20b89f360f18538",
+    "clockScope": "Desktop Lua time and modeled native calls cannot establish WoW frame duration or native anchor cost."
+  },
+  "parity": "All four Info placements match previous per-crossing anchors, exact offsets, frame sizes, visibility and modeled status refreshes. First setup, genuine peer changes, missing/secret/denied readings, gap visibility and lockdown retain their established paths. Ordinary and gamepad anchor paths retain their existing writes.",
+  "verification": {
+    "focusedPassed": 29,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-info-anchors-before-20261120T070157151\\final-focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-info-anchors-before-20261120T070157151\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-info-anchors-before-20261120T070157151\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua"
+    ]
+  },
+  "nativeAcceptance": "Native rapid crossings and drops, actual side-seam pixels, in-combat restrictions and group hitch timing remain pending."
+}

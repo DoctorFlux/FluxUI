@@ -1,0 +1,263 @@
+-- Offline actual production portrait/camera/partition/Pet consumer fixture.
+-- Native endpoints are explicit models. This is not a WoW security/render/FPS VM.
+local M={}
+local unpackValues=table.unpack or unpack
+local function read(p)local f=assert(io.open(p,'rb'));local s=f:read('*a'):gsub('\r\n','\n');f:close();return s end
+local function section(s,a,b)local x=assert(s:find(a,1,true),a);return s:sub(x,assert(s:find(b,x+#a,true),b)-1)end
+local function loadenv(body,label,env)
+ if _VERSION=='Lua 5.1'then local fn,err=loadstring(body,label);if fn then setfenv(fn,env)end;return fn,err end
+ return load(body,label,'t',env)
+end
+local function pack(...)return{n=select('#',...),...}end
+M.read=read;M.section=section;M.loadenv=loadenv
+function M.compileSource(source,label,petSource)
+ local geometry=section(source,'local function ValueIsSecret(value)','local function PlayerDeadOrGhost(unit)')
+ local empty=section(source,'local function HideEmptyUnitPortrait(self)','local function ApplyWatchedUnitChrome')
+ local portraits=section(source,'local function IsCamelotPortraitClient()','-- Spec Icon Detection (works across all clients)')
+ local atlas=section(source,'function UF.UpdateAtlasBorder(self)','-- Unit tooltip (custom SecureUnitButton')
+ local partition=section(source,'function UF.UpdateFramePartitionSeparators(','-- Event Handling')
+ local body='local _,ns=...;local UF,API=ns.UnitFrames,ns.API\n'..geometry..empty..portraits..atlas..partition
+  ..'\nreturn ApplyPortraitCamera,SchedulePortraitCameraRefresh,SetPortraitUnit'
+ -- Compile once outside any later cost window. Environment is applied per fixture.
+ local pet=petSource or read('UnitFrames/FluxUnitFrames_Pet.lua')
+ local petBody=section(pet,'    local function UpdatePetData()','    ns.PetFrame = frame')
+ return{path=label,body=body,petBody=petBody,source=source}
+end
+function M.compile(path,petPath)
+ return M.compileSource(read(path),path,petPath and read(petPath))
+end
+function M.fixture(compiled,config)
+ local cfg=config or{}
+ local s={config=cfg,trace={},errors={},regions={},timers={},pendingTimers=0,armed=false,observe=true,pcalls={},pcallDepth=0,
+  marker={},private={},inaccessible={},nextId=0,exists=true,visible=true,connected=true,isPlayer=true,locked=false,use3D=true}
+ local e=setmetatable({}, {__index=_G});e._G=e;s.env=e
+ local methods={}
+ local function norm(v)
+  if rawequal(v,s.marker)then return'<opaque-error>'end
+  if rawequal(v,s.private)then return'<private>'end
+  if rawequal(v,s.inaccessible)then return'<inaccessible>'end
+  if type(v)=='table'then return v._id or'<table>'end
+  if type(v)=='function'then return'<function>'end
+  if type(v)=='nil'then return'nil'end
+  if type(v)=='number'then return string.format('%.17g',v)end
+  return tostring(v)
+ end
+ local function log(tag,...)
+  if not s.observe then return end
+  local row={tag};for i=1,select('#',...)do row[#row+1]=norm(select(i,...))end
+  s.trace[#s.trace+1]=table.concat(row,'|')
+ end
+ s.log,s.norm=log,norm
+ e.pcall=function(fn,...)
+  if not s.observe then return pcall(fn,...)end
+  s.pcallDepth=s.pcallDepth+1;log('pcall.begin',s.pcallDepth)
+  if type(fn)=='function'then s.pcalls[fn]=true end
+  local values=pack(pcall(fn,...));log('pcall.end',s.pcallDepth,values.n,values[1])
+  if values[1]==false then
+   s.errors[#s.errors+1]=rawequal(values[2],s.marker)and'<opaque-error>'or tostring(values[2])
+  end
+  s.pcallDepth=s.pcallDepth-1;return unpackValues(values,1,values.n)
+ end
+ local function native(self,name,...)
+  if s.observe then log(self._id..'.'..name,...)end
+  if s.armed and cfg.fail==name and not s.failed then s.failed=true;error(s.marker,0)end
+ end
+ local mt={}
+ function mt.__tostring(r)return r._id end
+ local function region(kind,label,parent)
+  s.nextId=s.nextId+1
+  local r={_id=label or kind..s.nextId,_kind=kind,_data={parent=parent,width=80,height=80,scale=1,level=5,strata='MEDIUM',shown=true,alpha=1,
+   scripts={},points={{},{},{},{},{},{},{},{}},pointCount=0,distance=6,targetX=0,targetY=0,targetZ=1,cameraX=6,cameraY=0,cameraZ=1,modelID=123}}
+  setmetatable(r,mt);s.regions[#s.regions+1]=r;return r
+ end
+ function mt.__index(r,key)
+  local d=rawget(r,'_data')
+  if s.armed and r._kind=='PlayerModel'then
+   if s.observe then log(r._id..'.lookup',key)end
+   if key==cfg.lookupFault and(not s.lookupFailed or cfg.lookupAlways)then s.lookupFailed=true;error(s.marker,0)end
+   if key=='ClearModel'and cfg.clearLookupSwap and not s.clearLookupSwapped then
+    s.clearLookupSwapped=true;s.owner.Portrait=s.replacement
+   end
+  elseif s.observe and key=='Portrait'and r==s.owner then log(r._id..'.lookup','Portrait')end
+  if d[key]~=nil then return d[key]end
+  return methods[key]
+ end
+ function mt.__newindex(r,key,value)
+  rawget(r,'_data')[key]=value
+  if s.observe and(key:find('^_flux')or key=='Portrait'or key=='Portrait2D'or key=='PortraitFrame')then log(r._id..'.field',key,value)end
+ end
+ function methods:GetParent()native(self,'GetParent');return self._data.parent end
+ function methods:GetFrameLevel()native(self,'GetFrameLevel');return self._data.level end
+ function methods:SetFrameLevel(v)native(self,'SetFrameLevel',v);self._data.level=v end
+ function methods:GetFrameStrata()native(self,'GetFrameStrata');return self._data.strata end
+ function methods:SetFrameStrata(v)native(self,'SetFrameStrata',v);self._data.strata=v end
+ function methods:GetWidth()native(self,'GetWidth');return self._data.width end
+ function methods:GetHeight()native(self,'GetHeight');return self._data.height end
+ function methods:GetSize()native(self,'GetSize');return self._data.width,self._data.height end
+ function methods:SetSize(w,h)
+  native(self,'SetSize',w,h);self._data.width,self._data.height=w,h
+  if s.armed and self==s.owner.Portrait and cfg.geometrySwap and not s.geometrySwapped then
+   s.geometrySwapped=true;s.owner.Portrait2D=s.replacement2D;s.owner.PortraitFrame=s.replacementFrame
+  end
+ end
+ function methods:SetWidth(v)native(self,'SetWidth',v);self._data.width=v end
+ function methods:SetHeight(v)native(self,'SetHeight',v);self._data.height=v end
+ function methods:SetScale(v)native(self,'SetScale',v);self._data.scale=v end
+ function methods:GetScale()native(self,'GetScale');return self._data.scale end
+ function methods:GetEffectiveScale()native(self,'GetEffectiveScale');return self._data.scale end
+ function methods:ClearAllPoints()native(self,'ClearAllPoints');self._data.pointCount=0 end
+ function methods:SetPoint(a,b,c,d,f)
+  native(self,'SetPoint',a,b,c,d,f);local data=self._data;local i=data.pointCount+1;data.pointCount=i
+  local p=assert(data.points[i],'bounded native point pool');p[1],p[2],p[3],p[4],p[5]=a,b,c,d,f
+ end
+ function methods:GetNumPoints()native(self,'GetNumPoints');return self._data.pointCount end
+ function methods:GetPoint(i)native(self,'GetPoint',i);return unpackValues(self._data.points[i],1,5)end
+ function methods:SetAllPoints(owner)native(self,'SetAllPoints',owner);self._data.allpoints=owner end
+ function methods:GetAlpha()native(self,'GetAlpha');return self._data.alpha end
+ function methods:SetAlpha(v)native(self,'SetAlpha',v);self._data.alpha=v end
+ function methods:IsShown()native(self,'IsShown');return self._data.shown end
+ function methods:Show()
+  native(self,'Show');local was=self._data.shown;self._data.shown=true
+  if not was and self._data.scripts.OnShow then self._data.scripts.OnShow(self)end
+ end
+ function methods:Hide()native(self,'Hide');self._data.shown=false end
+ function methods:SetScript(k,v)native(self,'SetScript',k,v);self._data.scripts[k]=v end
+ function methods:GetScript(k)native(self,'GetScript',k);return self._data.scripts[k]end
+ function methods:HookScript(k,v)native(self,'HookScript',k,v);self._data.scripts[k]=v end
+ function methods:CreateTexture()native(self,'CreateTexture');return region('Texture',nil,self)end
+ function methods:SetTexture(v)native(self,'SetTexture',v);self._data.texture=v end
+ function methods:GetTexture()native(self,'GetTexture');return self._data.texture end
+ function methods:SetTexCoord(a,b,c,d)native(self,'SetTexCoord',a,b,c,d)end
+ function methods:SetVertexColor(a,b,c,d)native(self,'SetVertexColor',a,b,c,d)end
+ function methods:SetDrawLayer(a,b)native(self,'SetDrawLayer',a,b)end
+ function methods:EnableMouse(v)native(self,'EnableMouse',v)end
+ function methods:SetIgnoreParentAlpha(v)native(self,'SetIgnoreParentAlpha',v)end
+ function methods:RegisterEvent(v)native(self,'RegisterEvent',v);self._data['event.'..v]=true end
+ function methods:IsEventRegistered(v)native(self,'IsEventRegistered',v);return self._data['event.'..v]or false end
+ function methods:SetCamDistanceScale(v)native(self,'SetCamDistanceScale',v)end
+ function methods:SetPortraitZoom(v)native(self,'SetPortraitZoom',v);self._data.distance=s.seedDistance or 6 end
+ function methods:SetPosition(a,b,c)native(self,'SetPosition',a,b,c)end
+ function methods:SetModelScale(v)native(self,'SetModelScale',v)end
+ function methods:MakeCurrentCameraCustom()native(self,'MakeCurrentCameraCustom')end
+ function methods:GetCameraDistance()native(self,'GetCameraDistance');return self._data.distance end
+ function methods:GetCameraTarget()native(self,'GetCameraTarget');return self._data.targetX,self._data.targetY,self._data.targetZ end
+ function methods:GetCameraPosition()native(self,'GetCameraPosition');return self._data.cameraX,self._data.cameraY,self._data.cameraZ end
+ function methods:SetCameraTarget(a,b,c)native(self,'SetCameraTarget',a,b,c);self._data.targetX,self._data.targetY,self._data.targetZ=a,b,c end
+ function methods:SetCameraPosition(a,b,c)native(self,'SetCameraPosition',a,b,c);self._data.cameraX,self._data.cameraY,self._data.cameraZ=a,b,c end
+ function methods:SetCameraDistance(v)native(self,'SetCameraDistance',v);self._data.distance=v end
+ function methods:RefreshCamera()native(self,'RefreshCamera')end
+ function methods:SetCamera(v)native(self,'SetCamera',v)end
+ function methods:SetDoBlend(v)native(self,'SetDoBlend',v)end
+ function methods:SetKeepModelOnHide(v)native(self,'SetKeepModelOnHide',v)end
+ function methods:ClearModel()
+  native(self,'ClearModel');self._data.modelID=0
+  if s.armed and cfg.clearSwap and not s.clearSwapped then s.clearSwapped=true;s.owner.Portrait=s.replacement end
+  if s.armed and cfg.reenter and not s.reentered then s.reentered=true;s.uf.UpdatePortrait(s.owner,'ignored')end
+ end
+ function methods:SetUnit(unit,blend)
+  native(self,'SetUnit',unit,blend)
+  if s.armed and cfg.setUnit=='both-fail'then error(s.marker,0)end
+  if s.armed and blend~=nil and(cfg.setUnit=='twoarg-fail'or cfg.setUnit=='twoarg-swap-fail')then
+   if cfg.setUnit=='twoarg-swap-fail'then
+    self.SetUnit=function(current,token,nextBlend)native(current,'SetUnitReplacement',token,nextBlend);current._data.modelID=234 end
+   end
+   error(s.marker,0)
+  end
+  self._data.unit=unit;self._data.modelID=123
+  if s.armed and cfg.syncLoad and self._data.scripts.OnModelLoaded then self._data.scripts.OnModelLoaded(self)end
+  if s.armed and cfg.setUnit=='returns-false'then return false end
+ end
+ function methods:GetModelFileID()native(self,'GetModelFileID');if s.armed and cfg.modelPrivate then return s.private end;return self._data.modelID end
+ local uf={}
+ s.uf=uf
+ local ns={UnitFrames=uf,API={},Flux={Client={isForever=cfg.branch=='forever',isCamelot=cfg.branch=='forever'}}}
+ e.FLUX_API={isPostDF=cfg.branch=='live'or cfg.branch=='forever',isForever=cfg.branch=='forever',isCamelot=cfg.branch=='forever'}
+ e.IsSecretValue=function(v)return rawequal(v,s.private)or rawequal(v,s.inaccessible)end
+ ns.API.IsSecretValue=e.IsSecretValue;ns.API.CanAccessValue=function(v)return not e.IsSecretValue(v)end
+ e.API=ns.API
+ e.IsFluxUnitFrame=function()return true end
+ e.InCombatLockdown=function()log('InCombatLockdown');return s.locked end
+ e.FluxUnitFrames_ShouldUse3DPortrait=function()log('ShouldUse3D');return s.use3D end
+ e.UnitExists=function(unit)log('UnitExists',unit);return s.exists end
+ e.UnitIsVisible=function(unit)log('UnitIsVisible',unit);return s.visible end
+ e.UnitIsConnected=function(unit)log('UnitIsConnected',unit);return s.connected end
+ e.UnitIsPlayer=function(unit)log('UnitIsPlayer',unit);return s.isPlayer end
+ e.UnitGUID=function(unit)log('UnitGUID',unit);return'GUID-'..unit end
+ e.SetPortraitTexture=function(texture,unit)log('SetPortraitTexture',texture,unit);texture._data.portraitUnit=unit end
+ e.GetChromeSeparatorRGB=function(unit)log('ChromeColor',unit);return .2,.3,.4 end
+ e.FluxSafeRegisterUnitEvent=function(frame,event,unit)log('RegisterUnitEvent',frame,event,unit)end
+ e.CreateFrame=function(kind,name,parent)log('CreateFrame',kind,name,parent);return region(kind,name,parent)end
+ e.C_Timer={After=function(delay,fn)
+  log('After',delay);s.pendingTimers=s.pendingTimers+1;local i=s.pendingTimers;s.timers[i]=s.timers[i]or{}
+  s.timers[i][1],s.timers[i][2]=delay,fn
+ end}
+ e.UIParent=region('Frame','UIParent')
+ uf.UpdatePortraitCombatTint=function(frame)log('PortraitTint',frame)end
+ uf.UpdateHealth=function(frame,unit)log('UpdateHealth',frame,unit)end
+ uf.UpdatePower=function(frame,unit)log('UpdatePower',frame,unit)end
+ uf.SyncWatchedUnitFrameVisibility=function(frame)log('SyncWatched',frame)end
+ uf.SyncPublicHealthGeometry=function(frame,height)log('PublicHealth',frame,height);frame.Health._fluxGeometryHeight=height end
+ uf.UsesHudUnitBars=function()return cfg.branch=='live'or cfg.branch=='forever'end
+ uf.UpdateOuterBorder=function(frame)log('OuterBorder',frame)end
+ uf.LayoutThreatBar=function(frame)log('ThreatLayout',frame)end
+ uf.DeferProtected=function(key,fn)log('Defer',key);s.deferred=s.deferred or{};s.deferred[key]=fn end
+ local apply,schedule,setUnit=assert(loadenv(compiled.body,'@production-portrait-owners',e))('_FluxUI',ns)
+ s.apply,s.schedule,s.setUnit=apply,schedule,setUnit
+ local owner=region('Frame','owner',e.UIParent);owner.unit=cfg.unit or'pet';owner.portraitPosition='RIGHT';owner._fluxLayoutWidth=100;owner._fluxLayoutHeight=80
+ owner.Health=region('StatusBar','health',owner);owner.Power=region('StatusBar','power',owner)
+ owner.Health._fluxTextAnchor=region('Frame','healthText',owner)
+ owner.atlasBorderFrame=region('Frame','atlas',e.UIParent)
+ owner.HealthPowerSeparator=region('Texture','separator',e.UIParent)
+ owner.UpdatePartition=uf.UpdateFramePartition;owner.UpdateOuterBorder=uf.UpdateOuterBorder
+ s.owner=owner
+ if cfg.kind~='empty'then uf.CreatePortrait(owner)end
+ s.replacement=region('PlayerModel','replacement',owner.PortraitFrame or owner)
+ s.replacement2D=region('Texture','replacement2D',owner.PortraitFrame or owner)
+ s.replacementFrame=region('Frame','replacementFrame',owner);s.replacementFrame._fluxLayoutWidth=90
+ function s:drain()
+  local count=self.pendingTimers;self.pendingTimers=0
+  for i=1,count do local timer=self.timers[i];local fn=timer[2];timer[2]=nil;fn()end
+ end
+ -- Native timers are finite and explicit. Drain startup before arming faults.
+ for _=1,3 do if s.pendingTimers>0 then s:drain()end end
+ if cfg.kind=='empty'then owner.Health=nil;owner.Power=nil end
+ if cfg.kind=='2D'then s.use3D=false end
+ if cfg.missingModel then owner.Portrait=nil end
+ if cfg.noFlat then owner.Portrait2D=nil end
+ if cfg.noCustom and owner.Portrait then owner.Portrait.MakeCurrentCameraCustom=false;owner.Portrait.SetCustomCamera=false end
+ owner:SetScript('OnEvent',function()log('SharedEventBoundary')end)
+ local petEnv=setmetatable({frame=owner,UF=uf,UpdatePosition=function()log('PetPosition')end,UnitExists=e.UnitExists}, {__index=e})
+ assert(loadenv(compiled.petBody..'\nreturn UpdatePetData','@actual-pet-data-consumer',petEnv))()
+ function s:full()
+  if self.config.kind=='empty'then
+   self.uf.UpdatePortrait(self.owner,'ignored');self.uf.SyncPortraitModelGeometry(self.owner);self.uf.UpdateFramePartition(self.owner)
+  elseif self.owner.unit=='pet'then
+   self.owner:GetScript('OnEvent')(self.owner,'UNIT_FLAGS','pet')
+  else
+   self.uf.UpdatePortrait(self.owner,'ignored');self.uf.UpdateFramePartition(self.owner);self.owner:UpdateOuterBorder()
+  end
+ end
+ function s:reset()
+  self.trace={};self.errors={};self.pcalls={};self.pcallDepth=0;self.armed=true
+  if self.owner.Portrait then self.owner.Portrait._fluxPortraitGeometryFrame=nil;self.owner.Portrait._fluxPortraitGeometrySize=nil end
+  if self.owner.Portrait2D then self.owner.Portrait2D._fluxPortraitGeometryFrame=nil;self.owner.Portrait2D._fluxPortraitGeometrySize=nil end
+ end
+ function s:snapshot()
+  local result={}
+  for _,role in ipairs{'Portrait','Portrait2D','PortraitFrame'}do
+   local r=self.owner[role];result[#result+1]=role..'='..norm(r)
+   if r then
+    local data=r._data
+    for _,key in ipairs{'shown','width','height','modelID','unit','distance','targetX','targetY','targetZ','cameraX','cameraY','cameraZ','portraitUnit','_fluxBlizzardFallback','_fluxQuestionMark','_fluxEmptyCleared','_fluxCamRefreshQueued','_fluxPortraitGeometryFrame','_fluxPortraitGeometrySize'}do
+     result[#result+1]=key..'='..norm(data[key])
+    end
+    for i=1,data.pointCount do local p=data.points[i];result[#result+1]='point='..norm(p[1])..','..norm(p[2])..','..norm(p[3])..','..norm(p[4])..','..norm(p[5])end
+   end
+  end
+  result[#result+1]='pendingTimers='..self.pendingTimers
+  return table.concat(result,'\n')
+ end
+ s:reset()
+ return s
+end
+return M

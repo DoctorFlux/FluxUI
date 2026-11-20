@@ -1,0 +1,1759 @@
+{
+  "changeId": "LHO-REAGENT-NORMALIZATION-P56-20261116",
+  "recordedUTC": "2026-11-16T10:54:26.595184+00:00",
+  "decision": "REJECTED_UNAPPLIED",
+  "goalStatus": "ACTIVE",
+  "decisionReason": "Stress gains do not justify missing-name and default-caller CPU/wall regressions; all nine allocation profiles are unchanged.",
+  "source": {
+    "baseline": {
+      "path": "Inventory/SpellReagents.lua",
+      "sha256": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+      "stillCurrent": true
+    },
+    "externalCandidate": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\candidate-r1\\candidate\\Inventory\\SpellReagents.lua",
+      "sha256": "778dcd498c5515c83a08762bd8c7ba03d05a25740afc197b72a104b9b2f91c39",
+      "applied": false
+    },
+    "delta": "Two private strict-true alreadyNormalized flags and four Harvest call arguments only; six other callsites remain default. All ten existing last arguments are single-result locals/fields, no accidental flag through multi-return expansion. No API/query/harvest/predicate/cadence skip or cache."
+  },
+  "functional": {
+    "eachVariantEachRuntime": {
+      "runtimes": [
+        "stockLua5.1.5",
+        "Lua5.4"
+      ],
+      "contexts": 31,
+      "checks": 951,
+      "originalP56Checks": 624,
+      "addedChecks": 327
+    },
+    "sameVM": {
+      "observationsPerRuntime": 39,
+      "fieldComparisonsPerRuntime": 585,
+      "fieldComparisonsTotalBothRuntimes": 1170,
+      "rawTraceAndRowOrderExactWithinEachVM": true
+    },
+    "existingNameRegression": {
+      "checksPerRuntime": 146,
+      "pairedOwnerCases": 32,
+      "isolatedWorkCases": 5
+    },
+    "negativeControls": "Both compiled harmful default-normalization-removal and missing-outer-normalization controls rejected on intended semantic assertions on both runtimes.",
+    "durableDraft": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\durable-draft\\spell_reagent_normalization_work.lua",
+      "sha256": "ba4fe4112f92ed62ab245be6999037da2ba2758445158bd10ce6157fc3f7407e",
+      "status": "SOURCE_ONLY_NOT_COMPILED_OR_RUN; no further P56 tests authorized"
+    }
+  },
+  "conversionCounts": {
+    "observer": "Native unwrapped tonumber C-call identity and actual private caller identities; no source-line-only filter or identity-gated helper wrapper.",
+    "stress20manual121visible": {
+      "harvestsBoth": 21,
+      "nativeNamesBoth": 2581,
+      "baselineHelperConversions": 5082,
+      "candidateHelperConversions": 0,
+      "outerConversionsBoth": 2541
+    },
+    "modest4manual51visible": {
+      "harvestsBoth": 5,
+      "nativeNamesBoth": 263,
+      "removedHelperConversions": 510
+    },
+    "defaultRewarmAfter20Warmups": {
+      "GetNameConversionsBothPerWork": 1,
+      "RememberConversionsBothPerWork": 7,
+      "nativeNamesBothPerWork": 15
+    },
+    "meaning": "Operation reduction only; does not remove the N+1 harvests or establish native spike/FPS improvement."
+  },
+  "quietPreparation": {
+    "eachRuntimeRoutingContexts": 18,
+    "routingChecks": 832,
+    "actualOwnerLoads": 198,
+    "sacrificialContexts": 18,
+    "sacrificialChecks": 173,
+    "nativeAPIQueryCadenceFactsAndOrderEqualWithinVM": true,
+    "canonicalIDIndexCountCoreItemAndNativeTonumberUntouched": true,
+    "warmups": 20,
+    "crossVM": "Counts/facts/checksums equal; raw pairs traversal order may differ across VMs. Each VM internally baseline/candidate order exact.",
+    "shortRoot": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\p56q\\source"
+  },
+  "costProtocol": {
+    "fixedBatchOnly": true,
+    "CPUChildren": 54,
+    "GCChildren": 2,
+    "records": 56,
+    "profiles": 9,
+    "alternatingPairsPerProfile": 3,
+    "warmups": 20,
+    "childBoundSeconds": 45,
+    "batchBoundSeconds": 300,
+    "cancelPollMilliseconds": 50,
+    "CPUQuantizationMs": 15.625,
+    "noRetriesOrResampling": true,
+    "clock": "Whole own-child Windows process user+kernel CPU; monotonic whole-child wall separately. Includes interpreter/source/setup/warmup/final facts and normal GC.",
+    "allocation": "Two separate variant children, each two trials across nine profiles at N4/N8; all72raw windows retained. Transient stopped-GC growth, not retained heap or pause duration.",
+    "model": "Controlled divergent snapshot/native quantities, as original P56; not ordinary consistent warm carried inventory/current census. Forever-shaped modeled API endpoints, no actual native/provider timing.",
+    "perProfileN": {
+      "ready4_51": 3000,
+      "ready20_121": 1000,
+      "flag20_121": 1000,
+      "known4_51": 3000,
+      "empty0_0": 15000,
+      "small1_7": 10000,
+      "missing4_51": 3000,
+      "merchant0_0": 12000,
+      "rewarm_defaults": 2000
+    }
+  },
+  "allNineCPUAndWallProfiles": [
+    {
+      "profile": "ready4_51",
+      "iterations": 3000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              1687.5,
+              1546.875,
+              1609.375
+            ],
+            "median": 1609.375,
+            "min": 1546.875,
+            "max": 1687.5
+          },
+          "candidate": {
+            "raw": [
+              1562.5,
+              1578.125,
+              1609.375
+            ],
+            "median": 1578.125,
+            "min": 1562.5,
+            "max": 1609.375
+          },
+          "medianDelta": -31.25,
+          "medianPercent": -1.9417475728155331,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 1687.5,
+              "candidate": 1562.5,
+              "delta": -125.0,
+              "percent": -7.4074074074074066
+            },
+            {
+              "pair": 2,
+              "baseline": 1546.875,
+              "candidate": 1578.125,
+              "delta": 31.25,
+              "percent": 2.020202020202011
+            },
+            {
+              "pair": 3,
+              "baseline": 1609.375,
+              "candidate": 1609.375,
+              "delta": 0.0,
+              "percent": 0.0
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 1,
+          "slowerPairs": 1
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              1741.9937000086065,
+              1606.6836999962106,
+              1642.3877999768592
+            ],
+            "median": 1642.3877999768592,
+            "min": 1606.6836999962106,
+            "max": 1741.9937000086065
+          },
+          "candidate": {
+            "raw": [
+              1575.1362000009976,
+              1600.8228000137024,
+              1655.3345000138506
+            ],
+            "median": 1600.8228000137024,
+            "min": 1575.1362000009976,
+            "max": 1655.3345000138506
+          },
+          "medianDelta": -41.56499996315688,
+          "medianPercent": -2.5307664830280907,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 1741.9937000086065,
+              "candidate": 1575.1362000009976,
+              "delta": -166.8575000076089,
+              "percent": -9.57853636363808
+            },
+            {
+              "pair": 2,
+              "baseline": 1606.6836999962106,
+              "candidate": 1600.8228000137024,
+              "delta": -5.860899982508272,
+              "percent": -0.3647824386668108
+            },
+            {
+              "pair": 3,
+              "baseline": 1642.3877999768592,
+              "candidate": 1655.3345000138506,
+              "delta": 12.946700036991388,
+              "percent": 0.7882852050638656
+            }
+          ],
+          "fasterPairs": 2,
+          "tiedPairs": 0,
+          "slowerPairs": 1
+        }
+      }
+    },
+    {
+      "profile": "ready20_121",
+      "iterations": 1000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              2546.875,
+              2765.625,
+              2687.5
+            ],
+            "median": 2687.5,
+            "min": 2546.875,
+            "max": 2765.625
+          },
+          "candidate": {
+            "raw": [
+              2312.5,
+              2375.0,
+              2234.375
+            ],
+            "median": 2312.5,
+            "min": 2234.375,
+            "max": 2375.0
+          },
+          "medianDelta": -375.0,
+          "medianPercent": -13.953488372093027,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 2546.875,
+              "candidate": 2312.5,
+              "delta": -234.375,
+              "percent": -9.202453987730063
+            },
+            {
+              "pair": 2,
+              "baseline": 2765.625,
+              "candidate": 2375.0,
+              "delta": -390.625,
+              "percent": -14.124293785310737
+            },
+            {
+              "pair": 3,
+              "baseline": 2687.5,
+              "candidate": 2234.375,
+              "delta": -453.125,
+              "percent": -16.860465116279066
+            }
+          ],
+          "fasterPairs": 3,
+          "tiedPairs": 0,
+          "slowerPairs": 0
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              2555.691100016702,
+              2815.742400009185,
+              2745.3382999810856
+            ],
+            "median": 2745.3382999810856,
+            "min": 2555.691100016702,
+            "max": 2815.742400009185
+          },
+          "candidate": {
+            "raw": [
+              2347.0820000220556,
+              2399.7797000047285,
+              2324.0424999967217
+            ],
+            "median": 2347.0820000220556,
+            "min": 2324.0424999967217,
+            "max": 2399.7797000047285
+          },
+          "medianDelta": -398.25629995903,
+          "medianPercent": -14.506638397234095,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 2555.691100016702,
+              "candidate": 2347.0820000220556,
+              "delta": -208.60909999464639,
+              "percent": -8.162531848754451
+            },
+            {
+              "pair": 2,
+              "baseline": 2815.742400009185,
+              "candidate": 2399.7797000047285,
+              "delta": -415.96270000445656,
+              "percent": -14.772754070226723
+            },
+            {
+              "pair": 3,
+              "baseline": 2745.3382999810856,
+              "candidate": 2324.0424999967217,
+              "delta": -421.29579998436384,
+              "percent": -15.345861017830353
+            }
+          ],
+          "fasterPairs": 3,
+          "tiedPairs": 0,
+          "slowerPairs": 0
+        }
+      }
+    },
+    {
+      "profile": "flag20_121",
+      "iterations": 1000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              1796.875,
+              1781.25,
+              1796.875
+            ],
+            "median": 1796.875,
+            "min": 1781.25,
+            "max": 1796.875
+          },
+          "candidate": {
+            "raw": [
+              1625.0,
+              1671.875,
+              1687.5
+            ],
+            "median": 1671.875,
+            "min": 1625.0,
+            "max": 1687.5
+          },
+          "medianDelta": -125.0,
+          "medianPercent": -6.956521739130439,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 1796.875,
+              "candidate": 1625.0,
+              "delta": -171.875,
+              "percent": -9.565217391304348
+            },
+            {
+              "pair": 2,
+              "baseline": 1781.25,
+              "candidate": 1671.875,
+              "delta": -109.375,
+              "percent": -6.140350877192979
+            },
+            {
+              "pair": 3,
+              "baseline": 1796.875,
+              "candidate": 1687.5,
+              "delta": -109.375,
+              "percent": -6.086956521739129
+            }
+          ],
+          "fasterPairs": 3,
+          "tiedPairs": 0,
+          "slowerPairs": 0
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              1814.9533999967389,
+              1802.575000008801,
+              1829.3341999815311
+            ],
+            "median": 1814.9533999967389,
+            "min": 1802.575000008801,
+            "max": 1829.3341999815311
+          },
+          "candidate": {
+            "raw": [
+              1661.5926000231411,
+              1710.6875000172295,
+              1718.0725999933202
+            ],
+            "median": 1710.6875000172295,
+            "min": 1661.5926000231411,
+            "max": 1718.0725999933202
+          },
+          "medianDelta": -104.26589997950941,
+          "medianPercent": -5.7448251828227,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 1814.9533999967389,
+              "candidate": 1661.5926000231411,
+              "delta": -153.36079997359775,
+              "percent": -8.44984780181537
+            },
+            {
+              "pair": 2,
+              "baseline": 1802.575000008801,
+              "candidate": 1710.6875000172295,
+              "delta": -91.88749999157153,
+              "percent": -5.097568755315196
+            },
+            {
+              "pair": 3,
+              "baseline": 1829.3341999815311,
+              "candidate": 1718.0725999933202,
+              "delta": -111.26159998821095,
+              "percent": -6.082081666069228
+            }
+          ],
+          "fasterPairs": 3,
+          "tiedPairs": 0,
+          "slowerPairs": 0
+        }
+      }
+    },
+    {
+      "profile": "known4_51",
+      "iterations": 3000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              390.625,
+              359.375,
+              375.0
+            ],
+            "median": 375.0,
+            "min": 359.375,
+            "max": 390.625
+          },
+          "candidate": {
+            "raw": [
+              406.25,
+              375.0,
+              375.0
+            ],
+            "median": 375.0,
+            "min": 375.0,
+            "max": 406.25
+          },
+          "medianDelta": 0.0,
+          "medianPercent": 0.0,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 390.625,
+              "candidate": 406.25,
+              "delta": 15.625,
+              "percent": 4.0000000000000036
+            },
+            {
+              "pair": 2,
+              "baseline": 359.375,
+              "candidate": 375.0,
+              "delta": 15.625,
+              "percent": 4.347826086956519
+            },
+            {
+              "pair": 3,
+              "baseline": 375.0,
+              "candidate": 375.0,
+              "delta": 0.0,
+              "percent": 0.0
+            }
+          ],
+          "fasterPairs": 0,
+          "tiedPairs": 1,
+          "slowerPairs": 2
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              434.62909999652766,
+              381.01509999250993,
+              389.70549998339266
+            ],
+            "median": 389.70549998339266,
+            "min": 381.01509999250993,
+            "max": 434.62909999652766
+          },
+          "candidate": {
+            "raw": [
+              442.9828000138514,
+              397.82429998740554,
+              388.4735999745317
+            ],
+            "median": 397.82429998740554,
+            "min": 388.4735999745317,
+            "max": 442.9828000138514
+          },
+          "medianDelta": 8.118800004012883,
+          "medianPercent": 2.0833167621085336,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 434.62909999652766,
+              "candidate": 442.9828000138514,
+              "delta": 8.353700017323717,
+              "percent": 1.9220296149959681
+            },
+            {
+              "pair": 2,
+              "baseline": 381.01509999250993,
+              "candidate": 397.82429998740554,
+              "delta": 16.809199994895607,
+              "percent": 4.411688669353531
+            },
+            {
+              "pair": 3,
+              "baseline": 389.70549998339266,
+              "candidate": 388.4735999745317,
+              "delta": -1.2319000088609755,
+              "percent": -0.31611050111263195
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 0,
+          "slowerPairs": 2
+        }
+      }
+    },
+    {
+      "profile": "empty0_0",
+      "iterations": 15000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              140.625,
+              156.25,
+              125.0
+            ],
+            "median": 140.625,
+            "min": 125.0,
+            "max": 156.25
+          },
+          "candidate": {
+            "raw": [
+              125.0,
+              125.0,
+              125.0
+            ],
+            "median": 125.0,
+            "min": 125.0,
+            "max": 125.0
+          },
+          "medianDelta": -15.625,
+          "medianPercent": -11.111111111111116,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 140.625,
+              "candidate": 125.0,
+              "delta": -15.625,
+              "percent": -11.111111111111116
+            },
+            {
+              "pair": 2,
+              "baseline": 156.25,
+              "candidate": 125.0,
+              "delta": -31.25,
+              "percent": -19.999999999999996
+            },
+            {
+              "pair": 3,
+              "baseline": 125.0,
+              "candidate": 125.0,
+              "delta": 0.0,
+              "percent": 0.0
+            }
+          ],
+          "fasterPairs": 2,
+          "tiedPairs": 1,
+          "slowerPairs": 0
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              149.05249999719672,
+              153.99869999964722,
+              148.0911999824457
+            ],
+            "median": 149.05249999719672,
+            "min": 148.0911999824457,
+            "max": 153.99869999964722
+          },
+          "candidate": {
+            "raw": [
+              155.17499999259599,
+              143.09569998295046,
+              151.81069998652674
+            ],
+            "median": 151.81069998652674,
+            "min": 143.09569998295046,
+            "max": 155.17499999259599
+          },
+          "medianDelta": 2.7581999893300235,
+          "medianPercent": 1.8504889145649406,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 149.05249999719672,
+              "candidate": 155.17499999259599,
+              "delta": 6.1224999953992665,
+              "percent": 4.107613086338313
+            },
+            {
+              "pair": 2,
+              "baseline": 153.99869999964722,
+              "candidate": 143.09569998295046,
+              "delta": -10.903000016696751,
+              "percent": -7.079929906370463
+            },
+            {
+              "pair": 3,
+              "baseline": 148.0911999824457,
+              "candidate": 151.81069998652674,
+              "delta": 3.7195000040810555,
+              "percent": 2.5116279728450763
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 0,
+          "slowerPairs": 2
+        }
+      }
+    },
+    {
+      "profile": "small1_7",
+      "iterations": 10000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              421.875,
+              453.125,
+              453.125
+            ],
+            "median": 453.125,
+            "min": 421.875,
+            "max": 453.125
+          },
+          "candidate": {
+            "raw": [
+              453.125,
+              453.125,
+              468.75
+            ],
+            "median": 453.125,
+            "min": 453.125,
+            "max": 468.75
+          },
+          "medianDelta": 0.0,
+          "medianPercent": 0.0,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 421.875,
+              "candidate": 453.125,
+              "delta": 31.25,
+              "percent": 7.407407407407418
+            },
+            {
+              "pair": 2,
+              "baseline": 453.125,
+              "candidate": 453.125,
+              "delta": 0.0,
+              "percent": 0.0
+            },
+            {
+              "pair": 3,
+              "baseline": 453.125,
+              "candidate": 468.75,
+              "delta": 15.625,
+              "percent": 3.4482758620689724
+            }
+          ],
+          "fasterPairs": 0,
+          "tiedPairs": 1,
+          "slowerPairs": 2
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              501.4075000071898,
+              494.6068999997806,
+              486.6092000156641
+            ],
+            "median": 494.6068999997806,
+            "min": 486.6092000156641,
+            "max": 501.4075000071898
+          },
+          "candidate": {
+            "raw": [
+              481.2005000130739,
+              480.79969998798333,
+              495.51929999142885
+            ],
+            "median": 481.2005000130739,
+            "min": 480.79969998798333,
+            "max": 495.51929999142885
+          },
+          "medianDelta": -13.406399986706674,
+          "medianPercent": -2.7105161668210864,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 501.4075000071898,
+              "candidate": 481.2005000130739,
+              "delta": -20.206999994115904,
+              "percent": -4.030055392834397
+            },
+            {
+              "pair": 2,
+              "baseline": 494.6068999997806,
+              "candidate": 480.79969998798333,
+              "delta": -13.80720001179725,
+              "percent": -2.7915502213582855
+            },
+            {
+              "pair": 3,
+              "baseline": 486.6092000156641,
+              "candidate": 495.51929999142885,
+              "delta": 8.910099975764751,
+              "percent": 1.831058676136399
+            }
+          ],
+          "fasterPairs": 2,
+          "tiedPairs": 0,
+          "slowerPairs": 1
+        }
+      }
+    },
+    {
+      "profile": "missing4_51",
+      "iterations": 3000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              859.375,
+              953.125,
+              859.375
+            ],
+            "median": 859.375,
+            "min": 859.375,
+            "max": 953.125
+          },
+          "candidate": {
+            "raw": [
+              1015.625,
+              1046.875,
+              859.375
+            ],
+            "median": 1015.625,
+            "min": 859.375,
+            "max": 1046.875
+          },
+          "medianDelta": 156.25,
+          "medianPercent": 18.181818181818187,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 859.375,
+              "candidate": 1015.625,
+              "delta": 156.25,
+              "percent": 18.181818181818187
+            },
+            {
+              "pair": 2,
+              "baseline": 953.125,
+              "candidate": 1046.875,
+              "delta": 93.75,
+              "percent": 9.836065573770503
+            },
+            {
+              "pair": 3,
+              "baseline": 859.375,
+              "candidate": 859.375,
+              "delta": 0.0,
+              "percent": 0.0
+            }
+          ],
+          "fasterPairs": 0,
+          "tiedPairs": 1,
+          "slowerPairs": 2
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              889.3915999797173,
+              1012.2521999874152,
+              895.916200010106
+            ],
+            "median": 895.916200010106,
+            "min": 889.3915999797173,
+            "max": 1012.2521999874152
+          },
+          "candidate": {
+            "raw": [
+              1084.1646999760997,
+              1089.9747000075877,
+              879.4959000078961
+            ],
+            "median": 1084.1646999760997,
+            "min": 879.4959000078961,
+            "max": 1089.9747000075877
+          },
+          "medianDelta": 188.2484999659937,
+          "medianPercent": 21.01184239819196,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 889.3915999797173,
+              "candidate": 1084.1646999760997,
+              "delta": 194.77309999638237,
+              "percent": 21.89958843785169
+            },
+            {
+              "pair": 2,
+              "baseline": 1012.2521999874152,
+              "candidate": 1089.9747000075877,
+              "delta": 77.72250002017245,
+              "percent": 7.67817546073386
+            },
+            {
+              "pair": 3,
+              "baseline": 895.916200010106,
+              "candidate": 879.4959000078961,
+              "delta": -16.420300002209842,
+              "percent": -1.8327941834319517
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 0,
+          "slowerPairs": 2
+        }
+      }
+    },
+    {
+      "profile": "merchant0_0",
+      "iterations": 12000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              140.625,
+              140.625,
+              140.625
+            ],
+            "median": 140.625,
+            "min": 140.625,
+            "max": 140.625
+          },
+          "candidate": {
+            "raw": [
+              140.625,
+              140.625,
+              125.0
+            ],
+            "median": 140.625,
+            "min": 125.0,
+            "max": 140.625
+          },
+          "medianDelta": 0.0,
+          "medianPercent": 0.0,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 140.625,
+              "candidate": 140.625,
+              "delta": 0.0,
+              "percent": 0.0
+            },
+            {
+              "pair": 2,
+              "baseline": 140.625,
+              "candidate": 140.625,
+              "delta": 0.0,
+              "percent": 0.0
+            },
+            {
+              "pair": 3,
+              "baseline": 140.625,
+              "candidate": 125.0,
+              "delta": -15.625,
+              "percent": -11.111111111111116
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 2,
+          "slowerPairs": 0
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              163.33279997343197,
+              185.6182999908924,
+              185.27940000058152
+            ],
+            "median": 185.27940000058152,
+            "min": 163.33279997343197,
+            "max": 185.6182999908924
+          },
+          "candidate": {
+            "raw": [
+              168.79070000140928,
+              164.98719999799505,
+              152.0926000084728
+            ],
+            "median": 164.98719999799505,
+            "min": 152.0926000084728,
+            "max": 168.79070000140928
+          },
+          "medianDelta": -20.29220000258647,
+          "medianPercent": -10.952215951974576,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 163.33279997343197,
+              "candidate": 168.79070000140928,
+              "delta": 5.457900027977303,
+              "percent": 3.341582357533257
+            },
+            {
+              "pair": 2,
+              "baseline": 185.6182999908924,
+              "candidate": 164.98719999799505,
+              "delta": -20.63109999289736,
+              "percent": -11.114798483721511
+            },
+            {
+              "pair": 3,
+              "baseline": 185.27940000058152,
+              "candidate": 152.0926000084728,
+              "delta": -33.18679999210872,
+              "percent": -17.911759209067256
+            }
+          ],
+          "fasterPairs": 2,
+          "tiedPairs": 0,
+          "slowerPairs": 1
+        }
+      }
+    },
+    {
+      "profile": "rewarm_defaults",
+      "iterations": 2000,
+      "metrics": {
+        "cpuMs": {
+          "baseline": {
+            "raw": [
+              234.375,
+              234.375,
+              234.375
+            ],
+            "median": 234.375,
+            "min": 234.375,
+            "max": 234.375
+          },
+          "candidate": {
+            "raw": [
+              218.75,
+              250.0,
+              250.0
+            ],
+            "median": 250.0,
+            "min": 218.75,
+            "max": 250.0
+          },
+          "medianDelta": 15.625,
+          "medianPercent": 6.666666666666665,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 234.375,
+              "candidate": 218.75,
+              "delta": -15.625,
+              "percent": -6.666666666666665
+            },
+            {
+              "pair": 2,
+              "baseline": 234.375,
+              "candidate": 250.0,
+              "delta": 15.625,
+              "percent": 6.666666666666665
+            },
+            {
+              "pair": 3,
+              "baseline": 234.375,
+              "candidate": 250.0,
+              "delta": 15.625,
+              "percent": 6.666666666666665
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 0,
+          "slowerPairs": 2
+        },
+        "wallMs": {
+          "baseline": {
+            "raw": [
+              255.50930001190864,
+              265.76169999316335,
+              253.8324999914039
+            ],
+            "median": 255.50930001190864,
+            "min": 253.8324999914039,
+            "max": 265.76169999316335
+          },
+          "candidate": {
+            "raw": [
+              243.35100001189858,
+              272.50089999870397,
+              264.3581999873277
+            ],
+            "median": 264.3581999873277,
+            "min": 243.35100001189858,
+            "max": 272.50089999870397
+          },
+          "medianDelta": 8.848899975419044,
+          "medianPercent": 3.463239880116542,
+          "pairs": [
+            {
+              "pair": 1,
+              "baseline": 255.50930001190864,
+              "candidate": 243.35100001189858,
+              "delta": -12.158300000010058,
+              "percent": -4.758456932660926
+            },
+            {
+              "pair": 2,
+              "baseline": 265.76169999316335,
+              "candidate": 272.50089999870397,
+              "delta": 6.739200005540624,
+              "percent": 2.5358055753383457
+            },
+            {
+              "pair": 3,
+              "baseline": 253.8324999914039,
+              "candidate": 264.3581999873277,
+              "delta": 10.525699995923787,
+              "percent": 4.146710920106855
+            }
+          ],
+          "fasterPairs": 1,
+          "tiedPairs": 0,
+          "slowerPairs": 2
+        }
+      }
+    }
+  ],
+  "allNineAllocationProfiles": [
+    {
+      "profile": "ready4_51",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 355164,
+            "N8": 709468,
+            "slopeBytesPerWork": 88576.0,
+            "interceptBytes": 860
+          },
+          "candidate": {
+            "N4": 355164,
+            "N8": 709468,
+            "slopeBytesPerWork": 88576.0,
+            "interceptBytes": 860
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 355164,
+            "N8": 709468,
+            "slopeBytesPerWork": 88576.0,
+            "interceptBytes": 860
+          },
+          "candidate": {
+            "N4": 355164,
+            "N8": 709468,
+            "slopeBytesPerWork": 88576.0,
+            "interceptBytes": 860
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "ready20_121",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 1318252,
+            "N8": 2635116,
+            "slopeBytesPerWork": 329216.0,
+            "interceptBytes": 1388
+          },
+          "candidate": {
+            "N4": 1318252,
+            "N8": 2635116,
+            "slopeBytesPerWork": 329216.0,
+            "interceptBytes": 1388
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 1318252,
+            "N8": 2635116,
+            "slopeBytesPerWork": 329216.0,
+            "interceptBytes": 1388
+          },
+          "candidate": {
+            "N4": 1318252,
+            "N8": 2635116,
+            "slopeBytesPerWork": 329216.0,
+            "interceptBytes": 1388
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "flag20_121",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 856083,
+            "N8": 1711507,
+            "slopeBytesPerWork": 213856.0,
+            "interceptBytes": 659
+          },
+          "candidate": {
+            "N4": 856083,
+            "N8": 1711507,
+            "slopeBytesPerWork": 213856.0,
+            "interceptBytes": 659
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 856083,
+            "N8": 1711507,
+            "slopeBytesPerWork": 213856.0,
+            "interceptBytes": 659
+          },
+          "candidate": {
+            "N4": 856083,
+            "N8": 1711507,
+            "slopeBytesPerWork": 213856.0,
+            "interceptBytes": 659
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "known4_51",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 80768,
+            "N8": 161536,
+            "slopeBytesPerWork": 20192.0,
+            "interceptBytes": 0
+          },
+          "candidate": {
+            "N4": 80768,
+            "N8": 161536,
+            "slopeBytesPerWork": 20192.0,
+            "interceptBytes": 0
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 80768,
+            "N8": 161536,
+            "slopeBytesPerWork": 20192.0,
+            "interceptBytes": 0
+          },
+          "candidate": {
+            "N4": 80768,
+            "N8": 161536,
+            "slopeBytesPerWork": 20192.0,
+            "interceptBytes": 0
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "empty0_0",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 7808,
+            "N8": 15616,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 0
+          },
+          "candidate": {
+            "N4": 7808,
+            "N8": 15616,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 0
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 7808,
+            "N8": 15616,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 0
+          },
+          "candidate": {
+            "N4": 7808,
+            "N8": 15616,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 0
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "small1_7",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 27616,
+            "N8": 55200,
+            "slopeBytesPerWork": 6896.0,
+            "interceptBytes": 32
+          },
+          "candidate": {
+            "N4": 27616,
+            "N8": 55200,
+            "slopeBytesPerWork": 6896.0,
+            "interceptBytes": 32
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 27616,
+            "N8": 55200,
+            "slopeBytesPerWork": 6896.0,
+            "interceptBytes": 32
+          },
+          "candidate": {
+            "N4": 27616,
+            "N8": 55200,
+            "slopeBytesPerWork": 6896.0,
+            "interceptBytes": 32
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "missing4_51",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 162819,
+            "N8": 325507,
+            "slopeBytesPerWork": 40672.0,
+            "interceptBytes": 131
+          },
+          "candidate": {
+            "N4": 162819,
+            "N8": 325507,
+            "slopeBytesPerWork": 40672.0,
+            "interceptBytes": 131
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 162819,
+            "N8": 325507,
+            "slopeBytesPerWork": 40672.0,
+            "interceptBytes": 131
+          },
+          "candidate": {
+            "N4": 162819,
+            "N8": 325507,
+            "slopeBytesPerWork": 40672.0,
+            "interceptBytes": 131
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "merchant0_0",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 7864,
+            "N8": 15672,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 56
+          },
+          "candidate": {
+            "N4": 7864,
+            "N8": 15672,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 56
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 7864,
+            "N8": 15672,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 56
+          },
+          "candidate": {
+            "N4": 7864,
+            "N8": 15672,
+            "slopeBytesPerWork": 1952.0,
+            "interceptBytes": 56
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    },
+    {
+      "profile": "rewarm_defaults",
+      "trials": [
+        {
+          "trial": 1,
+          "baseline": {
+            "N4": 35421,
+            "N8": 64445,
+            "slopeBytesPerWork": 7256.0,
+            "interceptBytes": 6397
+          },
+          "candidate": {
+            "N4": 35421,
+            "N8": 64445,
+            "slopeBytesPerWork": 7256.0,
+            "interceptBytes": 6397
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        },
+        {
+          "trial": 2,
+          "baseline": {
+            "N4": 35421,
+            "N8": 64445,
+            "slopeBytesPerWork": 7256.0,
+            "interceptBytes": 6397
+          },
+          "candidate": {
+            "N4": 35421,
+            "N8": 64445,
+            "slopeBytesPerWork": 7256.0,
+            "interceptBytes": 6397
+          },
+          "slopeDeltaBytesPerWork": 0.0,
+          "interceptDeltaBytes": 0
+        }
+      ]
+    }
+  ],
+  "rawChecks": {
+    "sourceTestsNativeOrCostReruns": 0,
+    "rawCPUChildren": 54,
+    "rawGCChildren": 2,
+    "stdoutAndEmptyStderrPairsVerified": 56,
+    "rawGCWindows": 72,
+    "CPUWorkFactChecks": 324,
+    "GCWorkFactChecks": 432
+  },
+  "interpretation": [
+    "ready20 stress CPU -13.9535%/wall -14.5066%, all three pairs faster; flag-only stress CPU -6.9565%/wall -5.7448%, all three faster.",
+    "Missing-name CPU +18.1818%/wall +21.0118%; default-rewarm CPU +6.6667%/wall +3.4632%. These regressions are retained and drive rejection.",
+    "Known-reagent and small-list CPU medians tie but each has two slower pairs and one tie. Modest ready control has one faster/one slower/one tie.",
+    "Empty control CPU median drops one15.625ms tick while wall worsens; changed helpers are unreachable in its work. Merchant median CPU ties; wall/control variation retained.",
+    "All nine GC slopes/intercepts and rawN4/N8 values match exactly both variants and both trials: no measured allocation benefit."
+  ],
+  "nativeContinuation": {
+    "acceptedInstrumentedP54Window": true,
+    "P56NativeExecution": false,
+    "P55LoadedSourceAdoption": "UNVERIFIED",
+    "currentAcceptedDecode": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-fast-success-20261116\\decode.json",
+      "sha256": "4a7b230f0424e83d5b835b04f2e7e7cb1ef6a3e77a84afe9b43a47164786736c"
+    },
+    "target": {
+      "pid": 46260,
+      "hwnd": 600248958,
+      "path": "f:\\world of warcraft\\_forever_\\wow.exe",
+      "created": 134392816726299937
+    },
+    "observer": {
+      "root": "_P54",
+      "z": 53,
+      "tag": "P54_b84e619a",
+      "nonce": "3960591a",
+      "wrappers": [
+        "Flux.ButtonFX.Cast._frame OnEvent",
+        "Flux.ButtonFX.SpellIdsMatch only while raw handler depth>0"
+      ],
+      "scheduledActiveSeconds": 20,
+      "nativeDurationMs": "20008.9471",
+      "nativeDurationSeconds": "20.0089471",
+      "finiteNonnegativeApprox20s": true,
+      "VDoesNotAloneCheckDuration": true
+    },
+    "decodedWindowFields": [
+      {
+        "positionAfterMarker": 1,
+        "name": "windowValid",
+        "value": true,
+        "actualExpression": "p.V()"
+      },
+      {
+        "positionAfterMarker": 2,
+        "name": "rawDepth",
+        "value": 0,
+        "actualExpression": "p.d"
+      },
+      {
+        "positionAfterMarker": 3,
+        "name": "matcherDepth",
+        "value": 0,
+        "actualExpression": "p.md"
+      },
+      {
+        "positionAfterMarker": 4,
+        "name": "bad",
+        "value": false,
+        "actualExpression": "p.bad"
+      },
+      {
+        "positionAfterMarker": 5,
+        "name": "clean",
+        "value": true,
+        "actualExpression": "p.clean"
+      },
+      {
+        "positionAfterMarker": 6,
+        "name": "nestedRawEntries",
+        "value": 0,
+        "actualExpression": "p.rnest"
+      },
+      {
+        "positionAfterMarker": 7,
+        "name": "nestedMatcherEntries",
+        "value": 0,
+        "actualExpression": "p.mnest"
+      },
+      {
+        "positionAfterMarker": 8,
+        "name": "nativeStartMs",
+        "value": "242192451.1099",
+        "actualExpression": "p.at"
+      },
+      {
+        "positionAfterMarker": 9,
+        "name": "nativeFirstStopMs",
+        "value": "242212460.057",
+        "actualExpression": "p.to"
+      },
+      {
+        "positionAfterMarker": 10,
+        "name": "bothOwnedTimerReferencesNil",
+        "value": true,
+        "actualExpression": "p.t==nil and p.u==nil"
+      },
+      {
+        "positionAfterMarker": 11,
+        "name": "originalMatcherRestoredAtRead",
+        "value": true,
+        "actualExpression": "rawget(p.b,\"SpellIdsMatch\")==p.m"
+      },
+      {
+        "positionAfterMarker": 12,
+        "name": "originalRawScriptRestoredAtRead",
+        "value": true,
+        "actualExpression": "p.a:GetScript(\"OnEvent\")==p.f"
+      },
+      {
+        "positionAfterMarker": 13,
+        "name": "capturedNamespaceCurrentAtRead",
+        "value": true,
+        "actualExpression": "p.cur()"
+      }
+    ],
+    "metrics": {
+      "rawHandler": {
+        "entered": 11,
+        "completed": 11,
+        "validTimedSpans": 11,
+        "inclusiveSumMs": "22.294400036335",
+        "inclusiveMaxMs": "6.5087999999523"
+      },
+      "matcherInsideRawHandler": {
+        "entered": 377,
+        "completed": 377,
+        "validTimedSpans": 377,
+        "inclusiveSumMs": "4.0020999312401",
+        "inclusiveMaxMs": "0.02250000834465"
+      }
+    },
+    "cleanup": {
+      "P54CLEANNativeBoolean": true,
+      "privateRootAbsenceActuallyQueried": true,
+      "actualExpression": "_P54==nil",
+      "ownedTimerReferencesNilAtWindowRead": true,
+      "exactCapturedOriginalMatcherAndRawScriptRestoredAtWindowRead": true,
+      "namespaceCurrentAtWindowRead": true,
+      "separateAfterDeletionOriginalPointerQueryPerformed": false,
+      "sourceCleanupPreservesForeignReplacements": true,
+      "readCleanFormalHostACK": false,
+      "readCleanACKScope": "No ACK lane; NEW WINDOW/RAW/MATCH/CLEAN were manually viewed by root and independently decoded from original PNG. Journal false remains unchanged."
+    },
+    "actor": {
+      "commands": [
+        "/cast Conjure Food",
+        "/stopcasting"
+      ],
+      "UIObservation": "Native post image contains NEW STAGED true true true and ARM timestamp plus red Interrupted/Conjure Food cast bar; no actor outcome ACK in journal.",
+      "actualCastSpellIDCapturedInThisWindow": false,
+      "hostCastAfterARMEnqueueMs": 234.99999998603016,
+      "hostCancelAfterFoodFinalEnterMs": 1031.0000000172295,
+      "hostWhole27PacketEnqueueMs": 12187.000000005355,
+      "note": "Measured host enqueue12.187s exceeds the approximate8s preparation target; ARM is near the end, and native active interval is independently20.0089471s. Enqueue latency is not native spell timing."
+    },
+    "nativeDiagnosticACK": {
+      "fastFormalRootVisualACK": true,
+      "nativeSTAGEDAndARMConfirmed": true,
+      "actorOutcomeACK": false
+    },
+    "freshCTXb": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p54ctxb-journal.json",
+      "sha256": "c433e0cbe032fbb04961bd452cbd517919c1c896cc079f3f4eec21100d14bdd9",
+      "rawObservedPrint": "P54CTX 242443.851 0 120 30 true true true JUMP",
+      "payload": "/run local a=C_AddOns;local p=C_AddOnProfiler;print('P54CTX',GetTime(),GetCVar('scriptProfile'),GetCVar('maxfps'),GetCVar('maxfpsbk'),a.IsAddOnLoaded('Syndicator'),a.IsAddOnLoaded('Baganator'),p and p.IsEnabled(),GetBindingAction('SPACE'))",
+      "stage": "ack-visually-attested",
+      "commandAcknowledged": "root-visual-attestation-only",
+      "lockReleased": true,
+      "fields": {
+        "GetTime": 242443.851,
+        "scriptProfile": "0",
+        "maxfps": "120",
+        "maxfpsbk": "30",
+        "SyndicatorLoaded": true,
+        "BaganatorLoaded": true,
+        "C_AddOnProfiler_IsEnabled": true,
+        "SPACE_binding": "JUMP"
+      },
+      "scope": "Root visually attested printed values; no preference writes. Profiler API enabled print does not establish matched performance scope."
+    },
+    "historicalFailedAttemptReview": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-attempts-review-20261116\\review.json",
+      "sha256": "c05ffe3c1ce96d3bb4fc7d1991b8370823e0223dabc5c2d4ebe6976e6ebaea05"
+    },
+    "historicalReloadObservation": {
+      "captures": {
+        "p54-post-read-reload.png": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\p54-post-read-reload.png",
+          "sha256": "b506a796bae94d672e1b960cf84b64569403031670b7e0d93e671f95dc7449d5"
+        },
+        "p54-post-read-reload-capture.json": {
+          "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\p54-post-read-reload-capture.json",
+          "sha256": "de013ee0f2fb00f244396b635075f815b76e2357adafe2c3e54499b4dcf460c1"
+        }
+      },
+      "observation": "Root observed startup/border39 after reload; this is an observation only.",
+      "thenFreshRootAbsenceQuery": false,
+      "thenCleanupACK": false
+    },
+    "limits": [
+      "Raw and matcher spans are inclusive elapsed, with diagnostic overhead; matcher overlaps raw. Do not subtract/sum as exclusive CPU.",
+      "One cancel-only scenario; no per-event identity, frame-gap, matched baseline/candidate or FPS acceptance.",
+      "No independent all-ranks proof, loaded byte-hash adoption or P55/P56 gain acceptance.",
+      "CVars/native-profiler state were not printed by this fast burst; preference writes are absent from the source.",
+      "Timer flags cover the two owned diagnostic references, not all client timers. Original pointers/namespace are observed at WINDOW read; CLEAN explicitly queries root nil after owned cleanup.",
+      "No native P56 execution/application, P55 loaded-source adoption or P55/P56 gain claim. Prior failed c05ffe attempts remain historical, not the current accepted-window status."
+    ]
+  },
+  "sourceGuard": {
+    "currentThirtyPins": {
+      "_FluxUI.toc": "6d13900b36c73da1173085d3dec929b445dc912f2b575fd00f1c536224e8e316",
+      "Core/API/Secrets.lua": "493d25ef4dcf4d9475b77eb194eb82a304867de8211c6990237855392753b030",
+      "Core/API/Item.lua": "2be703fae6568d44910f237c95ccb398680ba33658eb57cdceb5491100b2dbb4",
+      "Core/Engine/Scheduler.lua": "a524afb69135af4e7aaefddfe7ab97527b5292380949f0786b6f1ffa94008d11",
+      "Inventory/Init.lua": "02fcf9ee2aafad324073a0ff0ccc362a23813541a4d5df6f5c79f95390998581",
+      "Inventory/Index.lua": "e1cdab75fc6f8589c9714f02efc73790d41659a08e769467a8a38638ab41921d",
+      "Inventory/FluxItemClass.lua": "c416fa65d9d3c15d15ce0a0e9d7dbca48e3208bfc85abefafeb27e9066d880d2",
+      "Inventory/CreateSpells.lua": "6eaac6714e819a78f49542a1c01bb788899cb1a2ef2a5a2476ccebf8b0eb483a",
+      "Inventory/SpellReagents.lua": "754c85309af3e5019b87619440a871daca3e99e63e75cd5dde65afdf836d2e67",
+      "Inventory/Craft.lua": "615d4be087fbb6f5617dfc3417a8353fc4897505a72038cdd3ffa3f03375e209",
+      "Inventory/Professions.lua": "e096bf70136140f59b67c7d92fb23d849a8d37fa8c2a7034f76758997e08991b",
+      "Inventory/Restock/Core/FluxRestockList.lua": "a42f81e22f88ebfd735d9ab055f0e0bc9dd88639cf30c48788859aaae0ea6de2",
+      "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5200566436891b494b5a2db788c4ab9e40b52d6c70527f6a2266f1c32c483262",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "5f81216e6420c24fcdc0226e7ad163a0b4ed445cafdc49b6a415a454560fb9da",
+      "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "54bc044410e3c4512cd70274b2e67a40114a6ab39648e0e01ceb12b21b0bd587",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "428d277c1a4f5b518bb1c281bf7ec4c806735cb6bc9e2c5efe11190f79295fd5",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "366e1bbed993ee73b16a0362f9af01bc73d72eabefcec3cfee1e77c8facb4246",
+      "Inventory/Restock/Auction/FluxAuctionRestockFollowupUI.lua": "d11d45abb6ec46d8925cdada8a0de2e4e6d6d87cdfff86b3e43a1723c48c1aa2",
+      "ExtraButtonSystem/Engine/ConsumableBind.lua": "7d7589030b7fd45b07798e523c45064fd7a7de7bd19a7d5a28214a63a5c69dc4",
+      "tests/auction_restock_sources.lua": "219fd1791ef20d013c85da7945b41b44628904c60c71b191e68b8c8018d3fc0b",
+      "tests/auction_restock.lua": "6555f38a5e069424127c79e950616a8e01f6007c943c69b3607c02b6465d1830",
+      "tests/auction_restock_followup.lua": "d5b051aacd11b10c6af398a9b0b213d5cbd1e925fcc1864d8126f029cdb1654c",
+      "tests/spell_reagent_name_work.lua": "43ebeebc63faffb6217261bf6e3d816361c203abd0c0f28518f7146683499daf",
+      "tests/passive_inventory_item_ids.lua": "de6b7759886154e9d66d00375cd9c1afedc9eec631e244aba3136940e480653d",
+      "tests/character_recipe_cache.lua": "7a7610409c2dbb9e48b50131472252266a0e341a5977ffa9819456c90f88a925",
+      "ExtraButtonSystem/Shared/FluxConsumablesGridUI.lua": "07c71407e3475f76c5e94b56529dca1b1ff87caed08224c78a30a2347128a827",
+      "Inventory/Restock/Auction/FluxAuctionRestockLocale.lua": "f4384f5e3be6f508320e7a4a2b20e7fe48843758b44753e3cb8a35e2c2667b74",
+      "Inventory/Restock/Auction/FluxAuctionRestockPrices.lua": "49bd240a433ea2565daa049771dfaaaa0cbe79fa1f56c1de61cf50e471bccd6f",
+      "Inventory/Restock/Auction/FluxAuctionRestockPotions.lua": "68f7b7f3abed6011c2b03f1547c89eada0565a7b1b1159eddaf8b2be986683dc",
+      "Inventory/Restock/Auction/FluxAuctionRestockUI.lua": "98c20279d60c2bd004e72109b7e79ae30e764f0d54f01a4391da08f7c7c1237d"
+    },
+    "shortSourceCopiesExact": true,
+    "currentP55OwnedPins": {
+      "Inventory/Containers.lua": "d043cfe03da4e5702b07025b86e1a2d279b76fa6743fe1907ee2628d4d16639d",
+      "Inventory/Syndicator/Adapter.lua": "66b85fd5b9007e9ec8bbe4b1fa371b2ead199da04498ffa060acbb3de97ffd5b",
+      "tests/syndicator_bank_row_reuse.lua": "fc8d5790a7ec1605cbeed405e159de1e4f56074fa8cf55eacb1b81b49dfb3ff9"
+    },
+    "stillBaselineSpell": true
+  },
+  "externalEvidence": {
+    "baselineCountReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\count-baseline-r3-20261116T090107Z\\report.json",
+      "sha256": "eaec973c7e0d644ab1432bc6b9f4f7d83618c65545f296719f53b9e7f2a424a0"
+    },
+    "baselineCountSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\count-baseline-r3-20261116T090107Z\\seal.json",
+      "sha256": "32772a4d6b18a017bfd75f3190dfcc48768bfc8dc667ac1490fef6d8a5c9bf8a"
+    },
+    "candidateFunctionalReport": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\candidate-r1\\report.json",
+      "sha256": "a88f7cad84982e17d23092c6c3cabdf4acd1c60eaa44738ca8c91dee5deb808a"
+    },
+    "candidateFunctionalSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\candidate-r1\\seal.json",
+      "sha256": "87aeaa626d36994b06af19228cd61d82298e1465589e6bb4b28f50221ff9cbab"
+    },
+    "sourcePeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\candidate-r1\\independent-source-review-r15\\review.json",
+      "sha256": "1e57ce2be2f1892c37a1982bc7f31002d0ba0caee46aff3b467d29454ad317a0"
+    },
+    "quietPreparation": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\prepared-report.json",
+      "sha256": "2540eeb945b2dd84cec0b658180646aa92bd568d575c7afc41f14a168833ea8d"
+    },
+    "quietPreparationSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\preparation-seal.json",
+      "sha256": "6158e3f242ec3c7150962c266da86ebaf56b0b8bccfbfaacf0c8c7a5d3d77254"
+    },
+    "controllerPeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\independent-controller-review-r15.json",
+      "sha256": "732f7a3d4d9d5ff37ae8a80d18f499f37d8b0f11f81df58cee095f10ec7be180"
+    },
+    "quietPeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\independent-preparation-review-r15.json",
+      "sha256": "ac46b64c3ac19d11dfba76f2e08a05e98ba061d6b32054d187ca91a9958319b6"
+    },
+    "rootGO": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\root-cost-go.json",
+      "sha256": "97508bd1b0d4a12ca843842eeb437f7fa9748e2b33c6de4509eb415b028fb70e"
+    },
+    "costRaw": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\single-batch\\raw.json",
+      "sha256": "005c8bb0b7eed67f9ba6e54d4cf2fab2b4532d6f5e44b1fd1d11ceba08923a9e"
+    },
+    "numericPeer": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\independent-numeric-review-r15\\review.json",
+      "sha256": "a9e912a716075cef9222d47d5e60e5e925ba6d548cb28f8262490e3216ae40a5"
+    },
+    "numericSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\quiet-cost-r2\\independent-numeric-review-r15\\seal.json",
+      "sha256": "2388a9c1cf786dec2cf9cb75ac534e2744fe0b147a52a8101c35748f3530018b"
+    },
+    "nativeAttemptReview": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-attempts-review-20261116\\review.json",
+      "sha256": "c05ffe3c1ce96d3bb4fc7d1991b8370823e0223dabc5c2d4ebe6976e6ebaea05"
+    },
+    "nativeAcceptedDecode": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-fast-success-20261116\\decode.json",
+      "sha256": "4a7b230f0424e83d5b835b04f2e7e7cb1ef6a3e77a84afe9b43a47164786736c"
+    },
+    "nativeAcceptedSeal": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\p54-native-fast-success-20261116\\seal.json",
+      "sha256": "2e55a07d4230e830c68c6feb19e282e64b61745a07ee90b0d5a2932a30ed2a1b"
+    },
+    "nativeCTXb": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-p54ctxb-journal.json",
+      "sha256": "c433e0cbe032fbb04961bd452cbd517919c1c896cc079f3f4eec21100d14bdd9"
+    }
+  },
+  "continuityReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\restock-harvest-causal-p56\\continuity-20261116T103903Z\\receipt.json",
+  "next": "Keep P56 closed/rejected; no more P56 tests, durable compile, cost rerun or production application. Broad Inventory/EBS goal remains ACTIVE and native attribution remains pending.",
+  "actions": {
+    "productionLuaEdits": false,
+    "testEditsInRepo": false,
+    "manualSync": false,
+    "publication": false,
+    "genericVerificationRegeneration": false,
+    "fullSuiteRerun": false,
+    "nativeInputByDocumentationUpdate": false
+  }
+}

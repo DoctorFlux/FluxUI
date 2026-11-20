@@ -105,18 +105,29 @@ local function Variants(raw, outputID)
     if #slots == 0 then return {} end
     local variants = { { required = {}, allocation = {}, recipeID = raw.recipeID, yield = yield, name = raw.name } }
     for _, slot in ipairs(slots) do
-        local nextSet = {}
-        for _, variant in ipairs(variants) do
-            for _, id in ipairs(slot.options) do
-                if #nextSet >= 64 then return {} end
-                local nextVariant = { required = CopyMap(variant.required), allocation = {}, recipeID = raw.recipeID, yield = yield, name = raw.name }
-                for i, allocation in ipairs(variant.allocation) do nextVariant.allocation[i] = allocation end
-                nextVariant.required[id] = (nextVariant.required[id] or 0) + slot.count
-                nextVariant.allocation[#nextVariant.allocation + 1] = { reagent = { itemID = id }, dataSlotIndex = slot.index, quantity = slot.count }
-                nextSet[#nextSet + 1] = nextVariant
+        if #slot.options == 1 then
+            -- These variants are private until verification. A fixed slot
+            -- extends each existing plan without making a copy of its prefix.
+            local id = slot.options[1]
+            for _, variant in ipairs(variants) do
+                variant.required[id] = (variant.required[id] or 0) + slot.count
+                local allocation = variant.allocation
+                allocation[#allocation + 1] = { reagent = { itemID = id }, dataSlotIndex = slot.index, quantity = slot.count }
             end
+        else
+            local nextSet = {}
+            for _, variant in ipairs(variants) do
+                for _, id in ipairs(slot.options) do
+                    if #nextSet >= 64 then return {} end
+                    local nextVariant = { required = CopyMap(variant.required), allocation = {}, recipeID = raw.recipeID, yield = yield, name = raw.name }
+                    for i, allocation in ipairs(variant.allocation) do nextVariant.allocation[i] = allocation end
+                    nextVariant.required[id] = (nextVariant.required[id] or 0) + slot.count
+                    nextVariant.allocation[#nextVariant.allocation + 1] = { reagent = { itemID = id }, dataSlotIndex = slot.index, quantity = slot.count }
+                    nextSet[#nextSet + 1] = nextVariant
+                end
+            end
+            variants = nextSet
         end
-        variants = nextSet
     end
     local verified = {}
     for _, variant in ipairs(variants) do
@@ -147,11 +158,8 @@ local function Variants(raw, outputID)
     return verified
 end
 
-function A.CraftRecipes(row)
-    if not RecipeItem(row) or not Inv or not Inv.Professions or not Inv.Professions.ListAllCachedRecipes then return {} end
+local function CraftRecipesFromCatalogue(row, catalogue)
     local out = {}
-    local catalogue = Inv.Professions.ListRecipesForOutput and Inv.Professions.ListRecipesForOutput(row.itemID)
-        or Inv.Professions.ListAllCachedRecipes()
     for _, raw in ipairs(catalogue or {}) do
         if raw.learned == true and (raw.outputItemID == row.itemID or Contains(raw.craftingData and raw.craftingData.qualityItemIDs, row.itemID) or (raw.name and raw.name == row.name)) then
             local professionKnown = true
@@ -168,6 +176,20 @@ function A.CraftRecipes(row)
     end
     return out
 end
+
+function A.CraftRecipes(row)
+    if not RecipeItem(row) or not Inv or not Inv.Professions or not Inv.Professions.ListAllCachedRecipes then return {} end
+    local catalogue = Inv.Professions.ListRecipesForOutput and Inv.Professions.ListRecipesForOutput(row.itemID)
+        or Inv.Professions.ListAllCachedRecipes()
+    return CraftRecipesFromCatalogue(row, catalogue)
+end
+
+local OwnedCraftRecipes = A.CraftRecipes
+local OwnedRecipeBatch = ns.ListOwnedRecipesByOutput
+local RecipeItemClass = _G.FluxItemClass
+local OwnedGetClassID = RecipeItemClass and RecipeItemClass.GetClassID
+local OwnedGetSubClassID = RecipeItemClass and RecipeItemClass.GetSubClassID
+local OwnedGetStatic = RecipeItemClass and RecipeItemClass.GetStatic
 
 -- These snapshots are produced only after a learned recipe has supplied its
 -- exact output, yield and allocation. Missing live/cache replies do not revoke
@@ -245,9 +267,34 @@ function A.SavedRecipeKnowledge(plan, parent)
     return true
 end
 
-function A.RefreshCraftRecipes(rows)
+local function BatchCraftCatalogues(rows)
+    -- A full catalogue costs more than a few selective queries. Keep the
+    -- single-item and small refreshes on their existing paths.
+    if #rows < 5 or A.CraftRecipes ~= OwnedCraftRecipes or not OwnedRecipeBatch
+        or ns.ListOwnedRecipesByOutput ~= OwnedRecipeBatch or not RecipeItemClass
+        or _G.FluxItemClass ~= RecipeItemClass or RecipeItemClass.GetClassID ~= OwnedGetClassID
+        or RecipeItemClass.GetSubClassID ~= OwnedGetSubClassID or RecipeItemClass.GetStatic ~= OwnedGetStatic then
+        return nil
+    end
+
+    local ids, count = {}, 0
     for _, row in ipairs(rows) do
-        if not row.isCraftMaterial then recipeCache[row.itemID] = A.CraftRecipes(row) end
+        local id = N(row.itemID)
+        if id and id > 0 and not ids[id] and RecipeItem(row) then
+            ids[id] = true
+            count = count + 1
+        end
+    end
+    if count >= 5 then return OwnedRecipeBatch(ids) end
+end
+
+function A.RefreshCraftRecipes(rows)
+    local batch = BatchCraftCatalogues(rows)
+    for _, row in ipairs(rows) do
+        if not row.isCraftMaterial then
+            local catalogue = batch and A.CraftRecipes == OwnedCraftRecipes and batch[N(row.itemID)]
+            recipeCache[row.itemID] = catalogue and CraftRecipesFromCatalogue(row, catalogue) or A.CraftRecipes(row)
+        end
     end
 end
 
@@ -597,7 +644,21 @@ function A.GetVendorCraftTargets(baseRows)
     return result
 end
 
+-- Ordinary vendor base rows may be borrowed only by this read-only path.
+-- Need can expose a selected source through row.tiers, so row-consuming public
+-- replacements also require the caller's original shallow-copy isolation.
+local vendorBaseGetter, vendorBaseUnits, vendorBaseNeed = A.GetVendorCraftTargets, A.SetItemUnits, A.Need
+local vendorBaseMail, vendorBasePending, vendorBasePredicted = A.MailUnits, A.Pending, A.PredictedMailUnits
+local function CanBorrowVendorCraftBaseRows()
+    return getmetatable(A) == nil and A.GetVendorCraftTargets == vendorBaseGetter
+        and A.SetItemUnits == vendorBaseUnits and A.Need == vendorBaseNeed
+        and A.MailUnits == vendorBaseMail and A.Pending == vendorBasePending
+        and A.PredictedMailUnits == vendorBasePredicted
+end
+ns.VendorCraftBaseRows = { owner = A, canBorrow = CanBorrowVendorCraftBaseRows }
+
 function A.MaterialRows(rows)
+    if not next(plans) then return end
     local base, additions, vendorOwned = {}, {}, {}
     for _, row in ipairs(rows) do base[row.itemID] = row end
     for parent, plan in pairs(plans) do

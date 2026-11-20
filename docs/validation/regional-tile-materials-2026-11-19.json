@@ -1,0 +1,153 @@
+{
+  "changeId": "REGIONAL-TILE-MATERIALS-R103-20261119",
+  "capturedAtUTC": "2026-11-19T12:32:19.460913+00:00",
+  "scope": "Collect materials for actual planner inputs and output tiles only",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "9856402d3fbe9ecc6708b381e0834cdd1fd435e5b33fb3fbf772ec67d596f419",
+      "afterRaw": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442"
+    },
+    "tests/regional_tile_materials.lua": {
+      "beforeRaw": null,
+      "afterRaw": "c80568dd48573ac6f1aa3f4dda8c8c723bf6272afbdf0f3762c821f18192287d"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916",
+      "afterRaw": "bf4bfeaef5306cac9fab9385060126fe8bdb3d4681baff454e5d7dbfbb34e916"
+    },
+    "tests/border_source_phase.lua": {
+      "beforeRaw": "540b81f9581cd8e00004dc5620bb7ba68fd2baf92394e7838e78cfddda4d4880",
+      "afterRaw": "540b81f9581cd8e00004dc5620bb7ba68fd2baf92394e7838e78cfddda4d4880"
+    },
+    "tests/regional_layout_index.lua": {
+      "beforeRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3",
+      "afterRaw": "85b8c5e478dfbcc4178bb68cbeecdd5fac75f6a92e2cc1da484959df5335c1b3"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08",
+      "afterRaw": "bf1cddd331c4dc8d3ac58b39a9939ac31c34e0878c46235a540867b9d347df08"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+      "afterRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4",
+      "afterRaw": "f714eed72e262efaf7585ea99d63b02468e38b84d89bedee56a1902aaa0897e4"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-tile-materials-r103-before-20261119T122632Z\\source.zip",
+    "archiveSHA256": "2cfcca1a12b4240a7be65ce697d90bbfae0cc5ccd6ace28eae91a474eef6f841",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua in source-matched regional renderer widget models",
+    "commitsPerCase": 6,
+    "backgroundRaidFrames": 40,
+    "types": [
+      1,
+      2
+    ],
+    "cases": [
+      "type 1 held crossing",
+      "type 1 roster movement",
+      "type 2 held crossing",
+      "type 2 roster movement"
+    ],
+    "counts": [
+      [
+        144,
+        129,
+        288,
+        258
+      ],
+      [
+        160,
+        66,
+        320,
+        132
+      ],
+      [
+        144,
+        129,
+        288,
+        258
+      ],
+      [
+        160,
+        66,
+        320,
+        132
+      ]
+    ],
+    "countColumns": [
+      "before first two reflows",
+      "after first two reflows",
+      "before four repeated reflows",
+      "after four repeated reflows"
+    ],
+    "metric": "Native source mask-count calls in the widget model, one per complete material read",
+    "checks": [
+      "first and repeated held-cursor poses with four prepared hits per style",
+      "roster movement repositions four existing origins",
+      "sampled artwork and solve counts match across trusted regional layouts",
+      "unused masked caps retain native paint without invalidating the strip pose",
+      "masking a required source falls back, and exposing it restores exact sampled joins"
+    ],
+    "rows": [
+      "TILE_MATERIALS style=1 trigger=hover initial=144/129 repeat=288/258",
+      "TILE_MATERIALS style=1 trigger=roster initial=160/66 repeat=320/132",
+      "TILE_MATERIALS style=2 trigger=hover initial=144/129 repeat=288/258",
+      "TILE_MATERIALS style=2 trigger=roster initial=160/66 repeat=320/132",
+      "Regional material collection preserves sampled joins and validates actual paint dependencies."
+    ],
+    "captureSHA256": "11931e7e1652f5f3c69b078148632cc6ce680cb740e948d033208075a9eed62e"
+  },
+  "verification": {
+    "focused": 31,
+    "focusedPassed": 30,
+    "syntax": 1246,
+    "compilerMaximumUpvalues": 52,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-tile-materials-r103-before-20261119T122632Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\regional-tile-materials-r103-before-20261119T122632Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "d9595b9a8efe0b93bedc98fc360ea5d798d5649272221f9e7bb699f18b25e442",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Actual party or raid latency, held-cursor and rapid drop latency, native seam pixels and combat taint remain open. No game input or profiling changes."
+}

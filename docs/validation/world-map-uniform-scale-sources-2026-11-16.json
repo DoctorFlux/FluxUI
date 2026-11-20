@@ -1,0 +1,84 @@
+{
+  "task": "WORLD-MAP-BRIDGE-20261116",
+  "date": "2026-11-16",
+  "research_only": true,
+  "trigger": "Native map fill, pins and M toggle confirmed by user; request now requires uniform scaling of original map content including player arrow and addon drawings.",
+  "native_group_members": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "file": "Interface/AddOns/Blizzard_SharedMapDataProviders/GroupMembersDataProvider.lua",
+      "blob_sha": "c33541cf628b08c473c720da21fcaa698f124cdd",
+      "contract": "OnLoad ignores global pin scale. SynchronizePinSizes divides unit pin and ping size by canvas scale, preserving screen size relative to original root; it does not ignore parent scale.",
+      "default_player_size": 27
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "file": "Interface/AddOns/Blizzard_SharedMapDataProviders/GroupMembersDataProvider.lua",
+      "blob_sha": "c33541cf628b08c473c720da21fcaa698f124cdd",
+      "contract": "OnLoad ignores global pin scale. SynchronizePinSizes divides unit pin and ping size by canvas scale, preserving screen size relative to original root; it does not ignore parent scale.",
+      "default_player_size": 27
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "file": "Interface/AddOns/Blizzard_SharedMapDataProviders/GroupMembersDataProvider.lua",
+      "blob_sha": "72377ba4ae73e5c6c6da7deacc9d38477b283482",
+      "contract": "OnLoad ignores global pin scale. SynchronizePinSizes divides unit pin and ping size by canvas scale, preserving screen size relative to original root; it does not ignore parent scale.",
+      "default_player_size": 16
+    }
+  ],
+  "native_pins": [
+    {
+      "target": "retail",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "file": "Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua",
+      "blob_sha": "7cc20e3ef425749e854ba03b139666e1eb323a97",
+      "contract": "MapCanvasPinMixin.ApplyCurrentScale counteracts canvas zoom and optionally global pin scale; it does not counteract the source root hierarchy transform."
+    },
+    {
+      "target": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "file": "Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua",
+      "blob_sha": "7cc20e3ef425749e854ba03b139666e1eb323a97",
+      "contract": "MapCanvasPinMixin.ApplyCurrentScale counteracts canvas zoom and optionally global pin scale; it does not counteract the source root hierarchy transform."
+    },
+    {
+      "target": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "file": "Interface/AddOns/Blizzard_MapCanvas/MapCanvas_DataProviderBase.lua",
+      "blob_sha": "7976f68719c8cdd68a2d1d4b2f9f4a393ee098fc",
+      "contract": "MapCanvasPinMixin.ApplyCurrentScale counteracts canvas zoom and optionally global pin scale; it does not counteract the source root hierarchy transform."
+    }
+  ],
+  "polestar": {
+    "commit": "59071e2b7c0ea416a901ec6ad2f015cece3e3883",
+    "files": [
+      {
+        "path": "addon/Polestar/Nav/MapCanvas.lua",
+        "blob_sha": "f50431f2b087a2aa77b97e46d541a878119ee554",
+        "contract": "View.PinScale divides by canvas scale; source root scale remains in the normal hierarchy."
+      },
+      {
+        "path": "addon/Polestar/Nav/Pins.lua",
+        "blob_sha": "9657acfcc9d8690918310605f00e492d0a18db00",
+        "contract": "placePin uses View.PinScale and placeAt uses local scale-compensated positions."
+      }
+    ],
+    "installed_mapcanvas_blob_matches": true
+  },
+  "recommended_pipeline": [
+    "Capture source native map-body viewport dimensions after normal preparation, before mount; keep that scene baseline immutable until release.",
+    "Keep original source root and ScrollContainer/canvas identities. Hide only known stock chrome. Size original root/ScrollContainer to the captured logical scene and apply one outer root scale fitting the battlefield viewport.",
+    "Rebuild native canvas zoom only after actual scene size change; avoid additional pin/provider traversal or per-addon size adjustments.",
+    "Preserve the working hidden-only native framebuffer/flatten policy; adding an owned compositor is unsupported by available public capture contracts and risks repeating observed rendering glitches.",
+    "Native player arrow inherits outer transform even though it ignores global pin scale. Standard native pins, textures, fontstrings, routes and installed Polestar pins also inherit it.",
+    "When source and target aspect ratios differ, choose fit/letterbox or define logical scene height from target aspect; filling both axes by separate scales would violate uniform scaling."
+  ],
+  "limits": [
+    "A private addon child may deliberately ignore parent scale or be parented outside the original map. A root transform cannot override those choices without modifying individual children.",
+    "No final-scene frame-to-texture capture API was found in the source-pinned widget contracts; SetIsFrameBuffer alone is not such a documented capture API.",
+    "Source reasoning does not establish exact new native sizes or per-client acceptance; the new scaling candidate still requires native checks."
+  ]
+}

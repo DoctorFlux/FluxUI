@@ -1,0 +1,401 @@
+{
+  "changeId": "PARTY-INDICATOR-PASS-R147-20261119",
+  "capturedAtUTC": "2026-11-19T22:06:38.412233+00:00",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRaw": "af39aa09befc5f753679911e63cab72cbb1b7b006a78069db00980665342a150",
+      "afterRaw": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+      "afterNormalized": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "7384d41650e9296c865c0d23299b9118f4bec6641180563d37cc97950c377638",
+      "afterRaw": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+      "afterNormalized": "3aabe0e45ab558c6d66ab6f1706b1f976e8eab7b3a95268f4adacfe159dd5ea2"
+    },
+    "tests/raid_party_frames.lua": {
+      "beforeRaw": "a7d208bd8f74d099c9c1dfd3c1adc93fec49947ce82faddd11613bddd9c81477",
+      "afterRaw": "9d32b7fb54c4748e6724621ccf249160745d0caf21105dadddf9b230fcdea9ae",
+      "afterNormalized": "9d32b7fb54c4748e6724621ccf249160745d0caf21105dadddf9b230fcdea9ae"
+    },
+    "tests/unit_outer_geometry.lua": {
+      "beforeRaw": "bdc8d2c8da0bfd161e7f779e4b2257ca30ad81a1f94fc0f897db4c93d22a3214",
+      "afterRaw": "e759ab308928be52d0029916f1e2c1a2653eb2b170e43d9e567335b6487830ed",
+      "afterNormalized": "f7e863930b76d3cc452eb76bdd80afee810e0146dd7964e8f720076fecb8acf5"
+    },
+    "tests/unit_outer_lifecycle.lua": {
+      "beforeRaw": "f0bebb1406bde4fdf4205b1da1e493a23126309dfac536c3e01564adcde396c6",
+      "afterRaw": "987b5e6422771f0fdf571bedf8630f092e44d47f74b685a33bf889c9d099e438",
+      "afterNormalized": "e5c0baeed0a542f7e80179e1a62acfa37e444b919bb1cc6736940d19a1b90c28"
+    },
+    "tests/unit_outer_party_geometry.lua": {
+      "beforeRaw": "e90646c975284bfa8e0034019bf03e1320ff79f1c3008642110e61eb9c20b9c9",
+      "afterRaw": "5585349ee3e26cb9e98cff3bbc6cabcebc0f10c52557e372c8958cf49307c30c",
+      "afterNormalized": "c14618aa3085e3c8757ac475a01cffe3ce2d9bc55504c8a8bb4fcb2960bf256d"
+    },
+    "tests/unit_portrait_border_fit.lua": {
+      "beforeRaw": "5e8ab417b373e23078179cf7be83c53652db1f0e043a7e1cc7888d5647a2eb61",
+      "afterRaw": "4ee8d47bdede2cfdd96b59de334eb75dec494be540a3397da897b2fa7586f90f",
+      "afterNormalized": "4ee8d47bdede2cfdd96b59de334eb75dec494be540a3397da897b2fa7586f90f"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\source.zip",
+    "sourceZipSHA256": "000b2dba35e51e50f56eb028276b64ace111e566f778fdb76b43c060639be782",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three alternating archive and candidate trials across five pinned secure-handler widget models. Each sample replays four batches of twenty roster notifications for a settled normal-party member and counts the actual text and indicator call paths and geometry operations on three roles.",
+    "samples": [
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 441,
+        "model": "live",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 441,
+        "model": "forever",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 441,
+        "model": "classic",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 441,
+        "model": "classic_era",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 1,
+        "path": "archive",
+        "wholeFixtureMs": 441,
+        "model": "classic_anniversary",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 436,
+        "model": "live",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 436,
+        "model": "forever",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 436,
+        "model": "classic",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 436,
+        "model": "classic_era",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 1,
+        "path": "candidate",
+        "wholeFixtureMs": 436,
+        "model": "classic_anniversary",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 403,
+        "model": "live",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 403,
+        "model": "forever",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 403,
+        "model": "classic",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 403,
+        "model": "classic_era",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "candidate",
+        "wholeFixtureMs": 403,
+        "model": "classic_anniversary",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 433,
+        "model": "live",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 433,
+        "model": "forever",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 433,
+        "model": "classic",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 433,
+        "model": "classic_era",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 2,
+        "path": "archive",
+        "wholeFixtureMs": 433,
+        "model": "classic_anniversary",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 427,
+        "model": "live",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 427,
+        "model": "forever",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 427,
+        "model": "classic",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 427,
+        "model": "classic_era",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "archive",
+        "wholeFixtureMs": 427,
+        "model": "classic_anniversary",
+        "stylePasses": 8,
+        "indicatorPasses": 12,
+        "roleGeometryWrites": 96
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 413,
+        "model": "live",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 413,
+        "model": "forever",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 413,
+        "model": "classic",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 413,
+        "model": "classic_era",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      },
+      {
+        "sample": 3,
+        "path": "candidate",
+        "wholeFixtureMs": 413,
+        "model": "classic_anniversary",
+        "stylePasses": 4,
+        "indicatorPasses": 4,
+        "roleGeometryWrites": 0
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\compare.lua": "b195153b6c052eb8cb102d9df975ab136bf25af79cecb5f75d84bca72d377842",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\matched.txt": "8b46b27d8eaf19dd1e51fa8519a0ef148a1d52e1f2bf571b1f66f8a3ddee8e97",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\negative.txt": "8bc9b4d2e252a9ab4ba344de00fd2591d89595ea0b51796767aada0419a0595b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\upvalues.json": "6d45363acb39929d1cb161a53d8ca6825e0b5e7ab3dfe3b199bd1fd90d44b23b"
+    },
+    "limits": "The replay executes the actual party paint and anchor code and the production shared style dispatch. Other Shared paint helpers use fixture sinks. Whole-fixture timings are offline and do not measure native membership latency."
+  },
+  "preservation": [
+    "Party roster paint finishes indicator layout after current role visibility is known. Party pets and callers without the final indicator pass retain immediate shared styling and layout.",
+    "Confirmed role positions, sizes and draw layers stay in place. Changed or inaccessible inputs run native setters through the original path. Health, power, aura, range and cast paints retain their existing order and owners.",
+    "Role visibility, party text sizing, secure show and hide, and original health split, cast cover and overlay semantics remain covered. Native timing and combat taint remain pending."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-indicator-pass-before-20261119-225946\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "sha256": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+        "matches": true
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+        "matches": true
+      }
+    },
+    "forever": {
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "sha256": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+        "matches": true
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+        "matches": true
+      }
+    },
+    "classic": {
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "sha256": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+        "matches": true
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "sha256": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+        "matches": true
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "UnitFrames/FluxUnitFrames_Party.lua": {
+        "sha256": "40a1b35949d7aaf200d5229bc5ecabc6bc548f6d3a977249fc951253a9843de4",
+        "matches": true
+      },
+      "UnitFrames/FluxUnitFrames_Shared.lua": {
+        "sha256": "8f4b34811d0f23196b0af6d245a7ac8e245ee556ce0bdb7a4b6f72de43dedea0",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for party and raid membership latency, rapid cursor crossings and drops, border pixels and combat taint. No client or profiler changes."
+}

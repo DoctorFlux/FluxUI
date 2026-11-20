@@ -2902,7 +2902,14 @@ function FluxButton:UpdateButtonText()
         if self.HotkeyBinding and FluxNCHotkeyUtil and FluxNCHotkeyUtil.UpdateHotkeyText then
             FluxNCHotkeyUtil.UpdateHotkeyText(self, self.HotkeyBinding, self.HotkeyAddDynamicModifiers, self.HotkeyHasModifierAssignments, self.HotkeyIconSize)
         else
-            self.WHotKey:SetText("")
+            local Hotkey = _G.Flux and _G.Flux.Hotkey
+            if FluxNCHotkeyUtil and FluxNCHotkeyUtil.SetText then
+                FluxNCHotkeyUtil.SetText(self.WHotKey, "")
+            elseif Hotkey and Hotkey.SetText then
+                Hotkey.SetText(self.WHotKey, "")
+            else
+                self.WHotKey:SetText("")
+            end
             self.WHotKey:Hide()
         end
     end

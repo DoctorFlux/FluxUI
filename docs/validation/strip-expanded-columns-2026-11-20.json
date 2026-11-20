@@ -1,0 +1,123 @@
+{
+  "changeId": "STRIP-EXPANDED-COLUMNS-20261120",
+  "borderVersion": "source-alpha-memo-r179",
+  "capturedAtUTC": "2026-11-20T05:08:44.983506+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "3fa725920ecebdbddd639172f6f7958692b37d95ff71296df9db8b588df5ef9e",
+      "afterRaw": "ce7ef768a571bf67d611d9b31a731d1dc86d83e6ee7b809197facecc0d0a0fcc",
+      "afterNormalized": "ce7ef768a571bf67d611d9b31a731d1dc86d83e6ee7b809197facecc0d0a0fcc"
+    },
+    "tests/strip_slot_sampling.lua": {
+      "beforeRaw": "a2f751a99167d4cfccf9dec9b37fce90fdde92d207b17a7d0c9e7efe8e25da98",
+      "afterRaw": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "afterNormalized": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-expanded-columns-before-20261120T060312391\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Sixty alternating held-action crossings through the actual layout entry point per sparse or dense fixture.",
+    "cases": {
+      "sparse-top": {
+        "expanded-pack": [
+          1800,
+          0
+        ],
+        "total-pack": [
+          3600,
+          1800
+        ],
+        "action-reads": [
+          6420,
+          6420
+        ]
+      },
+      "sparse-form": {
+        "expanded-pack": [
+          1770,
+          0
+        ],
+        "total-pack": [
+          3570,
+          1800
+        ],
+        "action-reads": [
+          5820,
+          5820
+        ]
+      },
+      "full-top": {
+        "expanded-pack": [
+          1770,
+          0
+        ],
+        "total-pack": [
+          3570,
+          1800
+        ],
+        "action-reads": [
+          5490,
+          5490
+        ]
+      },
+      "full-possession": {
+        "expanded-pack": [
+          1800,
+          0
+        ],
+        "total-pack": [
+          3600,
+          1800
+        ],
+        "action-reads": [
+          5280,
+          5280
+        ]
+      }
+    },
+    "countColumns": [
+      "original",
+      "candidate"
+    ],
+    "otherTrials": {
+      "preparedDrawRecords": "The plan-owned record variant violated the isolation oracle. A detached record cache preserved field samples and reduced temporary allocation but had slower medians in the four 60-crossing replays.",
+      "regionalBounds": "An early union test skipped 60 of 1,650 tile visits per strip style and 1,680 per roster style. Whole-reflow timings were mixed for both the union and canonical-tile variants. Both remain outside runtime."
+    },
+    "artifactSHA256": {
+      "trial-Bars-Layout.lua": "c492184cfb430f58d726ac5ba69f00fc02b885e82c83b74347a0e2ec17219958",
+      "trial-bounds-clock.txt": "eda7d800580c4135c9a0a6378b143a271089b1689fd54ee6e9ca95db9fff1602",
+      "trial-bounds-counts.txt": "ab734898a344674c474955d4210c0ae2e65fe281142bd76e179fb134d241ed43",
+      "trial-bounds-setters.txt": "a2502013a7a2373da2ac781c97625b345d4d768f71883407194e71ac2aede89c",
+      "trial-expanded-check.lua": "fd5abf02319d4a8714b0442a4b1f736879050ac88a441041919424c98b449b88",
+      "trial-expanded-check.txt": "e042a9bbbbfb958efdc528d455380fb30428eb670b5f03db9bbceca78903b3d3",
+      "trial-expanded-columns.lua": "4166bd6456b8b6f1da826a6933c76768af7109b58dd39c94de7b12d7309acf5d",
+      "trial-record-clock.txt": "54bbd211fd0e369128e1000bb031dc3eed9a0e1d7c40e28dbde7e2d1c6ef038e",
+      "trial-record-setters.txt": "b2a6048103f11fcf0c642064370c106b79f69ac476a334dfe38bea3f71d7d25d",
+      "trial-tiles-clock.txt": "fee58dd0cffe195dcb531ba9b3510af74126989d2970ede5b7cf638cf8f73e46"
+    }
+  },
+  "parity": "Matches modeled action routes, flags, face placement and visibility, secure application calls, layout-dependent notifications and border commits. Current-page action changes remain visible after a synchronous secure update. The lockdown fixture performs no new action reads or protected point writes. Existing rapid drop and border pose scripts cover both border styles.",
+  "verification": {
+    "focusedPassed": 51,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-expanded-columns-before-20261120T060312391\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-expanded-columns-before-20261120T060312391\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-expanded-columns-before-20261120T060312391\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Core/ButtonFX/Cast.lua"
+    ]
+  },
+  "nativeAcceptance": "Live action-strip and group-change latency, pixel parity and combat taint remain pending."
+}

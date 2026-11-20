@@ -1,0 +1,137 @@
+{
+  "id": "LHO-JUMP-RESTORED-20261118",
+  "utc": "2026-11-18T10:51:09.596444+00:00",
+  "userRequirement": "Three-minute jumps throughout active goal; coordinate with all chat scripts and casting/crafting; stop on pause",
+  "temporaryCode": {
+    "root": "_J19q",
+    "nonce": "j18n5p8",
+    "partialBatchJournal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump19install_a-journal.json",
+    "partialFacts": "Steps1..24 fully queued with final Enter; physical modifier in gap stopped batch before step25. Original nonce/run spent; no replay. Actual J83INIT true seen.",
+    "enableCommandJournal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump19enable_b-journal.json",
+    "enableProof": "Fresh source followed by separate only-unqueued step25; new J83CUE personally viewed and ACKed. No skipped function validation.",
+    "readiness": "Taxi flight source observed; cue red; first actual Space pending until safe/stationary/idle.",
+    "expiration": "RAM only; reset by reload; future reinstall needs fresh source/identity. Preserve other diagnostic roots."
+  },
+  "runtimeGuards": [
+    "Exact42724/50333792/birth134394624880288175/Forever executable",
+    "PC idle15 seconds, no physical modifier/Space, no user input/focus race",
+    "World/player identity, combat/casting/channel/spell-target/queue checks in advancing cue",
+    "No active chat or editbox focus; shared native/input.lock and no_jump/craft_hold/capture reservations",
+    "Fresh green before/after activation; chat-open red and heartbeat green acknowledgement before actual Space pair",
+    "Always key-up; restore prior foreground only without user race",
+    "Minimized restore NOACTIVATE behind other apps when due and idle; no cursor/clipboard/Alt keys",
+    "Stop on P4/CANCEL or GOAL_DONE or native/JUMP_STOP; source/auth pins; agent heartbeat age600s"
+  ],
+  "oldHost": {
+    "pid": 25000,
+    "stoppedBeforeRepair": true,
+    "completedPairs": 0,
+    "failures": "Background activation refused; minimized target. No Space sent."
+  },
+  "repair": "After direct idle activation refusal, transiently attach caller to foreground input queue, retry activation, always detach; host exits if detach fails. No other-app key injection. Minimized restore path added. Runtime acceptance pending first actual pair at this snapshot.",
+  "firstPairAccepted": false,
+  "addonLuaEditsThisSlice": 0,
+  "externalAddonEdits": 0,
+  "simulations": 0,
+  "profilerSettingsChanged": false,
+  "publicSources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-attachthreadinput",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow"
+  ],
+  "goal": "ACTIVE",
+  "nextOperator": "Refresh native/agent-heartbeat at least every five minutes while goal work runs. Read current supervisor/host state before claiming jump injection; do not revive old25000/49400. Current user is on taxi; queued red state is expected. Stop via P4/CANCEL promptly on pause, verify processes stopped, safe requested reload resets _J19q and diagnostics. No actual paired FPS/spike gain is certified.",
+  "previousHelper": {
+    "pid": 49400,
+    "statePath": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\keepalive-p83-live20261118b-state.json",
+    "stateSnapshot": {
+      "pid": 49400,
+      "startedUTC": "2026-11-18T10:49:29.230202+00:00",
+      "status": "running",
+      "pairs": 0,
+      "movementAcknowledged": false,
+      "automaticSetup": false,
+      "firstDueUnix": 1794998969.0816298,
+      "last": {
+        "atUTC": "2026-11-18T10:51:08.682375+00:00",
+        "status": "deferred",
+        "movementAcknowledged": false,
+        "reason": "PC not known idle15"
+      },
+      "nextDueInSeconds": 0
+    },
+    "intervalSeconds": 180,
+    "firstDue": "Immediate then180 seconds after a completed Space pair; due attempts queue under activity/holds",
+    "sourcePins": {
+      "supervisor.py": "6a36612c34c7e7cd8271614f654d0892d68ba86fdf820a20a0bc4641aa14e2be",
+      "keepalive.py": "e76494d13a55e8c152df28d5f6192a3ab256f921d29925835c29f2efd5b37578",
+      "jump_core.py": "ec60217a44dbbfb9116eaeedc6a0f566fa2a440868354ede427fe8d71e41640d",
+      "native_bank_transport_r4.py": "0957d7eaa60e41737a2a587fb4d2f734a5a5e17fca2da63d8d5447a1de959970",
+      "cue_capture.py": "4f66b01b660ef676c1392680ff1f8f50f5f30d5cd34ac3f7629dcf484a1472aa",
+      "calibrate.py": "f3d7ec48a8e4403cda20142b8689651225b2cfa409cc3231203cc69edfaf04fc",
+      "packets.json": "0dd919fc735e61506014675744d0f5165f9969ce9cd7661d9a9251fd6814536a"
+    },
+    "authorization": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r4-20261118\\authorization-live.json",
+    "authorizationSHA256": "4a2e83e615e10824f3c184bfd1f82493c3bd4d3c50ec6df633f2e2f14a14c0ef",
+    "calibration": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r4-20261118\\calibration-observation-jump18auto1.json",
+    "calibrationSHA256": "77d718eb716889e716269a1a4cb76bb315bd556fabe60997a1353e9199df193a",
+    "calibrationScope": "Actual BG advancing green3samples; FG not precertified. Fresh cue required in actual current mode and again after any activation before every heartbeat/Space."
+  },
+  "updatedUTC": "2026-11-18T11:02:06.246334+00:00",
+  "currentHelper": {
+    "supervisor": {
+      "pid": 48892,
+      "status": "host-launched",
+      "started": 1794999626.871318,
+      "calibrationAttempts": 1,
+      "jumpIntervalSeconds": 180,
+      "pairInjected": false,
+      "reason": "waiting for drawable WoW and PC idle15 seconds",
+      "lastCalibration": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r5-20261118\\calibration-observation-jump18auto1.json",
+      "calibrationMode": "bg",
+      "calibrationReady": false,
+      "blockedCounterAdvancing": true,
+      "hostPid": 39428,
+      "proofSHA256": "c1b450207c24f882e02a5853664007a6f81534789807253f820b5cf14c1d0e75",
+      "authorizationSHA256": "bc0ac737cb5461d50deb70d5d02a6c3e492b822d6b36470e03cfa3418b14d43d",
+      "ended": 1794999655.3681123
+    },
+    "supervisorState": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r5-20261118\\supervisor-state.json",
+    "hostState": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\keepalive-p83-live20261118c-state.json",
+    "hostSnapshot": {
+      "pid": 39428,
+      "startedUTC": "2026-11-18T11:00:55.340019+00:00",
+      "status": "running",
+      "pairs": 0,
+      "movementAcknowledged": false,
+      "automaticSetup": false,
+      "firstDueUnix": 1794999655.1757607,
+      "last": {
+        "atUTC": "2026-11-18T11:02:05.755315+00:00",
+        "status": "deferred",
+        "movementAcknowledged": false,
+        "reason": "Cue blocked/stale"
+      },
+      "nextDueInSeconds": 0
+    },
+    "sourcePins": {
+      "supervisor.py": "d5b0da1cb61ec8d8e26c60371dd99610c1eea050649f94c1bf8abb1c13ad9647",
+      "keepalive.py": "65221b084c04c4fe9d47d411ed25368090a2d09eae60b7b0feb97c1e1992a5ac",
+      "jump_core.py": "63350f0b94aedaf6ea641dce93fcacb83fd78041b9d4e09b415ac651d4bee51b",
+      "native_bank_transport_r4.py": "9db01cbbc7ba33d8873b5b46fbf1c7fe6d85ca9c5a8163cd5e541ad72a1dc6f0",
+      "cue_capture.py": "23f92068defa1758dae676ebe07c98ca93fbf4c366eb419b85b3f920211f836e",
+      "calibrate.py": "03d627666e25744c7fb845d7d9ebfcc0909697999177a5d761ad51f8024b6f03",
+      "packets.json": "0e10b1e697b06059940dad2c606de7310217c0bdb8ac4f4f581bac2d721a9649"
+    },
+    "intervalSeconds": 180,
+    "firstDue": "Immediate after launch, queued while readiness blocked;180s after completed pair",
+    "status": "Active supervisor waits idle for actual cue calibration, then launches periodic host automatically. Red advancing native cue accepted as alive-blocked; all actual Space still requires fresh GREEN and chat heartbeat ACK.",
+    "confirmedHostPid": 39428,
+    "hostStatus": "running;due queued because taxi/readiness red",
+    "supervisorStatus": "48892 launched39428 then exited normally"
+  },
+  "restartEvidence": {
+    "currentPhoto": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jump18-current-cue-a.png",
+    "observation": "Fresh BugTabs/addon startup messages and old cue absent; user in Dustwallow/Janene after Edna checks. Apparent UI restart after earlier reads, not a source-set change. Agent did not use hearthstone, taxi, buy food or change zones.",
+    "retiredHost49400": "Stopped under owned repair marker after0pairs; palette unknown following cue loss. Exact host process absent before reinstallation."
+  }
+}

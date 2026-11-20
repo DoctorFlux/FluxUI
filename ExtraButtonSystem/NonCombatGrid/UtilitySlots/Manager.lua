@@ -86,6 +86,10 @@ local function FormatSpellCast(spellId)
         return nil
     end
     local Flux = _G.Flux
+    local action = Flux and Flux.EBS and Flux.EBS.Action
+    if action and action.ResolveProfessionSpell then
+        spellId = action.ResolveProfessionSpell(spellId)
+    end
     if Flux and Flux.Spell and Flux.Spell.FormatCastAttribute then
         local attr = Flux.Spell.FormatCastAttribute(spellId)
         if type(attr) == "string" and attr ~= "" then
@@ -617,7 +621,18 @@ function Manager.UpdateHotkeys(btn)
         local key = GetBindingKey and GetBindingKey(bindingName)
         local text = key or ""
         if btn.WHotKey then
-            btn.WHotKey:SetText(text)
+            local Hotkey = _G.Flux and _G.Flux.Hotkey
+            if Hotkey and Hotkey.SetText then
+                Hotkey.SetText(btn.WHotKey, text)
+                if Hotkey.SetRange then
+                    local outOfRange = text ~= "" and btn._outOfRange == true
+                        and btn.ActionType and btn.ActionValue ~= nil
+                        and not (btn.PlaceholderTexture or btn.IgnoreUsabilityVisual)
+                    Hotkey.SetRange(btn.WHotKey, outOfRange)
+                end
+            else
+                btn.WHotKey:SetText(text)
+            end
             if text ~= "" then
                 btn.WHotKey:Show()
             else
@@ -1067,6 +1082,20 @@ function Manager.UpdateAllSlots()
         Manager._updatePending = false
         Manager._DoUpdateAllSlots()
     end)
+end
+
+function Manager.RefreshProfessions()
+    local action = _G.Flux and Flux.EBS and Flux.EBS.Action
+    local assignment = Assign()
+    if not (action and action.ResolveProfessionSpell and assignment and assignment.GetSlots) then return end
+    for _, slot in pairs(assignment.GetSlots()) do
+        for _, entry in pairs(slot) do
+            if type(entry) == "table" and entry.type == "spell" then
+                local _, profession = action.ResolveProfessionSpell(entry.id)
+                if profession then Manager.UpdateAllSlots(); return end
+            end
+        end
+    end
 end
 
 -- Forever's visible CheckButton fires on mouse-up. A utility key must sample

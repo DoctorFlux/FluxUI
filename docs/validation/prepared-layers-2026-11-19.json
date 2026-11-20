@@ -1,0 +1,2064 @@
+{
+  "changeId": "PREPARED-LAYERS-R85-20261119",
+  "borderVersion": "prepared-layers-r85",
+  "capturedAtUTC": "2026-11-19T08:28:46.654480+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce renderer work in held-cursor strip transitions and group-triggered border commits.",
+  "changes": [
+    "Use the existing regional public native frame layer snapshot for the synchronous draw.",
+    "Summarize layer needs for shared owner sets with exact strata tie behavior.",
+    "Keep current decorative canvas reads and the live fallback when a source was outside the snapshot. Clear temporal state on completion or release."
+  ],
+  "source": {
+    "path": "Core/BorderJunctions.lua",
+    "beforeRaw": "cbb3a53f225732ace0c237da89502002216f5965f233014d0757218e09c6617e",
+    "afterRaw": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+    "fixturesRaw": {
+      "tests/border_regional_draw_work.lua": "2bab4f1d77f0cad79e289a3dec4afc83f2fa8534b865df10219228420140673d",
+      "tests/border_render_pool_work.lua": "51ca0472729a08e735f512758b29834b52e19f8f6b85575ff6b02d30521e4ef4"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-layers-r85-before-20261119T082051Z\\source.zip",
+    "archiveSHA256": "57ac99c16ad21c6d1e69dac4861365a7f509b9f493713d69c9be041e85264bde",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "workReplays": {
+    "stripAndSyntheticDock": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "participantStrata": 2546.0,
+          "participantLevel": 1450.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "participantStrata": 2854.0,
+          "participantLevel": 1618.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "participantStrata": 2546.0,
+          "participantLevel": 1450.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "participantStrata": 2854.0,
+          "participantLevel": 1618.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "participantStrata": 2546.0,
+          "participantLevel": 1450.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "participantStrata": 2854.0,
+          "participantLevel": 1618.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "participantStrata": 2626.0,
+          "participantLevel": 1496.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "participantStrata": 2886.0,
+          "participantLevel": 1636.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "participantStrata": 2626.0,
+          "participantLevel": 1496.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "participantStrata": 2886.0,
+          "participantLevel": 1636.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "participantStrata": 2626.0,
+          "participantLevel": 1496.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "participantStrata": 2886.0,
+          "participantLevel": 1636.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 26.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "participantStrata": 1847.0,
+          "participantLevel": 1079.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "participantStrata": 2104.0,
+          "participantLevel": 1228.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "participantStrata": 1847.0,
+          "participantLevel": 1079.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "participantStrata": 2104.0,
+          "participantLevel": 1228.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "participantStrata": 1847.0,
+          "participantLevel": 1079.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "participantStrata": 2104.0,
+          "participantLevel": 1228.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "participantStrata": 1807.0,
+          "participantLevel": 1055.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "participantStrata": 2084.0,
+          "participantLevel": 1216.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "participantStrata": 1807.0,
+          "participantLevel": 1055.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "participantStrata": 2084.0,
+          "participantLevel": 1216.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "participantStrata": 1807.0,
+          "participantLevel": 1055.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "participantStrata": 13.0,
+          "participantLevel": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "participantStrata": 2084.0,
+          "participantLevel": 1216.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "participantStrata": 14.0,
+          "participantLevel": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      }
+    ],
+    "scaledCrossbar": {
+      "before": [
+        "REGIONAL_DRAW style=1 scale=0.75 reused=28 setters=1680 participantStrata=1380 participantLevel=844",
+        "REGIONAL_DRAW style=1 scale=1.00 reused=16 setters=1803 participantStrata=1216 participantLevel=752",
+        "REGIONAL_DRAW style=1 scale=1.25 reused=16 setters=1575 participantStrata=1092 participantLevel=684",
+        "REGIONAL_DRAW style=2 scale=0.75 reused=28 setters=2598 participantStrata=1380 participantLevel=844",
+        "REGIONAL_DRAW style=2 scale=1.00 reused=16 setters=2793 participantStrata=1216 participantLevel=752",
+        "REGIONAL_DRAW style=2 scale=1.25 reused=16 setters=2655 participantStrata=1092 participantLevel=684",
+        "Regional sprite reuse: 120894 checks PASS;canonical art/retained indexes/native paint/context epochs/global budgets;native GPU/CPU/taint pending"
+      ],
+      "after": [
+        "REGIONAL_DRAW style=1 scale=0.75 reused=28 setters=1680 participantStrata=104 participantLevel=104",
+        "REGIONAL_DRAW style=1 scale=1.00 reused=16 setters=1803 participantStrata=104 participantLevel=104",
+        "REGIONAL_DRAW style=1 scale=1.25 reused=16 setters=1575 participantStrata=104 participantLevel=104",
+        "REGIONAL_DRAW style=2 scale=0.75 reused=28 setters=2598 participantStrata=104 participantLevel=104",
+        "REGIONAL_DRAW style=2 scale=1.00 reused=16 setters=2793 participantStrata=104 participantLevel=104",
+        "REGIONAL_DRAW style=2 scale=1.25 reused=16 setters=2655 participantStrata=104 participantLevel=104",
+        "Regional sprite reuse: 120918 checks PASS;canonical art/retained indexes/native paint/context epochs/global budgets;native GPU/CPU/taint pending"
+      ]
+    },
+    "poolAndLayerControls": [
+      "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045 parents=1/1",
+      "RENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962 parents=1/1",
+      "RENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497 parents=1/1",
+      "RENDER_STRIP_WORK fields=96 parents=2 stripReads=1 mesh=1687145760",
+      "border render pool work: 1136 checks passed"
+    ]
+  },
+  "wholeModelElapsed": {
+    "summaryMs": {
+      "strip": {
+        "1": {
+          "before": {
+            "median": 16.0,
+            "range": [
+              12.0,
+              30.0
+            ]
+          },
+          "after": {
+            "median": 15.0,
+            "range": [
+              12.0,
+              28.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 18.0,
+            "range": [
+              11.0,
+              32.0
+            ]
+          },
+          "after": {
+            "median": 17.5,
+            "range": [
+              11.0,
+              30.0
+            ]
+          }
+        }
+      },
+      "dock": {
+        "1": {
+          "before": {
+            "median": 11.5,
+            "range": [
+              8.0,
+              25.0
+            ]
+          },
+          "after": {
+            "median": 11.0,
+            "range": [
+              7.0000000000001,
+              23.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 12.0,
+            "range": [
+              8.0,
+              27.0
+            ]
+          },
+          "after": {
+            "median": 11.0,
+            "range": [
+              8.0,
+              20.0
+            ]
+          }
+        }
+      }
+    },
+    "rows": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 27.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 22.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 27.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 28.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 30.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 32.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 11.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 28.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 21.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 31.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 30.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 22.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 19.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 7.0000000000001,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 9.0000000000001,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 7.0000000000001,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 23.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 21.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 25.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 27.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 15.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 23.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      }
+    ],
+    "scope": "Both art styles; modeled native calls, no GPU/client time. The dock layout is synthetic, separate from actual roster changes."
+  },
+  "isolatedLayerTime": {
+    "summaryMs": {
+      "before": {
+        "median": 0.075,
+        "range": [
+          0.071667,
+          0.08
+        ]
+      },
+      "after": {
+        "median": 0.028333,
+        "range": [
+          0.025,
+          0.031667
+        ]
+      }
+    },
+    "rows": [
+      {
+        "sample": 1,
+        "beforeMs": 0.078333,
+        "afterMs": 0.028333,
+        "checksum": 7844400
+      },
+      {
+        "sample": 2,
+        "beforeMs": 0.075,
+        "afterMs": 0.03,
+        "checksum": 7844400
+      },
+      {
+        "sample": 3,
+        "beforeMs": 0.071667,
+        "afterMs": 0.031667,
+        "checksum": 7844400
+      },
+      {
+        "sample": 4,
+        "beforeMs": 0.075,
+        "afterMs": 0.026667,
+        "checksum": 7844400
+      },
+      {
+        "sample": 5,
+        "beforeMs": 0.073333,
+        "afterMs": 0.025,
+        "checksum": 7844400
+      },
+      {
+        "sample": 6,
+        "beforeMs": 0.076667,
+        "afterMs": 0.028333,
+        "checksum": 7844400
+      },
+      {
+        "sample": 7,
+        "beforeMs": 0.073333,
+        "afterMs": 0.031667,
+        "checksum": 7844400
+      },
+      {
+        "sample": 8,
+        "beforeMs": 0.076667,
+        "afterMs": 0.025,
+        "checksum": 7844400
+      },
+      {
+        "sample": 9,
+        "beforeMs": 0.08,
+        "afterMs": 0.028333,
+        "checksum": 7844400
+      }
+    ],
+    "scope": "Nine alternating pairs, 600 batches per half. Exact archived/candidate functions with 40 sample parents and eight repeated owner sets."
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-layers-r85-before-20261119T082051Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-layers-r85-before-20261119T082051Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\prepared-layers-r85-before-20261119T082051Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "05fc3947f3375f9bbd8ab8fc8816f930b86235da1d4b9eea2f1b7fd9f748bced",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending for party/raid latency, held-action strip seams, and in-game taint. No gameplay or profiler changes."
+}

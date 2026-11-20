@@ -148,5 +148,43 @@
       "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\continuation\\providers\\mail-header-primary-sources.json",
       "sha256": "33cd7ade96493203be8aef5f35fd917d07cb3139f93675f39a2ffbfc98fabc7f"
     }
+  },
+  "nativeClosedBankPositiveAuthority": {
+    "run": "R550",
+    "date": "2026-11-20",
+    "foreverBuild": "1.60.1/70959/16001",
+    "source": "syndicator",
+    "addons": [
+      "FluxUI",
+      "BugTabs",
+      "Baganator",
+      "Syndicator"
+    ],
+    "probeSHA256": "9db8b59920be14994c3fcefb189dbfae1d22ac10d4e894c146e0d24da59f79f0",
+    "screenshotSHA256": "314a72f340ecba619bd574ec01ca4f833db947637e303d99cc15d7fadf17f181",
+    "screenshot": "resume550_closed_bank_authority.png",
+    "providerBagCacheSHA256": "c34a06b0d3a5d87c9ae319fd9212c4efb0603709ba2b5114bb7b9988195a9d8a",
+    "adapterSHA256": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "inventoryFacadeSHA256": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "cachedPositiveSlots": 22,
+    "providerPositiveSlotsAgree": 22,
+    "nativeContainerPositiveMatch": 0,
+    "nativeContainerUnknown": 22,
+    "nativeContainerDefiniteMismatch": 0,
+    "itemLocationIdentityMatch": 0,
+    "uniquePositiveIDs": 21,
+    "nativeCountAgreement": 21,
+    "nativeCountUnavailable": 0,
+    "nativeCountBelow": 0,
+    "nativeCountAbove": 0,
+    "aggregateReadMs": 0.489,
+    "countsContract": "C_Item.GetItemCount(includeBank=true, charges=false, includeReagent=true, includeAccount=false) minus the plain carried count",
+    "bankGeneration": [
+      1,
+      1
+    ],
+    "bagGenerationStable": true,
+    "newLuaErrors": 0,
+    "scope": "Counts only on a warm closed bank. All known occupied slots lacked raw native records. No new bank open/close, cold metadata, physical absence, item movement, source edits or frame-time observation."
   }
 }

@@ -1,0 +1,295 @@
+{
+  "scope": "Live one-item carried count smoke across3legal addon combinations;53unique carried IDs compare in restored both-addon state. No native mutation/loot/depletion/bank/mail/vendor workflow performance or matched FPS acceptance. No new simulation.",
+  "actors": {
+    "original": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-original-20261118\\bootstrap.py",
+      "sha256": "43803ac4498ed99ace8805c341d90993850e571f16180dda40e7fac6c64cd21b",
+      "payload": "/run local a=C_AddOns;local c=UnitGUID('player');for _,n in ipairs{'Syndicator','Baganator'}do print('OR31',n,a.IsAddOnLoaded(n),a.GetAddOnEnableState(n,c),a.GetAddOnEnableState(n))end"
+    },
+    "count": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-count-20261118\\bootstrap.py",
+      "sha256": "58223c86d9d87527a019a53f02726abf2d3edfa309a0266afb21c77efc429821",
+      "payload": "/run local a=Flux.Inventory;local f=C_AddOns.IsAddOnLoaded;print('CC31',a.source,a.IsReady(),f('Syndicator'),f('Baganator'),a.GetCount(4599),C_Item.GetItemCount(4599),GetCVar('scriptProfile'),(BugTabs.GetSessionCounts()))"
+    },
+    "c1": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-c1-20261118\\bootstrap.py",
+      "sha256": "c5d0fe56f0c1aadfd2b3b3b977a9f0ba03bad252f21c6d76bf37986093d8b5e2",
+      "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then C_AddOns.DisableAddOn('Baganator',UnitGUID('player'));ReloadUI()end"
+    },
+    "c2": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-c2-20261118\\bootstrap.py",
+      "sha256": "890784b465dfda245ffd3be39a39b4ee8e7ce66cd2a0fb631df17cde49cf6ac4",
+      "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then C_AddOns.DisableAddOn('Syndicator',UnitGUID('player'));ReloadUI()end"
+    },
+    "restoreS": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-restoreS-20261118\\bootstrap.py",
+      "sha256": "9a77db489fe902cb21d9f5a2e06a29366b27e8df35640982e3c44915ea01c191",
+      "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then C_AddOns.EnableAddOn('Syndicator',UnitGUID('player'));print('RS31')end"
+    },
+    "restoreB": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-inventory31-restoreB-20261118\\bootstrap.py",
+      "sha256": "1671b651fccd2c991dc77105e3b059bd2de5192177f32af0d1a9d05aa17a8dcf",
+      "payload": "/run if not(InCombatLockdown()or UnitCastingInfo('player')or UnitChannelInfo('player')or CF62hold or(Flux.PerfCapture and Flux.PerfCapture.GetActiveWatchReport()))then C_AddOns.EnableAddOn('Baganator',UnitGUID('player'));ReloadUI()end"
+    }
+  },
+  "state": "ORIGINAL_FLAGS_RESTORED_AND_NATIVELY_VERIFIED;ALL3_COUNT_SMOKES_PASS",
+  "original": {
+    "Syndicator": {
+      "loaded": true,
+      "characterEnable": 2,
+      "globalEnable": 2
+    },
+    "Baganator": {
+      "loaded": true,
+      "characterEnable": 2,
+      "globalEnable": 2
+    },
+    "run": "inv31original_a",
+    "submittedPNGSHA256": "1ccc2404a6e7bd35d698add69117b210ea7631579e783a57eb3bc90c779a9a2e",
+    "personallyViewedAndFormallyAcknowledged": true
+  },
+  "bothBaseline": {
+    "source": "syndicator",
+    "ready": true,
+    "loaded": [
+      true,
+      true
+    ],
+    "item4599": [
+      18,
+      18
+    ],
+    "scriptProfile": "0",
+    "errorSession": 0,
+    "run": "inv31bothCount_a",
+    "submittedPNGSHA256": "026e8abece9fe0abc9b3f0ad763d86d846a3202b242ba9ed92872452001bf95a",
+    "personallyViewedAndFormallyAcknowledged": true
+  },
+  "restoreRequiredIfSubmitted": "Enable Syndicator and Baganator for current player GUID;reload;verify both2/2 and loadedtrue. Restore actors pinned in this plan.",
+  "c1Reload": {
+    "run": "inv31c1_a",
+    "personallyViewedAndAcknowledged": true
+  },
+  "c1Count": {
+    "source": "syndicator",
+    "ready": true,
+    "loaded": [
+      true,
+      false
+    ],
+    "item4599": [
+      18,
+      18
+    ],
+    "scriptProfile": "0",
+    "errorSession": 0,
+    "run": "inv31c1Count_a",
+    "sha": "c8cbd01052760fac6b17b4f0edb28fa4ef98a5d5655b4ec1e5b8ab14b6310e38"
+  },
+  "c2Reload": {
+    "run": "inv31c2_a",
+    "personallyViewedAndAcknowledged": true
+  },
+  "c2Count": {
+    "source": "builtin",
+    "ready": true,
+    "loaded": [
+      false,
+      false
+    ],
+    "item4599": [
+      18,
+      18
+    ],
+    "scriptProfile": "0",
+    "errorSession": 0,
+    "run": "inv31c2Count_a",
+    "sha": "f31436de9beb7fb120427a48a4574f86c3f485a9994ca960903823fed64822bf"
+  },
+  "restoration": {
+    "syndicator": "RS31 observed/ACK",
+    "baganatorReload": "inv31restoreB_a loading observed/ACK"
+  },
+  "final": {
+    "loaded": [
+      true,
+      true
+    ],
+    "characterEnable": [
+      2,
+      2
+    ],
+    "globalEnable": [
+      2,
+      2
+    ],
+    "source": "syndicator",
+    "ready": true,
+    "item4599": [
+      18,
+      18
+    ],
+    "bagUniqueIDsChecked": 53,
+    "mismatches": 0,
+    "bagGeneration": 5,
+    "classifyQueue": 4,
+    "scriptProfile": "0",
+    "errorSession": 0,
+    "run": "inv31restored_a",
+    "sha": "8f9da7a28c27a0d6317a60f53d786e22adc0d19d5bae4350e655663107d11825",
+    "allPersonallyViewedAndAcknowledged": true
+  },
+  "id": "LHO-NATIVE-COUNT-COMBOS31-20261118",
+  "utc": "2026-11-18T13:31:43.281287+00:00",
+  "currentDiskSources": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093"
+  },
+  "nativeIdentity": {
+    "pid": 42724,
+    "hwnd": 50333792,
+    "creationFileTime": 134394624880288175,
+    "executable": "F:/World of Warcraft/_forever_/Wow.exe",
+    "build": "Prior same-process1.60.1/70959/project18/interface16001;not recaptured"
+  },
+  "nativeAdoption": {
+    "vendorPanel": "dc6de0aa ownC1 reload observed;restoration reload observed;not an in-RAM hash",
+    "classifier": "663a539a own prior reload plus combo reloads"
+  },
+  "finalSelections": {
+    "food": [
+      4599,
+      18,
+      1338
+    ],
+    "water": [
+      1645,
+      20,
+      1915
+    ],
+    "bandage": [
+      8544,
+      20,
+      800
+    ],
+    "healPotion": [
+      3928,
+      5,
+      700
+    ],
+    "manaPotion": [
+      6149,
+      5,
+      700
+    ],
+    "healthstone": [
+      null,
+      null,
+      null
+    ],
+    "managem": [
+      null,
+      0,
+      0
+    ]
+  },
+  "itemActions": "No buys/sales/deletions/moves/craft queues by agent. Source and count queries only. Unrelated party invitations/loot-setting messages appeared;not issued by this goal, provenance unproven.",
+  "worldRefresh": "Actual client notice at13:23UTC says10minutes;13:25 notice7minutes. Preserve results;native normal reconnect/selection already authorized if needed.",
+  "userAwayNoQuestions": true,
+  "jump": {
+    "cueRoot": "_J23q",
+    "nonce": "j18n9p9",
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r9-20261118",
+    "supervisorPID": 38984,
+    "hostPID": 49768,
+    "cueInstall": "jump23install_a personally viewed/ACK",
+    "stateFile": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\keepalive-p83-live20261118h-state.json",
+    "lastReadState": {
+      "pid": 49768,
+      "startedUTC": "2026-11-18T13:27:16.604017+00:00",
+      "status": "running",
+      "pairs": 3,
+      "movementAcknowledged": false,
+      "automaticSetup": false,
+      "firstDueUnix": 1795008436.4202616,
+      "last": {
+        "atUtc": "2026-11-18T13:33:22.915990+00:00",
+        "status": "injected-movement-unverified",
+        "focusMode": true,
+        "systemWideInput": true,
+        "activationRequested": true,
+        "externalRace": false,
+        "pairInjected": true,
+        "holdCompleted": true,
+        "movementAcknowledged": false,
+        "foregroundBefore": 82909804,
+        "lastInputBefore": 425327265,
+        "activationReturn": true,
+        "activationFirstForeground": 0,
+        "activationWaitSeconds": 0.03200000000651926,
+        "activationLastForeground": 50333792,
+        "heartbeatStarted": "2026-11-18T13:33:23.818157+00:00",
+        "enterPairs": 2,
+        "heartbeatCharacters": 82,
+        "heartbeatSubmitted": true,
+        "heartbeatAfterCueAccepted": true,
+        "spaceDownUtc": "2026-11-18T13:33:24.773435+00:00",
+        "spaceUpUtc": "2026-11-18T13:33:24.828928+00:00",
+        "ownInputStamps": [
+          425509875,
+          425509937
+        ],
+        "lastInputAfter": 425509937,
+        "foregroundAfterKey": 50333792,
+        "restoreRequested": true,
+        "restoreReturn": true,
+        "foregroundFinal": 0,
+        "lockReleased": true
+      },
+      "nextDueInSeconds": 180.0
+    },
+    "processLiveness": {
+      "verifiedAtUnix": 1795008769.9377122,
+      "pid": 49768,
+      "path": "C:/Program Files/Python310/python.exe",
+      "pairsAtRead": 2,
+      "lastPairUTC": "2026-11-18T13:30:22.113919+00:00",
+      "movementVisuallyVerified": false
+    },
+    "priorR8": "Stopped with own marker;combo reloads reset cue;queued until all scripts completed."
+  },
+  "goal": "ACTIVE",
+  "finalClient": {
+    "captureUnix": 1795008769.9377122,
+    "sourcePNG": "inventory31-final-client.png",
+    "sha256": "f0d755d470396cbc287a3c9c6dd7028d720f777deeaa1547de4fb4bc662cda8a",
+    "worldPresent": true,
+    "chatClosed": true,
+    "refreshNoticeNoLongerVisible": true,
+    "reconnectPerformedByAgent": false,
+    "playerHealthMaxObserved": 1297,
+    "note": "Prior parser windows maxHP1037;new buffs/world changes preclude transferring matched-context timing claims."
+  }
+}

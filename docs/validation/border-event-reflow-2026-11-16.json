@@ -1,0 +1,259 @@
+{
+  "id": "BORDER-EVENT-REFLOW-R54-20261116",
+  "dateUTC": "2026-11-16T18:52:49.121753+00:00",
+  "version": "event-reflow-r54",
+  "priority": "Combat exit first; severe party/raid join-and-leave hitch added as a related event path. Actual builder changed-layout cost remains a native acceptance requirement.",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-border-before-20261116T180046Z",
+  "checkpointFiles": 2996,
+  "historyVerified": true,
+  "changedDuringArchive": [],
+  "settings": "Existing on-disk Forever account settings and .bak verified by metadata only; no agent preference/profile/CVar edits or running-client backup claim",
+  "sourceHashes": {
+    "Core/BorderJunctions.lua": {
+      "beforeCheckpointRaw": "a72891828522fde82e2e9acfe23cdd37bef85f8a2468cab1815b9527e876142e",
+      "raw": "1a4fcc323f6c48573dda28cad4126bf59186115fb762d2344557ecdc5a10b171",
+      "normalized": "3dbf2c76cb5cf56d12b6eebaa3e4d05d5a1100bc1cca8dc1bc08a14c5f7bc092"
+    },
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeCheckpointRaw": "6e0e787fc08ee6ca14226a0b5c025d117b3fdeb1f6132508d3355af6837d8813",
+      "raw": "d7ea0d5d5c883f0ad5958c2d1aa55842fe2a21f3727c894d7139bd5ec3beaced",
+      "normalized": "db650736772025656b42db1f538e412e1499165d6d4e4becc29b9cd63d6e9fd0"
+    },
+    "UnitFrames/FluxUnitFrames_Focus.lua": {
+      "beforeCheckpointRaw": "8468017146219705e8500a88db42ce04cc49e73c7364f344b674a912567e2901",
+      "raw": "516b5917ba3f62835f056ed22208eb4d4425c7b72f7de658747bfb3caf0d2367",
+      "normalized": "516b5917ba3f62835f056ed22208eb4d4425c7b72f7de658747bfb3caf0d2367"
+    },
+    "RaidFrame/FluxRaidLayout.lua": {
+      "beforeCheckpointRaw": "7a0c9e845f0943bd7c98f0c2257dc5e576183487c55fd2de540c1c3fce50357e",
+      "raw": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b",
+      "normalized": "ba22c925b2af2624143b2b798c8ce228bcce6a2d244d7b896f82872f4aac678b"
+    },
+    "tests/border_registration_pairs.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "a568c9a20b361ea95ae5c0bf2e379c1aea3172b95491d6c0d226f2c11b86c4af",
+      "normalized": "a568c9a20b361ea95ae5c0bf2e379c1aea3172b95491d6c0d226f2c11b86c4af"
+    },
+    "tests/border_unit_paint_idempotence.lua": {
+      "beforeCheckpointRaw": "03fef1f802b8728413283d246a90b3922bf69ef37d79178dbd345100c9260ada",
+      "raw": "e95581fee89267622ad9cc3d618f6e1126676dc1372ee30b86259a6f5b3cf79a",
+      "normalized": "e95581fee89267622ad9cc3d618f6e1126676dc1372ee30b86259a6f5b3cf79a"
+    },
+    "tests/border_fallback_opacity.lua": {
+      "beforeCheckpointRaw": "f8764fd12ce0c68be8f9f86cfaa94eea1e37369ffad2d6e627bb08a522d3611c",
+      "raw": "796410cb54e4f38648a16ff1e9efc382df70c5b9553deb2798628bfa29ccfb09",
+      "normalized": "796410cb54e4f38648a16ff1e9efc382df70c5b9553deb2798628bfa29ccfb09"
+    },
+    "tests/border_reflow_cost.lua": {
+      "beforeCheckpointRaw": "dd16d110e56e994a80ca538912e3211ff34f7ea5cfa65b88cea1bd37b573b912",
+      "raw": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b",
+      "normalized": "817f4aed936498dbdb12c035b9a98e2f5a75dabc2e9474f0abdf9aec7bd0782b"
+    },
+    "tests/roster_focus_dock.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38",
+      "normalized": "06f965750250ec39c61fca60de789c350e88dcbfd7e2e39cede8e749b6b8fc38"
+    },
+    "tests/unit_outer_geometry.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "bdc8d2c8da0bfd161e7f779e4b2257ca30ad81a1f94fc0f897db4c93d22a3214",
+      "normalized": "319977ee63e5c0426a3001f0f09b22f133a808c5188e9b9665de86c97b395a62"
+    },
+    "tests/unit_outer_lifecycle.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "f0bebb1406bde4fdf4205b1da1e493a23126309dfac536c3e01564adcde396c6",
+      "normalized": "d89c01df28b5705e8ff72f90725675bdb7cea84bc51bab92806ddf7d0113eb64"
+    },
+    "tests/unit_outer_party_geometry.lua": {
+      "beforeCheckpointRaw": null,
+      "raw": "e90646c975284bfa8e0034019bf03e1320ff79f1c3008642110e61eb9c20b9c9",
+      "normalized": "916dbee6e2211a18d5860d23656a19bb6cd693e7ca583ed9722de14fd3effa2e"
+    },
+    "tests/unit_portrait_border_fit.lua": {
+      "beforeCheckpointRaw": "458921fd669234084d599f9d7180355c8dac0d08890ea60f8f1636e797c15069",
+      "raw": "9854ae52d8a88836bb4c6379f82af81a605ba3760d886d6546df55962e5ac574",
+      "normalized": "9854ae52d8a88836bb4c6379f82af81a605ba3760d886d6546df55962e5ac574"
+    }
+  },
+  "changes": [
+    "Build each complete public ordered observer pair once during the existing readonly commit phase. Recheck source/table/current and previous blocker identities; unknown/private/mutated inputs use original path; bound clones and snapshot handles by existing fragment budget. Every field still receives listeners, current binding and final opacity.",
+    "Direct static-unit SetAlpha skips derived loops only for identical public authored alpha. Changed/opaque/recovery alpha still reaches native sinks; original source suppression and fallback ownership always run.",
+    "Outer shell checks fresh public native dimensions and exactly one expected anchor before skipping all three redundant setters. Unknown/drift/multiple anchors retain original clear-size-point order; authored coordinates are unchanged;1e-4 readback tolerance handles native float conversion.",
+    "Successful completed OOC outer update consumes its existing pending flag; entry-combat, failure and fresh private/reentrant combat retain it. The separate partition flag is untouched. This completion supports the new roster guard; it is not presented as a proven old rebuild-loop cause.",
+    "Prepared roster reconciliation passes a literal public true hint to the existing focus default callback. Stable fresh pose/method/body/parent/scale/pending checks avoid redundant partition/outer/aura pass; immediate aura and default notifications remain. First, actual change, direct/settings and unknown paths remain full.",
+    "Saved finite-watch cost now includes the loaded border revision for later source attribution; five-line command, normal idle clocks and profiler settings are unchanged"
+  ],
+  "workProofs": {
+    "observerPairs": {
+      "controls": 185,
+      "exactProducerStates": 40,
+      "type2Side15Embed": {
+        "registrationsRetained": 377,
+        "seenClosureAllocationsBefore": 377,
+        "after": 33,
+        "availabilityCallsBefore": 5511,
+        "afterAvailabilityCalls": 1933
+      },
+      "type2Side60Restore": {
+        "registrationsRetained": 967,
+        "seenClosureAllocationsBefore": 967,
+        "after": 90,
+        "availabilityCallsBefore": 12386,
+        "afterAvailabilityCalls": 3672
+      },
+      "bounds": "64 public ordered blocker identities;64 observed objects; charge2+2*observations+blockers under existing fragment limit; phase destroyed before live paint"
+    },
+    "directAlpha": {
+      "checks": 166,
+      "representative100IdenticalWritesDerivedAlphaReadsBefore": 800,
+      "after": 0,
+      "bothStylesCombatAndOoc": true,
+      "opaqueAlwaysForwarded": true
+    },
+    "outerShell": {
+      "geometryStageChecks": 79592,
+      "stageCases": 640,
+      "partyProducerChecks": 60,
+      "fullOuterLifecycleCandidateChecks": 23,
+      "tenPetCombatExits": {
+        "paintCallsRetained": 40,
+        "shellSettersBefore": 120,
+        "after": 0
+      },
+      "coalescedRoster": {
+        "paintsRetained": 8,
+        "shellSettersBefore": 24,
+        "after": 0
+      },
+      "getterTax": "3 fresh native geometry reads per matching shell,1 when size differs; full outer completion also rechecks combat permission. This is work proof, not native CPU timing."
+    },
+    "rosterFocus": {
+      "controls": 188,
+      "authoredPoseStates": 24,
+      "twentySeparateFramePreparedRosterEvents": {
+        "defaultNotificationsRetained": 20,
+        "fullPartitionsBefore": 20,
+        "after": 0,
+        "outerPassesBefore": 20,
+        "afterOuter": 0,
+        "auraEntriesBefore": 40,
+        "afterAura": 20
+      },
+      "scope": "Actual Raid/Focus bridge with downstream paint bodies modeled; other independent roster handlers remain active"
+    }
+  },
+  "latestSavedDiagnostic": {
+    "fileWriteUTC": "2026-11-16T17:58:40Z",
+    "build": "Forever1.60.1/70938",
+    "borderRevision": null,
+    "scenario": null,
+    "totalMs": 258.91760003567,
+    "geometryMs": 23.883199989796,
+    "solveMs": 41.794099986553,
+    "planMs": 101.79659998417,
+    "commitMs": 90.823500037193,
+    "baseHits": 112,
+    "baseMisses": 5,
+    "fallbackPlanHits": 95,
+    "fallbackPlanMisses": 22,
+    "scope": "Sanitized saved diagnostics only. R53-compatible plan counters are present, but exact loaded revision, scenario and quiet-host conditions were not recorded. Not a controlled R53/R54 comparison."
+  },
+  "desktopGate": {
+    "scripts": 129,
+    "failures": 0,
+    "syntaxFiles": 1182,
+    "freshCompiled": 29,
+    "inheritedUnchangedSyntax": 1153,
+    "changedDuringGate": [],
+    "compilerFiles": 5,
+    "compilerPrototypes": 717,
+    "maximumUpvalues": 54,
+    "wholeCorpusFunctionalRun": false
+  },
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r54-final-gate.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r54-final-upvalues.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r54-registration-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-register-pair-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-register-pair-hit-guard-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r54-alpha-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-outer-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\unit-outer-runtime-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-focus-runtime-focused.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-focus-final-proof.json"
+  ],
+  "concurrentWork": "Other non-owned module edits are preserved. Current syntax includes29 changed/new Lua files relative to R53, including independent Bars/EBS/Minimap/Nameplate/RaidUnit work.129 current focused results do not certify every non-owned feature; retained full-corpus results remain historical.",
+  "nativeAcceptance": "Scoped native sample confirms one combat exit with border preflight only0.73ms and no geometry/solve/plan/commit. Remaining81ms frame gap unattributed. Drag/drop/real layout reflows, first/repeated grouped combat, party/raid transitions, rendering and taint/client matrix remain pending.",
+  "manualInstallationCopies": false,
+  "existingForeverDiskMatches": {
+    "Core/BorderJunctions.lua": true,
+    "UnitFrames/FluxUnitFrames_Shared.lua": true,
+    "UnitFrames/FluxUnitFrames_Focus.lua": true,
+    "RaidFrame/FluxRaidLayout.lua": true
+  },
+  "documentationValidation": {
+    "result": "PASS",
+    "classifiedSources": 1214,
+    "tocXmlReachable": 625,
+    "settings": 444,
+    "savedVariables": 24,
+    "localLinks": 18081,
+    "checkerMadeEdits": false
+  },
+  "finalFreezeUTC": "2026-11-16T19:00:12.262923+00:00",
+  "ownedCpuJobs": "All root and delegated tests, benchmarks, source-reference builders and validators have finished; held for native capture.",
+  "nativeNext": "In-game testing is deferred by explicit user instruction until the user says it is available again. Continue offline work; do not request or initiate a native capture.",
+  "nativeCombatExitSample": {
+    "receivedDate": "2026-11-16",
+    "loadedBorderRevision": "event-reflow-r54",
+    "type": 2,
+    "pieces": 837,
+    "statusBeforeWatch": {
+      "passesLifetime": 848,
+      "solvesLifetime": 17,
+      "geometryReadsLifetime": 18,
+      "dirty": true,
+      "queued": true,
+      "combat": true
+    },
+    "peakBorderPass": {
+      "kind": "unchanged",
+      "totalMs": 0.73,
+      "preflightMs": 0.73,
+      "geometryMs": 0,
+      "solveMs": 0,
+      "planMs": 0,
+      "commitMs": 0
+    },
+    "watch": {
+      "frameGaps": 1,
+      "peakGapMs": 81,
+      "slowObservedCallbacks": 0,
+      "callbackPeakMs": 2.4,
+      "peakLabel": "ExtraButtonSystem/Init.lua:204",
+      "busiest": "Scheduler:structural.callback x3",
+      "errorDelta": 0,
+      "recordedDiagnosticSectionsMs": 18.34,
+      "sectionPeakMs": 0.31
+    },
+    "conclusion": "This sampled combat exit contained no border geometry rebuild. Its81ms frame gap is unattributed; observed service callback durations do not account for it. Mesh/cache counter row describes the preceding completed build, not work consumed by this unchanged check. It does not verify drag/drop/new-column/minimap or every combat exit; host quietness was not independently verified."
+  },
+  "nativeTestHold": {
+    "requestedDate": "2026-11-16",
+    "status": "Deferred by user until explicit renewed availability",
+    "offlineWorkAllowed": true,
+    "previousCaptureRequestsOnHold": true
+  },
+  "actionStripR55": {
+    "version": "strip-updates-r55",
+    "evidence": "docs/validation/action-strip-borders-2026-11-16.json",
+    "scripts": 144,
+    "native": "Deferred by explicit user instruction"
+  },
+  "junctionShadowsR56": {
+    "version": "shadow-support-r56",
+    "evidence": "docs/validation/junction-shadows-2026-11-16.json",
+    "nativeTesting": "DEFERRED BY USER",
+    "historicalSourceResultsRetained": true
+  }
+}

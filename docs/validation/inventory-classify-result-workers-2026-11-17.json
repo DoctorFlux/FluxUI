@@ -1,0 +1,148 @@
+{
+  "id": "LHO-CLASSIFY-RESULT-PROFESSION-WORKERS-20261117",
+  "utc": "2026-11-17T21:00:08.778049+00:00",
+  "status": "APPLIED_SOURCE_REVIEW_SYNTAX_PASS; goal active",
+  "userDirection": "Direct Inventory/EBS Lua optimization; no new simulations, benchmarks or probe construction",
+  "application": {
+    "utc": "2026-11-17T20:58:14.051821+00:00",
+    "files": [
+      {
+        "file": "Inventory/FluxConsumableClassify.lua",
+        "before": "ad0cd9a84d9464fcc558ad9b72d6a142b76653ae01551cdff4653254ce491e54",
+        "after": "d1a07334059ce53ac7cfdaf487d65ffef416d97558cbc66aced04beecaa39efe"
+      },
+      {
+        "file": "ExtraButtonSystem/Engine/Watch.lua",
+        "before": "7503a3d320ea9e8c7cf39773b78e323d6c23044cd3d26fefbc779151f4458c36",
+        "after": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492"
+      }
+    ],
+    "timerSourceSha256": "2e79ec2a2e2bfd36fc88e64cd62bbe90a76375e554474314a1463ac1e36001f7",
+    "sourceReview": [
+      "FinishPotion body unchanged except captured parsed/isPercent/conjured become explicit arguments",
+      "FinishRestoreKind body unchanged; healthPct/manaPct explicit; fresh record still created per return",
+      "All8potion and2food/water call sites updated",
+      "No classification/name/minimum/percent/resource/metadata queries removed or cached",
+      "Original potion branches and record field/read order retained",
+      "Profession callback keeps same Start-local pending flag and clear-before-public-call order",
+      "Same capability/pending guard and0.25delay/fallback",
+      "Timer.After/PolyAfter inspected: occurrence scheduling; no identity dedup; Startup wrapper retained"
+    ],
+    "preEditGuard": "First edit script expected7potion call sites but actual8; halted before addon writes. Corrected count after source inspection; this is not a functional test result.",
+    "syntax": [
+      {
+        "file": "Inventory/FluxConsumableClassify.lua",
+        "sha256": "d1a07334059ce53ac7cfdaf487d65ffef416d97558cbc66aced04beecaa39efe",
+        "vm": "Lua5.1.5",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "file": "Inventory/FluxConsumableClassify.lua",
+        "sha256": "d1a07334059ce53ac7cfdaf487d65ffef416d97558cbc66aced04beecaa39efe",
+        "vm": "Lua5.4.6",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "file": "ExtraButtonSystem/Engine/Watch.lua",
+        "sha256": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+        "vm": "Lua5.1.5",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "file": "ExtraButtonSystem/Engine/Watch.lua",
+        "sha256": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492",
+        "vm": "Lua5.4.6",
+        "mode": "Syntax-only -p; addon chunk not executed",
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "gain": "Not measured",
+    "validation": "4syntax-only PASS; source review; native functionality/performance pending",
+    "verifiedUtc": "2026-11-17T20:58:44.430471+00:00"
+  },
+  "currentDirectSourceSet": {
+    "Inventory/Index.lua": "a05269f1e893e408468e899f0e28f58b0e95bf7ad4dcd11c76281c0da5c7fdea",
+    "Inventory/Restock/Core/FluxRestockList.lua": "e4951c3e1545ec479400f01840631b5784eb68bc631a5dba7f58c3ed7d3b6da7",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "d1a07334059ce53ac7cfdaf487d65ffef416d97558cbc66aced04beecaa39efe",
+    "Inventory/Craft.lua": "75197d0aeae2e64fae3693b35f781290a919f9c62e6e069d78d105ecdee53005",
+    "Inventory/FluxConsumableBest/Scan.lua": "43f9a81edea184244bce4cea8c2ccb5ddde1140d0dee75b4fd49b1c72b31330b",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "b148818985f70c6f757641e018899798e9fcb0637b5e938e7889b4392b8ea537",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "123a8f7d091da77c3e03c924a4dc8eb5fbf12b6f67d80648c412bd6505b95b6f",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "6432864abd5de1472a143bce682ff63a73b9770d0e2d612d5ce4c8035244f492"
+  },
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-classify-result-workers-20261117\\checkpoint.json",
+    "sha256": "ee040787e061e124723efbc8634e36d4fb535ec611dcd27fcb94f5efc4d912a8",
+    "historyVerified": true,
+    "settingsAvailabilityPaths": 125,
+    "privateValuesReadOrWritten": false
+  },
+  "implementation": {
+    "Classify": "Hoist two private result builders. Former captured parsed/isPercent/conjured and healthPct/manaPct become explicit current-call arguments. All8potion and2food/water callers retain result construction and choice order.",
+    "EBS": "Construct one RunProfessionRefresh callback per Watch.Start, retaining its Start-local pending flag, clear-before-dynamic-call ordering and0.25s timer/fallback.",
+    "rejectedUnmeasuredExpansion": "No new line-wide eager predicate cache or string scan was added; it could add work to nonmatching tooltip lines. No attempted resurrection of P83 or other rejected work."
+  },
+  "validation": {
+    "newRuntimeFiles": 2,
+    "newSyntaxPasses": 4,
+    "mode": "Lua5.1.5/5.4.6 -p only; addon chunks not executed",
+    "sourceReview": [
+      "FinishPotion body unchanged except captured parsed/isPercent/conjured become explicit arguments",
+      "FinishRestoreKind body unchanged; healthPct/manaPct explicit; fresh record still created per return",
+      "All8potion and2food/water call sites updated",
+      "No classification/name/minimum/percent/resource/metadata queries removed or cached",
+      "Original potion branches and record field/read order retained",
+      "Profession callback keeps same Start-local pending flag and clear-before-public-call order",
+      "Same capability/pending guard and0.25delay/fallback",
+      "Timer.After/PolyAfter inspected: occurrence scheduling; no identity dedup; Startup wrapper retained"
+    ],
+    "simulations": 0,
+    "benchmarks": 0,
+    "nativeActions": 0,
+    "nativeFunctionality": "PENDING",
+    "measuredPerformanceGain": "NOT ESTABLISHED",
+    "preEditGuard": "First edit script expected7potion call sites but actual8; halted before addon writes. Corrected count after source inspection; this is not a functional test result.",
+    "aggregate": "15current direct-edit sources pinned; previous dated syntax evidence remains scoped to unchanged hashes; no new combined functional suite"
+  },
+  "preserved": [
+    "Fresh classification records and original potion min/max/restoreKnown fields",
+    "Health/mana percentage/resource query counts/order and conjured/ritual matching",
+    "Cached positive/negative/pending behavior, invalidation and late metadata recovery",
+    "Profession button identity refresh calls and0.25s cadence",
+    "All existing public query/API/foreign fallback behavior",
+    "Appearance, features, commands, saves, external Syndicator/Baganator, provider selection and user inputs"
+  ],
+  "limits": [
+    "No CPU, allocated-byte, GC-pause, FPS or frame-spike gains measured for this source",
+    "No current-source native loaded adoption or per-client/provider correctness acceptance",
+    "Ordinary native Lua/function/timer environment; arbitrary callback-identity/debug-upvalue mutation observers not certified"
+  ],
+  "remaining": [
+    "All supported clients and3legal addon provider combinations",
+    "Casting start/cancel/interrupt/success and crafts/bag/loot/receive workflow verification",
+    "Vendor/restock/AH/pending/bank/mail native workflow and spike verification",
+    "Stale mail remains under prior measure-first instruction; guild-bank/void callbacks excluded"
+  ],
+  "nativeState": "No input/jump/capture/probe/reload helper started; previous read-only process observation remains dated; foreign control files and other owner reports preserved."
+}

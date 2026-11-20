@@ -1,0 +1,622 @@
+{
+  "changeId": "STRIP-INFO-MEASURE-20261120",
+  "roadmapTrack": "HUD-1",
+  "capturedAtUTC": "2026-11-20T08:49:20.889365+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "StatusBars/FluxInfoFrame.lua": {
+      "beforeRaw": "816699e0369e6f04273786b62f9228277f65aa70fe0f003807069f284b9b445b",
+      "afterRaw": "f4840a3b24d9c794daff30e4d4ce4bb80ad7daf1a3347534fe00bbae31063c79",
+      "afterNormalized": "f4840a3b24d9c794daff30e4d4ce4bb80ad7daf1a3347534fe00bbae31063c79"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145",
+      "afterRaw": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145",
+      "afterNormalized": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145"
+    },
+    "tests/idle_info_layout.lua": {
+      "beforeRaw": "39e518375ae4c68e13e264241023a5daaa4c509fee257af943d140a2b031a60c",
+      "afterRaw": "848dfbc036cb12e9794827fd8a786d03128c64a36ca3e3a6ca48254f12c6ae8b",
+      "afterNormalized": "848dfbc036cb12e9794827fd8a786d03128c64a36ca3e3a6ca48254f12c6ae8b"
+    },
+    "tests/strip_panel_settle.lua": {
+      "beforeRaw": "c11eb168bce14057f20399e66d479b4a70a3720e7bea65a9ae5bcda32f592416",
+      "afterRaw": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+      "afterNormalized": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8"
+    }
+  },
+  "evidence": {
+    "textLayouts60": {
+      "system": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            240,
+            120
+          ],
+          "fontSetters": [
+            360,
+            240
+          ],
+          "textSetters": [
+            360,
+            240
+          ],
+          "elapsedMs": [
+            1.0,
+            0.0
+          ],
+          "allocatedKiB": [
+            410.49,
+            292.37
+          ]
+        }
+      ],
+      "dense": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            2220,
+            2010
+          ],
+          "fontSetters": [
+            2550,
+            2340
+          ],
+          "textSetters": [
+            2550,
+            2340
+          ],
+          "elapsedMs": [
+            8.0,
+            8.0
+          ],
+          "allocatedKiB": [
+            2687.89,
+            2462.13
+          ]
+        }
+      ],
+      "hybrid": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            960,
+            960
+          ],
+          "fontSetters": [
+            1080,
+            1080
+          ],
+          "textSetters": [
+            1080,
+            1080
+          ],
+          "elapsedMs": [
+            4.0,
+            4.0
+          ],
+          "allocatedKiB": [
+            1227.05,
+            1204.08
+          ]
+        }
+      ]
+    },
+    "slotCrossings60": {
+      "actionStrip": {
+        "defaultHeightCalls": [
+          60,
+          60
+        ],
+        "combatHeightReads": [
+          60,
+          60
+        ],
+        "nonCombatHeightReads": [
+          120,
+          120
+        ]
+      },
+      "minimapTop": {
+        "defaultHeightCalls": [
+          60,
+          0
+        ],
+        "combatHeightReads": [
+          60,
+          0
+        ],
+        "nonCombatHeightReads": [
+          120,
+          60
+        ]
+      },
+      "screenTopLeft": {
+        "defaultHeightCalls": [
+          60,
+          0
+        ],
+        "combatHeightReads": [
+          60,
+          0
+        ],
+        "nonCombatHeightReads": [
+          120,
+          60
+        ]
+      },
+      "statusIntegrated": {
+        "defaultHeightCalls": [
+          60,
+          0
+        ],
+        "combatHeightReads": [
+          60,
+          0
+        ],
+        "nonCombatHeightReads": [
+          120,
+          60
+        ]
+      }
+    },
+    "desktopTimingSamples600": {
+      "system": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            2400,
+            1200
+          ],
+          "fontSetters": [
+            3600,
+            2400
+          ],
+          "textSetters": [
+            3600,
+            2400
+          ],
+          "elapsedMs": [
+            8.0,
+            6.0
+          ],
+          "allocatedKiB": [
+            4080.81,
+            2920.65
+          ]
+        },
+        {
+          "trial": 2,
+          "widthQueries": [
+            2400,
+            1200
+          ],
+          "fontSetters": [
+            3600,
+            2400
+          ],
+          "textSetters": [
+            3600,
+            2400
+          ],
+          "elapsedMs": [
+            8.0,
+            6.0
+          ],
+          "allocatedKiB": [
+            4078.46,
+            2920.65
+          ]
+        },
+        {
+          "trial": 3,
+          "widthQueries": [
+            2400,
+            1200
+          ],
+          "fontSetters": [
+            3600,
+            2400
+          ],
+          "textSetters": [
+            3600,
+            2400
+          ],
+          "elapsedMs": [
+            9.0,
+            7.0
+          ],
+          "allocatedKiB": [
+            4078.46,
+            2920.65
+          ]
+        },
+        {
+          "trial": 4,
+          "widthQueries": [
+            2400,
+            1200
+          ],
+          "fontSetters": [
+            3600,
+            2400
+          ],
+          "textSetters": [
+            3600,
+            2400
+          ],
+          "elapsedMs": [
+            8.0,
+            5.0
+          ],
+          "allocatedKiB": [
+            4078.46,
+            2920.65
+          ]
+        },
+        {
+          "trial": 5,
+          "widthQueries": [
+            2400,
+            1200
+          ],
+          "fontSetters": [
+            3600,
+            2400
+          ],
+          "textSetters": [
+            3600,
+            2400
+          ],
+          "elapsedMs": [
+            8.0,
+            7.0
+          ],
+          "allocatedKiB": [
+            4078.46,
+            2920.65
+          ]
+        }
+      ],
+      "dense": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            22200,
+            20100
+          ],
+          "fontSetters": [
+            25500,
+            23400
+          ],
+          "textSetters": [
+            25500,
+            23400
+          ],
+          "elapsedMs": [
+            82.0,
+            85.0
+          ],
+          "allocatedKiB": [
+            26865.55,
+            24607.93
+          ]
+        },
+        {
+          "trial": 2,
+          "widthQueries": [
+            22200,
+            20100
+          ],
+          "fontSetters": [
+            25500,
+            23400
+          ],
+          "textSetters": [
+            25500,
+            23400
+          ],
+          "elapsedMs": [
+            76.0,
+            73.0
+          ],
+          "allocatedKiB": [
+            26865.55,
+            24607.93
+          ]
+        },
+        {
+          "trial": 3,
+          "widthQueries": [
+            22200,
+            20100
+          ],
+          "fontSetters": [
+            25500,
+            23400
+          ],
+          "textSetters": [
+            25500,
+            23400
+          ],
+          "elapsedMs": [
+            77.0,
+            73.0
+          ],
+          "allocatedKiB": [
+            26865.55,
+            24607.93
+          ]
+        },
+        {
+          "trial": 4,
+          "widthQueries": [
+            22200,
+            20100
+          ],
+          "fontSetters": [
+            25500,
+            23400
+          ],
+          "textSetters": [
+            25500,
+            23400
+          ],
+          "elapsedMs": [
+            82.0,
+            76.0
+          ],
+          "allocatedKiB": [
+            26865.55,
+            24607.93
+          ]
+        },
+        {
+          "trial": 5,
+          "widthQueries": [
+            22200,
+            20100
+          ],
+          "fontSetters": [
+            25500,
+            23400
+          ],
+          "textSetters": [
+            25500,
+            23400
+          ],
+          "elapsedMs": [
+            79.0,
+            72.0
+          ],
+          "allocatedKiB": [
+            26865.55,
+            24607.93
+          ]
+        }
+      ],
+      "hybrid": [
+        {
+          "trial": 1,
+          "widthQueries": [
+            9600,
+            9600
+          ],
+          "fontSetters": [
+            10800,
+            10800
+          ],
+          "textSetters": [
+            10800,
+            10800
+          ],
+          "elapsedMs": [
+            38.0,
+            39.0
+          ],
+          "allocatedKiB": [
+            12263.3,
+            12033.62
+          ]
+        },
+        {
+          "trial": 2,
+          "widthQueries": [
+            9600,
+            9600
+          ],
+          "fontSetters": [
+            10800,
+            10800
+          ],
+          "textSetters": [
+            10800,
+            10800
+          ],
+          "elapsedMs": [
+            38.0,
+            38.0
+          ],
+          "allocatedKiB": [
+            12263.3,
+            12033.62
+          ]
+        },
+        {
+          "trial": 3,
+          "widthQueries": [
+            9600,
+            9600
+          ],
+          "fontSetters": [
+            10800,
+            10800
+          ],
+          "textSetters": [
+            10800,
+            10800
+          ],
+          "elapsedMs": [
+            39.0,
+            41.0
+          ],
+          "allocatedKiB": [
+            12263.3,
+            12033.62
+          ]
+        },
+        {
+          "trial": 4,
+          "widthQueries": [
+            9600,
+            9600
+          ],
+          "fontSetters": [
+            10800,
+            10800
+          ],
+          "textSetters": [
+            10800,
+            10800
+          ],
+          "elapsedMs": [
+            38.0,
+            38.0
+          ],
+          "allocatedKiB": [
+            12263.3,
+            12033.62
+          ]
+        },
+        {
+          "trial": 5,
+          "widthQueries": [
+            9600,
+            9600
+          ],
+          "fontSetters": [
+            10800,
+            10800
+          ],
+          "textSetters": [
+            10800,
+            10800
+          ],
+          "elapsedMs": [
+            37.0,
+            38.0
+          ],
+          "allocatedKiB": [
+            12263.3,
+            12033.62
+          ]
+        }
+      ]
+    },
+    "desktopTimingMediansMs": {
+      "system": [
+        8.0,
+        6.0
+      ],
+      "dense": [
+        79.0,
+        73.0
+      ],
+      "hybrid": [
+        38.0,
+        38.0
+      ]
+    },
+    "temporaryAllocationMediansKiB": {
+      "system": [
+        4078.46,
+        2920.65
+      ],
+      "dense": [
+        26865.55,
+        24607.93
+      ],
+      "hybrid": [
+        12263.3,
+        12033.62
+      ]
+    },
+    "timingScope": "Five alternating pairs of 600 width changes per text profile exercise actual Info Lua and mocked FontStrings. The allocation sample pauses Lua garbage collection and includes fixture writers. The separate gap replay uses the real Info and UnifiedBorder layout with modeled grid movement. The mesh and live frame time are outside the timed text fixture.",
+    "rawTextReplay": "idle info layout: width/font/text native calls per fitting3-stat layout = 18/21/21 -> 3/6/6\r\nidle info layout: 5 behavioral mutations rejected\r\nINFO_WIDTH profile=system trial=1 changes=60 widths=240/120 fonts=360/240 texts=360/240 ms=1.000/0.000 kib=410.49/292.37\r\nINFO_WIDTH profile=dense trial=1 changes=60 widths=2220/2010 fonts=2550/2340 texts=2550/2340 ms=8.000/8.000 kib=2687.89/2462.13\r\nINFO_WIDTH profile=hybrid trial=1 changes=60 widths=960/960 fonts=1080/1080 texts=1080/1080 ms=4.000/4.000 kib=1227.05/1204.08\r\nidle info layout: 9740 comparisons passed",
+    "rawGapReplay": "INFO_GAP placement=actionStrip changes=60 defaults=60/60 combatHeight=60/60 nonCombatHeight=120/120\r\nINFO_GAP placement=minimapTop changes=60 defaults=60/0 combatHeight=60/0 nonCombatHeight=120/60\r\nINFO_GAP placement=screenTopLeft changes=60 defaults=60/0 combatHeight=60/0 nonCombatHeight=120/60\r\nINFO_GAP placement=statusIntegrated changes=60 defaults=60/0 combatHeight=60/0 nonCombatHeight=120/60\r\nStrip panel settlement passes all Info placements, narrow slots, changing ownership and combat guards.",
+    "rawTiming": "idle info layout: width/font/text native calls per fitting3-stat layout = 18/21/21 -> 3/6/6\nidle info layout: 5 behavioral mutations rejected\nINFO_WIDTH profile=system trial=1 changes=600 widths=2400/1200 fonts=3600/2400 texts=3600/2400 ms=8.000/6.000 kib=4080.81/2920.65\nINFO_WIDTH profile=system trial=2 changes=600 widths=2400/1200 fonts=3600/2400 texts=3600/2400 ms=8.000/6.000 kib=4078.46/2920.65\nINFO_WIDTH profile=system trial=3 changes=600 widths=2400/1200 fonts=3600/2400 texts=3600/2400 ms=9.000/7.000 kib=4078.46/2920.65\nINFO_WIDTH profile=system trial=4 changes=600 widths=2400/1200 fonts=3600/2400 texts=3600/2400 ms=8.000/5.000 kib=4078.46/2920.65\nINFO_WIDTH profile=system trial=5 changes=600 widths=2400/1200 fonts=3600/2400 texts=3600/2400 ms=8.000/7.000 kib=4078.46/2920.65\nINFO_WIDTH profile=dense trial=1 changes=600 widths=22200/20100 fonts=25500/23400 texts=25500/23400 ms=82.000/85.000 kib=26865.55/24607.93\nINFO_WIDTH profile=dense trial=2 changes=600 widths=22200/20100 fonts=25500/23400 texts=25500/23400 ms=76.000/73.000 kib=26865.55/24607.93\nINFO_WIDTH profile=dense trial=3 changes=600 widths=22200/20100 fonts=25500/23400 texts=25500/23400 ms=77.000/73.000 kib=26865.55/24607.93\nINFO_WIDTH profile=dense trial=4 changes=600 widths=22200/20100 fonts=25500/23400 texts=25500/23400 ms=82.000/76.000 kib=26865.55/24607.93\nINFO_WIDTH profile=dense trial=5 changes=600 widths=22200/20100 fonts=25500/23400 texts=25500/23400 ms=79.000/72.000 kib=26865.55/24607.93\nINFO_WIDTH profile=hybrid trial=1 changes=600 widths=9600/9600 fonts=10800/10800 texts=10800/10800 ms=38.000/39.000 kib=12263.30/12033.62\nINFO_WIDTH profile=hybrid trial=2 changes=600 widths=9600/9600 fonts=10800/10800 texts=10800/10800 ms=38.000/38.000 kib=12263.30/12033.62\nINFO_WIDTH profile=hybrid trial=3 changes=600 widths=9600/9600 fonts=10800/10800 texts=10800/10800 ms=39.000/41.000 kib=12263.30/12033.62\nINFO_WIDTH profile=hybrid trial=4 changes=600 widths=9600/9600 fonts=10800/10800 texts=10800/10800 ms=38.000/38.000 kib=12263.30/12033.62\nINFO_WIDTH profile=hybrid trial=5 changes=600 widths=9600/9600 fonts=10800/10800 texts=10800/10800 ms=37.000/38.000 kib=12263.30/12033.62\nidle info layout: 9768 comparisons passed\n"
+  },
+  "parity": "Info now reuses the width just measured when its hybrid labels match, and adjusts the current render list in place. In 60 modeled width changes, the usual FPS and ping row uses 120 width queries instead of 240. The dense row uses 2,010 instead of 2,220. The item-level and GearScore case keeps all 960 queries because the labels change. The decorative slot skips 120 grid-height reads over 60 crossings. Text, fonts, anchors, tooltip contents and slot visibility match.",
+  "rules": "The horizontal layout owns its render list for one synchronous pass. It reuses the measured width only with the same glyph text, FontStrings and font size. Changed labels, including compact-to-full and restricted values, keep measurement. The real Info frame keeps its height writes and stat refreshes. A decorative gap follows its top and bottom anchors directly without sampling unused grid heights.",
+  "checkpoint": {
+    "createdUTC": "2026-11-20T08:44:17.0056033Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "installedSettingsFileCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "StatusBars/FluxInfoFrame.lua": "816699e0369e6f04273786b62f9228277f65aa70fe0f003807069f284b9b445b",
+      "Layout/UnifiedBorder.lua": "e586669264ccf4b722e8c1f24fef1780ee4adb31061ada33c44ab50ded4d4145",
+      "tests/idle_info_layout.lua": "39e518375ae4c68e13e264241023a5daaa4c509fee257af943d140a2b031a60c",
+      "tests/strip_panel_settle.lua": "c11eb168bce14057f20399e66d479b4a70a3720e7bea65a9ae5bcda32f592416",
+      "docs/STATUS.md": "b1ee0ea6b44154e3d6512563ff690e9d58fd2f11b184a02b8ad0652d38a87d1a",
+      "docs/DECISIONS.md": "37931554446770c08b26211aedb835186e36987e5920af2c7d0c2734a5a70984",
+      "docs/WORK_LOG.md": "8837271fd1e11aed9ab1d6b47e473a3aee8a2f425fcff667fe13da4242e3f6a2",
+      "NEXT_SESSION.md": "848ee775b8c68f7b331fc0d6a521712c81ae9b610cd0c22ddc00a1081611f9d0",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "c665314e56cf8415b4f126e94adc85b4cc1e5fb5e7dd0691165356d56032d1fa",
+      "docs/ACTION_STRIP_BORDER_UPDATES.md": "845452cdffa161821f72b8e4376b6d3c2b3a1130c3e2a2f8d11b93b0a997e4b7",
+      "docs/16-status-bars.md": "22920cf885c1d995ade5bd144f8e58ba75a289e85e6d8ef03be42156f82dd607",
+      "docs/CLIENT_VALIDATION.md": "adc8566354a309cd784fd882ca670a99fc61ffa81cc54b4f6db6e4e7d726c2cb",
+      "docs/FEATURE_PARITY.csv": "b115299a4c0ce09852075a6f09490dbe1588492767c55f6661b7a374c94d59fc",
+      "docs/PERFORMANCE_RESULTS.csv": "766593d3f29c611ab67751d37f55f2e807881f457341a051c520ab7033e8b906",
+      "docs/CLIENT_MATRIX.csv": "e72dda88254d4008a0019adf80dab1c5faea57b99fc78e721640d679c37a22b9",
+      "docs/reference/verification.json": "cdde6bbe1ba4644ef024bd30b6df0620105dba37872063c9839203ece2e83b24"
+    }
+  },
+  "verification": {
+    "focusedPassed": 28,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/trinket_squeeze_geometry_work.lua": "511a8be1e0c78b4975be1a96750f72bf1b4292dd3f82149f463d82bce6833a90",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/trinket_regen_refresh.lua": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_panel_settle.lua": "bbf2700b01b24d41d74603c93241bf5d1d991d677cd7a7f842f3e897bd1d07c8",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/grid_envelope_work.lua": "87f1827bfdff5aaa3a302f94b48af7fb598c6b07ada7994494d8da4d6b17c9a7",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/border_nearby_panels.lua": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "tests/border_strip_envelope.lua": "02275f7397c2faf3c94bab522d7835200cb9d627160ad0e978617f618e861e67",
+      "tests/minimap_flyout_visibility.lua": "d3ddbc460dee3c1869689af0dc794a1b6e45072d2c1b17b8b512517fb29d4544",
+      "tests/idle_info_layout.lua": "848dfbc036cb12e9794827fd8a786d03128c64a36ca3e3a6ca48254f12c6ae8b",
+      "tests/info_all_stats.lua": "d75d700b8d6d0cdc23a418b55dba02fcd844fc2c47cf6d9534151fb68fb6a2a3",
+      "tests/info_combat_stats.lua": "f40271f54b49e6821fc1d9655a68911b5a8cc4860569e82e4938d716a163bf57"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-info-measure-2026-11-20-094416\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-info-measure-2026-11-20-094416\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\flux-strip-info-measure-2026-11-20-094416\\syntax.json"
+  },
+  "nativeAcceptance": "Live held-action and rapid-drop frame time, actual seams and combat taint remain open. The broader goal also keeps group transitions, embedded minimap toggles and combat exits open."
+}

@@ -1,0 +1,123 @@
+{
+  "changeId": "STRIP-HOVER-ROUTES-R145-20261119",
+  "capturedAtUTC": "2026-11-19T21:47:40.029780+00:00",
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "178d57a0cddebf03b23c8062e401a1ac0c4bc4d2f5afa6487eb050a9b11d3513",
+      "afterRaw": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+      "afterNormalized": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63"
+    },
+    "Bars/State.lua": {
+      "beforeRaw": "7966397f746bd2ce6d45a014fcda25e67025570c801595756532a68766414e03",
+      "afterRaw": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+      "afterNormalized": "3dbaaf56780e320a45aaf2114b0b21418165a03a6baabbb751a6639ffddd98a1"
+    },
+    "Bars/_tmp_forevercontrolsmoke.lua": {
+      "beforeRaw": "9b90bee13f9dab216e5f59c874838c18b7e0731802998cf7023b2297b8da5992",
+      "afterRaw": "9257a4f42ac95d7a9a33bc58657c4c37a26e74dcbe99825555129611083f2a87",
+      "afterNormalized": "9257a4f42ac95d7a9a33bc58657c4c37a26e74dcbe99825555129611083f2a87"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\source.zip",
+    "sourceZipSHA256": "f00fefbe17f7c180d116f24808214d78c3f950849ed90566fc5eb893ebd88049",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual Flux secure state snippets, slot layout, key binding and native Forever templates in the existing fixture. Compare current hover behavior against the same full refresh used for non-hover changes. Six held-action edges per page with mixed static/dynamic slot occupancy.",
+    "samples": [
+      {
+        "page": 1,
+        "oldCalls": 20151,
+        "newCalls": 9192,
+        "crossings": 6
+      },
+      {
+        "page": 2,
+        "oldCalls": 20142,
+        "newCalls": 9189,
+        "crossings": 6
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\hover-matched.txt": "f05ac8674216da4d0c8bee70027ea27f29b2e58cd4399c33ff5571ec0adf1d43",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\hover-negative.txt": "31a165628963475670edc8b0a7fe0179baf8560868a8402565ca6aa6a29e6a45",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\upvalues.json": "8382b11e9d2cb393bfffbed2b8572af194f41d9850d05c90c5f1d2a82c2c465a"
+    },
+    "limits": "Native attribute setter invocations counted by the desktop fixture. Hardware input, native time and taint remain pending."
+  },
+  "preservation": [
+    "Held spell/item/macro edges resolve the current page and modifiers and read live mini occupancy. Unchanged route signatures reuse their existing secure click data.",
+    "Slot edits still force all stamps fresh. Missing or failing optional hover snippets retry through the existing full secure refresh. Unsupported secure paging uses the established out-of-combat mapping pass and skips a duplicate only if that pass reported success.",
+    "The original protected boundaries remain in place, including the out-of-combat guard on execution. Actual mouse and binding routes for all nineteen columns match the full-refresh fixture across the normal and modified edges."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\syntax.json",
+    "routeReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-hover-route-before-20261119-224039\\route-source-recheck.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Layout.lua": {
+        "sha256": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+        "matches": true
+      },
+      "Bars/State.lua": {
+        "sha256": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Bars/Layout.lua": {
+        "sha256": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+        "matches": true
+      },
+      "Bars/State.lua": {
+        "sha256": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Bars/Layout.lua": {
+        "sha256": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+        "matches": true
+      },
+      "Bars/State.lua": {
+        "sha256": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Bars/Layout.lua": {
+        "sha256": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+        "matches": true
+      },
+      "Bars/State.lua": {
+        "sha256": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Layout.lua": {
+        "sha256": "01ec39d09c5e0bfd229922e613e5d646f817e31be4336f2c1c73ebe636e89a63",
+        "matches": true
+      },
+      "Bars/State.lua": {
+        "sha256": "9e61e0a9e85a1a54c5028d439b84e18a52d1d2bccb535ecbcdc506b49f1f0d3c",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for held-action crossings, drag/drop correctness and smoothness, group transitions, pixels and combat taint. No client or profiling changes."
+}

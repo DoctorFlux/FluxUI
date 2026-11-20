@@ -1,0 +1,412 @@
+{
+  "change_id": "LHO-SCORE-REQUIREMENT-PREFILTER-20261118",
+  "status": "REJECTED_ACTIVE_CONSUMABLE_REGRESSION;RESTORED_13f28db1_ADOPTED_NATIVE89_91;FULL_GOAL_ACTIVE",
+  "utc": "2026-11-18T19:22:30.929998+00:00",
+  "path": "Inventory/FluxConsumableBest/Score.lua",
+  "beforeSHA": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+  "afterSHA": "86b4fe204d1477471d140853ff63f5456d76ef3c8c678fd0374ebd884e39f28d",
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "86b4fe204d1477471d140853ff63f5456d76ef3c8c678fd0374ebd884e39f28d",
+    "Inventory/Professions.lua": "9a12130da2c3d726165611d07a742507478db716d59e71f32fc78c27b3cc6783"
+  },
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "historyVerified": true,
+  "settingsStatRows": 12,
+  "settingsContentsCopied": false,
+  "wholeFileTwoLineInsertionProof": true,
+  "newSimulations": 0,
+  "syntax": [
+    {
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "phase": "before",
+      "exit": 0
+    },
+    {
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lua51-20261115\\lua-5.1.5\\src\\luac51.exe",
+      "phase": "after",
+      "exit": 0
+    },
+    {
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "phase": "before",
+      "exit": 0
+    },
+    {
+      "compiler": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\13\\01a1d663-d601-7f93-879b-be03642eb3fc\\lua-runtime\\luac.exe",
+      "phase": "after",
+      "exit": 0
+    }
+  ],
+  "retailForeverPairsMatched": 29,
+  "initialImmediateDiskPairCheck": "Failed after source write;fresh follow-up all29pairs match. No source rewrite/manualsync;mechanism of visibility delay unproven.",
+  "nativeBefore": {
+    "run": "score81parser_a/score82read_a",
+    "realTooltips": 54,
+    "withoutRequirementFragment": 34,
+    "empty": 0,
+    "currentLevel": 38,
+    "passes": 5,
+    "queriesPerVariantPerPair": 270,
+    "beforeMs": [
+      0.78029996156693,
+      0.73969995975494,
+      0.72500002384186
+    ],
+    "afterMs": [
+      0.57639998197556,
+      0.56169998645782,
+      0.53180003166199
+    ],
+    "mismatches": 0,
+    "failures": 0,
+    "installedMethodUnchanged": true,
+    "probeAndReportRemoved": true,
+    "jumpRestored": true,
+    "cursorClear": true,
+    "sessionErrors": 0
+  },
+  "scope": "Pure parser-tail comparison on actual tooltip text;tooltip acquisition/native restriction checks excluded from timing;not full IsKnownUnusable/Recompute/FPS/hitch proof",
+  "restoredSHA": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+  "active88": {
+    "actualPublishedItems": 7,
+    "currentLevel": 38,
+    "textsWithoutRequirementFragment": 0,
+    "empty": 0,
+    "passes": 20,
+    "parserCallsPerVariantPerPair": 140,
+    "beforeMs": [
+      0.51159995794296,
+      0.49739998579025,
+      0.51249998807907
+    ],
+    "afterMs": [
+      0.53519999980927,
+      0.52509999275208,
+      0.51819998025894
+    ],
+    "mismatches": 0,
+    "failures": 0,
+    "installedMethodUnchanged": true,
+    "reason": "All active consumables take the full path;the extra literal check is slower in all three pairs. Reject despite all54-item pooled benefit. Isolated parser timing;not causal FPS/hitch regression."
+  },
+  "native85": {
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "project": 18,
+    "unique": 54,
+    "countMismatches": 0,
+    "syndicatorLoaded": true,
+    "baganatorLoaded": true,
+    "source": "syndicator",
+    "ready": true,
+    "queue": 4,
+    "food": [
+      1487,
+      14,
+      841
+    ],
+    "prefs": [
+      0,
+      120,
+      30
+    ],
+    "errors": 0,
+    "cursorClear": true
+  },
+  "native86_87": {
+    "total": 54,
+    "mismatches": 0,
+    "failures": 0,
+    "beforeBlocked": 0,
+    "afterBlocked": 0,
+    "completed": true,
+    "installedMethodUnchanged": true,
+    "probeAndReportRemoved": true,
+    "cursorClear": true,
+    "errors": 0,
+    "limit": "No actual blocked item/level/skill/class/secret scenario induced;method equality only for these54currentitems."
+  },
+  "updatedUTC": "2026-11-18T19:44:01.820859+00:00",
+  "native91": {
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "project": 18,
+    "unique": 54,
+    "countMismatches": 0,
+    "syndicatorLoaded": true,
+    "baganatorLoaded": true,
+    "source": "syndicator",
+    "ready": true,
+    "queue": 4,
+    "food": [
+      1487,
+      14,
+      841
+    ],
+    "prefs": [
+      0,
+      120,
+      30
+    ],
+    "errors": 0,
+    "cursorClear": true,
+    "ownedProbeRootsRemoved": true,
+    "newCueActive": true
+  },
+  "restoredSourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a",
+    "Inventory/Professions.lua": "9a12130da2c3d726165611d07a742507478db716d59e71f32fc78c27b3cc6783"
+  },
+  "restoredSourcePairs": 29,
+  "noRuntimeChangesRemainFromThisCandidate": true,
+  "restoredSyntax": "Fresh Lua5.1/5.4 syntax-only PASS;no new simulation",
+  "artifacts": [
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score81-requirement-parser-20261118",
+      "controllerSHA": "121d5dd1bdc76feb217726281121e05ba064f33a60eb7d192b53b80e5a0c40e6",
+      "packetSHA": "cc8363ed49764669e7b78b659b207b1e0b76196efc0f30a06629cb5d0fc6ece9",
+      "packetCount": 24,
+      "root": "_P81",
+      "nonce": "p81r6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score82-parser-read-20261118",
+      "controllerSHA": "11764d31ff0486b7da965a379862d27e08ffdf1ec0066c4e0094348eb7180f07",
+      "packetSHA": "be7f8733cd1a1d86632f38c549fb822ac5318725fa16c3e99a1e6b6c14136d85",
+      "packetCount": 2,
+      "root": "_R82",
+      "nonce": "r82r6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score83-reload-20261118",
+      "controllerSHA": "d757f4a93327f5be3af7b9678ae9bef1bf2ae84bce7a69f55dfdfdc9af0bd41a",
+      "packetSHA": "c5aabd834c952ebc3bab517ae49dc2f47c13e7d7785c6c3f4b15caa55f9babe8",
+      "packetCount": 2,
+      "root": "_R83",
+      "nonce": "r83d6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score85-count-parity-20261118",
+      "controllerSHA": "4417fb01721a195f0663649a6a12c7ea1a915d7b89ceac4f0bc4c014fb0cbc85",
+      "packetSHA": "007bf4e6fe1c9ab44432da433fd6057d1e40935a5ade4c30f1f66455e1c933d9",
+      "packetCount": 5,
+      "root": "_R85",
+      "nonce": "r85c6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score86-full-eligibility-20261118",
+      "controllerSHA": "6a240cce51d0ae3b09f4385ce6edb76fed2aa6fe6ec60f5e7f5a835396988aaa",
+      "packetSHA": "f093892bc11be005bd0aa9463c45c63ab9d38549499c23a2e8592838cd9fa02b",
+      "packetCount": 32,
+      "root": "_P86",
+      "nonce": "p86r6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score87b-eligibility-read-20261118",
+      "controllerSHA": "acd440cffaee9ac5c095805e10dedbcaf352bb3efccf9fde90e4fd2664d43a50",
+      "packetSHA": "d5464bbac034bd40ece6aa7689398736b2f73fbbc0a021f66214b80bc2ef7699",
+      "packetCount": 3,
+      "root": "_R87",
+      "nonce": "r87r6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score88-active-consumable-parser-20261118",
+      "controllerSHA": "e2f43827da8f1afd410e7682ff5c3fbbd4058a419f03409a912e64a0d0c5176c",
+      "packetSHA": "5350e3b745d597118c791f68c9647e29b162701987d2616c0ad200cd9abf3ecc",
+      "packetCount": 25,
+      "root": "_P88",
+      "nonce": "p88r6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score89-reject-reload-20261118",
+      "controllerSHA": "456cd9ea8cf20656cc84e11bf6dfc65a6635bc89ef6977c46cf76b36da734830",
+      "packetSHA": "fbbba2acf93277ed268621d347e68995934a94c6ad80e2b3db2c6d022fb30d14",
+      "packetCount": 4,
+      "root": "_R89",
+      "nonce": "r89d6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-score91-restored-counts-20261118",
+      "controllerSHA": "74eb2a52625bb4d819cf9a2ea84318ca2e5af43fff069d392d0c0ca39c40494e",
+      "packetSHA": "985776d35726ba831d812c16c3e48a91bd17641278eaf4565b8bcbcc351f9f0c",
+      "packetCount": 5,
+      "root": "_R91",
+      "nonce": "r91c6k2",
+      "sourceOnly": true
+    }
+  ],
+  "attestations": [
+    {
+      "run": "score81parser_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score81parser_a-journal.json",
+      "journalSHA": "5bcda8da1a6b362e05319e0620ece0abcf595abdad8a7d8bbf164193fe65627e",
+      "pngSHA": "47ae3def46e281baf8c555482dc09be7261aeb485f46e767c18792b5220be276"
+    },
+    {
+      "run": "score82read_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score82read_a-journal.json",
+      "journalSHA": "e6762d02444f3e37878ff5e5898a37b89b7104591c59f9451699bc90e2395d5d",
+      "pngSHA": "48b1da50f958e606d2adb51ad8b9edebba4820b0b424a673159b5216b6382b64"
+    },
+    {
+      "run": "score83reload_b",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score83reload_b-journal.json",
+      "journalSHA": "567fd69731a29679d29db8f657072545f0cd00f3383370d9335ff6146227710e",
+      "pngSHA": "0c4fadd9b1c3c5da5888ca402fb4313f760ab725418d4f2562ce4773510a590c"
+    },
+    {
+      "run": "jump84install_b",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump84install_b-journal.json",
+      "journalSHA": "2c9c9fd425b34ae78f31be3bc4db625699b387f4aa753b78f5e75ec1eb49efde",
+      "pngSHA": "c3210c3676d3ecbd4567bdcb56a2969c7bc2c1a7c04699c7b44d7b257f638e46"
+    },
+    {
+      "run": "score85counts_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score85counts_a-journal.json",
+      "journalSHA": "42097f74a59a75886af16e4477c55abef3faeaf62b5016abe00aa7c4b1088c1b",
+      "pngSHA": "0d4a9eb230e2f42b0068624d655a850239a4b8a09a90558f9a0d25fb4901c6e0"
+    },
+    {
+      "run": "score86eligibility_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score86eligibility_a-journal.json",
+      "journalSHA": "6ff40fa884b9a7aef2da16fd1757a2facf55c7e06145d7cf174208533757f3d3",
+      "pngSHA": "cfcfa057f64970ace7d849598d310011ba4240be698efe89580d9921f2c29b6c"
+    },
+    {
+      "run": "score87read_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score87read_a-journal.json",
+      "journalSHA": "6f58662abbabe5c72ef4fb4350a8ea3544620162047aa1438861fbf399713051",
+      "pngSHA": "756d9c108ac7e6e4844d9727431148bc8334fb0d81f31fd8ee066e8a3102e124"
+    },
+    {
+      "run": "score88active_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score88active_a-journal.json",
+      "journalSHA": "16ef2687abce9dcffd748d7911acdef0117234f0d50d11ae4ed4fa68c6bbda7a",
+      "pngSHA": "242663eca0e144eee87495e7d701bd3daa5085a1890cba1e4fda0076181b7107"
+    },
+    {
+      "run": "score89restore_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score89restore_a-journal.json",
+      "journalSHA": "30ee46f9af30c0307dad9b77f165d4b75327c97fe9d457099ad5c4bce45c7095",
+      "pngSHA": "216c896b10291599bc2e285b42bdd39bc53c4a44056ed66a7aaa8dfb8bcab889"
+    },
+    {
+      "run": "jump90install_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump90install_a-journal.json",
+      "journalSHA": "6b3c47fffe7341f98b1978b2b92825e1fc378227ec80490329c4715ceb11d0d7",
+      "pngSHA": "3a6d1c3b060ad2a2b456b6506d2b67c44624ec757993bc6cc1d9109773355001"
+    },
+    {
+      "run": "score91restored_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score91restored_a-journal.json",
+      "journalSHA": "61987ec85e6dc56615a3fb240afbd475f0937fdc4f4801a2b7028fe7d7883b5f",
+      "pngSHA": "1da7f3ab572cf46419b9646ebdd81e25a160f15657fdc919f77231e143547af6"
+    }
+  ],
+  "reloads": {
+    "83": {
+      "readinessACKOnly": true,
+      "freshStartupSeparatelyPersonallyViewed": true,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\score83-reload-startup.png",
+      "pngSHA": "300e7f47d9b0258fd63af79bda57e6c36ef99259c6c1db5eea5cd4b345165066"
+    },
+    "89": {
+      "readinessACKOnly": true,
+      "freshStartupSeparatelyPersonallyViewed": true,
+      "png": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\score89-restored-startup.png",
+      "pngSHA": "c40c077cca7e90966cb8e7be18ee74a93fb083d291ecae650e5b7f8d85c81670"
+    }
+  },
+  "jump": {
+    "revision": "R19",
+    "root": "_J90q",
+    "nonce": "j18n90a7",
+    "label": "live20261118s",
+    "supervisorPID": 14932,
+    "hostPID": 33664,
+    "hostLiveVerified": true,
+    "pairsAtLastRead": 2,
+    "movementAcknowledged": false,
+    "interval": 180,
+    "oldHosts42332and42984StoppedVerified": true,
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r19-20261118\\source-adaptation.json",
+    "retainedHaltSHA": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3"
+  },
+  "operationalNotes": [
+    "Initial immediate29diskpair assertion failed after applying candidate;fresh follow-up allmatch without manualsync;visibility mechanism unknown.",
+    "Own no_jump setup hold rejected ordinary83begin before input;removed after verified host exit,fresh label used. Installer84first attempt lacked its required no_jump hold;failed before input;restored ownedhold/fresh label.",
+    "87source-only packet build exceeded255characters;no packets/desktop input;fresh87b split into3packets.",
+    "Unrelated party invitation/join/disband/loot-setting chat traffic appeared;no such commands belong to these packets;world/cache/system confounds retained."
+  ],
+  "remaining": [
+    "Seven active consumables all contain requirement text;do not reapply this literal prefilter based on54-item mixed inventory result.",
+    "Actual live tooltip acquisition/full~5ms pending-read validation remains priority;keep eligibility freshness and0.4s retries.",
+    "LHO01-13 full goal ACTIVE;vendor/AH/bank/mail/pending/craft/cast/provider-off mutations,allclient/taint/pixel/controller and matchedFPS/hitch acceptance remain open.",
+    "Do not open unattended merchant without verified native Shift skip;no item transactions or external addon source edits authorized."
+  ]
+}

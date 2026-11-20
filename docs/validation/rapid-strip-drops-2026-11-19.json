@@ -1,0 +1,218 @@
+{
+  "changeId": "RAPID-STRIP-DROPS-R99-20261119",
+  "capturedAtUTC": "2026-11-19T11:49:14.849290+00:00",
+  "scope": "Rapid spell, item and macro pickups/drops and repeated strip width updates during a stable hover state",
+  "sources": {
+    "Bars/Hosts.lua": {
+      "beforeRaw": "7775dff0f4aaef1456b444cc254c000fcfb1c8bd4f1989e2bb50c843ca4a3c06",
+      "afterRaw": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4"
+    },
+    "Bars/Init.lua": {
+      "beforeRaw": "54b3d637be80130594e4c6783bf72ff4f1273d8dbee29381672077cb3e45b296",
+      "afterRaw": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431"
+    },
+    "Bars/Layout.lua": {
+      "beforeRaw": "5d6fdfce836d6f6e6a5ecbe69111b31ab81be19b61721bbac4c6e6c9ef84b72f",
+      "afterRaw": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d"
+    },
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "3ad490f69bfb97e8071845efb750b97ae4670d3cb940aa4366fc44470473d113",
+      "afterRaw": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b"
+    },
+    "tests/rapid_strip_drops.lua": {
+      "beforeRaw": null,
+      "afterRaw": "a7ee98bdfc4cfa2186d19968c1f891f1465616d4212e8234ab87253fbe8cc78e"
+    },
+    "tests/bars_strip_layout_work.lua": {
+      "beforeRaw": "244c3b7836bb41d5d04ad4234e31dc65894bd7e6305d740b8cb7293e58173257",
+      "afterRaw": "5b4058c855765288a75e0b95ec15603b0cc1b29c12dbf333b9fa10f93d136ffe"
+    },
+    "Bars/Strip.lua": {
+      "beforeRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253",
+      "afterRaw": "4dee207eca6443531ffd5c915a2fecdfc48382613ad1ca287750d828b78c6253"
+    },
+    "Bars/Watch.lua": {
+      "beforeRaw": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+      "afterRaw": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4"
+    },
+    "Binding/Core/Apply.lua": {
+      "beforeRaw": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3",
+      "afterRaw": "53a59b5f7314d84ffb99ec8484588154452174f27aedd25a46590eeef8fa4be3"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\rapid-strip-drops-r99-before-20261119T113955Z\\source.zip",
+    "archiveSHA256": "bc06ce4d99c300078fc3077c88c7b877f356d3e79c34bb10526a447b926bf734",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "replay": {
+    "scope": "Exact archived and current Lua with modeled pickup/place and secure host input. Separate before/after regional drawing comparison during actual width and panel motion.",
+    "pickupPlace": {
+      "actions": 12,
+      "cursorTypes": [
+        "spell",
+        "item",
+        "macro"
+      ],
+      "mappingWrites": [
+        2052,
+        108
+      ],
+      "fullStockSweeps": [
+        12,
+        0
+      ],
+      "fullPaints": [
+        12,
+        0
+      ]
+    },
+    "border": {
+      "widthChangesPerStyle": 8,
+      "types": [
+        1,
+        2
+      ],
+      "solves": [
+        8,
+        2
+      ],
+      "plans": [
+        8,
+        2
+      ],
+      "verifiedPreparedHits": 6,
+      "cacheBoundPerHoverState": 2
+    },
+    "checks": [
+      "exact final button points, secure slot attributes and pickup/drop identity",
+      "refresh both affected columns when one live slot is shared",
+      "final collapse keeps full paint and existing quick stock suppression",
+      "combat guard stays ahead of protected input",
+      "matched border art at strip and moving side joins",
+      "third geometry evicts the older alternate",
+      "reset clears retained shapes"
+    ],
+    "rows": [
+      "RAPID_STRIP actions=12 mappingWrites=2052/108 fullStock=12/0 fullPaint=12/0",
+      "RAPID_BORDER style=1 changes=8 solve=8/2 plan=8/2 prepared=6",
+      "RAPID_BORDER style=2 changes=8 solve=8/2 plan=8/2 prepared=6",
+      "Rapid strip replay passes slots, shared mappings, grid transition, lockdown, prepared side joins and bounded reuse."
+    ],
+    "captureSHA256": "f1fa5a8ef512fea9603bd780a6dbb6f63ca0d0f8c615e69423584624796ea007"
+  },
+  "verification": {
+    "focused": 213,
+    "focusedPassed": 212,
+    "syntax": 1243,
+    "compilerMaximumUpvalues": 51,
+    "knownFailure": {
+      "path": "tests/consumable_pending_read.lua",
+      "priorCompare": "docs/validation/consumable-roster-bindings-2026-11-19.json"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\rapid-strip-drops-r99-before-20261119T113955Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\rapid-strip-drops-r99-before-20261119T113955Z\\syntax.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Bars/Hosts.lua": {
+        "sha256": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+        "matchesCandidate": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+        "matchesCandidate": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+        "matchesCandidate": true
+      }
+    },
+    "forever": {
+      "Bars/Hosts.lua": {
+        "sha256": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+        "matchesCandidate": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+        "matchesCandidate": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+        "matchesCandidate": true
+      }
+    },
+    "classic": {
+      "Bars/Hosts.lua": {
+        "sha256": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+        "matchesCandidate": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+        "matchesCandidate": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+        "matchesCandidate": true
+      }
+    },
+    "classic-era": {
+      "Bars/Hosts.lua": {
+        "sha256": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+        "matchesCandidate": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+        "matchesCandidate": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+        "matchesCandidate": true
+      }
+    },
+    "classic-anniversary": {
+      "Bars/Hosts.lua": {
+        "sha256": "6f9879206bfbaed3f0c967b5982110bc0fed13f65552c3ba717d69117bb42af4",
+        "matchesCandidate": true
+      },
+      "Bars/Init.lua": {
+        "sha256": "4f93614241733bf58eba5edc2471372f533538b0ea22e65c03ad8b2deb655431",
+        "matchesCandidate": true
+      },
+      "Bars/Layout.lua": {
+        "sha256": "840fff0c160c93437e264d3b42ff354c29f947c77dc5fb31516d0033d736369d",
+        "matchesCandidate": true
+      },
+      "Core/BorderJunctions.lua": {
+        "sha256": "585e739e442b0cbf73010ac14bdc6969b72fd502c4753df439033795f2a1725b",
+        "matchesCandidate": true
+      }
+    }
+  },
+  "nativeAcceptance": "First and repeated native pickup/drop and held-cursor latency, group joins and leaves, border pixels and combat taint remain open. No live input or profiling changes."
+}

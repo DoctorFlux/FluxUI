@@ -12,6 +12,7 @@ local function fixture(client, body)
     local ns={Flux={}}
     e.combat,e.secure,e.enabled,e.support,e.restricted=false,false,true,true,false
     e.auraQueries,e.mutations,e.cellCount,e.paintCount=0,0,0,0
+    e.driverAttempts,e.snippetAttempts,e.bindCount=0,0,0
     e.class="PRIEST"
     e.secret=setmetatable({},{__index=function()error("secret table dereferenced")end})
     e.inaccessible=setmetatable({},{__index=function()error("inaccessible table dereferenced")end})
@@ -81,11 +82,20 @@ local function fixture(client, body)
     e.FluxRaidState.containerFrame=region(nil,true)
     e.FluxRaidState.containerFrame.width=592
     e.FluxRaidVisuals={FRAME_WIDTH=72,FRAME_HEIGHT=43,ApplyCellChrome=function(f,opts)f.chrome=opts end}
-    e.FluxRaid_BindUnit=function(f,unit)f.unit=unit end
+    e.FluxRaid_BindUnit=function(f,unit)f.unit=unit;e.bindCount=e.bindCount+1 end
     e.FluxRaid_PaintUnit=function()e.paintCount=e.paintCount+1 end
     ns.Flux.Restricted={PagingWorks=function()return e.support end,
-        SetPagingSnippet=function(f,key,code)f:SetAttribute(key,code);return true end,
-        RegisterPagingDriver=function(f,state,condition)legal();f.driver={state=state,condition=condition};return true end,
+        SetPagingSnippet=function(f,key,code)
+            e.snippetAttempts=e.snippetAttempts+1
+            if e.failSnippet and e.failSnippet==f.unit then return false end
+            f:SetAttribute(key,code);return true
+        end,
+        RegisterPagingDriver=function(f,state,condition)
+            e.driverAttempts=e.driverAttempts+1
+            legal()
+            if e.failDriver and e.failDriver==f.unit then return false end
+            f.driver={state=state,condition=condition};return true
+        end,
         UnregisterPagingDriver=function(f)legal();f.driver=nil;return true end}
     assert(loadfile("RaidFrame/FluxRaidSecure.lua","t",e))("_FluxUI",ns)
     assert(load(body or source,"@FluxRaidHealerExtras","t",e))("_FluxUI",ns)
@@ -189,7 +199,81 @@ local function exercise(client,body)
     check(db.showPets==false and db.showMissingClassBuffs==true and e.changes==2,"option edits use existing module refresh")
 end
 
-for _,client in ipairs({"live","forever","classic","classic_era","classic_anniversary"})do exercise(client)end
+local function retryExtras(client, body, measure)
+    local e,db,E,_,_,_,ns=fixture(client,body)
+    db.showPets,db.showFriendlyTarget,db.showMissingClassBuffs=true,true,false
+    e.failDriver="partypet2"
+    E.RefreshLayout()
+    local pets,target=E.GetExtraCells()
+    local failed,healthy=pets[43],pets[7]
+    check(E.extraStatus and failed.unit==nil and not failed.shown and not failed.driver and healthy.driver,
+        client..": a failed optional cell is hidden and unbound while prepared cells remain ready")
+    local driver,anchor,chrome=healthy.driver,healthy.points[1],healthy.chrome
+    local targetDriver=target.driver
+    local function count(label, fn)
+        local writes,attempts,snippets,binds=e.mutations,e.driverAttempts,e.snippetAttempts,e.bindCount
+        local allocations=e.cellCount
+        fn()
+        check(e.cellCount==allocations,client..": "..label.." uses the precreated cells")
+        local work={e.mutations-writes,e.driverAttempts-attempts,e.snippetAttempts-snippets,e.bindCount-binds}
+        print(("RAID_EXTRA_RETRY|%s|%s|%d|%d|%d|%d"):format(client,label,table.unpack(work)))
+        return work
+    end
+    local pendingPaint={}
+    ns.FluxRaidQueueRosterPaint=function(f)pendingPaint[f]=true end
+    local persistent=count("partial", E.RefreshRoster)
+    if not measure then
+        check(persistent[2]==1 and persistent[3]==1 and persistent[4]==2 and pendingPaint[healthy],
+            client..": only the failed driver is retried and ready cells retain roster paint")
+        check(healthy.driver==driver and healthy.points[1]==anchor and healthy.chrome==chrome and target.driver==targetDriver,
+            client..": retry retains ready drivers, chrome and anchors")
+    end
+    check(E.extraStatus and not failed.shown, client..": persistent native failure remains isolated")
+    local writes=e.mutations
+    e.combat=true
+    E.RefreshRoster()
+    E.RefreshRoster()
+    check(e.mutations==writes and not failed.driver,client..": battle roster retry performs no protected mutations")
+    e.combat,e.failDriver=false,nil
+    local recovered=count("regen",function() E.OnEvent("PLAYER_REGEN_ENABLED") end)
+    check(failed.unit=="partypet2" and failed.driver and not E.extraStatus,client..": recovery reattaches the current secure party pet route")
+    if not measure then check(recovered[2]==1 and recovered[4]==1,client..": combat exit retries the one deferred cell") end
+
+    e.failSnippet="target"
+    E.RefreshLayout()
+    check(E.extraStatus and not target.driver and not target.shown,client..": a failed friendly target snippet stays hidden")
+    e.failSnippet=nil
+    db.displayPowerBar=false
+    e.FluxRaidVisuals.FRAME_WIDTH=80
+    local changed=count("layout-change",E.RefreshRoster)
+    check(changed[2]==46 and target.driver and target.chrome.showPower==false and healthy.width==80,
+        client..": changed actual dimensions and power settings use a complete layout")
+
+    e.support=false
+    E.RefreshLayout()
+    local unavailable=count("unavailable",E.RefreshRoster)
+    check(E.extraStatus and not target.driver and not healthy.shown,client..": unavailable paging leaves disabled cells hidden")
+    if not measure then check(unavailable[1]==0 and unavailable[4]==0,client..": unchanged unavailable provider does no protected work") end
+    healthy:Show();healthy:SetAttribute("unit","raidpet7")
+    E.RefreshRoster()
+    check(not healthy.shown and not healthy:GetAttribute("unit"),client..": unavailable paging still retires a drifted cell")
+    e.support=true
+    local restored=count("provider-return",E.RefreshRoster)
+    check(restored[2]==46 and healthy.driver and target.driver and not E.extraStatus,client..": paging capability recovery installs every required route")
+
+    e.failDriver="target"
+    E.RefreshLayout()
+    e.combat=true
+    E.RefreshRoster()
+    db.showPets=false
+    E.RefreshLayout()
+    e.combat,e.failDriver=false,nil
+    E.OnEvent("PLAYER_REGEN_ENABLED")
+    check(target.driver and not healthy.driver and healthy.unit==nil and not healthy.shown,
+        client..": a real deferred option change supersedes a pending driver retry")
+end
+
+for _,client in ipairs({"live","forever","classic","classic_era","classic_anniversary"})do exercise(client);retryExtras(client)end
 local noCombat=source:gsub('frame%._fluxRaidMini or Combat%(%) or not Enabled%(%)','frame._fluxRaidMini or not Enabled()')
 check(not pcall(exercise,"live",noCombat),"negative control rejects aura scanning during combat")
 local noDefer=source:gsub('if Combat%(%) then pendingLayout = true; SyncEvents%(%)%; return end','if false then return end')

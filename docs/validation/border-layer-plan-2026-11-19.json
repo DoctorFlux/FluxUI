@@ -1,0 +1,971 @@
+{
+  "changeId": "BORDER-LAYER-PLAN-R136-20261119",
+  "capturedAtUTC": "2026-11-19T19:57:53.822540+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "4e954a5329f782371c0fb08b5eaa3042800c9d9d0918a45b4c6e6574607aae34",
+      "afterRaw": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7"
+    },
+    "tests/border_canvas_layers.lua": {
+      "beforeRaw": "a43001d7731436abc91584cec14d4197fef89161cc502f2e51d393b2b91cd385",
+      "afterRaw": "8f6e81231672355e389bdf33b56ed102154fe86d073068ac6f1c5ddd24d6259a"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\source.zip",
+    "sourceZipSHA256": "b90907cec80ea0e766b942edb44b77ffab3a0815a93f9d442c9c564c2d226faf",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per border style in three scenarios. The production renderer executes four held-action crossings, or four transitions where four party-linked or raid-linked outlines gain or lose valid geometry on a populated modeled HUD. All four transitions in the first pair and endpoints of later pairs match sampled drawing. Operation and region counts match.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "reads": "26/8",
+          "records": "310/52"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "reads": "26/8",
+          "records": "310/52"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "reads": "0/0",
+          "records": "276/44"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "reads": "0/0",
+          "records": "276/44"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "reads": "0/0",
+          "records": "276/44"
+        }
+      ]
+    },
+    "workCounters": "Counts include raised-strip frame-level reads within the planner and table creations within the compositor layer union. Initial setup is excluded.",
+    "timingScope": "Five alternating uninstrumented desktop Lua pairs per style per scenario each cover four full reflows. The isolated sample compares the exact old and new layer-union functions on the same operation list for 256 calls, with collection stopped during the allocation measure. These measure desktop Lua and modeled widget calls.",
+    "uninstrumentedTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "71.000/93.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "106.000/97.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "93.000/72.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "85.000/75.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "73.000/98.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "176.000/163.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "110.000/79.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "200.000/179.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "80.000/103.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "168.000/141.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "17.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "44.000/42.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "20.000/18.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "43.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "23.000/24.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "50.000/43.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "24.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "53.000/59.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "21.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "49.000/47.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "22.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "43.000/46.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "19.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "42.000/42.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "21.000/25.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "50.000/49.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "24.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "46.000/47.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "21.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "54.000/45.000"
+        }
+      ]
+    },
+    "uninstrumentedTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 71.0,
+            "median": 80.0,
+            "max": 110.0
+          },
+          {
+            "min": 72.0,
+            "median": 93.0,
+            "max": 103.0
+          }
+        ],
+        "2": [
+          {
+            "min": 85.0,
+            "median": 168.0,
+            "max": 200.0
+          },
+          {
+            "min": 75.0,
+            "median": 141.0,
+            "max": 179.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 17.0,
+            "median": 21.0,
+            "max": 24.0
+          },
+          {
+            "min": 18.0,
+            "median": 22.0,
+            "max": 24.0
+          }
+        ],
+        "2": [
+          {
+            "min": 43.0,
+            "median": 49.0,
+            "max": 53.0
+          },
+          {
+            "min": 42.0,
+            "median": 45.0,
+            "max": 59.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 19.0,
+            "median": 21.0,
+            "max": 24.0
+          },
+          {
+            "min": 20.0,
+            "median": 22.0,
+            "max": 25.0
+          }
+        ],
+        "2": [
+          {
+            "min": 42.0,
+            "median": 46.0,
+            "max": 54.0
+          },
+          {
+            "min": 42.0,
+            "median": 46.0,
+            "max": 49.0
+          }
+        ]
+      }
+    },
+    "isolatedSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "256",
+          "operations": "65",
+          "ms": "14.000/11.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "256",
+          "operations": "65",
+          "ms": "17.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "256",
+          "operations": "65",
+          "ms": "14.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "256",
+          "operations": "65",
+          "ms": "14.000/11.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "256",
+          "operations": "65",
+          "ms": "16.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "256",
+          "operations": "65",
+          "ms": "17.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "256",
+          "operations": "65",
+          "ms": "15.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "256",
+          "operations": "65",
+          "ms": "14.000/10.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "256",
+          "operations": "65",
+          "ms": "14.000/12.000",
+          "kib": "3798.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "256",
+          "operations": "65",
+          "ms": "15.000/10.000",
+          "kib": "3798.000/1318.000"
+        }
+      ],
+      "party": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "256",
+          "operations": "64",
+          "ms": "15.000/10.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "256",
+          "operations": "64",
+          "ms": "14.000/12.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "256",
+          "operations": "64",
+          "ms": "14.000/9.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "256",
+          "operations": "64",
+          "ms": "13.000/10.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "256",
+          "operations": "64",
+          "ms": "13.000/10.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "256",
+          "operations": "64",
+          "ms": "28.000/20.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "256",
+          "operations": "64",
+          "ms": "28.000/20.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "256",
+          "operations": "64",
+          "ms": "29.000/21.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "256",
+          "operations": "64",
+          "ms": "29.000/21.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "256",
+          "operations": "64",
+          "ms": "27.000/20.000",
+          "kib": "3760.000/1318.000"
+        }
+      ],
+      "raid": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "256",
+          "operations": "64",
+          "ms": "14.000/10.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "256",
+          "operations": "64",
+          "ms": "16.000/13.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "256",
+          "operations": "64",
+          "ms": "14.000/11.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "256",
+          "operations": "64",
+          "ms": "15.000/9.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "256",
+          "operations": "64",
+          "ms": "13.000/10.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "256",
+          "operations": "64",
+          "ms": "25.000/21.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "256",
+          "operations": "64",
+          "ms": "31.000/23.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "256",
+          "operations": "64",
+          "ms": "32.000/20.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "256",
+          "operations": "64",
+          "ms": "27.000/20.000",
+          "kib": "3760.000/1318.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "256",
+          "operations": "64",
+          "ms": "29.000/21.000",
+          "kib": "3760.000/1318.000"
+        }
+      ]
+    },
+    "isolatedTimeSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 14.0,
+            "median": 14.0,
+            "max": 17.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 11.0
+          }
+        ],
+        "2": [
+          {
+            "min": 14.0,
+            "median": 15.0,
+            "max": 17.0
+          },
+          {
+            "min": 10.0,
+            "median": 10.0,
+            "max": 12.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 13.0,
+            "median": 14.0,
+            "max": 15.0
+          },
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 12.0
+          }
+        ],
+        "2": [
+          {
+            "min": 27.0,
+            "median": 28.0,
+            "max": 29.0
+          },
+          {
+            "min": 20.0,
+            "median": 20.0,
+            "max": 21.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 13.0,
+            "median": 14.0,
+            "max": 16.0
+          },
+          {
+            "min": 9.0,
+            "median": 10.0,
+            "max": 13.0
+          }
+        ],
+        "2": [
+          {
+            "min": 25.0,
+            "median": 29.0,
+            "max": 32.0
+          },
+          {
+            "min": 20.0,
+            "median": 21.0,
+            "max": 23.0
+          }
+        ]
+      }
+    },
+    "isolatedHeapGrowthKiB": {
+      "hover": {
+        "1": [
+          {
+            "min": 3798.0,
+            "median": 3798.0,
+            "max": 3798.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ],
+        "2": [
+          {
+            "min": 3798.0,
+            "median": 3798.0,
+            "max": 3798.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ]
+      },
+      "party": {
+        "1": [
+          {
+            "min": 3760.0,
+            "median": 3760.0,
+            "max": 3760.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ],
+        "2": [
+          {
+            "min": 3760.0,
+            "median": 3760.0,
+            "max": 3760.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ]
+      },
+      "raid": {
+        "1": [
+          {
+            "min": 3760.0,
+            "median": 3760.0,
+            "max": 3760.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ],
+        "2": [
+          {
+            "min": 3760.0,
+            "median": 3760.0,
+            "max": 3760.0
+          },
+          {
+            "min": 1318.0,
+            "median": 1318.0,
+            "max": 1318.0
+          }
+        ]
+      }
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\compare.lua": "a42f64e5fa9bca5459d3fb152c49330e0ed7ce51f913d363a25f1a50fc434f1b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\matched.txt": "1b42437c4dd7a9493473599024232b1593b700bf5600acadf24eed49c01418cd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\timing.txt": "fb1d366dd8ed4d4b28205fba8c2d12500b45664b8577cb1e7114c4edea87a4bd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\isolated.lua": "91a49d059799a504493a3056b635b62a57f958f9aa47f40d79f9249cc7c35be5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\isolated.txt": "bffc2b442b3c9cba702f04fea5f4f41dc9c7d3a051e7c16e87069fd13a3635aa",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\control-tests.lua": "b5ad763911d9aa77f89bc92a82decd012a485d4d36c70f4612da64c8b8c46f0d",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\aliased-canvas.lua": "563cb8274620375bb2117be0c6f1cd00333838afe09dd2c349331b1741119fae",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\stale-sample.lua": "c2290068ab98c1b6ec2d883c26b4c8ebfee80125f95ce3fed30d53ca6fe2b4e0",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\controls.txt": "a63ce82e8fd3f991bdebfd83766f984b9bdf0d0197a21db0d57a914957f77ed2"
+    }
+  },
+  "preservation": [
+    "Strip layer planning samples a public frame level once during the current regional plan. Unavailable levels are checked again and a future plan starts fresh. Final canvas reconciliation still has its own current native reads.",
+    "The final aggregation uses one result per canvas. The first winning stratum and the maximum level within that rank keep the previous ordering rules.",
+    "The evaluated strip, party and raid-linked scopes preserve layer tables and sampled seams. Native behavior remains pending."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...rder-layer-plan-before-20261119-205102/control-tests.lua:7: merging one canvas does not modify native samples or another canvas",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\t...rder-layer-plan-before-20261119-205102/control-tests.lua:7: in local 'check'",
+      "\t...rder-layer-plan-before-20261119-205102/control-tests.lua:57: in main chunk",
+      "\t[C]: in ?",
+      "Rejected aliased-canvas",
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: ...rder-layer-plan-before-20261119-205102/control-tests.lua:7: a new plan samples the current level",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\t...rder-layer-plan-before-20261119-205102/control-tests.lua:7: in local 'check'",
+      "\t...rder-layer-plan-before-20261119-205102/control-tests.lua:31: in main chunk",
+      "\t[C]: in ?",
+      "Rejected stale-sample"
+    ],
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-layer-plan-before-20261119-205102\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Professions.lua",
+      "tests/profession_alias_event_work.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "bc1d9ef551200bbba54c53b0622774cea5ea7f8492e9978129bfba1283078af7",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, border seam pixels, and combat taint. No client input, settings or profiling changes."
+}

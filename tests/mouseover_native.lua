@@ -260,9 +260,9 @@ for _, branch in ipairs({ "live", "forever" }) do
     f.flux.Context = { IsUfPeek = function() return true end }
     run(read("Core/Engine/Range.lua"), e, { Flux = f.flux })
     f.held = false
-    check(f.flux.Range.ResolveUnit(w) == "target", branch .. " range respects released native modifier")
+    check(f.flux.Range.ResolveUnit(w, nil, "action", 1) == "target", branch .. " range respects released native modifier")
     f.held = true
-    check(f.flux.Range.ResolveUnit(w) == "mouseover", branch .. " range respects held native modifier")
+    check(f.flux.Range.ResolveUnit(w, nil, "action", 1) == "mouseover", branch .. " range respects held native modifier")
     f.held = false
     check(f.flux.Range.ResolveUnit(nil, "mouseover") == "mouseover", branch .. " explicit user macro keeps its chosen unit")
 

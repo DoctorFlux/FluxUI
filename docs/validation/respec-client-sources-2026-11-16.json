@@ -1,0 +1,719 @@
+{
+  "id": "RESPEC-CLIENT-SOURCES-20261116",
+  "date": "2026-11-16",
+  "purpose": "Source-only compatibility evidence for respec action-bar persistence and non-destructive restore.",
+  "targets": [
+    "retail",
+    "forever",
+    "classic"
+  ],
+  "upstream": {
+    "retail": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "live",
+      "sha": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783"
+    },
+    "forever": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "forever",
+      "sha": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938"
+    },
+    "classic": {
+      "repository": "https://github.com/Gethe/wow-ui-source",
+      "branch": "classic",
+      "sha": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631"
+    }
+  },
+  "evidence": [
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+      "symbol": "C_Spell.PickupSpell",
+      "lines": {
+        "start": 928,
+        "end": 936
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L928",
+      "contract": "Accepts SpellIdentifier, no declared completion return. Retail/Forever SecretArguments=AllowedWhenUntainted; Classic snapshot has no such annotation.",
+      "loading": "Generated declaration only; separate loaded spellbook usage below",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua",
+      "symbol": "GetBinding / SetBinding / SaveBindings",
+      "lines": {
+        "start": 143,
+        "end": 173
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua#L143",
+      "contract": "Commit saves GetCurrentBindingSet(); SetBinding(key, action, bindingContext) false is failure and oldKey is restored. GetBinding(index) returns action, category, binding1, binding2 at line 369.",
+      "loading": "Native settings source; settings TOC not additionally traced for this task",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+      "symbol": "PickupAction / PlaceAction",
+      "lines": {
+        "start": 1374,
+        "end": 1386
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L1374",
+      "contract": "Drag uses PickupAction(self.action, ignoreActionRemoval), receiving drag uses PlaceAction(self.action), no result inspection. Spell action IDs feed spell-ID consumers elsewhere in this loaded file.",
+      "loading": "Blizzard_ActionBar TOC explicitly includes Shared/ActionButton.lua; Classic uses Blizzard_ActionBar_Classic.toc",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+      "symbol": "C_SpellBook.FindSpellBookSlotForSpell",
+      "lines": {
+        "start": 63,
+        "end": 82
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L63",
+      "contract": "Returns current spellBookItemSlotIndex and SpellBookSpellBank; default search excludes hidden/future/offspec and includes flyouts. Indices are not stable saved identities.",
+      "loading": "Generated declaration; loaded modern spellbook consumes same bank/slot surface",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+      "symbol": "C_SpellBook.PickupSpellBookItem",
+      "lines": {
+        "start": 719,
+        "end": 728
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L719",
+      "contract": "Arguments slot index and bank; no declared completion return; SecretArguments=AllowedWhenUntainted.",
+      "loading": "Generated declaration and real loaded call below",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "retail",
+      "path": "Interface/AddOns/Blizzard_PlayerSpells/SpellBook/Blizzard_SpellBookItem.lua",
+      "symbol": "SpellBookItemMixin:OnIconDragStart",
+      "lines": {
+        "start": 639,
+        "end": 647
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_PlayerSpells/SpellBook/Blizzard_SpellBookItem.lua#L639",
+      "contract": "Native drag pickup uses current self.slotIndex and self.spellBank.",
+      "loading": "Blizzard_PlayerSpells.toc includes SpellBook/Blizzard_SpellBookItem.xml; XML includes Blizzard_SpellBookItem.lua",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+      "symbol": "C_Spell.PickupSpell",
+      "lines": {
+        "start": 997,
+        "end": 1005
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L997",
+      "contract": "Accepts SpellIdentifier, no declared completion return. Retail/Forever SecretArguments=AllowedWhenUntainted; Classic snapshot has no such annotation.",
+      "loading": "Generated declaration only; separate loaded spellbook usage below",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua",
+      "symbol": "GetBinding / SetBinding / SaveBindings",
+      "lines": {
+        "start": 143,
+        "end": 173
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua#L143",
+      "contract": "Commit saves GetCurrentBindingSet(); SetBinding(key, action, bindingContext) false is failure and oldKey is restored. GetBinding(index) returns action, category, binding1, binding2 at line 369.",
+      "loading": "Native settings source; settings TOC not additionally traced for this task",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+      "symbol": "PickupAction / PlaceAction",
+      "lines": {
+        "start": 1433,
+        "end": 1445
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L1433",
+      "contract": "Drag uses PickupAction(self.action, ignoreActionRemoval), receiving drag uses PlaceAction(self.action), no result inspection. Spell action IDs feed spell-ID consumers elsewhere in this loaded file.",
+      "loading": "Blizzard_ActionBar TOC explicitly includes Shared/ActionButton.lua; Classic uses Blizzard_ActionBar_Classic.toc",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+      "symbol": "C_SpellBook.FindSpellBookSlotForSpell",
+      "lines": {
+        "start": 73,
+        "end": 92
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L73",
+      "contract": "Returns current spellBookItemSlotIndex and SpellBookSpellBank; default search excludes hidden/future/offspec and includes flyouts. Indices are not stable saved identities.",
+      "loading": "Generated declaration; loaded modern spellbook consumes same bank/slot surface",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+      "symbol": "C_SpellBook.PickupSpellBookItem",
+      "lines": {
+        "start": 773,
+        "end": 782
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L773",
+      "contract": "Arguments slot index and bank; no declared completion return; SecretArguments=AllowedWhenUntainted.",
+      "loading": "Generated declaration and real loaded call below",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_PlayerSpells/SpellBook/Blizzard_SpellBookItem.lua",
+      "symbol": "SpellBookItemMixin:OnIconDragStart",
+      "lines": {
+        "start": 649,
+        "end": 657
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_PlayerSpells/SpellBook/Blizzard_SpellBookItem.lua#L649",
+      "contract": "Native drag pickup uses current self.slotIndex and self.spellBank.",
+      "loading": "Blizzard_PlayerSpells.toc includes SpellBook/Blizzard_SpellBookItem.xml; XML includes Blizzard_SpellBookItem.lua",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "classic",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua",
+      "symbol": "C_Spell.PickupSpell",
+      "lines": {
+        "start": 647,
+        "end": 655
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellDocumentation.lua#L647",
+      "contract": "Accepts SpellIdentifier, no declared completion return. Retail/Forever SecretArguments=AllowedWhenUntainted; Classic snapshot has no such annotation.",
+      "loading": "Generated declaration only; separate loaded spellbook usage below",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "classic",
+      "path": "Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua",
+      "symbol": "GetBinding / SetBinding / SaveBindings",
+      "lines": {
+        "start": 143,
+        "end": 173
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Keybindings.lua#L143",
+      "contract": "Commit saves GetCurrentBindingSet(); SetBinding(key, action, bindingContext) false is failure and oldKey is restored. GetBinding(index) returns action, category, binding1, binding2 at line 369.",
+      "loading": "Native settings source; settings TOC not additionally traced for this task",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "classic",
+      "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua",
+      "symbol": "PickupAction / PlaceAction",
+      "lines": {
+        "start": 1405,
+        "end": 1417
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButton.lua#L1405",
+      "contract": "Drag uses PickupAction(self.action, ignoreActionRemoval), receiving drag uses PlaceAction(self.action), no result inspection. Spell action IDs feed spell-ID consumers elsewhere in this loaded file.",
+      "loading": "Blizzard_ActionBar TOC explicitly includes Shared/ActionButton.lua; Classic uses Blizzard_ActionBar_Classic.toc",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_PlayerSpells/Blizzard_PlayerSpells.toc",
+      "symbol": "Forever modern spellbook load path",
+      "lines": {
+        "start": 1,
+        "end": 61
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_PlayerSpells/Blizzard_PlayerSpells.toc#L1",
+      "contract": "LoadOnDemand addon includes Camelot-specific and shared modern spellbook templates/frame; shared item XML is loaded.",
+      "loading": "TOC inspected in full",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/ClassTalentsDocumentation.lua",
+      "symbol": "C_ClassTalents.LoadConfig / SetUsesSharedActionBars",
+      "lines": {
+        "start": 253,
+        "end": 340
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/ClassTalentsDocumentation.lua#L253",
+      "contract": "LoadConfig(configID, autoApply) returns LoadConfigResult enum plus optional error and learned node IDs. SetUsesSharedActionBars(configID, usesShared) confirms native bars may belong to a talent config.",
+      "loading": "Generated declaration; native loadout completion order still requires actual-client testing",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "forever",
+      "path": "Interface/AddOns/Blizzard_ProjectConstants/Camelot/ProjectConstants.lua",
+      "symbol": "WOW_PROJECT_ID",
+      "lines": {
+        "start": 1,
+        "end": 2
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ProjectConstants/Camelot/ProjectConstants.lua#L1",
+      "contract": "Pinned Forever defines WOW_PROJECT_CAMELOT=18 and WOW_PROJECT_ID=WOW_PROJECT_CAMELOT.",
+      "loading": "Camelot project-constants file; no addon detection change made",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "classic",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc",
+      "symbol": "Classic Mists spellbook load path",
+      "lines": {
+        "start": 1,
+        "end": 23
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Blizzard_UIPanels_Game_Classic.toc#L1",
+      "contract": "Loads Classic/SpellBookFrame.lua then [Game]/SpellBookFrame.lua for Mists; legacy bookType/slot API shape.",
+      "loading": "TOC inspected in full",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    },
+    {
+      "target": "classic",
+      "path": "Interface/AddOns/Blizzard_UIPanels_Game/Classic/SpellBookFrame.lua",
+      "symbol": "PickupSpellBookItem / PickupSpell",
+      "lines": {
+        "start": 256,
+        "end": 300
+      },
+      "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UIPanels_Game/Classic/SpellBookFrame.lua#L256",
+      "contract": "Modified action pickup and drag use global PickupSpellBookItem(current slot, SpellBookFrame.bookType). CoreAbilitySpellMixin later calls PickupSpell(self.spellID) at 549.",
+      "loading": "Loaded by Classic UIPanels TOC",
+      "addon_operation": "NOT RUN; source evidence does not certify addon access or runtime operation"
+    }
+  ],
+  "additional_evidence": [
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua",
+    "symbol": "GetCursorInfo tuple consumers",
+    "lines": {
+      "start": 1802,
+      "end": 1823
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua#L1802",
+    "contract": "Native icon selector documents spell field 2 is book slot, stable spellID is field4; item field2 is itemID; mount field2 is mountID; battlepet field2 is petID; macro field2 is macro index.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Normal action-page constants",
+    "lines": {
+      "start": 1,
+      "end": 8
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L1",
+    "contract": "NUM_ACTIONBAR_PAGES=6; NUM_ACTIONBAR_BUTTONS=12. This normal cycling limit is not a complete enumeration of saved/player and transient action pages.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml",
+    "symbol": "Native extra persistent multibar pages",
+    "lines": {
+      "start": 62,
+      "end": 236
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml#L62",
+    "contract": "Pages3,4,5,6,13,14,15 explicitly assigned. Pages13..15 correspond to action slots145..180 and load on all three selected targets.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Native transient page classification",
+    "lines": {
+      "start": 187,
+      "end": 241
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L187",
+    "contract": "Native code asks C_ActionBar.GetVehicleBarIndex/GetOverrideBarIndex/GetTempShapeshiftBarIndex and treats those pages separately from player pages and bonus/form pages. Numeric transient pages are not established by these files. ActionBarType values16/17/18 are types, not proof of runtime page numbers.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.Pickup",
+    "lines": {
+      "start": 504,
+      "end": 513
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L504",
+    "contract": "Takes displayIndex, not stable mountID; native MountListDragButton passes current parent.index. Passing a saved mountID here risks choosing a different journal row.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.GetMountInfoByID",
+    "lines": {
+      "start": 273,
+      "end": 300
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L273",
+    "contract": "Takes stable mountID, returns stable spellID as second result.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua",
+    "symbol": "GetCursorInfo declaration limitation",
+    "lines": {
+      "start": 74,
+      "end": 76
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua#L74",
+    "contract": "Function is declared with no typed Returns. Full type-dependent cursor tuple contract is not present in generated docs.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+    "symbol": "SpellBookSkillLineInfo",
+    "lines": {
+      "start": 963,
+      "end": 975
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L963",
+    "contract": "GetNumSpellBookSkillLines returns skill-line count; GetSpellBookSkillLineInfo(index) returns itemIndexOffset, numSpellBookItems, shouldHide, specID/offSpecID. Iterate current slots offset+1 through offset+numSpellBookItems. SpellBookItemInfo.actionID is stable base spellID or flyoutID depending on itemType.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua",
+    "symbol": "GetCursorInfo tuple consumers",
+    "lines": {
+      "start": 1947,
+      "end": 1968
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_SharedXML/Mainline/SharedUIPanelTemplates.lua#L1947",
+    "contract": "Native icon selector documents spell field 2 is book slot, stable spellID is field4; item field2 is itemID; mount field2 is mountID; battlepet field2 is petID; macro field2 is macro index.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Normal action-page constants",
+    "lines": {
+      "start": 1,
+      "end": 8
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L1",
+    "contract": "NUM_ACTIONBAR_PAGES=6; NUM_ACTIONBAR_BUTTONS=12. This normal cycling limit is not a complete enumeration of saved/player and transient action pages.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml",
+    "symbol": "Native extra persistent multibar pages",
+    "lines": {
+      "start": 62,
+      "end": 237
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml#L62",
+    "contract": "Pages3,4,5,6,13,14,15 explicitly assigned. Pages13..15 correspond to action slots145..180 and load on all three selected targets.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Native transient page classification",
+    "lines": {
+      "start": 191,
+      "end": 245
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L191",
+    "contract": "Native code asks C_ActionBar.GetVehicleBarIndex/GetOverrideBarIndex/GetTempShapeshiftBarIndex and treats those pages separately from player pages and bonus/form pages. Numeric transient pages are not established by these files. ActionBarType values16/17/18 are types, not proof of runtime page numbers.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.Pickup",
+    "lines": {
+      "start": 522,
+      "end": 531
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L522",
+    "contract": "Takes displayIndex, not stable mountID; native MountListDragButton passes current parent.index. Passing a saved mountID here risks choosing a different journal row.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.GetMountInfoByID",
+    "lines": {
+      "start": 273,
+      "end": 300
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L273",
+    "contract": "Takes stable mountID, returns stable spellID as second result.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua",
+    "symbol": "GetCursorInfo declaration limitation",
+    "lines": {
+      "start": 74,
+      "end": 76
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua#L74",
+    "contract": "Function is declared with no typed Returns. Full type-dependent cursor tuple contract is not present in generated docs.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua",
+    "symbol": "SpellBookSkillLineInfo",
+    "lines": {
+      "start": 1028,
+      "end": 1040
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SpellBookDocumentation.lua#L1028",
+    "contract": "GetNumSpellBookSkillLines returns skill-line count; GetSpellBookSkillLineInfo(index) returns itemIndexOffset, numSpellBookItems, shouldHide, specID/offSpecID. Iterate current slots offset+1 through offset+numSpellBookItems. SpellBookItemInfo.actionID is stable base spellID or flyoutID depending on itemType.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua",
+    "symbol": "GetCursorInfo tuple consumers",
+    "lines": {
+      "start": 1398,
+      "end": 1419
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_SharedXML/Classic/SharedUIPanelTemplates.lua#L1398",
+    "contract": "Native icon selector documents spell field 2 is book slot, stable spellID is field4; item field2 is itemID; mount field2 is mountID; battlepet field2 is petID; macro field2 is macro index.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Normal action-page constants",
+    "lines": {
+      "start": 1,
+      "end": 8
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L1",
+    "contract": "NUM_ACTIONBAR_PAGES=6; NUM_ACTIONBAR_BUTTONS=12. This normal cycling limit is not a complete enumeration of saved/player and transient action pages.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml",
+    "symbol": "Native extra persistent multibar pages",
+    "lines": {
+      "start": 62,
+      "end": 236
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/MultiActionBars.xml#L62",
+    "contract": "Pages3,4,5,6,13,14,15 explicitly assigned. Pages13..15 correspond to action slots145..180 and load on all three selected targets.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua",
+    "symbol": "Native transient page classification",
+    "lines": {
+      "start": 187,
+      "end": 241
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_ActionBar/Shared/ActionButtonUtil.lua#L187",
+    "contract": "Native code asks C_ActionBar.GetVehicleBarIndex/GetOverrideBarIndex/GetTempShapeshiftBarIndex and treats those pages separately from player pages and bonus/form pages. Numeric transient pages are not established by these files. ActionBarType values16/17/18 are types, not proof of runtime page numbers.",
+    "loading": "Loaded by Blizzard_ActionBar TOC",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.Pickup",
+    "lines": {
+      "start": 417,
+      "end": 426
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L417",
+    "contract": "Takes displayIndex, not stable mountID; native MountListDragButton passes current parent.index. Passing a saved mountID here risks choosing a different journal row.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua",
+    "symbol": "C_MountJournal.GetMountInfoByID",
+    "lines": {
+      "start": 220,
+      "end": 247
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/MountJournalDocumentation.lua#L220",
+    "contract": "Takes stable mountID, returns stable spellID as second result.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua",
+    "symbol": "GetCursorInfo declaration limitation",
+    "lines": {
+      "start": 69,
+      "end": 71
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/GameCursorDocumentation.lua#L69",
+    "contract": "Function is declared with no typed Returns. Full type-dependent cursor tuple contract is not present in generated docs.",
+    "loading": "Pinned source inspected; no native operation run",
+    "addon_operation": "NOT RUN"
+  }
+],
+  "mount_action_evidence": [
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_Tutorials/Blizzard_Tutorials_RPE.lua",
+    "symbol": "Native mount action type and stable identity",
+    "lines": {
+      "start": 484,
+      "end": 494
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Tutorials/Blizzard_Tutorials_RPE.lua#L484",
+    "contract": "GetActionInfo(action) is consumed as type=summonmount and id=stable mountID; matches collected mount IDs. Restore must support native summonmount as well as legacy/custom mount alias. Whether stable spell pickup places summonmount or spell requires native operation testing.",
+    "loading": "Native tutorial source inspected; no native operation performed",
+    "addon_operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_Tutorials/Blizzard_Tutorials_RPE.lua",
+    "symbol": "Native mount action type and stable identity",
+    "lines": {
+      "start": 484,
+      "end": 494
+    },
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Tutorials/Blizzard_Tutorials_RPE.lua#L484",
+    "contract": "GetActionInfo(action) is consumed as type=summonmount and id=stable mountID; matches collected mount IDs. Restore must support native summonmount as well as legacy/custom mount alias. Whether stable spell pickup places summonmount or spell requires native operation testing.",
+    "loading": "Native tutorial source inspected; no native operation performed",
+    "addon_operation": "NOT RUN"
+  }
+],
+  "additional_decisions": [
+  "Recommendation for current selected targets: persist normal/form slots1..120 plus native multibar slots145..180, excluding any runtime transient page indices. Do not persist blanket1..216. Confirm installed-runtime ranges before native certification.",
+  "Mount snapshots should store stable mountID/spellID; do not send mountID to C_MountJournal.Pickup(displayIndex). Resolve the current display row or use the verified stable spell API with cursor verification.",
+  "Spell cursor validation must compare field4 stable spellID; field2 is a transient spellbook index and can collide with another ID.",
+  "Native icon-selector evidence confirms item/macro/mount/battlepet field2 identities. Full equipmentset/flyout/legacy companion tuple identity remains unverified from native consumers; fail safely without clearing a user slot when resolution cannot be validated."
+],
+  "decisions": [
+    "Store stable spell/flyout IDs; resolve to current spellbook slot/bank when using book pickup. Never save spellbook indices as durable identities.",
+    "Native spellbook pickup functions have no declared completion result; successful pcall alone is insufficient before PlaceAction. Verify cursor/placed state.",
+    "Native talent-loadout capability must not suppress explicit bar snapshots for profiles that do not restore talent loadouts.",
+    "Modern flyout actionID is a flyout ID, not a SpellIdentifier. Resolve current matching spellbook flyout entry and use book pickup.",
+    "Preserve current binding set and contexts and check setters before committing persistence.",
+    "GetActionInfo/PickupAction/PlaceAction/GetBinding global signatures are evidenced by native usage; their complete generated signatures were not found and no runtime permission claim is made."
+  ],
+  "mount_special_pickup_evidence": [
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua#L1001",
+    "contract": "Native random favorite mount drag deliberately calls C_MountJournal.Pickup(0). Zero is a special command; it is not a normal display row or positive mount ID.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_Collections/Mainline/Blizzard_MountCollection.lua#L1023",
+    "contract": "Native random favorite mount drag deliberately calls C_MountJournal.Pickup(0). Zero is a special command; it is not a normal display row or positive mount ID.",
+    "operation": "NOT RUN"
+  }
+],
+  "mount_pickup_limit": "No direct stable mountID pickup was found in the inspected MountJournal schema or native mount list handler. Positive journal Pickup arguments are display indexes; stable mount spell pickup is available through C_Spell.PickupSpell but actual placed descriptor type remains native-test pending.",
+  "macro_identity_evidence": [
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MacroConstantsDocumentation.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/MacroConstantsDocumentation.lua#L10",
+    "contract": "Constants.MacroConsts.MAX_ACCOUNT_MACROS=120; MAX_CHARACTER_MACROS=30.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua#L154",
+    "contract": "Native character macro base is Constants.MacroConsts.MAX_ACCOUNT_MACROS; account base is0, character IDs are macroBase plus selection index.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/MacroConstantsDocumentation.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/MacroConstantsDocumentation.lua#L10",
+    "contract": "Constants.MacroConsts.MAX_ACCOUNT_MACROS=120; MAX_CHARACTER_MACROS=30.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua#L172",
+    "contract": "Native character macro base is Constants.MacroConsts.MAX_ACCOUNT_MACROS; account base is0, character IDs are macroBase plus selection index.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua#L154",
+    "contract": "Native character macro base is global MAX_ACCOUNT_MACROS; character IDs are macroBase plus selection index. Numeric global definition not found in inspected schema.",
+    "operation": "NOT RUN"
+  }
+],
+  "outfit_evidence": [
+  {
+    "target": "retail",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua#L664",
+    "contract": "C_TransmogOutfitInfo.PickupOutfit(outfitID:number), no declared return. Native icon selector consumes cursor type outfit and field2 stable outfitID with GetOutfitInfo(ID). Generated GetOutfitInfoByName warns duplicate names select unspecified outfit; retain ID-based restore.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "forever",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua#L665",
+    "contract": "C_TransmogOutfitInfo.PickupOutfit(outfitID:number), no declared return. Native icon selector consumes cursor type outfit and field2 stable outfitID with GetOutfitInfo(ID). Generated GetOutfitInfoByName warns duplicate names select unspecified outfit; retain ID-based restore.",
+    "operation": "NOT RUN"
+  },
+  {
+    "target": "classic",
+    "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua",
+    "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TransmogOutfitInfoDocumentation.lua#L618",
+    "contract": "C_TransmogOutfitInfo.PickupOutfit(outfitID:number), no declared return. Native icon selector consumes cursor type outfit and field2 stable outfitID with GetOutfitInfo(ID). Generated GetOutfitInfoByName warns duplicate names select unspecified outfit; retain ID-based restore.",
+    "operation": "NOT RUN"
+  }
+],
+  "limits": [
+    "Source references are upstream snapshots and may lead/lag installed client builds; no native client/build capture occurred.",
+    "No native game tests, inputs, settings changes, cross-install sync, or runtime source edits performed.",
+    "Packaged query.mjs tool was attempted for Forever spell/book pickup and Classic book pickup; execution failed EPERM lstat C:\\Users\\mario under available Node.js v18.19.0. Exact raw current generated schemas were inspected instead.",
+    "Native XML establishes extra persistent multibar pages13..15; runtime transient page numbers and installed-build action ownership still require actual-client verification.",
+    "UI/controller appearance unchanged; no new controls or mockup."
+  ]
+}

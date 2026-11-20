@@ -27,7 +27,7 @@ function Strip.GetBottomScreenOffset()
 			lift = math.max(0, lift - 4)
 		end
 	end
-	return (C.yOffset or 4) + lift
+    return (C.yOffset or 4) + lift - 2
 end
 
 _G.FluxActionBar_GetBottomScreenOffset = Strip.GetBottomScreenOffset
@@ -346,7 +346,47 @@ function Strip.WatchGamepad()
 	Strip.ApplyGamepadHud()
 end
 
-function Strip.Layout(visibleCols, anyMini, expanding, extraScale, xFactor)
+-- An unchanged occupancy pass still validates current native decorative geometry.
+-- Direct/options calls retain the forced writer; unknown or denied getters do too.
+local function LayoutNumberSame(current, wanted)
+    if (issecretvalue and (issecretvalue(current) or issecretvalue(wanted)))
+        or type(current) ~= "number" or type(wanted) ~= "number"
+        or not (current > -math.huge and current < math.huge and wanted > -math.huge and wanted < math.huge) then return nil end
+    return math.abs(current - wanted) < 1/1024
+end
+local function LayoutFrameMatches(object, width, height, scale, point, relative, relativePoint, x, y)
+    if not (object and object.GetWidth and object.GetHeight and object.GetScale and object.GetNumPoints and object.GetPoint) then return end
+    local anchored = LayoutNumberSame(object:GetNumPoints(), 1)
+    if anchored == nil then return end
+    if anchored then
+        local p, r, rp, dx, dy = object:GetPoint(1)
+        if issecretvalue and (issecretvalue(p) or issecretvalue(r) or issecretvalue(rp)) then return end
+        local sameX, sameY = LayoutNumberSame(dx, x), LayoutNumberSame(dy, y)
+        if sameX == nil or sameY == nil then return end
+        anchored = p == point and r == relative and rp == relativePoint and sameX and sameY
+    end
+    local sameWidth = LayoutNumberSame(object:GetWidth(), width)
+    local sameHeight = LayoutNumberSame(object:GetHeight(), height)
+    local sameScale = LayoutNumberSame(object:GetScale(), scale)
+    if sameWidth == nil or sameHeight == nil or sameScale == nil then return end
+    return anchored, sameWidth and sameHeight, sameScale
+end
+local function StripLayoutMatches(totalW, totalH, contentW, contentH, scale, expanding, y)
+    local shellPoint, shellSize, shellScale = LayoutFrameMatches(Strip.frame, totalW, totalH, 1, "BOTTOM", UIParent, "BOTTOM", 0, y)
+    if not shellScale then return end
+    local innerPoint = expanding and "BOTTOM" or "CENTER"
+    local contentPoint, contentSize, contentScale = LayoutFrameMatches(Strip.inner, contentW, contentH, scale, innerPoint, Strip.frame, innerPoint, 0, -2)
+    if contentPoint == nil then return end
+    local sensingPoint, sensingSize = true, true
+    if Strip.sensing then
+        local sensingScale
+        sensingPoint, sensingSize, sensingScale = LayoutFrameMatches(Strip.sensing, totalW + 100, totalH + 100, 1, "BOTTOM", UIParent, "BOTTOM", 0, y - 50)
+        if not sensingScale then return end
+    end
+    return shellPoint, shellSize, contentPoint, contentSize, contentScale, sensingPoint, sensingSize
+end
+
+function Strip.Layout(visibleCols, anyMini, expanding, extraScale, xFactor, changedOnly, deferUnitAnchors)
 	local frame = Strip.frame
 	if not frame then
 		return
@@ -364,30 +404,50 @@ function Strip.Layout(visibleCols, anyMini, expanding, extraScale, xFactor)
 
 	local contentW, contentH, totalW, totalH, _, effectiveScale = Strip.Metrics(cols, anyMini, extraScale, xFactor)
 	local y = Strip.GetBottomScreenOffset()
+	local shellPoint, shellSize, contentPoint, contentSize, contentScale, sensingPoint, sensingSize
+	if changedOnly then
+		local ok
+		ok, shellPoint, shellSize, contentPoint, contentSize, contentScale, sensingPoint, sensingSize =
+			pcall(StripLayoutMatches, totalW, totalH, contentW, contentH, effectiveScale, expanding, y)
+		if not ok then shellPoint = nil end
+		if shellPoint and shellSize and contentPoint and contentSize and contentScale and sensingPoint and sensingSize then
+			Strip.SyncVisibility()
+			return false
+		end
+	end
 
-	frame:ClearAllPoints()
-	frame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, y)
-	frame:SetSize(totalW, totalH)
+	-- Resizing the shell also moves its dependents. Keep the screen anchors
+	-- attached through that resize so those dependents settle only once.
+	if not shellPoint then
+		frame:ClearAllPoints()
+		frame:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, y)
+	end
+	if not shellSize then frame:SetSize(totalW, totalH) end
 
 	local inner = Strip.inner
-	inner:SetScale(effectiveScale)
-	inner:SetSize(contentW, contentH)
-	inner:ClearAllPoints()
-	if expanding then
-		inner:SetPoint("BOTTOM", frame, "BOTTOM", 0, 0)
-	else
-		inner:SetPoint("CENTER", frame, "CENTER", 0, 0)
+	if not contentScale then inner:SetScale(effectiveScale) end
+	if not contentSize then inner:SetSize(contentW, contentH) end
+	if not contentPoint then
+		inner:ClearAllPoints()
+		if expanding then
+			inner:SetPoint("BOTTOM", frame, "BOTTOM", 0, -2)
+		else
+			inner:SetPoint("CENTER", frame, "CENTER", 0, -2)
+		end
 	end
 
 	local sensing = Strip.sensing
 	if sensing then
-		sensing:SetSize(totalW + 100, totalH + 100)
-		sensing:ClearAllPoints()
-		sensing:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, y - 50)
+		if not sensingSize then sensing:SetSize(totalW + 100, totalH + 100) end
+		if not sensingPoint then
+			sensing:ClearAllPoints()
+			sensing:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, y - 50)
+		end
 	end
 
 	Strip.SyncVisibility()
-	if _G.FluxUnitFrames_ApplyPlayerStatusBarLayout then
+	if not deferUnitAnchors and _G.FluxUnitFrames_ApplyPlayerStatusBarLayout then
 		pcall(_G.FluxUnitFrames_ApplyPlayerStatusBarLayout)
 	end
+	return true
 end

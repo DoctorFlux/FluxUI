@@ -1,0 +1,269 @@
+{
+  "changeId": "STRIP-EVENT-OWNERSHIP-R183-20261120",
+  "borderVersion": "settled-slot-borders-r183",
+  "capturedAtUTC": "2026-11-20T07:04:37.253765+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Bars/Watch.lua": {
+      "beforeRaw": "7dd8d7606a8d96f83c5f533e5bd17d74fe4d1248a77bf1773931a981d4acdc93",
+      "afterRaw": "673d19a0f3ba57537710a6cf42af2ca71b520d8aa588156665fe909ad49a59fb",
+      "afterNormalized": "673d19a0f3ba57537710a6cf42af2ca71b520d8aa588156665fe909ad49a59fb"
+    },
+    "Layout/UnifiedBorder.lua": {
+      "beforeRaw": "5b3dd290630d770bf3e9d12960fa99457e1fd2ac24118bbbcab8f218c704654d",
+      "afterRaw": "fe472c24c6c742ff8914a07a373cb903c5fc3c780e06f4220da8ad32eb14e87d",
+      "afterNormalized": "fe472c24c6c742ff8914a07a373cb903c5fc3c780e06f4220da8ad32eb14e87d"
+    },
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "697850f6e1333a99aff4a596a6471a039e09d428eba6ad681b2a48fbac73967b",
+      "afterRaw": "4a909660cdef1a5b3afe6191ec8bca7d8d76063bd5932857d707b7c4970d67b9",
+      "afterNormalized": "4a909660cdef1a5b3afe6191ec8bca7d8d76063bd5932857d707b7c4970d67b9"
+    }
+  },
+  "evidence": {
+    "slotReplay": "STRIP_SLOT_EVENTS rawEnvelope=120/0 settled=60/60\nStrip drag hover edges: 283 checks; enter/leave while holding the same action. Native timing and seams pending.\n",
+    "levelReplay": "STRIP_SHELL crossings=6 exteriorWrites=0/0\nSTRIP_LAYER style=1 scale=0.75 reads=240/240 writes=0/0\nSTRIP_LEVEL_SAMPLES style=1 scale=0.75 reads=102/86\nSTRIP_LAYER style=1 scale=1.00 reads=240/240 writes=0/0\nSTRIP_LEVEL_SAMPLES style=1 scale=1.00 reads=102/86\nSTRIP_LAYER style=1 scale=1.25 reads=204/204 writes=0/0\nSTRIP_LEVEL_SAMPLES style=1 scale=1.25 reads=102/86\nSTRIP_LAYER style=2 scale=0.75 reads=240/240 writes=0/0\nSTRIP_LEVEL_SAMPLES style=2 scale=0.75 reads=102/86\nSTRIP_LAYER style=2 scale=1.00 reads=240/240 writes=0/0\nSTRIP_LEVEL_SAMPLES style=2 scale=1.00 reads=102/86\nSTRIP_LAYER style=2 scale=1.25 reads=192/192 writes=7/7\nSTRIP_LEVEL_SAMPLES style=2 scale=1.25 reads=90/82\nStrip commit replay passes live levels, canonical texture samples and retained regional ownership.\n",
+    "levelCounts": [
+      {
+        "style": 1,
+        "scale": 0.75,
+        "reads": [
+          102,
+          86
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.0,
+        "reads": [
+          102,
+          86
+        ]
+      },
+      {
+        "style": 1,
+        "scale": 1.25,
+        "reads": [
+          102,
+          86
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 0.75,
+        "reads": [
+          102,
+          86
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.0,
+        "reads": [
+          102,
+          86
+        ]
+      },
+      {
+        "style": 2,
+        "scale": 1.25,
+        "reads": [
+          90,
+          82
+        ]
+      }
+    ],
+    "desktopTiming": {
+      "1": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            113.0,
+            110.0
+          ],
+          "allocatedKiB": [
+            10576.497,
+            10581.122
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            120.0,
+            114.0
+          ],
+          "allocatedKiB": [
+            10576.633,
+            10581.32
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            118.0,
+            126.0
+          ],
+          "allocatedKiB": [
+            10574.133,
+            10578.82
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            116.0,
+            125.0
+          ],
+          "allocatedKiB": [
+            10573.137,
+            10577.824
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            113.0,
+            106.0
+          ],
+          "allocatedKiB": [
+            10573.18,
+            10577.867
+          ]
+        }
+      ],
+      "2": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            120.0,
+            118.0
+          ],
+          "allocatedKiB": [
+            10598.853,
+            10603.101
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            122.0,
+            120.0
+          ],
+          "allocatedKiB": [
+            10599.051,
+            10603.299
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            111.0,
+            115.0
+          ],
+          "allocatedKiB": [
+            10599.551,
+            10603.799
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            193.0,
+            122.0
+          ],
+          "allocatedKiB": [
+            10598.555,
+            10602.803
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            285.0,
+            270.0
+          ],
+          "allocatedKiB": [
+            10598.598,
+            10602.846
+          ]
+        }
+      ]
+    },
+    "timingMediansMs": {
+      "1": [
+        116.0,
+        114.0
+      ],
+      "2": [
+        122.0,
+        120.0
+      ]
+    },
+    "timingScope": "Five alternating pairs of 24 warmed crossings per style through the renderer and modeled native widgets.",
+    "clockHarnessSHA256": "4f9a229fe5e6e960c153946ccefe22d291f6b18588ca0c665efe70f849139ed3"
+  },
+  "parity": "Sixty matched slot changes, each with two native notifications, cut early envelope reads from 120 to zero. The same 60 final layout passes and border commits still run. Six warmed held-cursor replays across both styles and three UI scales use 8 to 16 fewer parent level reads per six crossings. Settled action routes, button geometry, raised layers and sampled border artwork match the archived sources.",
+  "checkpoint": {
+    "settings": {
+      "_anniversary_": 10,
+      "_classic_era_": 4,
+      "_classic_": 2,
+      "_retail_": 2,
+      "_forever_": 3
+    },
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "created": "2026-11-20T07:58:46.4310055+01:00",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "files": {
+      "docs/PERFORMANCE_RESULTS.csv": "3C935F69B88C1A326003DA8F5814B5FDFFCA0496B20D91D66B208E94DE9EA13B",
+      "docs/WORK_LOG.md": "E502979EF6722B2348D6E54E463B5D501FEC0448DCB5D274E88D17A0A9E1559A",
+      "docs/BORDER_BUILDER_LOCALITY.md": "21E3CFB5D0AFD65B2F3159C3B67552C4228DBEC7D49EF070FB334366CE2525B5",
+      "docs/CLIENT_VALIDATION.md": "E853ADBAA832ABB9BFA28EBD0CC1F47B237987D364AC33E8E2379B65FA5575A0",
+      "Layout/UnifiedBorder.lua": "5B3DD290630D770BF3E9D12960FA99457E1FD2AC24118BBBCAB8F218C704654D",
+      "Core/BorderJunctions.lua": "697850F6E1333A99AFF4A596A6471A039E09D428EBA6AD681B2A48FBAC73967B",
+      "docs/DECISIONS.md": "11104746A0BFD744A4FCCE7B61E43C5B916EB94C795751BCA6B8C7B5980F015A",
+      "tests/strip_drag_hover_edges.lua": "43E550236DBAC5AB242ADCA2C41FBAA27E5CCE604E0225556D82BC5695CB15DA",
+      "Bars/Watch.lua": "7DD8D7606A8D96F83C5F533E5BD17D74FE4D1248A77BF1773931A981D4ACDC93",
+      "NEXT_SESSION.md": "58C5687CC76747EEDED050641E71E736D8229FAA1688A0B523324540E1CE31B1",
+      "docs/CLIENT_MATRIX.csv": "099B61C9D00DD4C524E710AD24358443D2822D997ADF8582B2D860990C12EC1F",
+      "docs/FEATURE_PARITY.csv": "E15B4CBB25904D7E996D275634AB157B67C86AC1CA4168078A19F7D74287B823",
+      "docs/STATUS.md": "1EF45290BD5A01D34A9103B13D7898372C134DA8109D9D747FC7C2731A875776",
+      "tests/bars_strip_layout_work.lua": "3648763F4200E3FA3B4EF624F75E4533C90D3680B24C5A3A18280013D48170E2",
+      "docs/11-action-bars.md": "A5E8C4C41F31DF9443DDCA77E12B40A26F6A73E88ACC7C5B4DAD2FA8F2756EDD"
+    }
+  },
+  "verification": {
+    "focusedPassed": 23,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_strip_layout_work.lua": "3648763f4200e3fa3b4ef624f75e4533c90d3680b24c5a3a18280013d48170e2",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/border_draw_reuse.lua": "8579232effd731d619fb0c5a2d0a4411ce6ef6f1bcabea913ca70952393421d3",
+      "tests/border_geometry_phase.lua": "ab6cd3d80522374412b6aea321436482182b574a3800ff8a9d5ac6a145f4d172",
+      "tests/border_locality.lua": "5d7e1e4f06a2a7b481dbac9dfe66e9992cc18bb636735403793c7990a1a8a160",
+      "tests/border_lua_upvalues.lua": "8fab8d288b2e8b70c2261a84412e2e80273c89225fc6ffd78994310b99bc1fab",
+      "tests/border_native_alpha.lua": "806fb8feb0fa1d0af49c8721dae0f40515400870dac0b099739d718a3646b5ae",
+      "tests/border_paint_ownership.lua": "ee0c2c2b6928135bd684ccc2a2c465bb76ac2d5cbeec1d65a2c2f49012f1ec16",
+      "tests/border_strip_envelope.lua": "a47d1fc7da3649ae51f9be03b486d7506f1b4a72e4a72163301c910636fc2670",
+      "tests/border_strip_poses.lua": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "tests/group_roster_performance.lua": "9b36fcc497758b4f7231dbcddaae8fcc0424428eed7bb7eb4b6c6d57e71c4cdf",
+      "tests/main_row_audit.lua": "564da22e84010b371cec18edfb1a9683b4ca6b948784e38e0bf3d67c65ea97e9",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_border_spacing.lua": "1df578aa2ac1d4f73117ceefa00dcb3f87ad5abfeaa4e88b69758631fd42f9f5",
+      "tests/strip_drag_button_chrome.lua": "06912db9c6c27bc87991530e3c73f7601e04ab18b0dfaf397da0059ec09d5978",
+      "tests/strip_grid_packing.lua": "b76554541e0d212512df0bf4e361dd6298781d2ddced12ecea8a30a878bb46f4",
+      "tests/strip_panel_settle.lua": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_unit_anchor_transaction.lua": "b77216e7ed092c23209698862eef804e6efedf2b013db17ad0ecb45674545001",
+      "tests/unit_vertical_target_health.lua": "ff9158c349153c1abba3a805690a85df98f6ceaed32b6beaaa5ea4b962c9f98c"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-event-ownership-before-20261120T075846167\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-event-ownership-before-20261120T075846167\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-event-ownership-before-20261120T075846167\\syntax.json"
+  },
+  "nativeAcceptance": "Native action-strip crossings, side seams and rapid slot edits still need verification. Party and raid join/leave, embedded minimap and combat taint remain pending for the wider goal."
+}

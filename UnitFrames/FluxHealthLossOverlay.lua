@@ -352,6 +352,28 @@ function HLO.ResetIdentityForFrame(frame)
     end
 end
 
+function HLO.CanKeepVerticalRosterSample(bar, unit, health, maximum)
+    -- A roster event can change the unit behind the same party target token.
+    -- Keep a trail only when the current public identity and sample agree.
+    if not bar._fluxHealthLossUnderlay or not bar._fluxLossPrimed
+        or bar._fluxHealthLossUnit ~= unit or bar._fluxLossSampleUnit ~= unit
+        or bar._fluxLossLastHealthOpaque or bar._fluxLossVerticalNativeActive or bar._fluxLossSecretPending then
+        return false
+    end
+    local h, m = ReadableNumber(health), ReadableNumber(maximum)
+    local priorGUID = bar._fluxLossGUID
+    if not h or not m or m <= 0 or h ~= ReadableNumber(bar._fluxLossPrevHealth)
+        or m ~= ReadableNumber(bar._fluxLossPrevMaxHealth)
+        or not CanRead(priorGUID) or type(priorGUID) ~= "string" or priorGUID == "" then
+        return false
+    end
+    if ReadableGUID(unit) ~= priorGUID
+        or (bar.ClassicLossTex and bar.ClassicLossTex._animStart and AbsorbBlocks(unit)) then
+        return false
+    end
+    return true
+end
+
 local function ReadableHealth(unit)
     if not unit then return nil, nil end
     local h, m = ReadableNumber(UnitHealth(unit)), ReadableNumber(UnitHealthMax(unit))

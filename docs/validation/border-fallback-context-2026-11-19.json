@@ -1,0 +1,848 @@
+{
+  "changeId": "BORDER-FALLBACK-CONTEXT-R134-20261119",
+  "capturedAtUTC": "2026-11-19T19:35:18.906661+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "50cad9dc9c9ab5a8a8a0c72462c5aff18f71f4909655de0fde6a7821df730dd9",
+      "afterRaw": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5"
+    },
+    "tests/border_fallback_plan_cache.lua": {
+      "beforeRaw": "49feba1de01accf3243d077519d212f019c98a4c59bb0409b09f8f37c3e05a4b",
+      "afterRaw": "d220fdd857cdf40d60b4be2b53e747e0e8ca8cf6deeb7acf3b47e6a06d79756d"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\source.zip",
+    "sourceZipSHA256": "f5a1a0c6acf32036af9a0741bf0ea2218c6d23bb33402779f5b3dd69e1d361b9",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Five alternating exact-source pairs per border style. The live Lua renderer in a desktop fixture replays four crossings with an action held, or four transitions where four independent party units acquire and lose valid border geometry. The other modeled HUD and raid units remain present. The replay compares affected and retained seam samples at all four transitions in the first pair and at the endpoints of later pairs. Solve, tile, primitive and contributing fallback context counts match.",
+    "fields": "Counts distinguish contributing fallback contexts from cache keys, owner lists and old/new bounds union visits.",
+    "samples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "80",
+          "contexts": "38",
+          "guards": "80/30",
+          "fields": "1028/752",
+          "lists": "172/34",
+          "bounds": "0/0"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "80",
+          "contexts": "37",
+          "guards": "80/30",
+          "fields": "1002/732",
+          "lists": "168/33",
+          "bounds": "0/0"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "80",
+          "contexts": "38",
+          "guards": "80/30",
+          "fields": "1028/752",
+          "lists": "172/34",
+          "bounds": "0/0"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "80",
+          "contexts": "37",
+          "guards": "80/30",
+          "fields": "1002/732",
+          "lists": "168/33",
+          "bounds": "0/0"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "80",
+          "contexts": "38",
+          "guards": "80/30",
+          "fields": "1028/752",
+          "lists": "172/34",
+          "bounds": "0/0"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "80",
+          "contexts": "37",
+          "guards": "80/30",
+          "fields": "1002/732",
+          "lists": "168/33",
+          "bounds": "0/0"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "80",
+          "contexts": "38",
+          "guards": "80/30",
+          "fields": "1028/752",
+          "lists": "172/34",
+          "bounds": "0/0"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "80",
+          "contexts": "37",
+          "guards": "80/30",
+          "fields": "1002/732",
+          "lists": "168/33",
+          "bounds": "0/0"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "80",
+          "contexts": "38",
+          "guards": "80/30",
+          "fields": "1028/752",
+          "lists": "172/34",
+          "bounds": "0/0"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "80",
+          "contexts": "37",
+          "guards": "80/30",
+          "fields": "1002/732",
+          "lists": "168/33",
+          "bounds": "0/0"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "calls": "12",
+          "contexts": "24",
+          "guards": "12/12",
+          "fields": "480/480",
+          "lists": "24/24",
+          "bounds": "160/48"
+        }
+      ]
+    },
+    "uninstrumentedTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "75.000/101.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "83.000/91.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "96.000/71.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "78.000/87.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "73.000/98.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "100.000/80.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "95.000/74.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "80.000/94.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "74.000/98.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "80.000/88.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "21.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "50.000/44.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "22.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "44.000/46.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "20.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "47.000/42.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "19.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "43.000/44.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "20.000/24.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "50.000/44.000"
+        }
+      ]
+    },
+    "uninstrumentedTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 73.0,
+            "median": 75.0,
+            "max": 96.0
+          },
+          {
+            "min": 71.0,
+            "median": 98.0,
+            "max": 101.0
+          }
+        ],
+        "2": [
+          {
+            "min": 78.0,
+            "median": 80.0,
+            "max": 100.0
+          },
+          {
+            "min": 80.0,
+            "median": 88.0,
+            "max": 94.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 19.0,
+            "median": 20.0,
+            "max": 22.0
+          },
+          {
+            "min": 19.0,
+            "median": 20.0,
+            "max": 24.0
+          }
+        ],
+        "2": [
+          {
+            "min": 43.0,
+            "median": 47.0,
+            "max": 50.0
+          },
+          {
+            "min": 42.0,
+            "median": 44.0,
+            "max": 46.0
+          }
+        ]
+      }
+    },
+    "baselineControlSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "100.000/72.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "95.000/81.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "97.000/76.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "84.000/82.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "99.000/79.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "90.000/76.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "97.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "90.000/82.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "104.000/78.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "87.000/77.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "20.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "46.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "19.000/20.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "46.000/51.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "20.000/22.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "46.000/43.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "21.000/19.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "43.000/44.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "21.000/23.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "48.000/43.000"
+        }
+      ]
+    },
+    "baselineControlSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 97.0,
+            "median": 99.0,
+            "max": 104.0
+          },
+          {
+            "min": 72.0,
+            "median": 76.0,
+            "max": 79.0
+          }
+        ],
+        "2": [
+          {
+            "min": 84.0,
+            "median": 90.0,
+            "max": 95.0
+          },
+          {
+            "min": 76.0,
+            "median": 81.0,
+            "max": 82.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 19.0,
+            "median": 20.0,
+            "max": 21.0
+          },
+          {
+            "min": 19.0,
+            "median": 22.0,
+            "max": 23.0
+          }
+        ],
+        "2": [
+          {
+            "min": 43.0,
+            "median": 46.0,
+            "max": 48.0
+          },
+          {
+            "min": 43.0,
+            "median": 44.0,
+            "max": 51.0
+          }
+        ]
+      }
+    },
+    "initialTimingSamples": {
+      "hover": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "91.000/76.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "78.000/82.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "91.000/78.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "87.000/79.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "91.000/73.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "93.000/78.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "92.000/81.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "87.000/83.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "87.000/71.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "94.000/80.000"
+        }
+      ],
+      "roster": [
+        {
+          "style": "1",
+          "pair": "1",
+          "edges": "4",
+          "ms": "22.000/30.000"
+        },
+        {
+          "style": "2",
+          "pair": "1",
+          "edges": "4",
+          "ms": "51.000/109.000"
+        },
+        {
+          "style": "1",
+          "pair": "2",
+          "edges": "4",
+          "ms": "21.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "2",
+          "edges": "4",
+          "ms": "53.000/39.000"
+        },
+        {
+          "style": "1",
+          "pair": "3",
+          "edges": "4",
+          "ms": "20.000/33.000"
+        },
+        {
+          "style": "2",
+          "pair": "3",
+          "edges": "4",
+          "ms": "60.000/45.000"
+        },
+        {
+          "style": "1",
+          "pair": "4",
+          "edges": "4",
+          "ms": "22.000/21.000"
+        },
+        {
+          "style": "2",
+          "pair": "4",
+          "edges": "4",
+          "ms": "63.000/48.000"
+        },
+        {
+          "style": "1",
+          "pair": "5",
+          "edges": "4",
+          "ms": "23.000/30.000"
+        },
+        {
+          "style": "2",
+          "pair": "5",
+          "edges": "4",
+          "ms": "63.000/43.000"
+        }
+      ]
+    },
+    "initialTimingSummaryMs": {
+      "hover": {
+        "1": [
+          {
+            "min": 87.0,
+            "median": 91.0,
+            "max": 92.0
+          },
+          {
+            "min": 71.0,
+            "median": 76.0,
+            "max": 81.0
+          }
+        ],
+        "2": [
+          {
+            "min": 78.0,
+            "median": 87.0,
+            "max": 94.0
+          },
+          {
+            "min": 78.0,
+            "median": 80.0,
+            "max": 83.0
+          }
+        ]
+      },
+      "roster": {
+        "1": [
+          {
+            "min": 20.0,
+            "median": 22.0,
+            "max": 23.0
+          },
+          {
+            "min": 21.0,
+            "median": 30.0,
+            "max": 33.0
+          }
+        ],
+        "2": [
+          {
+            "min": 51.0,
+            "median": 60.0,
+            "max": 63.0
+          },
+          {
+            "min": 39.0,
+            "median": 45.0,
+            "max": 109.0
+          }
+        ]
+      }
+    },
+    "timingScope": "Five alternating uninstrumented pairs per style measure four transitions after initial scene setup. They include the first encounters with each pose and use modeled widgets. The settled run collects desktop Lua garbage once after setup. Its baseline control uses the archived source on both sides. The initial timing run omits that collection. These timings do not establish frame gaps or native performance.",
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\compare.lua": "acda8036733b1dacf3e343d6f973499a9ca4d3043eab906f0e8b455d9f9eb06c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\matched.txt": "be2729b1ba355e64f3f197441a2d8aea1d64f911312fbdcb8c5dc435d4a0b8a3",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\timing.txt": "1d888e9152de03a001a810a41ba8b2ca536f5d9ffe4666f9e7f8b25a46f418b5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\timing-control.lua": "5dbbecca55e54ff7fee9f31f229e56e5b901fe66ce1854f19d2a71dca447345c",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\timing-settled.txt": "3933524fbf33ceac75ba4a4151b406e57c2159bbd24afcb14cdd25c0677f95b8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\timing-baseline.txt": "3dadb647595c32a9392b261506462ec3adc7c5bcfe3df22d47675d48cd30fdb5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\controls.txt": "cd8e856d2ed2ab08f31465ac4b4efd374cd4e7cafa8c8d4266abf17f37e04cbd",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\bad-core.lua": "69f11a970987d9b00e70f90cd9f050d51e4bc2c4b193a2b37fe75f31d605b2f4"
+    }
+  },
+  "preservation": [
+    "Only intersecting, unblocked fallback cells require a cache key for their current base triangle sources. Uncached compilation still visits the same eligible cells in the same order.",
+    "The existing rectangle union accepts one group extent per old or new public snapshot, keeping the same scaled halo and scope membership.",
+    "Sampled seams and retained cells match in both styles. Exact owner, visibility and native paint rules still apply."
+  ],
+  "verification": {
+    "focusedPassed": 103,
+    "syntaxPassed": 1250,
+    "rejectedControls": [
+      "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_fallback_plan_cache.lua:67: an owner that gains a fallback invalidates the old key and gets a stable context index",
+      "stack traceback:",
+      "\t[C]: in function 'assert'",
+      "\ttests/border_fallback_plan_cache.lua:67: in local 'check'",
+      "\ttests/border_fallback_plan_cache.lua:87: in main chunk",
+      "\t[C]: in ?",
+      "Rejected compiled junction-local fallback omission"
+    ],
+    "preliminaryReceiptWithMidRunSourceChange": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\focused-before-scoped-bounds.json",
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-fallback-context-before-20261119-202247\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/FluxItemClass.lua",
+      "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+      "tests/consumable_pending_read.lua",
+      "tests/item_metadata_idempotence.lua"
+    ]
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "e3c0a0e46ef69a1a823f9cee2ecca7c58b3ade2a19472c8a6b80f813702497e5",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership changes, held spell/item/macro crossings without a drop, rapid drops, border seam pixels, and combat taint. No client input, settings or profiling changes."
+}

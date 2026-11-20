@@ -1,0 +1,269 @@
+{
+  "changeId": "PLAYER-GHOST-SECURE-FOLLOWUP-20261114",
+  "date": "2026-11-14",
+  "userEvidence": [
+    "Screenshot still identifies PlayerFrame at Blizzard_UnitFrame/Mainline/PlayerFrame.xml:13",
+    "User confirms reload and intermittent hovercast interference after the preceding fix",
+    "User explicitly requests literal removal rather than hiding or a retained Frame Stack listing"
+  ],
+  "requestedDeletionStatus": "UNSUPPORTED: Blizzard constructs the native frame before addon loading; no supported frame-destruction API is exposed. Native references remain. No global nil assignment, source replacement or debugger filtering is attempted.",
+  "priorCandidateStatus": "Not accepted: user reports continued intermittent native interaction after reload. Prior desktop geometric/context checks did not cover secure header registration.",
+  "causeFound": "RegisterFrame still accepted suppressed native PlayerFrame. Its secure OnEnter could arm currentButton independently of the visual context scan. Existing overrides were not explicitly cleared when native input was suppressed.",
+  "fix": [
+    "Reject replaced PlayerFrame on every registration route including discovery and third-party ClickCastFrames registration",
+    "At the legal suppression/toggle boundary clear its active secure overrides using the existing Flux header and remove its Flux wrappers; include legacy child surfaces",
+    "Balance legacy peek/driver callbacks and prevent retained hooks from waking an unregistered frame",
+    "Restore native registration when Blizzard is selected; retain peer casts and native handlers/auras/vehicle/independent controls"
+  ],
+  "scope": "Two runtime owners and one existing test harness. No native root hiding/reparenting/deletion, native API rewrite, added hook/event/timer, option, string or SavedVariables change.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-ghost-followup\\checkpoint.json",
+    "sha256": "934416f23b5062ab8799922a77b537b549070f9e3a5509832e31fb77079c0833",
+    "sourceFiles": 2799,
+    "settingsMetadata": 113,
+    "archivesVerified": true,
+    "privateSettingsCopied": false
+  },
+  "sourcePins": {
+    "live": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "classic_era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "classic_anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "sourceFiles": [
+    {
+      "file": "Interface_AddOns_Blizzard_APIDocumentationGenerated_FrameScriptDocumentation.lua",
+      "sha256": "945c09648a60fe90271ed5fc092608af85774fd24daa615d1410263593de7c2c",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/FrameScriptDocumentation.lua"
+    },
+    {
+      "file": "Interface_AddOns_Blizzard_APIDocumentationGenerated_SimpleFrameAPIDocumentation.lua",
+      "sha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+    },
+    {
+      "file": "Interface_AddOns_Blizzard_APIDocumentationGenerated_SimpleScriptRegionAPIDocumentation.lua",
+      "sha256": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+    },
+    {
+      "file": "Interface_AddOns_Blizzard_DebugTools_Blizzard_DebugTools.lua",
+      "sha256": "10de6f963f1a969704b12633ee7f9cb78dfeb64fe45d180e90f3bf586bed6eda",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_DebugTools/Blizzard_DebugTools.lua"
+    },
+    {
+      "file": "Interface_AddOns_Blizzard_RestrictedAddOnEnvironment_SecureHandlers.lua",
+      "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548",
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+    }
+  ],
+  "comparisons": [
+    {
+      "source": "before",
+      "trial": 1,
+      "exit": 1,
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/raid_binding_cast.lua:8: live: replacing a hovered native player clears already armed secure overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_binding_cast.lua:8: in upvalue 'check'\n\ttests/raid_binding_cast.lua:275: in local 'ghostPlayer'\n\ttests/raid_binding_cast.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "source": "candidate",
+      "trial": 1,
+      "exit": 0,
+      "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n"
+    },
+    {
+      "source": "before",
+      "trial": 2,
+      "exit": 1,
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/raid_binding_cast.lua:8: live: replacing a hovered native player clears already armed secure overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_binding_cast.lua:8: in upvalue 'check'\n\ttests/raid_binding_cast.lua:275: in local 'ghostPlayer'\n\ttests/raid_binding_cast.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "source": "candidate",
+      "trial": 2,
+      "exit": 0,
+      "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n"
+    },
+    {
+      "source": "before",
+      "trial": 3,
+      "exit": 1,
+      "output": "C:/Users/mario/AppData/Local/Programs/Lua/bin/lua.exe: tests/raid_binding_cast.lua:8: live: replacing a hovered native player clears already armed secure overrides\nstack traceback:\n\t[C]: in function 'assert'\n\ttests/raid_binding_cast.lua:8: in upvalue 'check'\n\ttests/raid_binding_cast.lua:275: in local 'ghostPlayer'\n\ttests/raid_binding_cast.lua:324: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "source": "candidate",
+      "trial": 3,
+      "exit": 0,
+      "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n"
+    }
+  ],
+  "focusedRegression": {
+    "checks": 300,
+    "clients": 5,
+    "compiledHarmfulControlsRejected": 9
+  },
+  "checks": {
+    "freshScripts": 15,
+    "freshFailures": 0,
+    "syntaxFiles": 1068,
+    "syntaxFailures": 0,
+    "wholeSuiteRerun": false,
+    "results": [
+      {
+        "path": "tests/raid_binding_cast.lua",
+        "exitCode": 0,
+        "output": "Raid binding casting: 300 checks; five native source handlers; nine rejected negative controls\n"
+      },
+      {
+        "path": "tests/native_mouse_suppression.lua",
+        "exitCode": 0,
+        "output": "Native mouse suppression/Edit Mode: 3387 checks; five branches; 20 negative controls passed\n"
+      },
+      {
+        "path": "Core/_tmp_buffdebuffsmoke.lua",
+        "exitCode": 0,
+        "output": "player runtime smoke OK (hidden bar updates, original scripts, overlay filters, vehicles, legacy combos)\n"
+      },
+      {
+        "path": "tests/unitframes_lifecycle_spec.lua",
+        "exitCode": 0,
+        "output": "Unit frame lifecycle checks: 373 passed across 5 client policy fixtures\n"
+      },
+      {
+        "path": "tests/edit_mode_native_ownership.lua",
+        "exitCode": 0,
+        "output": "Flux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources live: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources forever: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_era: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nFlux Edit Mode metadata captured; native spec event: true. /reload to save.\nEdit Mode resources classic_anniversary: base=18 overrides=0 nativeSpecUnregister=0 flags=0 saves=3 resets=5\nEdit Mode native ownership: 295 checks; 0 failures; native protected execution/taint/pixels pending\n"
+      },
+      {
+        "path": "tests/hover_children_varargs.lua",
+        "exitCode": 0,
+        "output": "METRIC hover branch=live cases=11 assertions_recorded=true\nMETRIC hover branch=forever cases=11 assertions_recorded=true\nMETRIC hover branch=classic_era cases=11 assertions_recorded=true\nMETRIC hover branch=classic_anniversary cases=11 assertions_recorded=true\nMETRIC hover branch=classic cases=11 assertions_recorded=true\nSUMMARY checks=55 failures=0\n"
+      },
+      {
+        "path": "tests/mouseover_native.lua",
+        "exitCode": 0,
+        "output": "native mouseover: 4984 checks passed; native taint/visual/input/FPS pending\n"
+      },
+      {
+        "path": "tests/universal_mouseover_priority.lua",
+        "exitCode": 0,
+        "output": "Matched plain clicks: classic clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_era clicks=9 actionQueries=9 polarityQueries=18\nMatched plain clicks: classic_anniversary clicks=9 actionQueries=9 polarityQueries=18\nResources: clicks=176 actionQueries=3273 polarityQueries=356 compiles=124\nUniversal mouseover priority: 916 checks, 0 failures; native protected execution pending\n"
+      },
+      {
+        "path": "tests/raid_party_binding_cast.lua",
+        "exitCode": 0,
+        "output": "Party Flux hover casting: 310 checks; twelve party/pet/target tokens on five binding/secure models; native input/taint pending\n"
+      },
+      {
+        "path": "tests/raid_startup.lua",
+        "exitCode": 0,
+        "output": "Raid startup: 2080 assertions passed across 5 mocked clients; live secure-header/taint testing pending\n"
+      },
+      {
+        "path": "tests/edit_mode_settings.lua",
+        "exitCode": 0,
+        "output": "Edit Mode settings: 363 checks across five clients; two negative controls passed\n"
+      },
+      {
+        "path": "tests/binding_roadmap_regression.lua",
+        "exitCode": 0,
+        "output": "binding roadmap: 3210 checks passed (BIND-01..06; native acceptance pending)\n"
+      },
+      {
+        "path": "tests/binding_respec_regression.lua",
+        "exitCode": 0,
+        "output": "binding/respec regression: 110 checks passed\n"
+      },
+      {
+        "path": "Bars/_tmp_barsmoke.lua",
+        "exitCode": 0,
+        "output": "bars refresh: 17454 checks passed; 19 production mutations rejected\nbars contract regression: 468 production checks across five clients; 13 mutations rejected\nBlizzard script ownership: 26 checks passed; 6 native-owner mutations rejected\nCombat grid depletion transitions: 672 checks, 0 failures\nbars smoke OK\n  slot math: rest/shift/ctrl/cat/bear/vehicle/static/promote/xor\n  lockdown: Layout guards, no combat unpack\n  clicks: ButtonForge wrap verbatim; no post-body; PreClick gated on button/down\n  leftover: stock ActionButtons off ActionBarButtonEventsFrame (mixins stay stock),\n            then EnableMouse false on MainActionBar/pager/ActionButton\n  drag: PreClick cursor + L+R without Shift; click fires on mouse up\n  checked: Paint owns SetChecked; gold hilight not mouseover atlas\n  flash: auto-attack/auto-shot/wand red blink on strip + Extra; Classic QuickslotRed, Forever atlas\n  paint: Midnight duration object + Classic GetActionCooldown\n  hotkey: MouseButton3-5 / scroll / space glyphs + S-/C- overlay\n  charges: UnpackCharges table+tuple, dual chargeCooldown\n  vfx: Transfer fill on swap; exclusive appear/clear; finish burst; no stuck fill\n  chrome: checked/pushed follow paging with fill/interrupt\n  glow: Transfer overlay on swap; skipBirth; ungated Set; Era OOC SAO capture; SyncColumn; ClearCache keeps _glowing\n  combat badges: alpha vis (no Hide taint); exclusive VFX/gold on the live Extra face\n  combat button: one FluxButton; Context hops; Binding Apply OOC only; vis after Identity\n  hovercast: TOC Keybind; strip hosts; UF peek only; no [@mouseover] on hover-only tail\n  range: one Flux.Range ticker for strip+Extra+badges; macros range their shown\n         spell against the macro's own @unit; frame-shared memo; 0.2s mouseover\n  mouseover cast: click-time unit only (no static unit=mouseover); factory tails\n         factory mouseover tails idle-stripped; Blizzard range-check gated; hovercast driver on UF hover\n  ebs assistant: GetNextCastSpell(false); rotation overlay; KeyBind override\n  assist morph: strip+EBS poll next-cast whenever the button exists\n  pet/stance: Extra Button surfaces; event-split paint; TOC-loaded\n  ingame: /reload; drag from book without Shift; pickup; click on release;\n          key on press; AOE cancel clears checked; SHIFT mini keeps proc loop;\n          macro condition drop glow when the face leaves; skipBirth on return;\n          VFX continues or appears/clears with the visible face\n"
+      },
+      {
+        "path": "Core/_tmp_coresmoke.lua",
+        "exitCode": 0,
+        "output": "core smoke OK\n  scheduler: layout \u00e2\u2020\u2019 display \u00e2\u2020\u2019 eval; paging defers eval/display\n  modifier: FluxModifierTracker alias, demand-driven OnUpdate\n  context: kinded fingerprint bus on display tier\n  identity: shown-face publish + last-sig skip\n  occupancy: type+id only, no GetMacroSpell\n  formstorm: IsBursting / IsSettling / GetSnapshot\n  hoplag: /fluxhop overlay, off by default\n  aura: slots/index gate on CanAccessSecrets; GetPlayerAuraBySpellID does not\n  secrets: SafeBooleanTest/SafeLooksEmpty/AuraUpdateInfoIsNoop/KeepLastNumber\n  swing: gated off live post-DF + post-Cata classic; Forever uses PLAYER_SWING; CLEU + DurationUtil probed\n"
+      }
+    ]
+  },
+  "runtimeIdentities": [
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a"
+    }
+  ],
+  "installedCopiesReadOnly": [
+    {
+      "clientDirectory": "_retail_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_retail_",
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_forever_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_forever_",
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_classic_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_classic_",
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_classic_era_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_classic_era_",
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_anniversary_",
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "49f65313d5221a3f3a69cb1b7b342fa2c3845f2ffe7afc47c210ff73fe5d950c",
+      "matches": true
+    },
+    {
+      "clientDirectory": "_anniversary_",
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "daeee0626fc41286d2af52fba33083adbabfb9c168f4003510e019b0dee24e6a",
+      "matches": true
+    }
+  ],
+  "nativeAcceptance": {
+    "candidate": "NOT RUN",
+    "priorCandidate": "User reports failure after reload",
+    "clientObserved": "Forever PID40032 HWND7995860; no activation/input",
+    "taintCombatController": "Pending actual native validation; desktop models do not certify taint-free execution",
+    "testingPreference": "Existing background-only/user reproduction retained",
+    "required": "Reload outside combat; retest empty-region casting, genuine Flux player casting, toggles, combat and Edit Mode; inspect Lua/blocked-action errors"
+  },
+  "publicationAndClientWrites": "None; no commit/push, manual installation sync, client input/reload, settings/profiler edits or diagnostic-root change"
+}

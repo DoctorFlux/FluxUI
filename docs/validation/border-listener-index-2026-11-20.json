@@ -1,0 +1,345 @@
+{
+  "changeId": "BORDER-LISTENER-INDEX-R155-20261120",
+  "capturedAtUTC": "2026-11-19T23:36:29.858807+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "303a01175da10cdaafcf012be8afa855132c269b576d9226b5fce89ad21f225a",
+      "afterRaw": "a873f924200e4db6a00e72786707c632d8fc15b6e5d33dc44d322c8c049ded8a",
+      "afterNormalized": "a873f924200e4db6a00e72786707c632d8fc15b6e5d33dc44d322c8c049ded8a"
+    },
+    "tests/regional_fragment_reads.lua": {
+      "beforeRaw": "82fcf15ca13c10b92bf998c4d458fd0afd4719b49ba31513a1a05f88beb75114",
+      "afterRaw": "1d2dacd0a9850b4e12ae402fd7263feb249d81a26a80a5b669a5ba33e9424bc5",
+      "afterNormalized": "1d2dacd0a9850b4e12ae402fd7263feb249d81a26a80a5b669a5ba33e9424bc5"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\source.zip",
+    "sourceZipSHA256": "1427b0f41963bb50298fcd94792263cb848fe281a4ade04b8a25c7e9a53affae",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched pairs of eight held-action crossings, width changes, and local join changes in each style. The source-pinned model checks listener indexes, sampled seams, live hide and tint, and existing repaint behavior.",
+    "samples": [
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 1,
+        "style": 1,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 200,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 48,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 96,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "strip-width",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "held-crossing",
+        "oldColorBucketsReplaced": 208,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 120,
+        "newVisibilityBucketsReplaced": 0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "scene": "local-join",
+        "oldColorBucketsReplaced": 56,
+        "newColorBucketsReplaced": 0,
+        "oldSpriteBucketsReplaced": 56,
+        "newSpriteBucketsReplaced": 0,
+        "oldVisibilityBucketsReplaced": 56,
+        "newVisibilityBucketsReplaced": 0
+      }
+    ],
+    "metrics": [
+      "Color listener index replacements",
+      "Sprite index replacements",
+      "Visibility listener index replacements"
+    ],
+    "heapScope": "Five matched pairs with alternating execution order. Forty warmed held-action changes per sample with the Lua collector stopped. Heap growth includes the entire replay. Clock readings varied under concurrent desktop loads.",
+    "heapSamples": [
+      {
+        "trial": 1,
+        "style": 1,
+        "oldGrowthKiB": 15711.25,
+        "newGrowthKiB": 15550.38,
+        "oldProcessClockMs": 165.0,
+        "newProcessClockMs": 153.0
+      },
+      {
+        "trial": 1,
+        "style": 2,
+        "oldGrowthKiB": 17222.17,
+        "newGrowthKiB": 17034.9,
+        "oldProcessClockMs": 179.0,
+        "newProcessClockMs": 166.0
+      },
+      {
+        "trial": 2,
+        "style": 1,
+        "oldGrowthKiB": 15711.25,
+        "newGrowthKiB": 15550.78,
+        "oldProcessClockMs": 159.0,
+        "newProcessClockMs": 158.0
+      },
+      {
+        "trial": 2,
+        "style": 2,
+        "oldGrowthKiB": 17230.94,
+        "newGrowthKiB": 17035.14,
+        "oldProcessClockMs": 153.0,
+        "newProcessClockMs": 162.0
+      },
+      {
+        "trial": 3,
+        "style": 1,
+        "oldGrowthKiB": 15707.99,
+        "newGrowthKiB": 15550.38,
+        "oldProcessClockMs": 148.0,
+        "newProcessClockMs": 147.0
+      },
+      {
+        "trial": 3,
+        "style": 2,
+        "oldGrowthKiB": 17223.05,
+        "newGrowthKiB": 17034.98,
+        "oldProcessClockMs": 173.0,
+        "newProcessClockMs": 373.0
+      },
+      {
+        "trial": 4,
+        "style": 1,
+        "oldGrowthKiB": 15707.35,
+        "newGrowthKiB": 15550.62,
+        "oldProcessClockMs": 365.0,
+        "newProcessClockMs": 391.0
+      },
+      {
+        "trial": 4,
+        "style": 2,
+        "oldGrowthKiB": 17222.89,
+        "newGrowthKiB": 17038.89,
+        "oldProcessClockMs": 356.0,
+        "newProcessClockMs": 598.0
+      },
+      {
+        "trial": 5,
+        "style": 1,
+        "oldGrowthKiB": 15707.03,
+        "newGrowthKiB": 15549.98,
+        "oldProcessClockMs": 403.0,
+        "newProcessClockMs": 326.0
+      },
+      {
+        "trial": 5,
+        "style": 2,
+        "oldGrowthKiB": 17222.01,
+        "newGrowthKiB": 17039.53,
+        "oldProcessClockMs": 401.0,
+        "newProcessClockMs": 365.0
+      }
+    ],
+    "medianHeapReductionKiB": {
+      "1": 157.61,
+      "2": 187.27
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\matched.txt": "0830fd72ff5946c00ec03498611cb981be4ab5710df493d7cd0ba12c2231e1af",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\candidate.txt": "2315021f6a2f1e26380617055289b0ae7cb633972aa46c6de0cd9ac4be5619d8",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\heap-work.txt": "4a67a486e9f2ac949b4201da3f5df70dc02ed44e01a21df3182c172603d1bda5",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\heap-work.lua": "615cf8fa194e12b553a96f23a7ba88e72052df6395cdd85ba0e730500867ea42",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\upvalues.json": "781346fea79503884a326dd24082a25b511c6f4167a12beb54344417cadb9321"
+    },
+    "limits": "Bucket identity and heap growth establish temporary allocation work in the desktop model. The measured elapsed values are mixed and no native FPS or latency claim is made."
+  },
+  "preservation": [
+    "Each dirty tile releases its prior listener entries. A replacement can reuse the same index table during the same commit.",
+    "The renderer releases empty index entries and stale availability data. Region rollback keeps the existing cleanup guarantees.",
+    "Live changes in color, show state and layer still propagate. Sampled seams remain equal in both border styles."
+  ],
+  "verification": {
+    "focusedPassed": 107,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\focused-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-index-before-20261120-002857\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Pending for party and raid membership hitches, rapid held-action crossings and drops, native seam pixels and combat taint."
+}

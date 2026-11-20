@@ -1,0 +1,417 @@
+{
+  "changeId": "BORDER-PREPARED-DRAW-R126-20261119",
+  "capturedAtUTC": "2026-11-19T17:39:42.363012+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "6f03bf58cf8142d338b167d9467aa6f25ad5ea4de6800fd0c1b3c4273e3a49a9",
+      "afterRaw": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "61cffc859a6dd1f43ce160ccf9f66638f8957581f0a520d770dd7d6aaa7ff6fa",
+      "afterRaw": "aad334311b0ab6634130a350aa14bab19742dec507e1bb6a274157e0063cfd86"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-draw-before-20261119-182558\\source.zip",
+    "sourceZipSHA256": "7ccbe5a23b3a74e10ac7685e472cdc50357b9cab7bf1b105241374ca5146dbd9",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Actual regional renderer with modeled native widgets. Five exact-source paired trials of eight warmed held-action crossings or roster reflows in each style. Roster scene measures a position change across a warmed pair of layouts. It does not model native roster event dispatch or secure headers. The replay checks sampled border geometry and material after the same transitions.",
+    "samples": {
+      "style1-hover": [
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "236",
+          "fields": "6080/4992",
+          "reused": "0/236",
+          "heapKB": "4486.554/4196.901"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "236",
+          "fields": "6080/4992",
+          "reused": "0/236",
+          "heapKB": "4486.643/4197.053"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "236",
+          "fields": "6080/4992",
+          "reused": "0/236",
+          "heapKB": "4486.393/4196.803"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "236",
+          "fields": "6080/4992",
+          "reused": "0/236",
+          "heapKB": "4486.893/4197.303"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "236",
+          "fields": "6080/4992",
+          "reused": "0/236",
+          "heapKB": "4486.393/4196.803"
+        }
+      ],
+      "style1-roster": [
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1693.077/1665.757"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1693.202/1665.882"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1692.952/1665.632"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1693.452/1666.132"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1692.952/1665.632"
+        }
+      ],
+      "style2-hover": [
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "240",
+          "fields": "6168/5064",
+          "reused": "0/240",
+          "heapKB": "4644.151/4354.579"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "240",
+          "fields": "6168/5064",
+          "reused": "0/240",
+          "heapKB": "4644.303/4354.730"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "240",
+          "fields": "6168/5064",
+          "reused": "0/240",
+          "heapKB": "4644.053/4354.480"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "240",
+          "fields": "6168/5064",
+          "reused": "0/240",
+          "heapKB": "4644.553/4354.980"
+        },
+        {
+          "cells": "312",
+          "shared": "0/312",
+          "ops": "240",
+          "fields": "6168/5064",
+          "reused": "0/240",
+          "heapKB": "4644.053/4354.480"
+        }
+      ],
+      "style2-roster": [
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1797.507/1770.274"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1797.632/1770.399"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1797.382/1770.149"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1797.882/1770.649"
+        },
+        {
+          "cells": "80",
+          "shared": "0/80",
+          "ops": "0",
+          "fields": "0/0",
+          "reused": "0/0",
+          "heapKB": "1797.382/1770.149"
+        }
+      ]
+    },
+    "heapGrowthKiBWithCollectionPausedMedians": {
+      "style1-hover": [
+        4486.554,
+        4196.901
+      ],
+      "style1-roster": [
+        1693.077,
+        1665.757
+      ],
+      "style2-hover": [
+        4644.151,
+        4354.579
+      ],
+      "style2-roster": [
+        1797.507,
+        1770.274
+      ]
+    },
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-draw-before-20261119-182558\\compare.lua": "3e9c40c11f053ace377a6106b1bd9e5359548bb8954be1c3d9686628118e46df",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-draw-before-20261119-182558\\matched.txt": "980f73df1d24f41ca6514d03e47f226f7900aa48f2794839615f99fd93cddd97"
+    }
+  },
+  "desktopTiming": {
+    "scope": "Lua 5.4.6, seven alternating pairs of 24 warmed reflows. Wall time inside WoW is not measured.",
+    "results": {
+      "style1-hover": {
+        "medians": [
+          217.0,
+          213.0
+        ],
+        "samples": [
+          [
+            209.0,
+            247.0
+          ],
+          [
+            217.0,
+            216.0
+          ],
+          [
+            229.0,
+            205.0
+          ],
+          [
+            222.0,
+            201.0
+          ],
+          [
+            214.0,
+            209.0
+          ],
+          [
+            215.0,
+            235.0
+          ],
+          [
+            232.0,
+            213.0
+          ]
+        ]
+      },
+      "style1-roster": {
+        "medians": [
+          85.0,
+          94.0
+        ],
+        "samples": [
+          [
+            82.0,
+            80.0
+          ],
+          [
+            148.0,
+            194.0
+          ],
+          [
+            83.0,
+            88.0
+          ],
+          [
+            82.0,
+            94.0
+          ],
+          [
+            97.0,
+            114.0
+          ],
+          [
+            102.0,
+            111.0
+          ],
+          [
+            85.0,
+            87.0
+          ]
+        ]
+      },
+      "style2-hover": {
+        "medians": [
+          251.0,
+          259.0
+        ],
+        "samples": [
+          [
+            233.0,
+            224.0
+          ],
+          [
+            240.0,
+            235.0
+          ],
+          [
+            226.0,
+            469.0
+          ],
+          [
+            352.0,
+            259.0
+          ],
+          [
+            438.0,
+            259.0
+          ],
+          [
+            275.0,
+            246.0
+          ],
+          [
+            251.0,
+            266.0
+          ]
+        ]
+      },
+      "style2-roster": {
+        "medians": [
+          100.0,
+          99.0
+        ],
+        "samples": [
+          [
+            85.0,
+            82.0
+          ],
+          [
+            178.0,
+            120.0
+          ],
+          [
+            82.0,
+            82.0
+          ],
+          [
+            116.0,
+            209.0
+          ],
+          [
+            102.0,
+            171.0
+          ],
+          [
+            90.0,
+            85.0
+          ],
+          [
+            100.0,
+            99.0
+          ]
+        ]
+      }
+    }
+  },
+  "preservation": [
+    "Prepared tiles share their saved clipping and mesh and resolve current logical operations by index.",
+    "Each active tile owns its mutable draw records. Reuse begins after the previous tile listeners detach. Retiring a tile clears its draw records.",
+    "The live source, material, opacity and layer checks run as before. Unexpected geometry uses the normal regional planner.",
+    "These edits leave action addressing and protected attribute updates outside the renderer."
+  ],
+  "verification": {
+    "focusedPassed": 96,
+    "syntaxPassed": 1250,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-draw-before-20261119-182558\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-prepared-draw-before-20261119-182558\\syntax.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+        "matches": true
+      }
+    },
+    "forever": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+        "matches": true
+      }
+    },
+    "classic": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+        "matches": true
+      }
+    },
+    "classic-era": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+        "matches": true
+      }
+    },
+    "classic-anniversary": {
+      "Core/BorderJunctions.lua": {
+        "sha256": "92514b4875c5a49a1ecf54d8e08987fbfb9c1241e3ea59ecdf443b6075dba3f9",
+        "matches": true
+      }
+    }
+  },
+  "nativeAcceptance": "Pending for actual party and raid membership latency, held-action crossing and drop latency, seam pixels and combat taint. No client input, settings or profiling changes."
+}

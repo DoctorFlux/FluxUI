@@ -1,5 +1,20 @@
 # Forever native party/raid performance follow-up — 9 November 2026
 
+16 November separate combat-transition continuation (`COMBAT-TRANSITIONS-20261116`):
+the user's quiet native border samples measured R49 at207.94ms and R50 at218.36ms
+for actual grid/Info reflow; the hitch goal remains open. These inclusive phase
+readings do not certify grouped combat, FPS or taint. R51 `prepared-guards-r51`
+prepares scoped aura/native-minimap/consumable guards and finite owner attribution;
+combined aggregate474 PASS/0FAIL and1165 syntax PASS follows an initial473/474
+sweep, extractor correction and four bounded replays. All eight owned runtime
+files stayed stable, not one globally frozen sweep. Global690 runtime files/
+24916 prototypes max57/0fail and31944 border guard checks PASS. Native R51
+first/repeated entry/exit acceptance remains pending.
+Complete all owned CPU/test/docs jobs before another native capture. The older
+party/raid scenario and source scope below remain historical evidence.
+[Current requirements](COMBAT_TRANSITION_PERFORMANCE.md) and
+[structured evidence](validation/combat-transitions-2026-11-16.json).
+
 REQ-RF-99 follows REQ-RF-97/98 and the user's request for background in-game
 simulation when real roster/combat changes could not be reproduced. The selected
 route was the actual Forever client, using explicitly authorized diagnostic
@@ -162,3 +177,11 @@ changes, so not all are Flux/group cost. Candidate only solo/OOC before pause.
 Resume: native bidirectional conversion/roster retest, inspect exported baseline
 rows/spikes, finish affected docs/ledgers/reference freshness. Foreground targeted
 diagnostics were explicitly allowed for THIS test; default background rule remains.
+
+<!-- BORDER-BUILDER-R53-20261116 -->
+R53 border-builder reflow: unchanged immutable fallback plans and complete public
+owner identities inside the readonly commit phase now reuse prepared work; pair
+keys are per-pass object identities. Source/privacy/native field checks and paint
+remain current.95 focused scripts pass. Native R52 toggle232.41ms is unresolved;
+R53 native timing remains pending. See [exact evidence](validation/border-builder-2026-11-16.json).
+<!-- /BORDER-BUILDER-R53-20261116 -->

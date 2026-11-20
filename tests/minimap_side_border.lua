@@ -24,6 +24,7 @@ local function model(src,client,atlas,scale)
         local function decorate(f,kind)
             function f:GetObjectType() return kind or 'Frame' end
             function f:SetTexture(v) self.texture=v end
+            function f:GetTexture() return self.texture end
             function f:SetTexCoord(...) self.coords={...} end
             function f:SetVertexColor(...) self.color={...} end
             function f:GetVertexColor() return table.unpack(self.color or {1,1,1,1}) end
@@ -51,11 +52,8 @@ local function model(src,client,atlas,scale)
         flyout.InLockdown=e.InCombatLockdown
         flyout.HostOf=function(w) return bound[w] end
         flyout.BindHost=function(w,opts) bound[w]={opts=opts} end
-        local configure=assert(arrowSource:match('(function Arrow.ConfigureLayer.-)\nfunction Arrow.Rotation'))
-        local configureLayer=assert(load([[local Flyout=...
-local Arrow={}
-local ARROW_STRATA,ARROW_FRAME_LEVEL,ARROW_ABOVE_BORDER_ART='MEDIUM',9,5
-]]..configure..'\nreturn Arrow.ConfigureLayer','@actual arrow layers','t',e))(flyout)
+        assert(load(arrowSource,'@actual arrow layers','t',e))('_FluxUI',{Flux=e.Flux})
+        local configureLayer=flyout.Arrow.ConfigureLayer
         flyout.Arrow={Update=function(w)
             if w:GetName()~='FluxMinimapExtraButton1' then return end
             if not t.arrow then t.arrow=e.CreateFrame('Button',nil,w,'SecureActionButtonTemplate') end
@@ -76,6 +74,7 @@ local ARROW_STRATA,ARROW_FRAME_LEVEL,ARROW_ABOVE_BORDER_ART='MEDIUM',9,5
     check(host:GetParent()==gate,'border is inside the same secure visibility gate as buttons')
     check(host:IsVisible() and border:IsVisible() and border.Background:IsVisible(),'normal side grid shows border and themed backdrop')
     check(not host.mouse and not border.mouse and not border.BackgroundFrame.mouse,'decorative border cannot consume button or clock clicks')
+    check(host._FluxBorderHUD==true,'only the explicit side HUD host opts into cross-layer minimap/window junctions')
     check(host.allPoints==gate,'border follows the exact grid rectangle without extra layout spacing')
     for _,b in ipairs(t:visible()) do
         check(above(b.Widget,t.clock) and above(b.Widget,t.cluster) and above(b.Widget,t.info),'native-template buttons render and receive hits above minimap clock and cluster')

@@ -1,5 +1,14 @@
 # Extra button system
 
+14 November `EBS-PROFESSION-RANKS-20261114` — EBSP-01–05: automatically resolve every
+assigned profession opener to the currently learned rank after training and on
+reload, including primary, secondary and gathering skills. Apply to shared extra
+hosts/badges, utility modifier chords and flyout execution. Preserve saved
+assignments/favorites and explicitly selected non-profession ranks. Use localized
+spellbook metadata, coalesced skill/learn events and existing combat deferral.
+Desktop validation passes; native training acceptance is pending.
+See [requirements and evidence](../../../docs/validation/extra-profession-ranks-2026-11-14.json).
+
 ## Purpose
 
 Surround the main action bar with **utility HUD**: combat consumables, out-of-combat travel/food helpers, trinkets, flyouts, and player-built button categories—ButtonForge-style secure buttons that still feel native to the Flux console.

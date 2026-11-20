@@ -20,13 +20,14 @@ for _,client in ipairs({'live','forever','classic','classic_era','classic_annive
  UF.RecordFrameDimensions=function(f,w,h)f.publicWidth,f.publicHeight=w,h end
  UF.GetFramePublicDimensions=function(f)return f.publicWidth or f.width,f.publicHeight or f.height end
  UF.DeferProtected=function(key,fn)queue[key]=fn end
- E.ns={UnitFrames=UF,FocusFrame=focus};E.UF=UF
+ E.ns={UnitFrames=UF,FocusFrame=focus,API={}};E.UF=UF
  E.FluxOptions={GetRaidFrameDB=function()return {partyTargetWidth=width}end}
  E.InCombatLockdown=function()return combat end
  E.FluxUILayoutSqueeze={GetEffectiveEmulatedDependentXFactorForUnitFrames=function()return .75 end}
  local metrics=assert(load(section(source,'local function PublicNumber','local function AnchorFocusTarget')..'\nreturn MatchFocusBarMetrics','@actual-focus-metrics','t',E))()
  E.FluxUnitFrames_MatchFocusTargetToFocus=function()metrics(frame)end
- assert(load(section(shared,'local function ApplyEmulatedHorizontalSqueezeToFrame','function UF.UpdateAllEmulatedHorizontalSqueeze'),
+ assert(load('local API=ns.API\n'..section(shared,'local function ValueIsSecret(value)','-- The addon owns these dimensions')
+  ..section(shared,'local function ApplyEmulatedHorizontalSqueezeToFrame','function UF.UpdateAllEmulatedHorizontalSqueeze'),
   '@actual-squeeze','t',E))()
  metrics(frame)
  check(frame.width==30 and frame.height==121,client..' compact strip owns its narrow configured width before focus exists')

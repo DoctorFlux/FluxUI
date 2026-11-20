@@ -1,0 +1,195 @@
+{
+  "changeId": "PARTY-STATUS-OWNER-20261120",
+  "capturedAtUTC": "2026-11-20T08:15:15.297180+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "UnitFrames/FluxUnitFrames_Shared.lua": {
+      "beforeRaw": "6aadd9e59276e96e18daebe9ed5f892797711e37ad0c1f075edfba09672ebccd",
+      "afterRaw": "af962698d17f8126fda1f85f8759950f0dd81d9edeb8a3e85e0f4637e854834a",
+      "afterNormalized": "920f8b0fb8739a436489717823d871336128958bf464eb6fb92f61dd3ebecdd6"
+    },
+    "UnitFrames/FluxUnitFrames_Party.lua": {
+      "beforeRaw": "c305ccc5bdbff0a4f86668d3ffba493f6b525440df71aa1952bd37017da29908",
+      "afterRaw": "35e44755c1679474640f01a3047e6862f38b34c29161ea39fb0c2d82b50556b8",
+      "afterNormalized": "35e44755c1679474640f01a3047e6862f38b34c29161ea39fb0c2d82b50556b8"
+    },
+    "tests/unit_indicator_layout.lua": {
+      "beforeRaw": "0441d45ed1aa5cc799ed6b089f499a987809014ca43c8443cdda6a206e892e0d",
+      "afterRaw": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "afterNormalized": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131"
+    },
+    "tests/unit_visual_geometry_work.lua": {
+      "beforeRaw": "024acd749d6e5a0a6e19e3fa2ad5abb6eae3ea2444dbfda06fbd87d75a6b31d5",
+      "afterRaw": "c842ebe5cbb9eeba164dd0884a3073995f192096a6691caa1ffc322d221d983a",
+      "afterNormalized": "c842ebe5cbb9eeba164dd0884a3073995f192096a6691caa1ffc322d221d983a"
+    }
+  },
+  "evidence": {
+    "partyRosterCounts": {
+      "leaderQueries": [
+        360,
+        180
+      ],
+      "rolePoints": [
+        290,
+        23
+      ],
+      "levelPoints": [
+        360,
+        0
+      ],
+      "sharedNameMeasurements": [
+        270,
+        0
+      ],
+      "masterLootUnitExistsQueries": [
+        1440,
+        180
+      ]
+    },
+    "partyNameFits60": {
+      "outerWidth": [
+        120,
+        0
+      ],
+      "levelWidth": [
+        120,
+        0
+      ]
+    },
+    "rawWork": "ROLE_STRIP_STABLE show=0 hide=0 size=0 clear=0 point=0 geometry=player:leaderIcon:14:14:LEFT:TOPLEFT:35:-10.0|player:mainTankIcon:14:14:LEFT:TOPLEFT:35:-25.0|player:mainAssistIcon:14:14:LEFT:TOPLEFT:50:-10.0|player:masterLooterIcon:14:14:LEFT:TOPLEFT:50:-25.0|target:leaderIcon:14:14:RIGHT:TOPRIGHT:-35:-10.0|target:mainTankIcon:14:14:RIGHT:TOPRIGHT:-35:-25.0|target:mainAssistIcon:14:14:RIGHT:TOPRIGHT:-50:-10.0|target:masterLooterIcon:14:14:RIGHT:TOPRIGHT:-50:-25.0|focus:leaderIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-7.25|focus:mainTankIcon:8.5:8.5:LEFT:TOPLEFT:35.0:-16.75|focus:mainAssistIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-7.25|focus:masterLooterIcon:8.5:8.5:LEFT:TOPLEFT:44.5:-16.75\nPARTY_STATUS count=60 leader=360/180 rolePoints=290/23 levelPoints=360/0 nameMeasure=270/0 lootSlots=1440/180\nPASS 439 unit indicator state/art/layout checks (desktop only)\n",
+    "clockSamples": [
+      {
+        "trial": 1,
+        "elapsedMs": [
+          33.0,
+          19.0
+        ],
+        "allocatedKiB": [
+          2155.844,
+          1168.906
+        ]
+      },
+      {
+        "trial": 2,
+        "elapsedMs": [
+          38.0,
+          18.0
+        ],
+        "allocatedKiB": [
+          2155.781,
+          1168.906
+        ]
+      },
+      {
+        "trial": 3,
+        "elapsedMs": [
+          40.0,
+          19.0
+        ],
+        "allocatedKiB": [
+          2155.781,
+          1168.906
+        ]
+      },
+      {
+        "trial": 4,
+        "elapsedMs": [
+          36.0,
+          17.0
+        ],
+        "allocatedKiB": [
+          2155.781,
+          1168.906
+        ]
+      },
+      {
+        "trial": 5,
+        "elapsedMs": [
+          39.0,
+          21.0
+        ],
+        "allocatedKiB": [
+          2155.781,
+          1168.906
+        ]
+      }
+    ],
+    "timingMediansMs": [
+      38.0,
+      19.0
+    ],
+    "allocationMediansKiB": [
+      2155.781,
+      1168.906
+    ],
+    "timingScope": "Five alternating pairs of 480 modeled normal-party paints, varying visible count and leader. Paint, indicator placement and label geometry execute actual source slices. Native UI methods and unrelated paint work are modeled.",
+    "replayHarnessSHA256": "5f717d1515746b8d38b8b2b24b11ebd412ba673adf680758713ee829295d0c3a"
+  },
+  "parity": "The normal party roster paint keeps its portrait indicator anchors through the shared update. Sixty paired roster batches reduce role position writes from 290 to 23 and level position writes from 360 to zero. Final visibility, positions and level label paint match. The master-loot check uses only the assigned party slot. Sixty party name fits with a public host width and a single level label remove 120 unused outer-width reads and 120 level text measurements.",
+  "rules": "Apply this layout ownership in a party paint that finishes with Party.UpdateIndicators. The shared refresh still updates live role visibility and level art. Standalone frames and missing owners keep the shared placement. Invalid or unreadable party name widths retain the shared text budget. Multiple NPC label variants still run the existing measured fit.",
+  "checkpoint": {
+    "settings": {
+      "_forever_": 3,
+      "_classic_era_": 4,
+      "_retail_": 2,
+      "_anniversary_": 10,
+      "_classic_": 2
+    },
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "files": {
+      "docs/FEATURE_PARITY.csv": "3BEE20F1614E96179FFFE5C555143BD6FC7E47CE5C73FC4819DA0AC763D5BC0A",
+      "docs/STATUS.md": "7DAA03ABB9EE25A2A6D45F1A489E9FEC62913E6092CCF77D7D2B850B07D3CB7F",
+      "docs/PERFORMANCE_RESULTS.csv": "821742C28CB2F20E24A919CBC049AD1AC8807AB472EDD3D635F47AAF3CD52F00",
+      "docs/DECISIONS.md": "81A6724C967F13D67AAAF6D9295145D30F98A0F306F1FF963A09D7E171293FA3",
+      "docs/CLIENT_MATRIX.csv": "858E21C3413AA75FD80CA57D81A0D1AFAE4DBD231211688EC379E6E4F262DDCF",
+      "UnitFrames/FluxUnitFrames_Shared.lua": "6AADD9E59276E96E18DAEBE9ED5F892797711E37AD0C1F075EDFBA09672EBCCD",
+      "docs/GROUP_ROSTER_PERFORMANCE.md": "EF2D281D1F03C6D9B1D58397DE3925712006CF8768642EE487748B5FF8E05356",
+      "NEXT_SESSION.md": "C59C6B28231C017E0313F258573EA03D13FE4A2E0E36C7E11EB11D1FB80369F4",
+      "docs/14-unit-frames.md": "0119893B225C71EE3E6433F4B2E265EDBD2F6C1A8EC19C9FA69CC6316EFE7FFF",
+      "tests/unit_indicator_layout.lua": "0441D45ED1AA5CC799ED6B089F499A987809014CA43C8443CDDA6A206E892E0D",
+      "docs/WORK_LOG.md": "38E9F911D50FF5800C97BF6829F43DDB9A1D7AE6884EF7514EF3EE6FD043FCF5",
+      "UnitFrames/FluxUnitFrames_Party.lua": "C305CCC5BDBFF0A4F86668D3FFBA493F6B525440DF71AA1952BD37017DA29908",
+      "tests/unit_visual_geometry_work.lua": "024ACD749D6E5A0A6E19E3FA2AD5ABB6EAE3EA2444DBFDA06FBD87D75A6B31D5",
+      "docs/CLIENT_VALIDATION.md": "E17475E2CC189C0531646C145E5F5BC59D658BE800685EBC8CBF784DEA7D932C"
+    },
+    "created": "2026-11-20T08:41:08.5432166+01:00",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece"
+  },
+  "verification": {
+    "focusedPassed": 25,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131",
+      "tests/unit_visual_geometry_work.lua": "c842ebe5cbb9eeba164dd0884a3073995f192096a6691caa1ffc322d221d983a",
+      "tests/unit_name_fit_lifecycle.lua": "acb2523df489b3b5ac8c30be407640fdf8ca16d27f034211e5cbd2c4608bd3f4",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/unit_outer_party_geometry.lua": "c59c7d7a7cf4306ae4c3f76a465b75d849d4568843ede5ea58eee5e82fa68933",
+      "tests/unit_group_chrome_batch.lua": "aa88cabe4f1eda192493e98744df7618f24264358a3cec577efb3ed6143db476",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_outer_lifecycle.lua": "987b5e6422771f0fdf571bedf8630f092e44d47f74b685a33bf889c9d099e438",
+      "tests/party_cast_border_layout.lua": "826e0b40d992b683b939d29fab3c547f1be270dfba8bc474322190d3fc94f5ba",
+      "tests/unit_vertical_target_health.lua": "47c89e3bfa37615dbb89f4610c764406bdbc817a449e6cabbafad6b254deec0c",
+      "tests/unit_identity_feedback.lua": "9c5663dfbcf0339b5b8d045517905a388ac7b2e8671b8e83e7e86bbbbc0e93d8",
+      "tests/unit_portrait_callback_work.lua": "2a7a6574b261394bc52f7017b97a636cd38de24ef55269f53c3f00489e9ac72d",
+      "tests/border_prepared_icons.lua": "083f89897880cb0484d30f131cd0e102b31a596a9fb9961e677d04edd0bb84c4",
+      "tests/border_party_isolation.lua": "1dfc6bf75f3e101dbdd68a1b33689595e6371cc5d28b4a3ebdd27421f424c71a",
+      "tests/roster_player_specialization.lua": "f5fac03b455e7875322bc94f4df8ae4fc1ce51eed489020a6b1199688c44a698",
+      "tests/raid_roster_layout_work.lua": "1a17c3f9b0427cbbd2deb9376ad895e6a5050cc5d8ccae6a7f2671697264f423",
+      "tests/unit_portrait_final_paint.lua": "c592b274073e651976d246ca201a83523e219ad4cfe24056fbc37d55553076eb",
+      "tests/border_unit_paint_idempotence.lua": "31b2816b35035c6a6c115b2a3f6d3fe4b8751fe3a2d41552f244a15f8bae982a",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/unit_class_icon_secrets.lua": "ea23ec0396b56513c9d2811507854da9325ecf2d1e0b4c26c5c883cc7e66a09e",
+      "tests/friendly_debuff_tint.lua": "f2b2994d21585a049cda7c9a8dfda0c218183bcffb4751b142728a8b04aa50d0",
+      "tests/focus_target_colors.lua": "86522cc4e57c9ea3a1f61a1317020693bbb81e4cec11b7e969053086b8b76f09",
+      "tests/border_retained_units.lua": "4ee5cb409ce0af84a5f5f62e2d5a7995966f46155914a9e1a65892f2fa788dd1",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-status-owner-before-20261120T084108262\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-status-owner-before-20261120T084108262\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-status-owner-before-20261120T084108262\\syntax.json"
+  },
+  "nativeAcceptance": "Live party and raid membership frame times, combat behavior and exact indicator rendering remain unverified. Held-action crossings, rapid drops, embedded minimap toggles and combat-exit timing remain open for the wider goal."
+}

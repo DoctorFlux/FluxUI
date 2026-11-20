@@ -42,17 +42,19 @@ local function newSlot(bag, slot, count, itemID)
     }
 end
 
+local function slotCountLess(a, b)
+    local ca, cb = tonumber(a.count) or 0, tonumber(b.count) or 0
+    if ca ~= cb then
+        return ca < cb
+    end
+    if (a.itemID or 0) ~= (b.itemID or 0) then
+        return (a.itemID or 0) < (b.itemID or 0)
+    end
+    return (a.slot or 0) < (b.slot or 0)
+end
+
 local function sortSlotsAsc(slots)
-    table.sort(slots, function(a, b)
-        local ca, cb = tonumber(a.count) or 0, tonumber(b.count) or 0
-        if ca ~= cb then
-            return ca < cb
-        end
-        if (a.itemID or 0) ~= (b.itemID or 0) then
-            return (a.itemID or 0) < (b.itemID or 0)
-        end
-        return (a.slot or 0) < (b.slot or 0)
-    end)
+    table.sort(slots, slotCountLess)
 end
 
 --- Build a snapshot keyed by itemID string.

@@ -43,6 +43,22 @@ function Compat.RequestBaganatorRefresh(includeLayout)
     api.RequestItemButtonsRefresh(reasons)
 end
 
+function Compat.RequestBaganatorCategoryDataRefresh()
+    local baganator = _G.Baganator
+    local api = baganator and baganator.API
+    local constants = baganator and baganator.Constants
+    local reasons = constants and constants.RefreshReason
+    if not api or type(api.RequestItemButtonsRefresh) ~= "function" or not reasons
+        or type(reasons.ItemWidgets) ~= "number" or type(reasons.Searches) ~= "number" then
+        return false
+    end
+
+    -- Rebuilding category searches also lays out the results. A separate
+    -- layout request queues another redraw of the same category data.
+    api.RequestItemButtonsRefresh({ reasons.ItemWidgets, reasons.Searches })
+    return true
+end
+
 local refreshTimer
 
 local function ScheduleRefresh()

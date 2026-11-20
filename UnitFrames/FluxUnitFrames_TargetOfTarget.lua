@@ -49,8 +49,9 @@ local function InitializeTargetOfTargetFrame()
 
     local frame = UF.CreateBaseFrame("targettarget", UIParent, frameWidth, frameHeight)
     local originalFrameLevel = UF.GetFramePublicLevel(frame)
-    frame.barAreaLeft = -2
-    frame.barAreaRight = -6
+    -- Share the mini inset profile established by CreateBaseFrame.
+    frame.barAreaLeft = 3
+    frame.barAreaRight = -3
 
     -- Configure outer border alignment ("BOTTOM" aligns bottom with atlas border, "TOP" aligns top with atlas border)
     frame.outerBorderAlignment = "BOTTOM"
@@ -121,6 +122,7 @@ local function InitializeTargetOfTargetFrame()
             frame.SeparatorContainer:SetFrameStrata(frame:GetFrameStrata())
             frame.SeparatorContainer:SetFrameLevel(frame:GetFrameLevel() + 10)
         end
+        if UF.FitPortraitOverlay then UF.FitPortraitOverlay(frame, tf, sideBySide and "Right" or false) end
         return true
     end
 

@@ -138,7 +138,7 @@ end
 --- secure `unit` from the toggle being on last session must not paint OOR
 --- on a plain spell once the toggle is off.
 local function AllowUnit(unit, macroUnit)
-	if type(unit) ~= "string" or unit == "" or unit == "player" or unit == "cursor" then
+	if type(unit) ~= "string" or unit == "" then
 		return nil
 	end
 	if string.lower(unit) ~= "mouseover" then
@@ -159,29 +159,32 @@ end
 --- macros so a leftover hub unit cannot tint them. Plain spells pass
 --- `macroUnit = nil` and use the widget attribute, gated so leftover
 --- `unit=mouseover` is ignored while the toggle is off.
---- `player` / `cursor` are not range-checkable, so they fall through.
-function Range.ResolveUnit(widget, macroUnit)
+--- Explicit self targets stay self; ground-targeted casts have no unit range.
+--- Plain actions use the same suitability gate as their native click path.
+function Range.ResolveUnit(widget, macroUnit, actionType, actionId)
 	local mu = AllowUnit(macroUnit, macroUnit)
 	if mu then
+		if string.lower(mu) == "cursor" then return nil end
 		return mu
 	end
 	if widget and widget.GetAttribute then
 		local ok, u = pcall(widget.GetAttribute, widget, "unit")
 		if ok then
 			u = AllowUnit(u, nil)
-			if u and UnitExistsSafe(u) then
+			if u then
+				if string.lower(u) == "cursor" then return nil end
 				return u
 			end
 		end
 	end
-	-- Toggle on, plain spell/item (callers pass the widget), hub unit not
-	-- landed yet: range cursor unit during unit frame hovercast. Not during
-	-- 3D world hop storms — flipping all 57 buttons on world mouseover is the Paint hitch.
-	local peeking = Flux.Context and Flux.Context.IsUfPeek and Flux.Context.IsUfPeek()
-	if widget and MouseoverCastOn() and peeking and not Range.IsHopBurst() and UnitExistsSafe("mouseover") then
-		local MC = Flux.MouseoverCast
-		if widget._fluxUtilityNative and MC and MC.UtilityRangeUnit then return MC.UtilityRangeUnit(widget) or "target" end
-		return "mouseover"
+	local MC = Flux.MouseoverCast
+	if widget and MC then
+		if widget._fluxUtilityNative and MC.UtilityRangeUnit then
+			return MC.UtilityRangeUnit(widget) or "target"
+		end
+		if MC.RangeUnit then
+			return MC.RangeUnit(widget, actionType, actionId) or "target"
+		end
 	end
 	return "target"
 end
@@ -529,7 +532,10 @@ function Range.Start()
 		Range.Sync()
 	end
 	Ev.Register("SPELLS_CHANGED", Refresh)
-	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", Refresh)
+	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", function(event, unit)
+		if Ev.IsPlayerUnitEvent and not Ev.IsPlayerUnitEvent(unit) then return end
+		Refresh(event, unit)
+	end)
 	Ev.Register("TRAIT_CONFIG_UPDATED", Refresh)
 	Ev.Register("UPDATE_SHAPESHIFT_FORM", Refresh)
 end

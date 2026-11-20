@@ -7,6 +7,7 @@ local EBS = Flux.EBS
 
 local Style = {}
 EBS.Style = Style
+local defaultSizeRing
 
 -- Quickslot2 is authored with transparent pad; slot-sizing hides the ring.
 -- Backup used 1.65× with full texcoords on every pre-DF client (not Forever),
@@ -123,10 +124,11 @@ function Style.RefreshSqueezeChrome(button, faceW, faceH)
 		return
 	end
 	Style.StampFace(button, faceW, faceH)
-	Style.SizeRing(button)
+	local sizeRing = Style.SizeRing
+	sizeRing(button)
 	local Util = _G.FluxButtonUtil
 	if Util and Util.SyncFluxButtonLayerSizesToWidget then
-		Util:SyncFluxButtonLayerSizesToWidget(button)
+		Util:SyncFluxButtonLayerSizesToWidget(button, sizeRing == defaultSizeRing and sizeRing or nil)
 	end
 	if EBS.Paint and EBS.Paint.UpdateEmpty then
 		EBS.Paint.UpdateEmpty(button)
@@ -509,6 +511,7 @@ function Style.SizeRing(button)
 		Flash.Ensure(widget)
 	end
 end
+defaultSizeRing = Style.SizeRing
 
 local function TintQuickslotChrome(button, widget, r, g, b)
 	local tex = ResolveNormal(button)
@@ -519,6 +522,15 @@ local function TintQuickslotChrome(button, widget, r, g, b)
 	end
 	TintPlate(widget._fluxQuickslotRing, r, g, b)
 	TintPlate(widget.BackgroundTexture, r, g, b)
+end
+
+-- Paint-only refresh for usability restoration. Resolve the current native ring
+-- and its plate without repeating layout/template/checked/highlight setup.
+function Style.RefreshAccent(button, scope)
+	if not button or not button.Widget then return end
+	button.categoryScope = scope or button.categoryScope or "class"
+	local r, g, b = ThemedRGB(button.categoryScope, button._fluxScopeOnlyTint)
+	TintQuickslotChrome(button, button.Widget, r, g, b)
 end
 
 function Style.Apply(button, scope)

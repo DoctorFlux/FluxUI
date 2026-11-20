@@ -1,0 +1,109 @@
+{
+  "changeId": "STRIP-GRID-ROOT-ANCHORS-R168-20261120",
+  "capturedAtUTC": "2026-11-20T02:03:59.617815+00:00",
+  "sources": {
+    "ExtraButtonSystem/CombatGrid/GridManager.lua": {
+      "beforeRaw": "b72c5438e91d8883cf2ff05c29811ba66edd4bd9f231f794c5aa21f0947795b9",
+      "afterRaw": "cb19f22a1a44faa63d1bca624fa25148a9bad1d790a7c391dd392fbf6cca5a73",
+      "afterNormalized": "cb19f22a1a44faa63d1bca624fa25148a9bad1d790a7c391dd392fbf6cca5a73"
+    },
+    "ExtraButtonSystem/NonCombatGrid/GridInit.lua": {
+      "beforeRaw": "f6ed9d293f4aad3c9bf9d8767c6e708679101bf73b1e1529a7cb00f931186af4",
+      "afterRaw": "b6df5be7dddaa11811eb67b2075e219d2dc2e2e98855207528056ae47e20f44a",
+      "afterNormalized": "b6df5be7dddaa11811eb67b2075e219d2dc2e2e98855207528056ae47e20f44a"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "e5b1959ecda909ec6b086ffcf2c3f05cdb4b8731dd40083d62fe736ce5aa7ba5",
+      "afterRaw": "97ff04527a9bbe7640d653092290c7e84dd856da2965ff141e70214dfb309bcf",
+      "afterNormalized": "97ff04527a9bbe7640d653092290c7e84dd856da2965ff141e70214dfb309bcf"
+    },
+    "tests/strip_grid_packing.lua": {
+      "beforeRaw": "0d8ec10b59b45cc1cf6713edff1d6c277ea5a68463d15aec98a9ff4a9de5f11a",
+      "afterRaw": "b76554541e0d212512df0bf4e361dd6298781d2ddced12ecea8a30a878bb46f4",
+      "afterNormalized": "b76554541e0d212512df0bf4e361dd6298781d2ddced12ecea8a30a878bb46f4"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-root-anchors-before-20261120T025745881\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": [
+      {
+        "client": "_retail_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_forever_",
+        "directory": true,
+        "settingsFiles": 3
+      },
+      {
+        "client": "_classic_",
+        "directory": true,
+        "settingsFiles": 2
+      },
+      {
+        "client": "_classic_era_",
+        "directory": true,
+        "settingsFiles": 4
+      },
+      {
+        "client": "_anniversary_",
+        "directory": true,
+        "settingsFiles": 10
+      }
+    ]
+  },
+  "work": {
+    "scope": "Ten width-changing strip crossings after initial layout. Real grid packers, root managers, dependent notification and grid-envelope dispatch run with modeled widget getters and setters.",
+    "beforeAfterPerTen": {
+      "gridRootAnchorWrites": [
+        50,
+        0
+      ],
+      "bottomFloorReads": [
+        10,
+        0
+      ],
+      "envelopeUpdates": [
+        10,
+        10
+      ]
+    },
+    "models": [
+      "Modern",
+      "Classic"
+    ],
+    "rawSamples": [
+      [
+        "STRIP_ROOT_ANCHORS|false|50|0|10|0",
+        "STRIP_ROOT_ANCHORS|true|50|0|10|0",
+        "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown."
+      ],
+      [
+        "STRIP_ROOT_ANCHORS|false|50|0|10|0",
+        "STRIP_ROOT_ANCHORS|true|50|0|10|0",
+        "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown."
+      ],
+      [
+        "STRIP_ROOT_ANCHORS|false|50|0|10|0",
+        "STRIP_ROOT_ANCHORS|true|50|0|10|0",
+        "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown."
+      ]
+    ]
+  },
+  "parity": "Final anchors, relative owners and offsets match the archive. Pending grid repacks and fresh Info placement still settle before the envelope. Mismatched, added, private, denied or missing points use the existing anchor writer. Startup, same-position owner replacement and gamepad fallbacks have direct checks. Lockdown retains defer flags.",
+  "verification": {
+    "focusedPassed": 27,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-root-anchors-before-20261120T025745881\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-root-anchors-before-20261120T025745881\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-root-anchors-before-20261120T025745881\\upvalues.json",
+    "otherOwnerSyntaxOnly": [
+      "Core/ButtonFX/Overlay.lua"
+    ]
+  },
+  "nativeAcceptance": "Live held-action crossing timing, attached seams, combat input and taint remain pending."
+}

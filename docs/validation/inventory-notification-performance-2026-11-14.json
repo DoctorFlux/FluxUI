@@ -1,0 +1,70 @@
+{
+  "capturedUtc": "2026-11-14T12:17:10.040103+00:00",
+  "status": "APPLIED, INDEPENDENTLY REVIEWED, FOCUSED PASS, FROZEN",
+  "headObserved": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": "fanout-pass/checkpoint-20261114T120031Z",
+  "expectedOwners": {
+    "Inventory/Init.lua": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+    "tests/notification_context_work.lua": "b1daa747f05fef9b00aea1f6a9c9473030a186a7c03be99a6d41e52f082a696d"
+  },
+  "beforeRuntimeSHA256": "c6223eb05320ad38a40adceafc2200b57f210f35a9eee655b2ae42d35406366e",
+  "implementation": "Queue merging skips the six metadata sets it immediately reconstructs, and tier promotion mutates the already owned queued context instead of making a discarded extra copy.",
+  "preserved": "Per-listener callback counts/sequence and context contents/timestamps within each pair, owned union sets, unknown extension copying, nil-versus-empty metadata, force/recovery, reentry/errors, cancellation, 50/120/180ms quiet policy, 600ms max wait, two callbacks/frame and 1.5ms budget.",
+  "proof": {
+    "alternatingPairs": 3,
+    "actualCodeReplayChecksPerPair": 1001,
+    "focusedContextChecks": 42,
+    "compiledHarmfulControlsRejected": 8,
+    "installedExistingPlusNewScripts": 7,
+    "allLuaStableDuringInstalledFocus": 1069,
+    "independentPeer": "/root/commerce_audit",
+    "peerReviewedExactSHA256": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b"
+  },
+  "controlledTwentyLightPulses": {
+    "listeners": 8,
+    "ids": 80,
+    "keySetCopiesBefore": 1888,
+    "keySetCopiesAfter": 640,
+    "keyVisitsBefore": 76464,
+    "keyVisitsAfter": 25920,
+    "desktopAllocatedKiBBefore": 2128.867188,
+    "desktopAllocatedKiBAfter": 759.242188
+  },
+  "actualProducerCase": {
+    "clientFixture": "Forever",
+    "keySetCopiesBefore": 2845,
+    "keySetCopiesAfter": 1422,
+    "keyVisitsBefore": 3618,
+    "keyVisitsAfter": 2773,
+    "selectedNativeReadsEach": 419
+  },
+  "evidenceHashes": {
+    "baseline.json": "be44d27ab54ae86ba23949af0adef5aecf93ba5174c37ca9e744ae1c175739ab",
+    "comparison.json": "292a2875d974953f4e8aaaa642d16fab885535ca85102694472b5b3f0ce3bfde",
+    "installed.json": "e4e7800d499b22af20a2bc597db8422f24bbc05bbf35db555551b56978228942",
+    "coverage.json": "b83b253865bfeb753fe9099e9c189a64af5073e1a7cbb7e6979bc92b7dbf782e",
+    "implementation.patch": "6562fa3b72d8d9ed758d893787c69df3c0693d700e9d6fcbfd99375178ccd739",
+    "fanout_replay.lua": "7e57d457b1a3040d4b85addd777e8be4b902708a868c6cd8ce35e2ae4003a637",
+    "notification_context_work.lua": "b1daa747f05fef9b00aea1f6a9c9473030a186a7c03be99a6d41e52f082a696d"
+  },
+  "scopeLimits": [
+    "Synthetic native facts/frame clock and seven synthetic scan observers; actual Tiers registration/listener executes against recording endpoints.",
+    "Desktop Lua5.4 allocation/time and real-code work counters are not native FPS/CPU, WoW GC, appearance, controller or secure-VM acceptance.",
+    "Original v1 baseline incomplete native counter is retained; corrected v2 pair counter is explicit in comparison.",
+    "Index/Containers/LegacyBridge remain unchanged; their public fresh-results/in-place-mutation contracts rule out a speculative generation-only result cache.",
+    "External Syndicator41 files unchanged and read-only. No guild/void callback body, bank authority, mail latency policy, settings, defaults, commands or transaction change.",
+    "No manual installed-copy synchronization or publication. Root coordinates current combined suite/copy guard/continuity."
+  ],
+  "currentIntegration": {
+    "exit": 0,
+    "sourceStableThroughout": true,
+    "scriptsPass": 383,
+    "scriptsFail": 0,
+    "syntaxFiles": 1071,
+    "syntaxFailures": 0,
+    "scope": "Current desktop source suite only; no native FPS, secure-VM, pixels or input certification.",
+    "cancellable": true
+  },
+  "currentRuntimeHash": "69ee82e1434cea7e11239b9ec51d986ef428a06876e7ce78f25ca2dcf705f89b",
+  "currentNativeScope": "Client reloaded before this resumption. Disk copies and desktop tests do not certify native loaded bytecode, FPS, taint or inputs."
+}

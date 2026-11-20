@@ -1,0 +1,1320 @@
+{
+  "changeId": "ROSTER-RETURN-PLANS-R76-20261119",
+  "capturedAtUTC": "2026-11-19T06:05:28.026928+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "The user reports hitches joining or leaving party and raid. Review FluxUI callback costs and reduce confirmed repeated work. The broader goal remains active.",
+  "historicalAttribution": {
+    "source": "docs/validation/roster-region-routing-2026-11-19.json",
+    "client": "Forever",
+    "version": "party-paint-r68",
+    "groupBorderCallbacksMs": [
+      161.40740001202,
+      123.07679998875
+    ],
+    "planMs": 105.40190005302,
+    "fallbackMeshMs": 52.205099999905,
+    "scope": "Previously saved client capture. The exact R76 client has no matched group transition receipt yet."
+  },
+  "changes": {
+    "compiledPlans": "A successfully committed contact can retain one displaced numeric branch and fallback plan within existing operation, field and value ceilings. Additional caps are 64 alternate branch keys, 64 alternate fallback keys and 1,024 stored fallback tokens. Only keys with current plans are eligible. Every hit validates the current geometry, ownership, and Source; it rebuilds paint wrappers using current values. Forget suppresses republishing the displaced history. ReleaseAll and failed commits clear it.",
+    "hiddenRaidPaint": "A native attribute rebind on a publicly hidden raid frame prepares its event routes. Existing OnShow paints the current unit. The public bind and unknown visibility keep eager paint."
+  },
+  "identities": {
+    "beforeRaw": {
+      "Core/BorderJunctions.lua": "51cc4f7ec156670c6bfcc1b72d8aa133f72e4726acc76cdbf9b1d480c6654d87",
+      "RaidFrame/FluxRaidUnit.lua": "6adb76a79824863d20ad5fcb8fe00afcdf09a4a3725d34d7a5eeb3d386600cff"
+    },
+    "afterRaw": {
+      "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+      "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+    },
+    "fixturesRaw": {
+      "tests/border_fallback_plan_cache.lua": "49feba1de01accf3243d077519d212f019c98a4c59bb0409b09f8f37c3e05a4b",
+      "tests/border_branch_compile_cache.lua": "19f6c71b4570b25091c2250cdd9b5168a48c816600438776ff68f2454200ffc5",
+      "tests/raid_healer_runtime.lua": "2e908dab55f8241fcad2ff3b12895f9795383d6242f8d3fb2613efc861a51cac"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\source.zip",
+    "archiveSHA256": "db3796c4427e672bb144bcf1406b429d35e68205aa0a168b696535c5aa4776ce",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1
+    }
+  },
+  "replays": {
+    "regionalReturn": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\return-layout-canonical.csv",
+      "scene": "The production regional renderer with canonical type 1 and type 2 sources. Move the same 16 vertical contacts by three units and back. Three alternating-order paired trials per style, ten switches per trial. All draws for both poses match byte-for-byte in the modeled field fingerprints.",
+      "firstSwitch": {
+        "before": {
+          "median": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 4972.0,
+            "elapsedMilliseconds": 177.5
+          },
+          "elapsedRangeMilliseconds": [
+            55.0,
+            220.0
+          ]
+        },
+        "after": {
+          "median": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 4972.0,
+            "elapsedMilliseconds": 180.5
+          },
+          "elapsedRangeMilliseconds": [
+            59.0,
+            306.0
+          ]
+        }
+      },
+      "repeatedSwitches": {
+        "before": {
+          "median": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 4978.5,
+            "elapsedMilliseconds": 133.0
+          },
+          "elapsedRangeMilliseconds": [
+            50.0,
+            258.0
+          ]
+        },
+        "after": {
+          "median": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 4978.5,
+            "elapsedMilliseconds": 97.5
+          },
+          "elapsedRangeMilliseconds": [
+            33.0,
+            248.0
+          ]
+        }
+      },
+      "samples": [
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 55.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 59.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 85.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 41.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 50.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 41.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 57.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 40.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 57.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 37.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 57.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 40.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 66.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 39.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 72.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 35.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 61.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 33.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 1,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 103.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 84.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 220.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 185.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 115.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 67.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 109.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 71.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 103.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 82.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 97.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 74.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 181.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 69.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 101.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 77.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 96.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 79.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 100.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 75.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 2,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 111.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 128.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 124.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 112.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 88.999999999999
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 77.999999999999
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 142.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 77.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 97.999999999999
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 90.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 104.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 74.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 102.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 74.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 144.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 69.000000000001
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 145.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 119.0
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 166.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3143.0,
+            "elapsedMilliseconds": 61.999999999999
+          }
+        },
+        {
+          "style": 1,
+          "trial": 3,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 119.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 3179.0,
+            "elapsedMilliseconds": 70.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 198.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 306.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 143.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 114.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 232.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 84.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 138.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 105.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 131.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 118.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 181.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 122.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 148.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 119.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 132.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 208.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 128.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 123.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 1,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 258.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 136.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 215.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 176.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 132.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 248.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 134.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 85.999999999999
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 163.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 106.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 130.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 151.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 167.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 114.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 158.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 134.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 192.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 132.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 195.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 152.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 2,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 222.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 157.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 1,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 157.0
+          },
+          "after": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 20.0,
+            "fallbackGeometryMisses": 928.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 212.99999999999
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 2,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 189.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 148.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 3,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 196.00000000001
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 166.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 4,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 201.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 157.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 5,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 200.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 153.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 6,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 184.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 126.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 7,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 180.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 119.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 8,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 203.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 142.99999999999
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 9,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 171.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6801.0,
+            "elapsedMilliseconds": 154.0
+          }
+        },
+        {
+          "style": 2,
+          "trial": 3,
+          "switch": 10,
+          "before": {
+            "branchMisses": 16.0,
+            "fallbackPlanMisses": 16.0,
+            "fallbackGeometryMisses": 896.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 194.0
+          },
+          "after": {
+            "branchMisses": 0.0,
+            "fallbackPlanMisses": 1.0,
+            "fallbackGeometryMisses": 56.0,
+            "renderedFields": 6778.0,
+            "elapsedMilliseconds": 152.0
+          }
+        }
+      ],
+      "note": "Elapsed time covers switch flush in the desktop fixture. First switch compiles the new geometry."
+    },
+    "raidHidden": {
+      "receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\raid-hidden-replay.txt",
+      "case": "20 pairs of hidden native binding/reveal and direct different-token reveal for five client policy fixtures. State and event delivery checked after each reveal.",
+      "columns": "fixture|client|baseline event writers:aura updates|candidate event writers:aura updates",
+      "rows": [
+        "RAID_HIDDEN_PAINT|live|960:60|960:40",
+        "RAID_HIDDEN_PAINT|forever|960:60|960:40",
+        "RAID_HIDDEN_PAINT|classic|960:60|960:40",
+        "RAID_HIDDEN_PAINT|classic_era|960:60|960:40",
+        "RAID_HIDDEN_PAINT|classic_anniversary|960:60|960:40"
+      ]
+    }
+  },
+  "installedSourceReadOnly": {
+    "retail": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+        "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+      }
+    },
+    "forever": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+        "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+      }
+    },
+    "classic": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+        "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+      }
+    },
+    "classic-era": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+        "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+      }
+    },
+    "classic-anniversary": {
+      "matchesCandidate": true,
+      "raw": {
+        "Core/BorderJunctions.lua": "ccc0fe96ac63f512d9101301aea6128eb71053bce2e15394af4a6cc4b3d18983",
+        "RaidFrame/FluxRaidUnit.lua": "1aa2588a7fb6da595d4a43693884618950efc24eaf49d1af232be9c2475c9d42"
+      }
+    }
+  },
+  "verification": {
+    "focused": 186,
+    "syntax": 1226,
+    "upvaluesLua51Maximum": 50,
+    "prototypes": 300,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\syntax.json",
+    "lua51Receipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\group-return-r76-before-20261119T055321Z\\upvalues.json",
+    "focusedFollowup": "tests/border_branch_compile_cache.lua",
+    "selected": {
+      "tests/border_fallback_plan_cache.lua": "Border fallback plan cache: 6044 checks PASS; current native geometry/source validation; immutable public plan metadata; current paint/priority/opaque alpha; release/rollback/budgets; native latency pending",
+      "tests/border_branch_compile_cache.lua": "Border branch compile cache: 698 checks PASS; exact prepared geometry/source inputs; fresh paint/material; remote ownership/private/masks; UV/gutter/caps/aura/subpixels; committed-only bounded generations; actual connected mesh and rollback parity. Native FPS/pixels/taint pending",
+      "tests/raid_healer_runtime.lua": "Raid healer runtime: 489 checks; complete Compat/Unit modules; three rejected negative controls"
+    },
+    "otherOwnerChangedIdentitiesSyntaxOnly": [
+      "Inventory/FluxConsumableClassify.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending. R76 live join/leave timing, combat taint and pixels remain unverified."
+}

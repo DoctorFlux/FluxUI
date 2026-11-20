@@ -1,0 +1,334 @@
+{
+  "changeId": "STRIP-GRID-RING-20261120",
+  "roadmapTrack": "HUD-1",
+  "capturedAtUTC": "2026-11-20T08:25:47.551296+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "ExtraButtonSystem/Engine/Style.lua": {
+      "beforeRaw": "12bbd86dfdffcd6c112bc6a6a114bd5c79e08edf1ea90465e6ac08311e0a71ab",
+      "afterRaw": "918e54b41713aff235d264bd65c3c55ebddbb58919b23a1491ae5237852b3dd1",
+      "afterNormalized": "918e54b41713aff235d264bd65c3c55ebddbb58919b23a1491ae5237852b3dd1"
+    },
+    "ExtraButtonSystem/Engine/Util.lua": {
+      "beforeRaw": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+      "afterRaw": "f9532fbd2cb96f4fb1f58ec1efd53bbc3b91915bd83da1ee92fcc43283f29eac",
+      "afterNormalized": "f9532fbd2cb96f4fb1f58ec1efd53bbc3b91915bd83da1ee92fcc43283f29eac"
+    },
+    "tests/strip_grid_packing.lua": {
+      "beforeRaw": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "afterRaw": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "afterNormalized": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4"
+    }
+  },
+  "evidence": {
+    "widthChanges60": {
+      "retail": {
+        "ringFits": [
+          1920,
+          960
+        ],
+        "cosmeticWrites": [
+          102720,
+          62400
+        ]
+      },
+      "forever": {
+        "ringFits": [
+          1920,
+          960
+        ],
+        "cosmeticWrites": [
+          102720,
+          62400
+        ]
+      },
+      "classic": {
+        "ringFits": [
+          1920,
+          960
+        ],
+        "cosmeticWrites": [
+          108480,
+          66240
+        ]
+      }
+    },
+    "rawWork": "Action-strip root anchors pass relative ownership, repair, gamepad and lockdown.\nSTRIP_RING retail steps=60 fits=1920/960 cosmeticWrites=102720/62400\nSTRIP_RING forever steps=60 fits=1920/960 cosmeticWrites=102720/62400\nSTRIP_RING classic steps=60 fits=1920/960 cosmeticWrites=108480/66240\nStrip grid packing passes both client shapes, changed squeeze and occupancy, repair, binding, batch and lockdown.\n",
+    "desktopTimingSamples": {
+      "retail": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            81.0,
+            61.0
+          ],
+          "allocatedKiB": [
+            12311.375,
+            8425.688
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            86.0,
+            56.0
+          ],
+          "allocatedKiB": [
+            12310.75,
+            8425.688
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            80.0,
+            56.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            83.0,
+            54.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            83.0,
+            58.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        }
+      ],
+      "forever": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            79.0,
+            60.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            82.0,
+            65.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            80.0,
+            53.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            77.0,
+            61.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            78.0,
+            59.0
+          ],
+          "allocatedKiB": [
+            12308.438,
+            8423.438
+          ]
+        }
+      ],
+      "classic": [
+        {
+          "trial": 1,
+          "elapsedMs": [
+            83.0,
+            59.0
+          ],
+          "allocatedKiB": [
+            11318.438,
+            7928.438
+          ]
+        },
+        {
+          "trial": 2,
+          "elapsedMs": [
+            96.0,
+            71.0
+          ],
+          "allocatedKiB": [
+            11318.438,
+            7928.438
+          ]
+        },
+        {
+          "trial": 3,
+          "elapsedMs": [
+            90.0,
+            68.0
+          ],
+          "allocatedKiB": [
+            11318.438,
+            7928.438
+          ]
+        },
+        {
+          "trial": 4,
+          "elapsedMs": [
+            88.0,
+            69.0
+          ],
+          "allocatedKiB": [
+            11318.438,
+            7928.438
+          ]
+        },
+        {
+          "trial": 5,
+          "elapsedMs": [
+            92.0,
+            58.0
+          ],
+          "allocatedKiB": [
+            11318.438,
+            7928.438
+          ]
+        }
+      ]
+    },
+    "desktopTimingMediansMs": {
+      "retail": [
+        83.0,
+        56.0
+      ],
+      "forever": [
+        79.0,
+        60.0
+      ],
+      "classic": [
+        90.0,
+        68.0
+      ]
+    },
+    "temporaryAllocationMediansKiB": {
+      "retail": [
+        12308.438,
+        8423.438
+      ],
+      "forever": [
+        12308.438,
+        8423.438
+      ],
+      "classic": [
+        11318.438,
+        7928.438
+      ]
+    },
+    "timingScope": "Five alternating pairs of 120 modeled width changes per client profile. Actual grids, strip notification and style/utility run. Native widget work, panel positions and envelope publication are modeled. The border mesh is outside the timed fixture.",
+    "replayHarnessSHA256": "953823c39db49bc332a3d1900903ea7ac7c5f206ddaa6903afff951eb089dbf1"
+  },
+  "parity": "Width changes in Combat and Non-Combat Grid now size each button ring once. Sixty modeled crossings cut ring fits from 1,920 to 960. Cosmetic setter calls fall from 102,720 to 62,400 in the Retail and Forever models and from 108,480 to 66,240 in the Classic model. Grid positions, ring art, checked and pressed textures, equipped glow and cooldown layout match.",
+  "rules": "The shared squeeze path passes the sizing function already used to the existing button utility. Skip the duplicate ring call only while the built-in adjuster would call that same built-in sizing function. Keep equipment-border size, countdown and empty-state work in their original order. Direct callers and replaced sizing methods keep their prior behavior.",
+  "checkpoint": {
+    "createdAt": "2026-11-20T08:20:47.1333481Z",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "branch": "main",
+    "history": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySha256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settings": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 32
+    },
+    "files": {
+      "ExtraButtonSystem/Engine/Style.lua": "12bbd86dfdffcd6c112bc6a6a114bd5c79e08edf1ea90465e6ac08311e0a71ab",
+      "ExtraButtonSystem/Engine/Util.lua": "3cd7fa1d08137074aca1450990a195d7f5839a1272caefb86ebf05ccd7b7ef54",
+      "ExtraButtonSystem/CombatGrid/Grid.lua": "d3d5bd31775a4425b421a5ea0e03706bcc48d06d28675302612c53c1f0af050a",
+      "ExtraButtonSystem/NonCombatGrid/Grid.lua": "273635d95899a58adfece53c5f3e0739694b3479754063091e58877dad7414e1",
+      "ExtraButtonSystem/TrinketMenu/FluxTrinketMenu.lua": "b73d216239fec966facbc74d7ce1a839d4119af9df4001663b97682fcef69bd2",
+      "tests/strip_grid_packing.lua": "0607d68a93f26729108b8e92c1269638a5872454e683317c144cadd61cdc9307",
+      "docs/HUD_PERFORMANCE_ROADMAP.md": "6066c723c2391c11d6d39dbd4d3efe99198f37216ef127c3809f28b406b40487",
+      "docs/STATUS.md": "598991fb2d5e821c56c2a6ca25cd0287abecca65726f9210d7fade34a1e736ed",
+      "docs/DECISIONS.md": "193449c31337c02c40cdf61dc8d31d67fb7c7d2775c97fc356a7b80cf0a6e0b2",
+      "docs/WORK_LOG.md": "417bf3331a3068614dfb2acb611e492d6d2154eea14d220d37f780732488bb5c",
+      "NEXT_SESSION.md": "9b273e848d1b2aebdce0cba2497409fcb5ecb5d2e177a7bde71bf4d064b9590a",
+      "docs/12-extra-button-system.md": "ec4b9274b63224250215c029b20bbbbf980440479b5b9c38def296dbaa458db0",
+      "docs/BORDER_BUILDER_LOCALITY.md": "526cc2f72cfa7e88f761073e8bc32b57ba331b5112fb8c93c75c8a69c6a263b0",
+      "docs/CLIENT_VALIDATION.md": "aa23b46c58e2d65406faf9b450bb353a38ad6ddb998b991f29cfa81547abed78",
+      "docs/CLIENT_MATRIX.csv": "06fd2a6dec68f57bb7b3b224573a23edc7b17901e640abdd0ac27ee14df2e2a1",
+      "docs/FEATURE_PARITY.csv": "47da52dddf1ab84896dcab1118c476d0f8d0e5e49651e9bb30c1ff6e7e5a3304",
+      "docs/PERFORMANCE_RESULTS.csv": "68c0c312490fa9f686b118c394c1a9ba1ff4223c0594cc9687ed19fe4dec11a6",
+      "docs/reference/verification.json": "d6173b0c3034faba56b804d8d975a5ceb8429eacfa229580a7fd614f24c12850"
+    }
+  },
+  "verification": {
+    "focusedPassed": 23,
+    "syntaxPassed": 1252,
+    "focusedSources": {
+      "tests/strip_grid_packing.lua": "3891e4dc5f29513e956e80da2010628ea0ebf8ab09ab6ac9dc39aaa7ef2e45c4",
+      "tests/trinket_squeeze_geometry_work.lua": "a8c87d8ed46f8b5ecfc52246a0f40d0837415a049e7f0f5ef56ee66752283fef",
+      "tests/trinket_appearance.lua": "ebb44e5b3408cfd07d5bd5932992917b088634c9a181db504a1ca73eaab867b7",
+      "tests/trinket_regen_refresh.lua": "e411e36b1f4a4e2b6a362a86a769db0b18a8cc8962701f40aa458abce821c694",
+      "tests/strip_drag_button_chrome.lua": "6a3c08d86bc0f2191a293590f09dc82f7eb138a313d0139eb45170088eba616f",
+      "tests/strip_drag_hover_edges.lua": "5ab9af3727337d91a807a22b4ace24f1c12d2f5c701da2aa1106541ceeb044cd",
+      "tests/rapid_strip_drops.lua": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "tests/strip_panel_settle.lua": "5575daf570586ab5dfe962c987ee0992bf57c9902f8244d0521a4e87e5e8782d",
+      "tests/strip_slot_sampling.lua": "7c485d4b83bac7bd0817e72a9b53b4e55f56573e3a32e5e90aa8ef127c944ac7",
+      "tests/strip_border_commit_work.lua": "41c940eb7cd552c1c728e827007928989b171092d39d4192d5d39640c98d7d5f",
+      "tests/strip_relative_anchor_work.lua": "ab33616c69226eae0b4f99563b284dae1bff90a01b65f36b5d42b1aeb82d6f61",
+      "tests/grid_envelope_work.lua": "9ac32143f46892cb6a6b1f7c15e3b96cf0a12965e51ad791cbdd8723747c04d5",
+      "tests/pet_strip_packing.lua": "a07fa286c15ca5d3050fdb834c458d405b0fa1d2d6f6de0670aaf34cb8b42355",
+      "tests/stance_regen_geometry_work.lua": "a268732173c6c254b9d75982e3df9da01ceac71b964d95a9d7f5151641a85dd5",
+      "tests/bars_contract_regression.lua": "979e3bf7c6a69d8eef630cdb7154273be647a430a8d87aec571b16530fb6a2cf",
+      "tests/bars_refresh_regression.lua": "d1e6cde99644160ee307e4f321b9bf771f757ea8421ff05f174e226460b76afc",
+      "tests/bars_native_click_route.lua": "4d7f80eb02e3e48f795aeb1ccb68a4e97ccccdea78455216e8020476ebe82068",
+      "tests/border_nearby_panels.lua": "a05d79d0f99ca3f9de2d77450a251baf2d50ad7dc1f81c3de4b45075ec74320b",
+      "tests/border_combat_transitions.lua": "5ac38655a546f782d1c6eda1616c1f9382c56753abbc00a527078408b88a0018",
+      "tests/minimap_side_border.lua": "5986fbdaa79a9a10ef1a8592a0d93d0b2f2aec64d55b71ef057e8a1b2e402f1f",
+      "tests/raid_party_frames.lua": "7ab04f2f221b08d66a94381b46fc00a7fc78a9000939452c9d7c8906fb05cb14",
+      "tests/group_roster_performance.lua": "bc718dc97db104e0a9f5e23b52168a809d9c890bb56a325a0ff5a97db89a887a",
+      "tests/unit_indicator_layout.lua": "451115e79bdf6f4635e82236b1af28356e26463271b4c007f3b8f95dc5612131"
+    },
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-ring-before-20261120T082046738\\focused.json",
+    "compileReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-ring-before-20261120T082046738\\upvalues.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\strip-grid-ring-before-20261120T082046738\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Init.lua",
+      "tests/bank_visibility_work.lua"
+    ]
+  },
+  "nativeAcceptance": "Live held-action and rapid-drop timing, actual side seams and combat taint remain open. Party and raid membership timing, embedded minimap transitions and combat exit remain open for the wider goal."
+}

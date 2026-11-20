@@ -1,0 +1,2101 @@
+{
+  "changeId": "ROSTER-MACRO-BATCH-20261119",
+  "capturedAtUTC": "2026-11-19T08:41:36.533623+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce group-triggered work outside border building. Held-action strip and group latency remain the full thread goal.",
+  "changes": [
+    "Share the roster listener across action-strip and Extra Button System watchers when ProgramFace is available.",
+    "Sample the final combat-family macro signature once in the existing conditional eval batch. Already queued combat or all-condition work covers the roster request.",
+    "An unchanged burst takes one existing scheduler check and no macro translation, paint or rate-limit slot. The normal fallback remains available."
+  ],
+  "sources": {
+    "baselineRaw": {
+      "Bars/ProgramFace.lua": "71b902f1ec247bd6f701f1826eed0073ba9d5f8e57151aa477e6284386eb88de",
+      "Bars/Watch.lua": "9b1f97b2c105231d90a35007c9c1e395012600a4edf175aadcfe59ec35bd8fb3",
+      "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a"
+    },
+    "candidateRaw": {
+      "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+      "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+      "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+    },
+    "fixturePath": "tests/bars_refresh_regression.lua",
+    "fixtureRaw": "33c5d2a78771a0db9dd4899d2488b3243db539efe896e8d84c022d2e9deb8deb",
+    "smokeFixture": {
+      "path": "Bars/_tmp_barsmoke.lua",
+      "beforeRaw": "22494092d5edb4d455aaa85c01d4fdb5690eeee53af769cdd1f96f85c1dd9705",
+      "afterRaw": "9764cb31ef47b78a84442a858b66ef50ba08d47a9204a76e02a9ee5227cd4084"
+    }
+  },
+  "checkpoint": {
+    "archive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-macro-batch-before-20261119T083311Z\\source.zip",
+    "archiveSHA256": "0cc06ad9e4a8787b632bc4fa70be249edad10758b27b6ed13666da0494acc3a1",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "pairedWork": {
+    "samples": [
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 1,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 2,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 3,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 4,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 2,
+        "snapshots": 120,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 2,
+        "snapshots": 40,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 60,
+        "evalRequests": 3,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 0,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "before",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 20,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-first",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "extra-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "join",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "convert",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "unchanged",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 0
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "return-to-party",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      },
+      {
+        "pair": 5,
+        "stage": "after",
+        "order": "bars-only",
+        "case": "leave",
+        "callbacks": 1,
+        "snapshots": 1,
+        "evalRequests": 1,
+        "parses": 2
+      }
+    ],
+    "scope": "Five paired desktop replays and four watch configurations. Real watcher and ProgramFace source; modeled scheduler and three native parser branches.",
+    "parity": "Same strip slot and displayed branch; unchanged roster does no translation. No model calls to layout or secure mapping. Native latency/input pending.",
+    "tradeoff": "An unchanged burst now queues one lightweight conditional eval check, compared with zero before. The new check returns before paint throttle."
+  },
+  "verification": {
+    "focused": 195,
+    "syntax": 1230,
+    "compilerMaximumUpvalues": 24,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-macro-batch-before-20261119T083311Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-macro-batch-before-20261119T083311Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\roster-macro-batch-before-20261119T083311Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "raw": {
+        "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+        "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+        "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "raw": {
+        "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+        "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+        "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "raw": {
+        "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+        "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+        "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "raw": {
+        "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+        "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+        "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "raw": {
+        "Bars/ProgramFace.lua": "f025ad5a9c048034e85ea2e58130c3fa32ffffc762fa7a8a9dea621385b844ae",
+        "Bars/Watch.lua": "5844f42b1e82b86025f30d333c02d7c6275ce98b4d1b655c868f8ad9c538aad4",
+        "ExtraButtonSystem/Engine/Watch.lua": "8ed453fceb152d850cc51ae81faf5c20ccf8afef91f06fa48ca1e141ba80b1e8"
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending. Group hitches, held-action strip seams and combat taint. No gameplay or profiler changes."
+}

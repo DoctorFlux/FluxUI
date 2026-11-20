@@ -1,0 +1,406 @@
+{
+  "changeId": "BORDER-OBSERVED-SOURCES-R180-20261120",
+  "borderVersion": "observed-sources-r180",
+  "capturedAtUTC": "2026-11-20T05:25:04.826324+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "495dc363928b82adc2a7e1679e74568434c38be0a99bf963319d62ca186f96c6",
+      "afterRaw": "3eedcdbf7ad400fd709bb691546ec41be9a2f5fd81cefda7afd9cc11c7e51c7d",
+      "afterNormalized": "3eedcdbf7ad400fd709bb691546ec41be9a2f5fd81cefda7afd9cc11c7e51c7d"
+    },
+    "tests/border_observer_refresh.lua": {
+      "beforeRaw": "00295ed106eb6cb43845169df60227dd7814bec0535ce35c22f5a0ac94e05357",
+      "afterRaw": "54e9d20ec78a44def9a3991e8d202a92efbf1161070d8927055ff30d43b92a7a",
+      "afterNormalized": "54e9d20ec78a44def9a3991e8d202a92efbf1161070d8927055ff30d43b92a7a"
+    }
+  },
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observed-sources-before-20261120T062020911\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Sixty warmed alternating strip crossings or modeled roster geometry moves per border type. The getter replay counts calls made for original textures and frames. The timing replay uses alternating execution order with garbage collection paused for the measured interval.",
+    "getterCounts": {
+      "strip-1": {
+        "GetRect": [
+          3840,
+          3840
+        ],
+        "GetParent": [
+          23700,
+          21780
+        ],
+        "GetEffectiveScale": [
+          5550,
+          3630
+        ],
+        "GetDrawLayer": [
+          8190,
+          6270
+        ],
+        "GetAlpha": [
+          3810,
+          3810
+        ]
+      },
+      "roster-1": {
+        "GetRect": [
+          5280,
+          5280
+        ],
+        "GetParent": [
+          27480,
+          24840
+        ],
+        "GetEffectiveScale": [
+          8760,
+          6120
+        ],
+        "GetDrawLayer": [
+          10620,
+          7980
+        ],
+        "GetAlpha": [
+          2700,
+          2700
+        ]
+      },
+      "strip-2": {
+        "GetRect": [
+          3840,
+          3840
+        ],
+        "GetParent": [
+          23640,
+          21720
+        ],
+        "GetEffectiveScale": [
+          5550,
+          3630
+        ],
+        "GetDrawLayer": [
+          8190,
+          6270
+        ],
+        "GetAlpha": [
+          3810,
+          3810
+        ]
+      },
+      "roster-2": {
+        "GetRect": [
+          5280,
+          5280
+        ],
+        "GetParent": [
+          27660,
+          25020
+        ],
+        "GetEffectiveScale": [
+          8760,
+          6120
+        ],
+        "GetDrawLayer": [
+          10620,
+          7980
+        ],
+        "GetAlpha": [
+          2700,
+          2700
+        ]
+      }
+    },
+    "countColumns": [
+      "baseline",
+      "candidate"
+    ],
+    "elapsedAndAllocation": {
+      "strip-1": [
+        [
+          342.0,
+          317.0,
+          27777.3,
+          26523.1
+        ],
+        [
+          269.0,
+          288.0,
+          27774.5,
+          26520.4
+        ],
+        [
+          257.0,
+          291.0,
+          27775.6,
+          26521.4
+        ],
+        [
+          291.0,
+          270.0,
+          27773.6,
+          26519.4
+        ],
+        [
+          589.0,
+          677.0,
+          27777.6,
+          26523.4
+        ]
+      ],
+      "roster-1": [
+        [
+          693.0,
+          748.0,
+          39742.7,
+          38052.3
+        ],
+        [
+          860.0,
+          829.0,
+          39742.8,
+          38052.4
+        ],
+        [
+          677.0,
+          723.0,
+          39743.7,
+          38053.2
+        ],
+        [
+          722.0,
+          758.0,
+          39741.7,
+          38051.3
+        ],
+        [
+          690.0,
+          646.0,
+          39745.7,
+          38055.2
+        ]
+      ],
+      "strip-2": [
+        [
+          520.0,
+          494.0,
+          27823.2,
+          26569.4
+        ],
+        [
+          484.0,
+          493.0,
+          27823.4,
+          26569.6
+        ],
+        [
+          588.0,
+          495.0,
+          27824.5,
+          26570.7
+        ],
+        [
+          482.0,
+          483.0,
+          27822.5,
+          26568.7
+        ],
+        [
+          506.0,
+          501.0,
+          27826.5,
+          26572.7
+        ]
+      ],
+      "roster-2": [
+        [
+          901.0,
+          933.0,
+          53350.8,
+          51653.0
+        ],
+        [
+          872.0,
+          852.0,
+          53350.9,
+          51653.1
+        ],
+        [
+          911.0,
+          875.0,
+          53351.7,
+          51653.9
+        ],
+        [
+          881.0,
+          893.0,
+          53349.7,
+          51651.9
+        ],
+        [
+          893.0,
+          864.0,
+          53353.7,
+          51655.9
+        ]
+      ]
+    },
+    "clockColumns": [
+      "baseline Lua ms",
+      "candidate Lua ms",
+      "baseline temporary KiB",
+      "candidate temporary KiB"
+    ],
+    "medians": {
+      "strip-1": [
+        291.0,
+        291.0,
+        27775.6,
+        26521.4
+      ],
+      "roster-1": [
+        693.0,
+        748.0,
+        39742.8,
+        38052.4
+      ],
+      "strip-2": [
+        506.0,
+        494.0,
+        27823.4,
+        26569.6
+      ],
+      "roster-2": [
+        893.0,
+        875.0,
+        53350.9,
+        51653.1
+      ]
+    },
+    "nativeFieldCounts": {
+      "strip-1": 1277,
+      "roster-1": 1675,
+      "strip-2": 1341,
+      "roster-2": 2203
+    },
+    "nativeSetterCounts12": {
+      "strip-1": [
+        0,
+        1164,
+        0,
+        984,
+        2160,
+        1008
+      ],
+      "roster-1": [
+        804,
+        2322,
+        702,
+        618,
+        8940,
+        2028
+      ],
+      "strip-2": [
+        0,
+        1296,
+        0,
+        1008,
+        2400,
+        996
+      ],
+      "roster-2": [
+        1548,
+        3780,
+        1440,
+        552,
+        16596,
+        3060
+      ]
+    },
+    "setterColumns": [
+      "ClearAllPoints",
+      "SetPoint",
+      "SetAllPoints",
+      "SetSize",
+      "SetVertexOffset",
+      "SetTexCoord"
+    ],
+    "otherTrials": {
+      "numericSignatures": "Numeric per-source maps preserved setter counts and samples. Their higher temporary allocation and mixed timing did not justify retaining that design.",
+      "retirement": "Claim-only retirement produced the same visibility read and write counts in the warmed fixtures."
+    },
+    "artifactSHA256": {
+      "baseline.lua": "495dc363928b82adc2a7e1679e74568434c38be0a99bf963319d62ca186f96c6",
+      "numeric.lua": "da4be4afd20b6a9fbe074c78b5bf0be5c547d68b970523c9a279b5fbd27af7cd",
+      "numeric-setters.txt": "b3d3ee6f0eb88159177d0666f97ae002f263d3c9cc7b603675ca0a17c2b8cd83",
+      "numeric-clock.txt": "2f22f9d954279d692987e7e8c4200a0a0f6ebd2f51509fbe1668074ccaf7e463",
+      "retire-active.lua": "42fe73f04f87cb629491b2170734bd067fcebb067fc1d4b5ce0a021eb8e769ba",
+      "retire-counts.txt": "da6a122ec45a7144fd63aa424e4b7a3c369e15a5c3b0bef0366d49bd01f706f4",
+      "observer-snapshot-final.lua": "3eedcdbf7ad400fd709bb691546ec41be9a2f5fd81cefda7afd9cc11c7e51c7d",
+      "final-counts.txt": "23a0be6f69a5e2642afefe5465eb9b451db6838c61e1acd69fa4ac1c1305ea86",
+      "final-setters.txt": "e11c289d49f1157b2b64f1fe01bdfa2fa2d7f0a31ecf23226cab678c093151b6",
+      "final-clock.txt": "25fec8456629c0120e45c8dfb3ce66b8020813e4bd20e8003e9e87e03ca577a3",
+      "snapshot-counts.lua": "0efd8b0764835c428d87c9e126f59f02e1cae63e45d2657fad2871301ebacb1d",
+      "long-clock.lua": "669f2cbe507d2504cd284b95fdd71ad4f78fa3090d2ae2ebed1be0576d42df54",
+      "measure.lua": "30b2eb7a4bd4b108317261c9d25e2b0c4687414591f39d864fd4414f70051043",
+      "locality-fixture.lua": "d1b68db879c3e02732cdb35d09b8cc6080ec4a274bf3ce901d9daa5c99d48496",
+      "legacy-result.txt": "839053334992c7ef6b911b066eeef9175fffed6a0f5c490fc2ca012de8db1122",
+      "no-align-result.txt": "aded5938a99a5ffa5cde1144c62e67446558cf8e1cc8d120e1887506909783e7",
+      "no-reentry-result.txt": "c712208a8ba95b61d7b439c9c1a372105234d35fe92c4ca15acca8be483bd7ba"
+    }
+  },
+  "parity": "Already observed public textures reuse their preflight sample only in a regional read. The alignment, registration, global and observed native mutation guards preserve current observer refresh. The exact geometry and source paint reads still run. The regression detects baseline resampling and unsafe reuse if the alignment or reentry guard is removed. Comparisons match sampled art, source opacity response, texture inventory and setter counts.",
+  "verification": {
+    "focusedPassed": 55,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observed-sources-before-20261120T062020911\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observed-sources-before-20261120T062020911\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observed-sources-before-20261120T062020911\\upvalues.json",
+    "alignmentReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-observed-sources-before-20261120T062020911\\alignment-and-geometry.json",
+    "mutationControls": {
+      "legacy": [
+        "OBSERVER_WORK|1|parents=360->4|sources=360->360",
+        "OBSERVER_WORK|2|parents=360->4|sources=360->360",
+        "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_observer_refresh.lua:7: unchanged alignment reuses the watched preflight snapshot",
+        "stack traceback:",
+        "\t[C]: in function 'assert'",
+        "\ttests/border_observer_refresh.lua:7: in local 'check'",
+        "\ttests/border_observer_refresh.lua:296: in main chunk",
+        "\t[C]: in ?"
+      ],
+      "no-align": [
+        "OBSERVER_WORK|1|parents=360->4|sources=360->360",
+        "OBSERVER_WORK|2|parents=360->4|sources=360->360",
+        "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_observer_refresh.lua:7: alignment changes require fresh source observation",
+        "stack traceback:",
+        "\t[C]: in function 'assert'",
+        "\ttests/border_observer_refresh.lua:7: in local 'check'",
+        "\ttests/border_observer_refresh.lua:303: in main chunk",
+        "\t[C]: in ?"
+      ],
+      "no-reentry": [
+        "OBSERVER_WORK|1|parents=360->4|sources=360->360",
+        "OBSERVER_WORK|2|parents=360->4|sources=360->360",
+        "C:\\Users\\mario\\AppData\\Local\\Programs\\Lua\\bin\\lua.exe: tests/border_observer_refresh.lua:7: a watched setter during the layout read invalidates the preflight observation",
+        "stack traceback:",
+        "\t[C]: in function 'assert'",
+        "\ttests/border_observer_refresh.lua:7: in local 'check'",
+        "\ttests/border_observer_refresh.lua:314: in main chunk",
+        "\t[C]: in ?"
+      ]
+    },
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Craft.lua",
+      "tests/craft_mixed_first_aid.lua"
+    ]
+  },
+  "nativeAcceptance": "Live strip and roster latency, pixel parity and combat taint remain pending."
+}

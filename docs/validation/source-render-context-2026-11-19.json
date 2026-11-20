@@ -1,0 +1,2185 @@
+{
+  "changeId": "SOURCE-RENDER-CONTEXT-R83-20261119",
+  "borderVersion": "source-render-context-r83",
+  "capturedAtUTC": "2026-11-19T08:07:22.368379+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Reduce border rendering cost for held-action strip enter/leave and group layouts, retaining seams and public/opaque paint handling.",
+  "changes": [
+    "Resolve current source parent once per operation; share geometry and pool lookups for sources on the same canvas.",
+    "Resolve each canvas layer once per draw descriptor. The retained branch still gets its own native parent and the strip stays on its raised canvas.",
+    "New operations read fresh source parents, layer and origin. Existing commit cache budgets, clipping, fallback and native visibility remain authoritative."
+  ],
+  "source": {
+    "path": "Core/BorderJunctions.lua",
+    "beforeRaw": "ae65796c82c6d0abe351708c5e2d2e4c9bdca067fc111ff286f0149c706e9dbf",
+    "afterRaw": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+    "testPath": "tests/border_render_pool_work.lua",
+    "testRaw": "808b2b92c7a2b016f2a14cbdaa91eb8092d73ba026930f30f3516cc1da2e3224"
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\source-render-context-r83-before-20261119T080008Z\\source.zip",
+    "archiveSHA256": "e5c6085c08fb90d8879621b959ae130778b7563a4c5eed77365f69e3e67c1b58",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "pairedPoolReplay": {
+    "before": [
+      "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045 parents=64/64",
+      "RENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962 parents=128/128",
+      "RENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497 parents=256/256",
+      "RENDER_STRIP_WORK fields=96 parents=96 stripReads=48 mesh=1687145760",
+      "border render pool work: 1069 checks passed (measurement)"
+    ],
+    "after": [
+      "RENDER_POOL_WORK triangles=64 coldLevel=1 coldStrata=1 coldVisits=64 coldTextures=64 warmLevel=0 warmStrata=0 warmVisits=64 warmTextures=0 mesh=1323232045 parents=1/1",
+      "RENDER_POOL_WORK triangles=128 coldLevel=1 coldStrata=1 coldVisits=128 coldTextures=128 warmLevel=0 warmStrata=0 warmVisits=128 warmTextures=0 mesh=1872260962 parents=1/1",
+      "RENDER_POOL_WORK triangles=256 coldLevel=1 coldStrata=1 coldVisits=256 coldTextures=256 warmLevel=0 warmStrata=0 warmVisits=256 warmTextures=0 mesh=739844497 parents=1/1",
+      "RENDER_STRIP_WORK fields=96 parents=2 stripReads=1 mesh=1687145760",
+      "border render pool work: 1092 checks passed"
+    ]
+  },
+  "modeledRegionalWork": [
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 1,
+      "before": {
+        "sourceParentReads": 236.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 75.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 54.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 2,
+      "before": {
+        "sourceParentReads": 204.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 90.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      },
+      "after": {
+        "sourceParentReads": 68.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 63.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 3,
+      "before": {
+        "sourceParentReads": 236.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 75.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 54.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 4,
+      "before": {
+        "sourceParentReads": 204.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 90.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      },
+      "after": {
+        "sourceParentReads": 68.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 63.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 5,
+      "before": {
+        "sourceParentReads": 236.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 75.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 54.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 380.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 1,
+      "sample": 6,
+      "before": {
+        "sourceParentReads": 204.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 90.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      },
+      "after": {
+        "sourceParentReads": 68.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 63.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 355.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 1,
+      "before": {
+        "sourceParentReads": 221.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 55.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 2,
+      "before": {
+        "sourceParentReads": 286.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      },
+      "after": {
+        "sourceParentReads": 59.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 60.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 3,
+      "before": {
+        "sourceParentReads": 221.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 55.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 4,
+      "before": {
+        "sourceParentReads": 286.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      },
+      "after": {
+        "sourceParentReads": 59.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 60.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 5,
+      "before": {
+        "sourceParentReads": 221.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      },
+      "after": {
+        "sourceParentReads": 53.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 55.0,
+        "tiles": 39.0,
+        "operations": 27.0,
+        "triangles": 362.0
+      }
+    },
+    {
+      "scene": "strip",
+      "style": 2,
+      "sample": 6,
+      "before": {
+        "sourceParentReads": 286.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      },
+      "after": {
+        "sourceParentReads": 59.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 60.0,
+        "tiles": 39.0,
+        "operations": 28.0,
+        "triangles": 446.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 1,
+      "before": {
+        "sourceParentReads": 208.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      },
+      "after": {
+        "sourceParentReads": 74.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 46.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 2,
+      "before": {
+        "sourceParentReads": 245.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 84.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      },
+      "after": {
+        "sourceParentReads": 84.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 52.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 3,
+      "before": {
+        "sourceParentReads": 208.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      },
+      "after": {
+        "sourceParentReads": 74.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 46.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 4,
+      "before": {
+        "sourceParentReads": 245.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 84.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      },
+      "after": {
+        "sourceParentReads": 84.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 52.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 5,
+      "before": {
+        "sourceParentReads": 208.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 74.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      },
+      "after": {
+        "sourceParentReads": 74.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 46.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 251.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 1,
+      "sample": 6,
+      "before": {
+        "sourceParentReads": 245.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 84.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      },
+      "after": {
+        "sourceParentReads": 84.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 52.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 300.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 1,
+      "before": {
+        "sourceParentReads": 213.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 66.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      },
+      "after": {
+        "sourceParentReads": 66.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 42.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 2,
+      "before": {
+        "sourceParentReads": 282.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      },
+      "after": {
+        "sourceParentReads": 80.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 50.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 3,
+      "before": {
+        "sourceParentReads": 213.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 66.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      },
+      "after": {
+        "sourceParentReads": 66.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 42.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 4,
+      "before": {
+        "sourceParentReads": 282.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      },
+      "after": {
+        "sourceParentReads": 80.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 50.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 5,
+      "before": {
+        "sourceParentReads": 213.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 66.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      },
+      "after": {
+        "sourceParentReads": 66.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 42.0,
+        "tiles": 30.0,
+        "operations": 20.0,
+        "triangles": 265.0
+      }
+    },
+    {
+      "scene": "dock",
+      "style": 2,
+      "sample": 6,
+      "before": {
+        "sourceParentReads": 282.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 80.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      },
+      "after": {
+        "sourceParentReads": 80.0,
+        "stripCanvasRequests": 0.0,
+        "layerReads": 50.0,
+        "tiles": 30.0,
+        "operations": 21.0,
+        "triangles": 349.0
+      }
+    }
+  ],
+  "modeledRegionalTime": {
+    "summaryMs": {
+      "strip": {
+        "1": {
+          "before": {
+            "median": 15.0,
+            "range": [
+              13.0,
+              26.0
+            ]
+          },
+          "after": {
+            "median": 16.0,
+            "range": [
+              12.0,
+              29.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 17.0,
+            "range": [
+              12.0,
+              38.0
+            ]
+          },
+          "after": {
+            "median": 18.5,
+            "range": [
+              12.0,
+              34.0
+            ]
+          }
+        }
+      },
+      "dock": {
+        "1": {
+          "before": {
+            "median": 11.0,
+            "range": [
+              8.0,
+              22.0
+            ]
+          },
+          "after": {
+            "median": 12.5,
+            "range": [
+              7.9999999999998,
+              32.0
+            ]
+          }
+        },
+        "2": {
+          "before": {
+            "median": 12.0,
+            "range": [
+              8.0,
+              24.0
+            ]
+          },
+          "after": {
+            "median": 11.0,
+            "range": [
+              8.0,
+              23.0
+            ]
+          }
+        }
+      }
+    },
+    "rows": [
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 22.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 23.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 26.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 28.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        },
+        "after": {
+          "ms": 29.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 380.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        },
+        "after": {
+          "ms": 21.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 355.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 24.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 29.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 21.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 31.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 38.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 21.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 21.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 17.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 20.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 14.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 39.0,
+          "operations": 27.0,
+          "triangles": 362.0
+        }
+      },
+      {
+        "scene": "strip",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 19.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        },
+        "after": {
+          "ms": 34.0,
+          "tiles": 39.0,
+          "operations": 28.0,
+          "triangles": 446.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 1,
+        "before": {
+          "ms": 17.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 2,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 32.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 3,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 4,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 5,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 6,
+        "before": {
+          "ms": 22.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 7,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 8,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 9,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 7.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 10,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 11,
+        "before": {
+          "ms": 9.0000000000001,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 12,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 18.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 13,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 14,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 15,
+        "before": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 16,
+        "before": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 17,
+        "before": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 18,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 19,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 251.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 1,
+        "sample": 20,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 300.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 1,
+        "before": {
+          "ms": 15.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 15.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 2,
+        "before": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 16.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 3,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 4,
+        "before": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 21.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 5,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 6,
+        "before": {
+          "ms": 16.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 7,
+        "before": {
+          "ms": 9.0000000000003,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 8,
+        "before": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 9,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 10,
+        "before": {
+          "ms": 15.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 14.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 11,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 12,
+        "before": {
+          "ms": 24.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 13,
+        "before": {
+          "ms": 8.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 14,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 15,
+        "before": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 16,
+        "before": {
+          "ms": 17.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 13.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 17,
+        "before": {
+          "ms": 8.9999999999999,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 23.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 18,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 11.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 19,
+        "before": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        },
+        "after": {
+          "ms": 10.0,
+          "tiles": 30.0,
+          "operations": 20.0,
+          "triangles": 265.0
+        }
+      },
+      {
+        "scene": "dock",
+        "style": 2,
+        "sample": 20,
+        "before": {
+          "ms": 12.0,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        },
+        "after": {
+          "ms": 9.9999999999998,
+          "tiles": 30.0,
+          "operations": 21.0,
+          "triangles": 349.0
+        }
+      }
+    ],
+    "scope": "Actual source with modeled native widgets, neighboring Info, combat and Trinket panels. Dock synthetic. Sampled primitives match. Whole rebuild timings vary."
+  },
+  "isolatedPairedRenderTime": {
+    "summaryMs": {
+      "regular": {
+        "before": {
+          "median": 1.49,
+          "range": [
+            1.43,
+            1.68
+          ]
+        },
+        "after": {
+          "median": 1.21,
+          "range": [
+            1.12,
+            1.36
+          ]
+        }
+      },
+      "strip": {
+        "before": {
+          "median": 3.33,
+          "range": [
+            1.46,
+            3.73
+          ]
+        },
+        "after": {
+          "median": 2.23,
+          "range": [
+            1.2,
+            2.7
+          ]
+        }
+      }
+    },
+    "rows": [
+      {
+        "mode": "regular",
+        "trial": 1,
+        "beforeMs": 1.43,
+        "afterMs": 1.16,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 2,
+        "beforeMs": 1.49,
+        "afterMs": 1.12,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 3,
+        "beforeMs": 1.68,
+        "afterMs": 1.36,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 4,
+        "beforeMs": 1.48,
+        "afterMs": 1.33,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 5,
+        "beforeMs": 1.43,
+        "afterMs": 1.21,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 6,
+        "beforeMs": 1.53,
+        "afterMs": 1.24,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 7,
+        "beforeMs": 1.6,
+        "afterMs": 1.23,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 8,
+        "beforeMs": 1.54,
+        "afterMs": 1.17,
+        "mesh": 406067240
+      },
+      {
+        "mode": "regular",
+        "trial": 9,
+        "beforeMs": 1.48,
+        "afterMs": 1.16,
+        "mesh": 406067240
+      },
+      {
+        "mode": "strip",
+        "trial": 1,
+        "beforeMs": 1.46,
+        "afterMs": 1.2,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 2,
+        "beforeMs": 3.39,
+        "afterMs": 2.7,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 3,
+        "beforeMs": 3.33,
+        "afterMs": 2.22,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 4,
+        "beforeMs": 2.92,
+        "afterMs": 2.17,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 5,
+        "beforeMs": 3.38,
+        "afterMs": 2.31,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 6,
+        "beforeMs": 2.95,
+        "afterMs": 2.23,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 7,
+        "beforeMs": 3.73,
+        "afterMs": 2.3,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 8,
+        "beforeMs": 3.5,
+        "afterMs": 2.57,
+        "mesh": 1051780466
+      },
+      {
+        "mode": "strip",
+        "trial": 9,
+        "beforeMs": 2.93,
+        "afterMs": 2.16,
+        "mesh": 1051780466
+      }
+    ],
+    "scope": "18 alternating pairs, 100 warm 192-field draws per half, both ordinary and raised canvas modes. Modeled widget cost, no WoW claims."
+  },
+  "verification": {
+    "focused": 193,
+    "syntax": 1230,
+    "compilerMaximumUpvalues": 51,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\source-render-context-r83-before-20261119T080008Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\source-render-context-r83-before-20261119T080008Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\source-render-context-r83-before-20261119T080008Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sha256": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sha256": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sha256": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sha256": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sha256": "4681d190ec4aa35f50ae359277f20b3ff19164b5e6d03bf9e8bc3a4413be14e7",
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Pending. Group and held-action latency, actual side seams and combat taint. No in-game or profiler changes."
+}

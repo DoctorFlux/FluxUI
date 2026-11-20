@@ -914,7 +914,7 @@ local function ThreatSortGreater(a, b)
 end
 
 --- Rank among group+pets. Keeps secret threat rows; tanking is always placement 1.
-function Threat.GetPlayerRank(targetUnit)
+local function RankPlayerAgainstGroup(targetUnit, guidByUnit)
 	if not targetUnit or not Threat.UnitExists(targetUnit) then
 		return nil
 	end
@@ -922,15 +922,19 @@ function Threat.GetPlayerRank(targetUnit)
 	local list, byGUID, unknownGUID = {}, {}, {}
 	local function addUnit(unit)
 		if not unit or not Threat.UnitExists(unit) then
+			if unit and guidByUnit then guidByUnit[unit] = nil end
 			return
 		end
 		-- Public GUIDs identify aliases without comparing every pair of group
 		-- tokens. Unknown/secret GUIDs retain the original identity walk, so
 		-- vehicles, unavailable APIs and restricted clients keep their behavior.
-		local guid
-		if type(UnitGUID) == "function" then
+		local guid = guidByUnit and guidByUnit[unit]
+		if not guid and type(UnitGUID) == "function" then
 			local ok, value = pcall(UnitGUID, unit)
-			if ok and not IsSecret(value) and CanAccess(value) and type(value) == "string" and value ~= "" then guid = value end
+			if ok and not IsSecret(value) and CanAccess(value) and type(value) == "string" and value ~= "" then
+				guid = value
+				if guidByUnit then guidByUnit[unit] = guid end
+			end
 		end
 		if guid and byGUID[guid] then return end
 		local compare = guid and unknownGUID or list
@@ -953,6 +957,8 @@ function Threat.GetPlayerRank(targetUnit)
 	end
 
 	addUnit("player")
+	-- A tanking player row wins regardless of the group and pet rows.
+	if list[1] and list[1].isTanking then return 1 end
 	addUnit("pet")
 	if IsInRaid and IsInRaid() then
 		local n = GetNumGroupMembers and GetNumGroupMembers() or 0
@@ -993,6 +999,24 @@ function Threat.GetPlayerRank(targetUnit)
 		end
 	end
 	return nil
+end
+
+function Threat.GetPlayerRank(targetUnit)
+	return RankPlayerAgainstGroup(targetUnit)
+end
+
+local directPlayerRank = Threat.GetPlayerRank
+function Threat.GetPlayerRankForNameplateBatch(unit, batch)
+	local rank = Threat.GetPlayerRank
+	if rank ~= directPlayerRank then return rank and rank(unit) end
+	-- Only successful public identity reads can be shared. Existence, aliases
+	-- with unreadable IDs and every target's threat payload stay live.
+	local guids = batch.threatRankGUIDs
+	if not guids or guids.getter ~= UnitGUID then
+		guids = { getter = UnitGUID }
+		batch.threatRankGUIDs = guids
+	end
+	return RankPlayerAgainstGroup(unit, guids)
 end
 
 local function ForeverMeterRow(unit, targetUnit)

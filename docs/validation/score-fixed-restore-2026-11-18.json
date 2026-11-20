@@ -1,0 +1,316 @@
+{
+  "change_id": "LHO-SCORE-FIXED-RESTORE-20261118",
+  "status": "APPLIED_RELOADED_NATIVE_REAL_ITEM_SCORER_PASS;FULL_PIPELINE_GAIN_OPEN",
+  "path": "Inventory/FluxConsumableBest/Score.lua",
+  "beforeSHA": "a1d84a7dd20ab5342a04fb526ad7c927c353bd956c155cb27195080e26772667",
+  "afterSHA": "c542c20dd32dce6892f7dbbee34651e682d0ab30d84f9a41bd114d136415009b",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-score-fixed-restore-20261118",
+  "sourceRestorationProof": "Removing only canonicalGetPools capture and early fixed-value branch restores whole original file after newline normalization;original fallback body exact.",
+  "syntax": "Before/after5.1/5.4 PASS",
+  "newSimulations": 0,
+  "pairsMatch": 28,
+  "manualSync": false,
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "c542c20dd32dce6892f7dbbee34651e682d0ab30d84f9a41bd114d136415009b"
+  },
+  "nativeBefore": {
+    "run": "tier39before_a",
+    "controllerSHA": "3ddf48a5024621989a8c113e6aca859f43420f5779e9ca668c4221221232e4b0",
+    "submittedSHA": "9402fb08d782187c40d6bf738afa61f55eb631f6f057af1aefd2683f7a8660f1",
+    "carriedIDs": 54,
+    "scriptProfile": "0",
+    "source": "syndicator",
+    "errors": 0,
+    "formallyAcknowledged": true,
+    "rows": [
+      {
+        "kind": "food",
+        "ms": 0.14759999513626,
+        "matches": 3
+      },
+      {
+        "kind": "water",
+        "ms": 0.099300026893616,
+        "matches": 1
+      },
+      {
+        "kind": "bandage",
+        "ms": 0.10100001096725,
+        "matches": 1
+      },
+      {
+        "kind": "healPotion",
+        "ms": 0.097899973392487,
+        "matches": 1
+      },
+      {
+        "kind": "manaPotion",
+        "ms": 0.099500000476837,
+        "matches": 1
+      }
+    ],
+    "scope": "One synchronous read-only classification pass per5kinds over54real carried IDs;no actual merchant/craft/bank workflow,no matched FPS acceptance;owned root removed by finalpacket"
+  },
+  "limits": [
+    "Full food query slower afterreload and followup;cause/gain OPEN. Do not use faster isolated score to claim whole query or FPS/hitch improvement.",
+    "Native real data only;0new models/simulated events. Before/after5.1/5.4 parse and whole-source restoration proof;28Retail/Forever disk pairs match without manualsync.",
+    "Seven fixed consumable outputs,match counts3/1/1/1/1 and selectedfood1487/14/841 unchanged;not full row/content/pixel/allclient/taint certification.",
+    "Percentage/metatable/missing/nonnumeric/replacementgetter paths source-reviewed;not natively induced. Original body retained.",
+    "No frame watch/profiler changes in39-42;all native query roots removed. Only intentional jump cue remains. No purchases/sales/deletions/consume/mail/itemmoves/craftingqueue/externaladdon edits.",
+    "Whole LHO01-13 active;provider mutations/cold/deplete/charges,merchant/AH/pending/bank/mail/crafting/othercasts/allclients/matched hitch gains OPEN.",
+    "Initial source-only parse mistakenly ran luac binary underPython and failed before native input;correct5.1/5.4parse PASS before42 execution. No runtime effect."
+  ],
+  "updatedUTC": "2026-11-18T16:33:54.873823+00:00",
+  "mechanism": "For missing pool arguments, plain nonpercentage table with numeric effective and original Score.GetPools returns that existing effective directly. It is exactly the original final return for these inputs, independent of health/mana/kind. No pool values cached. Other paths retain preceding body. The deliberate reduction is unused pool/kind queries, not a claim of identical query counts.",
+  "sourceDerivedWork": "Ordinary no-pool fixed record formerly calls GetPools twice; each GetPools reads health and conditionally mana. Eligible new path calls neither GetPools nor IsManaKind. Actual pools call counts were not instrumented. Supplied-pool scan calls add only the initial boolean gate; no new result cache/timer/event/hook.",
+  "sourceAudit": [
+    "Primary classifier creates ordinary numeric effective records; fixed zero/negative/NaN also preserve original truthy numeric return. Raw isPercent true/truthy bypasses shortcut.",
+    "Metatable/non-table/nonnumeric/missing effective/replaced GetPools retain original body and dynamic queries. Both supplied pools retain body.",
+    "No appearance/settings/bindings/commands/saved-data/cadence changes; Tiers Match file remains1a02bc12, no record-allocation candidate applied.",
+    "Source removal proof restores entire preceding Score.lua; all math/fallback and GetPools definitions unchanged outside added capture/guard.",
+    "Best.IsManaKind no longer invoked for the proven numeric nonpercentage return; its result was unused. Arbitrary side effects/error contracts for replaced kind helpers are not certified. Native client APIs not overridden."
+  ],
+  "nativeReload": {
+    "run": "score39reload_a",
+    "immediateCapture": "READY39 true5 and empty Say draft;readiness only",
+    "readinessPersonallyViewedAndAcknowledged": true,
+    "freshStartupPersonallyViewed": "native/score39-reload-startup.png",
+    "association": "Own guarded ReloadUI followed by fresh startup in same42724/50333792/birth134394624880288175.28disk pairs match;no independent loaded-byte hash.",
+    "client": "Forever1.60.1/70959 from native38 same live process;not freshly queried in39-42"
+  },
+  "nativeAfterQueries": {
+    "run": "tier40after_a",
+    "formallyAcknowledged": true,
+    "carriedIDs": 54,
+    "scriptProfile": "0",
+    "source": "syndicator",
+    "errors": 0,
+    "rows": [
+      {
+        "kind": "food",
+        "ms": 0.81850004196167,
+        "matches": 3
+      },
+      {
+        "kind": "water",
+        "ms": 0.089100003242493,
+        "matches": 1
+      },
+      {
+        "kind": "bandage",
+        "ms": 0.054699957370758,
+        "matches": 1
+      },
+      {
+        "kind": "healPotion",
+        "ms": 0.054800033569336,
+        "matches": 1
+      },
+      {
+        "kind": "manaPotion",
+        "ms": 0.05510002374649,
+        "matches": 1
+      }
+    ]
+  },
+  "nativeFollowupQueries": {
+    "run": "tier41parity_a",
+    "formallyAcknowledged": true,
+    "carriedIDs": 54,
+    "rows": [
+      {
+        "kind": "food",
+        "ms": 0.70360004901886,
+        "matches": 3
+      },
+      {
+        "kind": "water",
+        "ms": 0.060100018978119,
+        "matches": 1
+      },
+      {
+        "kind": "bandage",
+        "ms": 0.053800046443939,
+        "matches": 1
+      },
+      {
+        "kind": "healPotion",
+        "ms": 0.05620002746582,
+        "matches": 1
+      },
+      {
+        "kind": "manaPotion",
+        "ms": 0.055400013923645,
+        "matches": 1
+      }
+    ],
+    "realNativeClassifications": 7,
+    "outputsEqualToOriginalBodyWithLiveExplicitPools": 7,
+    "mismatches": 0,
+    "percentageRecords": 0,
+    "selection": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "addons": {
+      "Syndicator": true,
+      "Baganator": true,
+      "source": "syndicator",
+      "ready": true
+    },
+    "cursorClear": true,
+    "ownRoots39_40_41Removed": true,
+    "errors": 0,
+    "scope": "Actual live records and actual GetPools supplied to unchanged fallback;no synthetic values or injected percentage fixtures."
+  },
+  "nativeIsolatedScorer": {
+    "run": "score42cost_a",
+    "formallyAcknowledged": true,
+    "method": "Exact preceding EffectiveFromClassify body loaded into a PRIVATE function with original Score/Best bindings. Actual current public candidate retained unchanged. Seven real classifier cache records,20passes/140calculations per variant per pair;3pairs in game;order before-after,after-before,before-after. No fake inputs/native API mocks/global overrides/forcedGC/profiler preference changes.",
+    "baselineFunctionTextSHA": "1eb5a04f89a24951c953104bac838a9cc7e1092345ca9504bd83b2c221812fd8",
+    "baselineLoaderTextSHA": "02ac42f00e04c3997b163660524fa100801e6a11daeb712add75dbe3f90ed667",
+    "actualRecords": 7,
+    "outputsEqual": 7,
+    "mismatches": 0,
+    "calculationsPerVariantPerPair": 140,
+    "beforeMs": [
+      0.9893000125885,
+      0.97909998893738,
+      0.9883000254631
+    ],
+    "afterMs": [
+      0.07449996471405,
+      0.081099987030029,
+      0.095499992370605
+    ],
+    "beforeMedianMs": 0.9883000254631,
+    "afterMedianMs": 0.081099987030029,
+    "observedMedianReductionPercent": 91.7939912030229,
+    "beforeRangeMs": [
+      0.97909998893738,
+      0.9893000125885
+    ],
+    "afterRangeMs": [
+      0.07449996471405,
+      0.095499992370605
+    ],
+    "publicCandidateIdentityUnchanged": true,
+    "ownRootRemoved": true,
+    "errors": 0,
+    "scriptProfile": "0",
+    "limits": "One small real-input native microbenchmark batch;private baseline body,not an independently reloaded full baseline pipeline. No repeated all-workflow/FPS/frame-spike acceptance;7fixed records only,percent/override/metatable paths source-reviewed only."
+  },
+  "unresolvedRegression": {
+    "firstFoodBeforeMs": 0.14759999513626,
+    "firstFoodAfterMs": 0.81850004196167,
+    "followupFoodAfterMs": 0.70360004901886,
+    "status": "OPEN cause not isolated;retain all samples. Isolated scorer is faster,full food query is not proven improved. Tooltip/cache/pending parsing and reload/world/party activity are confounds,not established causes.",
+    "next": "Revalidate actual pending-item queue and cold classification/retry paths using existing collected evidence/current source;do not reject genuinely cold food or revive simulations."
+  },
+  "currentJump": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r13-20261118",
+    "root": "_J40q",
+    "nonce": "j18n40a7",
+    "label": "live20261118m",
+    "hostPID": 51700,
+    "supervisorPID": 56212,
+    "hostLiveVerified": true,
+    "liveVerificationUTC": "2026-11-18T16:33:54.873823+00:00",
+    "pairs": 3,
+    "lastSpaceUpUTC": "2026-11-18T16:31:04.765895+00:00",
+    "movementVisuallyVerified": false,
+    "oldHost48628StoppedAndVerifiedAbsent": true,
+    "installRun": "jump40install_a",
+    "installPersonallyViewedAndAcknowledged": true,
+    "installerSHA": "fb5adf30b69b83897a101f223b51f57580e74bf33b430bc05b181746be45c2d8",
+    "supervisorSHA": "267dba6e0f5d434dab6243ae8f237d2ea1be099eeb1456e64c12f563ebf26e2f",
+    "stop": "CANCEL/GOAL_DONE/native JUMP_STOP before requested guarded reload. Only owned setup/stop holds removed;retainedINPUT_HALTED unchanged.",
+    "gates": "180s;queue during commands/casts/crafting/input activity;15s PC-idle activation/prior-app restore exception retained",
+    "noQuestionsWhileUserAway": true
+  },
+  "screenshots": {
+    "jq4-tier39before_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tier39before_a-submitted.png",
+      "sha256": "9402fb08d782187c40d6bf738afa61f55eb631f6f057af1aefd2683f7a8660f1"
+    },
+    "jq4-score39reload_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score39reload_a-submitted.png",
+      "sha256": "48d951cd79e465b2fce54b56f4dbbf3d2f80fc2576da5a5bc95846de8eaf2560"
+    },
+    "score39-reload-startup.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\score39-reload-startup.png",
+      "sha256": "0d528166b84706f6425b044bbdb55c2f7d6d9a3b4d00fa4934c9eba52746e02c"
+    },
+    "jq4-jump40install_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump40install_a-submitted.png",
+      "sha256": "0d3ff1ef06fe38063e4b86b2101c945963586c2f0c03a3b36407d75ac10f0d37"
+    },
+    "jq4-tier40after_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tier40after_a-submitted.png",
+      "sha256": "b5fb23d49ca1768e63d0a67b3f6b1c0ffb2fa05e776aa681040a09a5c08ba7ac"
+    },
+    "jq4-tier41parity_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-tier41parity_a-submitted.png",
+      "sha256": "71a1257cc60f0c15b26bb6f17fc4848435505d0c03dbfa47e75d699c30ce0ec5"
+    },
+    "jq4-score42cost_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-score42cost_a-submitted.png",
+      "sha256": "92a461468d4951b70199b0531b68d92158c06bb23a86e7e7cdeaa257fbcd0c4c"
+    }
+  },
+  "transportPackages": {
+    "native-tier39-before-20261118": {
+      "bootstrap.py": "3ddf48a5024621989a8c113e6aca859f43420f5779e9ca668c4221221232e4b0",
+      "packets.json": "00fce692d7792e074afc2052740fbca53ec130cadb26561be852bd9109fb2548",
+      "reviewed-native-script.lua": "154d8d737225191e637bb51742cabbd387c76fd39219ef2ccca37664589b2cd0"
+    },
+    "native-score39-reload-20261118": {
+      "bootstrap.py": "38df58871d2fed6ebf5aec9debe83422909353b3b6c75b16cb5655378f2813ce",
+      "packets.json": "347897869350d5d7e0fdf8382a9a87d7df46109f7f5cb791fb4ca738aadb0885",
+      "reviewed-native-script.lua": "dcaa91877caf1ba823c43f4c79739fd5f6d6a26b09ee1c32613f12f048760230"
+    },
+    "native-tier40-after-20261118": {
+      "bootstrap.py": "ce7e863ffd232be8e10184f1793261e09aab241b314408a91e89a1d3456e3038",
+      "packets.json": "2c812292a83b3a6410031794af5c8d8b029d075ceeb5b280d08d386ca13964f7",
+      "reviewed-native-script.lua": "b37cf09636ec32026aae1f7cf43addfdcaf06f70381445dd9ca22cb66972ebdc"
+    },
+    "native-tier41-parity-warm-20261118": {
+      "bootstrap.py": "3cfdebffad8e727211da84bda410ae969ee63520974e319b31313629e0d18d69",
+      "packets.json": "9f84e8d21dc03965afab12cde474f83b47b6e1ef22b4e5e8b190440d908699fa",
+      "reviewed-native-script.lua": "60a50aeddda68beb700377f8fc5919e01bd35874d54ccd76794af86c239d7469"
+    },
+    "native-score42-real-input-cost-20261118": {
+      "bootstrap.py": "bba15f61d479ec4077b642eaff39c9c52d2d72fceff7d72cb2b84885baaa918d",
+      "packets.json": "c720a5f76581712a1fa7864f4fdf80b653ecf2e6685b038e56ed9dbca2e9646b",
+      "reviewed-native-script.lua": "131294b40e0e78bcb40fe710065a8ac8edeaef21852109802e3595c9389f5259"
+    }
+  }
+}

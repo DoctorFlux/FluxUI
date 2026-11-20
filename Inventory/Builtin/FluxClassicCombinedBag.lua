@@ -1493,7 +1493,7 @@ end
 local function ReturnItems()
 	for button, host in pairs(hosts) do
 		local frame = host and host.fluxContainer
-		if button and frame and button.GetParent and button:GetParent() ~= frame then
+		if button and frame and button.GetParent and button:GetParent() == host then
 			button:SetParent(frame)
 			button:ClearAllPoints()
 		end
@@ -2356,7 +2356,7 @@ UnregisterBagExpandLayout()
 
 local function RepinItemsQuiet()
 	for button, host in pairs(hosts) do
-		if button and host and button.GetParent and button:GetParent() ~= host then
+		if button and host and button.GetParent and button:GetParent() ~= host and host:IsShown() then
 			button:SetParent(host)
 			button:ClearAllPoints()
 			button:SetAllPoints(host)

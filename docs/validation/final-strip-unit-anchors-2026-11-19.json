@@ -1,0 +1,241 @@
+{
+  "changeId": "FINAL-STRIP-UNIT-ANCHORS-R90-20261119",
+  "capturedAtUTC": "2026-11-19T10:19:05.127954+00:00",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "objective": "Use settled strip and side-panel geometry for unit-frame joins and avoid unrelated target chrome rebuilds on held-action crossings.",
+  "changes": [
+    "Defer the unit screen anchor callbacks inside a drag layout transaction. Apply player and target screen anchors once between envelope completion and junction commit.",
+    "Reuse public screen anchors when the native point matches. Keep the complete target chrome refresh for ordinary calls and placement changes.",
+    "Use the original placement writer if the point is altered, unavailable or restricted. Retain existing combat guards and downstream phase ordering."
+  ],
+  "sources": {
+    "Bars/Layout.lua": {
+      "beforeRaw": "5d7eabaf80337ab3c1426e61f91991edf7d0dafff52e16dec69b500ebc2779f0",
+      "afterRaw": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e"
+    },
+    "Bars/Strip.lua": {
+      "beforeRaw": "c401d6596bc218ac022d32e7ae50fdb1e6e5d15c180331c1357bdf67347804bf",
+      "afterRaw": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28"
+    },
+    "FluxDefaultSettings.lua": {
+      "beforeRaw": "a11e0ca158d8c7f5c8274bf3ca8578f1954f5fe640e646225d1cb6af654df3f0",
+      "afterRaw": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115"
+    },
+    "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+      "beforeRaw": "bfcf22542b4234f8721bb52a0166716e6c70f8992275d34f75cc777b9c2cdf2f",
+      "afterRaw": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b"
+    },
+    "tests/bars_strip_layout_work.lua": {
+      "beforeRaw": "9a1ec0ad3355e63058fae38cd5959b6a21ea2693d1d3b0b76671be0a4660112a",
+      "afterRaw": "244c3b7836bb41d5d04ad4234e31dc65894bd7e6305d740b8cb7293e58173257"
+    },
+    "tests/strip_unit_anchor_transaction.lua": {
+      "beforeRaw": null,
+      "afterRaw": "b77216e7ed092c23209698862eef804e6efedf2b013db17ad0ecb45674545001"
+    }
+  },
+  "checkpoint": {
+    "sourceArchive": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\final-strip-unit-anchors-r90-before-20261119T101237Z\\source.zip",
+    "archiveSHA256": "e17dd92d2dfde4a71496666394d78c38bf446a4adc3178b08cb75a4f48490926",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "settingsMetadataCounts": {
+      "_retail_": 1,
+      "_forever_": 1,
+      "_classic_": 1,
+      "_classic_era_": 1,
+      "_anniversary_": 2
+    }
+  },
+  "replay": {
+    "scope": "Actual Lua drag, strip, dependent notification and unit position entry points. Native frames, target child paint and envelope behavior modeled. No native frame-time or pixel comparison.",
+    "matched": 36,
+    "placements": [
+      1,
+      2
+    ],
+    "scales": [
+      0.75,
+      1,
+      1.25
+    ],
+    "sameHeightCounts": {
+      "positionPasses": [
+        2,
+        1
+      ],
+      "targetChromePasses": [
+        2,
+        0
+      ],
+      "targetRootPointWrites": [
+        2,
+        0
+      ]
+    },
+    "changedEnvelope": "Updated support is read after envelope completion. Both unit roots move once in the model. The archived transaction reaches the modeled junction commit with the prior height.",
+    "guards": [
+      "changed placement preserves all target callbacks",
+      "ordinary call still fully refreshes target",
+      "private, denied, missing, extra and externally changed points use original writer",
+      "combat blocks unit screen setters"
+    ],
+    "matchedRows": [
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=1 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=0.75 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.00 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=true calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "STRIP_UNIT_ANCHORS placement=2 scale=1.25 enter=false calls=2/1 targetChrome=2/0 rootPoints=2/0",
+      "Strip unit anchor transaction passes both placements, three scales, envelope changes, anchor recovery and lockdown."
+    ],
+    "file": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\final-strip-unit-anchors-r90-before-20261119T101237Z\\matched.txt",
+    "sha256": "8d42da08d45758a4c17d6b6b621a6a654266638ae0b3dbd21fc51caf29e1938f"
+  },
+  "verification": {
+    "focused": 201,
+    "syntax": 1235,
+    "compilerMaximumUpvalues": 12,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\final-strip-unit-anchors-r90-before-20261119T101237Z\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\final-strip-unit-anchors-r90-before-20261119T101237Z\\syntax.json",
+    "upvaluesReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\final-strip-unit-anchors-r90-before-20261119T101237Z\\upvalues.json",
+    "otherOwnerChangedIdentitiesSyntaxOnly": []
+  },
+  "installedSourceComparisonReadOnly": {
+    "retail": {
+      "sources": {
+        "Bars/Layout.lua": {
+          "sha256": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+          "matchesCandidate": true
+        },
+        "Bars/Strip.lua": {
+          "sha256": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+          "matchesCandidate": true
+        },
+        "FluxDefaultSettings.lua": {
+          "sha256": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+          "matchesCandidate": true
+        },
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+          "sha256": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "forever": {
+      "sources": {
+        "Bars/Layout.lua": {
+          "sha256": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+          "matchesCandidate": true
+        },
+        "Bars/Strip.lua": {
+          "sha256": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+          "matchesCandidate": true
+        },
+        "FluxDefaultSettings.lua": {
+          "sha256": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+          "matchesCandidate": true
+        },
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+          "sha256": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic": {
+      "sources": {
+        "Bars/Layout.lua": {
+          "sha256": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+          "matchesCandidate": true
+        },
+        "Bars/Strip.lua": {
+          "sha256": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+          "matchesCandidate": true
+        },
+        "FluxDefaultSettings.lua": {
+          "sha256": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+          "matchesCandidate": true
+        },
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+          "sha256": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-era": {
+      "sources": {
+        "Bars/Layout.lua": {
+          "sha256": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+          "matchesCandidate": true
+        },
+        "Bars/Strip.lua": {
+          "sha256": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+          "matchesCandidate": true
+        },
+        "FluxDefaultSettings.lua": {
+          "sha256": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+          "matchesCandidate": true
+        },
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+          "sha256": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    },
+    "classic-anniversary": {
+      "sources": {
+        "Bars/Layout.lua": {
+          "sha256": "4b1ca90d1bd21311bf245f8ac580e24b6c3f209339a995a6ec75a91a52576e5e",
+          "matchesCandidate": true
+        },
+        "Bars/Strip.lua": {
+          "sha256": "98c9241324fc6b7d79d896830b65c96ccd6b3a11439ce23609e02aa22ad35a28",
+          "matchesCandidate": true
+        },
+        "FluxDefaultSettings.lua": {
+          "sha256": "af848fe186d40c25221b276ce362f89c81d097445de4bf37a8b10f19f5f97115",
+          "matchesCandidate": true
+        },
+        "UnitFrames/FluxUnitFrames_OptionsBridge.lua": {
+          "sha256": "c94f96f6613b060c18d51a0be2f06fe1deba87410cb6b95f193f3f758b24989b",
+          "matchesCandidate": true
+        }
+      },
+      "matchesCandidate": true
+    }
+  },
+  "nativeAcceptance": "Held-action cursor latency, seams, overlay alignment, independent party/raid joins and combat taint remain open. No native input or profiling changes."
+}

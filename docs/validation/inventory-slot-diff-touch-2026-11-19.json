@@ -1,0 +1,127 @@
+{
+  "utc": "2026-11-18T23:25:42.6792332Z",
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "source": "Inventory/Containers.lua",
+  "before": "d043cfe03da4e5702b07025b86e1a2d279b76fa6743fe1907ee2628d4d16639d",
+  "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\partial-oldrows-p52-r1\\integration-20261116T055946Z\\checkpoint\\history.bundle",
+  "historySHA": "71d1b55465c1bd316516428e472b1d722719fefc79a10e112c2231ff9d43c646",
+  "settingsStatRows": 21,
+  "settingsContentsCopied": false,
+  "changeId": "LHO-SLOT-DIFF-TOUCH-20261119",
+  "status": "NATIVE_SLOT_DIFF_MOVE_RETURN_PARITY_PASS",
+  "after": "372664bf8015f24c8024bb2efc5c3cd114d39823846bfb4a0de13b9abf244d9c",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-slot-diff-touch-20261119",
+  "previousTurn": "Progress: mail allocation reduction and matched live recipe measurements",
+  "previousNativeEvidence": {
+    "castReceive": "inventory-native-cast-receive-2026-11-18.json",
+    "scope": "Actual cast finish, BAG_UPDATE_DELAYED pulses and count parity; no isolated slot-diff cost",
+    "bagMove": "Earlier native 69–71 actual 18-stack move and return, 54 matching counts; prior source set only"
+  },
+  "sourceProof": {
+    "beforeAfterSyntax": [
+      "Lua 5.1",
+      "Lua 5.4"
+    ],
+    "allCodeOutsideDiffSlotsIdentical": true,
+    "deltaBlocksAndOrderIdentical": true,
+    "retailForeverSameDiskHash": true,
+    "rowContract": "Stable normalized rows. Built-in bag scans and Syndicator bag/bank bridge feed this path.",
+    "touchCases": {
+      "sameSlotSameItemChangedDetails": "Old pass marks item ID on count or link change; new pass uses that mark",
+      "newSlotOrReplacement": "New pass marks new ID",
+      "removedSlot": "Old pass marks original ID",
+      "mapWithMetatable": "New pass retains full field comparison."
+    },
+    "deferredMetadataOrCadenceChanges": false
+  },
+  "native119": {
+    "image": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\resume119-client.png",
+    "imageSHA256": "2880d51617175a1b1af60cea955ed0bcc88f86b7d266f3e22ab953ca2f8bf2fc",
+    "observed": "Fresh raid group join/leave messages; separate activity. No test commands or jump sent."
+  },
+  "remaining": [
+    "Repeated native frame timing; current single operational timing pair has asymmetric diagnostic overhead",
+    "Other providers, deposit and split/merge cases, other clients and complete original workflow coverage"
+  ],
+  "native120Through122": {
+    "client": "Forever 1.60.1 / 70959 / 16001",
+    "provider": "Syndicator",
+    "pid": 9012,
+    "hwnd": 3541714,
+    "reload120": {
+      "observedWorldReturn": true,
+      "submissionSHA": "419f6c8acd8cab3bc330a8a77675a991fbb63c831a6dee98278be822c3539739"
+    },
+    "context121": {
+      "bagGeneration": 5,
+      "itemID": 4599,
+      "count": 18,
+      "source": [
+        0,
+        8
+      ],
+      "emptyDestination": [
+        2,
+        7
+      ],
+      "freeDestinationSlots": 5,
+      "bagFamily": 0,
+      "submissionSHA": "8f7d8683ba0480f001853473339ee41526ebb0c9ad8e4c3a6920f62a64004c0a"
+    },
+    "move122": {
+      "source": [
+        0,
+        8
+      ],
+      "destination": [
+        2,
+        7
+      ],
+      "itemID": 4599,
+      "quantity": 18,
+      "moved": true,
+      "returned": true,
+      "originalSlotVerified": true,
+      "destinationEmpty": true,
+      "cursorClear": true,
+      "bagGeneration": [
+        5,
+        7
+      ],
+      "count": 18,
+      "sessionErrors": 0,
+      "diff": {
+        "calls": 6,
+        "mismatches": 0,
+        "baselineAggregateMsRounded": 0.0702,
+        "candidateAggregateMsRounded": 0.0562,
+        "baselineUsesPcall": true,
+        "originalMethodRestored": true
+      },
+      "paint": {
+        "calls": 2,
+        "touchedMoveItem": 2,
+        "changedMoveItem": 0,
+        "totalMsRounded": 0.3059,
+        "originalMethodRestored": true,
+        "source": "808e15ec"
+      },
+      "foregroundStable": true,
+      "profilerSettingsChanged": false,
+      "reservationAbsentAfterAck": true,
+      "images": {
+        "sourceSHA": "53a43d8f36ae2e9abed7a1ae345b52b05d4a70b72d892db278359fffac49fad6",
+        "submittedSHA": "7b6af577945930699a33e4dba502c07980a03462f3bee13c77d4dc09254de5c4",
+        "result": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/slotmove122-results.png",
+        "resultSHA": "b29d29de89054ad746500034c5051f0f23b0c73a7cce976a2f0bff1be9e0b834"
+      },
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-slotdiff122-real-transition-r2-20261119",
+        "controllerSHA": "adae1a50d8687957dceb724407fed349e01bee8f432b39d31845d44a420d7500",
+        "packetSHA": "6fb5eae172d9cab8ff66c1d5900727dc8f2ef5c3c5853f6a209fc8c4f079c751",
+        "luaSHA": "9cd4163763ee773366e18730d1553eef6e0122fac76ef14f4bb2ee52a4f1e175",
+        "packets": 27
+      }
+    }
+  }
+}

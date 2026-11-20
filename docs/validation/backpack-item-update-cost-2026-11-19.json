@@ -1,0 +1,323 @@
+{
+  "changeId": "LHO-BACKPACK-ITEM-UPDATE-COST-20261119",
+  "client": "Forever 1.60.1 / 70959 / 16001",
+  "target": {
+    "pid": 9012,
+    "hwnd": 3541714
+  },
+  "settings": {
+    "scriptProfile": "0",
+    "bothAddonsRestored": true,
+    "temporaryOnly": "Baganator per-character setting temporarily disabled for the native trace, then restored."
+  },
+  "sources": {
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "FluxJunk": "f810822c0d57605f7239bc2bd9ba30c6c74116325709753a71a2145f3fed12d5",
+    "FluxJunkOverlay": "7bb62e7834ab0c57f506b2a797e4b6fe71a0d471798541eed7a0cae0cd0ea217",
+    "FluxCombinedBagHeader": "3b21d5882ec78c7591a86f0f2dcb92b5ae28c9b0994c4f8ccdff1262af835223",
+    "installedBaganator": {
+      "layout": "a2eaa28e3fd4020e7373de70c7fae4445f602232c7bca39aa384de2f71775761",
+      "layoutFile": "CategoryViews/BagLayout.lua",
+      "backpackView": "65eb7720763f679d267b5d27f33dc1fafa01cb064fe389920a7ae38aa1d04e74",
+      "itemLayouts": "2444b4952c07b751884b27a3d997589b6d747c5f24d6214d4a81613e299f108d",
+      "itemButton": "53f5408660ab9002dccf20a339edd62058c963fa32406bdae46e9b7899ed225b"
+    },
+    "pinnedForeverContainer": {
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UIPanels_Game/Mainline/ContainerFrame.lua#L1189",
+      "blob": "ba15459a26be7b996286a0817b595bd02c4266d0"
+    },
+    "pinnedForeverItemButton": {
+      "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ItemButton/Mainline/ItemButtonTemplate.lua",
+      "blob": "2aacdf84178c8af4ff560d88d2f0b8468aa2875a"
+    }
+  },
+  "method": "Real in-game backpack opens and closes with short-lived timing observers, and two separate direct item/quest read passes over existing slots. Outer timings are wall time. Exclusive columns subtract explicitly nested observers only.",
+  "category": {
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag185-matrix-result.png",
+      "sha": "903cbc9da8eb9651ac3144fc5863991c235b851c5b7b1edd3429bb9dffe3a1e3"
+    },
+    "submittedPNG": "22bb07be7c163477b5f1b2466f2598c86207f3874e8924f08b887d70b939aee4",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag185-category-button-cost-20261119",
+      "controllerSHA": "cfd33bab9374f91bf8226d2fa2872b3d164999d113f1d92551c64b3950d435c8",
+      "packetSHA": "d776a45ed4878954e112571d6b16bb803499f033a87783cf89f1a49fd822a568",
+      "packets": 26,
+      "luaSHA": "b375142e89a1db8d076d03d2f6deb43d3eb85f7b060fb35bcfd0e494cd1c7c67"
+    },
+    "player": "alive",
+    "coldOpenMs": 155.3866,
+    "warmOpenMs": 6.2911,
+    "closeMs": [
+      1.0953,
+      1.1281
+    ],
+    "frameGapsMs": [
+      19,
+      167,
+      21,
+      21,
+      19
+    ],
+    "coldDetailCalls": 54,
+    "detailsMs": 117.61,
+    "detailsOutsideNestedMs": 115.48,
+    "displayMs": 129.65,
+    "displayOutsideNestedMs": 7.39,
+    "coldItemPoolCalls": 55,
+    "coldItemPoolMs": 0.55,
+    "newPoolFramesReported": 0,
+    "coldExtendedMs": 0.45,
+    "coldQualityMs": 1.68,
+    "coldTexturesMs": 1.9,
+    "restoreFailures": 0,
+    "errors": 0
+  },
+  "combined": {
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag187-matrix-result.png",
+      "sha": "e3c638bf8d7d857c47872b343552bbf14e1c547dc1596213f22624d88ccd71d4"
+    },
+    "submittedPNG": "aff3f01bd0be4c1ec3479031fa049c77fdcebf0c6385f1df7290d0f837ea39ac",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag187-button-groups-20261119",
+      "controllerSHA": "c8a24d7f1447969dff309dd502d10ad5439dd06968b7b8f390bf10a9551084ab",
+      "packetSHA": "2af0aad749454019d2d730896f9b8d1fd9343621bf2f7c3f00515ebd0e9aacff",
+      "packets": 26,
+      "luaSHA": "f923e319acd97f37601fc4da2f0ac707ebdc2e823798c5da043825b027b6a151"
+    },
+    "player": "alive until after completion result appeared",
+    "coldOpenMs": 155.7313,
+    "warmOpenMs": 29.7855,
+    "closeMs": [
+      1.3932,
+      1.3437
+    ],
+    "frameGapsMs": [
+      17,
+      166,
+      19,
+      41,
+      17
+    ],
+    "updateItemsMs": [
+      125.85,
+      12.33
+    ],
+    "buttonInstancesMeasuredOverBothOpens": 152,
+    "measuredMethodGroupsMs": {
+      "icon": [
+        0.99,
+        0.98
+      ],
+      "quality": [
+        1.93,
+        1.32
+      ],
+      "extended": [
+        0.22,
+        0.22
+      ],
+      "badge": [
+        0.47,
+        0.55
+      ],
+      "junk": [
+        12.57,
+        3.01
+      ],
+      "context": [
+        0.49,
+        0.46
+      ],
+      "cooldown": [
+        0.6,
+        0.63
+      ],
+      "tooltip": [
+        1.27,
+        1.25
+      ]
+    },
+    "sumColdGroupsMs": 18.54,
+    "unattributedWithinUpdateItemsMs": 107.31,
+    "errors": 0,
+    "restoreFailures": 0
+  },
+  "closedBagMetadata": {
+    "result": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag190_a-submitted.png",
+      "sha": "cad3e75cd43042ca3b86962ba4a0b7a83fdb1c87b8330df406e4d6d334d64bb9"
+    },
+    "submittedPNG": "cad3e75cd43042ca3b86962ba4a0b7a83fdb1c87b8330df406e4d6d334d64bb9",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag190-item-quest-api-20261119",
+      "controllerSHA": "a92f86859dbb6e9aa34f4a23756dd85332b57176777edf13e5f46783e3e3de3a",
+      "packetSHA": "3b99c44f0a89128ad20a795cf638b81a4f5c480adc38acc473a548ab402ac8be",
+      "packets": 9,
+      "luaSHA": "0f3cfeabb8bb7955e4d0bcf1a55dfea5b144b74f9f1f51845685cc084bd55eef"
+    },
+    "player": "ghost",
+    "slots": 76,
+    "occupied": 44,
+    "questSlots": 8,
+    "itemTotalMs": [
+      0.627,
+      0.559
+    ],
+    "itemPeakCallMs": [
+      0.032,
+      0.02
+    ],
+    "questTotalMs": [
+      0.139,
+      0.133
+    ],
+    "questPeakCallMs": [
+      0.005,
+      0.003
+    ],
+    "limit": "Direct closed-bag reads after the restoration reload with both providers. These timings do not establish costs in the living first-open samples or cold cache state.",
+    "errors": 0
+  },
+  "attemptFrozenObserver": {
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag191-matrix-result.png",
+      "sha": "84e07347a9b5c7608a460ae95366cb67a0f23fb8d579499fd65cc186fbe12480"
+    },
+    "submittedPNG": "b71b4aed7bbe497c221553665f0e0230cc349f220dbf0e184da46b06807f0114",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag191-detail-cost-20261119",
+      "controllerSHA": "99f5713109edc666614321b59f2aa058366042c7053a1527d05aeb2f402d6546",
+      "packetSHA": "b4292a216e5b0485769bc23086ab0c4564b1e958fc821506558d23443ff8ac1d",
+      "packets": 27,
+      "luaSHA": "eb5d49e2a7aa635847401569d8dcf77a798f6324e483c7e12b7be006d1b36039"
+    },
+    "diagnosis": {
+      "result": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag192_a-submitted.png",
+        "sha": "ae8caa45567e36606f63a63e001b917c38f6491406a665e16a7f9a7701a37417"
+      },
+      "submittedPNG": "ae8caa45567e36606f63a63e001b917c38f6491406a665e16a7f9a7701a37417",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag192-direct-provider-matrix-20261119",
+        "controllerSHA": "031601f826f309ed92de28edc0be801d22c01a52f364954b2ea774fcdf752d1e",
+        "packetSHA": "3dc0dd92b091875ae8227b881f367aee419c24ae28d943bfce17d58d942c4934",
+        "packets": 1
+      }
+    },
+    "error": "Attempted to perform indexed assignment on a frozen table. The probe encountered the frozen Syndicator Search API during setup.",
+    "cleanup": {
+      "result": {
+        "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag193_a-submitted.png",
+        "sha": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0"
+      },
+      "submittedPNG": "c88ed8c59fe5d7e6a5752abc575f4127e6ec46813de23a3e1bf72c2ba205d5b0",
+      "controller": {
+        "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag193-direct-provider-matrix-20261119",
+        "controllerSHA": "a6ba92ac95877cc7b0149b93157e5d849555ee1bb84e1acbf507f5718351c941",
+        "packetSHA": "96a1372c8eec38bee0ffc142fa000afeef8b48432a74e294e62031d034102c08",
+        "packets": 1
+      }
+    },
+    "recovery": "The verified reload cleared the observer and frame state. The retry observes item instances, the category view and selected FluxUI callbacks, with a cleanup path for observer setup failures."
+  },
+  "categoryDetailRetry": {
+    "result": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/bag194-matrix-result.png",
+      "sha": "fd6bae0c0f967fdb177a39eac8aa9306cd5ba9c5812cc15fd84ce856efb31c5e"
+    },
+    "submittedPNG": "c3112dfba39e9ea815335010aa3d59c450c62f7fdec4b83d81c170a2b359b426",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag194-detail-instance-20261119",
+      "controllerSHA": "7d42ecc9e150004c737d5171e85defa5bf0fc1e3ad013bfdc89e45d45b457da2",
+      "packetSHA": "d50fe4998b3df2c740a4d79f37df37ba2296ea60b2aaba5e7d96b78891c6ead1",
+      "packets": 28,
+      "luaSHA": "e4fb7a25c5fd9c0bccdf30ae695d6c932713031007d19f3b422027ad841dc1bd"
+    },
+    "player": "ghost",
+    "coldOpenMs": 158.6188,
+    "warmOpenMs": 5.867,
+    "closeMs": [
+      1.277,
+      1.1053
+    ],
+    "frameGapsMs": [
+      13,
+      171,
+      16,
+      16,
+      14
+    ],
+    "coldDetailCalls": 54,
+    "detailsMs": 123.06,
+    "detailsOutsideNestedMs": 119.7,
+    "displayMs": 134.63,
+    "displayOutsideNestedMs": 9.65,
+    "noNewPoolFramesReported": true,
+    "coldFluxJunk": {
+      "calls": 102,
+      "ms": 2.96
+    },
+    "coldContext": {
+      "calls": 108,
+      "ms": 2.58,
+      "ownMs": 2.45
+    },
+    "coldQuests": {
+      "calls": 105,
+      "ms": 0.84,
+      "ownMs": 0.75
+    },
+    "coldCooldown": {
+      "calls": 51,
+      "ms": 0.37
+    },
+    "coldBagID": {
+      "calls": 375,
+      "ms": 0.4
+    },
+    "coldItemPool": {
+      "calls": 55,
+      "ms": 0.6
+    },
+    "errors": 0,
+    "restoreFailures": 0
+  },
+  "restore": {
+    "result": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-bag189_a-submitted.png",
+      "sha": "60f6248cb9cc84d8a942320cc5e24c68850bb27422ee4af70e5ea9026cb7d012"
+    },
+    "submittedPNG": "60f6248cb9cc84d8a942320cc5e24c68850bb27422ee4af70e5ea9026cb7d012",
+    "controller": {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-bag189-restoration-20261119",
+      "controllerSHA": "00f82f5983227be6d4a12a0f1adb77a57d899035c824af2dd189a3d7d22894f6",
+      "packetSHA": "003e54225bec987a5d5512a6d894ad131ece70a479dbcc2e16ad3e2d6ccfba05",
+      "packets": 9,
+      "luaSHA": "99469a956dff99596aa77993615dc77d62526c3a16116f4d0f5538de7c804f72"
+    },
+    "activeProvider": "syndicator",
+    "originalEnableFlags": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "bothLoaded": true,
+    "keepalive": {
+      "path": "C:/Users/mario/.codex/visualizations/2026/11/10/01a1c551-7947-7cf1-8aac-c0891cf4fa6b/lag-hotspots-20261114/resume4-20261114T222014Z/native/keepalive-p83-live20261119h-state.json",
+      "state": {
+        "status": "running",
+        "pid": 37280,
+        "pairs": 1,
+        "movementAcknowledged": false,
+        "nextDueInSeconds": 180,
+        "lastStatus": "injected-movement-unverified"
+      }
+    },
+    "characterState": "The game displayed its release timer after the native trace. The timer elapsed and the later verified state was a ghost at the graveyard. No release or resurrection command was sent.",
+    "pendingWorldRefresh": "The last native setup receipt showed world refresh in 6 minutes."
+  },
+  "next": "In a controlled cold sample, compare early callback and item widget work with per-addon frame attribution where available, retaining provider settings and APIs. Use currently measured FluxUI Pending, consumable retry and cast follow-ups as separate change candidates. Positive Junk display, bank and the other requested workflows and clients remain open."
+}

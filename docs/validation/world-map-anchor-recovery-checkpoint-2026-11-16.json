@@ -1,0 +1,13 @@
+{
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\16\\01a1e4ee-f735-7420-b3b7-b5568f701618\\world-map-anchor-before-20261116T225919Z",
+  "verified": true,
+  "sourceFiles": 3051,
+  "settingsMetadataFiles": 129,
+  "settingsWrites": false,
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "branch": "main",
+  "sha256": {
+    "source.zip": "80646af56e94839590bdaf5ccf8c6851bc3e0aeda88a0897a9656ae6b92faf16",
+    "history.bundle": "afef14eb74063e0d6e478725f10b6d22236d07510fc6c6eac35dcf85a15a49a3"
+  }
+}

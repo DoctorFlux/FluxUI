@@ -97,7 +97,7 @@ local function harness(options)
         local f = { scripts = {}, events = {}, shown = false }
         function f:SetScript(key, callback) assert(key == "OnUpdate" or key == "OnEvent"); self.scripts[key] = callback end
         function f:GetScript(key) return self.scripts[key] end
-        function f:RegisterEvent(key) assert(key == "PLAYER_LOGOUT"); self.events[key] = true end
+        function f:RegisterEvent(key) assert(key == "PLAYER_LOGOUT" or key == "PLAYER_REGEN_DISABLED" or key == "PLAYER_REGEN_ENABLED"); self.events[key] = true; return true end
         function f:UnregisterEvent(key) self.events[key] = nil end
         function f:Show() self.shown = true end
         function f:Hide() self.shown = false end
@@ -111,7 +111,7 @@ local function harness(options)
     end
     env.C_Timer = { NewTimer = timer, NewTicker = timer }
     local flux = { Client = { expansion = "forever" }, Work = {} }
-    for _, kind in ipairs({ "Events", "Ticker", "Scheduler" }) do
+    for _, kind in ipairs(options.withCombat and { "Events", "Ticker", "Scheduler", "Combat" } or { "Events", "Ticker", "Scheduler" }) do
         local state = { token = nil, observer = nil }
         s.services[kind] = state
         flux[kind] = { SetTrace = function() error("watch replaced an existing trace") end,
@@ -217,7 +217,7 @@ do
     local r = report(s)
     check(r.durationLimit == 600 and r.thresholdMs == 200 and r.maxFPSBk == "30" and r.scriptProfile == "0",
         "defaults and background throttle/profiler context are retained without changing CVars")
-    check(r.diagnosticVersion == 2 and r.periodicHeapSamples == 1,
+    check(r.diagnosticVersion == 3 and r.periodicHeapSamples == 1,
         "versioned diagnostics disclose coarse heap sampling separately from gap sampling")
     check(r.spikeCount == 1 and #r.spikes == 1 and r.spikes[1].gapMs == 250
         and r.spikes[1].callbackMs == 40 and r.spikes[1].callbackKey == "inventory",
@@ -476,6 +476,52 @@ do
     check(r.spikeCount == 1 and r.callbackCount == 0 and not r.coverage.Events
         and not r.coverage.Ticker and not r.coverage.Scheduler,
         "missing Flux coverage is explicit rather than fabricated attribution")
+end
+
+do
+    local s = harness()
+    s.flux.Events.GetCallbackOrigin = function(fn)
+        check(fn == s.flux.Work.Burst, "origin lookup receives only the already-owned callback function")
+        return "Core/ButtonFX/Glow.lua:2001"
+    end
+    s.capture.StartWatch(30, 50)
+    local activeReport = s.capture.GetActiveWatchReport()
+    check(type(activeReport) == "table" and activeReport.mode == "spike-watch",
+        "optional phase readers share the exact existing active report without creating a second watch")
+    s.emit("Events", "PLAYER_REGEN_ENABLED", 410.7, true)
+    s.capture.StopWatch("origin-test")
+    local r = report(s)
+    check(r == activeReport and s.capture.GetActiveWatchReport() == nil,
+        "active phase access ends with the existing finite watcher")
+    check(r.callbacks[1].label == "Core/ButtonFX/Glow.lua:2001" and r.callbacks[1].failed,
+        "anonymous subscriber source and failed span are retained without debug.getinfo")
+    s.capture.PrintSpikes()
+    local output = table.concat(s.output, "\n")
+    check(output:find("Glow.lua:2001 failed=true", 1, true),
+        "printed slow callbacks identify source and whether error handling is included")
+    check(s.scans == 0 and s.detached(), "origin printing adds no frame walk or persistent observation")
+end
+
+do
+    local s = harness({withCombat=true})
+    s.flux.Scheduler.GetCallbackOrigin = function(fn)
+        check(fn == s.flux.Work.Burst, "scheduler origin lookup reads only callback identity")
+        return "Bars/Watch.lua:505"
+    end
+    check(s.capture.StartWatch(30,50), "finite capture can attach the combat queue service")
+    local active = s.capture.GetActiveWatchReport()
+    check(active.coverage.Combat == true and s.observerAdds == 4, "combat timing coverage is explicit")
+    s.emit("Combat","regen.heavy",90,false)
+    s.emit("Scheduler","eval.listener",15,false)
+    s.capture.StopWatch("combat-source")
+    local r = report(s)
+    check(r.callbacks[1].kind == "Combat" and r.callbacks[1].key == "regen.heavy",
+        "deferred queue category survives the saved report")
+    check(r.callbacks[2].label == "Bars/Watch.lua:505", "anonymous listener reports its source without gameplay stack collection")
+    check(s.detached() and s.observerReleases == 4, "all four service owners release on stop")
+    local busy = harness({withCombat=true, conflict="Combat"})
+    check(not busy.capture.StartWatch(30,50) and busy.observerReleases == 3,
+        "busy combat observer rolls back earlier subscriptions without replacing it")
 end
 
 print(string.format("spike watch: %d checks passed; 10,000 spans retain64 callback records and20 gaps; native attribution unverified", checks))

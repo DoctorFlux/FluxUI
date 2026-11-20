@@ -1,0 +1,247 @@
+{
+  "id": "BORDER-JUNCTION-SHADOWS-R56-20261116",
+  "version": "shadow-support-r56",
+  "dateUTC": "2026-11-16T21:15:36.089120+00:00",
+  "request": "Restore border drop shadows at every T and X orientation, across both fixed-weight border styles. Existing in-game testing hold remains in force.",
+  "requirements": [
+    "CB-37",
+    "CB-01",
+    "CB-02",
+    "CB-10",
+    "CB-12",
+    "CB-14",
+    "CB-27",
+    "CB-35",
+    "CB-36"
+  ],
+  "userScreenshot": "codex-clipboard-5c14a1de-6ba1-444f-9da2-be0c59565688.png",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\junction-shadow-before-20261116T195332Z",
+  "checkpointFiles": 3018,
+  "historyVerified": true,
+  "archiveVerified": true,
+  "changedDuringArchive": [],
+  "settings": "39 existing current/backup settings paths verified by metadata only outside AddOns; no contents copied, read for this fix, changed or backed up as a closed-client claim.",
+  "sourceHashes": {
+    "Core/BorderJunctions.lua": {
+      "checkpointRaw": "bc00e074fadf434404163a2e89da537f8f880ab8e6fd8dd46eb89a15ee42bb83",
+      "raw": "825e54726aff61994047a6b5caec6ba730de1e23325e9a7e9439102082bc0df2",
+      "normalized": "7a13ae78f4fe5fb766db09aa562d6d10d79150847abbff7031881ec7b66e529d"
+    },
+    "FluxBorder.lua": {
+      "checkpointRaw": "09cb22e920e594960a9cb34cabfb3432c7039d6469639ed51c0292101a252f9e",
+      "raw": "b0a84e68f0fff3bd66061f2c007702385da8897307320c15ecc22272b4359193",
+      "normalized": "b0a84e68f0fff3bd66061f2c007702385da8897307320c15ecc22272b4359193"
+    },
+    "tests/border_junction_shadows.lua": {
+      "checkpointRaw": null,
+      "raw": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055",
+      "normalized": "0aceeca71c3cd31b9b72b097943e0ed1877d3dc81e2da28476c6bca6f0b13055"
+    },
+    "tests/border_shadow_material.lua": {
+      "checkpointRaw": null,
+      "raw": "d86a051ad0ab32f544205ff48c0078ef453aa314414d2c0403a16a58cdd3f177",
+      "normalized": "d86a051ad0ab32f544205ff48c0078ef453aa314414d2c0403a16a58cdd3f177"
+    },
+    "tests/border_junctions.lua": {
+      "checkpointRaw": "875f9425742cb51ad6c29c6cd7d30dd7fc9c546d35450090afce2ebf5277f0ce",
+      "raw": "3b2dec7dbf373235e851e97059a9b5fd1174ce1148dc0c195e0c0fa12e48fee3",
+      "normalized": "3b2dec7dbf373235e851e97059a9b5fd1174ce1148dc0c195e0c0fa12e48fee3"
+    },
+    "tests/border_fallback_array_guards.lua": {
+      "checkpointRaw": "405c98a8ca9207d9010c7551c0a5f23f753ee7f2f851d71e7792ec5c289fccc0",
+      "raw": "ad0656a691319710e9db719153de9ebf123599680f798f10b963eb9a6e38d28e",
+      "normalized": "ad0656a691319710e9db719153de9ebf123599680f798f10b963eb9a6e38d28e"
+    },
+    "tests/minimap_side_border.lua": {
+      "checkpointRaw": "836539462849fb40276d43a95d946ab43732e9eabfa06218ba0319081f1e49c5",
+      "raw": "b559bd83f465e3e8a94cdb572d3d34071f781386415674adbfa02776d4451244",
+      "normalized": "b559bd83f465e3e8a94cdb572d3d34071f781386415674adbfa02776d4451244"
+    }
+  },
+  "implementation": [
+    "Partition current per-arm source support rectangles: exclusive tails and support-corner miters in real H/V intersections. Preserve affine source UVs, own material/RGB/alpha, cropped patches and independent unit scopes.",
+    "Exactly zero-alpha canonical type2 padding is measured from both actual TGA sheets. Only an authored current native handle plus exact canonical4/8UV may use this metadata; foreign/private/unrecognized material retains full source support.",
+    "PaintPiece captures its native handle only after assigning authored art, never after a recolor. Existing texture APIs only; no new masks, hooks, input, settings or recurring drivers.",
+    "Solve resolves current ArmSlices once, caches them only on the current solved operation, and enlists remote sampled keepers for source suppression/cap/root/fallback ownership without changing geometric candidates. Plane and unit scope guards remain.",
+    "Aura and retained-strip authoritative horizontal crest bands keep their accepted geometry; support-aware shadow partition applies outside the crest band. Native rounded caps and their protection remain.",
+    "Committed support shape is recorded and compared during preflight. Same-alpha natural/tint and RGB changes remain paint-only; genuine foreign support replacement/recovery coalesces into one build.",
+    "Existing triangle/candidate/fragment/cap/cache limits and atomic rollback remain; triangle emission stops at the existing per-operation triangle budget. Rectangular pieces reuse existing quad rendering."
+  ],
+  "canonicalType2NormalSupport": {
+    "order": "top-to-bottom for H; left-to-right for V; pixel-center bilinear coordinates",
+    "Top": [
+      3.5,
+      13.5,
+      17
+    ],
+    "Bottom": [
+      2.5,
+      12.5,
+      16
+    ],
+    "Left": [
+      6.5,
+      14.5,
+      16
+    ],
+    "Right": [
+      5.5,
+      12.5,
+      16
+    ],
+    "type1": "Full canonical canvas; every normal texel remains positive. Artwork unchanged."
+  },
+  "gate": {
+    "scripts": 147,
+    "failures": 0,
+    "syntaxFiles": 1190,
+    "freshCompiled": 15,
+    "inheritedUnchangedSyntax": 1175,
+    "changedDuringGate": [],
+    "ownedChangedDuringGate": [],
+    "compilerFiles": 2,
+    "prototypes": 235,
+    "maximumUpvalues": 54,
+    "wholeCorpusFunctionalRun": false
+  },
+  "shadowRasterModel": {
+    "checks": 486467,
+    "scenes": 56,
+    "sourceFootprintSamples": 240576,
+    "coverage": "Four T directions and X; both styles; all H/V edge combinations; fractional UI and different parent scales; mixed RGB; remote owner; mask fallback/isolation/recovery; paired aura panels; retained-strip7/11/15; exact accepted endpoint crest; zero-support boundary continuity; idle and recolor stability. Actual factory/Core/TGA with modeled engine geometry; native GPU not tested.",
+    "assertionsDisabled": false
+  },
+  "materialModel": {
+    "checks": 111147,
+    "rawPixelScope": "Every natural/tint alpha texel; independent all-along support extents and bilinear zero-fringes",
+    "negativeControls": 5,
+    "transitionScales": [
+      0.75,
+      1,
+      1.25
+    ],
+    "naturalTintRgbGeometryReadsSolves": 0,
+    "foreignSameUvReplacementReadsSolves": 1,
+    "trustedRecoveryReadsSolves": 1,
+    "recoveryGeometryExact": true
+  },
+  "costAndLimits": {
+    "tuple": "logical triangles, actual texture fields, quads",
+    "upT": {
+      "before": [
+        11,
+        11,
+        0
+      ],
+      "after": [
+        16,
+        10,
+        6
+      ]
+    },
+    "X": {
+      "before": [
+        12,
+        12,
+        0
+      ],
+      "after": [
+        20,
+        14,
+        6
+      ]
+    },
+    "timingClaim": false,
+    "nativeFpsClaim": false,
+    "remainingAlphaGradientDifference": "Different original artist profiles are not identical-alpha at every new miter. Type2Top/Right NW ray(-1.75,+2.75)UI showed .62647 versus .85202 across +/-0.0001 (difference .22555). Complete modeled nonzero shadow coverage does not certify native perceptual seamlessness; no costly contour subdivision was added.",
+    "broaderBuilder": "Full CB-36 changed-layout discovery/solve and previously unattributed native frame gaps remain open."
+  },
+  "failuresAndCorrections": [
+    "Rejected best-source-only ray policy: short remote owners can have different normal support from longer slices.",
+    "Rejected canvas-only/zero-only hole fill: type2 has transparent padding inside the canvas, and hard support switching can create an opacity step.",
+    "Three special test fixture/oracle corrections retained externally: excluded intentional losing parallel/cap profiles outside the actual junction; used canonical endpoint profiles rather than midrun RGBA for crest identity; removed unused hidden full-shell caps from an intended sole retained-stem fixture. No production cap policy or shadow assertions were relaxed.",
+    "First focused test caught nil texture identity in the existing geometry-only BranchTriangles API. Final emitter groups by texture or segment identity; current real-texture output is unchanged by this compatibility correction.",
+    "Legacy tests assumed all fields were full-patch collapsed triangles and six fallback records per junction. They now verify real source-UV screen coordinates, cropped rectangle bounds, one field per effective primitive, committed numeric triangle counts and every actually published fallback record.",
+    "The strict minimap fixture lacked the native GetTexture getter now used to capture authored material identity; its texture model now supplies the getter.",
+    "Initial broad gate145PASS/2FAIL is retained. After the two fixture updates, final frozen gate147PASS/0FAIL; all Lua stable during both broad runs."
+  ],
+  "nativeTesting": {
+    "status": "DEFERRED BY USER",
+    "until": "User explicitly says in-game testing is available again",
+    "noClientInputOrQueriesOrCapturesOrProfiling": true,
+    "nativePixelTaintControllerFpsAcceptance": false
+  },
+  "controllerAndLocalization": "Decorative geometry only; no focus stops, input handlers, settings or visible strings added. Existing controller/mouse/keyboard routes retained; native controller/security acceptance deferred.",
+  "sourcePins": {
+    "retail": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+    "forever": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+    "classic": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+    "era": "4192ac60067fc55566182291bc67c85dd9b6794d",
+    "anniversary": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49"
+  },
+  "sourceApiScope": "Existing GetTexture/GetTexCoord and decorative renderer primitives; TOC/client adapters unchanged; no native capability probe.",
+  "manualInstallationCopies": false,
+  "reports": [
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-final-gate.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-initial-gate.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-final-upvalues.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-first-focus.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\junction-shadow-final-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\junction-shadow-fixture-corrections.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\junction-shadow-trace.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\junction-shadow-profiles.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-shadow-material-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-shadow-material-live-proof.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-slice-final-receipt.json",
+    "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-compiled-counts-boundary.json"
+  ],
+  "parallelAfterGate": {
+    "scope": "A later portrait-only closure optimization in Shared was preserved; the original147-script gate stays scoped to its frozen source. Twenty affected scripts freshly replayed after this delta; not a second whole-corpus functional run.",
+    "source": "UnitFrames/FluxUnitFrames_Shared.lua",
+    "normalized": "12790f7c47ecf45b4cd4c4ef404fe7705eef4d6f140f43f8740e34dc3b79715d",
+    "scripts": 20,
+    "failures": 0,
+    "changedDuringRun": [],
+    "syntaxExitCode": 0,
+    "compilerPrototypes": 381,
+    "maximumUpvalues": 20,
+    "report": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-r56-parallel-shared-validation.json",
+    "laterOtherTestSyntaxOnly": [
+      {
+        "path": "tests/idle_unit_geometry.lua",
+        "sha256": "f2f98a8f87985cdc7921a54e9bc432bff9ea1d2b83e6aa4c1a6a30203f2fd33d",
+        "exitCode": 0,
+        "output": ""
+      },
+      {
+        "path": "tests/idle_units.lua",
+        "sha256": "144ca3f06451a770c0ccb24a7180989a388b026da5591b02f82f77c30a1fda49",
+        "exitCode": 0,
+        "output": ""
+      },
+      {
+        "path": "tests/party_native_contracts.lua",
+        "sha256": "d61c2d6f8c9a71d12a249061f4a303fde519617a307a3f55cfd33553be1ab45f",
+        "exitCode": 0,
+        "output": ""
+      }
+    ]
+  },
+  "currentSyntaxComposition": {
+    "files": 1190,
+    "freshCompiled": 19,
+    "inheritedUnchanged": 1171,
+    "sharedFollowupQualified": true,
+    "otherTestsAreSyntaxOnly": true
+  },
+  "documentation": {
+    "generation": "PASS:1223 classified sources/625 reachable/444 settings/584 literal defaults",
+    "validation": "PASS:1223 sources/625 reachable/444 settings/24 SavedVariables/18144 local links; source inventory/evidence current"
+  },
+  "finalFreeze": {
+    "utc": "2026-11-16T21:19:48.076076+00:00",
+    "ownedRuntimeAndTestsStable": true,
+    "ownedJobsRunning": 0,
+    "nativeHoldActive": true
+  }
+}

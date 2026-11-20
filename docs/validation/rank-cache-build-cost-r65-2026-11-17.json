@@ -1,0 +1,83 @@
+{
+  "changeId": "RANK-CACHE-BUILD-COST-R65-20261117",
+  "status": "APPLIED and FROZEN optional-watch attribution; native adoption and performance acceptance PENDING",
+  "scope": "Existing rank-cache builds only; no rank algorithm, metadata query, parsing or build-cadence optimization",
+  "source": {
+    "path": "Bars/SpellRank.lua",
+    "preimageRawAndLFSHA256": "7ed2a24dd75bbd8891ea3d30cdc0e6f902e6022f243c9a62f57d4ee15f6fe8a1",
+    "frozenRawAndLFSHA256": "cfc560a52257a15cd41911988a73f852e54d2d0feff08567926c67aa8d1fb88e",
+    "testRawAndLFSHA256": "c7ac1432bc9f99e9bf78d386ae61f5e69bb925fdc291fd2763469db347ebc6d7",
+    "inverseProjection": "Removing the added diagnostic helpers, two hooks and cacheCostVersion recovers the exact preimage bytes",
+    "loadedCapabilityMarker": "_G.FluxSpellRankManager.cacheCostVersion == 1",
+    "markerObservedNatively": false
+  },
+  "checkpoint": {
+    "externalDirectory": "rank-cost-before-20261117T084934Z",
+    "exactSpellRankPreimagePreserved": true,
+    "datedSourceAndGitHistoryVerified": true,
+    "settings": "Four MAIN-only on-disk metadata records; no private settings contents or Bank"
+  },
+  "preservedBehavior": {
+    "nativeMetadataQueriesSkipped": 0,
+    "parseCacheAdded": false,
+    "rankBuildCadenceChanged": false,
+    "metadataWalkAndQueryOrderRetained": true,
+    "originalMetadataErrors": "Propagate unchanged",
+    "appearanceCommandsSettingsAndIntegrations": "Retained",
+    "newEventsTimersOrPerIconChecks": 0
+  },
+  "optionalWatchSummary": {
+    "field": "rankCacheBuild",
+    "schemaVersion": 1,
+    "fields": ["schemaVersion", "count", "lastMs", "lastAt", "peakMs", "peakAt"],
+    "admission": "Only completed builds publish into the same still-active owned report",
+    "diagnosticFailurePolicy": "Diagnostic errors are contained; stale owners, invalid clocks and private fields drop only the optional record",
+    "disabledWork": "One protected Lua Capture lookup during an existing build; no added native clock or privacy query, table allocation, per-icon check, timer or event",
+    "activeOverhead": "Existing optional-watch cost clocks, ownership/privacy guards and status work add diagnostic overhead; no zero-cost claim",
+    "timingBoundary": "Reported ms includes the ending owner check and excludes the later WatchStatus and final publication work",
+    "interpretation": "Observes completed rank-cache build spans within a finite watch. It does not prove that CF64's historical usability callback rebuilt the cache, nor measure complete callback CPU or FPS."
+  },
+  "desktopValidation": {
+    "source": "Root and independent group final frozen-source handoff",
+    "lua51": {
+      "version": "5.1.5",
+      "newScenes": 70,
+      "newAssertions": 545,
+      "existingAssertions": 224,
+      "result": "PASS",
+      "runtimePrototypes": 85,
+      "maximumUpvalues": 12
+    },
+    "lua54": {
+      "version": "5.4.6",
+      "newScenes": 70,
+      "newAssertions": 545,
+      "existingAssertions": 224,
+      "result": "PASS",
+      "runtimePrototypes": 85,
+      "maximumUpvalues": 13
+    },
+    "sourceAndTestCompiles": 4,
+    "inverseProjection": "PASS: exact preimage",
+    "newBenchmarkOrNativeResult": false,
+    "combinedFullGate": "PENDING other border chat's active mini-frame source freeze and current READY; earlier handoff is historical"
+  },
+  "nativeCoordination": {
+    "status": "PENDING",
+    "mainOnly": true,
+    "bankExcluded": true,
+    "latestUserWindowPermission": "Verified main client foreground or background is permitted",
+    "remainingInputRules": "No activation, global input, mouse or clipboard control; retain exact identity, ownership and no-overlap guards",
+    "cleanupReservation": "Foreign ROOT-JUMP-F-20261117 marker blocks cleanup; marker presence is not proof of a live owner",
+    "ownerArtifactStatus": "Source-only prepared artifact located at the 09:14 handoff; Root requested cooperative release by its owner",
+    "originalDiagnostics": "CF64 remains retained and CF62hold.old preserved; original restoration remains pending; historical CF64 report is unchanged",
+    "cpuFpsPixelTaintControllerClientAcceptance": "OPEN"
+  },
+  "evidence": {
+    "publicRecordContainsPrivateSavedVariables": false,
+    "historicalCF64": "docs/validation/combat-cf64-2026-11-17.json",
+    "historicalR63Rejection": "docs/validation/fallback-input-work-r63-2026-11-17.json",
+    "coordinationOwner": "Root owns docs/COMBAT_COLLABORATION.md; this documentation task does not edit it",
+    "curationScope": "Public JSON, four unique R65 continuity markers and one parity row only; no runtime/test/native/compiler/full-gate/builder action"
+  }
+}

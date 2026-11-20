@@ -1,0 +1,366 @@
+{
+  "changeId": "BORDER-RECENT-LAYOUTS-R162-20261120",
+  "capturedAtUTC": "2026-11-20T00:54:52.450040+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "e99b63fe8dba52cedda40a8bdfbc9ea7c4afca417a85759cd331409dbfd42b02",
+      "afterRaw": "9a042e48f7889d8e3cfa4ce632225e1136a5c610a701e5732562583c4be835e7",
+      "afterNormalized": "9a042e48f7889d8e3cfa4ce632225e1136a5c610a701e5732562583c4be835e7"
+    },
+    "tests/border_strip_poses.lua": {
+      "beforeRaw": "a68debc183a2d845d3c8fc319c38c73b8e55476f5f1c68e5b66cdfb88215651f",
+      "afterRaw": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d",
+      "afterNormalized": "75fc5b51f287fd912f67fc4d82532f9dd1d56a7e7a2c66ffffd421716457899d"
+    },
+    "tests/rapid_strip_drops.lua": {
+      "beforeRaw": "a7ee98bdfc4cfa2186d19968c1f891f1465616d4212e8234ab87253fbe8cc78e",
+      "afterRaw": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298",
+      "afterNormalized": "739094b5880a61b2bf3728b81f630ef924d4a843461695b17358eb8332b4a298"
+    },
+    "tests/regional_roster_poses.lua": {
+      "beforeRaw": "68797d679b26ef1786a83f759a525440b1e89dc37f7e8cb63b2b0853dfe0cc66",
+      "afterRaw": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46",
+      "afterNormalized": "06b632e579dca7b8baba9964b08f23285b116cc4cf071f9ecccf1b0466ed5e46"
+    }
+  },
+  "checkpoint": {
+    "sourceZip": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\source.zip",
+    "sourceZipSHA256": "655b516abcffc6f964377d60fd6e55c28f7bc17ce947247bcb1781ab9482574c",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+    "settingsMetadataCounts": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Three matched desktop runs of twelve recurring strip-width changes across four widths and nine recurring roster visibility and positioning changes across three layouts. Both border styles and both party- and raid-owned units are represented. Strip coverage also tests an unrelated panel, both sides of the strip, and an uncached regional oracle.",
+    "strip": [
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 1,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.247,
+        "cachedFields": 1684
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 1,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.42
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 2,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.231,
+        "cachedFields": 2082
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 2,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.469
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 1,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.198,
+        "cachedFields": 1684
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 1,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.399
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 2,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.221,
+        "cachedFields": 2082
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 2,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.515
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 1,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.209,
+        "cachedFields": 1684
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 1,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.43
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 2,
+        "topologySolves": 4,
+        "planBuilds": 4,
+        "preparedPlanHits": 8,
+        "desktopCPUSeconds": 0.201,
+        "cachedFields": 2082
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 2,
+        "topologySolves": 12,
+        "planBuilds": 12,
+        "preparedPlanHits": 0,
+        "desktopCPUSeconds": 0.427
+      }
+    ],
+    "roster": [
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 1,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 1,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 2,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 2,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 1,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 9
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "party",
+        "planBuilds": 3,
+        "cachedFields": 144
+      },
+      {
+        "trial": 3,
+        "variant": "baseline",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 9
+      },
+      {
+        "trial": 3,
+        "variant": "candidate",
+        "borderType": 2,
+        "mode": "raid",
+        "planBuilds": 3,
+        "cachedFields": 144
+      }
+    ],
+    "rawFiles": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\strip-1.txt": "a825b33d985771f5637f95a6a52949243de40a4c7e1adee0ad9cee51c9b85c85",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\roster-1.txt": "a5b8d348544cee4be43607779a74186a8252881f64ac8332f53aca90c0ed3052",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\strip-2.txt": "57ebb0fd75a1bcdf373762992167478a68d1678e68e74bbe788a1be5ff3e19f4",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\roster-2.txt": "a5b8d348544cee4be43607779a74186a8252881f64ac8332f53aca90c0ed3052",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\strip-3.txt": "c56dcfa2cab453f7de7686c413c788962f7d7931a74e0bb6939581763951121b",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\roster-3.txt": "a5b8d348544cee4be43607779a74186a8252881f64ac8332f53aca90c0ed3052",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\upvalues.json": "e19438cb974eca9e85da1e464a8182061d696ad9dd61177d12e5cee0dcdfc505"
+    },
+    "limits": "Desktop process elapsed CPU excludes fixture comparisons and cannot establish WoW frame times. The roster runs model unit visibility and positioning rather than native join/leave event bursts."
+  },
+  "preservation": [
+    "Live materials, UVs, public frame levels, tint and topology validation still run before prepared output is drawn.",
+    "Keep up to four small exact layouts per strip hover state and three roster layouts within the prior combined segment, operation and clipped-fields bounds for each family.",
+    "An unseen or evicted footprint compiles in the same synchronous regional transaction. Registration prunes affected parents and renderer retirement releases its layouts.",
+    "Matched seams, live tint, paint ownership, clipping, protected-state deferral and exact-source fallback checks pass in their desktop fixtures."
+  ],
+  "verification": {
+    "focusedPassed": 34,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\focused-r162-final.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-recent-layouts-before-20261120-014609\\syntax.json",
+    "otherOwnerSyntaxOnly": [
+      "Inventory/Restock/Junk/FluxJunk.lua"
+    ]
+  },
+  "nativeAcceptance": "Pending for rapid held-action transitions and drops, first-time layout costs, party/raid join and leave timing, seam pixels and combat taint."
+}

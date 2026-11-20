@@ -10,6 +10,7 @@ local Bars = Flux.Bars
 local SpellRank = {}
 Bars.SpellRank = SpellRank
 ns.FluxSpellRankManager = SpellRank
+SpellRank.cacheCostVersion = 1
 
 local function RankSupported()
 	local Chrome = Flux.SpellBookChrome
@@ -244,11 +245,65 @@ local function NoteCachedRank(spellID)
 	end
 end
 
+-- Optional finite-watch detail only; Capture, native guards and Lua primitives
+-- keep their owned contracts. Diagnostic faults never change the build path.
+local function RankCostTable(value)
+	return type(value) == "table" and not (issecretvalue and issecretvalue(value))
+		and not (issecrettable and issecrettable(value))
+		and not (canaccesstable and not canaccesstable(value)) and type(getmetatable(value)) == "nil"
+end
+local function RankCostNumber(value)
+	return not (issecretvalue and issecretvalue(value)) and type(value) == "number"
+		and value == value and value >= 0 and value < math.huge
+end
+local function OwnRankCost(capture, report)
+	local current = Flux.PerfCapture
+	if not RankCostTable(current) or not rawequal(current, capture) then return false end
+	current = capture.GetActiveWatchReport()
+	return RankCostTable(report) and RankCostTable(current) and rawequal(current, report)
+end
+local function BeginRankCost()
+	local capture = Flux.PerfCapture
+	if not (capture and type(capture.GetActiveWatchReport) == "function") then return end
+	local report = capture.GetActiveWatchReport()
+	if type(report) ~= "table" then return end -- OFF: no clock, privacy query or table.
+	if not RankCostTable(report) or type(debugprofilestop) ~= "function" then return end
+	local started = debugprofilestop()
+	if RankCostNumber(started) then return capture, report, started end
+end
+local function FinishRankCost(capture, report, started)
+	if not OwnRankCost(capture, report) or type(debugprofilestop) ~= "function" then return end
+	local ended = debugprofilestop()
+	if not RankCostNumber(ended) or ended < started then return end
+	local at
+	if type(capture.WatchStatus) == "function" then
+		local status = capture.WatchStatus()
+		if not RankCostTable(status) then return end
+		local duration, remaining = report.durationLimit, status.secondsRemaining
+		if not RankCostNumber(duration) or not RankCostNumber(remaining) or remaining > duration then return end
+		at = duration - remaining
+	end
+	local old = rawget(report, "rankCacheBuild")
+	local count, peak, peakAt = 0, nil, nil
+	if type(old) ~= "nil" then
+		if not RankCostTable(old) then return end
+		count, peak, peakAt = old.count, old.peakMs, old.peakAt
+		if not RankCostNumber(count) or count % 1 ~= 0 or not RankCostNumber(peak) then return end
+		if type(peakAt) ~= "nil" and not RankCostNumber(peakAt) then return end
+	end
+	local ms, nextCount = ended - started, count + 1
+	if not RankCostNumber(ms) or not RankCostNumber(nextCount) or nextCount <= count then return end
+	if not peak or ms > peak then peak, peakAt = ms, at end
+	local summary = { schemaVersion = 1, count = nextCount, lastMs = ms, lastAt = at, peakMs = peak, peakAt = peakAt }
+	if OwnRankCost(capture, report) then rawset(report, "rankCacheBuild", summary) end
+end
+
 local function BuildSpellRankCache()
 	if not RankSupported() then
 		return
 	end
 	rankSupported = true
+	local costOK, capture, costReport, costStarted = pcall(BeginRankCost)
 	spellRankCache = {}
 	if C_SpellBook and C_SpellBook.GetSpellBookItemInfo then
 		local bank = (Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player) or 1
@@ -276,6 +331,7 @@ local function BuildSpellRankCache()
 		end
 	end
 	cacheDirty = false
+	if costOK and costReport then pcall(FinishRankCost, capture, costReport, costStarted) end
 end
 
 local function GetHighestRankForSpell(baseName)
@@ -908,6 +964,55 @@ local function RankUpStanceCustomSpells()
 	return upgraded
 end
 
+-- PickupSpell is void and can leave the cursor empty. PlaceAction with an
+-- empty cursor removes the existing action, so only place the exact spell we
+-- picked up. The second spell cursor field is a book index; the ID is fourth.
+local function ReadRankCursor()
+	if not GetCursorInfo then return false end
+	local ok, kind, bookIndex, bookType, spellID = pcall(GetCursorInfo)
+	if not ok or (issecretvalue and (issecretvalue(kind) or issecretvalue(spellID))) then
+		return false
+	end
+	return true, kind, spellID
+end
+
+local function ClearOwnedRankCursor(oldId, newId)
+	local readable, kind, spellID = ReadRankCursor()
+	if readable and kind == "spell" and spellID ~= nil and (spellID == oldId or spellID == newId) then
+		pcall(ClearCursor)
+	end
+end
+
+local function SlotHasRankSpell(slot, spellID)
+	local ok, kind, id = pcall(GetActionInfo, slot)
+	if not ok or (issecretvalue and (issecretvalue(kind) or issecretvalue(id))) then
+		return false
+	end
+	return kind == "spell" and id == spellID
+end
+
+local function UpgradeActionSlot(slot, oldId, newId)
+	local pickup = C_Spell and C_Spell.PickupSpell or PickupSpell
+	if not pickup or not PlaceAction or not ClearCursor or not GetActionInfo then return false end
+	local readable, kind = ReadRankCursor()
+	if not readable or kind ~= nil then return false end -- leave the player's drag untouched
+	local called, result = pcall(pickup, newId)
+	local cursorReadable, cursorKind, cursorId = ReadRankCursor()
+	if not called or result == false or not cursorReadable or cursorKind ~= "spell" or cursorId ~= newId then
+		return false
+	end
+	-- A native callback can change the slot or enter combat during pickup.
+	if (InCombatLockdown and InCombatLockdown()) or not SlotHasRankSpell(slot, oldId) then
+		return false
+	end
+	local placed = pcall(PlaceAction, slot)
+	local matches = placed and SlotHasRankSpell(slot, newId)
+	-- A failed operation may have picked up the old action. Keep that cursor
+	-- available for recovery; delete a displaced duplicate only after success.
+	if matches then ClearOwnedRankCursor(oldId, newId) end
+	return matches
+end
+
 function SpellRank:RankUpAllSpells(silent)
 	if not RankSupported() then
 		return
@@ -919,32 +1024,35 @@ function SpellRank:RankUpAllSpells(silent)
 		end
 		return
 	end
+	local cursorReadable, cursorKind = ReadRankCursor()
+	if not cursorReadable or cursorKind ~= nil then return end
 	cacheDirty = true
 	BuildSpellRankCache()
 
 	local upgradedCount = 0
+	local nativeUpgradeFailed = false
 	for slot = 1, 120 do
 		if HasAction and HasAction(slot) then
 			local actionType, id = GetActionInfo(slot)
 			if actionType == "spell" and id then
 				local newId = ResolveHighestUpgradeSpellId(id)
 				if newId then
-					ClearCursor()
-					if C_Spell and C_Spell.PickupSpell then
-						C_Spell.PickupSpell(newId)
+					if UpgradeActionSlot(slot, id, newId) then
+						upgradedCount = upgradedCount + 1
 					else
-						PickupSpell(newId)
+						nativeUpgradeFailed = true
 					end
-					PlaceAction(slot)
-					ClearCursor()
-					upgradedCount = upgradedCount + 1
 				end
 			end
 		end
 	end
 
-	upgradedCount = upgradedCount + RankUpExtraButtonSystemSpells()
-	upgradedCount = upgradedCount + RankUpStanceCustomSpells()
+	-- Do not advance saved binding/stance IDs past an unsuccessful native bar
+	-- upgrade. A later existing auto-rank event or Rank Up click can retry.
+	if not nativeUpgradeFailed then
+		upgradedCount = upgradedCount + RankUpExtraButtonSystemSpells()
+		upgradedCount = upgradedCount + RankUpStanceCustomSpells()
+	end
 	After(0.2, UpdateAllButtonDesaturation)
 
 	if upgradedCount > 0 then
@@ -1794,7 +1902,10 @@ if Ev and Ev.Register then
 	Ev.Register("LEARNED_SPELL_IN_SKILL_LINE", OnSpellbookChange)
 	Ev.Register("PLAYER_TALENT_UPDATE", OnSpellbookChange)
 	Ev.Register("ACTIVE_TALENT_GROUP_CHANGED", OnSpellbookChange)
-	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", OnSpellbookChange)
+	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", function(event, unit)
+        if Ev.IsPlayerUnitEvent and not Ev.IsPlayerUnitEvent(unit) then return end
+        OnSpellbookChange(event, unit)
+    end)
 	if C_Engraving then
 		Ev.Register("PLAYER_EQUIPMENT_CHANGED", OnSpellbookChange)
 	end

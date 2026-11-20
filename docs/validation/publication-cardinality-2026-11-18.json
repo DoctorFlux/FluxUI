@@ -1,0 +1,357 @@
+{
+  "change_id": "LHO-PUBLICATION-CARDINALITY-20261118",
+  "status": "ADOPTED_NATIVE64_67_68_AND_REAL_MUTATION69_SCOPED_PASS;FULL_GOAL_ACTIVE",
+  "updatedUTC": "2026-11-18T18:08:39.662303+00:00",
+  "path": "Inventory/FluxConsumableBest/Scan.lua",
+  "beforeSHA": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+  "afterSHA": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-publication-cardinality-20261118",
+  "historyVerified": true,
+  "settingsStatRows": 12,
+  "settingsContentsCopied": false,
+  "syntax": "Before/afterLua5.1/5.4PASS",
+  "wholeSourceRestoration": true,
+  "measuredWorkerMatchesIgnoringCommentsWhitespaceLocalNames": true,
+  "newSimulations": 0,
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "94c403db22abaf6e1def42d2f984ad994ddb1dc416aa5379bc3bd91aaa80698f",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "13f28db1cee90ed8f9e38b9f341715539c92619afb6f084dff56ea833e3cee8a"
+  },
+  "retailForeverDiskPairs": [
+    "Inventory/Index.lua",
+    "Inventory/Restock/Core/FluxRestockList.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua",
+    "Inventory/Tooltip.lua",
+    "Inventory/SpellReagents.lua",
+    "Inventory/FluxConsumableClassify.lua",
+    "Inventory/Craft.lua",
+    "Inventory/FluxConsumableBest/Scan.lua",
+    "Inventory/FluxConsumableBest/Init.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua",
+    "Inventory/Syndicator/Adapter.lua",
+    "ExtraButtonSystem/Engine/Watch.lua",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua",
+    "Inventory/Restock/FluxRestock_Inv.lua",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua",
+    "Core/API/Container.lua",
+    "Other/FluxPerfCapture.lua",
+    "Inventory/Init.lua",
+    "Inventory/FluxConsumableBest/Score.lua"
+  ],
+  "manualSync": false,
+  "change": [
+    "Save private publication-row cardinality once during ordinary snapshot creation",
+    "Under original secret-value checker compare each live key/value once and cardinality for removals",
+    "Retain exact original whole comparison worker for replaced secret-value checker; secrets/metatables/depth/128-table limit remain",
+    "All selection/count/classifier/persist/notification/timer/retry and original scan paths remain"
+  ],
+  "proof": "For unchanged plain tables every live key/value matching excludes new or changed entries. Equal cardinality then excludes removed entries. Count false-valued/string/numeric/table keys using pairs rather than length. Private sizes not publicly mutable. Secret/metatable rejection remains ahead of comparisons; original comparison fallback is verbatim modulo local name.",
+  "native": {
+    "client": {
+      "version": "1.60.1",
+      "build": "70959",
+      "interface": 16001,
+      "project": 18,
+      "pid": 42724,
+      "hwnd": 50333792
+    },
+    "private63": {
+      "method": "Exact preceding Visit/PublishedState/PublishedUnchanged extracted from source; candidate worker matched applied source modulo names/comments/whitespace. Private snapshot uses actual current runtime/ladders/combo, no mock data or installed dispatcher replacement.",
+      "tables": 23,
+      "entries": 158,
+      "pairs": 3,
+      "callsPerVariantPerPair": 5,
+      "order": [
+        "before-after",
+        "after-before",
+        "before-after"
+      ],
+      "beforeMs": [
+        0.59950000047684,
+        0.55419999361038,
+        0.90069997310638
+      ],
+      "afterMs": [
+        0.34489995241165,
+        0.33480000495911,
+        0.53199994564056
+      ],
+      "allBeforeAndAfterReturnedTrue": true,
+      "publicTablesUnmodified": true,
+      "temporaryRootRemoved": true,
+      "errors": 0,
+      "limits": "Isolated comparison worker only; snapshot creation/cardinality construction not timed; no intentional mutation/secret/metatable injection, no whole-workflow/FPS inference"
+    },
+    "beforePassive60_62": {
+      "seconds": 3,
+      "total": 7,
+      "stored": 4,
+      "reason": "classifyPendingRead",
+      "sameRuntime": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "invalidationDelta": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "force": null,
+      "regions": false,
+      "ms": [
+        4.8335000276566,
+        5.6013000011444,
+        5.6334000229836,
+        5.7219000458717
+      ],
+      "notifyMs": [
+        0.035199999809265,
+        0.042600035667419,
+        0.042800009250641,
+        0.042999982833862
+      ],
+      "rowsRetrievedFromExistingChatHistory": true,
+      "traceReplayed": false
+    },
+    "afterPassive66_67": {
+      "seconds": 3,
+      "total": 7,
+      "stored": 4,
+      "ms": [
+        4.818599998951,
+        6.0142000317574,
+        5.4132999777794,
+        5.0837000012398
+      ],
+      "notifyMs": [
+        0.040499985218048,
+        0.050899982452393,
+        0.041299998760223,
+        0.039200007915497
+      ],
+      "reason": "classifyPendingRead",
+      "sameRuntime": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "invalidationDelta": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "force": null,
+      "regions": false,
+      "restored": true,
+      "errors": 0
+    },
+    "fullPassiveLimit": "One sequential3s window/source acrossreload;onlyfirst4of7passes retained;overlapping ranges4.8335-5.7219vs4.8186-6.0142ms. Mean before5.447525/after5.332450 not a proven overall improvement or regression;world/cache/system/GC/observer differences remain.",
+    "countIDs": 54,
+    "countMismatches": 0,
+    "SyndicatorLoaded": true,
+    "BaganatorLoaded": true,
+    "inventorySource": "syndicator",
+    "ready": true,
+    "queue": 4,
+    "food": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "preferences": {
+      "scriptProfile": "0",
+      "maxFPS": "120",
+      "maxFPSBk": "30"
+    },
+    "errors": 0,
+    "cursorClear": true,
+    "dispatchersRestoredByIdentity": true,
+    "ownedRootsRemoved": [
+      "_P63",
+      "_Q66",
+      "_Q66r"
+    ],
+    "priorDiagnosticRootsUntouched": true,
+    "noNativeAPIOverrides": true,
+    "noItemActions": true
+  },
+  "adoption": {
+    "reloadRun": "publication64reload_a",
+    "submittedReadinessOnly": true,
+    "freshStartupPersonallyViewed": true,
+    "startupPNG": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\publication64-reload-startup.png",
+    "startupSHA": "76f62fc2cee38218f53718a1ce8cb4e377f3674c8c57d84ca30d3573f36d9b7f"
+  },
+  "observation": {
+    "privateBeforeMedian": 0.59950000047684,
+    "privateAfterMedian": 0.34489995241165,
+    "privateMedianLowerPct": 42.46873192038068,
+    "passiveBeforeMean": 5.447525024414075,
+    "passiveAfterMean": 5.3324500024319,
+    "notFPSClaim": true
+  },
+  "jump": {
+    "revision": "R16",
+    "root": "_J65q",
+    "nonce": "j18n65a7",
+    "label": "live20261118p",
+    "supervisorPID": 42708,
+    "hostPID": 37972,
+    "hostLiveVerified": true,
+    "interval": 180,
+    "pairsAtLastRead": 2,
+    "movementAcknowledged": false,
+    "stoppedOldHost56040": true,
+    "oldStopRemovedOnlyByOwnership": true,
+    "setupHoldRemovedOnlyByOwnership": true,
+    "retainedHaltSHA": "6990d7c02336842b40e6f91d32af41322139c90c43d6e71a3f4d7f2f15e7acc3",
+    "manifest": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r16-20261118\\source-adaptation.json"
+  },
+  "artifacts": [
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-publication63-compare-20261118",
+      "controllerSHA": "565e8f58a8dc06137c1a1c09b38bfed7ee59853790478561bd1dec1719f4df9b",
+      "packetSHA": "292da1d383a21d8295cf3ebc95ca04372c04afebd41f9b9457a11d4b74f68bfd",
+      "packetCount": 30,
+      "root": "_P63",
+      "nonce": "p63u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-publication64-reload-20261118",
+      "controllerSHA": "4420ef22cfdeef465c67a51e6662566d9e25b17a68085568bd6e2b2c18c5eab0",
+      "packetSHA": "8e92c12c321cdf48611b5e0c2d829c465f4eca54ce47cc4f65251eb9dcf9920d",
+      "packetCount": 2,
+      "root": "_R64",
+      "nonce": "r64d6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-publication66-costs-20261118",
+      "controllerSHA": "e4fcb411f11b3cfc346e6f9a8cb6ffa13fc16db0c76208e706ccbc3e0c6e2cb0",
+      "packetSHA": "bc1ba5ea3a224f1565e9478e2da0fca61d53e6251b40061891b3ced50e7dc2c0",
+      "packetCount": 10,
+      "root": "_Q66",
+      "nonce": "q66u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-publication67-read-20261118",
+      "controllerSHA": "21e4faa1bf4528897dc7f4e7ad8008fcb06f1520a22e858466c2295dd58cda44",
+      "packetSHA": "e52125ce5ab4a2e2569f3e08525f541b8a6775d15b6f9f863f449eddc2af46f0",
+      "packetCount": 2,
+      "root": "_R67",
+      "nonce": "r67u6k2",
+      "sourceOnly": true
+    },
+    {
+      "folder": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native-publication68-parity-20261118",
+      "controllerSHA": "3f564bbdaba21ce32c8bbbc58dae51a4f7b13e4fd75355f9aa9026c3ea6ddc7c",
+      "packetSHA": "e18094ca2fa74546bb6e6878fb553f0e3277b72ffe631b0afa0a974b8aa1565b",
+      "packetCount": 5,
+      "root": "_R68",
+      "nonce": "r68u6k2",
+      "sourceOnly": true
+    }
+  ],
+  "attestations": [
+    {
+      "run": "publication63compare_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-publication63compare_a-journal.json",
+      "journalSHA": "b552a3845e100bf25f5705fac39706398deb514fba9f7ea939113d82f748573a",
+      "pngSHA": "a08605f023955d2f0f5b4ae79fc3044c3cd6d96293dddcdf674725dff119bd44"
+    },
+    {
+      "run": "publication64reload_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-publication64reload_a-journal.json",
+      "journalSHA": "6f1c01f14873facbed6f3e69c1a39d13a45af774bc78d9f4fab355d2a253e806",
+      "pngSHA": "c207c3ac5930bd71ba2d937e10e7dece92372be725569f32122f7646c8770940"
+    },
+    {
+      "run": "jump65install_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump65install_a-journal.json",
+      "journalSHA": "5a0b6de7d99c79994c57d814631a3a003af538d80f7a20c02dac772dc02cee55",
+      "pngSHA": "d97a692ed4116673d47f8be5ec08714accfd3f79079280d9d8e202a6523045a7"
+    },
+    {
+      "run": "publication66costs_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-publication66costs_a-journal.json",
+      "journalSHA": "4062d480670c36a2c4d316587bbfec50624f5408f01154d1cf24019a14f56a70",
+      "pngSHA": "0549da11458b6fab3665f58aae6dc3efb55b22a07332385dd9d788e6bacbcd8f"
+    },
+    {
+      "run": "publication67read_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-publication67read_a-journal.json",
+      "journalSHA": "1db1611655e74aba59ed98c99e79a64d135ec71891302e353ff02c2dbca0cac7",
+      "pngSHA": "fbcf97737afa6e96ca0f9a5ef2153c613ca7e50b360315f7513b1ca095d4dd3b"
+    },
+    {
+      "run": "publication68parity_a",
+      "journal": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-publication68parity_a-journal.json",
+      "journalSHA": "fc7cc5dc1a6102bca548479b34186a755790c7be35c4c303d9aa198e3f0e760c",
+      "pngSHA": "05af54d2e343bde9bb75ba61eb0826c60df5750da1347cbd22bbf3a2449e8705"
+    }
+  ],
+  "remaining": [
+    "Real post-edit relocation/automaticreturn/fresh publication/subsequentreuse/count/foodselection now scopedPASS native69-71;fullfield/allkind parity,cold/depletion/charges/provider-off mutations still pending",
+    "Native secret/metatable/public-checker replacement paths not induced;source-only proof",
+    "~5ms passive validation cost remains; do not remove cold retries/change0.4s cadence",
+    "Bank/mail/vendor/AH/pending/craft/cast and provider-off mutation workflows, allclient/native taint/pixels/controller and matched frame/FPS/hitches remainOPEN"
+  ],
+  "postMutation69": {
+    "evidence": "docs/validation/inventory-current-native-bag69-2026-11-18.json",
+    "bagGeneration": [
+      5,
+      7
+    ],
+    "countIDs": 54,
+    "countMismatches": 0,
+    "postReuse": [
+      2169,
+      2170,
+      true
+    ],
+    "errors": 0,
+    "noMatchedGainClaim": true
+  }
+}

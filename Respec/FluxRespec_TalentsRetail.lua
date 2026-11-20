@@ -1,7 +1,7 @@
 -- FluxRespec_TalentsRetail.lua
 -- Retail (post-Dragonflight) talent engine. On retail a profile does NOT store
--- per-talent point trees or action-bar snapshots: talents + hotkey layouts are
--- owned by Blizzard's saved loadout system, so we store a reference to a saved
+-- per-talent point trees: talents are owned by Blizzard's saved loadout system,
+-- while ActionBars restores explicit bar snapshots afterwards. Store a saved
 -- loadout (name + the export string we captured it from) and apply by:
 --   1) switching to the target spec if needed,
 --   2) waiting until the trait config is stable,

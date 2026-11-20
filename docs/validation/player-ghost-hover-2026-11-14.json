@@ -1,0 +1,539 @@
+{
+  "changeId": "PLAYER-GHOST-HOVER-20261114",
+  "date": "2026-11-14",
+  "requirements": [
+    "Remove the confirmed invisible Blizzard PlayerFrame hover/cast target on every supported client",
+    "Preserve native unit/vehicle/aura handlers and independent controls",
+    "Respect combat and Edit Mode boundaries; restore native input on Blizzard selection"
+  ],
+  "userEvidence": "User on Forever identifies PlayerFrame in /framestack and reports interference with unit-frame hover casting.",
+  "implementation": [
+    "Snapshot and empty native player root hit rectangle outside combat/Edit Mode; exact restoration",
+    "Expose existing addon-owned mouse suppression policy through Blizz.IsMouseSuppressed",
+    "Exclude suppressed roots/subtrees from both GetMouseFoci and geometric binding fallback scans"
+  ],
+  "scope": "Three runtime owners; two existing desktop harnesses. No new event/timer/hook/driver, options, strings or saved schema.",
+  "checkpoint": {
+    "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\checkpoint.json",
+    "sha256": "7d7946347946a29b35c88a14e8909d7299c6d1d9dc10719ae5adfa01bd755519",
+    "files": 2797,
+    "settingsMetadata": 113,
+    "archivesVerified": true,
+    "privateSettingsCopied": false
+  },
+  "runtimeIdentities": [
+    {
+      "path": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "normalizedSha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b"
+    },
+    {
+      "path": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "normalizedSha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8"
+    },
+    {
+      "path": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "normalizedSha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0"
+    }
+  ],
+  "sources": [
+    {
+      "client": "live",
+      "commit": "297d7aaaa736f346b3e036f38ee088eaf7f8c07f",
+      "version": "12.1.5.70783",
+      "files": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+          "sha256": "c6275c78b80e584083000b19dff052cbbb7e1065bdcd0db4cf430c584a5c9430",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+          "sha256": "34c57917b3c1e95a2f1054e3dbc6901222311b716322be31c78e62a119d37747",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+          "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua",
+          "sha256": "1b2089d1ccf9e4c71024fae15d0b992cbc86c356edcd81d53ee7d2d7d4f2cfac",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+          "sha256": "ae03c943fa25ef6b6a8a8743a78afefbe2d698c5d5d5b0f3838aa770c2817da7",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+          "sha256": "ad8e629155605a17421ea3443a346c04984810217594b31f94ac3a4b28f00770",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+          "sha256": "03629a8e1fb42be70410df7b6d3834c1bd5fe64e5912fecef884e6ca2fbfbd54",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml",
+          "sha256": "1006020dba864ab61394d17e1de3ae63d317d2bd27b90f36ee295a6c0a749c71",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua",
+          "sha256": "ff359c336635a8b7306ca4f9c476bda2d0458109b539134979eeb7634c297996",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua"
+        },
+        {
+          "path": "version.txt",
+          "sha256": "4e532c8d3beb3231ae8195704b6de0a099a19742e02505f73f292f47fe9e080b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/version.txt"
+        }
+      ]
+    },
+    {
+      "client": "forever",
+      "commit": "bebcb6bf309cf41b41bd74f8ca651e6a105b2676",
+      "version": "1.60.1.70938",
+      "files": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+          "sha256": "c00bc77ee27f8fd81ba8b8d1bfd85fbd0ad817b22457adbe5adca6876a1d604a",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+          "sha256": "3718e5f81b99525819264d2f50e473080541d655978f88ca85582acc4073fd82",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+          "sha256": "d8b691f2c7e0bee2673c06fe57e854b1d205814e305eae53b72be69d7f549548",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua",
+          "sha256": "1b2089d1ccf9e4c71024fae15d0b992cbc86c356edcd81d53ee7d2d7d4f2cfac",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame.toc",
+          "sha256": "b96f2139f2e673b63fdca3e1f54c15897dc2d5fe8263f13a751a714057a0afc0",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Camelot/PlayerFrame.lua",
+          "sha256": "239ac920938d9d77ac676f438e055381b63e2207d4f9dc280bbaa90ee5af7b11",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Camelot/PlayerFrame.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Camelot/PlayerFrameTemplates.xml",
+          "sha256": "609a569b3da892ff4534f29d3fadb4a5c9efeb12105d08961635c8c542d2a24c",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Camelot/PlayerFrameTemplates.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua",
+          "sha256": "8146f2dd20cb495c12857d84fd1806857e8649d960cf1d8c4b100f65f03938d1",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml",
+          "sha256": "eecbbcef57c7e38db4edd7a392125d5e388720b2dad5f544660c47ccd9b79357",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Mainline/PlayerFrame.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua",
+          "sha256": "e634e15b3e4dac9d114cb006c23a5ed313a5cf774eaa2a8dd1e6389f300f3135",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua"
+        },
+        {
+          "path": "version.txt",
+          "sha256": "2341b29857364de5d7bf79957a6c228b9f87da9efd65f16e1e434a5376ff212d",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/version.txt"
+        }
+      ]
+    },
+    {
+      "client": "classic",
+      "commit": "e5d9b3a22c3f0f6f41ebac0e454f4969594261cf",
+      "version": "5.5.4.70631",
+      "files": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+          "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+          "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua",
+          "sha256": "c15dbb6c760d46bcc459edb82af228d469d5755966bc60e92e459ac3b5b8affe",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHandlers.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua",
+          "sha256": "1b2089d1ccf9e4c71024fae15d0b992cbc86c356edcd81d53ee7d2d7d4f2cfac",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_RestrictedAddOnEnvironment/SecureHoverDriver.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+          "sha256": "d5f48b6eafc6d2f96e8d17b741ded946730a1f47d145e9bbcbe578e4ce171522",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc",
+          "sha256": "84aa749aa20a265ec99e8e7ca163e955b5a9ba8956584f08be1dadb7598955ee",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Mainline.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml",
+          "sha256": "05f09a94db93afb87d93eb2a7aa1f1ed5895062f3429d5eb64a098cf43d4269b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua",
+          "sha256": "8ceca68180c1a6fc30effaced612dddced923a334206fe90ea1434310cdedbf6",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_UnitFrame/Shared/PlayerFrame.lua"
+        },
+        {
+          "path": "version.txt",
+          "sha256": "bcb030fe2d2febd396332d886d804ef9b397335e88f0196edc5d8dbe54c1ba38",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/version.txt"
+        }
+      ]
+    },
+    {
+      "client": "classic_era",
+      "commit": "4192ac60067fc55566182291bc67c85dd9b6794d",
+      "version": "1.15.9.70576",
+      "files": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+          "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+          "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+          "sha256": "d5f48b6eafc6d2f96e8d17b741ded946730a1f47d145e9bbcbe578e4ce171522",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml",
+          "sha256": "05f09a94db93afb87d93eb2a7aa1f1ed5895062f3429d5eb64a098cf43d4269b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+        },
+        {
+          "path": "version.txt",
+          "sha256": "5224861aa41c7bcfd9d48bdd8003eb769a8954c72e3e9682035aeff5bc236f29",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/4192ac60067fc55566182291bc67c85dd9b6794d/version.txt"
+        }
+      ]
+    },
+    {
+      "client": "classic_anniversary",
+      "commit": "68e0a2ec559d9761dfc4e7f864c3944f9d758a49",
+      "version": "2.5.6.70577",
+      "files": [
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua",
+          "sha256": "6088af46a447e9a775a60b6d3acc429541951da8cfbf58e65adb98338d2a8298",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleFrameAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua",
+          "sha256": "9cf580688388b332d87e8126703892a1e1e4c0ea04173abb36bbebced26555b8",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_APIDocumentationGenerated/SimpleScriptRegionAPIDocumentation.lua"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc",
+          "sha256": "3071e223feac22985d84519219c483b00ca1d82014370a0f127c6da5b613180b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Blizzard_UnitFrame_Classic.toc"
+        },
+        {
+          "path": "Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml",
+          "sha256": "f594a7adb301ad73e6502870e77a1e1cac72e09a46d9cb3da77a7d508d9fc73b",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/Interface/AddOns/Blizzard_UnitFrame/Classic/PlayerFrame.xml"
+        },
+        {
+          "path": "version.txt",
+          "sha256": "53498c451665c69194d1a41b9983916109b370b6a261bb833322ae871838bdb3",
+          "url": "https://github.com/Gethe/wow-ui-source/blob/68e0a2ec559d9761dfc4e7f864c3944f9d758a49/version.txt"
+        }
+      ]
+    }
+  ],
+  "sourceContracts": [
+    "PlayerFrame is a SecureUnitButtonTemplate and EditModePlayerFrameSystemTemplate on all inspected targets",
+    "GetHitRectInsets returns four uiUnit numbers without secret annotations in the inspected declarations",
+    "SetHitRectInsets is protected; Retail/Forever disallow secret arguments; only known constants/saved public values are passed",
+    "Existing ordinary mouse helper skips initially secret switches; the binding scan previously ignored suppression policy"
+  ],
+  "regression": {
+    "comparisons": [
+      {
+        "ownerRestoredToCheckpoint": "Blizzard/Hide.lua",
+        "trial": 1,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-0-0.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "Blizzard/Hide.lua",
+        "trial": 2,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-0-1.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "Blizzard/Hide.lua",
+        "trial": 3,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-0-2.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "Binding/Input/FluxMouseoverKeybind.lua",
+        "trial": 1,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-1-0.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "Binding/Input/FluxMouseoverKeybind.lua",
+        "trial": 2,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-1-1.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "Binding/Input/FluxMouseoverKeybind.lua",
+        "trial": 3,
+        "exit": 1,
+        "expectedFailure": "suppressed native root cannot activate",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-1-2.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "trial": 1,
+        "exit": 1,
+        "expectedFailure": "native player rectangle cannot supply",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-2-0.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "trial": 2,
+        "exit": 1,
+        "expectedFailure": "native player rectangle cannot supply",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-2-1.log"
+      },
+      {
+        "ownerRestoredToCheckpoint": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+        "trial": 3,
+        "exit": 1,
+        "expectedFailure": "native player rectangle cannot supply",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\baseline-2-2.log"
+      },
+      {
+        "candidate": true,
+        "trial": 1,
+        "exit": 0,
+        "output": "Native mouse suppression/Edit Mode: 3387 checks; five branches; 20 negative controls passed",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\candidate-0.log"
+      },
+      {
+        "candidate": true,
+        "trial": 2,
+        "exit": 0,
+        "output": "Native mouse suppression/Edit Mode: 3387 checks; five branches; 20 negative controls passed",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\candidate-1.log"
+      },
+      {
+        "candidate": true,
+        "trial": 3,
+        "exit": 0,
+        "output": "Native mouse suppression/Edit Mode: 3387 checks; five branches; 20 negative controls passed",
+        "log": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\candidate-2.log"
+      }
+    ],
+    "checksPerCandidateRun": 3387,
+    "clientModels": [
+      "live",
+      "forever",
+      "classic",
+      "classic_era",
+      "classic_anniversary"
+    ],
+    "negativeControls": 20,
+    "nativeSecurityVmSimulated": false
+  },
+  "validation": {
+    "scripts": 380,
+    "failed": 0,
+    "syntaxFiles": 1068,
+    "syntaxFailures": 0,
+    "currentManifestVerified": true,
+    "rawResults": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\validation-after-concurrent.json"
+  },
+  "preservation": {
+    "changedLua": [
+      "Binding/Input/FluxMouseoverKeybind.lua",
+      "Blizzard/Hide.lua",
+      "Core/_tmp_buffdebuffsmoke.lua",
+      "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "tests/native_mouse_suppression.lua"
+    ],
+    "unchangedAssetsXmlTocFonts": 252,
+    "nativeRootParentShownScriptsUnitUnchanged": "Production path and desktop assertions; native VM acceptance pending",
+    "savedSettingsAndProfilerPreferences": "Untouched",
+    "independentPetResourcesTotemsCastBars": "Retained; independent registered pet hover modeled",
+    "checkpointUnchangedLuaAtOriginalSeal": 1062
+  },
+  "installedCopiesReadOnly": [
+    {
+      "client": "live",
+      "owner": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "matches": true
+    },
+    {
+      "client": "live",
+      "owner": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "matches": true
+    },
+    {
+      "client": "live",
+      "owner": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "matches": true
+    },
+    {
+      "client": "forever",
+      "owner": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "matches": true
+    },
+    {
+      "client": "forever",
+      "owner": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "matches": true
+    },
+    {
+      "client": "forever",
+      "owner": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "matches": true
+    },
+    {
+      "client": "classic",
+      "owner": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "matches": true
+    },
+    {
+      "client": "classic",
+      "owner": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "matches": true
+    },
+    {
+      "client": "classic",
+      "owner": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "matches": true
+    },
+    {
+      "client": "classic_era",
+      "owner": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "matches": true
+    },
+    {
+      "client": "classic_era",
+      "owner": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "matches": true
+    },
+    {
+      "client": "classic_era",
+      "owner": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "matches": true
+    },
+    {
+      "client": "classic_anniversary",
+      "owner": "Blizzard/Hide.lua",
+      "sha256": "8a2875532800ce46777c5cdcb940b3701a6264d67b68d54ecdd74396c9a90c7b",
+      "matches": true
+    },
+    {
+      "client": "classic_anniversary",
+      "owner": "Binding/Input/FluxMouseoverKeybind.lua",
+      "sha256": "a75effb72418006e0afc338afc67d7c57d1bd938af5e7c7ff397909b382822f8",
+      "matches": true
+    },
+    {
+      "client": "classic_anniversary",
+      "owner": "UnitFrames/FluxUnitFrames_FluxVsBlizzardRuntime.lua",
+      "sha256": "2a0b913a582efc00a3af5fef13cd43f912973a2bebad1ef395a74137fb1beaf0",
+      "matches": true
+    }
+  ],
+  "native": {
+    "status": "NOT RUN for candidate",
+    "testPreference": "Existing background-only/user reproduction route retained",
+    "hostProcessObserved": {
+      "pid": 40032,
+      "hwnd": 7995860,
+      "path": "F:/World of Warcraft/_forever_/Wow.exe"
+    },
+    "loadedSourceCertified": false,
+    "foregroundInputClipboardControl": false,
+    "pending": [
+      "Reload outside combat; hover/cast over the former native rectangle and over the visible Flux player frame",
+      "Verify combat entry/exit, Edit Mode close/save, vehicle transitions, native auras and independent pet/resources controls",
+      "Toggle Flux/Blizzard and confirm native interactions restore; test other clients and controller cursor input"
+    ],
+    "limitation": "Retained Blizzard object can remain listed in Frame Stack with show-all filters. No native taint-free/FPS claim."
+  },
+  "publication": "No commit/push, branch, history reset, manual installation sync, settings writes or client reload.",
+  "priorSealedValidation": {
+    "scripts": 379,
+    "failed": 0,
+    "syntaxFiles": 1067,
+    "syntaxFailures": 0,
+    "currentManifestVerified": true,
+    "rawResults": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\14\\01a1d9ee-8da3-79a2-8573-145bcca46cec\\player-hover\\validation.json"
+  },
+  "concurrentChangesRetained": [
+    {
+      "path": "Inventory/Init.lua",
+      "sha256": "629dbcc7ae8f8df5279106a00089a5cb1a222fbab2d0c5764e31a9755b678431"
+    },
+    {
+      "path": "tests/notification_context_work.lua",
+      "sha256": "b1daa747f05fef9b00aea1f6a9c9473030a186a7c03be99a6d41e52f082a696d"
+    }
+  ],
+  "concurrentChangeScope": "Unrelated inventory owner/test arrived after the first full run; retained untouched and included in a fresh combined runner pass. No attribution to the player-frame fix.",
+  "subsequentUserRetest": {
+    "status": "FAILED / not accepted",
+    "report": "User confirms reload; PlayerFrame remains in Frame Stack; hovercast intermittently affected",
+    "followup": "docs/validation/player-ghost-secure-followup-2026-11-14.json",
+    "literalDeletionRequest": "Unsupported by public addon API"
+  }
+}

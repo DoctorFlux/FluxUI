@@ -1,0 +1,510 @@
+{
+  "changeId": "BORDER-LISTENER-LINKS-R175-20261120",
+  "borderVersion": "regional-listener-links-r175",
+  "capturedAtUTC": "2026-11-20T03:17:36.852903+00:00",
+  "sources": {
+    "Core/BorderJunctions.lua": {
+      "beforeRaw": "9ec44aca0ac6c47f7fe7f3b3578ea213dc27de5b5bcd16721607ab8ba599ee40",
+      "afterRaw": "1511776f237e6921aad0bb42c4b4199d31a4e7c9de6e9430b810d5ca611273b3",
+      "afterNormalized": "1511776f237e6921aad0bb42c4b4199d31a4e7c9de6e9430b810d5ca611273b3"
+    },
+    "tests/border_registration_pairs.lua": {
+      "beforeRaw": "216b9ef189ff896c0be53e79b52949e84bc68dff23c35ecd3147dc9bee398140",
+      "afterRaw": "8c225833c4ea7834d2f21ca1344c5fbce0fb00e42c202010d79227266f46b682",
+      "afterNormalized": "8c225833c4ea7834d2f21ca1344c5fbce0fb00e42c202010d79227266f46b682"
+    },
+    "tests/border_locality.lua": {
+      "beforeRaw": "6c542f90ec4effd5dca2b16cdf513cc551b010a736a9e76c2cd6479e28688931",
+      "afterRaw": "801a40cb8199ab75a259aacf225c8305b4a6120d8d39e0dae401caae09650170",
+      "afterNormalized": "801a40cb8199ab75a259aacf225c8305b4a6120d8d39e0dae401caae09650170"
+    }
+  },
+  "head": "6b444eba4573092b57919ee3e497d86d2ebb3ece",
+  "checkpoint": {
+    "externalRecord": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\checkpoint.json",
+    "historyBundle": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\party-roster-before-20261116T233337Z\\history.bundle",
+    "historySHA256": "AFEF14EB74063E0D6E478725F10B6D22236D07510FC6C6EAC35DCF85A15A49A3",
+    "settingsMetadata": {
+      "_retail_": 2,
+      "_forever_": 3,
+      "_classic_": 2,
+      "_classic_era_": 4,
+      "_anniversary_": 10
+    }
+  },
+  "work": {
+    "scope": "Twelve warmed action-strip crossings and twelve warmed roster geometry changes per style, with the actual planner and regional renderer in a desktop widget model.",
+    "countColumns": [
+      "before observer visits",
+      "after observer visits",
+      "before retained listener slots",
+      "after retained listener slots",
+      "logical field memberships",
+      "before shared slots",
+      "after shared slots"
+    ],
+    "countSamples": {
+      "strip-1": [
+        [
+          1104,
+          864,
+          84,
+          84,
+          118,
+          22,
+          22
+        ],
+        [
+          1080,
+          828,
+          82,
+          82,
+          118,
+          24,
+          24
+        ],
+        [
+          1080,
+          876,
+          86,
+          86,
+          118,
+          20,
+          20
+        ]
+      ],
+      "roster-1": [
+        [
+          6072,
+          5544,
+          548,
+          548,
+          678,
+          68,
+          68
+        ],
+        [
+          6048,
+          5532,
+          544,
+          544,
+          678,
+          66,
+          66
+        ],
+        [
+          6060,
+          5532,
+          548,
+          548,
+          678,
+          66,
+          66
+        ]
+      ],
+      "strip-2": [
+        [
+          1056,
+          840,
+          74,
+          74,
+          104,
+          20,
+          20
+        ],
+        [
+          1068,
+          828,
+          72,
+          72,
+          104,
+          22,
+          22
+        ],
+        [
+          1068,
+          876,
+          76,
+          76,
+          104,
+          18,
+          18
+        ]
+      ],
+      "roster-2": [
+        [
+          14004,
+          11052,
+          994,
+          994,
+          1418,
+          268,
+          268
+        ],
+        [
+          14028,
+          11076,
+          994,
+          994,
+          1418,
+          268,
+          268
+        ],
+        [
+          14028,
+          11064,
+          1000,
+          1000,
+          1418,
+          268,
+          268
+        ]
+      ]
+    },
+    "countMedians": {
+      "strip-1": [
+        1080,
+        864,
+        84,
+        84,
+        118,
+        22,
+        22
+      ],
+      "roster-1": [
+        6060,
+        5532,
+        548,
+        548,
+        678,
+        66,
+        66
+      ],
+      "strip-2": [
+        1068,
+        840,
+        74,
+        74,
+        104,
+        20,
+        20
+      ],
+      "roster-2": [
+        14028,
+        11064,
+        994,
+        994,
+        1418,
+        268,
+        268
+      ]
+    },
+    "clock": {
+      "scope": "Seven alternating paired samples per case. Garbage collection suspended for allocations. Timings are Lua os.clock for the full modeled transition.",
+      "columns": [
+        "before ms",
+        "after ms",
+        "before KiB",
+        "after KiB"
+      ],
+      "samples": {
+        "strip-1": [
+          [
+            48.0,
+            50.0,
+            5707.1,
+            5691.1
+          ],
+          [
+            51.0,
+            53.0,
+            5704.4,
+            5688.4
+          ],
+          [
+            48.0,
+            49.0,
+            5704.6,
+            5688.6
+          ],
+          [
+            55.0,
+            48.0,
+            5704.1,
+            5688.1
+          ],
+          [
+            56.0,
+            48.0,
+            5704.1,
+            5688.1
+          ],
+          [
+            51.0,
+            53.0,
+            5705.1,
+            5689.1
+          ],
+          [
+            51.0,
+            53.0,
+            5704.1,
+            5688.1
+          ]
+        ],
+        "roster-1": [
+          [
+            65.0,
+            70.0,
+            8180.1,
+            8149.6
+          ],
+          [
+            71.0,
+            65.0,
+            8180.1,
+            8149.7
+          ],
+          [
+            68.0,
+            69.0,
+            8180.4,
+            8149.9
+          ],
+          [
+            64.0,
+            70.0,
+            8179.9,
+            8149.4
+          ],
+          [
+            64.0,
+            67.0,
+            8179.9,
+            8149.4
+          ],
+          [
+            141.0,
+            129.0,
+            8180.9,
+            8150.4
+          ],
+          [
+            118.0,
+            113.0,
+            8179.9,
+            8149.4
+          ]
+        ],
+        "strip-2": [
+          [
+            93.0,
+            99.0,
+            5731.8,
+            5718.2
+          ],
+          [
+            100.0,
+            93.0,
+            5732.0,
+            5718.4
+          ],
+          [
+            92.0,
+            90.0,
+            5732.2,
+            5718.7
+          ],
+          [
+            92.0,
+            96.0,
+            5731.7,
+            5718.2
+          ],
+          [
+            95.0,
+            95.0,
+            5731.7,
+            5718.2
+          ],
+          [
+            97.0,
+            105.0,
+            5732.7,
+            5719.2
+          ],
+          [
+            96.0,
+            107.0,
+            5731.7,
+            5718.2
+          ]
+        ],
+        "roster-2": [
+          [
+            166.0,
+            169.0,
+            11007.3,
+            10854.8
+          ],
+          [
+            167.0,
+            164.0,
+            11007.4,
+            10854.9
+          ],
+          [
+            166.0,
+            166.0,
+            11007.7,
+            10855.2
+          ],
+          [
+            176.0,
+            168.0,
+            11007.2,
+            10854.7
+          ],
+          [
+            165.0,
+            177.0,
+            11007.2,
+            10854.7
+          ],
+          [
+            184.0,
+            191.0,
+            11008.2,
+            10855.7
+          ],
+          [
+            171.0,
+            172.0,
+            11007.2,
+            10854.7
+          ]
+        ]
+      },
+      "medians": {
+        "strip-1": [
+          51.0,
+          50.0,
+          5704.4,
+          5688.4
+        ],
+        "roster-1": [
+          68.0,
+          70.0,
+          8180.1,
+          8149.6
+        ],
+        "strip-2": [
+          95.0,
+          96.0,
+          5731.8,
+          5718.2
+        ],
+        "roster-2": [
+          167.0,
+          169.0,
+          11007.3,
+          10854.8
+        ]
+      }
+    },
+    "remainingPreparedPaint": {
+      "scope": "Twelve candidate transitions per case. Existing cost instrumentation with deterministic clock ticks supplies work counters only.",
+      "counters": {
+        "strip-1": {
+          "fieldCalls": 31932,
+          "fieldHits": 24168,
+          "fieldWrites": 7764,
+          "alphaReads": 5472,
+          "alphaWrites": 132,
+          "hideReads": 1446,
+          "hideWrites": 1446,
+          "showReads": 4002,
+          "showWrites": 1446,
+          "drawFields": 684,
+          "drawMisses": 282,
+          "basisReads": 162
+        },
+        "roster-1": {
+          "fieldCalls": 48780,
+          "fieldHits": 30276,
+          "fieldWrites": 18504,
+          "alphaReads": 6768,
+          "alphaWrites": 336,
+          "hideReads": 876,
+          "hideWrites": 876,
+          "showReads": 5688,
+          "showWrites": 876,
+          "drawFields": 0,
+          "drawMisses": 186,
+          "basisReads": 312
+        },
+        "strip-2": {
+          "fieldCalls": 35658,
+          "fieldHits": 27498,
+          "fieldWrites": 8160,
+          "alphaReads": 5892,
+          "alphaWrites": 126,
+          "hideReads": 1818,
+          "hideWrites": 1818,
+          "showReads": 4422,
+          "showWrites": 1818,
+          "drawFields": 744,
+          "drawMisses": 288,
+          "basisReads": 162
+        },
+        "roster-2": {
+          "fieldCalls": 87606,
+          "fieldHits": 54318,
+          "fieldWrites": 33288,
+          "alphaReads": 11082,
+          "alphaWrites": 516,
+          "hideReads": 1914,
+          "hideWrites": 1914,
+          "showReads": 10002,
+          "showWrites": 1914,
+          "drawFields": 0,
+          "drawMisses": 312,
+          "basisReads": 312
+        }
+      }
+    },
+    "orderedVisibilityTests": [
+      [
+        "REGIONAL_OBSERVERS|synthetic|3|3|18|9",
+        "Register pair controls: 273 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ],
+      [
+        "REGIONAL_OBSERVERS|synthetic|3|3|18|9",
+        "Register pair controls: 273 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ],
+      [
+        "REGIONAL_OBSERVERS|synthetic|3|3|18|9",
+        "Register pair controls: 273 checks PASS; exact observer order/availability; private/partial/overdepth; clone budgets; outside-phase live opaque paint; next-phase recovery; errors/rollback"
+      ]
+    ],
+    "artifactSHA256": {
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\counts-1.txt": "eec86c45be3751ba21125585dbf33750d8bfafd0c2f39cf9435dd5a96c312fcf",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\counts-2.txt": "83654a60c56e0b481cce2e509178e51aea54176b767d5f7f429e110999711a07",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\counts-3.txt": "3a4a9601a962944788737b8e72e7662a3a23db77cbcece605ce75c4148279e25",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\clock.txt": "9aebee68db475096706000f055e1a964e2f21a43cd35790ff2ed7fdcdefa6208",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\bench-regional-r175.lua": "6f37aaea970ca0ba76dd47b3fe02a6d232b437d4e47fe004b2c3a7b1ae31fbd1",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\measure-prepared-cost.lua": "f9ecdd51163e68bf1e326648221c8e87babc8b68109fde093deaff2953d20e37",
+      "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\prepared-cost.txt": "19c89bda36be0ac1f3e3fc755e931092ebae5ccafca01b4f07f0557533483bf3"
+    }
+  },
+  "parity": "Field order, listener membership, fallback opacity and sampled seams match the previous renderer. Regional link entries point only to fields in the current tile generation. Retained tiles keep their own links. Private paint and rollback use the existing guards.",
+  "verification": {
+    "focusedPassed": 47,
+    "syntaxPassed": 1252,
+    "focusedReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\focused.json",
+    "syntaxReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\syntax.json",
+    "compilerReceipt": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\15\\01a1ded4-a51f-7e41-8c99-dfbc0d58153b\\border-listener-links-before-20261120T041116906\\upvalues.json",
+    "otherOwnerSyntaxOnly": []
+  },
+  "nativeAcceptance": "Native action drag and roster hitch timing, border pixels and combat taint remain pending."
+}

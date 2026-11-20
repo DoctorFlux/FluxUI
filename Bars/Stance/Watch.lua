@@ -42,7 +42,10 @@ function Watch.Start()
 	else
 		Ev.Register("SPELLS_CHANGED", Discover)
 	end
-	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", Discover)
+	Ev.Register("PLAYER_SPECIALIZATION_CHANGED", function(event, unit)
+        if Ev.IsPlayerUnitEvent and not Ev.IsPlayerUnitEvent(unit) then return end
+        Discover(event, unit)
+    end)
 	Ev.Register("PLAYER_TALENT_UPDATE", Discover)
 	Ev.Register("TRAIT_CONFIG_UPDATED", Discover)
 

@@ -1,0 +1,485 @@
+{
+  "change_id": "LHO-PARSER-KEYWORD-POOLS-20261118",
+  "status": "ADOPTED_NATIVE49_51_SCOPED_PASS;FULL_GOAL_ACTIVE",
+  "updatedUTC": "2026-11-18T17:17:53.760932+00:00",
+  "path": "Inventory/FluxConsumableClassify.lua",
+  "beforeSHA": "663a539a0040a44692bfbaf0fb4f8dd7909d42f8bd478dd3538c7ffa8de83134",
+  "afterSHA": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+  "checkpoint": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\direct-parser-keyword-pools-20261118",
+  "historyVerified": true,
+  "settingsStatRows": 12,
+  "settingsContentsCopied": false,
+  "newSimulations": 0,
+  "sourcePins": {
+    "Inventory/Index.lua": "f6611444bc030b492dcd2eed00b652221c5bc80013814ac34d87cb26849b8cad",
+    "Inventory/Restock/Core/FluxRestockList.lua": "030b8a415388781346adebda8b87832600145dc727fc6f4ee7ba09364547fa81",
+    "Inventory/Restock/Auction/FluxAuctionRestockData.lua": "dc7edb6daaf9f103375a7d145d36b26a77c567be8806c95e736f0984e83c5bc2",
+    "Inventory/Tooltip.lua": "0eedd6c751646d0327515b6280039878466b6fefae7838dbc210edfe16866bf4",
+    "Inventory/SpellReagents.lua": "88d8676f0a36c7b4277c1c03dab73a054473710820c4b7c8a9d25a2dfac8da0d",
+    "Inventory/FluxConsumableClassify.lua": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "Inventory/Craft.lua": "853273d8aa9cda557034f0dae4eb8ea7d6712de9f099f7edd69593dbc3d94abd",
+    "Inventory/FluxConsumableBest/Scan.lua": "8f9ebfdb95b6afec139e2f1f2bfc7a53abb04368ea6486976a605b9bdec4418d",
+    "Inventory/FluxConsumableBest/Init.lua": "a6d93c5bc098cd3ef40612dd3f94fea0d28970a4fc70d6b65e12d5a755599610",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowup.lua": "cfb392c6d8f1b5a30fcc37d2f0beb7d89221b5fa0e49c6ed1cbedcbf0527d77f",
+    "Inventory/Restock/Auction/FluxAuctionRestockFollowupCraft.lua": "8095e63c1f9fe548bd7d158fae960401ad099d6839ec8f639832a06581d82632",
+    "Inventory/Restock/Bank/FluxBankRestockInventory.lua": "5b699a18e5e90064df41e308e9164b9a80f0ec96b33dc4ae534e586981e7be5e",
+    "Inventory/FluxConsumableBest/FluxConsumableBest.lua": "0659ee2ad3a3b9c8c711e3f6c9081b6be14917f759d8d3be7989e02363081479",
+    "Inventory/Syndicator/Adapter.lua": "f96593fba8f14293ea13a790a82e9137e0c712a781eb45882e9977165546323f",
+    "ExtraButtonSystem/Engine/Watch.lua": "08350be513855373222522ef8e6183ff1bf5b2dbf3e3aafde5dbf7cbf983946a",
+    "Inventory/Restock/Junk/FluxJunkOverlay.lua": "a26645f6a400ab407c736ebc563fe4def5d325b9c43d1f7ee19d537d65d3cdc5",
+    "Inventory/Restock/Auction/FluxAuctionRestock.lua": "5eab7dfd6fb2d4c570c2b9474547685d682ecc71f8ca9c1760bd806813d24131",
+    "ExtraButtonSystem/Engine/ConsumableBind.lua": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+    "Inventory/Restock/Vendor/FluxVendorRestockPanel.lua": "dc6de0aaf42e923bcf0a01f07fff50e5ddaddffe82cbd2e410046588c9965205",
+    "Inventory/Restock/Vendor/FluxVendorItemDisplay.lua": "8399fc269ca62c20f66ab20ffc617f1d9df3164c3895fde5077ca5b9cf52bd36",
+    "Inventory/Restock/Vendor/FluxVendorAutoMerchantUI.lua": "f97f0873354e5c07cd5d16f7dc888800159b8e54c2ca8939abba5f7e1caf9f5d",
+    "Inventory/Restock/FluxRestock_Inv.lua": "4488ee52a36edfd9b18fc478d7467cb7f3a01b35b4e7d576492e1e42fb592ac8",
+    "Inventory/Restock/Core/Tiers/FluxRestockTiers_Match.lua": "1a02bc12fc6e97435e33d7485ffef4dab7cee668bd3bd58aa0090ca200433d7c",
+    "Inventory/Restock/Auction/FluxAuctionRestockCraft.lua": "8462442fc3b5edb79d1e1ccb91de0911037e85f5ec4ad999458e7015323c3093",
+    "Core/API/Container.lua": "640f0bbdd3ee004d84f65fd4b80c7ac3fc03271633da44d787ec79aaf2bb72e2",
+    "Other/FluxPerfCapture.lua": "e7908c047a1ddea6fae1665892f547e9a0b54da58678d0b982b7aff27db0dfef",
+    "Inventory/Init.lua": "36a7b896a3dd297333a926ea6e6c83d73990920912abb83108900d832d3dc744",
+    "Inventory/FluxConsumableBest/Score.lua": "c542c20dd32dce6892f7dbbee34651e682d0ab30d84f9a41bd114d136415009b"
+  },
+  "pairsMatch": 28,
+  "manualSync": false,
+  "syntax": "Before/afterLua5.1/5.4 PASS;whitespace PASS",
+  "sourceProof": "Exactly3 substitutions generate full current file from preceding663a539a:flatcombo literal guard,generic per-unit literal guard,nonpercentage pool gate. No other source differs after newline normalization.",
+  "invariant": [
+    "All3flatcombo patterns require both literal health andmana;genericunit patterns require their own literal. Guards follow locale/text normalization and can only skip impossible matches.",
+    "Percentage workers already require literal% in a line. Without% no axis can acquire percent mode;PotionMinimum uses factor1 for flat modes and does not readpool. MaxH/MaxM=0 are then unused. With any% both original live pool getters execute in originalorder.",
+    "No parsed/tooltip/result/pool cache added. All tooltip reads,pendingRetries,invalidations,cold-data retry cadence,public/native fallback bodies,classification/ranking/count/listener/timer/event paths retained.",
+    "Resource getter invocation count intentionally reduced for nonpercentage text;arbitrary getter side effects/errors outside resource values not certified. No new clientAPI/signature."
+  ],
+  "nativeSourceAssociation": "43-47before663a539a retained separately. Own guarded48ReloadUI then separately personally viewed fresh startup associates49-51with disk689c630a in same42724/50333792/birth134394624880288175.28diskpairs match;no independent loaded-byte hash.",
+  "nativeBefore": {
+    "run": "parser46before_a",
+    "realTooltipInputs": 10,
+    "passes": 5,
+    "callsPerSample": 50,
+    "ms": [
+      2.325100004673,
+      2.4713999629021,
+      2.3639000058174
+    ],
+    "health": 1037,
+    "mana": 2637,
+    "errors": 0,
+    "ownRootRemoved": true,
+    "formallyAcknowledged": true
+  },
+  "native43": {
+    "run": "food43items_a",
+    "formallyAcknowledged": true,
+    "carriedIDs": 54,
+    "classifyQueue": 4,
+    "classifierPendingIDsAfterPass": [],
+    "rows": [
+      {
+        "itemID": 2633,
+        "ms": 0.3740000128746,
+        "kind": null,
+        "pending": false,
+        "rejected": true,
+        "loaded": true
+      },
+      {
+        "itemID": 5634,
+        "ms": 0.21850001811981,
+        "kind": null,
+        "pending": false,
+        "rejected": true,
+        "loaded": true
+      },
+      {
+        "itemID": 7516,
+        "ms": 0.20589995384216,
+        "kind": null,
+        "pending": false,
+        "rejected": true,
+        "loaded": true
+      },
+      {
+        "itemID": 1487,
+        "ms": 0.015300035476685,
+        "kind": "food"
+      },
+      {
+        "itemID": 1645,
+        "ms": 0.0056999921798706
+      },
+      {
+        "itemID": 3928,
+        "ms": 0.0045999884605408
+      }
+    ],
+    "source": "syndicator",
+    "bagGeneration": 5,
+    "errors": 0,
+    "ownRootRemoved": true,
+    "flagSampling": "Pending/rejected/loaded flags evaluated by a later print command after the timed pass,not captured at the start of each item call."
+  },
+  "native44": {
+    "run": "food44state_a",
+    "formallyAcknowledged": true,
+    "itemIDs": [
+      2633,
+      5634,
+      7516
+    ],
+    "restoreReady": [
+      true,
+      true,
+      true
+    ],
+    "restoreHealth": [
+      0,
+      0,
+      0
+    ],
+    "restoreMana": [
+      0,
+      0,
+      0
+    ],
+    "tooltipLengths": [
+      77,
+      149,
+      38
+    ],
+    "allActualTooltipParsesSucceeded": true,
+    "allLegacyClassificationsReturnedNil": true,
+    "restoreCallMs": [
+      0.0045999884605408,
+      0.0013999938964844,
+      0.00099998712539673
+    ],
+    "legacyClassificationMs": [
+      0.004800021648407,
+      0.00080001354217529,
+      0.00059998035430908
+    ],
+    "errors": 0,
+    "ownRootRemoved": true
+  },
+  "native45": {
+    "run": "food45nested_a",
+    "formallyAcknowledged": true,
+    "carriedIDs": 54,
+    "totalMs": 1.0673999786377,
+    "nested": [
+      {
+        "name": "classify",
+        "calls": 54,
+        "ms": 0.96449953317642
+      },
+      {
+        "name": "parse",
+        "calls": 3,
+        "ms": 0.16149997711182
+      },
+      {
+        "name": "tooltip",
+        "calls": 3,
+        "ms": 0.60389995574951
+      }
+    ],
+    "scope": "One real query with transparent addon-local wrappers;inclusive nested envelopes overlap and include pcall/pack/log overhead. Native APIs not overridden. Identity-based private optimizations may fall back while classifier wrapper installed.",
+    "originalAddonFunctionsRestoredByIdentity": true,
+    "errors": 0,
+    "ownRootRemoved": true
+  },
+  "native47": {
+    "run": "food47reads_a",
+    "formallyAcknowledged": true,
+    "rows": [
+      {
+        "read": 1,
+        "revisionBefore": 19626,
+        "revisionAfter": 19626,
+        "generationBefore": 4908,
+        "generationAfter": 4908,
+        "queue": 4
+      },
+      {
+        "read": 2,
+        "revisionBefore": 19630,
+        "revisionAfter": 19630,
+        "generationBefore": 4909,
+        "generationAfter": 4909,
+        "queue": 4
+      },
+      {
+        "read": 3,
+        "revisionBefore": 19630,
+        "revisionAfter": 19630,
+        "generationBefore": 4909,
+        "generationAfter": 4909,
+        "queue": 4
+      }
+    ],
+    "conclusion": "These3GetAllBest calls did NOT advance counters within their own calls.4invalidations+1publication occurred between first/second commands;caller not isolated. Scan read-time reset remains a source candidate,not proven runtime attribution.",
+    "errors": 0,
+    "ownRootRemoved": true
+  },
+  "limits": [
+    "689c630a adopted/scoped native49-51 PASS. Before43-47 retain663a539a identity;no relabeling.28current diskpairs;0new models/simulated events.",
+    "Same10realtooltip count and pools1037/2637 before46/after49;exact IDs/strings/order not captured.3samples perwindow acrossreload;observed local reduction,not causal FPS/hitch/fullquery proof.",
+    "54counts matchnative;classification counts/selectedfood retained.7current fixed records match existing score body;not full old/new parser-field/pixel/allfeature equality.",
+    "No percentage record in51. Percent/cold/overrides/otherclients/taint/rendering/controller/full workflows OPEN;source invariant is not native certification.",
+    "Tooltip collection larger old observed contribution than parsing. Invalidation caller/cold lifecycle OPEN;47showedchanges betweencommands,not within those3GetAllBest calls.",
+    "No new parse/tooltip/pool cache or retry/invalidation/cadence changes. Preserve latecoldfood recovery.",
+    "Owned43-47/49/51roots gone;only intentional jumpcue remains. Preferences/errors preserved;no transactions,itemmoves,mail,craftqueues or externaladdon edits.",
+    "WholeLHO01-13 ACTIVE;merchant/AH/pending/bank/mail/crafting/othercasts/provider/client coverage/matched spike gains OPEN."
+  ],
+  "screenshots": {
+    "food43items_a": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-food43items_a-submitted.png",
+      "sha256": "6b2b4b1ea26df69fad1fbe396d71cd1ebc00a06d78c396fb13e65ffdd0af11d6"
+    },
+    "food44state_a": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-food44state_a-submitted.png",
+      "sha256": "d59ad653ca9d321d9f09d275c1ff7134b0ee19e09334200816380a97b807ed46"
+    },
+    "food45nested_a": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-food45nested_a-submitted.png",
+      "sha256": "1051a3e194af9f6930224dd7e9b68c7d953717053eeecdc4193af705c0b64fc4"
+    },
+    "parser46before_a": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-parser46before_a-submitted.png",
+      "sha256": "8a67784735477ad7b06fb3836208debb26c95a4806ef3b4cdd81f6370e297adc"
+    },
+    "food47reads_a": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-food47reads_a-submitted.png",
+      "sha256": "d085d0413a36586142fc28cbcfe75217b818c3f1fea0cf886723bd103cdbdd5c"
+    },
+    "jq4-parser48reload_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-parser48reload_a-submitted.png",
+      "sha256": "fe3db9e4115a4077df2d42faf93c1278ce38695ab52770313323bcc6ad597c16"
+    },
+    "parser48-reload-startup.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\parser48-reload-startup.png",
+      "sha256": "f507272f1ccbf11bf222b66c6ade70d0e858366b691ac692ddd4c31620e2582b"
+    },
+    "jq4-jump49install_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-jump49install_a-submitted.png",
+      "sha256": "2237845edac8cc0df8f5dc04ece0dfa1623f99e8d7570058e92e26f7cad53e14"
+    },
+    "jq4-parser49after_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-parser49after_a-submitted.png",
+      "sha256": "9ca8e113d819962d1617f51e5fab2dc14260f907292f1d8a3d8f074984711bc8"
+    },
+    "jq4-parser50parity_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-parser50parity_a-submitted.png",
+      "sha256": "a71be5ffa3672e082accde10abf1a1ab3f0db59ac5424ca2dbcdf622335fb10c"
+    },
+    "jq4-parser51tiers_a-submitted.png": {
+      "path": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\native\\jq4-parser51tiers_a-submitted.png",
+      "sha256": "edeee4aa1e085f3161786812ca555977dbc00d2ecf1f7353231b31de2d19ba27"
+    }
+  },
+  "transportPackages": {
+    "native-food43-item-cost-20261118": {
+      "bootstrap.py": "c774e07b31cf92d19ab3de55282492809f034a80ea51538c5a7050c6accf28ed",
+      "packets.json": "db83d6002ffdf5f219f31c643306268ed2c1fb716d79fc17d25e32a9db143f59",
+      "reviewed-native-script.lua": "cd14270372723d5e1c0dc68e7ba978dba8d3181f3af49b96ff7fb35116dc4e71"
+    },
+    "native-food44b-restore-state-20261118": {
+      "bootstrap.py": "c5e8081804cb878dbc5905e1894ea7a9b7c79995bab1e6676573185d1c65758d",
+      "packets.json": "3ba0e1eb8499314e76ddbb78be3f527b2f37eeae702fb0d24fdc0fd345c70f23",
+      "reviewed-native-script.lua": "214c0eda3891c840d0ede598a96b2171fed3074d4a69ba06a635eb7f0dd138c4"
+    },
+    "native-food45-nested-cost-20261118": {
+      "bootstrap.py": "c9fa8dbb7ffce0328163a821559ab9978562d3c2ad51fed436a38ba723745c70",
+      "packets.json": "c238804907866744bbd338accec50474ca62d46d6130f3012e6bc6c01baef711",
+      "reviewed-native-script.lua": "5cb7f3b8f6e788a2b637a1548cb667ab713a164829e67bfdc8edccebc226555c"
+    },
+    "native-parser46b-before-20261118": {
+      "bootstrap.py": "b9e609fef55d5dc94d9517344c9df4c1c64a925d3455cacee0e7d78dfbbe9506",
+      "packets.json": "d1dfdbf48bed1c9c556e22921f8752c728b87c9c92989ea5ef9deec7a33052dc",
+      "reviewed-native-script.lua": "55a70810b553888dfa31d5361f2f8fb800740b64aeaf7e717b2079dbe320e8b0"
+    },
+    "native-food47-read-revisions-20261118": {
+      "bootstrap.py": "6abcd19289df1933a23495dfa598f87bb01e5af03d3045d2f31a850a542c0c42",
+      "packets.json": "a52a4724e35957b5bbdb8032ddfc5899317fcef59ecc05241984493ca6bb5dff",
+      "reviewed-native-script.lua": "8f39ecd9cd9fcb18ead3bcce47c372795a986ed741aac318b0e2525fc55cf022"
+    },
+    "native-parser48-reload-20261118": {
+      "bootstrap.py": "98642c49a9b6e130064bdb7bdfabd8ce924b13166ee0017791d553a900943da4",
+      "packets.json": "ecd20c085973885ddfcaef60e84a50fa9ca43ffbadf2dbe50556f772dafa1f46",
+      "reviewed-native-script.lua": "e970793dd84706baf20bd1d95c18d361843c5acdb19817331b39381090605b83"
+    },
+    "native-parser49-after-20261118": {
+      "bootstrap.py": "bea9401e65168a581f60f096cd8eb1a5ebd29b495b6f470ede2233aed7f44aa3",
+      "packets.json": "8a4591637b91635ee53d5bf7253628e5b9193708001c9b4e71371820f47f1ee2",
+      "reviewed-native-script.lua": "e71191dbc15156dd2a7d881b9dd71c41c6fae2b69780ffa1618a56f08826e6bd"
+    },
+    "native-parser50-parity-20261118": {
+      "bootstrap.py": "010b1fef0252edb40751c1b64d7bc01f46894c41b973b9face80d956428c1e1f",
+      "packets.json": "69860f2f2e65ba0e3c31e97d56b6ed0d6db34e50e7024d7186af888edb5ccff0",
+      "reviewed-native-script.lua": "91fa79202b09af3cfb6048a23b8583aae32d7eb40ed90ea54129d78f6f4eedf0"
+    },
+    "native-parser51-tier-parity-20261118": {
+      "bootstrap.py": "3aac7974c88cadeadb2e98f2ff674206b76e21ac0b2334c0ec9b2c7bd0a698ce",
+      "packets.json": "b5c2a547c9dce3d3976fa91d45a880d8305f8b010fa0d1c18b3d8a5e50182ea8",
+      "reviewed-native-script.lua": "ebf5666fa178b6c638bc89ba4b6e4dfc6ec26f20b9ef0d599b9c65275ba5a48f"
+    }
+  },
+  "reload": {
+    "run": "parser48reload_a",
+    "immediateCapturePersonallyViewedAndAcknowledged": "READY48 true5 and empty Say draft;readiness only",
+    "freshStartupPersonallyViewed": "native/parser48-reload-startup.png"
+  },
+  "nativeAfter": {
+    "run": "parser49after_a",
+    "sourceSHA": "689c630a0f72252a895dd61ae990e0d0a4e13f7bc16894f02f09b5db271289f7",
+    "formallyAcknowledged": true,
+    "realTooltipInputs": 10,
+    "passes": 5,
+    "callsPerSample": 50,
+    "ms": [
+      1.7405999898911,
+      1.9049000144005,
+      1.7711000442505
+    ],
+    "health": 1037,
+    "mana": 2637,
+    "errors": 0,
+    "ownRootRemoved": true,
+    "scope": "Same collection method as46;two actual10input tooltip sets,not synthetic fixtures. Full input identities/strings/order were not exported,so exact matched-input equivalence is unproven. One sequential before/after batch acrossreload;3samples each."
+  },
+  "comparison": {
+    "beforeMedianMs": 2.3639000058174,
+    "afterMedianMs": 1.7711000442505,
+    "observedMedianReductionPercent": 25.07720123981805,
+    "beforeRangeMs": [
+      2.325100004673,
+      2.4713999629021
+    ],
+    "afterRangeMs": [
+      1.7405999898911,
+      1.9049000144005
+    ],
+    "fpsGainClaim": false,
+    "frameSpikeGainClaim": false,
+    "limits": "Local sample reduction only;not randomized/interleaved matched full-pipeline trials. Reload/cache/tooltip set/order/system/world/guild activity confounds;hardware config not captured anew."
+  },
+  "nativeParity": {
+    "run": "parser50parity_a",
+    "formallyAcknowledged": true,
+    "version": "1.60.1",
+    "build": 70959,
+    "interface": 16001,
+    "project": 18,
+    "carriedIDs": 54,
+    "mismatches": 0,
+    "addons": {
+      "Syndicator": true,
+      "Baganator": true,
+      "source": "syndicator",
+      "ready": true,
+      "classifyQueue": 4
+    },
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "scriptProfile": "0",
+    "maxFPS": "120",
+    "maxFPSBk": "30",
+    "errors": 0,
+    "priorProbeRoots43_47And49Absent": true,
+    "jumpCueEnabled": true,
+    "cursorClear": true
+  },
+  "nativeTierParity": {
+    "run": "parser51tiers_a",
+    "formallyAcknowledged": true,
+    "carriedIDs": 54,
+    "rows": [
+      {
+        "kind": "food",
+        "ms": 0.59330004453659,
+        "matches": 3
+      },
+      {
+        "kind": "water",
+        "ms": 0.05869996547699,
+        "matches": 1
+      },
+      {
+        "kind": "bandage",
+        "ms": 0.053200006484985,
+        "matches": 1
+      },
+      {
+        "kind": "healPotion",
+        "ms": 0.055299997329712,
+        "matches": 1
+      },
+      {
+        "kind": "manaPotion",
+        "ms": 0.054099977016449,
+        "matches": 1
+      }
+    ],
+    "actualFixedRestoreRecords": 7,
+    "mismatchesAgainstUnchangedScoreWithLivePools": 0,
+    "percentageRecords": 0,
+    "selectedFood": {
+      "itemID": 1487,
+      "count": 14,
+      "effective": 841
+    },
+    "bothAddonsLoaded": true,
+    "source": "syndicator",
+    "ready": true,
+    "cursorClear": true,
+    "ownRootRemoved": true,
+    "errors": 0,
+    "scope": "Classification match counts remain3/1/1/1/1. Seven current fixed records match unchanged scoring body with explicit live pools;not full old/new parser output-field comparison. Percent/cold/otherclients not covered."
+  },
+  "openFullQueryCost": {
+    "currentFoodMs": 0.59330004453659,
+    "historicalMixedBeforeMs": [
+      0.14759999513626,
+      0.81850004196167,
+      0.70360004901886
+    ],
+    "conclusion": "Current lower than two recent observations but higher than first oldsample;different cache/reload/world/read-pending states. Whole-food-query gain,larger tooltip cost and invalidation caller remain OPEN. Keep all earlier raw samples."
+  },
+  "priorJump": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r13-20261118",
+    "root": "_J40q",
+    "nonce": "j18n40a7",
+    "label": "live20261118m",
+    "hostPID": 51700,
+    "hostLiveVerified": true,
+    "pairs": 12,
+    "lastSpaceUpUTC": "2026-11-18T16:59:15.636963+00:00",
+    "movementVisuallyVerified": false,
+    "stop": "CANCEL/GOAL_DONE/native JUMP_STOP before requested guardedreload;installfreshnonce afterreload",
+    "noQuestionsWhileUserAway": true
+  },
+  "currentJump": {
+    "package": "C:\\Users\\mario\\.codex\\visualizations\\2026\\11\\10\\01a1c551-7947-7cf1-8aac-c0891cf4fa6b\\lag-hotspots-20261114\\resume4-20261114T222014Z\\jump-keepalive-p83\\r14-20261118",
+    "root": "_J49q",
+    "nonce": "j18n49a7",
+    "label": "live20261118n",
+    "hostPID": 20380,
+    "supervisorPID": 26456,
+    "hostLiveVerified": true,
+    "hostLiveVerificationUTC": "2026-11-18T17:17:53.760932+00:00",
+    "pairs": 4,
+    "lastSpaceUpUTC": "2026-11-18T17:16:19.700848+00:00",
+    "movementVisuallyVerified": false,
+    "oldHost51700StoppedAndVerifiedAbsent": true,
+    "installRun": "jump49install_a",
+    "installPersonallyViewedAndAcknowledged": true,
+    "installerSHA": "d1c205c889b19123e8deab85fd1c743fadd9cc30cb804446e050f2b5cdc92fa1",
+    "supervisorSHA": "8f02121405502715351160115d03c8ae4ddc03bf4ffb4aed1bbbe9aafafc8357",
+    "stop": "CANCEL/GOAL_DONE/native JUMP_STOP before requestedguardedreload;freshcue nonce afterreload",
+    "gates": "180s;queue aroundcommands/casts/crafting/unsafeinput;15sPCidle activation/priorapprestore exception retained",
+    "noQuestionsWhileUserAway": true
+  }
+}

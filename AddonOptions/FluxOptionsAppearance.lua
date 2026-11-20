@@ -38,6 +38,7 @@ local function BuildAppearanceOptions()
                     RefreshAppearance()
                 end,
             },
+            borderType = FluxBorder and FluxBorder.CreateTypeOption and FluxBorder:CreateTypeOption(4),
             accentHeader = { type = "header", name = "Accent", order = 10 },
             accentDesc = {
                 type = "description",
@@ -48,7 +49,7 @@ local function BuildAppearanceOptions()
             borderAccent = {
                 type = "select",
                 name = "Accent",
-                desc = "Class color matches your class. Default atlas leaves atlas-based art untinted, except on WoW Forever where it uses Blizzard's status bar gold. Custom uses the color below.",
+                desc = "Class color matches your class. Default atlas preserves the artwork's original colors. On WoW Forever, Border type 1 keeps its existing bronze; Border type 2 stays untinted. Custom uses the color below.",
                 order = 12,
                 width = "full",
                 values = {
