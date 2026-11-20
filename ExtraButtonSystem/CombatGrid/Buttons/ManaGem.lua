@@ -32,7 +32,7 @@ local function AppendTooltip(btn, tip)
             bindingName = "FLUXMAGE_CONJURE_MANAGEM",
         })
     end
-    local itemID = Module._trackedItemID or btn.ItemId
+    local itemID = btn.ItemId or Module._trackedItemID
     if Bridge.AppendDeleteStackHint then
         Bridge.AppendDeleteStackHint(tip, btn, itemID)
     end
@@ -152,31 +152,35 @@ local function LatestGemItemID()
 end
 
 --- Keep the real gem item on the face (never the generic placeholder icon).
-local function BindGemFace(btn, itemID, force)
+local function BindGemFace(btn, itemID, force, macro, sequence)
     itemID = tonumber(itemID)
     if not itemID then
         return false
     end
+    local actionType = macro and "macrotext" or "item"
+    local actionValue = macro or itemID
     local changed = force
-        or itemID ~= Module._trackedItemID
         or btn.PlaceholderTexture
-        or btn.ActionType ~= "item"
-        or tonumber(btn.ItemId or btn.ActionValue) ~= itemID
+        or btn.ActionType ~= actionType
+        or btn.ActionValue ~= actionValue
     Module._trackedItemID = itemID
-    Module._latchItemID = itemID
-    btn.ItemId = itemID
-    if btn.ClearPlaceholder then
-        btn:ClearPlaceholder()
-    end
-    btn.PlaceholderTexture = nil
-    btn.PlaceholderLabel = nil
-    if changed and btn.SetAction then
-        btn:SetAction("item", itemID)
-        if btn.FullRefresh then
-            btn:FullRefresh()
+    btn._fluxManaGemSequence = sequence
+    if changed then
+        if btn.ClearPlaceholder then
+            btn:ClearPlaceholder()
+        end
+        btn.PlaceholderTexture = nil
+        btn.PlaceholderLabel = nil
+        btn._fluxManagedFaceItemId = macro and itemID or nil
+        btn.ItemId = itemID
+        if btn.SetAction then
+            btn:SetAction(actionType, actionValue)
+        end
+        if macro then
+            btn.MacroMode, btn.ItemId = "item", itemID
         end
     end
-    ApplyGemCount(btn, itemID)
+    Module.RefreshCountOnly(changed)
     return true
 end
 
@@ -272,8 +276,30 @@ local function AttachManaGem(btn)
         end
     end
 
-    function Module.RefreshCountOnly()
-        ApplyGemCount(btn, Module._trackedItemID or btn.ItemId)
+    function Module.RefreshCountOnly(repaint)
+        local itemID = Module._trackedItemID or btn.ItemId
+        local sequence = btn._fluxManaGemSequence
+        local faceChanged = false
+        if sequence and btn.ActionType == "macrotext" then
+            if SoftHoldOwned() then
+                itemID = btn._fluxManagedFaceItemId or itemID
+            elseif InCombatLockdown and InCombatLockdown() then
+                itemID = btn._fluxManagedFaceItemId or itemID
+                if QueryCastSequence then
+                    local ok, index = pcall(QueryCastSequence, sequence.options)
+                    if ok then
+                        itemID = sequence.items[index] or itemID
+                    end
+                end
+            end
+            faceChanged = itemID ~= btn._fluxManagedFaceItemId
+            btn._fluxManagedFaceItemId, btn.ItemId = itemID, itemID
+            btn.MacroMode = "item"
+        end
+        if (repaint or faceChanged) and btn.FullRefresh then
+            btn:FullRefresh()
+        end
+        ApplyGemCount(btn, itemID)
     end
 
     function Module.Update(force)
@@ -302,6 +328,11 @@ local function AttachManaGem(btn)
 
         -- Load-screen bag flicker: keep the last gem; do not SetPlaceholder.
         if SoftHoldOwned() then
+            if btn._fluxManaGemSequence then
+                Module.RefreshCountOnly()
+                Module._pendingUpdate = true
+                return
+            end
             local keepID = Module._latchItemID or Module._trackedItemID
             if keepID then
                 if StickyGemMode() then
@@ -317,24 +348,7 @@ local function AttachManaGem(btn)
             end
         end
 
-        local ladder = Bridge.GetOwnedLadder("managem", { charges = true })
-        if type(ladder) == "table" and #ladder > 0 then
-            local live = {}
-            for i = 1, #ladder do
-                local entry = ladder[i]
-                local itemID = entry and tonumber(entry.itemID)
-                local uses = itemID and GemUses(itemID) or 0
-                if uses > 0 then
-                    live[#live + 1] = {
-                        itemID = itemID,
-                        count = uses,
-                        source = "owned",
-                        kind = "managem",
-                    }
-                end
-            end
-            ladder = live
-        end
+        local ladder = Bridge.GetOwnedLadder("managem", { charges = true, includeSingleUse = true })
         local softHold = SoftHoldOwned()
         if (not ladder or #ladder == 0) then
             local keepID = Module._latchItemID or Module._trackedItemID
@@ -353,49 +367,21 @@ local function AttachManaGem(btn)
             end
         end
         if ladder and #ladder > 0 then
-            -- Expand by bag uses (V9): Ruby×2 + Citrine → Ruby, Ruby, Citrine.
-            local ids = {}
-            for i = 1, #ladder do
-                local entry = ladder[i]
-                local itemID = entry.itemID
-                local uses = tonumber(entry.count) or 0
-                if uses < 1 then
-                    uses = 1
-                end
-                for _ = 1, uses do
-                    ids[#ids + 1] = itemID
-                end
-            end
             local bestID = ladder[1].itemID
-            local bestIsCharge = Bridge.IsManaGemChargeBased and Bridge.IsManaGemChargeBased(bestID)
-            local stickyBest = StickyGemMode()
-            -- Charge-based / free conjure: stay on best item (no multi-tier castsequence).
-            -- Vanilla paid: castsequence reset=combat, one entry per use.
-            if bestIsCharge or stickyBest or #ids <= 1 then
-                BindGemFace(btn, bestID, force)
-            else
-                local changed = force or bestID ~= Module._trackedItemID
-                Module._trackedItemID = bestID
-                Module._latchItemID = bestID
-                btn.ItemId = bestID
-                if btn.ClearPlaceholder then
-                    btn:ClearPlaceholder()
-                end
-                btn.PlaceholderTexture = nil
-                if changed then
-                    local macro = Bridge.BuildCastSequenceMacro(ids)
-                    if macro then
-                        btn:SetAction("macrotext", macro)
-                    else
-                        btn:SetAction("item", bestID)
-                    end
-                    if btn.FullRefresh then
-                        btn:FullRefresh()
+            local macro, sequence
+            if not softHold and ladder[1].hasCharges == false and (#ladder > 1 or ladder[1].count > 1) then
+                -- Ruby through Agate, one step for each carried single-use copy.
+                local ids = {}
+                for _, entry in ipairs(ladder) do
+                    for _ = 1, entry.count do
+                        ids[#ids + 1] = entry.itemID
                     end
                 end
-                -- Count after paint so UpdateTextCount / FlushCounts do not wipe a latched use.
-                ApplyGemCount(btn, bestID)
+                local options
+                macro, options = Bridge.BuildCastSequenceMacro(ids, true)
+                sequence = macro and { items = ids, options = options }
             end
+            BindGemFace(btn, bestID, force, macro, sequence)
         else
             -- A load hold may retain the latest face. Reliable empty ownership
             -- must clear it, including charge remnants with no remaining use.
@@ -428,6 +414,8 @@ local function AttachManaGem(btn)
             Module._trackedItemID = nil
             Module._latchItemID = nil
             Module._latchCount = nil
+            btn._fluxManaGemSequence = nil
+            btn._fluxManagedFaceItemId = nil
             btn.ItemId = nil
             if btn.SetPlaceholder then
                 btn:SetPlaceholder(PLACEHOLDER, "Mana Gem")

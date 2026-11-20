@@ -8,7 +8,7 @@ local J = { stats = { passes=0, solves=0, candidates=0, unchanged=0 }, limits = 
     segments=4096, candidates=24000, bucketEntries=32768, operations=2048, fragmentsPerPiece=32, fragments=8192, junctionTriangles=8192,
 } }
 Border.Junctions = J
-J.version="local-cell-budget-r187"
+J.version="cast-divider-r189"
 local floor, min, max, abs = math.floor, math.min, math.max, math.abs
 local PATH = "Interface\\AddOns\\_FluxUI\\Texture\\borders\\"
 local EPS, CELL = 1, 64 -- physical screen coordinates; weld only overlapping border bands
@@ -1892,6 +1892,7 @@ local function ReadLayout(filter,retained)
         if not filter[segment.group.parent] then segments[#segments+1]=segment end
     end end
     local currentTracks=Border.GetJoinTracks and Border:GetJoinTracks() or tracks[Border:GetBorderType()] or tracks[1]
+    local dividerHalfWidth
     local function KeepStamps(g)
         local stamps=g._layoutStamps
         if stamps and #stamps>0 then
@@ -2008,6 +2009,17 @@ local function ReadLayout(filter,retained)
                     s.a=s.a+(horizontal and currentTracks.Left or 16-currentTracks.Bottom)*s.scale
                     s.b=s.b-(horizontal and 16-currentTracks.Right or currentTracks.Top)*s.scale
                     item.paintRect=horizontal and {s.a,r[2],s.b,r[4]} or {r[1],s.a,r[3],s.b}
+                end
+                if not horizontal and key==parent._FluxBorderCastInternalSide then
+                    if not dividerHalfWidth then
+                        local thickness=Border.GetBorderThickness and Border:GetBorderThickness() or 100
+                        dividerHalfWidth=thickness/100
+                    end
+                    -- This is an internal divider. Keep its authored ridge
+                    -- without painting the outside bevel over either face.
+                    local inset=dividerHalfWidth*s.scale
+                    local rect=item.paintRect or r
+                    item.paintRect={max(rect[1],s.p-inset),rect[2],min(rect[3],s.p+inset),rect[4]}
                 end
                 if s.b>s.a then segments[#segments+1]=s end
             end
@@ -2939,6 +2951,12 @@ local function PrepareBranchFields(self,op,best,fingerprint)
     local r=op.rect
     local triangles=AuraTopTriangles(op,best) or self:Triangles(op.bits,(op.x-r[1])/(r[3]-r[1]),(r[4]-op.y)/(r[4]-r[2]))
     local prepared={triangles=triangles,slices={},sources={},cacheable=true}
+    if (op.bits==7 or op.bits==11) and op.hs.group and op.hs.group.castSection then
+        local divider=op.vs.group and op.vs.group.parent
+        if divider and divider._FluxBorderCastInternalSide==op.vs.side then
+            prepared.castRimDepth=op.hs.scale
+        end
+    end
     local inputs=fingerprint and {}
     local function Values(values)
         if inputs then inputs[#inputs+1]=#values;for _,value in ipairs(values) do inputs[#inputs+1]=value end end
@@ -2956,6 +2974,8 @@ local function PrepareBranchFields(self,op,best,fingerprint)
             inputs[#inputs+1]=segment.rawP or segment.p or false
             inputs[#inputs+1]=source.support and source.support[1] or false
             inputs[#inputs+1]=source.support and source.support[2] or false
+            local paint=segment.item and segment.item.paintRect
+            if paint then Values(paint) end
         end
         return source
     end
@@ -2997,6 +3017,7 @@ local function PrepareBranchFields(self,op,best,fingerprint)
         if inputs then inputs[#inputs+1]=cap.item.texture;Values(cap.item.rect) end
         if not SourceInput(cap.segment) then return nil,"unavailable rounded-cap source" end
     end
+    if inputs and prepared.castRimDepth then inputs[#inputs+1]=prepared.castRimDepth end
     prepared.inputs=inputs
     return prepared
 end
@@ -3120,6 +3141,11 @@ function J:BranchTriangles(op,best,prepared)
                 if h then low,high=high-(high-low)*source.support[2],high-(high-low)*source.support[1]
                 else low,high=low+(high-low)*source.support[1],low+(high-low)*source.support[2] end
             end
+            local paint=segment.item and segment.item.paintRect
+            if paint then
+                local normal=h and 2 or 1
+                low,high=max(low,paint[normal]),min(high,paint[normal+2])
+            end
             local center=segment.rawP or segment.p
             if not PublicNumber(center) or center<=low or center>=high then return nil,"unsupported branch normal center" end
             local alongLow,alongHigh=slice.a,slice.b
@@ -3190,6 +3216,9 @@ function J:BranchTriangles(op,best,prepared)
                         if not PublicNumber(hd) or not PublicNumber(vd) or hd<=0 or vd<=0 then return nil,"unsupported branch miter" end
                         local A,B=-sx*hd,sy*vd
                         local C=sx*hd*v.center-sy*vd*h.center
+                        -- Keep the cast crossbar's ridge continuous while the
+                        -- divider still shares the rest of the miter and shadow.
+                        if prepared.castRimDepth then C=C-min(hd,prepared.castRimDepth)*vd end
                         local poly=RectPoly(box)
                         local hp=HalfPlane(poly,A,B,C,false)
                         local vp=HalfPlane(poly,A,B,C,true)

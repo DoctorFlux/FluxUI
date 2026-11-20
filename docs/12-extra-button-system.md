@@ -173,6 +173,23 @@ Portal/login snapshots can briefly collapse. `ShouldHoldItemIdentity()` and `Kee
 
 [Ammo.lua](../ExtraButtonSystem/CombatGrid/Buttons/Ammo.lua) supports older ammunition and Forever durable throwing weapons. Durable throws display remaining durability, refreshed by equipment/durability events, rather than a stack count. Visibility also depends on class/client relevance.
 
+### Mana Gem sequence
+
+The Mana Gem button and its use key prepare a `/castsequence reset=combat`
+from carried single-use gems in order: Ruby, Citrine, Jade, Agate. Each copy
+gets a step and missing ranks are omitted. A single copy uses the native item
+action. The client advances after a successful use and the button displays
+the next step. Emerald, Sapphire and the charged Mana Gem use direct item
+actions and take priority while they have charges. Right-click still conjures.
+
+Outside combat, the button goes straight to the best carried gem. A bag
+change rebuilds the sequence from current stock as soon as it is safe to bind.
+Leaving combat resets the sequence to the best carried rank, with no secure
+rewrite for identical stock. A gem gained during combat joins at combat exit.
+A gem spent from another button or removed mid-fight can stall its step until
+the sequence is rebuilt.
+[Client checks](CLIENT_VALIDATION.md#mana-gem-sequence).
+
 ## Travel, food and water
 
 [GridInit](../ExtraButtonSystem/NonCombatGrid/GridInit.lua) constructs the noncombat grid. Its geometry shares squeeze/anchors with the action strip, combat buttons and trinkets.

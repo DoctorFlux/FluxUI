@@ -1,5 +1,88 @@
 # Work log
 
+20 November. R189 trims the cast icon divider to the style's registered
+stroke width. The close crop shows a dark rail on the fill side, which the
+first, wider trim still covered in the replay. The final trim passes the
+straight and T-junction checks at all five tested scales. The archived
+renderer fails the same margin check for each of the three profiles.
+All 60 desktop scripts and 1,255 Lua syntax checks pass. The five
+installations match on disk. Native appearance remains pending.
+[Evidence](validation/cast-divider-r189-2026-11-20.json).
+
+20 November. R188 preserves the cast rim through both divider junctions.
+The archived source fails the new artwork ownership check for both released
+styles and a simulated style with different track and material data. The
+current source passed 60 HUD and cast scripts and the WoW upvalue check.
+[Evidence](validation/cast-rim-r188-2026-11-20.json).
+
+20 November. `FLIGHT-TIMER-20261120` replaced click-time timing and the save
+prompt with native-state boarding, per-character route learning, and a saved
+active trip. Unknown trips count up and overdue estimates stay visible until
+landing. The external `flight-timer-before-20261120T143000Z` checkpoint contains
+both prior Lua files, the TOC and a verified all-ref bundle at main
+`ac175efa3d5f0c2f36a723c9836e7fafad97ae49`. WTF metadata was verified for 84 files
+across the five installs. Polestar 0.4.1 was inspected read-only. Its
+`Maps/FlightTimer.lua` SHA-256 is
+`eba9f7f19653ce36a90a36a16cf0469c819d008c191ce1227291ec8a299be4fa`.
+All 11 focused Lua scripts passed. The runtime files and TOC matched across
+all five installs. The two runtime files passed the WoW upvalue limit check.
+
+| Source | SHA-256 before | SHA-256 after |
+| --- | --- | --- |
+| `FluxFlightPath.lua` | `af3f06f8e4a59af0f3c9fa93ae4ff9f1bcfe340bab9fab2a532722383bd19b8b` | `30a397b11c40b79524d43bb65347f624f07064ef2638c5b201f8977e8340dfbb` |
+| `FluxCastBar.lua` | `262d45c9f4e560711de5ee7956604fc4b3285b4bc804769c9ec2945e3ca520ee` | `b00b2e58cbe0fb21d0c122a7fa4b85125690f494ebd87d47ed20873d657b688b` |
+
+[Client checks](CLIENT_VALIDATION.md#flight-timer-rework).
+
+20 November. Aligned the cast icon with the divider for the type 1 report.
+The new fixture assertion fails on the archived source and passes in the
+current cast and shared swing/Shoot layouts. All 15 focused scripts and
+the WoW upvalue check passed. The five installed copies match on disk.
+[Evidence](validation/cast-type1-seam-2026-11-20.json).
+
+20 November. `MANA-GEM-RESET-20261120` gates the ranked sequence to combat and
+uses the strongest carried gem directly outside combat. The regression covers
+a gem acquired during combat, a stronger gem gained outside combat, and an
+identical stock list with a stale native cursor at combat exit. All 155 checks
+and 29 focused scripts passed. The preceding source fails 55 checks in the
+expanded regression. The identical-stock case performs zero use-action writes.
+
+External checkpoint `mana-gem-reset-before-20261120T131650Z` verifies the
+preceding working sources and the existing main history bundle. Settings
+were verified by metadata for all five installs, whose runtime copies match
+the updated files. Source SHA-256s:
+
+| File | Before | After |
+|---|---|---|
+| `ManaGem.lua` | `2c3533731162e890750294f812d2ab8ec949900b6f282de683c161658429bd97` | `d4dd91bacd21b00afe0ae2975653bce86440f8831bc2d4899329c1128e41ff02` |
+| `ConsumableBind.lua` | `ba99c14e3df0b7c4b9e40405eef4779e48ac57e0259e1e4daf4be5077677a164` | `660296cdf2866da9c614be1e11596eb519bd4557dede6c1429e599355f886eb5` |
+
+[Client checks](CLIENT_VALIDATION.md#mana-gem-sequence).
+
+20 November. `MANA-GEM-SEQUENCE-20261120` added an inline, carried-only
+sequence for Ruby through Agate. The new test passes 165 checks across five
+models and finds 35 failures with the archived source. Combat refreshes only
+paint the native step. The existing coalescer handles changed lower ranks and
+copy counts after lockdown.
+
+All 28 focused scripts passed, and 1,253 Lua files compiled. Both runtime
+files match across the five installed clients. The broad run was partial.
+Its Bars smoke, Junk smoke and alpha-reader failures reproduced with identical
+output against the archived source. The Forever window stayed in the background
+and live gem use remains pending.
+
+External checkpoint `mana-gem-before-20261120T125844Z` in the session's
+visualization directory holds the verified main history at
+`ac175efa3d5f0c2f36a723c9836e7fafad97ae49` and exact pre-edit working files.
+Settings were verified by metadata in all five clients. Source SHA-256s:
+
+| File | Before | After |
+|---|---|---|
+| `ManaGem.lua` | `e77af2c17e8cb792822f5593820cdeb2c23a2f655e6b76b63d2ede0b58cf4be5` | `2c3533731162e890750294f812d2ab8ec949900b6f282de683c161658429bd97` |
+| `ConsumableBind.lua` | `0576edeae4e0e5ae9bcd1987644dff2c3fef4a947d2eb91e2f9ef3bb2e425ebe` | `ba99c14e3df0b7c4b9e40405eef4779e48ac57e0259e1e4daf4be5077677a164` |
+
+[Client checks](CLIENT_VALIDATION.md#mana-gem-sequence).
+
 20 November. `FOOD-WATER-STACKS-20261120` passed 27 focused Lua scripts. The
 new regression rejects the previous 16-versus-4 selection and covers 20 plus
 20/10, count-neutral splits, moved and locked slots, conjured and restore

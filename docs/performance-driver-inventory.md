@@ -154,7 +154,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [ExtraButtonSystem/CombatGrid/Grid.lua](../ExtraButtonSystem/CombatGrid/Grid.lua) | 0 | 0 | 3 | 0 | 0 |
 | [ExtraButtonSystem/CombatGrid/GridManager.lua](../ExtraButtonSystem/CombatGrid/GridManager.lua) | 0 | 1 | 1 | 3 | 0 |
 | [ExtraButtonSystem/Engine/Action.lua](../ExtraButtonSystem/Engine/Action.lua) | 2 | 0 | 0 | 0 | 4 |
-| [ExtraButtonSystem/Engine/ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) | 0 | 0 | 16 | 8 | 8 |
+| [ExtraButtonSystem/Engine/ConsumableBind.lua](../ExtraButtonSystem/Engine/ConsumableBind.lua) | 0 | 0 | 16 | 8 | 10 |
 | [ExtraButtonSystem/Engine/Paint.lua](../ExtraButtonSystem/Engine/Paint.lua) | 0 | 0 | 4 | 0 | 0 |
 | [ExtraButtonSystem/Engine/Style.lua](../ExtraButtonSystem/Engine/Style.lua) | 0 | 0 | 0 | 0 | 1 |
 | [ExtraButtonSystem/Engine/Watch.lua](../ExtraButtonSystem/Engine/Watch.lua) | 0 | 0 | 12 | 0 | 0 |
@@ -321,7 +321,7 @@ Counts below are lexical call/assignment candidates after removing comments and 
 | [UnitFrames/FluxCastBar.lua](../UnitFrames/FluxCastBar.lua) | 1 | 0 | 4 | 4 | 12 |
 | [UnitFrames/FluxCastBarThemes.lua](../UnitFrames/FluxCastBarThemes.lua) | 1 | 0 | 1 | 2 | 1 |
 | [UnitFrames/FluxClassPower.lua](../UnitFrames/FluxClassPower.lua) | 0 | 0 | 10 | 9 | 0 |
-| [UnitFrames/FluxFlightPath.lua](../UnitFrames/FluxFlightPath.lua) | 0 | 0 | 0 | 3 | 2 |
+| [UnitFrames/FluxFlightPath.lua](../UnitFrames/FluxFlightPath.lua) | 3 | 0 | 0 | 8 | 6 |
 | [UnitFrames/FluxForeverComboPoints.lua](../UnitFrames/FluxForeverComboPoints.lua) | 0 | 0 | 0 | 2 | 0 |
 | [UnitFrames/FluxHealthLossOverlay.lua](../UnitFrames/FluxHealthLossOverlay.lua) | 1 | 0 | 2 | 0 | 0 |
 | [UnitFrames/FluxLegacyComboPoints.lua](../UnitFrames/FluxLegacyComboPoints.lua) | 0 | 0 | 4 | 13 | 0 |

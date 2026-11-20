@@ -78,6 +78,8 @@ for _,client in ipairs{'live','forever','classic','classic_era','classic_anniver
   local ix,_,iw=rect(bar.IconFrame)
   -- Independent factory pad2 core equations, rather than clip anchor labels.
   local divider=ix+iw-11+profile.Right
+  local iconX,_,iconWidth=rect(bar.Icon)
+  check(near(iconX+iconWidth,divider),'cast icon reaches the actual divider with no intervening strip')
   local coreTop,coreBottom=by+bh+4-profile.Top,by+11-profile.Bottom
   check(near(x,divider)and near(y,coreBottom)and near(y+h,coreTop),'glow clip reaches the real header core tracks and sole icon-right divider')
   check(near(x+w,fx+fw)and near(h,fh+4)and x>fx,'clip keeps its right boundary, admits the four-unit glow band and excludes native icon underlap')

@@ -1316,6 +1316,8 @@ HideCastBarInstant = function(self, isAfterInterrupt)
     self.customDuration = nil
     self.customStartTime = nil
     self.customTimerKind = nil
+    self.customWaitForStop = nil
+    self.customApproximate = nil
     self.customFromName = nil
     self.customToName = nil
     self._fluxCustomLabelFitPending = nil
@@ -1780,7 +1782,7 @@ local function BuildFlightLabelCandidates(fromName, toName)
 end
 
 local function ApplyCustomTimerLabel(castBar)
-    if not castBar or not castBar.Text or not castBar.customFromName then
+    if not castBar or not castBar.Text or not castBar.customFromName or not castBar.customToName then
         return false
     end
 
@@ -1789,9 +1791,9 @@ local function ApplyCustomTimerLabel(castBar)
         return false
     end
 
-    local duration = castBar.customDuration or 1
+    local duration = castBar.customDuration or 999
     local timeFS = castBar.Time
-    local timeSample = string.format("%.1f", duration)
+    local timeSample = string.format(castBar.customApproximate and "~%.1f" or "%.1f", duration)
     if timeFS then
         timeFS:SetText(timeSample)
     end
@@ -1830,6 +1832,8 @@ local function StopCustomTimerInternal(self, opts)
     self.customDuration = nil
     self.customStartTime = nil
     self.customTimerKind = nil
+    self.customWaitForStop = nil
+    self.customApproximate = nil
     self.customFromName = nil
     self.customToName = nil
     self._fluxCustomLabelFitPending = nil
@@ -1850,12 +1854,26 @@ function CB.StopCustomTimer(castBar, opts)
     end
 end
 
+local function SetCustomTimerTime(bar, elapsed)
+    local time = bar.Time
+    if not time then return end
+    local remaining = bar.customDuration and bar.customDuration - elapsed
+    if remaining and remaining <= 0 and bar.customWaitForStop then
+        local text = time:GetText()
+        if IsSecretValue(text) or text ~= "..." then time:SetText("...") end
+    else
+        local format = bar.customApproximate and remaining and "~%.1f" or "%.1f"
+        time:SetFormattedText(format, remaining and math.max(0, remaining) or elapsed)
+    end
+    time:Show()
+end
+
 function CB.StartCustomTimer(castBar, timerOpts)
     if not castBar or not timerOpts then
         return
     end
     local duration = tonumber(timerOpts.duration) or 0
-    if duration <= 0 then
+    if duration <= 0 and not timerOpts.waitForStop then
         return
     end
 
@@ -1881,12 +1899,14 @@ function CB.StartCustomTimer(castBar, timerOpts)
     ClearStages(castBar)
 
     castBar.customTimer = true
-    castBar.customDuration = duration
+    castBar.customDuration = duration > 0 and duration or nil
     castBar.customStartTime = timerOpts.startTime or GetTime()
     castBar.customTimerKind = timerOpts.kind or "default"
+    castBar.customWaitForStop = timerOpts.waitForStop
+    castBar.customApproximate = timerOpts.approximate
     castBar.customFromName = timerOpts.fromName
     castBar.customToName = timerOpts.toName
-    castBar._fluxCustomLabelFitPending = true
+    castBar._fluxCustomLabelFitPending = timerOpts.fromName and timerOpts.toName and true or nil
     castBar._fluxTimeTextAccum = FLUX_CASTBAR_TIME_TEXT_INTERVAL
 
     SetCastBarEmpoweredBackdrop(castBar, false)
@@ -1903,11 +1923,9 @@ function CB.StartCustomTimer(castBar, timerOpts)
         end
     end
 
-    castBar:SetMinMaxValues(0, duration)
-    local elapsed = GetTime() - castBar.customStartTime
-    if elapsed < 0 then elapsed = 0 end
-    if elapsed > duration then elapsed = duration end
-    castBar:SetValue(elapsed)
+    castBar:SetMinMaxValues(0, castBar.customDuration or 1)
+    local elapsed = math.max(0, GetTime() - castBar.customStartTime)
+    castBar:SetValue(math.min(elapsed, duration))
 
     ConfigureCastBarSpark(castBar, false)
     if castBar.ShieldOverlay then
@@ -1934,12 +1952,7 @@ function CB.StartCustomTimer(castBar, timerOpts)
             castBar.Text:Show()
         end
     end
-    if castBar.Time then
-        castBar.Time:Show()
-        local remaining = duration - elapsed
-        if remaining < 0.05 then remaining = 0 end
-        castBar.Time:SetFormattedText("%.1f", remaining)
-    end
+    SetCustomTimerTime(castBar, elapsed)
 
     local unit = castBar.unitID
     if unit == "player" or unit == "vehicle" then
@@ -2415,12 +2428,11 @@ local function OnUpdate(self, elapsed)
             end
         end
 
-        local maxValue = self.customDuration or 1
-        if maxValue <= 0 then maxValue = 1 end
+        local maxValue = self.customDuration
         local elapsedTime = GetTime() - (self.customStartTime or GetTime())
         if elapsedTime < 0 then elapsedTime = 0 end
 
-        if elapsedTime >= maxValue then
+        if maxValue and elapsedTime >= maxValue and not self.customWaitForStop then
             CastBar_SetValueIfChanged(self, maxValue)
             if self.Time then
                 self.Time:SetText("")
@@ -2434,16 +2446,15 @@ local function OnUpdate(self, elapsed)
             return
         end
 
-        CastBar_SetValueIfChanged(self, elapsedTime)
-
-        if self.Time and _updateTimeText then
-            local remainingTime = maxValue - elapsedTime
-            if remainingTime < 0.05 then remainingTime = 0 end
-            self.Time:SetFormattedText("%.1f", remainingTime)
-            self.Time:Show()
+        if maxValue then
+            CastBar_SetValueIfChanged(self, math.min(elapsedTime, maxValue))
         end
 
-        if self.Spark then
+        if self.Time and _updateTimeText then
+            SetCustomTimerTime(self, elapsedTime)
+        end
+
+        if maxValue and self.Spark then
             local _, maxVal = self:GetMinMaxValues()
             if maxVal and maxVal > 0 then
                 local sparkRatio = elapsedTime / maxVal
@@ -3368,7 +3379,9 @@ function CB.CreateCastBar(frame, unit)
         timerBar:SetPoint("BOTTOMRIGHT", castBar, "BOTTOMRIGHT", -2, contentBottom)
         icon:ClearAllPoints()
         icon:SetPoint("TOPLEFT", iconFrame, "TOPLEFT", 2, contentTop)
-        icon:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", -2, contentBottom)
+        -- The icon and the fill effects meet at the same divider track.
+        local iconRight = unit == "pet" and -2 or dividerOffset
+        icon:SetPoint("BOTTOMRIGHT", iconFrame, "BOTTOMRIGHT", iconRight, contentBottom)
         if castBar.FillEffectClip then
             local clip = castBar.FillEffectClip
             clip:ClearAllPoints()

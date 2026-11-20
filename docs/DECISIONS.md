@@ -1,5 +1,37 @@
 # Decisions
 
+20 November. Treat the vertical cast separator as an internal divider.
+Use the registered stroke track and thickness for its paint bounds and
+carry those bounds into the shared junction and fallback paths.
+[Cast divider](UNIT_OVERLAY_ATTACHMENTS.md#vertical-cast-divider).
+
+20 November. Let the paired horizontal cast rims own the inner crest at
+their divider. Use the current source tracks and scale so added border
+types follow the same rule. Record the rim depth in the branch plan's
+inputs so cache reuse respects the painted result.
+[Cast rim](UNIT_OVERLAY_ATTACHMENTS.md#continuous-cast-border-rim).
+
+20 November. Use the client's selected taxi legs and a character's completed
+flight time as the primary timing source. Treat existing overrides and bundled
+durations as initial estimates. An explicit `/fluxfp save` can still pin a
+direction. Continue the clock across a UI reload and restore the saved elapsed
+time on a fresh login. Mark the restored login ETA approximate and keep that
+ride out of route training. [Flight timing](14-unit-frames.md#flight-path-timers).
+
+20 November. Fit the cast icon's inner edge to the existing border track
+already used by the fill-effect clip. Keep the adjustment in prepared
+layout so it applies to both profiles and shared timer overlays.
+[Cast icon seam](UNIT_OVERLAY_ATTACHMENTS.md#type-1-cast-icon-seam).
+
+20 November. Generate the Mana Gem button's inline sequence out of combat
+using carried Ruby, Citrine, Jade and Agate copies. Compare the complete body
+so a lower-rank change refreshes it even when the best item stays the same.
+Let Blizzard track successful uses and read the current step for display.
+Run the sequence only in combat. Use the best carried item directly outside
+combat, and skip rebinding at combat exit when the body is unchanged.
+Keep charged gems on the item action and leave the existing conjure policy in place.
+[Button behavior](12-extra-button-system.md#mana-gem-sequence).
+
 20 November. Apply the food and water smallest-stack tie break at the use
 buttons after the existing conjured and restore priorities. Use snapshot
 locations for the face and a live carried-bag address for the secure click.

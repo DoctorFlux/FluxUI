@@ -1,5 +1,38 @@
 # Client and reference validation — 29 October 2026
 
+## Flight timer rework
+
+20 November. `FLIGHT-TIMER-20261120` passed 120 checks across Retail, Forever,
+Classic progression, Era and Anniversary desktop models. They exercise the
+real taxi owner and cast bar, including modern pin and legacy button tooltips,
+directed multi-stop estimates, automatic correction, elapsed-only display,
+reload, fresh login, cancellation, death and stale records. The idle model
+does zero taxi polls. The active driver polls about five times per second.
+
+The repository-wide desktop run compiled all 1,254 Lua files. It recorded
+555 passing scripts and nine failures in the Bars, Junk, alpha-reader,
+restock, combat-grid, map and raid fixtures. The passive unit-style failure
+reproduced with the archived cast bar at the same raid health accessor.
+The 11 focused flight, cast, options and timer-header scripts passed.
+
+API declarations were checked against the bundled Retail `12.1.5.70783`,
+Forever `1.60.1.70938` and Classic progression `5.5.4.70631` source pins.
+Current branch tips could not be resolved. Retail and Forever's flight map
+source uses taxi slot indices to preview and take a route. Era and Anniversary
+retain the legacy slot and coordinate adapter. That branch has desktop coverage.
+[Retail declarations](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_APIDocumentationGenerated/TaxiMapDocumentation.lua)
+[Forever pin provider](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_FlightMap/FM_FlightPathDataProvider.lua)
+[Classic declarations](https://github.com/Gethe/wow-ui-source/blob/e5d9b3a22c3f0f6f41ebac0e454f4969594261cf/Interface/AddOns/Blizzard_APIDocumentationGenerated/TaxiMapDocumentation.lua).
+
+Native acceptance remains pending. On each client, hover then select a different
+node, measure one complete trip and check the next tooltip. Repeat the learned
+route with a UI reload and a separate logout/login, compare the ETA with actual
+landing, and check an early landing on a multi-stop route. Verify the native
+tooltips and cast bar through landing and check for Lua errors. Retain the
+prior Witchcraft testing preference for Forever. No Witchcraft tool was connected.
+
+## Other client validation
+
 20 November. `FOOD-WATER-STACKS-20261120` passed 27 focused desktop checks.
 Pinned Retail `12.1.5.70783` and Forever `1.60.1.70938` FrameXML route the
 secure item argument through `SecureCmdItemParse` and accept the `bag slot`
@@ -5789,3 +5822,23 @@ R187 desktop coverage includes both border styles, capacity-limit admission, col
 R187 is the HUD acceptance candidate. The combined desktop pass covers action-strip crossings and rapid drops, party and raid conversion, local border publication, minimap side buttons and combat regressions. All 48 selected scripts and 1252 Lua syntax checks passed. Current native acceptance is pending. The installed border file matches in all five local client trees. Loaded client identity, frame times, pixels, input and taint require live evidence.
 [Matched validation](validation/hud-acceptance-r187-2026-11-20.json).
 <!-- /HUD-ACCEPTANCE-R187-20261120 -->
+
+## Mana Gem sequence
+
+20 November reset follow-up. All 155 sequence checks and 29 focused scripts
+pass across the existing models. The replay holds a stale combat cursor through
+the addon’s combat-exit handler and verifies the best carried face immediately.
+Replenishing an identical layout takes zero secure use-action writes. Native
+verification remains pending after reload, including gem acquisition in and
+out of combat, both click paths, and the next fight's initial gem.
+
+20 November. The dedicated test passes 165 checks across Retail, Forever,
+Classic progression, Era and Anniversary models. The 28 focused scripts
+pass. The live Forever window was verified as `1.60.1.70959` on disk and left
+in the background. Check actual successful use, shared cooldown, key and
+mouse input, next-gem icon/count and blocked actions on a stocked mage.
+
+Forever source `1.60.1.70938` shows item use on the current step, advancement
+on matching successful casts, and a combat-exit reset. The client source tip
+could not be resolved during this check. [Pinned Blizzard sequence manager](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/CastSequenceManager.lua)
+· [Desktop regression](../tests/mana_gem_sequence.lua).

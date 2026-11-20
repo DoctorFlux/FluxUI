@@ -1,5 +1,33 @@
 # Next session
 
+20 November. R189 addresses the vertical strip beside the spell icon.
+Compare a visible cast on both styles after reload, checking the two
+sides of the divider and the top and bottom joins.
+[Cast divider](docs/UNIT_OVERLAY_ATTACHMENTS.md#vertical-cast-divider).
+
+20 November. R188 supersedes the R187 candidate for live HUD acceptance
+following the cast border report. Verify the horizontal rim at both ends
+of the cast divider in either border style, then continue the existing
+HUD acceptance cases. [Cast rim evidence](docs/validation/cast-rim-r188-2026-11-20.json).
+
+20 November. Measure one uninterrupted taxi flight, then check the tooltip for
+that route. Repeat the ride through `/reload` and through a separate logout
+and login. Compare the countdown with the actual landing and verify early
+landing on a multi-stop route. [Native checks](docs/CLIENT_VALIDATION.md#flight-timer-rework).
+
+20 November. The cast icon now reaches the type 1 divider. The next image
+comparison is a type 1 Fire cast after reload, with type 2 as a control.
+Swing and Shoot share the verified layout.
+[Cast icon seam](docs/UNIT_OVERLAY_ATTACHMENTS.md#type-1-cast-icon-seam).
+
+20 November. After reload on a mage with Ruby and Jade in the bags, use Ruby
+on the Mana Gem button while in combat. When the gem cooldown ends, use the
+same button or its keybind to spend Jade without leaving the fight. Check the
+next-step icon and count, right-click conjure, and blocked-action errors.
+Repeat with a lower step active at combat exit and with a stronger gem added
+both in and out of combat. Check that the face returns to the best carried rank.
+[Native checklist](docs/CLIENT_VALIDATION.md#mana-gem-sequence).
+
 20 November. After reloading the corrected installed copy, use the Food or Water
 button and its keybind with equal-tier stock split into 20, 20 and 10. Verify
 that the 10-stack drops first. Check conjured priority and the optional combat

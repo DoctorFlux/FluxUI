@@ -35532,8 +35532,8 @@
       "path": "Core/BorderJunctions.lua",
       "classification": "active",
       "chapter": "08-shared-services.md",
-      "lines": 6351,
-      "sha256": "6621f1d3fc590e81807161a14279cbd6a2a099f7d47c55f3aac21fbc009c768c",
+      "lines": 6380,
+      "sha256": "4afb04ee56a7f44cfff1cae42458640538462eca27468f59ca8d9ae292f9b2ba",
       "clients": [
         "camelot",
         "cata",
@@ -35627,296 +35627,296 @@
         },
         {
           "name": "J:Subtract",
-          "line": 2113
+          "line": 2125
         },
         {
           "name": "J._ReadPreparedSource",
-          "line": 2253
+          "line": 2265
         },
         {
           "name": "J:AlignNearbyPanels",
-          "line": 2358
+          "line": 2370
         },
         {
           "name": "J:Triangles",
-          "line": 2672
+          "line": 2684
         },
         {
           "name": "J:_ClearBranchCompileCache",
-          "line": 2903
+          "line": 2915
         },
         {
           "name": "J:_PublishBranchCompileCache",
-          "line": 2906
+          "line": 2918
         },
         {
           "name": "J:BranchTriangles",
-          "line": 3003
+          "line": 3024
         },
         {
           "name": "prepared.inputsendreturnresultendBranches",
-          "line": 3283
+          "line": 3312
         },
         {
           "name": "J:_PrepareUnitBranchFallbacks",
-          "line": 3672
+          "line": 3701
         },
         {
           "name": "J:_UnitFallbackProfileMatches",
-          "line": 3774
-        },
-        {
-          "name": "J:_TrimUnitBranchFallbackRects",
           "line": 3803
         },
         {
+          "name": "J:_TrimUnitBranchFallbackRects",
+          "line": 3832
+        },
+        {
           "name": "J:_BeginFallbackCompileGeneration",
-          "line": 3841
+          "line": 3870
         },
         {
           "name": "J:_ClearFallbackCompileCache",
-          "line": 3845
+          "line": 3874
         },
         {
           "name": "J:_PublishFallbackCompileCache",
-          "line": 3848
+          "line": 3877
         },
         {
           "name": "J._FallbackDisjoint",
-          "line": 3955
+          "line": 3984
         },
         {
           "name": "J:_ClearFallbackPlanCache",
-          "line": 4059
+          "line": 4088
         },
         {
           "name": "J:_ClearAlternatePlans",
-          "line": 4062
+          "line": 4091
         },
         {
           "name": "J:_PublishFallbackPlanCache",
-          "line": 4065
+          "line": 4094
         },
         {
           "name": "J:_CompileFallbackPlans",
-          "line": 4156
+          "line": 4185
         },
         {
           "name": "J:_PreparePlan",
-          "line": 4415
+          "line": 4444
         },
         {
           "name": "Spatial.Copy",
-          "line": 4621
+          "line": 4650
         },
         {
           "name": "Spatial.Eligible",
-          "line": 4673
+          "line": 4702
         },
         {
           "name": "Spatial.IsScoped",
-          "line": 4700
+          "line": 4729
         },
         {
           "name": "Spatial.MarkGroup",
-          "line": 4703
+          "line": 4732
         },
         {
           "name": "Spatial.ScopeBounds",
-          "line": 4716
+          "line": 4745
         },
         {
           "name": "Spatial.RectCells",
-          "line": 4742
+          "line": 4771
         },
         {
           "name": "Spatial.Owners",
-          "line": 4753
+          "line": 4782
         },
         {
           "name": "Spatial.Changed",
-          "line": 4758
+          "line": 4787
         },
         {
           "name": "Spatial.Intersection",
-          "line": 4788
+          "line": 4817
         },
         {
           "name": "Spatial.ClipTriangle",
-          "line": 4800
+          "line": 4829
         },
         {
           "name": "Spatial.TileSource",
-          "line": 4868
+          "line": 4897
         },
         {
           "name": "Spatial.CopyDrawOperation",
-          "line": 4878
+          "line": 4907
         },
         {
           "name": "Spatial.PrepareCell",
-          "line": 4891
+          "line": 4920
         },
         {
           "name": "Spatial.IndexRegions",
-          "line": 4949
+          "line": 4978
         },
         {
           "name": "Spatial.VisitTiles",
-          "line": 4971
+          "line": 5000
         },
         {
           "name": "Spatial.TouchesHalo",
-          "line": 5005
+          "line": 5034
         },
         {
           "name": "Spatial.Query",
-          "line": 5010
+          "line": 5039
         },
         {
           "name": "Spatial.TouchesRegion",
-          "line": 5047
+          "line": 5076
         },
         {
           "name": "Spatial.Affects",
-          "line": 5050
+          "line": 5079
         },
         {
           "name": "Spatial.AddToRegion",
-          "line": 5055
+          "line": 5084
         },
         {
           "name": "Spatial.RouteRegions",
-          "line": 5060
+          "line": 5089
         },
         {
           "name": "Spatial.Hide",
-          "line": 5077
+          "line": 5106
         },
         {
           "name": "Spatial.Pop",
-          "line": 5088
+          "line": 5117
         },
         {
           "name": "Spatial.Push",
-          "line": 5096
+          "line": 5125
         },
         {
           "name": "J._RemoveRegionalFragment",
-          "line": 5099
+          "line": 5128
         },
         {
           "name": "Spatial.DetachListener",
-          "line": 5102
+          "line": 5131
         },
         {
           "name": "Spatial.Detach",
-          "line": 5116
+          "line": 5145
         },
         {
           "name": "Spatial.PruneListenerIndices",
-          "line": 5135
+          "line": 5164
         },
         {
           "name": "Spatial.Attach",
-          "line": 5143
+          "line": 5172
         },
         {
           "name": "Spatial.Reset",
-          "line": 5192
+          "line": 5221
         },
         {
           "name": "J:_ForgetLocality",
-          "line": 5202
-        },
-        {
-          "name": "Spatial.Acquire",
-          "line": 5216
-        },
-        {
-          "name": "Spatial.Tick",
           "line": 5231
         },
         {
+          "name": "Spatial.Acquire",
+          "line": 5245
+        },
+        {
+          "name": "Spatial.Tick",
+          "line": 5260
+        },
+        {
           "name": "Spatial.Levels",
-          "line": 5242
+          "line": 5271
         },
         {
           "name": "Spatial.ApplyLevels",
-          "line": 5290
+          "line": 5319
         },
         {
           "name": "Spatial.Budget",
-          "line": 5300
+          "line": 5329
         },
         {
           "name": "Spatial.Commit",
-          "line": 5330
+          "line": 5359
         },
         {
           "name": "Spatial.MatchLayoutPose",
-          "line": 5490
-        },
-        {
-          "name": "Spatial.CopyPoseOperations",
           "line": 5519
         },
         {
+          "name": "Spatial.CopyPoseOperations",
+          "line": 5548
+        },
+        {
           "name": "Spatial.SaveLayoutPose",
-          "line": 5529
+          "line": 5558
         },
         {
           "name": "Spatial.PruneLayoutPoses",
-          "line": 5569
+          "line": 5598
         },
         {
           "name": "Spatial.FindLayoutPose",
-          "line": 5579
+          "line": 5608
         },
         {
           "name": "Spatial.RememberLayoutPose",
-          "line": 5587
+          "line": 5616
         },
         {
           "name": "Spatial.SaveLayoutPlan",
-          "line": 5632
+          "line": 5661
         },
         {
           "name": "Spatial.RestoreLayoutPlan",
-          "line": 5679
+          "line": 5708
         },
         {
           "name": "Spatial.Try",
-          "line": 5728
+          "line": 5757
         },
         {
           "name": "J:_LocalSegment",
-          "line": 5833
+          "line": 5862
         },
         {
           "name": "Spatial.ReadFilter",
-          "line": 5848
+          "line": 5877
         },
         {
           "name": "J:Flush",
-          "line": 5855
+          "line": 5884
         },
         {
           "name": "J:CommitLayout",
-          "line": 6086
+          "line": 6115
         },
         {
           "name": "J:Invalidate",
-          "line": 6090
+          "line": 6119
         },
         {
           "name": "endendSlashCmdList.FLUXBORDERS",
-          "line": 6307
+          "line": 6336
         }
       ],
       "events": [
         {
-          "line": 6137,
+          "line": 6166,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -35924,7 +35924,7 @@
           "context": "()endevents:"
         },
         {
-          "line": 6138,
+          "line": 6167,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -35932,7 +35932,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")events:"
         },
         {
-          "line": 6139,
+          "line": 6168,
           "method": "RegisterEvent",
           "arguments": [
             "\"UI_SCALE_CHANGED\""
@@ -35940,7 +35940,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")events:"
         },
         {
-          "line": 6140,
+          "line": 6169,
           "method": "RegisterEvent",
           "arguments": [
             "\"DISPLAY_SIZE_CHANGED\""
@@ -35953,12 +35953,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXBORDERS1",
           "value": "/fluxborders",
-          "line": 6158
+          "line": 6187
         },
         {
           "kind": "handler",
           "name": "FLUXBORDERS",
-          "line": 6307
+          "line": 6336
         }
       ],
       "widgets": [],
@@ -40670,8 +40670,8 @@
       "path": "ExtraButtonSystem/CombatGrid/Buttons/ManaGem.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 467,
-      "sha256": "d4e52ea11a03ca2834f2154375977f5dee33d19aba54883c3047b728e0d4320e",
+      "lines": 455,
+      "sha256": "408d357857d6faca27e91cdb0989e536bf276394ca0b1ec2d0321b85ebfa604b",
       "clients": [
         "camelot",
         "cata",
@@ -40693,28 +40693,28 @@
         },
         {
           "name": "btn.UpdateTextCountiforiginalUpdateTextCountthenbtn.UpdateTextCount",
-          "line": 209
+          "line": 213
         },
         {
           "name": "Module.UpdateKeybinding",
-          "line": 221
+          "line": 225
         },
         {
           "name": "Module.RefreshCountOnly",
-          "line": 275
-        },
-        {
-          "name": "Module.Update",
           "line": 279
         },
         {
+          "name": "Module.Update",
+          "line": 305
+        },
+        {
           "name": "Module.Create",
-          "line": 453
+          "line": 441
         }
       ],
       "events": [
         {
-          "line": 231,
+          "line": 235,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -40722,7 +40722,7 @@
           "context": "(\"Frame\")bindEvents:"
         },
         {
-          "line": 232,
+          "line": 236,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_BINDINGS\""
@@ -40730,7 +40730,7 @@
           "context": "(\"PLAYER_ENTERING_WORLD\")bindEvents:"
         },
         {
-          "line": 271,
+          "line": 275,
           "method": "RegisterEvent",
           "arguments": [
             "\"SPELLS_CHANGED\""
@@ -41618,8 +41618,8 @@
       "path": "ExtraButtonSystem/Engine/ConsumableBind.lua",
       "classification": "active",
       "chapter": "12-extra-button-system.md",
-      "lines": 3788,
-      "sha256": "42366bf9eec33ae31193378dc58cd980a4c7d28fdbea43bb1b3f99126d65e508",
+      "lines": 3963,
+      "sha256": "660296cdf2866da9c614be1e11596eb519bd4557dede6c1429e599355f886eb5",
       "clients": [
         "camelot",
         "cata",
@@ -41689,204 +41689,204 @@
         },
         {
           "name": "Bridge.PromoteIfBetter",
-          "line": 893
+          "line": 975
         },
         {
           "name": "Bridge.CanCreate",
-          "line": 945
+          "line": 1035
         },
         {
           "name": "Bridge.GetPreferredCreateSpell",
-          "line": 954
+          "line": 1044
         },
         {
           "name": "Bridge.GetFoodConjureSpell",
-          "line": 965
+          "line": 1055
         },
         {
           "name": "Bridge.GetFoodSecondaryConjureSpell",
-          "line": 973
+          "line": 1063
         },
         {
           "name": "Bridge.GetWaterConjureSpell",
-          "line": 981
+          "line": 1071
         },
         {
           "name": "Bridge.GetWaterSecondaryConjureSpell",
-          "line": 989
+          "line": 1079
         },
         {
           "name": "Bridge.ApplyRightClickMacro",
-          "line": 1004
+          "line": 1094
         },
         {
           "name": "Bridge.ResolveSpellName",
-          "line": 1023
+          "line": 1113
         },
         {
           "name": "Bridge.ApplyRightClickSpell",
-          "line": 1050
+          "line": 1140
         },
         {
           "name": "Bridge.ApplyShiftRightClickSpell",
-          "line": 1107
+          "line": 1197
         },
         {
           "name": "Bridge.ApplyCtrlRightClickSpell",
-          "line": 1163
+          "line": 1253
         },
         {
           "name": "Bridge.ApplyUseAndConjureBindings",
-          "line": 1222
+          "line": 1312
         },
         {
           "name": "Bridge.BuildUseItemMacro",
-          "line": 1300
+          "line": 1390
         },
         {
           "name": "Bridge.BuildCastSequenceMacro",
-          "line": 1308
+          "line": 1398
         },
         {
           "name": "Bridge.After",
-          "line": 1329
+          "line": 1422
         },
         {
           "name": "Bridge.DeleteOneOwned",
-          "line": 1340
+          "line": 1433
         },
         {
           "name": "Bridge.IsConjured",
-          "line": 1376
+          "line": 1469
         },
         {
           "name": "Bridge.DeleteOneConjuredOwned",
-          "line": 1403
+          "line": 1496
         },
         {
           "name": "Bridge.ApplyBinding",
-          "line": 1411
+          "line": 1504
         },
         {
           "name": "Bridge.FormatSpellTooltipLine",
-          "line": 1444
+          "line": 1537
         },
         {
           "name": "Bridge.ResetFluxTooltipGap",
-          "line": 1561
+          "line": 1654
         },
         {
           "name": "Bridge._EnsureFluxTooltipGap",
-          "line": 1568
+          "line": 1661
         },
         {
           "name": "Bridge.AppendConjureSpellLines",
-          "line": 1576
+          "line": 1669
         },
         {
           "name": "Bridge.AppendTierStatusLines",
-          "line": 1726
-        },
-        {
-          "name": "Bridge.AppendDeleteStackHint",
           "line": 1819
         },
         {
+          "name": "Bridge.AppendDeleteStackHint",
+          "line": 1912
+        },
+        {
           "name": "Bridge.WireRestockEdit",
-          "line": 1855
+          "line": 1948
         },
         {
           "name": "Bridge.GetRestockClickHint",
-          "line": 1897
+          "line": 1990
         },
         {
           "name": "Bridge.AppendRestockEditHint",
-          "line": 1901
+          "line": 1994
         },
         {
           "name": "Bridge.GetBestCraftable",
-          "line": 1993
+          "line": 2086
         },
         {
           "name": "Bridge.CanCraft",
-          "line": 2002
+          "line": 2095
         },
         {
           "name": "Bridge.GetCraftMacro",
-          "line": 2011
+          "line": 2104
         },
         {
           "name": "Bridge.ApplyCraftOrRestockRightClick",
-          "line": 2049
+          "line": 2142
         },
         {
           "name": "Bridge.AppendCraftTooltipLines",
-          "line": 2103
+          "line": 2196
         },
         {
           "name": "Bridge.ApplyMiddleClickNoUse",
-          "line": 2140
+          "line": 2233
         },
         {
           "name": "Bridge.SuppressCheckedVisual",
-          "line": 2183
+          "line": 2276
         },
         {
           "name": "Bridge.SuppressCheckedVisualSettle",
-          "line": 2223
+          "line": 2316
         },
         {
           "name": "Bridge.GetConsumableCombatSwap",
-          "line": 2263
+          "line": 2356
         },
         {
           "name": "Bridge.SetConsumableCombatSwap",
-          "line": 2275
+          "line": 2368
         },
         {
           "name": "Bridge.CombatSwapTooltipKind",
-          "line": 2290
+          "line": 2383
         },
         {
           "name": "Bridge.SyncSwapEmptyFace",
-          "line": 2407
+          "line": 2500
         },
         {
           "name": "Bridge.ApplyCombatSwap",
-          "line": 2504
+          "line": 2597
         },
         {
           "name": "Bridge.RefreshConsumableCombatSwap",
-          "line": 2570
+          "line": 2663
         },
         {
           "name": "Bridge.QueueConsumableFaceRefresh",
-          "line": 2670
+          "line": 2763
         },
         {
           "name": "Refresh.Attach",
-          "line": 2868
+          "line": 3005
         },
         {
           "name": "Module.Update",
-          "line": 3210
+          "line": 3352
         },
         {
           "name": "Module.RefreshCountOnly",
-          "line": 3417
+          "line": 3563
         },
         {
           "name": "Module.RefreshCraftState",
-          "line": 3481
+          "line": 3627
         },
         {
           "name": "Module.Update",
-          "line": 3713
+          "line": 3888
         }
       ],
       "events": [
         {
-          "line": 1924,
+          "line": 2017,
           "method": "RegisterEvent",
           "arguments": [
             "\"TRADE_SKILL_SHOW\""
@@ -41894,7 +41894,7 @@
           "context": "(\"Frame\")tradeSkillCheckedFrame:"
         },
         {
-          "line": 2697,
+          "line": 2790,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_DISABLED\""
@@ -41902,7 +41902,7 @@
           "context": "(\"Frame\")watch:"
         },
         {
-          "line": 2698,
+          "line": 2791,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -41910,7 +41910,7 @@
           "context": "(\"PLAYER_REGEN_DISABLED\")watch:"
         },
         {
-          "line": 2699,
+          "line": 2792,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE_DELAYED\""
@@ -41918,7 +41918,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")watch:"
         },
         {
-          "line": 2700,
+          "line": 2793,
           "method": "RegisterEvent",
           "arguments": [
             "\"BAG_UPDATE_COOLDOWN\""
@@ -41926,7 +41926,7 @@
           "context": "(\"BAG_UPDATE_DELAYED\")watch:"
         },
         {
-          "line": 3555,
+          "line": 3728,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_REGEN_ENABLED\""
@@ -41934,7 +41934,7 @@
           "context": "(\"Frame\")leave:"
         },
         {
-          "line": 3556,
+          "line": 3729,
           "method": "RegisterEvent",
           "arguments": [
             "\"UPDATE_BINDINGS\""
@@ -41942,7 +41942,7 @@
           "context": "(\"PLAYER_REGEN_ENABLED\")leave:"
         },
         {
-          "line": 3557,
+          "line": 3730,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -54765,8 +54765,8 @@
       "path": "Inventory/Professions.lua",
       "classification": "active",
       "chapter": "21-inventory-foundation.md",
-      "lines": 2219,
-      "sha256": "358014c828dd2b9a046ac17e05ec7f2c8a75430b503da894b01dc6a28bed962f",
+      "lines": 2234,
+      "sha256": "41d039dc13612f058367366d63f09e002681cfe8030bf6e8b8ee6da8cd50144b",
       "clients": [
         "camelot",
         "cata",
@@ -54856,59 +54856,59 @@
         },
         {
           "name": "Prof.GetProfessionKnowledge",
-          "line": 1638
+          "line": 1639
         },
         {
           "name": "Prof.GetRecipeKnowledge",
-          "line": 1686
+          "line": 1701
         },
         {
           "name": "Prof.HasProfessionName",
-          "line": 1724
+          "line": 1739
         },
         {
           "name": "Prof.GetProfessionRank",
-          "line": 1729
-        },
-        {
-          "name": "Prof.GetSkillLineRank",
           "line": 1744
         },
         {
+          "name": "Prof.GetSkillLineRank",
+          "line": 1759
+        },
+        {
           "name": "Prof.GetSkillRequirementFromText",
-          "line": 1799
+          "line": 1814
         },
         {
           "name": "Prof.GetSkillRequirementFromTooltip",
-          "line": 1812
+          "line": 1827
         },
         {
           "name": "Prof.GetSkillRequirementFromTooltipData",
-          "line": 1846
+          "line": 1861
         },
         {
           "name": "Prof.GetSkillRequirementFromBagSlot",
-          "line": 1874
+          "line": 1889
         },
         {
           "name": "Prof.GetItemSkillRequirement",
-          "line": 1952
+          "line": 1967
         },
         {
           "name": "Prof.ScheduleLoginScan",
-          "line": 2059
+          "line": 2074
         },
         {
           "name": "Prof.AbortLoginScan",
-          "line": 2094
+          "line": 2109
         },
         {
           "name": "Prof.ForceScanOpen",
-          "line": 2167
+          "line": 2182
         },
         {
           "name": "Prof.ResetLoginScanState",
-          "line": 2172
+          "line": 2187
         }
       ],
       "events": [],
@@ -55705,8 +55705,8 @@
       "path": "Inventory/Restock/Auction/FluxAuctionRestockUI.lua",
       "classification": "active",
       "chapter": "20-vendor-restock-junk.md",
-      "lines": 674,
-      "sha256": "871af6b5e1524dd164fdf141b5106c5418b4129d6c7c66c57c4953c232cb4f87",
+      "lines": 676,
+      "sha256": "8880d3435748662a164efb792941f30fb7959e7d53d5529c7f11b4338a3870f0",
       "clients": [
         "camelot",
         "cata",
@@ -55748,35 +55748,35 @@
         },
         {
           "name": "cell.ShowTip",
-          "line": 344
+          "line": 346
         },
         {
           "name": "cell.EnsureUpgrade",
-          "line": 364
+          "line": 366
         },
         {
           "name": "card.BindProposal",
-          "line": 393
+          "line": 395
         },
         {
           "name": "cardcontrol.RefreshTip",
-          "line": 400
+          "line": 402
         },
         {
           "name": "A.UpdateUI",
-          "line": 499
+          "line": 501
         },
         {
           "name": "A.Toggle",
-          "line": 611
+          "line": 613
         },
         {
           "name": "A.AttachButton",
-          "line": 625
+          "line": 627
         },
         {
           "name": "SlashCmdList.FLUXAUCTIONRESTOCK",
-          "line": 672
+          "line": 674
         }
       ],
       "events": [],
@@ -55785,12 +55785,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXAUCTIONRESTOCK1",
           "value": "/fluxah",
-          "line": 671
+          "line": 673
         },
         {
           "kind": "handler",
           "name": "FLUXAUCTIONRESTOCK",
-          "line": 672
+          "line": 674
         }
       ],
       "widgets": [],
@@ -79822,43 +79822,47 @@
       "path": "tests/auction_restock_viewport_actions.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 167,
-      "sha256": "6a9ddc9035f87c3d4ce2d677d981870f156cc4f2ce00fbda40255fe683b2664c",
+      "lines": 183,
+      "sha256": "8e94446a4b5e1d4f8419d4a0dc0430af17ba5412915a92726efa213ef386137f",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "endA.GetUpgradeProposals",
-          "line": 22
+          "line": 25
         },
         {
           "name": "A.ResolveUpgrade",
-          "line": 24
-        },
-        {
-          "name": "e.GameTooltiptooltip.SetOwner",
-          "line": 26
-        },
-        {
-          "name": "ownerendtooltip.SetItemByID",
           "line": 27
         },
         {
-          "name": "endtooltip.Show",
-          "line": 28
-        },
-        {
-          "name": "trueendtooltip.Hide",
+          "name": "e.GameTooltiptooltip.SetOwner",
           "line": 29
         },
         {
+          "name": "ownerendtooltip.SetItemByID",
+          "line": 30
+        },
+        {
+          "name": "endtooltip.AddLine",
+          "line": 34
+        },
+        {
+          "name": "lineendtooltip.Show",
+          "line": 35
+        },
+        {
+          "name": "trueendtooltip.Hide",
+          "line": 36
+        },
+        {
           "name": "A.ResolveUpgradeA.ResolveUpgrade",
-          "line": 121
+          "line": 137
         },
         {
           "name": "f.scroll.GetVerticalScrollf.scroll.GetVerticalScroll",
-          "line": 147
+          "line": 163
         }
       ],
       "events": [],
@@ -86783,19 +86787,27 @@
       "path": "tests/castbar_border_junctions.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 161,
-      "sha256": "9695ee171c829b48a302571c7476efb1a9ebaad2c5c4023f7fb7f6abdaf989f4",
+      "lines": 215,
+      "sha256": "0077865295ac7f365c8c9e68ad600339d4a6af509dceaa4de69d37e37d35a6fd",
       "clients": [],
       "parents": [],
       "settings": [],
       "functions": [
         {
           "name": "ns.Border.GetJoinTracks",
-          "line": 53
+          "line": 66
+        },
+        {
+          "name": "border.GetJoinTracks",
+          "line": 104
+        },
+        {
+          "name": "returnprofileendborder.GetBorderThickness",
+          "line": 105
         },
         {
           "name": "j.Solvej.Solve",
-          "line": 109
+          "line": 125
         }
       ],
       "events": [],
@@ -92395,6 +92407,133 @@
       "sv_sites": []
     },
     {
+      "path": "tests/flight_timer.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 287,
+      "sha256": "db70ef14787f73c1b08cfb46f7ac9db9e709d5d47d44f77220dd7a94f0717756",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "bar.Time.GetText",
+          "line": 20
+        },
+        {
+          "name": "accountenv.FluxUnitFrames_IsFeatureEnabled",
+          "line": 36
+        },
+        {
+          "name": "falseendenv.FluxUnitFrames_ShouldShowCastBar",
+          "line": 37
+        },
+        {
+          "name": "env.GetTaxiMapID",
+          "line": 44
+        },
+        {
+          "name": "env.NumTaxiNodes",
+          "line": 60
+        },
+        {
+          "name": "state.nodesendenv.TaxiNodeGetType",
+          "line": 61
+        },
+        {
+          "name": "endenv.TaxiNodeName",
+          "line": 62
+        },
+        {
+          "name": ".nameendenv.UnitFactionGroup",
+          "line": 63
+        },
+        {
+          "name": "endenv.UnitOnTaxi",
+          "line": 64
+        },
+        {
+          "name": "andnotstate.airbornethenreturnnilendreturnstate.airborneendenv.GetNumRoutes",
+          "line": 69
+        },
+        {
+          "name": "TaxiPositionenv.TaxiGetDestX",
+          "line": 78
+        },
+        {
+          "name": "endenv.TaxiGetDestY",
+          "line": 79
+        },
+        {
+          "name": "thenenv.TaxiGetNodeSlot",
+          "line": 81
+        },
+        {
+          "name": "endendenv.TakeTaxiNode",
+          "line": 83
+        },
+        {
+          "name": "endenv.TaxiRequestEarlyLanding",
+          "line": 84
+        },
+        {
+          "name": "endenv.TaxiNodeOnButtonEnter",
+          "line": 85
+        },
+        {
+          "name": "endenv.hooksecurefunc",
+          "line": 86
+        },
+        {
+          "name": "map:OnMapChanged",
+          "line": 183
+        },
+        {
+          "name": "map:RefreshAllDataProviders",
+          "line": 184
+        },
+        {
+          "name": "map:GetMapID",
+          "line": 185
+        },
+        {
+          "name": "map:EnumeratePinsByTemplate",
+          "line": 187
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": [
+        {
+          "name": "FluxUI_DB",
+          "lines": [
+            35
+          ]
+        },
+        {
+          "name": "_FluxUI_CharSavedVars",
+          "lines": [
+            34,
+            148,
+            149,
+            228,
+            232,
+            239,
+            241,
+            246,
+            251,
+            259,
+            265,
+            269,
+            273,
+            282
+          ]
+        }
+      ]
+    },
+    {
       "path": "tests/flux_mail_category_attach.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
@@ -93689,6 +93828,87 @@
         {
           "name": "E.FluxUnitFrames_MatchFocusTargetToFocus",
           "line": 28
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/food_water_small_stacks.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 193,
+      "sha256": "82aec37833ee908dc7d0cb68e4e46e31b09dc5db9f6d8c6688c0407e3b1ad67f",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "env.InCombatLockdown",
+          "line": 7
+        },
+        {
+          "name": "returncombatendenv.CursorHasItem",
+          "line": 8
+        },
+        {
+          "name": "w:RegisterEvent",
+          "line": 14
+        },
+        {
+          "name": "w:SetScript",
+          "line": 15
+        },
+        {
+          "name": "w:HookScript",
+          "line": 16
+        },
+        {
+          "name": "w:GetAttribute",
+          "line": 17
+        },
+        {
+          "name": "w:SetAttribute",
+          "line": 18
+        },
+        {
+          "name": "inventory.GetLiveCount",
+          "line": 29
+        },
+        {
+          "name": "item.stackCountendendendreturntotalendinventory.IsReliable",
+          "line": 38
+        },
+        {
+          "name": "inventory.RegisterListener",
+          "line": 40
+        },
+        {
+          "name": "score.IsBlockedForBest",
+          "line": 77
+        },
+        {
+          "name": "endbest.IsValidKind",
+          "line": 78
+        },
+        {
+          "name": "returntrueendbest.ShouldSoftHoldOwned",
+          "line": 79
+        },
+        {
+          "name": "best.GetLadder",
+          "line": 90
+        },
+        {
+          "name": "returnoutendbest.GetBest",
+          "line": 98
+        },
+        {
+          "name": "btn:SetAction",
+          "line": 102
         }
       ],
       "events": [],
@@ -98259,6 +98479,43 @@
         {
           "name": "doflux.Action.HasAction",
           "line": 239
+        }
+      ],
+      "events": [],
+      "slash": [],
+      "widgets": [],
+      "loads": [],
+      "sv_sites": []
+    },
+    {
+      "path": "tests/mana_gem_sequence.lua",
+      "classification": "inactive source",
+      "chapter": "34-assets.md",
+      "lines": 119,
+      "sha256": "6c76be4dc978b719b96af5915ce1ce4cd135a57025e3893d0d49c81adb20bdac",
+      "clients": [],
+      "parents": [],
+      "settings": [],
+      "functions": [
+        {
+          "name": "s.env.QueryCastSequence",
+          "line": 29
+        },
+        {
+          "name": "returnstepends.bridge.KnowsManaGemConjureSpell",
+          "line": 34
+        },
+        {
+          "name": "returntrueends.bridge.IsManaGemConjureFree",
+          "line": 35
+        },
+        {
+          "name": "returntrueends.bridge.GetNextManaGemConjureSpell",
+          "line": 36
+        },
+        {
+          "name": "s.bridge.ShouldUseChargeBasedManaGemOnly",
+          "line": 114
         }
       ],
       "events": [],
@@ -108371,8 +108628,8 @@
       "path": "tests/profession_recipe_knowledge.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 181,
-      "sha256": "c846831dbf0c69a600eb6c30eb5ae015828be9407bb3371a7d3dfc5cfa02f5f2",
+      "lines": 223,
+      "sha256": "67777a6b7eccc3084e6e2b7507e9c4440effd089d20f9e1a94a4dd09d25a7d0a",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -108418,64 +108675,88 @@
           "line": 53
         },
         {
-          "name": "env.GetProfessions",
-          "line": 60
+          "name": "environment.wipe",
+          "line": 69
         },
         {
-          "name": "nilendenv.GetProfessionInfo",
-          "line": 61
-        },
-        {
-          "name": "otherEnv.GetProfessions",
-          "line": 66
-        },
-        {
-          "name": "otherEnv.GetProfessionInfo",
-          "line": 66
-        },
-        {
-          "name": "other.flux.PlayerName.GetCharKey",
+          "name": "paneEnv.GetProfessions",
           "line": 71
         },
         {
+          "name": "endpaneEnv.GetProfessionInfo",
+          "line": 72
+        },
+        {
+          "name": "iflegacythenpaneEnv.GetNumSkillLines",
+          "line": 78
+        },
+        {
+          "name": "endpaneEnv.GetSkillLineInfo",
+          "line": 79
+        },
+        {
+          "name": "paneEnv.GetProfessions",
+          "line": 98
+        },
+        {
+          "name": "env.GetProfessions",
+          "line": 102
+        },
+        {
+          "name": "nilendenv.GetProfessionInfo",
+          "line": 103
+        },
+        {
+          "name": "otherEnv.GetProfessions",
+          "line": 108
+        },
+        {
+          "name": "otherEnv.GetProfessionInfo",
+          "line": 108
+        },
+        {
+          "name": "other.flux.PlayerName.GetCharKey",
+          "line": 113
+        },
+        {
           "name": "aliasEnv.GetProfessions",
-          "line": 88
+          "line": 130
         },
         {
           "name": "nilendaliasEnv.GetProfessionInfo",
-          "line": 89
-        },
-        {
-          "name": "childEnv.GetProfessions",
-          "line": 123
-        },
-        {
-          "name": "nilendchildEnv.GetProfessionInfo",
-          "line": 124
-        },
-        {
-          "name": "childEnv.GetProfessionInfo",
           "line": 131
         },
         {
+          "name": "childEnv.GetProfessions",
+          "line": 165
+        },
+        {
+          "name": "nilendchildEnv.GetProfessionInfo",
+          "line": 166
+        },
+        {
           "name": "childEnv.GetProfessionInfo",
-          "line": 135
+          "line": 173
+        },
+        {
+          "name": "childEnv.GetProfessionInfo",
+          "line": 177
         },
         {
           "name": "falsets.IsTradeSkillReady",
-          "line": 151
+          "line": 193
         },
         {
           "name": "ts.GetChildProfessionInfo",
-          "line": 161
+          "line": 203
         },
         {
           "name": "reloadEnv.GetProfessions",
-          "line": 170
+          "line": 212
         },
         {
           "name": "reloadEnv.GetProfessionInfo",
-          "line": 170
+          "line": 212
         }
       ],
       "events": [],
@@ -108487,7 +108768,7 @@
           "name": "FluxInvDB",
           "lines": [
             18,
-            168
+            210
           ]
         }
       ]
@@ -118800,8 +119081,8 @@
       "path": "tests/timer_header_layout.lua",
       "classification": "inactive source",
       "chapter": "34-assets.md",
-      "lines": 171,
-      "sha256": "5a76c8cbd91f0babff3e6bce069b9f9d1d88da5a98e03923d92f4caefc97d9fa",
+      "lines": 173,
+      "sha256": "a944a2178fc9aa1a25eab6fcfe4d26c51ef07d55dbd619efb6f05f3e231cdb30",
       "clients": [],
       "parents": [],
       "settings": [],
@@ -118872,7 +119153,7 @@
         },
         {
           "name": "bar.GetFrameLevel",
-          "line": 150
+          "line": 152
         }
       ],
       "events": [],
@@ -125828,8 +126109,8 @@
       "path": "UnitFrames/FluxCastBar.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 3746,
-      "sha256": "c540421fa2884786e05928e7b118f858d763f769d81c4b25d85224cb7c68d177",
+      "lines": 3759,
+      "sha256": "25bdef591f321408b103a390e2f86bbedae2d54fba10f4bbed55a621021db09e",
       "clients": [
         "camelot",
         "cata",
@@ -125847,80 +126128,80 @@
       "functions": [
         {
           "name": "CB.StopCustomTimer",
-          "line": 1847
+          "line": 1851
         },
         {
           "name": "CB.StartCustomTimer",
-          "line": 1853
+          "line": 1871
         },
         {
           "name": "CB.ResetCastForUnit",
-          "line": 2280
+          "line": 2293
         },
         {
           "name": "CB.RefreshCastForUnit",
-          "line": 2294
+          "line": 2307
         },
         {
           "name": "CB.CreateCastBar",
-          "line": 2798
+          "line": 2809
         },
         {
           "name": "castBar.SetValue",
-          "line": 2833
+          "line": 2844
         },
         {
           "name": "endcastBar.GetValue",
-          "line": 2834
+          "line": 2845
         },
         {
           "name": "castBar.SetMinMaxValues",
-          "line": 2836
+          "line": 2847
         },
         {
           "name": "endcastBar.GetMinMaxValues",
-          "line": 2840
+          "line": 2851
         },
         {
           "name": "endcastBar.SetStatusBarColor",
-          "line": 2841
+          "line": 2852
         },
         {
           "name": "endcastBar.SetStatusBarTexture",
-          "line": 2842
+          "line": 2853
         },
         {
           "name": "endcastBar.GetStatusBarTexture",
-          "line": 2843
+          "line": 2854
         },
         {
           "name": "endiftimerBar.SetTimerDurationthencastBar.SetTimerDuration",
-          "line": 2869
+          "line": 2880
         },
         {
           "name": "endendiftimerBar.GetTimerDurationthencastBar.GetTimerDuration",
-          "line": 2875
+          "line": 2886
         },
         {
           "name": "RegisterUnitCastEventscastBar.DisablePetCastBar",
-          "line": 3052
+          "line": 3063
         },
         {
           "name": "endendcastBar.UpdateLayout",
-          "line": 3275
+          "line": 3286
         },
         {
           "name": "CB.SyncBlizzardCastBars",
-          "line": 3668
+          "line": 3681
         },
         {
           "name": "FluxCastBar_ApplyAppearanceAccent",
-          "line": 3699
+          "line": 3712
         }
       ],
       "events": [
         {
-          "line": 3014,
+          "line": 3025,
           "method": "RegisterUnitEvent",
           "arguments": [
             "event",
@@ -125929,7 +126210,7 @@
           "context": "function()castBar:"
         },
         {
-          "line": 3047,
+          "line": 3058,
           "method": "RegisterEvent",
           "arguments": [
             "\"UNIT_SPELLCAST_SENT\""
@@ -125937,7 +126218,7 @@
           "context": "function()castBar:"
         },
         {
-          "line": 3732,
+          "line": 3745,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_LOGIN\""
@@ -125945,7 +126226,7 @@
           "context": "(\"Frame\")loader:"
         },
         {
-          "line": 3733,
+          "line": 3746,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_ENTERING_WORLD\""
@@ -126304,8 +126585,8 @@
       "path": "UnitFrames/FluxFlightPath.lua",
       "classification": "active",
       "chapter": "14-unit-frames.md",
-      "lines": 569,
-      "sha256": "a7fb8c97f06dd08b1a92b9dc4d511dad0236525992eca4944e5564c5133551fc",
+      "lines": 591,
+      "sha256": "30a397b11c40b79524d43bb65347f624f07064ef2638c5b201f8977e8340dfbb",
       "clients": [
         "camelot",
         "cata",
@@ -126323,49 +126604,93 @@
       "functions": [
         {
           "name": "FP.GetNodeName",
-          "line": 103
+          "line": 104
         },
         {
           "name": "FP.GetFlightTimeForNodes",
-          "line": 120
+          "line": 111
         },
         {
           "name": "FP.SetOverride",
-          "line": 124
+          "line": 115
         },
         {
           "name": "FP.ClearOverride",
-          "line": 138
+          "line": 124
         },
         {
           "name": "FP.GetFlightHash",
-          "line": 171
+          "line": 148
+        },
+        {
+          "name": "FP.GetFlightTime",
+          "line": 248
         }
       ],
       "events": [
         {
-          "line": 551,
+          "line": 531,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"ADDON_LOADED\""
+          ],
+          "context": "FLUXFLIGHTPATH=HandleSlashevents:"
+        },
+        {
+          "line": 532,
           "method": "RegisterEvent",
           "arguments": [
             "\"TAXIMAP_OPENED\""
           ],
-          "context": "(\"Frame\")eventFrame:"
+          "context": "(\"ADDON_LOADED\")events:"
         },
         {
-          "line": 552,
+          "line": 533,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_ENTERING_WORLD\""
+          ],
+          "context": "(\"TAXIMAP_OPENED\")events:"
+        },
+        {
+          "line": 534,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_LEAVING_WORLD\""
+          ],
+          "context": "(\"PLAYER_ENTERING_WORLD\")events:"
+        },
+        {
+          "line": 535,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_LOGOUT\""
+          ],
+          "context": "(\"PLAYER_LEAVING_WORLD\")events:"
+        },
+        {
+          "line": 536,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_CONTROL_LOST\""
           ],
-          "context": "(\"TAXIMAP_OPENED\")eventFrame:"
+          "context": "(\"PLAYER_LOGOUT\")events:"
         },
         {
-          "line": 553,
+          "line": 537,
           "method": "RegisterEvent",
           "arguments": [
             "\"PLAYER_CONTROL_GAINED\""
           ],
-          "context": "(\"PLAYER_CONTROL_LOST\")eventFrame:"
+          "context": "(\"PLAYER_CONTROL_LOST\")events:"
+        },
+        {
+          "line": 538,
+          "method": "RegisterEvent",
+          "arguments": [
+            "\"PLAYER_DEAD\""
+          ],
+          "context": "(\"PLAYER_CONTROL_GAINED\")events:"
         }
       ],
       "slash": [
@@ -126373,12 +126698,12 @@
           "kind": "alias",
           "name": "SLASH_FLUXFLIGHTPATH1",
           "value": "/fluxfp",
-          "line": 543
+          "line": 528
         },
         {
           "kind": "handler",
           "name": "FLUXFLIGHTPATH",
-          "line": 544
+          "line": 529
         }
       ],
       "widgets": [],
@@ -126387,20 +126712,19 @@
         {
           "name": "FluxUI_DB",
           "lines": [
-            24,
-            25,
-            26,
-            27,
-            28,
-            29
+            39,
+            40,
+            74
           ]
         },
         {
           "name": "_FluxUI_CharSavedVars",
           "lines": [
-            33,
-            34,
-            35
+            30,
+            31,
+            64,
+            106,
+            554
           ]
         }
       ]

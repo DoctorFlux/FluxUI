@@ -87,6 +87,51 @@ pending; native FPS, taint and controller operation were not measured.
 
 See [exact sources and evidence](validation/cast-divider-flare-2026-11-17.json).
 
+## Type 1 cast icon seam
+
+20 November. Type 1 puts the icon-side divider at −1.5 UI units from the
+shared edge. The icon artwork ended at −2, leaving half a UI unit before
+the divider. The icon now ends at the same style-specific track used by the
+fill-effect clip. Type 2 already ends there. The fill rectangle, glow clip,
+header geometry and pet overlay keep their existing anchors. Swing and
+Shoot follow the prepared cast header.
+
+The archived cast source fails the new divider alignment assertion. The
+current layout passes in both styles and both header alignments across five
+client models. A live screenshot comparison remains pending.
+[Evidence](validation/cast-type1-seam-2026-11-20.json).
+
+### Continuous cast border rim
+
+The user reported that the gap remained after the icon adjustment. The
+source-art replay reproduced an interruption in both styles. The vertical
+divider took over the inner part of the horizontal rim at the two
+T-junctions. An opacity-only check passed because the vertical artwork was
+opaque at those samples.
+
+The renderer now keeps the horizontal artwork through the rim and joins the
+vertical divider against it. The rule uses the registered border track and
+source scale for each style. A future style can use the existing normalized
+canvas and declare its own tracks. The same join rule applies to its artwork.
+The replay includes a simulated new profile with different tracks and a
+distinct material identity. Both released styles and the test profile pass
+source-ownership and opacity checks at both ends of the divider.
+[R188 evidence](validation/cast-rim-r188-2026-11-20.json).
+
+### Vertical cast divider
+
+The user identified the remaining line beside the spell icon. The renderer
+was using the surrounding bevel of an outside edge on this internal seam.
+In R189, the divider renders a narrow band centered on the style's own
+stroke track. Its width follows the registered thickness. Straight
+fragments and T-junction fields use the same trimmed paint bounds.
+The horizontal rims and outside corners retain their own artwork.
+
+The source-art replay checks the divider center, both margins and both
+junctions in the released styles and a simulated third profile. The
+archived renderer fails the margin check for all three profiles. Native
+appearance remains pending. [R189 evidence](validation/cast-divider-r189-2026-11-20.json).
+
 ## Optional unit parts, glow interior and capture reasons
 
 17 November (`CAST-UNIT-JUNCTIONS-20261117`): prepare perpendicular continuations

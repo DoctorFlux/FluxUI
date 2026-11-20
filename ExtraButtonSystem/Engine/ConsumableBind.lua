@@ -669,13 +669,13 @@ function Bridge.GetOwnedLadder(kind, opts)
     local allowComboDrinks = kind == "water" and WaterAllowsComboDrinks(opts)
     local out = {}
     if kind == "managem" then
-        local chargeOnly = Bridge.ShouldUseChargeBasedManaGemOnly()
+        local chargeOnly = not opts.includeSingleUse and Bridge.ShouldUseChargeBasedManaGemOnly()
         for i = 1, #MANA_GEM_TIER do
             local gem = MANA_GEM_TIER[i]
             if chargeOnly and not gem.hasCharges then
                 -- Skip Vanilla single-use when charge-based mode is active (V9 behavior).
             else
-                local n = BagCount(gem.id, preferCharges)
+                local n = BagCount(gem.id, preferCharges, kind)
                 if n > 0 then
                     out[#out + 1] = {
                         itemID = gem.id,
@@ -1395,7 +1395,7 @@ function Bridge.BuildUseItemMacro(itemID)
     return "/use item:" .. itemID
 end
 
-function Bridge.BuildCastSequenceMacro(itemIDs)
+function Bridge.BuildCastSequenceMacro(itemIDs, combatOnly)
     if type(itemIDs) ~= "table" or #itemIDs == 0 then
         return nil
     end
@@ -1412,8 +1412,11 @@ function Bridge.BuildCastSequenceMacro(itemIDs)
     if #parts == 1 then
         return "/use " .. parts[1]
     end
-    -- Mana gem multi-use: reset when combat ends (V9 parity).
-    return "/castsequence reset=combat " .. table.concat(parts, ",")
+    local sequence = "reset=combat " .. table.concat(parts, ",")
+    if combatOnly then
+        return "/castsequence [combat] " .. sequence .. "\n/use [nocombat] " .. parts[1], sequence
+    end
+    return "/castsequence " .. sequence
 end
 
 function Bridge.After(delay, fn)
@@ -3635,7 +3638,11 @@ function Refresh.Attach(opts)
     if BestMod and BestMod.RegisterListener then
         BestMod.RegisterListener(listenerKey, function()
             if InCombat() then
-                RefreshCountOnly()
+                if kind == "managem" and btn.ActionType == "macrotext" then
+                    Module.RefreshCountOnly()
+                else
+                    RefreshCountOnly()
+                end
                 Module._pendingUpdate = true
                 return
             end
@@ -3649,16 +3656,19 @@ function Refresh.Attach(opts)
     if inv and inv.RegisterListener then
         local regions = opts.listenerRegions or { "bags" }
         inv.RegisterListener(listenerKey, function(ctx)
+            local changed = ctx and ctx.changedItemIDs
+            local manaGemSequence = kind == "managem" and btn.ActionType == "macrotext"
             local B = Bridge()
             local wasEmpty = not (Module._trackedItemID or Module._latchItemID)
             -- A zero-charge copy can recharge without a stack/identity delta.
             local id = SwapFaceItemID() or Module._trackedItemID or Module._latchItemID
                 or (charges and Module._observedEmptyItemID)
-            local changed = ctx and ctx.changedItemIDs
             local countChanged = id and (charges or not changed or changed[id] or ctx.recovery)
             local depleted = false
             local replenished = false
-            if B and countChanged then
+            if manaGemSequence then
+                Module.RefreshCountOnly()
+            elseif B and countChanged then
                 local n = B.BagCount(id, { charges = charges, kind = kind }) or 0
                 depleted = n <= 0 and Module._observedEmptyItemID ~= id
                 Module._observedEmptyItemID = n <= 0 and id or nil
@@ -3673,6 +3683,16 @@ function Refresh.Attach(opts)
             if InCombat() then
                 Module._pendingUpdate = true
                 return
+            end
+            if kind == "managem" then
+                for _, gem in ipairs(MANA_GEM_TIER) do
+                    if depleted or replenished or not changed or changed[gem.id] then
+                        -- The usable ladder can change while Best keeps the same identity.
+                        Module._pendingUpdate = true
+                        ScheduleUpdate(ctx and (ctx.force or ctx.recovery))
+                        return
+                    end
+                end
             end
             local regionsHit = ctx and ctx.regions
             if regionsHit and regionsHit.professions then
@@ -3766,7 +3786,9 @@ function Refresh.Attach(opts)
                 BestMod.Score.InvalidateUsableCache()
             end
         end
-        Module.Update(true)
+        -- Mana Gem's native sequence resets on regen. Re-evaluate stock without
+        -- forcing a secure rebind when the carried sequence is identical.
+        Module.Update(kind ~= "managem")
         if btn._pendingKeybindUpdate then
             RunKeybinding()
         end
@@ -3827,7 +3849,7 @@ function Refresh.Attach(opts)
                 if recupMode == "shift-middle" and shiftDown then
                     return
                 end
-                local id = Module._trackedItemID or btn.ItemId
+                local id = (kind == "managem" and btn._fluxManagedFaceItemId) or Module._trackedItemID or btn.ItemId
                 local B = Bridge()
                 if not B then
                     return

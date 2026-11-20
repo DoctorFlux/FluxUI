@@ -55,7 +55,7 @@ This reference follows reachable source and actual handlers, including assignmen
 | `/fluxwindows` | Empty: status. `lock`, `unlock`, `reset`, `scan`, `smoke`, `help`. Changes Blizzard-window mover state; HUD placement is separate. | [handler](../WindowMover/Init.lua#L50) |
 | `/fluxmicro` | `gap`, `debug`: inspect layout. `resetorder` / `reset order`: order only. `resetall` / `reset all`: factory visibility plus order. Other input re-hijacks/refreshes buttons and prints usage. | [handler](../MicroMenu/FluxMicroMenu.lua#L3068) |
 | `/fluxdefaults` | `apply` / `force`: full defaults; `keybinds`: binding pack; `cvars`: CVar pack; `reset`: clear account setup flag; `resetchar`: clear current character's seen flag. Empty/unknown: debug and usage. Resetting flags is different from applying immediately. | [handler](../FluxDefaultSettings.lua#L2782), [effects](05-defaults-and-bindings.md) |
-| `/fluxfp` | `save <sourceNodeID> <destinationNodeID> <seconds>`, `clear <source> <destination>`, `list`, `measure`, `help`. Persists faction-specific route overrides; measure prints elapsed time from the recorded flight start and is an estimate. | [flight helper](../UnitFrames/FluxFlightPath.lua#L465) |
+| `/fluxfp` | `save <sourceNodeID> <destinationNodeID> <seconds>`, `clear <source> <destination>`, `list`, `measure`, `help`. Save and clear apply to the specified direction. Measure reports elapsed time for the active or last completed ride. Completed flights update the character's learned time automatically. | [flight helper](../UnitFrames/FluxFlightPath.lua) |
 
 ## Diagnostic and developer commands
 

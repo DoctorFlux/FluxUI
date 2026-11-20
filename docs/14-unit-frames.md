@@ -548,7 +548,35 @@ school now uses the same school fill and effects as a spell cast (for example,
 a Fire wand uses Fire cast art). The ordinary swing timer remains for other
 weapons or unknown school data. [Implementation and pending native checks](SWING_WAND_CAST_THEME.md).
 
-[FlightPath](../UnitFrames/FluxFlightPath.lua) adds taxi duration tooltips and cast-bar progress, with a route-time database selected by client-specific XML. Lookup prefers faction-scoped account overrides, then supplied static data; character storage remembers node names. `GetFlightTimeForNodes`, `SetOverride` and `ClearOverride` expose this boundary. Flight timing is measured/learned rather than guaranteed exact; missing routes remain unknown. Data is attributed to RestedXP and has separate licensing; see [assets](34-assets.md).
+### Flight path timers
+
+[FlightPath](../UnitFrames/FluxFlightPath.lua) powers taxi tooltips and player
+cast-bar progress. It starts on confirmed taxi boarding and measures until the
+taxi lands. A completed ride automatically updates the character's time for
+that direction and the client's selected intermediate stops. An explicit
+`/fluxfp save` pins an account override for the specified direction. Learning
+continues so clearing the override restores the latest measured time.
+
+Existing account values and the client-selected RestedXP data provide initial
+estimates. Multi-stop estimates use the actual leg sequence when available.
+The tooltip and countdown prefix estimates with `~`. A ride without a duration
+shows elapsed time and an empty progress bar. If a countdown expires in flight,
+the bar shows `...` until the taxi state clears. The cast bar and tooltip each
+honor their existing options. [Data licensing](34-assets.md).
+
+The active route, duration and elapsed time are stored per character. A UI
+reload includes the loading gap on the same client clock. A fresh login restores
+the elapsed time captured at logout if the character is still on a taxi. The
+fresh login countdown is approximate because the client does not expose how
+far the taxi moved between logout and login. The resumed ride does not update
+the trained duration after a fresh login. Early landing requests, death and
+observed arrival at a different destination also leave measurements intact.
+
+Polestar 0.4.1 uses character recordings, a separate travel graph for unlearned
+routes, and a saved active flight. FluxUI uses its own route and persistence
+code and can run independently of Polestar. The existing cast bar is a
+passive display and the tooltip attaches to native taxi map controls.
+[Validation](CLIENT_VALIDATION.md#flight-timer-rework).
 
 ## Auras, threat and integrations
 

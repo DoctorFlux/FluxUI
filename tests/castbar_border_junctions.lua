@@ -4,7 +4,12 @@
 -- No native pixel/FPS/taint certification.
 local function read(p)local f=assert(io.open(p,'rb'));local s=f:read('*a');f:close();return s end
 local prefix=assert(read('tests/border_junctions.lua'):match('^(.-)local J=fixture%(%)'))
-if arg[1]then local n;prefix,n=prefix:gsub('read%("Core/BorderJunctions.lua"%)',function()return 'read('..string.format('%q',arg[1])..')'end);assert(n==1)end
+local renderer=read(arg[1]or'Core/BorderJunctions.lua')..'\nreturn function()return clipped end'
+local replaced;prefix,replaced=prefix:gsub('assert%(load%(read%("Core/BorderJunctions.lua"%)',function()
+ return 'e.clipped=assert(load('..string.format('%q',renderer)
+end)
+assert(replaced==1)
+prefix=prefix:gsub('function%(%)return #queue end,e','function()return #queue end,e,B',1)
 local fixture=assert(load(prefix..'\nreturn fixture','@cast-junction-fixture','t',_G))()
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
@@ -24,6 +29,14 @@ local function sheet(name)
  end
 end
 local sheets={sheet('Battlefield100.tga'),sheet('ForeverMetal150.tga')}
+-- Use the same available artwork bytes with a separate style ID, material
+-- identity and track layout to exercise future style registration.
+sheets[7]=sheets[1]
+local profiles={
+ [1]={Top=8,Bottom=8,Left=9,Right=9.5,thickness=100,file='Battlefield100.tga'},
+ [2]={Top=9,Bottom=7,Left=9.5,Right=9,thickness=150,file='ForeverMetal150.tga'},
+ [7]={Top=8.25,Bottom=7.75,Left=9.25,Right=9.5,thickness=125,file='CastProfileFixture.tga'},
+}
 -- Pinned local Forever source: UiTextureAtlasMember14234, atlas1942,
 -- FileData4505182 SHA25696c4779261efb57e93294498680b95ed98549977855f3ac31707182270856423.
 -- Actual first alpha column of ui-castingbar-filling-standard (209x11).
@@ -50,7 +63,7 @@ local runtimeEnv=setmetatable({arg={arg[2]}},{__index=_G})
 local runtimeFixture,runtimeRect=assert(load(runtimePrefix..'\nreturn fixture,rect','@cast-fill-source-fixture','t',runtimeEnv))()
 local function fillBounds(header,width,below,style,client)
  local _,e,ns=runtimeFixture(client)
- ns.Border.GetJoinTracks=function()return style==1 and{Top=8,Bottom=8}or{Top=9,Bottom=7}end
+ ns.Border.GetJoinTracks=function()return profiles[style]end
  local bar=ns.CastBar.CreateCastBar(e.CreateFrame('Frame',nil,e.UIParent),'player')
  local frame=bar:GetParent();frame.unit='player';frame.outerBorderPadding=header;frame.outerBorderAlignment=below and'TOP'or'BOTTOM'
  frame.outerBorderFrame=e.CreateFrame('Frame',nil,frame);frame.outerBorderFrame:SetSize(width,100)
@@ -85,11 +98,14 @@ end
 for _,profile in ipairs{{20,125},{25,169},{36,300}}do
 local header,totalWidth=table.unpack(profile)
 local iconWidth=header+4
-for _,style in ipairs{1,2}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,below in ipairs{false,true}do
- local j,new,piece,flush,objects,lock,choose,_,e=fixture();choose(style,'class')
+for _,style in ipairs{1,2,7}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,below in ipairs{false,true}do
+ local j,new,piece,flush,objects,lock,choose,_,e,border=fixture();choose(style,'class')
+ local profile=profiles[style]
+ border.GetJoinTracks=function()return profile end
+ border.GetBorderThickness=function()return profile.thickness end
  local root=new(e.UIParent);root.unit='target';root._FluxBorderStatic=true;root.scale=scale
  local cast=new(root);cast.scale=scale;cast._FluxBorderOwner=root;cast._FluxBorderCast=true;cast._FluxBorderJunctionRole='connected'
- local topTrack,bottomTrack=style==1 and 8 or 9,style==1 and 8 or 7
+ local topTrack,bottomTrack=profile.Top,profile.Bottom
  local bottom=below and 0 or 100-header-7+bottomTrack-topTrack
  local top=below and header+7+topTrack-bottomTrack or 100
  local function box(x,width,level,internal,color)
@@ -98,7 +114,7 @@ for _,style in ipairs{1,2}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,bel
    Top={x+7,top-13,width-18,17},Bottom={x+7,bottom-5,width-18,16},Left={x-9,bottom+11,16,top-bottom-24},Right={x+width-11,bottom+11,16,top-bottom-24}}
   local parts={}
   for _,key in ipairs{'TL','TR','BL','BR','Top','Bottom','Left','Right'}do
-   local t,r=piece(p,key,rects[key]);r.art='Interface\\AddOns\\_FluxUI\\Texture\\borders\\'..(style==1 and'Battlefield100.tga'or'ForeverMetal150.tga')
+   local t,r=piece(p,key,rects[key]);r.art='Interface\\AddOns\\_FluxUI\\Texture\\borders\\'..profile.file
    t:SetTexture(r.art);t:SetTexCoord(table.unpack(coords[key]));t:SetVertexColor(table.unpack(color));parts[key]=t
   end
   return p,parts
@@ -135,6 +151,44 @@ for _,style in ipairs{1,2}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,bel
  end
  crest(top+4-topTrack-.17);crest(bottom+11-bottomTrack+.13)
  check(divider~=nil,'source graph identifies the actual merged icon divider core')
+ local fragmentSources={}
+ for source,record in pairs(e.clipped())do
+  for _,field in ipairs(record.pool)do fragmentSources[field]=source end
+ end
+ local function sourceOpacity(x,y,first,second)
+  local opacity=0
+  for _,t in ipairs(objects)do
+   local source=t._junctionSource or fragmentSources[t] or t
+   if source==first or source==second then
+    local alpha=alphaAt(t,x*scale,y*scale,sheets[style])
+    opacity=1-(1-opacity)*(1-alpha)
+   end
+  end
+  return opacity
+ end
+ local halfStroke=profile.thickness/100
+ local middle=(top+4-topTrack+bottom+11-bottomTrack)/2
+ check(sourceOpacity(divider+.11,middle,ip.Right,bp.Left)>.95,'the cast divider retains its material at the center')
+ for _,sign in ipairs{-1,1}do
+  local x=divider+sign*(halfStroke+.13)
+  check(sourceOpacity(x,middle,ip.Right,bp.Left)==0,
+   'cast divider excludes the outer bevel beside the icon and fill: style '..style..' scale '..scale)
+ end
+ for _,side in ipairs{'Top','Bottom'}do
+  local crossbar=side=='Top'and top+4-topTrack or bottom+11-bottomTrack
+  local inward=side=='Top'and -1 or 1
+  for _,dx in ipairs{-.42,-.15,.15,.42}do
+   local x,y=divider+dx,crossbar+inward*.55
+   check(sourceOpacity(x,y,ip[side],bp[side])>.95 and sourceOpacity(x,y,ip.Right,bp.Left)==0,
+    'horizontal rim artwork stays continuous through the cast '..side..' divider: style '..style..' scale '..scale)
+  end
+  check(sourceOpacity(divider+.11,crossbar+inward*3.55,ip.Right,bp.Left)>.95,
+   'the vertical divider still meets the cast rim')
+  for _,sign in ipairs{-1,1}do
+   check(sourceOpacity(divider+sign*(halfStroke+.13),crossbar+inward*3.55,ip.Right,bp.Left)==0,
+    'the cast divider uses the same trim inside its T-junction')
+  end
+ end
  for _,client in ipairs{'live','forever','classic','classic_era','classic_anniversary'}do
   local fx,fy,fw,fh=fillBounds(header,totalWidth,below,style,client)
   if header==36 then
@@ -158,4 +212,4 @@ for _,style in ipairs{1,2}do for _,scale in ipairs{.75,1,1.25,2.5,3}do for _,bel
  end
  check(j.stats.solves==solves and j.stats.geometryReads==reads and #objects==count,'cast show/hide/recolor reuses complete cap-free joins without geometry work or allocation')
 end end end end
-print('Cast border junctions: '..checks..' checks PASS; both styles/scales .75..3/headers20,25,36/both alignments; rounded outside caps; replaced internal caps; complete top/bottom fields; static cast visibility/color including combat. Native pixels/taint/FPS pending')
+print('Cast border junctions: '..checks..' checks PASS; two released styles and a simulated new profile; scales .75..3/headers20,25,36/both alignments; continuous rim and divider; rounded outside caps; static cast visibility/color including combat. Native pixels/taint/FPS pending')

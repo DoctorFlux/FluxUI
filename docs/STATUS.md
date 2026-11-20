@@ -1,5 +1,23 @@
 # Development status
 
+20 November. The flight timer follows confirmed boarding and landing, learns
+directional routes automatically, and resumes from the character's saved
+flight after reload or logout. Initial estimates are marked, and unknown
+rides show elapsed time. Desktop coverage includes five client models.
+Live flights after reload and relog remain pending.
+[Flight timing](14-unit-frames.md#flight-path-timers).
+
+20 November. The cast icon now meets the measured divider in border type 1.
+The gap in the modeled anchors was half a UI unit. All 15 focused scripts
+passed and the installed source matches across five clients. Live pixels
+after reload remain pending. [Cast icon seam](UNIT_OVERLAY_ATTACHMENTS.md#type-1-cast-icon-seam).
+
+20 November. Mana Gem now builds a strongest-first sequence from carried
+single-use ranks and shows the client's current step during combat. Charged
+gems keep direct item use. Combat exit and a new carried gem restore the best
+available rank. Five desktop client models pass the sequence and reset checks.
+Native use remains pending. [Button behavior](12-extra-button-system.md#mana-gem-sequence).
+
 20 November. Food and Water now use the smallest carried stack among eligible
 items with the same tier and restore amount. Desktop checks cover tied item
 IDs, split stacks, moves before a bag update, and combat swaps. Native use is
@@ -23,7 +41,7 @@ The addon-wide endpoint is a tested main snapshot that preserves user data, corr
 
 | Track | Current status | Next acceptance check |
 | --- | --- | --- |
-| HUD lag and borders | R187 is the finish-line build. All 50 desktop acceptance scripts passed. The goal is blocked pending the player-performed live round. | Start on Forever with held-action crossings and rapid drops, then verify party and raid transitions, border seams and combat. [HUD finish line](HUD_PERFORMANCE_ROADMAP.md#finish-line) |
+| HUD lag and borders | R189 is the acceptance build after the cast divider correction. Live acceptance remains pending. | Start on Forever with held-action crossings and rapid drops, then verify party and raid transitions, border seams and combat. [HUD finish line](HUD_PERFORMANCE_ROADMAP.md#finish-line) |
 | Inventory and casting performance | The 82-script closeout and all 90 recorded source hashes establish the baseline. Live acceptance is waiting for a usable setup confirmed by the player. | Run one check from the fixed list when a supported live setup is available. [Inventory finish point](INVENTORY_PERFORMANCE_ROADMAP.md#finish-point) |
 | Addon release | Acceptance gates defined. Final release readiness remains pending. | Record the selected snapshot and complete the applicable release gates. [Release gates](RELEASE_ROADMAP.md#release-gates) |
 

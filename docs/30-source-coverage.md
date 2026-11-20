@@ -18,7 +18,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | active compatibility | 33 |
 | bundled library | 97 |
 | development harness | 30 |
-| inactive source | 597 |
+| inactive source | 600 |
 
 ## Addon sources
 
@@ -839,6 +839,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/extra_profession_ranks.lua](../tests/extra_profession_ranks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/extra_startup.lua](../tests/extra_startup.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/fallback_roster_work.lua](../tests/fallback_roster_work.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/flight_timer.lua](../tests/flight_timer.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_category_attach.lua](../tests/flux_mail_category_attach.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_contacts.lua](../tests/flux_mail_contacts.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/flux_mail_conveniences.lua](../tests/flux_mail_conveniences.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -852,6 +853,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/focus_secure_visibility.lua](../tests/focus_secure_visibility.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/focus_target_colors.lua](../tests/focus_target_colors.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/focus_target_combat_width.lua](../tests/focus_target_combat_width.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/food_water_small_stacks.lua](../tests/food_water_small_stacks.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/forever_badge_combat_row_swap.lua](../tests/forever_badge_combat_row_swap.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/forever_sao_auracontainer.lua](../tests/forever_sao_auracontainer.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/forever_sao_badge_preparation.lua](../tests/forever_sao_badge_preparation.lua) | inactive source | — | [34-assets.md](34-assets.md) |
@@ -905,6 +907,7 @@ Source SHA-256 fingerprints normalize CRLF to LF and preserve every other byte, 
 | [tests/mail_restock_speed.lua](../tests/mail_restock_speed.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/main_row_audit.lua](../tests/main_row_audit.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/main_row_recovery.lua](../tests/main_row_recovery.lua) | inactive source | — | [34-assets.md](34-assets.md) |
+| [tests/mana_gem_sequence.lua](../tests/mana_gem_sequence.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_hbd_all_clients.lua](../tests/map_hbd_all_clients.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_init_watchers.lua](../tests/map_init_watchers.lua) | inactive source | — | [34-assets.md](34-assets.md) |
 | [tests/map_provider_combat.lua](../tests/map_provider_combat.lua) | inactive source | — | [34-assets.md](34-assets.md) |

@@ -1,12 +1,12 @@
 # FluxUI HUD performance roadmap
 
-**R187 implementation closeout · Live acceptance pending · Updated 20 November 2026**
+**R189 acceptance candidate · Live acceptance pending · Updated 20 November 2026**
 
 Make party and raid membership changes, held-action crossings, rapid action-bar edits and other HUD changes feel immediate. Keep both border styles, T/X seams, shadows, action IDs, bindings, and combat behavior intact. This is the HUD performance gate in the [addon release roadmap](RELEASE_ROADMAP.md). The [border builder requirements](BORDER_BUILDER_LOCALITY.md) cover the implementation.
 
 ## Finish line
 
-Use R187 and the pinned HUD and group sources as the acceptance candidate. The combined desktop pass is complete. The remaining milestone is one native acceptance round, starting on Forever where the hitches were reported. Exercise the first transition and a short burst of repeats. Close the goal when the checks pass. Reopen implementation for a specific failure and retest the affected paths.
+Use R189 and the pinned HUD and group sources as the acceptance candidate. R189 carries forward the R187 performance closeout and fits the cast border rim and icon divider. The remaining milestone is one native acceptance round, starting on Forever where the hitches were reported. Exercise the first transition and a short burst of repeats. Close the goal when the checks pass. Reopen implementation for a specific failure and retest the affected paths.
 
 | Acceptance check | Pass condition |
 | --- | --- |
@@ -17,7 +17,7 @@ Use R187 and the pinned HUD and group sources as the acceptance candidate. The c
 
 If a native scenario is unavailable, retain the tested candidate and mark that check pending. Resume implementation when a failed acceptance check identifies work. Profiling is optional and is useful only when a reproducible hitch still needs attribution.
 
-The expanded desktop gate passed all 50 scripts, including the repaired render-basis and shadow-material checks. The 14 pinned runtime files still match in all five installations. Three checks after the desktop gate found no current playtest result, so the goal is blocked pending player-performed live acceptance. Begin with held-action crossings and rapid drops on Forever.
+The thread remains blocked pending player-performed live acceptance. Begin with held-action crossings and rapid drops on Forever. Check the cast border rim in both styles during the visual pass.
 
 ## Implemented and verified on desktop
 
@@ -46,6 +46,10 @@ The expanded desktop gate passed all 50 scripts, including the repaired render-b
 - Close the goal when HUD-1 through HUD-5 meet their acceptance criteria. Reopen a track for a reproducible failure that affects those criteria.
 
 ## Latest checkpoint
+
+**20 November 2026 · Vertical cast divider** — R189 trims the divider's outside bevel using the registered track and thickness. All 60 HUD and cast desktop scripts passed, including the straight divider and both T-junctions in three profiles. [Validation](validation/cast-divider-r189-2026-11-20.json)
+
+**20 November 2026 · Cast border correction** — R188 preserves the horizontal cast rim through the divider junction in both released styles and a simulated new profile. All 60 HUD and cast desktop scripts passed. [Validation](validation/cast-rim-r188-2026-11-20.json)
 
 **20 November 2026 · Desktop verification repair** — Fixed two stale border fixtures so they exercise the current renderer. Both detect the regressions they are meant to catch. All 50 acceptance scripts passed against the same R187 runtime sources. [Validation](validation/hud-acceptance-r187-2026-11-20.json)
 
