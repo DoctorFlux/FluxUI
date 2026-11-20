@@ -12,6 +12,13 @@ checks remain pending after reload.
 [Retail source](https://github.com/Gethe/wow-ui-source/blob/297d7aaaa736f346b3e036f38ee088eaf7f8c07f/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L1104-L1127)
 [Forever source](https://github.com/Gethe/wow-ui-source/blob/bebcb6bf309cf41b41bd74f8ca651e6a105b2676/Interface/AddOns/Blizzard_ChatFrameBase/Shared/ChatFrameUtil.lua#L1118-L1141).
 
+20 November at 12:14 CET. The repeat report named line 2957. The running
+window was verified as the Forever executable, whose installed file had the
+corrected SHA-256 `0576edeae4e0e5ae9bcd1987644dff2c3fef4a947d2eb91e2f9ef3bb2e425ebe`.
+That line is a macro guard in the corrected file. The last logged UI shutdown
+and saved-variable write were at 11:51:50, before the fixed file's 11:56:25
+write. The click regression passed again against the installed source.
+
 20 November. The Auction Restock tooltip and profession cache fixes passed
 desktop checks for Retail, Forever, Classic progression, Era and Anniversary.
 Both installed Lua files match byte for byte across all five clients.

@@ -17,6 +17,9 @@ the earlier loaded code. The corrected hook calls `Bridge()`.
 The broader desktop run compiled 1,251 Lua files and returned 553 passes.
 All eight failures reproduced with identical output against the pre-change
 source. The focused set was rerun on the corrected file.
+At 12:14 the user reported the same old line. Verified the running Forever
+window and its on-disk correction. The last logged UI shutdown and settings
+write preceded the correction. Native retesting awaits a completed reload.
 [Button behavior](12-extra-button-system.md#smallest-food-and-water-stacks).
 
 20 November. Reproduced the numeric-cap tooltip crash with a native-style
